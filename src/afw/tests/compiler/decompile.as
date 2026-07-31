@@ -3,8 +3,8 @@
 //? testScript: decompile.as
 //? customPurpose: Part of compiler category tests
 //? description: ...
-// Coverage of decompile() for data types and afw_value* IR kinds.
-// Synthetic IR forms use #implementation_id(...) (pragma_identifier style).
+// Coverage of decompile() for data types and afw_value* compiled kinds.
+// Synthetic forms use #implementation_id(...) (pragma_identifier style).
 // Value methods exercised (by kind):
 //   data-type bindings (write_as_expression), block, assignment_target,
 //   call_built_in_function, call, call_script_function, symbol_reference,
@@ -12,7 +12,7 @@
 //   function_definition, compiled_value, list_expression, object_expression,
 //   template_definition, closure_binding.
 // Not covered from Adaptive Script (C-only / awkward to construct):
-//   function_thunk (model adapter only), call_test_script (test_script IR root).
+//   function_thunk (model adapter only), call_test_script (test_script root).
 //?
 //? sourceType: script
 //?

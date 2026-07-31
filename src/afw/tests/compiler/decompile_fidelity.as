@@ -2,7 +2,7 @@
 //?
 //? testScript: decompile_fidelity.as
 //? customPurpose: Part of compiler category tests
-//? description: decompile recompile preserves IR (d1 == d2)
+//? description: decompile recompile preserves compiled form (d1 == d2)
 //? sourceType: script
 //?
 //? test: fidelity-core-constructs
@@ -13,7 +13,7 @@
 
 /*
  * Goal: decompile(compile(src)) recompiles to the same decompile string.
- * Not source listing recovery - same value-tree / behavior IR.
+ * Not source listing recovery - same compiled value tree / behavior.
  */
 const check = function (src) {
     const d1 = decompile(compile<script>(script(src)));

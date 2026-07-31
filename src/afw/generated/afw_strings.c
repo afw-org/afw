@@ -37256,12 +37256,6 @@ afw_self_v_zz__Adaptive_Framework_extension_manifest_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Adaptive_IR_text_for_the_value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_IR_text_for_the_value_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Adaptive_compiler_related_functions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_compiler_related_functions)
@@ -37307,6 +37301,12 @@ const afw_value_string_t
 afw_self_v_zz__Adaptive_parsed_URI_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_parsed_URI_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Adaptive_text_for_the_compiled_form_of_the_value_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_text_for_the_compiled_form_of_the_value_)
 };
 
 const afw_value_string_t
@@ -39950,9 +39950,9 @@ afw_self_v_zz__Decoded_userinfo_part_of_URI_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Decompile_a_value_to_Adaptive_IR_text = {
+afw_self_v_zz__Decompile_a_value_to_Adaptive_compiled_form = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text)
+    AFW_UTF8_LITERAL(AFW_Q_zz__Decompile_a_value_to_Adaptive_compiled_form)
 };
 
 const afw_value_string_t

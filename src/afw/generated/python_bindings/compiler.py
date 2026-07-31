@@ -86,19 +86,20 @@ def compile_from_file(session, file, compileType=None):
 
 def decompile(session, value, whitespace=None):
     """
-    Decompile a value to Adaptive IR text
+    Decompile a value to Adaptive compiled form
 
-    Decompile an adaptive value to a string of Adaptive IR (functional forms
-    and #implementation_id(...) pragmas such as #script_function, #block,
-    #assignment_target). This is not original source recovery and is not pure
-    JSON — use stringify() for JSON of evaluated data, and compile(...,
-    listing) for a human compiler listing with symbol tables. Many decompile
-    forms recompile via the same IR; #closure_binding and #function_thunk are
-    known rejects (runtime-only / C-side). Optional whitespace matches
-    stringify/listing style (integer 0-10 or indent string).
+    Decompile an adaptive value to Adaptive text that represents the compiled
+    form (functional forms and #implementation_id(...) pragmas such as
+    #script_function, #block, #assignment_target). This is not original source
+    recovery and is not pure JSON — use stringify() for JSON of evaluated
+    data, and compile(..., listing) for a human compiler listing with symbol
+    tables. Many decompile forms recompile to the same compiled value;
+    #closure_binding and #function_thunk are known rejects (runtime-only /
+    C-side). Optional whitespace matches stringify/listing style (integer 0-10
+    or indent string).
 
     Args:
-        value (object): Value to decompile (may be unevaluated IR such as a
+        value (object): Value to decompile (may be unevaluated, such as a
         compiled script root).
 
         whitespace (object): Add whitespace for readability if present and not
@@ -108,7 +109,7 @@ def decompile(session, value, whitespace=None):
         spaces is used.
 
     Returns:
-        str: Adaptive IR text for the value.
+        str: Adaptive text for the compiled form of the value.
     """
 
     request = session.Request()
@@ -402,8 +403,8 @@ def stringify(session, value, replacer=None, whitespace=None):
     Evaluate value and serialize it as pure JSON text. Adaptive data types use
     their jsonPrimitive (for example base64Binary and date become JSON
     strings). The value is fully evaluated before serialization (not Adaptive
-    source/IR form). For Adaptive Script or IR source form use decompile().
-    For binary octets as UTF-8 text use decode_to_string(); string(binary) is
+    compiled form). For Adaptive compiled form as text use decompile(). For
+    binary octets as UTF-8 text use decode_to_string(); string(binary) is
     base64 printable text, not UTF-8. Optional replacer is a function (key,
     value) that returns the value to serialize, or an array of property names
     to include when serializing objects. Optional whitespace matches

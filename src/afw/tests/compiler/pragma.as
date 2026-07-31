@@ -2,7 +2,7 @@
 //?
 //? testScript: pragma.as
 //? customPurpose: Part of compiler category tests
-//? description: PragmaStatement / PragmaValue structural IR round-trips
+//? description: PragmaStatement / PragmaValue structural compiled-form round-trips
 //? sourceType: script
 //?
 //? test: pragma-unknown-value
@@ -228,7 +228,7 @@ assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-assignment-target-list-direct
-//? description: list Pattern written directly in IR
+//? description: list Pattern written directly in compiled form
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -299,7 +299,7 @@ assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-list-expression-direct
-//? description: #list_expression as spread entry inside array constructor IR
+//? description: #list_expression as spread entry inside array constructor
 //? skip: false
 //? expect: 0
 //? source: ...

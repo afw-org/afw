@@ -25,8 +25,8 @@
  * Compile xpathExpression value and return either an unevaluated adaptive value
  * or a string containing the compiler listing. The listing is a human-oriented
  * dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle
- * and debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * and debugging — not pure JSON (use stringify) and not Adaptive compiled-form
+ * text (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -46,7 +46,7 @@
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is

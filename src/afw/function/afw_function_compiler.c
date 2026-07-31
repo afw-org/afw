@@ -133,14 +133,14 @@ afw_function_evaluate_whitespace_parameter(
  *
  * See afw_function_bindings.h for more information.
  *
- * Decompile an adaptive value to a string of Adaptive IR (functional forms and
- * #implementation_id(...) pragmas such as #script_function, #block,
- * #assignment_target). This is not original source recovery and is not pure
- * JSON — use stringify() for JSON of evaluated data, and compile(..., listing)
- * for a human compiler listing with symbol tables. Many decompile forms
- * recompile via the same IR; #closure_binding and #function_thunk are known
- * rejects (runtime-only / C-side). Optional whitespace matches
- * stringify/listing style (integer 0-10 or indent string).
+ * Decompile an adaptive value to Adaptive text that represents the compiled
+ * form (functional forms and #implementation_id(...) pragmas such as
+ * #script_function, #block, #assignment_target). This is not original source
+ * recovery and is not pure JSON — use stringify() for JSON of evaluated data,
+ * and compile(..., listing) for a human compiler listing with symbol tables.
+ * Many decompile forms recompile to the same compiled value; #closure_binding
+ * and #function_thunk are known rejects (runtime-only / C-side). Optional
+ * whitespace matches stringify/listing style (integer 0-10 or indent string).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -156,7 +156,7 @@ afw_function_evaluate_whitespace_parameter(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to decompile (may be unevaluated IR such as a
+ *   value - (any dataType) Value to decompile (may be unevaluated, such as a
  *       compiled script root).
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
@@ -167,7 +167,7 @@ afw_function_evaluate_whitespace_parameter(
  *
  * Returns:
  *
- *   (string) Adaptive IR text for the value.
+ *   (string) Adaptive text for the compiled form of the value.
  */
 const afw_value_t *
 afw_function_execute_decompile(
@@ -563,11 +563,11 @@ impl_stringify_prepare(
  *
  * Evaluate value and serialize it as pure JSON text. Adaptive data types use
  * their jsonPrimitive (for example base64Binary and date become JSON strings).
- * The value is fully evaluated before serialization (not Adaptive source/IR
- * form). For Adaptive Script or IR source form use decompile(). For binary
- * octets as UTF-8 text use decode_to_string(); string(binary) is base64
- * printable text, not UTF-8. Optional replacer is a function (key, value) that
- * returns the value to serialize, or an array of property names to include when
+ * The value is fully evaluated before serialization (not Adaptive compiled
+ * form). For Adaptive compiled form as text use decompile(). For binary octets
+ * as UTF-8 text use decode_to_string(); string(binary) is base64 printable
+ * text, not UTF-8. Optional replacer is a function (key, value) that returns
+ * the value to serialize, or an array of property names to include when
  * serializing objects. Optional whitespace matches decompile/listing style.
  *
  * This function is pure, so it will always return the same result
@@ -619,7 +619,7 @@ afw_function_execute_stringify(
     const afw_value_t **f_argv;
     afw_xctx_t *xctx = x->xctx;
 
-    /* Evaluate first parameter fully (not decompile of unevaluated IR). */
+    /* Evaluate first parameter fully (not decompile of unevaluated form). */
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
     if (!value || afw_value_is_undefined(value)) {

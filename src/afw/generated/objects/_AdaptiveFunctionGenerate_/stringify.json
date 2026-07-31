@@ -3,7 +3,7 @@
     "brief": "Serialize an evaluated value as JSON text",
     "camelCaseFunctionLabel": "stringify",
     "category": "compiler",
-    "description": "Evaluate value and serialize it as pure JSON text. Adaptive data types use their jsonPrimitive (for example base64Binary and date become JSON strings). The value is fully evaluated before serialization (not Adaptive source/IR form). For Adaptive Script or IR source form use decompile(). For binary octets as UTF-8 text use decode_to_string(); string(binary) is base64 printable text, not UTF-8. Optional replacer is a function (key, value) that returns the value to serialize, or an array of property names to include when serializing objects. Optional whitespace matches decompile/listing style.",
+    "description": "Evaluate value and serialize it as pure JSON text. Adaptive data types use their jsonPrimitive (for example base64Binary and date become JSON strings). The value is fully evaluated before serialization (not Adaptive compiled form). For Adaptive compiled form as text use decompile(). For binary octets as UTF-8 text use decode_to_string(); string(binary) is base64 printable text, not UTF-8. Optional replacer is a function (key, value) that returns the value to serialize, or an array of property names to include when serializing objects. Optional whitespace matches decompile/listing style.",
     "functionId": "stringify",
     "functionLabel": "stringify",
     "parameters": [

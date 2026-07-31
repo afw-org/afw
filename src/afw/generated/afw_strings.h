@@ -104317,7 +104317,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1229 \
-    "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive IR text (use decompile)."
+    "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1229 */
 #define afw_s_zz__1229 \
@@ -108243,7 +108243,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1365 \
-    "Compile regexp value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive IR text (use decompile)."
+    "Compile regexp value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1365 */
 #define afw_s_zz__1365 \
@@ -108789,7 +108789,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1384 \
-    "Compile relaxed_json value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive IR text (use decompile)."
+    "Compile relaxed_json value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1384 */
 #define afw_s_zz__1384 \
@@ -110349,7 +110349,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1438 \
-    "Compile script value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive IR text (use decompile)."
+    "Compile script value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1438 */
 #define afw_s_zz__1438 \
@@ -115211,7 +115211,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1606 \
-    "Compile template value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive IR text (use decompile)."
+    "Compile template value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1606 */
 #define afw_s_zz__1606 \
@@ -118981,7 +118981,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1737 \
-    "Compile xpathExpression value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive IR text (use decompile)."
+    "Compile xpathExpression value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1737 */
 #define afw_s_zz__1737 \
@@ -142823,7 +142823,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__445 \
-    "Value to decompile (may be unevaluated IR such as a compiled script root)."
+    "Value to decompile (may be unevaluated, such as a compiled script root)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__445 */
 #define afw_s_zz__445 \
@@ -142875,7 +142875,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__447 \
-    "Decompile an adaptive value to a string of Adaptive IR (functional forms and #implementation_id(...) pragmas such as #script_function, #block, #assignment_target). This is not original source recovery and is not pure JSON — use stringify() for JSON of evaluated data, and compile(..., listing) for a human compiler listing with symbol tables. Many decompile forms recompile via the same IR; #closure_binding and #function_thunk are known rejects (runtime-only / C-side). Optional whitespace matches stringify/listing style (integer 0-10 or indent string)."
+    "Decompile an adaptive value to Adaptive text that represents the compiled form (functional forms and #implementation_id(...) pragmas such as #script_function, #block, #assignment_target). This is not original source recovery and is not pure JSON — use stringify() for JSON of evaluated data, and compile(..., listing) for a human compiler listing with symbol tables. Many decompile forms recompile to the same compiled value; #closure_binding and #function_thunk are known rejects (runtime-only / C-side). Optional whitespace matches stringify/listing style (integer 0-10 or indent string)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__447 */
 #define afw_s_zz__447 \
@@ -142901,7 +142901,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__448 \
-    "/* Decompile a value to Adaptive IR text */\nfunction decompile (\n    value: any,\n    whitespace?: any\n): string;\n"
+    "/* Decompile a value to Adaptive compiled form */\nfunction decompile (\n    value: any,\n    whitespace?: any\n): string;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__448 */
 #define afw_s_zz__448 \
@@ -143499,7 +143499,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__469 \
-    "Evaluate value and serialize it as pure JSON text. Adaptive data types use their jsonPrimitive (for example base64Binary and date become JSON strings). The value is fully evaluated before serialization (not Adaptive source/IR form). For Adaptive Script or IR source form use decompile(). For binary octets as UTF-8 text use decode_to_string(); string(binary) is base64 printable text, not UTF-8. Optional replacer is a function (key, value) that returns the value to serialize, or an array of property names to include when serializing objects. Optional whitespace matches decompile/listing style."
+    "Evaluate value and serialize it as pure JSON text. Adaptive data types use their jsonPrimitive (for example base64Binary and date become JSON strings). The value is fully evaluated before serialization (not Adaptive compiled form). For Adaptive compiled form as text use decompile(). For binary octets as UTF-8 text use decode_to_string(); string(binary) is base64 printable text, not UTF-8. Optional replacer is a function (key, value) that returns the value to serialize, or an array of property names to include when serializing objects. Optional whitespace matches decompile/listing style."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__469 */
 #define afw_s_zz__469 \
@@ -158449,7 +158449,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__987 \
-    "If specified, a human compiler listing is produced instead of an unevaluated compiled value (tree + ---Symbols; not recompilable IR). Use decompile() for Adaptive IR text and stringify() for pure JSON of evaluated data.\n\nThis parameter can be an integer between 0 and 10 or a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used."
+    "If specified, a human compiler listing is produced instead of an unevaluated compiled value (tree + ---Symbols; not recompilable). Use decompile() for Adaptive compiled-form text and stringify() for pure JSON of evaluated data.\n\nThis parameter can be an integer between 0 and 10 or a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__987 */
 #define afw_s_zz__987 \
@@ -158475,7 +158475,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__988 \
-    "Compile json value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive IR text (use decompile)."
+    "Compile json value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__988 */
 #define afw_s_zz__988 \
@@ -161360,32 +161360,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_IR_text_for_the_value_ \
-    "Adaptive IR text for the value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_IR_text_for_the_value_ */
-#define afw_s_zz__Adaptive_IR_text_for_the_value_ \
-    (&afw_self_v_zz__Adaptive_IR_text_for_the_value_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_IR_text_for_the_value_ */
-#define afw_self_s_zz__Adaptive_IR_text_for_the_value_ \
-    (afw_self_v_zz__Adaptive_IR_text_for_the_value_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_IR_text_for_the_value_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_IR_text_for_the_value_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_IR_text_for_the_value_ */
-#define afw_z_zz__Adaptive_IR_text_for_the_value_ \
-    (afw_self_v_zz__Adaptive_IR_text_for_the_value_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_IR_text_for_the_value_ */
-#define afw_v_zz__Adaptive_IR_text_for_the_value_ \
-    (&afw_self_v_zz__Adaptive_IR_text_for_the_value_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adaptive_compiler_related_functions \
     "Adaptive compiler related functions"
 
@@ -161590,6 +161564,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_parsed_URI_ */
 #define afw_v_zz__Adaptive_parsed_URI_ \
     (&afw_self_v_zz__Adaptive_parsed_URI_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Adaptive_text_for_the_compiled_form_of_the_value_ \
+    "Adaptive text for the compiled form of the value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_text_for_the_compiled_form_of_the_value_ */
+#define afw_s_zz__Adaptive_text_for_the_compiled_form_of_the_value_ \
+    (&afw_self_v_zz__Adaptive_text_for_the_compiled_form_of_the_value_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_text_for_the_compiled_form_of_the_value_ */
+#define afw_self_s_zz__Adaptive_text_for_the_compiled_form_of_the_value_ \
+    (afw_self_v_zz__Adaptive_text_for_the_compiled_form_of_the_value_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_text_for_the_compiled_form_of_the_value_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__Adaptive_text_for_the_compiled_form_of_the_value_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_text_for_the_compiled_form_of_the_value_ */
+#define afw_z_zz__Adaptive_text_for_the_compiled_form_of_the_value_ \
+    (afw_self_v_zz__Adaptive_text_for_the_compiled_form_of_the_value_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_text_for_the_compiled_form_of_the_value_ */
+#define afw_v_zz__Adaptive_text_for_the_compiled_form_of_the_value_ \
+    (&afw_self_v_zz__Adaptive_text_for_the_compiled_form_of_the_value_.pub)
 
 
 
@@ -173034,28 +173034,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text \
-    "Decompile a value to Adaptive IR text"
+#define AFW_Q_zz__Decompile_a_value_to_Adaptive_compiled_form \
+    "Decompile a value to Adaptive compiled form"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text */
-#define afw_s_zz__Decompile_a_value_to_Adaptive_IR_text \
-    (&afw_self_v_zz__Decompile_a_value_to_Adaptive_IR_text.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Decompile_a_value_to_Adaptive_compiled_form */
+#define afw_s_zz__Decompile_a_value_to_Adaptive_compiled_form \
+    (&afw_self_v_zz__Decompile_a_value_to_Adaptive_compiled_form.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text */
-#define afw_self_s_zz__Decompile_a_value_to_Adaptive_IR_text \
-    (afw_self_v_zz__Decompile_a_value_to_Adaptive_IR_text.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Decompile_a_value_to_Adaptive_compiled_form */
+#define afw_self_s_zz__Decompile_a_value_to_Adaptive_compiled_form \
+    (afw_self_v_zz__Decompile_a_value_to_Adaptive_compiled_form.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Decompile_a_value_to_Adaptive_compiled_form */
 extern const afw_value_string_t \
-    afw_self_v_zz__Decompile_a_value_to_Adaptive_IR_text;
+    afw_self_v_zz__Decompile_a_value_to_Adaptive_compiled_form;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text */
-#define afw_z_zz__Decompile_a_value_to_Adaptive_IR_text \
-    (afw_self_v_zz__Decompile_a_value_to_Adaptive_IR_text.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Decompile_a_value_to_Adaptive_compiled_form */
+#define afw_z_zz__Decompile_a_value_to_Adaptive_compiled_form \
+    (afw_self_v_zz__Decompile_a_value_to_Adaptive_compiled_form.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text */
-#define afw_v_zz__Decompile_a_value_to_Adaptive_IR_text \
-    (&afw_self_v_zz__Decompile_a_value_to_Adaptive_IR_text.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Decompile_a_value_to_Adaptive_compiled_form */
+#define afw_v_zz__Decompile_a_value_to_Adaptive_compiled_form \
+    (&afw_self_v_zz__Decompile_a_value_to_Adaptive_compiled_form.pub)
 
 
 

@@ -747,7 +747,7 @@ let store = evaluate(compile_json(jsonText));
 // then same base64Binary(...) conversions as above before crypto_decrypt
 ```
 
-Writing a sealed object back to JSON for storage uses **`stringify`**, which emits pure JSON (`iv`/`tag`/`ciphertext` as base64 **JSON strings** via each type’s `jsonPrimitive`). Use **`decompile`** only for Adaptive Script/IR source form.
+Writing a sealed object back to JSON for storage uses **`stringify`**, which emits pure JSON (`iv`/`tag`/`ciphertext` as base64 **JSON strings** via each type’s `jsonPrimitive`). Use **`decompile`** only for Adaptive compiled form as text.
 
 #### HMAC verify
 

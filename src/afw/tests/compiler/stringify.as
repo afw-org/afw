@@ -233,7 +233,7 @@ const d = date("2020-01-01");
 assert(stringify(d) == "\"2020-01-01\"");
 assert(stringify({ "d": d }) == "{\"d\":\"2020-01-01\"}");
 
-/* Adaptive IR form remains decompile() */
+/* Adaptive compiled form remains decompile() */
 assert(decompile(b) == "base64Binary(\"aGk=\")");
 assert(starts_with(decompile(d), "date("));
 

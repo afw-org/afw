@@ -77,15 +77,15 @@ def compile_xpathExpression(session, source, listing=None):
     value or a string containing the compiler listing. The listing is a
     human-oriented dump (value tree interleaved with source, plus ---Symbols
     tables) for Fiddle and debugging — not pure JSON (use stringify) and not
-    Adaptive IR text (use decompile).
+    Adaptive compiled-form text (use decompile).
 
     Args:
         source (object): xpathExpression string to compile
 
         listing (object): If specified, a human compiler listing is produced
         instead of an unevaluated compiled value (tree + ---Symbols; not
-        recompilable IR). Use decompile() for Adaptive IR text and stringify()
-        for pure JSON of evaluated data.
+        recompilable). Use decompile() for Adaptive compiled-form text and
+        stringify() for pure JSON of evaluated data.
         
         This parameter can be an integer between 0 and 10 or a string that is
         used for indentation. If 0 is specified, no whitespace is added to the

@@ -79,14 +79,14 @@ class xpathExpression
      * value or a string containing the compiler listing. The listing is a
      * human-oriented dump (value tree interleaved with source, plus
      * ---Symbols tables) for Fiddle and debugging — not pure JSON (use
-     * stringify) and not Adaptive IR text (use decompile).
+     * stringify) and not Adaptive compiled-form text (use decompile).
      *
      * @param xpathExpression $source xpathExpression string to compile
      * @param  $listing If specified, a human compiler listing is produced
      *                  instead of an unevaluated compiled value (tree +
-     *                  ---Symbols; not recompilable IR). Use decompile() for
-     *                  Adaptive IR text and stringify() for pure JSON of
-     *                  evaluated data.
+     *                  ---Symbols; not recompilable). Use decompile() for
+     *                  Adaptive compiled-form text and stringify() for pure
+     *                  JSON of evaluated data.
      * 
      *                  This parameter can be an integer between 0 and 10 or a
      *                  string that is used for indentation. If 0 is

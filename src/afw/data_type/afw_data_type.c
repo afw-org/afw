@@ -1945,7 +1945,8 @@ impl_afw_data_type_array_write_as_expression(
     array = *(const afw_array_t * const *)from_internal;
 
     /*
-     * If any element is an IR node (call, block, …), emit #statements(...)
+     * If any element is still an unevaluated compiled node (call, block, …),
+     * emit #statements(...)
      * so recompile builds an array *value* of unevaluated nodes (for for/
      * switch statement lists). Surface [call(...)] becomes array() which
      * would evaluate elements; switch requires an array value of statements.

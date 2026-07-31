@@ -6903,14 +6903,14 @@ afw_function_definition_decompile;
  * @brief Adaptive Function `decompile`
  * @param x function execute parameter.
  *
- * Decompile an adaptive value to a string of Adaptive IR (functional forms and
- * #implementation_id(...) pragmas such as #script_function, #block,
- * #assignment_target). This is not original source recovery and is not pure
- * JSON — use stringify() for JSON of evaluated data, and compile(..., listing)
- * for a human compiler listing with symbol tables. Many decompile forms
- * recompile via the same IR; #closure_binding and #function_thunk are known
- * rejects (runtime-only / C-side). Optional whitespace matches
- * stringify/listing style (integer 0-10 or indent string).
+ * Decompile an adaptive value to Adaptive text that represents the compiled
+ * form (functional forms and #implementation_id(...) pragmas such as
+ * #script_function, #block, #assignment_target). This is not original source
+ * recovery and is not pure JSON — use stringify() for JSON of evaluated data,
+ * and compile(..., listing) for a human compiler listing with symbol tables.
+ * Many decompile forms recompile to the same compiled value; #closure_binding
+ * and #function_thunk are known rejects (runtime-only / C-side). Optional
+ * whitespace matches stringify/listing style (integer 0-10 or indent string).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6926,7 +6926,7 @@ afw_function_definition_decompile;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to decompile (may be unevaluated IR such as a
+ *   value - (any dataType) Value to decompile (may be unevaluated, such as a
  *       compiled script root).
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
@@ -6937,7 +6937,7 @@ afw_function_definition_decompile;
  *
  * Returns:
  *
- *   (string) Adaptive IR text for the value.
+ *   (string) Adaptive text for the compiled form of the value.
  */
 const afw_value_t *
 afw_function_execute_decompile(
@@ -7241,11 +7241,11 @@ afw_function_definition_stringify;
  *
  * Evaluate value and serialize it as pure JSON text. Adaptive data types use
  * their jsonPrimitive (for example base64Binary and date become JSON strings).
- * The value is fully evaluated before serialization (not Adaptive source/IR
- * form). For Adaptive Script or IR source form use decompile(). For binary
- * octets as UTF-8 text use decode_to_string(); string(binary) is base64
- * printable text, not UTF-8. Optional replacer is a function (key, value) that
- * returns the value to serialize, or an array of property names to include when
+ * The value is fully evaluated before serialization (not Adaptive compiled
+ * form). For Adaptive compiled form as text use decompile(). For binary octets
+ * as UTF-8 text use decode_to_string(); string(binary) is base64 printable
+ * text, not UTF-8. Optional replacer is a function (key, value) that returns
+ * the value to serialize, or an array of property names to include when
  * serializing objects. Optional whitespace matches decompile/listing style.
  *
  * This function is pure, so it will always return the same result
@@ -16628,8 +16628,8 @@ afw_function_definition_compile_json;
  * Compile json value and return either an unevaluated adaptive value or a
  * string containing the compiler listing. The listing is a human-oriented dump
  * (value tree interleaved with source, plus ---Symbols tables) for Fiddle and
- * debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * debugging — not pure JSON (use stringify) and not Adaptive compiled-form text
+ * (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -16649,7 +16649,7 @@ afw_function_definition_compile_json;
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -20886,8 +20886,8 @@ afw_function_definition_compile;
  * Compile `<dataType>` value and return either an unevaluated adaptive value or
  * a string containing the compiler listing. The listing is a human-oriented
  * dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle
- * and debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * and debugging — not pure JSON (use stringify) and not Adaptive compiled-form
+ * text (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20911,7 +20911,7 @@ afw_function_definition_compile;
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -23907,8 +23907,8 @@ afw_function_definition_compile_regexp;
  * Compile regexp value and return either an unevaluated adaptive value or a
  * string containing the compiler listing. The listing is a human-oriented dump
  * (value tree interleaved with source, plus ---Symbols tables) for Fiddle and
- * debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * debugging — not pure JSON (use stringify) and not Adaptive compiled-form text
+ * (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -23928,7 +23928,7 @@ afw_function_definition_compile_regexp;
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -24319,8 +24319,8 @@ afw_function_definition_compile_relaxed_json;
  * Compile relaxed_json value and return either an unevaluated adaptive value or
  * a string containing the compiler listing. The listing is a human-oriented
  * dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle
- * and debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * and debugging — not pure JSON (use stringify) and not Adaptive compiled-form
+ * text (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24340,7 +24340,7 @@ afw_function_definition_compile_relaxed_json;
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -25326,8 +25326,8 @@ afw_function_definition_compile_script;
  * Compile script value and return either an unevaluated adaptive value or a
  * string containing the compiler listing. The listing is a human-oriented dump
  * (value tree interleaved with source, plus ---Symbols tables) for Fiddle and
- * debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * debugging — not pure JSON (use stringify) and not Adaptive compiled-form text
+ * (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25347,7 +25347,7 @@ afw_function_definition_compile_script;
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -28608,8 +28608,8 @@ afw_function_definition_compile_template;
  * Compile template value and return either an unevaluated adaptive value or a
  * string containing the compiler listing. The listing is a human-oriented dump
  * (value tree interleaved with source, plus ---Symbols tables) for Fiddle and
- * debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * debugging — not pure JSON (use stringify) and not Adaptive compiled-form text
+ * (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -28629,7 +28629,7 @@ afw_function_definition_compile_template;
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -31062,8 +31062,8 @@ afw_function_definition_compile_xpathExpression;
  * Compile xpathExpression value and return either an unevaluated adaptive value
  * or a string containing the compiler listing. The listing is a human-oriented
  * dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle
- * and debugging — not pure JSON (use stringify) and not Adaptive IR text (use
- * decompile).
+ * and debugging — not pure JSON (use stringify) and not Adaptive compiled-form
+ * text (use decompile).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31083,7 +31083,7 @@ afw_function_definition_compile_xpathExpression;
  *
  *   listing - (optional any dataType) If specified, a human compiler listing is
  *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable IR). Use decompile() for Adaptive IR text and
+ *       not recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is

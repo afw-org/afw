@@ -1690,7 +1690,7 @@ afw_value_decompile_call_args(
  * @param writer
  * @param xctx of caller.
  *
- * Used for IR value kinds that have no Adaptive surface form. The leading
+ * Used for compiled value kinds that have no Adaptive surface form. The leading
  * '#' matches the pragma_identifier token family (not a registered function).
  */
 AFW_DEFINE(void)
@@ -1742,7 +1742,7 @@ afw_value_decompile_value(
  * @return true if anything was written (type is present and not bare any).
  *
  * Used for assignment targets, script_function params/returns, and future
- * type-check related IR. Prefer reconstructing surface forms (e.g.
+ * type-check work. Prefer reconstructing surface forms (e.g.
  * `integer`, `(array of integer)`).
  */
 AFW_DEFINE(afw_boolean_t)

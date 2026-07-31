@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "compile",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive IR text (use decompile).",
+    "description": "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
     "functionId": "compile",
     "functionLabel": "compile",
     "parameters": [
@@ -16,7 +16,7 @@
         },
         {
             "brief": "Listing option",
-            "description": "If specified, a human compiler listing is produced instead of an unevaluated compiled value (tree + ---Symbols; not recompilable IR). Use decompile() for Adaptive IR text and stringify() for pure JSON of evaluated data.\n\nThis parameter can be an integer between 0 and 10 or a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",
+            "description": "If specified, a human compiler listing is produced instead of an unevaluated compiled value (tree + ---Symbols; not recompilable). Use decompile() for Adaptive compiled-form text and stringify() for pure JSON of evaluated data.\n\nThis parameter can be an integer between 0 and 10 or a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",
             "name": "listing",
             "optional": true
         }

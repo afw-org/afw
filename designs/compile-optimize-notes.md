@@ -1,8 +1,8 @@
 # Compile-time optimize (notes for a future branch)
 
-**Not part of issue #18 / pragma IR work.** Separate feature branch and design conversation later.
+**Not part of issue #18 / pragma and decompile work.** Separate feature branch and design conversation later.
 
-**Issue #18 status snapshot:** [`designs/issue-18-decompile-status.md`](issue-18-decompile-status.md) (goals, landed IR, footguns, tests, tip commit).
+**Issue #18 status snapshot:** [`designs/issue-18-decompile-status.md`](issue-18-decompile-status.md) (goals, landed compiled forms, footguns, tests, tip commit).
 
 ## Idea
 
@@ -17,8 +17,8 @@ Example: `add(1, multiply(2, 3))` → `7`.
 
 ## How current #18 work helps testing later
 
-- **`decompile(compile(...))`** shows IR shape before/after fold (call disappears, literal appears).
-- **`#block(...)`** and other PragmaValues let tests inject IR without going through full Script surface.
+- **`decompile(compile(...))`** shows compiled shape before/after fold (call disappears, literal appears).
+- **`#block(...)`** and other PragmaValues let tests inject compiled values without going through full Script surface.
 - Round-trip tests establish eval + decompile stability; optimize tests can assert **structural** decompile change under an optimize flag/pragma.
 
 ## Possible controls
@@ -67,7 +67,7 @@ function f([a, b], {x, y}) { … }
 // or AFW-flavored sugar along the same idea
 ```
 
-Intent: **syntax sugar** that desugars into AFW’s existing model (param symbols + destructure assign into locals / the same IR we already have for `const [a,b] = …`), not a parallel binding system.
+Intent: **syntax sugar** that desugars into AFW’s existing model (param symbols + destructure assign into locals / the same compiled form we already have for `const [a,b] = …`), not a parallel binding system.
 
 Implications when we touch this area later:
 

@@ -6,7 +6,7 @@
 //? sourceType: script
 //?
 //? test: listing-object-expression-free-vars
-//? description: object_expression listing must not evaluate property IR (regression)
+//? description: object_expression listing must not evaluate property values (regression)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -24,7 +24,7 @@ assert(includes(L, "---Symbols"));
 assert(includes(L, "object_expression"));
 assert(includes(L, "property a"));
 assert(includes(L, "property b"));
-/* Property value remains IR (add + symbol x), not evaluated result */
+/* Property value remains compiled form (add + symbol x), not evaluated result */
 assert(includes(L, "function_definition add") || includes(L, "add"));
 assert(includes(L, "symbol_reference"));
 
