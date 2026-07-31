@@ -1685,12 +1685,13 @@ afw_value_decompile_call_args(
 
 
 /**
- * @brief Write synthetic decompile name `_` + implementation_id.
+ * @brief Write synthetic decompile name `#` + implementation_id.
  * @param instance value whose inf id is used.
  * @param writer
  * @param xctx of caller.
  *
- * Used for IR value kinds that have no Adaptive surface form.
+ * Used for IR value kinds that have no Adaptive surface form. The leading
+ * '#' matches the pragma_identifier token family (not a registered function).
  */
 AFW_DEFINE(void)
 afw_value_decompile_write_synthetic_function_name(

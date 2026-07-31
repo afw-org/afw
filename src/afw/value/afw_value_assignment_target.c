@@ -291,7 +291,7 @@ impl_afw_value_produce_compiler_listing(
 /*
  * Implementation of method decompile for interface afw_value.
  *
- * Synthetic call _assignment_target("const"|"let"|..., target...).
+ * Synthetic call #assignment_target("const"|"let"|..., target...).
  * Symbol targets decompile the symbol reference; destructures are named tags.
  */
 void

@@ -153,7 +153,7 @@ impl_afw_value_produce_compiler_listing(
 /*
  * Implementation of method decompile for interface afw_value.
  *
- * Synthetic call _closure_binding(script_function_definition).
+ * Synthetic call #closure_binding(script_function_definition).
  */
 void
 impl_afw_value_decompile(

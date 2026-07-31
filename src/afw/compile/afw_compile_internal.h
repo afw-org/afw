@@ -45,6 +45,11 @@ typedef enum {
     /* Token types with additional information. See afw_compile_token_t. */
     afw_compile_token_type_boolean,
     afw_compile_token_type_identifier,
+    /*
+     * #Identifier — compiler pragma / IR form name (no qualifier).
+     * identifier_name is the spelling after '#'; identifier is full "#name".
+     */
+    afw_compile_token_type_pragma_identifier,
     afw_compile_token_type_integer,
     afw_compile_token_type_number,
     afw_compile_token_type_binary_string,
@@ -191,11 +196,17 @@ struct afw_compile_internal_token_s {
     union {
 
         /*
-         * If type is identifier this is the name and qualifier.  Member
-         * identifier includes the identifier including optional qualifier
-         * followed by '::'.  If qualifier is not specified,
-         * identifier_qualifier.len will be 0.
+         * If type is identifier or pragma_identifier:
          *
+         * identifier_name — unqualified name (no '#' for pragmas).
+         * identifier_qualifier — for identifier only; empty/NULL for
+         *     pragma_identifier (pragmas are never qualified).
+         * identifier — full spelling: optional "qualifier::" + name for
+         *     identifier; "#name" for pragma_identifier (useful in errors).
+         *
+         * If identifier has no qualifier, identifier equals identifier_name
+         * and identifier_qualifier is empty. For pragma_identifier,
+         * identifier always includes the leading '#'.
          */
         struct {
             const afw_utf8_t *identifier;

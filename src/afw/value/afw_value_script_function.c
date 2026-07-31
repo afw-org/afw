@@ -168,8 +168,8 @@ impl_afw_value_produce_compiler_listing(
 /*
  * Implementation of method decompile for interface afw_value.
  *
- * Synthetic call _script_function(paramName..., body) — same style as other
- * IR kinds (underscore + implementation_id), not Adaptive Script surface syntax.
+ * Synthetic call #script_function(paramName..., body) — same style as other
+ * IR kinds (# + implementation_id (pragma form)), not Adaptive Script surface syntax.
  */
 void
 impl_afw_value_decompile(

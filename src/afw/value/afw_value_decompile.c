@@ -83,14 +83,14 @@ afw_value_decompile_call_args(
 }
 
 
-/* Write synthetic decompile name: underscore + value implementation id. */
+/* Write synthetic decompile name: '#' + value implementation id (pragma form). */
 AFW_DEFINE(void)
 afw_value_decompile_write_synthetic_function_name(
     const afw_value_t *instance,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    afw_writer_write_z(writer, "_", xctx);
+    afw_writer_write_z(writer, "#", xctx);
     afw_writer_write_utf8(writer, &instance->inf->rti.implementation_id, xctx);
 }
 

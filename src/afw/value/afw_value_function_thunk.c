@@ -113,7 +113,7 @@ impl_afw_value_produce_compiler_listing(
 /*
  * Implementation of method decompile for interface afw_value.
  *
- * Synthetic call _function_thunk("detail") — thunks are C-side, not Adaptive.
+ * Synthetic call #function_thunk("detail") — thunks are C-side, not Adaptive.
  */
 void
 impl_afw_value_decompile(

@@ -4,6 +4,7 @@
 //? customPurpose: Part of compiler category tests
 //? description: ...
 // Coverage of decompile() for data types and afw_value* IR kinds.
+// Synthetic IR forms use #implementation_id(...) (pragma_identifier style).
 // Value methods exercised (by kind):
 //   data-type bindings (write_as_expression), block, assignment_target,
 //   call_built_in_function, call, call_script_function, symbol_reference,
@@ -163,7 +164,7 @@ const s = decompile(compile<script>(script(
 )));
 
 assert(s ==
-    "_block(const(_assignment_target(\"const\",x),add(1,2),undefined),return(x))");
+    "#block(const(#assignment_target(\"const\",x),add(1,2),undefined),return(x))");
 
 return 0;
 
@@ -174,7 +175,7 @@ return 0;
 //? source: ...
 
 const s = decompile(compile<script>(script("return 1 + 2 * 3;")));
-assert(s == "_block(return(add(1,multiply(2,3))))");
+assert(s == "#block(return(add(1,multiply(2,3))))");
 
 return 0;
 
@@ -187,7 +188,7 @@ return 0;
 const s = decompile(compile<script>(script(
     "if (true) return 1; else return 2;"
 )));
-assert(s == "_block(if(true,return(1),return(2)))");
+assert(s == "#block(if(true,return(1),return(2)))");
 
 return 0;
 
@@ -202,7 +203,7 @@ const s = decompile(compile<script>(script(
     "let f = add;\nreturn f(1, 2);"
 )));
 assert(s ==
-    "_block(let(_assignment_target(\"let\",f),add,undefined),return(f(1,2)))");
+    "#block(let(#assignment_target(\"let\",f),add,undefined),return(f(1,2)))");
 
 return 0;
 
@@ -218,12 +219,12 @@ const src = script(
 );
 const s = decompile(compile<script>(src));
 assert(s ==
-    "_block(const(_assignment_target(\"const\",f),_script_function(\"a\",_block(return(add(a,1)))),undefined),return(f(10)))");
+    "#block(const(#assignment_target(\"const\",f),#script_function(\"a\",#block(return(add(a,1)))),undefined),return(f(10)))");
 
 return 0;
 
 //? test: decompile-script-function-definition
-//? description: Script function definition decompiles as _script_function(...)
+//? description: Script function definition decompiles as #script_function(...)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -233,12 +234,12 @@ const src = script(
 );
 const s = decompile(compile<script>(src));
 assert(s ==
-    "_block(const(_assignment_target(\"const\",f),_script_function(\"a\",_block(return(a))),undefined),return(f))");
+    "#block(const(#assignment_target(\"const\",f),#script_function(\"a\",#block(return(a))),undefined),return(f))");
 
 return 0;
 
 //? test: decompile-closure-binding
-//? description: Runtime closure decompiles as _closure_binding(_script_function(...))
+//? description: Runtime closure decompiles as #closure_binding(#script_function(...))
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -252,7 +253,7 @@ const make = function (x) {
 const c = make(1);
 const s = decompile(c);
 assert(s ==
-    "_closure_binding(_script_function(\"y\",_block(return(add(x,y)))))");
+    "#closure_binding(#script_function(\"y\",#block(return(add(x,y)))))");
 
 return 0;
 
@@ -267,13 +268,13 @@ let s = decompile(compile<script>(script(
     'const o = {a: 1};\nreturn o["a"];'
 )));
 assert(s ==
-    "_block(const(_assignment_target(\"const\",o),{\"a\":1},undefined),return(o[\"a\"]))");
+    "#block(const(#assignment_target(\"const\",o),{\"a\":1},undefined),return(o[\"a\"]))");
 
 s = decompile(compile<script>(script(
     "const a = [10, 20];\nreturn a[1];"
 )));
 assert(s ==
-    "_block(const(_assignment_target(\"const\",a),[10,20],undefined),return(a[1]))");
+    "#block(const(#assignment_target(\"const\",a),[10,20],undefined),return(a[1]))");
 
 return 0;
 
@@ -287,12 +288,12 @@ return 0;
 const s = decompile(compile<script>(script(
     "return process::osType;"
 )));
-assert(s == "_block(return(process::osType))");
+assert(s == "#block(return(process::osType))");
 
 return 0;
 
 //? test: decompile-list-expression-spread
-//? description: Array spread uses _list_expression(...) in decompile
+//? description: Array spread uses #list_expression(...) in decompile
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -302,7 +303,7 @@ const s = decompile(compile<script>(script(
     "const a = [1, 2];\nreturn [...a, 3];"
 )));
 assert(s ==
-    "_block(const(_assignment_target(\"const\",a),[1,2],undefined),return(array(_list_expression(a),3)))");
+    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(#list_expression(a),3)))");
 
 return 0;
 
@@ -316,12 +317,12 @@ return 0;
 const s = decompile(compile<script>(script(
     "return {a: 1 + 2};"
 )));
-assert(s == "_block(return({\"a\":add(1,2)}))");
+assert(s == "#block(return({\"a\":add(1,2)}))");
 
 return 0;
 
 //? test: decompile-template-definition
-//? description: Compiled template decompiles as _template_definition(parts...)
+//? description: Compiled template decompiles as #template_definition(parts...)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -329,7 +330,7 @@ return 0;
 // template_definition — parts match listing (string segment + expression block)
 const s = decompile(compile<template>(template("hello ${1+2}")));
 assert(s ==
-    "_block(_template_definition(\"hello \",_block(add(1,2))))");
+    "#block(#template_definition(\"hello \",#block(add(1,2))))");
 
 return 0;
 
@@ -344,13 +345,13 @@ let s = decompile(compile<script>(script(
     "const [a, b] = [1, 2];\nreturn a;"
 )));
 assert(s ==
-    "_block(const(_assignment_target(\"const\",\"list_destructure\"),[1,2],undefined),return(a))");
+    "#block(const(#assignment_target(\"const\",\"list_destructure\"),[1,2],undefined),return(a))");
 
 s = decompile(compile<script>(script(
     "const {a, b} = {a: 1, b: 2};\nreturn a;"
 )));
 assert(s ==
-    "_block(const(_assignment_target(\"const\",\"object_destructure\"),{\"a\":1,\"b\":2},undefined),return(a))");
+    "#block(const(#assignment_target(\"const\",\"object_destructure\"),{\"a\":1,\"b\":2},undefined),return(a))");
 
 return 0;
 
@@ -362,7 +363,7 @@ return 0;
 
 const s = decompile(compile<script>(script("return 1+2;")), "\t");
 const expected =
-    "_block(\n" +
+    "#block(\n" +
     "\treturn(\n" +
     "\t\tadd(\n" +
     "\t\t\t1,\n" +
@@ -385,9 +386,9 @@ const s = decompile(compile<script>(script(
 )), 4);
 
 const expected =
-    "_block(\n" +
+    "#block(\n" +
     "    const(\n" +
-    "        _assignment_target(\n" +
+    "        #assignment_target(\n" +
     "            \"const\",\n" +
     "            x\n" +
     "        ),\n" +

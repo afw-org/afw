@@ -294,7 +294,7 @@ impl_afw_value_produce_compiler_listing(
 /*
  * Implementation of method decompile for interface afw_value.
  *
- * Synthetic call _block(statement, ...) matching listing's statement list.
+ * Synthetic call #block(statement, ...) matching listing's statement list.
  */
 void
 impl_afw_value_decompile(
