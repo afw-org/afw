@@ -288,6 +288,65 @@ impl_parse_pragma_list_expression(afw_compile_parser_t *parser)
 
 
 /*
+ * #template_definition( part, ... )
+ *
+ * Parts are Expressions (string segments and nested #block expressions).
+ * Matches decompile: #template_definition("hello ",#block(add(1,2))).
+ * At least one part is required (create API returns null for count <= 0).
+ */
+static const afw_value_t *
+impl_parse_pragma_template_definition(afw_compile_parser_t *parser)
+{
+    const afw_value_t *expr;
+    const afw_value_t **argv;
+    afw_compile_args_t *args;
+    afw_size_t argc;
+    afw_size_t start_offset;
+    afw_boolean_t had_value;
+
+    start_offset = parser->token->token_source_offset;
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(open_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '(' after #template_definition");
+    }
+
+    args = afw_compile_args_create(parser);
+    for (had_value = false;;) {
+        afw_compile_get_token();
+
+        if (afw_compile_token_is(close_parenthesis)) {
+            break;
+        }
+
+        if (afw_compile_token_is(comma)) {
+            if (!had_value) {
+                afw_compile_args_add_value(args, NULL);
+            }
+            had_value = false;
+            continue;
+        }
+
+        afw_compile_reuse_token();
+        expr = afw_compile_parse_Expression(parser);
+        afw_compile_args_add_value(args, expr);
+        had_value = true;
+    }
+
+    afw_compile_args_finalize(args, &argc, &argv);
+    if (argc == 0) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "#template_definition requires at least one part");
+    }
+
+    return afw_value_template_definition_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        argc, argv, parser->p, parser->xctx);
+}
+
+
+/*
  * #script_function( paramName*, body )
  *
  * paramName — string literal or bare Identifier (binding name).
@@ -478,7 +537,8 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
  *     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
  *     '#assignment_target' '(' Expression ',' ( Identifier | String ) ')' |
  *     '#list_expression' '(' Expression ')' |
- *     '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')'
+ *     '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')' |
+ *     '#template_definition' '(' Expression ( ',' Expression )* ')'
  *
  *<<<ebnf*/
 /**
@@ -507,6 +567,10 @@ afw_compile_parse_PragmaValue(afw_compile_parser_t *parser)
 
     if (impl_pragma_name_is(parser, "script_function")) {
         return impl_parse_pragma_script_function(parser);
+    }
+
+    if (impl_pragma_name_is(parser, "template_definition")) {
+        return impl_parse_pragma_template_definition(parser);
     }
 
     /*

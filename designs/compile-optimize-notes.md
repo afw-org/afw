@@ -54,3 +54,9 @@ That is not round-trippable into real bindings (and recompile would invent a sym
 2. Matching `#assignment_target` pragma parse that builds the same create structures as `afw_compile_parse_assignment_target.c`.
 
 Do that as its own slice after more structural pragmas if needed; do not pretend the placeholder string form is the API.
+
+### `#closure_binding`
+
+Decompile of a **runtime** closure is `#closure_binding(#script_function(...))`. The binding holds a live `enclosing_lexical_scope` (xctx scope), which is not reconstructible from decompile text alone (free variables like outer `x` need that scope).
+
+Do **not** implement a fake `#closure_binding` pragma that drops the scope: calls with free vars would mis-evaluate. Treat runtime-closure decompile as **display / debug** unless a future design serializes closed-over bindings deliberately.

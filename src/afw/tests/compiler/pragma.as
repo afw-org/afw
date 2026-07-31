@@ -193,3 +193,27 @@ assert(evaluate(compile<script>(script(
     "#block(const(#assignment_target(\"const\",f),#script_function(#block(return(42))),undefined),return(f()))"
 ))) == 42);
 return 0;
+
+//? test: pragma-template-definition-roundtrip
+//? description: decompile/compile round-trip for template #template_definition
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<template>(template("hello ${1+2}")));
+assert(d ==
+    "#block(#template_definition(\"hello \",#block(add(1,2))))");
+assert(evaluate(compile<script>(script(d))) == "hello 3");
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-template-definition-direct
+//? description: #template_definition evaluates by concatenating parts
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "return #template_definition(\"x=\",#block(add(2,3)));"
+))) == "x=5");
+return 0;

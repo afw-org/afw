@@ -361,7 +361,8 @@ PragmaValue ::=
     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
     '#assignment_target' '(' Expression ',' ( Identifier | String ) ')' |
     '#list_expression' '(' Expression ')' |
-    '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')'
+    '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')' |
+    '#template_definition' '(' Expression ( ',' Expression )* ')'
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */
