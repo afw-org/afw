@@ -1,0 +1,21 @@
+{
+    "category": "crypto",
+    "brief": "Destroy key",
+    "description": "Remove a key from the process keystore and cleanse its material. Requires execute access.",
+    "functionId": "crypto_destroy_key",
+    "functionLabel": "crypto_destroy_key",
+    "requiresExecuteAccess": true,
+    "sideEffects": [
+        "Other"
+    ],
+    "parameters": [
+        {
+            "name": "key",
+            "description": "CryptoKey object with keyId."
+        }
+    ],
+    "returns": {
+        "dataType": "null",
+        "description": "null"
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoHmac",
+    "brief": "HMAC",
+    "camelCaseFunctionLabel": "cryptoHmac",
+    "category": "crypto",
+    "description": "Compute HMAC over binary data. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Key is polymorphic (CryptoKey, raw binary, or reference object). Requires execute access.",
+    "functionId": "crypto_hmac",
+    "functionLabel": "crypto_hmac",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.",
+            "name": "algorithm"
+        },
+        {
+            "description": "Key material, CryptoKey object, or key reference { from, ... }.",
+            "name": "key"
+        },
+        {
+            "description": "Data to MAC (base64Binary or hexBinary).",
+            "name": "data"
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "MAC octets as base64Binary."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

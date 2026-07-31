@@ -1,0 +1,23 @@
+{
+    "category": "crypto",
+    "brief": "Cryptographic digest",
+    "description": "Compute a cryptographic digest of binary data. Algorithm must be SHA-256 or SHA-512. Data may be base64Binary or hexBinary.",
+    "functionId": "crypto_digest",
+    "functionLabel": "crypto_digest",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "algorithm",
+            "dataType": "string",
+            "description": "Digest algorithm name: SHA-256 or SHA-512."
+        },
+        {
+            "name": "data",
+            "description": "Data to hash (base64Binary or hexBinary)."
+        }
+    ],
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "Digest octets as base64Binary."
+    }
+}

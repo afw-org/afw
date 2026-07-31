@@ -33,6 +33,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
 | **`process::` (#74 partial)** | `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create |
+| **`afw_crypto` (#74 partial)** | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
@@ -371,6 +372,50 @@ Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Con
 ### Log conf `format` / `filter` context types
 
 Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`, optional `custom::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta).
+
+---
+
+## Crypto extension `afw_crypto` (issue #74 partial)
+
+Optional loadable extension **`afw_crypto`** (`libafwcrypto`, OpenSSL **libcrypto**) adds Adaptive functions for “hide values in plain sight” composition with streams, files, and process env. Load with conf `"extensions": ["afw_crypto"]`.
+
+| Function | Purpose |
+|----------|---------|
+| `crypto_version_info` | OpenSSL + extension version, algorithm list |
+| `crypto_digest` | SHA-256 / SHA-512 (pure; no execute access) |
+| `crypto_hmac` / `crypto_hmac_verify` | HMAC-SHA-256 / HMAC-SHA-512 |
+| `crypto_import_key` / `crypto_generate_key` / `crypto_export_key` / `crypto_destroy_key` | Process keystore handles |
+| `crypto_encrypt` / `crypto_decrypt` | AES-GCM (auto IV; tag on algorithm object) — hard path |
+| `crypto_seal` / `crypto_unseal` | AES-GCM sealed bag / unseal (object or pure JSON string) — easy path |
+| `crypto_derive_key` | PBKDF2-HMAC-SHA256 (default **600000** iterations, min 100000) |
+
+Binary args accept **base64Binary** or **hexBinary**. Keys may be raw binary, a CryptoKey (`keyId`), or a reference such as `{ "from": "environment", "name": "APP_KEY", "encoding": "base64" }` (**live `getenv`**, not ambient `environment::`) or `{ "from": "file", "path": "…" }` under **`rootFilePaths`**.
+
+Requires `libssl-dev` / `openssl-devel` at build time. Design notes: `designs/secrets-and-afw-crypto.md`. Interactive **`readpass`** remains open for #74.
+
+### LDAP `bindParameters` (and other object-valued conf templates)
+
+Some conf properties (notably LDAP adapter **`bindParameters`**) are **templates** evaluated at adapter start. A template that is **only a single substitution** with no surrounding text keeps the **data type of that result** — so it can return an **object** `{ "dn", "password" }`. Any extra text or multiple substitutions forces a **string**.
+
+Combined with `open_file` / `read*` and `crypto_decrypt`, conf can avoid a cleartext bind password in JSON: keep a **sealed blob** on disk (under `rootFilePaths`), put only a **seal key** in the process environment, and evaluate a single-substitution template that decrypts and returns the bind object. Example shape (conceptual):
+
+```text
+"bindParameters": "${
+  /* single substitution → object, not string */
+  const key = crypto_import_key({
+      \"from\": \"environment\",
+      \"name\": \"AFW_SEAL_KEY\",
+      \"encoding\": \"base64\"
+  }, \"AES-GCM\");
+  /* read sealed iv/tag/ciphertext from file under rootFilePaths … */
+  const plain = crypto_decrypt({ \"name\": \"AES-GCM\", \"iv\": …, \"tag\": … }, key, ciphertext);
+  return { \"dn\": \"cn=service,…\", \"password\": decode_to_string(plain) };
+}"
+```
+
+Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy bag path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with `stringify({ iv: string(sealed.iv), … })` then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
+
+Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`, `crypto_seal_unseal.as`.
 
 ---
 

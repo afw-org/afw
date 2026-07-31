@@ -72,7 +72,7 @@ Title prefix **`app ·`** = primarily admin app / Fiddle / JS client (not C/core
 | 108 | [Curl callback read/write](https://github.com/afw-org/afw/issues/108) | Stream large HTTP bodies via Adaptive Script callbacks instead of full in-memory buffers. |
 | 87 | [More RQL operators](https://github.com/afw-org/afw/issues/87) | Implement `in`, `match`, `contains` (and decide on other nonstandard ops). |
 | 81 | [afwdev install language bindings](https://github.com/afw-org/afw/issues/81) | `afwdev build --install` should build/install JS/Python bindings for local consumers. |
-| 74 | [Script: `args` / secret read](https://github.com/afw-org/afw/issues/74) | Partial: `process::` (args, programName, pid, cwd, …) + env create ambient; still open: interactive `read`/`readpass`. |
+| 74 | [Script: `args` / secret read](https://github.com/afw-org/afw/issues/74) | Partial: `process::` ambient done; **`afw_crypto`** encrypt/decrypt/digest/HMAC/key refs (OpenSSL); still open: interactive `readpass` (required to close #74). Design: `designs/secrets-and-afw-crypto.md`. |
 | 64 | [Stack overflow / OOM handling](https://github.com/afw-org/afw/issues/64) | Better detect/handle stack overflow, segfault, OOM than APR border-page tricks. |
 | 55 | [Object/array helper methods](https://github.com/afw-org/afw/issues/55) | Add useful JS-like helpers (`keys`/`values`/`entries`, `at`/`every`/`some`, …). |
 | 53 | [app · Generate JS mock data](https://github.com/afw-org/afw/issues/53) | Stop hand-maintaining stale `__mocks__`; generate from runtime/afwfcgi somehow. |

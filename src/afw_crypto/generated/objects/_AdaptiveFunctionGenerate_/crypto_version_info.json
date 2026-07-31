@@ -1,0 +1,16 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoVersionInfo",
+    "brief": "Crypto extension version info",
+    "camelCaseFunctionLabel": "cryptoVersionInfo",
+    "category": "crypto",
+    "description": "Returns runtime OpenSSL and afw_crypto version information and the list of supported algorithm names.",
+    "functionId": "crypto_version_info",
+    "functionLabel": "crypto_version_info",
+    "parameters": [],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoVersionInfo_",
+        "description": "Version and algorithm information."
+    }
+}

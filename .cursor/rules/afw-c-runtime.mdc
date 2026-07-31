@@ -21,7 +21,14 @@ alwaysApply: false
 - Pass `p` (pool) and `xctx` through call chains. Throws need `xctx`.
 - Errors: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / related macros and memory helpers from `error/afw_error.h`. Prefer these for invariant failures, API misuse, and unexpected conditions—not `assert` / `AFW_ASSERT`.
 - **Do not use `AFW_ASSERT`** in new or changed code. It is a thin wrapper around C `assert()` (`afw_common.h`), aborts the process, and does **not** participate in `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY`. The macro is legacy (`@fixme` remove when unused). For checks that must fail hard in production paths, throw instead, e.g. `AFW_THROW_ERROR_Z(general, "…", xctx)` or `AFW_THROW_ERROR_FZ(...)`.
-- Structured recovery: `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY` / `AFW_ENDTRY` — the context variable must be named `xctx`. Thrown errors are what those blocks observe.
+- **Never raw `setjmp`/`longjmp` in hand code.** Throw only via `AFW_THROW_*` (or intentional domain throw macros such as `AFW_COMPILE_THROW_ERROR_*` that mirror them). The `longjmp` *inside* those macros is the choke point; do not duplicate it.
+- Structured recovery: `AFW_TRY` / `AFW_CATCH` / `AFW_CATCH_UNHANDLED` / `AFW_FINALLY` / `AFW_ENDTRY` — the context variable **must** be named **`xctx`**.
+  - **No** bare `return` / `goto` out of TRY/CATCH/FINALLY (skips FINALLY, corrupts `current_try`).
+  - **`AFW_ERROR_RETHROW`:** flag only (`this_ERROR_CAUGHT = false` + break). FINALLY still runs; **`AFW_ENDTRY`** then rethrows to the outer try. Not an immediate `longjmp`.
+  - **`AFW_ERROR_MARK_CAUGHT`:** in FINALLY, mark handled even if no CATCH matched.
+  - **`AFW_ERROR_THROWN`:** only in CATCH / CATCH_UNHANDLED bodies.
+  - `code` in `AFW_THROW_ERROR_Z(code, …)` is a **token** (`arg_error`, `general`, …) pasted as `afw_error_code_##code` — not an `afw_error_code_t` variable.
+  - Authoritative comments: `error/afw_error.h` (design block + TRY usage).
 - Value lifetimes (permanent / managed / managed_slice / unmanaged) and pool/scope escape: see `afw-value-memory` (important for long-running scripts). Compile/eval graph: `afw-script-eval`.
 
 ## Adaptive functions

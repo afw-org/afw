@@ -374,69 +374,69 @@ afw_vfs_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2666 = {
+afw_vfs_self_v_zz__2711 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2666)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2711)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2667 = {
+afw_vfs_self_v_zz__2712 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2667)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2712)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2668 = {
+afw_vfs_self_v_zz__2713 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2668)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2713)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2669 = {
+afw_vfs_self_v_zz__2714 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2669)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2714)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2670 = {
+afw_vfs_self_v_zz__2715 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2670)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2715)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2671 = {
+afw_vfs_self_v_zz__2716 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2671)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2716)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2672 = {
+afw_vfs_self_v_zz__2717 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2672)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2717)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2673 = {
+afw_vfs_self_v_zz__2718 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2673)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2718)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2674 = {
+afw_vfs_self_v_zz__2719 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2674)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2719)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2675 = {
+afw_vfs_self_v_zz__2720 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2675)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2720)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2676 = {
+afw_vfs_self_v_zz__2721 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2676)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2721)
 };
 
 const afw_value_string_t

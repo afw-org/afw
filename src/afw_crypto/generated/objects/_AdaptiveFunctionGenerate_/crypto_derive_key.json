@@ -1,0 +1,42 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoDeriveKey",
+    "brief": "Derive key (PBKDF2)",
+    "camelCaseFunctionLabel": "cryptoDeriveKey",
+    "category": "crypto",
+    "description": "Derive a key via PBKDF2-HMAC-SHA256 and store it in the keystore. algorithm object requires name PBKDF2, salt (min 16 octets), length (output octets), optional iterations (default 600000, min 100000), optional hash SHA-256. baseKey may be polymorphic including utf8 encoding for passphrases. Requires execute access.",
+    "functionId": "crypto_derive_key",
+    "functionLabel": "crypto_derive_key",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "PBKDF2 parameters object.",
+            "name": "algorithm"
+        },
+        {
+            "description": "Passphrase or key material (polymorphic; utf8 encoding allowed).",
+            "name": "baseKey"
+        },
+        {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "description": "Default [\"encrypt\",\"decrypt\"].",
+            "name": "usages",
+            "optional": true
+        },
+        {
+            "dataType": "boolean",
+            "description": "Default false.",
+            "name": "extractable",
+            "optional": true
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoKey_",
+        "description": "Derived CryptoKey (algorithm AES-GCM sized to length*8 when 16 or 32 octets)."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

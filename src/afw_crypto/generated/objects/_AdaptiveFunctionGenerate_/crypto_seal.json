@@ -1,0 +1,28 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoSeal",
+    "brief": "Seal binary data (AES-GCM)",
+    "camelCaseFunctionLabel": "cryptoSeal",
+    "category": "crypto",
+    "description": "Convenience for AES-GCM encryption: generates an IV, encrypts data, and returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }. Equivalent to crypto_encrypt({ name: \"AES-GCM\" }, key, data) with an auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to store the result. Requires execute access.",
+    "functionId": "crypto_seal",
+    "functionLabel": "crypto_seal",
+    "parameters": [
+        {
+            "description": "Key material, CryptoKey, or key reference.",
+            "name": "key"
+        },
+        {
+            "description": "Plaintext (base64Binary or hexBinary). Use encode_as_base64Binary() for UTF-8 text.",
+            "name": "data"
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoEncryptResult_",
+        "description": "Sealed object with algorithm, keyLength, iv, tag, and ciphertext."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

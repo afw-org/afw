@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoExportKey",
+    "brief": "Export key",
+    "camelCaseFunctionLabel": "cryptoExportKey",
+    "category": "crypto",
+    "description": "Export raw key octets from a CryptoKey if extractable is true. Requires execute access.",
+    "functionId": "crypto_export_key",
+    "functionLabel": "crypto_export_key",
+    "parameters": [
+        {
+            "description": "CryptoKey object with keyId.",
+            "name": "key"
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "Raw key material."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false.",
+    "objectType": "_AdaptiveCryptoKey_",
+    "propertyTypes": {
+        "algorithm": {
+            "dataType": "string",
+            "brief": "Algorithm name",
+            "description": "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256)."
+        },
+        "extractable": {
+            "dataType": "boolean",
+            "brief": "Whether export is allowed",
+            "description": "If true, crypto_export_key may return raw key octets."
+        },
+        "format": {
+            "dataType": "string",
+            "brief": "Key format",
+            "description": "Always raw in v1."
+        },
+        "keyId": {
+            "dataType": "integer",
+            "brief": "Keystore id",
+            "description": "Random 64-bit keystore key id (process-local capability)."
+        },
+        "length": {
+            "dataType": "integer",
+            "brief": "Key length in bits",
+            "description": "Bit length when known (e.g. 128 or 256 for AES-GCM)."
+        },
+        "usages": {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "brief": "Permitted operations",
+            "description": "Subset of encrypt, decrypt, sign, verify, derive."
+        }
+    }
+}

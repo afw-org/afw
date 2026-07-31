@@ -1,0 +1,30 @@
+{
+    "category": "crypto",
+    "brief": "HMAC",
+    "description": "Compute HMAC over binary data. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Key is polymorphic (CryptoKey, raw binary, or reference object). Requires execute access.",
+    "functionId": "crypto_hmac",
+    "functionLabel": "crypto_hmac",
+    "requiresExecuteAccess": true,
+    "sideEffects": [
+        "Other"
+    ],
+    "parameters": [
+        {
+            "name": "algorithm",
+            "dataType": "string",
+            "description": "HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512."
+        },
+        {
+            "name": "key",
+            "description": "Key material, CryptoKey object, or key reference { from, ... }."
+        },
+        {
+            "name": "data",
+            "description": "Data to MAC (base64Binary or hexBinary)."
+        }
+    ],
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "MAC octets as base64Binary."
+    }
+}

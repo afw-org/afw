@@ -1,0 +1,5 @@
+{
+    "category": "crypto",
+    "brief": "Cryptographic Adaptive Script functions",
+    "description": "Functions from this category provide digest, HMAC, AEAD encrypt/decrypt, key import/reference, and key derivation via OpenSSL libcrypto (extension afw_crypto). See issue #74 and designs/secrets-and-afw-crypto.md."
+}

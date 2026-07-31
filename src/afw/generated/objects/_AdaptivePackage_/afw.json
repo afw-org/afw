@@ -99,6 +99,16 @@
             "srcdirPath": "src/afw_components/react/monaco/",
             "version": "0.12.2"
         },
+        "afw_crypto": {
+            "brief": "Library libafwcrypto",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwcrypto (OpenSSL-backed crypto functions for Adaptive Script; issue #74).",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_crypto_",
+            "produces": "libafwcrypto",
+            "srcdirPath": "src/afw_crypto/",
+            "version": "0.12.2"
+        },
         "afw_curl": {
             "brief": "Library libafwcurl",
             "buildType": "afwmake",

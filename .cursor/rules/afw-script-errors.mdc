@@ -45,8 +45,13 @@ Debug/flag-gated: `errorSource`, `backtrace`, `backtraceEvaluation`, parser fiel
 1. Put the user-visible explanation in the throw **message** (include `strerror(errno)` for OS I/O).
 2. When a system code exists, use `AFW_THROW_ERROR_RV_Z` / `_FZ` with a registered **rv source** (`errno`, `apr`, `icu`) so `e.rv` / `e.rvDecoded` populate.
 3. Capture `errno` **immediately** after the failing call.
+4. Throw **only** through `AFW_THROW_*` macros — never hand `longjmp` to `xctx->current_try` (see **`afw-c-runtime`** and `error/afw_error.h`).
 
 Registered errno decoder: `AFW_ERROR_RV_SOURCE_ID_Z_errno` / `"errno"` in core environment register.
+
+## C `AFW_TRY` vs script `try`
+
+Script `try`/`catch` is Adaptive language; C `AFW_TRY` is the runtime exception stack. Nested Adaptive eval still uses C tries underneath. `AFW_ERROR_RETHROW` in C means “run FINALLY, then rethrow to outer C try” — not script rethrow syntax.
 
 ## Script examples
 

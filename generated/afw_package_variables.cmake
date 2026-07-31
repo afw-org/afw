@@ -62,6 +62,7 @@ set(afw_package_srcdirs
     "afw_components_react_core"
     "afw_components_react_material"
     "afw_components_react_monaco"
+    "afw_crypto"
     "afw_curl"
     "afw_dev"
     "afw_ldap"
@@ -205,6 +206,24 @@ set(afw_package_srcdirs_afw_components_react_monaco_description "Javascript comp
 set(afw_package_srcdirs_afw_components_react_monaco_srcdirPath "src/afw_components/react/monaco/")
 set(afw_package_srcdirs_afw_components_react_monaco_prefix "afw_components_react_monaco_")
 set(afw_package_srcdirs_afw_components_react_monaco_version "0.12.2")
+set(afw_package_srcdirs_afw_crypto 
+    "brief"
+    "buildType"
+    "description"
+    "prefix"
+    "produces"
+    "srcdirPath"
+    "optionalChoiceDefault"
+    "version"
+)
+set(afw_package_srcdirs_afw_crypto_brief "Library libafwcrypto")
+set(afw_package_srcdirs_afw_crypto_buildType "afwmake")
+set(afw_package_srcdirs_afw_crypto_description "AFW shared object - libafwcrypto (OpenSSL-backed crypto functions for Adaptive Script; issue #74).")
+set(afw_package_srcdirs_afw_crypto_prefix "afw_crypto_")
+set(afw_package_srcdirs_afw_crypto_produces "libafwcrypto")
+set(afw_package_srcdirs_afw_crypto_srcdirPath "src/afw_crypto/")
+set(afw_package_srcdirs_afw_crypto_optionalChoiceDefault ON)
+set(afw_package_srcdirs_afw_crypto_version "0.12.2")
 set(afw_package_srcdirs_afw_curl 
     "brief"
     "buildType"

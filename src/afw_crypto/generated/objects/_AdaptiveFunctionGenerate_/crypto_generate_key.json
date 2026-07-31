@@ -1,0 +1,37 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoGenerateKey",
+    "brief": "Generate key",
+    "camelCaseFunctionLabel": "cryptoGenerateKey",
+    "category": "crypto",
+    "description": "Generate a random key in the process keystore. Algorithm string or object. AES-GCM length defaults to 256 bits. Requires execute access.",
+    "functionId": "crypto_generate_key",
+    "functionLabel": "crypto_generate_key",
+    "parameters": [
+        {
+            "description": "Algorithm string or object { name, length? }.",
+            "name": "algorithm"
+        },
+        {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "description": "Optional usages; defaults depend on algorithm family.",
+            "name": "usages",
+            "optional": true
+        },
+        {
+            "dataType": "boolean",
+            "description": "If true, crypto_export_key may export raw key. Default false.",
+            "name": "extractable",
+            "optional": true
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoKey_",
+        "description": "Generated CryptoKey handle."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}
