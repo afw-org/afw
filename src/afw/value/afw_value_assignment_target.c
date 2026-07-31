@@ -318,9 +318,11 @@ impl_decompile_binding_name_and_type(
     const afw_value_symbol_reference_t *sym;
 
     /*
-     * Note: assignment_target_t stores symbol_reference and variable_type in
-     * the same union — for symbol targets the type lives on symbol->type only
-     * (and on list/object element type fields).
+     * Same sources the compiler uses after parse:
+     *   - symbol binding → symbol->type
+     *   - list/object element → element_type / rest_type when provided
+     * Never read assignment_target.variable_type for symbol targets: it shares
+     * a union with symbol_reference and is not a separate live field.
      */
     type = element_type;
     if (afw_value_is_symbol_reference(target_value)) {
@@ -500,7 +502,6 @@ impl_decompile_pattern(
         at = (const afw_value_assignment_target_t *)value;
         switch (at->assignment_target->target_type) {
         case afw_compile_assignment_target_type_symbol_reference:
-            /* Type is on symbol (union shares storage with variable_type). */
             impl_decompile_binding_name_and_type(
                 (const afw_value_t *)
                     at->assignment_target->symbol_reference,

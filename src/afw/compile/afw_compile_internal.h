@@ -478,6 +478,12 @@ typedef enum {
 struct afw_compile_internal_assignment_target_s {
     afw_compile_internal_assignment_type_t assignment_type;
     afw_compile_assignment_target_type_t target_type;
+    /*
+     * Tagged by target_type. For symbol_reference targets, type annotations
+     * live on symbol_reference->symbol->type (set at symbol create), not as a
+     * second field here. variable_type is only for non-symbol uses if any;
+     * it aliases the same storage as symbol_reference — do not set both.
+     */
     union {
         const afw_compile_list_destructure_t *list_destructure;
         const afw_compile_object_destructure_t *object_destructure;

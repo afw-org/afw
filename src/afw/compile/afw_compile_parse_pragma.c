@@ -258,7 +258,7 @@ impl_parse_pragma_assignment_target(afw_compile_parser_t *parser)
         target->assignment_type = assignment_type;
         target->target_type =
             afw_compile_assignment_target_type_symbol_reference;
-        target->variable_type = NULL;
+        /* Type (if any) is on symbol->type only; see assignment_target union. */
         target->symbol_reference = symbol_reference;
         result = afw_value_assignment_target_create(
             contextual, target, parser->p, parser->xctx);
