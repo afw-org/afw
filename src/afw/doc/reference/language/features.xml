@@ -180,4 +180,81 @@ assert(at(a, -1) === 3);]]></code>
         some additional features, such as the ability to use functions to 
         compare values matching a case.
     </paragraph>
+    <header>Converting values to text</header>
+    <paragraph>
+        Several Adaptive functions turn values into strings for different
+        purposes. They are easy to confuse.
+    </paragraph>
+    <list>
+        <item>
+            <literal>stringify</literal> produces pure JSON text from an
+            evaluated value. Adaptive data types use their JSON primitive
+            (for example, <literal>base64Binary</literal> and
+            <literal>date</literal> become JSON strings). An optional
+            second parameter is a replacer function or an array of property
+            names; an optional third parameter controls whitespace. Use
+            this when you need portable JSON (for example, to store a sealed
+            crypto object).
+        </item>
+        <item>
+            <literal>decompile</literal> produces Adaptive text that
+            represents the value as the compiler sees it (calls, blocks, and
+            some <literal>#…</literal> forms). It is not a pretty-print of
+            the original source, and it is not JSON. Prefer
+            <literal>decompile</literal> when you need that Adaptive form
+            (including for recompile of many constructs).
+        </item>
+        <item>
+            A compiler listing is produced when you pass a listing or
+            whitespace argument to <literal>compile</literal> (for example
+            <literal>compile&lt;script&gt;(source, 2)</literal>), including
+            from Fiddle. The listing interleaves source with a value tree
+            and includes symbol tables. It is for human understanding of
+            what was compiled, not for recompile or for JSON.
+        </item>
+        <item>
+            For binary data, <literal>decode_to_string</literal> interprets
+            octets as UTF-8 text (and fails if the octets are not valid
+            UTF-8). The <literal>string</literal> conversion of binary is a
+            printable base64 or hex form of the octets, not the UTF-8 of
+            those bytes.
+        </item>
+    </list>
+    <paragraph>
+        Function signatures and full parameter descriptions appear under the
+        Function Reference (categories such as <literal>compiler</literal>
+        and polymorphic methods on binary types).
+    </paragraph>
+    <code><![CDATA[/* JSON for storage or interchange */
+stringify({ "a": 1, "b": true });
+
+/* Adaptive form of a compiled value (not JSON) */
+decompile(compile<script>(script("return 1+2;")));
+
+/* Human listing (Fiddle / compile listing parameter) */
+compile<script>(script("const x = 1;\nreturn x;"), 2);
+
+/* Binary that is really text */
+decode_to_string(encode_as_base64Binary("secret"));]]></code>
+    <header>Pragma forms</header>
+    <paragraph>
+        You may see names that begin with <literal>#</literal> (pragma
+        identifiers) in the output of <literal>decompile</literal> when a
+        compiled construct has no ordinary Adaptive Script surface form.
+        Examples include <literal>#block</literal>,
+        <literal>#assignment_target</literal>,
+        <literal>#list_expression</literal>,
+        <literal>#script_function</literal>,
+        <literal>#template_definition</literal>,
+        <literal>#switch_default</literal>, and
+        <literal>#statements</literal>. They are mentioned here only so that
+        output is recognizable; you write normal Adaptive Script and do not
+        code these forms yourself.
+    </paragraph>
+    <paragraph>
+        A few names may appear for display only and cannot be recompiled from
+        decompile text (for example <literal>#closure_binding</literal> and
+        <literal>#function_thunk</literal>). Compiler listings may also show
+        related structure for humans; again, that is not source you write.
+    </paragraph>
 </doc>

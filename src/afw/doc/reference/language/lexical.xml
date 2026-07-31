@@ -55,7 +55,16 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
         <item><literal>ID_CONTINUE</literal> is any codepoint with <literal>ID_CONTINUE</literal> flag</item>
         <item><literal>ZWNJ</literal> is the Zero-width Non-Joiner (0x200c)</item>
         <item><literal>ZWJ</literal> is the Zero-width Joiner (0x200d)</item>
-    </list>    
+    </list>
+    <paragraph>
+        Separately, the lexical analyzer recognizes
+        <literal>pragma_identifier</literal> tokens: a leading
+        <literal>#</literal> followed by an identifier-like name (for example
+        <literal>#block</literal>). You may see them in
+        <literal>decompile</literal> output; they are not ordinary
+        identifiers, cannot be used as variable names, and are not something
+        you write in normal scripts (see Language Features).
+    </paragraph>
     <header>Reserved Names</header>
     <paragraph>
         When declaring a variable name, you may use any identifier with the exception 
