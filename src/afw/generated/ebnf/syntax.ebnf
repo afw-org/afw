@@ -359,7 +359,8 @@ PragmaStatement ::=
 
 PragmaValue ::=
     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
-    '#assignment_target' '(' Expression ',' ( Identifier | String ) ')' |
+    '#assignment_target' '(' Expression ','
+        ( Identifier | String | ListPattern | ObjectPattern ) ')' |
     '#list_expression' '(' Expression ')' |
     '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')' |
     '#template_definition' '(' Expression ( ',' Expression )* ')'

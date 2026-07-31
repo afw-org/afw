@@ -162,18 +162,26 @@ impl_assignment_type_from_utf8(
 
 
 /*
- * #assignment_target( assignmentKind, variableName )
+ * #assignment_target( assignmentKind, Pattern )
  *
  * assignmentKind — string Expression, e.g. "const", "let" (matches decompile).
- * variableName   — bare Identifier or string; introduces a binding for
- *                  const/let (not a lookup). Matches decompile of symbol form:
- *                  #assignment_target("const", x)
+ * Pattern        — binding Pattern (not Expression):
+ *                  Identifier | String | list pattern | object pattern.
+ *                  Reuses AssignmentTarget / AssignmentBindingTarget so list
+ *                  and object destructure introduce the same symbols as
+ *                  surface `const [a,b] = …` / `const {a,b} = …`.
+ *
+ * Examples:
+ *   #assignment_target("const", x)
+ *   #assignment_target("const", [a, b])
+ *   #assignment_target("const", {a, b: c})
  */
 static const afw_value_t *
 impl_parse_pragma_assignment_target(afw_compile_parser_t *parser)
 {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_t *kind_value;
+    const afw_value_t *result;
     const afw_utf8_t *kind_string;
     const afw_utf8_t *variable_name;
     const afw_value_symbol_reference_t *symbol_reference;
@@ -209,25 +217,28 @@ impl_parse_pragma_assignment_target(afw_compile_parser_t *parser)
     }
 
     /*
-     * Variable name: Identifier (binding name, not a reference lookup) or
-     * string. Do not parse as Expression — that would require a prior
-     * declaration for a bare name.
+     * Pattern: string name is an extra convenience (not surface Script).
+     * Otherwise reuse AssignmentTarget (name | [list] | {object}).
+     * Do not parse as Expression — bare names would be lookups.
      */
     afw_compile_get_token();
-    if (afw_compile_token_is_unqualified_identifier()) {
-        variable_name = parser->token->identifier_name;
-        if (afw_compile_is_reserved_word(parser, variable_name)) {
-            AFW_COMPILE_THROW_ERROR_Z(
-                "Variable name can not be a reserved word");
-        }
-    }
-    else if (afw_compile_token_is(utf8_string)) {
+    if (afw_compile_token_is(utf8_string)) {
         variable_name = parser->token->string;
+        symbol_reference = afw_compile_parse_variable_reference_create(
+            parser, contextual, assignment_type, variable_name, NULL);
+        target = afw_pool_calloc_type(parser->p,
+            afw_compile_assignment_target_t, parser->xctx);
+        target->assignment_type = assignment_type;
+        target->target_type =
+            afw_compile_assignment_target_type_symbol_reference;
+        target->variable_type = NULL;
+        target->symbol_reference = symbol_reference;
+        result = afw_value_assignment_target_create(
+            contextual, target, parser->p, parser->xctx);
     }
     else {
-        AFW_COMPILE_THROW_ERROR_Z(
-            "Expecting variable name (identifier or string) in "
-            "#assignment_target");
+        afw_compile_reuse_token();
+        result = afw_compile_parse_AssignmentTarget(parser, assignment_type);
     }
 
     /* ')' */
@@ -236,20 +247,7 @@ impl_parse_pragma_assignment_target(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after #assignment_target");
     }
 
-    /* Create symbol in current block (const/let add; others require existing). */
-    symbol_reference = afw_compile_parse_variable_reference_create(
-        parser, contextual, assignment_type, variable_name, NULL);
-
-    target = afw_pool_calloc_type(parser->p,
-        afw_compile_assignment_target_t, parser->xctx);
-    target->assignment_type = assignment_type;
-    target->target_type =
-        afw_compile_assignment_target_type_symbol_reference;
-    target->variable_type = NULL;
-    target->symbol_reference = symbol_reference;
-
-    return afw_value_assignment_target_create(
-        contextual, target, parser->p, parser->xctx);
+    return result;
 }
 
 
@@ -535,7 +533,8 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
  *
  * PragmaValue ::=
  *     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
- *     '#assignment_target' '(' Expression ',' ( Identifier | String ) ')' |
+ *     '#assignment_target' '(' Expression ','
+ *         ( Identifier | String | ListPattern | ObjectPattern ) ')' |
  *     '#list_expression' '(' Expression ')' |
  *     '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')' |
  *     '#template_definition' '(' Expression ( ',' Expression )* ')'

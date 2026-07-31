@@ -39,28 +39,22 @@ Implementing the optimizer, pragma, or permanent purity audits. This file is onl
 
 ## Related #18 follow-ups (not optimize)
 
-### Destructuring `#assignment_target` (agreed direction)
+### Destructuring `#assignment_target` (implemented direction)
 
-Current decompile of list/object destructure is a **placeholder** (not the API):
+**Landed on issue-#18:** decompile + pragma use Pattern as second arg.
 
 ```text
-#assignment_target("const","list_destructure")
-#assignment_target("const","object_destructure")
+#assignment_target("const", [a,b])
+#assignment_target("const", {a, b: x, c=1, ...r})
 ```
 
-**Agreed approach** (when we implement round-trip):
-
-- Keep **`#assignment_target(kind, Pattern)`**.
-- First arg: assignment kind string (`"const"`, `"let"`, …) as today.
-- Second arg: **Pattern**, not Expression — identifier/string **or** list/object pattern using surface-like `[…]` / `{…}` (holes, defaults, rest, rename, nesting).
-- Parse Pattern by **reusing** existing assignment-target / list / object destructure parsers with that `assignment_type` so bindings and nesting stay correct.
-- Decompile emits that pattern text; kill the placeholder strings.
+- First arg: assignment kind string (`"const"`, `"let"`, …).
+- Second arg: **Pattern**, not Expression — identifier/string **or** list/object pattern (`[…]` / `{…}`: holes, defaults, rest, rename, nesting).
+- Parse reuses `AssignmentTarget` / existing destructure parsers (no thrash of that file’s structure).
+- Nested patterns decompile as nested `[`/`{` only (no nested `#assignment_target` wrapper).
 - Prefer **not** a forest of nested `#list_destructure` / `#assignment_element` pragmas as the primary form.
 
-**Process / constraints:**
-
-- Leave **destructure parsing as it is** for now; may improve later — do not thrash `afw_compile_parse_assignment_target.c` unless a real feature needs it.
-- Round-trip / richer decompile is a dedicated slice when we pick it up.
+**Still open:** later improvements to destructure *parsing* itself; param-list destructure sugar (below).
 
 ### Function parameter destructuring (future sugar — Jeremy)
 

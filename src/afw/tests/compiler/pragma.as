@@ -120,6 +120,92 @@ assert(evaluate(compile<script>(script(
 ))) == 7);
 return 0;
 
+//? test: pragma-assignment-target-list-destructure-roundtrip
+//? description: decompile/compile round-trip for list destructure Pattern
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const [a, b] = [1, 2];\nreturn a;"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",[a,b]),[1,2],undefined),return(a))");
+assert(evaluate(compile<script>(script(d))) == 1);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-assignment-target-object-destructure-roundtrip
+//? description: decompile/compile round-trip for object destructure Pattern
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const {a, b} = {a: 1, b: 2};\nreturn b;"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",{a,b}),{\"a\":1,\"b\":2},undefined),return(b))");
+assert(evaluate(compile<script>(script(d))) == 2);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-assignment-target-list-hole-rest-default
+//? description: list Pattern with hole, default, and rest
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const [a, , c = 9, ...r] = [1, 2, 3, 4, 5];\nreturn [a, c, r];"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",[a,,c=9,...r]),[1,2,3,4,5],undefined),return(array(a,c,r)))");
+assert(evaluate(compile<script>(script(d))) == [1, 3, [4, 5]]);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-assignment-target-object-rename-default-rest
+//? description: object Pattern with rename, default, and rest
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const {a: x, b = 3, ...r} = {a: 1, c: 4};\nreturn [x, b, r];"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",{a:x,b=3,...r}),{\"a\":1,\"c\":4},undefined),return(array(x,b,r)))");
+assert(evaluate(compile<script>(script(d))) == [1, 3, {"c": 4}]);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-assignment-target-nested-list
+//? description: nested list Pattern round-trip
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const [a, [b, c]] = [1, [2, 3]];\nreturn c;"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",[a,[b,c]]),[1,[2,3]],undefined),return(c))");
+assert(evaluate(compile<script>(script(d))) == 3);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-assignment-target-list-direct
+//? description: list Pattern written directly in IR
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",[p,q]),[10,20],undefined),return(add(p,q)))"
+))) == 30);
+return 0;
+
 //? test: pragma-list-expression-roundtrip
 //? description: decompile/compile round-trip for array spread (#list_expression)
 //? skip: false

@@ -340,18 +340,18 @@ return 0;
 //? expect: 0
 //? source: ...
 
-// assignment_target list_destructure / object_destructure
+// assignment_target list_destructure / object_destructure as Patterns
 let s = decompile(compile<script>(script(
     "const [a, b] = [1, 2];\nreturn a;"
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",\"list_destructure\"),[1,2],undefined),return(a))");
+    "#block(const(#assignment_target(\"const\",[a,b]),[1,2],undefined),return(a))");
 
 s = decompile(compile<script>(script(
     "const {a, b} = {a: 1, b: 2};\nreturn a;"
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",\"object_destructure\"),{\"a\":1,\"b\":2},undefined),return(a))");
+    "#block(const(#assignment_target(\"const\",{a,b}),{\"a\":1,\"b\":2},undefined),return(a))");
 
 return 0;
 
