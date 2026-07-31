@@ -167,8 +167,8 @@ impl_afw_value_optional_evaluate(
     /* Save stack top which will be restored on return. */
     AFW_TRY {
 
-        /* If there is are parameters, make a parameter block. */
-        if (script->signature->block) {
+        /* If there is a parameter block, make a parameter scope. */
+        if (script->signature && script->signature->block) {
 
             /* Make a scope for parameters. */
             parameter_scope = afw_xctx_scope_create(
