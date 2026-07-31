@@ -1940,10 +1940,36 @@ impl_afw_data_type_array_write_as_expression(
     const afw_iterator_t *iterator;
     const afw_value_t *value;
     afw_size_t i;
+    afw_boolean_t all_evaluated;
 
     array = *(const afw_array_t * const *)from_internal;
 
-    afw_writer_write_z(writer, "[", xctx);
+    /*
+     * If any element is an IR node (call, block, …), emit #statements(...)
+     * so recompile builds an array *value* of unevaluated nodes (for for/
+     * switch statement lists). Surface [call(...)] becomes array() which
+     * would evaluate elements; switch requires an array value of statements.
+     */
+    all_evaluated = true;
+    for (iterator = NULL;
+        (value = afw_array_get_next_value(array, &iterator, writer->p, xctx));
+        )
+    {
+        if (!afw_value_is_defined_and_evaluated(value) &&
+            !afw_value_is_undefined(value) &&
+            !afw_value_is_function_definition(value))
+        {
+            all_evaluated = false;
+            break;
+        }
+    }
+
+    if (all_evaluated) {
+        afw_writer_write_z(writer, "[", xctx);
+    }
+    else {
+        afw_writer_write_z(writer, "#statements(", xctx);
+    }
     if (writer->tab) {
         afw_writer_increment_indent(writer, xctx);
     }
@@ -1965,7 +1991,12 @@ impl_afw_data_type_array_write_as_expression(
         afw_writer_write_eol(writer, xctx);
         afw_writer_decrement_indent(writer, xctx);
     }
-    afw_writer_write_z(writer, "]", xctx);
+    if (all_evaluated) {
+        afw_writer_write_z(writer, "]", xctx);
+    }
+    else {
+        afw_writer_write_z(writer, ")", xctx);
+    }
 
 }
 

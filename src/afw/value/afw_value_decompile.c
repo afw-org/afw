@@ -138,6 +138,14 @@ afw_value_decompile_value(
     if (afw_value_is_undefined(instance)) {
         afw_writer_write_utf8(writer, afw_s_undefined, xctx);
     }
+    /*
+     * Switch "default" clause uses a unique permanent null pointer for
+     * identity compares. Decompile as #switch_default so recompile restores
+     * that same pointer (plain null would not match).
+     */
+    else if (instance == afw_value_unique_default_case_value) {
+        afw_writer_write_z(writer, "#switch_default", xctx);
+    }
     else {
         afw_value_decompile(instance, writer, xctx);
     }

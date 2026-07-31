@@ -488,6 +488,16 @@ impl_parse_pragma_script_function(afw_compile_parser_t *parser)
                 afw_compile_token_is(equal) ||
                 afw_compile_token_is(comma))
             {
+                /* Another parameter after rest is not allowed. */
+                if (params->nelts > 0) {
+                    afw_value_script_function_parameter_t *prev =
+                        ((afw_value_script_function_parameter_t **)
+                            params->elts)[params->nelts - 1];
+                    if (prev->is_rest) {
+                        AFW_COMPILE_THROW_ERROR_Z(
+                            "Rest parameter must be last");
+                    }
+                }
                 param = afw_pool_calloc_type(parser->p,
                     afw_value_script_function_parameter_t, parser->xctx);
                 param->name = param_name;
@@ -520,12 +530,12 @@ impl_parse_pragma_script_function(afw_compile_parser_t *parser)
                 }
 
                 if (afw_compile_token_is(comma)) {
+                    /*
+                     * Rest may be followed by ',' before the body Expression
+                     * (rest is last *parameter*, not last argument).
+                     */
                     APR_ARRAY_PUSH(params,
                         afw_value_script_function_parameter_t *) = param;
-                    if (is_rest) {
-                        AFW_COMPILE_THROW_ERROR_Z(
-                            "Rest parameter must be last");
-                    }
                     continue;
                 }
 
@@ -686,6 +696,62 @@ afw_compile_parse_PragmaValue(afw_compile_parser_t *parser)
     if (impl_pragma_name_is(parser, "function_thunk")) {
         impl_pragma_function_thunk_not_recompilable(parser);
         return NULL; /* not reached */
+    }
+
+    /*
+     * Switch default-clause marker (unique permanent null). Optional "()".
+     */
+    if (impl_pragma_name_is(parser, "switch_default")) {
+        afw_compile_get_token();
+        if (afw_compile_token_is(open_parenthesis)) {
+            afw_compile_get_token();
+            if (!afw_compile_token_is(close_parenthesis)) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting ')' after #switch_default");
+            }
+        }
+        else {
+            afw_compile_reuse_token();
+        }
+        return afw_value_unique_default_case_value;
+    }
+
+    /*
+     * #statements(v, ...) — array *value* of IR nodes without evaluating
+     * them (for for/switch statement lists). Unlike array(), elements stay
+     * as call/block nodes for later statement evaluation.
+     */
+    if (impl_pragma_name_is(parser, "statements")) {
+        const afw_value_t *expr;
+        const afw_array_t *list;
+        afw_boolean_t had_value;
+
+        afw_compile_get_token();
+        if (!afw_compile_token_is(open_parenthesis)) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting '(' after #statements");
+        }
+        list = afw_array_create_generic(parser->p, parser->xctx);
+        for (had_value = false;;) {
+            afw_compile_get_token();
+            if (afw_compile_token_is(close_parenthesis)) {
+                break;
+            }
+            if (afw_compile_token_is(comma)) {
+                if (!had_value) {
+                    afw_array_push_value(list, NULL, parser->xctx);
+                }
+                had_value = false;
+                continue;
+            }
+            afw_compile_reuse_token();
+            expr = afw_compile_parse_Expression(parser);
+            afw_array_push_value(list, expr, parser->xctx);
+            had_value = true;
+        }
+        afw_array_set_immutable(list, parser->xctx);
+        return afw_value_create_unmanaged_array(
+            list, parser->p, parser->xctx);
     }
 
     /*

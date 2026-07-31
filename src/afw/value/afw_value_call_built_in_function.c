@@ -282,6 +282,9 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * For const/let, a bare symbol_reference target (e.g. function statement)
+ * is written as #assignment_target so recompile introduces a binding.
  */
 void
 impl_afw_value_decompile(
@@ -291,9 +294,117 @@ impl_afw_value_decompile(
 {
     const afw_value_call_built_in_function_t *self =
         (const afw_value_call_built_in_function_t *)instance;
+    const afw_utf8_t *fid;
+    const afw_value_t *arg;
+    const afw_value_symbol_reference_t *sym;
+    afw_size_t i;
+    afw_boolean_t is_const_or_let;
+    afw_boolean_t is_try;
+    afw_value_string_t kind;
 
-    afw_writer_write_utf8(writer, &self->function->functionId->internal, xctx);
-    afw_value_decompile_call_args(writer, 1, &self->args, xctx);
+    fid = &self->function->functionId->internal;
+    afw_writer_write_utf8(writer, fid, xctx);
+
+    is_const_or_let =
+        afw_utf8_equal_utf8_z(fid, "const") ||
+        afw_utf8_equal_utf8_z(fid, "let");
+    is_try = afw_utf8_equal_utf8_z(fid, "try");
+
+    if (!is_const_or_let && !is_try) {
+        afw_value_decompile_call_args(writer, 1, &self->args, xctx);
+        return;
+    }
+
+    /* Custom arg list for const/let/try binding targets. */
+    afw_writer_write_z(writer, "(", xctx);
+    if (writer->tab) {
+        afw_writer_increment_indent(writer, xctx);
+    }
+    for (i = 1; i <= self->args.argc; i++) {
+        if (i != 1) {
+            afw_writer_write_z(writer, ",", xctx);
+        }
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        arg = self->args.argv[i];
+        /*
+         * const/let first param: bare symbol_reference must reparse as
+         * #assignment_target so a binding is introduced.
+         */
+        if (is_const_or_let && i == 1 &&
+            afw_value_is_symbol_reference(arg))
+        {
+            sym = (const afw_value_symbol_reference_t *)arg;
+            afw_writer_write_z(writer, "#assignment_target(", xctx);
+            kind.inf = &afw_value_unmanaged_string_inf;
+            kind.internal = *fid;
+            afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
+            afw_writer_write_z(writer, ",", xctx);
+            afw_writer_write_utf8(writer, sym->symbol->name, xctx);
+            afw_value_decompile_optional_type(&sym->symbol->type, writer,
+                xctx);
+            afw_writer_write_z(writer, ")", xctx);
+        }
+        /*
+         * try catch block (3rd) + error variable (4th): emit catch as
+         * #block(#assignment_target("let",e), stmts...) and error as "e"
+         * so reparse creates e before return(e); execute_try resolves
+         * the string name in the catch block.
+         */
+        else if (is_try && i == 3 && afw_value_is_block(arg) &&
+            self->args.argc >= 4 &&
+            afw_value_is_symbol_reference(self->args.argv[4]))
+        {
+            const afw_value_block_t *catch_block =
+                (const afw_value_block_t *)arg;
+            afw_size_t j;
+
+            sym = (const afw_value_symbol_reference_t *)self->args.argv[4];
+            afw_writer_write_z(writer, "#block(", xctx);
+            if (writer->tab) {
+                afw_writer_increment_indent(writer, xctx);
+                afw_writer_write_eol(writer, xctx);
+            }
+            afw_writer_write_z(writer, "#assignment_target(", xctx);
+            kind.inf = &afw_value_unmanaged_string_inf;
+            kind.internal.s = "let";
+            kind.internal.len = 3;
+            afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
+            afw_writer_write_z(writer, ",", xctx);
+            afw_writer_write_utf8(writer, sym->symbol->name, xctx);
+            afw_writer_write_z(writer, ")", xctx);
+            for (j = 0; j < catch_block->statement_count; j++) {
+                afw_writer_write_z(writer, ",", xctx);
+                if (writer->tab) {
+                    afw_writer_write_eol(writer, xctx);
+                }
+                afw_value_decompile_value(catch_block->statements[j],
+                    writer, xctx);
+            }
+            if (writer->tab) {
+                afw_writer_write_eol(writer, xctx);
+                afw_writer_decrement_indent(writer, xctx);
+            }
+            afw_writer_write_z(writer, ")", xctx);
+        }
+        else if (is_try && i == 4 &&
+            afw_value_is_symbol_reference(arg))
+        {
+            sym = (const afw_value_symbol_reference_t *)arg;
+            kind.inf = &afw_value_unmanaged_string_inf;
+            kind.internal = *sym->symbol->name;
+            afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
+        }
+        else {
+            afw_value_decompile_value(arg, writer, xctx);
+        }
+    }
+    if (writer->tab) {
+        afw_writer_write_eol(writer, xctx);
+        afw_writer_decrement_indent(writer, xctx);
+    }
+    afw_writer_write_z(writer, ")", xctx);
 }
 
 

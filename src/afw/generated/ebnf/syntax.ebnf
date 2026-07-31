@@ -362,7 +362,7 @@ PragmaValue ::=
     '#assignment_target' '(' Expression ','
         ( Identifier | String | ListPattern | ObjectPattern ) ')' |
     '#list_expression' '(' Expression ')' |
-    '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')' |
+    '#script_function' '(' ScriptFunctionArgs ')' |
     '#template_definition' '(' Expression ( ',' Expression )* ')'
 /* #closure_binding / #function_thunk are recognized but always compile       */
 /* errors (runtime / C-side only; not recompilable from decompile text).      */
