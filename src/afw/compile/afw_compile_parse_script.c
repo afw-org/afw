@@ -1642,6 +1642,31 @@ afw_compile_parse_StatementList(
             array, parser->p, parser->xctx);
     }
 
+    /*
+     * If building a block: when this StatementList opened an empty block
+     * (no symbols) whose only statement is itself a block — e.g. recompiling
+     * decompile text "#block(...)" as a script — promote the inner block
+     * instead of wrapping (#block(#block(...))). Script always starts a
+     * top-level block; #block then nested inside it.
+     */
+    else if (
+        argc == 1 &&
+        argv[0] &&
+        afw_value_is_block(argv[0]) &&
+        block->symbol_count == 0 &&
+        parser->compiled_value->top_block == block)
+    {
+        afw_value_block_t *inner = (afw_value_block_t *)argv[0];
+
+        parser->compiled_value->top_block = inner;
+        inner->parent_block = NULL;
+        inner->depth = 0;
+        inner->next_sibling_block = NULL;
+        /* Outer block is abandoned (never finalized with statements). */
+        parser->compiled_value->current_block = NULL;
+        result = argv[0];
+    }
+
     /* If building block, finalize and set result. */
     else {
         afw_value_block_finalize(block, argc, argv, parser->xctx);
