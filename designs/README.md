@@ -29,4 +29,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 - When a decision stabilizes, **promote** invariants into rules, code comments, or real docs — then thin the pad.
 - Do **not** hand-edit `generated/` from notes here; implement via normal generate/build paths.
 
+### C cleanup (non-pool)
+
+For OpenSSL handles, key material, `FILE *`, etc.: **NULL init + `AFW_TRY` + free in `AFW_FINALLY`**. Documented in `.cursor/rules/afw-c-runtime.mdc`; crypto execute path is the reference.
+
 Root stays thin: hubs (`AGENTS.md`, `beta-backlog.md`, `whats_new.md`) + public project files. Stuff design detail **here**, not more long pads at repository root.
