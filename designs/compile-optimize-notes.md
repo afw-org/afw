@@ -81,3 +81,10 @@ Do **not** implement a fake `#closure_binding` pragma that drops the scope: call
 
 **Compile:** `#closure_binding` is a **known** pragma that always fails with a clear message (not “unknown pragma”):
 `#closure_binding is runtime-only (closed-over scope) and cannot be recompiled from decompile text`.
+
+### `#function_thunk`
+
+Decompile is `#function_thunk("detail or name")` — C-side hook label only.
+
+**Compile:** known pragma, always fails with:
+`#function_thunk is C-side only and cannot be recompiled from decompile text`.

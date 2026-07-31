@@ -43,6 +43,22 @@ return #closure_binding(#script_function(a,#block(return(a))));
 #closure_binding(#script_function(a,#block(return(a))));
 return 0;
 
+//? test: pragma-function-thunk-not-recompilable-value
+//? description: #function_thunk known but C-side only (not recompilable)
+//? expect: error
+//? source: ...
+
+/* Message includes: C-side only and cannot be recompiled */
+return #function_thunk("detail");
+
+//? test: pragma-function-thunk-not-recompilable-statement
+//? description: #function_thunk as statement also rejected clearly
+//? expect: error
+//? source: ...
+
+#function_thunk("detail");
+return 0;
+
 //? test: pragma-block-literal
 //? description: #block(add(1,2)) compiles and evaluates to 3
 //? skip: false
