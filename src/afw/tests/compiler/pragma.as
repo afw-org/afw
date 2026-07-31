@@ -82,3 +82,40 @@ assert(evaluate(compile<script>(script(
     "const b = #block(add(10, 20));\nreturn evaluate(b);"
 ))) == 30);
 return 0;
+
+//? test: pragma-assignment-target-roundtrip-const
+//? description: decompile/compile round-trip for const + return
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const x = 1 + 2;\nreturn x;"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",x),add(1,2),undefined),return(x))");
+assert(evaluate(compile<script>(script(d))) == 3);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-assignment-target-direct
+//? description: #assignment_target as value inside #block
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",y),10,undefined),return(y))"
+))) == 10);
+return 0;
+
+//? test: pragma-assignment-target-string-name
+//? description: Variable name may be a string in #assignment_target
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",\"z\"),7,undefined),return(z))"
+))) == 7);
+return 0;

@@ -129,12 +129,127 @@ impl_parse_pragma_block(afw_compile_parser_t *parser)
 }
 
 
-/* True if current pragma_identifier is #block. */
+/* True if current pragma_identifier name equals z. */
 static afw_boolean_t
-impl_pragma_is_block(afw_compile_parser_t *parser)
+impl_pragma_name_is(
+    afw_compile_parser_t *parser,
+    const afw_utf8_z_t *name_z)
 {
     return parser->token->identifier_name &&
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, "block");
+        afw_utf8_equal_utf8_z(parser->token->identifier_name, name_z);
+}
+
+
+/*
+ * Map decompile string ("const", "let", …) to assignment_type enum.
+ */
+static afw_compile_internal_assignment_type_t
+impl_assignment_type_from_utf8(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *s)
+{
+#define XX(id, description) \
+    if (afw_utf8_equal_utf8_z(s, #id)) { \
+        return afw_compile_assignment_type_ ## id; \
+    }
+    AFW_COMPILE_INTERNAL_ASSIGNMENT_TYPE_MAP(XX)
+#undef XX
+
+    AFW_COMPILE_THROW_ERROR_FZ(
+        "Invalid assignment type " AFW_UTF8_FMT_Q " in #assignment_target",
+        AFW_UTF8_FMT_ARG(s));
+}
+
+
+/*
+ * #assignment_target( assignmentKind, variableName )
+ *
+ * assignmentKind — string Expression, e.g. "const", "let" (matches decompile).
+ * variableName   — bare Identifier or string; introduces a binding for
+ *                  const/let (not a lookup). Matches decompile of symbol form:
+ *                  #assignment_target("const", x)
+ */
+static const afw_value_t *
+impl_parse_pragma_assignment_target(afw_compile_parser_t *parser)
+{
+    const afw_compile_value_contextual_t *contextual;
+    const afw_value_t *kind_value;
+    const afw_utf8_t *kind_string;
+    const afw_utf8_t *variable_name;
+    const afw_value_symbol_reference_t *symbol_reference;
+    afw_compile_assignment_target_t *target;
+    afw_compile_internal_assignment_type_t assignment_type;
+    afw_size_t start_offset;
+
+    start_offset = parser->token->token_source_offset;
+    contextual = afw_compile_create_contextual_to_cursor(start_offset);
+
+    /* Expect '('. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is(open_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '(' after #assignment_target");
+    }
+
+    /* Kind string Expression. */
+    kind_value = afw_compile_parse_Expression(parser);
+    if (!afw_value_is_string(kind_value)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "#assignment_target kind must be a string "
+            "(\"const\", \"let\", …)");
+    }
+    kind_string = &((const afw_value_string_t *)kind_value)->internal;
+    assignment_type = impl_assignment_type_from_utf8(parser, kind_string);
+
+    /* ','. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is(comma)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting ',' after assignment kind in #assignment_target");
+    }
+
+    /*
+     * Variable name: Identifier (binding name, not a reference lookup) or
+     * string. Do not parse as Expression — that would require a prior
+     * declaration for a bare name.
+     */
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        variable_name = parser->token->identifier_name;
+        if (afw_compile_is_reserved_word(parser, variable_name)) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Variable name can not be a reserved word");
+        }
+    }
+    else if (afw_compile_token_is(utf8_string)) {
+        variable_name = parser->token->string;
+    }
+    else {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting variable name (identifier or string) in "
+            "#assignment_target");
+    }
+
+    /* ')' */
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after #assignment_target");
+    }
+
+    /* Create symbol in current block (const/let add; others require existing). */
+    symbol_reference = afw_compile_parse_variable_reference_create(
+        parser, contextual, assignment_type, variable_name, NULL);
+
+    target = afw_pool_calloc_type(parser->p,
+        afw_compile_assignment_target_t, parser->xctx);
+    target->assignment_type = assignment_type;
+    target->target_type =
+        afw_compile_assignment_target_type_symbol_reference;
+    target->variable_type = NULL;
+    target->symbol_reference = symbol_reference;
+
+    return afw_value_assignment_target_create(
+        contextual, target, parser->p, parser->xctx);
 }
 
 
@@ -160,17 +275,15 @@ AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
 {
     /*
-     * Known statement pragmas: compare identifier_name and handle here.
-     *
-     * Structural #block is also allowed as a statement (expression-statement
-     * style) so decompile output can recompile as a script.
+     * Structural #block is allowed as a statement so decompile output can
+     * recompile as a script. Policy pragmas land here as well.
      */
-    if (impl_pragma_is_block(parser)) {
+    if (impl_pragma_name_is(parser, "block")) {
         return impl_parse_pragma_block(parser);
     }
 
     /*
-     * if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "…")) {
+     * if (impl_pragma_name_is(parser, "typecheck")) {
      *     …
      *     return result;
      * }
@@ -190,7 +303,8 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
  *# Structural forms match decompile #implementation_id where implemented.
  *
  * PragmaValue ::=
- *     '#block' '(' ( Expression ( ',' Expression )* )? ')'
+ *     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
+ *     '#assignment_target' '(' Expression ',' ( Identifier | String ) ')'
  *
  *<<<ebnf*/
 /**
@@ -198,19 +312,23 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
  *
  * Example of adding a known pragma (before the unknown fall-through):
  *
- *   if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "…")) {
+ *   if (impl_pragma_name_is(parser, "…")) {
  *       // parse arguments; call create API; return value
  *   }
  */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_PragmaValue(afw_compile_parser_t *parser)
 {
-    if (impl_pragma_is_block(parser)) {
+    if (impl_pragma_name_is(parser, "block")) {
         return impl_parse_pragma_block(parser);
     }
 
+    if (impl_pragma_name_is(parser, "assignment_target")) {
+        return impl_parse_pragma_assignment_target(parser);
+    }
+
     /*
-     * if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "…")) {
+     * if (impl_pragma_name_is(parser, "…")) {
      *     …
      *     return result;
      * }
