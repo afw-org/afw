@@ -408,10 +408,11 @@ Combined with `open_file` / `read*` and `crypto_decrypt`, conf can avoid a clear
   }, \"AES-GCM\");
   /* read sealed iv/tag/ciphertext from file under rootFilePaths … */
   const plain = crypto_decrypt({ \"name\": \"AES-GCM\", \"iv\": …, \"tag\": … }, key, ciphertext);
-  /* binary password octets → UTF-8 string via stream write/read if needed */
-  return { \"dn\": \"cn=service,…\", \"password\": bindPassword };
+  return { \"dn\": \"cn=service,…\", \"password\": decode_to_string(plain) };
 }"
 ```
+
+Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 text). See `src/afw_crypto/README.md`.
 
 Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`.
 

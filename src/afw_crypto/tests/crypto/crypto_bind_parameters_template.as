@@ -74,21 +74,18 @@ without putting the cleartext password in conf or environment.
 
 const bindParameters = evaluate(compile(template("${
 const key = crypto_generate_key(\"AES-GCM\", undefined, true);
-/* UTF-8 octets of secret-pass as base64Binary */
-const passwordOctets = base64Binary(\"c2VjcmV0LXBhc3M=\");
-const sealed = crypto_encrypt({ \"name\": \"AES-GCM\" }, key, passwordOctets);
+const sealed = crypto_encrypt(
+    { \"name\": \"AES-GCM\" },
+    key,
+    encode_as_base64Binary(\"secret-pass\")
+);
 const plain = crypto_decrypt({
     \"name\": \"AES-GCM\",
     \"iv\": sealed.iv,
     \"tag\": sealed.tag
 }, key, sealed.ciphertext);
-/* binary -> UTF-8 string (string(base64Binary) is base64 text, not octets) */
-const w = open_file(\"bp-w\", \"data/bind_pw.bin\", \"wb\");
-write_internal(w, plain);
-close(w);
-const r = open_file(\"bp-r\", \"data/bind_pw.bin\", \"r\");
-const bindPassword = read(r, 1024);
-close(r);
+/* octets as UTF-8 — not string(binary), which is base64 text */
+const bindPassword = decode_to_string(plain);
 crypto_destroy_key(key);
 return {
     \"dn\": \"cn=service,dc=example,dc=org\",
@@ -119,10 +116,13 @@ const sealKeyMaterial = base64Binary(
 
 /* Produce sealed blob and store under data/ for the template to read. */
 const key = crypto_import_key(sealKeyMaterial, "AES-GCM", undefined, true);
-const passwordOctets = base64Binary("c2VjcmV0LXBhc3M="); /* secret-pass */
-const sealed = crypto_encrypt({ "name": "AES-GCM" }, key, passwordOctets);
+const sealed = crypto_encrypt(
+    { "name": "AES-GCM" },
+    key,
+    encode_as_base64Binary("secret-pass")
+);
 
-/* Store as simple Adaptive-ish lines: iv, tag, ciphertext as base64 text */
+/* Store as simple lines: iv, tag, ciphertext as base64 text */
 const out = open_file("seal-w", "data/ldap_bind.sealed.txt", "w");
 writeln(out, string(sealed.iv));
 writeln(out, string(sealed.tag));
@@ -131,7 +131,7 @@ close(out);
 crypto_destroy_key(key);
 
 /*
- * Template body only uses functions + environment:: (no outer locals).
+ * Template body only uses functions + env key ref (no outer locals).
  * Env AFW_CRYPTO_TEST_SEAL_KEY is set by the test harness (config.py).
  */
 const bindParameters = evaluate(compile(template("${
@@ -150,16 +150,10 @@ const plain = crypto_decrypt({
     \"iv\": base64Binary(ivB64),
     \"tag\": base64Binary(tagB64)
 }, key, base64Binary(ctB64));
-const w = open_file(\"bp-w2\", \"data/bind_pw2.bin\", \"wb\");
-write_internal(w, plain);
-close(w);
-const r = open_file(\"bp-r2\", \"data/bind_pw2.bin\", \"r\");
-const bindPassword = read(r, 1024);
-close(r);
 crypto_destroy_key(key);
 return {
     \"dn\": \"cn=service,dc=example,dc=org\",
-    \"password\": bindPassword
+    \"password\": decode_to_string(plain)
 };
 }")));
 
