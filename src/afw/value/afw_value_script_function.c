@@ -121,6 +121,9 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_increment_indent(writer, xctx);
 
     for (i = 0; i < self->count; i++) {
+        if (self->parameters[i]->is_rest) {
+            afw_writer_write_z(writer, "...", xctx);
+        }
         afw_value_compiler_listing_name_and_type(
             writer, self->parameters[i]->name, self->parameters[i]->type, xctx);
         if (self->parameters[i]->default_value) {
@@ -142,8 +145,8 @@ impl_afw_value_produce_compiler_listing(
 
     afw_writer_write_z(writer, "signature ", xctx);
     if (self->signature->block) {
-    afw_value_produce_compiler_listing(
-        (const afw_value_t *)self->signature->block, writer, xctx);
+        afw_value_produce_compiler_listing(
+            (const afw_value_t *)self->signature->block, writer, xctx);
     }
     else {
         afw_writer_write_z(writer, "undefined", xctx);

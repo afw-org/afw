@@ -31,8 +31,6 @@
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_list_expression_inf
 #include "afw_value_impl_declares.h"
 
-/** @todo Add contextual to decompile, etc. */
-
 /* Create function for list expression value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_array_expression(

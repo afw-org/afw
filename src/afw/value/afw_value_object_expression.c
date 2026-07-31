@@ -32,9 +32,6 @@
 #include "afw_value_impl_declares.h"
 
 
-/** @todo Add contextual to decompile, etc. */
-
-
 /* Create function for object expression value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_object_expression(
@@ -47,6 +44,7 @@ afw_value_create_object_expression(
     self = afw_pool_calloc(p, sizeof(afw_value_object_expression_t),
         xctx);
     self->inf = &afw_value_object_expression_inf;
+    self->contextual = contextual;
     self->internal = internal;
     return &self->pub;
 }
@@ -95,6 +93,10 @@ impl_afw_value_get_data_type(
 
 /*
  * Implementation of method compiler_listing for interface afw_value.
+ *
+ * Walk unevaluated property values on the compile-time object bag. Do not use
+ * afw_value_as_object() / data_type object listing here — that evaluates the
+ * expression (fails for free variables during compile listing).
  */
 void
 impl_afw_value_produce_compiler_listing(
@@ -102,9 +104,34 @@ impl_afw_value_produce_compiler_listing(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    afw_data_type_value_compiler_listing(
-        afw_data_type_object,
-        writer, instance, xctx);
+    const afw_value_object_expression_t *self =
+        (const afw_value_object_expression_t *)instance;
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *pv;
+
+    afw_value_compiler_listing_begin_value(writer, instance,
+        self->contextual, xctx);
+    afw_writer_write_z(writer, ": [", xctx);
+    afw_writer_write_eol(writer, xctx);
+    afw_writer_increment_indent(writer, xctx);
+
+    AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED
+    for (iterator = NULL;;) {
+        pv = afw_object_get_next_property(self->internal, &iterator,
+            &property_name, xctx);
+        if (!pv) {
+            break;
+        }
+        afw_writer_write_z(writer, "property ", xctx);
+        afw_writer_write_utf8(writer, property_name, xctx);
+        afw_writer_write_z(writer, " ", xctx);
+        afw_value_compiler_listing_value(pv, writer, xctx);
+    }
+
+    afw_writer_decrement_indent(writer, xctx);
+    afw_writer_write_z(writer, "]", xctx);
+    afw_writer_write_eol(writer, xctx);
 }
 
 /*
