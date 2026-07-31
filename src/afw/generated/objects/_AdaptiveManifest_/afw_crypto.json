@@ -1,0 +1,13 @@
+{
+    "brief": "Cryptographic Adaptive Script functions",
+    "description": "Optional OpenSSL libcrypto extension providing Adaptive Script cryptographic primitives: digest, HMAC, AES-GCM encrypt/decrypt, process keystore (import/generate/export/destroy), key references (environment, file, material), and PBKDF2 key derivation (issue #74).",
+    "extensionId": "afw_crypto",
+    "modulePath": "libafwcrypto",
+    "providesObjects": [
+        "/afw/_AdaptiveFunctionCategory_/crypto",
+        "/afw/_AdaptiveObjectType_/_AdaptiveCryptoEncryptResult_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveCryptoKey_",
+        "/afw/_AdaptiveObjectType_/_AdaptiveCryptoVersionInfo_"
+    ],
+    "registers": []
+}

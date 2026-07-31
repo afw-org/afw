@@ -60,7 +60,7 @@ impl_3_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_3_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2653.pub
+    &afw_lmdb_self_v_zz__2691.pub
 };
 
 static const afw_runtime_property_t
@@ -1045,7 +1045,7 @@ impl_12_property_dataType = {
 static const afw_runtime_property_t
 impl_12_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2654.pub
+    &afw_lmdb_self_v_zz__2692.pub
 };
 
 static const afw_runtime_property_t
@@ -1150,7 +1150,7 @@ impl_13_property_dataType = {
 static const afw_runtime_property_t
 impl_13_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2655.pub
+    &afw_lmdb_self_v_zz__2693.pub
 };
 
 static const afw_runtime_property_t
@@ -1420,7 +1420,7 @@ impl_6_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_6_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2656.pub
+    &afw_lmdb_self_v_zz__2694.pub
 };
 
 static const afw_runtime_property_t
@@ -2326,7 +2326,7 @@ impl_14_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_14_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2657.pub
+    &afw_lmdb_self_v_zz__2695.pub
 };
 
 static const afw_runtime_property_t
@@ -2537,7 +2537,7 @@ impl_22_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_22_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2658.pub
+    &afw_lmdb_self_v_zz__2696.pub
 };
 
 static const afw_runtime_property_t
@@ -3775,7 +3775,7 @@ impl_36_property_dataType = {
 static const afw_runtime_property_t
 impl_36_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2659.pub
+    &afw_lmdb_self_v_zz__2697.pub
 };
 
 static const afw_runtime_property_t
@@ -4197,7 +4197,7 @@ impl_40_property_dataType = {
 static const afw_runtime_property_t
 impl_40_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2660.pub
+    &afw_lmdb_self_v_zz__2698.pub
 };
 
 static const afw_runtime_property_t
@@ -4455,7 +4455,7 @@ impl_34_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_34_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2661.pub
+    &afw_lmdb_self_v_zz__2699.pub
 };
 
 static const afw_runtime_property_t
@@ -4900,7 +4900,7 @@ impl_41_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_41_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2662.pub
+    &afw_lmdb_self_v_zz__2700.pub
 };
 
 static const afw_runtime_property_t
@@ -5331,7 +5331,7 @@ impl_45_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_45_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2663.pub
+    &afw_lmdb_self_v_zz__2701.pub
 };
 
 static const afw_runtime_property_t
@@ -5762,7 +5762,7 @@ impl_49_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_49_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2664.pub
+    &afw_lmdb_self_v_zz__2702.pub
 };
 
 static const afw_runtime_property_t
@@ -5865,7 +5865,7 @@ impl_53_property_category = {
 static const afw_runtime_property_t
 impl_53_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2665.pub
+    &afw_lmdb_self_v_zz__2703.pub
 };
 
 static const afw_runtime_property_t *

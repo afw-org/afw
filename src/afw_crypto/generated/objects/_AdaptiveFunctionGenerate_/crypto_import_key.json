@@ -1,0 +1,41 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoImportKey",
+    "brief": "Import key into keystore",
+    "camelCaseFunctionLabel": "cryptoImportKey",
+    "category": "crypto",
+    "description": "Import key material (or a key reference resolved to octets) into the process keystore and return a CryptoKey handle. Algorithm is a string registry name or object with name (and optional length for AES-GCM). Default extractable is false. Requires execute access.",
+    "functionId": "crypto_import_key",
+    "functionLabel": "crypto_import_key",
+    "parameters": [
+        {
+            "description": "Raw binary key, or reference object { from: environment|file|material, ... }.",
+            "name": "keySource"
+        },
+        {
+            "description": "Algorithm string or object { name, length? }.",
+            "name": "algorithm"
+        },
+        {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "description": "Optional usages; defaults depend on algorithm family.",
+            "name": "usages",
+            "optional": true
+        },
+        {
+            "dataType": "boolean",
+            "description": "If true, crypto_export_key may export raw key. Default false.",
+            "name": "extractable",
+            "optional": true
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoKey_",
+        "description": "Imported CryptoKey handle."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

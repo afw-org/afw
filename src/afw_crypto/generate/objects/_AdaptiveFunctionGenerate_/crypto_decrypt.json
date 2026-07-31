@@ -1,0 +1,30 @@
+{
+    "category": "crypto",
+    "brief": "Decrypt (AES-GCM)",
+    "description": "Decrypt AES-GCM ciphertext. algorithm must include name, iv, and tag (16 octets). additionalData must match encrypt if used. Requires execute access. Auth failure yields a generic decryption error.",
+    "functionId": "crypto_decrypt",
+    "functionLabel": "crypto_decrypt",
+    "requiresExecuteAccess": true,
+    "sideEffects": [
+        "Other"
+    ],
+    "parameters": [
+        {
+            "name": "algorithm",
+            "dataType": "object",
+            "description": "AES-GCM parameters including required iv and tag."
+        },
+        {
+            "name": "key",
+            "description": "Key material, CryptoKey, or key reference."
+        },
+        {
+            "name": "data",
+            "description": "Ciphertext without tag (base64Binary or hexBinary)."
+        }
+    ],
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "Plaintext octets."
+    }
+}

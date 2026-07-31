@@ -479,6 +479,30 @@
                 "/src/*/generate*/objects/_AdaptiveModelCurrentOnGetObject_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnGetObject_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveProcess_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveProcess_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCryptoKey_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCryptoKey_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCryptoVersionInfo_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCryptoVersionInfo_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCryptoEncryptResult_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCryptoEncryptResult_.json"
         }
     ],
     "python.analysis.extraPaths": [

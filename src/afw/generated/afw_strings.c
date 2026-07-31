@@ -8864,6 +8864,18 @@ afw_self_v_afw_content_type_object_list_writer = {
 };
 
 const afw_value_string_t
+afw_self_v_afw_crypto = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afw_crypto)
+};
+
+const afw_value_string_t
+afw_self_v_afw_crypto_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afw_crypto_)
+};
+
+const afw_value_string_t
 afw_self_v_afw_curl = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_curl)
@@ -15911,6 +15923,12 @@ const afw_value_string_t
 afw_self_v_libafwcomponents = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwcomponents)
+};
+
+const afw_value_string_t
+afw_self_v_libafwcrypto = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_libafwcrypto)
 };
 
 const afw_value_string_t
@@ -31526,6 +31544,18 @@ afw_self_v_zz__2346 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2347 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2347)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2348 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2348)
+};
+
+const afw_value_string_t
 afw_self_v_zz__235 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__235)
@@ -39434,6 +39464,12 @@ afw_self_v_zz__Create_index_definition = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Cryptographic_Adaptive_Script_functions = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Cryptographic_Adaptive_Script_functions)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Current_Cursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Current_Cursor)
@@ -42239,6 +42275,12 @@ const afw_value_string_t
 afw_self_v_zz__Library_libafwcomponents = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Library_libafwcomponents)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Library_libafwcrypto = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Library_libafwcrypto)
 };
 
 const afw_value_string_t
@@ -58523,6 +58565,12 @@ const afw_value_string_t
 afw_self_v_zz__src_afw_components_react_monaco_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__src_afw_components_react_monaco_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__src_afw_crypto_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__src_afw_crypto_)
 };
 
 const afw_value_string_t

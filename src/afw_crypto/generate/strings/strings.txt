@@ -1,0 +1,13 @@
+#
+# Extra strings for afw_crypto (property names used in algorithm/key refs).
+#
+
+a_error_crypto_prefix=error:crypto:
+name
+from
+encoding
+path
+salt
+additionalData
+iterations
+hash

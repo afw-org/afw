@@ -1,0 +1,131 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveCryptoEncryptResult_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveCryptoEncryptResult_": {
+            "additionalProperties": false,
+            "description": "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt.",
+            "markdownDescription": "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "algorithm": {
+                    "description": "Always AES-GCM in v1.",
+                    "markdownDescription": "**Algorithm**\n\nAlways AES-GCM in v1.",
+                    "title": "Algorithm",
+                    "type": "string"
+                },
+                "ciphertext": {
+                    "description": "Encrypted octets without authentication tag.",
+                    "markdownDescription": "**Ciphertext**\n\nEncrypted octets without authentication tag.",
+                    "title": "Ciphertext",
+                    "type": "string"
+                },
+                "iv": {
+                    "description": "IV used for this encryption (12 octets recommended).",
+                    "markdownDescription": "**Initialization vector**\n\nIV used for this encryption (12 octets recommended).",
+                    "title": "Initialization vector",
+                    "type": "string"
+                },
+                "keyLength": {
+                    "description": "128 or 256.",
+                    "markdownDescription": "**AES key length bits**\n\n128 or 256.",
+                    "title": "AES key length bits",
+                    "type": "integer"
+                },
+                "tag": {
+                    "description": "16-octet authentication tag.",
+                    "markdownDescription": "**GCM tag**\n\n16-octet authentication tag.",
+                    "title": "GCM tag",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveCryptoEncryptResult_",
+            "type": "object"
+        },
+        "_AdaptiveCryptoEncryptResult_.propertyTypes": {
+            "properties": {
+                "algorithm": {
+                    "description": "Always AES-GCM in v1.",
+                    "markdownDescription": "**Algorithm**\n\nAlways AES-GCM in v1.",
+                    "title": "Algorithm",
+                    "type": "string"
+                },
+                "ciphertext": {
+                    "description": "Encrypted octets without authentication tag.",
+                    "markdownDescription": "**Ciphertext**\n\nEncrypted octets without authentication tag.",
+                    "title": "Ciphertext",
+                    "type": "string"
+                },
+                "iv": {
+                    "description": "IV used for this encryption (12 octets recommended).",
+                    "markdownDescription": "**Initialization vector**\n\nIV used for this encryption (12 octets recommended).",
+                    "title": "Initialization vector",
+                    "type": "string"
+                },
+                "keyLength": {
+                    "description": "128 or 256.",
+                    "markdownDescription": "**AES key length bits**\n\n128 or 256.",
+                    "title": "AES key length bits",
+                    "type": "integer"
+                },
+                "tag": {
+                    "description": "16-octet authentication tag.",
+                    "markdownDescription": "**GCM tag**\n\n16-octet authentication tag.",
+                    "title": "GCM tag",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt.",
+    "markdownDescription": "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "algorithm": {
+            "description": "Always AES-GCM in v1.",
+            "markdownDescription": "**Algorithm**\n\nAlways AES-GCM in v1.",
+            "title": "Algorithm",
+            "type": "string"
+        },
+        "ciphertext": {
+            "description": "Encrypted octets without authentication tag.",
+            "markdownDescription": "**Ciphertext**\n\nEncrypted octets without authentication tag.",
+            "title": "Ciphertext",
+            "type": "string"
+        },
+        "iv": {
+            "description": "IV used for this encryption (12 octets recommended).",
+            "markdownDescription": "**Initialization vector**\n\nIV used for this encryption (12 octets recommended).",
+            "title": "Initialization vector",
+            "type": "string"
+        },
+        "keyLength": {
+            "description": "128 or 256.",
+            "markdownDescription": "**AES key length bits**\n\n128 or 256.",
+            "title": "AES key length bits",
+            "type": "integer"
+        },
+        "tag": {
+            "description": "16-octet authentication tag.",
+            "markdownDescription": "**GCM tag**\n\n16-octet authentication tag.",
+            "title": "GCM tag",
+            "type": "string"
+        }
+    },
+    "title": "_AdaptiveCryptoEncryptResult_",
+    "type": "object"
+}

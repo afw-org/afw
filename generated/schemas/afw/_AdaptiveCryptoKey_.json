@@ -1,0 +1,167 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveCryptoKey_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveCryptoKey_": {
+            "additionalProperties": false,
+            "description": "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false.",
+            "markdownDescription": "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "algorithm": {
+                    "description": "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256).",
+                    "markdownDescription": "**Algorithm name**\n\nNormalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256).",
+                    "title": "Algorithm name",
+                    "type": "string"
+                },
+                "extractable": {
+                    "description": "If true, crypto_export_key may return raw key octets.",
+                    "markdownDescription": "**Whether export is allowed**\n\nIf true, crypto_export_key may return raw key octets.",
+                    "title": "Whether export is allowed",
+                    "type": "boolean"
+                },
+                "format": {
+                    "description": "Always raw in v1.",
+                    "markdownDescription": "**Key format**\n\nAlways raw in v1.",
+                    "title": "Key format",
+                    "type": "string"
+                },
+                "keyId": {
+                    "description": "Random 64-bit keystore key id (process-local capability).",
+                    "markdownDescription": "**Keystore id**\n\nRandom 64-bit keystore key id (process-local capability).",
+                    "title": "Keystore id",
+                    "type": "integer"
+                },
+                "length": {
+                    "description": "Bit length when known (e.g. 128 or 256 for AES-GCM).",
+                    "markdownDescription": "**Key length in bits**\n\nBit length when known (e.g. 128 or 256 for AES-GCM).",
+                    "title": "Key length in bits",
+                    "type": "integer"
+                },
+                "usages": {
+                    "description": "Subset of encrypt, decrypt, sign, verify, derive.",
+                    "items": {
+                        "description": "Subset of encrypt, decrypt, sign, verify, derive.",
+                        "markdownDescription": "Subset of encrypt, decrypt, sign, verify, derive.",
+                        "title": "Permitted operations",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Permitted operations**\n\nSubset of encrypt, decrypt, sign, verify, derive.",
+                    "title": "Permitted operations",
+                    "type": "array"
+                }
+            },
+            "title": "_AdaptiveCryptoKey_",
+            "type": "object"
+        },
+        "_AdaptiveCryptoKey_.propertyTypes": {
+            "properties": {
+                "algorithm": {
+                    "description": "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256).",
+                    "markdownDescription": "**Algorithm name**\n\nNormalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256).",
+                    "title": "Algorithm name",
+                    "type": "string"
+                },
+                "extractable": {
+                    "description": "If true, crypto_export_key may return raw key octets.",
+                    "markdownDescription": "**Whether export is allowed**\n\nIf true, crypto_export_key may return raw key octets.",
+                    "title": "Whether export is allowed",
+                    "type": "boolean"
+                },
+                "format": {
+                    "description": "Always raw in v1.",
+                    "markdownDescription": "**Key format**\n\nAlways raw in v1.",
+                    "title": "Key format",
+                    "type": "string"
+                },
+                "keyId": {
+                    "description": "Random 64-bit keystore key id (process-local capability).",
+                    "markdownDescription": "**Keystore id**\n\nRandom 64-bit keystore key id (process-local capability).",
+                    "title": "Keystore id",
+                    "type": "integer"
+                },
+                "length": {
+                    "description": "Bit length when known (e.g. 128 or 256 for AES-GCM).",
+                    "markdownDescription": "**Key length in bits**\n\nBit length when known (e.g. 128 or 256 for AES-GCM).",
+                    "title": "Key length in bits",
+                    "type": "integer"
+                },
+                "usages": {
+                    "description": "Subset of encrypt, decrypt, sign, verify, derive.",
+                    "items": {
+                        "description": "Subset of encrypt, decrypt, sign, verify, derive.",
+                        "markdownDescription": "Subset of encrypt, decrypt, sign, verify, derive.",
+                        "title": "Permitted operations",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Permitted operations**\n\nSubset of encrypt, decrypt, sign, verify, derive.",
+                    "title": "Permitted operations",
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false.",
+    "markdownDescription": "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "algorithm": {
+            "description": "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256).",
+            "markdownDescription": "**Algorithm name**\n\nNormalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256).",
+            "title": "Algorithm name",
+            "type": "string"
+        },
+        "extractable": {
+            "description": "If true, crypto_export_key may return raw key octets.",
+            "markdownDescription": "**Whether export is allowed**\n\nIf true, crypto_export_key may return raw key octets.",
+            "title": "Whether export is allowed",
+            "type": "boolean"
+        },
+        "format": {
+            "description": "Always raw in v1.",
+            "markdownDescription": "**Key format**\n\nAlways raw in v1.",
+            "title": "Key format",
+            "type": "string"
+        },
+        "keyId": {
+            "description": "Random 64-bit keystore key id (process-local capability).",
+            "markdownDescription": "**Keystore id**\n\nRandom 64-bit keystore key id (process-local capability).",
+            "title": "Keystore id",
+            "type": "integer"
+        },
+        "length": {
+            "description": "Bit length when known (e.g. 128 or 256 for AES-GCM).",
+            "markdownDescription": "**Key length in bits**\n\nBit length when known (e.g. 128 or 256 for AES-GCM).",
+            "title": "Key length in bits",
+            "type": "integer"
+        },
+        "usages": {
+            "description": "Subset of encrypt, decrypt, sign, verify, derive.",
+            "items": {
+                "description": "Subset of encrypt, decrypt, sign, verify, derive.",
+                "markdownDescription": "Subset of encrypt, decrypt, sign, verify, derive.",
+                "title": "Permitted operations",
+                "type": "string"
+            },
+            "markdownDescription": "**Permitted operations**\n\nSubset of encrypt, decrypt, sign, verify, derive.",
+            "title": "Permitted operations",
+            "type": "array"
+        }
+    },
+    "title": "_AdaptiveCryptoKey_",
+    "type": "object"
+}

@@ -1,0 +1,33 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoEncrypt",
+    "brief": "Encrypt (AES-GCM)",
+    "camelCaseFunctionLabel": "cryptoEncrypt",
+    "category": "crypto",
+    "description": "Encrypt binary plaintext with AES-GCM. algorithm is an object { name: \"AES-GCM\", length?, iv?, additionalData? }. If iv is omitted, a 12-octet IV is generated. Returns ciphertext, iv, and tag. Requires execute access.",
+    "functionId": "crypto_encrypt",
+    "functionLabel": "crypto_encrypt",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "AES-GCM parameters object.",
+            "name": "algorithm"
+        },
+        {
+            "description": "Key material, CryptoKey, or key reference.",
+            "name": "key"
+        },
+        {
+            "description": "Plaintext (base64Binary or hexBinary).",
+            "name": "data"
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoEncryptResult_",
+        "description": "ciphertext, iv, tag, algorithm, keyLength."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}
