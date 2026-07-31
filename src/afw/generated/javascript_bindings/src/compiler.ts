@@ -69,9 +69,17 @@ export function afwCompileFromFile(client : any, file : string, compileType? : s
 }
 
 /**
- * Decompile an adaptive value to string.
+ * Decompile an adaptive value to Adaptive text that represents the compiled
+ * form (functional forms and #implementation_id(...) pragmas such as
+ * #script_function, #block, #assignment_target). This is not original source
+ * recovery and is not pure JSON — use stringify() for JSON of evaluated data,
+ * and compile(..., listing) for a human compiler listing with symbol tables.
+ * Many decompile forms recompile to the same compiled value; #closure_binding
+ * and #function_thunk are known rejects (runtime-only / C-side). Optional
+ * whitespace matches stringify/listing style (integer 0-10 or indent string).
  * 
- * @param {} value - Value to decompile.
+ * @param {} value - Value to decompile (may be unevaluated, such as a
+ *     compiled script root).
  * 
  * @param {} whitespace - Add whitespace for readability if present and not 0.
  *     This parameter can be an integer between 0 and 10 or a string that is
@@ -79,7 +87,7 @@ export function afwCompileFromFile(client : any, file : string, compileType? : s
  *     resulting string. If 1 through 10 is specified, that number of spaces
  *     is used.
  * 
- * @returns {string} Decompiled value.
+ * @returns {string} Adaptive text for the compiled form of the value.
  */
 export function afwDecompile(client : any, value : any, whitespace? : any) : any {
 
@@ -295,12 +303,23 @@ export function afwSafeEvaluate(client : any, value : any, error : any) : any {
 }
 
 /**
- * Evaluate and decompile an adaptive value to string. For most values this
- * has the effect of producing a string containing json.
+ * Evaluate value and serialize it as pure JSON text. Adaptive data types use
+ * their jsonPrimitive (for example base64Binary and date become JSON
+ * strings). The value is fully evaluated before serialization (not Adaptive
+ * compiled form). For Adaptive compiled form as text use decompile(). For
+ * binary octets as UTF-8 text use decode_to_string(); string(binary) is
+ * base64 printable text, not UTF-8. Optional replacer is a function (key,
+ * value) that returns the value to serialize, or an array of property names
+ * to include when serializing objects. Optional whitespace matches
+ * decompile/listing style.
  * 
- * @param {} value - Value to stringify.
+ * @param {} value - Evaluated value to serialize as JSON.
  * 
- * @param {} replacer - Optional replacer function.
+ * @param {} replacer - Optional replacer: a function (key: string, value:
+ *     any): any called for the root (key is empty string) and each object
+ *     property or array element; return undefined to omit an object property
+ *     (array elements become null). Or an array of string property names to
+ *     keep when serializing objects. Omit or null for no replacer.
  * 
  * @param {} whitespace - Add whitespace for readability if present and not 0.
  *     This parameter can be an integer between 0 and 10 or a string that is
@@ -308,7 +327,7 @@ export function afwSafeEvaluate(client : any, value : any, error : any) : any {
  *     resulting string. If 1 through 10 is specified, that number of spaces
  *     is used.
  * 
- * @returns {string} Evaluated and decompiled value.
+ * @returns {string} JSON text for the value.
  */
 export function afwStringify(client : any, value : any, replacer? : any, whitespace? : any) : any {
 

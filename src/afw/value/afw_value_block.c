@@ -293,6 +293,8 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #block(statement, ...) matching listing's statement list.
  */
 void
 impl_afw_value_decompile(
@@ -300,16 +302,12 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    /*
+    const afw_value_block_t *self =
+        (const afw_value_block_t *)instance;
 
-    if (self->qualifier.len > 0) {
-        afw_writer_write_utf8(writer, &self->qualifier, xctx);
-        afw_writer_write_z(writer, "::", xctx);
-    }
-    afw_writer_write_utf8(writer, &self->name, xctx);
-    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
-
-     */
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    afw_value_decompile_value_list(writer, self->statement_count,
+        self->statements, xctx);
 }
 
 

@@ -41,12 +41,29 @@ impl_create_closure_if_needed(
 {
     const afw_xctx_scope_t *scope;
     const afw_value_t *result;
+    afw_size_t defining_depth;
 
     scope = afw_xctx_scope_current(xctx);
 
-    if (function->depth >= scope->block->depth) {
+    /*
+     * Prefer signature param block's parent depth when present — same reason
+     * as call_script_function: script_function->depth can lag #block unwrap
+     * renumbering.
+     */
+    defining_depth = function->depth;
+    if (function->signature && function->signature->block) {
+        if (function->signature->block->parent_block) {
+            defining_depth =
+                function->signature->block->parent_block->depth;
+        }
+        else {
+            defining_depth = 0;
+        }
+    }
+
+    if (defining_depth >= scope->block->depth) {
         for (; scope; scope = scope->parent_lexical_scope) {
-            if (function->depth == scope->block->depth) {
+            if (defining_depth == scope->block->depth) {
                 break;
             }
         }
@@ -1480,8 +1497,42 @@ afw_function_execute_try(
                     block, afw_xctx_scope_current(xctx), xctx);
                 afw_xctx_scope_activate(scope, xctx);
                 AFW_TRY{
-                    impl_assign_value(x->argv[4], error_value,
-                        afw_compile_assignment_type_let, p, xctx);
+                    /*
+                     * Error target is normally a symbol_reference created in
+                     * the catch block. Decompile may emit a string name so
+                     * recompile can create the binding via #assignment_target
+                     * inside the catch #block first; resolve by name then.
+                     */
+                    if (afw_value_is_string(x->argv[4])) {
+                        const afw_utf8_t *err_name =
+                            &((const afw_value_string_t *)x->argv[4])->
+                                internal;
+                        afw_value_block_symbol_t *esym;
+                        const afw_value_t *err_target = NULL;
+                        for (esym = block->first_entry; esym;
+                            esym = esym->next_entry)
+                        {
+                            if (afw_utf8_equal(esym->name, err_name)) {
+                                err_target =
+                                    (const afw_value_t *)
+                                    afw_value_symbol_reference_create(
+                                        NULL, esym, p, xctx);
+                                break;
+                            }
+                        }
+                        if (!err_target) {
+                            AFW_THROW_ERROR_FZ(general, xctx,
+                                "try catch: error variable " AFW_UTF8_FMT_Q
+                                " not found in catch block",
+                                AFW_UTF8_FMT_ARG(err_name));
+                        }
+                        impl_assign_value(err_target, error_value,
+                            afw_compile_assignment_type_let, p, xctx);
+                    }
+                    else {
+                        impl_assign_value(x->argv[4], error_value,
+                            afw_compile_assignment_type_let, p, xctx);
+                    }
                     this_result = afw_value_undefined;        
                     for (int i = 0; i < block->statement_count; i++) {
                         this_result = afw_value_block_evaluate_statement(

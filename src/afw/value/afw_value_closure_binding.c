@@ -152,6 +152,8 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #closure_binding(script_function_definition).
  */
 void
 impl_afw_value_decompile(
@@ -159,6 +161,12 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
+    const afw_value_t *argv[1];
+
+    afw_value_decompile_write_synthetic_function_name(
+        (const afw_value_t *)self, writer, xctx);
+    argv[0] = (const afw_value_t *)self->script_function_definition;
+    afw_value_decompile_value_list(writer, 1, argv, xctx);
 }
 
 

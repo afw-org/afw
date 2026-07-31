@@ -48,10 +48,11 @@ Environment key refs use **live `getenv`**, not the ambient `environment::` snap
 
 Encrypt/decrypt/seal/unseal work on **octets** (`base64Binary` / `hexBinary`).
 
-- **`string(binary)`** / display formatting → base64 (or hex) **printable text**, not the UTF-8 of the octets. That is why **`decode_to_string(binary)`** exists.
-- **`decode_to_string(binary)`** → octets as UTF-8 (throws if invalid). Use for passwords.
+- **`string(binary)`** / display formatting → base64 (or hex) **printable text**, not the UTF-8 of the octets.
+- **`decode_to_string(binary)`** → octets as UTF-8 (throws if invalid). Use for passwords and any binary that is really UTF-8 text.
 - **`encode_as_base64Binary(text)`** → UTF-8 string as binary before encrypt/seal.
-- **`stringify(object)`** → Adaptive/JSON-like text for an object (1st arg; optional 3rd = whitespace). The 2nd (replacer) is not implemented yet.
+- **`stringify(value)`** → **pure JSON** text from an evaluated value. Binary properties emit as base64 **JSON strings**; use for portable sealed bags. Optional replacer function or property-name array; optional whitespace.
+- **`decompile(value)`** → Adaptive **compiled form** as text (e.g. `base64Binary("…")`), not pure JSON.
 
 ### Easy path: `crypto_seal` / `crypto_unseal`
 
@@ -60,14 +61,8 @@ const key = crypto_generate_key("AES-GCM");
 const sealed = crypto_seal(key, encode_as_base64Binary("secret-pass"));
 const password = decode_to_string(crypto_unseal(key, sealed));
 
-/* Portable file: pure JSON with base64 *strings* (not typed binary) */
-const bag = {
-    "algorithm": sealed.algorithm,
-    "iv": string(sealed.iv),
-    "tag": string(sealed.tag),
-    "ciphertext": string(sealed.ciphertext)
-};
-const jsonText = stringify(bag);
+/* Portable file: pure JSON (binary fields become base64 strings) */
+const jsonText = stringify(sealed);
 const password2 = decode_to_string(crypto_unseal(key, jsonText));
 crypto_destroy_key(key);
 ```

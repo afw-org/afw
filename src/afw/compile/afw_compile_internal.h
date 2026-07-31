@@ -45,6 +45,11 @@ typedef enum {
     /* Token types with additional information. See afw_compile_token_t. */
     afw_compile_token_type_boolean,
     afw_compile_token_type_identifier,
+    /*
+     * #Identifier — compiler pragma / IR form name (no qualifier).
+     * identifier_name is the spelling after '#'; identifier is full "#name".
+     */
+    afw_compile_token_type_pragma_identifier,
     afw_compile_token_type_integer,
     afw_compile_token_type_number,
     afw_compile_token_type_binary_string,
@@ -191,11 +196,17 @@ struct afw_compile_internal_token_s {
     union {
 
         /*
-         * If type is identifier this is the name and qualifier.  Member
-         * identifier includes the identifier including optional qualifier
-         * followed by '::'.  If qualifier is not specified,
-         * identifier_qualifier.len will be 0.
+         * If type is identifier or pragma_identifier:
          *
+         * identifier_name — unqualified name (no '#' for pragmas).
+         * identifier_qualifier — for identifier only; empty/NULL for
+         *     pragma_identifier (pragmas are never qualified).
+         * identifier — full spelling: optional "qualifier::" + name for
+         *     identifier; "#name" for pragma_identifier (useful in errors).
+         *
+         * If identifier has no qualifier, identifier equals identifier_name
+         * and identifier_qualifier is empty. For pragma_identifier,
+         * identifier always includes the leading '#'.
          */
         struct {
             const afw_utf8_t *identifier;
@@ -467,6 +478,12 @@ typedef enum {
 struct afw_compile_internal_assignment_target_s {
     afw_compile_internal_assignment_type_t assignment_type;
     afw_compile_assignment_target_type_t target_type;
+    /*
+     * Tagged by target_type. For symbol_reference targets, type annotations
+     * live on symbol_reference->symbol->type (set at symbol create), not as a
+     * second field here. variable_type is only for non-symbol uses if any;
+     * it aliases the same storage as symbol_reference — do not set both.
+     */
     union {
         const afw_compile_list_destructure_t *list_destructure;
         const afw_compile_object_destructure_t *object_destructure;
@@ -1033,6 +1050,29 @@ afw_compile_parse_Comparison(afw_compile_parser_t *parser);
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser);
+
+
+
+/**
+ * @brief Parse PragmaStatement (#pragma_identifier in statement position).
+ * @param parser
+ * @return value if the pragma produces one; throws if unknown or invalid.
+ *
+ * Current token must be pragma_identifier. See afw_compile_parse_pragma.c.
+ */
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser);
+
+
+/**
+ * @brief Parse PragmaValue (#pragma_identifier in value/expression position).
+ * @param parser
+ * @return adaptive value for the pragma; throws if unknown or invalid.
+ *
+ * Current token must be pragma_identifier. See afw_compile_parse_pragma.c.
+ */
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_compile_parse_PragmaValue(afw_compile_parser_t *parser);
 
 
 

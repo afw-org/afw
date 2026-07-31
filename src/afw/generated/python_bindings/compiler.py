@@ -86,12 +86,21 @@ def compile_from_file(session, file, compileType=None):
 
 def decompile(session, value, whitespace=None):
     """
-    Decompile value
+    Decompile a value to Adaptive compiled form
 
-    Decompile an adaptive value to string.
+    Decompile an adaptive value to Adaptive text that represents the compiled
+    form (functional forms and #implementation_id(...) pragmas such as
+    #script_function, #block, #assignment_target). This is not original source
+    recovery and is not pure JSON — use stringify() for JSON of evaluated
+    data, and compile(..., listing) for a human compiler listing with symbol
+    tables. Many decompile forms recompile to the same compiled value;
+    #closure_binding and #function_thunk are known rejects (runtime-only /
+    C-side). Optional whitespace matches stringify/listing style (integer 0-10
+    or indent string).
 
     Args:
-        value (object): Value to decompile.
+        value (object): Value to decompile (may be unevaluated, such as a
+        compiled script root).
 
         whitespace (object): Add whitespace for readability if present and not
         0. This parameter can be an integer between 0 and 10 or a string that
@@ -100,7 +109,7 @@ def decompile(session, value, whitespace=None):
         spaces is used.
 
     Returns:
-        str: Decompiled value.
+        str: Adaptive text for the compiled form of the value.
     """
 
     request = session.Request()
@@ -389,15 +398,26 @@ def safe_evaluate(session, value, error):
 
 def stringify(session, value, replacer=None, whitespace=None):
     """
-    Evaluate and decompile a value
+    Serialize an evaluated value as JSON text
 
-    Evaluate and decompile an adaptive value to string. For most values this
-    has the effect of producing a string containing json.
+    Evaluate value and serialize it as pure JSON text. Adaptive data types use
+    their jsonPrimitive (for example base64Binary and date become JSON
+    strings). The value is fully evaluated before serialization (not Adaptive
+    compiled form). For Adaptive compiled form as text use decompile(). For
+    binary octets as UTF-8 text use decode_to_string(); string(binary) is
+    base64 printable text, not UTF-8. Optional replacer is a function (key,
+    value) that returns the value to serialize, or an array of property names
+    to include when serializing objects. Optional whitespace matches
+    decompile/listing style.
 
     Args:
-        value (object): Value to stringify.
+        value (object): Evaluated value to serialize as JSON.
 
-        replacer (object): Optional replacer function.
+        replacer (object): Optional replacer: a function (key: string, value:
+        any): any called for the root (key is empty string) and each object
+        property or array element; return undefined to omit an object property
+        (array elements become null). Or an array of string property names to
+        keep when serializing objects. Omit or null for no replacer.
 
         whitespace (object): Add whitespace for readability if present and not
         0. This parameter can be an integer between 0 and 10 or a string that
@@ -406,7 +426,7 @@ def stringify(session, value, replacer=None, whitespace=None):
         spaces is used.
 
     Returns:
-        str: Evaluated and decompiled value.
+        str: JSON text for the value.
     """
 
     request = session.Request()

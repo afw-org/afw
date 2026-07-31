@@ -715,7 +715,7 @@ afw_value_compiler_listing_call_args(
 
 
 
-/* Decompile Value::. */
+/* List one value in a compiler listing (human-oriented; not decompile). */
 AFW_DEFINE_INTERNAL(void)
 afw_value_compiler_listing_value(
     const afw_value_t *instance,
@@ -724,6 +724,14 @@ afw_value_compiler_listing_value(
 {
     if (afw_value_is_undefined(instance)) {
         afw_writer_write_utf8(writer, afw_s_undefined, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+    /*
+     * Switch "default" uses a unique permanent null for identity. Show a clear
+     * label so listings are not confused with ordinary null.
+     */
+    else if (instance == afw_value_unique_default_case_value) {
+        afw_writer_write_z(writer, "switch_default", xctx);
         afw_writer_write_eol(writer, xctx);
     }
     else {

@@ -121,6 +121,9 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_increment_indent(writer, xctx);
 
     for (i = 0; i < self->count; i++) {
+        if (self->parameters[i]->is_rest) {
+            afw_writer_write_z(writer, "...", xctx);
+        }
         afw_value_compiler_listing_name_and_type(
             writer, self->parameters[i]->name, self->parameters[i]->type, xctx);
         if (self->parameters[i]->default_value) {
@@ -142,8 +145,8 @@ impl_afw_value_produce_compiler_listing(
 
     afw_writer_write_z(writer, "signature ", xctx);
     if (self->signature->block) {
-    afw_value_produce_compiler_listing(
-        (const afw_value_t *)self->signature->block, writer, xctx);
+        afw_value_produce_compiler_listing(
+            (const afw_value_t *)self->signature->block, writer, xctx);
     }
     else {
         afw_writer_write_z(writer, "undefined", xctx);
@@ -167,6 +170,10 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #script_function(param..., body[, returnType]) —
+ * params are surface-like: name[: Type], optional ?, default = expr, rest ...
+ * Return type is a trailing Type after the body when non-default.
  */
 void
 impl_afw_value_decompile(
@@ -176,41 +183,73 @@ impl_afw_value_decompile(
 {
     const afw_value_script_function_definition_t *self =
         (const afw_value_script_function_definition_t *)instance;
+    const afw_value_script_function_parameter_t *param;
     afw_size_t i;
+    afw_boolean_t need_comma;
+    afw_boolean_t write_returns;
 
-    afw_writer_write_z(writer, "function ", xctx);
-    afw_value_compiler_listing_name_and_type(writer, NULL, self->returns, xctx);
-
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
         afw_writer_increment_indent(writer, xctx);
     }
 
+    need_comma = false;
     for (i = 0; i < self->count; i++) {
-        if (i != 0) {      
+        param = self->parameters[i];
+        if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
-            if (writer->tab) {
-                afw_writer_write_eol(writer, xctx);
-            }
         }
-        afw_value_compiler_listing_name_and_type(
-            writer, NULL, self->parameters[i]->type, xctx);
-        afw_writer_write_utf8(writer, self->parameters[i]->name, xctx);
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        if (param->is_rest) {
+            afw_writer_write_z(writer, "...", xctx);
+        }
+        /* Bare identifier (not a string) so Type annotations use ':'. */
+        afw_writer_write_utf8(writer, param->name, xctx);
+        if (param->is_optional && !param->default_value) {
+            afw_writer_write_z(writer, "?", xctx);
+        }
+        afw_value_decompile_optional_type(param->type, writer, xctx);
+        if (param->default_value) {
+            afw_writer_write_z(writer, writer->tab ? " = " : "=", xctx);
+            afw_value_decompile_value(param->default_value, writer, xctx);
+        }
+        need_comma = true;
     }
-    afw_writer_write_z(writer, ")", xctx);
 
+    if (need_comma) {
+        afw_writer_write_z(writer, ",", xctx);
+    }
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
-        afw_writer_decrement_indent(writer, xctx);
+    }
+    afw_value_decompile_value(self->body, writer, xctx);
+
+    /*
+     * Trailing return Type after body when present and not bare any/void.
+     * NULL returns means void/unspecified for OptionalReturnType.
+     */
+    write_returns = false;
+    if (self->returns && self->returns->data_type &&
+        self->returns->data_type != afw_data_type_any)
+    {
+        write_returns = true;
+    }
+    else if (self->returns && !self->returns->data_type &&
+        self->returns->value_meta_object)
+    {
+        write_returns = true;
+    }
+    if (write_returns) {
+        afw_writer_write_z(writer, ",", xctx);
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        afw_value_decompile_type(self->returns, writer, xctx);
     }
 
-    afw_writer_write_z(writer, "(", xctx);
-    if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
-        afw_writer_increment_indent(writer, xctx);
-    }
-    afw_value_decompile(self->body, writer, xctx);
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
         afw_writer_decrement_indent(writer, xctx);

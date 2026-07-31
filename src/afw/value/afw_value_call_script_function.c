@@ -125,19 +125,38 @@ impl_afw_value_optional_evaluate(
         enclosing_lexical_scope = self->enclosing_lexical_scope;
     }
 
-    /* If not closure, use the one at correct depth from caller scope chain. */
-    else {                                                                                                                                                        /* Find enclosing static scope. */
+    /*
+     * If not closure, use the one at correct depth from caller scope chain.
+     * Prefer signature->block->parent_block->depth when a parameter block
+     * exists: that is the defining scope. It stays correct after StatementList
+     * #block unwrap renumbers depths (script->depth may still hold the
+     * pre-unwrap value from compile).
+     */
+    else {
+        afw_size_t defining_depth;
+
+        defining_depth = script->depth;
+        if (script->signature && script->signature->block) {
+            if (script->signature->block->parent_block) {
+                defining_depth =
+                    script->signature->block->parent_block->depth;
+            }
+            else {
+                defining_depth = 0;
+            }
+        }
+
         for (
             enclosing_lexical_scope = caller_scope;
             (
                 enclosing_lexical_scope &&
-                enclosing_lexical_scope->block->depth > script->depth
+                enclosing_lexical_scope->block->depth > defining_depth
             );
             enclosing_lexical_scope =
                 enclosing_lexical_scope->parent_lexical_scope
         );
         if (!enclosing_lexical_scope ||
-            caller_scope->block->depth < script->depth)
+            caller_scope->block->depth < defining_depth)
         {
             AFW_THROW_ERROR_Z(general,
                 "Can not determine parent static scope for function",
@@ -148,8 +167,8 @@ impl_afw_value_optional_evaluate(
     /* Save stack top which will be restored on return. */
     AFW_TRY {
 
-        /* If there is are parameters, make a parameter block. */
-        if (script->signature->block) {
+        /* If there is a parameter block, make a parameter scope. */
+        if (script->signature && script->signature->block) {
 
             /* Make a scope for parameters. */
             parameter_scope = afw_xctx_scope_create(
@@ -339,15 +358,29 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    /*FIXME
+    const afw_utf8_t *name;
+    const afw_value_t *callee;
 
-    if (self->qualifier.len > 0) {
-        afw_writer_write_utf8(writer, &self->qualifier, xctx);
-        afw_writer_write_z(writer, "::", xctx);
+    name = NULL;
+    if (self->script_function_definition &&
+        self->script_function_definition->signature &&
+        self->script_function_definition->signature->function_name_value)
+    {
+        name = &self->script_function_definition->signature->
+            function_name_value->internal;
     }
-    afw_writer_write_utf8(writer, &self->name, xctx);
-    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
-     */
+
+    if (name) {
+        afw_writer_write_utf8(writer, name, xctx);
+    }
+    else {
+        callee = self->args.argv ? self->args.argv[0] : NULL;
+        if (!callee && self->script_function_definition) {
+            callee = (const afw_value_t *)self->script_function_definition;
+        }
+        afw_value_decompile_value(callee, writer, xctx);
+    }
+    afw_value_decompile_call_args(writer, 1, &self->args, xctx);
 }
 
 

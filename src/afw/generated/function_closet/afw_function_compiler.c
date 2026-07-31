@@ -113,7 +113,14 @@ afw_function_execute_compile_from_file(
  *
  * See afw_function_bindings.h for more information.
  *
- * Decompile an adaptive value to string.
+ * Decompile an adaptive value to Adaptive text that represents the compiled
+ * form (functional forms and #implementation_id(...) pragmas such as
+ * #script_function, #block, #assignment_target). This is not original source
+ * recovery and is not pure JSON — use stringify() for JSON of evaluated data,
+ * and compile(..., listing) for a human compiler listing with symbol tables.
+ * Many decompile forms recompile to the same compiled value; #closure_binding
+ * and #function_thunk are known rejects (runtime-only / C-side). Optional
+ * whitespace matches stringify/listing style (integer 0-10 or indent string).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -129,7 +136,8 @@ afw_function_execute_compile_from_file(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to decompile.
+ *   value - (any dataType) Value to decompile (may be unevaluated, such as a
+ *       compiled script root).
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
  *       present and not 0. This parameter can be an integer between 0 and 10 or
@@ -139,7 +147,7 @@ afw_function_execute_compile_from_file(
  *
  * Returns:
  *
- *   (string) Decompiled value.
+ *   (string) Adaptive text for the compiled form of the value.
  */
 const afw_value_t *
 afw_function_execute_decompile(
@@ -476,8 +484,14 @@ afw_function_execute_safe_evaluate(
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate and decompile an adaptive value to string. For most values this has
- * the effect of producing a string containing json.
+ * Evaluate value and serialize it as pure JSON text. Adaptive data types use
+ * their jsonPrimitive (for example base64Binary and date become JSON strings).
+ * The value is fully evaluated before serialization (not Adaptive compiled
+ * form). For Adaptive compiled form as text use decompile(). For binary octets
+ * as UTF-8 text use decode_to_string(); string(binary) is base64 printable
+ * text, not UTF-8. Optional replacer is a function (key, value) that returns
+ * the value to serialize, or an array of property names to include when
+ * serializing objects. Optional whitespace matches decompile/listing style.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -487,16 +501,21 @@ afw_function_execute_safe_evaluate(
  * ```
  *   function stringify(
  *       value: any,
- *       replacer?: any,
+ *       replacer?: (any (key: string, value: any): any),
  *       whitespace?: any
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   value - (any dataType) Value to stringify.
+ *   value - (any dataType) Evaluated value to serialize as JSON.
  *
- *   replacer - (optional any dataType) Optional replacer function.
+ *   replacer - (optional any dataType (key: string, value: any): any) Optional
+ *       replacer: a function (key: string, value: any): any called for the root
+ *       (key is empty string) and each object property or array element; return
+ *       undefined to omit an object property (array elements become null). Or
+ *       an array of string property names to keep when serializing objects.
+ *       Omit or null for no replacer.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
  *       present and not 0. This parameter can be an integer between 0 and 10 or
@@ -506,7 +525,7 @@ afw_function_execute_safe_evaluate(
  *
  * Returns:
  *
- *   (string) Evaluated and decompiled value.
+ *   (string) JSON text for the value.
  */
 const afw_value_t *
 afw_function_execute_stringify(

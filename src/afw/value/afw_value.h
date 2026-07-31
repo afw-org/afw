@@ -1672,7 +1672,8 @@ afw_value_decompile_to_string(
 /**
  * @brief Decompile call args.
  * @param writer
- * @param args to decompile.
+ * @param first_arg index into argv (1 = parameters only; 0 includes callee).
+ * @param args to decompile (argc is parameter count; values are argv[1..argc]).
  * @param xctx of caller.
  */
 AFW_DEFINE(void)
@@ -1682,6 +1683,36 @@ afw_value_decompile_call_args(
     const afw_value_call_args_t *args,
     afw_xctx_t *xctx);
 
+
+/**
+ * @brief Write synthetic decompile name `#` + implementation_id.
+ * @param instance value whose inf id is used.
+ * @param writer
+ * @param xctx of caller.
+ *
+ * Used for compiled value kinds that have no Adaptive surface form. The leading
+ * '#' matches the pragma_identifier token family (not a registered function).
+ */
+AFW_DEFINE(void)
+afw_value_decompile_write_synthetic_function_name(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Decompile a parenthesized list of values.
+ * @param writer
+ * @param argc number of values.
+ * @param argv values (may contain NULL for undefined).
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_value_list(
+    const afw_writer_t *writer,
+    afw_size_t argc,
+    const afw_value_t * const *argv,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1699,6 +1730,37 @@ afw_value_decompile_call_args(
 AFW_DEFINE(void)
 afw_value_decompile_value(
     const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Decompile a type as Adaptive Type surface text (no leading ':').
+ * @param type to decompile; NULL or "any" writes nothing (caller skips ':').
+ * @param writer
+ * @param xctx of caller.
+ * @return true if anything was written (type is present and not bare any).
+ *
+ * Used for assignment targets, script_function params/returns, and future
+ * type-check work. Prefer reconstructing surface forms (e.g.
+ * `integer`, `(array of integer)`).
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_decompile_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Write ": Type" when type is present and not bare any.
+ * @param type optional type.
+ * @param writer
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_optional_type(
+    const afw_value_type_t *type,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);
 

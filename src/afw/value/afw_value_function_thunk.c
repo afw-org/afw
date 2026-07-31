@@ -112,6 +112,8 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #function_thunk("detail") — thunks are C-side, not Adaptive.
  */
 void
 impl_afw_value_decompile(
@@ -119,49 +121,36 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-#ifdef __FIXME_REMOVE_
     const afw_value_function_thunk_t *self =
         (const afw_value_function_thunk_t *)instance;
-    afw_size_t i;
+    afw_value_string_t detail_value;
 
-    afw_writer_write_z(writer, "function ", xctx);
-    impl_decompile_type(writer, self->returns, xctx);
-
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
         afw_writer_increment_indent(writer, xctx);
-    }
-
-    for (i = 0; i < self->count; i++) {
-        if (i != 0) {      
-            afw_writer_write_z(writer, ",", xctx);
-            if (writer->tab) {
-                afw_writer_write_eol(writer, xctx);
-            }
-        }
-        impl_decompile_type(writer, self->parameters[i]->type, xctx);
-        afw_writer_write_utf8(writer, self->parameters[i]->name, xctx);
-    }
-    afw_writer_write_z(writer, ")", xctx);
-
-    if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
-        afw_writer_decrement_indent(writer, xctx);
     }
-
-    afw_writer_write_z(writer, "(", xctx);
-    if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
-        afw_writer_increment_indent(writer, xctx);
+    if (self->detail) {
+        detail_value.inf = &afw_value_unmanaged_string_inf;
+        detail_value.internal.s = self->detail->s;
+        detail_value.internal.len = self->detail->len;
+        afw_value_decompile((const afw_value_t *)&detail_value, writer, xctx);
     }
-    afw_value_decompile(self->body, writer, xctx);
+    else if (self->name) {
+        detail_value.inf = &afw_value_unmanaged_string_inf;
+        detail_value.internal.s = self->name->s;
+        detail_value.internal.len = self->name->len;
+        afw_value_decompile((const afw_value_t *)&detail_value, writer, xctx);
+    }
+    else {
+        afw_writer_write_utf8(writer, afw_s_undefined, xctx);
+    }
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
         afw_writer_decrement_indent(writer, xctx);
     }
     afw_writer_write_z(writer, ")", xctx);
-#endif
 }
 
 

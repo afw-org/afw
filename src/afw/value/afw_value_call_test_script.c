@@ -538,6 +538,8 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #call_test_script(test_script_object).
  */
 void
 impl_afw_value_decompile(
@@ -545,18 +547,15 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    /*FIXME
-
     const afw_value_call_test_script_t *self =
         (const afw_value_call_test_script_t *)instance;
+    const afw_value_t *argv[1];
 
-    if (self->qualifier.len > 0) {
-        afw_writer_write_utf8(writer, &self->qualifier, xctx);
-        afw_writer_write_z(writer, "::", xctx);
-    }
-    afw_writer_write_utf8(writer, &self->name, xctx);
-    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
-     */
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    argv[0] = self->test_script_object_value
+        ? (const afw_value_t *)self->test_script_object_value
+        : NULL;
+    afw_value_decompile_value_list(writer, 1, argv, xctx);
 }
 
 

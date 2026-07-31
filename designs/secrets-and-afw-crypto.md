@@ -6,8 +6,8 @@
 | **Author** | TBD (design draft for maintainer review) |
 | **Date** | 2026-07-30 |
 | **Status** | Draft (accepted decisions for name, #74 stay-open, PBKDF2) |
-| **Tracking** | GitHub [issue #74](https://github.com/afw-org/afw/issues/74) (partially done; stays open until readpass); related notes in repo-root `issues.md`, `whats_new.md` |
-| **Primary deliverable path** | Workspace: `designs/secrets-and-afw-crypto.md`. Also `/tmp/grok-0/grok-design-doc-e1a8d31e.md`. Long-term with extension: `src/afw_crypto/doc/design-secrets-and-crypto.md` plus a short pointer from `src/afw/doc/developer/extending.md` / `issues.md`. |
+| **Tracking** | GitHub [issue #74](https://github.com/afw-org/afw/issues/74) (partially done; stays open until readpass); related notes in `whats_new.md`, `beta-backlog.md` |
+| **Primary deliverable path** | Workspace: `designs/secrets-and-afw-crypto.md`. Long-term with extension: `src/afw_crypto/doc/design-secrets-and-crypto.md` plus a short pointer from `src/afw/doc/developer/extending.md` if useful. |
 | **Audience** | AFW maintainers and senior C/Python contributors familiar with extensions, function generate metadata, and Adaptive Script |
 | **Revision** | R4 — final product decisions: name `afw_crypto`/`libafwcrypto` confirmed; #74 remains open until readpass ships (crypto = partial progress); PBKDF2 default 600000 (pin at implement time) |
 
@@ -33,10 +33,10 @@ The design keeps **`password` as a presentation data type**, treats interactive 
 |------|------------------------|----------------------|
 | `process::args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` | **Done** (partial #74) | Out of scope for implementation PRs |
 | `environment::` ambient at env create | **Done** (#71/#74) | Out of scope; note snapshot vs live `getenv` for key refs below |
-| Interactive `read` / `readpass` | **`issues.md` residual** (“still open: interactive read/readpass”) | **Still required for #74 closure** — implement as PR8 (TTY/`afw` CLI); deprioritized relative to crypto but **keeps #74 open** until it ships or is explicitly declined later |
+| Interactive `read` / `readpass` | Residual for #74 closure | **Still required for #74 closure** — implement as PR8 (TTY/`afw` CLI); deprioritized relative to crypto but **keeps #74 open** until it ships or is explicitly declined later |
 | Decrypt / crypto primitives | **Missing** (no encrypt/decrypt/digest/hmac functions) | **Primary near-term delivery** — ships first as **partial #74 progress**; does **not** close the issue alone |
 
-**Product decision (K17 — final):** Keep **#74 open** until interactive **readpass** also ships (or a future decision explicitly declines it). Ship `afw_crypto` + composition (key refs) as **valuable partial progress** and update tracker/docs accordingly; do **not** close #74 on crypto alone. Repo tracker today (`issues.md`) lists only readpass as residual — PR7 should add crypto as partial progress without marking the issue closed.
+**Product decision (K17 — final):** Keep **#74 open** until interactive **readpass** also ships (or a future decision explicitly declines it). Ship `afw_crypto` + composition (key refs) as **valuable partial progress** and update tracker/docs accordingly; do **not** close #74 on crypto alone. Residual for closure is interactive **readpass** (GitHub #74 + `whats_new.md` / this design).
 
 ### Current capabilities (verified against `/workspaces/afw`)
 
@@ -747,7 +747,7 @@ let store = evaluate(compile_json(jsonText));
 // then same base64Binary(...) conversions as above before crypto_decrypt
 ```
 
-Writing a sealed object back to JSON for storage uses normal stringify/decompile of an object whose `iv`/`tag`/`ciphertext` are `base64Binary` values (they emit as base64 text strings in JSON).
+Writing a sealed object back to JSON for storage uses **`stringify`**, which emits pure JSON (`iv`/`tag`/`ciphertext` as base64 **JSON strings** via each type’s `jsonPrimitive`). Use **`decompile`** only for Adaptive compiled form as text.
 
 #### HMAC verify
 
@@ -1037,7 +1037,7 @@ Closed (do not re-open without a new decision):
 
 ### In-repo (repo-root relative paths)
 
-- `issues.md` — #74 tracker line  
+- GitHub #74 + `whats_new.md` / this design — tracker
 - `whats_new.md` — process ambient notes  
 - `.cursor/rules/afw-extensions.mdc` — extension patterns  
 - `src/afw/doc/developer/extending.md`  
@@ -1130,9 +1130,9 @@ Each PR independently reviewable; pass `./afwdev build --cdev` with crypto enabl
 | | |
 |--|--|
 | **Title** | `docs: afw_crypto recipes, password clarification, #74 partial-progress note` |
-| **Files** | `src/afw_crypto/doc/**`; `whats_new.md`; `issues.md`; optional `password.json` description; building_on_*.md; copy design doc into extension doc |
+| **Files** | `src/afw_crypto/doc/**`; `whats_new.md`; optional `password.json` description; building_on_*.md; copy design doc into extension doc |
 | **Dependencies** | **PR5** (primary composition story); PR6 if passphrase recipes included |
-| **Description** | Copy-paste recipes (auto-IV + env key + sealed object). Security/authz rules. Update tracker/`issues.md` to record **crypto + key refs as partial #74 progress**; **leave #74 open** pending readpass (K17). |
+| **Description** | Copy-paste recipes (auto-IV + env key + sealed object). Security/authz rules. Record **crypto + key refs as partial #74 progress** in GitHub/`whats_new.md`; **leave #74 open** pending readpass (K17). |
 
 ### PR8 — Interactive readpass (required for #74 closure unless later declined)
 

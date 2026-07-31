@@ -378,9 +378,14 @@ afw_compile_parse_AssignmentTarget(
         target->assignment_type = assignment_type;
         target->target_type =
             afw_compile_assignment_target_type_symbol_reference;
-        target->variable_type = type;
+        /*
+         * symbol_reference shares a union with variable_type — only the
+         * reference is stored here. Type annotation (if any) was already
+         * copied onto symbol->type by variable_reference_create(..., type).
+         */
         target->symbol_reference =
             (const afw_value_symbol_reference_t *)result;
+        (void)type; /* type is on symbol->type, not on this union arm */
         result = afw_value_assignment_target_create(
             target->symbol_reference->contextual,
             target, parser->p, parser->xctx);

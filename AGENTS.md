@@ -4,7 +4,7 @@ Long-form context for humans and AI assistants. **Always-on** rules live in [`.c
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
-Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). User-facing branch notes while on `mgg-develop`: [`whats_new.md`](whats_new.md).
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats_new.md`](whats_new.md).
 
 ## Mission
 

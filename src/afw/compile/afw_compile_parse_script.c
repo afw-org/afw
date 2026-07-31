@@ -1349,6 +1349,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    IfStatement |
  *    InterfaceStatement |
  *    LetStatement |
+ *    PragmaStatement |
  *    ReturnStatement |
  *    SwitchStatement |
  *    TypeStatement |
@@ -1376,6 +1377,11 @@ afw_compile_parse_Statement(
         result = afw_compile_parse_StatementList(parser,
             NULL, true, false, false);
         return result;
+    }
+
+    /* If pragma_identifier, parse PragmaStatement. */
+    if (afw_compile_token_is(pragma_identifier)) {
+        return afw_compile_parse_PragmaStatement(parser);
     }
    
     /* If not assignment, process statement. */
@@ -1634,6 +1640,62 @@ afw_compile_parse_StatementList(
             argv, argc, parser->p, parser->xctx);
         result = afw_value_create_unmanaged_array(
             array, parser->p, parser->xctx);
+    }
+
+    /*
+     * If building a block: when this StatementList opened an empty block
+     * (no symbols) whose only statement is itself a block — e.g. recompiling
+     * decompile text "#block(...)" as a script — promote the inner block
+     * instead of wrapping (#block(#block(...))). Script always starts a
+     * top-level block; #block then nested inside it.
+     *
+     * After promotion, renumber depths for the whole subtree. Nested blocks
+     * (and script_function param blocks under them) keep parent links but
+     * their old depths would be off by one, breaking scope creation and
+     * script_function enclosing-scope resolution.
+     */
+    else if (
+        argc == 1 &&
+        argv[0] &&
+        afw_value_is_block(argv[0]) &&
+        block->symbol_count == 0 &&
+        parser->compiled_value->top_block == block)
+    {
+        afw_value_block_t *inner = (afw_value_block_t *)argv[0];
+        afw_value_block_t *b;
+        afw_value_block_t *child;
+        afw_value_block_t *stack[64];
+        afw_size_t sp;
+
+        parser->compiled_value->top_block = inner;
+        inner->parent_block = NULL;
+        inner->next_sibling_block = NULL;
+        /* Outer block is abandoned (never finalized with statements). */
+        parser->compiled_value->current_block = NULL;
+
+        /* Depth-first renumber: top=0, children = parent+1. */
+        inner->depth = 0;
+        stack[0] = inner;
+        sp = 1;
+        while (sp > 0) {
+            b = stack[--sp];
+            for (child = (afw_value_block_t *)b->first_child_block;
+                child;
+                child = (afw_value_block_t *)child->next_sibling_block)
+            {
+                child->depth = b->depth + 1;
+                if (sp < 64) {
+                    stack[sp++] = child;
+                }
+                else {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Block nesting too deep to renumber after #block "
+                        "unwrap");
+                }
+            }
+        }
+
+        result = argv[0];
     }
 
     /* If building block, finalize and set result. */

@@ -1,7 +1,7 @@
 # Memory management (issue #2) — working notes
 
 **Audience:** maintainers and assistants.  
-**Not user docs.** Related always-on runtime rules: [`.cursor/rules/afw-value-memory.mdc`](.cursor/rules/afw-value-memory.mdc). Beta checklist pointer: [`beta-backlog.md`](beta-backlog.md). GitHub: [#2 Memory management](https://github.com/afw-org/afw/issues/2).
+**Not user docs.** Related always-on runtime rules: [`.cursor/rules/afw-value-memory.mdc`](../.cursor/rules/afw-value-memory.mdc). Beta checklist pointer: [`beta-backlog.md`](../beta-backlog.md). GitHub: [#2 Memory management](https://github.com/afw-org/afw/issues/2).
 
 ## Purpose of this file
 
@@ -1123,7 +1123,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 
 | Phase | Intent | Status |
 |-------|--------|--------|
-| **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
+| **Discuss** | Memory story pad (`designs/memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a + 1b′ + 1c done** → **1d** next |

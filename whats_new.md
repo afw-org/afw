@@ -37,6 +37,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
+| **`stringify` / `decompile` / listing / binary text** | **`stringify`** pure JSON; **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets (see section below) |
 
 ---
 
@@ -108,7 +109,7 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 - Prefer **shared permanent Adaptive values** (generate bag / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
 - **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf.
 - **Managed object values**: container-aware `optional_release` / `clone_or_reference` paths that do **not** free an embedded dual-face header; `create_managed_object` requires a non-null object and takes a container hold.
-- Living design notes for maintainers: `memory-management.md` (not user docs).
+- Living design notes for maintainers: `designs/memory-management.md` (not user docs).
 
 ### Rebuild / recompile requirement
 
@@ -413,9 +414,39 @@ Combined with `open_file` / `read*` and `crypto_decrypt`, conf can avoid a clear
 }"
 ```
 
-Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy bag path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with `stringify({ iv: string(sealed.iv), … })` then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
+Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy bag path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with **`stringify(sealed)`** (binary fields become base64 JSON strings) then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
 
 Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`, `crypto_seal_unseal.as`.
+
+---
+
+## `stringify`, `decompile`, compiler listing, and binary text
+
+These are easy to confuse; they do different jobs:
+
+| Path | Output |
+|------|--------|
+| **`stringify(value [, replacer] [, whitespace])`** | **Pure JSON** text from an **evaluated** value. Adaptive types use their `jsonPrimitive` — e.g. `base64Binary` / `hexBinary` / `date` become **JSON strings**. Optional **replacer**: function `(key, value)` (root key is empty string; return **undefined** to omit an object property; array elements become **null**) or an **array of property names** to keep. Optional third parameter is whitespace/indent. |
+| **`decompile(value [, whitespace])`** | **Adaptive compiled form** as text (functional / `#implementation_id(...)` forms such as `#script_function(...)`, `#block(...)`, calls). **Not** recovery of original source layout. Useful for debugging what compile produced and for **recompile** when the text is valid Adaptive (including pragma forms). Prefer this when you used to use `stringify` for Adaptive-looking output. |
+| **Compiler listing** | Human-oriented dump from **`compile<script>(source, whitespace)`** (or other `compile<*>(…, listing)`): source interleaved with a value tree, plus **`---Symbols`** block tables. Used in Fiddle to understand what compile produced. **Not** recompilable and **not** JSON. Object-expression properties are listed without evaluating them (so free variables do not break the listing). |
+| **`decode_to_string(binary)`** | Interprets **octets** as **UTF-8 text** (throws if invalid). Use when the binary is really a password or other UTF-8 payload (after decrypt/unseal). |
+| **`string(binary)`** | **Base64 (or hex) printable** representation of the octets — not UTF-8 of the bytes. |
+
+**Decompile / pragma recompile (advanced)**
+
+- Goal is **compiled-value / behavior fidelity** (`decompile` → compile again → same decompile text for covered constructs), not pretty-print of original source.
+- Synthetic **`#…`** forms in decompile text (e.g. `#block`, `#assignment_target`, `#list_expression`, `#script_function`, `#template_definition`, `#switch_default`, `#statements`) are **PragmaValues** the compiler understands for round-trip.
+- **`#closure_binding`** and **`#function_thunk`** are **known rejects** with clear errors (runtime-only / C-side; cannot recompile from decompile text alone).
+- Maintainer detail: `designs/issue-18-decompile-status.md`.
+
+**Migration notes**
+
+- If you previously relied on `stringify` for Adaptive-looking forms such as `date("…")` or `base64Binary("…")`, switch those call sites to **`decompile`**.
+- If you needed UTF-8 text from binary, use **`decode_to_string`**, not `stringify` or `string`.
+- Sealed crypto bags can be stored with **`stringify(sealed)`** directly; you no longer need a hand-built bag of `string(iv)` / `string(tag)` / … for pure JSON (that pattern still works).
+- Use **listing** to inspect compile structure in Fiddle; use **decompile** for Adaptive compiled form as text; use **stringify** for portable JSON.
+
+Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelity.as`, `pragma.as`, `listing.as`.
 
 ---
 
