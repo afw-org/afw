@@ -687,6 +687,8 @@ afw_crypto_function_execute_crypto_encrypt(
     afw_octet_t *copy;
     afw_size_t iv_len;
 
+    memset(tag, 0, sizeof(tag));
+
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(algorithm, 1, object);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(key_v, 2);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(data_v, 3);
@@ -960,7 +962,12 @@ afw_crypto_function_execute_crypto_decrypt(
     }
 
     ctx = EVP_CIPHER_CTX_new();
-    out = malloc(ciphertext->size + 16);
+    /*
+     * Zero-fill plaintext buffer. AES-GCM Final does not need residual
+     * ciphertext padding, but defined memory avoids feeding malloc garbage
+     * into libcrypto (see also valgrind.suppress for OpenSSL 3 AES-NI GHASH).
+     */
+    out = calloc(1, ciphertext->size + 16);
     if (!ctx || !out) {
         free(out);
         if (ctx) {
@@ -1276,6 +1283,8 @@ afw_crypto_function_execute_crypto_seal(
     afw_memory_t mem;
     afw_octet_t *copy;
 
+    memset(tag, 0, sizeof(tag));
+
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(key_v, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(data_v, 2);
 
@@ -1496,7 +1505,8 @@ afw_crypto_function_execute_crypto_unseal(
     }
 
     ctx = EVP_CIPHER_CTX_new();
-    out = malloc(ciphertext->size + 16);
+    /* Zero-fill: see crypto_decrypt comment (OpenSSL AES-GCM / valgrind). */
+    out = calloc(1, ciphertext->size + 16);
     if (!ctx || !out) {
         free(out);
         if (ctx) {
