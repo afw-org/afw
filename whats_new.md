@@ -392,6 +392,29 @@ Binary args accept **base64Binary** or **hexBinary**. Keys may be raw binary, a 
 
 Requires `libssl-dev` / `openssl-devel` at build time. Design notes: `designs/secrets-and-afw-crypto.md`. Interactive **`readpass`** remains open for #74.
 
+### LDAP `bindParameters` (and other object-valued conf templates)
+
+Some conf properties (notably LDAP adapter **`bindParameters`**) are **templates** evaluated at adapter start. A template that is **only a single substitution** with no surrounding text keeps the **data type of that result** — so it can return an **object** `{ "dn", "password" }`. Any extra text or multiple substitutions forces a **string**.
+
+Combined with `open_file` / `read*` and `crypto_decrypt`, conf can avoid a cleartext bind password in JSON: keep a **sealed blob** on disk (under `rootFilePaths`), put only a **seal key** in the process environment, and evaluate a single-substitution template that decrypts and returns the bind object. Example shape (conceptual):
+
+```text
+"bindParameters": "${
+  /* single substitution → object, not string */
+  const key = crypto_import_key({
+      \"from\": \"environment\",
+      \"name\": \"AFW_SEAL_KEY\",
+      \"encoding\": \"base64\"
+  }, \"AES-GCM\");
+  /* read sealed iv/tag/ciphertext from file under rootFilePaths … */
+  const plain = crypto_decrypt({ \"name\": \"AES-GCM\", \"iv\": …, \"tag\": … }, key, ciphertext);
+  /* binary password octets → UTF-8 string via stream write/read if needed */
+  return { \"dn\": \"cn=service,…\", \"password\": bindPassword };
+}"
+```
+
+Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`.
+
 ---
 
 ## Conf path templates (issue #15)
