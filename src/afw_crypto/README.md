@@ -51,7 +51,7 @@ Encrypt/decrypt/seal/unseal work on **octets** (`base64Binary` / `hexBinary`).
 - **`string(binary)`** / display formatting → base64 (or hex) **printable text**, not the UTF-8 of the octets.
 - **`decode_to_string(binary)`** → octets as UTF-8 (throws if invalid). Use for passwords and any binary that is really UTF-8 text.
 - **`encode_as_base64Binary(text)`** → UTF-8 string as binary before encrypt/seal.
-- **`stringify(value)`** → **pure JSON** text (ECMAScript `JSON.stringify`-like). Binary properties emit as base64 **JSON strings**; use for portable sealed bags. Optional 3rd arg = whitespace; 2nd (replacer) not implemented yet.
+- **`stringify(value)`** → **pure JSON** text from an evaluated value. Binary properties emit as base64 **JSON strings**; use for portable sealed bags. Optional replacer function or property-name array; optional whitespace.
 - **`decompile(value)`** → Adaptive Script / IR source form (e.g. `base64Binary("…")`), not pure JSON.
 
 ### Easy path: `crypto_seal` / `crypto_unseal`

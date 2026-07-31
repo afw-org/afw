@@ -37,7 +37,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
-| **`stringify` / `decompile` / binary text** | **`stringify`** is pure **JSON** (ES-like); **`decompile`** is Adaptive IR/source; **`decode_to_string(binary)`** is UTF-8 from octets (see section below) |
+| **`stringify` / `decompile` / binary text** | **`stringify`** is pure **JSON** from evaluated values; **`decompile`** is Adaptive IR/source; **`decode_to_string(binary)`** is UTF-8 from octets (see section below) |
 
 ---
 
@@ -426,8 +426,8 @@ These are easy to confuse; they do different jobs:
 
 | Function | Output |
 |----------|--------|
-| **`stringify(value [, , whitespace])`** | **Pure JSON** text (ECMAScript `JSON.stringify`-like). Adaptive types use their `jsonPrimitive` — e.g. `base64Binary` / `hexBinary` / `date` become **JSON strings**. Optional third parameter is whitespace/indent (same style as decompile). Second parameter (replacer) is **not** implemented yet. |
-| **`decompile(value [, whitespace])`** | **Adaptive Script / IR** source form (e.g. `base64Binary("aGk=")`, `#script_function(...)`, calls). Use for debugging, round-trip of compiled values, and issue **#18** IR work — **not** for portable JSON files. |
+| **`stringify(value [, replacer] [, whitespace])`** | **Pure JSON** text from an **evaluated** value. Adaptive types use their `jsonPrimitive` — e.g. `base64Binary` / `hexBinary` / `date` become **JSON strings**. Optional **replacer**: function `(key, value)` (root key is empty string; return **undefined** to omit an object property; array elements become **null**) or an **array of property names** to keep. Optional third parameter is whitespace/indent (same style as decompile). |
+| **`decompile(value [, whitespace])`** | **Adaptive Script / IR** source form (e.g. `base64Binary("aGk=")`, `#script_function(...)`, calls). Use for debugging and IR round-trip — **not** for portable JSON files. Does not require the same “evaluated data only” contract as stringify. |
 | **`decode_to_string(binary)`** | Interprets **octets** as **UTF-8 text** (throws if invalid). Use when the binary is really a password or other UTF-8 payload (after decrypt/unseal). |
 | **`string(binary)`** | **Base64 (or hex) printable** representation of the octets — not UTF-8 of the bytes. |
 

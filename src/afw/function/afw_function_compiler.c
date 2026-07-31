@@ -395,19 +395,172 @@ afw_function_execute_safe_evaluate(
 
 
 /*
+ * stringify() helpers — pure JSON after optional replacer transform.
+ *
+ * First parameter is evaluated (AFW_FUNCTION_EVALUATE_PARAMETER). Replacer
+ * function calls use the same pattern as higher_order_array functors:
+ * afw_function_evaluate_function_parameter + afw_value_call_create + evaluate.
+ */
+
+typedef struct {
+    const afw_value_t *call;          /* skeleton call; argv slots below */
+    const afw_value_t **f_argv;       /* f_argv[0]=fn, [1]=key, [2]=value */
+    const afw_array_t *allow_names;   /* optional property-name allow list */
+    const afw_pool_t *p;
+    afw_xctx_t *xctx;
+} impl_stringify_ctx_t;
+
+static afw_boolean_t
+impl_stringify_name_allowed(
+    const impl_stringify_ctx_t *ctx,
+    const afw_utf8_t *name)
+{
+    const afw_iterator_t *iterator;
+    const afw_value_t *entry;
+    const afw_utf8_t *s;
+
+    if (!ctx->allow_names) {
+        return true;
+    }
+    for (iterator = NULL;;) {
+        entry = afw_array_get_next_value(ctx->allow_names, &iterator,
+            ctx->p, ctx->xctx);
+        if (!entry) {
+            return false;
+        }
+        if (afw_value_is_string(entry)) {
+            s = &((const afw_value_string_t *)entry)->internal;
+            if (afw_utf8_equal(s, name)) {
+                return true;
+            }
+        }
+    }
+}
+
+static const afw_value_t *
+impl_stringify_call_replacer(
+    impl_stringify_ctx_t *ctx,
+    const afw_utf8_t *key,
+    const afw_value_t *value)
+{
+    if (!ctx->call) {
+        return value;
+    }
+    ctx->f_argv[1] = afw_value_create_unmanaged_string(key, ctx->p, ctx->xctx);
+    ctx->f_argv[2] = value ? value : afw_value_null;
+    return afw_value_evaluate(ctx->call, ctx->p, ctx->xctx);
+}
+
+static const afw_value_t *
+impl_stringify_prepare(
+    impl_stringify_ctx_t *ctx,
+    const afw_utf8_t *key,
+    const afw_value_t *value);
+
+static const afw_value_t *
+impl_stringify_prepare_object(
+    impl_stringify_ctx_t *ctx,
+    const afw_object_t *obj)
+{
+    const afw_object_t *out;
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *next;
+    const afw_value_t *child;
+
+    out = afw_object_create_unmanaged(ctx->p, ctx->xctx);
+    iterator = NULL;
+    for (;;) {
+        next = afw_object_get_next_property(obj, &iterator, &property_name,
+            ctx->xctx);
+        if (!next) {
+            break;
+        }
+        if (!impl_stringify_name_allowed(ctx, property_name)) {
+            continue;
+        }
+        child = impl_stringify_prepare(ctx, property_name, next);
+        if (afw_value_is_undefined(child) || !child) {
+            /* Omit property when replacer returns undefined. */
+            continue;
+        }
+        afw_object_set_property(out, property_name, child, ctx->xctx);
+    }
+    return afw_value_create_unmanaged_object(out, ctx->p, ctx->xctx);
+}
+
+static const afw_value_t *
+impl_stringify_prepare_array(
+    impl_stringify_ctx_t *ctx,
+    const afw_array_t *list)
+{
+    const afw_array_t *out;
+    const afw_iterator_t *iterator;
+    const afw_value_t *next;
+    const afw_value_t *child;
+    const afw_utf8_t *index_s;
+    afw_integer_t index;
+
+    out = afw_array_create_generic(ctx->p, ctx->xctx);
+    iterator = NULL;
+    index = 0;
+    for (;;) {
+        next = afw_array_get_next_value(list, &iterator, ctx->p, ctx->xctx);
+        if (!next) {
+            break;
+        }
+        index_s = afw_number_integer_to_utf8(index, ctx->p, ctx->xctx);
+        child = impl_stringify_prepare(ctx, index_s, next);
+        if (afw_value_is_undefined(child) || !child) {
+            /* Array holes / undefined become JSON null. */
+            child = afw_value_null;
+        }
+        afw_array_push_value(out, child, ctx->xctx);
+        index++;
+    }
+    return afw_value_create_unmanaged_array(out, ctx->p, ctx->xctx);
+}
+
+/*
+ * Apply replacer for this key/value, then recursively prepare objects/arrays.
+ * Returns undefined to mean "omit" (object property) / "null" (array element).
+ */
+static const afw_value_t *
+impl_stringify_prepare(
+    impl_stringify_ctx_t *ctx,
+    const afw_utf8_t *key,
+    const afw_value_t *value)
+{
+    value = impl_stringify_call_replacer(ctx, key, value);
+    if (afw_value_is_undefined(value) || !value) {
+        return afw_value_undefined;
+    }
+    if (afw_value_is_object(value)) {
+        return impl_stringify_prepare_object(ctx,
+            ((const afw_value_object_t *)value)->internal);
+    }
+    if (afw_value_is_array(value)) {
+        return impl_stringify_prepare_array(ctx,
+            ((const afw_value_array_t *)value)->internal);
+    }
+    return value;
+}
+
+/*
  * Adaptive function: stringify
  *
  * afw_function_execute_stringify
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate a value and serialize it as pure JSON text (ECMAScript
- * JSON.stringify-like). Adaptive data types use their jsonPrimitive (for
- * example base64Binary and date become JSON strings). Whitespace (third
- * parameter) matches decompile/listing style. Optional replacer is not
- * implemented yet. For Adaptive Script or IR source form use decompile(). For
- * binary octets as UTF-8 text use decode_to_string(); string(binary) is base64
- * printable text, not UTF-8.
+ * Evaluate value and serialize it as pure JSON text. Adaptive data types use
+ * their jsonPrimitive (for example base64Binary and date become JSON strings).
+ * The value is fully evaluated before serialization (not Adaptive source/IR
+ * form). For Adaptive Script or IR source form use decompile(). For binary
+ * octets as UTF-8 text use decode_to_string(); string(binary) is base64
+ * printable text, not UTF-8. Optional replacer is a function (key, value) that
+ * returns the value to serialize, or an array of property names to include when
+ * serializing objects. Optional whitespace matches decompile/listing style.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -417,17 +570,21 @@ afw_function_execute_safe_evaluate(
  * ```
  *   function stringify(
  *       value: any,
- *       replacer?: any,
+ *       replacer?: (any (key: string, value: any): any),
  *       whitespace?: any
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   value - (any dataType) Value to stringify as JSON.
+ *   value - (any dataType) Evaluated value to serialize as JSON.
  *
- *   replacer - (optional any dataType) Optional replacer (not implemented yet;
- *       omit or pass null).
+ *   replacer - (optional any dataType (key: string, value: any): any) Optional
+ *       replacer: a function (key: string, value: any): any called for the root
+ *       (key is empty string) and each object property or array element; return
+ *       undefined to omit an object property (array elements become null). Or
+ *       an array of string property names to keep when serializing objects.
+ *       Omit or null for no replacer.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
  *       present and not 0. This parameter can be an integer between 0 and 10 or
@@ -448,22 +605,56 @@ afw_function_execute_stringify(
     const afw_utf8_t *s;
     const afw_value_t *value;
     const afw_value_t *replacer;
+    const afw_value_t *prepared;
     afw_object_options_t options;
+    impl_stringify_ctx_t ctx;
+    const afw_value_t **f_argv;
+    afw_xctx_t *xctx = x->xctx;
 
+    /* Evaluate first parameter fully (not decompile of unevaluated IR). */
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
-    if (!value) {
-        /* JSON null for nullish top-level (undefined/null as missing). */
+    if (!value || afw_value_is_undefined(value)) {
         return afw_value_create_unmanaged_string(
-            afw_s_null, x->p, x->xctx);
+            afw_s_null, x->p, xctx);
     }
 
-    /** @fixme add support for replacer (ECMAScript JSON.stringify 2nd arg) */
+    afw_memory_clear(&ctx);
+    ctx.p = x->p;
+    ctx.xctx = xctx;
+
     AFW_FUNCTION_EVALUATE_PARAMETER(replacer, 2);
     if (!afw_value_is_nullish(replacer)) {
-        AFW_THROW_ERROR_Z(general,
-            "replacer parameter is not implemented yet",
-            x->xctx);
+        if (afw_value_is_array(replacer)) {
+            ctx.allow_names =
+                ((const afw_value_array_t *)replacer)->internal;
+        }
+        else {
+            f_argv = afw_pool_calloc(x->p, sizeof(afw_value_t *) * 3, xctx);
+            f_argv[0] = afw_function_evaluate_function_parameter(
+                replacer, x->p, xctx);
+            if (!f_argv[0]) {
+                AFW_THROW_ERROR_Z(arg_error,
+                    "stringify replacer function is required when replacer "
+                    "is not an array of property names",
+                    xctx);
+            }
+            ctx.f_argv = f_argv;
+            ctx.call = afw_value_call_create(NULL, 2, f_argv, false,
+                x->p, xctx);
+        }
+    }
+
+    if (!ctx.call && !ctx.allow_names) {
+        /* No replacer: serialize the evaluated value as-is. */
+        prepared = value;
+    }
+    else {
+        prepared = impl_stringify_prepare(&ctx, afw_s_a_empty_string, value);
+        if (afw_value_is_undefined(prepared) || !prepared) {
+            return afw_value_create_unmanaged_string(
+                afw_s_null, x->p, xctx);
+        }
     }
 
     whitespace = NULL;
@@ -476,10 +667,10 @@ afw_function_execute_stringify(
         AFW_OBJECT_OPTION_SET_ON(&options, whitespace);
     }
 
-    s = afw_json_from_value_with_indent(value, &options, whitespace,
-        x->p, x->xctx);
+    s = afw_json_from_value_with_indent(prepared, &options, whitespace,
+        x->p, xctx);
 
-    return afw_value_create_unmanaged_string(s, x->p, x->xctx);
+    return afw_value_create_unmanaged_string(s, x->p, xctx);
 }
 
 

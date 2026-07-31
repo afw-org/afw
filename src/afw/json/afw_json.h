@@ -98,6 +98,7 @@ afw_json_register(afw_xctx_t *xctx);
  * This function can be used for callbacks of type afw_utf8_from_value_t.
  * Emits pure JSON (jsonPrimitive of each data type). For Adaptive Script
  * source/IR form use afw_value_decompile_to_string() / decompile().
+ * Values should already be evaluated.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_json_from_value(
@@ -115,7 +116,7 @@ afw_json_from_value(
  * @param xctx of caller.
  * @return json
  *
- * Used by stringify() for ECMAScript-like space/indent control.
+ * Used by stringify() when a whitespace/indent unit string is provided.
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_json_from_value_with_indent(

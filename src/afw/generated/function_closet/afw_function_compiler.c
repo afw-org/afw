@@ -476,13 +476,14 @@ afw_function_execute_safe_evaluate(
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate a value and serialize it as pure JSON text (ECMAScript
- * JSON.stringify-like). Adaptive data types use their jsonPrimitive (for
- * example base64Binary and date become JSON strings). Whitespace (third
- * parameter) matches decompile/listing style. Optional replacer is not
- * implemented yet. For Adaptive Script or IR source form use decompile(). For
- * binary octets as UTF-8 text use decode_to_string(); string(binary) is base64
- * printable text, not UTF-8.
+ * Evaluate value and serialize it as pure JSON text. Adaptive data types use
+ * their jsonPrimitive (for example base64Binary and date become JSON strings).
+ * The value is fully evaluated before serialization (not Adaptive source/IR
+ * form). For Adaptive Script or IR source form use decompile(). For binary
+ * octets as UTF-8 text use decode_to_string(); string(binary) is base64
+ * printable text, not UTF-8. Optional replacer is a function (key, value) that
+ * returns the value to serialize, or an array of property names to include when
+ * serializing objects. Optional whitespace matches decompile/listing style.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -492,17 +493,21 @@ afw_function_execute_safe_evaluate(
  * ```
  *   function stringify(
  *       value: any,
- *       replacer?: any,
+ *       replacer?: (any (key: string, value: any): any),
  *       whitespace?: any
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   value - (any dataType) Value to stringify as JSON.
+ *   value - (any dataType) Evaluated value to serialize as JSON.
  *
- *   replacer - (optional any dataType) Optional replacer (not implemented yet;
- *       omit or pass null).
+ *   replacer - (optional any dataType (key: string, value: any): any) Optional
+ *       replacer: a function (key: string, value: any): any called for the root
+ *       (key is empty string) and each object property or array element; return
+ *       undefined to omit an object property (array elements become null). Or
+ *       an array of string property names to keep when serializing objects.
+ *       Omit or null for no replacer.
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
  *       present and not 0. This parameter can be an integer between 0 and 10 or

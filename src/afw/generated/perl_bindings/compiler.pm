@@ -237,24 +237,29 @@ evaluating this value, the exception will continue.
 
 =head3 stringify
 
-Evaluate a value and serialize it as pure JSON text (ECMAScript
-JSON.stringify-like). Adaptive data types use their jsonPrimitive (for example
-base64Binary and date become JSON strings). Whitespace (third parameter)
-matches decompile/listing style. Optional replacer is not implemented yet. For
-Adaptive Script or IR source form use decompile(). For binary octets as UTF-8
-text use decode_to_string(); string(binary) is base64 printable text, not
-UTF-8.
-Serialize a value as JSON text
+Evaluate value and serialize it as pure JSON text. Adaptive data types use
+their jsonPrimitive (for example base64Binary and date become JSON strings).
+The value is fully evaluated before serialization (not Adaptive source/IR
+form). For Adaptive Script or IR source form use decompile(). For binary
+octets as UTF-8 text use decode_to_string(); string(binary) is base64
+printable text, not UTF-8. Optional replacer is a function (key, value) that
+returns the value to serialize, or an array of property names to include when
+serializing objects. Optional whitespace matches decompile/listing style.
+Serialize an evaluated value as JSON text
 
 =head4 Parameters
 
     $value
 
-Value to stringify as JSON.
+Evaluated value to serialize as JSON.
 
     $replacer
 
-Optional replacer (not implemented yet; omit or pass null).
+Optional replacer: a function (key: string, value: any): any called for the
+root (key is empty string) and each object property or array element; return
+undefined to omit an object property (array elements become null). Or an array
+of string property names to keep when serializing objects. Omit or null for no
+replacer.
 
     $whitespace
 
