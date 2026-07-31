@@ -168,8 +168,9 @@ impl_afw_value_produce_compiler_listing(
 /*
  * Implementation of method decompile for interface afw_value.
  *
- * Synthetic call #script_function(paramName..., body) — same style as other
- * IR kinds (# + implementation_id (pragma form)), not Adaptive Script surface syntax.
+ * Synthetic call #script_function(param..., body[, returnType]) —
+ * params are surface-like: name[: Type], optional ?, default = expr, rest ...
+ * Return type is a trailing Type after the body when non-default.
  */
 void
 impl_afw_value_decompile(
@@ -179,9 +180,10 @@ impl_afw_value_decompile(
 {
     const afw_value_script_function_definition_t *self =
         (const afw_value_script_function_definition_t *)instance;
+    const afw_value_script_function_parameter_t *param;
     afw_size_t i;
-    afw_value_string_t name_value;
     afw_boolean_t need_comma;
+    afw_boolean_t write_returns;
 
     afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
     afw_writer_write_z(writer, "(", xctx);
@@ -191,16 +193,26 @@ impl_afw_value_decompile(
 
     need_comma = false;
     for (i = 0; i < self->count; i++) {
+        param = self->parameters[i];
         if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
         }
         if (writer->tab) {
             afw_writer_write_eol(writer, xctx);
         }
-        name_value.inf = &afw_value_unmanaged_string_inf;
-        name_value.internal.s = self->parameters[i]->name->s;
-        name_value.internal.len = self->parameters[i]->name->len;
-        afw_value_decompile((const afw_value_t *)&name_value, writer, xctx);
+        if (param->is_rest) {
+            afw_writer_write_z(writer, "...", xctx);
+        }
+        /* Bare identifier (not a string) so Type annotations use ':'. */
+        afw_writer_write_utf8(writer, param->name, xctx);
+        if (param->is_optional && !param->default_value) {
+            afw_writer_write_z(writer, "?", xctx);
+        }
+        afw_value_decompile_optional_type(param->type, writer, xctx);
+        if (param->default_value) {
+            afw_writer_write_z(writer, writer->tab ? " = " : "=", xctx);
+            afw_value_decompile_value(param->default_value, writer, xctx);
+        }
         need_comma = true;
     }
 
@@ -211,6 +223,29 @@ impl_afw_value_decompile(
         afw_writer_write_eol(writer, xctx);
     }
     afw_value_decompile_value(self->body, writer, xctx);
+
+    /*
+     * Trailing return Type after body when present and not bare any/void.
+     * NULL returns means void/unspecified for OptionalReturnType.
+     */
+    write_returns = false;
+    if (self->returns && self->returns->data_type &&
+        self->returns->data_type != afw_data_type_any)
+    {
+        write_returns = true;
+    }
+    else if (self->returns && !self->returns->data_type &&
+        self->returns->value_meta_object)
+    {
+        write_returns = true;
+    }
+    if (write_returns) {
+        afw_writer_write_z(writer, ",", xctx);
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        afw_value_decompile_type(self->returns, writer, xctx);
+    }
 
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);

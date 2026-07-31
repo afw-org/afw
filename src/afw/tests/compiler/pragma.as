@@ -238,6 +238,51 @@ assert(evaluate(compile<script>(script(
 ))) == 30);
 return 0;
 
+//? test: pragma-assignment-target-typed-roundtrip
+//? description: typed const decompile/compile round-trip (x: integer)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const x: integer = 7;\nreturn x;"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",x:integer),7,undefined),return(x))");
+assert(evaluate(compile<script>(script(d))) == 7);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-script-function-typed-roundtrip
+//? description: typed params and return type on #script_function
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const f = function (a: integer): integer { return a + 1; };\nreturn f(10);"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",f),#script_function(a:integer,#block(return(add(a,1))),integer),undefined),return(f(10)))");
+assert(evaluate(compile<script>(script(d))) == 11);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-typed-array-of-roundtrip
+//? description: (array of integer) type annotation round-trip
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const x: (array of integer) = [1, 2];\nreturn x;"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",x:(array of integer)),[1,2],undefined),return(x))");
+assert(evaluate(compile<script>(script(d))) == [1, 2]);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
 //? test: pragma-list-expression-roundtrip
 //? description: decompile/compile round-trip for array spread (#list_expression)
 //? skip: false
@@ -274,7 +319,7 @@ const d = decompile(compile<script>(script(
     'const f = function (a) { return a + 1; };\nreturn f(10);'
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",f),#script_function(\"a\",#block(return(add(a,1)))),undefined),return(f(10)))");
+    "#block(const(#assignment_target(\"const\",f),#script_function(a,#block(return(add(a,1)))),undefined),return(f(10)))");
 assert(evaluate(compile<script>(script(d))) == 11);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -297,7 +342,7 @@ return 0;
 //? source: ...
 
 assert(evaluate(compile<script>(script(
-    "#block(const(#assignment_target(\"const\",f),#script_function(\"x\",\"y\",#block(return(add(x,y)))),undefined),return(f(3,4)))"
+    "#block(const(#assignment_target(\"const\",f),#script_function(x,y,#block(return(add(x,y)))),undefined),return(f(3,4)))"
 ))) == 7);
 return 0;
 
@@ -311,7 +356,7 @@ const d = decompile(compile<script>(script(
     "const f = function (x, y) { return x + y; };\nreturn f(3, 4);"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",f),#script_function(\"x\",\"y\",#block(return(add(x,y)))),undefined),return(f(3,4)))");
+    "#block(const(#assignment_target(\"const\",f),#script_function(x,y,#block(return(add(x,y)))),undefined),return(f(3,4)))");
 assert(evaluate(compile<script>(script(d))) == 7);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;

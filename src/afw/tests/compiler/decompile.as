@@ -219,7 +219,7 @@ const src = script(
 );
 const s = decompile(compile<script>(src));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",f),#script_function(\"a\",#block(return(add(a,1)))),undefined),return(f(10)))");
+    "#block(const(#assignment_target(\"const\",f),#script_function(a,#block(return(add(a,1)))),undefined),return(f(10)))");
 
 return 0;
 
@@ -234,7 +234,7 @@ const src = script(
 );
 const s = decompile(compile<script>(src));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",f),#script_function(\"a\",#block(return(a))),undefined),return(f))");
+    "#block(const(#assignment_target(\"const\",f),#script_function(a,#block(return(a))),undefined),return(f))");
 
 return 0;
 
@@ -253,7 +253,7 @@ const make = function (x) {
 const c = make(1);
 const s = decompile(c);
 assert(s ==
-    "#closure_binding(#script_function(\"y\",#block(return(add(x,y)))))");
+    "#closure_binding(#script_function(y,#block(return(add(x,y)))))");
 
 return 0;
 
@@ -373,6 +373,50 @@ const expected =
     ")";
 assert(s == expected);
 
+return 0;
+
+//? test: decompile-whitespace-list-pattern
+//? description: List Pattern pretty-prints elements when tab is set
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const s = decompile(compile<script>(script(
+    "const [a, b] = [1, 2];\nreturn a;"
+)), 2);
+assert(s ==
+    "#block(\n" +
+    "  const(\n" +
+    "    #assignment_target(\n" +
+    "      \"const\",\n" +
+    "      [\n" +
+    "        a,\n" +
+    "        b\n" +
+    "      ]\n" +
+    "    ),\n" +
+    "    [\n" +
+    "      1,\n" +
+    "      2\n" +
+    "    ],\n" +
+    "    undefined\n" +
+    "  ),\n" +
+    "  return(\n" +
+    "    a\n" +
+    "  )\n" +
+    ")");
+return 0;
+
+//? test: decompile-typed-const
+//? description: Typed const decompiles with name:Type on assignment_target
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const s = decompile(compile<script>(script(
+    "const x: integer = 1;\nreturn x;"
+)));
+assert(s ==
+    "#block(const(#assignment_target(\"const\",x:integer),1,undefined),return(x))");
 return 0;
 
 //? test: decompile-whitespace-spaces

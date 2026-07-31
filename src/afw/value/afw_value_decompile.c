@@ -142,3 +142,140 @@ afw_value_decompile_value(
         afw_value_decompile(instance, writer, xctx);
     }
 }
+
+
+/*
+ * True if type is missing or bare "any" (default when no annotation written).
+ */
+static afw_boolean_t
+impl_type_is_default_any(const afw_value_type_t *type)
+{
+    if (!type || !type->data_type) {
+        return true;
+    }
+    if (type->data_type != afw_data_type_any) {
+        return false;
+    }
+    /* Bare any with no parameters. */
+    return type->data_type_parameter_contextual == NULL &&
+        type->list_type == NULL &&
+        type->media_type == NULL &&
+        type->return_type == NULL &&
+        type->function_signature == NULL &&
+        type->object_type_id == NULL &&
+        type->type == NULL &&
+        type->value_meta_object == NULL;
+}
+
+
+/*
+ * Type decompile: Adaptive Type surface (see OptionalType / Type in compile).
+ * Omits bare "any" (default when no annotation was written).
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_decompile_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    const afw_value_type_list_t *list_type;
+    const afw_compile_value_contextual_t *ctx;
+    afw_size_t i;
+    afw_boolean_t need_parens;
+    afw_value_string_t s;
+
+    if (impl_type_is_default_any(type)) {
+        return false;
+    }
+
+    /*
+     * Parameterized types use (dataType …). Prefer recorded source span when
+     * present and bounded.
+     */
+    ctx = type->data_type_parameter_contextual;
+    need_parens = (ctx != NULL) ||
+        (type->list_type != NULL) ||
+        (type->media_type != NULL) ||
+        (type->object_type_id != NULL) ||
+        (type->return_type != NULL) ||
+        (type->type != NULL);
+
+    if (need_parens) {
+        afw_writer_write_z(writer, "(", xctx);
+    }
+
+    afw_writer_write_utf8(writer, &type->data_type->data_type_id, xctx);
+
+    if (ctx &&
+        ctx->compiled_value &&
+        ctx->compiled_value->full_source &&
+        ctx->value_size > 0 &&
+        ctx->value_offset + ctx->value_size <=
+            ctx->compiled_value->full_source->len)
+    {
+        afw_writer_write_z(writer, " ", xctx);
+        afw_writer_write(writer,
+            ctx->compiled_value->full_source->s + ctx->value_offset,
+            ctx->value_size, xctx);
+    }
+    else if (type->list_type) {
+        list_type = type->list_type;
+        for (i = 0; i < list_type->dimension; i++) {
+            afw_writer_write_z(writer, " of", xctx);
+            if (i + 1 < list_type->dimension) {
+                afw_writer_write_z(writer, " array", xctx);
+            }
+            else if (list_type->cell_type) {
+                afw_writer_write_z(writer, " ", xctx);
+                afw_value_decompile_type(list_type->cell_type, writer, xctx);
+            }
+            else {
+                afw_writer_write_z(writer, " array", xctx);
+            }
+        }
+    }
+    else if (type->media_type) {
+        afw_writer_write_z(writer, " ", xctx);
+        s.inf = &afw_value_unmanaged_string_inf;
+        s.internal = *type->media_type;
+        afw_value_decompile((const afw_value_t *)&s, writer, xctx);
+    }
+    else if (type->object_type_id) {
+        afw_writer_write_z(writer, " ", xctx);
+        s.inf = &afw_value_unmanaged_string_inf;
+        s.internal = *type->object_type_id;
+        afw_value_decompile((const afw_value_t *)&s, writer, xctx);
+    }
+    else if (type->return_type) {
+        afw_writer_write_z(writer, " ", xctx);
+        afw_value_decompile_type(type->return_type, writer, xctx);
+    }
+    else if (type->type) {
+        afw_writer_write_z(writer, " ", xctx);
+        afw_value_decompile_type(type->type, writer, xctx);
+    }
+
+    if (need_parens) {
+        afw_writer_write_z(writer, ")", xctx);
+    }
+
+    return true;
+}
+
+
+AFW_DEFINE(void)
+afw_value_decompile_optional_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    if (impl_type_is_default_any(type)) {
+        return;
+    }
+
+    afw_writer_write_z(writer, ":", xctx);
+    if (writer->tab) {
+        afw_writer_write_z(writer, " ", xctx);
+    }
+    afw_value_decompile_type(type, writer, xctx);
+}

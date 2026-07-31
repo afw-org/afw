@@ -1735,6 +1735,37 @@ afw_value_decompile_value(
 
 
 /**
+ * @brief Decompile a type as Adaptive Type surface text (no leading ':').
+ * @param type to decompile; NULL or "any" writes nothing (caller skips ':').
+ * @param writer
+ * @param xctx of caller.
+ * @return true if anything was written (type is present and not bare any).
+ *
+ * Used for assignment targets, script_function params/returns, and future
+ * type-check related IR. Prefer reconstructing surface forms (e.g.
+ * `integer`, `(array of integer)`).
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_decompile_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Write ": Type" when type is present and not bare any.
+ * @param type optional type.
+ * @param writer
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_optional_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
  * @internal
  * @brief  Register core value infs.
  * @param xctx of caller.

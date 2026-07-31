@@ -292,11 +292,11 @@ impl_afw_value_produce_compiler_listing(
  * Pattern decompile (second arg of #assignment_target).
  *
  * Nested targets are Patterns only (no nested #assignment_target wrapper):
- *   symbol_reference → name
+ *   symbol_reference → name[: Type]
  *   list_destructure → [elem, …]
  *   object_destructure → {prop, …}
  * Elements may be holes, defaults (name = expr), rest (...name), renames
- * (prop: target), and nested patterns.
+ * (prop: target), nested patterns, and type annotations.
  */
 
 static void
@@ -304,6 +304,53 @@ impl_decompile_pattern(
     const afw_value_t *value,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);
+
+
+static void
+impl_decompile_binding_name_and_type(
+    const afw_value_t *target_value,
+    const afw_value_type_t *element_type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    const afw_value_assignment_target_t *at;
+    const afw_value_type_t *type;
+    const afw_value_symbol_reference_t *sym;
+
+    /*
+     * Note: assignment_target_t stores symbol_reference and variable_type in
+     * the same union — for symbol targets the type lives on symbol->type only
+     * (and on list/object element type fields).
+     */
+    type = element_type;
+    if (afw_value_is_symbol_reference(target_value)) {
+        sym = (const afw_value_symbol_reference_t *)target_value;
+        afw_value_decompile(target_value, writer, xctx);
+        if (!type) {
+            type = &sym->symbol->type;
+        }
+        afw_value_decompile_optional_type(type, writer, xctx);
+        return;
+    }
+
+    if (afw_value_is_assignment_target(target_value)) {
+        at = (const afw_value_assignment_target_t *)target_value;
+        if (at->assignment_target->target_type ==
+            afw_compile_assignment_target_type_symbol_reference)
+        {
+            sym = at->assignment_target->symbol_reference;
+            afw_value_decompile((const afw_value_t *)sym, writer, xctx);
+            if (!type && sym) {
+                type = &sym->symbol->type;
+            }
+            afw_value_decompile_optional_type(type, writer, xctx);
+            return;
+        }
+    }
+
+    impl_decompile_pattern(target_value, writer, xctx);
+    afw_value_decompile_optional_type(element_type, writer, xctx);
+}
 
 
 static void
@@ -316,16 +363,24 @@ impl_decompile_list_pattern(
     afw_boolean_t need_comma;
 
     afw_writer_write_z(writer, "[", xctx);
+    if (writer->tab) {
+        afw_writer_increment_indent(writer, xctx);
+    }
     need_comma = false;
     for (ae = ld->assignment_element; ae; ae = ae->next) {
         if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
         }
         need_comma = true;
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
         if (ae->assignment_target) {
-            impl_decompile_pattern(ae->assignment_target, writer, xctx);
+            impl_decompile_binding_name_and_type(ae->assignment_target,
+                ae->type, writer, xctx);
             if (ae->default_value) {
-                afw_writer_write_z(writer, "=", xctx);
+                afw_writer_write_z(writer,
+                    writer->tab ? " = " : "=", xctx);
                 afw_value_decompile_value(ae->default_value, writer, xctx);
             }
         }
@@ -335,8 +390,16 @@ impl_decompile_list_pattern(
         if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
         }
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
         afw_writer_write_z(writer, "...", xctx);
-        impl_decompile_pattern(ld->rest, writer, xctx);
+        impl_decompile_binding_name_and_type(ld->rest, ld->rest_type,
+            writer, xctx);
+    }
+    if (writer->tab) {
+        afw_writer_write_eol(writer, xctx);
+        afw_writer_decrement_indent(writer, xctx);
     }
     afw_writer_write_z(writer, "]", xctx);
 }
@@ -353,20 +416,28 @@ impl_decompile_object_pattern(
     afw_boolean_t need_comma;
 
     afw_writer_write_z(writer, "{", xctx);
+    if (writer->tab) {
+        afw_writer_increment_indent(writer, xctx);
+    }
     need_comma = false;
     for (ap = od->assignment_property; ap; ap = ap->next) {
         if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
         }
         need_comma = true;
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
         if (ap->is_rename) {
             afw_writer_write_utf8(writer, ap->property_name, xctx);
-            afw_writer_write_z(writer, ":", xctx);
+            afw_writer_write_z(writer, writer->tab ? ": " : ":", xctx);
             ae = ap->assignment_element;
             if (ae && ae->assignment_target) {
-                impl_decompile_pattern(ae->assignment_target, writer, xctx);
+                impl_decompile_binding_name_and_type(ae->assignment_target,
+                    ae->type, writer, xctx);
                 if (ae->default_value) {
-                    afw_writer_write_z(writer, "=", xctx);
+                    afw_writer_write_z(writer,
+                        writer->tab ? " = " : "=", xctx);
                     afw_value_decompile_value(ae->default_value, writer,
                         xctx);
                 }
@@ -375,8 +446,13 @@ impl_decompile_object_pattern(
         else {
             afw_value_decompile(
                 (const afw_value_t *)ap->symbol_reference, writer, xctx);
+            if (ap->symbol_reference) {
+                afw_value_decompile_optional_type(
+                    &ap->symbol_reference->symbol->type, writer, xctx);
+            }
             if (ap->default_value) {
-                afw_writer_write_z(writer, "=", xctx);
+                afw_writer_write_z(writer,
+                    writer->tab ? " = " : "=", xctx);
                 afw_value_decompile_value(ap->default_value, writer, xctx);
             }
         }
@@ -385,8 +461,16 @@ impl_decompile_object_pattern(
         if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
         }
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
         afw_writer_write_z(writer, "...", xctx);
-        impl_decompile_pattern(od->rest, writer, xctx);
+        impl_decompile_binding_name_and_type(od->rest, od->rest_type,
+            writer, xctx);
+    }
+    if (writer->tab) {
+        afw_writer_write_eol(writer, xctx);
+        afw_writer_decrement_indent(writer, xctx);
     }
     afw_writer_write_z(writer, "}", xctx);
 }
@@ -406,6 +490,9 @@ impl_decompile_pattern(
 
     if (afw_value_is_symbol_reference(value)) {
         afw_value_decompile(value, writer, xctx);
+        afw_value_decompile_optional_type(
+            &((const afw_value_symbol_reference_t *)value)->symbol->type,
+            writer, xctx);
         return;
     }
 
@@ -413,10 +500,11 @@ impl_decompile_pattern(
         at = (const afw_value_assignment_target_t *)value;
         switch (at->assignment_target->target_type) {
         case afw_compile_assignment_target_type_symbol_reference:
-            afw_value_decompile(
+            /* Type is on symbol (union shares storage with variable_type). */
+            impl_decompile_binding_name_and_type(
                 (const afw_value_t *)
                     at->assignment_target->symbol_reference,
-                writer, xctx);
+                NULL, writer, xctx);
             break;
         case afw_compile_assignment_target_type_list_destructure:
             impl_decompile_list_pattern(
