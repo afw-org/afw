@@ -381,6 +381,78 @@ def crypto_import_key(session, keySource, algorithm, usages=None, extractable=No
 
     return response['actions'][0]['result']
 
+def crypto_seal(session, key, data):
+    """
+    Seal binary data (AES-GCM)
+
+    Convenience for AES-GCM encryption: generates an IV, encrypts data, and
+    returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }.
+    Equivalent to crypto_encrypt({ name: "AES-GCM" }, key, data) with an
+    auto-generated IV. Use stringify() (and optional pure-JSON field mapping)
+    to store the result. Requires execute access.
+
+    Args:
+        key (object): Key material, CryptoKey, or key reference.
+
+        data (object): Plaintext (base64Binary or hexBinary). Use
+        encode_as_base64Binary() for UTF-8 text.
+
+    Returns:
+        dict: Sealed object with algorithm, keyLength, iv, tag, and
+        ciphertext.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "crypto_seal",
+        "key": key,
+        "data": data
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def crypto_unseal(session, key, sealed):
+    """
+    Unseal AES-GCM sealed data
+
+    Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be:
+    (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as
+    base64/hex strings; (2) a string of pure JSON with those properties as
+    base64 strings (e.g. after stringify of a JSON-friendly bag). Returns
+    plaintext octets. Requires execute access.
+
+    Args:
+        key (object): Key material, CryptoKey, or key reference.
+
+        sealed (object): Sealed object or pure JSON string.
+
+    Returns:
+        object: Plaintext octets. Use decode_to_string() for UTF-8 text.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "crypto_unseal",
+        "key": key,
+        "sealed": sealed
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def crypto_version_info(session):
     """
     Crypto extension version info

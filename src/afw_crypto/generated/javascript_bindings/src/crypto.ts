@@ -281,6 +281,57 @@ export function afwCryptoImportKey(client : any, keySource : any, algorithm : an
 }
 
 /**
+ * Convenience for AES-GCM encryption: generates an IV, encrypts data, and
+ * returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }.
+ * Equivalent to crypto_encrypt({ name: "AES-GCM" }, key, data) with an
+ * auto-generated IV. Use stringify() (and optional pure-JSON field mapping)
+ * to store the result. Requires execute access.
+ * 
+ * @param {} key - Key material, CryptoKey, or key reference.
+ * 
+ * @param {} data - Plaintext (base64Binary or hexBinary). Use
+ *     encode_as_base64Binary() for UTF-8 text.
+ * 
+ * @returns {object} Sealed object with algorithm, keyLength, iv, tag, and
+ *     ciphertext.
+ */
+export function afwCryptoSeal(client : any, key : any, data : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "crypto_seal";
+    _action["key"] = key;
+    _action["data"] = data;
+
+    return client.perform(_action);
+}
+
+/**
+ * Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be:
+ * (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as
+ * base64/hex strings; (2) a string of pure JSON with those properties as
+ * base64 strings (e.g. after stringify of a JSON-friendly bag). Returns
+ * plaintext octets. Requires execute access.
+ * 
+ * @param {} key - Key material, CryptoKey, or key reference.
+ * 
+ * @param {} sealed - Sealed object or pure JSON string.
+ * 
+ * @returns {base64Binary} Plaintext octets. Use decode_to_string() for UTF-8
+ *     text.
+ */
+export function afwCryptoUnseal(client : any, key : any, sealed : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "crypto_unseal";
+    _action["key"] = key;
+    _action["sealed"] = sealed;
+
+    return client.perform(_action);
+}
+
+/**
  * Returns runtime OpenSSL and afw_crypto version information and the list of
  * supported algorithm names.
  * 

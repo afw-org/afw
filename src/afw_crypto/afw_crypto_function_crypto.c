@@ -11,6 +11,7 @@
  */
 
 #include "afw.h"
+#include "afw_json.h"
 #include "afw_crypto_internal.h"
 #include "generated/afw_crypto_strings.h"
 #include "generated/afw_crypto_version_info.h"
@@ -1213,4 +1214,329 @@ afw_crypto_function_execute_crypto_derive_key(
     OPENSSL_cleanse(out, (size_t)length_octets);
     free(out);
     return result;
+}
+
+
+/*
+ * Adaptive function: crypto_seal
+ *
+ * afw_crypto_function_execute_crypto_seal
+ *
+ * See afw_crypto_function_bindings.h for more information.
+ *
+ * Convenience for AES-GCM encryption: generates an IV, encrypts data, and
+ * returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }.
+ * Equivalent to crypto_encrypt({ name: "AES-GCM" }, key, data) with an
+ * auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to
+ * store the result. Requires execute access.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function crypto_seal(
+ *       key: any,
+ *       data: any
+ *   ): (object _AdaptiveCryptoEncryptResult_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *
+ *   data - (any dataType) Plaintext (base64Binary or hexBinary). Use
+ *       encode_as_base64Binary() for UTF-8 text.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCryptoEncryptResult_) Sealed object with algorithm,
+ *       keyLength, iv, tag, and ciphertext.
+ */
+const afw_value_t *
+afw_crypto_function_execute_crypto_seal(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *key_v;
+    const afw_value_t *data_v;
+    const afw_memory_t *plaintext;
+    afw_crypto_resolved_key_t *rk;
+    EVP_CIPHER_CTX *ctx = NULL;
+    const EVP_CIPHER *cipher;
+    unsigned char iv_buf[AFW_CRYPTO_AES_GCM_IV_LEN];
+    unsigned char tag[AFW_CRYPTO_AES_GCM_TAG_LEN];
+    unsigned char *out = NULL;
+    int out_len = 0;
+    int len = 0;
+    afw_integer_t key_bits;
+    const afw_object_t *result_obj;
+    afw_memory_t mem;
+    afw_octet_t *copy;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(key_v, 1);
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(data_v, 2);
+
+    plaintext = afw_crypto_internal_require_binary(data_v, x->xctx);
+    impl_check_input_size(plaintext->size, x->xctx);
+
+    rk = afw_crypto_internal_resolve_key(key_v, &impl_usage_encrypt,
+        false, x->p, x->xctx);
+
+    if (rk->size == 16) {
+        key_bits = 128;
+        cipher = EVP_aes_128_gcm();
+    }
+    else if (rk->size == 32) {
+        key_bits = 256;
+        cipher = EVP_aes_256_gcm();
+    }
+    else {
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(arg_error,
+            "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
+            x->xctx);
+        return NULL;
+    }
+
+    if (RAND_bytes(iv_buf, AFW_CRYPTO_AES_GCM_IV_LEN) != 1) {
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(general,
+            "error:crypto: RAND_bytes failed for IV", x->xctx);
+    }
+
+    ctx = EVP_CIPHER_CTX_new();
+    out = malloc(plaintext->size + 16);
+    if (!ctx || !out) {
+        free(out);
+        if (ctx) {
+            EVP_CIPHER_CTX_free(ctx);
+        }
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(general, "error:crypto: out of memory", x->xctx);
+    }
+
+    if (EVP_EncryptInit_ex(ctx, cipher, NULL, NULL, NULL) != 1 ||
+        EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN,
+            AFW_CRYPTO_AES_GCM_IV_LEN, NULL) != 1 ||
+        EVP_EncryptInit_ex(ctx, NULL, NULL, rk->ptr, iv_buf) != 1 ||
+        EVP_EncryptUpdate(ctx, out, &out_len, plaintext->ptr,
+            (int)plaintext->size) != 1)
+    {
+        free(out);
+        EVP_CIPHER_CTX_free(ctx);
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(general, "error:crypto: seal encrypt failed",
+            x->xctx);
+    }
+    len = out_len;
+    if (EVP_EncryptFinal_ex(ctx, out + len, &out_len) != 1 ||
+        EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_GET_TAG,
+            AFW_CRYPTO_AES_GCM_TAG_LEN, tag) != 1)
+    {
+        free(out);
+        EVP_CIPHER_CTX_free(ctx);
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(general, "error:crypto: seal encrypt final failed",
+            x->xctx);
+    }
+    len += out_len;
+    EVP_CIPHER_CTX_free(ctx);
+    afw_crypto_internal_resolved_key_release(rk, x->xctx);
+
+    result_obj = afw_object_create(x->p, x->xctx);
+    afw_object_meta_set_object_type_id(result_obj,
+        afw_crypto_s__AdaptiveCryptoEncryptResult_, x->xctx);
+    afw_object_set_property_as_string_from_utf8_z(result_obj,
+        afw_crypto_s_algorithm, "AES-GCM", x->xctx);
+    afw_object_set_property_as_integer(result_obj, afw_crypto_s_keyLength,
+        key_bits, x->xctx);
+
+    copy = afw_pool_malloc(x->p, (afw_size_t)len, x->xctx);
+    memcpy(copy, out, (size_t)len);
+    free(out);
+    mem.ptr = copy;
+    mem.size = (afw_size_t)len;
+    afw_object_set_property_as_base64Binary(result_obj,
+        afw_crypto_s_ciphertext, &mem, x->xctx);
+
+    mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_IV_LEN, x->xctx);
+    memcpy((void *)mem.ptr, iv_buf, AFW_CRYPTO_AES_GCM_IV_LEN);
+    mem.size = AFW_CRYPTO_AES_GCM_IV_LEN;
+    afw_object_set_property_as_base64Binary(result_obj, afw_crypto_s_iv,
+        &mem, x->xctx);
+
+    mem.ptr = afw_pool_malloc(x->p, AFW_CRYPTO_AES_GCM_TAG_LEN, x->xctx);
+    memcpy((void *)mem.ptr, tag, AFW_CRYPTO_AES_GCM_TAG_LEN);
+    mem.size = AFW_CRYPTO_AES_GCM_TAG_LEN;
+    OPENSSL_cleanse(tag, sizeof(tag));
+    afw_object_set_property_as_base64Binary(result_obj, afw_crypto_s_tag,
+        &mem, x->xctx);
+
+    return afw_value_create_unmanaged_object(result_obj, x->p, x->xctx);
+}
+
+
+/*
+ * Adaptive function: crypto_unseal
+ *
+ * afw_crypto_function_execute_crypto_unseal
+ *
+ * See afw_crypto_function_bindings.h for more information.
+ *
+ * Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1)
+ * an object with iv, tag, and ciphertext as base64Binary/hexBinary or as
+ * base64/hex strings; (2) a string of pure JSON with those properties as base64
+ * strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext
+ * octets. Requires execute access.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function crypto_unseal(
+ *       key: any,
+ *       sealed: any
+ *   ): base64Binary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *
+ *   sealed - (any dataType) Sealed object or pure JSON string.
+ *
+ * Returns:
+ *
+ *   (base64Binary) Plaintext octets. Use decode_to_string() for UTF-8 text.
+ */
+const afw_value_t *
+afw_crypto_function_execute_crypto_unseal(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *key_v;
+    const afw_value_t *sealed_v;
+    const afw_object_t *sealed_obj;
+    const afw_memory_t *iv;
+    const afw_memory_t *tag;
+    const afw_memory_t *ciphertext;
+    afw_crypto_resolved_key_t *rk;
+    EVP_CIPHER_CTX *ctx = NULL;
+    const EVP_CIPHER *cipher;
+    unsigned char *out = NULL;
+    int out_len = 0;
+    int len = 0;
+    afw_memory_t mem;
+    afw_octet_t *copy;
+    const afw_utf8_t *json_s;
+    const afw_value_t *parsed;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(key_v, 1);
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(sealed_v, 2);
+
+    if (AFW_VALUE_IS_DATA_TYPE(sealed_v, string)) {
+        json_s = &((const afw_value_string_t *)sealed_v)->internal;
+        parsed = afw_json_to_value(json_s, NULL, x->p, x->xctx);
+        if (!parsed || !AFW_VALUE_IS_DATA_TYPE(parsed, object)) {
+            AFW_THROW_ERROR_Z(arg_error,
+                "error:crypto:expected_binary: sealed string must be JSON object",
+                x->xctx);
+        }
+        sealed_obj = ((const afw_value_object_t *)parsed)->internal;
+    }
+    else if (AFW_VALUE_IS_DATA_TYPE(sealed_v, object)) {
+        sealed_obj = ((const afw_value_object_t *)sealed_v)->internal;
+    }
+    else {
+        AFW_THROW_ERROR_Z(arg_error,
+            "error:crypto:expected_binary: sealed must be object or JSON string",
+            x->xctx);
+        return NULL;
+    }
+
+    iv = afw_crypto_internal_object_get_binary_or_b64string(sealed_obj,
+        afw_crypto_s_iv, true, "error:crypto:missing_iv: iv required",
+        x->p, x->xctx);
+    tag = afw_crypto_internal_object_get_binary_or_b64string(sealed_obj,
+        afw_crypto_s_tag, true, "error:crypto:missing_tag: tag required",
+        x->p, x->xctx);
+    ciphertext = afw_crypto_internal_object_get_binary_or_b64string(sealed_obj,
+        afw_crypto_s_ciphertext, true,
+        "error:crypto:expected_binary: ciphertext required",
+        x->p, x->xctx);
+
+    if (tag->size != AFW_CRYPTO_AES_GCM_TAG_LEN) {
+        AFW_THROW_ERROR_Z(arg_error,
+            "error:crypto:invalid_tag_length: tag must be 16 octets",
+            x->xctx);
+    }
+    impl_check_input_size(ciphertext->size, x->xctx);
+
+    rk = afw_crypto_internal_resolve_key(key_v, &impl_usage_decrypt,
+        false, x->p, x->xctx);
+
+    if (rk->size == 16) {
+        cipher = EVP_aes_128_gcm();
+    }
+    else if (rk->size == 32) {
+        cipher = EVP_aes_256_gcm();
+    }
+    else {
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(arg_error,
+            "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
+            x->xctx);
+        return NULL;
+    }
+
+    ctx = EVP_CIPHER_CTX_new();
+    out = malloc(ciphertext->size + 16);
+    if (!ctx || !out) {
+        free(out);
+        if (ctx) {
+            EVP_CIPHER_CTX_free(ctx);
+        }
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(general, "error:crypto: unseal setup failed",
+            x->xctx);
+    }
+
+    if (EVP_DecryptInit_ex(ctx, cipher, NULL, NULL, NULL) != 1 ||
+        EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, (int)iv->size,
+            NULL) != 1 ||
+        EVP_DecryptInit_ex(ctx, NULL, NULL, rk->ptr, iv->ptr) != 1 ||
+        EVP_DecryptUpdate(ctx, out, &out_len, ciphertext->ptr,
+            (int)ciphertext->size) != 1 ||
+        EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG,
+            AFW_CRYPTO_AES_GCM_TAG_LEN, (void *)tag->ptr) != 1)
+    {
+        free(out);
+        EVP_CIPHER_CTX_free(ctx);
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(general, "error:crypto:decryption_failed", x->xctx);
+    }
+    len = out_len;
+    if (EVP_DecryptFinal_ex(ctx, out + len, &out_len) != 1) {
+        free(out);
+        EVP_CIPHER_CTX_free(ctx);
+        afw_crypto_internal_resolved_key_release(rk, x->xctx);
+        AFW_THROW_ERROR_Z(general, "error:crypto:decryption_failed", x->xctx);
+    }
+    len += out_len;
+    EVP_CIPHER_CTX_free(ctx);
+    afw_crypto_internal_resolved_key_release(rk, x->xctx);
+
+    copy = afw_pool_malloc(x->p, (afw_size_t)len, x->xctx);
+    memcpy(copy, out, (size_t)len);
+    OPENSSL_cleanse(out, (size_t)len);
+    free(out);
+    mem.ptr = copy;
+    mem.size = (afw_size_t)len;
+    return afw_value_create_unmanaged_base64Binary(&mem, x->p, x->xctx);
 }

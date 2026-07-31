@@ -640,7 +640,7 @@ impl_1_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2638.pub
+    &afw_crypto_self_v_zz__2645.pub
 };
 
 static const afw_runtime_property_t
@@ -752,7 +752,7 @@ impl_10_property_dataType = {
 static const afw_runtime_property_t
 impl_10_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2639.pub
+    &afw_crypto_self_v_zz__2646.pub
 };
 
 static const afw_runtime_property_t *
@@ -1441,7 +1441,7 @@ impl_8_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2640.pub
+    &afw_crypto_self_v_zz__2647.pub
 };
 
 static const afw_runtime_property_t
@@ -1954,7 +1954,7 @@ impl_16_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_16_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2641.pub
+    &afw_crypto_self_v_zz__2648.pub
 };
 
 static const afw_runtime_property_t
@@ -2060,7 +2060,7 @@ impl_21_property_category = {
 static const afw_runtime_property_t
 impl_21_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2642.pub
+    &afw_crypto_self_v_zz__2649.pub
 };
 
 static const afw_runtime_property_t *

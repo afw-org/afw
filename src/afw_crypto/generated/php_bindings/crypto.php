@@ -322,6 +322,65 @@ class crypto
     }
 
     /**
+     * crypto_seal()
+     *
+     * Convenience for AES-GCM encryption: generates an IV, encrypts data, and
+     * returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }.
+     * Equivalent to crypto_encrypt({ name: "AES-GCM" }, key, data) with an
+     * auto-generated IV. Use stringify() (and optional pure-JSON field
+     * mapping) to store the result. Requires execute access.
+     *
+     * @param  $key Key material, CryptoKey, or key reference.
+     * @param  $data Plaintext (base64Binary or hexBinary). Use
+     *               encode_as_base64Binary() for UTF-8 text.
+     *
+     * @return object Sealed object with algorithm, keyLength, iv, tag, and
+     *                ciphertext.
+     */
+    public function crypto_seal(, $key, $data)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "crypto_seal");
+
+        /* pass along required parameters to the request payload */
+        $request->set("key", $key);
+        $request->set("data", $data);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * crypto_unseal()
+     *
+     * Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may
+     * be: (1) an object with iv, tag, and ciphertext as
+     * base64Binary/hexBinary or as base64/hex strings; (2) a string of pure
+     * JSON with those properties as base64 strings (e.g. after stringify of a
+     * JSON-friendly bag). Returns plaintext octets. Requires execute access.
+     *
+     * @param  $key Key material, CryptoKey, or key reference.
+     * @param  $sealed Sealed object or pure JSON string.
+     *
+     * @return base64Binary Plaintext octets. Use decode_to_string() for UTF-8
+     *                      text.
+     */
+    public function crypto_unseal(, $key, $sealed)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "crypto_unseal");
+
+        /* pass along required parameters to the request payload */
+        $request->set("key", $key);
+        $request->set("sealed", $sealed);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * crypto_version_info()
      *
      * Returns runtime OpenSSL and afw_crypto version information and the list

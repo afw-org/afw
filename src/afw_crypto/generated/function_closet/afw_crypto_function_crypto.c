@@ -495,6 +495,102 @@ afw_crypto_function_execute_crypto_import_key(
 
 
 /*
+ * Adaptive function: crypto_seal
+ *
+ * afw_crypto_function_execute_crypto_seal
+ *
+ * See afw_crypto_function_bindings.h for more information.
+ *
+ * Convenience for AES-GCM encryption: generates an IV, encrypts data, and
+ * returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }.
+ * Equivalent to crypto_encrypt({ name: "AES-GCM" }, key, data) with an
+ * auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to
+ * store the result. Requires execute access.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function crypto_seal(
+ *       key: any,
+ *       data: any
+ *   ): (object _AdaptiveCryptoEncryptResult_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *
+ *   data - (any dataType) Plaintext (base64Binary or hexBinary). Use
+ *       encode_as_base64Binary() for UTF-8 text.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCryptoEncryptResult_) Sealed object with algorithm,
+ *       keyLength, iv, tag, and ciphertext.
+ */
+const afw_value_t *
+afw_crypto_function_execute_crypto_seal(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: crypto_unseal
+ *
+ * afw_crypto_function_execute_crypto_unseal
+ *
+ * See afw_crypto_function_bindings.h for more information.
+ *
+ * Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1)
+ * an object with iv, tag, and ciphertext as base64Binary/hexBinary or as
+ * base64/hex strings; (2) a string of pure JSON with those properties as base64
+ * strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext
+ * octets. Requires execute access.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function crypto_unseal(
+ *       key: any,
+ *       sealed: any
+ *   ): base64Binary;
+ * ```
+ *
+ * Parameters:
+ *
+ *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *
+ *   sealed - (any dataType) Sealed object or pure JSON string.
+ *
+ * Returns:
+ *
+ *   (base64Binary) Plaintext octets. Use decode_to_string() for UTF-8 text.
+ */
+const afw_value_t *
+afw_crypto_function_execute_crypto_unseal(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: crypto_version_info
  *
  * afw_crypto_function_execute_crypto_version_info

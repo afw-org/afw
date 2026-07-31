@@ -23,6 +23,8 @@ our @EXPORT_OK = qw(
     crypto_hmac 
     crypto_hmac_verify 
     crypto_import_key 
+    crypto_seal 
+    crypto_unseal 
     crypto_version_info 
 );
 
@@ -234,6 +236,45 @@ Optional usages; defaults depend on algorithm family.
 
 If true, crypto_export_key may export raw key. Default false.
 
+=head3 crypto_seal
+
+Convenience for AES-GCM encryption: generates an IV, encrypts data, and
+returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }.
+Equivalent to crypto_encrypt({ name: "AES-GCM" }, key, data) with an
+auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to
+store the result. Requires execute access.
+Seal binary data (AES-GCM)
+
+=head4 Parameters
+
+    $key
+
+Key material, CryptoKey, or key reference.
+
+    $data
+
+Plaintext (base64Binary or hexBinary). Use encode_as_base64Binary() for UTF-8
+text.
+
+=head3 crypto_unseal
+
+Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1)
+an object with iv, tag, and ciphertext as base64Binary/hexBinary or as
+base64/hex strings; (2) a string of pure JSON with those properties as base64
+strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext
+octets. Requires execute access.
+Unseal AES-GCM sealed data
+
+=head4 Parameters
+
+    $key
+
+Key material, CryptoKey, or key reference.
+
+    $sealed
+
+Sealed object or pure JSON string.
+
 =head3 crypto_version_info
 
 Returns runtime OpenSSL and afw_crypto version information and the list of
@@ -380,6 +421,30 @@ sub crypto_import_key {
 
     if (defined $extractable)
         $request->set("extractable", $extractable);
+
+    return $request->getResult();
+}
+
+sub crypto_seal {
+    my ($key, $data) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "crypto_seal");
+    $request->set("key", $key);
+    $request->set("data", $data);
+
+    return $request->getResult();
+}
+
+sub crypto_unseal {
+    my ($key, $sealed) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "crypto_unseal");
+    $request->set("key", $key);
+    $request->set("sealed", $sealed);
 
     return $request->getResult();
 }

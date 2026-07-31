@@ -1826,6 +1826,322 @@ impl_crypto_import_key = {
     &afw_crypto_boolean_self_v_true,
 };
 
+/* ---------- crypto_seal ---------- */
+
+static const afw_value_function_definition_t
+impl_crypto_seal;
+
+static const afw_utf8_t
+impl_object_path__crypto_seal =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/crypto_seal");
+
+static const afw_runtime_object_indirect_t
+impl_object__crypto_seal = {
+    {
+        NULL,
+        NULL,
+        NULL, /* Resolved at runtime. */
+        {
+            NULL,
+            NULL,
+            &afw_crypto_self_s_crypto_seal,
+            &afw_crypto_self_s__AdaptiveFunction_,
+            &impl_object_path__crypto_seal
+        }
+    },
+    (void *)&impl_crypto_seal
+};
+
+static const afw_value_function_parameter_t
+impl_crypto_seal_returns = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_crypto_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_crypto_self_v_object,
+    &afw_crypto_self_v__AdaptiveCryptoEncryptResult_,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_zz__2636,
+    &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_crypto_seal_parameter_1 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_crypto_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_key,
+    NULL,
+    &afw_crypto_self_v_zz__Key_material__CryptoKey__or_key_reference_,
+    &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_crypto_seal_parameter_2 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_crypto_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_data,
+    NULL,
+    &afw_crypto_self_v_zz__2637,
+    &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t *
+impl_crypto_seal_parameters[] = {
+    &impl_crypto_seal_parameter_1,
+    &impl_crypto_seal_parameter_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_crypto_seal_sideEffects[] = {
+    AFW_UTF8_LITERAL("Other"),
+    { NULL }
+};
+
+static const afw_value_function_definition_t
+impl_crypto_seal = {
+    {NULL},
+    (const afw_object_t *)&impl_object__crypto_seal,
+    &afw_crypto_self_v_crypto,
+    &afw_crypto_self_v_crypto_seal,
+    &afw_crypto_self_v_zz___afw__AdaptiveFunction__crypto_seal,
+    &afw_crypto_self_v_crypto_seal,
+    &afw_crypto_self_v_crypto_seal,
+    &afw_crypto_self_v_cryptoSeal,
+    &afw_crypto_self_v_afwCryptoSeal,
+    &afw_crypto_self_v_zz__Seal_binary_data__AES_GCM_,
+    &afw_crypto_self_v_zz__2638,
+    &afw_crypto_self_v_zz__2639,
+    &afw_crypto_self_v_zz__2640,
+    NULL,
+    afw_function_execute_requiresExecuteAccess_wrapper,
+    afw_crypto_function_execute_crypto_seal,
+    NULL,
+    &afw_crypto_integer_self_v_2,
+    &afw_crypto_integer_self_v_2,
+    &impl_crypto_seal_parameters[0],
+    2,
+    &impl_crypto_seal_returns,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_zz__,
+    NULL,
+    &impl_crypto_seal_sideEffects[0],
+    0, /* Not a data type method. */
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_true,
+};
+
+/* ---------- crypto_unseal ---------- */
+
+static const afw_value_function_definition_t
+impl_crypto_unseal;
+
+static const afw_utf8_t
+impl_object_path__crypto_unseal =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/crypto_unseal");
+
+static const afw_runtime_object_indirect_t
+impl_object__crypto_unseal = {
+    {
+        NULL,
+        NULL,
+        NULL, /* Resolved at runtime. */
+        {
+            NULL,
+            NULL,
+            &afw_crypto_self_s_crypto_unseal,
+            &afw_crypto_self_s__AdaptiveFunction_,
+            &impl_object_path__crypto_unseal
+        }
+    },
+    (void *)&impl_crypto_unseal
+};
+
+static const afw_value_function_parameter_t
+impl_crypto_unseal_returns = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_crypto_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_crypto_self_v_base64Binary,
+    NULL,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_zz__Plaintext_octets__Use_decode_to_string___for_UTF_8_text_,
+    &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_crypto_unseal_parameter_1 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_crypto_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_key,
+    NULL,
+    &afw_crypto_self_v_zz__Key_material__CryptoKey__or_key_reference_,
+    &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_crypto_unseal_parameter_2 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_crypto_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_sealed,
+    NULL,
+    &afw_crypto_self_v_zz__Sealed_object_or_pure_JSON_string_,
+    &afw_crypto_integer_self_v_zz___1,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t *
+impl_crypto_unseal_parameters[] = {
+    &impl_crypto_unseal_parameter_1,
+    &impl_crypto_unseal_parameter_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_crypto_unseal_sideEffects[] = {
+    AFW_UTF8_LITERAL("Other"),
+    { NULL }
+};
+
+static const afw_value_function_definition_t
+impl_crypto_unseal = {
+    {NULL},
+    (const afw_object_t *)&impl_object__crypto_unseal,
+    &afw_crypto_self_v_crypto,
+    &afw_crypto_self_v_crypto_unseal,
+    &afw_crypto_self_v_zz___afw__AdaptiveFunction__crypto_unseal,
+    &afw_crypto_self_v_crypto_unseal,
+    &afw_crypto_self_v_crypto_unseal,
+    &afw_crypto_self_v_cryptoUnseal,
+    &afw_crypto_self_v_afwCryptoUnseal,
+    &afw_crypto_self_v_zz__Unseal_AES_GCM_sealed_data,
+    &afw_crypto_self_v_zz__2641,
+    &afw_crypto_self_v_zz___key__any__sealed__any___base64Binary,
+    &afw_crypto_self_v_zz__2642,
+    NULL,
+    afw_function_execute_requiresExecuteAccess_wrapper,
+    afw_crypto_function_execute_crypto_unseal,
+    NULL,
+    &afw_crypto_integer_self_v_2,
+    &afw_crypto_integer_self_v_2,
+    &impl_crypto_unseal_parameters[0],
+    2,
+    &impl_crypto_unseal_returns,
+    NULL,
+    NULL,
+    &afw_crypto_self_v_zz__,
+    NULL,
+    &impl_crypto_unseal_sideEffects[0],
+    0, /* Not a data type method. */
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_false,
+    &afw_crypto_boolean_self_v_true,
+};
+
 /* ---------- crypto_version_info ---------- */
 
 static const afw_value_function_definition_t
@@ -1896,9 +2212,9 @@ impl_crypto_version_info = {
     &afw_crypto_self_v_cryptoVersionInfo,
     &afw_crypto_self_v_afwCryptoVersionInfo,
     &afw_crypto_self_v_zz__Crypto_extension_version_info,
-    &afw_crypto_self_v_zz__2636,
+    &afw_crypto_self_v_zz__2643,
     &afw_crypto_self_v_zz_______object__AdaptiveCryptoVersionInfo__,
-    &afw_crypto_self_v_zz__2637,
+    &afw_crypto_self_v_zz__2644,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_crypto_function_execute_crypto_version_info,
@@ -1934,6 +2250,8 @@ impl_function_bindings[] = {
     &impl_crypto_hmac,
     &impl_crypto_hmac_verify,
     &impl_crypto_import_key,
+    &impl_crypto_seal,
+    &impl_crypto_unseal,
     &impl_crypto_version_info,
     NULL
 };

@@ -986,3 +986,45 @@ afw_crypto_internal_object_get_binary(
     }
     return afw_crypto_internal_require_binary(v, xctx);
 }
+
+const afw_memory_t *
+afw_crypto_internal_object_get_binary_or_b64string(
+    const afw_object_t *obj,
+    const afw_utf8_t *name,
+    afw_boolean_t required,
+    const char *missing_prefix,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *v;
+    afw_memory_t *mem;
+    const afw_utf8_t *s;
+
+    v = afw_object_get_property(obj, name, xctx);
+    if (!v) {
+        if (required) {
+            afw_error_set_z(afw_error_code_arg_error, AFW__FILE_LINE__,
+                missing_prefix, xctx);
+            longjmp(xctx->current_try->throw_jmp_buf,
+                (int)afw_error_code_arg_error);
+        }
+        return NULL;
+    }
+    if (AFW_VALUE_IS_DATA_TYPE(v, base64Binary) ||
+        AFW_VALUE_IS_DATA_TYPE(v, hexBinary))
+    {
+        return afw_crypto_internal_require_binary(v, xctx);
+    }
+    if (AFW_VALUE_IS_DATA_TYPE(v, string)) {
+        s = &((const afw_value_string_t *)v)->internal;
+        mem = afw_pool_calloc_type(p, afw_memory_t, xctx);
+        /* JSON-friendly bags use base64 text in string properties. */
+        afw_memory_decode_base64(mem, s, p, xctx);
+        return mem;
+    }
+    afw_error_set_z(afw_error_code_arg_error, AFW__FILE_LINE__,
+        "error:crypto:expected_binary: sealed field must be binary or base64/hex string",
+        xctx);
+    longjmp(xctx->current_try->throw_jmp_buf, (int)afw_error_code_arg_error);
+    return NULL;
+}

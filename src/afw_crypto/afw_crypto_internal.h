@@ -156,6 +156,19 @@ afw_crypto_internal_object_get_binary(
     const char *missing_prefix,
     afw_xctx_t *xctx);
 
+/**
+ * @brief Get binary property that may be base64Binary/hexBinary or base64/hex string.
+ * @param p pool for decoded memory when value is a string.
+ */
+const afw_memory_t *
+afw_crypto_internal_object_get_binary_or_b64string(
+    const afw_object_t *obj,
+    const afw_utf8_t *name,
+    afw_boolean_t required,
+    const char *missing_prefix,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 AFW_END_DECLARES
 
 #endif /* __AFW_CRYPTO_INTERNAL_H__ */

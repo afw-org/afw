@@ -385,7 +385,8 @@ Optional loadable extension **`afw_crypto`** (`libafwcrypto`, OpenSSL **libcrypt
 | `crypto_digest` | SHA-256 / SHA-512 (pure; no execute access) |
 | `crypto_hmac` / `crypto_hmac_verify` | HMAC-SHA-256 / HMAC-SHA-512 |
 | `crypto_import_key` / `crypto_generate_key` / `crypto_export_key` / `crypto_destroy_key` | Process keystore handles |
-| `crypto_encrypt` / `crypto_decrypt` | AES-GCM (auto IV; tag on algorithm object) |
+| `crypto_encrypt` / `crypto_decrypt` | AES-GCM (auto IV; tag on algorithm object) — hard path |
+| `crypto_seal` / `crypto_unseal` | AES-GCM sealed bag / unseal (object or pure JSON string) — easy path |
 | `crypto_derive_key` | PBKDF2-HMAC-SHA256 (default **600000** iterations, min 100000) |
 
 Binary args accept **base64Binary** or **hexBinary**. Keys may be raw binary, a CryptoKey (`keyId`), or a reference such as `{ "from": "environment", "name": "APP_KEY", "encoding": "base64" }` (**live `getenv`**, not ambient `environment::`) or `{ "from": "file", "path": "…" }` under **`rootFilePaths`**.
