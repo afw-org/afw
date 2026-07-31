@@ -364,6 +364,7 @@ PragmaValue ::=
     '#list_expression' '(' Expression ')' |
     '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')' |
     '#template_definition' '(' Expression ( ',' Expression )* ')'
+/* #closure_binding is recognized but always a compile error (runtime-only).  */
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */

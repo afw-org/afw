@@ -27,6 +27,22 @@ return #nosuch(1);
 #typecheck;
 return 0;
 
+//? test: pragma-closure-binding-not-recompilable-value
+//? description: #closure_binding known but runtime-only (not "unknown pragma")
+//? expect: error
+//? source: ...
+
+/* Message includes: runtime-only (closed-over scope) and cannot be recompiled */
+return #closure_binding(#script_function(a,#block(return(a))));
+
+//? test: pragma-closure-binding-not-recompilable-statement
+//? description: #closure_binding as statement also rejected clearly
+//? expect: error
+//? source: ...
+
+#closure_binding(#script_function(a,#block(return(a))));
+return 0;
+
 //? test: pragma-block-literal
 //? description: #block(add(1,2)) compiles and evaluates to 3
 //? skip: false

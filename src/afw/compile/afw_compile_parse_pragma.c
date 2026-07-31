@@ -141,6 +141,20 @@ impl_pragma_name_is(
 
 
 /*
+ * #closure_binding is emitted by decompile of a live closure. It holds a
+ * runtime enclosing scope that cannot be reconstructed from text alone.
+ * Recognized so the error is intentional, not "unknown pragma".
+ */
+static void
+impl_pragma_closure_binding_not_recompilable(afw_compile_parser_t *parser)
+{
+    AFW_COMPILE_THROW_ERROR_Z(
+        "#closure_binding is runtime-only (closed-over scope) and cannot "
+        "be recompiled from decompile text");
+}
+
+
+/*
  * Map decompile string ("const", "let", …) to assignment_type enum.
  */
 static afw_compile_internal_assignment_type_t
@@ -511,6 +525,11 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
         return impl_parse_pragma_block(parser);
     }
 
+    if (impl_pragma_name_is(parser, "closure_binding")) {
+        impl_pragma_closure_binding_not_recompilable(parser);
+        return NULL; /* not reached */
+    }
+
     /*
      * if (impl_pragma_name_is(parser, "typecheck")) {
      *     …
@@ -538,6 +557,8 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
  *     '#list_expression' '(' Expression ')' |
  *     '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')' |
  *     '#template_definition' '(' Expression ( ',' Expression )* ')'
+ *
+ *# #closure_binding is recognized but always a compile error (runtime-only).
  *
  *<<<ebnf*/
 /**
@@ -570,6 +591,11 @@ afw_compile_parse_PragmaValue(afw_compile_parser_t *parser)
 
     if (impl_pragma_name_is(parser, "template_definition")) {
         return impl_parse_pragma_template_definition(parser);
+    }
+
+    if (impl_pragma_name_is(parser, "closure_binding")) {
+        impl_pragma_closure_binding_not_recompilable(parser);
+        return NULL; /* not reached */
     }
 
     /*

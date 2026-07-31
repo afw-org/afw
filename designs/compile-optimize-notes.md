@@ -78,3 +78,6 @@ Implications when we touch this area later:
 Decompile of a **runtime** closure is `#closure_binding(#script_function(...))`. The binding holds a live `enclosing_lexical_scope` (xctx scope), which is not reconstructible from decompile text alone (free variables like outer `x` need that scope).
 
 Do **not** implement a fake `#closure_binding` pragma that drops the scope: calls with free vars would mis-evaluate. Treat runtime-closure decompile as **display / debug** unless a future design serializes closed-over bindings deliberately.
+
+**Compile:** `#closure_binding` is a **known** pragma that always fails with a clear message (not “unknown pragma”):
+`#closure_binding is runtime-only (closed-over scope) and cannot be recompiled from decompile text`.
