@@ -1047,6 +1047,29 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser);
 
 
 
+/**
+ * @brief Parse PragmaStatement (#pragma_identifier in statement position).
+ * @param parser
+ * @return value if the pragma produces one; throws if unknown or invalid.
+ *
+ * Current token must be pragma_identifier. See afw_compile_parse_pragma.c.
+ */
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser);
+
+
+/**
+ * @brief Parse PragmaValue (#pragma_identifier in value/expression position).
+ * @param parser
+ * @return adaptive value for the pragma; throws if unknown or invalid.
+ *
+ * Current token must be pragma_identifier. See afw_compile_parse_pragma.c.
+ */
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_compile_parse_PragmaValue(afw_compile_parser_t *parser);
+
+
+
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_EntryFunctionLambdaOrVariableReference(
     afw_compile_parser_t *parser);

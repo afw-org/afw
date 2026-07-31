@@ -1349,6 +1349,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    IfStatement |
  *    InterfaceStatement |
  *    LetStatement |
+ *    PragmaStatement |
  *    ReturnStatement |
  *    SwitchStatement |
  *    TypeStatement |
@@ -1376,6 +1377,11 @@ afw_compile_parse_Statement(
         result = afw_compile_parse_StatementList(parser,
             NULL, true, false, false);
         return result;
+    }
+
+    /* If pragma_identifier, parse PragmaStatement. */
+    if (afw_compile_token_is(pragma_identifier)) {
+        return afw_compile_parse_PragmaStatement(parser);
     }
    
     /* If not assignment, process statement. */

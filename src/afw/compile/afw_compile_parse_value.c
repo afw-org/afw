@@ -677,7 +677,8 @@ afw_compile_parse_Literal(
  *         Evaluation |
  *         ParenthesizedExpression |
  *         TemplateString |
- *         CompileTimeSubstitution
+ *         CompileTimeSubstitution |
+ *         PragmaValue
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -727,6 +728,13 @@ afw_compile_parse_Value(afw_compile_parser_t *parser)
     {
         value = afw_compile_parse_CompileTimeSubstitution(parser);
         return value;
+    }
+
+    /* If next is pragma_identifier, parse PragmaValue. */
+    if (afw_compile_peek_next_token_is(pragma_identifier))
+    {
+        afw_compile_get_token();
+        return afw_compile_parse_PragmaValue(parser);
     }
 
     /* Invalid. */
