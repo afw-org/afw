@@ -69,9 +69,17 @@ export function afwCompileFromFile(client : any, file : string, compileType? : s
 }
 
 /**
- * Decompile an adaptive value to string.
+ * Decompile an adaptive value to a string of Adaptive IR (functional forms
+ * and #implementation_id(...) pragmas such as #script_function, #block,
+ * #assignment_target). This is not original source recovery and is not pure
+ * JSON — use stringify() for JSON of evaluated data, and compile(...,
+ * listing) for a human compiler listing with symbol tables. Many decompile
+ * forms recompile via the same IR; #closure_binding and #function_thunk are
+ * known rejects (runtime-only / C-side). Optional whitespace matches
+ * stringify/listing style (integer 0-10 or indent string).
  * 
- * @param {} value - Value to decompile.
+ * @param {} value - Value to decompile (may be unevaluated IR such as a
+ *     compiled script root).
  * 
  * @param {} whitespace - Add whitespace for readability if present and not 0.
  *     This parameter can be an integer between 0 and 10 or a string that is
@@ -79,7 +87,7 @@ export function afwCompileFromFile(client : any, file : string, compileType? : s
  *     resulting string. If 1 through 10 is specified, that number of spaces
  *     is used.
  * 
- * @returns {string} Decompiled value.
+ * @returns {string} Adaptive IR text for the value.
  */
 export function afwDecompile(client : any, value : any, whitespace? : any) : any {
 

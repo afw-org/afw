@@ -60,7 +60,10 @@ Returns the number of values in a bag
 =head3 compile_script
 
 Compile script value and return either an unevaluated adaptive value or a
-string containing the compiler listing.
+string containing the compiler listing. The listing is a human-oriented dump
+(value tree interleaved with source, plus ---Symbols tables) for Fiddle and
+debugging — not pure JSON (use stringify) and not Adaptive IR text (use
+decompile).
 Compile script value
 
 =head4 Parameters
@@ -71,10 +74,11 @@ script string to compile
 
     $listing
 
-If specified, a compiler listing is produced instead of an unevaluated
-compiled value.
+If specified, a human compiler listing is produced instead of an unevaluated
+compiled value (tree + ---Symbols; not recompilable IR). Use decompile() for
+Adaptive IR text and stringify() for pure JSON of evaluated data.
 
-This parameter can be an integer between 0 and 10 of a string that is used for
+This parameter can be an integer between 0 and 10 or a string that is used for
 indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
 

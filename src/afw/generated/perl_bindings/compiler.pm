@@ -72,14 +72,21 @@ For example, 'json', 'relaxed_json', 'script', 'template'
 
 =head3 decompile
 
-Decompile an adaptive value to string.
-Decompile value
+Decompile an adaptive value to a string of Adaptive IR (functional forms and
+#implementation_id(...) pragmas such as #script_function, #block,
+#assignment_target). This is not original source recovery and is not pure JSON
+— use stringify() for JSON of evaluated data, and compile(..., listing) for a
+human compiler listing with symbol tables. Many decompile forms recompile via
+the same IR; #closure_binding and #function_thunk are known rejects
+(runtime-only / C-side). Optional whitespace matches stringify/listing style
+(integer 0-10 or indent string).
+Decompile a value to Adaptive IR text
 
 =head4 Parameters
 
     $value
 
-Value to decompile.
+Value to decompile (may be unevaluated IR such as a compiled script root).
 
     $whitespace
 

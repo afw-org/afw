@@ -113,7 +113,14 @@ afw_function_execute_compile_from_file(
  *
  * See afw_function_bindings.h for more information.
  *
- * Decompile an adaptive value to string.
+ * Decompile an adaptive value to a string of Adaptive IR (functional forms and
+ * #implementation_id(...) pragmas such as #script_function, #block,
+ * #assignment_target). This is not original source recovery and is not pure
+ * JSON — use stringify() for JSON of evaluated data, and compile(..., listing)
+ * for a human compiler listing with symbol tables. Many decompile forms
+ * recompile via the same IR; #closure_binding and #function_thunk are known
+ * rejects (runtime-only / C-side). Optional whitespace matches
+ * stringify/listing style (integer 0-10 or indent string).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -129,7 +136,8 @@ afw_function_execute_compile_from_file(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to decompile.
+ *   value - (any dataType) Value to decompile (may be unevaluated IR such as a
+ *       compiled script root).
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
  *       present and not 0. This parameter can be an integer between 0 and 10 or
@@ -139,7 +147,7 @@ afw_function_execute_compile_from_file(
  *
  * Returns:
  *
- *   (string) Decompiled value.
+ *   (string) Adaptive IR text for the value.
  */
 const afw_value_t *
 afw_function_execute_decompile(

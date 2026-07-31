@@ -86,12 +86,20 @@ def compile_from_file(session, file, compileType=None):
 
 def decompile(session, value, whitespace=None):
     """
-    Decompile value
+    Decompile a value to Adaptive IR text
 
-    Decompile an adaptive value to string.
+    Decompile an adaptive value to a string of Adaptive IR (functional forms
+    and #implementation_id(...) pragmas such as #script_function, #block,
+    #assignment_target). This is not original source recovery and is not pure
+    JSON — use stringify() for JSON of evaluated data, and compile(...,
+    listing) for a human compiler listing with symbol tables. Many decompile
+    forms recompile via the same IR; #closure_binding and #function_thunk are
+    known rejects (runtime-only / C-side). Optional whitespace matches
+    stringify/listing style (integer 0-10 or indent string).
 
     Args:
-        value (object): Value to decompile.
+        value (object): Value to decompile (may be unevaluated IR such as a
+        compiled script root).
 
         whitespace (object): Add whitespace for readability if present and not
         0. This parameter can be an integer between 0 and 10 or a string that
@@ -100,7 +108,7 @@ def decompile(session, value, whitespace=None):
         spaces is used.
 
     Returns:
-        str: Decompiled value.
+        str: Adaptive IR text for the value.
     """
 
     request = session.Request()

@@ -31574,6 +31574,18 @@ afw_self_v_zz__2350 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2351 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2351)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2352 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2352)
+};
+
+const afw_value_string_t
 afw_self_v_zz__236 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__236)
@@ -37244,6 +37256,12 @@ afw_self_v_zz__Adaptive_Framework_extension_manifest_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Adaptive_IR_text_for_the_value_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_IR_text_for_the_value_)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Adaptive_compiler_related_functions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_compiler_related_functions)
@@ -39932,21 +39950,9 @@ afw_self_v_zz__Decoded_userinfo_part_of_URI_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Decompile_an_adaptive_value_to_string_ = {
+afw_self_v_zz__Decompile_a_value_to_Adaptive_IR_text = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Decompile_an_adaptive_value_to_string_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Decompile_value = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Decompile_value)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Decompiled_value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Decompiled_value_)
+    AFW_UTF8_LITERAL(AFW_Q_zz__Decompile_a_value_to_Adaptive_IR_text)
 };
 
 const afw_value_string_t
@@ -48251,12 +48257,6 @@ const afw_value_string_t
 afw_self_v_zz__Value_to_convert = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Value_to_convert)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Value_to_decompile_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Value_to_decompile_)
 };
 
 const afw_value_string_t
