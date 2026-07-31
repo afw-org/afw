@@ -108,7 +108,7 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 - Prefer **shared permanent Adaptive values** (generate bag / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
 - **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf.
 - **Managed object values**: container-aware `optional_release` / `clone_or_reference` paths that do **not** free an embedded dual-face header; `create_managed_object` requires a non-null object and takes a container hold.
-- Living design notes for maintainers: `memory-management.md` (not user docs).
+- Living design notes for maintainers: `designs/memory-management.md` (not user docs).
 
 ### Rebuild / recompile requirement
 

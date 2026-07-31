@@ -35,7 +35,7 @@
 #                 Created via allocate/create_unmanaged_<dataType>().
 #                 clone_or_reference returns the same instance (no clone).
 #
-# Create path depends on cType / directReturn (see memory-management.md phase 0a):
+# Create path depends on cType / directReturn (see designs/memory-management.md phase 0a):
 #   utf8/memory  — managed owns a byte copy after the header; slice available
 #   other embed  — managed memcpy of struct into header
 #   directReturn — store internal as-is; if internal is a pointer type, only

@@ -10,10 +10,10 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 | Document | Role |
 |----------|------|
 | **`beta-backlog.md`** (this file) | Working notes, plans, archaeology, half-decided design. Source of truth for “what we still need to remember.” |
-| **`memory-management.md`** | Living design notes for umbrella **#2** (long-running memory, value/object identity, escape). Discussion + decisions; not user docs. |
+| **`designs/`** | Per-issue / per-theme design pads (not user docs). See [`designs/README.md`](designs/README.md). |
+| **`designs/memory-management.md`** | Living design notes for umbrella **#2** (long-running memory, value/object identity, escape). |
 | **`whats_new.md`** | What **users** of AFW need to know about **`mgg-develop`** (behavior, APIs, migration). |
 | **GitHub issues** | Optional promotion when something needs discussion, an assignee, PR linkage, or is a real beta blocker. Prefer thematic umbrellas (e.g. language, memory) over one infinite meta-issue. |
-| **`issues.md`** | Temporary triage experiment; **not** the long-term backlog. Prefer this file. |
 
 ## Branch plan (as of mid‑2026)
 
@@ -61,10 +61,9 @@ Update this section if the plan changes.
 
 - **Default: new conversation per distinct issue** — keeps context size down; tools re-read code and this file as needed.
 - **Reopen an old chat** when that thread’s history is intentionally wanted in context.
-- **Durable knowledge** goes here, in **rules / `AGENTS.md` / code comments**, or git — not only in chat.
-- Ask the assistant to **update rules / this backlog** when something will matter in future sessions.
+- **Durable knowledge** goes here, in **rules / `AGENTS.md` / `designs/` / code comments**, or git — not only in chat.
+- Ask the assistant to **update rules / this backlog / designs** when something will matter in future sessions.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
-- **`issues.md`**: temporary Cursor triage dump; do not treat as canonical. Prefer this file + GitHub.
 - **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev` (implies `-j`). Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev`** (`--all --generate --clean --install --scan` + `-j`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
 
 ### Session wrap-up — 2026-07-20
@@ -237,7 +236,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 **Status:** pointer / **beta-relevant**
 
-- Umbrella **#2** (memory). Working design pad: [`memory-management.md`](memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
+- Umbrella **#2** (memory). Working design pad: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
 - **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats_new.md`.
   - Another reason **memory management / managed release / long-running escape** needs to be solid **before calling the tree beta**: scripts that snapshot often (or hold results) will stress pools and lifetimes harder than `qualifier::name` get.
   - Do **not** treat #9 as “done for beta” solely because the API exists; couple with #2 progress and real long-running exercise if tools use snapshots heavily.
@@ -265,7 +264,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 - **XACML extension** (other repo, started): thin layer — register XACML functions/types/combining algs in the **AFW environment** pointing at existing Adaptive execute paths; XACML compile looks up registry. Core stays Adaptive; XACML is not a second type system in base.
 - **Bag vs array:** There is **no** separate `bag` data type (old bag type caused pain; then **list**, then **array** for script/JSON familiarity — #48 leftovers). **Bag is real as semantics + bag-oriented functions** (multiset / XACML algebra “under the covers”); **runtime representation is `array`**. Touchy “don’t call bags arrays” people still get bag *functions*; script people get one sequence type.
 - **ECMAScript:** Adaptive Script is **not** ES and must differ where the problem set requires it; **avoid unmotivated differences**. Jeremy wants a **differences doc** (#22) and test262-derived tests to help ES programmers — not to make AFW into ES.
-- **Docs rule:** Core user/reference docs should **not** need to say “ECMAScript” or “XACML” except (1) Jeremy’s differences doc / language-compare material, (2) future **XACML extension** docs. Describe Adaptive on its own terms. Maintainer dumps (this file, `memory-management.md`) may still mention heritage.
+- **Docs rule:** Core user/reference docs should **not** need to say “ECMAScript” or “XACML” except (1) Jeremy’s differences doc / language-compare material, (2) future **XACML extension** docs. Describe Adaptive on its own terms. Maintainer dumps (this file, `designs/`) may still mention heritage.
 
 #### #55 ask vs already present
 
