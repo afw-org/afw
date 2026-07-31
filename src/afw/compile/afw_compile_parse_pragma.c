@@ -253,6 +253,178 @@ impl_parse_pragma_assignment_target(afw_compile_parser_t *parser)
 }
 
 
+/*
+ * #list_expression( Expression )
+ *
+ * Wrapper used for array spread entries. Matches decompile:
+ * #list_expression(internal).
+ */
+static const afw_value_t *
+impl_parse_pragma_list_expression(afw_compile_parser_t *parser)
+{
+    const afw_value_t *internal;
+    afw_size_t start_offset;
+
+    start_offset = parser->token->token_source_offset;
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(open_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '(' after #list_expression");
+    }
+
+    internal = afw_compile_parse_Expression(parser);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting ')' after #list_expression");
+    }
+
+    return afw_value_create_array_expression(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        internal, parser->p, parser->xctx);
+}
+
+
+/*
+ * #script_function( paramName*, body )
+ *
+ * paramName — string literal or bare Identifier (binding name).
+ * body      — Expression (often #block(...)).
+ *
+ * Param symbols are introduced in a new block before the body is parsed so
+ * the body can reference them. Matches decompile:
+ * #script_function("a",#block(return(add(a,1)))).
+ *
+ * Do not use peek_next_token while still needing the current token's payload:
+ * peek overwrites parser->token. Capture names first, or reparse from a saved
+ * source offset when a name turns out to be the start of the body Expression.
+ */
+static const afw_value_t *
+impl_parse_pragma_script_function(afw_compile_parser_t *parser)
+{
+    const afw_value_t *body;
+    const afw_value_block_t *block;
+    const afw_utf8_t *param_name;
+    afw_value_script_function_signature_t *signature;
+    afw_value_script_function_parameter_t *param;
+    afw_value_block_symbol_t *symbol;
+    apr_array_header_t *params;
+    afw_size_t start_offset;
+    afw_size_t depth;
+    afw_size_t name_source_offset;
+    afw_boolean_t have_body;
+    afw_boolean_t is_identifier_name;
+
+    start_offset = parser->token->token_source_offset;
+    depth = (parser->compiled_value->current_block)
+        ? parser->compiled_value->current_block->depth
+        : 0;
+
+    signature = afw_pool_calloc_type(parser->p,
+        afw_value_script_function_signature_t, parser->xctx);
+    params = apr_array_make(parser->apr_p, 4,
+        sizeof(afw_value_script_function_parameter_t *));
+    block = NULL;
+    body = NULL;
+    have_body = false;
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(open_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '(' after #script_function");
+    }
+
+    /*
+     * Always open a parameter block (even with zero params) so the function
+     * has a stable signature->block whose parent is the defining scope.
+     * That parent link is used when resolving enclosing scope at call time
+     * after #block unwrap renumbers depths.
+     */
+    block = afw_compile_parse_link_new_value_block(parser, start_offset);
+    signature->block = block;
+
+    /*
+     * Grammar: ( ParamName ',' )* Expression ')'
+     * ParamName is string or Identifier when the following token is ','.
+     * A name followed by anything else (including ')') starts the body.
+     */
+    for (;;) {
+        afw_compile_get_token();
+
+        if (afw_compile_token_is(close_parenthesis)) {
+            if (!have_body) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "#script_function requires a body Expression");
+            }
+            break;
+        }
+
+        if (have_body) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting ')' after #script_function body");
+        }
+
+        is_identifier_name = afw_compile_token_is_unqualified_identifier();
+        if (is_identifier_name || afw_compile_token_is(utf8_string)) {
+            /* Capture before any further get_token overwrites token fields. */
+            name_source_offset = parser->token->token_source_offset;
+            if (is_identifier_name) {
+                param_name = parser->token->identifier_name;
+                if (afw_compile_is_reserved_word(parser, param_name)) {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Parameter name can not be a reserved word");
+                }
+            }
+            else {
+                param_name = parser->token->string;
+            }
+
+            afw_compile_get_token();
+            if (afw_compile_token_is(comma)) {
+                param = afw_pool_calloc_type(parser->p,
+                    afw_value_script_function_parameter_t, parser->xctx);
+                param->name = param_name;
+                symbol = afw_compile_parse_add_symbol_entry(parser,
+                    param_name);
+                symbol->symbol_type = afw_value_block_symbol_type_parameter;
+                param->symbol = symbol;
+                APR_ARRAY_PUSH(params,
+                    afw_value_script_function_parameter_t *) = param;
+                continue;
+            }
+
+            /*
+             * Name is the start of the body Expression. Rewind to the name
+             * and parse a full Expression (e.g. a, "x", a+1, #block(...)).
+             */
+            afw_compile_restore_cursor(name_source_offset);
+            body = afw_compile_parse_Expression(parser);
+            have_body = true;
+            continue;
+        }
+
+        /* Body Expression that does not start with a name. */
+        afw_compile_reuse_token();
+        body = afw_compile_parse_Expression(parser);
+        have_body = true;
+    }
+
+    afw_compile_parse_pop_value_block(parser);
+
+    signature->count = (afw_size_t)params->nelts;
+    signature->parameters =
+        (const afw_value_script_function_parameter_t **)params->elts;
+
+    return afw_value_script_function_definition_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        depth, signature,
+        signature->returns, signature->count, signature->parameters,
+        body, parser->p, parser->xctx);
+}
+
+
 
 /*ebnf>>>
  *
@@ -304,7 +476,9 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
  *
  * PragmaValue ::=
  *     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
- *     '#assignment_target' '(' Expression ',' ( Identifier | String ) ')'
+ *     '#assignment_target' '(' Expression ',' ( Identifier | String ) ')' |
+ *     '#list_expression' '(' Expression ')' |
+ *     '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')'
  *
  *<<<ebnf*/
 /**
@@ -325,6 +499,14 @@ afw_compile_parse_PragmaValue(afw_compile_parser_t *parser)
 
     if (impl_pragma_name_is(parser, "assignment_target")) {
         return impl_parse_pragma_assignment_target(parser);
+    }
+
+    if (impl_pragma_name_is(parser, "list_expression")) {
+        return impl_parse_pragma_list_expression(parser);
+    }
+
+    if (impl_pragma_name_is(parser, "script_function")) {
+        return impl_parse_pragma_script_function(parser);
     }
 
     /*

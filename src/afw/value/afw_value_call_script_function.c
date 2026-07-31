@@ -125,19 +125,38 @@ impl_afw_value_optional_evaluate(
         enclosing_lexical_scope = self->enclosing_lexical_scope;
     }
 
-    /* If not closure, use the one at correct depth from caller scope chain. */
-    else {                                                                                                                                                        /* Find enclosing static scope. */
+    /*
+     * If not closure, use the one at correct depth from caller scope chain.
+     * Prefer signature->block->parent_block->depth when a parameter block
+     * exists: that is the defining scope. It stays correct after StatementList
+     * #block unwrap renumbers depths (script->depth may still hold the
+     * pre-unwrap value from compile).
+     */
+    else {
+        afw_size_t defining_depth;
+
+        defining_depth = script->depth;
+        if (script->signature && script->signature->block) {
+            if (script->signature->block->parent_block) {
+                defining_depth =
+                    script->signature->block->parent_block->depth;
+            }
+            else {
+                defining_depth = 0;
+            }
+        }
+
         for (
             enclosing_lexical_scope = caller_scope;
             (
                 enclosing_lexical_scope &&
-                enclosing_lexical_scope->block->depth > script->depth
+                enclosing_lexical_scope->block->depth > defining_depth
             );
             enclosing_lexical_scope =
                 enclosing_lexical_scope->parent_lexical_scope
         );
         if (!enclosing_lexical_scope ||
-            caller_scope->block->depth < script->depth)
+            caller_scope->block->depth < defining_depth)
         {
             AFW_THROW_ERROR_Z(general,
                 "Can not determine parent static scope for function",

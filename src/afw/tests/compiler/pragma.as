@@ -119,3 +119,77 @@ assert(evaluate(compile<script>(script(
     "#block(const(#assignment_target(\"const\",\"z\"),7,undefined),return(z))"
 ))) == 7);
 return 0;
+
+//? test: pragma-list-expression-roundtrip
+//? description: decompile/compile round-trip for array spread (#list_expression)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const a = [1, 2];\nreturn [...a, 3];"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(#list_expression(a),3)))");
+assert(evaluate(compile<script>(script(d))) == [1, 2, 3]);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-list-expression-direct
+//? description: #list_expression as spread entry inside array constructor IR
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",a),[10,20],undefined),return(array(#list_expression(a),30)))"
+))) == [10, 20, 30]);
+return 0;
+
+//? test: pragma-script-function-roundtrip
+//? description: decompile/compile round-trip for #script_function
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    'const f = function (a) { return a + 1; };\nreturn f(10);'
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",f),#script_function(\"a\",#block(return(add(a,1)))),undefined),return(f(10)))");
+assert(evaluate(compile<script>(script(d))) == 11);
+assert(decompile(compile<script>(script(d))) == d);
+return 0;
+
+//? test: pragma-script-function-direct
+//? description: #script_function with param name as identifier
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",f),#script_function(a,#block(return(multiply(a,2)))),undefined),return(f(7)))"
+))) == 14);
+return 0;
+
+//? test: pragma-script-function-multi-param
+//? description: #script_function with two params
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",f),#script_function(\"x\",\"y\",#block(return(add(x,y)))),undefined),return(f(3,4)))"
+))) == 7);
+return 0;
+
+//? test: pragma-script-function-zero-param
+//? description: #script_function with no params
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",f),#script_function(#block(return(42))),undefined),return(f()))"
+))) == 42);
+return 0;

@@ -349,16 +349,19 @@ Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
 /* From afw_compile_parse_pragma.c                                            */
 /* Statement-position pragma (#Name …). Token is pragma_identifier.           */
-/* Extend the alternatives below as statement pragmas are implemented.        */
 
 PragmaStatement ::=
+    '#block' '(' ( Expression ( ',' Expression )* )? ')'
 
 /* From afw_compile_parse_pragma.c                                            */
 /* Value/expression-position pragma (#Name …). Token is pragma_identifier.    */
-/* Extend the alternatives below as value/structural pragmas are implemented  */
-/* (including IR forms that match decompile #implementation_id).              */
+/* Structural forms match decompile #implementation_id where implemented.     */
 
 PragmaValue ::=
+    '#block' '(' ( Expression ( ',' Expression )* )? ')' |
+    '#assignment_target' '(' Expression ',' ( Identifier | String ) ')' |
+    '#list_expression' '(' Expression ')' |
+    '#script_function' '(' ( ( Identifier | String ) ',' )* Expression ')'
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */

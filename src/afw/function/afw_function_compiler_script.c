@@ -41,12 +41,29 @@ impl_create_closure_if_needed(
 {
     const afw_xctx_scope_t *scope;
     const afw_value_t *result;
+    afw_size_t defining_depth;
 
     scope = afw_xctx_scope_current(xctx);
 
-    if (function->depth >= scope->block->depth) {
+    /*
+     * Prefer signature param block's parent depth when present — same reason
+     * as call_script_function: script_function->depth can lag #block unwrap
+     * renumbering.
+     */
+    defining_depth = function->depth;
+    if (function->signature && function->signature->block) {
+        if (function->signature->block->parent_block) {
+            defining_depth =
+                function->signature->block->parent_block->depth;
+        }
+        else {
+            defining_depth = 0;
+        }
+    }
+
+    if (defining_depth >= scope->block->depth) {
         for (; scope; scope = scope->parent_lexical_scope) {
-            if (function->depth == scope->block->depth) {
+            if (defining_depth == scope->block->depth) {
                 break;
             }
         }
