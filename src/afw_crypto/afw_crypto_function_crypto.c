@@ -684,7 +684,6 @@ afw_crypto_function_execute_crypto_encrypt(
     afw_integer_t key_bits;
     const afw_object_t *result_obj;
     afw_memory_t mem;
-    afw_octet_t *copy;
     afw_size_t iv_len;
 
     memset(tag, 0, sizeof(tag));
@@ -758,19 +757,14 @@ afw_crypto_function_execute_crypto_encrypt(
             x->xctx);
     }
 
-    out = malloc(plaintext->size + 16);
-    if (!out) {
-        EVP_CIPHER_CTX_free(ctx);
-        afw_crypto_internal_resolved_key_release(rk, x->xctx);
-        AFW_THROW_ERROR_Z(general, "error:crypto: out of memory", x->xctx);
-    }
+    /* Pool-backed so AFW_THROW cleans up; zeroed for defined OpenSSL input. */
+    out = afw_pool_calloc(x->p, plaintext->size + 16, x->xctx);
 
     if (EVP_EncryptInit_ex(ctx, cipher, NULL, NULL, NULL) != 1 ||
         EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, (int)iv_len,
             NULL) != 1 ||
         EVP_EncryptInit_ex(ctx, NULL, NULL, rk->ptr,
             iv_in ? iv_in->ptr : iv_buf) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: EncryptInit failed",
@@ -780,7 +774,6 @@ afw_crypto_function_execute_crypto_encrypt(
     if (aad && aad->size > 0) {
         if (EVP_EncryptUpdate(ctx, NULL, &len, aad->ptr, (int)aad->size)
             != 1) {
-            free(out);
             EVP_CIPHER_CTX_free(ctx);
             afw_crypto_internal_resolved_key_release(rk, x->xctx);
             AFW_THROW_ERROR_Z(general, "error:crypto: AAD update failed",
@@ -790,7 +783,6 @@ afw_crypto_function_execute_crypto_encrypt(
 
     if (EVP_EncryptUpdate(ctx, out, &out_len, plaintext->ptr,
             (int)plaintext->size) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: EncryptUpdate failed",
@@ -798,7 +790,6 @@ afw_crypto_function_execute_crypto_encrypt(
     }
     len = out_len;
     if (EVP_EncryptFinal_ex(ctx, out + len, &out_len) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: EncryptFinal failed",
@@ -807,7 +798,6 @@ afw_crypto_function_execute_crypto_encrypt(
     len += out_len;
     if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_GET_TAG,
             AFW_CRYPTO_AES_GCM_TAG_LEN, tag) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: GET_TAG failed", x->xctx);
@@ -824,10 +814,7 @@ afw_crypto_function_execute_crypto_encrypt(
     afw_object_set_property_as_integer(result_obj, afw_crypto_s_keyLength,
         key_bits, x->xctx);
 
-    copy = afw_pool_malloc(x->p, (afw_size_t)len, x->xctx);
-    memcpy(copy, out, (size_t)len);
-    free(out);
-    mem.ptr = copy;
+    mem.ptr = out;
     mem.size = (afw_size_t)len;
     afw_object_set_property_as_base64Binary(result_obj,
         afw_crypto_s_ciphertext, &mem, x->xctx);
@@ -913,7 +900,6 @@ afw_crypto_function_execute_crypto_decrypt(
     int out_len = 0;
     int len = 0;
     afw_memory_t mem;
-    afw_octet_t *copy;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(algorithm, 1, object);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(key_v, 2);
@@ -962,27 +948,22 @@ afw_crypto_function_execute_crypto_decrypt(
     }
 
     ctx = EVP_CIPHER_CTX_new();
-    /*
-     * Zero-fill plaintext buffer. AES-GCM Final does not need residual
-     * ciphertext padding, but defined memory avoids feeding malloc garbage
-     * into libcrypto (see also valgrind.suppress for OpenSSL 3 AES-NI GHASH).
-     */
-    out = calloc(1, ciphertext->size + 16);
-    if (!ctx || !out) {
-        free(out);
-        if (ctx) {
-            EVP_CIPHER_CTX_free(ctx);
-        }
+    if (!ctx) {
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: decrypt setup failed",
             x->xctx);
     }
+    /*
+     * Pool + zero-fill: throw-safe (no bare free on AFW_THROW), and defined
+     * memory for OpenSSL (see valgrind.suppress for AES-NI GHASH false
+     * positives).
+     */
+    out = afw_pool_calloc(x->p, ciphertext->size + 16, x->xctx);
 
     if (EVP_DecryptInit_ex(ctx, cipher, NULL, NULL, NULL) != 1 ||
         EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, (int)iv->size,
             NULL) != 1 ||
         EVP_DecryptInit_ex(ctx, NULL, NULL, rk->ptr, iv->ptr) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general,
@@ -992,7 +973,6 @@ afw_crypto_function_execute_crypto_decrypt(
     if (aad && aad->size > 0) {
         if (EVP_DecryptUpdate(ctx, NULL, &len, aad->ptr, (int)aad->size)
             != 1) {
-            free(out);
             EVP_CIPHER_CTX_free(ctx);
             afw_crypto_internal_resolved_key_release(rk, x->xctx);
             AFW_THROW_ERROR_Z(general,
@@ -1002,7 +982,6 @@ afw_crypto_function_execute_crypto_decrypt(
 
     if (EVP_DecryptUpdate(ctx, out, &out_len, ciphertext->ptr,
             (int)ciphertext->size) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general,
@@ -1012,7 +991,6 @@ afw_crypto_function_execute_crypto_decrypt(
 
     if (EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG,
             AFW_CRYPTO_AES_GCM_TAG_LEN, (void *)tag->ptr) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general,
@@ -1020,7 +998,6 @@ afw_crypto_function_execute_crypto_decrypt(
     }
 
     if (EVP_DecryptFinal_ex(ctx, out + len, &out_len) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general,
@@ -1031,11 +1008,7 @@ afw_crypto_function_execute_crypto_decrypt(
     EVP_CIPHER_CTX_free(ctx);
     afw_crypto_internal_resolved_key_release(rk, x->xctx);
 
-    copy = afw_pool_malloc(x->p, (afw_size_t)len, x->xctx);
-    memcpy(copy, out, (size_t)len);
-    OPENSSL_cleanse(out, (size_t)len);
-    free(out);
-    mem.ptr = copy;
+    mem.ptr = out;
     mem.size = (afw_size_t)len;
     return afw_value_create_unmanaged_base64Binary(&mem, x->p, x->xctx);
 }
@@ -1179,11 +1152,8 @@ afw_crypto_function_execute_crypto_derive_key(
     rk = afw_crypto_internal_resolve_key(base_key_v, NULL, true,
         x->p, x->xctx);
 
-    out = malloc((size_t)length_octets);
-    if (!out) {
-        afw_crypto_internal_resolved_key_release(rk, x->xctx);
-        AFW_THROW_ERROR_Z(general, "error:crypto: out of memory", x->xctx);
-    }
+    /* Pool-backed working buffer: throw-safe; cleanse after import copies. */
+    out = afw_pool_calloc(x->p, (afw_size_t)length_octets, x->xctx);
 
     if (PKCS5_PBKDF2_HMAC(
             (const char *)rk->ptr, (int)rk->size,
@@ -1192,7 +1162,6 @@ afw_crypto_function_execute_crypto_derive_key(
             EVP_sha256(),
             (int)length_octets, out) != 1) {
         OPENSSL_cleanse(out, (size_t)length_octets);
-        free(out);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: PBKDF2 failed", x->xctx);
     }
@@ -1219,7 +1188,6 @@ afw_crypto_function_execute_crypto_derive_key(
     result = afw_crypto_internal_import_key(out, (afw_size_t)length_octets,
         store_alg, alg_name, length_bits, usages, extractable, x->p, x->xctx);
     OPENSSL_cleanse(out, (size_t)length_octets);
-    free(out);
     return result;
 }
 
@@ -1281,7 +1249,6 @@ afw_crypto_function_execute_crypto_seal(
     afw_integer_t key_bits;
     const afw_object_t *result_obj;
     afw_memory_t mem;
-    afw_octet_t *copy;
 
     memset(tag, 0, sizeof(tag));
 
@@ -1317,15 +1284,11 @@ afw_crypto_function_execute_crypto_seal(
     }
 
     ctx = EVP_CIPHER_CTX_new();
-    out = malloc(plaintext->size + 16);
-    if (!ctx || !out) {
-        free(out);
-        if (ctx) {
-            EVP_CIPHER_CTX_free(ctx);
-        }
+    if (!ctx) {
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: out of memory", x->xctx);
     }
+    out = afw_pool_calloc(x->p, plaintext->size + 16, x->xctx);
 
     if (EVP_EncryptInit_ex(ctx, cipher, NULL, NULL, NULL) != 1 ||
         EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN,
@@ -1334,7 +1297,6 @@ afw_crypto_function_execute_crypto_seal(
         EVP_EncryptUpdate(ctx, out, &out_len, plaintext->ptr,
             (int)plaintext->size) != 1)
     {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: seal encrypt failed",
@@ -1345,7 +1307,6 @@ afw_crypto_function_execute_crypto_seal(
         EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_GET_TAG,
             AFW_CRYPTO_AES_GCM_TAG_LEN, tag) != 1)
     {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: seal encrypt final failed",
@@ -1363,10 +1324,7 @@ afw_crypto_function_execute_crypto_seal(
     afw_object_set_property_as_integer(result_obj, afw_crypto_s_keyLength,
         key_bits, x->xctx);
 
-    copy = afw_pool_malloc(x->p, (afw_size_t)len, x->xctx);
-    memcpy(copy, out, (size_t)len);
-    free(out);
-    mem.ptr = copy;
+    mem.ptr = out;
     mem.size = (afw_size_t)len;
     afw_object_set_property_as_base64Binary(result_obj,
         afw_crypto_s_ciphertext, &mem, x->xctx);
@@ -1442,7 +1400,6 @@ afw_crypto_function_execute_crypto_unseal(
     int out_len = 0;
     int len = 0;
     afw_memory_t mem;
-    afw_octet_t *copy;
     const afw_utf8_t *json_s;
     const afw_value_t *parsed;
 
@@ -1505,17 +1462,13 @@ afw_crypto_function_execute_crypto_unseal(
     }
 
     ctx = EVP_CIPHER_CTX_new();
-    /* Zero-fill: see crypto_decrypt comment (OpenSSL AES-GCM / valgrind). */
-    out = calloc(1, ciphertext->size + 16);
-    if (!ctx || !out) {
-        free(out);
-        if (ctx) {
-            EVP_CIPHER_CTX_free(ctx);
-        }
+    if (!ctx) {
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto: unseal setup failed",
             x->xctx);
     }
+    /* Pool + zero-fill: see crypto_decrypt (throw-safe, OpenSSL/valgrind). */
+    out = afw_pool_calloc(x->p, ciphertext->size + 16, x->xctx);
 
     if (EVP_DecryptInit_ex(ctx, cipher, NULL, NULL, NULL) != 1 ||
         EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, (int)iv->size,
@@ -1526,14 +1479,12 @@ afw_crypto_function_execute_crypto_unseal(
         EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG,
             AFW_CRYPTO_AES_GCM_TAG_LEN, (void *)tag->ptr) != 1)
     {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto:decryption_failed", x->xctx);
     }
     len = out_len;
     if (EVP_DecryptFinal_ex(ctx, out + len, &out_len) != 1) {
-        free(out);
         EVP_CIPHER_CTX_free(ctx);
         afw_crypto_internal_resolved_key_release(rk, x->xctx);
         AFW_THROW_ERROR_Z(general, "error:crypto:decryption_failed", x->xctx);
@@ -1542,11 +1493,7 @@ afw_crypto_function_execute_crypto_unseal(
     EVP_CIPHER_CTX_free(ctx);
     afw_crypto_internal_resolved_key_release(rk, x->xctx);
 
-    copy = afw_pool_malloc(x->p, (afw_size_t)len, x->xctx);
-    memcpy(copy, out, (size_t)len);
-    OPENSSL_cleanse(out, (size_t)len);
-    free(out);
-    mem.ptr = copy;
+    mem.ptr = out;
     mem.size = (afw_size_t)len;
     return afw_value_create_unmanaged_base64Binary(&mem, x->p, x->xctx);
 }
