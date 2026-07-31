@@ -105,6 +105,8 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call _list_expression(internal) — matches listing child (internal).
  */
 void
 impl_afw_value_decompile(
@@ -114,10 +116,11 @@ impl_afw_value_decompile(
 {
     const afw_value_list_expression_t *self =
         (const afw_value_list_expression_t *)instance;
+    const afw_value_t *argv[1];
 
-    afw_writer_write_z(writer, "list_expression(", xctx);
-    afw_value_decompile_value(self->internal, writer, xctx);
-    afw_writer_write_z(writer, ")", xctx);
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    argv[0] = self->internal;
+    afw_value_decompile_value_list(writer, 1, argv, xctx);
 }
 
 /*

@@ -45,7 +45,12 @@ afw_value_decompile_to_string(
 }
 
 
-/* Decompile call args. */
+/* Decompile call args.
+ *
+ * args->argc is the number of parameters (not including argv[0]). Parameter
+ * values are argv[1] .. argv[argc]. Use first_arg 1 after writing the callee
+ * name separately, or first_arg 0 to include argv[0] in the parentheses.
+ */
 AFW_DEFINE(void)
 afw_value_decompile_call_args(
     const afw_writer_t *writer,
@@ -60,14 +65,59 @@ afw_value_decompile_call_args(
         afw_writer_increment_indent(writer, xctx);
     }
 
-    for (i = first_arg; i < args->argc; i++) {
-        if (i != first_arg) {      
+    for (i = first_arg; i <= args->argc; i++) {
+        if (i != first_arg) {
             afw_writer_write_z(writer, ",", xctx);
         }
         if (writer->tab) {
             afw_writer_write_eol(writer, xctx);
         }
-        afw_value_decompile_value(args->argv[i], writer, xctx);     
+        afw_value_decompile_value(args->argv[i], writer, xctx);
+    }
+
+    if (writer->tab) {
+        afw_writer_write_eol(writer, xctx);
+        afw_writer_decrement_indent(writer, xctx);
+    }
+    afw_writer_write_z(writer, ")", xctx);
+}
+
+
+/* Write synthetic decompile name: underscore + value implementation id. */
+AFW_DEFINE(void)
+afw_value_decompile_write_synthetic_function_name(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    afw_writer_write_z(writer, "_", xctx);
+    afw_writer_write_utf8(writer, &instance->inf->rti.implementation_id, xctx);
+}
+
+
+/* Parenthesized list of values (same whitespace rules as call args). */
+AFW_DEFINE(void)
+afw_value_decompile_value_list(
+    const afw_writer_t *writer,
+    afw_size_t argc,
+    const afw_value_t * const *argv,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+
+    afw_writer_write_z(writer, "(", xctx);
+    if (writer->tab) {
+        afw_writer_increment_indent(writer, xctx);
+    }
+
+    for (i = 0; i < argc; i++) {
+        if (i != 0) {
+            afw_writer_write_z(writer, ",", xctx);
+        }
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        afw_value_decompile_value(argv[i], writer, xctx);
     }
 
     if (writer->tab) {

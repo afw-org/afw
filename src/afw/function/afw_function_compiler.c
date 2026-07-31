@@ -167,9 +167,24 @@ afw_function_execute_decompile(
 {
     const afw_utf8_t *whitespace;
     const afw_utf8_t *s;
+    const afw_value_t *value;
 
-    whitespace = afw_function_evaluate_whitespace_parameter(x, 2);
-    s = afw_value_decompile_to_string(x->argv[1], whitespace, x->p, x->xctx);
+    /*
+     * Resolve the argument (symbol refs, compile<script>(...), etc.) but do
+     * not evaluate a compiled_value — that would run the script. Standard
+     * AFW_FUNCTION_EVALUATE_PARAMETER re-evaluates compiled_value.
+     */
+    value = (x->argc >= 1) ? x->argv[1] : NULL;
+    if (!afw_value_is_defined_and_evaluated(value)) {
+        value = afw_value_evaluate(value, x->p, x->xctx);
+    }
+
+    whitespace = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        whitespace = afw_function_evaluate_whitespace_parameter(x, 2);
+    }
+
+    s = afw_value_decompile_to_string(value, whitespace, x->p, x->xctx);
 
     return afw_value_create_unmanaged_string(s, x->p, x->xctx);
 }

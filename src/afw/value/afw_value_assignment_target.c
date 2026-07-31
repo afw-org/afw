@@ -290,6 +290,9 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call _assignment_target("const"|"let"|..., target...).
+ * Symbol targets decompile the symbol reference; destructures are named tags.
  */
 void
 impl_afw_value_decompile(
@@ -297,9 +300,61 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    AFW_THROW_ERROR_Z(general,
-        "Decompile is not supported for assignment target.",
-        xctx);
+    const afw_value_assignment_target_t *self =
+        (const afw_value_assignment_target_t *)instance;
+    afw_value_string_t type_string;
+    const afw_utf8_t *type_id;
+    const afw_utf8_z_t *destructure_z;
+
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    afw_writer_write_z(writer, "(", xctx);
+    if (writer->tab) {
+        afw_writer_increment_indent(writer, xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
+
+    type_id = &impl_assignment_types[
+        self->assignment_target->assignment_type].id;
+    type_string.inf = &afw_value_unmanaged_string_inf;
+    type_string.internal.s = type_id->s;
+    type_string.internal.len = type_id->len;
+    afw_value_decompile((const afw_value_t *)&type_string, writer, xctx);
+
+    afw_writer_write_z(writer, ",", xctx);
+    if (writer->tab) {
+        afw_writer_write_eol(writer, xctx);
+    }
+
+    switch (self->assignment_target->target_type) {
+    case afw_compile_assignment_target_type_symbol_reference:
+        afw_value_decompile_value(
+            (const afw_value_t *)self->assignment_target->symbol_reference,
+            writer, xctx);
+        break;
+
+    case afw_compile_assignment_target_type_list_destructure:
+    case afw_compile_assignment_target_type_object_destructure:
+        destructure_z =
+            (self->assignment_target->target_type ==
+                afw_compile_assignment_target_type_list_destructure)
+            ? "list_destructure" : "object_destructure";
+        type_string.inf = &afw_value_unmanaged_string_inf;
+        type_string.internal.s = destructure_z;
+        type_string.internal.len = strlen(destructure_z);
+        afw_value_decompile((const afw_value_t *)&type_string, writer, xctx);
+        break;
+
+    case afw_compile_assignment_target_type_max_type:
+    default:
+        afw_writer_write_utf8(writer, afw_s_undefined, xctx);
+        break;
+    }
+
+    if (writer->tab) {
+        afw_writer_write_eol(writer, xctx);
+        afw_writer_decrement_indent(writer, xctx);
+    }
+    afw_writer_write_z(writer, ")", xctx);
 }
 
 /*

@@ -1672,7 +1672,8 @@ afw_value_decompile_to_string(
 /**
  * @brief Decompile call args.
  * @param writer
- * @param args to decompile.
+ * @param first_arg index into argv (1 = parameters only; 0 includes callee).
+ * @param args to decompile (argc is parameter count; values are argv[1..argc]).
  * @param xctx of caller.
  */
 AFW_DEFINE(void)
@@ -1682,6 +1683,35 @@ afw_value_decompile_call_args(
     const afw_value_call_args_t *args,
     afw_xctx_t *xctx);
 
+
+/**
+ * @brief Write synthetic decompile name `_` + implementation_id.
+ * @param instance value whose inf id is used.
+ * @param writer
+ * @param xctx of caller.
+ *
+ * Used for IR value kinds that have no Adaptive surface form.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_write_synthetic_function_name(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Decompile a parenthesized list of values.
+ * @param writer
+ * @param argc number of values.
+ * @param argv values (may contain NULL for undefined).
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_value_list(
+    const afw_writer_t *writer,
+    afw_size_t argc,
+    const afw_value_t * const *argv,
+    afw_xctx_t *xctx);
 
 
 /**

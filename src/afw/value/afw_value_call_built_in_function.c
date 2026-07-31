@@ -289,18 +289,11 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    /*FIXME
-
     const afw_value_call_built_in_function_t *self =
         (const afw_value_call_built_in_function_t *)instance;
 
-    if (self->qualifier.len > 0) {
-        afw_writer_write_utf8(writer, &self->qualifier, xctx);
-        afw_writer_write_z(writer, "::", xctx);
-    }
-    afw_writer_write_utf8(writer, &self->name, xctx);
-    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
-     */
+    afw_writer_write_utf8(writer, &self->function->functionId->internal, xctx);
+    afw_value_decompile_call_args(writer, 1, &self->args, xctx);
 }
 
 

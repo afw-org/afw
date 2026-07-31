@@ -167,6 +167,9 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call _script_function(paramName..., body) — same style as other
+ * IR kinds (underscore + implementation_id), not Adaptive Script surface syntax.
  */
 void
 impl_afw_value_decompile(
@@ -177,40 +180,38 @@ impl_afw_value_decompile(
     const afw_value_script_function_definition_t *self =
         (const afw_value_script_function_definition_t *)instance;
     afw_size_t i;
+    afw_value_string_t name_value;
+    afw_boolean_t need_comma;
 
-    afw_writer_write_z(writer, "function ", xctx);
-    afw_value_compiler_listing_name_and_type(writer, NULL, self->returns, xctx);
-
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
         afw_writer_increment_indent(writer, xctx);
     }
 
+    need_comma = false;
     for (i = 0; i < self->count; i++) {
-        if (i != 0) {      
+        if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
-            if (writer->tab) {
-                afw_writer_write_eol(writer, xctx);
-            }
         }
-        afw_value_compiler_listing_name_and_type(
-            writer, NULL, self->parameters[i]->type, xctx);
-        afw_writer_write_utf8(writer, self->parameters[i]->name, xctx);
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        name_value.inf = &afw_value_unmanaged_string_inf;
+        name_value.internal.s = self->parameters[i]->name->s;
+        name_value.internal.len = self->parameters[i]->name->len;
+        afw_value_decompile((const afw_value_t *)&name_value, writer, xctx);
+        need_comma = true;
     }
-    afw_writer_write_z(writer, ")", xctx);
 
+    if (need_comma) {
+        afw_writer_write_z(writer, ",", xctx);
+    }
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
-        afw_writer_decrement_indent(writer, xctx);
     }
+    afw_value_decompile_value(self->body, writer, xctx);
 
-    afw_writer_write_z(writer, "(", xctx);
-    if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
-        afw_writer_increment_indent(writer, xctx);
-    }
-    afw_value_decompile(self->body, writer, xctx);
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
         afw_writer_decrement_indent(writer, xctx);

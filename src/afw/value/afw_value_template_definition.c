@@ -184,6 +184,9 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call _template_definition(part, ...) — args match listing's
+ * values[] children (string segments and expression blocks).
  */
 void
 impl_afw_value_decompile(
@@ -193,28 +196,9 @@ impl_afw_value_decompile(
 {
     const afw_value_template_definition_t *self =
         (const afw_value_template_definition_t *)instance;
-    afw_value_string_t string_value;
 
-    if (self->count == 0) {
-        afw_writer_write_z(writer, "null", xctx);
-        return;
-    }
-
-    if (self->count == 1) {
-        afw_value_decompile(self->values[0], writer, xctx);
-        return;
-    }
-
-    afw_writer_write_z(writer, "eval_template(", xctx);
-
-    /*impl_decompile_template(self, writer, xctx);*/
-    string_value.inf = &afw_value_unmanaged_string_inf;
-    string_value.internal.s = self->contextual->compiled_value->full_source->s +
-        self->contextual->value_offset;
-    string_value.internal.len = self->contextual->value_size;
-    afw_value_decompile((const afw_value_t *)&string_value, writer, xctx);
-
-    afw_writer_write_z(writer, ")", xctx);
+    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    afw_value_decompile_value_list(writer, self->count, self->values, xctx);
 }
 
 

@@ -339,15 +339,29 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    /*FIXME
+    const afw_utf8_t *name;
+    const afw_value_t *callee;
 
-    if (self->qualifier.len > 0) {
-        afw_writer_write_utf8(writer, &self->qualifier, xctx);
-        afw_writer_write_z(writer, "::", xctx);
+    name = NULL;
+    if (self->script_function_definition &&
+        self->script_function_definition->signature &&
+        self->script_function_definition->signature->function_name_value)
+    {
+        name = &self->script_function_definition->signature->
+            function_name_value->internal;
     }
-    afw_writer_write_utf8(writer, &self->name, xctx);
-    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
-     */
+
+    if (name) {
+        afw_writer_write_utf8(writer, name, xctx);
+    }
+    else {
+        callee = self->args.argv ? self->args.argv[0] : NULL;
+        if (!callee && self->script_function_definition) {
+            callee = (const afw_value_t *)self->script_function_definition;
+        }
+        afw_value_decompile_value(callee, writer, xctx);
+    }
+    afw_value_decompile_call_args(writer, 1, &self->args, xctx);
 }
 
 
