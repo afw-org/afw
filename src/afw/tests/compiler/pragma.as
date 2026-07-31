@@ -2,7 +2,7 @@
 //?
 //? testScript: pragma.as
 //? customPurpose: Part of compiler category tests
-//? description: PragmaStatement / PragmaValue (#block and unknown)
+//? description: PragmaStatement / PragmaValue structural IR round-trips
 //? sourceType: script
 //?
 //? test: pragma-unknown-value
@@ -181,6 +181,21 @@ return 0;
 assert(evaluate(compile<script>(script(
     "#block(const(#assignment_target(\"const\",f),#script_function(\"x\",\"y\",#block(return(add(x,y)))),undefined),return(f(3,4)))"
 ))) == 7);
+return 0;
+
+//? test: pragma-script-function-multi-roundtrip
+//? description: decompile/compile round-trip for multi-param script function
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const f = function (x, y) { return x + y; };\nreturn f(3, 4);"
+)));
+assert(d ==
+    "#block(const(#assignment_target(\"const\",f),#script_function(\"x\",\"y\",#block(return(add(x,y)))),undefined),return(f(3,4)))");
+assert(evaluate(compile<script>(script(d))) == 7);
+assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-script-function-zero-param
