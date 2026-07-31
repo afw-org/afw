@@ -33,7 +33,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
 | **`process::` (#74 partial)** | `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create |
-| **`afw_crypto` (#74 partial)** | Optional extension: AES-GCM, digest/HMAC, keystore, key refs, PBKDF2 (OpenSSL libcrypto) |
+| **`afw_crypto` (#74 partial)** | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
@@ -413,9 +413,9 @@ Combined with `open_file` / `read*` and `crypto_decrypt`, conf can avoid a clear
 }"
 ```
 
-Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 text). See `src/afw_crypto/README.md`.
+Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, which is base64 **printable** text). Prefer **`crypto_seal` / `crypto_unseal`** for the easy bag path; **`crypto_encrypt` / `crypto_decrypt`** when you need full algorithm control. Store portable sealed JSON with `stringify({ iv: string(sealed.iv), … })` then `crypto_unseal(key, jsonText)`. See **`src/afw_crypto/README.md`**.
 
-Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`.
+Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`, `crypto_seal_unseal.as`.
 
 ---
 
