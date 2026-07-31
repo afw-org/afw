@@ -40580,12 +40580,6 @@ afw_self_v_zz__Evaluate_and_convert_value_to_String_and_log_it_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Evaluate_and_decompile_a_value = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Evaluate_and_decompile_a_value)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Evaluate_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Evaluate_value)
@@ -40607,12 +40601,6 @@ const afw_value_string_t
 afw_self_v_zz__Evaluated_adaptive_value_or_error_value_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Evaluated_adaptive_value_or_error_value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Evaluated_and_decompiled_value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Evaluated_and_decompiled_value_)
 };
 
 const afw_value_string_t
@@ -41999,6 +41987,12 @@ const afw_value_string_t
 afw_self_v_zz__JSON_string_format = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__JSON_string_format)
+};
+
+const afw_value_string_t
+afw_self_v_zz__JSON_text_for_the_value_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__JSON_text_for_the_value_)
 };
 
 const afw_value_string_t
@@ -43454,9 +43448,9 @@ afw_self_v_zz__Optional_description_of_the_object = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Optional_replacer_function_ = {
+afw_self_v_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Optional_replacer_function_)
+    AFW_UTF8_LITERAL(AFW_Q_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__)
 };
 
 const afw_value_string_t
@@ -44921,6 +44915,12 @@ const afw_value_string_t
 afw_self_v_zz__Search_for_a_match_using_a_regular_expression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Search_for_a_match_using_a_regular_expression)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Serialize_a_value_as_JSON_text = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Serialize_a_value_as_JSON_text)
 };
 
 const afw_value_string_t
@@ -48266,9 +48266,9 @@ afw_self_v_zz__Value_to_log_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Value_to_stringify_ = {
+afw_self_v_zz__Value_to_stringify_as_JSON_ = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Value_to_stringify_)
+    AFW_UTF8_LITERAL(AFW_Q_zz__Value_to_stringify_as_JSON_)
 };
 
 const afw_value_string_t

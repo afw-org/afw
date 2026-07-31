@@ -389,15 +389,21 @@ def safe_evaluate(session, value, error):
 
 def stringify(session, value, replacer=None, whitespace=None):
     """
-    Evaluate and decompile a value
+    Serialize a value as JSON text
 
-    Evaluate and decompile an adaptive value to string. For most values this
-    has the effect of producing a string containing json.
+    Evaluate a value and serialize it as pure JSON text (ECMAScript
+    JSON.stringify-like). Adaptive data types use their jsonPrimitive (for
+    example base64Binary and date become JSON strings). Whitespace (third
+    parameter) matches decompile/listing style. Optional replacer is not
+    implemented yet. For Adaptive Script or IR source form use decompile().
+    For binary octets as UTF-8 text use decode_to_string(); string(binary) is
+    base64 printable text, not UTF-8.
 
     Args:
-        value (object): Value to stringify.
+        value (object): Value to stringify as JSON.
 
-        replacer (object): Optional replacer function.
+        replacer (object): Optional replacer (not implemented yet; omit or
+        pass null).
 
         whitespace (object): Add whitespace for readability if present and not
         0. This parameter can be an integer between 0 and 10 or a string that
@@ -406,7 +412,7 @@ def stringify(session, value, replacer=None, whitespace=None):
         spaces is used.
 
     Returns:
-        str: Evaluated and decompiled value.
+        str: JSON text for the value.
     """
 
     request = session.Request()

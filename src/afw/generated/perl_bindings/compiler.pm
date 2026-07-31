@@ -237,19 +237,24 @@ evaluating this value, the exception will continue.
 
 =head3 stringify
 
-Evaluate and decompile an adaptive value to string. For most values this has
-the effect of producing a string containing json.
-Evaluate and decompile a value
+Evaluate a value and serialize it as pure JSON text (ECMAScript
+JSON.stringify-like). Adaptive data types use their jsonPrimitive (for example
+base64Binary and date become JSON strings). Whitespace (third parameter)
+matches decompile/listing style. Optional replacer is not implemented yet. For
+Adaptive Script or IR source form use decompile(). For binary octets as UTF-8
+text use decode_to_string(); string(binary) is base64 printable text, not
+UTF-8.
+Serialize a value as JSON text
 
 =head4 Parameters
 
     $value
 
-Value to stringify.
+Value to stringify as JSON.
 
     $replacer
 
-Optional replacer function.
+Optional replacer (not implemented yet; omit or pass null).
 
     $whitespace
 

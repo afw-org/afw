@@ -218,6 +218,41 @@ obj[str] = "c";
 return stringify(obj);
 
 
+//? test: stringify-pure-json-binary-date
+//? description: stringify is pure JSON (not Adaptive decompile forms)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const b = encode_as_base64Binary("hi");
+/* base64 of "hi" is aGk= — as a JSON string, not base64Binary("...") */
+assert(stringify(b) == "\"aGk=\"");
+assert(stringify({ "iv": b }) == "{\"iv\":\"aGk=\"}");
+
+const d = date("2020-01-01");
+assert(stringify(d) == "\"2020-01-01\"");
+assert(stringify({ "d": d }) == "{\"d\":\"2020-01-01\"}");
+
+/* Adaptive IR form remains decompile() */
+assert(decompile(b) == "base64Binary(\"aGk=\")");
+assert(starts_with(decompile(d), "date("));
+
+/* UTF-8 of octets is decode_to_string, not stringify/string */
+assert(decode_to_string(b) == "hi");
+assert(string(b) == "aGk=");
+
+return 0;
+
+
+//? test: stringify-null
+//? description: null stringifies as JSON null
+//? skip: false
+//? expect: "null"
+//? source: ...
+
+return stringify(null);
+
+
 //? test: stringify-object-property-escape-control-char
 //? description: ...
 Test stringify of objects, containing properties with 

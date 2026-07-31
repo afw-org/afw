@@ -96,11 +96,32 @@ afw_json_register(afw_xctx_t *xctx);
  * @return json
  *
  * This function can be used for callbacks of type afw_utf8_from_value_t.
+ * Emits pure JSON (jsonPrimitive of each data type). For Adaptive Script
+ * source/IR form use afw_value_decompile_to_string() / decompile().
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_json_from_value(
     const afw_value_t *value,
     const afw_object_options_t *options,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Convert an adaptive value to JSON with optional indent string.
+ * @param value
+ * @param options or NULL (whitespace option is implied when indent is set).
+ * @param indent per-level indent unit, or NULL for compact (unless options
+ *        request whitespace with the default four spaces).
+ * @param p to use.
+ * @param xctx of caller.
+ * @return json
+ *
+ * Used by stringify() for ECMAScript-like space/indent control.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_json_from_value_with_indent(
+    const afw_value_t *value,
+    const afw_object_options_t *options,
+    const afw_utf8_t *indent,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

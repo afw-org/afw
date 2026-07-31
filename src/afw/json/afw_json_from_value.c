@@ -20,6 +20,7 @@ typedef struct from_value_wa_s {
     const afw_object_options_t *options;
     void * context;
     afw_write_cb_t callback;
+    const afw_utf8_t *indent_unit; /* NULL → default four spaces when do_ws */
     afw_size_t indent;
     afw_size_t object_depth;
     afw_boolean_t skip_next_ws;
@@ -105,8 +106,13 @@ impl_put_ws(impl_from_value_wa_t *wa)
         if (!wa->skip_next_ws) {
             impl_putc(wa, '\n');
             for (indent = 1; indent <= wa->indent; indent++) {
-                /* default whitespace indentation to 4 spaces */                
-                impl_puts(wa, "    ");
+                if (wa->indent_unit && wa->indent_unit->len > 0) {
+                    impl_write(wa, wa->indent_unit->s, wa->indent_unit->len);
+                }
+                else {
+                    /* default whitespace indentation to 4 spaces */
+                    impl_puts(wa, "    ");
+                }
             }
         }
         wa->skip_next_ws = 0;
@@ -457,6 +463,7 @@ void
 afw_json_internal_write_value(
     const afw_value_t *value,
     const afw_object_options_t *options,
+    const afw_utf8_t *indent,
     void * context,
     afw_write_cb_t callback,
     const afw_pool_t *p,
@@ -469,7 +476,9 @@ afw_json_internal_write_value(
     wa.xctx = xctx;
     wa.p = p;
     wa.options = options;
-    wa.do_ws = AFW_OBJECT_OPTION_IS(options, whitespace);
+    wa.indent_unit = indent;
+    wa.do_ws = AFW_OBJECT_OPTION_IS(options, whitespace) ||
+        (indent && indent->len > 0);
     wa.do_typed_values = AFW_OBJECT_OPTION_IS(options, typedValues);
     wa.skip_next_ws = 1;
     wa.context = context;
@@ -487,12 +496,24 @@ afw_json_from_value(
     const afw_object_options_t *options,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
+    return afw_json_from_value_with_indent(value, options, NULL, p, xctx);
+}
+
+
+/* Convert a value to json with optional indent unit string. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_json_from_value_with_indent(
+    const afw_value_t *value,
+    const afw_object_options_t *options,
+    const afw_utf8_t *indent,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
     const afw_memory_writer_t *writer;
     const afw_memory_t *raw;
 
     writer = afw_memory_create_writer(p, xctx);
 
-    afw_json_internal_write_value(value, options,
+    afw_json_internal_write_value(value, options, indent,
         writer->context, writer->callback, p, xctx);
 
     raw = afw_memory_writer_retrieve_and_release(writer, xctx);

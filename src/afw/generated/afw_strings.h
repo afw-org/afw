@@ -143317,7 +143317,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__466 \
-    "Evaluate and decompile an adaptive value to string. For most values this has the effect of producing a string containing json."
+    "Evaluate a value and serialize it as pure JSON text (ECMAScript JSON.stringify-like). Adaptive data types use their jsonPrimitive (for example base64Binary and date become JSON strings). Whitespace (third parameter) matches decompile/listing style. Optional replacer is not implemented yet. For Adaptive Script or IR source form use decompile(). For binary octets as UTF-8 text use decode_to_string(); string(binary) is base64 printable text, not UTF-8."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__466 */
 #define afw_s_zz__466 \
@@ -143343,7 +143343,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__467 \
-    "/* Evaluate and decompile a value */\nfunction stringify (\n    value: any,\n    replacer?: any,\n    whitespace?: any\n): string;\n"
+    "/* Serialize a value as JSON text */\nfunction stringify (\n    value: any,\n    replacer?: any,\n    whitespace?: any\n): string;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__467 */
 #define afw_s_zz__467 \
@@ -175764,32 +175764,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Evaluate_and_decompile_a_value \
-    "Evaluate and decompile a value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluate_and_decompile_a_value */
-#define afw_s_zz__Evaluate_and_decompile_a_value \
-    (&afw_self_v_zz__Evaluate_and_decompile_a_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluate_and_decompile_a_value */
-#define afw_self_s_zz__Evaluate_and_decompile_a_value \
-    (afw_self_v_zz__Evaluate_and_decompile_a_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Evaluate_and_decompile_a_value */
-extern const afw_value_string_t \
-    afw_self_v_zz__Evaluate_and_decompile_a_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Evaluate_and_decompile_a_value */
-#define afw_z_zz__Evaluate_and_decompile_a_value \
-    (afw_self_v_zz__Evaluate_and_decompile_a_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Evaluate_and_decompile_a_value */
-#define afw_v_zz__Evaluate_and_decompile_a_value \
-    (&afw_self_v_zz__Evaluate_and_decompile_a_value.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Evaluate_value \
     "Evaluate value"
 
@@ -175890,32 +175864,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Evaluated_adaptive_value_or_error_value_ */
 #define afw_v_zz__Evaluated_adaptive_value_or_error_value_ \
     (&afw_self_v_zz__Evaluated_adaptive_value_or_error_value_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Evaluated_and_decompiled_value_ \
-    "Evaluated and decompiled value."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluated_and_decompiled_value_ */
-#define afw_s_zz__Evaluated_and_decompiled_value_ \
-    (&afw_self_v_zz__Evaluated_and_decompiled_value_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Evaluated_and_decompiled_value_ */
-#define afw_self_s_zz__Evaluated_and_decompiled_value_ \
-    (afw_self_v_zz__Evaluated_and_decompiled_value_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Evaluated_and_decompiled_value_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Evaluated_and_decompiled_value_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Evaluated_and_decompiled_value_ */
-#define afw_z_zz__Evaluated_and_decompiled_value_ \
-    (afw_self_v_zz__Evaluated_and_decompiled_value_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Evaluated_and_decompiled_value_ */
-#define afw_v_zz__Evaluated_and_decompiled_value_ \
-    (&afw_self_v_zz__Evaluated_and_decompiled_value_.pub)
 
 
 
@@ -181922,6 +181870,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__JSON_string_format */
 #define afw_v_zz__JSON_string_format \
     (&afw_self_v_zz__JSON_string_format.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__JSON_text_for_the_value_ \
+    "JSON text for the value."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__JSON_text_for_the_value_ */
+#define afw_s_zz__JSON_text_for_the_value_ \
+    (&afw_self_v_zz__JSON_text_for_the_value_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__JSON_text_for_the_value_ */
+#define afw_self_s_zz__JSON_text_for_the_value_ \
+    (afw_self_v_zz__JSON_text_for_the_value_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__JSON_text_for_the_value_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__JSON_text_for_the_value_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__JSON_text_for_the_value_ */
+#define afw_z_zz__JSON_text_for_the_value_ \
+    (afw_self_v_zz__JSON_text_for_the_value_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__JSON_text_for_the_value_ */
+#define afw_v_zz__JSON_text_for_the_value_ \
+    (&afw_self_v_zz__JSON_text_for_the_value_.pub)
 
 
 
@@ -188218,28 +188192,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Optional_replacer_function_ \
-    "Optional replacer function."
+#define AFW_Q_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ \
+    "Optional replacer (not implemented yet; omit or pass null)."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_replacer_function_ */
-#define afw_s_zz__Optional_replacer_function_ \
-    (&afw_self_v_zz__Optional_replacer_function_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ */
+#define afw_s_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ \
+    (&afw_self_v_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_replacer_function_ */
-#define afw_self_s_zz__Optional_replacer_function_ \
-    (afw_self_v_zz__Optional_replacer_function_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ */
+#define afw_self_s_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ \
+    (afw_self_v_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Optional_replacer_function_ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ */
 extern const afw_value_string_t \
-    afw_self_v_zz__Optional_replacer_function_;
+    afw_self_v_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Optional_replacer_function_ */
-#define afw_z_zz__Optional_replacer_function_ \
-    (afw_self_v_zz__Optional_replacer_function_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ */
+#define afw_z_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ \
+    (afw_self_v_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Optional_replacer_function_ */
-#define afw_v_zz__Optional_replacer_function_ \
-    (&afw_self_v_zz__Optional_replacer_function_.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ */
+#define afw_v_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__ \
+    (&afw_self_v_zz__Optional_replacer__not_implemented_yet__omit_or_pass_null__.pub)
 
 
 
@@ -194584,6 +194558,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Search_for_a_match_using_a_regular_expression */
 #define afw_v_zz__Search_for_a_match_using_a_regular_expression \
     (&afw_self_v_zz__Search_for_a_match_using_a_regular_expression.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Serialize_a_value_as_JSON_text \
+    "Serialize a value as JSON text"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Serialize_a_value_as_JSON_text */
+#define afw_s_zz__Serialize_a_value_as_JSON_text \
+    (&afw_self_v_zz__Serialize_a_value_as_JSON_text.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Serialize_a_value_as_JSON_text */
+#define afw_self_s_zz__Serialize_a_value_as_JSON_text \
+    (afw_self_v_zz__Serialize_a_value_as_JSON_text.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Serialize_a_value_as_JSON_text */
+extern const afw_value_string_t \
+    afw_self_v_zz__Serialize_a_value_as_JSON_text;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Serialize_a_value_as_JSON_text */
+#define afw_z_zz__Serialize_a_value_as_JSON_text \
+    (afw_self_v_zz__Serialize_a_value_as_JSON_text.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Serialize_a_value_as_JSON_text */
+#define afw_v_zz__Serialize_a_value_as_JSON_text \
+    (&afw_self_v_zz__Serialize_a_value_as_JSON_text.pub)
 
 
 
@@ -209070,28 +209070,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Value_to_stringify_ \
-    "Value to stringify."
+#define AFW_Q_zz__Value_to_stringify_as_JSON_ \
+    "Value to stringify as JSON."
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Value_to_stringify_ */
-#define afw_s_zz__Value_to_stringify_ \
-    (&afw_self_v_zz__Value_to_stringify_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Value_to_stringify_as_JSON_ */
+#define afw_s_zz__Value_to_stringify_as_JSON_ \
+    (&afw_self_v_zz__Value_to_stringify_as_JSON_.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Value_to_stringify_ */
-#define afw_self_s_zz__Value_to_stringify_ \
-    (afw_self_v_zz__Value_to_stringify_.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Value_to_stringify_as_JSON_ */
+#define afw_self_s_zz__Value_to_stringify_as_JSON_ \
+    (afw_self_v_zz__Value_to_stringify_as_JSON_.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Value_to_stringify_ */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Value_to_stringify_as_JSON_ */
 extern const afw_value_string_t \
-    afw_self_v_zz__Value_to_stringify_;
+    afw_self_v_zz__Value_to_stringify_as_JSON_;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Value_to_stringify_ */
-#define afw_z_zz__Value_to_stringify_ \
-    (afw_self_v_zz__Value_to_stringify_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Value_to_stringify_as_JSON_ */
+#define afw_z_zz__Value_to_stringify_as_JSON_ \
+    (afw_self_v_zz__Value_to_stringify_as_JSON_.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Value_to_stringify_ */
-#define afw_v_zz__Value_to_stringify_ \
-    (&afw_self_v_zz__Value_to_stringify_.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Value_to_stringify_as_JSON_ */
+#define afw_v_zz__Value_to_stringify_as_JSON_ \
+    (&afw_self_v_zz__Value_to_stringify_as_JSON_.pub)
 
 
 

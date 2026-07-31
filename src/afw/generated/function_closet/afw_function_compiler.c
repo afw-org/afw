@@ -476,8 +476,13 @@ afw_function_execute_safe_evaluate(
  *
  * See afw_function_bindings.h for more information.
  *
- * Evaluate and decompile an adaptive value to string. For most values this has
- * the effect of producing a string containing json.
+ * Evaluate a value and serialize it as pure JSON text (ECMAScript
+ * JSON.stringify-like). Adaptive data types use their jsonPrimitive (for
+ * example base64Binary and date become JSON strings). Whitespace (third
+ * parameter) matches decompile/listing style. Optional replacer is not
+ * implemented yet. For Adaptive Script or IR source form use decompile(). For
+ * binary octets as UTF-8 text use decode_to_string(); string(binary) is base64
+ * printable text, not UTF-8.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -494,9 +499,10 @@ afw_function_execute_safe_evaluate(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to stringify.
+ *   value - (any dataType) Value to stringify as JSON.
  *
- *   replacer - (optional any dataType) Optional replacer function.
+ *   replacer - (optional any dataType) Optional replacer (not implemented yet;
+ *       omit or pass null).
  *
  *   whitespace - (optional any dataType) Add whitespace for readability if
  *       present and not 0. This parameter can be an integer between 0 and 10 or
@@ -506,7 +512,7 @@ afw_function_execute_safe_evaluate(
  *
  * Returns:
  *
- *   (string) Evaluated and decompiled value.
+ *   (string) JSON text for the value.
  */
 const afw_value_t *
 afw_function_execute_stringify(

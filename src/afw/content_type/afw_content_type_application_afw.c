@@ -160,7 +160,7 @@ impl_afw_content_type_write_value(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_json_internal_write_value(value, options, context, callback,
+    afw_json_internal_write_value(value, options, NULL, context, callback,
         p, xctx);
 }
 
