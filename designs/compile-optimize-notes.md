@@ -2,6 +2,8 @@
 
 **Not part of issue #18 / pragma IR work.** Separate feature branch and design conversation later.
 
+**Issue #18 status snapshot:** [`designs/issue-18-decompile-status.md`](issue-18-decompile-status.md) (goals, landed IR, footguns, tests, tip commit).
+
 ## Idea
 
 At compile time, fold calls where:
