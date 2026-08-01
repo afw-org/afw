@@ -529,6 +529,19 @@ impl_decompile_pattern(
 
 
 /*
+ * Public: Pattern surface for script function params / similar.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_assignment_pattern(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    impl_decompile_pattern(instance, writer, xctx);
+}
+
+
+/*
  * Implementation of method decompile for interface afw_value.
  *
  * Synthetic call #assignment_target("const"|"let"|..., Pattern).

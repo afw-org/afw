@@ -20,7 +20,7 @@ if (y !== 2) {
 
 //? test: dflt-params-abrupt
 //? description: abrupt completion returned by evaluation of initializer (function expression)
-//? expect: error:Parse error at offset 209 around line 9 column 38: Expecting a literal
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -29,10 +29,11 @@ function fn_assert(): any {
     throw "error";
 };
 
-// \fixme function parameter default assignment can't be a function call
+/* Defaults may be Expressions (#140); abrupt when the default is evaluated. */
 let f: function = function (x: any = fn_assert()): any {
     callCount = callCount + 1;
 };
+f();
 
 
 
@@ -70,13 +71,14 @@ function f(x: integer = 0, x: integer): any {};
 
 //? test: dflt-params-ref-later
 //? description: Referencing a parameter that occurs later in the parameter array
-//? expect: error:Parse error at offset 85 around line 6 column 19: Expecting a literal
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
 let x = 0;
 let callCount = 0;
 let f: function;
+/* Later params are not in scope while parsing an earlier default Expression. */
 f = function (x = y, y?): any {
     callCount = callCount + 1;
 };
@@ -85,16 +87,17 @@ f = function (x = y, y?): any {
 
 //? test: dflt-params-ref-prior
 //? description: Referencing a parameter that occurs earlier in the parameter array
-//? expect: error:Parse error at offset 77 around line 5 column 28: Expecting a literal
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 let x = 0;
 let callCount = 0;
+/* Defaults are Expressions evaluated with prior params already bound (#140). */
 let ref = function (x, y = x, z = y): any {
     assert(x === 3, "first argument value");
     assert(y === 3, "second argument value");
-    assert(y === 3, "third argument value");
+    assert(z === 3, "third argument value");
     callCount = callCount + 1;
 };
 

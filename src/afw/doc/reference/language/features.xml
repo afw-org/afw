@@ -90,13 +90,22 @@ let y = 2;
         In ECMAScript, the <literal>catch</literal> statement accepts any value
         that was thrown, including an Error object, but in Adaptive Script, a 
         single object is always caught, which contains the message and data 
-        that was thrown.
+        that was thrown. The catch binding may be a simple name or a list/object
+        Pattern (same destructuring as <literal>let</literal> /
+        <literal>const</literal>), for example
+        <literal>catch ({ message, data })</literal>.
     </paragraph>
     <code><![CDATA[try {
     throw "Something bad happened" { "code": 123 };
 } catch (e) {
     print(e.message);
     print(e.data.code);
+}
+
+try {
+    throw "boom";
+} catch ({ message }) {
+    print(message);
 }]]></code>
     <header>Working with objects and arrays</header>
     <paragraph>

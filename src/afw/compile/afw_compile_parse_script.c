@@ -1054,7 +1054,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
         }
         statement_list = afw_compile_parse_StatementList(parser,
-            NULL, false, true, false);
+            NULL, false, true, false, false);
         afw_compile_args_add_value(args, case_expression);
         afw_compile_args_add_value(args, statement_list);
     }
@@ -1149,6 +1149,7 @@ typedef struct {
     const afw_compile_value_contextual_t *contextual;
 } impl_parse_TryStatement_StatementList_cb_t;
 
+/* Identifier catch only: plant error name after StatementList opens the block. */
 static void
 impl_parse_TryStatement_StatementList_cb (
     afw_compile_parse_StatementList_cb_t *cb,
@@ -1168,7 +1169,11 @@ impl_parse_TryStatement_StatementList_cb (
 
 /*ebnf>>>
  *
- * Catch ::= 'catch' ( '(' Identifier ')' )? Statement
+ *#
+ *# Catch binding is Identifier or the same list/object Pattern as let/const
+ *# (issue #140). Runtime assigns the error object into the binding target.
+ *#
+ * Catch ::= 'catch' ( '(' ( Identifier | AssignmentTarget ) ')' )? Statement
  * 
  * Finally ::= 'finally' Statement
  *
@@ -1184,10 +1189,12 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     afw_size_t argc;
     afw_size_t start_offset;
     afw_boolean_t rethrow_allowed;
+    afw_boolean_t pattern_binding;
 
     rethrow_allowed = parser->rethrow_allowed;
     parser->rethrow_allowed = false;
     cb.public.func = NULL;
+    pattern_binding = false;
     afw_compile_save_cursor(start_offset);
 
     argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
@@ -1209,19 +1216,44 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         else {
             argc = 4;
             afw_compile_get_token();
-            if (!afw_compile_token_is_unqualified_identifier()) {
-                AFW_COMPILE_THROW_ERROR_Z("Expecting identifier");
-            }
             /*
-             * Callback is needed so that error variable reference can be 
-             * created in afw_compile_parse_StatementList() after block has
-             * been created so it will be associated with the correct block.
+             * Pattern catch: open catch block first so Pattern leaves land
+             * on the same block as body statements. Identifier: keep the
+             * historical callback that plants the name when StatementList
+             * opens the block.
              */
-            cb.public.func = impl_parse_TryStatement_StatementList_cb;
-            cb.error_variable_name = parser->token->identifier_name;
-            cb.contextual = afw_compile_create_contextual_to_cursor(
-                start_offset);
-            cb.symbol_reference = &argv[4];
+            if (afw_compile_token_is(open_bracket) ||
+                afw_compile_token_is(open_brace))
+            {
+                /*
+                 * Pattern catch (issue #140): open the catch block first so
+                 * Pattern leaves are symbols on the same block as the body.
+                 * StatementList(..., use_existing_current_block=true) fills
+                 * that block; no StatementList callback needed.
+                 */
+                pattern_binding = true;
+                afw_compile_reuse_token();
+                (void)afw_compile_parse_link_new_value_block(parser,
+                    start_offset);
+                argv[4] = afw_compile_parse_AssignmentTarget(parser,
+                    afw_compile_assignment_type_let);
+            }
+            else if (afw_compile_token_is_unqualified_identifier()) {
+                /*
+                 * Identifier catch: StatementList opens the block, then the
+                 * callback plants the error variable on that block (historical
+                 * path; decompile of try expects argv[4] as symbol_reference).
+                 */
+                cb.public.func = impl_parse_TryStatement_StatementList_cb;
+                cb.error_variable_name = parser->token->identifier_name;
+                cb.contextual = afw_compile_create_contextual_to_cursor(
+                    start_offset);
+                cb.symbol_reference = &argv[4];
+            }
+            else {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting identifier or Pattern in catch");
+            }
             afw_compile_get_token();
             if (!afw_compile_token_is(close_parenthesis)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
@@ -1233,9 +1265,16 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         if (!afw_compile_token_is(open_brace)) {
             AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
         }
+        /*
+         * Pattern binding already opened the catch block (symbols live on
+         * that block). Identifier binding uses the StatementList callback to
+         * plant the name after a new block is opened. use_existing_current_block
+         * is only for the Pattern case so we do not nest a second block.
+         */
         argv[3] = afw_compile_parse_StatementList(parser,
             (cb.public.func) ? &cb.public : NULL,
-            true, false, false);
+            true, false, false,
+            /* use_existing_current_block */ pattern_binding);
         parser->rethrow_allowed = false;
     }
     else {
@@ -1254,7 +1293,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
         }
         argv[2] = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
     }
     else {
         afw_compile_reuse_token();
@@ -1375,7 +1414,7 @@ afw_compile_parse_Statement(
     /* If next token is '{', parse Block. */
     if (afw_compile_token_is(open_brace)) {
         result = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
         return result;
     }
 
@@ -1540,7 +1579,8 @@ afw_compile_parse_StatementList(
     afw_compile_parse_StatementList_cb_t *cb,
     afw_boolean_t end_is_close_brace,
     afw_boolean_t end_is_close_brace_case_or_default,   
-    afw_boolean_t can_be_single_return_expression)
+    afw_boolean_t can_be_single_return_expression,
+    afw_boolean_t use_existing_current_block)
 {
     const afw_value_t *result;
     const afw_value_t *statement;
@@ -1561,13 +1601,32 @@ afw_compile_parse_StatementList(
         : NULL;
 
     building_list_not_block = end_is_close_brace_case_or_default;
+    block = NULL;
 
     /* Save starting cursor. */
     afw_compile_save_cursor(start_offset);
 
-    /* Make new block and link if making block. */
+    /*
+     * Open a new value block, or continue the current one (catch Pattern:
+     * symbols already introduced on current_block before the body).
+     */
     if (!building_list_not_block) {
-        block = afw_compile_parse_link_new_value_block(parser, start_offset);   
+        if (use_existing_current_block) {
+            block = parser->compiled_value->current_block;
+            if (!block) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Internal error: StatementList use_existing_current_block "
+                    "with no current block");
+            }
+        }
+        else {
+            block = afw_compile_parse_link_new_value_block(parser,
+                start_offset);
+        }
+    }
+    else if (use_existing_current_block) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Internal error: use_existing_current_block with case-list mode");
     }
 
     /* If cb passed, call it now that args and block are set. */
@@ -1753,7 +1812,7 @@ afw_compile_parse_Script(
 
     /* Parse statements and return. */
     result = afw_compile_parse_StatementList(parser,
-        NULL, end_is_close_brace, false, true);
+        NULL, end_is_close_brace, false, true, false);
     return result;
 }
 

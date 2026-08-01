@@ -564,6 +564,70 @@ impl_parse_pragma_script_function(afw_compile_parser_t *parser)
                 "Expecting parameter name after '...'");
         }
 
+        /*
+         * Pattern parameter: [ … ] or { … } followed by param-ish tokens
+         * or ',' before body. If the body itself is a list/object literal,
+         * it must not look like a trailing param (no ',' after) — same
+         * ambiguity as name params: Pattern is a param when followed by
+         * '?', '=', or ','.
+         */
+        if (afw_compile_token_is(open_bracket) ||
+            afw_compile_token_is(open_brace))
+        {
+            afw_size_t pattern_start = parser->token->token_source_offset;
+            afw_compile_reuse_token();
+            {
+                const afw_value_t *pat;
+                afw_value_script_function_parameter_t *pparam;
+
+                pat = afw_compile_parse_AssignmentTarget(parser,
+                    afw_compile_assignment_type_parameter);
+                afw_compile_get_token();
+                if (afw_compile_token_is(question_mark) ||
+                    afw_compile_token_is(equal) ||
+                    afw_compile_token_is(comma))
+                {
+                    if (params->nelts > 0) {
+                        afw_value_script_function_parameter_t *prev =
+                            ((afw_value_script_function_parameter_t **)
+                                params->elts)[params->nelts - 1];
+                        if (prev->is_rest) {
+                            AFW_COMPILE_THROW_ERROR_Z(
+                                "Rest parameter must be last");
+                        }
+                    }
+                    pparam = afw_pool_calloc_type(parser->p,
+                        afw_value_script_function_parameter_t,
+                        parser->xctx);
+                    pparam->assignment_target = pat;
+                    if (afw_compile_token_is(question_mark)) {
+                        pparam->is_optional = true;
+                        afw_compile_get_token();
+                    }
+                    if (afw_compile_token_is(equal)) {
+                        pparam->default_value =
+                            afw_compile_parse_Expression(parser);
+                        pparam->is_optional = true;
+                        afw_compile_get_token();
+                    }
+                    if (afw_compile_token_is(comma)) {
+                        APR_ARRAY_PUSH(params,
+                            afw_value_script_function_parameter_t *) =
+                            pparam;
+                        continue;
+                    }
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Expecting ',' after Pattern parameter in "
+                        "#script_function");
+                }
+                /* Not a param — body starts with list/object Expression. */
+                afw_compile_restore_cursor(pattern_start);
+                body = afw_compile_parse_Expression(parser);
+                have_body = true;
+                continue;
+            }
+        }
+
         /* Body Expression that does not start with a name. */
         afw_compile_reuse_token();
         body = afw_compile_parse_Expression(parser);

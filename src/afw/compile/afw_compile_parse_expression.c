@@ -423,15 +423,24 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
  *        EllipsisParameter
  *    )    
  *
+ *#
+ *# A parameter is a ParameterName or a list/object Pattern (same Patterns as
+ *# let/const destructure). Pattern parameters introduce nested parameter
+ *# symbols; the whole argument is bound via the Pattern at call time.
+ *#
+ * ParameterBinding ::=
+ *    ParameterName | AssignmentListDestructureTarget |
+ *    AssignmentObjectDestructureTarget
+ *
  * RequiredParameterList ::=
- *    ParameterName OptionalType
- *    (',' ParameterName OptionalType)*
+ *    ParameterBinding OptionalType
+ *    (',' ParameterBinding OptionalType)*
  *
  * OptionalParameterList ::=
- *    ( ParameterName '?'? OptionalType ( '=' Literal )? )
+ *    ( ParameterBinding '?'? OptionalType ( '=' Expression )? )
  *    (
  *        ','
- *        ( ParameterName '?'? OptionalType ( '=' Literal )? )
+ *        ( ParameterBinding '?'? OptionalType ( '=' Expression )? )
  *    )*
  *
  * EllipsisParameter ::=
@@ -523,7 +532,7 @@ afw_compile_parse_FunctionSignature(
             param = afw_pool_calloc_type(parser->p,
                 afw_value_script_function_parameter_t, parser->xctx);
 
-            /* If ellipsis, this is a rest parameter. */
+            /* If ellipsis, this is a rest parameter (name only for now). */
             afw_compile_get_token();
             if (afw_compile_token_is(ellipsis)) {
                 param->is_rest = true;
@@ -532,17 +541,59 @@ afw_compile_parse_FunctionSignature(
                 afw_compile_reuse_token();
             }
 
-            /* Next should be name. */
+            /*
+             * Ensure parameter block exists before introducing any symbols
+             * (simple name or Pattern leaves).
+             */
+            if (block && !*block) {
+                *block = afw_compile_parse_link_new_value_block(parser,
+                    start_offset);
+                signature->block = *block;
+            }
+            else if (block && *block) {
+                signature->block = *block;
+            }
+
+            /* Pattern parameter: [ … ] or { … } (not valid after ...rest). */
             afw_compile_get_token();
-            if (!afw_compile_token_is_unqualified_identifier()) {
-                AFW_COMPILE_THROW_ERROR_Z("Expecting parameter name");
+            if (!param->is_rest &&
+                (afw_compile_token_is(open_bracket) ||
+                    afw_compile_token_is(open_brace)))
+            {
+                afw_compile_reuse_token();
+                if (!block) {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Pattern parameters require a function body scope");
+                }
+                param->assignment_target =
+                    afw_compile_parse_AssignmentTarget(parser,
+                        afw_compile_assignment_type_parameter);
+                param->name = NULL;
+                param->symbol = NULL;
+                symbol = NULL;
             }
-            param->name = parser->token->identifier_name;
-            if (afw_compile_is_reserved_word(parser, param->name)) {
-                AFW_COMPILE_THROW_ERROR_Z(
-                    "Parameter name can not be a reserved word");
+            else {
+                /* Simple ParameterName. */
+                if (!afw_compile_token_is_unqualified_identifier()) {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Expecting parameter name or Pattern");
+                }
+                param->name = parser->token->identifier_name;
+                if (afw_compile_is_reserved_word(parser, param->name)) {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Parameter name can not be a reserved word");
+                }
+
+                symbol = NULL;
+                if (block) {
+                    symbol = afw_compile_parse_add_symbol_entry(
+                        parser, param->name);
+                    symbol->symbol_type =
+                        afw_value_block_symbol_type_parameter;
+                    param->symbol = symbol;
+                }
             }
-           
+
             /* '?' */
             afw_compile_get_token();
             if (afw_compile_token_is(question_mark)) {
@@ -555,33 +606,32 @@ afw_compile_parse_FunctionSignature(
                 afw_compile_reuse_token();
             }
 
-            /* Next is optional type. */
-            param->type = afw_compile_parse_OptionalType(parser, false);
+            /* Optional type (simple name params; Pattern leaves typed in Pattern). */
+            if (!param->assignment_target) {
+                param->type = afw_compile_parse_OptionalType(parser, false);
+                if (symbol && param->type) {
+                    afw_memory_copy(&symbol->type, param->type);
+                }
+            }
+            else {
+                /* Patterns: optional whole-arg type after Pattern not supported. */
+                afw_compile_get_token();
+                if (afw_compile_token_is(colon)) {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Type annotation after a parameter Pattern is not "
+                        "supported; annotate Pattern leaves instead");
+                }
+                afw_compile_reuse_token();
+            }
 
-            /* Push parm on parms stack. */
+            /* Push param on stack. */
             APR_ARRAY_PUSH(params, afw_value_script_function_parameter_t *) =
                 param;
-
-            /* Create block if first parameter and add symbol. */
-            if (block) {
-                if (!*block) {
-                    *block = afw_compile_parse_link_new_value_block(parser,
-                        start_offset);
-                }
-                signature->block = *block;
-                symbol = afw_compile_parse_add_symbol_entry(
-                    parser, param->name);
-                symbol->symbol_type = afw_value_block_symbol_type_parameter;
-                param->symbol = symbol;
-                if (param->type) {
-                    afw_memory_copy(&symbol->type, param->type);
-                }        
-            }
 
             /* Get next token. */
             afw_compile_get_token();
 
-            /* If this is rest parameter, this token must be close parenthesis. */
+            /* Rest parameter must be last. */
             if (param->is_rest) {
                 if (afw_compile_token_is(close_parenthesis)) {
                     break;
@@ -589,10 +639,10 @@ afw_compile_parse_FunctionSignature(
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
             }
 
-            /*  '=' Literal */
+            /* Default: Expression (TS-like; was Literal-only). */
             else if (afw_compile_token_is(equal)) {
-                param->default_value = afw_compile_parse_Literal(parser,
-                    NULL, true, false);
+                param->default_value = afw_compile_parse_Expression(parser);
+                param->is_optional = true;
                 optional_encountered = true;
                 afw_compile_get_token();
             }
@@ -667,7 +717,7 @@ afw_compile_parse_FunctionSignatureAndBody(
     afw_compile_get_token();
     if (afw_compile_token_is(open_brace)) {
         body = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
     }
     else {
         afw_compile_reuse_token();

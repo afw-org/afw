@@ -215,16 +215,25 @@ ParameterList ::=
        ) |
        EllipsisParameter
    )
+/*                                                                            */
+/* A parameter is a ParameterName or a list/object Pattern (same Patterns as  */
+/* let/const destructure). Pattern parameters introduce nested parameter      */
+/* symbols; the whole argument is bound via the Pattern at call time.         */
+/*                                                                            */
+
+ParameterBinding ::=
+   ParameterName | AssignmentListDestructureTarget |
+   AssignmentObjectDestructureTarget
 
 RequiredParameterList ::=
-   ParameterName OptionalType
-   (',' ParameterName OptionalType)*
+   ParameterBinding OptionalType
+   (',' ParameterBinding OptionalType)*
 
 OptionalParameterList ::=
-   ( ParameterName '?'? OptionalType ( '=' Literal )? )
+   ( ParameterBinding '?'? OptionalType ( '=' Expression )? )
    (
        ','
-       ( ParameterName '?'? OptionalType ( '=' Literal )? )
+       ( ParameterBinding '?'? OptionalType ( '=' Expression )? )
    )*
 
 EllipsisParameter ::=
@@ -512,8 +521,12 @@ SwitchStatement ::= 'switch' ParenthesizedExpression
 ThrowStatement ::=  'throw' ( Expression  Expression? )?
 
 /* From afw_compile_parse_script.c                                            */
+/*                                                                            */
+/* Catch binding is Identifier or the same list/object Pattern as let/const   */
+/* (issue #140). Runtime assigns the error object into the binding target.    */
+/*                                                                            */
 
-Catch ::= 'catch' ( '(' Identifier ')' )? Statement
+Catch ::= 'catch' ( '(' ( Identifier | AssignmentTarget ) ')' )? Statement
 
 Finally ::= 'finally' Statement
 

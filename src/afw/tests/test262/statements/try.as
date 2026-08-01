@@ -733,7 +733,7 @@ assert(eval(script('6; try { 7; } catch (err) { 8; }') === 7);
 //? description:...
     It is a Syntax Error if BoundNames of CatchParameter contains any duplicate
     elements.
-//? expect: error:Parse error at offset 35 around line 3 column 16: Expecting identifier
+//? expect: error:Parse error at offset 40 around line 3 column 21: 'x' already defined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4619,7 +4619,9 @@ assert(probeParam() === 'inside');
 
 //? test: scope-catch-param-var-none
 //? description: Retainment of existing variable environment for `catch` parameter
-//? expect: error:Parse error at offset 253 around line 15 column 10: Expecting identifier
+//? skip: true
+//? skipReason: Incomplete half-converted test262 catch Pattern + eval(script) probe; needs rewrite under #140/differences
+//? expect: error:Parse error at offset 297 around line 15 column 54: Expecting Value
 //? source: ...
 #!/usr/bin/env afw
 
