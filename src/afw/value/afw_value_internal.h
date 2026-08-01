@@ -588,10 +588,19 @@ struct afw_value_script_function_signature_s {
 
 /** @brief Struct for script function parameter. */
 struct afw_value_script_function_parameter_s {
+    /*
+     * Simple name parameter: symbol + name set; assignment_target NULL.
+     * Pattern parameter (list/object destructure): assignment_target is an
+     * assignment_target value whose Pattern leaves are parameter symbols in
+     * the function parameter block. name/symbol may be NULL (no whole-arg
+     * binding unless a future synthetic is added).
+     */
     const afw_value_block_symbol_t *symbol;
     const afw_utf8_t *name;
     const afw_value_type_t *type;
     const afw_value_t *default_value;
+    /** Pattern bind target (list/object destructure), or NULL. */
+    const afw_value_t *assignment_target;
     afw_boolean_t is_optional;
     afw_boolean_t is_rest;
 };

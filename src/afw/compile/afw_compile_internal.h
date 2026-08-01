@@ -430,6 +430,9 @@ struct afw_compile_internal_parser_s {
     XX(let,                                                                     \
         "This is an assignment to a new local variable. ")                      \
                                                                                 \
+    XX(parameter,                                                               \
+        "This introduces a function/lambda parameter (or Pattern leaf).")       \
+                                                                                \
     XX(reference_only,                                                          \
         "No assignment, just reference.")                                       \
                                                                                 \
@@ -1111,6 +1114,20 @@ AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Factor(afw_compile_parser_t *parser);
 
 
+
+/**
+ * @brief Bind a value into an assignment target / Pattern (runtime).
+ *
+ * Used by script function Pattern parameters and shared destructure paths.
+ * target is symbol_reference, assignment_target (list/object Pattern), etc.
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_function_script_assign_pattern(
+    const afw_value_t *target,
+    const afw_value_t *value,
+    afw_compile_internal_assignment_type_t assignment_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 AFW_DECLARE_INTERNAL(const afw_value_script_function_signature_t *)
 afw_compile_parse_FunctionSignature(

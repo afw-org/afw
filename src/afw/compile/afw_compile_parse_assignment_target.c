@@ -330,7 +330,8 @@ afw_compile_parse_AssignmentBindingTarget(
         }
  
         if (assignment_type == afw_compile_assignment_type_let ||
-            assignment_type == afw_compile_assignment_type_const)
+            assignment_type == afw_compile_assignment_type_const ||
+            assignment_type == afw_compile_assignment_type_parameter)
         {
             *type = afw_compile_parse_OptionalType(parser, false);
         }

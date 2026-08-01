@@ -279,6 +279,13 @@ afw_compile_parse_variable_reference_create(
         }
         symbol->symbol_type = afw_value_block_symbol_type_const;
     }
+    else if (assignment_type == afw_compile_assignment_type_parameter) {
+        symbol = afw_compile_parse_add_symbol_entry(parser, identifier);
+        if (type) {
+            afw_memory_copy(&symbol->type, type);
+        }
+        symbol->symbol_type = afw_value_block_symbol_type_parameter;
+    }
     else if (assignment_type == afw_compile_assignment_type_reference_only) {
         symbol = afw_compile_parse_get_symbol_entry(parser, identifier);
         if (!symbol) {

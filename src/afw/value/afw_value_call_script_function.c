@@ -174,6 +174,14 @@ impl_afw_value_optional_evaluate(
             parameter_scope = afw_xctx_scope_create(
                 script->signature->block, enclosing_lexical_scope, xctx);
 
+            /*
+             * Activate before binding so Pattern destructure
+             * (scope_symbol_set_value) finds parameter symbols. Simple-name
+             * params still use get_value_address(parameter_scope, …).
+             */
+            afw_xctx_scope_activate(parameter_scope, xctx);
+            parameter_scope_activated = true;
+
             /* Set parameters in scope. */
             for (parameter_number = 1,
                 params = script->parameters,
@@ -215,7 +223,8 @@ impl_afw_value_optional_evaluate(
 
                     if (afw_value_is_undefined(value)) {
                         if ((*params)->default_value) {
-                            value = (*params)->default_value;
+                            value = afw_value_evaluate(
+                                (*params)->default_value, p, xctx);
                         }
                         else if (!(*params)->is_optional) {
                             AFW_THROW_ERROR_FZ(general, xctx,
@@ -225,15 +234,26 @@ impl_afw_value_optional_evaluate(
                     }
                 }
 
-                /* Set parameter value in parameters scope. */
-                *afw_xctx_scope_symbol_get_value_address(
-                    (*params)->symbol, parameter_scope, xctx) = value;
+                /*
+                 * Pattern parameter: bind whole arg via shared destructure
+                 * (same walkers as let/const). Optional with no arg and no
+                 * default: leave Pattern leaves unset (undefined). Simple
+                 * name: store into the parameter symbol as before.
+                 */
+                if ((*params)->assignment_target) {
+                    if (!afw_value_is_undefined(value)) {
+                        afw_function_script_assign_pattern(
+                            (*params)->assignment_target, value,
+                            afw_compile_assignment_type_parameter,
+                            p, xctx);
+                    }
+                }
+                else if ((*params)->symbol) {
+                    *afw_xctx_scope_symbol_get_value_address(
+                        (*params)->symbol, parameter_scope, xctx) = value;
+                }
             }
 
-            /* Activate the parameter scope. */
-            afw_xctx_scope_activate(parameter_scope, xctx);
-            parameter_scope_activated = true;
-            
             /* If named function, set its symbol in parameter scope. */
             if (script->signature->function_name_symbol) {
                 afw_xctx_scope_symbol_set_value(

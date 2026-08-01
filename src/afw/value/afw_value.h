@@ -1804,6 +1804,22 @@ afw_value_decompile_optional_type(
 
 
 /**
+ * @brief Decompile a list/object Pattern (or symbol) without #assignment_target.
+ * @param instance assignment_target value or symbol_reference.
+ * @param writer
+ * @param xctx of caller.
+ *
+ * Used for script function parameter Patterns so decompile stays surface-like
+ * (`function f({a,b})` / `#script_function({a,b}, body)`).
+ */
+AFW_DEFINE(void)
+afw_value_decompile_assignment_pattern(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
  * @internal
  * @brief  Register core value infs.
  * @param xctx of caller.

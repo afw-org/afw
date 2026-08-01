@@ -68,8 +68,8 @@ Inventory of where Adaptive Script binds names, and whether a list/object **Patt
 | Plain assignment `… = …` | `AssignmentTarget` | **Yes** | Object form often needs parens: `({a,b} = o)` |
 | **`for (… of …)`** head | `OptionalDefineTarget` → `AssignmentTarget` | **Yes already** | e.g. `for (const {dataType, brief} of …)` |
 | C-style **`for` init** | `OptionalDefineAssignment` → `AssignmentTarget` | **Yes already** | e.g. `for (let [x] = [23]; ;)` |
-| **Function / lambda params** | `ParameterName` only | **No** | High-value sugar (Jeremy) — see below |
-| **`catch (…)`** | `Identifier` only | **No** | Only other everyday gap — optional follow-on |
+| **Function / lambda params** | `ParameterName` or Pattern | **Yes (#140)** | Options-object style; whole-arg default then Pattern |
+| **`catch (…)`** | Identifier or Pattern | **Yes (#140)** | Same assign path as let Patterns |
 | `declare …` | `AssignmentTarget` in EBNF | n/a | Whole statement still **not implemented** |
 | Import / class / `for await` | — | n/a | Not in the language |
 
@@ -88,11 +88,13 @@ Inventory of where Adaptive Script binds names, and whether a list/object **Patt
 
 Do **not** conflate `process::args` (#74) with function-parameter rest or param destructure.
 
-### Function parameter destructuring (future sugar — Jeremy)
+### Function parameter destructuring (issue #140 — implemented on branch)
 
 **GitHub:** [#140](https://github.com/afw-org/afw/issues/140) (enhancement; assignee mike000000000).
 
-ECMAScript-style “destruct in the parameter list”, e.g. conceptually:
+**Status (issue-#140):** Surface Patterns on function/lambda params + catch; shared runtime empty-rest / missing→undefined fixes; `assignment_type_parameter`; tests in `language/script/param_destructure.as`.
+
+ECMAScript/TypeScript-style “destruct in the parameter list”, e.g. conceptually:
 
 ```text
 function f([a, b], {x, y}) { … }

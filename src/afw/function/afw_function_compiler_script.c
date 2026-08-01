@@ -33,6 +33,25 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
+/* Public wrapper for script function Pattern parameters (and similar). */
+AFW_DEFINE_INTERNAL(void)
+afw_function_script_assign_pattern(
+    const afw_value_t *target,
+    const afw_value_t *value,
+    afw_compile_internal_assignment_type_t assignment_type,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (afw_value_is_object(value) || afw_value_is_array(value)) {
+        value = afw_value_clone(value, p, xctx);
+    }
+    else if (value && !afw_value_is_undefined(value)) {
+        value = afw_value_evaluate(value, p, xctx);
+    }
+    impl_assign_value(target, value, assignment_type, p, xctx);
+}
+
+
 static const afw_value_t *
 impl_create_closure_if_needed(
     const afw_value_script_function_definition_t *function,
@@ -118,37 +137,40 @@ impl_list_destructure(
             }
         }
         if (!ae->assignment_target) {
-            continue;
+            continue; /* hole */
         }
         if (eol) {
             v = ae->default_value;
         }
-        if (v) {
-            impl_assign_value(ae->assignment_target, v, assignment_type,
-                p, xctx);
+        /* Missing element and no default → undefined (TS/ES-like). */
+        if (!v) {
+            v = afw_value_undefined;
         }
-        else {
-            //FIXME ???
-        }
+        impl_assign_value(ae->assignment_target, v, assignment_type,
+            p, xctx);
     }
 
-    if (!eol && ld->rest) {
-        for (rest = NULL;;) {
-            v = afw_array_get_next_value(
-                ((const afw_value_array_t *)value)->internal,
-                &iterator, p, xctx);
-            if (!v) {
-                break;
+    if (ld->rest) {
+        rest = NULL;
+        if (!eol) {
+            for (;;) {
+                v = afw_array_get_next_value(
+                    ((const afw_value_array_t *)value)->internal,
+                    &iterator, p, xctx);
+                if (!v) {
+                    break;
+                }
+                if (!rest) {
+                    rest = afw_array_create_generic(p, xctx);
+                }
+                afw_array_push_value(rest, v, xctx);
             }
-            if (!rest) {
-                rest = afw_array_create_generic(p, xctx);
-            }
-            afw_array_push_value(rest, v, xctx);
         }
-        if (rest) {
-            v = afw_value_create_unmanaged_array(rest, p, xctx);
-            impl_assign_value(ld->rest, v, assignment_type, p, xctx);
+        if (!rest) {
+            rest = afw_array_create_generic(p, xctx);
         }
+        v = afw_value_create_unmanaged_array(rest, p, xctx);
+        impl_assign_value(ld->rest, v, assignment_type, p, xctx);
     }
 }
 
@@ -180,13 +202,11 @@ impl_object_destructure(
             if (!v) {
                 v = ap->assignment_element->default_value;
             }
-            if (v) {
-                impl_assign_value(ap->assignment_element->assignment_target, v,
-                    assignment_type, p, xctx);
+            if (!v) {
+                v = afw_value_undefined;
             }
-            else {
-                //FIXME ???
-            }
+            impl_assign_value(ap->assignment_element->assignment_target, v,
+                assignment_type, p, xctx);
         }
         else {
             v = afw_object_get_property(object,
@@ -194,14 +214,11 @@ impl_object_destructure(
             if (!v) {
                 v = ap->default_value;
             }
-            if (v) {
-                impl_assign_value(&ap->symbol_reference->pub,
-                    v, assignment_type, p, xctx);
+            if (!v) {
+                v = afw_value_undefined;
             }
-            else {
-                //FIXME ???
-            }
-
+            impl_assign_value(&ap->symbol_reference->pub,
+                v, assignment_type, p, xctx);
         }
     }
 
