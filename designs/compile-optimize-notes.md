@@ -56,9 +56,41 @@ Implementing the optimizer, pragma, or permanent purity audits. This file is onl
 - Nested patterns decompile as nested `[`/`{` only (no nested `#assignment_target` wrapper).
 - Prefer **not** a forest of nested `#list_destructure` / `#assignment_element` pragmas as the primary form.
 
-**Still open:** later improvements to destructure *parsing* itself; param-list destructure sugar (below).
+**Still open:** later improvements to destructure *parsing* itself; binding-site Pattern sugar where the grammar still takes a bare name (below).
+
+### Binding sites that use Pattern / `AssignmentTarget`
+
+Inventory of where Adaptive Script binds names, and whether a list/object **Pattern** is allowed. Prefer one shared Pattern story (assignment-target parsers + desugar), not parallel binders.
+
+| Site | Grammar today | Pattern? | Notes |
+|------|---------------|----------|--------|
+| `let` / `const` | `AssignmentTarget` | **Yes** | Nested, rest, defaults (`= Expression`), rename |
+| Plain assignment `… = …` | `AssignmentTarget` | **Yes** | Object form often needs parens: `({a,b} = o)` |
+| **`for (… of …)`** head | `OptionalDefineTarget` → `AssignmentTarget` | **Yes already** | e.g. `for (const {dataType, brief} of …)` |
+| C-style **`for` init** | `OptionalDefineAssignment` → `AssignmentTarget` | **Yes already** | e.g. `for (let [x] = [23]; ;)` |
+| **Function / lambda params** | `ParameterName` only | **No** | High-value sugar (Jeremy) — see below |
+| **`catch (…)`** | `Identifier` only | **No** | Only other everyday gap — optional follow-on |
+| `declare …` | `AssignmentTarget` in EBNF | n/a | Whole statement still **not implemented** |
+| Import / class / `for await` | — | n/a | Not in the language |
+
+**Pattern feature residuals** (apply everywhere Patterns exist, not new sites):
+
+- Computed keys in object destructure `{ [k]: x }` still open (near #38).
+- Param surface defaults are `= Literal` only; destructure element defaults already allow **Expression** (align when touching params).
+
+**Not a Pattern site — related “args as a whole” asks:**
+
+| Need | Status | Issue / mechanism |
+|------|--------|-------------------|
+| **Process / CLI args as one array** (script body, Node-like `process.argv`) | **Done** (close pending Jeremy) | Jeremy **[#74](https://github.com/afw-org/afw/issues/74)** → `process::args` (+ `programName`, `pid`, …). Secrets path via `afw_crypto` + file/stream; interactive `readpass` never built (asked Jeremy if close is OK without it). |
+| **All call arguments inside a script function** (ES `arguments` object) | Rest param covers common case | Use `function f(...args)` (already supported). No separate ES `arguments` binding unless someone files a real need. |
+| **Call-site spread** `f(...arr)` | Missing | Separate from param Patterns; only definition-side rest exists today. |
+
+Do **not** conflate `process::args` (#74) with function-parameter rest or param destructure.
 
 ### Function parameter destructuring (future sugar — Jeremy)
+
+**GitHub:** [#140](https://github.com/afw-org/afw/issues/140) (enhancement; assignee mike000000000).
 
 ECMAScript-style “destruct in the parameter list”, e.g. conceptually:
 
@@ -67,13 +99,48 @@ function f([a, b], {x, y}) { … }
 // or AFW-flavored sugar along the same idea
 ```
 
+Primary use: ES/TS “options object” idiom without a manual intermediate bind:
+
+```text
+// Wanted sugar
+function connect({ host, port = 443 } = {}) { … }
+
+// Today
+function connect(opts) {
+    const { host, port = 443 } = opts ?? {};
+    …
+}
+```
+
 Intent: **syntax sugar** that desugars into AFW’s existing model (param symbols + destructure assign into locals / the same compiled form we already have for `const [a,b] = …`), not a parallel binding system.
 
 Implications when we touch this area later:
 
-- Pattern machinery for `#assignment_target` and Script targets should stay **shareable** with param patterns.
+- Pattern machinery for `#assignment_target` and Script targets should stay **shareable** with param patterns (and catch if we add it).
 - `#script_function` decompile/pragma may need to grow beyond bare param **names** once param patterns exist (or keep names as the desugared form and only surface sugar on `function (…)`) — decide then; prefer one binding story.
 - Stay **AFW Script** (explicit, metadata-friendly), not a full ES port; sugar only where it maps cleanly.
+- Arrow functions: not required for this work (explicit non-goal unless product wants them later).
+
+### `catch` binding Pattern (optional follow-on)
+
+EBNF today: `Catch ::= 'catch' ( '(' Identifier ')' )? Statement` — single unqualified name only.
+
+Adaptive always supplies a fixed error shape (`message`, optional `data`), so ES-like:
+
+```text
+catch ({ message, data }) { … }
+```
+
+is the natural sugar; workaround is already fine:
+
+```text
+catch (e) {
+    const { message, data } = e;
+    …
+}
+```
+
+**Priority:** lower than param Patterns. Same desugar idea (hidden name + Pattern assign into the catch block). Catch currently injects the error symbol via a special StatementList callback — any Pattern work must preserve that block/symbol association.
 
 ### `#closure_binding`
 

@@ -28,7 +28,7 @@
 | Item | Where parked |
 |------|----------------|
 | Compile-time **optimize** / constant fold pure calls | `designs/compile-optimize-notes.md` |
-| Function **parameter-list destructure sugar** | same file, “Related #18 follow-ups” |
+| Function **parameter-list destructure sugar** (+ catch optional; binding-site inventory) | **[#140](https://github.com/afw-org/afw/issues/140)**; notes in `designs/compile-optimize-notes.md` |
 | Fake recompile of **runtime** `#closure_binding` | known **reject** with clear error |
 | Recompile of **C-side** `#function_thunk` | known **reject** with clear error |
 
@@ -84,4 +84,4 @@ Do not hand-edit `generated/`.
 1. **PR** `issue-#18` → mgg-develop / develop (after policy + fulldev/valgrind if multi-area PR).
 2. **Handbook** pages for the three print paths + optional advanced pragma note (see chat).
 3. More fidelity coverage if gaps appear.
-4. Later branches: optimize, param destructure sugar, type-check prep.
+4. Later branches: optimize, param destructure sugar (see binding-site notes in `compile-optimize-notes.md`), type-check prep.
