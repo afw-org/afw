@@ -975,6 +975,10 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
         &afw_value_object_expression_inf, xctx);
 
     afw_environment_register_value_inf(
+        &afw_value_object_construct_inf.rti.implementation_id,
+        &afw_value_object_construct_inf, xctx);
+
+    afw_environment_register_value_inf(
         &afw_value_reference_by_key_inf.rti.implementation_id,
         &afw_value_reference_by_key_inf, xctx);
 

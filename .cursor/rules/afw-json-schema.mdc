@@ -24,7 +24,7 @@ alwaysApply: false
 - **Inheritance**: merge property maps with **child override** for the entity. Do **not** stack parent `.propertyTypes` as constraining `allOf` (breaks overrides and confuses editors). Record chain in `x-afw-inheritedObjectTypes` if useful for tests/tooling.
 - **required**: leaf object type only (not on shared `.propertyTypes` maps that would force ancestor-only fields on children).
 - Prefer **`additionalProperties: false`** (closed) over `unevaluatedProperties` for editor support.
-- Map `defaultValue` → `default`, `allowedValues`/`possibleValues` → `enum`; optional instance `_meta_` bag on closed composites.
+- Map `defaultValue` → `default`, `allowedValues`/`possibleValues` → `enum`; optional instance `_meta_` (wire/meta convention) on closed composites.
 - Verbose schemas are fine (generated, read-only). Optimize for VS Code-style consumers, not size.
 
 ## Wire-up

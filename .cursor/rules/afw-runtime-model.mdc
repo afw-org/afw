@@ -28,6 +28,10 @@ Hierarchical pools (incl. xctx/scope subpools). Bulk free on pool/scope release;
 ## Design philosophy
 Immutability first; pool-centric lifetimes; metadata as single source of truth; curated TypeScript-like surface (lambdas, destructuring, types — not prototypes/loose JS). Prefer small patterned pieces over one-off machinery.
 
+## Naming values (short)
+- Structured values: **object** (named **properties**) and **array** (ordered). Do not call objects “bags” — **bag** is historical (XACML → list → array); see always-on `afw-project` terminology.
+- Object **meta** is sideband, separate from the property map.
+
 ## Process glue
 Capabilities (functions, data types, adapters, content types, …) are **registered into the environment** — core at create (`afw_environment_register_core.c` after `afw_generated_register`), extensions/commands later via the same APIs. See `afw-environment`.
 

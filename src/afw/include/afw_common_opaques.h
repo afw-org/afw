@@ -922,6 +922,22 @@ typedef struct afw_value_object_expression_s
 afw_value_object_expression_t;
 
 /**
+ * @brief Opaque `afw_value_object_construct_t`.
+ *
+ * Object value with ordered property entries (static name, expression name,
+ * and/or spread). Used when an object value includes expression property
+ * names. See afw_value_internal.h.
+ */
+typedef struct afw_value_object_construct_s
+afw_value_object_construct_t;
+
+/**
+ * @brief Opaque object-construct entry.
+ */
+typedef struct afw_value_object_construct_entry_s
+afw_value_object_construct_entry_t;
+
+/**
  * @brief Opaque `afw_value_qualified_variable_reference_t`.
  *
  * See afw_value_internal.h for struct and more information.

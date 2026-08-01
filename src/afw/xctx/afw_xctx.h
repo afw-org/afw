@@ -827,7 +827,7 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
 /**
  * @brief Push qualifier on to stack.
  * @param qualifier or NULL.
- * @param qualifier_object optional object bag (may be NULL).
+ * @param qualifier_object optional object of properties (may be NULL).
  * @param secure access to this qualifier is allowed.
  * @param get_cb get variable by name (hot path).
  * @param contribute_cb contribute variables into a snapshot object (required;
@@ -905,7 +905,7 @@ afw_xctx_qualifier_stack_qualifier_object_push(
  * @return New memory object (never a live view), or NULL if no matching
  *    visible stack entry for that qualifier (nullish to scripts). Walks most
  *    recent → older; every matching visible entry contributes (most recent
- *    wins per property name). Empty bag after contribute is still an object.
+ *    wins per property name). Empty object after contribute is still an object.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifier_object_create(

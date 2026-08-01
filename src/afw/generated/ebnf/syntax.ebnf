@@ -725,12 +725,14 @@ ObjectValue ::=
    '{'
        (
            (
-               ( ( String | Identifier ) ':' Expression ) |
+               ( ( String | Identifier | '[' Expression ']' )
+                   ':' Expression ) |
                ('...' ObjectExpression )
            )
            ( ','
                (
-                   ( ( String | Identifier ) ':' Expression ) |
+                   ( ( String | Identifier | '[' Expression ']' )
+                       ':' Expression ) |
                    ('...' ObjectExpression )
                )
            )*

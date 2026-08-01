@@ -8,6 +8,9 @@ alwaysApply: false
 
 Use when writing or reviewing `.as` tests, model `on*` handlers, Fiddle snippets, or script-shaped conf.
 
+## Types in prose
+- Say **object** / **properties** and **array**, not “bag.” Historical data-type name **bag** was renamed list then **array** (see always-on `afw-project` terminology).
+
 ## Equality and identity
 
 - **`===` / `!==` on objects and arrays is structural** (deep equality), not pointer identity.

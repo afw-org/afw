@@ -31,7 +31,7 @@ Do **not** return C `NULL` for present undefined. Context **name tables**: if th
 ## Snapshot rules (issue #9)
 
 - **`afw_xctx_qualifier_object_create`:** walk **all** matching visible entries for the name (most recent first); each **contributes** into one accumulator. Per property name, **most recent wins** (contribute should skip names already set).
-- **Nullish:** no matching visible entry → C `NULL` / script `undefined` (not `{}`). Empty bag after contribute is still an object.
+- **Nullish:** no matching visible entry → C `NULL` / script `undefined` (not `{}`). Empty object after contribute is still an object.
 - **`qualifiers()`:** one nested snapshot per **active** qualifier name. If create returns `NULL`, **omit** the property — **never invent `{}`**.
 - Nested pushes are normal; stack restore / `AFW_TRY` peels entries as execution leaves scopes.
 
