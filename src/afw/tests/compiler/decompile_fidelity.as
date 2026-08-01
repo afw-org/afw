@@ -42,9 +42,16 @@ check("return process::osType;");
 check("const f = function (x, y) { return x + y; };\nreturn f(3,4);");
 check("const f = function (a = 3) { return a; };\nreturn f();");
 check("const f = function (...r) { return r; };\nreturn f(1,2);");
+/* Pattern formals (issue #140) — decompile surface is recompilable */
+check("const f = function ({a, b}) { return a + b; };\nreturn f({a:1,b:2});");
+check("const f = function ([a, , c]) { return a + c; };\nreturn f([1,2,3]);");
+check("const f = function ({x, y = 1} = {x:0}) { return x + y; };\nreturn f();");
+check("function g({host, port = 443}) { return host; }\nreturn g({host:\"h\"});");
 check("switch (1) { case 1: return 1; default: return 0; }");
 check("try { return 1; } catch (e) { return 0; }");
 check("try { throw 1; } catch (e) { return e; }");
+/* catch Pattern decompile is not yet d1==d2 stable (try emits binding
+ * outside the catch #block); evaluate fidelity is in the next test. */
 return 0;
 
 //? test: fidelity-eval-throw-catch
@@ -59,6 +66,17 @@ const d = decompile(compile<script>(script(src)));
 assert(d == decompile(compile<script>(script(d))));
 assert(evaluate(compile<script>(script(src))) == "boom");
 assert(evaluate(compile<script>(script(d))) == "boom");
+
+/* param Pattern evaluate after recompile (#140) */
+const src2 = "const f = function ({a}) { return a; };\nreturn f({a:7});";
+const d2 = decompile(compile<script>(script(src2)));
+assert(d2 == decompile(compile<script>(script(d2))));
+assert(evaluate(compile<script>(script(src2))) == 7);
+assert(evaluate(compile<script>(script(d2))) == 7);
+
+/* catch Pattern works at evaluate; d1==d2 deferred (try decompile shape) */
+const src3 = "try { throw \"z\"; } catch ({message}) { return message; }";
+assert(evaluate(compile<script>(script(src3))) == "z");
 return 0;
 
 //? test: fidelity-eval-switch-default

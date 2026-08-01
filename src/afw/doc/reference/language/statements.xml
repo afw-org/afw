@@ -125,14 +125,35 @@ do {
         <title>Function</title>
         <image generated-src="ebnf/syntax/diagram/FunctionStatement.png" />
         <paragraph>
-            This declares a function.
+            This declares a function. Parameters may be simple names or the same
+            list and object <literal>Pattern</literal>s used in
+            <literal>let</literal> / <literal>const</literal> destructuring
+            (holes, defaults, rest, rename, nesting). Parameter defaults may be
+            any Expression. When a Pattern parameter is optional, supply a
+            whole-argument default such as <literal>= {}</literal> so the
+            Pattern has an object to bind.
+        </paragraph>
+        <paragraph>
+            The same Patterns are already available in assignment,
+            <literal>for-of</literal> heads, and C-style <literal>for</literal>
+            initializers. Method-style calls and Adaptive functions outside
+            script formals are unchanged.
         </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[function func(a, b) {
     return a + b;
 }
-function func2(a, b) : a + b;]]></code>
+function func2(a, b) : a + b;
+
+/* Options-style object Pattern (defaults apply per property or whole arg) */
+function connect({ host, port = 443 } = { host: "localhost" }) {
+    return host + ":" + string(port);
+}
+
+function headTail([first, , third, ...rest]) {
+    return first;
+}]]></code>
         </section>
     </section>
     <section>

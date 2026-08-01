@@ -92,7 +92,18 @@ Do **not** conflate `process::args` (#74) with function-parameter rest or param 
 
 **GitHub:** [#140](https://github.com/afw-org/afw/issues/140) (enhancement; assignee mike000000000).
 
-**Status (issue-#140):** Surface Patterns on function/lambda params + catch; shared runtime empty-rest / missing→undefined fixes; `assignment_type_parameter`; tests in `language/script/param_destructure.as`.
+**Status (issue-#140):** Surface Patterns on function/lambda params + catch; shared runtime empty-rest / missing→undefined fixes; `assignment_type_parameter`; tests in `language/script/param_destructure.as` + decompile fidelity; handbook/whats_new; catch Pattern uses `StatementList(..., use_existing_current_block)`.
+
+### Cleanup notes for a later major pass (do not block #140)
+
+| Item | Notes |
+|------|--------|
+| **Destructure runtime** | Still in `afw_function_compiler_script.c` as static helpers; consider a small public bind API if more sites appear. |
+| **Object Pattern property names** | Identifier-only; string / computed keys not done (near #38). |
+| **Catch identifier vs Pattern** | Identifier still uses StatementList callback + `symbol_reference` (try decompile assumes that). Pattern opens block early + AssignmentTarget + `StatementList(..., use_existing_current_block)`. **Decompile of Pattern catch is not d1==d2 stable** — try emits binding as 4th arg while identifier path embeds `#assignment_target` inside the catch `#block`. Unify try decompile for Pattern (mirror identifier: binding first in block + reparseable 4th arg) in a later pass. |
+| **`#script_function` Pattern vs body `{`/`[`** | Speculative parse then cursor restore; advanced pragma only. |
+| **Call-site `f(...arr)`** | Separate feature; definition-side rest only. |
+| **argv / parameter_number** | Documented in `afw_function.h` + `afw_value_call_args_s` + call_script_function bind comments (1-based params, `argv[0]` = function). |
 
 ECMAScript/TypeScript-style “destruct in the parameter list”, e.g. conceptually:
 

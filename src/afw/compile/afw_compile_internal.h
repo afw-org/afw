@@ -708,13 +708,24 @@ typedef struct afw_compile_parse_StatementList_cb_s {
 } afw_compile_parse_StatementList_cb_t;
 
 
+/**
+ * @brief Parse a StatementList, optionally into an already-open block.
+ * @param use_existing_current_block If true, do not create a new block;
+ *        use parser->compiled_value->current_block (must already be set,
+ *        e.g. catch Pattern symbols introduced before the body). Still
+ *        finalizes and pops that block when building a block (not case lists).
+ *
+ * Pass false for all historical call sites. Catch with a Pattern binding
+ * opens the block early, then calls with true so statements share that block.
+ */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_StatementList(
     afw_compile_parser_t *parser,
     afw_compile_parse_StatementList_cb_t *cb,
     afw_boolean_t end_is_close_brace,
     afw_boolean_t end_is_close_brace_case_or_default,   
-    afw_boolean_t can_be_single_return_expression);
+    afw_boolean_t can_be_single_return_expression,
+    afw_boolean_t use_existing_current_block);
 
 
 

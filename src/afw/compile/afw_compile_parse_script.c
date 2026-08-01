@@ -1054,7 +1054,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
         }
         statement_list = afw_compile_parse_StatementList(parser,
-            NULL, false, true, false);
+            NULL, false, true, false, false);
         afw_compile_args_add_value(args, case_expression);
         afw_compile_args_add_value(args, statement_list);
     }
@@ -1147,10 +1147,9 @@ typedef struct {
     const afw_utf8_t *error_variable_name;
     const afw_value_t **symbol_reference;
     const afw_compile_value_contextual_t *contextual;
-    /* When set, Pattern/name already parsed into catch block (argv[4]). */
-    afw_boolean_t binding_already_set;
 } impl_parse_TryStatement_StatementList_cb_t;
 
+/* Identifier catch only: plant error name after StatementList opens the block. */
 static void
 impl_parse_TryStatement_StatementList_cb (
     afw_compile_parse_StatementList_cb_t *cb,
@@ -1160,11 +1159,6 @@ impl_parse_TryStatement_StatementList_cb (
 {
     impl_parse_TryStatement_StatementList_cb_t *self =
         (impl_parse_TryStatement_StatementList_cb_t *)cb;
-
-    /* Pattern path: binding already introduced into this block. */
-    if (self->binding_already_set) {
-        return;
-    }
  
     *self->symbol_reference = (const afw_value_t *)
         afw_compile_parse_variable_reference_create(parser,
@@ -1200,7 +1194,6 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     rethrow_allowed = parser->rethrow_allowed;
     parser->rethrow_allowed = false;
     cb.public.func = NULL;
-    cb.binding_already_set = false;
     pattern_binding = false;
     afw_compile_save_cursor(start_offset);
 
@@ -1232,23 +1225,24 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
             if (afw_compile_token_is(open_bracket) ||
                 afw_compile_token_is(open_brace))
             {
+                /*
+                 * Pattern catch (issue #140): open the catch block first so
+                 * Pattern leaves are symbols on the same block as the body.
+                 * StatementList(..., use_existing_current_block=true) fills
+                 * that block; no StatementList callback needed.
+                 */
                 pattern_binding = true;
                 afw_compile_reuse_token();
-                /* StatementList will not open a second block — see below. */
                 (void)afw_compile_parse_link_new_value_block(parser,
                     start_offset);
                 argv[4] = afw_compile_parse_AssignmentTarget(parser,
                     afw_compile_assignment_type_let);
-                cb.binding_already_set = true;
-                cb.public.func = impl_parse_TryStatement_StatementList_cb;
-                cb.symbol_reference = &argv[4];
-                cb.contextual = afw_compile_create_contextual_to_cursor(
-                    start_offset);
             }
             else if (afw_compile_token_is_unqualified_identifier()) {
                 /*
-                 * Callback plants error variable after StatementList creates
-                 * the catch block (correct block association).
+                 * Identifier catch: StatementList opens the block, then the
+                 * callback plants the error variable on that block (historical
+                 * path; decompile of try expects argv[4] as symbol_reference).
                  */
                 cb.public.func = impl_parse_TryStatement_StatementList_cb;
                 cb.error_variable_name = parser->token->identifier_name;
@@ -1271,54 +1265,16 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         if (!afw_compile_token_is(open_brace)) {
             AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
         }
-        if (pattern_binding) {
-            /*
-             * Block already current with Pattern symbols. Parse statements
-             * into it without nesting a second block: temporarily use the
-             * case-list path is wrong. Instead call StatementList with cb
-             * that skips create — not available. Work around: parse statements
-             * while current block is the early block, then finalize.
-             *
-             * StatementList always creates a block when end_is_close_brace.
-             * Pop the early block's "current" by finalizing after we parse
-             * statements as children... Actually symbols must be ON the
-             * block that try executes (argv[3]). So argv[3] must be the early
-             * block. Parse statement list without new block:
-             */
-            {
-                afw_compile_args_t *cargs;
-                const afw_value_t **cargv;
-                const afw_value_t *statement;
-                const afw_value_block_t *cblock;
-                afw_size_t cargc;
-
-                cblock = parser->compiled_value->current_block;
-                cargs = afw_compile_args_create(parser);
-                for (;;) {
-                    afw_compile_get_token();
-                    if (afw_compile_token_is(close_brace)) {
-                        break;
-                    }
-                    if (afw_compile_token_is(end)) {
-                        AFW_COMPILE_THROW_ERROR_Z("Expecting '}'");
-                    }
-                    afw_compile_reuse_token();
-                    statement = afw_compile_parse_Statement(parser, NULL);
-                    if (statement) {
-                        afw_compile_args_add_value(cargs, statement);
-                    }
-                }
-                afw_compile_args_finalize(cargs, &cargc, &cargv);
-                afw_value_block_finalize(cblock, cargc, cargv, parser->xctx);
-                argv[3] = &cblock->pub;
-                afw_compile_parse_pop_value_block(parser);
-            }
-        }
-        else {
-            argv[3] = afw_compile_parse_StatementList(parser,
-                (cb.public.func) ? &cb.public : NULL,
-                true, false, false);
-        }
+        /*
+         * Pattern binding already opened the catch block (symbols live on
+         * that block). Identifier binding uses the StatementList callback to
+         * plant the name after a new block is opened. use_existing_current_block
+         * is only for the Pattern case so we do not nest a second block.
+         */
+        argv[3] = afw_compile_parse_StatementList(parser,
+            (cb.public.func) ? &cb.public : NULL,
+            true, false, false,
+            /* use_existing_current_block */ pattern_binding);
         parser->rethrow_allowed = false;
     }
     else {
@@ -1337,7 +1293,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
         }
         argv[2] = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
     }
     else {
         afw_compile_reuse_token();
@@ -1458,7 +1414,7 @@ afw_compile_parse_Statement(
     /* If next token is '{', parse Block. */
     if (afw_compile_token_is(open_brace)) {
         result = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
         return result;
     }
 
@@ -1623,7 +1579,8 @@ afw_compile_parse_StatementList(
     afw_compile_parse_StatementList_cb_t *cb,
     afw_boolean_t end_is_close_brace,
     afw_boolean_t end_is_close_brace_case_or_default,   
-    afw_boolean_t can_be_single_return_expression)
+    afw_boolean_t can_be_single_return_expression,
+    afw_boolean_t use_existing_current_block)
 {
     const afw_value_t *result;
     const afw_value_t *statement;
@@ -1644,13 +1601,32 @@ afw_compile_parse_StatementList(
         : NULL;
 
     building_list_not_block = end_is_close_brace_case_or_default;
+    block = NULL;
 
     /* Save starting cursor. */
     afw_compile_save_cursor(start_offset);
 
-    /* Make new block and link if making block. */
+    /*
+     * Open a new value block, or continue the current one (catch Pattern:
+     * symbols already introduced on current_block before the body).
+     */
     if (!building_list_not_block) {
-        block = afw_compile_parse_link_new_value_block(parser, start_offset);   
+        if (use_existing_current_block) {
+            block = parser->compiled_value->current_block;
+            if (!block) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Internal error: StatementList use_existing_current_block "
+                    "with no current block");
+            }
+        }
+        else {
+            block = afw_compile_parse_link_new_value_block(parser,
+                start_offset);
+        }
+    }
+    else if (use_existing_current_block) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Internal error: use_existing_current_block with case-list mode");
     }
 
     /* If cb passed, call it now that args and block are set. */
@@ -1836,7 +1812,7 @@ afw_compile_parse_Script(
 
     /* Parse statements and return. */
     result = afw_compile_parse_StatementList(parser,
-        NULL, end_is_close_brace, false, true);
+        NULL, end_is_close_brace, false, true, false);
     return result;
 }
 

@@ -717,7 +717,7 @@ afw_compile_parse_FunctionSignatureAndBody(
     afw_compile_get_token();
     if (afw_compile_token_is(open_brace)) {
         body = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
     }
     else {
         afw_compile_reuse_token();
