@@ -51,7 +51,7 @@ impl_entry_visible_for_snapshot(
  * Walk most recent → older. Every matching visible entry contributes into one
  * accumulator (contribute_cb should leave existing property names alone so the
  * most recent definition wins). Returns NULL if no matching visible entry
- * (nullish to scripts). Empty bag after contribute is still an object, not NULL.
+ * (nullish to scripts). Empty object after contribute is still an object, not NULL.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifier_object_create(

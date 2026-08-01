@@ -31,6 +31,7 @@ Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirMani
 - **Pools**: hierarchical allocation (including per-scope subpools). Reference counting for escaping values (e.g. closures); bulk free when pools/scopes release.
 - **`compiled_value`**: owns a pool; evaluation uses scope-stack discipline and `statement_flow` for leave paths.
 - **Data-type value lifetimes** (inf chooses policy): **permanent** (built-in / life of AFW environment; usually const in the `.so`); **managed** (refcount or clone); **managed_slice** (utf8/memory view into a containing managed value); **unmanaged** (programmer/pool). Create APIs come from `data_type_bindings.py`. A main focus for long-running scripts is getting managed release/clone paths right and evaluating into `scope->p` — see [`.cursor/rules/afw-value-memory.mdc`](.cursor/rules/afw-value-memory.mdc).
+- **Terminology:** structured values are **object** (named **properties**) and **array** (ordered). Do **not** call objects “bags” — **bag** is historical (XACML-style bag → list → array). Object **meta** is sideband, not a normal property; map content types may use wire key `"_meta_"`. Always-on detail: [`.cursor/rules/afw-project.mdc`](.cursor/rules/afw-project.mdc).
 
 ## Interfaces vs script compiler vs environment
 

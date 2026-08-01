@@ -14,6 +14,11 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 - Primary agent focus: **C + Python (afwdev)**. JS/admin app only when explicitly asked.
 - **Third-party deps must stay MIT-compatible** (AFW is MIT — see `LICENSE` / `COPYING`). Prefer BSD/MIT/Apache-2.0 libraries (e.g. **libedit** for line editing). Avoid GPL-only linkage such as **GNU readline**. If a package is on all supported distros (Ubuntu, Alpine, Rocky, OpenSUSE — see `docker/images/afw-dev-base/` and CI), it may be required; otherwise make it optional at CMake time and degrade gracefully. Keep Dockerfiles and build docs in sync with new packages.
 
+## Terminology (do not invent “bag” for objects)
+- Prefer **object** + **properties** / **property name**; ordered collections are **array** (historical renames: XACML-style **bag** → **list** → **array** so non-bag ops and array semantics could land cleanly).
+- Do **not** call an adaptive object a “bag” or “property bag” in new rules, docs, designs, or chat. Residual comments/APIs may still say “bag” (old polymorphic names, decompile, “bag of paths”); that is **legacy**, not the object model.
+- **Meta** is sideband (`object->meta` / meta APIs), not a normal property. Map content types may spell meta on the wire as `"_meta_"` — a serialization convention, not “meta is a bag property.”
+
 ## Layout
 - `src/afw` — **libafw core** (values, pools, xctx, compile/evaluate)
 - `src/afw_dev` — `afwdev` CLI
