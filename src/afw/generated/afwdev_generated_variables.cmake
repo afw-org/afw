@@ -462,6 +462,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_meta.c
     value/afw_value_meta_values_list.c
     value/afw_value_meta_values_object.c
+    value/afw_value_object_construct.c
     value/afw_value_object_expression.c
     value/afw_value_qualified_variable_reference.c
     value/afw_value_reference_by_key.c

@@ -317,6 +317,12 @@ afw_value_object_expression_inf;
 
 
 
+/** @brief Value object construct inf (expression property names). */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_object_construct_inf;
+
+
+
 /** @brief Value qualified_variable_reference inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_qualified_variable_reference_inf;
@@ -650,6 +656,20 @@ afw_value_is_fully_evaluated(
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_object_expression_inf \
+)
+
+
+
+/**
+ * @brief Macro to determine if value is an object construct
+ *     (ordered entries; expression property names).
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_object_construct(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_object_construct_inf \
 )
 
 
@@ -1436,6 +1456,24 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_create_object_expression(
     const afw_compile_value_contextual_t *contextual,
     const afw_object_t *internal,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Create an object construct value (expression property names).
+ * @param contextual information for the expression.
+ * @param entries head of ordered entry list (pool-owned).
+ * @param meta optional meta object from literal `_meta_` or NULL.
+ * @param p pool used for value.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_object_construct(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_value_object_construct_entry_t *entries,
+    const afw_object_t *meta,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 

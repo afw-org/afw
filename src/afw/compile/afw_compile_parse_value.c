@@ -244,12 +244,14 @@ afw_compile_parse_List(
  *    '{'
  *        (
  *            (
- *                ( ( String | Identifier ) ':' Expression ) |
+ *                ( ( String | Identifier | '[' Expression ']' )
+ *                    ':' Expression ) |
  *                ('...' ObjectExpression )
  *            )
  *            ( ','
  *                (
- *                    ( ( String | Identifier ) ':' Expression ) |
+ *                    ( ( String | Identifier | '[' Expression ']' )
+ *                        ':' Expression ) |
  *                    ('...' ObjectExpression )
  *                )
  *            )*
@@ -259,6 +261,72 @@ afw_compile_parse_List(
  *
  *
  *<<<ebnf*/
+
+/*
+ * Append one object_construct entry (expression-mode object values with
+ * expression property names and/or when construct path is required).
+ */
+static afw_value_object_construct_entry_t *
+impl_object_construct_entry_append(
+    afw_compile_parser_t *parser,
+    afw_value_object_construct_entry_t **entries_head,
+    afw_value_object_construct_entry_t **entries_tail,
+    afw_value_object_construct_entry_type_t type,
+    const afw_utf8_t *static_name,
+    const afw_value_t *name_expr,
+    const afw_value_t *value,
+    const afw_value_t *spread_expr)
+{
+    afw_value_object_construct_entry_t *e;
+
+    e = afw_pool_calloc_type(parser->p,
+        afw_value_object_construct_entry_t, parser->xctx);
+    e->type = type;
+    e->static_name = static_name;
+    e->name_expr = name_expr;
+    e->value = value;
+    e->spread_expr = spread_expr;
+    e->next = NULL;
+    if (!*entries_head) {
+        *entries_head = e;
+    }
+    else {
+        (*entries_tail)->next = e;
+    }
+    *entries_tail = e;
+    return e;
+}
+
+
+/*
+ * Move properties already stored on obj into static construct entries
+ * (used when an expression property name appears after static properties).
+ */
+static void
+impl_object_migrate_properties_to_entries(
+    afw_compile_parser_t *parser,
+    const afw_object_t *obj,
+    afw_value_object_construct_entry_t **entries_head,
+    afw_value_object_construct_entry_t **entries_tail)
+{
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *name;
+    const afw_value_t *v;
+
+    if (!obj) {
+        return;
+    }
+    for (iterator = NULL;;) {
+        v = afw_object_get_next_property(obj, &iterator, &name, parser->xctx);
+        if (!v) {
+            break;
+        }
+        impl_object_construct_entry_append(parser, entries_head, entries_tail,
+            afw_value_object_construct_entry_static, name, NULL, v, NULL);
+    }
+}
+
+
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Object(
     afw_compile_parser_t *parser,
@@ -267,6 +335,7 @@ afw_compile_parse_Object(
 {
     const afw_object_t *obj;
     const afw_value_t *v;
+    const afw_value_t *name_expr;
     const afw_object_t *embedding_object;
     const afw_utf8_t *property_name;
     const afw_object_t *_meta_;
@@ -277,6 +346,12 @@ afw_compile_parse_Object(
     afw_size_t start_offset;
     afw_boolean_t save_doing_object_spread;
     afw_boolean_t is_object_expression;
+    afw_boolean_t use_construct;
+    afw_boolean_t name_is_expression;
+    afw_value_object_construct_entry_t *entries_head;
+    afw_value_object_construct_entry_t *entries_tail;
+    const afw_utf8_t *saved_parser_property_name;
+    afw_size_t i;
 
     /* Return NULL if next token is not '{'. */
     afw_compile_save_cursor(start_offset);
@@ -297,6 +372,9 @@ afw_compile_parse_Object(
     args = NULL;
     result = NULL;
     is_object_expression = false;
+    use_construct = false;
+    entries_head = NULL;
+    entries_tail = NULL;
 
     /*
      * Save parser->embedding_object and set to new object.
@@ -316,6 +394,8 @@ afw_compile_parse_Object(
 
             afw_compile_get_token();
             parser->property_name = NULL;
+            name_expr = NULL;
+            name_is_expression = false;
 
             if (parser->strict) {
                 if (afw_compile_token_is(utf8_string) &&
@@ -335,42 +415,112 @@ afw_compile_parse_Object(
                 parser->property_name = parser->token->identifier_name;
             }
 
+            /*
+             * Expression property name: '[' Expression ']' (object values only).
+             */
+            else if (allow_expression &&
+                afw_compile_token_is(open_bracket))
+            {
+                name_expr = afw_compile_parse_Expression(parser);
+                afw_compile_get_token();
+                if (!afw_compile_token_is(close_bracket)) {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Expecting ']' after expression property name");
+                }
+                name_is_expression = true;
+
+                /* Switch to construct path; migrate prior static/spread state. */
+                if (!use_construct) {
+                    /*
+                     * Prior ...spreads were building add_properties args.
+                     * Turn each source object into a construct spread entry so
+                     * expression names can follow spreads in source order.
+                     */
+                    if (args) {
+                        afw_compile_args_finalize(args, &argc, &argv);
+                        /* argv[0] is add_properties; argv[1..] are sources. */
+                        for (i = 1; i < argc; i++) {
+                            if (argv[i]) {
+                                impl_object_construct_entry_append(parser,
+                                    &entries_head, &entries_tail,
+                                    afw_value_object_construct_entry_spread,
+                                    NULL, NULL, NULL, argv[i]);
+                            }
+                        }
+                        args = NULL;
+                        result = NULL;
+                        /*
+                         * obj after spreads is already an argument in args when
+                         * static properties followed a spread; do not migrate
+                         * it again (would duplicate).
+                         */
+                    }
+                    else {
+                        impl_object_migrate_properties_to_entries(parser, obj,
+                            &entries_head, &entries_tail);
+                    }
+                    use_construct = true;
+                    /*
+                     * Stop embedding children into the compile-time bag; entries
+                     * hold values and evaluate attaches them after name eval.
+                     */
+                    parser->embedding_object = NULL;
+                    obj = NULL;
+                    is_object_expression = false;
+                }
+            }
+
             /* If spread operator. */
             if (allow_expression && afw_compile_token_is(ellipsis)) {
 
-                /*
-                 * If this is first spread, start making args for add_entries().
-                 */
-                if (!args) {
-                    args = afw_compile_args_create(parser);
-                    afw_compile_args_add_value(args,
-                        &afw_function_definition_add_properties.pub);
-                    if (is_object_expression) {
-                        result = afw_value_create_object_expression(
-                            afw_compile_create_contextual_to_cursor(start_offset),
-                            obj, parser->p, parser->xctx);
-                    }
-                    else {
-                        result = NULL;
-                    }
-                    afw_compile_args_add_value(args, result);
-                    is_object_expression = false;
+                /* Construct path: spread as an ordered entry. */
+                if (use_construct) {
+                    save_doing_object_spread = parser->doing_object_spread;
+                    parser->doing_object_spread = true;
+                    v = afw_compile_parse_Expression(parser);
+                    parser->doing_object_spread = save_doing_object_spread;
+                    impl_object_construct_entry_append(parser,
+                        &entries_head, &entries_tail,
+                        afw_value_object_construct_entry_spread,
+                        NULL, NULL, NULL, v);
                 }
+                else {
+                    /*
+                     * If this is first spread, start making args for
+                     * add_properties().
+                     */
+                    if (!args) {
+                        args = afw_compile_args_create(parser);
+                        afw_compile_args_add_value(args,
+                            &afw_function_definition_add_properties.pub);
+                        if (is_object_expression) {
+                            result = afw_value_create_object_expression(
+                                afw_compile_create_contextual_to_cursor(
+                                    start_offset),
+                                obj, parser->p, parser->xctx);
+                        }
+                        else {
+                            result = NULL;
+                        }
+                        afw_compile_args_add_value(args, result);
+                        is_object_expression = false;
+                    }
 
-                /* Add spread object expression to args. */
-                save_doing_object_spread = parser->doing_object_spread;
-                parser->doing_object_spread = true;
-                v = afw_compile_parse_Expression(parser);
-                parser->doing_object_spread = save_doing_object_spread;
-                afw_compile_args_add_value(args, v);
+                    /* Add spread object expression to args. */
+                    save_doing_object_spread = parser->doing_object_spread;
+                    parser->doing_object_spread = true;
+                    v = afw_compile_parse_Expression(parser);
+                    parser->doing_object_spread = save_doing_object_spread;
+                    afw_compile_args_add_value(args, v);
 
-                /* A new object will be started if needed. */
-                obj = NULL;
+                    /* A new object will be started if needed. */
+                    obj = NULL;
+                }
             }
 
             /* If not spread */
             else {
-                if (!parser->property_name) {
+                if (!name_is_expression && !parser->property_name) {
                     AFW_COMPILE_THROW_ERROR_Z("Invalid property name");
                 }
 
@@ -379,6 +529,15 @@ afw_compile_parse_Object(
                 if (!afw_compile_token_is(colon)) {
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Name of an object value must be followed by a colon");
+                }
+
+                /*
+                 * Expression property name: do not embed nested objects under
+                 * a known property name (name is not known until evaluate).
+                 */
+                saved_parser_property_name = parser->property_name;
+                if (name_is_expression) {
+                    parser->property_name = NULL;
                 }
 
                 /* Next should be a value. */
@@ -393,8 +552,36 @@ afw_compile_parse_Object(
                     v = afw_compile_parse_Json(parser);
                 }
 
+                parser->property_name = saved_parser_property_name;
+
+                /* Construct path: append static or expression-name entry. */
+                if (use_construct || name_is_expression) {
+                    if (name_is_expression) {
+                        impl_object_construct_entry_append(parser,
+                            &entries_head, &entries_tail,
+                            afw_value_object_construct_entry_name_expr,
+                            NULL, name_expr, v, NULL);
+                    }
+                    else if (afw_utf8_equal(parser->property_name,
+                        afw_s__meta_))
+                    {
+                        /* Literal _meta_ still installs sideband meta. */
+                        if (!afw_value_is_object(v)) {
+                            AFW_COMPILE_THROW_ERROR_Z(
+                                "'_meta_' property must be an object");
+                        }
+                        _meta_ = ((const afw_value_object_t *)v)->internal;
+                    }
+                    else {
+                        impl_object_construct_entry_append(parser,
+                            &entries_head, &entries_tail,
+                            afw_value_object_construct_entry_static,
+                            parser->property_name, NULL, v, NULL);
+                    }
+                }
+
                 /* If this is _meta_ property, set meta in object. */
-                if (afw_utf8_equal(parser->property_name, afw_s__meta_)) {
+                else if (afw_utf8_equal(parser->property_name, afw_s__meta_)) {
                     if (!afw_value_is_object(v)) {
                         AFW_COMPILE_THROW_ERROR_Z(
                             "'_meta_' property must be an object");
@@ -451,8 +638,15 @@ afw_compile_parse_Object(
         }
     }
 
+    /* Expression property names: ordered construct value. */
+    if (use_construct) {
+        result = afw_value_create_object_construct(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            entries_head, _meta_, parser->p, parser->xctx);
+    }
+
     /* If there were spread operators, result is call to add_properties(). */
-    if (args) {
+    else if (args) {
         afw_compile_args_finalize(args, &argc, &argv);
         result = afw_value_call_built_in_function_create(
             afw_compile_create_contextual_to_cursor(start_offset),

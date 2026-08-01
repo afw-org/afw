@@ -22,17 +22,24 @@
 
     <header>Objects</header>
     <paragraph>
-        Object literals use property names and values. Property names may be
-        identifiers or string literals. Computed property names in the
-        initializer are not supported.
+        Object values use property names and values. A property name may be an
+        identifier, a string literal, or an expression in square brackets.
+        Bracket expressions are evaluated when the object value is evaluated;
+        the result is the property name (a string). Names that are not valid
+        identifiers (for example names with spaces) use a string literal or a
+        bracket expression. The same bracket form is used for
+        <literal>obj[name]</literal> get and assignment on an existing object.
     </paragraph>
-    <code><![CDATA[let o = {
+    <code><![CDATA[let key = "b";
+let o = {
     a: 1,
-    "b": "hello"
+    "Customer Name": "hello",
+    [key]: true
 };
 o.c = true;
 assert(o.a === 1);
-assert(property_get(o, "b") === "hello");
+assert(property_get(o, "Customer Name") === "hello");
+assert(o.b === true);
 assert(property_exists(o, "c") === true);]]></code>
     <paragraph>
         Core property helpers include <literal>property_get</literal>,

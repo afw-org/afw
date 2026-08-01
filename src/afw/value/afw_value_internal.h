@@ -488,6 +488,64 @@ struct afw_value_object_expression_s {
 
 
 
+/** @brief Kind of one entry in an object_construct value. */
+typedef enum {
+    /** Static property name + value expression. */
+    afw_value_object_construct_entry_static,
+
+    /** Expression property name + value expression. */
+    afw_value_object_construct_entry_name_expr,
+
+    /** Spread of an object expression (...obj). */
+    afw_value_object_construct_entry_spread
+} afw_value_object_construct_entry_type_t;
+
+
+
+/** @brief One ordered entry for object_construct. */
+struct afw_value_object_construct_entry_s {
+    afw_value_object_construct_entry_type_t type;
+
+    /** Static name when type is static; otherwise NULL. */
+    const afw_utf8_t *static_name;
+
+    /** Name expression when type is name_expr; otherwise NULL. */
+    const afw_value_t *name_expr;
+
+    /** Value expression for static / name_expr; NULL for spread. */
+    const afw_value_t *value;
+
+    /** Object expression when type is spread; otherwise NULL. */
+    const afw_value_t *spread_expr;
+
+    /** Next entry or NULL. */
+    afw_value_object_construct_entry_t *next;
+};
+
+
+
+/** @brief struct for object construct value (expression property names). */
+struct afw_value_object_construct_s {
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    const afw_compile_value_contextual_t *contextual;
+
+    /** Head of ordered entry list. */
+    const afw_value_object_construct_entry_t *entries;
+
+    /**
+     * Optional meta object from a literal `_meta_` property in source.
+     * Installed on the evaluated object after properties are set.
+     */
+    const afw_object_t *meta;
+};
+
+
+
 /** @brief Struct for reference_by_key value. */
 struct afw_value_reference_by_key_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */

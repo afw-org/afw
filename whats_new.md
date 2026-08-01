@@ -21,6 +21,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | Area | What changed |
 |------|----------------|
 | **Object / array helpers (#55)** | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` — **recompile** out-of-tree commands/extensions |
+| **Expression property names (#38)** | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
 | **Qualified variables** | `qualifier()` / `qualifiers()` snapshots (issue **#9**); multi-frame **`::` get** uses first **defining** frame (same as snapshots) |
 | **Retrieve arrays** | Optional **`maxObjects`** on materializing `retrieve_objects` (default **100**; issue **#49**) |
 | **Admin / JS client** | `AfwModel` passes **`maxObjects: 0`** for full metadata catalogs so admin loads after #49 |
@@ -95,6 +96,36 @@ Language Reference: **Objects and Arrays**
 (`src/afw/doc/reference/language/objects-and-arrays.xml`), linked from the
 Language index. Function Reference pages for each function are generated from
 metadata when docs are built.
+
+---
+
+## Expression property names in object values (issue #38)
+
+**Issue #38** on `mgg-develop` (branch `issue-#38`).
+
+In an **object value**, a property name may be an **expression in square brackets**, not only an identifier or string literal. The expression is evaluated when the object value is evaluated; the result is used as the property name (a string). This matches **`obj[expression]`** get and assignment on an existing object.
+
+```adaptive
+const col = "Customer Name";
+const n = 2;
+const row = {
+    id: 1,
+    [col]: "Ada",
+    ["col " + string(n)]: 42,
+    ...defaults
+};
+assert(row["Customer Name"] === "Ada");
+assert(row["col 2"] === 42);
+```
+
+### Notes
+
+- **Variables** remain lexical identifiers; only **property names** can be any string (via a string literal or a bracket expression).
+- Pure **JSON** object text still allows only the usual JSON property-name forms (no expression brackets).
+- A **literal** `_meta_: { … }` property in source still installs **sideband meta** (not a normal property). A **bracket** name that evaluates to `"_meta_"` sets a **normal** property under that name — map content types that reserve `"_meta_"` on the wire are a separate topic (issue **#138**).
+- Handbook: Language Reference **Objects and Arrays** and **Features** (working with objects).
+
+Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ---
 

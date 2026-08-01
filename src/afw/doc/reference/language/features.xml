@@ -121,15 +121,22 @@ let y = 2;
         <literal>higher_order_array</literal>.
     </paragraph>
     <paragraph>
-        Object property names in initializers may be identifiers or string
-        literals. Computed property names in the initializer are not
-        supported.
+        Object property names in an object value may be an identifier, a string
+        literal, or an expression in square brackets. Bracket expressions are
+        evaluated when the object value is evaluated; the result is used as the
+        property name (a string). This is the same idea as
+        <literal>obj[expression]</literal> for get and assignment. Variable and
+        parameter names remain lexical identifiers.
     </paragraph>
-    <code><![CDATA[let x = {
-    a:   1, // valid
-    "b": 2, // valid
-    [y]: 3, // invalid (computed name)
+    <code><![CDATA[let y = "c";
+let x = {
+    a:   1,
+    "b": 2,
+    [y]: 3,
+    ["Customer Name"]: "Ada"
 };
+assert(x.c === 3);
+assert(x["Customer Name"] === "Ada");
 
 let names = keys(x);
 let a = [1, 2];

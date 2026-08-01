@@ -20,6 +20,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
 | [`secrets-and-afw-crypto.md`](secrets-and-afw-crypto.md) | **#74** / `afw_crypto` design |
 | [`issue-18-decompile-status.md`](issue-18-decompile-status.md) | **#18** decompile/recompile status |
+| [`issue-38-expression-property-names.md`](issue-38-expression-property-names.md) | **#38** — `[expr]: value` in object values |
+| [`issue-138-meta-on-the-wire.md`](issue-138-meta-on-the-wire.md) | **#138** — `"_meta_"` wire / options / rich types |
 | [`compile-optimize-notes.md`](compile-optimize-notes.md) | Future compile-time optimize (not #18) |
 
 ## Conventions
