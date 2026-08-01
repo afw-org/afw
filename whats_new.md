@@ -63,7 +63,7 @@ function sum3(a, b, c) { return a + b + c; }
 assert(sum3(...[1, 2, 3]) === 6);
 ```
 
-Not included: arrow functions, ES `arguments` object (use formal `...rest`). Language Reference: Function statement and Exception Handling in Features.
+Not included: arrow functions, ES `arguments` object (use formal `...rest`). Language Reference: Function statement; Features — Exception Handling, Functions and parameters.
 
 ---
 

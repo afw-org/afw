@@ -92,17 +92,17 @@ Do **not** conflate `process::args` (#74) with function-parameter rest or param 
 
 **GitHub:** [#140](https://github.com/afw-org/afw/issues/140) (enhancement; assignee mike000000000).
 
-**Status (issue-#140):** Surface Patterns on function/lambda params + catch; shared runtime empty-rest / missing→undefined fixes; `assignment_type_parameter`; tests in `language/script/param_destructure.as` + decompile fidelity; handbook/whats_new; catch Pattern uses `StatementList(..., use_existing_current_block)`.
+**Status:** Core landed on `issue-#140` / PR **#141** (params + catch Patterns, Expression defaults, bind order). Follow-up on `Issue-#140-followup`: call-site `f(...arr)`, string/computed Pattern keys, catch Pattern decompile d1==d2, type syntax on formals/leaves, TS-shaped confidence tests. Tests: `language/script/param_destructure.as`, `language/list/spread.as`, decompile fidelity / pragma.
 
 ### Cleanup notes for a later major pass (do not block #140)
 
 | Item | Notes |
 |------|--------|
 | **Destructure runtime** | Still in `afw_function_compiler_script.c` as static helpers; consider a small public bind API if more sites appear. |
-| **Object Pattern property names** | Identifier-only; string / computed keys not done (near #38). |
-| **Catch identifier vs Pattern** | Identifier still uses StatementList callback + `symbol_reference` (try decompile assumes that). Pattern opens block early + AssignmentTarget + `StatementList(..., use_existing_current_block)`. **Decompile of Pattern catch is not d1==d2 stable** — try emits binding as 4th arg while identifier path embeds `#assignment_target` inside the catch `#block`. Unify try decompile for Pattern (mirror identifier: binding first in block + reparseable 4th arg) in a later pass. |
+| **Object Pattern property names** | **Done** for string + `[expr]` keys (follow-up). Residual: exotic edge cases only. |
+| **Catch identifier vs Pattern** | Identifier: StatementList callback + `symbol_reference`. Pattern: early block + AssignmentTarget + `use_existing_current_block`. **Decompile d1==d2 for Pattern catch done** (embed bind in catch `#block`; execute uses first-statement bind when no argv[4]). |
 | **`#script_function` Pattern vs body `{`/`[`** | Speculative parse then cursor restore; advanced pragma only. |
-| **Call-site `f(...arr)`** | Separate feature; definition-side rest only. |
+| **Call-site `f(...arr)`** | **Done** (follow-up). |
 | **argv / parameter_number** | Documented in `afw_function.h` + `afw_value_call_args_s` + call_script_function bind comments (1-based params, `argv[0]` = function). |
 
 ### TS-shaped confidence (ranked high → low)
@@ -134,48 +134,33 @@ function f([a, b], {x, y}) { … }
 // or AFW-flavored sugar along the same idea
 ```
 
-Primary use: ES/TS “options object” idiom without a manual intermediate bind:
+Primary use landed: ES/TS “options object” idiom without a manual intermediate bind:
 
 ```text
-// Wanted sugar
 function connect({ host, port = 443 } = {}) { … }
-
-// Today
-function connect(opts) {
-    const { host, port = 443 } = opts ?? {};
-    …
-}
+// desugars to AFW’s existing Pattern / assignment_target model
+// (same compiled form family as const { host, port = 443 } = …)
 ```
 
-Intent: **syntax sugar** that desugars into AFW’s existing model (param symbols + destructure assign into locals / the same compiled form we already have for `const [a,b] = …`), not a parallel binding system.
+Intent remains **syntax sugar** into one shared binding story, not a parallel system.
 
-Implications when we touch this area later:
+Invariants after landing:
 
-- Pattern machinery for `#assignment_target` and Script targets should stay **shareable** with param patterns (and catch if we add it).
-- `#script_function` decompile/pragma may need to grow beyond bare param **names** once param patterns exist (or keep names as the desugared form and only surface sugar on `function (…)`) — decide then; prefer one binding story.
-- Stay **AFW Script** (explicit, metadata-friendly), not a full ES port; sugar only where it maps cleanly.
-- Arrow functions: not required for this work (explicit non-goal unless product wants them later).
+- Pattern machinery stays **shared** across `let`/`const`, assignment, for heads, params, and catch.
+- `#script_function` decompile/pragma supports Pattern formals (speculative parse vs body `{`/`[`); prefer one binding story if more pragma surface is added.
+- Stay **AFW Script** (explicit, metadata-friendly), not a full ES port.
+- Arrow functions remain an explicit non-goal unless product asks later.
 
-### `catch` binding Pattern (optional follow-on)
+### `catch` binding Pattern (**done** with #140)
 
-EBNF today: `Catch ::= 'catch' ( '(' Identifier ')' )? Statement` — single unqualified name only.
-
-Adaptive always supplies a fixed error shape (`message`, optional `data`), so ES-like:
+EBNF: catch binding may be Identifier **or** list/object Pattern (same as params / `let`).
 
 ```text
 catch ({ message, data }) { … }
+catch ({ message: msg }) { … }
 ```
 
-is the natural sugar; workaround is already fine:
-
-```text
-catch (e) {
-    const { message, data } = e;
-    …
-}
-```
-
-**Priority:** lower than param Patterns. Same desugar idea (hidden name + Pattern assign into the catch block). Catch currently injects the error symbol via a special StatementList callback — any Pattern work must preserve that block/symbol association.
+Identifier path: StatementList callback + `symbol_reference`. Pattern path: early block + AssignmentTarget + `StatementList(..., use_existing_current_block)`. Decompile embeds the bind as the first statement of the catch `#block` so d1==d2 holds; execute uses that first-statement bind when there is no separate argv[4].
 
 ### `#closure_binding`
 
