@@ -1,7 +1,7 @@
 # AFW beta backlog (brain dump)
 
 **Audience:** maintainers and assistants working toward a beta-quality tree.  
-**Not for end users.** User-facing changes while work is on `mgg-develop` go in [`whats_new.md`](whats_new.md).
+**Not for end users.** User-facing changes while work is on `mgg-develop` go in [`whats-new.md`](whats-new.md).
 
 ## Purpose
 
@@ -12,7 +12,7 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 | **`beta-backlog.md`** (this file) | Working notes, plans, archaeology, half-decided design. Source of truth for “what we still need to remember.” |
 | **`designs/`** | Per-issue / per-theme design pads (not user docs). See [`designs/README.md`](designs/README.md). |
 | **`designs/memory-management.md`** | Living design notes for umbrella **#2** (long-running memory, value/object identity, escape). |
-| **`whats_new.md`** | What **users** of AFW need to know about **`mgg-develop`** (behavior, APIs, migration). |
+| **`whats-new.md`** | What **users** of AFW need to know about **`mgg-develop`** (behavior, APIs, migration). |
 | **GitHub issues** | Optional promotion when something needs discussion, an assignee, PR linkage, or is a real beta blocker. Prefer thematic umbrellas (e.g. language, memory) over one infinite meta-issue. |
 
 ## Branch plan (as of mid‑2026)
@@ -34,7 +34,7 @@ feature branches  →  mgg-develop  →  (user testing) develop  →  main
 
 - Volume of change from Grok Build / Cursor would overwhelm the usual `develop` cadence, so **`mgg-develop`** was cut off `develop` as a long-lived staging line.
 - Feature branches (e.g. `issue-#1`) are cut **off `mgg-develop`**, in chunks.
-- User-facing “what’s new” while on this line: **`whats_new.md`**.
+- User-facing “what’s new” while on this line: **`whats-new.md`**.
 - After this large pass: **major user testing**, then merge **`mgg-develop` → `develop`**. Then **`develop` is again the main develop branch**.
 - Over weeks/months, most work should return to feature branches off `develop` (mgg-develop is not the permanent forever trunk).
 
@@ -45,7 +45,7 @@ Update this section if the plan changes.
 1. **Dump freely** — incomplete thoughts are fine; date or initial a chunk if helpful.
 2. **Tag status** loosely: `idea` · `planned` · `partial` · `blocker` · `done` · `wontfix`.
 3. **Link** GitHub issues, paths, and FIXMEs when known; don’t invent issue numbers.
-4. **When something ships** — mark done here (or move to a short Done section) and, if users care, update `whats_new.md`.
+4. **When something ships** — mark done here (or move to a short Done section) and, if users care, update `whats-new.md`.
 5. **Graduate** to a GitHub issue only when the item is big enough, blocking, or needs external tracking.
 
 ## Documentation preference (later)
@@ -54,8 +54,8 @@ Update this section if the plan changes.
 
 - Prefer **developer knowledge in the code** (comments, module headers, EBNF-in-comments, existing guide XML where it already lives) over a growing pile of external markdown that drifts.
 - **`beta-backlog.md`** is a temporary/maintainer **brain dump and beta working list**. Fine for months of beta work; not the long-term home for architecture prose.
-- When we improve developer documentation later, **mine this file** (and chat archaeology, FIXMEs, `whats_new.md` where relevant) and **fold durable facts into code comments / in-tree developer docs**, then thin the backlog.
-- User-facing material stays separate (`whats_new.md` while on `mgg-develop`, published handbook/docs as appropriate).
+- When we improve developer documentation later, **mine this file** (and chat archaeology, FIXMEs, `whats-new.md` where relevant) and **fold durable facts into code comments / in-tree developer docs**, then thin the backlog.
+- User-facing material stays separate (`whats-new.md` while on `mgg-develop`, published handbook/docs as appropriate).
 
 ## How we work with assistants (session hygiene)
 
@@ -80,7 +80,7 @@ Update this section if the plan changes.
 
 ### Session wrap-up — 2026-07-22 (PR #132 merged; #1 closed)
 
-- PR **#132** merged to **`mgg-develop`** (`c8be2744`). Follow-up **`c31df26e`**: `whats_new.md` + backlog status.
+- PR **#132** merged to **`mgg-develop`** (`c8be2744`). Follow-up **`c31df26e`**: `whats-new.md` + backlog status.
 - GitHub **#1** closed, labels **documentation** + **implemented**, comment **@JeremyGrieshop** with summary + links.
 - Durable (also in rules / AGENTS — do not re-litigate):
   - **`--cdev`** day-to-day; **`--fulldev`** = `--all --generate --clean --install --scan` (both imply **`-j`** / parallel). **`--all` alone does not generate/install** (version bumps need generate).
@@ -94,7 +94,7 @@ Update this section if the plan changes.
 ### Session wrap-up — issue #103 streams (closed)
 
 - **#103** closed after **PR #120** (file streams) and **PR #121** (tests-as-assets) on **`mgg-develop`**. Comment **@JeremyGrieshop**: summary + reopen if more needed.
-- User-facing: **`whats_new.md`** (File streams section + migration bullets).
+- User-facing: **`whats-new.md`** (File streams section + migration bullets).
 - Durable rules (already on tree — do not re-litigate):
   - **`afw-stream`**: file streams, `rootFilePaths` (longest prefix / boundary / realpath containment), throw-based `stream()`, admin progressive write path left intact (`retrieve_objects_to_callback` / response hosts).
   - **`afw-script-errors`**: `_AdaptiveError_` / try-catch; no soft stream errors.
@@ -109,7 +109,7 @@ Update this section if the plan changes.
 
 - Read **`AGENTS.md`**, always-on rules (especially `afw-project`, `afw-interfaces-doxygen`), and this file’s theme section for the issue at hand.
 - Prefer **small feature branches** off `mgg-develop` → PR → merge; don’t accumulate unrelated work only in chat.
-- After user-facing behavior changes on this line: update **`whats_new.md`**. After design decisions: **rules / this backlog / code comments**.
+- After user-facing behavior changes on this line: update **`whats-new.md`**. After design decisions: **rules / this backlog / code comments**.
 - Verify: day-to-day `--cdev` + `afwdev test -j`; broader/finish **`--fulldev`**; PR gate often adds valgrind tests.
 
 ---
@@ -124,9 +124,9 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Doxygen / interface API docs (builders)
 
-**Status:** **done / closed** on `mgg-develop` via PR **#132** (issue **#1** closed, labeled implemented; Jeremy notified). Rule **`afw-interfaces-doxygen`**. User-facing tooling notes: **`whats_new.md`**. Package **0.12.2**; **`afwdev build --fulldev`**.
+**Status:** **done / closed** on `mgg-develop` via PR **#132** (issue **#1** closed, labeled implemented; Jeremy notified). Rule **`afw-interfaces-doxygen`**. User-facing tooling notes: **`whats-new.md`**. Package **0.12.2**; **`afwdev build --fulldev`**.
 
-**Audience:** AFW developers, extension/command authors, hosts — **not** pure Adaptive Script app users (handbook / `whats_new` for those).
+**Audience:** AFW developers, extension/command authors, hosts — **not** pure Adaptive Script app users (handbook / `whats-new` for those).
 
 **Architecture to remember:**
 
@@ -173,7 +173,7 @@ _(Paste raw notes here first; sort into themes later.)_
 - Migration: bare `object` / `variable_get("object")` for *index* context → `current::object` / `variable_get("current::object")` (lexical `object` still works in normal scripts).
 - No conf **`custom`** for LMDB indexes (custom = maintainer bags where compiled units run, e.g. model).
 - Smoke `src/afw_lmdb/tests/adapter/index_current.as` **skipped**.
-- `whats_new.md`: honest **partial** note only.
+- `whats-new.md`: honest **partial** note only.
 
 #### Still to do (pre-existing; @Jeremy on #54)
 
@@ -237,7 +237,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 **Status:** pointer / **beta-relevant**
 
 - Umbrella **#2** (memory). Working design pad: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
-- **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats_new.md`.
+- **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats-new.md`.
   - Another reason **memory management / managed release / long-running escape** needs to be solid **before calling the tree beta**: scripts that snapshot often (or hold results) will stress pools and lifetimes harder than `qualifier::name` get.
   - Do **not** treat #9 as “done for beta” solely because the API exists; couple with #2 progress and real long-running exercise if tools use snapshots heavily.
 - Prefer everyday **`qualifier::name`**; snapshots only when listing/debug is intentional.
@@ -310,7 +310,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 1. **Done:** C setter + O(1) memory `get_count` + signed get/set indexes + residual memory-array polish above.
 2. **Done:** script APIs + tests (`keys`/`values`/`entries`, `at`/stack/`splice`, `freeze`, `every`/`some`, metas, limits/combined).
-3. **Done:** Language Reference **Objects and Arrays** + Features + `whats_new`.
+3. **Done:** Language Reference **Objects and Arrays** + Features + `whats-new`.
 4. **Process:** push branch, PR to `mgg-develop`, close #55.
 5. **Parallel / later:** full hold-on-store (#2); test262 burn-down; differences doc (#22).
 
@@ -356,7 +356,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 - [ ] Memory / long-running story credible (**#2**): managed values, pools, no silent leak under realistic server/script load
 - [ ] Large materializations constrained or progressive where needed (**#49**, **#127**, client progressive path)
 - [ ] Snapshot / debug APIs (e.g. **#9** `qualifier`/`qualifiers`) documented as non-hot-path and size-aware; not used as everyday data access
-- [ ] User-facing behavior documented in `whats_new.md` / real docs as appropriate
+- [ ] User-facing behavior documented in `whats-new.md` / real docs as appropriate
 - [ ] `mgg-develop` merged to `develop` when ready; `develop` → `main` when beta-ready
 
 ---
@@ -365,7 +365,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 
 | When | Item |
 |------|------|
-| 2026-07 | **#103** file streams — PR #120 (+ #121 tests assets); closed, Jeremy notified. Details in session wrap-up above; `whats_new.md` File streams. |
+| 2026-07 | **#103** file streams — PR #120 (+ #121 tests assets); closed, Jeremy notified. Details in session wrap-up above; `whats-new.md` File streams. |
 
 ---
 
@@ -381,7 +381,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 | 2026-07-20 | custom vars compiled at conf read; evaluate at use (not recompile each time). |
 | 2026-07-20 | #54 current:: surface: object, objectId, objectType, key. |
 | 2026-07-20 | #54 implemented on Issue-#54 (uncommitted): index_try current:: push + docs/test. |
-| 2026-07-21 | #54 docs: soft whats_new; afw-adapter-index rule; AGENTS/extensions/qualified-vars; how indexes work. |
+| 2026-07-21 | #54 docs: soft whats-new; afw-adapter-index rule; AGENTS/extensions/qualified-vars; how indexes work. |
 | 2026-07-29 | #55 brainstorm dump: bag=functions/array=type, XACML extension mapping, doc boundary (no ES/XACML in core), vector/deque setter, every/some optional, function file map. |
 | 2026-07-29 | #55 notes: not prototypal / no ES globals (qualified vars); test262 ~137 skips + plan to burn down all `\fixme` over weeks/months. |
 | 2026-07-29 | #55: C array_setter reshape + O(1) get_count; residual concerns + forward plan in this file. |

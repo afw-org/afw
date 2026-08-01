@@ -40,7 +40,7 @@ not `(instance)->inf->create_adapter_session(...)`. The arrow/`inf` form is wiri
 
 **Primary:** AFW core developers, **extension and command authors**, interface implementers, hosts (`afw`, `afwfcgi`).
 
-**Not primary:** people who only write Adaptive Script / use REST apps — use the handbook / `whats_new.md` for that.
+**Not primary:** people who only write Adaptive Script / use REST apps — use the handbook / `whats-new.md` for that.
 
 **Core vs extension docs:** put detailed extension Doxygen in that **srcdir’s** public header (`@defgroup` there). `src/afw/include/afw_doxygen.h` may lightly list base extensions for navigation only — non-core srcdirs stay self-contained relative to libafw.
 

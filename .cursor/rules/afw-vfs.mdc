@@ -8,7 +8,7 @@ alwaysApply: false
 
 Loadable extension **`afw_vfs`** (`libafwvfs`), `adapterType: "vfs"`. Exposes host files/directories as **`_AdaptiveFile_vfs`** objects. Not the same as stream **`open_file` / `rootFilePaths`** (see **`afw-stream`**); same longest-prefix / containment ideas apply to `vfsMap`.
 
-**Product text SSOT:** conf and file object types under `src/afw_vfs/generate/objects/_AdaptiveObjectType_/` (`_AdaptiveConf_adapter_vfs`, `_AdaptiveFile_vfs`, `_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects`). Handbook: administrative **Adapters → VFS**. User-facing notes: package `whats_new.md` when behavior changes.
+**Product text SSOT:** conf and file object types under `src/afw_vfs/generate/objects/_AdaptiveObjectType_/` (`_AdaptiveConf_adapter_vfs`, `_AdaptiveFile_vfs`, `_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects`). Handbook: administrative **Adapters → VFS**. User-facing notes: package `whats-new.md` when behavior changes.
 
 Issue **#79**: empty-file read must not call `afw_pool_malloc` with size 0; full-file rewrite must not leave prior bytes on shorter/empty replace or modify.
 

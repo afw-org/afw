@@ -6,7 +6,7 @@
 | **Author** | TBD (design draft for maintainer review) |
 | **Date** | 2026-07-30 |
 | **Status** | Draft (accepted decisions for name, #74 stay-open, PBKDF2) |
-| **Tracking** | GitHub [issue #74](https://github.com/afw-org/afw/issues/74) (partially done; stays open until readpass); related notes in `whats_new.md`, `beta-backlog.md` |
+| **Tracking** | GitHub [issue #74](https://github.com/afw-org/afw/issues/74) (partially done; stays open until readpass); related notes in `whats-new.md`, `beta-backlog.md` |
 | **Primary deliverable path** | Workspace: `designs/secrets-and-afw-crypto.md`. Long-term with extension: `src/afw_crypto/doc/design-secrets-and-crypto.md` plus a short pointer from `src/afw/doc/developer/extending.md` if useful. |
 | **Audience** | AFW maintainers and senior C/Python contributors familiar with extensions, function generate metadata, and Adaptive Script |
 | **Revision** | R4 — final product decisions: name `afw_crypto`/`libafwcrypto` confirmed; #74 remains open until readpass ships (crypto = partial progress); PBKDF2 default 600000 (pin at implement time) |
@@ -36,7 +36,7 @@ The design keeps **`password` as a presentation data type**, treats interactive 
 | Interactive `read` / `readpass` | Residual for #74 closure | **Still required for #74 closure** — implement as PR8 (TTY/`afw` CLI); deprioritized relative to crypto but **keeps #74 open** until it ships or is explicitly declined later |
 | Decrypt / crypto primitives | **Missing** (no encrypt/decrypt/digest/hmac functions) | **Primary near-term delivery** — ships first as **partial #74 progress**; does **not** close the issue alone |
 
-**Product decision (K17 — final):** Keep **#74 open** until interactive **readpass** also ships (or a future decision explicitly declines it). Ship `afw_crypto` + composition (key refs) as **valuable partial progress** and update tracker/docs accordingly; do **not** close #74 on crypto alone. Residual for closure is interactive **readpass** (GitHub #74 + `whats_new.md` / this design).
+**Product decision (K17 — final):** Keep **#74 open** until interactive **readpass** also ships (or a future decision explicitly declines it). Ship `afw_crypto` + composition (key refs) as **valuable partial progress** and update tracker/docs accordingly; do **not** close #74 on crypto alone. Residual for closure is interactive **readpass** (GitHub #74 + `whats-new.md` / this design).
 
 ### Current capabilities (verified against `/workspaces/afw`)
 
@@ -575,7 +575,7 @@ function crypto_derive_key(
 ): object _AdaptiveCryptoKey_
 ```
 
-- Default iterations: **600000** (final design default; OWASP-aligned provisional). **Pin the constant at implement time** in code + docs; if OWASP guidance has moved, update the constant and record the chosen value + date in the extension README / `whats_new` note—do not leave “TBD” in Open Questions.
+- Default iterations: **600000** (final design default; OWASP-aligned provisional). **Pin the constant at implement time** in code + docs; if OWASP guidance has moved, update the constant and record the chosen value + date in the extension README / `whats-new` note—do not leave “TBD” in Open Questions.
 - Min iterations floor: **100000** (reject lower). Caller may override upward via algorithm object.
 - Salt min length: **16 octets**.
 - Default `usages` when omitted: `["encrypt", "decrypt"]` (see default usages table); pass explicit list for HMAC-bound derived keys.
@@ -948,7 +948,7 @@ Covered under size limits / error ids / logging rules above. Valgrind on crypto 
 
 1. Implement PR series below (K13–K18 and name/`#74`/PBKDF2 decisions are **final** unless a future decision revises them).
 2. Optional component; disable without libcrypto.
-3. Docs + `whats_new.md` + tracker update: crypto = **partial #74 progress**; **issue stays open** until readpass (PR8).
+3. Docs + `whats-new.md` + tracker update: crypto = **partial #74 progress**; **issue stays open** until readpass (PR8).
 4. Ship PR8 readpass (or record explicit decline) before closing #74.
 5. Rollback of crypto = omit extension conf (independent of readpass).
 
@@ -1037,8 +1037,8 @@ Closed (do not re-open without a new decision):
 
 ### In-repo (repo-root relative paths)
 
-- GitHub #74 + `whats_new.md` / this design — tracker
-- `whats_new.md` — process ambient notes  
+- GitHub #74 + `whats-new.md` / this design — tracker
+- `whats-new.md` — process ambient notes  
 - `.cursor/rules/afw-extensions.mdc` — extension patterns  
 - `src/afw/doc/developer/extending.md`  
 - `src/afw/function/afw_function.c` — `afw_function_execute_requiresExecuteAccess_wrapper`  
@@ -1125,14 +1125,14 @@ Each PR independently reviewable; pass `./afwdev build --cdev` with crypto enabl
 | **Dependencies** | PR3 (can parallel PR4/PR5 after PR3) |
 | **Description** | Explicit passphrase path; blocks silent password-to-AES. Needed for passphrase demos before calling crypto composition “feature-complete”; raw key file/env path lands at PR5. Does **not** close #74 (see K17 / PR8). |
 
-### PR7 — Docs, tracker, password blurb, whats_new
+### PR7 — Docs, tracker, password blurb, whats-new
 
 | | |
 |--|--|
 | **Title** | `docs: afw_crypto recipes, password clarification, #74 partial-progress note` |
-| **Files** | `src/afw_crypto/doc/**`; `whats_new.md`; optional `password.json` description; building_on_*.md; copy design doc into extension doc |
+| **Files** | `src/afw_crypto/doc/**`; `whats-new.md`; optional `password.json` description; building_on_*.md; copy design doc into extension doc |
 | **Dependencies** | **PR5** (primary composition story); PR6 if passphrase recipes included |
-| **Description** | Copy-paste recipes (auto-IV + env key + sealed object). Security/authz rules. Record **crypto + key refs as partial #74 progress** in GitHub/`whats_new.md`; **leave #74 open** pending readpass (K17). |
+| **Description** | Copy-paste recipes (auto-IV + env key + sealed object). Security/authz rules. Record **crypto + key refs as partial #74 progress** in GitHub/`whats-new.md`; **leave #74 open** pending readpass (K17). |
 
 ### PR8 — Interactive readpass (required for #74 closure unless later declined)
 

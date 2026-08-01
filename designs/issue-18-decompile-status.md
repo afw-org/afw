@@ -2,7 +2,7 @@
 
 **Branch:** `issue-#18` (tracks `origin/issue-#18`)  
 **Tip (as of 2026-07-31):** `3a7ad36d` — *fix: polish compiler listing for Fiddle* (includes prior stringify pure JSON + replacer, decompile fidelity, crypto TRY/FINALLY ride-alongs).  
-**User-facing notes:** `whats_new.md` — section *stringify, decompile, compiler listing, and binary text*.  
+**User-facing notes:** `whats-new.md` — section *stringify, decompile, compiler listing, and binary text*.  
 **Verify:** decompile/pragma/listing/stringify tests green under `--cdev`; fulldev+valgrind was green at fidelity tip `71bcfc70` (re-run before PR if desired).
 
 ## Goal (locked)
@@ -16,12 +16,12 @@
 
 | Path | Role | Docs |
 |------|------|------|
-| **stringify** | Pure JSON of **evaluated** data (+ optional replacer) | `whats_new`, `stringify.json` |
-| **decompile** | Adaptive **compiled form as text** (recompilable when forms are supported) | `whats_new`, `decompile.json` |
-| **compile listing** | Human tree + `---Symbols` (Fiddle); not recompilable | `whats_new`, `compile` polymorphic listing param |
-| **decode_to_string** / **string(binary)** | UTF-8 octets vs base64 printable | `whats_new`, crypto README |
+| **stringify** | Pure JSON of **evaluated** data (+ optional replacer) | `whats-new`, `stringify.json` |
+| **decompile** | Adaptive **compiled form as text** (recompilable when forms are supported) | `whats-new`, `decompile.json` |
+| **compile listing** | Human tree + `---Symbols` (Fiddle); not recompilable | `whats-new`, `compile` polymorphic listing param |
+| **decode_to_string** / **string(binary)** | UTF-8 octets vs base64 printable | `whats-new`, crypto README |
 
-**Pragma / `#…` recompile** is advanced; this file is the maintainer home. User summary is in `whats_new` (short). Full handbook pages still TBD.
+**Pragma / `#…` recompile** is advanced; this file is the maintainer home. User summary is in `whats-new` (short). Full handbook pages still TBD.
 
 ## Out of scope on this branch
 

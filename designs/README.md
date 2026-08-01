@@ -10,7 +10,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 |----------|----------------|
 | Deep design for one issue/theme (`memory-management`, crypto, decompile status, …) | Always-on agent glue → `.cursor/rules/`, `AGENTS.md` |
 | Parked features with enough detail to resume later | Multi-theme “don’t forget” list → `beta-backlog.md` (root) |
-| In-flight branch status snapshots | User-facing changes → `whats_new.md` (root, while on `mgg-develop`) |
+| In-flight branch status snapshots | User-facing changes → `whats-new.md` (root, while on `mgg-develop`) |
 | | Real developer docs → `src/afw/doc/` (and extension `doc/`) |
 
 ## Current pads (non-exhaustive)
@@ -35,4 +35,4 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 
 For OpenSSL handles, key material, `FILE *`, etc.: **NULL init + `AFW_TRY` + free in `AFW_FINALLY`**. Documented in `.cursor/rules/afw-c-runtime.mdc`; crypto execute path is the reference.
 
-Root stays thin: hubs (`AGENTS.md`, `beta-backlog.md`, `whats_new.md`) + public project files. Stuff design detail **here**, not more long pads at repository root.
+Root stays thin: hubs (`AGENTS.md`, `beta-backlog.md`, `whats-new.md`) + public project files. Stuff design detail **here**, not more long pads at repository root.

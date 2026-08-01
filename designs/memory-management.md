@@ -2172,7 +2172,7 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Landing **−1 through 1c** (+ pad) to `mgg-develop` while 1d+ is thought through (~week).
 - **1d not coded** yet; plan in pad only.
-- `whats_new.md`: α/β + **recompile** out-of-tree commands/extensions against new libafw.
+- `whats-new.md`: α/β + **recompile** out-of-tree commands/extensions against new libafw.
 - Resume: 1d.0 sign-off → implement create policy under target model.
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_

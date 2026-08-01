@@ -2,7 +2,7 @@
 
 **GitHub:** [#38](https://github.com/afw-org/afw/issues/38)  
 **Branch:** `issue-#38`  
-**Status:** Implemented on branch `issue-#38` (2026-08). User-facing notes in `whats_new.md`.  
+**Status:** Implemented on branch `issue-#38` (2026-08). User-facing notes in `whats-new.md`.  
 **Related (do not block #38):** [#138](https://github.com/afw-org/afw/issues/138) — meta on the wire / `"_meta_"` encoding.
 
 ## What ships
