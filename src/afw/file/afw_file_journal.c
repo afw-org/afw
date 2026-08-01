@@ -271,13 +271,13 @@ error_peer_apr:
  */
 const afw_utf8_t *
 impl_afw_adapter_journal_add_entry_internal(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_session_t * session = 
-        (afw_file_internal_adapter_session_t *)instance->session;
+        (afw_file_internal_adapter_session_t *)self->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_memory_t *encoded;
     afw_memory_t temp_raw;
@@ -545,20 +545,20 @@ error_old_journal_apr:
  */
 const afw_utf8_t *
 impl_afw_adapter_journal_add_entry(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_session_t * session = 
-        (afw_file_internal_adapter_session_t *)instance->session;
+        (afw_file_internal_adapter_session_t *)self->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_utf8_t *result;
 
     AFW_LOCK_WRITE_BEGIN(adapter->journal_rw_lock) {
 
         result = impl_afw_adapter_journal_add_entry_internal(
-            instance, impl_request, entry, xctx);
+            self, impl_request, entry, xctx);
     } 
 
     AFW_LOCK_WRITE_END;
@@ -572,7 +572,7 @@ impl_afw_adapter_journal_add_entry(
  */
 void
 impl_afw_adapter_journal_get_entry_internal(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     afw_adapter_journal_option_t option,
     const afw_utf8_t * consumer_id,
@@ -582,7 +582,7 @@ impl_afw_adapter_journal_get_entry_internal(
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_session_t * session =
-        (afw_file_internal_adapter_session_t *)instance->session;
+        (afw_file_internal_adapter_session_t *)self->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_pool_t *p = xctx->p;
     apr_pool_t *apr_p = afw_pool_get_apr_pool(p);
@@ -684,7 +684,7 @@ impl_afw_adapter_journal_get_entry_internal(
     if (use_consumer) {
         
         /* Get peer object. */
-        peer = impl_open_and_retrieve_peer_object(instance, consumer_id,
+        peer = impl_open_and_retrieve_peer_object(self, consumer_id,
             &peer_f, &full_peer_path_z, xctx);
 
         /* If using consumer cursors, set variables as appropriate. */
@@ -820,7 +820,7 @@ impl_afw_adapter_journal_get_entry_internal(
             /* Else if check_filter, set applicable using filter. */
             else if (check_filter) {
                 applicable = afw_adapter_impl_is_journal_entry_applicable(
-                    instance, entry, peer, &filter, xctx);
+                    self, entry, peer, &filter, xctx);
             }
 
             /* Else entry is applicable. */
@@ -883,7 +883,7 @@ impl_afw_adapter_journal_get_entry_internal(
         }
 
         /* Replace peer object and close. */
-        impl_write_and_close_peer_object(instance, peer, peer_f,
+        impl_write_and_close_peer_object(self, peer, peer_f,
             full_peer_path_z, xctx);
  
     }
@@ -924,7 +924,7 @@ error_journal:
  */
 void
 impl_afw_adapter_journal_get_entry(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     afw_adapter_journal_option_t option,
     const afw_utf8_t * consumer_id,
@@ -934,13 +934,13 @@ impl_afw_adapter_journal_get_entry(
     afw_xctx_t *xctx)
 {
     afw_file_internal_adapter_session_t * session =
-        (afw_file_internal_adapter_session_t *)instance->session;
+        (afw_file_internal_adapter_session_t *)self->session;
     afw_file_internal_adapter_t *adapter = session->adapter;
 
     AFW_LOCK_READ_BEGIN(adapter->journal_rw_lock) {
 
         impl_afw_adapter_journal_get_entry_internal(
-            instance,
+            self,
             impl_request,
             option,
             consumer_id,
@@ -960,7 +960,7 @@ impl_afw_adapter_journal_get_entry(
  */
 void
 impl_afw_adapter_journal_mark_entry_consumed(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
@@ -973,7 +973,7 @@ impl_afw_adapter_journal_mark_entry_consumed(
     const afw_dateTime_t *now;
 
 
-    peer = impl_open_and_retrieve_peer_object(instance,
+    peer = impl_open_and_retrieve_peer_object(self,
         consumer_id, &peer_f,
         &full_peer_path_z, xctx);
 
@@ -994,6 +994,6 @@ impl_afw_adapter_journal_mark_entry_consumed(
         now, xctx);
 
     /* Write peer object and close. */
-    impl_write_and_close_peer_object(instance, peer, peer_f, full_peer_path_z,
+    impl_write_and_close_peer_object(self, peer, peer_f, full_peer_path_z,
         xctx);
 }

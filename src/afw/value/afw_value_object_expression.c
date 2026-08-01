@@ -29,6 +29,7 @@
 #define AFW_IMPLEMENTATION_ID "object_expression"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_object_expression_inf
+#define AFW_VALUE_SELF_T afw_value_object_expression_t
 #include "afw_value_impl_declares.h"
 
 
@@ -54,7 +55,7 @@ afw_value_create_object_expression(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
@@ -64,7 +65,7 @@ impl_afw_value_optional_evaluate(
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
 
-    from = ((const afw_value_object_expression_t *)instance)->internal;
+    from = ((const afw_value_object_expression_t *)&self->pub)->internal;
     to = afw_object_create_unmanaged(p, xctx);
 
     for (iterator = NULL;;) {
@@ -85,7 +86,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return afw_data_type_object;
@@ -100,17 +101,15 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_object_expression_t *self =
-        (const afw_value_object_expression_t *)instance;
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *pv;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -139,14 +138,14 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
     afw_data_type_write_as_expression(
         afw_data_type_object,
         writer,
-        (const void *)&(((const afw_value_common_t *)instance)->internal),
+        (const void *)&(((const afw_value_common_t *)&self->pub)->internal),
         xctx);
 }
 
@@ -155,18 +154,16 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_object_expression_t *self =
-        (const afw_value_object_expression_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
-    info->optimized_value = instance;
+    info->optimized_value = &self->pub;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }

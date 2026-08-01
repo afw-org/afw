@@ -151,7 +151,7 @@ afw_server_fcgi_internal_create(const char *path,
  */
 void
 impl_afw_server_release(
-    const afw_server_t * instance,
+    const afw_server_t * self,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -298,12 +298,12 @@ impl_afw_server_request_thread_start(const afw_thread_t *thread,
  */
 void
 impl_afw_server_run(
-    const afw_server_t * instance,
+    const afw_server_t * self,
     const afw_request_handler_t * handler,
     afw_xctx_t *xctx)
 {
     afw_server_fcgi_internal_t * server =
-        (afw_server_fcgi_internal_t *)instance;
+        (afw_server_fcgi_internal_t *)self;
 
     afw_integer_t count;
     afw_server_fcgi_internal_server_thread_t *server_thread;

@@ -20,6 +20,7 @@
 
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "afw_value_meta_values_object"
+#define AFW_ARRAY_SELF_T afw_value_meta_values_object_list_self_t
 #include "afw_array_impl_declares.h"
 
 
@@ -33,10 +34,10 @@ typedef struct {
  */
 void
 impl_afw_array_release(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Nothing to release; instance lives in its create pool. */
+    /* Nothing to release; &self->pub lives in its create pool. */
 }
 
 
@@ -45,11 +46,9 @@ impl_afw_array_release(
  */
 afw_size_t
 impl_afw_array_get_count(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_value_meta_values_object_list_self_t *self =
-        (afw_value_meta_values_object_list_self_t *)instance;
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
     afw_size_t count;
@@ -74,7 +73,7 @@ impl_afw_array_get_count(
  */
 const afw_data_type_t *
 impl_afw_array_get_data_type(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return afw_data_type_object;
@@ -86,7 +85,7 @@ impl_afw_array_get_data_type(
  */
 afw_boolean_t
 impl_afw_array_get_entry_internal(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_data_type_t **data_type,
     const void **internal,
@@ -94,7 +93,7 @@ impl_afw_array_get_entry_internal(
 {
     const afw_value_t *value;
 
-    value = impl_afw_array_get_entry_value(instance, index, instance->p, xctx);
+    value = impl_afw_array_get_entry_value(self, index, self->pub.p, xctx);
     if (value) {
         *internal = AFW_VALUE_INTERNAL(value);
         if (data_type) {
@@ -116,13 +115,11 @@ impl_afw_array_get_entry_internal(
  */
 const afw_value_t *
 impl_afw_array_get_entry_value(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_meta_values_object_list_self_t *self =
-        (afw_value_meta_values_object_list_self_t *)instance;
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *property_value;
@@ -184,7 +181,7 @@ impl_afw_array_get_entry_value(
  */
 afw_boolean_t
 impl_afw_array_get_next_internal(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t **iterator,
     const afw_data_type_t **data_type,
     const void **internal,
@@ -192,7 +189,7 @@ impl_afw_array_get_next_internal(
 {
     const afw_value_t *value;
 
-    value = impl_afw_array_get_next_value(instance, iterator, instance->p, xctx);
+    value = impl_afw_array_get_next_value(self, iterator, self->pub.p, xctx);
     if (value) {
         *internal = AFW_VALUE_INTERNAL(value);
         if (data_type) {
@@ -214,13 +211,11 @@ impl_afw_array_get_next_internal(
  */
 const afw_value_t *
 impl_afw_array_get_next_value(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t **iterator,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_meta_values_object_list_self_t *self =
-        (afw_value_meta_values_object_list_self_t *)instance;
     const afw_value_t *property_value;
     const afw_utf8_t *property_name;
     afw_value_meta_object_self_t *meta_self;
@@ -228,6 +223,9 @@ impl_afw_array_get_next_value(
     impl_meta_values_object_iterator_t *state;
 
     use_p = p ? p : self->pub.p;
+    if (!use_p) {
+        use_p = xctx->p;
+    }
 
     if (!*iterator) {
         state = afw_pool_calloc_type(use_p,
@@ -260,7 +258,7 @@ impl_afw_array_get_next_value(
  */
 const afw_array_setter_t *
 impl_afw_array_get_setter(
-    const afw_array_t *instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;

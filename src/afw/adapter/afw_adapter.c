@@ -721,7 +721,7 @@ afw_adapter_internal_register_service_type(afw_xctx_t *xctx)
  */
 afw_integer_t
 impl_afw_service_type_related_instance_count (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
@@ -760,7 +760,7 @@ impl_afw_service_type_related_instance_count (
  */
 void
 impl_afw_service_type_start_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -800,7 +800,7 @@ impl_afw_service_type_start_cede_p (
  */
 void
 impl_afw_service_type_stop (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
@@ -814,11 +814,11 @@ impl_afw_service_type_stop (
  */
 void
 impl_afw_service_type_restart_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     /* Count on already running. Start will restart if necessary. */
-    impl_afw_service_type_start_cede_p(instance, properties, p, xctx);
+    impl_afw_service_type_start_cede_p(self, properties, p, xctx);
 }

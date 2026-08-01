@@ -41,6 +41,7 @@
 #define AFW_IMPLEMENTATION_ID "function_thunk"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_function_thunk_inf
+#define AFW_VALUE_SELF_T afw_value_function_thunk_t
 #include "afw_value_impl_declares.h"
 
 
@@ -77,7 +78,7 @@ afw_value_function_thunk_create_impl(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -89,14 +90,12 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_function_thunk_t *self =
-        (const afw_value_function_thunk_t *)instance;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         NULL, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -117,15 +116,13 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_function_thunk_t *self =
-        (const afw_value_function_thunk_t *)instance;
     afw_value_string_t detail_value;
 
-    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
         afw_writer_increment_indent(writer, xctx);
@@ -159,18 +156,16 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_function_thunk_t *self =
-        (const afw_value_function_thunk_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->detail = self->detail;
-    info->optimized_value = instance;
+    info->optimized_value = &self->pub;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }

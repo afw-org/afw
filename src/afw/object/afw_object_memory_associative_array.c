@@ -16,6 +16,8 @@
 
 /* Declares and rti/inf defines for interface afw_object_associative_array */
 #define AFW_IMPLEMENTATION_ID "memory"
+typedef struct impl_afw_object_associative_array_self_s impl_afw_object_associative_array_self_t;
+#define AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T impl_afw_object_associative_array_self_t
 #include "afw_object_associative_array_impl_declares.h"
 
 /* Self */
@@ -61,12 +63,10 @@ afw_object_memory_associative_array_create(
  */
 void
 impl_afw_object_associative_array_release (
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_object_associative_array_self_t * self = 
-        (impl_afw_object_associative_array_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
     apr_hash_index_t *hi;
     const void *key;
@@ -76,7 +76,7 @@ impl_afw_object_associative_array_release (
     /* Decrement reference count and release object and array's pool if zero. */
     if (afw_atomic_integer_decrement(&self->reference_count) == 0) {
         for (hi = apr_hash_first(
-                afw_pool_get_apr_pool(instance->p), self->objects);
+                afw_pool_get_apr_pool(self->pub.p), self->objects);
             hi;
             hi = apr_hash_next(hi))
         {
@@ -84,7 +84,7 @@ impl_afw_object_associative_array_release (
             afw_object_release(object, xctx);
         }
 
-        afw_pool_release(instance->p, xctx);
+        afw_pool_release(self->pub.p, xctx);
     }
 }
 
@@ -95,12 +95,10 @@ impl_afw_object_associative_array_release (
  */
 void
 impl_afw_object_associative_array_get_reference (
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_object_associative_array_self_t * self = 
-        (impl_afw_object_associative_array_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
     /* Increment reference count. */
     afw_atomic_integer_increment(&self->reference_count);
@@ -120,13 +118,11 @@ impl_release_object(void *data, void *data2,
  */
 const afw_object_t *
 impl_afw_object_associative_array_get (
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_object_associative_array_self_t * self = 
-        (impl_afw_object_associative_array_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
     const afw_object_t *object;
 
@@ -154,13 +150,11 @@ impl_afw_object_associative_array_get (
  */
 const afw_object_t *
 impl_afw_object_associative_array_get_associated_object_reference (
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_object_associative_array_self_t * self = 
-        (impl_afw_object_associative_array_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
     const afw_object_t *object;
 
@@ -183,7 +177,7 @@ impl_afw_object_associative_array_get_associated_object_reference (
  */
 void
 impl_afw_object_associative_array_for_each (
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     void * context,
     afw_object_cb_t cb,
     afw_xctx_t *xctx)
@@ -200,14 +194,12 @@ impl_afw_object_associative_array_for_each (
  */
 void
 impl_afw_object_associative_array_set (
-    const afw_object_associative_array_t * instance,
+    AFW_OBJECT_ASSOCIATIVE_ARRAY_SELF_T *self,
     const afw_utf8_t * key,
     const afw_object_t * object,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_object_associative_array_self_t * self = 
-        (impl_afw_object_associative_array_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
     const afw_object_t *existing;
 

@@ -23,6 +23,7 @@
 
 /* Declares and rti/inf defines for interface afw_adapter */
 #define AFW_IMPLEMENTATION_ID "lmdb"
+#define AFW_ADAPTER_SELF_T afw_lmdb_adapter_t
 #include "afw_adapter_impl_declares.h"
 
 /*
@@ -346,10 +347,9 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
  */
 void
 impl_afw_adapter_destroy(
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {  
-    afw_lmdb_adapter_t *self = (afw_lmdb_adapter_t *) instance;
     apr_hash_index_t *hi;
 
     /* close any open databases */
@@ -369,7 +369,7 @@ impl_afw_adapter_destroy(
     mdb_env_close(self->dbEnv);
 
     /* Release pool. */
-    afw_pool_release(instance->p, xctx);
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
@@ -379,10 +379,9 @@ impl_afw_adapter_destroy(
  */
 const afw_adapter_session_t *
 impl_afw_adapter_create_adapter_session (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_t *self = (afw_lmdb_adapter_t *)instance;
 
     return (const afw_adapter_session_t *)
         afw_lmdb_adapter_session_create(self, xctx);
@@ -394,12 +393,10 @@ impl_afw_adapter_create_adapter_session (
  */
 const afw_object_t *
 impl_afw_adapter_get_additional_metrics (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_lmdb_adapter_t *self = 
-        (afw_lmdb_adapter_t *) instance;
     int major, minor, patch;
     char *version_str;
     const afw_object_t *metrics;

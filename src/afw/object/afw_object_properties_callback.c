@@ -27,6 +27,7 @@
 
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "properties_callback"
+#define AFW_OBJECT_SELF_T afw_object_internal_properties_callback_self_t
 #include "afw_object_impl_declares.h"
 #include "afw_object_setter_impl_declares.h"
 
@@ -69,7 +70,7 @@ afw_object_create_properties_callback(
  */
 void
 impl_afw_object_release(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
 
@@ -80,7 +81,7 @@ impl_afw_object_release(
  */
 void
 impl_afw_object_get_reference(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
 
@@ -91,11 +92,11 @@ impl_afw_object_get_reference(
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)&self->pub;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -107,12 +108,10 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_internal_properties_callback_self_t *self =
-        (afw_object_internal_properties_callback_self_t *)instance;
     const afw_object_properties_callback_entry_t *e;
     const afw_value_t *result;
 
@@ -133,13 +132,11 @@ impl_afw_object_get_property(
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_iterator_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_internal_properties_callback_self_t *self =
-        (afw_object_internal_properties_callback_self_t *)instance;
     const afw_value_t *result;
     const afw_object_properties_callback_entry_t *e;
 
@@ -172,13 +169,13 @@ impl_afw_object_get_next_property(
  */
 afw_boolean_t
 impl_afw_object_has_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
     afw_boolean_t result;
 
-    result = impl_afw_object_get_property(instance, property_name, xctx)
+    result = impl_afw_object_get_property(self, property_name, xctx)
         != NULL;
 
     return result;      
@@ -189,11 +186,9 @@ impl_afw_object_has_property(
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_internal_properties_callback_self_t *self =
-        (afw_object_internal_properties_callback_self_t *)instance;
 
     return (self->immutable) ? NULL : &self->setter;
 }
@@ -203,13 +198,13 @@ impl_afw_object_get_setter(
  */
 void
 impl_afw_object_setter_set_immutable(
-    const afw_object_setter_t * instance,
+    const afw_object_setter_t * self,
     afw_xctx_t *xctx)
 {
-    afw_object_internal_properties_callback_self_t *self =
-        (afw_object_internal_properties_callback_self_t *)instance->object;
+    afw_object_internal_properties_callback_self_t *properties_callback_self =
+        (afw_object_internal_properties_callback_self_t *)self->object;
 
-    self->immutable = true;
+    properties_callback_self->immutable = true;
 }
 
 /*
@@ -217,23 +212,23 @@ impl_afw_object_setter_set_immutable(
  */
 void
 impl_afw_object_setter_set_property(
-    const afw_object_setter_t * instance,
+    const afw_object_setter_t * self,
     const afw_utf8_t * property_name,
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_object_internal_properties_callback_self_t *self =
-        (afw_object_internal_properties_callback_self_t *)instance->object;
+    afw_object_internal_properties_callback_self_t *properties_callback_self =
+        (afw_object_internal_properties_callback_self_t *)self->object;
     const afw_object_properties_callback_entry_t *e;
 
-    if (!self->immutable) {
-        for (e = self->callbacks; e < self->end; e++)
+    if (!properties_callback_self->immutable) {
+        for (e = properties_callback_self->callbacks; e < properties_callback_self->end; e++)
         {
             if (afw_utf8_equal(e->property_name, property_name)) {
                 if (!e->set) {
                     break;
                 }
-                e->set(self->data, property_name, value, xctx);
+                e->set(properties_callback_self->data, property_name, value, xctx);
                 return;
             }
         }

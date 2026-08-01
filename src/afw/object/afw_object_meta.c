@@ -26,6 +26,7 @@
 
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "object_meta"
+#define AFW_OBJECT_SELF_T afw_object_meta_object_t
 #include "afw_object_impl_declares.h"
 #include "afw_object_setter_impl_declares.h"
 
@@ -841,11 +842,9 @@ afw_object_meta_add_thrown_property_error(
  */
 void
 impl_afw_object_release(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
 
     afw_object_release(self->pub.meta.embedding_object, xctx);
 }
@@ -855,11 +854,9 @@ impl_afw_object_release(
  */
 void
 impl_afw_object_get_reference(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
 
     afw_object_get_reference(self->pub.meta.embedding_object, xctx);
 }
@@ -869,11 +866,11 @@ impl_afw_object_get_reference(
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)&self->pub;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -885,12 +882,10 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
     const afw_value_t *result;
 
     result = afw_object_get_property(self->delta, property_name, xctx);
@@ -918,13 +913,11 @@ typedef struct {
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_iterator_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
     const afw_value_t *result;
     const afw_utf8_t *next_property_name;
     impl_get_next_property_iterator_t *i;
@@ -984,12 +977,10 @@ impl_afw_object_get_next_property(
  */
 afw_boolean_t
 impl_afw_object_has_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
     afw_boolean_t result;
 
     result = afw_object_has_property(self->delta, property_name, xctx);
@@ -1002,11 +993,9 @@ impl_afw_object_has_property(
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
 
     return &self->setter;
 }
@@ -1017,7 +1006,7 @@ impl_afw_object_get_setter(
  */
 void
 impl_afw_object_setter_set_immutable(
-    const afw_object_setter_t * instance,
+    const afw_object_setter_t * self,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -1030,26 +1019,26 @@ impl_afw_object_setter_set_immutable(
  */
 void
 impl_afw_object_setter_set_property(
-    const afw_object_setter_t * instance,
+    const afw_object_setter_t * self,
     const afw_utf8_t * property_name,
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance->object;
+    afw_object_meta_object_t *object_meta_object_self =
+        (afw_object_meta_object_t *)self->object;
 
     if (afw_utf8_equal(property_name, afw_s_path)) {
         AFW_VALUE_ASSERT_IS_ANYURI_OR_STRING(value, xctx);
         afw_object_meta_set_ids_using_path(
-            self->pub.meta.embedding_object,
+            object_meta_object_self->pub.meta.embedding_object,
             &((const afw_value_anyURI_t *)value)->internal,
             xctx);
     }
 
     else {
-        if (!self->delta) {
-            self->delta = afw_object_create_unmanaged(self->pub.p, xctx);
+        if (!object_meta_object_self->delta) {
+            object_meta_object_self->delta = afw_object_create_unmanaged(object_meta_object_self->pub.p, xctx);
         }
-        afw_object_set_property(self->delta, property_name, value, xctx);
+        afw_object_set_property(object_meta_object_self->delta, property_name, value, xctx);
     }
 }

@@ -38,7 +38,7 @@ afw_ldap_adapter_factory =
  */
 const afw_adapter_t *
 impl_afw_adapter_factory_create_adapter_cede_p (
-    const afw_adapter_factory_t * instance,
+    const afw_adapter_factory_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)

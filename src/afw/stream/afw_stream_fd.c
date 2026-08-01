@@ -18,6 +18,8 @@
 
 /* Declares and rti/inf defines for interface afw_stream */
 #define AFW_IMPLEMENTATION_ID "afw_stream_fd"
+typedef struct afw_stream_fd_self_s afw_stream_fd_self_t;
+#define AFW_STREAM_SELF_T afw_stream_fd_self_t
 #include "afw_stream_impl_declares.h"
 
 
@@ -110,11 +112,9 @@ impl_afw_stream_fd_write_cb(
  */
 void
 impl_afw_stream_release(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_stream_fd_self_t *self =
-        (afw_stream_fd_self_t *)instance;
     FILE *f;
     int err;
 
@@ -135,11 +135,9 @@ impl_afw_stream_release(
  */
 void
 impl_afw_stream_flush(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_stream_fd_self_t *self =
-        (afw_stream_fd_self_t *)instance;
     int err;
 
     if (self->fd) {
@@ -158,13 +156,11 @@ impl_afw_stream_flush(
  */
 afw_size_t
 impl_afw_stream_read(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_stream_fd_self_t *self =
-        (afw_stream_fd_self_t *)instance;
     size_t n;
     int err;
 
@@ -195,13 +191,13 @@ impl_afw_stream_read(
  */
 void
 impl_afw_stream_write(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    impl_afw_stream_fd_write_cb((void *)instance, buffer, size,
-        instance->p, xctx);
+    impl_afw_stream_fd_write_cb((void *)&self->pub, buffer, size,
+        self->pub.p, xctx);
 }
 
 

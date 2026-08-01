@@ -30,6 +30,7 @@
 
 /* Object view object implementation. */
 #define AFW_IMPLEMENTATION_ID "afw_object_view"
+#define AFW_OBJECT_SELF_T afw_object_view_internal_object_self_t
 #include "afw_object_impl_declares.h"
 
 /*--- Macros. ---*/
@@ -1173,19 +1174,18 @@ impl_object_create(
  */
 void
 impl_afw_object_release (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_view_internal_object_self_t * self;
-    const afw_object_t *entity;
+        const afw_object_t *entity;
 
     /* Methods release and get_reference act on the entity. */
-    AFW_OBJECT_GET_ENTITY(entity, instance);
-    self = (afw_object_view_internal_object_self_t *)entity;
+    AFW_OBJECT_GET_ENTITY(entity, &self->pub);
+    self = (AFW_OBJECT_SELF_T *)entity;
 
     /* Decrement count and release object's pool if zero. */
     if (afw_atomic_integer_decrement(&self->view->reference_count) == 0) {
-        afw_pool_release(instance->p, xctx);
+        afw_pool_release(self->pub.p, xctx);
     }
 }
 
@@ -1196,15 +1196,14 @@ impl_afw_object_release (
  */
 void
 impl_afw_object_get_reference (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_view_internal_object_self_t * self;
     const afw_object_t *entity;
 
     /* Methods release and get_reference act on the entity. */
-    AFW_OBJECT_GET_ENTITY(entity, instance);
-    self = (afw_object_view_internal_object_self_t *)entity;
+    AFW_OBJECT_GET_ENTITY(entity, &self->pub);
+    self = (AFW_OBJECT_SELF_T *)entity;
 
     /* Increment reference count. */
     afw_atomic_integer_increment(&self->view->reference_count);
@@ -1215,11 +1214,11 @@ impl_afw_object_get_reference (
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)&self->pub;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -1231,12 +1230,10 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_view_internal_object_self_t * self =
-        (afw_object_view_internal_object_self_t *)instance;
     afw_object_view_property_t *prop;
 
     prop = impl_get_property(self, property_name);
@@ -1251,13 +1248,11 @@ impl_afw_object_get_property(
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_view_internal_object_self_t * self =
-        (afw_object_view_internal_object_self_t *)instance;
     const afw_value_t *result;
     afw_object_view_property_t *prop;
 
@@ -1301,11 +1296,11 @@ impl_afw_object_get_next_property(
  */
 afw_boolean_t
 impl_afw_object_has_property (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
-    return (impl_afw_object_get_property(instance,
+    return (impl_afw_object_get_property(self,
         property_name, xctx) != NULL);
 }
 
@@ -1316,7 +1311,7 @@ impl_afw_object_has_property (
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Views are immutable. */

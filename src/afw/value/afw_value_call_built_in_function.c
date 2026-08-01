@@ -30,6 +30,7 @@
 #define AFW_IMPLEMENTATION_ID "call_built_in_function"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_call_built_in_function_inf
+#define AFW_VALUE_SELF_T afw_value_call_built_in_function_t
 #include "afw_value_impl_declares.h"
 
 
@@ -113,7 +114,7 @@ afw_value_call_built_in_function(
     /* Optimize is set to false since this is one time call. */
     value = afw_value_call_built_in_function_create(
         contextual, argc, argv, false, p, xctx);
-    return impl_afw_value_optional_evaluate(value, p, xctx);
+    return impl_afw_value_optional_evaluate((AFW_VALUE_SELF_T *)value, p, xctx);
 }
 
 
@@ -123,18 +124,16 @@ afw_value_call_built_in_function(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_built_in_function_t *self =
-        (const afw_value_call_built_in_function_t *)instance;
     const afw_compile_value_contextual_t *saved_contextual;
     const afw_value_t *result;
     afw_function_execute_t x;
 
     /* Push value on evaluation stack. */
-    afw_xctx_evaluation_stack_push_value(instance, xctx);
+    afw_xctx_evaluation_stack_push_value(&self->pub, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->args.contextual;
 
@@ -225,7 +224,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -237,14 +236,12 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_built_in_function_t *self =
-        (const afw_value_call_built_in_function_t *)instance;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->args.contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -257,7 +254,7 @@ impl_afw_value_produce_compiler_listing(
         afw_writer_write_eol(writer, xctx);
     }
 
-    if (self->optimized_value != instance) {
+    if (self->optimized_value != &self->pub) {
         afw_writer_write_z(writer, "optimized_value: ", xctx);
         afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
         afw_writer_write_eol(writer, xctx);
@@ -290,12 +287,10 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_built_in_function_t *self =
-        (const afw_value_call_built_in_function_t *)instance;
     const afw_utf8_t *fid;
     const afw_value_t *arg;
     const afw_value_symbol_reference_t *sym;
@@ -466,17 +461,15 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_built_in_function_t *self =
-        (const afw_value_call_built_in_function_t *)instance;
 
     afw_memory_clear(info);
     info->detail = &self->function->functionId->internal;
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->args.contextual;
     info->evaluated_data_type = self->evaluated_data_type;
     info->optimized_value = self->optimized_value;

@@ -21,6 +21,8 @@
 
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "memory"
+typedef struct afw_memory_internal_array_s afw_memory_internal_array_t;
+#define AFW_ARRAY_SELF_T afw_memory_internal_array_t
 #include "afw_array_impl_declares.h"
 #include "afw_array_setter_impl_declares.h"
 
@@ -109,7 +111,7 @@ afw_array_create_with_options(
  */
 void
 impl_afw_array_release(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx) {
 
     /*
@@ -130,10 +132,9 @@ impl_afw_array_release(
  */
 afw_size_t
 impl_afw_array_get_count(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
 
     return self->count;
 }
@@ -145,10 +146,9 @@ impl_afw_array_get_count(
  */
 const afw_data_type_t *
 impl_afw_array_get_data_type(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
 
     return self->data_type;
 }
@@ -160,7 +160,7 @@ impl_afw_array_get_data_type(
  */
 afw_boolean_t
 impl_afw_array_get_entry_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_data_type_t * * data_type,
     const void * * internal,
@@ -168,7 +168,7 @@ impl_afw_array_get_entry_internal(
 {
     const afw_value_t *value;
 
-    value = impl_afw_array_get_entry_value(instance, index, NULL, xctx);
+    value = impl_afw_array_get_entry_value(self, index, NULL, xctx);
     if (value) {
         *internal = AFW_VALUE_INTERNAL(value);
         if (data_type) {
@@ -192,12 +192,11 @@ impl_afw_array_get_entry_internal(
  */
 const afw_value_t *
 impl_afw_array_get_entry_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
     afw_memory_internal_array_entry_t *ep;
     afw_integer_t resolved;
 
@@ -230,13 +229,12 @@ impl_afw_array_get_entry_value(
  */
 afw_boolean_t
 impl_afw_array_get_next_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
     afw_memory_internal_array_entry_t *ep;
 
     /* If iterator is NULL, locate first else locate next. */
@@ -276,12 +274,11 @@ impl_afw_array_get_next_internal(
  */
 const afw_value_t *
 impl_afw_array_get_next_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
     afw_memory_internal_array_entry_t *ep;
 
     /* If iterator is NULL, locate first else locate next and update iterator. */
@@ -313,10 +310,9 @@ impl_afw_array_get_next_value(
  */
 const afw_array_setter_t *
 impl_afw_array_get_setter(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
 
     return (self->immutable) ? NULL : &self->setter;
 }
@@ -516,13 +512,13 @@ impl_entry_at(
  */
 void
 impl_afw_array_setter_set_immutable(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
 
-    self->immutable = true;
+    array_self->immutable = true;
 }
 
 
@@ -533,42 +529,42 @@ impl_afw_array_setter_set_immutable(
  */
 const afw_data_type_t *
 impl_afw_array_setter_determine_data_type_and_set_immutable(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *ep;
 
     /* Make immutable if not already. */
-    if (self->immutable) {
+    if (array_self->immutable) {
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
-    self->immutable = true;
+    array_self->immutable = true;
 
     /* If data type not known yet, try to determine it. */
-    if (!self->data_type) {
-        for (ep = APR_RING_FIRST(self->ring);
-            ep != APR_RING_SENTINEL(self->ring,
+    if (!array_self->data_type) {
+        for (ep = APR_RING_FIRST(array_self->ring);
+            ep != APR_RING_SENTINEL(array_self->ring,
                 afw_memory_internal_array_entry_s, link);
             ep = APR_RING_NEXT(ep, link))
         {
-            if (!self->data_type) {
-                self->data_type =
+            if (!array_self->data_type) {
+                array_self->data_type =
                     afw_value_get_data_type(ep->value, xctx);
             }
             else {
-                if (self->data_type !=
+                if (array_self->data_type !=
                     afw_value_get_data_type(ep->value, xctx))
                 {
-                    self->data_type = NULL;
+                    array_self->data_type = NULL;
                     break;
                 }
             }
         }
     }
 
-    return self->data_type;
+    return array_self->data_type;
 }
 
 
@@ -578,24 +574,24 @@ impl_afw_array_setter_determine_data_type_and_set_immutable(
  */
 void
 impl_afw_array_setter_push_value(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *ep;
     afw_boolean_t was_empty;
 
-    was_empty = (self->count == 0);
-    impl_note_value_data_type(self, value, was_empty, xctx);
+    was_empty = (array_self->count == 0);
+    impl_note_value_data_type(array_self, value, was_empty, xctx);
 
     ep = afw_pool_calloc_type(
-        self->pub.p, afw_memory_internal_array_entry_t, xctx);
+        array_self->pub.p, afw_memory_internal_array_entry_t, xctx);
     ep->value = value;
-    APR_RING_INSERT_TAIL(self->ring, ep,
+    APR_RING_INSERT_TAIL(array_self->ring, ep,
         afw_memory_internal_array_entry_s, link);
-    self->count++;
+    array_self->count++;
 }
 
 
@@ -605,17 +601,17 @@ impl_afw_array_setter_push_value(
  */
 void
 impl_afw_array_setter_push_internal(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     const afw_data_type_t *data_type,
     const void * internal,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t *value;
 
-    value = afw_value_common_create(internal, data_type, self->pub.p, xctx);
-    impl_afw_array_setter_push_value(instance, value, xctx);
+    value = afw_value_common_create(internal, data_type, array_self->pub.p, xctx);
+    impl_afw_array_setter_push_value(self, value, xctx);
 }
 
 
@@ -625,17 +621,17 @@ impl_afw_array_setter_push_internal(
  */
 const afw_value_t *
 impl_afw_array_setter_pop_value(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     afw_boolean_t *found,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *ep;
     const afw_value_t *value;
 
     /* Empty: NULL; optional found=false (undefined in script if ignored). */
-    if (self->count == 0) {
+    if (array_self->count == 0) {
         if (found) {
             *found = false;
         }
@@ -645,11 +641,11 @@ impl_afw_array_setter_pop_value(
     if (found) {
         *found = true;
     }
-    ep = APR_RING_LAST(self->ring);
+    ep = APR_RING_LAST(array_self->ring);
     value = ep->value;
     APR_RING_REMOVE(ep, link);
-    self->count--;
-    impl_maybe_clear_generic_data_type(self);
+    array_self->count--;
+    impl_maybe_clear_generic_data_type(array_self);
     return value;
 }
 
@@ -660,17 +656,17 @@ impl_afw_array_setter_pop_value(
  */
 const afw_value_t *
 impl_afw_array_setter_shift_value(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     afw_boolean_t *found,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *ep;
     const afw_value_t *value;
 
     /* Empty: NULL; optional found=false (undefined in script if ignored). */
-    if (self->count == 0) {
+    if (array_self->count == 0) {
         if (found) {
             *found = false;
         }
@@ -680,11 +676,11 @@ impl_afw_array_setter_shift_value(
     if (found) {
         *found = true;
     }
-    ep = APR_RING_FIRST(self->ring);
+    ep = APR_RING_FIRST(array_self->ring);
     value = ep->value;
     APR_RING_REMOVE(ep, link);
-    self->count--;
-    impl_maybe_clear_generic_data_type(self);
+    array_self->count--;
+    impl_maybe_clear_generic_data_type(array_self);
     return value;
 }
 
@@ -695,55 +691,55 @@ impl_afw_array_setter_shift_value(
  */
 void
 impl_afw_array_setter_insert_value(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     afw_integer_t index,
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *lep;
     afw_memory_internal_array_entry_t *nep;
     afw_size_t count;
     afw_size_t at;
     afw_boolean_t was_empty;
 
-    was_empty = (self->count == 0);
-    impl_note_value_data_type(self, value, was_empty, xctx);
+    was_empty = (array_self->count == 0);
+    impl_note_value_data_type(array_self, value, was_empty, xctx);
 
-    count = self->count;
+    count = array_self->count;
     at = impl_resolve_insert_index(index, count, xctx);
 
     nep = afw_pool_calloc_type(
-        self->pub.p, afw_memory_internal_array_entry_t, xctx);
+        array_self->pub.p, afw_memory_internal_array_entry_t, xctx);
     nep->value = value;
 
     /* index 0 = unshift (front); index == count = push (append). */
     if (at == 0) {
-        APR_RING_INSERT_HEAD(self->ring, nep,
+        APR_RING_INSERT_HEAD(array_self->ring, nep,
             afw_memory_internal_array_entry_s, link);
-        self->count++;
+        array_self->count++;
         return;
     }
 
     if (at >= count) {
-        APR_RING_INSERT_TAIL(self->ring, nep,
+        APR_RING_INSERT_TAIL(array_self->ring, nep,
             afw_memory_internal_array_entry_s, link);
-        self->count++;
+        array_self->count++;
         return;
     }
 
-    lep = impl_entry_at(self, at);
+    lep = impl_entry_at(array_self, at);
     if (lep) {
         APR_RING_INSERT_BEFORE(lep, nep, link);
-        self->count++;
+        array_self->count++;
         return;
     }
 
     /* Should not reach. */
-    APR_RING_INSERT_TAIL(self->ring, nep,
+    APR_RING_INSERT_TAIL(array_self->ring, nep,
         afw_memory_internal_array_entry_s, link);
-    self->count++;
+    array_self->count++;
 }
 
 
@@ -753,19 +749,19 @@ impl_afw_array_setter_insert_value(
  */
 void
 impl_afw_array_setter_insert_internal(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     afw_integer_t index,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     const afw_value_t *value;
 
     value = afw_value_common_create(
-        internal, data_type, self->pub.p, xctx);
-    impl_afw_array_setter_insert_value(instance, index, value, xctx);
+        internal, data_type, array_self->pub.p, xctx);
+    impl_afw_array_setter_insert_value(self, index, value, xctx);
 }
 
 
@@ -775,20 +771,20 @@ impl_afw_array_setter_insert_internal(
  */
 void
 impl_afw_array_setter_set_value(
-    const afw_array_setter_t *instance,
+    const afw_array_setter_t *self,
     afw_integer_t index,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *lep;
     afw_size_t at;
 
-    at = impl_resolve_element_index(index, self->count, xctx);
-    impl_note_value_data_type(self, value, false, xctx);
+    at = impl_resolve_element_index(index, array_self->count, xctx);
+    impl_note_value_data_type(array_self, value, false, xctx);
 
-    lep = impl_entry_at(self, at);
+    lep = impl_entry_at(array_self, at);
     if (!lep) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
@@ -808,26 +804,26 @@ impl_afw_array_setter_set_value(
  */
 void
 impl_afw_array_setter_remove_value_by_index(
-    const afw_array_setter_t *instance,
+    const afw_array_setter_t *self,
     afw_integer_t index,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *lep;
     afw_size_t at;
 
-    at = impl_resolve_element_index(index, self->count, xctx);
+    at = impl_resolve_element_index(index, array_self->count, xctx);
 
-    lep = impl_entry_at(self, at);
+    lep = impl_entry_at(array_self, at);
     if (!lep) {
         AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
 
     /* @fixme #2: optional_release lep->value when hold-on-store lands. */
     APR_RING_REMOVE(lep, link);
-    self->count--;
-    impl_maybe_clear_generic_data_type(self);
+    array_self->count--;
+    impl_maybe_clear_generic_data_type(array_self);
 }
 
 
@@ -837,21 +833,21 @@ impl_afw_array_setter_remove_value_by_index(
  */
 void
 impl_afw_array_setter_remove_value(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *ep;
 
-    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s, link)
+    APR_RING_FOREACH(ep, array_self->ring, afw_memory_internal_array_entry_s, link)
     {
         if (afw_value_equal(value, ep->value, xctx)) {
             /* @fixme #2: optional_release ep->value when hold-on-store lands. */
             APR_RING_REMOVE(ep, link);
-            self->count--;
-            impl_maybe_clear_generic_data_type(self);
+            array_self->count--;
+            impl_maybe_clear_generic_data_type(array_self);
             return;
         }
     }
@@ -866,16 +862,16 @@ impl_afw_array_setter_remove_value(
  */
 void
 impl_afw_array_setter_remove_internal(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     const afw_data_type_t *data_type,
     const void * internal,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *ep;
 
-    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s, link)
+    APR_RING_FOREACH(ep, array_self->ring, afw_memory_internal_array_entry_s, link)
     {
         if (afw_value_get_data_type(ep->value, xctx) == data_type &&
             memcmp(
@@ -884,8 +880,8 @@ impl_afw_array_setter_remove_internal(
         {
             /* @fixme #2: optional_release ep->value when hold-on-store lands. */
             APR_RING_REMOVE(ep, link);
-            self->count--;
-            impl_maybe_clear_generic_data_type(self);
+            array_self->count--;
+            impl_maybe_clear_generic_data_type(array_self);
             return;
         }
     }
@@ -900,21 +896,21 @@ impl_afw_array_setter_remove_internal(
  */
 void
 impl_afw_array_setter_remove_all_values(
-    const afw_array_setter_t * instance,
+    const afw_array_setter_t * self,
     afw_xctx_t *xctx)
 {
-    afw_memory_internal_array_t *self =
-        (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
+    afw_memory_internal_array_t *array_self =
+        (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
 
     /*
      * @fixme #2: walk ring and optional_release each element value before
      * re-init when hold-on-store lands (see impl_optional_release_value).
      */
-    APR_RING_INIT(self->ring, afw_memory_internal_array_entry_s, link);
-    self->count = 0;
+    APR_RING_INIT(array_self->ring, afw_memory_internal_array_entry_s, link);
+    array_self->count = 0;
 
-    if (self->generic) {
-        self->data_type = NULL;
+    if (array_self->generic) {
+        array_self->data_type = NULL;
     }
 }
 

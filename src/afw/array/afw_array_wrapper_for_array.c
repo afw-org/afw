@@ -22,6 +22,7 @@
 #define AFW_IMPLEMENTATION_ID "afw_array_wrapper_for_array"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_array_wrapper_for_array_inf
+#define AFW_ARRAY_SELF_T afw_array_wrapper_for_array_self_t
 #include "afw_array_impl_declares.h"
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
@@ -152,7 +153,7 @@ afw_array_convert_to_array_of_strings(
  */
 void
 impl_afw_array_release (
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -165,11 +166,9 @@ impl_afw_array_release (
  */
 afw_size_t
 impl_afw_array_get_count(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_array_wrapper_for_array_self_t * self = 
-        (afw_array_wrapper_for_array_self_t *)instance;
     
     return self->count;
 }
@@ -181,11 +180,9 @@ impl_afw_array_get_count(
  */
 const afw_data_type_t *
 impl_afw_array_get_data_type(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_array_wrapper_for_array_self_t * self = 
-        (afw_array_wrapper_for_array_self_t *)instance;
   
     return self->data_type;
 }
@@ -197,14 +194,12 @@ impl_afw_array_get_data_type(
  */
 afw_boolean_t
 impl_afw_array_get_entry_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_data_type_t * * data_type,
     const void * *internal,
     afw_xctx_t *xctx)
 {
-    afw_array_wrapper_for_array_self_t * self = 
-        (afw_array_wrapper_for_array_self_t *)instance;
     const void *e;
     afw_size_t count;
     afw_size_t i;
@@ -264,7 +259,7 @@ impl_afw_array_get_entry_internal(
  */
 const afw_value_t *
 impl_afw_array_get_entry_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -273,7 +268,7 @@ impl_afw_array_get_entry_value(
     const void *internal;
     const afw_value_t *result;
 
-    if (impl_afw_array_get_entry_internal(instance,
+    if (impl_afw_array_get_entry_internal(self,
         index, &data_type, &internal, xctx))
     {
         result = afw_value_common_create(
@@ -294,14 +289,12 @@ impl_afw_array_get_entry_value(
  */
 afw_boolean_t
 impl_afw_array_get_next_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t *xctx)
 {
-    afw_array_wrapper_for_array_self_t * self = 
-        (afw_array_wrapper_for_array_self_t *)instance;
     afw_size_t size;
 
     /* If iterator is NULL, point to first value in array. */
@@ -348,13 +341,11 @@ impl_afw_array_get_next_internal(
  */
 const afw_value_t *
 impl_afw_array_get_next_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_array_wrapper_for_array_self_t * self = 
-        (afw_array_wrapper_for_array_self_t *)instance;
     const afw_value_t *result;
     afw_size_t size;
 
@@ -402,7 +393,7 @@ impl_afw_array_get_next_value(
  */
 const afw_array_setter_t *
 impl_afw_array_get_setter(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;

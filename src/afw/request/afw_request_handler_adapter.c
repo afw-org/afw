@@ -22,6 +22,7 @@
 
 /* Declares and rti/inf defines for interface afw_request_handler */
 #define AFW_IMPLEMENTATION_ID "adapter"
+#define AFW_REQUEST_HANDLER_SELF_T afw_request_handler_adapter_internal_self_t
 #include "afw_request_handler_impl_declares.h"
 
 
@@ -99,7 +100,7 @@ static afw_boolean_t impl_retrieve_cb(const afw_object_t *object,
  */
 void
 impl_afw_request_handler_release(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Resources will be released when execution context (xctx) is released. */
@@ -111,7 +112,7 @@ impl_afw_request_handler_release(
  */
 void
 impl_afw_request_handler_process(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     const afw_request_t * request,
     afw_xctx_t *xctx)
 {
@@ -124,7 +125,6 @@ impl_afw_request_handler_process(
     const afw_stream_t *stream;
     impl_retrieve_cb_context_t retrieve_cb_context;
 
-    afw_request_handler_adapter_internal_self_t * self = (afw_request_handler_adapter_internal_self_t *)instance;
 
     /* Parse the path. */
     parsed_path = afw_object_path_parse(request->uri, NULL, self->default_options,

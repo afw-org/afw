@@ -25,6 +25,7 @@
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_assignment_target_inf
 #define impl_afw_value_create_iterator NULL
+#define AFW_VALUE_SELF_T afw_value_assignment_target_t
 #include "afw_value_impl_declares.h"
 
 
@@ -72,12 +73,10 @@ afw_value_assignment_target_create(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_assignment_target_t *self =
-        (const afw_value_assignment_target_t *)instance;
 
     if (self->assignment_target->target_type ==
         afw_compile_assignment_target_type_symbol_reference)
@@ -85,7 +84,7 @@ impl_afw_value_optional_evaluate(
         return &self->assignment_target->symbol_reference->pub;
     }
 
-    return instance;
+    return &self->pub;
 }
 
 /*
@@ -93,7 +92,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -104,7 +103,7 @@ impl_afw_value_get_data_type(
  */
 const afw_value_t *
 impl_afw_value_get_evaluated_meta(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -244,14 +243,12 @@ impl_object_destructure_produce_compiler_listing(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_assignment_target_t *self =
-        (const afw_value_assignment_target_t *)instance;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer, " ", xctx);
     afw_writer_write_utf8(writer,
@@ -564,16 +561,14 @@ afw_value_decompile_assignment_pattern(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_assignment_target_t *self =
-        (const afw_value_assignment_target_t *)instance;
     afw_value_string_t type_string;
     const afw_utf8_t *type_id;
 
-    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
         afw_writer_increment_indent(writer, xctx);
@@ -592,7 +587,7 @@ impl_afw_value_decompile(
         afw_writer_write_eol(writer, xctx);
     }
 
-    impl_decompile_pattern(instance, writer, xctx);
+    impl_decompile_pattern(&self->pub, writer, xctx);
 
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
@@ -606,18 +601,16 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_assignment_target_t *self =
-        (const afw_value_assignment_target_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
-    info->optimized_value = instance;
+    info->optimized_value = &self->pub;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }
