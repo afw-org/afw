@@ -50,8 +50,8 @@ check("function g({host, port = 443}) { return host; }\nreturn g({host:\"h\"});"
 check("switch (1) { case 1: return 1; default: return 0; }");
 check("try { return 1; } catch (e) { return 0; }");
 check("try { throw 1; } catch (e) { return e; }");
-/* catch Pattern decompile is not yet d1==d2 stable (try emits binding
- * outside the catch #block); evaluate fidelity is in the next test. */
+check("try { throw \"x\"; } catch ({message}) { return message; }");
+check("const f = function (...r) { return r; };\nreturn f(...[1,2], 3);");
 return 0;
 
 //? test: fidelity-eval-throw-catch
@@ -74,9 +74,12 @@ assert(d2 == decompile(compile<script>(script(d2))));
 assert(evaluate(compile<script>(script(src2))) == 7);
 assert(evaluate(compile<script>(script(d2))) == 7);
 
-/* catch Pattern works at evaluate; d1==d2 deferred (try decompile shape) */
+/* catch Pattern decompile + evaluate after recompile (#140 follow-up) */
 const src3 = "try { throw \"z\"; } catch ({message}) { return message; }";
+const d3 = decompile(compile<script>(script(src3)));
+assert(d3 == decompile(compile<script>(script(d3))));
 assert(evaluate(compile<script>(script(src3))) == "z");
+assert(evaluate(compile<script>(script(d3))) == "z");
 return 0;
 
 //? test: fidelity-eval-switch-default

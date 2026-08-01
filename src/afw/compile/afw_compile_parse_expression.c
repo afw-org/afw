@@ -606,22 +606,14 @@ afw_compile_parse_FunctionSignature(
                 afw_compile_reuse_token();
             }
 
-            /* Optional type (simple name params; Pattern leaves typed in Pattern). */
-            if (!param->assignment_target) {
-                param->type = afw_compile_parse_OptionalType(parser, false);
-                if (symbol && param->type) {
-                    afw_memory_copy(&symbol->type, param->type);
-                }
-            }
-            else {
-                /* Patterns: optional whole-arg type after Pattern not supported. */
-                afw_compile_get_token();
-                if (afw_compile_token_is(colon)) {
-                    AFW_COMPILE_THROW_ERROR_Z(
-                        "Type annotation after a parameter Pattern is not "
-                        "supported; annotate Pattern leaves instead");
-                }
-                afw_compile_reuse_token();
+            /*
+             * Optional type: simple names and whole Pattern formals
+             * (whole-arg type is stored for future compile-time check; leaves
+             * may also carry types via Pattern binding syntax).
+             */
+            param->type = afw_compile_parse_OptionalType(parser, false);
+            if (symbol && param->type) {
+                afw_memory_copy(&symbol->type, param->type);
             }
 
             /* Push param on stack. */
@@ -791,10 +783,15 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * Parameters ::= '(' Expression (',' Expression)*')'
+ * Parameters ::= '('
+ *     ( ( Expression | ( '...' Expression ) )
+ *       ( ',' ( Expression | ( '...' Expression ) ) )* )?
+ *   ')'
  *
  *#
  *# Denotes a parameter list without first parameter (method style call).
+ *# Call-site spread (...expr) is wrapped as list_expression so call
+ *# evaluation can expand the array into separate arguments (issue #140).
  *#
  * ParametersExceptFirst ::= Parameters
  *
@@ -805,7 +802,10 @@ afw_compile_parse_Parameters(
     afw_compile_args_t *args)
 {
     const afw_value_t *value;
+    const afw_value_t *spread_internal;
+    afw_size_t spread_offset;
     afw_boolean_t had_value;
+    afw_boolean_t is_spread;
 
     /* Starts with '('. */
     afw_compile_get_token();
@@ -829,9 +829,26 @@ afw_compile_parse_Parameters(
             continue;
         }
 
-        afw_compile_reuse_token();
+        is_spread = false;
+        if (afw_compile_token_is(ellipsis)) {
+            is_spread = true;
+            afw_compile_save_offset(spread_offset);
+        }
+        else {
+            afw_compile_reuse_token();
+        }
 
         value = afw_compile_parse_Expression(parser);
+        if (is_spread) {
+            /*
+             * Reuse list_expression as the call-site spread marker: evaluate
+             * to an array, then call machinery expands elements into argv.
+             */
+            spread_internal = value;
+            value = afw_value_create_array_expression(
+                afw_compile_create_contextual_to_cursor(spread_offset),
+                spread_internal, parser->p, parser->xctx);
+        }
         afw_compile_args_add_value(args, value);
 
         had_value = true;

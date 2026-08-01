@@ -120,12 +120,12 @@ Goal: Adaptive stays Adaptive, but Patterns/params/catch should not feel awkward
 | **7** | Pattern then `...rest` formal | Normal rest placement | Tests `ts-pattern-then-rest-param` |
 | **8** | Wrong-type destructure error | Fail clearly, not garbage | Tests `ts-wrong-type-array-pattern` |
 | **9** | Optional Pattern without `= {}` | Document Adaptive choice (prefer `= {}`) | Tests `ts-optional-pattern-no-default` |
-| **10** | Catch Pattern decompile d1==d2 | Tooling/Fiddle fidelity, not author syntax | Later (try decompile unify) |
-| **11** | Call-site `f(...arr)` | Common TS; separate feature | Out of #140 |
-| **12** | Computed keys in Pattern `{[k]:x}` | Occasional TS | Near #38 |
-| **13** | Arrow functions | Explicit non-goal (Jeremy) | Out |
-| **14** | ES `arguments` / `#script_function` pragma | Not TS app-author surface | Out / advanced only |
-| **15** | Full TS type-check on Patterns | Compile-time types | #28 later |
+| **10** | Catch Pattern decompile d1==d2 | Tooling/Fiddle fidelity | **Done** (follow-up): try embeds Pattern in catch `#block` |
+| **11** | Call-site `f(...arr)` | Common TS | **Done** (follow-up): expand list_expression markers |
+| **12** | Computed / string keys in Patterns | Occasional TS | **Done** (follow-up): `[expr]: bind`, `"name": bind` |
+| **13** | Arrow functions | Explicit non-goal (Jeremy) | Out (parser FIXME left) |
+| **14** | ES `arguments` / `#script_function` pragma | Not app-author surface | Out / advanced only |
+| **15** | Full TS type-check on Patterns | Compile-time types | Syntax: leaf + whole Pattern `: Type` stored; enforce in #28 |
 
 ECMAScript/TypeScript-style “destruct in the parameter list”, e.g. conceptually:
 

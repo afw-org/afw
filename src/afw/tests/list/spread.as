@@ -80,13 +80,13 @@ return 0;
 
 //? test: spread-for-of-error
 //? description: Spread inside a for-of loop with error
-//? expect: error:Typesafe error: expecting 'array' but encountered 'integer'
+//? expect: error:Call-site spread (...) requires an array
 //? source: ...
 
 const l1 = [1, 2, 3];
 const l2 = [];
 
-// causes infinite loop
+// ...i fails when i is integer (list literal lowers to array(...) call)
 for (const i of l1) {
     l2 = [...l2, i, ...i];
 }

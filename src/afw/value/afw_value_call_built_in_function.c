@@ -145,8 +145,10 @@ impl_afw_value_optional_evaluate(
     x.function = self->function;
     x.data_type = self->function->data_type;
     x.first_arg = NULL;
-    x.argv = self->args.argv;
-    x.argc = self->args.argc;
+    /* Expand call-site ...spreads before required/max checks and execute. */
+    afw_value_call_args_expand_spreads(
+        self->args.argc, self->args.argv,
+        &x.argc, &x.argv, p, xctx);
 
     /* Make there are at least the required number of parameters. */
     if (x.argc < x.function->numberOfRequiredParameters->internal) {
@@ -321,6 +323,15 @@ impl_afw_value_decompile(
         afw_writer_increment_indent(writer, xctx);
     }
     for (i = 1; i <= self->args.argc; i++) {
+        /*
+         * Pattern catch: 4th try arg is embedded in the catch #block;
+         * omit it as a separate try() argument (see Pattern branch below).
+         */
+        if (is_try && i == 4 &&
+            afw_value_is_assignment_target(self->args.argv[i]))
+        {
+            continue;
+        }
         if (i != 1) {
             afw_writer_write_z(writer, ",", xctx);
         }
@@ -347,34 +358,76 @@ impl_afw_value_decompile(
             afw_writer_write_z(writer, ")", xctx);
         }
         /*
-         * try catch block (3rd) + error variable (4th): emit catch as
-         * #block(#assignment_target("let",e), stmts...) and error as "e"
-         * so reparse creates e before return(e); execute_try resolves
-         * the string name in the catch block.
+         * try catch block (3rd) + error binding (4th):
+         *
+         * Identifier catch: emit
+         *   #block(#assignment_target("let", e), stmts...), "e"
+         * so reparse introduces e in the block; execute_try resolves the
+         * string name (or assigns via symbol_reference).
+         *
+         * Pattern catch (issue #140): emit
+         *   #block(#assignment_target("let", Pattern), stmts...)
+         * only (no separate 4th arg). execute_try treats the first
+         * statement of the catch block as the bind target when argv[4]
+         * is absent, then runs the remaining statements.
          */
         else if (is_try && i == 3 && afw_value_is_block(arg) &&
-            self->args.argc >= 4 &&
-            afw_value_is_symbol_reference(self->args.argv[4]))
+            self->args.argc >= 4)
         {
             const afw_value_block_t *catch_block =
                 (const afw_value_block_t *)arg;
+            const afw_value_t *err_bind = self->args.argv[4];
             afw_size_t j;
+            afw_boolean_t pattern_bind;
 
-            sym = (const afw_value_symbol_reference_t *)self->args.argv[4];
+            pattern_bind = afw_value_is_assignment_target(err_bind);
+
             afw_writer_write_z(writer, "#block(", xctx);
             if (writer->tab) {
                 afw_writer_increment_indent(writer, xctx);
                 afw_writer_write_eol(writer, xctx);
             }
-            afw_writer_write_z(writer, "#assignment_target(", xctx);
-            kind.inf = &afw_value_unmanaged_string_inf;
-            kind.internal.s = "let";
-            kind.internal.len = 3;
-            afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
-            afw_writer_write_z(writer, ",", xctx);
-            afw_writer_write_utf8(writer, sym->symbol->name, xctx);
-            afw_writer_write_z(writer, ")", xctx);
-            for (j = 0; j < catch_block->statement_count; j++) {
+            if (pattern_bind) {
+                /* Full Pattern as #assignment_target("let", Pattern). */
+                afw_value_decompile_value(err_bind, writer, xctx);
+            }
+            else if (afw_value_is_symbol_reference(err_bind)) {
+                sym = (const afw_value_symbol_reference_t *)err_bind;
+                afw_writer_write_z(writer, "#assignment_target(", xctx);
+                kind.inf = &afw_value_unmanaged_string_inf;
+                kind.internal.s = "let";
+                kind.internal.len = 3;
+                afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
+                afw_writer_write_z(writer, ",", xctx);
+                afw_writer_write_utf8(writer, sym->symbol->name, xctx);
+                afw_writer_write_z(writer, ")", xctx);
+            }
+            else if (afw_value_is_string(err_bind)) {
+                /* Reparse of identifier catch: 4th arg is the name string. */
+                afw_writer_write_z(writer, "#assignment_target(", xctx);
+                kind.inf = &afw_value_unmanaged_string_inf;
+                kind.internal.s = "let";
+                kind.internal.len = 3;
+                afw_value_decompile((const afw_value_t *)&kind, writer, xctx);
+                afw_writer_write_z(writer, ",", xctx);
+                afw_writer_write_utf8(writer,
+                    &((const afw_value_string_t *)err_bind)->internal, xctx);
+                afw_writer_write_z(writer, ")", xctx);
+            }
+            else {
+                afw_value_decompile_value(err_bind, writer, xctx);
+            }
+            /*
+             * Skip leading assignment_target statement if reparse already
+             * embedded it as the first catch statement (avoid doubling).
+             */
+            j = 0;
+            if (catch_block->statement_count > 0 &&
+                afw_value_is_assignment_target(catch_block->statements[0]))
+            {
+                j = 1;
+            }
+            for (; j < catch_block->statement_count; j++) {
                 afw_writer_write_z(writer, ",", xctx);
                 if (writer->tab) {
                     afw_writer_write_eol(writer, xctx);

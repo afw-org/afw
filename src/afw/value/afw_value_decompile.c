@@ -72,7 +72,19 @@ afw_value_decompile_call_args(
         if (writer->tab) {
             afw_writer_write_eol(writer, xctx);
         }
-        afw_value_decompile_value(args->argv[i], writer, xctx);
+        /*
+         * Call-site spread was compiled as list_expression / array_expression;
+         * surface form is ...expr (issue #140).
+         */
+        if (args->argv[i] && afw_value_is_array_expression(args->argv[i])) {
+            const afw_value_list_expression_t *le =
+                (const afw_value_list_expression_t *)args->argv[i];
+            afw_writer_write_z(writer, "...", xctx);
+            afw_value_decompile_value(le->internal, writer, xctx);
+        }
+        else {
+            afw_value_decompile_value(args->argv[i], writer, xctx);
+        }
     }
 
     if (writer->tab) {

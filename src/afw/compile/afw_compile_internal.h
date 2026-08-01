@@ -525,10 +525,17 @@ struct afw_compile_internal_assignment_property_s {
     const afw_value_type_t *type;
     afw_boolean_t is_rename;
     union {
-        /* If is_rename is true. */
+        /*
+         * If is_rename is true: static property_name and/or computed
+         * property_name_expr (issue #140 / #38-style [expr] keys). Exactly
+         * one of property_name / property_name_expr is non-NULL.
+         * property_name_was_string: decompile should quote static name.
+         */
         struct {
             const afw_utf8_t *property_name;
+            const afw_value_t *property_name_expr;
             const afw_compile_assignment_element_t *assignment_element;
+            afw_boolean_t property_name_was_string;
         };
         /* If is_rename is false. */
         struct {

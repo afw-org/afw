@@ -77,7 +77,9 @@ AssignmentObjectDestructureTarget ::=
 
 AssignmentProperty ::=
    ( PropertyName ('=' Expression )? ) |
-   ( PropertyName ( ':' AssignmentElement )? )
+   ( PropertyName ( ':' AssignmentElement )? ) |
+   ( String ( ':' AssignmentElement ) ) |
+   ( '[' Expression ']' ':' AssignmentElement )
 
 /* From afw_compile_parse_assignment_target.c                                 */
 /*                                                                            */
@@ -265,9 +267,14 @@ Lambda ::= 'function' SelfReferenceLambdaName? FunctionSignatureAndBody
 
 /* From afw_compile_parse_expression.c                                        */
 
-Parameters ::= '(' Expression (',' Expression)*')'
+Parameters ::= '('
+    ( ( Expression | ( '...' Expression ) )
+      ( ',' ( Expression | ( '...' Expression ) ) )* )?
+  ')'
 /*                                                                            */
 /* Denotes a parameter list without first parameter (method style call).      */
+/* Call-site spread (...expr) is wrapped as list_expression so call           */
+/* evaluation can expand the array into separate arguments (issue #140).      */
 /*                                                                            */
 
 ParametersExceptFirst ::= Parameters

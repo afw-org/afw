@@ -189,7 +189,9 @@ impl_object_destructure(
     const afw_object_t *object;
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
+    const afw_utf8_t *bound_name;
     const afw_value_t *v;
+    const afw_value_t *name_v;
     const afw_object_t *rest;
 
     object = afw_value_as_object(value, xctx);
@@ -198,7 +200,16 @@ impl_object_destructure(
     for (ap = od->assignment_property; ap; ap = ap->next)
     {
         if (ap->is_rename) {
-            v = afw_object_get_property(object, ap->property_name, xctx);
+            if (ap->property_name_expr) {
+                name_v = afw_value_evaluate(ap->property_name_expr, p, xctx);
+                bound_name = afw_value_as_utf8(name_v, p, xctx);
+            }
+            else {
+                bound_name = ap->property_name;
+            }
+            v = bound_name
+                ? afw_object_get_property(object, bound_name, xctx)
+                : NULL;
             if (!v) {
                 v = ap->assignment_element->default_value;
             }
@@ -234,13 +245,23 @@ impl_object_destructure(
 
             for (ap = od->assignment_property; ap; ap = ap->next)
             {
-                if (
-                    (ap->is_rename && afw_utf8_equal(
-                        ap->property_name, property_name))
-                    ||
-                    (!ap->is_rename && afw_utf8_equal(
-                        ap->symbol_reference->symbol->name, property_name))
-                )
+                if (ap->is_rename) {
+                    if (ap->property_name_expr) {
+                        name_v = afw_value_evaluate(
+                            ap->property_name_expr, p, xctx);
+                        bound_name = afw_value_as_utf8(name_v, p, xctx);
+                    }
+                    else {
+                        bound_name = ap->property_name;
+                    }
+                    if (bound_name &&
+                        afw_utf8_equal(bound_name, property_name))
+                    {
+                        break;
+                    }
+                }
+                else if (afw_utf8_equal(
+                    ap->symbol_reference->symbol->name, property_name))
                 {
                     break;
                 }
@@ -1497,7 +1518,19 @@ afw_function_execute_try(
     AFW_CATCH_UNHANDLED {
         afw_xctx_scope_unwind(scope_at_entry, xctx);
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
-            if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
+            /*
+             * Catch body is always a block when there is a binding (arg 4
+             * or Pattern reparse with bind as first statement). Plain catch
+             * without a binding evaluates argv[3] as a statement list/block.
+             */
+            if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4) ||
+                (afw_value_is_block(x->argv[3]) &&
+                    ((const afw_value_block_t *)x->argv[3])->statement_count >
+                        0 &&
+                    afw_value_is_assignment_target(
+                        ((const afw_value_block_t *)x->argv[3])->
+                            statements[0])))
+            {
                 error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
                 error_value = afw_value_create_unmanaged_object(
                     error_object, p, xctx);
@@ -1515,17 +1548,28 @@ afw_function_execute_try(
                 afw_xctx_scope_activate(scope, xctx);
                 AFW_TRY{
                     /*
-                     * Error target is normally a symbol_reference created in
-                     * the catch block. Decompile may emit a string name so
-                     * recompile can create the binding via #assignment_target
-                     * inside the catch #block first; resolve by name then.
+                     * Error bind target resolution (issue #140 Patterns):
+                     *
+                     * 1) argv[4] string — decompile of identifier catch;
+                     *    resolve name in the catch block.
+                     * 2) argv[4] assignment_target / symbol_reference —
+                     *    original compile (Pattern or identifier target).
+                     * 3) No argv[4], first block statement is
+                     *    #assignment_target — decompile of Pattern catch
+                     *    embeds the Pattern as the first catch statement;
+                     *    use it as the bind target and skip evaluating it
+                     *    as a normal statement.
                      */
-                    if (afw_value_is_string(x->argv[4])) {
+                    const afw_value_t *err_target = NULL;
+                    int stmt_start = 0;
+
+                    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4) &&
+                        afw_value_is_string(x->argv[4]))
+                    {
                         const afw_utf8_t *err_name =
                             &((const afw_value_string_t *)x->argv[4])->
                                 internal;
                         afw_value_block_symbol_t *esym;
-                        const afw_value_t *err_target = NULL;
                         for (esym = block->first_entry; esym;
                             esym = esym->next_entry)
                         {
@@ -1543,15 +1587,23 @@ afw_function_execute_try(
                                 " not found in catch block",
                                 AFW_UTF8_FMT_ARG(err_name));
                         }
+                    }
+                    else if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
+                        err_target = x->argv[4];
+                    }
+                    else if (block->statement_count > 0 &&
+                        afw_value_is_assignment_target(block->statements[0]))
+                    {
+                        err_target = block->statements[0];
+                        stmt_start = 1;
+                    }
+
+                    if (err_target) {
                         impl_assign_value(err_target, error_value,
                             afw_compile_assignment_type_let, p, xctx);
                     }
-                    else {
-                        impl_assign_value(x->argv[4], error_value,
-                            afw_compile_assignment_type_let, p, xctx);
-                    }
-                    this_result = afw_value_undefined;        
-                    for (int i = 0; i < block->statement_count; i++) {
+                    this_result = afw_value_undefined;
+                    for (int i = stmt_start; i < block->statement_count; i++) {
                         this_result = afw_value_block_evaluate_statement(
                             x, block->statements[i], p, xctx);
                         if (!afw_xctx_statement_flow_is_type(sequential, xctx))

@@ -284,7 +284,7 @@ assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-list-expression-roundtrip
-//? description: decompile/compile round-trip for array spread (#list_expression)
+//? description: decompile/compile round-trip for array spread (... surface)
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -293,17 +293,21 @@ const d = decompile(compile<script>(script(
     "const a = [1, 2];\nreturn [...a, 3];"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(#list_expression(a),3)))");
+    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(...a,3)))");
 assert(evaluate(compile<script>(script(d))) == [1, 2, 3]);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-list-expression-direct
-//? description: #list_expression as spread entry inside array constructor
+//? description: #list_expression / ... as spread entry inside array constructor
 //? skip: false
 //? expect: 0
 //? source: ...
 
+assert(evaluate(compile<script>(script(
+    "#block(const(#assignment_target(\"const\",a),[10,20],undefined),return(array(...a,30)))"
+))) == [10, 20, 30]);
+/* pragma form still recompiles */
 assert(evaluate(compile<script>(script(
     "#block(const(#assignment_target(\"const\",a),[10,20],undefined),return(array(#list_expression(a),30)))"
 ))) == [10, 20, 30]);

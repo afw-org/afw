@@ -297,3 +297,75 @@ assert(opt() === undefined);
 assert(opt({ a: 5 }) === 5);
 
 return 0;
+//?
+//? test: ts-call-site-spread
+//? description: Call-site ...array expands into separate arguments
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function sum3(a, b, c) {
+    return a + b + c;
+}
+assert(sum3(...[1, 2, 3]) === 6);
+assert(sum3(1, ...[2, 3]) === 6);
+assert(sum3(...[1, 2], 3) === 6);
+
+function join(...parts) {
+    return string(parts);
+}
+assert(join(...["a", "b"], "c") === '["a","b","c"]');
+
+return 0;
+//?
+//? test: ts-computed-key-destructure
+//? description: Computed and string keys in object Patterns
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const key = "inner";
+function take({ [key]: v, "other": o }) {
+    assert(v === 11);
+    assert(o === 22);
+    return v + o;
+}
+assert(take({ inner: 11, other: 22 }) === 33);
+
+const { [key]: x } = { inner: 5 };
+assert(x === 5);
+
+return 0;
+//?
+//? test: ts-typed-pattern-leaves
+//? description: Type annotations on Pattern leaves and whole Pattern formal
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function typedLeaves([a: integer, b: integer]: (array of integer)) {
+    return a + b;
+}
+assert(typedLeaves([3, 4]) === 7);
+
+function typedObj({ n: n: integer }) {
+    return n;
+}
+assert(typedObj({ n: 9 }) === 9);
+
+return 0;
+//?
+//? test: ts-catch-pattern-decompile-fidelity
+//? description: catch Pattern decompile recompiles and evaluates
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const src = "try { throw \"z\"; } catch ({message}) { return message; }";
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(src))) == "z");
+assert(evaluate(compile<script>(script(d1))) == "z");
+
+return 0;

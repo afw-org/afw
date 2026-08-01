@@ -293,17 +293,17 @@ assert(s == "#block(return(process::osType))");
 return 0;
 
 //? test: decompile-list-expression-spread
-//? description: Array spread uses #list_expression(...) in decompile
+//? description: Array spread decompiles as call-site ... (list_expression marker)
 //? skip: false
 //? expect: 0
 //? source: ...
 
-// list_expression (spread)
+// list_expression (spread) → surface ... in call args (issue #140)
 const s = decompile(compile<script>(script(
     "const a = [1, 2];\nreturn [...a, 3];"
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(#list_expression(a),3)))");
+    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(...a,3)))");
 
 return 0;
 
