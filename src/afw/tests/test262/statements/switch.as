@@ -708,7 +708,7 @@ if(!(SwitchTest(x) === 128)){
 
 //? test: S12.11_A1_T3
 //? description: Using case with null, NaN, Infinity
-//? expect: error:Parameter 1 is required
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 

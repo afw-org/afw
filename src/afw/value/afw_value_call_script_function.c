@@ -175,82 +175,104 @@ impl_afw_value_optional_evaluate(
                 script->signature->block, enclosing_lexical_scope, xctx);
 
             /*
-             * Activate before binding so Pattern destructure
-             * (scope_symbol_set_value) finds parameter symbols. Simple-name
-             * params still use get_value_address(parameter_scope, …).
+             * Parameter binding (TS/ES-like, recursive-safe):
+             *
+             * 1) Evaluate *provided* arg expressions while the *caller*
+             *    scope is still current. Activating the callee scope first
+             *    broke recursion (hanoi: `num - 1` saw empty callee slots).
+             * 2) Activate the parameter scope.
+             * 3) Apply defaults (in parameter scope so earlier params are
+             *    visible, e.g. `function (x, y = x)`), then store simple
+             *    names or run Pattern destructure.
+             *
+             * Zero-parameter functions still have a parameter block (name /
+             * body parent); do not calloc(0).
              */
-            afw_xctx_scope_activate(parameter_scope, xctx);
-            parameter_scope_activated = true;
-
-            /* Set parameters in scope. */
-            for (parameter_number = 1,
-                params = script->parameters,
-                arg = self->args.argv + 1;
-                parameter_number <= script->count;
-                parameter_number++, params++, arg++)
             {
-                /* If this is rest parameter ... */
-                if ((*params)->is_rest) {
+                const afw_value_t **bound_values;
+                afw_size_t i;
+                afw_boolean_t provided;
 
-                    /* If extra unused parameters, pass them in rest object. */
-                    if (self->args.argc >= script->count) {
-                        rest_argc = self->args.argc - script->count + 1;
-                        rest_argv = arg;
-                    }
-
-                    /* If no extra unused parameters, rest object is empty. */
-                    else {
-                        rest_argc = 0;
-                        rest_argv = NULL;
-                    }
-
-                    /* Create rest list. */
-                    rest_array = afw_array_const_create_array_of_values(
-                        rest_argv, rest_argc, p, xctx);
-                    value = afw_value_create_unmanaged_array(
-                        rest_array, p, xctx);
+                bound_values = NULL;
+                if (script->count > 0) {
+                    bound_values = afw_pool_calloc(p,
+                        sizeof(afw_value_t *) * script->count, xctx);
                 }
 
-                /* If not rest parameter */
-                else {
+                /* Pass 1: evaluate only provided args in caller scope. */
+                for (parameter_number = 1,
+                    params = script->parameters,
+                    arg = self->args.argv + 1;
+                    parameter_number <= script->count;
+                    parameter_number++, params++, arg++)
+                {
                     value = NULL;
-                    if (parameter_number <= self->args.argc) {
+                    if ((*params)->is_rest) {
+                        if (self->args.argc >= script->count) {
+                            rest_argc = self->args.argc - script->count + 1;
+                            rest_argv = arg;
+                        }
+                        else {
+                            rest_argc = 0;
+                            rest_argv = NULL;
+                        }
+                        rest_array = afw_array_const_create_array_of_values(
+                            rest_argv, rest_argc, p, xctx);
+                        value = afw_value_create_unmanaged_array(
+                            rest_array, p, xctx);
+                    }
+                    else if (parameter_number <= self->args.argc) {
                         value = afw_function_evaluate_parameter_with_type(
                             *arg, parameter_number,
                             (*params)->type,
                             p, xctx);
                     }
+                    bound_values[parameter_number - 1] = value;
+                }
 
-                    if (afw_value_is_undefined(value)) {
+                /* Pass 2: activate, defaults, store / Pattern. */
+                afw_xctx_scope_activate(parameter_scope, xctx);
+                parameter_scope_activated = true;
+
+                for (i = 0, params = script->parameters;
+                    i < script->count;
+                    i++, params++)
+                {
+                    value = bound_values[i];
+                    provided = (i + 1 <= self->args.argc) ||
+                        (*params)->is_rest;
+
+                    if ((*params)->is_rest) {
+                        /* value already built */
+                    }
+                    else if (afw_value_is_undefined(value)) {
                         if ((*params)->default_value) {
+                            /*
+                             * Default evaluates with parameter scope active
+                             * so prior parameters are visible (y = x).
+                             */
                             value = afw_value_evaluate(
                                 (*params)->default_value, p, xctx);
                         }
-                        else if (!(*params)->is_optional) {
+                        else if (!(*params)->is_optional && !provided) {
                             AFW_THROW_ERROR_FZ(general, xctx,
                                 "Parameter " AFW_SIZE_T_FMT " is required",
-                                parameter_number);
+                                i + 1);
                         }
                     }
-                }
 
-                /*
-                 * Pattern parameter: bind whole arg via shared destructure
-                 * (same walkers as let/const). Optional with no arg and no
-                 * default: leave Pattern leaves unset (undefined). Simple
-                 * name: store into the parameter symbol as before.
-                 */
-                if ((*params)->assignment_target) {
-                    if (!afw_value_is_undefined(value)) {
-                        afw_function_script_assign_pattern(
-                            (*params)->assignment_target, value,
-                            afw_compile_assignment_type_parameter,
-                            p, xctx);
+                    if ((*params)->assignment_target) {
+                        if (!afw_value_is_undefined(value)) {
+                            afw_function_script_assign_pattern(
+                                (*params)->assignment_target, value,
+                                afw_compile_assignment_type_parameter,
+                                p, xctx);
+                        }
                     }
-                }
-                else if ((*params)->symbol) {
-                    *afw_xctx_scope_symbol_get_value_address(
-                        (*params)->symbol, parameter_scope, xctx) = value;
+                    else if ((*params)->symbol) {
+                        *afw_xctx_scope_symbol_get_value_address(
+                            (*params)->symbol, parameter_scope, xctx) = value;
+                    }
                 }
             }
 
