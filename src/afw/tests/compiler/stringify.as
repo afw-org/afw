@@ -59,6 +59,27 @@ assert(result == "\"\"");
 
 return 0;
 
+//?
+//? test: stringify-utf8-emoji
+//? description: UTF-8 multi-byte code points pass through JSON stringify (not signed-char \\uffffff..)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let result: string;
+let party: string;
+
+/* Literal UTF-8 in source; result must keep real code points, not per-octet \\u escapes. */
+party = "🎉 Happy 🥚🥳🎊";
+result = stringify(party);
+assert(result === "\"🎉 Happy 🥚🥳🎊\"");
+
+/* Same via \\u{...} escapes in Adaptive string literals. */
+result = stringify("\u{1F389} egg \u{1F95A}");
+assert(result === "\"🎉 egg 🥚\"");
+
+return 0;
+
 //? test: stringify-array
 //? description: Test stringify of strings
 //? skip: false

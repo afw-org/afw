@@ -149,9 +149,13 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
     /* Add characters to array with proper escaping. */
     for (c = s; *c; c++) {
 
-        /* If control character, use \u00xx escape. */
-        if (*c < 32) {
-            u = apr_psprintf(afw_pool_get_apr_pool(xctx->p), "\\u%02x", *c);
+        /*
+         * ASCII controls only — cast unsigned so UTF-8 multi-byte octets are
+         * not misclassified when char is signed.
+         */
+        if ((unsigned char)*c < 32) {
+            u = apr_psprintf(afw_pool_get_apr_pool(xctx->p), "\\u%02x",
+                (unsigned char)*c);
             while (*u) {
                 APR_ARRAY_PUSH(a, char) = *u;
                 u++;
@@ -159,7 +163,7 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
         }
 
         /*
-         * If not control char, add char to array.
+         * If not control char, add char to array (includes UTF-8 octets).
          */
         else {
             APR_ARRAY_PUSH(a, char) = *c;

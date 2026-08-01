@@ -39,7 +39,31 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
 | **`stringify` / `decompile` / listing / binary text** | **`stringify`** pure JSON; **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets (see section below) |
+| **UTF-8 in JSON / Fiddle** | Multi-byte UTF-8 (emoji, non-ASCII) now survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
+| **Python `Session("local")`** | Local FIFO client reads **octet** lengths in binary mode so large/UTF-8 responses no longer hang |
 | **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys in Patterns; type syntax for later checking |
+
+---
+
+## UTF-8 in JSON results and Python local mode
+
+### JSON / `stringify` / Fiddle
+
+JSON serialization treated each UTF-8 **octet** as a signed `char`. High bytes (multi-byte characters, emoji) were misclassified as control characters and emitted as broken escapes such as `\ufffffff0…`. **Fiddle**, **`stringify()`**, and **`afw -a json`** all use that path.
+
+**Fixed:** emitters compare/pass octets as unsigned. Printable ASCII and non-ASCII UTF-8 octets pass through (RFC 8259); only U+0000–U+001F (plus `"` and `\`) are escaped. Related signed-char control checks were hardened in log output, YAML helpers, and `afw_ascii_is_control_character`.
+
+Example (result text keeps real code points):
+
+```adaptive
+assert(stringify("🎉 egg") === "\"🎉 egg\"");
+```
+
+### Python client `Session("local")`
+
+The Adaptive Framework local protocol length-prefixes chunks by **UTF-8 octet count**. The Python client opened the FIFO in **text** mode and used `read(n)` as character counts. After JSON began emitting real multi-byte UTF-8, large responses (for example `retrieve_objects_with_uri` with `maxObjects: 0` for full object-type catalogs) could **deadlock**: the client waited for more characters that would never arrive.
+
+**Fixed:** binary FIFO/stdin, exact octet reads, and correct framing. Rebuild/reinstall is not required for libafw ABI; update the **`afw` Python package** (`src/afw_client/python`) if you use `Session("local")` out of tree.
 
 ---
 

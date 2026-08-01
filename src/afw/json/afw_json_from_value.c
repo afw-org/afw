@@ -125,7 +125,9 @@ impl_put_json_string(
     impl_from_value_wa_t *wa,
     const afw_utf8_t *string)
 {
-    afw_utf8_octet_t c;
+    /* Unsigned: afw_utf8_octet_t is char and may be signed; high UTF-8 bytes
+     * must not be treated as control characters (see afw_common.h). */
+    unsigned char c;
     afw_size_t len;
     const afw_utf8_octet_t *s;
 
@@ -135,14 +137,17 @@ impl_put_json_string(
     len = string->len;
 
     while (len > 0) {
-        c = *s;
+        c = (unsigned char)*s;
 
         /* Add an extra backslash if character is backslash or quote. */
         if (c == '\\' || c == '"') {
             impl_putc(wa, '\\');
         }
 
-        /* If not a control character, output the character. */
+        /*
+         * Pass through ASCII printable and all non-ASCII UTF-8 octets.
+         * JSON (RFC 8259) only requires escaping ", \, and U+0000–U+001F.
+         */
         if (c >= 32) {
             impl_putc(wa, c);
         }
@@ -177,7 +182,7 @@ impl_put_json_string(
          * byte hex characters.
          */
         else {
-            impl_printf(wa, "\\u%04x", c);
+            impl_printf(wa, "\\u%04x", (unsigned)c);
         }
 
         len--;
@@ -527,8 +532,11 @@ afw_json_write_encoded_string(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    afw_utf8_octet_t c;
-    afw_utf8_octet_t c2[2];
+    /* Unsigned: see impl_put_json_string — signed char breaks UTF-8. */
+    unsigned char c;
+    char c1;
+    char hex2[2];
+    static const char hex_digits[] = "0123456789abcdef";
     afw_size_t len;
     const afw_utf8_octet_t *s;
 
@@ -538,16 +546,17 @@ afw_json_write_encoded_string(
     len = string->len;
 
     while (len > 0) {
-        c = *s;
+        c = (unsigned char)*s;
 
         /* Add an extra backslash if character is backslash or quote. */
         if (c == '\\' || c == '"') {
             afw_writer_write_z(writer, "\\", xctx);
         }
 
-        /* If not a control character, output the character. */
+        /* ASCII printable and non-ASCII UTF-8 octets (RFC 8259). */
         if (c >= 32) {
-            afw_writer_write(writer, &c, 1, xctx);
+            c1 = (char)c;
+            afw_writer_write(writer, &c1, 1, xctx);
         }
 
         /* If \n */
@@ -581,9 +590,9 @@ afw_json_write_encoded_string(
          */
         else {
             afw_writer_write_z(writer, "\\u00", xctx);
-            c2[0] = c / 16 + '0';
-            c2[1] = c % 16 + '0';
-            afw_writer_write(writer, &c2, 2, xctx);
+            hex2[0] = hex_digits[c / 16];
+            hex2[1] = hex_digits[c % 16];
+            afw_writer_write(writer, hex2, 2, xctx);
         }
 
         len--;

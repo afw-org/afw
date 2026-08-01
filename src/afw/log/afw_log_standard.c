@@ -120,11 +120,15 @@ impl_afw_log_write(
     /* Loop writing octets to stdout. */
     for (s = message->s, len = message->len; len > 0; len--, s++) {
         c = *s;
-        /* Convert anything < 32 to space. */
-        if (c < 32 && c != '\n') {
+        /*
+         * Convert ASCII controls (except newline) to space. Use unsigned so
+         * multi-byte UTF-8 octets (high bit set) are not treated as controls
+         * when afw_utf8_octet_t is a signed char.
+         */
+        if ((unsigned char)c < 32 && c != '\n') {
             c = ' ';
         }
-        if (putc(c, xctx->env->stdout_fd) == EOF) {
+        if (putc((unsigned char)c, xctx->env->stdout_fd) == EOF) {
             /* Throwing error is a bad ideas so just break. */
             break;
         }

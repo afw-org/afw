@@ -7,7 +7,7 @@
 //?
 //? test: happy-anniversary-of-becoming-29
 //? description: Overengineered wish with party emotes and an egg
-//? expect: "🎉 Happy Anniversary of becoming 29! 🥚🥳🎊"
+//? expect: "🎉 Happy Anniversary of becoming 29! \u{1F95A}🥳🎊"
 //? source: ...
 #! JeremyScript
 
@@ -66,9 +66,9 @@ function partyMail({
     throw "do not open until birthday" {
         guest: guest,
         age: age,
-        /* 🎉 party popper, 🥚 egg, 🥳 partying face, 🎊 confetti */
-        tokens: ["\u{1F389}", happy, anniversary, ofWord, becoming,
-            string(age) + bang, "\u{1F95A}\u{1F973}\u{1F38A}"]
+        /* party popper, partying face, confetti; egg hides as \u{1F95A} */
+        tokens: ["🎉", happy, anniversary, ofWord, becoming,
+            string(age) + bang, "\u{1F95A}🥳🎊"]
     };
 }
 
