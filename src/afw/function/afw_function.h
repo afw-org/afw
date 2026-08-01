@@ -83,15 +83,30 @@ struct afw_function_execute_s {
     const afw_value_t *first_arg;
 
     /**
-     * @brief This is the function parameters
-     * 
-     * argv[0] Is the original function definition. For a function called
-     * polymorphically, this is the polymorphic function definition.
-     * 
+     * @brief Call argv (function + parameters).
+     *
+     * Call layout is the same for built-in adaptive functions and script
+     * functions (see also `afw_value_call_args_t`):
+     *
+     *   argv[0]       — the function value (definition / polymorphic def /
+     *                   script function / closure). Not a user parameter.
+     *   argv[1..argc] — user parameters 1..argc (1-based parameter numbers).
+     *   argc          — number of user parameters only (does not include
+     *                   argv[0]). For f(a,b), argc is 2.
+     *
+     * AFW_FUNCTION_ARGV(n) and afw_function_evaluate_parameter(..., n, ...)
+     * use that 1-based n. Do not treat argv like a pure C 0-based param list.
+     *
+     * For a polymorphic call, argv[0] is the original polymorphic definition;
+     * x->function is the resolved per-type implementation.
      */
     const afw_value_t * const * argv;
 
-    /** @brief This is the argv count not counting argv[0] */
+    /**
+     * @brief Number of user parameters (not counting argv[0]).
+     *
+     * Valid parameter numbers are 1..argc. argv[argc] is the last parameter.
+     */
     afw_size_t argc;
     
 };
@@ -152,15 +167,16 @@ struct afw_function_environment_s {
 
 
 /**
- * @brief Get the unevaluated argv value or NULL.
- * @param A_N is the 1 based parameter number of argv to check.
- * @return argv[A_N] or NULL.
- * 
- * This will return NULL if A_N is greater than x->argc.
+ * @brief Get the unevaluated argv entry for a user parameter, or NULL.
+ * @param A_N 1-based parameter number (first user param is 1, not 0).
+ * @return x->argv[A_N], or NULL if A_N > x->argc.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * argv[0] is the function, not a parameter — use AFW_FUNCTION_ARGV(1) for the
+ * first parameter. Same numbering as error text "Parameter N" and as
+ * afw_function_evaluate_parameter(..., N, ...).
+ *
+ * Used in adaptive function execute bodies. Like all AFW_FUNCTION_* macros,
+ * "x" must be the name of the function execute struct pointer.
  */
 #define AFW_FUNCTION_ARGV(A_N) \
 ((A_N <= x->argc) ? x->argv[A_N] : NULL)
@@ -395,9 +411,12 @@ afw_function_evaluate_whitespace_parameter(
 /**
  * @brief Evaluate a parameter and convert if necessary.
  * @param x function execute struct pointer.
- * @param parameter_number starting at 1.
+ * @param parameter_number 1-based (first user parameter is 1 → x->argv[1]).
  * @param data_type result will be converted to if needed or NULL.
  * @return value of parameter or undefined (NULL).
+ *
+ * Uses the same 1-based numbering as AFW_FUNCTION_ARGV and "Parameter N"
+ * errors. Does not count argv[0] (the function value).
  *
  * This function adds the parameter number to the evaluation stack if an
  * evaluation or conversion is needed then removes it if successful.
@@ -437,16 +456,17 @@ afw_function_evaluate_required_parameter(
 
 
 /**
- * @brief Evaluate a parameter with dataTypeParameter.
- * @param value to evaluate.
- * @param parameter_number starting at 1.
+ * @brief Evaluate a script-function argument with an optional type.
+ * @param value unevaluated or evaluated argument expression.
+ * @param parameter_number 1-based (for backtrace / "Parameter N" only).
  * @param type for result or NULL if not converting.
  * @param p Pool
  * @param xctx of caller.
  * @return value or undefined if there is an error.
  *
- * This is called for script function parameters so is different from others
- * for now.
+ * Used when binding script-function formals (see call_script_function). The
+ * value is already selected from argv[parameter_number]; this helper only
+ * evaluates/converts. Numbering matches built-in parameter_number (1-based).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_function_evaluate_parameter_with_type(

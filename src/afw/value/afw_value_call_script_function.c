@@ -175,31 +175,48 @@ impl_afw_value_optional_evaluate(
                 script->signature->block, enclosing_lexical_scope, xctx);
 
             /*
-             * Parameter binding (TS/ES-like, recursive-safe):
+             * Parameter binding (TS/ES-like, recursive-safe).
              *
+             * --- Indexing (same argv layout as built-in adaptive functions) ---
+             *   self->args.argv[0]              — this script function
+             *   self->args.argv[1..argc]        — user args (1-based param #)
+             *   self->args.argc                 — user arg count (no argv[0])
+             *   script->parameters[0..count-1]  — formals (0-based C array)
+             *   script->count                   — formal count
+             *
+             * So formal parameters[i] pairs with parameter_number (i+1) and
+             * argv[i+1]. Loops often use parameter_number from 1 and
+             * `arg = argv + 1`, or 0-based i with argv[i+1] / "Parameter i+1".
+             * See afw_value_call_args_s / AFW_FUNCTION_ARGV.
+             *
+             * --- Bind order ---
              * 1) Evaluate *provided* arg expressions while the *caller*
              *    scope is still current. Activating the callee scope first
              *    broke recursion (hanoi: `num - 1` saw empty callee slots).
              * 2) Activate the parameter scope.
-             * 3) Apply defaults (in parameter scope so earlier params are
+             * 3) Apply defaults (parameter scope so earlier params are
              *    visible, e.g. `function (x, y = x)`), then store simple
              *    names or run Pattern destructure.
              *
              * Zero-parameter functions still have a parameter block (name /
-             * body parent); do not calloc(0).
+             * body parent); do not afw_pool_calloc a 0-byte bound_values.
              */
             {
                 const afw_value_t **bound_values;
                 afw_size_t i;
                 afw_boolean_t provided;
 
+                /* 0-based parallel to parameters[]; length script->count. */
                 bound_values = NULL;
                 if (script->count > 0) {
                     bound_values = afw_pool_calloc(p,
                         sizeof(afw_value_t *) * script->count, xctx);
                 }
 
-                /* Pass 1: evaluate only provided args in caller scope. */
+                /*
+                 * Pass 1: evaluate only provided args in caller scope.
+                 * parameter_number is 1-based; arg walks argv[1], argv[2], …
+                 */
                 for (parameter_number = 1,
                     params = script->parameters,
                     arg = self->args.argv + 1;
@@ -227,10 +244,11 @@ impl_afw_value_optional_evaluate(
                             (*params)->type,
                             p, xctx);
                     }
+                    /* parameters[parameter_number - 1] ← this value */
                     bound_values[parameter_number - 1] = value;
                 }
 
-                /* Pass 2: activate, defaults, store / Pattern. */
+                /* Pass 2: activate, defaults, store / Pattern (0-based i). */
                 afw_xctx_scope_activate(parameter_scope, xctx);
                 parameter_scope_activated = true;
 
@@ -239,11 +257,12 @@ impl_afw_value_optional_evaluate(
                     i++, params++)
                 {
                     value = bound_values[i];
+                    /* provided: caller supplied argv[i+1] (or rest). */
                     provided = (i + 1 <= self->args.argc) ||
                         (*params)->is_rest;
 
                     if ((*params)->is_rest) {
-                        /* value already built */
+                        /* value already built in pass 1 */
                     }
                     else if (afw_value_is_undefined(value)) {
                         if ((*params)->default_value) {
@@ -255,6 +274,7 @@ impl_afw_value_optional_evaluate(
                                 (*params)->default_value, p, xctx);
                         }
                         else if (!(*params)->is_optional && !provided) {
+                            /* Human-facing parameter numbers are 1-based. */
                             AFW_THROW_ERROR_FZ(general, xctx,
                                 "Parameter " AFW_SIZE_T_FMT " is required",
                                 i + 1);

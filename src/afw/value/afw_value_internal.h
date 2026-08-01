@@ -190,20 +190,33 @@ struct afw_value_block_symbol_s {
 
 
 
-/** @brief Struct for contextual and args for call values. */
+/**
+ * @brief Call argv bundle (shared by call, call_built_in, call_script, …).
+ *
+ * Unified layout for built-in adaptive functions and script functions:
+ *
+ *   argv[0]       — callee (may still need evaluation to find the function)
+ *   argv[1..argc] — user parameters (1-based parameter numbers 1..argc)
+ *   argc          — count of user parameters only (not including argv[0])
+ *
+ * Example: call f(a, b) → argc=2, argv = { f, a, b }.
+ *
+ * Script formal lists (`script_function_parameter_t **parameters`) are a
+ * separate C array indexed 0..count-1 for the same formals: parameters[0]
+ * is parameter number 1 / argv[1]. Do not mix 0-based C indexes with
+ * 1-based parameter_number without adjusting (usually ±1).
+ */
 struct afw_value_call_args_s {
 
     /** Contextual info for function call. */
     const afw_compile_value_contextual_t *contextual;
 
-    /** The number of function parameters (does not include argv[0]). */
+    /** Number of user parameters (does not include argv[0]). */
     afw_size_t argc;
 
     /**
-     * The function to call argv[0] followed by function parameters.
-     * 
-     * argv[0] might need to be evaluated to determine the function to call.
-     * 
+     * argv[0] = callee, argv[1..argc] = parameters.
+     * argv[0] might still need evaluation to determine the function.
      */
     const afw_value_t * const * argv;
 };
@@ -213,9 +226,9 @@ struct afw_value_call_args_s {
 /**
  * @brief Struct for call value.
  *
- * This is a call to the function defined in argv[0] with argc parameters
- * beginning with argv[1]. The function defined can be unevaluated, a
- * function definition, a script function definition, or a thunk definition.
+ * Call of the function in argv[0] with argc user parameters starting at
+ * argv[1]. Callee may be unevaluated, a built-in function definition, a
+ * script function definition, a closure binding, or similar.
  */
 struct afw_value_call_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
@@ -573,28 +586,38 @@ struct afw_value_reference_by_key_s {
 
 
 
-/** @brief Struct for lambda parameter. */
+/**
+ * @brief Script function signature (formals + optional return type).
+ *
+ * `count` / `parameters` describe formals only. At call time those line up
+ * with call argv as: parameters[i] ↔ parameter number (i+1) ↔ argv[i+1].
+ * See `afw_value_call_args_s` for the full argv convention.
+ */
 struct afw_value_script_function_signature_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_block_t *block;
     const afw_value_type_t *returns;
     const afw_value_block_symbol_t *function_name_symbol;
     const afw_value_string_t *function_name_value;
+    /** Number of formals; parameters has this many entries (0-based C array). */
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
 };
 
 
 
-/** @brief Struct for script function parameter. */
+/**
+ * @brief One script-function formal (name or Pattern).
+ *
+ * Simple name: `symbol` + `name` set; `assignment_target` NULL.
+ * Pattern (list/object destructure, issue #140): `assignment_target` holds
+ * the Pattern; nested leaves are parameter symbols in the function's
+ * parameter block. `name` / `symbol` may be NULL (no whole-arg binding).
+ *
+ * This struct is always the formal list entry (0-based index into
+ * `parameters[]`). Call argv still uses 1-based parameter numbers.
+ */
 struct afw_value_script_function_parameter_s {
-    /*
-     * Simple name parameter: symbol + name set; assignment_target NULL.
-     * Pattern parameter (list/object destructure): assignment_target is an
-     * assignment_target value whose Pattern leaves are parameter symbols in
-     * the function parameter block. name/symbol may be NULL (no whole-arg
-     * binding unless a future synthetic is added).
-     */
     const afw_value_block_symbol_t *symbol;
     const afw_utf8_t *name;
     const afw_value_type_t *type;
@@ -607,7 +630,13 @@ struct afw_value_script_function_parameter_s {
 
 
 
-/** @brief Struct for lambda value. */
+/**
+ * @brief Compiled script function (lambda or named function value).
+ *
+ * `count` / `parameters` mirror the signature formals. When this value is
+ * called, bind using `afw_value_call_args_t`: argv[0] is this function,
+ * argv[1..] are arguments for parameters[0..].
+ */
 struct afw_value_script_function_definition_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
     union {
@@ -619,6 +648,7 @@ struct afw_value_script_function_definition_s {
     const afw_value_script_function_signature_t *signature;
     const afw_value_type_t *returns;
     afw_size_t depth;
+    /** Formal count (same as signature->count when signature is present). */
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
     const afw_value_t *body;
