@@ -105,6 +105,28 @@ Do **not** conflate `process::args` (#74) with function-parameter rest or param 
 | **Call-site `f(...arr)`** | Separate feature; definition-side rest only. |
 | **argv / parameter_number** | Documented in `afw_function.h` + `afw_value_call_args_s` + call_script_function bind comments (1-based params, `argv[0]` = function). |
 
+### TS-shaped confidence (ranked high → low)
+
+Goal: Adaptive stays Adaptive, but Patterns/params/catch should not feel awkward to someone who writes TypeScript. Not full TS/ES parity.
+
+| Rank | Item | Why (TS lens) | Status / action |
+|------|------|---------------|-----------------|
+| **1** | Options object + property/whole defaults | Everyday TS API shape | Done in #141 + tests |
+| **2** | Prior-param defaults `y = x` / Expression defaults | Core TS default semantics | Tests `ts-prior-param-default` |
+| **3** | Object rest on param `{a, ...r}` | Everyday destructure | Tests `ts-object-rest-on-param` |
+| **4** | Required Pattern missing arg → error | Don’t fail open | Tests `ts-required-pattern-missing-arg` |
+| **5** | Catch destructure (+ rename / data) | Structured error handling | Tests `ts-catch-rename-and-data` |
+| **6** | Recursion with Pattern formals | Bind order must stay correct | Tests `ts-recursive-pattern-formal` |
+| **7** | Pattern then `...rest` formal | Normal rest placement | Tests `ts-pattern-then-rest-param` |
+| **8** | Wrong-type destructure error | Fail clearly, not garbage | Tests `ts-wrong-type-array-pattern` |
+| **9** | Optional Pattern without `= {}` | Document Adaptive choice (prefer `= {}`) | Tests `ts-optional-pattern-no-default` |
+| **10** | Catch Pattern decompile d1==d2 | Tooling/Fiddle fidelity, not author syntax | Later (try decompile unify) |
+| **11** | Call-site `f(...arr)` | Common TS; separate feature | Out of #140 |
+| **12** | Computed keys in Pattern `{[k]:x}` | Occasional TS | Near #38 |
+| **13** | Arrow functions | Explicit non-goal (Jeremy) | Out |
+| **14** | ES `arguments` / `#script_function` pragma | Not TS app-author surface | Out / advanced only |
+| **15** | Full TS type-check on Patterns | Compile-time types | #28 later |
+
 ECMAScript/TypeScript-style “destruct in the parameter list”, e.g. conceptually:
 
 ```text
