@@ -1,21 +1,23 @@
 #!/usr/bin/env -S afw --syntax test_script
 //?
-//? testScript: happy_anniversary_39.as
+//? testScript: happy_anniversary_29.as
 //? customPurpose: Part of miscellaneous category tests
-//? description: Easter egg Rube Goldberg using param/catch Patterns, call-site spread, string/computed keys (issues #140 / #38). Birthday card for Jeremy.
+//? description: Easter egg Rube Goldberg using param/catch Patterns, call-site spread, string/computed keys (issues #140 / #38). Birthday card for Jeremy (age 29 forever). Source shebang uses JeremyScript easter egg.
 //? sourceType: script
 //?
-//? test: happy-anniversary-of-becoming-39
-//? description: Overengineered wish that evaluates to Happy Anniversary of becoming 39!
-//? expect: "Happy Anniversary of becoming 39!"
+//? test: happy-anniversary-of-becoming-29
+//? description: Overengineered wish that evaluates to Happy Anniversary of becoming 29!
+//? expect: "Happy Anniversary of becoming 29!"
 //? source: ...
+#! JeremyScript
 
 /* Rube Goldberg anniversary machine.
  *
  * Uses: array + object Patterns on formals, nested catch Pattern,
  * string / computed property keys, Expression defaults, rest formals,
  * call-site f(...arr) spread, for-of, throw data, assert.
- * Age 39 is not a literal — it is 30 plus nine rest candles. Obviously.
+ * Age 29 is not a literal — it is 20 plus nine rest candles. Obviously.
+ * Shebang: JeremyScript easter egg (accepted in place of afw).
  */
 
 function yearsAfter([decade, ...candles]) {
@@ -32,7 +34,7 @@ function reassemble(guest, age, _postage, ...words) {
         }
     }
     assert(guest === "Jeremy");
-    assert(age === 39);
+    assert(age === 29);
     return out;
 }
 
@@ -59,7 +61,7 @@ function partyMail({
     bridge: { of: ofWord, becoming },
     ["sparkle"]: bang = "!"
 } = {}) {
-    const age = yearsAfter([30, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const age = yearsAfter([20, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
     throw "do not open until birthday" {
         guest: guest,
         age: age,
