@@ -19,6 +19,8 @@
  * afw_content_type_object_list_writer
  */
 #define AFW_IMPLEMENTATION_ID "impl"
+typedef struct impl_afw_content_type_object_list_writer_self_s impl_afw_content_type_object_list_writer_self_t;
+#define AFW_CONTENT_TYPE_OBJECT_LIST_WRITER_SELF_T impl_afw_content_type_object_list_writer_self_t
 #include "afw_content_type_object_list_writer_impl_declares.h"
 
 
@@ -90,12 +92,10 @@ afw_content_type_impl_create_object_list_writer(
  */
 void
 impl_afw_content_type_object_list_writer_release(
-    const afw_content_type_object_list_writer_t * instance,
+    AFW_CONTENT_TYPE_OBJECT_LIST_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_content_type_object_list_writer_self_t * self =
-        (impl_afw_content_type_object_list_writer_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
     /* If objects have been written, write last separator if there is one. */
     if (self->object_count > 0 &&
@@ -124,14 +124,12 @@ impl_afw_content_type_object_list_writer_release(
  */
 void
 impl_afw_content_type_object_list_writer_write_object(
-    const afw_content_type_object_list_writer_t * instance,
+    AFW_CONTENT_TYPE_OBJECT_LIST_WRITER_SELF_T *self,
     const afw_object_t * object,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_content_type_object_list_writer_self_t * self =
-        (impl_afw_content_type_object_list_writer_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
     const afw_memory_t *raw;
     const afw_value_t *value;
 

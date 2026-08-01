@@ -18,6 +18,7 @@
 /* Declares and rti/inf defines for interface afw_authorization_handler */
 #define AFW_IMPLEMENTATION_ID "script"
 #include "afw_authorization_handler_factory_impl_declares.h"
+#define AFW_AUTHORIZATION_HANDLER_SELF_T afw_authorization_handler_script_self_t
 #include "afw_authorization_handler_impl_declares.h"
 
 
@@ -37,7 +38,7 @@ impl_authorization_handler_factory_instance = {
  */
 const afw_authorization_handler_t *
 impl_afw_authorization_handler_factory_create_authorization_handler_cede_p(
-    const afw_authorization_handler_factory_t * instance,
+    const afw_authorization_handler_factory_t * self,
     const afw_object_t *properties,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -146,12 +147,12 @@ afw_authorization_handler_type_script_create_cede_p(
  */
 void
 impl_afw_authorization_handler_destroy(
-    const afw_authorization_handler_t * instance,
+    AFW_AUTHORIZATION_HANDLER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
+    /* Assign &self->pub pointer to self. */
     // afw_authorization_handler_script_self_t * self =
-    //     (afw_authorization_handler_script_self_t *)instance;
+    //     (afw_authorization_handler_script_self_t *)&self->pub;
 
     /* Add code, if needed. */
 }
@@ -164,15 +165,13 @@ impl_afw_authorization_handler_destroy(
  */
 const afw_value_t *
 impl_afw_authorization_handler_check(
-    const afw_authorization_handler_t * instance,
+    AFW_AUTHORIZATION_HANDLER_SELF_T *self,
     const afw_value_t *resource_id,
     const afw_value_t *object,
     const afw_value_t *action_id,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_authorization_handler_script_self_t *self =
-        (afw_authorization_handler_script_self_t *)instance;
     const afw_value_t *result;
     int top;
 

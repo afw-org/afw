@@ -23,6 +23,7 @@ typedef struct {
 
 
 #define AFW_IMPLEMENTATION_ID "afw_utf8_writer"
+#define AFW_WRITER_SELF_T impl_utf8_writer_self_t
 #include "afw_writer_impl_declares.h"
 
 /*
@@ -97,11 +98,9 @@ afw_utf8_writer_current_string(
  */
 void
 impl_afw_writer_release(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_utf8_writer_self_t *self =
-        (impl_utf8_writer_self_t *)instance;
 
     /* Release writer resources. */
     afw_pool_release(self->pub.p, xctx);
@@ -112,7 +111,7 @@ impl_afw_writer_release(
  */
 void
 impl_afw_writer_flush(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Ignore flush. */
@@ -123,13 +122,11 @@ impl_afw_writer_flush(
  */
 void
 impl_afw_writer_write(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    impl_utf8_writer_self_t *self =
-        (impl_utf8_writer_self_t *)instance;
     afw_size_t count, i;
     const afw_octet_t *c;
 
@@ -158,11 +155,9 @@ impl_afw_writer_write(
  */
 void
 impl_afw_writer_write_eol(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_utf8_writer_self_t *self =
-        (impl_utf8_writer_self_t *)instance;
 
     if (self->pub.tab) {
         APR_ARRAY_PUSH(self->ary, char) = '\n';
@@ -175,11 +170,9 @@ impl_afw_writer_write_eol(
  */
 void
 impl_afw_writer_increment_indent(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_utf8_writer_self_t *self =
-        (impl_utf8_writer_self_t *)instance;
 
     self->pub.indent++;
 }
@@ -189,11 +182,9 @@ impl_afw_writer_increment_indent(
  */
 void
 impl_afw_writer_decrement_indent(
-    const afw_writer_t * instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_utf8_writer_self_t *self =
-        (impl_utf8_writer_self_t *)instance;
 
     self->pub.indent--;
 }

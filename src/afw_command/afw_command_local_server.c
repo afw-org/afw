@@ -14,6 +14,7 @@
 
 /* Declares and rti/inf defines for interface afw_server */
 #define AFW_IMPLEMENTATION_ID "afw_command_local"
+#define AFW_SERVER_SELF_T afw_command_local_server_self_t
 #include "afw_server_impl_declares.h"
 
 /**
@@ -436,7 +437,7 @@ impl_read_and_process_request(
  */
 void
 impl_afw_server_release(
-    const afw_server_t * instance,
+    AFW_SERVER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Everything will be released by afw_command.c */
@@ -449,12 +450,10 @@ impl_afw_server_release(
  */
 void
 impl_afw_server_run(
-    const afw_server_t * instance,
+    AFW_SERVER_SELF_T *self,
     const afw_request_handler_t * handler,
     afw_xctx_t *xctx)
 {
-    afw_command_local_server_self_t *self =
-        (afw_command_local_server_self_t *)instance;
 
     
     afw_command_local_server_write_result(self,

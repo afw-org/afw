@@ -30,6 +30,7 @@
 #define AFW_IMPLEMENTATION_ID "compiled_value"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_inf
+#define AFW_VALUE_SELF_T afw_value_compiled_value_t
 #include "afw_value_impl_declares.h"
 
 
@@ -38,12 +39,10 @@
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
     const afw_value_t *result;
     int nelts;
 
@@ -85,7 +84,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Compiled values are always data type unevaluated. */
@@ -97,18 +96,16 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
     const afw_utf8_t *reference_id;
 
     reference_id = afw_value_compiler_listing_for_child(
-        instance, writer, xctx);
+        &self->pub, writer, xctx);
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer,
         " // See below beginning with: ---CompiledValue ",
@@ -122,12 +119,10 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
 
     afw_value_decompile(self->root_value, writer, xctx);
     /*FIXME Improve */
@@ -139,12 +134,12 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
-    info->optimized_value = instance;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
+    info->optimized_value = &self->pub;
 }

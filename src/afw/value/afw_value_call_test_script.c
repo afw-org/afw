@@ -30,6 +30,7 @@
 #define AFW_IMPLEMENTATION_ID "call_test_script"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_call_test_script_inf
+#define AFW_VALUE_SELF_T afw_value_call_test_script_t
 #include "afw_value_impl_declares.h"
 
 
@@ -61,12 +62,10 @@ afw_value_call_test_script_create(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
     const afw_iterator_t *iterator;
     const afw_array_t *tests;
     const afw_object_t *test;
@@ -308,7 +307,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -320,12 +319,10 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
     const afw_pool_t *p;
     const afw_array_t *tests;
     const afw_object_t *test;
@@ -365,7 +362,7 @@ impl_afw_value_produce_compiler_listing(
     }
 
     /* Begin listing for test script. */
-    afw_value_compiler_listing_begin_value(writer, instance, &contextual, xctx);
+    afw_value_compiler_listing_begin_value(writer, &self->pub, &contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
@@ -543,15 +540,13 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
     const afw_value_t *argv[1];
 
-    afw_value_decompile_write_synthetic_function_name(instance, writer, xctx);
+    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
     argv[0] = self->test_script_object_value
         ? (const afw_value_t *)self->test_script_object_value
         : NULL;
@@ -564,20 +559,18 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
 
     afw_memory_clear(info);
     info->detail = afw_s_test_script;
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->evaluated_data_type = afw_data_type_object;
-    info->optimized_value = instance;
+    info->optimized_value = &self->pub;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }

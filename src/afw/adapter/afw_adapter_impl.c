@@ -635,7 +635,7 @@ afw_adapter_impl_set_object_types_fully_loaded(
  */
 const afw_object_type_t *
 impl_afw_adapter_object_type_cache_get(
-    const afw_adapter_object_type_cache_t *instance,
+    const afw_adapter_object_type_cache_t *self,
     const afw_utf8_t *object_type_id,
     afw_boolean_t *final_result,
     afw_xctx_t *xctx)
@@ -644,7 +644,7 @@ impl_afw_adapter_object_type_cache_get(
     const afw_adapter_t *adapter;
     afw_adapter_impl_t *impl;
 
-    adapter = instance->session->adapter;
+    adapter = self->session->adapter;
     impl = (afw_adapter_impl_t *)adapter->impl;
     *final_result = impl->object_types_fully_loaded;
 
@@ -668,14 +668,14 @@ impl_afw_adapter_object_type_cache_get(
  */
 void
 impl_afw_adapter_object_type_cache_set(
-    const afw_adapter_object_type_cache_t *instance,
+    const afw_adapter_object_type_cache_t *self,
     const afw_object_type_t *object_type,
     afw_xctx_t *xctx)
 {
     const afw_adapter_t *adapter;
     afw_adapter_impl_t *impl;
 
-    adapter = instance->session->adapter;
+    adapter = self->session->adapter;
     impl = (afw_adapter_impl_t *)adapter->impl;
 
     if (!impl->object_types_ht) {
@@ -699,15 +699,15 @@ impl_afw_adapter_object_type_cache_set(
  */
 void
 impl_afw_adapter_destroy(
-    const afw_adapter_t *instance,
+    const afw_adapter_t *self,
     afw_xctx_t *xctx)
 {
-    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)instance->impl;
+    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)self->impl;
 
     /** @fixme Add common prologue code. */
 
-    /* Call wrapped instance method. */
-    impl->wrapped_inf->destroy(instance, xctx);
+    /* Call wrapped self method. */
+    impl->wrapped_inf->destroy(self, xctx);
 
     /** @fixme Add common epilogue code. */
 }
@@ -719,28 +719,28 @@ impl_afw_adapter_destroy(
  */
 const afw_adapter_session_t *
 impl_afw_adapter_create_adapter_session(
-    const afw_adapter_t *instance,
+    const afw_adapter_t *self,
     afw_xctx_t *xctx)
 {
-    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)instance->impl;
-    AFW_ADAPTER_SESSION_SELF_T *self;
+    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)self->impl;
+    AFW_ADAPTER_SESSION_SELF_T *session;
 
     /* Create session self. */
-    self = afw_xctx_calloc_type(AFW_ADAPTER_SESSION_SELF_T, xctx);
-    self->pub.adapter = instance;
-    self->pub.inf = &impl_afw_adapter_session_inf;
-    self->pub.p = xctx->p;
+    session = afw_xctx_calloc_type(AFW_ADAPTER_SESSION_SELF_T, xctx);
+    session->pub.adapter = self;
+    session->pub.inf = &impl_afw_adapter_session_inf;
+    session->pub.p = xctx->p;
 
     /** @fixme Add common prologue code. */
 
-    /* Call wrapped instance method. */
-    self->wrapped_session =
-        impl->wrapped_inf->create_adapter_session(instance, xctx);
+    /* Call wrapped self method. */
+    session->wrapped_session =
+        impl->wrapped_inf->create_adapter_session(self, xctx);
 
     /** @fixme Add common epilogue code. */
 
     /* Return result. */
-    return &self->pub;
+    return &session->pub;
 }
 
 
@@ -750,17 +750,17 @@ impl_afw_adapter_create_adapter_session(
  */
 const afw_object_t *
 impl_afw_adapter_get_additional_metrics(
-    const afw_adapter_t *instance,
+    const afw_adapter_t *self,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)instance->impl;
+    afw_adapter_impl_t *impl = (afw_adapter_impl_t *)self->impl;
     const afw_object_t *result;
 
     /** @fixme Add common prologue code. */
 
-    /* Call wrapped instance method. */
-    result = impl->wrapped_inf->get_additional_metrics(instance,
+    /* Call wrapped self method. */
+    result = impl->wrapped_inf->get_additional_metrics(self,
         p, xctx);
 
     /** @fixme Add common epilogue code. */
@@ -1602,18 +1602,18 @@ impl_afw_adapter_session_get_object_type_cache_interface(
  */
 const afw_utf8_t *
 impl_afw_adapter_journal_add_entry(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t *xctx)
 {
-    afw_adapter_impl_session_t *self =
-        (afw_adapter_impl_session_t *)(instance->session);
+    afw_adapter_impl_session_t *session =
+        (afw_adapter_impl_session_t *)(self->session);
     const afw_utf8_t *result;
 
     /** @fixme authorization check */
 
-    result = afw_adapter_journal_add_entry(self->wrapped_journal,
+    result = afw_adapter_journal_add_entry(session->wrapped_journal,
         impl_request, entry, xctx);
     return result;
 }
@@ -1623,7 +1623,7 @@ impl_afw_adapter_journal_add_entry(
  */
 void
 impl_afw_adapter_journal_get_entry(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     afw_adapter_journal_option_t option,
     const afw_utf8_t * consumer_id,
@@ -1632,12 +1632,12 @@ impl_afw_adapter_journal_get_entry(
     const afw_object_t * response,
     afw_xctx_t *xctx)
 {
-    afw_adapter_impl_session_t *self =
-        (afw_adapter_impl_session_t *)(instance->session);
+    afw_adapter_impl_session_t *session =
+        (afw_adapter_impl_session_t *)(self->session);
 
     /** @fixme authorization check */
 
-    afw_adapter_journal_get_entry(self->wrapped_journal,
+    afw_adapter_journal_get_entry(session->wrapped_journal,
         impl_request, option, consumer_id, entry_cursor,
         limit, response, xctx);
 }
@@ -1648,17 +1648,17 @@ impl_afw_adapter_journal_get_entry(
  */
 void
 impl_afw_adapter_journal_mark_entry_consumed(
-    const afw_adapter_journal_t * instance,
+    const afw_adapter_journal_t * self,
     const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_xctx_t *xctx)
 {
-    afw_adapter_impl_session_t *self =
-        (afw_adapter_impl_session_t *)(instance->session);
+    afw_adapter_impl_session_t *session =
+        (afw_adapter_impl_session_t *)(self->session);
 
     /** @fixme authorization check */
 
-    afw_adapter_journal_mark_entry_consumed(self->wrapped_journal,
+    afw_adapter_journal_mark_entry_consumed(session->wrapped_journal,
         impl_request, consumer_id, entry_cursor, xctx);
 }

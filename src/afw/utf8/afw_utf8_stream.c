@@ -23,6 +23,7 @@ typedef struct {
 
 
 #define AFW_IMPLEMENTATION_ID "afw_utf8_stream"
+#define AFW_STREAM_SELF_T impl_utf8_stream_self_t
 #include "afw_stream_impl_declares.h"
 
 /*
@@ -97,11 +98,9 @@ afw_utf8_stream_get_current_cached_string(
  */
 void
 impl_afw_stream_release(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_utf8_stream_self_t *self =
-        (impl_utf8_stream_self_t *)instance;
 
     /* Release stream resources. */
     afw_pool_release(self->pub.p, xctx);
@@ -112,7 +111,7 @@ impl_afw_stream_release(
  */
 void
 impl_afw_stream_flush(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Ignore flush. */
@@ -123,12 +122,12 @@ impl_afw_stream_flush(
  */
 afw_size_t
 impl_afw_stream_read(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    (void)instance;
+    (void)&self->pub;
     (void)buffer;
     (void)size;
     AFW_THROW_ERROR_Z(general, "Stream is not readable.", xctx);
@@ -139,13 +138,11 @@ impl_afw_stream_read(
  */
 void
 impl_afw_stream_write(
-    const afw_stream_t * instance,
+    AFW_STREAM_SELF_T *self,
     const void * buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    impl_utf8_stream_self_t *self =
-        (impl_utf8_stream_self_t *)instance;
     const afw_octet_t *c;
     afw_size_t count;
 

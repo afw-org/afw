@@ -16,6 +16,7 @@
 
 
 #define AFW_IMPLEMENTATION_ID "afw_value_compiler_listing_writer"
+#define AFW_WRITER_SELF_T afw_value_compiler_listing_t
 #include "afw_writer_impl_declares.h"
 
 static const afw_utf8_octet_t
@@ -80,7 +81,7 @@ impl_afw_writer_write_raw_cb(
  */
 void
 impl_afw_writer_release(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Don't do anything. */
@@ -93,7 +94,7 @@ impl_afw_writer_release(
  */
 void
 impl_afw_writer_flush(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Ignore flush. */
@@ -177,13 +178,11 @@ impl_write_source_line(
  */
 void
 impl_afw_writer_write(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
     afw_size_t count, i;
     const afw_octet_t *c;
     afw_boolean_t line_written;
@@ -251,11 +250,9 @@ impl_afw_writer_write(
  */
 void
 impl_afw_writer_write_eol(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
 
     if (self->writer.tab) {
         APR_ARRAY_PUSH(self->ary, char) = '\n';
@@ -268,11 +265,9 @@ impl_afw_writer_write_eol(
  */
 void
 impl_afw_writer_increment_indent(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
 
     self->writer.indent++;
 }
@@ -282,11 +277,9 @@ impl_afw_writer_increment_indent(
  */
 void
 impl_afw_writer_decrement_indent(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
 
     if (self->writer.indent == 0) {
         AFW_THROW_ERROR_Z(general,

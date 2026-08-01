@@ -22,6 +22,7 @@
 
 /* Declares and rti/inf defines for interface afw_adapter */
 #define AFW_IMPLEMENTATION_ID "vfs"
+#define AFW_ADAPTER_SELF_T afw_vfs_adapter_internal_t
 #include "afw_adapter_impl_declares.h"
 
 
@@ -265,7 +266,7 @@ afw_vfs_adapter_internal_create_cede_p(
  */
 void
 impl_afw_adapter_destroy(
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Memory is owned by the adapter pool; nothing else to release. */
@@ -279,11 +280,9 @@ impl_afw_adapter_destroy(
  */
 const afw_adapter_session_t *
 impl_afw_adapter_create_adapter_session(
-    const afw_adapter_t *instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_vfs_adapter_internal_t *self =
-        (afw_vfs_adapter_internal_t *)instance;
     const afw_adapter_session_t *session;
 
     /* Create session and return. */
@@ -300,7 +299,7 @@ impl_afw_adapter_create_adapter_session(
  */
 const afw_object_t *
 impl_afw_adapter_get_additional_metrics(
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {

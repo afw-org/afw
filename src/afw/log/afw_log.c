@@ -440,10 +440,10 @@ void afw_log_internal_conf_type_create_cede_p(
  */
 void
 impl_afw_log_destroy(
-    const afw_log_t * instance,
+    const afw_log_t * self,
     afw_xctx_t *xctx)
 {
-    afw_pool_release(instance->p, xctx);
+    afw_pool_release(self->p, xctx);
 }
 
 
@@ -452,11 +452,11 @@ impl_afw_log_destroy(
  */
 void
 impl_afw_log_set_own_mask(
-    const afw_log_t * instance,
+    const afw_log_t * self,
     afw_log_priority_mask_t mask,
     afw_xctx_t *xctx)
 {
-    afw_log_impl_t *impl = (afw_log_impl_t *)instance->impl;
+    afw_log_impl_t *impl = (afw_log_impl_t *)self->impl;
 
     /* Set mask. */
     impl->mask = mask;
@@ -568,7 +568,7 @@ impl_write_formatted_message(
  */
 void
 impl_afw_log_write(
-    const afw_log_t * instance,
+    const afw_log_t * self,
     afw_log_priority_t priority,
     const afw_utf8_z_t * source_z,
     const afw_utf8_t * message,
@@ -578,7 +578,7 @@ impl_afw_log_write(
     afw_boolean_t lock_held;
     afw_boolean_t log_found;
 
-    wa.self = (impl_afw_log_self_t *)instance;
+    wa.self = (impl_afw_log_self_t *)self;
     wa.p = NULL;
     wa.priority = priority;
     wa.source_z = source_z;
@@ -664,7 +664,7 @@ afw_log_internal_register_service_type(afw_xctx_t *xctx)
  */
 afw_integer_t
 impl_afw_service_type_related_instance_count (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
@@ -681,7 +681,7 @@ impl_afw_service_type_related_instance_count (
  */
 void
 impl_afw_service_type_start_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -718,11 +718,11 @@ impl_afw_service_type_start_cede_p (
  */
 void
 impl_afw_service_type_stop (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
-    impl_afw_log_self_t *self;
+    impl_afw_log_self_t *log_self;
     impl_log_entry_t *e;
 
     afw_environment_register_log(id, NULL, xctx);
@@ -732,8 +732,8 @@ impl_afw_service_type_stop (
      * found, no error is thrown.
      */
     AFW_LOCK_BEGIN(xctx->env->active_log_list_lock) {
-        self = (impl_afw_log_self_t *)xctx->env->log;
-        for (e = self->head->first_log; e; e = e->next)
+        log_self = (impl_afw_log_self_t *)xctx->env->log;
+        for (e = log_self->head->first_log; e; e = e->next)
         {
             if (e->log && afw_utf8_equal(&e->log->log_id, id)) {
                 /** @fixme Need to be able to destroy, but runtime object might
@@ -758,7 +758,7 @@ impl_afw_service_type_stop (
  */
 void
 impl_afw_service_type_restart_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -767,7 +767,7 @@ impl_afw_service_type_restart_cede_p (
      * This counts on afw_service only calling if not started, so if stopped,
      * this will start log. Restart is same as start at this point.
      */
-    impl_afw_service_type_start_cede_p(instance, properties, p, xctx);
+    impl_afw_service_type_start_cede_p(self, properties, p, xctx);
 }
 
 

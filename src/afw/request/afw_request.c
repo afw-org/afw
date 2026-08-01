@@ -16,6 +16,8 @@
 
 /* Declares and rti/inf defines for interface afw_content_type */
 #define AFW_IMPLEMENTATION_ID "request"
+typedef struct afw_request_response_body_raw_writer_self_s afw_request_response_body_raw_writer_self_t;
+#define AFW_STREAM_SELF_T afw_request_response_body_raw_writer_self_t
 #include "afw_stream_impl_declares.h"
 
 
@@ -295,13 +297,11 @@ impl_response_write_cb(
  */
 void
 impl_afw_stream_release(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_request_response_body_raw_writer_self_t *self =
-        (afw_request_response_body_raw_writer_self_t *)instance;
 
-    impl_afw_stream_flush(instance, xctx);
+    impl_afw_stream_flush(self, xctx);
     afw_pool_release(self->pub.p, xctx);
 }
 
@@ -310,12 +310,12 @@ impl_afw_stream_release(
  */
 afw_size_t
 impl_afw_stream_read(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    (void)instance;
+    (void)&self->pub;
     (void)buffer;
     (void)size;
     AFW_THROW_ERROR_Z(general, "Stream is not readable.", xctx);
@@ -326,11 +326,9 @@ impl_afw_stream_read(
  */
 void
 impl_afw_stream_flush(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_request_response_body_raw_writer_self_t *self =
-        (afw_request_response_body_raw_writer_self_t *)instance;
 
     afw_request_flush_response(self->request, xctx);
 }
@@ -340,7 +338,7 @@ impl_afw_stream_flush(
  */
 void
 impl_afw_stream_write(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -349,7 +347,7 @@ impl_afw_stream_write(
         return;
     }
 
-    impl_response_write_cb((void *)instance, buffer, size,
+    impl_response_write_cb((void *)&self->pub, buffer, size,
         xctx->p, xctx);
 }
 

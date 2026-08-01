@@ -37,6 +37,7 @@
  */
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "object_impl_property_meta"
+#define AFW_OBJECT_SELF_T afw_object_impl_property_meta_object_self_t
 #include "afw_object_impl_declares.h"
 #include "afw_object_setter_impl_declares.h"
 
@@ -165,7 +166,7 @@ static const afw_object_impl_name_handler_t *impl_handler_end =
  */
 void
 impl_afw_object_release(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -180,7 +181,7 @@ impl_afw_object_release(
  */
 void
 impl_afw_object_get_reference(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do? */
@@ -191,11 +192,11 @@ impl_afw_object_get_reference(
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)&self->pub;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -207,12 +208,10 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_impl_property_meta_object_self_t *self =
-        (afw_object_impl_property_meta_object_self_t *)instance;
     const afw_object_impl_name_handler_t *h;
 
     /* If get callback for this property, return it's result. */
@@ -243,13 +242,11 @@ impl_afw_object_get_property(
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_iterator_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_impl_property_meta_object_self_t *self =
-        (afw_object_impl_property_meta_object_self_t *)instance;
     const afw_object_impl_name_handler_t *h;
     const afw_value_t *result;
     const afw_utf8_t *next_property_name;
@@ -335,11 +332,11 @@ impl_afw_object_get_next_property(
  */
 afw_boolean_t
 impl_afw_object_has_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
-    return impl_afw_object_get_property(instance, property_name, xctx) != NULL;
+    return impl_afw_object_get_property(self, property_name, xctx) != NULL;
 }
 
 
@@ -349,11 +346,9 @@ impl_afw_object_has_property(
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_impl_property_meta_object_self_t *self =
-        (afw_object_impl_property_meta_object_self_t *)instance;
 
     return (!self->is_immutable &&
         afw_object_get_setter(self->owning_object, xctx))
@@ -368,13 +363,13 @@ impl_afw_object_get_setter(
  */
 void
 impl_afw_object_setter_set_immutable(
-    const afw_object_setter_t *instance,
+    const afw_object_setter_t *self,
     afw_xctx_t *xctx)
 {
-    afw_object_impl_property_meta_object_self_t *self =
-        (afw_object_impl_property_meta_object_self_t *)instance->object;
+    afw_object_impl_property_meta_object_self_t *object_impl_property_meta_object_self =
+        (afw_object_impl_property_meta_object_self_t *)self->object;
 
-    self->is_immutable = true;
+    object_impl_property_meta_object_self->is_immutable = true;
 }
 
 
@@ -384,19 +379,19 @@ impl_afw_object_setter_set_immutable(
  */
 void
 impl_afw_object_setter_set_property(
-    const afw_object_setter_t *instance,
+    const afw_object_setter_t *self,
     const afw_utf8_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    afw_object_impl_property_meta_object_self_t *self =
-        (afw_object_impl_property_meta_object_self_t *)instance->object;
+    afw_object_impl_property_meta_object_self_t *object_impl_property_meta_object_self =
+        (afw_object_impl_property_meta_object_self_t *)self->object;
     const afw_object_impl_name_handler_t *h;
 
     for (h = &impl_handler[0]; h < impl_handler_end; h++) {
         if (afw_utf8_equal(h->property_name, property_name)) {
             if (h->set) {
-                h->set(self, property_name, value, xctx);
+                h->set(object_impl_property_meta_object_self, property_name, value, xctx);
                 return;
             }
             break;
@@ -404,8 +399,8 @@ impl_afw_object_setter_set_property(
     }
 
     afw_object_meta_set_property_type_property(
-        ((const afw_value_object_t *)&self->meta_object_value)->internal,
-        self->property_name,
+        ((const afw_value_object_t *)&object_impl_property_meta_object_self->meta_object_value)->internal,
+        object_impl_property_meta_object_self->property_name,
         property_name, value, xctx);
 }
 

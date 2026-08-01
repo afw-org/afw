@@ -20,6 +20,7 @@
 
 /* Declares and rti/inf defines for interface afw_adapter */
 #define AFW_IMPLEMENTATION_ID "ldap"
+#define AFW_ADAPTER_SELF_T afw_ldap_internal_adapter_t
 #include "afw_adapter_impl_declares.h"
 
 
@@ -91,11 +92,11 @@ afw_ldap_internal_adapter_create_cede_p(
  */
 void
 impl_afw_adapter_destroy(
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Release pool. */
-    afw_pool_release(instance->p, xctx);
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
@@ -105,10 +106,9 @@ impl_afw_adapter_destroy(
  */
 const afw_adapter_session_t *
 impl_afw_adapter_create_adapter_session (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_t *self = (afw_ldap_internal_adapter_t *)instance;
 
     return (const afw_adapter_session_t *)
         afw_ldap_internal_adapter_session_create(self, xctx);
@@ -120,7 +120,7 @@ impl_afw_adapter_create_adapter_session (
  */
 const afw_object_t *
 impl_afw_adapter_get_additional_metrics (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {

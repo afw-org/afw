@@ -17,6 +17,8 @@
 
 /* Declares and rti/inf defines for interface afw_request_handler */
 #define AFW_IMPLEMENTATION_ID "director"
+typedef struct self_request_handler_director_s self_request_handler_director_t;
+#define AFW_REQUEST_HANDLER_SELF_T self_request_handler_director_t
 #include "afw_request_handler_impl_declares.h"
 
 
@@ -63,7 +65,7 @@ afw_request_handler_director_create(
  */
 void
 impl_afw_request_handler_release(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /*
@@ -81,12 +83,10 @@ impl_afw_request_handler_release(
  */
 void
 impl_afw_request_handler_process(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     const afw_request_t * request,
     afw_xctx_t *xctx)
 {
-    self_request_handler_director_t *self =
-        (self_request_handler_director_t *)instance;
     const afw_request_handler_entry_t *request_handler_entry;
 
     /* Call appropriate handler. */

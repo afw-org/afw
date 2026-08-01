@@ -24,6 +24,8 @@
 
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "fcgi_request_properties"
+typedef struct impl_self_s impl_self_t;
+#define AFW_OBJECT_SELF_T impl_self_t
 #include "afw_object_impl_declares.h"
 
 typedef struct impl_self_s {
@@ -128,7 +130,7 @@ afw_server_fcgi_internal_create_properties_object(
  */
 void
 impl_afw_object_release(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Always releases with xctx. */
@@ -141,7 +143,7 @@ impl_afw_object_release(
  */
 void
 impl_afw_object_get_reference (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Always releases with xctx. */
@@ -152,10 +154,9 @@ impl_afw_object_get_reference (
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
 
     if (!self->all_loaded) {
         impl_load_all(self, xctx);
@@ -169,12 +170,12 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_meta(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     return afw_object_impl_get_meta(
-        instance, p, xctx);
+        &self->pub, p, xctx);
 }
 
 
@@ -184,11 +185,10 @@ impl_afw_object_get_meta(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
     const void *s;
     const afw_value_t *value;
     const afw_utf8_z_t *property_name_z;
@@ -222,13 +222,13 @@ impl_afw_object_get_property(
  */
 const afw_value_t *
 impl_afw_object_get_property_meta(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     return afw_object_impl_get_property_meta(
-        instance, property_name, p, xctx);
+        &self->pub, property_name, p, xctx);
 }
 
 
@@ -238,12 +238,11 @@ impl_afw_object_get_property_meta(
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_iterator_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
 
     /* Materialize full envp into cache once; cache is source of truth. */
     if (!self->all_loaded) {
@@ -261,14 +260,14 @@ impl_afw_object_get_next_property(
  */
 const afw_value_t *
 impl_afw_object_get_next_property_meta(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_iterator_t **iterator,
     const afw_utf8_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     return afw_object_impl_get_next_property_meta(
-        instance, iterator, property_name, p, xctx);
+        &self->pub, iterator, property_name, p, xctx);
 }
 
 
@@ -278,14 +277,13 @@ impl_afw_object_get_next_property_meta(
  */
 afw_boolean_t
 impl_afw_object_has_property(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
 
-    value = impl_afw_object_get_property(
-        instance, property_name, xctx);
+    value = impl_afw_object_get_property(self, property_name, xctx);
 
     return (value != NULL);
 }
@@ -297,10 +295,9 @@ impl_afw_object_has_property(
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_self_t * self = (impl_self_t *)instance;
 
     return afw_object_get_setter(self->properties, xctx);
 }
