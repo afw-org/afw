@@ -22,26 +22,28 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 |------|----------------|
 | **Object / array helpers (#55)** | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` — **recompile** out-of-tree commands/extensions |
 | **Expression property names (#38)** | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
-| **Qualified variables** | `qualifier()` / `qualifiers()` snapshots (issue **#9**); multi-frame **`::` get** uses first **defining** frame (same as snapshots) |
-| **Retrieve arrays** | Optional **`maxObjects`** on materializing `retrieve_objects` (default **100**; issue **#49**) |
-| **Admin / JS client** | `AfwModel` passes **`maxObjects: 0`** for full metadata catalogs so admin loads after #49 |
-| **Adapter auth** | `checkIndividualObjectReadAccess` wiring fixed + tests (issue **#90**) |
-| **File streams** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** |
-| **Conf path templates (#15)** | Path-like conf properties are **templates** evaluated at create; host dirs resolved to full path |
-| **VFS adapter** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
-| **Model adapters** | `mappedAdapterId` is **optional** for pure-script models |
-| **`afw` CLI** | Optional interactive line editing and command history; **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) |
-| **JSON Schema** | Cleaner editor schemas for Adaptive object types |
-| **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
-| **`process::` (#74 partial)** | `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create |
+| **Qualifier snapshots (#9)** | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
+| **Multi-frame `::` get** | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with #15 work) |
+| **Retrieve arrays (#49)** | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **100**, **0** = unlimited; over max → **`payload_too_large`**) |
+| **Admin / JS client** | `AfwModel` sends **`maxObjects: 0`** for full metadata catalogs so admin loads after the #49 default of 100 |
+| **Adapter auth (#90)** | `checkIndividualObjectReadAccess` wiring fixed + tests (action **`read`** as well as **`query`**) |
+| **File streams (#103)** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
+| **Conf path templates (#15)** | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
+| **VFS adapter (#79)** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
+| **Model adapters (#109)** | `mappedAdapterId` is **optional** for pure-script models |
+| **`afw` CLI** | Optional interactive line editing and history (#30); **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) |
+| **JSON Schema (#3)** | Cleaner editor schemas for Adaptive object types |
+| **Process env (#71)** | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
+| **`process::` (#74 partial)** | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
 | **`afw_crypto` (#74 partial)** | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
-| **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
-| **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
-| **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
-| **`stringify` / `decompile` / listing / binary text** | **`stringify`** pure JSON; **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets (see section below) |
-| **UTF-8 in JSON / Fiddle** | Multi-byte UTF-8 (emoji, non-ASCII) now survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
-| **Python `Session("local")`** | Local FIFO client reads **octet** lengths in binary mode so large/UTF-8 responses no longer hang |
-| **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys in Patterns; type syntax for later checking |
+| **Templates (#97)** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
+| **Adapter index `current::` (#54 partial)** | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
+| **C builders / afwdev (#1)** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
+| **Value / memory (α/β, #2)** | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions |
+| **`stringify` / `decompile` / listing (#18)** | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
+| **UTF-8 in JSON / Fiddle** | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
+| **Python `Session("local")`** | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
+| **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
 
 ---
 
@@ -69,7 +71,7 @@ The Adaptive Framework local protocol length-prefixes chunks by **UTF-8 octet co
 
 ## Function parameter and catch Patterns (issue #140)
 
-**Issue #140** (PR **#141** on `mgg-develop`; follow-ups on `Issue-#140-followup`).
+**Issue #140** — PRs **#141** (params + catch Patterns) and **#142** (call-site spread, Pattern keys, catch decompile, type syntax) on `mgg-develop`.
 
 Adaptive Script already allowed list/object **Patterns** on `let` / `const`, assignment, and `for` / `for-of` heads. The same Patterns may now appear:
 
@@ -77,7 +79,7 @@ Adaptive Script already allowed list/object **Patterns** on `let` / `const`, ass
 - In **`catch (…)`** bindings (e.g. `catch ({ message, data })`).
 - **Call-site spread:** `f(...arr)` / `f(a, ...rest, b)` expands an array into separate arguments.
 
-Parameter **defaults are Expressions**. Pattern leaves and whole formals may carry **type annotations** (syntax for upcoming compile-time checking). Options-style example:
+Parameter **defaults are Expressions**. Pattern leaves and whole formals may carry **type annotations** (syntax for upcoming compile-time checking; not enforced yet). Options-style example:
 
 ```adaptive
 function connect({ host, port = 443 } = { host: "localhost" }) {
@@ -265,7 +267,7 @@ Bare ambient **`object`** (old unqualified scope push) is **not** set. Prefer `c
 
 ## List active qualified variables (issue #9)
 
-**Issue #9**
+**Issue #9** / PR **#129**. (Multi-frame **`::` get** alignment is separate — see subsection below and issue **#15** / PR **#135**.)
 
 Scripts and tools can inspect active qualified variables as ordinary objects:
 
@@ -297,7 +299,9 @@ Object-backed qualifiers (`environment::`, `request::`, `application::`, model `
 
 ### Multi-frame get aligned with snapshots
 
-Older builds stopped get after the **first matching qualifier frame**, even when that frame did not define the name. Stacked `current::` (log write, model, `evaluate(..., additionalUntrustedQualifiedVariables)`, …) could hide older bindings such as `current::mode`. Get now matches snapshot semantics: **first frame that defines the name**. Present undefined must use **`afw_value_undefined`**, not C `NULL` (C `NULL` means “not on this frame”).
+Landed with conf/process ambient work (**#15** / PR **#135**), not as part of the original #9 snapshot API.
+
+Older builds stopped **`qualifier::name` get** after the **first matching qualifier frame**, even when that frame did not define the name. Stacked `current::` (log write, model, `evaluate(..., additionalUntrustedQualifiedVariables)`, …) could hide older bindings such as `current::mode`. Get now matches snapshot semantics: walk newest → older and take the first frame that **defines** the name. Present undefined must use **`afw_value_undefined`**, not C `NULL` (C `NULL` means “not on this frame”).
 
 ---
 
@@ -525,6 +529,7 @@ These are easy to confuse; they do different jobs:
 - If you needed UTF-8 text from binary, use **`decode_to_string`**, not `stringify` or `string`.
 - Sealed crypto bags can be stored with **`stringify(sealed)`** directly; you no longer need a hand-built bag of `string(iv)` / `string(tag)` / … for pure JSON (that pattern still works).
 - Use **listing** to inspect compile structure in Fiddle; use **decompile** for Adaptive compiled form as text; use **stringify** for portable JSON.
+- Multi-byte Unicode in **evaluated** strings now survives **`stringify`** / Fiddle JSON (see **UTF-8 in JSON results** above).
 
 Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelity.as`, `pragma.as`, `listing.as`.
 
@@ -824,6 +829,10 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
    (e.g. Python `maxObjects=0`).
 9. **Individual object read auth:** if you set `checkIndividualObjectReadAccess`
    to `true`, ensure policies handle action **`read`** as well as **`query`**.
+10. **JSON / Fiddle non-ASCII:** multi-byte UTF-8 in results should display correctly;
+    if you relied on broken `\ufffffff0…` escapes from old `stringify`, update
+    callers. Out-of-tree **Python** `Session("local")` needs the updated client
+    for large or UTF-8-heavy local responses.
 
 ---
 
@@ -842,17 +851,23 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Materializing retrieve `maxObjects` | #49 | #128 (partial; shared with #90) |
 | `checkIndividualObjectReadAccess` wiring / tests | #90 | #128 (shared with #49) |
 | Progressive retrieve object release | #127 | — (open follow-up) |
-| Long-running memory / OOM | #2 | — (open follow-up) |
+| Long-running memory / OOM | #2 | #133 (partial α/β on `mgg-develop`; more open) |
 | C API Doxygen / builders + `--fulldev` | #1 | #132 |
 | Adapter index `current::` | #54 | #130 (partial; see #57) |
-| `qualifier` / `qualifiers` snapshots | #9 | #129 (includes admin `maxObjects: 0` client fix) |
+| `qualifier` / `qualifiers` snapshots + admin `maxObjects: 0` | #9 | #129 |
+| Multi-frame `::` get + conf path templates + `process::` ambient | #15 (also #71/#74 partial) | #135 |
+| Object / array helpers | #55 | #134 |
+| `afw_crypto` + secrets composition | #74 (partial; stays open for readpass) | #136 |
+| `stringify` / `decompile` / listing / binary text | #18 | #137 |
+| Expression property names in object values | #38 | #139 |
+| Param / catch Patterns + call-site spread | #140 | #141, #142 |
+| UTF-8 JSON emitters + Python local FIFO | — | on `mgg-develop` (post-#142) |
 | Permanent `src/*/tests` regression assets | — | #121 (docs only) |
 | `afw --allow` + YAML block strings / integers | #14 | — (feature earlier; regression tests on `mgg-develop`) |
-| Expression property names in object values | #38 | #139 |
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
 
 ---
 
 ## How this was produced
 
-Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**). For full commit history, see those PRs on the repository hosting Adaptive Framework.
+Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**–**#142**, and follow-up fixes on `mgg-develop`). For full commit history, see those PRs on the repository hosting Adaptive Framework.
