@@ -6,8 +6,8 @@
 //? sourceType: script
 //?
 //? test: happy-anniversary-of-becoming-29
-//? description: Overengineered wish that evaluates to Happy Anniversary of becoming 29!
-//? expect: "Happy Anniversary of becoming 29!"
+//? description: Overengineered wish with party emotes and an egg
+//? expect: "🎉 Happy Anniversary of becoming 29! 🥚🥳🎊"
 //? source: ...
 #! JeremyScript
 
@@ -18,6 +18,7 @@
  * call-site f(...arr) spread, for-of, throw data, assert.
  * Age 29 is not a literal — it is 20 plus nine rest candles. Obviously.
  * Shebang: JeremyScript easter egg (accepted in place of afw).
+ * Finale: party popper, egg, partying face, confetti (because easter egg).
  */
 
 function yearsAfter([decade, ...candles]) {
@@ -65,7 +66,9 @@ function partyMail({
     throw "do not open until birthday" {
         guest: guest,
         age: age,
-        tokens: [happy, anniversary, ofWord, becoming, string(age) + bang]
+        /* 🎉 party popper, 🥚 egg, 🥳 partying face, 🎊 confetti */
+        tokens: ["\u{1F389}", happy, anniversary, ofWord, becoming,
+            string(age) + bang, "\u{1F95A}\u{1F973}\u{1F38A}"]
     };
 }
 
