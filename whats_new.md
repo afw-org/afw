@@ -799,7 +799,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | `qualifier` / `qualifiers` snapshots | #9 | #129 (includes admin `maxObjects: 0` client fix) |
 | Permanent `src/*/tests` regression assets | — | #121 (docs only) |
 | `afw --allow` + YAML block strings / integers | #14 | — (feature earlier; regression tests on `mgg-develop`) |
-| Expression property names in object values | #38 | — (branch `issue-#38`) |
+| Expression property names in object values | #38 | #139 |
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
 
 ---
