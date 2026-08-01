@@ -109,9 +109,11 @@ impl_afw_value_optional_evaluate(
     const afw_value_script_function_parameter_t *const *params;
     const afw_value_t *const *arg;
     const afw_value_t *const *rest_argv;
+    const afw_value_t * const *call_argv;
     const afw_array_t *rest_array;
     afw_size_t parameter_number;
     afw_size_t rest_argc;
+    afw_size_t call_argc;
     afw_boolean_t parameter_scope_activated;
 
     result = NULL;
@@ -119,6 +121,11 @@ impl_afw_value_optional_evaluate(
     parameter_scope = NULL;
     parameter_scope_activated = false;
     script = self->script_function_definition;
+
+    /* Expand call-site ...spreads into a flat argv before binding. */
+    afw_value_call_args_expand_spreads(
+        self->args.argc, self->args.argv,
+        &call_argc, &call_argv, p, xctx);
 
     /* If closure, use its enclosing static scope. */
     if (self->enclosing_lexical_scope) {
@@ -219,14 +226,14 @@ impl_afw_value_optional_evaluate(
                  */
                 for (parameter_number = 1,
                     params = script->parameters,
-                    arg = self->args.argv + 1;
+                    arg = call_argv + 1;
                     parameter_number <= script->count;
                     parameter_number++, params++, arg++)
                 {
                     value = NULL;
                     if ((*params)->is_rest) {
-                        if (self->args.argc >= script->count) {
-                            rest_argc = self->args.argc - script->count + 1;
+                        if (call_argc >= script->count) {
+                            rest_argc = call_argc - script->count + 1;
                             rest_argv = arg;
                         }
                         else {
@@ -238,7 +245,7 @@ impl_afw_value_optional_evaluate(
                         value = afw_value_create_unmanaged_array(
                             rest_array, p, xctx);
                     }
-                    else if (parameter_number <= self->args.argc) {
+                    else if (parameter_number <= call_argc) {
                         value = afw_function_evaluate_parameter_with_type(
                             *arg, parameter_number,
                             (*params)->type,
@@ -258,7 +265,7 @@ impl_afw_value_optional_evaluate(
                 {
                     value = bound_values[i];
                     /* provided: caller supplied argv[i+1] (or rest). */
-                    provided = (i + 1 <= self->args.argc) ||
+                    provided = (i + 1 <= call_argc) ||
                         (*params)->is_rest;
 
                     if ((*params)->is_rest) {

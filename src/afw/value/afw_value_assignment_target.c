@@ -431,7 +431,22 @@ impl_decompile_object_pattern(
             afw_writer_write_eol(writer, xctx);
         }
         if (ap->is_rename) {
-            afw_writer_write_utf8(writer, ap->property_name, xctx);
+            if (ap->property_name_expr) {
+                afw_writer_write_z(writer, "[", xctx);
+                afw_value_decompile_value(ap->property_name_expr, writer,
+                    xctx);
+                afw_writer_write_z(writer, "]", xctx);
+            }
+            else if (ap->property_name) {
+                if (ap->property_name_was_string) {
+                    afw_writer_write_z(writer, "\"", xctx);
+                    afw_writer_write_utf8(writer, ap->property_name, xctx);
+                    afw_writer_write_z(writer, "\"", xctx);
+                }
+                else {
+                    afw_writer_write_utf8(writer, ap->property_name, xctx);
+                }
+            }
             afw_writer_write_z(writer, writer->tab ? ": " : ":", xctx);
             ae = ap->assignment_element;
             if (ae && ae->assignment_target) {

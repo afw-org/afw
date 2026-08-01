@@ -107,6 +107,17 @@ try {
 } catch ({ message }) {
     print(message);
 }]]></code>
+    <header>Functions and parameters</header>
+    <paragraph>
+        Function and lambda parameters may be a simple name or the same
+        list/object <literal>Pattern</literal> used in <literal>let</literal> /
+        <literal>const</literal> (holes, defaults, rest, rename, nesting,
+        string keys, and computed keys). Parameter defaults may be any
+        Expression. At a call site, <literal>f(...array)</literal> expands an
+        array into separate arguments (in addition to definition-side
+        <literal>...rest</literal> formals). See the Language Reference
+        Function statement for examples.
+    </paragraph>
     <header>Working with objects and arrays</header>
     <paragraph>
         Object and array behavior is provided by Adaptive functions in the

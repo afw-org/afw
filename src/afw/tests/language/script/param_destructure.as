@@ -166,3 +166,206 @@ function withRest(a, ...rest) {
 assert(withRest(1, 2, 3) === 2);
 
 return 0;
+//?
+//? test: ts-prior-param-default
+//? description: Default Expression may reference an earlier parameter (TS-like)
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function f(x, y = x) {
+    return y;
+}
+assert(f(3) === 3);
+assert(f(3, 9) === 9);
+
+function g({ a }, b = a) {
+    return b;
+}
+assert(g({ a: 7 }) === 7);
+
+function exprDefault(x = 1 + 2 * 3) {
+    return x;
+}
+assert(exprDefault() === 7);
+
+return 0;
+//?
+//? test: ts-required-pattern-missing-arg
+//? description: Required Pattern formal with no argument throws
+//? expect: error:Parameter 1 is required
+//? source: ...
+#!/usr/bin/env afw
+
+function req({ a }) {
+    return a;
+}
+req();
+//?
+//? test: ts-object-rest-on-param
+//? description: Object rest in a parameter Pattern
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function pack({ a, ...r }) {
+    assert(a === 1);
+    assert(r.b === 2);
+    assert(r.c === 3);
+    return length(keys(r));
+}
+assert(pack({ a: 1, b: 2, c: 3 }) === 2);
+
+return 0;
+//?
+//? test: ts-catch-rename-and-data
+//? description: catch Pattern rename and data property
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let m = "";
+let code = 0;
+try {
+    throw "fail" { "code": 42 };
+}
+catch ({ message: msg, data }) {
+    m = msg;
+    code = data.code;
+}
+assert(m === "fail");
+assert(code === 42);
+
+return 0;
+//?
+//? test: ts-recursive-pattern-formal
+//? description: Recursive call with object Pattern formal (bind order)
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function sumDown({ n, acc = 0 }) {
+    if (n === 0) {
+        return acc;
+    }
+    return sumDown({ n: n - 1, acc: acc + n });
+}
+assert(sumDown({ n: 4 }) === 10);
+
+return 0;
+//?
+//? test: ts-pattern-then-rest-param
+//? description: Pattern formal followed by rest parameter
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function mix({ a }, ...r) {
+    assert(a === 1);
+    assert(length(r) === 2);
+    assert(r[0] === "x");
+    assert(r[1] === "y");
+    return length(r);
+}
+assert(mix({ a: 1 }, "x", "y") === 2);
+
+return 0;
+//?
+//? test: ts-wrong-type-array-pattern
+//? description: Array Pattern on a non-array argument errors
+//? expect: error:Array destructure can only be performed on an array
+//? source: ...
+#!/usr/bin/env afw
+
+function takePair([a, b]) {
+    return a + b;
+}
+takePair({ a: 1, b: 2 });
+//?
+//? test: ts-optional-pattern-no-default
+//? description: Optional Pattern formal with no arg leaves binding undefined
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+/* Adaptive: omit whole arg without = {} → Pattern not applied; leaves undefined.
+ * Prefer = {} for TS options-object style. */
+function opt({ a }?) {
+    return a;
+}
+assert(opt() === undefined);
+assert(opt({ a: 5 }) === 5);
+
+return 0;
+//?
+//? test: ts-call-site-spread
+//? description: Call-site ...array expands into separate arguments
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function sum3(a, b, c) {
+    return a + b + c;
+}
+assert(sum3(...[1, 2, 3]) === 6);
+assert(sum3(1, ...[2, 3]) === 6);
+assert(sum3(...[1, 2], 3) === 6);
+
+function join(...parts) {
+    return string(parts);
+}
+assert(join(...["a", "b"], "c") === '["a","b","c"]');
+
+return 0;
+//?
+//? test: ts-computed-key-destructure
+//? description: Computed and string keys in object Patterns
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const key = "inner";
+function take({ [key]: v, "other": o }) {
+    assert(v === 11);
+    assert(o === 22);
+    return v + o;
+}
+assert(take({ inner: 11, other: 22 }) === 33);
+
+const { [key]: x } = { inner: 5 };
+assert(x === 5);
+
+return 0;
+//?
+//? test: ts-typed-pattern-leaves
+//? description: Type annotations on Pattern leaves and whole Pattern formal
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+function typedLeaves([a: integer, b: integer]: (array of integer)) {
+    return a + b;
+}
+assert(typedLeaves([3, 4]) === 7);
+
+function typedObj({ n: n: integer }) {
+    return n;
+}
+assert(typedObj({ n: 9 }) === 9);
+
+return 0;
+//?
+//? test: ts-catch-pattern-decompile-fidelity
+//? description: catch Pattern decompile recompiles and evaluates
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+const src = "try { throw \"z\"; } catch ({message}) { return message; }";
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(src))) == "z");
+assert(evaluate(compile<script>(script(d1))) == "z");
+
+return 0;

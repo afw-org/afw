@@ -180,49 +180,58 @@ impl_afw_value_optional_evaluate(
      * handled by afw_value_built_in_function. Check and handle for script
      * functions first.
      */
-    if (afw_value_is_script_function_definition(function_value)) {
-        result = afw_value_call_script_function(
-            self->args.contextual,
-            (afw_value_script_function_definition_t *)function_value,
-            NULL,
-            self->args.argc, self->args.argv, p, xctx);
-    }
+    {
+        afw_size_t call_argc;
+        const afw_value_t * const *call_argv;
 
-    /*
-     * This may still be a call to a built in function if a variable is assigned
-     * a built-in function definition.
-     */
-    else if (afw_value_is_function_definition(function_value)) {
-        result = afw_value_call_built_in_function(
-            self->args.contextual,
-            (const afw_value_function_definition_t *)function_value,
-            self->args.argc, self->args.argv, p, xctx);
-    }
+        afw_value_call_args_expand_spreads(
+            self->args.argc, self->args.argv,
+            &call_argc, &call_argv, p, xctx);
 
-    /*
-     * This may still be a call to a closure if a variable is assigned one.
-     */
-    else if (afw_value_is_closure_binding(function_value)) {
-        result = afw_value_call_script_function(
-            self->args.contextual,
-            ((const afw_value_closure_binding_t *)function_value)->
-                script_function_definition,
-            ((const afw_value_closure_binding_t *)function_value)->
-                enclosing_lexical_scope,
-            self->args.argc, self->args.argv, p, xctx);
-    }
+        if (afw_value_is_script_function_definition(function_value)) {
+            result = afw_value_call_script_function(
+                self->args.contextual,
+                (afw_value_script_function_definition_t *)function_value,
+                NULL,
+                call_argc, call_argv, p, xctx);
+        }
 
-    /* Otherwise, this must be a thunk call. */
-    else if (afw_value_is_function_thunk(function_value)) {
-        result = ((const afw_value_function_thunk_t *)function_value)->
-            execute(
-                (const afw_value_function_thunk_t *)function_value,
-                self->args.argc, self->args.argv, p, xctx);
-    }
+        /*
+         * This may still be a call to a built in function if a variable is
+         * assigned a built-in function definition.
+         */
+        else if (afw_value_is_function_definition(function_value)) {
+            result = afw_value_call_built_in_function(
+                self->args.contextual,
+                (const afw_value_function_definition_t *)function_value,
+                call_argc, call_argv, p, xctx);
+        }
 
-    /* Not a value function value at this point. */
-    else {
-        AFW_THROW_ERROR_Z(general, "Invalid function_value", xctx);
+        /*
+         * This may still be a call to a closure if a variable is assigned one.
+         */
+        else if (afw_value_is_closure_binding(function_value)) {
+            result = afw_value_call_script_function(
+                self->args.contextual,
+                ((const afw_value_closure_binding_t *)function_value)->
+                    script_function_definition,
+                ((const afw_value_closure_binding_t *)function_value)->
+                    enclosing_lexical_scope,
+                call_argc, call_argv, p, xctx);
+        }
+
+        /* Otherwise, this must be a thunk call. */
+        else if (afw_value_is_function_thunk(function_value)) {
+            result = ((const afw_value_function_thunk_t *)function_value)->
+                execute(
+                    (const afw_value_function_thunk_t *)function_value,
+                    call_argc, call_argv, p, xctx);
+        }
+
+        /* Not a value function value at this point. */
+        else {
+            AFW_THROW_ERROR_Z(general, "Invalid function_value", xctx);
+        }
     }
 
     /* Pop value from evaluation stack and return result. */
@@ -313,6 +322,102 @@ impl_afw_value_decompile(
     }
     afw_value_decompile_value(callee, writer, xctx);
     afw_value_decompile_call_args(writer, 1, &self->args, xctx);
+}
+
+
+/*
+ * Expand call-site ...spreads (list_expression markers) into flat argv.
+ */
+AFW_DEFINE(void)
+afw_value_call_args_expand_spreads(
+    afw_size_t argc_in,
+    const afw_value_t * const *argv_in,
+    afw_size_t *argc_out,
+    const afw_value_t * const **argv_out,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_size_t i;
+    afw_size_t j;
+    afw_size_t total;
+    afw_size_t n;
+    afw_boolean_t any_spread;
+    const afw_value_t *arg;
+    const afw_value_t *evaled;
+    const afw_value_t **new_argv;
+    const afw_array_t *arr;
+    const afw_iterator_t *it;
+    const afw_value_t *elem;
+
+    *argc_out = argc_in;
+    *argv_out = argv_in;
+    if (!argv_in || argc_in == 0) {
+        return;
+    }
+
+    any_spread = false;
+    for (i = 1; i <= argc_in; i++) {
+        if (argv_in[i] && afw_value_is_array_expression(argv_in[i])) {
+            any_spread = true;
+            break;
+        }
+    }
+    if (!any_spread) {
+        return;
+    }
+
+    /* Count expanded size. */
+    total = 0;
+    for (i = 1; i <= argc_in; i++) {
+        arg = argv_in[i];
+        if (arg && afw_value_is_array_expression(arg)) {
+            evaled = afw_value_evaluate(arg, p, xctx);
+            if (!afw_value_is_array(evaled)) {
+                AFW_THROW_ERROR_Z(general,
+                    "Call-site spread (...) requires an array", xctx);
+            }
+            arr = ((const afw_value_array_t *)evaled)->internal;
+            n = 0;
+            it = NULL;
+            for (;;) {
+                elem = afw_array_get_next_value(arr, &it, p, xctx);
+                if (!elem) {
+                    break;
+                }
+                n++;
+            }
+            total += n;
+        }
+        else {
+            total++;
+        }
+    }
+
+    new_argv = afw_pool_malloc(p,
+        sizeof(afw_value_t *) * (total + 1), xctx);
+    new_argv[0] = argv_in[0];
+    j = 1;
+    for (i = 1; i <= argc_in; i++) {
+        arg = argv_in[i];
+        if (arg && afw_value_is_array_expression(arg)) {
+            evaled = afw_value_evaluate(arg, p, xctx);
+            arr = ((const afw_value_array_t *)evaled)->internal;
+            it = NULL;
+            for (;;) {
+                elem = afw_array_get_next_value(arr, &it, p, xctx);
+                if (!elem) {
+                    break;
+                }
+                new_argv[j++] = elem;
+            }
+        }
+        else {
+            new_argv[j++] = arg;
+        }
+    }
+
+    *argc_out = total;
+    *argv_out = new_argv;
 }
 
 

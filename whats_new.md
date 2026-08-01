@@ -39,28 +39,31 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
 | **`stringify` / `decompile` / listing / binary text** | **`stringify`** pure JSON; **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets (see section below) |
-| **Param / catch Patterns (#140)** | Function and lambda parameters and `catch` may use the same list/object destructure Patterns as `let`/`const`; parameter defaults are Expressions |
+| **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys in Patterns; type syntax for later checking |
 
 ---
 
 ## Function parameter and catch Patterns (issue #140)
 
-**Issue #140** on branch `issue-#140` (merge to `mgg-develop` when ready).
+**Issue #140** (PR **#141** on `mgg-develop`; follow-ups on `Issue-#140-followup`).
 
 Adaptive Script already allowed list/object **Patterns** on `let` / `const`, assignment, and `for` / `for-of` heads. The same Patterns may now appear:
 
-- In **function and lambda parameter lists** (including nested rename, holes, rest, and property defaults).
+- In **function and lambda parameter lists** (nested rename, holes, rest, property defaults, **computed/string keys**).
 - In **`catch (…)`** bindings (e.g. `catch ({ message, data })`).
+- **Call-site spread:** `f(...arr)` / `f(a, ...rest, b)` expands an array into separate arguments.
 
-Parameter **defaults are Expressions** (not literals only). For options-style APIs, a whole-argument default is the usual pattern:
+Parameter **defaults are Expressions**. Pattern leaves and whole formals may carry **type annotations** (syntax for upcoming compile-time checking). Options-style example:
 
 ```adaptive
 function connect({ host, port = 443 } = { host: "localhost" }) {
     return host + ":" + string(port);
 }
+function sum3(a, b, c) { return a + b + c; }
+assert(sum3(...[1, 2, 3]) === 6);
 ```
 
-Not included: arrow functions, call-site `f(...arr)`, or an ES `arguments` object (use `...rest` on the formal list). Language Reference: Function statement and Exception Handling in Features.
+Not included: arrow functions, ES `arguments` object (use formal `...rest`). Language Reference: Function statement; Features — Exception Handling, Functions and parameters.
 
 ---
 
