@@ -39,7 +39,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
 | **`stringify` / `decompile` / listing / binary text** | **`stringify`** pure JSON; **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets (see section below) |
-| **Param / catch Patterns (#140)** | Function and lambda parameters and `catch` may use the same list/object destructure Patterns as `let`/`const`; parameter defaults are Expressions |
+| **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys in Patterns; type syntax for later checking |
 
 ---
 

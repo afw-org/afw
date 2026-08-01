@@ -84,7 +84,7 @@ Inventory of where Adaptive Script binds names, and whether a list/object **Patt
 |------|--------|-------------------|
 | **Process / CLI args as one array** (script body, Node-like `process.argv`) | **Done** (close pending Jeremy) | Jeremy **[#74](https://github.com/afw-org/afw/issues/74)** → `process::args` (+ `programName`, `pid`, …). Secrets path via `afw_crypto` + file/stream; interactive `readpass` never built (asked Jeremy if close is OK without it). |
 | **All call arguments inside a script function** (ES `arguments` object) | Rest param covers common case | Use `function f(...args)` (already supported). No separate ES `arguments` binding unless someone files a real need. |
-| **Call-site spread** `f(...arr)` | Missing | Separate from param Patterns; only definition-side rest exists today. |
+| **Call-site spread** `f(...arr)` | **Done** (follow-up) | list_expression marker + expand at call; see TS-shaped table |
 
 Do **not** conflate `process::args` (#74) with function-parameter rest or param destructure.
 
