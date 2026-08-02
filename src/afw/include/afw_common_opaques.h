@@ -962,7 +962,7 @@ typedef struct afw_value_template_definition_s
 afw_value_template_definition_t;
 
 /**
- * @brief Opaque `afw_value_type_t`.
+ * @brief Opaque `afw_value_type_t` (script/value type expression).
  *
  * See afw_value_internal.h for struct and more information.
  */
@@ -970,12 +970,20 @@ typedef struct afw_value_type_s
 afw_value_type_t;
 
 /**
- * @brief Opaque `afw_value_type_t`.
+ * @brief Opaque property entry in an object/interface type.
  *
  * See afw_value_internal.h for struct and more information.
  */
-typedef struct afw_value_type_list_s
-afw_value_type_list_t;
+typedef struct afw_value_type_property_s
+afw_value_type_property_t;
+
+/**
+ * @brief Opaque parameter entry in a function type expression.
+ *
+ * See afw_value_internal.h for struct and more information.
+ */
+typedef struct afw_value_type_function_param_s
+afw_value_type_function_param_t;
 
 /**
  * @brief Opaque `afw_value_symbol_reference_t`.

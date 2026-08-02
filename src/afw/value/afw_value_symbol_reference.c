@@ -46,7 +46,10 @@ afw_value_symbol_reference_create(
     self->inf = &afw_value_symbol_reference_inf;
     self->contextual = contextual;
     self->symbol = symbol;
-    self->evaluated_data_type = symbol->type.data_type;
+    self->evaluated_data_type =
+        (symbol->type.kind == afw_value_type_kind_data_type)
+        ? symbol->type.data_type
+        : NULL;
 
     /** @fixme add optimization. Check type. Maybe replace evaluated_data_type*/
     self->optimized_value = (const afw_value_t *)self;

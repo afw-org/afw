@@ -747,21 +747,7 @@ afw_value_compiler_listing_name_and_type(
         if (name) {
             afw_writer_write_z(writer, ": ", xctx);
         }
-        if (type->data_type) {
-            afw_writer_write_utf8(writer,
-                &type->data_type->data_type_id, xctx);
-            if (type->data_type_parameter_contextual) {
-                afw_writer_write_z(writer, "<", xctx);
-                afw_writer_write(writer,
-                    type->data_type_parameter_contextual->compiled_value->
-                        full_source->s +
-                        type->data_type_parameter_contextual->value_offset,
-                    type->data_type_parameter_contextual->value_size,
-                    xctx);
-                afw_writer_write_z(writer, ">", xctx);
-            }
-        }
-        else {
+        if (!afw_value_decompile_type(type, writer, xctx)) {
             afw_writer_write_z(writer, "any", xctx);
         }
     }

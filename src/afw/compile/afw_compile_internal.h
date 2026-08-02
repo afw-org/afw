@@ -410,6 +410,13 @@ struct afw_compile_internal_parser_s {
     /* continue statement allowed in loop. */
     afw_boolean_t continue_allowed;
 
+    /*
+     * Script type/interface name table for this compile (issue #28).
+     * Key: type name (afw_utf8_t *), value: const afw_value_type_t *.
+     * NULL until first type/interface statement.
+     */
+    apr_hash_t *script_type_names;
+
 };
 
 
@@ -1231,6 +1238,15 @@ AFW_DECLARE_INTERNAL(const afw_value_type_t *)
 afw_compile_parse_OptionalType(
     afw_compile_parser_t *parser,
     afw_boolean_t is_return);
+
+/**
+ * @brief Register a script `type` / `interface` name for this compile unit.
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_compile_script_type_register(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name,
+    const afw_value_type_t *type);
 
 AFW_DECLARE_INTERNAL(void)
 afw_compile_parse_Parameters(

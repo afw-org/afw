@@ -1804,8 +1804,7 @@ afw_value_decompile_value(
  * @return true if anything was written (type is present and not bare any).
  *
  * Used for assignment targets, script_function params/returns, and future
- * type-check work. Prefer reconstructing surface forms (e.g.
- * `integer`, `(array of integer)`).
+ * type-check work. Prefer TS-like surface forms (e.g. `integer`, `integer[]`).
  */
 AFW_DEFINE(afw_boolean_t)
 afw_value_decompile_type(

@@ -95,51 +95,118 @@ struct afw_value_block_s {
 
 
 
-/** @brief Type meta (data type, data type parameters, and value meta object. */
-struct afw_value_type_s {
+/**
+ * @brief Kind of script/value type expression (TS-like; issue #28).
+ *
+ * Leaves are Adaptive data types (permanent pointers). Composites build
+ * script-local structure. Not adaptive object types.
+ */
+typedef enum afw_value_type_kind_e {
+    /** Adaptive data type leaf (integer, string, any, void, array, …). */
+    afw_value_type_kind_data_type,
 
-    /** @brief data type or NULL. */
-    const afw_data_type_t *data_type;
+    /** Named type/interface reference (type Foo = … / interface Bar). */
+    afw_value_type_kind_reference,
 
-    /** @brief contextual for data type parameter or NULL. */
-    const afw_compile_value_contextual_t *data_type_parameter_contextual;
+    /** Object type literal or interface body: { a?: T, … }. */
+    afw_value_type_kind_object,
 
-    /** @brief Data type specific data type parameter or NULL. */
-    union {
+    /** Array type: T[] or Array<T>. */
+    afw_value_type_kind_array,
 
-        /** @brief string, base64Binary, hexBinary. */
-        const afw_utf8_t *media_type;
+    /** Tuple type: [T, U, …]. */
+    afw_value_type_kind_tuple,
 
-        /** @brief script and template. */
-        const afw_value_type_t *return_type;
+    /** Function type: (a: T, b?: U) => R. */
+    afw_value_type_kind_function,
 
-        /** @brief function. */
-        const afw_value_script_function_signature_t *function_signature;
+    /** Union: A | B | … */
+    afw_value_type_kind_union,
 
-        /** @brief list type (If NULL, 1 dimension with untyped cells). */
-        const afw_value_type_list_t *list_type;
+    /** Intersection: A & B & … */
+    afw_value_type_kind_intersection
+} afw_value_type_kind_t;
 
-        /** @brief object and objectId. */
-        const afw_utf8_t *object_type_id;
 
-        /** @brief unevaluated. */
-        const afw_value_type_t *type;
-    };
 
-    /** @brief _AdaptiveValueMeta_ object or NULL. */
-    const afw_object_t *value_meta_object;
+/** @brief Property in an object/interface type. */
+struct afw_value_type_property_s {
+    const afw_value_type_property_t *next;
+    const afw_utf8_t *name;
+    const afw_value_type_t *type;
+    afw_boolean_t optional;
 };
 
 
 
-/** @brief Type for list. */
-struct afw_value_type_list_s {
+/** @brief Parameter in a function type expression. */
+struct afw_value_type_function_param_s {
+    const afw_value_type_function_param_t *next;
+    const afw_utf8_t *name; /* optional; may be NULL for bare type params */
+    const afw_value_type_t *type;
+    afw_boolean_t optional;
+    afw_boolean_t is_rest;
+};
 
-    /** @brief Number of subscripts needed to access cell. */
-    afw_size_t dimension;
 
-    /** @brief Cell type. If NULL, cell is untyped. */
-    const afw_value_type_t *cell_type;
+
+/**
+ * @brief Type information for adaptive values / script bindings.
+ *
+ * TS-like type expression graph. Embeddable root (fixed size); children are
+ * pool pointers. Leaf identity for data types is permanent
+ * `afw_data_type_*` pointer comparison.
+ */
+struct afw_value_type_s {
+
+    /** @brief Discriminator for union below. */
+    afw_value_type_kind_t kind;
+
+    union {
+
+        /** kind_data_type: permanent adaptive data type (never NULL). */
+        const afw_data_type_t *data_type;
+
+        /** kind_reference: name of type/interface; resolved may be NULL. */
+        struct {
+            const afw_utf8_t *name;
+            const afw_value_type_t *resolved;
+        } reference;
+
+        /**
+         * kind_object: structural object or interface body.
+         * extends/extends_count used for interface extends list.
+         */
+        struct {
+            const afw_value_type_property_t *properties;
+            const afw_value_type_t *const *extends;
+            afw_size_t extends_count;
+            const afw_utf8_t *interface_name; /* NULL if type literal */
+        } object;
+
+        /** kind_array: element type (NULL = untyped elements). */
+        struct {
+            const afw_value_type_t *element;
+        } array;
+
+        /** kind_tuple: fixed element list. */
+        struct {
+            const afw_value_type_t *const *elements;
+            afw_size_t count;
+        } tuple;
+
+        /** kind_function: parameter list + return type. */
+        struct {
+            const afw_value_type_function_param_t *parameters;
+            const afw_value_type_t *returns;
+        } function;
+
+        /** kind_union / kind_intersection: member types. */
+        struct {
+            const afw_value_type_t *const *members;
+            afw_size_t count;
+        } compound;
+    };
 };
 
 /**

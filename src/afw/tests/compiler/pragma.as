@@ -269,16 +269,16 @@ assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-typed-array-of-roundtrip
-//? description: (array of integer) type annotation round-trip
+//? description: integer[] type annotation round-trip (TS-like; issue #28)
 //? skip: false
 //? expect: 0
 //? source: ...
 
 const d = decompile(compile<script>(script(
-    "const x: (array of integer) = [1, 2];\nreturn x;"
+    "const x: integer[] = [1, 2];\nreturn x;"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",x:(array of integer)),[1,2],undefined),return(x))");
+    "#block(const(#assignment_target(\"const\",x:integer[]),[1,2],undefined),return(x))");
 assert(evaluate(compile<script>(script(d))) == [1, 2]);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;

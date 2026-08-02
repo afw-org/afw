@@ -308,7 +308,9 @@ impl_assignment_target(
 
     case afw_compile_assignment_target_type_symbol_reference:
         symbol = at->symbol_reference->symbol;
-        if (symbol->type.data_type != afw_data_type_unevaluated) {
+        if (symbol->type.kind != afw_value_type_kind_data_type ||
+            symbol->type.data_type != afw_data_type_unevaluated)
+        {
             value = afw_value_evaluate(value, p, xctx);
         }
         afw_xctx_scope_symbol_set_value(symbol, value, xctx);

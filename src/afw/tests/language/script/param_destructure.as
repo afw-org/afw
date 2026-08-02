@@ -343,7 +343,7 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-function typedLeaves([a: integer, b: integer]: (array of integer)) {
+function typedLeaves([a: integer, b: integer]: integer[]) {
     return a + b;
 }
 assert(typedLeaves([3, 4]) === 7);

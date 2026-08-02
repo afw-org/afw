@@ -359,13 +359,22 @@ afw_function_evaluate_parameter_with_type(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *result;
+    const afw_data_type_t *want_dt;
 
-    /** @fixme add support for dataTypeParameter. */
+    /*
+     * Only leaf Adaptive data types participate in convert until full
+     * type-check lands (issue #28). Composites (array-of, union, …) do not
+     * use the data_type union arm.
+     */
+    want_dt = NULL;
+    if (type && type->kind == afw_value_type_kind_data_type) {
+        want_dt = type->data_type;
+    }
 
     /* Just return if no evaluation or conversion needed. */
     if (afw_value_is_defined_and_evaluated(value) &&
-        (!type || !type->data_type || type->data_type == afw_data_type_any ||
-            afw_value_get_data_type(value, xctx) == type->data_type))
+        (!want_dt || want_dt == afw_data_type_any ||
+            afw_value_get_data_type(value, xctx) == want_dt))
     {
         return value;
     }
@@ -377,10 +386,10 @@ afw_function_evaluate_parameter_with_type(
     result = afw_value_evaluate(value, p, xctx);
 
     /* Convert to requested data type if needed. */
-    if (result && type && type->data_type &&
-        afw_value_get_data_type(value, xctx) != type->data_type)
+    if (result && want_dt && want_dt != afw_data_type_any &&
+        afw_value_get_data_type(result, xctx) != want_dt)
     {
-        result = afw_value_convert(result, type->data_type, true, p, xctx);
+        result = afw_value_convert(result, want_dt, true, p, xctx);
     }
 
     /* Pop parameter number from evaluation stack and return result. */

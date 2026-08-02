@@ -458,23 +458,86 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * InterfaceName ::= Identifier
- * 
- * InterfaceStatement ::= 'interface' InterfaceName
- *      '{' 
- *          ( String | Identifier ) ':' Type
- *          ( ','  ( String | Identifier ) ':' Type )*
- *          ','?
- *      '}' ';'
+ *
+ * InterfaceStatement ::=
+ *     'interface' InterfaceName
+ *     ( 'extends' TypeName ( ',' TypeName )* )?
+ *     ObjectTypeLiteral
+ *     ';'
+ *
+ *# Object body is TS-like { prop?: Type, ... } (see Type in expression).
+ *# Script-local only; not adaptive object types (issue #28).
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 {
-    const afw_value_t *result;
+    const afw_utf8_t *name;
+    const afw_value_type_t *body;
+    const afw_value_type_t *base;
+    afw_value_type_t *type;
+    apr_array_header_t *extends;
+    const afw_value_type_t **list;
+    afw_size_t i;
+    afw_size_t brace_offset;
 
-    AFW_COMPILE_THROW_ERROR_Z("interface statement is not supported yet");
+    /* 'interface' already consumed as statement keyword. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is_unqualified_identifier()) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting interface name");
+    }
+    name = parser->token->identifier_name;
 
-    return result;
+    extends = NULL;
+    afw_compile_get_token();
+    if (afw_compile_token_is_name_z("extends")) {
+        extends = apr_array_make(parser->apr_p, 2,
+            sizeof(const afw_value_type_t *));
+        for (;;) {
+            /* Each base: full Type starting at next token (name). */
+            base = afw_compile_parse_Type(parser);
+            APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
+            afw_compile_get_token();
+            if (!afw_compile_token_is(comma)) {
+                break;
+            }
+        }
+    }
+
+    if (!afw_compile_token_is(open_brace)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '{' in interface declaration");
+    }
+
+    /* parse_Type begins with get_token; put '{' back so primary sees it. */
+    brace_offset = parser->token->token_source_offset;
+    afw_compile_restore_cursor(brace_offset);
+    body = afw_compile_parse_Type(parser);
+
+    if (body->kind != afw_value_type_kind_object) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Interface body must be an object type literal");
+    }
+
+    type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
+    type->kind = afw_value_type_kind_object;
+    type->object.properties = body->object.properties;
+    type->object.interface_name = name;
+    if (extends && extends->nelts > 0) {
+        type->object.extends_count = (afw_size_t)extends->nelts;
+        list = afw_pool_malloc(parser->p,
+            sizeof(afw_value_type_t *) * type->object.extends_count,
+            parser->xctx);
+        for (i = 0; i < type->object.extends_count; i++) {
+            list[i] = ((const afw_value_type_t **)extends->elts)[i];
+        }
+        type->object.extends = list;
+    }
+
+    afw_compile_script_type_register(parser, name, type);
+
+    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    return NULL;
 }
 
 
@@ -482,18 +545,32 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * TypeVariableName ::= Identifier
- * 
+ *
  * TypeStatement ::= 'type' TypeVariableName '=' Type ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_TypeStatement(afw_compile_parser_t *parser)
 {
-    const afw_value_t *result;
+    const afw_utf8_t *name;
+    const afw_value_type_t *type;
 
-    AFW_COMPILE_THROW_ERROR_Z("type statement is not supported yet");
+    afw_compile_get_token();
+    if (!afw_compile_token_is_unqualified_identifier()) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting type name");
+    }
+    name = parser->token->identifier_name;
 
-    return result;
+    afw_compile_get_token();
+    if (!afw_compile_token_is(equal)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '=' in type alias");
+    }
+
+    type = afw_compile_parse_Type(parser);
+    afw_compile_script_type_register(parser, name, type);
+
+    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    return NULL;
 }
 
 
