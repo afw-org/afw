@@ -8,7 +8,7 @@
 
 /**
  * @file afw_value_type_check.c
- * @brief Compile/runtime type-check mode and leaf assignability.
+ * @brief Compile/runtime type-check mode and assignability (incl. structural).
  */
 
 #include "afw_internal.h"
@@ -94,6 +94,194 @@ impl_is_nullish_value(const afw_value_t *value, afw_xctx_t *xctx)
 
 
 
+static afw_boolean_t
+impl_strict_null_checks(afw_xctx_t *xctx)
+{
+    return afw_flag_is_active(
+        xctx->env->flag_index_compile_strictNullChecks_active, xctx);
+}
+
+
+
+/**
+ * Property value from an evaluated object, object_expression, or
+ * object_construct (static names only). Returns NULL if absent.
+ * has_open_props is set when a construct has spread/expr names so missing
+ * required props cannot be proven.
+ */
+static const afw_value_t *
+impl_get_typed_object_property(
+    const afw_value_t *value,
+    const afw_utf8_t *name,
+    afw_boolean_t *has_open_props,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *obj;
+    const afw_value_object_construct_t *construct;
+    const afw_value_object_construct_entry_t *e;
+    const afw_value_t *found;
+
+    *has_open_props = false;
+
+    if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        obj = ((const afw_value_object_t *)value)->internal;
+        return afw_object_get_property(obj, name, xctx);
+    }
+
+    if (afw_value_is_object_expression(value)) {
+        obj = ((const afw_value_object_expression_t *)value)->internal;
+        return afw_object_get_property(obj, name, xctx);
+    }
+
+    if (afw_value_is_object_construct(value)) {
+        construct = (const afw_value_object_construct_t *)value;
+        found = NULL;
+        for (e = construct->entries; e; e = e->next) {
+            if (e->type == afw_value_object_construct_entry_spread ||
+                e->type == afw_value_object_construct_entry_name_expr)
+            {
+                *has_open_props = true;
+            }
+            else if (e->type == afw_value_object_construct_entry_static &&
+                e->static_name &&
+                afw_utf8_equal(e->static_name, name))
+            {
+                found = e->value;
+            }
+        }
+        return found;
+    }
+
+    /* Unevaluated / non-inspectable object-shaped value. */
+    *has_open_props = true;
+    return NULL;
+}
+
+
+
+static afw_boolean_t
+impl_object_type_properties_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_type_property_t *prop;
+    const afw_value_t *pv;
+    afw_boolean_t has_open_props;
+    afw_size_t i;
+    const afw_value_type_t *base;
+
+    /* Interface extends: value must satisfy each base type. */
+    for (i = 0; i < expected->object.extends_count; i++) {
+        base = expected->object.extends[i];
+        if (base &&
+            !afw_value_type_is_assignable(base, value, xctx))
+        {
+            return false;
+        }
+    }
+
+    for (prop = expected->object.properties; prop; prop = prop->next) {
+        if (!prop->name) {
+            continue;
+        }
+        pv = impl_get_typed_object_property(value, prop->name,
+            &has_open_props, xctx);
+
+        if (!pv || afw_value_is_undefined(pv)) {
+            if (prop->optional) {
+                continue;
+            }
+            /* Spread / dynamic names: cannot prove required prop missing. */
+            if (has_open_props) {
+                continue;
+            }
+            return false;
+        }
+
+        if (prop->type && !afw_value_type_is_any(prop->type)) {
+            if (!afw_value_type_is_assignable(prop->type, pv, xctx)) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+
+static const afw_array_t *
+impl_try_array_internal(const afw_value_t *value)
+{
+    if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
+        return ((const afw_value_array_t *)value)->internal;
+    }
+    /*
+     * list_expression wraps an unevaluated array constructor call in some
+     * cases; only deep-check plain evaluated arrays for now.
+     */
+    return NULL;
+}
+
+
+
+static afw_boolean_t
+impl_array_elements_assignable(
+    const afw_value_type_t *element_type,
+    const afw_array_t *arr,
+    afw_xctx_t *xctx)
+{
+    afw_size_t count;
+    afw_size_t i;
+    const afw_value_t *elem;
+
+    if (!element_type || afw_value_type_is_any(element_type)) {
+        return true;
+    }
+
+    count = afw_array_get_count(arr, xctx);
+    for (i = 0; i < count; i++) {
+        elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
+        if (!afw_value_type_is_assignable(element_type, elem, xctx)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+static afw_boolean_t
+impl_tuple_elements_assignable(
+    const afw_value_type_t *expected,
+    const afw_array_t *arr,
+    afw_xctx_t *xctx)
+{
+    afw_size_t count;
+    afw_size_t i;
+    const afw_value_t *elem;
+    const afw_value_type_t *et;
+
+    count = afw_array_get_count(arr, xctx);
+    if (count != expected->tuple.count) {
+        return false;
+    }
+
+    for (i = 0; i < expected->tuple.count; i++) {
+        et = expected->tuple.elements[i];
+        elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
+        if (et && !afw_value_type_is_any(et)) {
+            if (!afw_value_type_is_assignable(et, elem, xctx)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
+
 AFW_DEFINE(afw_boolean_t)
 afw_value_type_is_assignable(
     const afw_value_type_t *expected,
@@ -102,6 +290,7 @@ afw_value_type_is_assignable(
 {
     const afw_data_type_t *want;
     const afw_data_type_t *got;
+    const afw_array_t *arr;
     afw_boolean_t strict_null;
 
     if (afw_value_type_is_any(expected)) {
@@ -110,6 +299,8 @@ afw_value_type_is_assignable(
     if (!value) {
         return false;
     }
+
+    strict_null = impl_strict_null_checks(xctx);
 
     /* Union: assignable if matches any member. */
     if (expected->kind == afw_value_type_kind_union) {
@@ -139,18 +330,49 @@ afw_value_type_is_assignable(
         return expected->compound.count > 0;
     }
 
-    /* Array / tuple: value must be an array (element types later). */
-    if (expected->kind == afw_value_type_kind_array ||
-        expected->kind == afw_value_type_kind_tuple)
-    {
+    /* Array: container + optional element types when inspectable. */
+    if (expected->kind == afw_value_type_kind_array) {
+        if (impl_is_nullish_value(value, xctx)) {
+            return !strict_null;
+        }
         got = afw_value_get_data_type(value, xctx);
-        return got == afw_data_type_array;
+        if (got != afw_data_type_array) {
+            return false;
+        }
+        arr = impl_try_array_internal(value);
+        if (!arr) {
+            return true;
+        }
+        return impl_array_elements_assignable(
+            expected->array.element, arr, xctx);
     }
 
-    /* Object shape / interface: value must be an object. */
-    if (expected->kind == afw_value_type_kind_object) {
+    /* Tuple: fixed length + per-position types when inspectable. */
+    if (expected->kind == afw_value_type_kind_tuple) {
+        if (impl_is_nullish_value(value, xctx)) {
+            return !strict_null;
+        }
         got = afw_value_get_data_type(value, xctx);
-        return got == afw_data_type_object;
+        if (got != afw_data_type_array) {
+            return false;
+        }
+        arr = impl_try_array_internal(value);
+        if (!arr) {
+            return true;
+        }
+        return impl_tuple_elements_assignable(expected, arr, xctx);
+    }
+
+    /* Object shape / interface: properties + extends when inspectable. */
+    if (expected->kind == afw_value_type_kind_object) {
+        if (impl_is_nullish_value(value, xctx)) {
+            return !strict_null;
+        }
+        got = afw_value_get_data_type(value, xctx);
+        if (got != afw_data_type_object) {
+            return false;
+        }
+        return impl_object_type_properties_assignable(expected, value, xctx);
     }
 
     /* Named reference: use resolved type if present. */
@@ -164,6 +386,9 @@ afw_value_type_is_assignable(
 
     /* Function type: value should be a function. */
     if (expected->kind == afw_value_type_kind_function) {
+        if (impl_is_nullish_value(value, xctx)) {
+            return !strict_null;
+        }
         got = afw_value_get_data_type(value, xctx);
         return got == afw_data_type_function;
     }
@@ -177,9 +402,6 @@ afw_value_type_is_assignable(
         /* unknown accepts any value (TS: assign TO unknown). */
         return true;
     }
-
-    strict_null = afw_flag_is_active(
-        xctx->env->flag_index_compile_strictNullChecks_active, xctx);
 
     if (want == afw_data_type_void) {
         /* void slot: undefined, or null if not strictNullChecks. */
@@ -215,7 +437,7 @@ afw_value_type_is_assignable(
         return true;
     }
 
-    /* array leaf type accepts array values (element types not checked v1). */
+    /* array leaf type accepts array values (element types not checked). */
     if (want == afw_data_type_array && got == afw_data_type_array) {
         return true;
     }

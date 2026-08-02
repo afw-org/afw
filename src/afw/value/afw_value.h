@@ -1834,7 +1834,10 @@ AFW_DEFINE(const afw_data_type_t *)
 afw_value_type_get_leaf_data_type(const afw_value_type_t *type);
 
 /**
- * @brief Whether value is assignable to expected type (leaf-focused v1).
+ * @brief Whether value is assignable to expected type.
+ *
+ * Handles leaves, unions/intersections, array/tuple elements, and
+ * object/interface properties (with extends) when the value is inspectable.
  */
 AFW_DEFINE(afw_boolean_t)
 afw_value_type_is_assignable(

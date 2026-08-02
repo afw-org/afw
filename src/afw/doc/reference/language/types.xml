@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Types</title>
+    <paragraph>
+        Adaptive Script uses a TypeScript-like type surface with
+        <literal>Adaptive data types</literal> as leaves
+        (<literal>integer</literal>, <literal>string</literal>,
+        <literal>boolean</literal>, <literal>object</literal>,
+        <literal>array</literal>, <literal>any</literal>,
+        <literal>void</literal>, and the other registered data types)—not
+        JavaScript primitive names. Types annotate variables, function
+        parameters and returns, and script-local <literal>type</literal> /
+        <literal>interface</literal> declarations.
+    </paragraph>
+    <paragraph>
+        Script types are separate from adaptive <emphasis>object types</emphasis>
+        (catalog OTs / property meta). Object-type validation at the adapter and
+        request layer is unchanged. Script <literal>interface</literal> and
+        object type literals are structural shapes for checking only.
+    </paragraph>
+
+    <header>Syntax overview</header>
+    <code><![CDATA[const n: integer = 1;
+const s: string = "hi";
+const a: integer[] = [1, 2];
+const b: Array<string> = ["x"];
+const t: [integer, string] = [1, "a"];
+const u: integer | string = 1;
+const o: { host: string, port?: integer } = { host: "h" };
+const f: (a: integer) => integer = function (a: integer): integer {
+    return a + 1;
+};
+
+type Id = integer;
+interface Base {
+    id: integer
+};
+interface Person extends Base {
+    name: string,
+    age?: integer
+};
+const p: Person = { id: 1, name: "ada" };]]></code>
+    <paragraph>
+        <literal>T[]</literal> and <literal>Array&lt;T&gt;</literal> are the same
+        array type. Optional properties use <literal>?</literal>. Unions use
+        <literal>|</literal>; intersections use <literal>&amp;</literal>.
+        Function types use <literal>(params) =&gt; Return</literal>.
+    </paragraph>
+    <paragraph>
+        Older Adaptive Type spellings such as
+        <literal>(array of integer)</literal> and
+        <literal>(object "SomeOT")</literal> are not accepted.
+    </paragraph>
+
+    <header>Type checking (default off)</header>
+    <paragraph>
+        Types are always parsed and stored. Checking is
+        <emphasis>off by default</emphasis> so existing scripts keep working.
+        Opt in with environment flags or the <literal>#typecheck</literal>
+        pragma.
+    </paragraph>
+    <list>
+        <item>
+            <literal>compile:typeCheck</literal> — compile-time checks when the
+            right-hand side type is known, and runtime checks on assignment and
+            script function parameters.
+        </item>
+        <item>
+            <literal>compile:typeCheckCompileOnly</literal> — compile-time only
+            (wins if both mode flags are set).
+        </item>
+        <item>
+            <literal>compile:noImplicitAny</literal> — require annotations when
+            checking is active (missing type is otherwise treated as
+            <literal>any</literal>).
+        </item>
+        <item>
+            <literal>compile:strictNullChecks</literal> — stricter handling of
+            <literal>null</literal> / undefined.
+        </item>
+        <item>
+            <literal>compile:strict</literal> — enables typeCheck, noImplicitAny,
+            and strictNullChecks.
+        </item>
+    </list>
+    <paragraph>
+        Flags can be set from the host environment or with
+        <literal>flag_set</literal> in scripts (for example in tests).
+    </paragraph>
+
+    <header>The #typecheck pragma</header>
+    <paragraph>
+        In statement position, <literal>#typecheck</literal> sets checking
+        policy for the rest of that compile unit (and evaluation on the same
+        execution context):
+    </paragraph>
+    <code><![CDATA[#typecheck;                          // full on
+#typecheck on;
+#typecheck compileOnly;
+#typecheck off;
+#typecheck on noImplicitAny;
+#typecheck on noImplicitAny strictNullChecks;
+#typecheck strict;                     // full + noImplicitAny + strictNullChecks
+#typecheck on, noImplicitAny;          // commas optional]]></code>
+    <paragraph>
+        Mode tokens: <literal>off</literal> / <literal>false</literal>,
+        <literal>on</literal> / <literal>full</literal> / <literal>true</literal>,
+        <literal>compileOnly</literal>. Option tokens:
+        <literal>noImplicitAny</literal>, <literal>strictNullChecks</literal>,
+        <literal>strict</literal>. A trailing semicolon is required.
+        <literal>#typecheck off;</literal> clears the mode flags and the related
+        policy options for that unit.
+    </paragraph>
+
+    <header>What is checked</header>
+    <paragraph>
+        When checking is on:
+    </paragraph>
+    <list>
+        <item>
+            Leaf data types (for example <literal>integer</literal> vs
+            <literal>string</literal>).
+        </item>
+        <item>
+            Unions and intersections.
+        </item>
+        <item>
+            Array types: value must be an array; element types are checked when
+            the value is an inspectable array.
+        </item>
+        <item>
+            Tuples: array length and per-position types when inspectable.
+        </item>
+        <item>
+            Object / interface shapes: required properties must be present;
+            property values must match declared types; <literal>extends</literal>
+            bases are checked. Extra properties on the value are allowed
+            (structural typing).
+        </item>
+        <item>
+            Function types: value must be a function (parameter/return
+            structural matching may grow later).
+        </item>
+    </list>
+    <paragraph>
+        Unannotated bindings and external / adaptive I/O are treated as
+        <literal>any</literal> at compile time unless
+        <literal>noImplicitAny</literal> is set. Runtime adaptive dataType and
+        object-type meta rules still apply independently of script type checking.
+    </paragraph>
+
+    <header>Examples with checking</header>
+    <code><![CDATA[#typecheck;
+
+const ok: integer = 1;
+// const bad: integer = "no";   // type error
+
+const nums: integer[] = [1, 2, 3];
+// const mixed: integer[] = [1, "x"];  // type error when elements are checked
+
+interface Point {
+    x: integer,
+    y: integer
+};
+const p: Point = { x: 0, y: 0 };
+// const q: Point = { x: 0 };   // missing required y]]></code>
+</doc>

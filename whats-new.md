@@ -553,9 +553,13 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 | `compile:strict` | typeCheck + noImplicitAny + strictNullChecks |
 | `#typecheck;` / `#typecheck on;` | Same as full typeCheck for rest of that compile |
 | `#typecheck compileOnly;` | Compile-only for that compile |
-| `#typecheck off;` | Turn off for that compile |
+| `#typecheck off;` | Turn off for that compile (also clears noImplicitAny / strictNullChecks) |
+| `#typecheck on noImplicitAny;` | Full check + require annotations |
+| `#typecheck on strictNullChecks;` | Full check + strict null/undefined |
+| `#typecheck strict;` | Full + noImplicitAny + strictNullChecks |
+| `#typecheck on, noImplicitAny;` | Commas between tokens optional |
 
-Runtime checks apply on assignment and script function parameters (leaf types and simple composites). Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pad: `designs/issue-28-type-syntax.md`.
+Runtime and compile-time checks apply on assignment and script function parameters: leaf data types, unions/intersections, **object/interface property shapes** (required props, property types, `extends`), **array element types**, and **tuple length + positions** when the value is inspectable. Handbook: Language Reference → **Types**. Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pad: `designs/issue-28-type-syntax.md`.
 
 ---
 

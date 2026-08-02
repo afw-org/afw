@@ -37,13 +37,15 @@
 | `compile:strict` | includes typeCheck + noImplicitAny + strictNullChecks |
 
 Helpers: `afw_value_type_check.c` / APIs in `afw_value.h`.  
-Runtime: assign + script params (leaves, union/intersection, array/object/function shape).  
-Compile: const/let/assign when RHS type known; `noImplicitAny` on missing annotations.
+Runtime: assign + script params (leaves, union/intersection, array/tuple elements, object/interface properties + extends, function shape).  
+Compile: const/let/assign when RHS type known (including inspectable object/array literals); `noImplicitAny` on missing annotations.
 
-**Pragma:** `#typecheck;` / `on` / `compileOnly` / `off` (statement position; sets xctx flags).
+**Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; sets xctx flags; commas optional).
+
+**Handbook:** `src/afw/doc/reference/language/types.xml`.
 
 ## Later
 
-- Property-level structural checks; richer function-type checks.
+- Richer function-type checks (param/return structural).
 - More TS surface (generics, etc.) if needed.
 - Object/array meta access polish under #2 (separate).

@@ -264,3 +264,182 @@ const r: any = evaluate(compile<script>(script(
 )));
 assert(r === 5);
 return 0;
+
+//?
+//? test: typecheck-object-shape-ok
+//? description: structural object/interface assign succeeds
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "interface Base { id: integer };\n" +
+    "interface Person extends Base { name: string, age?: integer };\n" +
+    "const p: Person = { id: 1, name: \"a\" };\n" +
+    "const o: { host: string, port?: integer } = { host: \"h\" };\n" +
+    "return p.id;"
+)));
+assert(r === 1);
+return 0;
+
+//?
+//? test: typecheck-object-missing-required
+//? description: missing required property fails with typeCheck
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const o: { host: string, port: integer } = { host: \"h\" };\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-object-wrong-prop-type
+//? description: wrong property type fails with typeCheck
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const o: { host: string } = { host: 1 };\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-array-element
+//? description: integer[] rejects string element
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const a: integer[] = [1, \"x\"];\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-tuple-length
+//? description: tuple length mismatch fails
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const t: [integer, string] = [1];\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-tuple-ok
+//? description: matching tuple assigns
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const t: [integer, string] = [1, \"a\"];\n" +
+    "return t[0];"
+)));
+assert(r === 1);
+return 0;
+
+//?
+//? test: typecheck-pragma-noImplicitAny
+//? description: #typecheck on noImplicitAny;
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+compile<script>(script(
+    "#typecheck on noImplicitAny;\nconst x = 1;\nreturn 0;"
+));
+return 0;
+
+//?
+//? test: typecheck-pragma-strict-bundle
+//? description: #typecheck strict; enables noImplicitAny
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+compile<script>(script(
+    "#typecheck strict;\nconst x = 1;\nreturn 0;"
+));
+return 0;
+
+//?
+//? test: typecheck-pragma-options-comma
+//? description: #typecheck on, noImplicitAny; with comma
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+compile<script>(script(
+    "#typecheck on, noImplicitAny;\nconst x = 1;\nreturn 0;"
+));
+return 0;

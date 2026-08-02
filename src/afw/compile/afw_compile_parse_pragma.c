@@ -651,11 +651,22 @@ impl_parse_pragma_script_function(afw_compile_parser_t *parser)
 
 
 /*
- * #typecheck [ off | on | compileOnly ] ;
+ * #typecheck [ mode ] [ option ... ] ;
  *
  * Policy pragma (issue #28). Sets xctx compile type-check flags for the rest
- * of this compile (and subsequent eval on the same xctx). Default with no
- * argument is full on (compile + runtime).
+ * of this compile (and subsequent eval on the same xctx).
+ *
+ * Mode (optional; default on/full when any checking is requested):
+ *   off | false
+ *   on | full | true
+ *   compileOnly | compileonly | compile
+ *
+ * Options (zero or more, optional commas):
+ *   noImplicitAny
+ *   strictNullChecks
+ *   strict  — mode full + noImplicitAny + strictNullChecks
+ *
+ * Bare #typecheck; enables full typeCheck (same as on).
  */
 static const afw_value_t *
 impl_parse_pragma_typecheck(afw_compile_parser_t *parser)
@@ -663,24 +674,44 @@ impl_parse_pragma_typecheck(afw_compile_parser_t *parser)
     afw_boolean_t full;
     afw_boolean_t compile_only;
     afw_boolean_t off;
+    afw_boolean_t saw_mode;
+    afw_boolean_t set_no_implicit_any;
+    afw_boolean_t set_strict_null;
+    afw_boolean_t set_strict;
 
     full = true;
     compile_only = false;
     off = false;
+    saw_mode = false;
+    set_no_implicit_any = false;
+    set_strict_null = false;
+    set_strict = false;
 
     afw_compile_get_token();
-    if (afw_compile_token_is_unqualified_identifier()) {
+    while (afw_compile_token_is_unqualified_identifier() ||
+        afw_compile_token_is(comma))
+    {
+        if (afw_compile_token_is(comma)) {
+            afw_compile_get_token();
+            continue;
+        }
+
         if (afw_compile_token_is_name_z("off") ||
             afw_compile_token_is_name_z("false"))
         {
             off = true;
             full = false;
+            compile_only = false;
+            saw_mode = true;
         }
         else if (afw_compile_token_is_name_z("on") ||
             afw_compile_token_is_name_z("full") ||
             afw_compile_token_is_name_z("true"))
         {
             full = true;
+            off = false;
+            compile_only = false;
+            saw_mode = true;
         }
         else if (afw_compile_token_is_name_z("compileOnly") ||
             afw_compile_token_is_name_z("compileonly") ||
@@ -688,10 +719,33 @@ impl_parse_pragma_typecheck(afw_compile_parser_t *parser)
         {
             compile_only = true;
             full = false;
+            off = false;
+            saw_mode = true;
+        }
+        else if (afw_compile_token_is_name_z("noImplicitAny") ||
+            afw_compile_token_is_name_z("noimplicitany"))
+        {
+            set_no_implicit_any = true;
+        }
+        else if (afw_compile_token_is_name_z("strictNullChecks") ||
+            afw_compile_token_is_name_z("strictnullchecks"))
+        {
+            set_strict_null = true;
+        }
+        else if (afw_compile_token_is_name_z("strict")) {
+            /* TS-like bundle: full check + noImplicitAny + strictNullChecks. */
+            set_strict = true;
+            full = true;
+            off = false;
+            compile_only = false;
+            saw_mode = true;
+            set_no_implicit_any = true;
+            set_strict_null = true;
         }
         else {
             AFW_COMPILE_THROW_ERROR_Z(
-                "Expecting off, on, or compileOnly after #typecheck");
+                "Expecting off, on, compileOnly, noImplicitAny, "
+                "strictNullChecks, or strict after #typecheck");
         }
         afw_compile_get_token();
     }
@@ -706,14 +760,35 @@ impl_parse_pragma_typecheck(afw_compile_parser_t *parser)
         parser->xctx);
 
     if (off) {
-        /* leave both off */
+        /* Mode off: also clear related policy flags for a clean slate. */
+        afw_flag_set(afw_s_a_flag_compile_noImplicitAny, false,
+            parser->xctx);
+        afw_flag_set(afw_s_a_flag_compile_strictNullChecks, false,
+            parser->xctx);
     }
     else if (compile_only) {
         afw_flag_set(afw_s_a_flag_compile_typeCheckCompileOnly, true,
             parser->xctx);
     }
-    else if (full) {
+    else if (full || saw_mode || set_no_implicit_any || set_strict_null ||
+        set_strict)
+    {
+        /*
+         * Default and option-only forms enable full typeCheck so options
+         * have an active checking mode to apply to.
+         */
         afw_flag_set(afw_s_a_flag_compile_typeCheck, true, parser->xctx);
+    }
+
+    if (!off) {
+        if (set_no_implicit_any) {
+            afw_flag_set(afw_s_a_flag_compile_noImplicitAny, true,
+                parser->xctx);
+        }
+        if (set_strict_null) {
+            afw_flag_set(afw_s_a_flag_compile_strictNullChecks, true,
+                parser->xctx);
+        }
     }
 
     /* No runtime value; statement is side-effect only. */
@@ -728,7 +803,10 @@ impl_parse_pragma_typecheck(afw_compile_parser_t *parser)
  *
  * PragmaStatement ::=
  *     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
- *     '#typecheck' ( 'off' | 'on' | 'compileOnly' )? ';'
+ *     '#typecheck'
+ *         ( 'off' | 'on' | 'compileOnly' | 'strict' |
+ *           'noImplicitAny' | 'strictNullChecks' | ',' )*
+ *         ';'
  *
  *<<<ebnf*/
 /**
