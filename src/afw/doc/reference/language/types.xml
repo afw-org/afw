@@ -2,7 +2,7 @@
 <doc>
     <title>Types</title>
     <paragraph>
-        Adaptive Script uses a TypeScript-like type surface with
+        Adaptive Script uses a TypeScript-like type syntax with
         <literal>Adaptive data types</literal> as leaves
         (<literal>integer</literal>, <literal>string</literal>,
         <literal>boolean</literal>, <literal>object</literal>,
@@ -13,10 +13,10 @@
         <literal>interface</literal> declarations.
     </paragraph>
     <paragraph>
-        Script types are separate from adaptive <emphasis>object types</emphasis>
-        (catalog OTs / property meta). Object-type validation at the adapter and
-        request layer is unchanged. Script <literal>interface</literal> and
-        object type literals are structural shapes for checking only.
+        Script types are separate from adaptive object types and value meta.
+        Object-type validation at the adapter and request layer
+        is unchanged. Script <literal>interface</literal> and object type
+        literals are structural shapes for checking only.
     </paragraph>
 
     <header>Syntax overview</header>
@@ -46,18 +46,12 @@ const p: Person = { id: 1, name: "ada" };]]></code>
         <literal>|</literal>; intersections use <literal>&amp;</literal>.
         Function types use <literal>(params) =&gt; Return</literal>.
     </paragraph>
-    <paragraph>
-        Older Adaptive Type spellings such as
-        <literal>(array of integer)</literal> and
-        <literal>(object "SomeOT")</literal> are not accepted.
-    </paragraph>
 
     <header>Type checking (default off)</header>
     <paragraph>
-        Types are always parsed and stored. Checking is
-        <emphasis>off by default</emphasis> so existing scripts keep working.
-        Opt in with environment flags or the <literal>#typecheck</literal>
-        pragma.
+        Types are always parsed and stored. Checking is off by default so
+        existing scripts keep working. Opt in with environment flags or the
+        <literal>#typecheck</literal> pragma.
     </paragraph>
     <list>
         <item>

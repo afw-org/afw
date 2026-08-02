@@ -1197,9 +1197,9 @@ impl_parse_function_type_after_open_paren(afw_compile_parser_t *parser)
                      * by putting identifier back. */
                     {
                         afw_value_type_t *wrap;
+
                         /* Postfix arrays: name[] */
                         afw_compile_get_token();
-                        wrap = (afw_value_type_t *)param->type;
                         while (afw_compile_token_is(open_bracket)) {
                             afw_compile_get_token();
                             if (!afw_compile_token_is(close_bracket)) {
