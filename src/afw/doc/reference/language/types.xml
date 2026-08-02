@@ -132,8 +132,16 @@ const p: Person = { id: 1, name: "ada" };]]></code>
             (structural typing).
         </item>
         <item>
-            Function types: value must be a function (parameter/return
-            structural matching may grow later).
+            Function types: script functions and closures are checked for
+            parameter and return compatibility with the annotation; other
+            function values only need to be data type
+            <literal>function</literal>.
+        </item>
+        <item>
+            Patterns (list/object destructure): element and binding annotations
+            such as <literal>const [a: integer] = …</literal> or
+            <literal>{ host: h: string }</literal> are enforced when checking
+            is on.
         </item>
     </list>
     <paragraph>

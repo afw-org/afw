@@ -53,14 +53,14 @@ Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value
 - Leaf data types; unions / intersections.
 - Object / interface shapes: required properties, property value types, `extends` bases (when value is inspectable).
 - Array element types; tuple length + per-position types (when value is inspectable).
-- Function types: value must be a function (no param/return structural match yet).
+- **Function types:** script functions/closures — param types (contravariant) and return type (covariant); built-ins without a signature only need data type `function`.
+- **Patterns:** list/object destructure element annotations and symbol types on Pattern leaves (runtime + compile when RHS inspectable).
+- Error text: composites report missing property, element index, tuple length, or decompiled expected type (not only `composite`).
 
 **Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; commas optional). `#typecheck off;` clears mode and related policy flags for that unit.
 
 ## Out of scope / residual (not this issue’s merge bar)
 
-- Richer **function-type** structural checks (params/returns).
-- **Pattern / destructure** annotation enforcement (memory residual; separate from simple bindings).
 - Advanced TS surface (generics, `keyof`, conditionals) unless forced later.
 - Excess property checks on fresh object literals (extras currently allowed).
 - Compile-time **optimize** using known types (mentioned on the GitHub issue as a possible side-effect, not a requirement).

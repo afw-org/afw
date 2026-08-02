@@ -560,7 +560,7 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 | `#typecheck strict;` | Full + noImplicitAny + strictNullChecks |
 | `#typecheck on, noImplicitAny;` | Commas between tokens optional |
 
-When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements**, and **tuple length/positions** when the value is inspectable. Extra object properties are allowed (structural typing). Function-typed slots require a function value; deeper param/return matching may come later.
+When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements**, **tuple length/positions**, **function param/return shapes** (script functions/closures), and **Pattern** element annotations on list/object destructure. Extra object properties are allowed (structural typing). Type errors name missing properties, element indexes, and decompiled expected types where possible.
 
 Handbook: Language Reference → **Types**. Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pad: `designs/issue-28-type-syntax.md`.
 

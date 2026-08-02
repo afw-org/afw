@@ -588,3 +588,157 @@ const r: any = evaluate(compile<script>(script(
 )));
 assert(r === 1);
 return 0;
+
+//?
+//? test: typecheck-function-type-ok
+//? description: matching function type annotation assigns
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const f: (a: integer) => integer = function (a: integer): integer {\n" +
+    "    return a + 1;\n" +
+    "};\n" +
+    "return f(2);"
+)));
+assert(r === 3);
+return 0;
+
+//?
+//? test: typecheck-function-type-param-mismatch
+//? description: function value param type does not match annotation
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const f: (a: integer) => integer = function (a: string): integer {\n" +
+    "    return 1;\n" +
+    "};\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-function-type-return-mismatch
+//? description: function value return type does not match annotation
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const f: (a: integer) => string = function (a: integer): integer {\n" +
+    "    return a;\n" +
+    "};\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-list-pattern-element
+//? description: list Pattern element annotation enforced
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const [a: integer, b: string] = [1, 2];\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-list-pattern-ok
+//? description: matching list Pattern element types
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const [a: integer, b: string] = [1, \"x\"];\n" +
+    "return a;"
+)));
+assert(r === 1);
+return 0;
+
+//?
+//? test: typecheck-object-pattern-rename-type
+//? description: object Pattern rename with typed binding
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const { host: h: string } = { host: 1 };\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-error-mentions-missing-property
+//? description: object shape error mentions missing property name
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+try {
+    evaluate(compile<script>(script(
+        "const o: { host: string, port: integer } = { host: \"h\" };\n" +
+        "return 0;"
+    )));
+    assert(false);
+} catch (e) {
+    const msg = string(e);
+    assert(includes(msg, "port") || includes(msg, "missing"));
+}
+return 0;

@@ -146,6 +146,11 @@ impl_list_destructure(
         if (!v) {
             v = afw_value_undefined;
         }
+        /* Element annotation on Pattern (may also live on symbol->type). */
+        if (ae->type && v && !afw_value_is_undefined(v)) {
+            afw_value_type_check_assignable(ae->type, v,
+                "list pattern element", xctx);
+        }
         impl_assign_value(ae->assignment_target, v, assignment_type,
             p, xctx);
     }
@@ -170,6 +175,10 @@ impl_list_destructure(
             rest = afw_array_create_generic(p, xctx);
         }
         v = afw_value_create_unmanaged_array(rest, p, xctx);
+        if (ld->rest_type) {
+            afw_value_type_check_assignable(ld->rest_type, v,
+                "list pattern rest", xctx);
+        }
         impl_assign_value(ld->rest, v, assignment_type, p, xctx);
     }
 }
@@ -215,6 +224,13 @@ impl_object_destructure(
             }
             if (!v) {
                 v = afw_value_undefined;
+            }
+            if (ap->assignment_element->type && v &&
+                !afw_value_is_undefined(v))
+            {
+                afw_value_type_check_assignable(
+                    ap->assignment_element->type, v,
+                    "object pattern property", xctx);
             }
             impl_assign_value(ap->assignment_element->assignment_target, v,
                 assignment_type, p, xctx);
@@ -271,6 +287,10 @@ impl_object_destructure(
             }
         }
         v = afw_value_create_unmanaged_object(rest, p, xctx);
+        if (od->rest_type) {
+            afw_value_type_check_assignable(od->rest_type, v,
+                "object pattern rest", xctx);
+        }
         impl_assign_value(od->rest, v, assignment_type, p, xctx);
     }
 }
@@ -396,6 +416,16 @@ impl_assign_value(
         {
             value = impl_create_closure_if_needed(
                 (const afw_value_script_function_definition_t *)value, p, xctx);
+        }
+        /*
+         * Pattern leaves and object-destructure shorthand bind through bare
+         * symbol_reference (not assignment_target). Enforce symbol->type here
+         * so `const [a: integer] = …` / `{ name }` typed symbols are checked
+         * under typeCheck (issue #28).
+         */
+        if (value && !afw_value_is_undefined(value)) {
+            afw_value_type_check_assignable(&t->symbol->type, value,
+                "assignment", xctx);
         }
         afw_xctx_scope_symbol_set_value(t->symbol, value, xctx);
     }

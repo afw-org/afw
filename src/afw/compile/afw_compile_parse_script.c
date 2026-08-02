@@ -34,6 +34,86 @@ impl_function_definition_rethrow =
 
 /* Compile-time type check for const/let/assign (issue #28). */
 static void
+impl_compile_check_list_pattern(
+    afw_compile_parser_t *parser,
+    const afw_compile_list_destructure_t *ld,
+    const afw_value_t *value)
+{
+    const afw_array_t *arr;
+    const afw_compile_assignment_element_t *ae;
+    const afw_value_t *elem;
+    afw_size_t i;
+
+    if (!AFW_VALUE_IS_DATA_TYPE(value, array)) {
+        return;
+    }
+    arr = ((const afw_value_array_t *)value)->internal;
+    for (i = 0, ae = ld->assignment_element; ae; ae = ae->next, i++) {
+        if (!ae->assignment_target || !ae->type ||
+            afw_value_type_is_any(ae->type))
+        {
+            continue;
+        }
+        elem = afw_array_get_entry_value(arr, i, parser->p, parser->xctx);
+        if (!elem) {
+            continue;
+        }
+        afw_value_type_check_compile_assignable(ae->type, elem,
+            "list pattern element", parser->xctx);
+    }
+}
+
+
+
+static void
+impl_compile_check_object_pattern(
+    afw_compile_parser_t *parser,
+    const afw_compile_object_destructure_t *od,
+    const afw_value_t *value)
+{
+    const afw_object_t *obj;
+    const afw_compile_assignment_property_t *ap;
+    const afw_value_t *pv;
+    const afw_value_type_t *type;
+    const afw_utf8_t *name;
+
+    if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        return;
+    }
+    obj = ((const afw_value_object_t *)value)->internal;
+
+    for (ap = od->assignment_property; ap; ap = ap->next) {
+        type = NULL;
+        name = NULL;
+        if (ap->is_rename) {
+            if (ap->property_name_expr) {
+                /* Dynamic name: cannot check at compile. */
+                continue;
+            }
+            name = ap->property_name;
+            if (ap->assignment_element) {
+                type = ap->assignment_element->type;
+            }
+        }
+        else if (ap->symbol_reference && ap->symbol_reference->symbol) {
+            name = ap->symbol_reference->symbol->name;
+            type = &ap->symbol_reference->symbol->type;
+        }
+        if (!name || !type || afw_value_type_is_any(type)) {
+            continue;
+        }
+        pv = afw_object_get_property(obj, name, parser->xctx);
+        if (!pv) {
+            continue;
+        }
+        afw_value_type_check_compile_assignable(type, pv,
+            "object pattern property", parser->xctx);
+    }
+}
+
+
+
+static void
 impl_compile_check_assign_target(
     afw_compile_parser_t *parser,
     const afw_value_t *target,
@@ -49,14 +129,28 @@ impl_compile_check_assign_target(
         return;
     }
     at = (const afw_value_assignment_target_t *)target;
-    if (at->assignment_target->target_type !=
-        afw_compile_assignment_target_type_symbol_reference)
-    {
-        return;
+
+    switch (at->assignment_target->target_type) {
+    case afw_compile_assignment_target_type_symbol_reference:
+        type = &at->assignment_target->symbol_reference->symbol->type;
+        afw_value_type_check_compile_assignable(type, value,
+            "assignment", parser->xctx);
+        break;
+
+    case afw_compile_assignment_target_type_list_destructure:
+        impl_compile_check_list_pattern(parser,
+            at->assignment_target->list_destructure, value);
+        break;
+
+    case afw_compile_assignment_target_type_object_destructure:
+        impl_compile_check_object_pattern(parser,
+            at->assignment_target->object_destructure, value);
+        break;
+
+    case afw_compile_assignment_target_type_max_type:
+    default:
+        break;
     }
-    type = &at->assignment_target->symbol_reference->symbol->type;
-    afw_value_type_check_compile_assignable(type, value,
-        "assignment", parser->xctx);
 }
 
 
