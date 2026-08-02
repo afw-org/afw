@@ -1874,6 +1874,18 @@ afw_value_type_check_compile_assignable(
     afw_xctx_t *xctx);
 
 /**
+ * @brief Excess-property check for object-literal call arguments.
+ * Only when the arg is still an object construct/expression; evaluated
+ * objects are not closed.
+ */
+AFW_DEFINE(void)
+afw_value_type_check_call_arg_object_literal(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Decompile a type as Adaptive Type surface text (no leading ':').
  * @param type to decompile; NULL or "any" writes nothing (caller skips ':').
  * @param writer

@@ -371,6 +371,12 @@ afw_function_evaluate_parameter_with_type(
         want_dt = type->data_type;
     }
 
+    /* Object-literal arg excess before evaluate (issue #28 call-site). */
+    if (type) {
+        afw_value_type_check_call_arg_object_literal(type, value,
+            "parameter", xctx);
+    }
+
     /* Just return if no evaluation or conversion needed. */
     if (afw_value_is_defined_and_evaluated(value) &&
         (!want_dt || want_dt == afw_data_type_any ||

@@ -827,3 +827,173 @@ compile<script>(script(
     "return 0;"
 ));
 return 0;
+
+//?
+//? test: typecheck-typed-symbol-rhs
+//? description: typed variable assignable by type graph to narrower shape
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const wider: { host: string, port: integer } = { host: \"h\", port: 1 };\n" +
+    "const o: { host: string } = wider;\n" +
+    "return o.host;"
+)));
+assert(r === "h");
+return 0;
+
+//?
+//? test: typecheck-typed-symbol-rhs-mismatch
+//? description: typed variable not assignable when types conflict
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+compile<script>(script(
+    "const s: string = \"x\";\n" +
+    "const n: integer = s;\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: typecheck-union-excess
+//? description: excess key not in either union object member
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+compile<script>(script(
+    "const o: { a: integer } | { b: string } = { a: 1, c: true };\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: typecheck-union-object-literal-ok
+//? description: object literal matching one union arm
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const o: { a: integer } | { b: string } = { a: 1 };\n" +
+    "return o.a;"
+)));
+assert(r === 1);
+return 0;
+
+//?
+//? test: typecheck-call-site-excess
+//? description: object literal arg excess on known named function call
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+/*
+ * Named function statement makes the callee known at compile so the call
+ * is bound to call_script_function and formals can be checked.
+ */
+compile<script>(script(
+    "function f(o: { host: string }) { return o.host; };\n" +
+    "return f({ host: \"h\", port: 1 });"
+));
+return 0;
+
+//?
+//? test: typecheck-call-site-ok
+//? description: matching object literal arg on named function
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "function f(o: { host: string }) { return o.host; };\n" +
+    "return f({ host: \"h\" });"
+)));
+assert(r === "h");
+return 0;
+
+//?
+//? test: typecheck-return-type-mismatch
+//? description: return value must match function return type
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const f = function (): integer { return \"no\"; };\n" +
+    "return f();"
+)));
+return 0;
+
+//?
+//? test: typecheck-return-type-ok
+//? description: matching return type
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const f = function (): integer { return 7; };\n" +
+    "return f();"
+)));
+assert(r === 7);
+return 0;

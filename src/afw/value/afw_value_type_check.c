@@ -989,7 +989,25 @@ impl_object_type_declares_name(
     const afw_value_type_t *base;
 
     type = impl_resolve_type(type);
-    if (!type || type->kind != afw_value_type_kind_object) {
+    if (!type) {
+        return false;
+    }
+
+    /* Union / intersection: name is allowed if any object-shaped member has it. */
+    if (type->kind == afw_value_type_kind_union ||
+        type->kind == afw_value_type_kind_intersection)
+    {
+        for (i = 0; i < type->compound.count; i++) {
+            if (impl_object_type_declares_name(type->compound.members[i],
+                name, xctx))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    if (type->kind != afw_value_type_kind_object) {
         return false;
     }
 
@@ -1006,6 +1024,33 @@ impl_object_type_declares_name(
         }
     }
 
+    return false;
+}
+
+
+
+/** True if expected type can host object-literal excess checks. */
+static afw_boolean_t
+impl_type_is_object_shaped(const afw_value_type_t *type, afw_xctx_t *xctx)
+{
+    afw_size_t i;
+
+    type = impl_resolve_type(type);
+    if (!type) {
+        return false;
+    }
+    if (type->kind == afw_value_type_kind_object) {
+        return true;
+    }
+    if (type->kind == afw_value_type_kind_union ||
+        type->kind == afw_value_type_kind_intersection)
+    {
+        for (i = 0; i < type->compound.count; i++) {
+            if (impl_type_is_object_shaped(type->compound.members[i], xctx)) {
+                return true;
+            }
+        }
+    }
     return false;
 }
 
@@ -1146,6 +1191,7 @@ impl_foreach_object_literal_prop(
 typedef struct {
     const afw_value_type_t *expected;
     const afw_utf8_z_t *what;
+    afw_boolean_t as_syntax_error;
 } impl_excess_ctx_t;
 
 
@@ -1162,7 +1208,15 @@ impl_excess_prop_cb(
     afw_boolean_t open_keys;
 
     if (!impl_object_type_declares_name(ctx->expected, name, xctx)) {
-        AFW_THROW_ERROR_FZ(syntax, xctx,
+        if (ctx->as_syntax_error) {
+            AFW_THROW_ERROR_FZ(syntax, xctx,
+                "Type error in %s: excess property " AFW_UTF8_FMT_Q
+                " is not declared on type %s",
+                ctx->what ? ctx->what : "assignment",
+                AFW_UTF8_FMT_ARG(name),
+                impl_type_to_z(ctx->expected, xctx->p, xctx));
+        }
+        AFW_THROW_ERROR_FZ(general, xctx,
             "Type error in %s: excess property " AFW_UTF8_FMT_Q
             " is not declared on type %s",
             ctx->what ? ctx->what : "assignment",
@@ -1182,6 +1236,7 @@ impl_excess_prop_cb(
 
         nested.expected = prop_type;
         nested.what = ctx->what;
+        nested.as_syntax_error = ctx->as_syntax_error;
         impl_foreach_object_literal_prop(prop_value, impl_excess_prop_cb,
             &nested, xctx);
     }
@@ -1189,18 +1244,25 @@ impl_excess_prop_cb(
 
 
 
+/**
+ * Excess-property check for object literals against object-shaped types
+ * (including unions of object shapes). Spreads / computed keys skip.
+ *
+ * as_syntax_error: compile-time (syntax) vs call-site / runtime (general).
+ */
 static void
-impl_compile_check_excess_properties(
+impl_check_excess_properties(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_utf8_z_t *what,
+    afw_boolean_t as_syntax_error,
     afw_xctx_t *xctx)
 {
     afw_boolean_t open_keys;
     impl_excess_ctx_t ctx;
 
     expected = impl_resolve_type(expected);
-    if (!expected || expected->kind != afw_value_type_kind_object) {
+    if (!expected || !impl_type_is_object_shaped(expected, xctx)) {
         return;
     }
     if (!value || !impl_is_object_literal_for_excess(value, &open_keys)) {
@@ -1213,6 +1275,7 @@ impl_compile_check_excess_properties(
 
     ctx.expected = expected;
     ctx.what = what;
+    ctx.as_syntax_error = as_syntax_error;
     impl_foreach_object_literal_prop(value, impl_excess_prop_cb, &ctx, xctx);
 }
 
@@ -1227,6 +1290,8 @@ afw_value_type_check_compile_assignable(
 {
     const afw_data_type_t *got;
     const afw_utf8_z_t *detail;
+    const afw_value_symbol_reference_t *sym_ref;
+    const afw_value_block_symbol_t *symbol;
 
     if (!afw_value_type_check_compile_enabled(xctx)) {
         return;
@@ -1235,12 +1300,50 @@ afw_value_type_check_compile_assignable(
         return;
     }
 
+    /*
+     * Typed symbol RHS: compare type graphs (no excess — not a literal).
+     * Untyped symbol with a known initial_value: open structural only.
+     */
+    if (afw_value_is_symbol_reference(value)) {
+        sym_ref = (const afw_value_symbol_reference_t *)value;
+        symbol = sym_ref->symbol;
+        if (symbol && !afw_value_type_is_any(&symbol->type)) {
+            if (!impl_type_is_type_assignable(expected, &symbol->type, xctx)) {
+                AFW_THROW_ERROR_FZ(syntax, xctx,
+                    "Type error in %s: expected %s but got %s",
+                    what ? what : "value",
+                    impl_type_to_z(expected, xctx->p, xctx),
+                    impl_type_to_z(&symbol->type, xctx->p, xctx));
+            }
+            return;
+        }
+        if (symbol && symbol->initial_value) {
+            if (!afw_value_type_is_assignable(expected,
+                symbol->initial_value, xctx))
+            {
+                detail = impl_mismatch_detail(expected,
+                    symbol->initial_value, xctx->p, xctx);
+                if (detail) {
+                    AFW_THROW_ERROR_FZ(syntax, xctx,
+                        "Type error in %s: %s",
+                        what ? what : "value", detail);
+                }
+                AFW_THROW_ERROR_FZ(syntax, xctx,
+                    "Type error in %s: value is not assignable to %s",
+                    what ? what : "value",
+                    impl_type_to_z(expected, xctx->p, xctx));
+            }
+            /* No excess: variable is not an object literal site. */
+            return;
+        }
+        return;
+    }
+
     got = afw_value_get_data_type(value, xctx);
     if (!got || got == afw_data_type_any || got == afw_data_type_unknown) {
         /*
-         * Unknown / untyped RHS (e.g. bare symbol reference): do not fail
-         * compile checks. Excess-property and structural rules apply when
-         * the RHS is a known literal or concrete data type.
+         * Unknown / untyped RHS: do not fail compile checks. Structural and
+         * excess rules apply when the RHS is a known literal or concrete type.
          */
         return;
     }
@@ -1262,8 +1365,48 @@ afw_value_type_check_compile_assignable(
     }
 
     /*
-     * Additional compile-only rule: reject unknown keys on object literals.
-     * Not applied at runtime (open structural for adaptive data).
+     * Object-literal excess (unknown keys). Not applied to evaluated
+     * adaptive objects at runtime — open structural there.
      */
-    impl_compile_check_excess_properties(expected, value, what, xctx);
+    impl_check_excess_properties(expected, value, what, true /* syntax */,
+        xctx);
+}
+
+
+
+/**
+ * Call-site object-literal excess when type checking is active and the
+ * argument is still an object construct/expression (not yet evaluated).
+ * Evaluated objects stay open (adaptive-friendly).
+ */
+AFW_DEFINE(void)
+afw_value_type_check_call_arg_object_literal(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t open_keys;
+
+    if (!expected || afw_value_type_is_any(expected) || !value) {
+        return;
+    }
+    if (!afw_value_type_check_compile_enabled(xctx) &&
+        !afw_value_type_check_runtime_enabled(xctx))
+    {
+        return;
+    }
+    /* Only unevaluated object constructs/expressions count as call-site literals. */
+    if (!afw_value_is_object_construct(value) &&
+        !afw_value_is_object_expression(value))
+    {
+        return;
+    }
+    if (!impl_is_object_literal_for_excess(value, &open_keys) || open_keys) {
+        return;
+    }
+    impl_check_excess_properties(expected, value, what,
+        afw_value_type_check_compile_enabled(xctx) &&
+            !afw_value_type_check_runtime_enabled(xctx),
+        xctx);
 }

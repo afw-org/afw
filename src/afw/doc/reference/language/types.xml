@@ -106,10 +106,15 @@ const p: Person = { id: 1, name: "ada" };]]></code>
         <item>
             Object and interface shapes: required properties must be present;
             property values must match their types;
-            <literal>extends</literal> bases are included. At compile time, an
-            object literal may not include properties outside the type. At
-            runtime, extra properties on a value are still allowed so adaptive
-            objects can be wider than the script type.
+            <literal>extends</literal> bases are included. An object literal
+            may not include properties outside the type (including when used
+            as a function argument). Object literals with spreads or computed
+            property names skip that extra-key check. At runtime, extra
+            properties on an already-evaluated value are still allowed so
+            adaptive objects can be wider than the script type.
+        </item>
+        <item>
+            Function return types when a return type is declared.
         </item>
         <item>
             Function types: script functions and closures are checked for

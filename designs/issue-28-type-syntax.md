@@ -45,17 +45,21 @@ Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value
 
 **Where checks run**
 
-- **Runtime** (mode `on`): assignment and script function parameters.
-- **Compile** (mode `on` or `compileOnly`): const/let/assign when RHS has a known data type (including inspectable object/array literals).
+- **Runtime** (mode `on`): assignment, script function parameters, and function return values.
+- **Compile** (mode `on` or `compileOnly`): const/let/assign when RHS type is known (literals; typed symbols via type-to-type; untyped symbols with open structural only when needed); return expressions; call sites when the callee is a known script function (named `function` form).
 
 **What is checked**
 
 - Leaf data types; unions / intersections.
-- Object / interface shapes: required properties, property value types, `extends` bases (when value is inspectable).
-- Array element types; tuple length + per-position types (when value is inspectable).
+- Object / interface shapes: required properties, property value types, `extends` bases (when the value is known).
+- Array element types; tuple length + per-position types (when known).
 - **Function types:** script functions/closures — param types (contravariant) and return type (covariant); built-ins without a signature only need data type `function`.
-- **Patterns:** list/object destructure element annotations and symbol types on Pattern leaves (runtime + compile when RHS inspectable).
-- Error text: composites report missing property, element index, tuple length, or decompiled expected type (not only `composite`).
+- **Returns:** declared return type vs `return` expression / expression-body (compile) and result value (runtime).
+- **Patterns:** list/object destructure element annotations and symbol types on Pattern leaves.
+- **Call sites:** known named script functions check formals against args (including object-literal excess) at compile when bound early.
+- Error text: composites report missing property, element index, tuple length, or decompiled expected type.
+
+**Excess properties (compile / known call sites):** Object literals may not include keys outside the type (and `extends`; for unions, keys allowed if present on any object member). Nested literals checked. Spreads / computed keys skip. Runtime assign of evaluated objects stays open (adaptive-friendly).
 
 **Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; commas optional). `#typecheck off;` clears mode and related policy flags for that unit.
 

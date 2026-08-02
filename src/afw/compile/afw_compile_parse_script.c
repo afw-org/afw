@@ -1010,9 +1010,13 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
             &function_name_value->internal);
         symbol->symbol_type = afw_value_block_symbol_type_function;
         symbol->initial_value = argv[2];
-        if (return_type) {
-            afw_memory_copy(&symbol->type, return_type);
-        }
+        /*
+         * Do not store the return type as symbol->type: the binding holds a
+         * function value. Return types live on the script_function_definition
+         * (issue #28 typeCheck would reject assigning a function to a
+         * return-type slot).
+         */
+        (void)return_type;
         argv[1] = afw_value_symbol_reference_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             symbol, parser->p, parser->xctx);
@@ -1160,6 +1164,16 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
         argv[1] = afw_compile_parse_Expression(parser);
         AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    }
+
+    /* Compile-time return type check when inside a typed function (issue #28). */
+    if (parser->current_function_returns &&
+        afw_value_type_check_compile_enabled(parser->xctx) &&
+        argv[1] && !afw_value_is_undefined(argv[1]))
+    {
+        afw_value_type_check_compile_assignable(
+            parser->current_function_returns, argv[1],
+            "return", parser->xctx);
     }
 
     result = afw_value_call_built_in_function_create(

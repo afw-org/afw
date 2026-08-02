@@ -705,15 +705,32 @@ afw_compile_parse_FunctionSignatureAndBody(
     signature = afw_compile_parse_FunctionSignature(parser, &block,
         function_name_value, return_type);
 
-    /* Parse body. */
-    afw_compile_get_token();
-    if (afw_compile_token_is(open_brace)) {
-        body = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false, false);
-    }
-    else {
-        afw_compile_reuse_token();
-        body = afw_compile_parse_Expression(parser);
+    /* Parse body with return type in scope for compile checks (issue #28). */
+    {
+        const afw_value_type_t *saved_returns;
+
+        saved_returns = parser->current_function_returns;
+        parser->current_function_returns = signature->returns;
+
+        afw_compile_get_token();
+        if (afw_compile_token_is(open_brace)) {
+            body = afw_compile_parse_StatementList(parser,
+                NULL, true, false, false, false);
+        }
+        else {
+            afw_compile_reuse_token();
+            body = afw_compile_parse_Expression(parser);
+            /* Expression body: compile-check against return type when known. */
+            if (parser->current_function_returns &&
+                afw_value_type_check_compile_enabled(parser->xctx))
+            {
+                afw_value_type_check_compile_assignable(
+                    parser->current_function_returns, body,
+                    "return", parser->xctx);
+            }
+        }
+
+        parser->current_function_returns = saved_returns;
     }
 
     /* If there were parameters, pop block. */

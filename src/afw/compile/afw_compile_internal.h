@@ -417,6 +417,12 @@ struct afw_compile_internal_parser_s {
      */
     apr_hash_t *script_type_names;
 
+    /**
+     * While parsing a function/lambda body: declared return type (may be
+     * NULL / any). Used for compile-time return checks (issue #28).
+     */
+    const afw_value_type_t *current_function_returns;
+
 };
 
 
