@@ -44,7 +44,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **UTF-8 in JSON / Fiddle** | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | **Python `Session("local")`** | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
-| **Script types (#28)** | TS-like type syntax (Adaptive dataType leaves); opt-in typeCheck flags / `#typecheck`; hard cut of `(array of …)` / `(object "OT")` |
+| **Script types (#28)** | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#typecheck`); hard cut of `(array of …)` / `(object "OT")` |
 
 ---
 
@@ -538,11 +538,11 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ## Adaptive Script types (issue #28)
 
-**Type syntax** is TypeScript-like, with **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …)—not JavaScript primitives. Examples: `integer[]`, `Array<string>`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs).
+**Type syntax** uses **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …) plus simple structured types. Examples: `integer[]`, `Array<string>`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs).
 
 Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")` are **removed** (hard cut). Existing scripts that used those forms need updating; plain unannotated scripts are unchanged because **checking is off by default**.
 
-**Opt in** with flags or the `#typecheck` pragma:
+**Opt in** primarily with environment / `flag_set` flags (handbook documents these). Optional `#typecheck` pragma also works for that compile unit:
 
 | Flag / pragma | Effect |
 |---------------|--------|
@@ -560,9 +560,9 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 | `#typecheck strict;` | Full + noImplicitAny + strictNullChecks |
 | `#typecheck on, noImplicitAny;` | Commas between tokens optional |
 
-When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements**, **tuple length/positions**, **function param/return shapes** (script functions/closures), and **Pattern** element annotations on list/object destructure. Extra object properties are allowed (structural typing). Type errors name missing properties, element indexes, and decompiled expected types where possible.
+When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements** and **tuple length/positions** when the value is known (for example a literal), **function param/return shapes** (script functions/closures), **Pattern** element annotations on array/object destructure, and **calls to known Adaptive functions** against metadata formals (compile path only). **Object literals** may not include properties outside the declared type (including as arguments); spreads/computed keys skip that extra-key check. At runtime, non-literal values may still be wider (structural). Type errors name missing properties, element indexes, and decompiled expected types where possible.
 
-Handbook: Language Reference → **Types**. Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pad: `designs/issue-28-type-syntax.md`.
+Handbook: Language Reference → **Types** (flags-oriented authoring). Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pads: `designs/issue-28-type-syntax.md`, `designs/adaptive-function-compile-typecheck.md`.
 
 ---
 

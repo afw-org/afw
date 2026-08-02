@@ -112,8 +112,8 @@ const p: Person = { id: 1, name: "ada" };]]></code>
             <literal>extends</literal> bases are included. An object literal
             may not include properties outside the type (including when used
             as a function argument). Object literals with spreads or computed
-            property names skip that extra-key check. At runtime, extra
-            properties on an already-evaluated value are still allowed so
+            property names skip that extra-key check. At runtime, values that
+            are not object literals may still have extra properties, so
             adaptive objects can be wider than the script type.
         </item>
         <item>
@@ -125,7 +125,7 @@ const p: Person = { id: 1, name: "ada" };]]></code>
             need data type <literal>function</literal>.
         </item>
         <item>
-            List and object patterns: binding annotations such as
+            Array and object patterns: binding annotations such as
             <literal>const [a: integer] = …</literal> or
             <literal>{ host: h: string }</literal> are enforced when checking
             is on.
