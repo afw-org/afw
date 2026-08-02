@@ -62,9 +62,10 @@ Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value
 ## Out of scope / residual (not this issue’s merge bar)
 
 - Advanced TS surface (generics, `keyof`, conditionals) unless forced later.
-- Excess property checks on fresh object literals (extras currently allowed).
 - Compile-time **optimize** using known types (mentioned on the GitHub issue as a possible side-effect, not a requirement).
 - Adaptive OT ↔ script type import (intentionally separate).
+
+**Excess properties (compile-only):** Object literals assigned to an object/interface type may not include keys outside that shape (and `extends`). Nested object literals are checked the same way. Spreads / computed keys skip the check. **Runtime** assignability stays open (adaptive objects may have extra props). Untyped RHS (e.g. bare variable) is not excess-checked at compile.
 
 ## Verify
 

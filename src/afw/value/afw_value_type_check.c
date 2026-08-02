@@ -9,6 +9,10 @@
 /**
  * @file afw_value_type_check.c
  * @brief Compile/runtime type-check mode and assignability (incl. structural).
+ *
+ * Excess-property checks on object literals are compile-only (see
+ * afw_value_type_check_compile_assignable). Runtime remains open structural
+ * so adaptive objects may carry extra properties.
  */
 
 #include "afw_internal.h"
@@ -948,6 +952,272 @@ afw_value_type_check_assignable(
 
 
 
+/*
+ * Excess-property checks — compile time only, on object literals.
+ * Runtime assignability stays open so adaptive objects with extra
+ * properties remain valid for script-local shapes.
+ *
+ * Object literal RHS: object_construct / object_expression / evaluated
+ * object value used at compile time. Skip when the construct has spreads
+ * or expression property names (set of keys not statically known).
+ */
+
+static const afw_value_type_t *
+impl_resolve_type(const afw_value_type_t *type)
+{
+    if (!type) {
+        return NULL;
+    }
+    if (type->kind == afw_value_type_kind_reference &&
+        type->reference.resolved)
+    {
+        return impl_resolve_type(type->reference.resolved);
+    }
+    return type;
+}
+
+
+
+static afw_boolean_t
+impl_object_type_declares_name(
+    const afw_value_type_t *type,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    const afw_value_type_property_t *prop;
+    afw_size_t i;
+    const afw_value_type_t *base;
+
+    type = impl_resolve_type(type);
+    if (!type || type->kind != afw_value_type_kind_object) {
+        return false;
+    }
+
+    for (i = 0; i < type->object.extends_count; i++) {
+        base = type->object.extends[i];
+        if (base && impl_object_type_declares_name(base, name, xctx)) {
+            return true;
+        }
+    }
+
+    for (prop = type->object.properties; prop; prop = prop->next) {
+        if (prop->name && afw_utf8_equal(prop->name, name)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+
+static const afw_value_type_t *
+impl_object_type_property_type(
+    const afw_value_type_t *type,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    const afw_value_type_property_t *prop;
+    afw_size_t i;
+    const afw_value_type_t *base;
+    const afw_value_type_t *found;
+
+    type = impl_resolve_type(type);
+    if (!type || type->kind != afw_value_type_kind_object) {
+        return NULL;
+    }
+
+    for (prop = type->object.properties; prop; prop = prop->next) {
+        if (prop->name && afw_utf8_equal(prop->name, name)) {
+            return prop->type;
+        }
+    }
+
+    for (i = 0; i < type->object.extends_count; i++) {
+        base = type->object.extends[i];
+        found = impl_object_type_property_type(base, name, xctx);
+        if (found) {
+            return found;
+        }
+    }
+
+    return NULL;
+}
+
+
+
+/**
+ * @return true if value is an object literal (for excess-property checks).
+ * @param open_keys set when keys are not fully static (skip excess).
+ */
+static afw_boolean_t
+impl_is_object_literal_for_excess(
+    const afw_value_t *value,
+    afw_boolean_t *open_keys)
+{
+    const afw_value_object_construct_t *construct;
+    const afw_value_object_construct_entry_t *e;
+
+    *open_keys = false;
+
+    if (afw_value_is_object_construct(value)) {
+        construct = (const afw_value_object_construct_t *)value;
+        for (e = construct->entries; e; e = e->next) {
+            if (e->type == afw_value_object_construct_entry_spread ||
+                e->type == afw_value_object_construct_entry_name_expr)
+            {
+                *open_keys = true;
+                break;
+            }
+        }
+        return true;
+    }
+
+    if (afw_value_is_object_expression(value)) {
+        return true;
+    }
+
+    /*
+     * Compile-time constant object literals evaluate to unmanaged objects
+     * while still being the direct RHS of const/let.
+     */
+    if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        return true;
+    }
+
+    return false;
+}
+
+
+
+static void
+impl_foreach_object_literal_prop(
+    const afw_value_t *value,
+    void (*cb)(
+        const afw_utf8_t *name,
+        const afw_value_t *prop_value,
+        void *data,
+        afw_xctx_t *xctx),
+    void *data,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *obj;
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *name;
+    const afw_value_t *pv;
+    const afw_value_object_construct_t *construct;
+    const afw_value_object_construct_entry_t *e;
+
+    if (afw_value_is_object_construct(value)) {
+        construct = (const afw_value_object_construct_t *)value;
+        for (e = construct->entries; e; e = e->next) {
+            if (e->type == afw_value_object_construct_entry_static &&
+                e->static_name)
+            {
+                cb(e->static_name, e->value, data, xctx);
+            }
+        }
+        return;
+    }
+
+    if (afw_value_is_object_expression(value)) {
+        obj = ((const afw_value_object_expression_t *)value)->internal;
+    }
+    else if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        obj = ((const afw_value_object_t *)value)->internal;
+    }
+    else {
+        return;
+    }
+
+    for (iterator = NULL;;) {
+        pv = afw_object_get_next_property(obj, &iterator, &name, xctx);
+        if (!pv) {
+            break;
+        }
+        if (name) {
+            cb(name, pv, data, xctx);
+        }
+    }
+}
+
+
+
+typedef struct {
+    const afw_value_type_t *expected;
+    const afw_utf8_z_t *what;
+} impl_excess_ctx_t;
+
+
+
+static void
+impl_excess_prop_cb(
+    const afw_utf8_t *name,
+    const afw_value_t *prop_value,
+    void *data,
+    afw_xctx_t *xctx)
+{
+    impl_excess_ctx_t *ctx = (impl_excess_ctx_t *)data;
+    const afw_value_type_t *prop_type;
+    afw_boolean_t open_keys;
+
+    if (!impl_object_type_declares_name(ctx->expected, name, xctx)) {
+        AFW_THROW_ERROR_FZ(syntax, xctx,
+            "Type error in %s: excess property " AFW_UTF8_FMT_Q
+            " is not declared on type %s",
+            ctx->what ? ctx->what : "assignment",
+            AFW_UTF8_FMT_ARG(name),
+            impl_type_to_z(ctx->expected, xctx->p, xctx));
+    }
+
+    /* Nested object literals against nested object property types. */
+    prop_type = impl_object_type_property_type(ctx->expected, name, xctx);
+    prop_type = impl_resolve_type(prop_type);
+    if (prop_type && prop_type->kind == afw_value_type_kind_object &&
+        prop_value &&
+        impl_is_object_literal_for_excess(prop_value, &open_keys) &&
+        !open_keys)
+    {
+        impl_excess_ctx_t nested;
+
+        nested.expected = prop_type;
+        nested.what = ctx->what;
+        impl_foreach_object_literal_prop(prop_value, impl_excess_prop_cb,
+            &nested, xctx);
+    }
+}
+
+
+
+static void
+impl_compile_check_excess_properties(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t open_keys;
+    impl_excess_ctx_t ctx;
+
+    expected = impl_resolve_type(expected);
+    if (!expected || expected->kind != afw_value_type_kind_object) {
+        return;
+    }
+    if (!value || !impl_is_object_literal_for_excess(value, &open_keys)) {
+        return;
+    }
+    if (open_keys) {
+        /* Spread / computed keys: cannot prove excess. */
+        return;
+    }
+
+    ctx.expected = expected;
+    ctx.what = what;
+    impl_foreach_object_literal_prop(value, impl_excess_prop_cb, &ctx, xctx);
+}
+
+
+
 AFW_DEFINE(void)
 afw_value_type_check_compile_assignable(
     const afw_value_type_t *expected,
@@ -966,25 +1236,34 @@ afw_value_type_check_compile_assignable(
     }
 
     got = afw_value_get_data_type(value, xctx);
-    if (!got) {
+    if (!got || got == afw_data_type_any || got == afw_data_type_unknown) {
+        /*
+         * Unknown / untyped RHS (e.g. bare symbol reference): do not fail
+         * compile checks. Excess-property and structural rules apply when
+         * the RHS is a known literal or concrete data type.
+         */
         return;
     }
 
-    if (afw_value_type_is_assignable(expected, value, xctx)) {
-        return;
-    }
+    if (!afw_value_type_is_assignable(expected, value, xctx)) {
+        detail = impl_mismatch_detail(expected, value, xctx->p, xctx);
+        if (detail) {
+            AFW_THROW_ERROR_FZ(syntax, xctx,
+                "Type error in %s: %s",
+                what ? what : "value",
+                detail);
+        }
 
-    detail = impl_mismatch_detail(expected, value, xctx->p, xctx);
-    if (detail) {
         AFW_THROW_ERROR_FZ(syntax, xctx,
-            "Type error in %s: %s",
+            "Type error in %s: expected %s but got %s",
             what ? what : "value",
-            detail);
+            impl_type_to_z(expected, xctx->p, xctx),
+            afw_utf8_to_utf8_z(&got->data_type_id, xctx->p, xctx));
     }
 
-    AFW_THROW_ERROR_FZ(syntax, xctx,
-        "Type error in %s: expected %s but got %s",
-        what ? what : "value",
-        impl_type_to_z(expected, xctx->p, xctx),
-        afw_utf8_to_utf8_z(&got->data_type_id, xctx->p, xctx));
+    /*
+     * Additional compile-only rule: reject unknown keys on object literals.
+     * Not applied at runtime (open structural for adaptive data).
+     */
+    impl_compile_check_excess_properties(expected, value, what, xctx);
 }

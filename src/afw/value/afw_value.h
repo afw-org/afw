@@ -1861,6 +1861,10 @@ afw_value_type_check_assignable(
 /**
  * @brief Compile-time check when RHS data type is known.
  * Throws syntax error if not assignable and compile checking is enabled.
+ *
+ * Also applies excess-property checks on object literals (unknown keys vs
+ * object/interface shape). Runtime afw_value_type_check_assignable() does
+ * not — adaptive values may carry extra properties.
  */
 AFW_DEFINE(void)
 afw_value_type_check_compile_assignable(

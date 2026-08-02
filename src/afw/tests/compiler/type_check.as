@@ -742,3 +742,88 @@ try {
     assert(includes(msg, "port") || includes(msg, "missing"));
 }
 return 0;
+
+//?
+//? test: typecheck-excess-property-object-literal
+//? description: compile rejects excess key on object literal
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+compile<script>(script(
+    "const o: { host: string } = { host: \"h\", port: 1 };\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: typecheck-excess-property-via-variable-ok
+//? description: extras OK when assigned from a variable (not a literal)
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const wider = { host: \"h\", port: 1 };\n" +
+    "const o: { host: string } = wider;\n" +
+    "return o.host;"
+)));
+assert(r === "h");
+return 0;
+
+//?
+//? test: typecheck-excess-not-at-runtime
+//? description: runtime typeCheck allows extra props on evaluated object
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+/* Compile without checking so a "wide" object assign is in the unit. */
+const compiled: any = compile<script>(script(
+    "const o: { host: string } = { host: \"h\", port: 99 };\n" +
+    "return o.host;"
+));
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compiled);
+assert(r === "h");
+return 0;
+
+//?
+//? test: typecheck-excess-nested-literal
+//? description: excess property on nested object literal
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+compile<script>(script(
+    "const o: { a: { x: integer } } = { a: { x: 1, y: 2 } };\n" +
+    "return 0;"
+));
+return 0;

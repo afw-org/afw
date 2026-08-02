@@ -30,13 +30,13 @@
     </paragraph>
     <header>Types and Type Casting</header>
     <paragraph>
-        Adaptive Script has a TypeScript-like type surface built on Adaptive
-        data types (<literal>integer</literal>, <literal>string</literal>,
-        arrays, object shapes, unions, and more). Type annotations are always
-        parsed; optional type checking (off by default) can catch mismatches
-        at compile time and/or runtime. See the
-        <link href="types.xml" text="Types"/> language reference for syntax,
-        flags, and the <literal>#typecheck</literal> pragma.
+        Adaptive Script can annotate values with Adaptive data types
+        (<literal>integer</literal>, <literal>string</literal>, arrays,
+        object shapes, unions, and more). Annotations are always accepted;
+        optional type checking (off by default) can catch mismatches at
+        compile time and/or runtime. See the
+        <link href="types.xml" text="Types"/> language reference for syntax
+        and flags.
     </paragraph>
     <header>Prototypal Inheritance</header>
     <paragraph>
