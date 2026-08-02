@@ -96,3 +96,44 @@ const d2 = decompile(compile<script>(script(d1)));
 assert(d1 == d2);
 assert(evaluate(compile<script>(script(d1))) == [1, 2]);
 return 0;
+
+//?
+//? test: type-decompile-roundtrip-union
+//? description: decompile integer|string recompiles
+//? expect: 0
+//? source: ...
+
+const src = "const x: integer|string = 1;\nreturn x;";
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(d1))) == 1);
+return 0;
+
+//?
+//? test: type-decompile-roundtrip-function-type
+//? description: function type annotation decompiles
+//? expect: 0
+//? source: ...
+
+const src =
+    "const f: (a:integer)=>integer = function (a:integer):integer { return a; };\nreturn f(3);";
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(d1))) == 3);
+return 0;
+
+//?
+//? test: type-Array-generic-decompile
+//? description: Array<string> decompiles as string[]
+//? expect: 0
+//? source: ...
+
+const d = decompile(compile<script>(script(
+    "const x: Array<string> = [\"a\"];\nreturn x;"
+)));
+/* Array<T> and T[] are the same IR; decompile prefers T[]. */
+assert(d ==
+    "#block(const(#assignment_target(\"const\",x:string[]),[\"a\"],undefined),return(x))");
+return 0;
