@@ -341,7 +341,8 @@ Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 /* Statement-position pragma (#Name …). Token is pragma_identifier.           */
 
 PragmaStatement ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')'
+    '#block' '(' ( Expression ( ',' Expression )* )? ')' |
+    '#typecheck' ( 'off' | 'on' | 'compileOnly' )? ';'
 
 /* From afw_compile_parse_pragma.c                                            */
 /* Value/expression-position pragma (#Name …). Token is pragma_identifier.    */

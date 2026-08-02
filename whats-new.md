@@ -535,6 +535,30 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ---
 
+## Adaptive Script types (issue #28, in progress on type-check branch)
+
+**Type syntax** is TypeScript-like, with **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …)—not JavaScript primitives. Examples: `integer[]`, `Array<string>`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus `type` / `interface` (script-local only; **not** adaptive object types).
+
+Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")` are **removed** (hard cut).
+
+**Type checking is off by default.** Opt in with flags (or `#typecheck` pragma):
+
+| Flag / pragma | Effect |
+|---------------|--------|
+| *(default)* | Parse and store types only |
+| `compile:typeCheck` | Compile-time (when known) **and** runtime checks |
+| `compile:typeCheckCompileOnly` | Compile-time only (**wins** if both set) |
+| `compile:noImplicitAny` | Require annotations when checking |
+| `compile:strictNullChecks` | Stricter null/undefined |
+| `compile:strict` | typeCheck + noImplicitAny + strictNullChecks |
+| `#typecheck;` / `#typecheck on;` | Same as full typeCheck for rest of that compile |
+| `#typecheck compileOnly;` | Compile-only for that compile |
+| `#typecheck off;` | Turn off for that compile |
+
+Runtime checks apply on assignment and script function parameters (leaf types and simple composites). Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pad: `designs/issue-28-type-syntax.md`.
+
+---
+
 ## Conf path templates (issue #15)
 
 Several conf properties that hold host paths or module paths are now **`template`** (or array of template). Plain strings still work as before; substitutions such as **`environment::`** (and other ambient qualifiers available after env create) are evaluated when the conf entry is processed.

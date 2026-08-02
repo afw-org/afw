@@ -24,7 +24,7 @@ return #nosuch(1);
 //? expect: error
 //? source: ...
 
-#typecheck;
+#nosuchpragma;
 return 0;
 
 //? test: pragma-closure-binding-not-recompilable-value

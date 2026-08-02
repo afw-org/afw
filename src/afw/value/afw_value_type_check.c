@@ -111,12 +111,65 @@ afw_value_type_is_assignable(
         return false;
     }
 
+    /* Union: assignable if matches any member. */
+    if (expected->kind == afw_value_type_kind_union) {
+        afw_size_t i;
+
+        for (i = 0; i < expected->compound.count; i++) {
+            if (afw_value_type_is_assignable(
+                expected->compound.members[i], value, xctx))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /* Intersection: must match every member. */
+    if (expected->kind == afw_value_type_kind_intersection) {
+        afw_size_t i;
+
+        for (i = 0; i < expected->compound.count; i++) {
+            if (!afw_value_type_is_assignable(
+                expected->compound.members[i], value, xctx))
+            {
+                return false;
+            }
+        }
+        return expected->compound.count > 0;
+    }
+
+    /* Array / tuple: value must be an array (element types later). */
+    if (expected->kind == afw_value_type_kind_array ||
+        expected->kind == afw_value_type_kind_tuple)
+    {
+        got = afw_value_get_data_type(value, xctx);
+        return got == afw_data_type_array;
+    }
+
+    /* Object shape / interface: value must be an object. */
+    if (expected->kind == afw_value_type_kind_object) {
+        got = afw_value_get_data_type(value, xctx);
+        return got == afw_data_type_object;
+    }
+
+    /* Named reference: use resolved type if present. */
+    if (expected->kind == afw_value_type_kind_reference) {
+        if (expected->reference.resolved) {
+            return afw_value_type_is_assignable(
+                expected->reference.resolved, value, xctx);
+        }
+        return !afw_value_is_undefined(value);
+    }
+
+    /* Function type: value should be a function. */
+    if (expected->kind == afw_value_type_kind_function) {
+        got = afw_value_get_data_type(value, xctx);
+        return got == afw_data_type_function;
+    }
+
     want = afw_value_type_get_leaf_data_type(expected);
     if (!want) {
-        /*
-         * Composite / reference types: v1 only requires a defined value.
-         * Deep structural checks can come later.
-         */
         return !afw_value_is_undefined(value);
     }
 

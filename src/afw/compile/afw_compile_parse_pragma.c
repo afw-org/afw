@@ -650,22 +650,89 @@ impl_parse_pragma_script_function(afw_compile_parser_t *parser)
 
 
 
+/*
+ * #typecheck [ off | on | compileOnly ] ;
+ *
+ * Policy pragma (issue #28). Sets xctx compile type-check flags for the rest
+ * of this compile (and subsequent eval on the same xctx). Default with no
+ * argument is full on (compile + runtime).
+ */
+static const afw_value_t *
+impl_parse_pragma_typecheck(afw_compile_parser_t *parser)
+{
+    afw_boolean_t full;
+    afw_boolean_t compile_only;
+    afw_boolean_t off;
+
+    full = true;
+    compile_only = false;
+    off = false;
+
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        if (afw_compile_token_is_name_z("off") ||
+            afw_compile_token_is_name_z("false"))
+        {
+            off = true;
+            full = false;
+        }
+        else if (afw_compile_token_is_name_z("on") ||
+            afw_compile_token_is_name_z("full") ||
+            afw_compile_token_is_name_z("true"))
+        {
+            full = true;
+        }
+        else if (afw_compile_token_is_name_z("compileOnly") ||
+            afw_compile_token_is_name_z("compileonly") ||
+            afw_compile_token_is_name_z("compile"))
+        {
+            compile_only = true;
+            full = false;
+        }
+        else {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting off, on, or compileOnly after #typecheck");
+        }
+        afw_compile_get_token();
+    }
+
+    if (!afw_compile_token_is(semicolon)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ';' after #typecheck");
+    }
+
+    /* Clear mode flags first, then set the requested mode. */
+    afw_flag_set(afw_s_a_flag_compile_typeCheck, false, parser->xctx);
+    afw_flag_set(afw_s_a_flag_compile_typeCheckCompileOnly, false,
+        parser->xctx);
+
+    if (off) {
+        /* leave both off */
+    }
+    else if (compile_only) {
+        afw_flag_set(afw_s_a_flag_compile_typeCheckCompileOnly, true,
+            parser->xctx);
+    }
+    else if (full) {
+        afw_flag_set(afw_s_a_flag_compile_typeCheck, true, parser->xctx);
+    }
+
+    /* No runtime value; statement is side-effect only. */
+    return NULL;
+}
+
+
+
 /*ebnf>>>
  *
  *# Statement-position pragma (#Name …). Token is pragma_identifier.
  *
  * PragmaStatement ::=
- *     '#block' '(' ( Expression ( ',' Expression )* )? ')'
+ *     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
+ *     '#typecheck' ( 'off' | 'on' | 'compileOnly' )? ';'
  *
  *<<<ebnf*/
 /**
  * Parse a pragma in statement position.
- *
- * Example of adding a known pragma (before the unknown fall-through):
- *
- *   if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "typecheck")) {
- *       // parse tail for #typecheck …; apply parser flags; return value
- *   }
  */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
@@ -678,6 +745,12 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
         return impl_parse_pragma_block(parser);
     }
 
+    if (impl_pragma_name_is(parser, "typecheck") ||
+        impl_pragma_name_is(parser, "typeCheck"))
+    {
+        return impl_parse_pragma_typecheck(parser);
+    }
+
     if (impl_pragma_name_is(parser, "closure_binding")) {
         impl_pragma_closure_binding_not_recompilable(parser);
         return NULL; /* not reached */
@@ -687,13 +760,6 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
         impl_pragma_function_thunk_not_recompilable(parser);
         return NULL; /* not reached */
     }
-
-    /*
-     * if (impl_pragma_name_is(parser, "typecheck")) {
-     *     …
-     *     return result;
-     * }
-     */
 
     impl_pragma_unknown(parser,
         "Unknown pragma statement " AFW_UTF8_FMT_Q,

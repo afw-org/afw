@@ -152,6 +152,87 @@ assert(r === 2);
 return 0;
 
 //?
+//? test: typecheck-pragma-on
+//? description: #typecheck; enables full checking for rest of compile unit
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+/*
+ * Inner script: pragma turns typeCheck on at parse time, then bad assign.
+ */
+compile<script>(script(
+    "#typecheck;\nconst x: integer = \"hello\";\nreturn 0;"
+));
+return 0;
+
+//?
+//? test: typecheck-pragma-compileOnly
+//? description: #typecheck compileOnly;
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+compile<script>(script(
+    "#typecheck compileOnly;\nconst x: integer = \"hello\";\nreturn 0;"
+));
+return 0;
+
+//?
+//? test: typecheck-pragma-off
+//? description: #typecheck off; after flags
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+/* Pragma off inside inner script disables for that compile. */
+const r: any = evaluate(compile<script>(script(
+    "#typecheck off;\nconst x: integer = \"hello\";\nreturn 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-union-runtime
+//? description: integer|string accepts both with typeCheck
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const a: integer|string = 1;\n" +
+    "const b: integer|string = \"x\";\n" +
+    "return a;"
+)));
+assert(r === 1);
+return 0;
+
+//?
 //? test: typecheck-compileOnly-wins-over-typeCheck
 //? description: both flags → compile only (no runtime param check)
 //? expect: 0
