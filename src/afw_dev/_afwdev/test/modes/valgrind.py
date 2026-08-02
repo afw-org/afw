@@ -16,6 +16,7 @@ import os
 import subprocess
 
 from _afwdev.common import msg, nfc, resources
+from _afwdev.test.common import format_abnormal_process_exit
 
 ##
 # @brief Runs the tests under the afw command line tool and valgrind.
@@ -78,7 +79,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
             return None, None, None
 
         if p.returncode < 0:
-            raise Exception("Process was terminated with return code {}".format(p.returncode))
+            raise Exception(format_abnormal_process_exit(p.returncode))
 
         stderr = p.stderr.decode("utf-8")
         stdout = p.stdout.decode("utf-8")              

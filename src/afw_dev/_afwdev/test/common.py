@@ -16,6 +16,7 @@
 
 import os
 import shutil
+import signal
 import subprocess
 import importlib
 import importlib.machinery
@@ -23,6 +24,61 @@ import re
 from os.path import exists
 
 from _afwdev.common import msg, nfc
+
+
+##
+# @brief Human-readable message for a process killed by a signal
+# @param returncode Subprocess return code (negative when killed by signal)
+# @details Python reports signal death as a negative returncode (-N for
+#          signal N). Decode to a name such as SIGSEGV when possible.
+#
+def format_abnormal_process_exit(returncode):
+    if returncode is None:
+        return "Process exited abnormally"
+    if returncode >= 0:
+        return "Process exited with return code {}".format(returncode)
+    sig = -returncode
+    try:
+        name = signal.Signals(sig).name
+    except (ValueError, AttributeError):
+        name = "signal {}".format(sig)
+    return "Process exited abnormally with return code {} ({})".format(
+        returncode, name)
+
+
+##
+# @brief Path of a test file relative to base (package root when possible)
+#
+def test_path_for_display(test, base=None):
+    if base is None:
+        base = os.getcwd()
+    try:
+        return os.path.relpath(test, base)
+    except ValueError:
+        return test
+
+
+##
+# @brief Print a short end-of-run list of failing tests
+# @param failures List of dicts with at least 'test' and optional 'detail'
+# @details Console-only helper so parallel runs still end with a greppable
+#          list of paths. Does not change --output JSON shape.
+#
+def print_failure_digest(failures):
+    if not failures:
+        return
+    msg.highlighted_info("")
+    msg.error("Failures ({}):".format(len(failures)))
+    for f in failures:
+        path = f.get('test') or '?'
+        detail = f.get('detail')
+        if detail:
+            msg.error("  {}  {}".format(path, detail))
+        else:
+            msg.error("  {}".format(path))
+    msg.highlighted_info(
+        "Re-run:  afwdev test --test-pattern '<filename>'  "
+        "(see also -p / --list)")
 
 
 ##
