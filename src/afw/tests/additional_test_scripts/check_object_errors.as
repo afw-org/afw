@@ -14,7 +14,7 @@ const objectTypeObjects: object = retrieve_objects("afw", "_AdaptiveObjectType_"
 for (const objectTypeObject: object of objectTypeObjects) {        
     const {objectType: objectTypeId, allowEntity = false} = objectTypeObject;        
     if (allowEntity != false) {                
-        const objects: (array of object) = retrieve_objects("afw", objectTypeId, undefined, { normalize: true, composite: true, objectId: true, path: true }, undefined, 0);
+        const objects: object[] = retrieve_objects("afw", objectTypeId, undefined, { normalize: true, composite: true, objectId: true, path: true }, undefined, 0);
 
         for (const object: object of objects) {      
             assert(
@@ -26,11 +26,11 @@ for (const objectTypeObject: object of objectTypeObjects) {
 }
 
 
-const objectTypeObjectsDev: (array of object) = retrieve_objects("dev", "_AdaptiveObjectType_", undefined, undefined, undefined, 0);
+const objectTypeObjectsDev: object[] = retrieve_objects("dev", "_AdaptiveObjectType_", undefined, undefined, undefined, 0);
 for (const objectTypeObjectDev: object of objectTypeObjectsDev) {
     const {objectType: objectTypeId, allowEntity = false} = objectTypeObjectDev;    
     if (allowEntity != false) {
-        const objectsDev: (array of object) = retrieve_objects("dev", objectTypeId, undefined, { normalize: true, composite: true, objectId: true, path: true }, undefined, 0);
+        const objectsDev: object[] = retrieve_objects("dev", objectTypeId, undefined, { normalize: true, composite: true, objectId: true, path: true }, undefined, 0);
         for (const objectDev: object of objectsDev) {        
             assert(
                 meta(objectDev)->property_get("hasErrors", false) == false, 
