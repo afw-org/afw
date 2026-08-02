@@ -1803,6 +1803,18 @@ struct afw_environment_s {
     /** @brief Flag index of compile:noImplicitAny. */
     afw_size_t flag_index_compile_noImplicitAny_active;
 
+    /** @brief Flag index of compile:typeCheck (full compile+runtime). */
+    afw_size_t flag_index_compile_typeCheck_active;
+
+    /** @brief Flag index of compile:typeCheckCompileOnly. */
+    afw_size_t flag_index_compile_typeCheckCompileOnly_active;
+
+    /** @brief Flag index of compile:strictNullChecks. */
+    afw_size_t flag_index_compile_strictNullChecks_active;
+
+    /** @brief Flag index of compile:strict. */
+    afw_size_t flag_index_compile_strict_active;
+
     /** @brief Flag index of compile:noOptimize. */
     afw_size_t flag_index_compile_noOptimize_active;
 

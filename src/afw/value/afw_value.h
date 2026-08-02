@@ -1797,6 +1797,76 @@ afw_value_decompile_value(
 
 
 /**
+ * @brief Type-check mode from compile:* flags (issue #28).
+ *
+ * Default is off. compile:typeCheckCompileOnly wins over compile:typeCheck.
+ */
+typedef enum afw_value_type_check_mode_e {
+    afw_value_type_check_mode_off = 0,
+    afw_value_type_check_mode_compile_only,
+    afw_value_type_check_mode_on
+} afw_value_type_check_mode_t;
+
+/**
+ * @brief Resolve type-check mode from active flags.
+ */
+AFW_DEFINE(afw_value_type_check_mode_t)
+afw_value_type_check_mode(afw_xctx_t *xctx);
+
+/** @brief True if compile-time type checks should run. */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_check_compile_enabled(afw_xctx_t *xctx);
+
+/** @brief True if runtime type checks should run. */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_check_runtime_enabled(afw_xctx_t *xctx);
+
+/**
+ * @brief True if type is missing, any, or zero-init leaf any.
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_is_any(const afw_value_type_t *type);
+
+/**
+ * @brief Leaf Adaptive data type if kind is data_type; else NULL.
+ */
+AFW_DEFINE(const afw_data_type_t *)
+afw_value_type_get_leaf_data_type(const afw_value_type_t *type);
+
+/**
+ * @brief Whether value is assignable to expected type (leaf-focused v1).
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_is_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Throw if value is not assignable to expected (when checking on).
+ * @param expected slot/formal type (NULL or any = accept).
+ * @param value evaluated value.
+ * @param what short context (e.g. "assignment", "parameter 1").
+ */
+AFW_DEFINE(void)
+afw_value_type_check_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Compile-time check when RHS data type is known.
+ * Throws syntax error if not assignable and compile checking is enabled.
+ */
+AFW_DEFINE(void)
+afw_value_type_check_compile_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Decompile a type as Adaptive Type surface text (no leading ':').
  * @param type to decompile; NULL or "any" writes nothing (caller skips ':').
  * @param writer

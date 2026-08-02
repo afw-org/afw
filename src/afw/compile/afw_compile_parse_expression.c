@@ -1508,8 +1508,16 @@ afw_compile_parse_OptionalType(
         return impl_parse_Type_expression(parser);
     }
 
-    /* Missing annotation → any. */
+    /* Missing annotation → any (error if noImplicitAny + type checking). */
     afw_compile_reuse_token();
+    if (afw_value_type_check_compile_enabled(parser->xctx) &&
+        afw_flag_is_active(
+            parser->xctx->env->flag_index_compile_noImplicitAny_active,
+            parser->xctx))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Type annotation required (compile:noImplicitAny)");
+    }
     return impl_type_data_type(parser, afw_data_type_any);
 }
 

@@ -10483,7 +10483,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_noImplicitAny_description \
-    "If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed."
+    "If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed. Only applies when type checking is active (compile:typeCheck or compile:typeCheckCompileOnly)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_noImplicitAny_description */
 #define afw_s_a_flag_compile_noImplicitAny_description \
@@ -10582,6 +10582,318 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_noOptimize_description */
 #define afw_v_a_flag_compile_noOptimize_description \
     (&afw_self_v_a_flag_compile_noOptimize_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strict \
+    "compile:strict"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict */
+#define afw_s_a_flag_compile_strict \
+    (&afw_self_v_a_flag_compile_strict.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict */
+#define afw_self_s_a_flag_compile_strict \
+    (afw_self_v_a_flag_compile_strict.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strict */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_strict;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strict */
+#define afw_z_a_flag_compile_strict \
+    (afw_self_v_a_flag_compile_strict.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strict */
+#define afw_v_a_flag_compile_strict \
+    (&afw_self_v_a_flag_compile_strict.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strictNullChecks \
+    "compile:strictNullChecks"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks */
+#define afw_s_a_flag_compile_strictNullChecks \
+    (&afw_self_v_a_flag_compile_strictNullChecks.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks */
+#define afw_self_s_a_flag_compile_strictNullChecks \
+    (afw_self_v_a_flag_compile_strictNullChecks.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strictNullChecks */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_strictNullChecks;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strictNullChecks */
+#define afw_z_a_flag_compile_strictNullChecks \
+    (afw_self_v_a_flag_compile_strictNullChecks.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strictNullChecks */
+#define afw_v_a_flag_compile_strictNullChecks \
+    (&afw_self_v_a_flag_compile_strictNullChecks.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strictNullChecks_brief \
+    "Strict null and undefined checks"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks_brief */
+#define afw_s_a_flag_compile_strictNullChecks_brief \
+    (&afw_self_v_a_flag_compile_strictNullChecks_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks_brief */
+#define afw_self_s_a_flag_compile_strictNullChecks_brief \
+    (afw_self_v_a_flag_compile_strictNullChecks_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strictNullChecks_brief */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_strictNullChecks_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strictNullChecks_brief */
+#define afw_z_a_flag_compile_strictNullChecks_brief \
+    (afw_self_v_a_flag_compile_strictNullChecks_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strictNullChecks_brief */
+#define afw_v_a_flag_compile_strictNullChecks_brief \
+    (&afw_self_v_a_flag_compile_strictNullChecks_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strictNullChecks_description \
+    "When type checking is active, null and undefined are not assignable to non-nullish types unless the type includes them. Similar to TypeScript strictNullChecks."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks_description */
+#define afw_s_a_flag_compile_strictNullChecks_description \
+    (&afw_self_v_a_flag_compile_strictNullChecks_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks_description */
+#define afw_self_s_a_flag_compile_strictNullChecks_description \
+    (afw_self_v_a_flag_compile_strictNullChecks_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strictNullChecks_description */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_strictNullChecks_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strictNullChecks_description */
+#define afw_z_a_flag_compile_strictNullChecks_description \
+    (afw_self_v_a_flag_compile_strictNullChecks_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strictNullChecks_description */
+#define afw_v_a_flag_compile_strictNullChecks_description \
+    (&afw_self_v_a_flag_compile_strictNullChecks_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strict_brief \
+    "TypeScript-like strict type checking"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict_brief */
+#define afw_s_a_flag_compile_strict_brief \
+    (&afw_self_v_a_flag_compile_strict_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict_brief */
+#define afw_self_s_a_flag_compile_strict_brief \
+    (afw_self_v_a_flag_compile_strict_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strict_brief */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_strict_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strict_brief */
+#define afw_z_a_flag_compile_strict_brief \
+    (afw_self_v_a_flag_compile_strict_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strict_brief */
+#define afw_v_a_flag_compile_strict_brief \
+    (&afw_self_v_a_flag_compile_strict_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_strict_description \
+    "Enables compile:typeCheck (compile and runtime), compile:noImplicitAny, and compile:strictNullChecks. Similar to TypeScript compilerOption strict."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict_description */
+#define afw_s_a_flag_compile_strict_description \
+    (&afw_self_v_a_flag_compile_strict_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict_description */
+#define afw_self_s_a_flag_compile_strict_description \
+    (afw_self_v_a_flag_compile_strict_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_strict_description */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_strict_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_strict_description */
+#define afw_z_a_flag_compile_strict_description \
+    (afw_self_v_a_flag_compile_strict_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_strict_description */
+#define afw_v_a_flag_compile_strict_description \
+    (&afw_self_v_a_flag_compile_strict_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_typeCheck \
+    "compile:typeCheck"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck */
+#define afw_s_a_flag_compile_typeCheck \
+    (&afw_self_v_a_flag_compile_typeCheck.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck */
+#define afw_self_s_a_flag_compile_typeCheck \
+    (afw_self_v_a_flag_compile_typeCheck.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_typeCheck */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_typeCheck;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_typeCheck */
+#define afw_z_a_flag_compile_typeCheck \
+    (afw_self_v_a_flag_compile_typeCheck.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_typeCheck */
+#define afw_v_a_flag_compile_typeCheck \
+    (&afw_self_v_a_flag_compile_typeCheck.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_typeCheckCompileOnly \
+    "compile:typeCheckCompileOnly"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly */
+#define afw_s_a_flag_compile_typeCheckCompileOnly \
+    (&afw_self_v_a_flag_compile_typeCheckCompileOnly.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly */
+#define afw_self_s_a_flag_compile_typeCheckCompileOnly \
+    (afw_self_v_a_flag_compile_typeCheckCompileOnly.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_typeCheckCompileOnly;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_typeCheckCompileOnly */
+#define afw_z_a_flag_compile_typeCheckCompileOnly \
+    (afw_self_v_a_flag_compile_typeCheckCompileOnly.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_typeCheckCompileOnly */
+#define afw_v_a_flag_compile_typeCheckCompileOnly \
+    (&afw_self_v_a_flag_compile_typeCheckCompileOnly.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_typeCheckCompileOnly_brief \
+    "Enable compile-time type checking only"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_brief */
+#define afw_s_a_flag_compile_typeCheckCompileOnly_brief \
+    (&afw_self_v_a_flag_compile_typeCheckCompileOnly_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_brief */
+#define afw_self_s_a_flag_compile_typeCheckCompileOnly_brief \
+    (afw_self_v_a_flag_compile_typeCheckCompileOnly_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_brief */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_typeCheckCompileOnly_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_typeCheckCompileOnly_brief */
+#define afw_z_a_flag_compile_typeCheckCompileOnly_brief \
+    (afw_self_v_a_flag_compile_typeCheckCompileOnly_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_typeCheckCompileOnly_brief */
+#define afw_v_a_flag_compile_typeCheckCompileOnly_brief \
+    (&afw_self_v_a_flag_compile_typeCheckCompileOnly_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_typeCheckCompileOnly_description \
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
+#define afw_s_a_flag_compile_typeCheckCompileOnly_description \
+    (&afw_self_v_a_flag_compile_typeCheckCompileOnly_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
+#define afw_self_s_a_flag_compile_typeCheckCompileOnly_description \
+    (afw_self_v_a_flag_compile_typeCheckCompileOnly_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_typeCheckCompileOnly_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
+#define afw_z_a_flag_compile_typeCheckCompileOnly_description \
+    (afw_self_v_a_flag_compile_typeCheckCompileOnly_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
+#define afw_v_a_flag_compile_typeCheckCompileOnly_description \
+    (&afw_self_v_a_flag_compile_typeCheckCompileOnly_description.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_typeCheck_brief \
+    "Enable compile and runtime type checking"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck_brief */
+#define afw_s_a_flag_compile_typeCheck_brief \
+    (&afw_self_v_a_flag_compile_typeCheck_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck_brief */
+#define afw_self_s_a_flag_compile_typeCheck_brief \
+    (afw_self_v_a_flag_compile_typeCheck_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_typeCheck_brief */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_typeCheck_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_typeCheck_brief */
+#define afw_z_a_flag_compile_typeCheck_brief \
+    (afw_self_v_a_flag_compile_typeCheck_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_typeCheck_brief */
+#define afw_v_a_flag_compile_typeCheck_brief \
+    (&afw_self_v_a_flag_compile_typeCheck_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_flag_compile_typeCheck_description \
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck_description */
+#define afw_s_a_flag_compile_typeCheck_description \
+    (&afw_self_v_a_flag_compile_typeCheck_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck_description */
+#define afw_self_s_a_flag_compile_typeCheck_description \
+    (afw_self_v_a_flag_compile_typeCheck_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_flag_compile_typeCheck_description */
+extern const afw_value_string_t \
+    afw_self_v_a_flag_compile_typeCheck_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_flag_compile_typeCheck_description */
+#define afw_z_a_flag_compile_typeCheck_description \
+    (afw_self_v_a_flag_compile_typeCheck_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_flag_compile_typeCheck_description */
+#define afw_v_a_flag_compile_typeCheck_description \
+    (&afw_self_v_a_flag_compile_typeCheck_description.pub)
 
 
 

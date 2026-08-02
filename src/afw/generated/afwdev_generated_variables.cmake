@@ -469,6 +469,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_script_function.c
     value/afw_value_symbol_reference.c
     value/afw_value_template_definition.c
+    value/afw_value_type_check.c
     version/afw_version.c
     writer/afw_writer.c
     xctx/afw_xctx.c

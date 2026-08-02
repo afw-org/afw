@@ -31,6 +31,35 @@ impl_function_definition_rethrow =
 
 
 
+
+/* Compile-time type check for const/let/assign (issue #28). */
+static void
+impl_compile_check_assign_target(
+    afw_compile_parser_t *parser,
+    const afw_value_t *target,
+    const afw_value_t *value)
+{
+    const afw_value_assignment_target_t *at;
+    const afw_value_type_t *type;
+
+    if (!afw_value_type_check_compile_enabled(parser->xctx)) {
+        return;
+    }
+    if (!afw_value_is_assignment_target(target)) {
+        return;
+    }
+    at = (const afw_value_assignment_target_t *)target;
+    if (at->assignment_target->target_type !=
+        afw_compile_assignment_target_type_symbol_reference)
+    {
+        return;
+    }
+    type = &at->assignment_target->symbol_reference->symbol->type;
+    afw_value_type_check_compile_assignable(type, value,
+        "assignment", parser->xctx);
+}
+
+
 /*ebnf>>>
  *
  *#
@@ -301,6 +330,7 @@ afw_compile_parse_AssignmentOperation(
     argv[0] = &afw_function_definition_assign.pub;
     argv[1] = target;
     argv[2] = result;
+    impl_compile_check_assign_target(parser, target, result);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
@@ -443,6 +473,7 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
     }
     argv[2] = afw_compile_parse_Expression(parser);
+    impl_compile_check_assign_target(parser, argv[1], argv[2]);
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
     result = afw_value_call_built_in_function_create(
@@ -997,6 +1028,7 @@ impl_parse_LetStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
         }
         argv[2] = afw_compile_parse_Expression(parser);
+        impl_compile_check_assign_target(parser, argv[1], argv[2]);
         AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
     }
 

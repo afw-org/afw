@@ -2462,6 +2462,78 @@ afw_self_v_a_flag_compile_noOptimize_description = {
 };
 
 const afw_value_string_t
+afw_self_v_a_flag_compile_strict = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strict)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_strictNullChecks = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strictNullChecks)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_strictNullChecks_brief = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strictNullChecks_brief)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_strictNullChecks_description = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strictNullChecks_description)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_strict_brief = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strict_brief)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_strict_description = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strict_description)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_typeCheck = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheck)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_typeCheckCompileOnly = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheckCompileOnly)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_typeCheckCompileOnly_brief = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheckCompileOnly_brief)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_typeCheckCompileOnly_description = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheckCompileOnly_description)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_typeCheck_brief = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheck_brief)
+};
+
+const afw_value_string_t
+afw_self_v_a_flag_compile_typeCheck_description = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheck_description)
+};
+
+const afw_value_string_t
 afw_self_v_a_flag_debug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug)

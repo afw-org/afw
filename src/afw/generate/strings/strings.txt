@@ -97,7 +97,23 @@ read
 
 a_flag_compile_noImplicitAny=compile:noImplicitAny
 a_flag_compile_noImplicitAny_brief=Do not infer type any
-a_flag_compile_noImplicitAny_description=If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed.
+a_flag_compile_noImplicitAny_description=If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed. Only applies when type checking is active (compile:typeCheck or compile:typeCheckCompileOnly).
+
+a_flag_compile_typeCheck=compile:typeCheck
+a_flag_compile_typeCheck_brief=Enable compile and runtime type checking
+a_flag_compile_typeCheck_description=When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins.
+
+a_flag_compile_typeCheckCompileOnly=compile:typeCheckCompileOnly
+a_flag_compile_typeCheckCompileOnly_brief=Enable compile-time type checking only
+a_flag_compile_typeCheckCompileOnly_description=When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set.
+
+a_flag_compile_strictNullChecks=compile:strictNullChecks
+a_flag_compile_strictNullChecks_brief=Strict null and undefined checks
+a_flag_compile_strictNullChecks_description=When type checking is active, null and undefined are not assignable to non-nullish types unless the type includes them. Similar to TypeScript strictNullChecks.
+
+a_flag_compile_strict=compile:strict
+a_flag_compile_strict_brief=TypeScript-like strict type checking
+a_flag_compile_strict_description=Enables compile:typeCheck (compile and runtime), compile:noImplicitAny, and compile:strictNullChecks. Similar to TypeScript compilerOption strict.
 
 a_flag_compile_noOptimize=compile:noOptimize
 a_flag_compile_noOptimize_brief=Evaluate values that have not been optimized

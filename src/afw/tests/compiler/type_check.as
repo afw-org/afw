@@ -1,0 +1,185 @@
+#!/usr/bin/env -S afw --syntax test_script
+//?
+//? testScript: type_check.as
+//? customPurpose: Part of compiler category tests
+//? description: Type checking flags (issue #28)
+//? sourceType: script
+//?
+//? test: typecheck-default-off
+//? description: Without flags, wrong type assigns are allowed
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+const x: integer = "hello";
+return 0;
+
+//?
+//? test: typecheck-runtime-assign
+//? description: compile:typeCheck rejects wrong assign at runtime
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const x: integer = \"hello\";\nreturn 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-compile-only-literal
+//? description: compileOnly catches bad literal at compile
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheckCompileOnly"], true);
+compile<script>(script("const x: integer = \"hello\";\nreturn 0;"));
+return 0;
+
+//?
+//? test: typecheck-compile-only-no-runtime
+//? description: compileOnly does not fail runtime convert path for dynamic values
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheckCompileOnly"], true);
+const r = evaluate(compile<script>(script(
+    "const s: string = \"1\";\nconst x: integer = integer(s);\nreturn x;"
+)));
+assert(r === 1);
+return 0;
+
+//?
+//? test: typecheck-full-param
+//? description: typeCheck rejects wrong script param at runtime
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const f = function (a: integer) { return a; };\nreturn f(\"x\");"
+)));
+return 0;
+
+//?
+//? test: typecheck-noImplicitAny
+//? description: noImplicitAny with typeCheck requires annotations at compile
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck", "compile:noImplicitAny"], true);
+compile<script>(script("const x = 1;\nreturn 0;"));
+return 0;
+
+//?
+//? test: typecheck-strict-bundle
+//? description: compile:strict enables typeCheck and noImplicitAny
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:strict"], true);
+compile<script>(script("const x = 1;\nreturn 0;"));
+return 0;
+
+//?
+//? test: typecheck-ok-assign
+//? description: matching types succeed with typeCheck on
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const x: integer = 1;\n" +
+    "const f = function (a: integer): integer { return a + 1; };\n" +
+    "return f(x);"
+)));
+assert(r === 2);
+return 0;
+
+//?
+//? test: typecheck-compileOnly-wins-over-typeCheck
+//? description: both flags → compile only (no runtime param check)
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck", "compile:typeCheckCompileOnly"], true);
+/* Literal mismatch still fails at compile. */
+let saw: boolean = false;
+try {
+    compile<script>(script("const x: integer = \"h\";\nreturn 0;"));
+} catch (e) {
+    saw = true;
+}
+assert(saw);
+/*
+ * compileOnly: no runtime typeCheck. Pass any to typed formal after
+ * legacy convert or accept depending on leaf path.
+ */
+const r: any = evaluate(compile<script>(script(
+    "const f = function (a: integer) { return a; };\n" +
+    "return f(integer(\"5\"));"
+)));
+assert(r === 5);
+return 0;

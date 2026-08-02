@@ -233,6 +233,69 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
             afw_s_a_flag_compile_noImplicitAny,
             xctx)->flag_index;
 
+    /* Register flag compile:typeCheckCompileOnly (before typeCheck/strict) */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_typeCheckCompileOnly,
+        afw_s_a_flag_compile_typeCheckCompileOnly_brief,
+        afw_s_a_flag_compile_typeCheckCompileOnly_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_typeCheckCompileOnly_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_typeCheckCompileOnly,
+            xctx)->flag_index;
+
+    /* Register flag compile:typeCheck (full compile + runtime) */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_typeCheck,
+        afw_s_a_flag_compile_typeCheck_brief,
+        afw_s_a_flag_compile_typeCheck_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_typeCheck_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_typeCheck,
+            xctx)->flag_index;
+
+    /* Register flag compile:strictNullChecks */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_strictNullChecks,
+        afw_s_a_flag_compile_strictNullChecks_brief,
+        afw_s_a_flag_compile_strictNullChecks_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_strictNullChecks_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_strictNullChecks,
+            xctx)->flag_index;
+
+    /*
+     * Register flag compile:strict (TS-like umbrella). When set, includes
+     * typeCheck, noImplicitAny, and strictNullChecks.
+     */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_strict,
+        afw_s_a_flag_compile_strict_brief,
+        afw_s_a_flag_compile_strict_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_strict_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_strict,
+            xctx)->flag_index;
+    afw_flag_add_included_by(
+        afw_s_a_flag_compile_typeCheck,
+        afw_s_a_flag_compile_strict,
+        xctx);
+    afw_flag_add_included_by(
+        afw_s_a_flag_compile_noImplicitAny,
+        afw_s_a_flag_compile_strict,
+        xctx);
+    afw_flag_add_included_by(
+        afw_s_a_flag_compile_strictNullChecks,
+        afw_s_a_flag_compile_strict,
+        xctx);
+
     /* Register flag compile:noOptimize */
     afw_flag_environment_register_flag(
         afw_s_a_flag_compile_noOptimize,

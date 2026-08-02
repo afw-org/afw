@@ -313,6 +313,8 @@ impl_assignment_target(
         {
             value = afw_value_evaluate(value, p, xctx);
         }
+        afw_value_type_check_assignable(&symbol->type, value,
+            "assignment", xctx);
         afw_xctx_scope_symbol_set_value(symbol, value, xctx);
         break;
 

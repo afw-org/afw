@@ -25,8 +25,22 @@
 | Decompile | `src/afw/value/afw_value_decompile.c` |
 | Tests | `src/afw/tests/compiler/type_syntax.as` |
 
+## Type-check flags (default off)
+
+| Flag | Effect |
+|------|--------|
+| *(neither)* | **off** |
+| `compile:typeCheckCompileOnly` | compile-time only (wins if both) |
+| `compile:typeCheck` | compile + runtime |
+| `compile:noImplicitAny` | require annotations when checking |
+| `compile:strictNullChecks` | stricter null/undefined |
+| `compile:strict` | includes typeCheck + noImplicitAny + strictNullChecks |
+
+Helpers: `afw_value_type_check_*.c` / `afw_value_type_check_*` in `afw_value.h`.  
+Runtime: assign + script params. Compile: const/let/assign when RHS type known.
+
 ## Later
 
-- Compile-time / runtime checking functions + flag/pragma matrix.
+- Deeper structural checks; pragma `#typecheck`.
 - More TS surface (generics, etc.) if needed.
 - Object/array meta access polish under #2 (separate).

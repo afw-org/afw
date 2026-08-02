@@ -376,6 +376,10 @@ afw_function_evaluate_parameter_with_type(
         (!want_dt || want_dt == afw_data_type_any ||
             afw_value_get_data_type(value, xctx) == want_dt))
     {
+        if (afw_value_type_check_runtime_enabled(xctx)) {
+            afw_value_type_check_assignable(type, value,
+                "parameter", xctx);
+        }
         return value;
     }
 
@@ -385,8 +389,14 @@ afw_function_evaluate_parameter_with_type(
     /* Evaluate value. */
     result = afw_value_evaluate(value, p, xctx);
 
-    /* Convert to requested data type if needed. */
-    if (result && want_dt && want_dt != afw_data_type_any &&
+    /*
+     * With runtime type checking on: strict assignability (no convert).
+     * Otherwise: convert to leaf data type when requested (legacy path).
+     */
+    if (afw_value_type_check_runtime_enabled(xctx)) {
+        afw_value_type_check_assignable(type, result, "parameter", xctx);
+    }
+    else if (result && want_dt && want_dt != afw_data_type_any &&
         afw_value_get_data_type(result, xctx) != want_dt)
     {
         result = afw_value_convert(result, want_dt, true, p, xctx);
