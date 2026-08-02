@@ -44,6 +44,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **UTF-8 in JSON / Fiddle** | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | **Python `Session("local")`** | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
+| **Script types (#28)** | TS-like type syntax (Adaptive dataType leaves); opt-in typeCheck flags / `#typecheck`; hard cut of `(array of …)` / `(object "OT")` |
 
 ---
 
@@ -535,31 +536,33 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ---
 
-## Adaptive Script types (issue #28, in progress on type-check branch)
+## Adaptive Script types (issue #28)
 
-**Type syntax** is TypeScript-like, with **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …)—not JavaScript primitives. Examples: `integer[]`, `Array<string>`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus `type` / `interface` (script-local only; **not** adaptive object types).
+**Type syntax** is TypeScript-like, with **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …)—not JavaScript primitives. Examples: `integer[]`, `Array<string>`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs).
 
-Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")` are **removed** (hard cut).
+Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")` are **removed** (hard cut). Existing scripts that used those forms need updating; plain unannotated scripts are unchanged because **checking is off by default**.
 
-**Type checking is off by default.** Opt in with flags (or `#typecheck` pragma):
+**Opt in** with flags or the `#typecheck` pragma:
 
 | Flag / pragma | Effect |
 |---------------|--------|
 | *(default)* | Parse and store types only |
 | `compile:typeCheck` | Compile-time (when known) **and** runtime checks |
-| `compile:typeCheckCompileOnly` | Compile-time only (**wins** if both set) |
-| `compile:noImplicitAny` | Require annotations when checking |
+| `compile:typeCheckCompileOnly` | Compile-time only (**wins** if both mode flags set) |
+| `compile:noImplicitAny` | Require annotations when checking is active |
 | `compile:strictNullChecks` | Stricter null/undefined |
 | `compile:strict` | typeCheck + noImplicitAny + strictNullChecks |
-| `#typecheck;` / `#typecheck on;` | Same as full typeCheck for rest of that compile |
+| `#typecheck;` / `#typecheck on;` | Full typeCheck for rest of that compile |
 | `#typecheck compileOnly;` | Compile-only for that compile |
-| `#typecheck off;` | Turn off for that compile (also clears noImplicitAny / strictNullChecks) |
+| `#typecheck off;` | Off for that compile (also clears noImplicitAny / strictNullChecks) |
 | `#typecheck on noImplicitAny;` | Full check + require annotations |
 | `#typecheck on strictNullChecks;` | Full check + strict null/undefined |
 | `#typecheck strict;` | Full + noImplicitAny + strictNullChecks |
 | `#typecheck on, noImplicitAny;` | Commas between tokens optional |
 
-Runtime and compile-time checks apply on assignment and script function parameters: leaf data types, unions/intersections, **object/interface property shapes** (required props, property types, `extends`), **array element types**, and **tuple length + positions** when the value is inspectable. Handbook: Language Reference → **Types**. Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pad: `designs/issue-28-type-syntax.md`.
+When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements**, and **tuple length/positions** when the value is inspectable. Extra object properties are allowed (structural typing). Function-typed slots require a function value; deeper param/return matching may come later.
+
+Handbook: Language Reference → **Types**. Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pad: `designs/issue-28-type-syntax.md`.
 
 ---
 

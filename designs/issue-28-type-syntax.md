@@ -1,19 +1,19 @@
-# Issue #28 — TS-like type syntax (phase 1: parse/store)
+# Issue #28 — TS-like type syntax and opt-in checking
 
 **Branch:** `issue-#28`  
-**Status:** Phase 1 in progress — syntax + IR + decompile; **no type checking yet**.
+**Status:** Implemented for merge — syntax, IR, decompile, opt-in checking, handbook, tests.
 
-## Decisions (session)
+## Decisions
 
 - **Hard cut** of old Adaptive Type spelling (`(array of T)`, `(object "OT")`, `meta {…}`).
 - Reshape **`afw_value_type_t`** (drop param union + `value_meta_object`); TS-like graph in `afw_value_internal.h`.
 - Leaves = permanent **`afw_data_type_*`** pointers (`any` / `void` / … by address).
-- Missing annotation → **`any`**.
-- Script-local **`type` / `interface` (+ multi `extends`)**; **not** adaptive OTs.
+- Missing annotation → **`any`** (error when `noImplicitAny` and checking active).
+- Script-local **`type` / `interface` (+ multi `extends`)**; **not** adaptive object types / OT catalogs.
 - Arrays: **`T[]`** and **`Array<T>`** (same); tuples **`[T,U]`**; unions **`|`**; intersections **`&`**.
-- Function types: **`(a: T) => R`**.
-- Non-checking mode; flags/pragmas for enforce later.
-- Parse tests + decompile round-trip.
+- Function types: **`(a: T) => R`** (parse/store; assignability is “is a function” only for now).
+- **Checking default off**; flags + `#typecheck` pragma to enforce.
+- Structural typing for objects: required props + property types + `extends`; **extra properties allowed**.
 
 ## Key files
 
@@ -22,30 +22,54 @@
 | Type IR | `src/afw/value/afw_value_internal.h` (`afw_value_type_t`) |
 | Parse Type | `src/afw/compile/afw_compile_parse_expression.c` |
 | type/interface statements | `src/afw/compile/afw_compile_parse_script.c` |
+| `#typecheck` pragma | `src/afw/compile/afw_compile_parse_pragma.c` |
+| Assignability | `src/afw/value/afw_value_type_check.c` |
 | Decompile | `src/afw/value/afw_value_decompile.c` |
-| Tests | `src/afw/tests/compiler/type_syntax.as` |
+| Flags | `src/afw/flag/afw_flag.c`, `generate/strings/strings.txt` |
+| Handbook | `src/afw/doc/reference/language/types.xml` |
+| Tests | `src/afw/tests/compiler/type_syntax.as`, `type_check.as` |
+| User note | `whats-new.md` (Adaptive Script types) |
 
 ## Type-check flags (default off)
 
 | Flag | Effect |
 |------|--------|
-| *(neither)* | **off** |
-| `compile:typeCheckCompileOnly` | compile-time only (wins if both) |
+| *(neither mode)* | **off** — parse/store types only |
+| `compile:typeCheckCompileOnly` | compile-time only (**wins** if both mode flags set) |
 | `compile:typeCheck` | compile + runtime |
-| `compile:noImplicitAny` | require annotations when checking |
-| `compile:strictNullChecks` | stricter null/undefined |
+| `compile:noImplicitAny` | require annotations when checking is active |
+| `compile:strictNullChecks` | stricter null/undefined assignability |
 | `compile:strict` | includes typeCheck + noImplicitAny + strictNullChecks |
 
-Helpers: `afw_value_type_check.c` / APIs in `afw_value.h`.  
-Runtime: assign + script params (leaves, union/intersection, array/tuple elements, object/interface properties + extends, function shape).  
-Compile: const/let/assign when RHS type known (including inspectable object/array literals); `noImplicitAny` on missing annotations.
+Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value.h`.
 
-**Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; sets xctx flags; commas optional).
+**Where checks run**
 
-**Handbook:** `src/afw/doc/reference/language/types.xml`.
+- **Runtime** (mode `on`): assignment and script function parameters.
+- **Compile** (mode `on` or `compileOnly`): const/let/assign when RHS has a known data type (including inspectable object/array literals).
 
-## Later
+**What is checked**
 
-- Richer function-type checks (param/return structural).
-- More TS surface (generics, etc.) if needed.
-- Object/array meta access polish under #2 (separate).
+- Leaf data types; unions / intersections.
+- Object / interface shapes: required properties, property value types, `extends` bases (when value is inspectable).
+- Array element types; tuple length + per-position types (when value is inspectable).
+- Function types: value must be a function (no param/return structural match yet).
+
+**Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; commas optional). `#typecheck off;` clears mode and related policy flags for that unit.
+
+## Out of scope / residual (not this issue’s merge bar)
+
+- Richer **function-type** structural checks (params/returns).
+- **Pattern / destructure** annotation enforcement (memory residual; separate from simple bindings).
+- Advanced TS surface (generics, `keyof`, conditionals) unless forced later.
+- Excess property checks on fresh object literals (extras currently allowed).
+- Compile-time **optimize** using known types (mentioned on the GitHub issue as a possible side-effect, not a requirement).
+- Adaptive OT ↔ script type import (intentionally separate).
+
+## Verify
+
+```bash
+./afwdev build --cdev
+afwdev test -j --srcdir-pattern afw --test-pattern 'type_'
+# optional: ./afwdev build --cdev --scan ; afwdev build --docs
+```

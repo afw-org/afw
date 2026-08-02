@@ -443,3 +443,148 @@ compile<script>(script(
     "#typecheck on, noImplicitAny;\nconst x = 1;\nreturn 0;"
 ));
 return 0;
+
+//?
+//? test: typecheck-strictNull-rejects-null
+//? description: typeCheck + strictNullChecks rejects null for integer
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck", "compile:strictNullChecks"], true);
+evaluate(compile<script>(script(
+    "const x: integer = null;\nreturn 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-without-strictNull-allows-null
+//? description: typeCheck alone allows null assign to integer (loose)
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const x: integer = null;\nreturn x;"
+)));
+assert(r === null);
+return 0;
+
+//?
+//? test: typecheck-pragma-strictNullChecks
+//? description: #typecheck on strictNullChecks;
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+evaluate(compile<script>(script(
+    "#typecheck on strictNullChecks;\n" +
+    "const x: integer = null;\nreturn 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-interface-extends-missing-base
+//? description: missing property required by extends base fails
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "interface Base { id: integer };\n" +
+    "interface Person extends Base { name: string };\n" +
+    "const p: Person = { name: \"a\" };\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-optional-prop-wrong-type
+//? description: optional property present with wrong type fails
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+evaluate(compile<script>(script(
+    "const o: { host: string, port?: integer } = { host: \"h\", port: \"x\" };\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-intersection-runtime
+//? description: intersection requires both sides
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+/*
+ * integer & string has no runtime value that is both; object shapes
+ * A & B is more useful — require props from both shapes.
+ */
+evaluate(compile<script>(script(
+    "const o: { a: integer } & { b: string } = { a: 1 };\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: typecheck-intersection-ok
+//? description: value matching both sides of object intersection
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const o: { a: integer } & { b: string } = { a: 1, b: \"x\" };\n" +
+    "return o.a;"
+)));
+assert(r === 1);
+return 0;
