@@ -34,6 +34,16 @@
 
 AFW_BEGIN_DECLARES
 
+/**
+ * Whether compile-time checks for adaptive (built-in) function formals run.
+ * Default: same as compile type checking. A future compile:* flag can narrow
+ * this without hunting call sites.
+ *
+ * @see designs/adaptive-function-compile-typecheck.md
+ */
+#define AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(xctx) \
+    (afw_value_type_check_compile_enabled(xctx))
+
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
     if (writer->indent > xctx->env->evaluation_stack_maximum_count) { \

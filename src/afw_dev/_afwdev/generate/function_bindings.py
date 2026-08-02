@@ -15,7 +15,7 @@ def get_data_type(data_type_list, dataType):
     result = None
 
     for e in data_type_list:
-        if e['objectId'] == dataType:
+        if e.get('objectId') == dataType or e.get('dataType') == dataType:
             result = e
             break
 
@@ -29,8 +29,62 @@ def sort_category_functionLabel_cb(obj):
     return category + '~' + obj.get('functionLabel')
 
 
+def _data_type_object_id(dt):
+    return dt.get('objectId') or dt.get('dataType')
+
+
+def _libafw_data_type_by_id(options, data_type_list):
+    """
+    Map data type id → _AdaptiveDataTypeGenerate_ object for types that have
+    permanent libafw symbols afw_data_type_<id>_direct.
+
+    Prefer the package's data_type_list; for non-core packages also load
+    core's generate/objects so formals can reference string/integer/….
+    """
+    by_id = {}
+    for e in data_type_list or []:
+        i = _data_type_object_id(e)
+        if i:
+            by_id[i] = e
+
+    if not options.get('core'):
+        core_path = (
+            options.get('afw_package_dir_path', '') +
+            'src/afw/generate/objects/_AdaptiveDataTypeGenerate_/')
+        if os.path.isdir(core_path):
+            for e in direct.retrieve_objects_direct(core_path):
+                i = _data_type_object_id(e)
+                if i and i not in by_id:
+                    by_id[i] = e
+
+    return by_id
+
+
+def _c_data_type_pointer(dataType, libafw_dt_by_id):
+    """Permanent libafw data type pointer, or NULL."""
+    if not dataType or dataType not in libafw_dt_by_id:
+        return 'NULL'
+    return '&afw_data_type_' + dataType + '_direct'
+
+
+def _c_array_of_element_pointer(dataType, dataTypeParameter, libafw_dt_by_id):
+    """
+    For ArrayOf formals: resolve dataTypeParameter via outer data type's
+    dataTypeParameterType. OT ids / signatures / media types → NULL.
+    """
+    if not dataType or not dataTypeParameter:
+        return 'NULL'
+    outer = libafw_dt_by_id.get(dataType)
+    if not outer or outer.get('dataTypeParameterType') != 'ArrayOf':
+        return 'NULL'
+    if dataTypeParameter not in libafw_dt_by_id:
+        return 'NULL'
+    return _c_data_type_pointer(dataTypeParameter, libafw_dt_by_id)
+
+
 # afw_value_function_parameter_t
-def write_parameter(fd, prefix, options, label, p, embedding_object_label, property_name):
+def write_parameter(fd, prefix, options, label, p, embedding_object_label,
+                    property_name, libafw_dt_by_id):
     if options['core']:
         value_label = label + '__value'
         fd.write('\nstatic const afw_value_object_t\n')
@@ -59,12 +113,9 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     fd.write('        }\n')
     fd.write('    },\n')
 
-    # dataType
-    dataType = p.get('dataType','')
-    data_type = 'NULL'
-    if options['core'] and dataType != '':
-        data_type = '&afw_data_type_' + dataType + '_direct'
-    fd.write('    ' + data_type + ',\n')
+    # dataType — static pointer when id is a known libafw data type
+    dataType = p.get('dataType', '')
+    fd.write('    ' + _c_data_type_pointer(dataType, libafw_dt_by_id) + ',\n')
     if dataType != '':
         fd.write('    &' + get_string_label(options, dataType, 'self_v') + ',\n')
     else:
@@ -117,6 +168,10 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     # polymorphicDataTypeParameter
     polymorphicDataTypeParameter = 'false' if p.get('polymorphicDataTypeParameter', False) == False else 'true'
     fd.write('    &' + get_string_label(options, polymorphicDataTypeParameter, 'self_v', dataType='boolean') + ',\n')
+
+    # data_type_parameter_data_type (ArrayOf element; NULL otherwise)
+    fd.write('    ' + _c_array_of_element_pointer(
+        dataType, dataTypeParameter, libafw_dt_by_id) + '\n')
 
     fd.write('};\n')
 
@@ -273,6 +328,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)
     os.makedirs(os.path.dirname(generated_dir_path + 'function_closet/'), exist_ok=True)
+
+    # Data types with afw_data_type_<id>_direct (from objects, not a hard list)
+    libafw_dt_by_id = _libafw_data_type_by_id(options, data_type_list)
 
     # Get all functions and sort by category/functionLabel
     list = direct.retrieve_objects_direct(object_dir_path + '_AdaptiveFunctionGenerate_/')
@@ -507,7 +565,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('};\n')
 
             # returns
-            write_parameter(fd, prefix, options, 'impl_' + label + '_returns', obj.get('returns'), 'impl_' + label, 'returns')
+            write_parameter(fd, prefix, options, 'impl_' + label + '_returns',
+                obj.get('returns'), 'impl_' + label, 'returns',
+                libafw_dt_by_id)
 
             # parameters
             parametersCount = 0
@@ -515,7 +575,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 if parameter.get('name','') in ['arguments', 'function']:
                     msg.error_exit(obj.get('functionId') + ': parameter name "' + parameter.get('name') + '" is reserved')
                 parametersCount += 1
-                write_parameter(fd, prefix, options, 'impl_' + label + '_parameter_' + str(parametersCount), parameter, 'impl_' + label, "parameters")
+                write_parameter(fd, prefix, options,
+                    'impl_' + label + '_parameter_' + str(parametersCount),
+                    parameter, 'impl_' + label, "parameters",
+                    libafw_dt_by_id)
             fd.write('\nstatic const afw_value_function_parameter_t *\n')
             fd.write('impl_' + label + '_parameters[] = {\n')
             for i in range(parametersCount):
@@ -848,6 +911,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # requiresExecuteAccess
             requiresExecuteAccess = 'false' if obj.get('requiresExecuteAccess', False) == False else 'true'
             fd.write('    &' + get_string_label(options, requiresExecuteAccess, 'self_v', dataType='boolean') + ',\n')
+
+            # scriptSupport (const/let/if/… statement IR; not normal user calls)
+            scriptSupport = 'false' if obj.get('scriptSupport', False) == False else 'true'
+            fd.write('    &' + get_string_label(options, scriptSupport, 'self_v', dataType='boolean') + ',\n')
 
             fd.write('};\n')
 

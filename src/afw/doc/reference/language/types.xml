@@ -81,7 +81,10 @@ const p: Person = { id: 1, name: "ada" };]]></code>
     </list>
     <paragraph>
         Flags may be set from the host environment or with
-        <literal>flag_set</literal> in a script.
+        <literal>flag_set</literal> in a script. When compile checking is
+        on, calls to known Adaptive functions are also checked at compile
+        time against each function’s parameter and return data types (when
+        those types can be determined without running the call).
     </paragraph>
 
     <header>What is checked</header>

@@ -352,6 +352,13 @@
                     "title": "Polymorphic Data Types",
                     "type": "array"
                 },
+                "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+                    "default": false,
+                    "description": "If true, the first parameter evaluate is deferred to the polymorphic execute function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate function to call.",
+                    "markdownDescription": "**Defer First Parameter Evaluate**\n\nIf true, the first parameter evaluate is deferred to the polymorphic execute function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate function to call.",
+                    "title": "Defer First Parameter Evaluate",
+                    "type": "boolean"
+                },
                 "pure": {
                     "default": false,
                     "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
@@ -375,6 +382,13 @@
                     "markdownDescription": "**Returns**\n\nThe return parameter.",
                     "title": "Returns",
                     "type": "object"
+                },
+                "scriptSupport": {
+                    "default": false,
+                    "description": "True for core functions that implement Adaptive Script statements (const, let, if, while, \u2026). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+                    "markdownDescription": "**Script Support**\n\nTrue for core functions that implement Adaptive Script statements (const, let, if, while, \u2026). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+                    "title": "Script Support",
+                    "type": "boolean"
                 },
                 "sideEffects": {
                     "description": "Any side effects that this function may produce as a result of execution.",
@@ -614,6 +628,13 @@
                     "markdownDescription": "**Returns**\n\nThe return parameter.",
                     "title": "Returns",
                     "type": "object"
+                },
+                "scriptSupport": {
+                    "default": false,
+                    "description": "True for core functions that implement Adaptive Script statements (const, let, if, while, \u2026). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+                    "markdownDescription": "**Script Support**\n\nTrue for core functions that implement Adaptive Script statements (const, let, if, while, \u2026). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+                    "title": "Script Support",
+                    "type": "boolean"
                 },
                 "sideEffects": {
                     "description": "Any side effects that this function may produce as a result of execution.",
@@ -903,6 +924,13 @@
             "markdownDescription": "**Returns**\n\nThe return parameter.",
             "title": "Returns",
             "type": "object"
+        },
+        "scriptSupport": {
+            "default": false,
+            "description": "True for core functions that implement Adaptive Script statements (const, let, if, while, \u2026). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+            "markdownDescription": "**Script Support**\n\nTrue for core functions that implement Adaptive Script statements (const, let, if, while, \u2026). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+            "title": "Script Support",
+            "type": "boolean"
         },
         "sideEffects": {
             "description": "Any side effects that this function may produce as a result of execution.",

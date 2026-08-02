@@ -1,6 +1,6 @@
 # Adaptive function compile-time type checking
 
-**Status:** Design for review (not implemented).  
+**Status:** Implemented on `issue-#28` (uncommitted pending review).  
 **Depends on:** Issue **#28** script type system (syntax, `afw_value_type_t`, opt-in flags, assignability, object-literal excess).  
 **Related later:** Compile-time optimize (`designs/compile-optimize-notes.md`) — amplifies known types; not required for v1 of this work.  
 **Goal fit:** Complete Adaptive Script’s **opt-in type system** so known calls into **adaptive (built-in / registered) functions** are checked at compile the same *way* as script function calls, without expanding function metadata into full script structural types.

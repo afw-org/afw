@@ -997,3 +997,118 @@ const r: any = evaluate(compile<script>(script(
 )));
 assert(r === 7);
 return 0;
+
+//?
+//? test: typecheck-adaptive-length-ok
+//? description: built-in length accepts string
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "return length(\"hi\");"
+)));
+assert(r === 2);
+return 0;
+
+//?
+//? test: typecheck-adaptive-length-bad
+//? description: built-in length rejects integer at compile
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+compile<script>(script("return length(1);"));
+return 0;
+
+//?
+//? test: typecheck-adaptive-add-poly-ok
+//? description: polymorphic add with known integer args
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "return add(1, 2);"
+)));
+assert(r === 3);
+return 0;
+
+//?
+//? test: typecheck-adaptive-add-poly-bad
+//? description: integer add rejects string second arg when specialized
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+compile<script>(script("return add(1, \"x\");"));
+return 0;
+
+//?
+//? test: typecheck-adaptive-return-assign
+//? description: length result is integer for typed binding
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "const n: integer = length(\"abc\");\n" +
+    "return n;"
+)));
+assert(r === 3);
+return 0;
+
+//?
+//? test: typecheck-adaptive-return-assign-bad
+//? description: length result not assignable to string
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+compile<script>(script(
+    "const s: string = length(\"abc\");\n" +
+    "return s;"
+));
+return 0;

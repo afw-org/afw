@@ -95,6 +95,30 @@ afw_value_call_built_in_function_create(
     if (function->returns && function->returns->data_type) {
         self->evaluated_data_type = function->returns->data_type;
     }
+    /*
+     * Polymorphic return ≈ param1 type only on compile create
+     * (allow_optimize). Runtime call_create sites (e.g. reduce/map) often
+     * pass argc with argv slots not yet filled — get_info would SEGV.
+     */
+    else if (allow_optimize &&
+        function->returns &&
+        afw_value_is_boolean_true(function->returns->polymorphicDataType) &&
+        argc >= 1 && argv[1])
+    {
+        afw_value_get_info(argv[1], &info, p, xctx);
+        if (info.evaluated_data_type) {
+            self->evaluated_data_type = info.evaluated_data_type;
+        }
+    }
+
+    /*
+     * Formal/arity typeCheck is compile-only (same allow_optimize gate).
+     * Runtime one-shot and higher-order create paths must not walk args.
+     */
+    if (allow_optimize) {
+        afw_value_type_check_adaptive_function_call(self->function, argc, argv,
+            xctx);
+    }
 
     return &self->pub;
 }
@@ -227,7 +251,7 @@ impl_afw_value_get_data_type(
     AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    return NULL;
+    return self->evaluated_data_type;
 }
 
 

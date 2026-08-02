@@ -1847,6 +1847,16 @@ impl_properties__AdaptiveFunction_[] = {
         afw_runtime_value_accessor_null_terminated_array_of_internal
     },
     {
+        &afw_self_s_polymorphicExecuteFunctionEvaluatesFirstParameter,
+        offsetof(afw_value_function_definition_t, polymorphicExecuteFunctionEvaluatesFirstParameter),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
+    },
+    {
         &afw_self_s_pure,
         offsetof(afw_value_function_definition_t, pure),
         -1,
@@ -1875,6 +1885,16 @@ impl_properties__AdaptiveFunction_[] = {
         NULL,
         &afw_self_s_default,
         afw_runtime_value_accessor_default
+    },
+    {
+        &afw_self_s_scriptSupport,
+        offsetof(afw_value_function_definition_t, scriptSupport),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_self_s_sideEffects,
@@ -1911,7 +1931,7 @@ impl_properties__AdaptiveFunction_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveFunction_ = {
     &afw_self_s__AdaptiveFunction_,
-    26,
+    28,
     &impl_properties__AdaptiveFunction_[0]
 };
 

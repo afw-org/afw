@@ -1410,3 +1410,256 @@ afw_value_type_check_call_arg_object_literal(
             !afw_value_type_check_runtime_enabled(xctx),
         xctx);
 }
+
+
+
+/*
+ * Adaptive function compile typeCheck
+ * (designs/adaptive-function-compile-typecheck.md)
+ */
+
+static const afw_data_type_t *
+impl_arg_result_data_type(const afw_value_t *value, afw_xctx_t *xctx)
+{
+    afw_value_info_t info;
+    const afw_data_type_t *dt;
+
+    if (!value) {
+        return NULL;
+    }
+    dt = afw_value_get_data_type(value, xctx);
+    if (dt) {
+        return dt;
+    }
+    afw_memory_clear(&info);
+    afw_value_get_info(value, &info, xctx->p, xctx);
+    return info.evaluated_data_type;
+}
+
+
+
+static void
+impl_project_function_parameter(
+    const afw_value_function_parameter_t *param,
+    const afw_data_type_t *specialized_dt,
+    afw_value_type_t *out,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_value_type_t *elem;
+
+    afw_memory_clear(out);
+
+    if (!param) {
+        out->kind = afw_value_type_kind_data_type;
+        out->data_type = afw_data_type_any;
+        return;
+    }
+
+    /* Polymorphic formal → specialized leaf when known. */
+    if (specialized_dt &&
+        afw_value_is_boolean_true(param->polymorphicDataType))
+    {
+        out->kind = afw_value_type_kind_data_type;
+        out->data_type = specialized_dt;
+        return;
+    }
+
+    if (!param->data_type || param->data_type == afw_data_type_any) {
+        out->kind = afw_value_type_kind_data_type;
+        out->data_type = afw_data_type_any;
+        return;
+    }
+
+    /* ArrayOf with generate-time element data type. */
+    if (param->data_type == afw_data_type_array &&
+        param->data_type_parameter_data_type)
+    {
+        elem = afw_pool_calloc_type(p, afw_value_type_t, xctx);
+        elem->kind = afw_value_type_kind_data_type;
+        elem->data_type = param->data_type_parameter_data_type;
+        out->kind = afw_value_type_kind_array;
+        out->array.element = elem;
+        return;
+    }
+
+    out->kind = afw_value_type_kind_data_type;
+    out->data_type = param->data_type;
+}
+
+
+
+static const afw_value_function_definition_t *
+impl_specialize_polymorphic(
+    const afw_value_function_definition_t *function,
+    const afw_value_t *arg1,
+    afw_boolean_t *skipped,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+    const afw_value_function_definition_t *specialized;
+
+    *skipped = false;
+    if (!function || !afw_value_is_boolean_true(function->polymorphic)) {
+        return function;
+    }
+
+    dt = impl_arg_result_data_type(arg1, xctx);
+    if (!dt || dt == afw_data_type_any || dt == afw_data_type_unknown) {
+        *skipped = true;
+        return function;
+    }
+
+    specialized = afw_environment_registry_get_data_type_method(
+        dt, function->dataTypeMethodNumber, xctx);
+    if (!specialized) {
+        specialized = afw_environment_get_qualified_function(
+            &dt->data_type_id, &function->functionId->internal, xctx);
+    }
+    if (!specialized) {
+        AFW_THROW_ERROR_FZ(syntax, xctx,
+            "Type error: data type " AFW_UTF8_FMT_Q
+            " is not supported for function " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_ARG(&dt->data_type_id),
+            AFW_UTF8_FMT_ARG(&function->functionId->internal));
+    }
+    return specialized;
+}
+
+
+
+AFW_DEFINE(void)
+afw_value_type_check_adaptive_function_call(
+    const afw_value_function_definition_t *function,
+    afw_size_t argc,
+    const afw_value_t *const *argv,
+    afw_xctx_t *xctx)
+{
+    const afw_value_function_definition_t *fn;
+    const afw_value_function_parameter_t *const *params;
+    const afw_value_function_parameter_t *param;
+    const afw_value_t *arg;
+    const afw_data_type_t *specialized_dt;
+    afw_value_type_t expect;
+    afw_boolean_t poly_skipped;
+    afw_size_t i;
+    afw_size_t required;
+    afw_size_t maximum;
+    afw_size_t formal_index;
+    afw_integer_t min_args;
+    const afw_utf8_z_t *fn_id_z;
+
+    if (!AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(xctx)) {
+        return;
+    }
+    if (!function || !argv) {
+        return;
+    }
+
+    /*
+     * Script-support / statement IR (const, let, if, …): formals in metadata
+     * may not match compiler argv — skip. Prefer scriptSupport flag; fall
+     * back to category for definitions not yet regenerated.
+     */
+    if (afw_value_is_boolean_true(function->scriptSupport) ||
+        (function->category &&
+            afw_utf8_equal_utf8_z(&function->category->internal,
+                "compiler_script")))
+    {
+        return;
+    }
+
+    fn = function;
+    specialized_dt = NULL;
+    poly_skipped = false;
+
+    /* Specialize polymorphic hub when param 1 result type is known. */
+    if (afw_value_is_boolean_true(fn->polymorphic)) {
+        fn = impl_specialize_polymorphic(fn,
+            argc >= 1 ? argv[1] : NULL, &poly_skipped, xctx);
+        if (poly_skipped) {
+            /* Arity only against hub if available. */
+        }
+        else if (fn && argc >= 1) {
+            specialized_dt = impl_arg_result_data_type(argv[1], xctx);
+        }
+    }
+
+    fn_id_z = fn->functionId ? fn->functionId->internal.s : "function";
+
+    /* Arity */
+    required = 0;
+    maximum = (afw_size_t)-1;
+    if (fn->numberOfRequiredParameters) {
+        required = (afw_size_t)fn->numberOfRequiredParameters->internal;
+    }
+    if (fn->maximumNumberOfParameters &&
+        fn->maximumNumberOfParameters->internal != -1)
+    {
+        maximum = (afw_size_t)fn->maximumNumberOfParameters->internal;
+    }
+    if (argc < required) {
+        AFW_THROW_ERROR_FZ(syntax, xctx,
+            "Type error in call to %s: expected at least "
+            AFW_SIZE_T_FMT " arguments but got " AFW_SIZE_T_FMT,
+            fn_id_z, required, argc);
+    }
+    if (maximum != (afw_size_t)-1 && argc > maximum) {
+        AFW_THROW_ERROR_FZ(syntax, xctx,
+            "Type error in call to %s: expected at most "
+            AFW_SIZE_T_FMT " arguments but got " AFW_SIZE_T_FMT,
+            fn_id_z, maximum, argc);
+    }
+
+    /* Formal type checks (skip when polymorphic could not specialize). */
+    if (poly_skipped || !fn->parameters) {
+        return;
+    }
+
+    params = fn->parameters;
+    i = 1; /* argv user arg index */
+    for (formal_index = 0; params[formal_index]; formal_index++) {
+        param = params[formal_index];
+        min_args = -1;
+        if (param->minArgs) {
+            min_args = param->minArgs->internal;
+        }
+
+        if (min_args < 0) {
+            /* Single formal (optional if fewer argc). */
+            if (i > argc) {
+                break;
+            }
+            arg = argv[i++];
+            if (!arg || afw_value_is_undefined(arg)) {
+                if (afw_value_is_boolean_true(param->optional) ||
+                    afw_value_is_boolean_true(param->canBeUndefined))
+                {
+                    continue;
+                }
+            }
+            impl_project_function_parameter(param, specialized_dt, &expect,
+                xctx->p, xctx);
+            if (!afw_value_type_is_any(&expect) && arg) {
+                afw_value_type_check_compile_assignable(&expect, arg,
+                    "parameter", xctx);
+            }
+        }
+        else {
+            /* Rest formal: all remaining args share this type. */
+            for (; i <= argc; i++) {
+                arg = argv[i];
+                if (!arg) {
+                    continue;
+                }
+                impl_project_function_parameter(param, specialized_dt,
+                    &expect, xctx->p, xctx);
+                if (!afw_value_type_is_any(&expect)) {
+                    afw_value_type_check_compile_assignable(&expect, arg,
+                        "parameter", xctx);
+                }
+            }
+            break;
+        }
+    }
+}
