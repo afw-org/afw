@@ -81,3 +81,4 @@ Examples:
 - Whether `noOptimize` stays pragma-able long term (host-only vs script).
 - Handbook language-ref note for `#compile` (flags still primary for authors).
 - Optional: more call sites still pass NULL contextual by design (higher-order) → flags only.
+- **Compiler-private inventory:** [`decompile-compiler-private-inventory.md`](decompile-compiler-private-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.
