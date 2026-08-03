@@ -100,6 +100,95 @@ AssignmentBindingTarget ::=
 
 AssignmentTarget ::= AssignmentBindingTarget | Reference
 
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Compiler-private #block( statementExpression, ... ).                       */
+/* Token is already pragma_identifier with name "block".                      */
+
+CompilerPrivateBlock ::=
+    '#block' '(' ( Expression ( ',' Expression )* )? ')'
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Target shape for #assignment_target (symbol name or destructure Pattern).  */
+
+AssignmentTargetCompilerPrivateShape ::=
+    Identifier |
+    String |
+    AssignmentListDestructureTarget |
+    AssignmentObjectDestructureTarget
+/* Compiler-private #assignment_target( assignmentKind, Pattern ).            */
+/* assignmentKind — string Expression, e.g. "const", "let" (matches decompile). */
+
+CompilerPrivateAssignmentTarget ::=
+    '#assignment_target' '(' Expression ','
+        AssignmentTargetCompilerPrivateShape ')'
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Compiler-private wrapper for array spread entries. Matches decompile.      */
+
+CompilerPrivateListExpression ::=
+    '#list_expression' '(' Expression ')'
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Parts are Expressions (string segments and nested #block expressions).     */
+/* At least one part is required.                                             */
+
+CompilerPrivateTemplateDefinition ::=
+    '#template_definition' '(' Expression ( ',' Expression )* ')'
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* #script_function( param* , body [, returnType] ) — decompile form.         */
+/* Param symbols are introduced before the body is parsed.                    */
+
+ScriptFunctionCompilerPrivateParameter ::=
+    Identifier ( ':' Type )? ( '=' Expression )?
+
+ScriptFunctionCompilerPrivateArgs ::=
+    ( ScriptFunctionCompilerPrivateParameter
+      ( ',' ScriptFunctionCompilerPrivateParameter )*
+      ',' )?
+    Expression ( ',' Type )?
+
+CompilerPrivateScriptFunction ::=
+    '#script_function' '(' ScriptFunctionCompilerPrivateArgs ')'
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Switch default-clause marker (unique permanent null). Optional "()".       */
+
+CompilerPrivateSwitchDefault ::=
+    '#switch_default' ( '(' ')' )?
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Array value of compiled nodes without evaluating them (for for/switch      */
+/* statement lists). Unlike array(), elements stay as call/block nodes.       */
+
+CompilerPrivateStatements ::=
+    '#statements' '(' ( Expression ( ',' Expression )* )? ')'
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Statement-position compiler-private #Name.                                 */
+/* Token is already pragma_identifier.                                        */
+/* #closure_binding / #function_thunk are recognized but always compile       */
+/* errors (runtime / C-side only; not recompilable from decompile text).      */
+
+CompilerPrivateStatement ::=
+    CompilerPrivateBlock
+
+/* From afw_compile_parse_compiler_private.c                                  */
+/* Value/expression-position compiler-private #Name.                          */
+/* Token is already pragma_identifier.                                        */
+/* Forms match decompile #implementation_id where implemented.                */
+/* #closure_binding / #function_thunk are recognized but always compile       */
+/* errors (runtime / C-side only; not recompilable from decompile text).      */
+
+CompilerPrivateValue ::=
+    CompilerPrivateBlock |
+    CompilerPrivateAssignmentTarget |
+    CompilerPrivateListExpression |
+    CompilerPrivateScriptFunction |
+    CompilerPrivateTemplateDefinition |
+    CompilerPrivateSwitchDefault |
+    CompilerPrivateStatements
+
 /* From afw_compile_parse_expression.c                                        */
 /* The objectId of any /afw/_AdaptiveDataType_/ objects.                      */
 /* This production only applies if ':' occurs before the end of current line. */
@@ -411,44 +500,24 @@ Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
 Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
 /* From afw_compile_parse_pragma.c                                            */
-/* Statement-position pragma (#Name …). Token is pragma_identifier.           */
+/* Policy pragma (compile-time type-check flags for this compile unit).       */
+/* Token is already pragma_identifier with name typecheck / typeCheck.        */
+/* Sets xctx compile type-check flags; no runtime value.                      */
 
-PragmaStatement ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')' |
+TypeCheckPragma ::=
     '#typecheck'
         ( 'off' | 'on' | 'compileOnly' | 'strict' |
           'noImplicitAny' | 'strictNullChecks' | ',' )*
         ';'
 
 /* From afw_compile_parse_pragma.c                                            */
-/* Value/expression-position pragma (#Name …). Token is pragma_identifier.    */
-/* Structural forms match decompile #implementation_id where implemented.     */
-/* Target shape for #assignment_target (symbol name or destructure Pattern).  */
+/* Statement-position #Name. Token is already pragma_identifier.              */
+/* Author policy pragmas first; other # names are compiler-private            */
+/* (see CompilerPrivateStatement).                                            */
 
-AssignmentTargetPragmaShape ::=
-    Identifier |
-    String |
-    AssignmentListDestructureTarget |
-    AssignmentObjectDestructureTarget
-/* #script_function( param* , body [, returnType] ) — decompile form.         */
-
-ScriptFunctionPragmaParameter ::=
-    Identifier ( ':' Type )? ( '=' Expression )?
-
-ScriptFunctionPragmaArgs ::=
-    ( ScriptFunctionPragmaParameter ( ',' ScriptFunctionPragmaParameter )*
-      ',' )?
-    Expression ( ',' Type )?
-
-PragmaValue ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')' |
-    '#assignment_target' '(' Expression ','
-        AssignmentTargetPragmaShape ')' |
-    '#list_expression' '(' Expression ')' |
-    '#script_function' '(' ScriptFunctionPragmaArgs ')' |
-    '#template_definition' '(' Expression ( ',' Expression )* ')'
-/* #closure_binding / #function_thunk are recognized but always compile       */
-/* errors (runtime / C-side only; not recompilable from decompile text).      */
+PragmaStatement ::=
+    TypeCheckPragma |
+    CompilerPrivateStatement
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */
@@ -854,7 +923,7 @@ Value ::= ListValue |
         ParenthesizedExpression |
         TemplateString |
         CompileTimeSubstitution |
-        PragmaValue
+        CompilerPrivateValue
 
 /* From afw_compile_lexical.c                                                 */
 

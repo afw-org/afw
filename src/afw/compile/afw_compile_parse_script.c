@@ -1635,7 +1635,7 @@ afw_compile_parse_Statement(
         return result;
     }
 
-    /* If pragma_identifier, parse PragmaStatement. */
+    /* If pragma_identifier, parse pragma or compiler-private # form. */
     if (afw_compile_token_is(pragma_identifier)) {
         return afw_compile_parse_PragmaStatement(parser);
     }

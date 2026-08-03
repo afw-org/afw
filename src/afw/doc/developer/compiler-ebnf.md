@@ -26,6 +26,8 @@ Typical files:
 | Expressions | `afw_compile_parse_expression.c` |
 | Values / JSON-ish | `afw_compile_parse_value.c` |
 | Templates | `afw_compile_parse_template.c` |
+| Pragmas (author policy) | `afw_compile_parse_pragma.c` |
+| Compiler-private `#…` | `afw_compile_parse_compiler_private.c` |
 
 ## Harvest pipeline
 
