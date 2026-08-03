@@ -41,8 +41,9 @@ AFW_BEGIN_DECLARES
  *
  * @see designs/adaptive-function-compile-typecheck.md
  */
-#define AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(xctx) \
-    (afw_value_type_check_compile_enabled(xctx))
+/** Compile-time adaptive formals: same gate as unit/flag compile typeCheck. */
+#define AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(contextual, xctx) \
+    (AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED((contextual), (xctx)))
 
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
@@ -520,6 +521,12 @@ struct afw_value_internal_compiled_value_s {
 
     /* This is the data type of the evaluated result or NULL if unknown. */
     const afw_data_type_t *evaluated_data_type;
+
+    /**
+     * Effective compile policy for this unit (flags snapshotted at compile
+     * start; #compile may override fields without touching process flags).
+     */
+    afw_compile_policy_t compile_policy;
 };
 
 

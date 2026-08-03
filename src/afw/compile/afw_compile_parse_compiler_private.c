@@ -15,7 +15,7 @@
  * This file owns the non-public accept path: forms that decompile() emits so
  * compile() can rebuild the same compiled-value graph.
  *
- * Not for ordinary Adaptive Script authoring. Policy directives (#typecheck)
+ * Not for ordinary Adaptive Script authoring. Policy directives (#compile)
  * live in afw_compile_parse_pragma.c.
  *
  * On entry the current token is already pragma_identifier. identifier_name is

@@ -107,6 +107,7 @@ impl_list_destructure(
     const afw_compile_list_destructure_t *ld,
     const afw_value_t *value,
     afw_compile_internal_assignment_type_t assignment_type,
+    const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -149,7 +150,7 @@ impl_list_destructure(
         /* Element annotation on Pattern (may also live on symbol->type). */
         if (ae->type && v && !afw_value_is_undefined(v)) {
             afw_value_type_check_assignable(ae->type, v,
-                "list pattern element", xctx);
+                "list pattern element", contextual, xctx);
         }
         impl_assign_value(ae->assignment_target, v, assignment_type,
             p, xctx);
@@ -177,7 +178,7 @@ impl_list_destructure(
         v = afw_value_create_unmanaged_array(rest, p, xctx);
         if (ld->rest_type) {
             afw_value_type_check_assignable(ld->rest_type, v,
-                "list pattern rest", xctx);
+                "list pattern rest", contextual, xctx);
         }
         impl_assign_value(ld->rest, v, assignment_type, p, xctx);
     }
@@ -191,6 +192,7 @@ impl_object_destructure(
     const afw_compile_object_destructure_t *od,
     const afw_value_t *value,
     afw_compile_internal_assignment_type_t assignment_type,
+    const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -230,7 +232,7 @@ impl_object_destructure(
             {
                 afw_value_type_check_assignable(
                     ap->assignment_element->type, v,
-                    "object pattern property", xctx);
+                    "object pattern property", contextual, xctx);
             }
             impl_assign_value(ap->assignment_element->assignment_target, v,
                 assignment_type, p, xctx);
@@ -289,7 +291,7 @@ impl_object_destructure(
         v = afw_value_create_unmanaged_object(rest, p, xctx);
         if (od->rest_type) {
             afw_value_type_check_assignable(od->rest_type, v,
-                "object pattern rest", xctx);
+                "object pattern rest", contextual, xctx);
         }
         impl_assign_value(od->rest, v, assignment_type, p, xctx);
     }
@@ -308,6 +310,7 @@ impl_assignment_target(
     const afw_compile_assignment_target_t *at =
         target->assignment_target;
     const afw_value_block_symbol_t *symbol;
+    const afw_compile_value_contextual_t *contextual = target->contextual;
 
     switch (at->target_type) {
     case afw_compile_assignment_target_type_list_destructure:
@@ -315,7 +318,7 @@ impl_assignment_target(
             value = afw_value_evaluate(value, p, xctx);
         }
         impl_list_destructure(at, at->list_destructure, value,
-            assignment_type, p, xctx);
+            assignment_type, contextual, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_object_destructure:
@@ -323,7 +326,7 @@ impl_assignment_target(
             value = afw_value_evaluate(value, p, xctx);
         }
         impl_object_destructure(at, at->object_destructure, value,
-            assignment_type, p, xctx);
+            assignment_type, contextual, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_symbol_reference:
@@ -334,7 +337,7 @@ impl_assignment_target(
             value = afw_value_evaluate(value, p, xctx);
         }
         afw_value_type_check_assignable(&symbol->type, value,
-            "assignment", xctx);
+            "assignment", contextual, xctx);
         afw_xctx_scope_symbol_set_value(symbol, value, xctx);
         break;
 
@@ -425,7 +428,7 @@ impl_assign_value(
          */
         if (value && !afw_value_is_undefined(value)) {
             afw_value_type_check_assignable(&t->symbol->type, value,
-                "assignment", xctx);
+                "assignment", t->contextual, xctx);
         }
         afw_xctx_scope_symbol_set_value(t->symbol, value, xctx);
     }

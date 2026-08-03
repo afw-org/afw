@@ -473,6 +473,7 @@ afw_function_evaluate_parameter_with_type(
     const afw_value_t *value,
     afw_size_t parameter_number,
     const afw_value_type_t *type,
+    const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 

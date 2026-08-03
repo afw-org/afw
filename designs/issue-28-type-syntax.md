@@ -12,7 +12,7 @@
 - Script-local **`type` / `interface` (+ multi `extends`)**; **not** adaptive object types / OT catalogs.
 - Arrays: **`T[]`** and **`Array<T>`** (same); tuples **`[T,U]`**; unions **`|`**; intersections **`&`**.
 - Function types: **`(a: T) => R`** — script functions/closures checked structurally (params contravariant, return covariant); other function values only need data type `function`.
-- **Checking default off**; opt-in via **flags** (handbook) and optional **`#typecheck`** pragma (per compile unit).
+- **Checking default off**; opt-in via **flags** (handbook) and optional **`#compile`** pragma (per compile unit; Pattern B — see `designs/pragma-hash-design.md`).
 - Object/interface structural: required props + property types + `extends`.
 - **Excess properties (compile):** object **literals** may not include keys outside the type; nested literals checked; **spreads / computed keys skip**; **runtime** assign of non-literals stays open (adaptive-friendly).
 
@@ -28,7 +28,7 @@
 | Type graph | `src/afw/value/afw_value_internal.h` (`afw_value_type_t`) |
 | Parse Type | `src/afw/compile/afw_compile_parse_expression.c` |
 | type/interface statements | `src/afw/compile/afw_compile_parse_script.c` |
-| `#typecheck` pragma | `src/afw/compile/afw_compile_parse_pragma.c` |
+| `#compile` pragma | `src/afw/compile/afw_compile_parse_pragma.c` |
 | Assignability / excess / Adaptive formals | `src/afw/value/afw_value_type_check.c` |
 | Call create (Adaptive formal gate) | `src/afw/value/afw_value_call_built_in_function.c` |
 | Decompile | `src/afw/value/afw_value_decompile.c` |
@@ -66,7 +66,7 @@ Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value
 - **Call sites:** known named script functions; known Adaptive functions (projected formals / returns).
 - Error text: composites report missing property, element index, tuple length, or decompiled expected type.
 
-**Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; commas optional). `#typecheck off;` clears mode and related policy flags for that unit. Handbook teaches **flags**; pragma is optional for tests and compact scripts.
+**Pragma:** `#compile` + flag short names (`typeCheck`, `typeCheckCompileOnly`, `noImplicitAny`, `strictNullChecks`, `strict`, `off`, …). Flags are defaults; `#compile` overrides for this unit. See `designs/pragma-hash-design.md`. Handbook teaches **flags**; pragma is optional for tests and compact scripts.
 
 ## Tests layout
 
@@ -74,7 +74,7 @@ Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value
 |------|------|
 | `type_syntax.as` | Parse/store/decompile only (checking off) |
 | `type_check_flags.as` | Flag + pragma contract; process isolation patterns |
-| `type_check.as` | Rules under `#typecheck` in the unit under test |
+| `type_check.as` | Rules under `#compile typeCheck` in the unit under test |
 
 ## Out of scope / residual (not this issue’s merge bar)
 

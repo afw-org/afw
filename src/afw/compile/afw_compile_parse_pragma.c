@@ -10,10 +10,55 @@
  * @file afw_compile_parse_pragma.c
  * @brief Parse author-facing # pragma directives (compile-time policy).
  *
- * Lex produces pragma_identifier for #Name (see afw_compile_lexical.c).
- * That token is shared with compiler-private #implementation_id forms
- * (afw_compile_parse_compiler_private.c). This file owns policy pragmas
- * that script writers may use (today: #typecheck).
+ * ---------------------------------------------------------------------------
+ * # design (author vs compiler-private)
+ * ---------------------------------------------------------------------------
+ *
+ * Lex produces pragma_identifier for any #Name (see afw_compile_lexical.c).
+ * That token is shared by two product surfaces:
+ *
+ * | Kind | Where | Audience | Role |
+ * |------|--------|----------|------|
+ * | **Pragma** (this file) | Statement | Script authors | Per-compile policy |
+ * | **Compiler-private** | Statement/value | Toolchain only | decompile → recompile |
+ *
+ * Compiler-private forms (#block, #script_function, …) live in
+ * afw_compile_parse_compiler_private.c — not ordinary authoring.
+ *
+ * Pattern B — author pragmas (current intent):
+ *
+ *   • The only planned author pragma family is compile policy: **#compile**.
+ *   • Operands are short names of compile:* flags (the part after "compile:"),
+ *     same spelling as the flag registry / handbook.
+ *   • Flags (env / flag_set / host) are **defaults**, snapshotted into the
+ *     compiled unit's afw_compile_policy_t at compile start.
+ *   • #compile **mutates only that policy** (never afw_flag_set / process
+ *     flags). Sibling compiles and the rest of the request keep their defaults.
+ *   • Unmentioned knobs keep the snapshotted defaults; mentioned names are
+ *     forced on for this unit (except **off**, which forces the type-check
+ *     cluster off on the policy).
+ *   • Type checks use AFW_VALUE_TYPE_CHECK_*(contextual, xctx): unit policy
+ *     when contextual->compiled_value is set, else process flags.
+ *   • New compile:* flags that should be script-overridable become new
+ *     allow-listed operands — not new top-level # directives.
+ *   • If a future need is not compile policy, add a different #DirectiveName;
+ *     do not invent #typecheck-style parallel vocabularies.
+ *
+ * #compile operands currently allow-listed (see impl_parse_compile_pragma):
+ *   off | typeCheck | typeCheckCompileOnly | noImplicitAny |
+ *   strictNullChecks | strict | noOptimize
+ *
+ * Examples:
+ *   #compile typeCheck;
+ *   #compile typeCheck noImplicitAny;
+ *   #compile typeCheckCompileOnly;
+ *   #compile strict;
+ *   #compile off;
+ *
+ * Retired: #typecheck / #typeCheck and synonym soup (on/true/full/…).
+ *
+ * Maintainer pad: designs/pragma-hash-design.md
+ * ---------------------------------------------------------------------------
  *
  * Statement position: PragmaStatement dispatches known policy pragmas, then
  * hands other #Name forms to CompilerPrivateStatement. Value/expression
@@ -41,153 +86,159 @@ impl_pragma_name_is(
 
 /*ebnf>>>
  *
- *# Policy pragma (compile-time type-check flags for this compile unit).
- *# Token is already pragma_identifier with name typecheck / typeCheck.
- *# Sets xctx compile type-check flags; no runtime value.
+ *# Author compile-policy pragma. Token is already pragma_identifier "compile".
+ *# Operands are compile:* flag short names (and special 'off'). At least one
+ *# operand required. Spaces separate tokens; no commas.
  *
- * TypeCheckPragma ::=
- *     '#typecheck'
- *         ( 'off' | 'on' | 'compileOnly' | 'strict' |
- *           'noImplicitAny' | 'strictNullChecks' | ',' )*
- *         ';'
+ * CompilePragmaOperand ::=
+ *     'off' |
+ *     'typeCheck' |
+ *     'typeCheckCompileOnly' |
+ *     'noImplicitAny' |
+ *     'strictNullChecks' |
+ *     'strict' |
+ *     'noOptimize'
+ *
+ * CompilePragma ::=
+ *     '#compile' CompilePragmaOperand+ ';'
  *
  *<<<ebnf*/
 /*
- * #typecheck [ mode ] [ option ... ] ;
+ * #compile <operand>… ;
  *
- * Mode (optional; default on/full when any checking is requested):
- *   off | false
- *   on | full | true
- *   compileOnly | compileonly | compile
+ * Apply per-compile overrides for allow-listed compile:* flag short names.
+ * See file header for the # design (Pattern B).
  *
- * Options (zero or more, optional commas):
- *   noImplicitAny
- *   strictNullChecks
- *   strict  — mode full + noImplicitAny + strictNullChecks
+ * Special operand off — force type-check related flags off for this unit
+ * (typeCheck, typeCheckCompileOnly, noImplicitAny, strictNullChecks, strict).
+ * Does not clear noOptimize.
  *
- * Bare #typecheck; enables full typeCheck (same as on).
+ * typeCheck vs typeCheckCompileOnly — last one wins if both appear.
+ * strict — same expansion as compile:strict (typeCheck + noImplicitAny +
+ * strictNullChecks) on the unit policy only.
  */
 static const afw_value_t *
-impl_parse_typecheck_pragma(afw_compile_parser_t *parser)
+impl_parse_compile_pragma(afw_compile_parser_t *parser)
 {
-    afw_boolean_t full;
-    afw_boolean_t compile_only;
-    afw_boolean_t off;
-    afw_boolean_t saw_mode;
+    /*
+     * Mode operands are mutually exclusive (last wins). Options accumulate
+     * unless mode is off (clears type options) or strict (bundle on policy).
+     */
+    enum {
+        mode_none,
+        mode_off,
+        mode_typeCheck,
+        mode_typeCheckCompileOnly,
+        mode_strict
+    } mode;
+
+    afw_boolean_t saw_operand;
     afw_boolean_t set_no_implicit_any;
     afw_boolean_t set_strict_null;
-    afw_boolean_t set_strict;
+    afw_boolean_t set_no_optimize;
+    afw_compile_policy_t *policy;
 
-    full = true;
-    compile_only = false;
-    off = false;
-    saw_mode = false;
+    mode = mode_none;
+    saw_operand = false;
     set_no_implicit_any = false;
     set_strict_null = false;
-    set_strict = false;
+    set_no_optimize = false;
+    policy = &parser->compiled_value->compile_policy;
 
     afw_compile_get_token();
-    while (afw_compile_token_is_unqualified_identifier() ||
-        afw_compile_token_is(comma))
-    {
-        if (afw_compile_token_is(comma)) {
-            afw_compile_get_token();
-            continue;
-        }
+    while (afw_compile_token_is_unqualified_identifier()) {
+        saw_operand = true;
 
-        if (afw_compile_token_is_name_z("off") ||
-            afw_compile_token_is_name_z("false"))
-        {
-            off = true;
-            full = false;
-            compile_only = false;
-            saw_mode = true;
+        if (afw_compile_token_is_name_z("off")) {
+            mode = mode_off;
+            set_no_implicit_any = false;
+            set_strict_null = false;
+            /* noOptimize is independent of type-check off. */
         }
-        else if (afw_compile_token_is_name_z("on") ||
-            afw_compile_token_is_name_z("full") ||
-            afw_compile_token_is_name_z("true"))
-        {
-            full = true;
-            off = false;
-            compile_only = false;
-            saw_mode = true;
+        else if (afw_compile_token_is_name_z("typeCheck")) {
+            mode = mode_typeCheck;
         }
-        else if (afw_compile_token_is_name_z("compileOnly") ||
-            afw_compile_token_is_name_z("compileonly") ||
-            afw_compile_token_is_name_z("compile"))
-        {
-            compile_only = true;
-            full = false;
-            off = false;
-            saw_mode = true;
-        }
-        else if (afw_compile_token_is_name_z("noImplicitAny") ||
-            afw_compile_token_is_name_z("noimplicitany"))
-        {
-            set_no_implicit_any = true;
-        }
-        else if (afw_compile_token_is_name_z("strictNullChecks") ||
-            afw_compile_token_is_name_z("strictnullchecks"))
-        {
-            set_strict_null = true;
+        else if (afw_compile_token_is_name_z("typeCheckCompileOnly")) {
+            mode = mode_typeCheckCompileOnly;
         }
         else if (afw_compile_token_is_name_z("strict")) {
-            /* Bundle: full check + noImplicitAny + strictNullChecks. */
-            set_strict = true;
-            full = true;
-            off = false;
-            compile_only = false;
-            saw_mode = true;
+            mode = mode_strict;
+            set_no_implicit_any = false;
+            set_strict_null = false;
+        }
+        else if (afw_compile_token_is_name_z("noImplicitAny")) {
+            if (mode == mode_off) {
+                mode = mode_none;
+            }
+            if (mode == mode_strict) {
+                /* Explicit options after strict: fall back to typeCheck + opts. */
+                mode = mode_typeCheck;
+            }
             set_no_implicit_any = true;
+        }
+        else if (afw_compile_token_is_name_z("strictNullChecks")) {
+            if (mode == mode_off) {
+                mode = mode_none;
+            }
+            if (mode == mode_strict) {
+                mode = mode_typeCheck;
+            }
             set_strict_null = true;
+        }
+        else if (afw_compile_token_is_name_z("noOptimize")) {
+            set_no_optimize = true;
         }
         else {
             AFW_COMPILE_THROW_ERROR_Z(
-                "Expecting off, on, compileOnly, noImplicitAny, "
-                "strictNullChecks, or strict after #typecheck");
+                "Expecting off, typeCheck, typeCheckCompileOnly, "
+                "noImplicitAny, strictNullChecks, strict, or noOptimize "
+                "after #compile");
         }
         afw_compile_get_token();
     }
 
+    if (!saw_operand) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting at least one operand after #compile");
+    }
+
     if (!afw_compile_token_is(semicolon)) {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting ';' after #typecheck");
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ';' after #compile");
     }
 
-    /* Clear mode flags first, then set the requested mode. */
-    afw_flag_set(afw_s_a_flag_compile_typeCheck, false, parser->xctx);
-    afw_flag_set(afw_s_a_flag_compile_typeCheckCompileOnly, false,
-        parser->xctx);
+    /* Mutate unit policy only — never process flags. */
+    if (mode == mode_off) {
+        policy->type_check = false;
+        policy->type_check_compile_only = false;
+        policy->no_implicit_any = false;
+        policy->strict_null_checks = false;
+    }
+    else if (mode == mode_strict) {
+        policy->type_check_compile_only = false;
+        policy->type_check = true;
+        policy->no_implicit_any = true;
+        policy->strict_null_checks = true;
+    }
+    else {
+        if (mode == mode_typeCheckCompileOnly) {
+            policy->type_check = false;
+            policy->type_check_compile_only = true;
+        }
+        else if (mode == mode_typeCheck) {
+            policy->type_check_compile_only = false;
+            policy->type_check = true;
+        }
 
-    if (off) {
-        /* Mode off: also clear related policy flags for a clean slate. */
-        afw_flag_set(afw_s_a_flag_compile_noImplicitAny, false,
-            parser->xctx);
-        afw_flag_set(afw_s_a_flag_compile_strictNullChecks, false,
-            parser->xctx);
-    }
-    else if (compile_only) {
-        afw_flag_set(afw_s_a_flag_compile_typeCheckCompileOnly, true,
-            parser->xctx);
-    }
-    else if (full || saw_mode || set_no_implicit_any || set_strict_null ||
-        set_strict)
-    {
-        /*
-         * Default and option-only forms enable full typeCheck so options
-         * have an active checking mode to apply to.
-         */
-        afw_flag_set(afw_s_a_flag_compile_typeCheck, true, parser->xctx);
-    }
-
-    if (!off) {
         if (set_no_implicit_any) {
-            afw_flag_set(afw_s_a_flag_compile_noImplicitAny, true,
-                parser->xctx);
+            policy->no_implicit_any = true;
         }
         if (set_strict_null) {
-            afw_flag_set(afw_s_a_flag_compile_strictNullChecks, true,
-                parser->xctx);
+            policy->strict_null_checks = true;
         }
+    }
+
+    if (set_no_optimize) {
+        policy->no_optimize = true;
     }
 
     /* No runtime value; statement is side-effect only. */
@@ -202,7 +253,7 @@ impl_parse_typecheck_pragma(afw_compile_parser_t *parser)
  *# (see CompilerPrivateStatement).
  *
  * PragmaStatement ::=
- *     TypeCheckPragma |
+ *     CompilePragma |
  *     CompilerPrivateStatement
  *
  *<<<ebnf*/
@@ -212,10 +263,8 @@ impl_parse_typecheck_pragma(afw_compile_parser_t *parser)
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
 {
-    if (impl_pragma_name_is(parser, "typecheck") ||
-        impl_pragma_name_is(parser, "typeCheck"))
-    {
-        return impl_parse_typecheck_pragma(parser);
+    if (impl_pragma_name_is(parser, "compile")) {
+        return impl_parse_compile_pragma(parser);
     }
 
     /* Non-policy #Name — compiler-private decompile/recompile forms. */

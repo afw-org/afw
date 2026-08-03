@@ -818,6 +818,15 @@ typedef struct afw_value_closure_binding_s
 afw_value_closure_binding_t;
 
 /**
+ * @brief Opaque `afw_compile_policy_t`.
+ *
+ * Per-compile policy (flag defaults + #compile overrides). Full struct in
+ * afw_common.h; also stored on afw_value_compiled_value_t.
+ */
+typedef struct afw_compile_policy_s
+afw_compile_policy_t;
+
+/**
  * @brief Opaque `afw_value_compiled_value_t`.
  *
  * See afw_value_internal.h for struct and more information.

@@ -500,15 +500,21 @@ Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
 Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
 /* From afw_compile_parse_pragma.c                                            */
-/* Policy pragma (compile-time type-check flags for this compile unit).       */
-/* Token is already pragma_identifier with name typecheck / typeCheck.        */
-/* Sets xctx compile type-check flags; no runtime value.                      */
+/* Author compile-policy pragma. Token is already pragma_identifier "compile". */
+/* Operands are compile:* flag short names (and special 'off'). At least one  */
+/* operand required. Spaces separate tokens; no commas.                       */
 
-TypeCheckPragma ::=
-    '#typecheck'
-        ( 'off' | 'on' | 'compileOnly' | 'strict' |
-          'noImplicitAny' | 'strictNullChecks' | ',' )*
-        ';'
+CompilePragmaOperand ::=
+    'off' |
+    'typeCheck' |
+    'typeCheckCompileOnly' |
+    'noImplicitAny' |
+    'strictNullChecks' |
+    'strict' |
+    'noOptimize'
+
+CompilePragma ::=
+    '#compile' CompilePragmaOperand+ ';'
 
 /* From afw_compile_parse_pragma.c                                            */
 /* Statement-position #Name. Token is already pragma_identifier.              */
@@ -516,7 +522,7 @@ TypeCheckPragma ::=
 /* (see CompilerPrivateStatement).                                            */
 
 PragmaStatement ::=
-    TypeCheckPragma |
+    CompilePragma |
     CompilerPrivateStatement
 
 /* From afw_compile_parse_script.c                                            */

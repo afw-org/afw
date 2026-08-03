@@ -59,7 +59,7 @@ impl_compile_check_list_pattern(
             continue;
         }
         afw_value_type_check_compile_assignable(ae->type, elem,
-            "list pattern element", parser->xctx);
+            "list pattern element", &parser->contextual, parser->xctx);
     }
 }
 
@@ -107,7 +107,7 @@ impl_compile_check_object_pattern(
             continue;
         }
         afw_value_type_check_compile_assignable(type, pv,
-            "object pattern property", parser->xctx);
+            "object pattern property", &parser->contextual, parser->xctx);
     }
 }
 
@@ -122,7 +122,9 @@ impl_compile_check_assign_target(
     const afw_value_assignment_target_t *at;
     const afw_value_type_t *type;
 
-    if (!afw_value_type_check_compile_enabled(parser->xctx)) {
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+            &parser->contextual, parser->xctx))
+    {
         return;
     }
     if (!afw_value_is_assignment_target(target)) {
@@ -134,7 +136,7 @@ impl_compile_check_assign_target(
     case afw_compile_assignment_target_type_symbol_reference:
         type = &at->assignment_target->symbol_reference->symbol->type;
         afw_value_type_check_compile_assignable(type, value,
-            "assignment", parser->xctx);
+            "assignment", &parser->contextual, parser->xctx);
         break;
 
     case afw_compile_assignment_target_type_list_destructure:
@@ -1168,12 +1170,13 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 
     /* Compile-time return type check when inside a typed function (issue #28). */
     if (parser->current_function_returns &&
-        afw_value_type_check_compile_enabled(parser->xctx) &&
+        AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+            &parser->contextual, parser->xctx) &&
         argv[1] && !afw_value_is_undefined(argv[1]))
     {
         afw_value_type_check_compile_assignable(
             parser->current_function_returns, argv[1],
-            "return", parser->xctx);
+            "return", &parser->contextual, parser->xctx);
     }
 
     result = afw_value_call_built_in_function_create(

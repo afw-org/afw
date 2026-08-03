@@ -10483,7 +10483,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_noImplicitAny_description \
-    "If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed. Only applies when type checking is active (compile:typeCheck or compile:typeCheckCompileOnly)."
+    "If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed. Only applies when type checking is active (compile:typeCheck or compile:typeCheckCompileOnly). Process default; a script may override for one compile unit with #compile noImplicitAny; (or #compile off; on that unit) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_noImplicitAny_description */
 #define afw_s_a_flag_compile_noImplicitAny_description \
@@ -10561,7 +10561,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_noOptimize_description \
-    "Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core."
+    "Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core. Process default; a script may override for one compile unit with #compile noOptimize; without changing this flag for the rest of the process (#compile off; does not clear noOptimize on the unit)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_noOptimize_description */
 #define afw_s_a_flag_compile_noOptimize_description \
@@ -10665,7 +10665,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_strictNullChecks_description \
-    "When type checking is active, null and undefined are not assignable to non-nullish types unless the type includes them. Similar to TypeScript strictNullChecks."
+    "When type checking is active, null and undefined are not assignable to non-nullish types unless the type includes them. Similar to TypeScript strictNullChecks. Process default; a script may override for one compile unit with #compile strictNullChecks; (or #compile off;) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks_description */
 #define afw_s_a_flag_compile_strictNullChecks_description \
@@ -10717,7 +10717,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_strict_description \
-    "Enables compile:typeCheck (compile and runtime), compile:noImplicitAny, and compile:strictNullChecks. Similar to TypeScript compilerOption strict."
+    "Enables compile:typeCheck (compile and runtime), compile:noImplicitAny, and compile:strictNullChecks. Similar to TypeScript compilerOption strict. Process default; a script may override for one compile unit with #compile strict; (or #compile off;) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict_description */
 #define afw_s_a_flag_compile_strict_description \
@@ -10821,7 +10821,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_typeCheckCompileOnly_description \
-    "When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set."
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set. Process default; a script may override for one compile unit with #compile typeCheckCompileOnly; (or #compile off;) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
 #define afw_s_a_flag_compile_typeCheckCompileOnly_description \
@@ -10873,7 +10873,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_typeCheck_description \
-    "When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins."
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins. Process default; a script may override for one compile unit with #compile typeCheck; (or #compile off;) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck_description */
 #define afw_s_a_flag_compile_typeCheck_description \

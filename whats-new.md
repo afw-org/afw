@@ -44,7 +44,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **UTF-8 in JSON / Fiddle** | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | **Python `Session("local")`** | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
-| **Script types (#28)** | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#typecheck`); hard cut of `(array of …)` / `(object "OT")` |
+| **Script types (#28)** | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | **Function reference prototypes** | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
 
 ---
@@ -569,7 +569,7 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")` are **removed** (hard cut). Existing scripts that used those forms need updating; plain unannotated scripts are unchanged because **checking is off by default**.
 
-**Opt in** primarily with environment / `flag_set` flags (handbook documents these). Optional `#typecheck` pragma also works for that compile unit:
+**Opt in** primarily with environment / `flag_set` flags (handbook documents these). Optional **`#compile`** pragma overrides the same flag short names for that compile unit (Pattern B):
 
 | Flag / pragma | Effect |
 |---------------|--------|
@@ -579,17 +579,18 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 | `compile:noImplicitAny` | Require annotations when checking is active |
 | `compile:strictNullChecks` | Stricter null/undefined |
 | `compile:strict` | typeCheck + noImplicitAny + strictNullChecks |
-| `#typecheck;` / `#typecheck on;` | Full typeCheck for rest of that compile |
-| `#typecheck compileOnly;` | Compile-only for that compile |
-| `#typecheck off;` | Off for that compile (also clears noImplicitAny / strictNullChecks) |
-| `#typecheck on noImplicitAny;` | Full check + require annotations |
-| `#typecheck on strictNullChecks;` | Full check + strict null/undefined |
-| `#typecheck strict;` | Full + noImplicitAny + strictNullChecks |
-| `#typecheck on, noImplicitAny;` | Commas between tokens optional |
+| `#compile typeCheck;` | Full typeCheck for that compile |
+| `#compile typeCheckCompileOnly;` | Compile-only for that compile |
+| `#compile off;` | Off for that compile (clears type-check cluster) |
+| `#compile typeCheck noImplicitAny;` | Full check + require annotations |
+| `#compile typeCheck strictNullChecks;` | Full check + strict null/undefined |
+| `#compile strict;` | Same as `compile:strict` |
+
+Operands match flag short names (case-sensitive). Flags are **process defaults** (snapshotted at compile start); `#compile` overrides **only that unit’s policy** and does not change process flags for the rest of the request/command. See `designs/pragma-hash-design.md`.
 
 When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements** and **tuple length/positions** when the value is known (for example a literal), **function param/return shapes** (script functions/closures), **Pattern** element annotations on array/object destructure, and **calls to known Adaptive functions** against metadata formals (compile path only). **Object literals** may not include properties outside the declared type (including as arguments); spreads/computed keys skip that extra-key check. At runtime, non-literal values may still be wider (structural). Type errors name missing properties, element indexes, and decompiled expected types where possible.
 
-Handbook: Language Reference → **Types** (flags-oriented authoring). Tests: `type_syntax.as` (parse/decompile), `type_check_flags.as` (flag/pragma contract), `type_check.as` (rules under `#typecheck`). Design pads: `designs/issue-28-type-syntax.md`, `designs/adaptive-function-compile-typecheck.md`.
+Handbook: Language Reference → **Types** (flags-oriented authoring). Tests: `type_syntax.as` (parse/decompile), `type_check_flags.as` (flag/pragma contract), `type_check.as` (rules under `#compile typeCheck`). Design pads: `designs/issue-28-type-syntax.md`, `designs/pragma-hash-design.md`, `designs/adaptive-function-compile-typecheck.md`.
 
 ---
 

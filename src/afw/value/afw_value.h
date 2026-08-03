@@ -1811,9 +1811,11 @@ afw_value_decompile_value(
 
 
 /**
- * @brief Type-check mode from compile:* flags (issue #28).
+ * @brief Type-check mode (issue #28).
  *
- * Default is off. compile:typeCheckCompileOnly wins over compile:typeCheck.
+ * Default is off. typeCheckCompileOnly wins over typeCheck.
+ * Resolved from unit policy when contextual->compiled_value is set,
+ * otherwise from process compile:* flags (fast afw_flag_is_active).
  */
 typedef enum afw_value_type_check_mode_e {
     afw_value_type_check_mode_off = 0,
@@ -1821,19 +1823,85 @@ typedef enum afw_value_type_check_mode_e {
     afw_value_type_check_mode_on
 } afw_value_type_check_mode_t;
 
-/**
- * @brief Resolve type-check mode from active flags.
+/*
+ * Hot-path helpers are macros (AFW style): expand without a call even when
+ * not optimized. See afw-c-runtime (prefer macros over static inline).
+ *
+ * AFW_VALUE_TYPE_CHECK_*_CV(cv, xctx) — cv is afw_value_compiled_value_t *
+ *   or NULL (process flags only).
+ * AFW_VALUE_TYPE_CHECK_*(contextual, xctx) — uses contextual->compiled_value
+ *   when contextual is non-NULL; NULL contextual => process flags only.
  */
-AFW_DEFINE(afw_value_type_check_mode_t)
-afw_value_type_check_mode(afw_xctx_t *xctx);
 
-/** @brief True if compile-time type checks should run. */
-AFW_DEFINE(afw_boolean_t)
-afw_value_type_check_compile_enabled(afw_xctx_t *xctx);
+/** Mode from compiled value (NULL cv => process flags). */
+#define AFW_VALUE_TYPE_CHECK_MODE_CV(cv, xctx) \
+    ( (cv) \
+        ? ( (cv)->compile_policy.type_check_compile_only \
+            ? afw_value_type_check_mode_compile_only \
+            : ( (cv)->compile_policy.type_check \
+                ? afw_value_type_check_mode_on \
+                : afw_value_type_check_mode_off ) ) \
+        : ( afw_flag_is_active( \
+                (xctx)->env->flag_index_compile_typeCheckCompileOnly_active, \
+                (xctx)) \
+            ? afw_value_type_check_mode_compile_only \
+            : ( afw_flag_is_active( \
+                    (xctx)->env->flag_index_compile_typeCheck_active, \
+                    (xctx)) \
+                ? afw_value_type_check_mode_on \
+                : afw_value_type_check_mode_off ) ) )
 
-/** @brief True if runtime type checks should run. */
-AFW_DEFINE(afw_boolean_t)
-afw_value_type_check_runtime_enabled(afw_xctx_t *xctx);
+/** Mode from call/assign/etc. contextual (NULL => process flags). */
+#define AFW_VALUE_TYPE_CHECK_MODE(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_MODE_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+
+#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED_CV(cv, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE_CV((cv), (xctx)) != \
+        afw_value_type_check_mode_off)
+
+#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE((contextual), (xctx)) != \
+        afw_value_type_check_mode_off)
+
+#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED_CV(cv, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE_CV((cv), (xctx)) == \
+        afw_value_type_check_mode_on)
+
+#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE((contextual), (xctx)) == \
+        afw_value_type_check_mode_on)
+
+#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY_CV(cv, xctx) \
+    ( (cv) \
+        ? (cv)->compile_policy.no_implicit_any \
+        : afw_flag_is_active( \
+            (xctx)->env->flag_index_compile_noImplicitAny_active, (xctx)) )
+
+#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+
+#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS_CV(cv, xctx) \
+    ( (cv) \
+        ? (cv)->compile_policy.strict_null_checks \
+        : afw_flag_is_active( \
+            (xctx)->env->flag_index_compile_strictNullChecks_active, \
+            (xctx)) )
+
+#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+
+#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV(cv, xctx) \
+    ( (cv) \
+        ? (cv)->compile_policy.no_optimize \
+        : afw_flag_is_active( \
+            (xctx)->env->flag_index_compile_noOptimize_active, (xctx)) )
+
+#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
 
 /**
  * @brief True if type is missing, any, or zero-init leaf any.
@@ -1853,67 +1921,65 @@ afw_value_type_get_leaf_data_type(const afw_value_type_t *type);
  * Handles leaves, unions/intersections, array/tuple elements, and
  * object/interface properties (with extends) when the value is inspectable.
  */
+/**
+ * @param contextual call/assign site (NULL => process flags for strictNull).
+ */
 AFW_DEFINE(afw_boolean_t)
 afw_value_type_is_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
 /**
- * @brief Throw if value is not assignable to expected (when checking on).
- * @param expected slot/formal type (NULL or any = accept).
- * @param value evaluated value.
- * @param what short context (e.g. "assignment", "parameter 1").
+ * @brief Throw if value is not assignable (when runtime checking on).
+ * @param contextual unit link (NULL => process flags).
  */
 AFW_DEFINE(void)
 afw_value_type_check_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
 /**
- * @brief Compile-time check when RHS data type is known.
- * Throws syntax error if not assignable and compile checking is enabled.
- *
- * Also applies excess-property checks on object literals (unknown keys vs
- * object/interface shape). Runtime afw_value_type_check_assignable() does
- * not — adaptive values may carry extra properties.
+ * @brief Compile-time check when RHS type is known (syntax errors).
+ * @param contextual unit link (NULL => process flags).
  */
 AFW_DEFINE(void)
 afw_value_type_check_compile_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
 /**
  * @brief Excess-property check for object-literal call arguments.
- * Only when the arg is still an object construct/expression; evaluated
- * objects are not closed.
+ * @param contextual unit link (NULL => process flags).
  */
 AFW_DEFINE(void)
 afw_value_type_check_call_arg_object_literal(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
 /**
  * @brief Compile-time type check for a known adaptive (built-in) function call.
- * @param function definition (may be polymorphic hub; specialized when possible).
- * @param argc number of user arguments (not counting argv[0]).
- * @param argv argv[0] is function; argv[1..argc] are user args.
- * @param xctx of caller.
+ * @param contextual call site (NULL => process flags).
  *
- * No-op unless compile type checking is enabled. Runtime adaptive execute
- * paths are unchanged. See designs/adaptive-function-compile-typecheck.md.
+ * No-op unless compile type checking is enabled for that unit/flags.
+ * See designs/adaptive-function-compile-typecheck.md.
  */
 AFW_DEFINE(void)
 afw_value_type_check_adaptive_function_call(
     const afw_value_function_definition_t *function,
     afw_size_t argc,
     const afw_value_t *const *argv,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
 /**

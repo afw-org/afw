@@ -244,7 +244,7 @@ Document: enabling typeCheck makes **known** adaptive call arguments strict at c
 | `compile:strict` | Includes typeCheck → includes this feature |
 | Future opt-out flag | Wired only through `AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS` |
 
-No `#typecheck` handbook teaching for adaptive specifics beyond existing Types page + one short note (flags only; Jeremy style).
+No `#compile` handbook teaching for adaptive specifics beyond existing Types page + one short note (flags only; Jeremy style).
 
 ### 4.12 Sequencing
 
@@ -347,7 +347,7 @@ That is a coherent, opt-in type system for Adaptive Script without marrying scri
 | Structs | `afw_value.h` (`afw_value_function_parameter_t`), data type struct in generated interface / bindings |
 | Check | `afw_value_type_check.c`, `afw_value_internal.h` macros |
 | Call | `afw_value_call_built_in_function.c` (create), possibly method call create paths |
-| Tests | Adaptive cases in `type_check.as` (under `#typecheck`); flag contract in `type_check_flags.as` |
+| Tests | Adaptive cases in `type_check.as` (under `#compile typeCheck`); flag contract in `type_check_flags.as` |
 | Docs | Types handbook note; `whats-new.md` |
 
 Do not hand-edit `generated/`; regenerate via afwdev.

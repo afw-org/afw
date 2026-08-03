@@ -19,39 +19,6 @@
 
 
 
-AFW_DEFINE(afw_value_type_check_mode_t)
-afw_value_type_check_mode(afw_xctx_t *xctx)
-{
-    /* compileOnly wins when both are set. */
-    if (afw_flag_is_active(
-        xctx->env->flag_index_compile_typeCheckCompileOnly_active, xctx))
-    {
-        return afw_value_type_check_mode_compile_only;
-    }
-    if (afw_flag_is_active(
-        xctx->env->flag_index_compile_typeCheck_active, xctx))
-    {
-        return afw_value_type_check_mode_on;
-    }
-    return afw_value_type_check_mode_off;
-}
-
-
-
-AFW_DEFINE(afw_boolean_t)
-afw_value_type_check_compile_enabled(afw_xctx_t *xctx)
-{
-    return afw_value_type_check_mode(xctx) != afw_value_type_check_mode_off;
-}
-
-
-
-AFW_DEFINE(afw_boolean_t)
-afw_value_type_check_runtime_enabled(afw_xctx_t *xctx)
-{
-    return afw_value_type_check_mode(xctx) == afw_value_type_check_mode_on;
-}
-
 
 
 AFW_DEFINE(afw_boolean_t)
@@ -99,10 +66,11 @@ impl_is_nullish_value(const afw_value_t *value, afw_xctx_t *xctx)
 
 
 static afw_boolean_t
-impl_strict_null_checks(afw_xctx_t *xctx)
+impl_strict_null_checks(
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx)
 {
-    return afw_flag_is_active(
-        xctx->env->flag_index_compile_strictNullChecks_active, xctx);
+    return AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS(contextual, xctx);
 }
 
 
@@ -441,6 +409,7 @@ static afw_boolean_t
 impl_object_type_properties_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     const afw_value_type_property_t *prop;
@@ -452,7 +421,7 @@ impl_object_type_properties_assignable(
     for (i = 0; i < expected->object.extends_count; i++) {
         base = expected->object.extends[i];
         if (base &&
-            !afw_value_type_is_assignable(base, value, xctx))
+            !afw_value_type_is_assignable(base, value, contextual, xctx))
         {
             return false;
         }
@@ -476,7 +445,7 @@ impl_object_type_properties_assignable(
         }
 
         if (prop->type && !afw_value_type_is_any(prop->type)) {
-            if (!afw_value_type_is_assignable(prop->type, pv, xctx)) {
+            if (!afw_value_type_is_assignable(prop->type, pv, contextual, xctx)) {
                 return false;
             }
         }
@@ -491,6 +460,7 @@ static afw_boolean_t
 impl_array_elements_assignable(
     const afw_value_type_t *element_type,
     const afw_array_t *arr,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     afw_size_t count;
@@ -504,7 +474,7 @@ impl_array_elements_assignable(
     count = afw_array_get_count(arr, xctx);
     for (i = 0; i < count; i++) {
         elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
-        if (!afw_value_type_is_assignable(element_type, elem, xctx)) {
+        if (!afw_value_type_is_assignable(element_type, elem, contextual, xctx)) {
             return false;
         }
     }
@@ -517,6 +487,7 @@ static afw_boolean_t
 impl_tuple_elements_assignable(
     const afw_value_type_t *expected,
     const afw_array_t *arr,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     afw_size_t count;
@@ -533,7 +504,7 @@ impl_tuple_elements_assignable(
         et = expected->tuple.elements[i];
         elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
         if (et && !afw_value_type_is_any(et)) {
-            if (!afw_value_type_is_assignable(et, elem, xctx)) {
+            if (!afw_value_type_is_assignable(et, elem, contextual, xctx)) {
                 return false;
             }
         }
@@ -613,6 +584,7 @@ static const afw_utf8_z_t *
 impl_mismatch_detail(
     const afw_value_type_t *expected,
     const afw_value_t *value,
+    const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -655,7 +627,7 @@ impl_mismatch_detail(
             }
             if (pv && prop->type &&
                 !afw_value_type_is_any(prop->type) &&
-                !afw_value_type_is_assignable(prop->type, pv, xctx))
+                !afw_value_type_is_assignable(prop->type, pv, contextual, xctx))
             {
                 return afw_utf8_z_printf(p, xctx,
                     "property " AFW_UTF8_FMT_Q
@@ -683,7 +655,7 @@ impl_mismatch_detail(
             for (i = 0; i < count; i++) {
                 elem = afw_array_get_entry_value(arr, i, p, xctx);
                 if (!afw_value_type_is_assignable(expected->array.element,
-                    elem, xctx))
+                    elem, contextual, xctx))
                 {
                     return afw_utf8_z_printf(p, xctx,
                         "array element %lu: expected %s but got %s",
@@ -718,7 +690,7 @@ impl_mismatch_detail(
                 if (expected->tuple.elements[i] &&
                     !afw_value_type_is_any(expected->tuple.elements[i]) &&
                     !afw_value_type_is_assignable(
-                        expected->tuple.elements[i], elem, xctx))
+                        expected->tuple.elements[i], elem, contextual, xctx))
                 {
                     return afw_utf8_z_printf(p, xctx,
                         "tuple element %lu: expected %s but got %s",
@@ -765,6 +737,7 @@ AFW_DEFINE(afw_boolean_t)
 afw_value_type_is_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     const afw_data_type_t *want;
@@ -779,14 +752,14 @@ afw_value_type_is_assignable(
         return false;
     }
 
-    strict_null = impl_strict_null_checks(xctx);
+    strict_null = impl_strict_null_checks(contextual, xctx);
 
     if (expected->kind == afw_value_type_kind_union) {
         afw_size_t i;
 
         for (i = 0; i < expected->compound.count; i++) {
             if (afw_value_type_is_assignable(
-                expected->compound.members[i], value, xctx))
+                expected->compound.members[i], value, contextual, xctx))
             {
                 return true;
             }
@@ -799,7 +772,7 @@ afw_value_type_is_assignable(
 
         for (i = 0; i < expected->compound.count; i++) {
             if (!afw_value_type_is_assignable(
-                expected->compound.members[i], value, xctx))
+                expected->compound.members[i], value, contextual, xctx))
             {
                 return false;
             }
@@ -820,7 +793,7 @@ afw_value_type_is_assignable(
             return true;
         }
         return impl_array_elements_assignable(
-            expected->array.element, arr, xctx);
+            expected->array.element, arr, contextual, xctx);
     }
 
     if (expected->kind == afw_value_type_kind_tuple) {
@@ -835,7 +808,7 @@ afw_value_type_is_assignable(
         if (!arr) {
             return true;
         }
-        return impl_tuple_elements_assignable(expected, arr, xctx);
+        return impl_tuple_elements_assignable(expected, arr, contextual, xctx);
     }
 
     if (expected->kind == afw_value_type_kind_object) {
@@ -846,13 +819,13 @@ afw_value_type_is_assignable(
         if (got != afw_data_type_object) {
             return false;
         }
-        return impl_object_type_properties_assignable(expected, value, xctx);
+        return impl_object_type_properties_assignable(expected, value, contextual, xctx);
     }
 
     if (expected->kind == afw_value_type_kind_reference) {
         if (expected->reference.resolved) {
             return afw_value_type_is_assignable(
-                expected->reference.resolved, value, xctx);
+                expected->reference.resolved, value, contextual, xctx);
         }
         return !afw_value_is_undefined(value);
     }
@@ -924,18 +897,19 @@ afw_value_type_check_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     const afw_utf8_z_t *detail;
 
-    if (!afw_value_type_check_runtime_enabled(xctx)) {
+    if (!AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
         return;
     }
-    if (afw_value_type_is_assignable(expected, value, xctx)) {
+    if (afw_value_type_is_assignable(expected, value, contextual, xctx)) {
         return;
     }
 
-    detail = impl_mismatch_detail(expected, value, xctx->p, xctx);
+    detail = impl_mismatch_detail(expected, value, contextual, xctx->p, xctx);
     if (detail) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Type error in %s: %s",
@@ -1286,6 +1260,7 @@ afw_value_type_check_compile_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     const afw_data_type_t *got;
@@ -1293,7 +1268,7 @@ afw_value_type_check_compile_assignable(
     const afw_value_symbol_reference_t *sym_ref;
     const afw_value_block_symbol_t *symbol;
 
-    if (!afw_value_type_check_compile_enabled(xctx)) {
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx)) {
         return;
     }
     if (afw_value_type_is_any(expected) || !value) {
@@ -1319,10 +1294,10 @@ afw_value_type_check_compile_assignable(
         }
         if (symbol && symbol->initial_value) {
             if (!afw_value_type_is_assignable(expected,
-                symbol->initial_value, xctx))
+                symbol->initial_value, contextual, xctx))
             {
                 detail = impl_mismatch_detail(expected,
-                    symbol->initial_value, xctx->p, xctx);
+                    symbol->initial_value, contextual, xctx->p, xctx);
                 if (detail) {
                     AFW_THROW_ERROR_FZ(syntax, xctx,
                         "Type error in %s: %s",
@@ -1348,8 +1323,8 @@ afw_value_type_check_compile_assignable(
         return;
     }
 
-    if (!afw_value_type_is_assignable(expected, value, xctx)) {
-        detail = impl_mismatch_detail(expected, value, xctx->p, xctx);
+    if (!afw_value_type_is_assignable(expected, value, contextual, xctx)) {
+        detail = impl_mismatch_detail(expected, value, contextual, xctx->p, xctx);
         if (detail) {
             AFW_THROW_ERROR_FZ(syntax, xctx,
                 "Type error in %s: %s",
@@ -1384,6 +1359,7 @@ afw_value_type_check_call_arg_object_literal(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     afw_boolean_t open_keys;
@@ -1391,8 +1367,8 @@ afw_value_type_check_call_arg_object_literal(
     if (!expected || afw_value_type_is_any(expected) || !value) {
         return;
     }
-    if (!afw_value_type_check_compile_enabled(xctx) &&
-        !afw_value_type_check_runtime_enabled(xctx))
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) &&
+        !AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx))
     {
         return;
     }
@@ -1406,8 +1382,8 @@ afw_value_type_check_call_arg_object_literal(
         return;
     }
     impl_check_excess_properties(expected, value, what,
-        afw_value_type_check_compile_enabled(xctx) &&
-            !afw_value_type_check_runtime_enabled(xctx),
+        AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) &&
+            !AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx),
         xctx);
 }
 
@@ -1533,6 +1509,7 @@ afw_value_type_check_adaptive_function_call(
     const afw_value_function_definition_t *function,
     afw_size_t argc,
     const afw_value_t *const *argv,
+    const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx)
 {
     const afw_value_function_definition_t *fn;
@@ -1549,7 +1526,7 @@ afw_value_type_check_adaptive_function_call(
     afw_integer_t min_args;
     const afw_utf8_z_t *fn_id_z;
 
-    if (!AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(xctx)) {
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx)) {
         return;
     }
     if (!function || !argv) {
@@ -1642,7 +1619,7 @@ afw_value_type_check_adaptive_function_call(
                 xctx->p, xctx);
             if (!afw_value_type_is_any(&expect) && arg) {
                 afw_value_type_check_compile_assignable(&expect, arg,
-                    "parameter", xctx);
+                    "parameter", contextual, xctx);
             }
         }
         else {
@@ -1656,7 +1633,7 @@ afw_value_type_check_adaptive_function_call(
                     &expect, xctx->p, xctx);
                 if (!afw_value_type_is_any(&expect)) {
                     afw_value_type_check_compile_assignable(&expect, arg,
-                        "parameter", xctx);
+                        "parameter", contextual, xctx);
                 }
             }
             break;

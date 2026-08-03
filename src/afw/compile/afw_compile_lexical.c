@@ -2318,6 +2318,15 @@ afw_compile_lexical_parser_create(
         parser->compiled_value->current_block = parent->current_block;
     }
 
+    /*
+     * Snapshot flags into this unit's policy; #compile may override the
+     * snapshot only (never process flags). Wire parser contextual so
+     * type-check helpers can resolve unit policy via contextual->compiled_value.
+     */
+    afw_compile_policy_init_from_flags(
+        &parser->compiled_value->compile_policy, xctx);
+    parser->contextual.compiled_value = parser->compiled_value;
+
     return parser;
 }
 
@@ -2327,7 +2336,9 @@ afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
     afw_xctx_t *xctx)
 {
-
+    /* No ambient xctx compile policy to restore (unit policy is on compiled_value). */
+    (void)parser;
+    (void)xctx;
 }
 
 

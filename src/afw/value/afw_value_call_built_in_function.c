@@ -64,8 +64,8 @@ afw_value_call_built_in_function_create(
     self->args.argv = argv;
     self->optimized_value = (const afw_value_t *)self;
 
-    if (allow_optimize && afw_flag_is_active(
-        xctx->env->flag_index_compile_noOptimize_active, xctx))
+    if (allow_optimize &&
+        AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE(contextual, xctx))
     {
         if (afw_value_is_boolean_true(
                 function->polymorphic) &&
@@ -116,8 +116,7 @@ afw_value_call_built_in_function_create(
      * Runtime one-shot and higher-order create paths must not walk args.
      */
     if (allow_optimize) {
-        afw_value_type_check_adaptive_function_call(self->function, argc, argv,
-            xctx);
+        afw_value_type_check_adaptive_function_call(self->function, argc, argv, contextual, xctx);
     }
 
     return &self->pub;

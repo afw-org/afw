@@ -6,7 +6,7 @@
 Type *syntax* only (issue #28): parse, store, and decompile round-trip with
 checking off. Leaves, T[] / Array<T>, tuples, unions, type/interface
 statements, object and function type annotations, hard cut of old
-(array of …) forms. Does not enable typeCheck flags or #typecheck; wrong
+(array of …) forms. Does not enable typeCheck flags or #compile; wrong
 assigns still run. Enforcement lives in type_check.as / type_check_flags.as.
 Nuance: Array<T> and T[] share the same type graph; decompile prefers T[].
 //? sourceType: script

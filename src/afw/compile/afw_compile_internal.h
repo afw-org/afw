@@ -287,6 +287,10 @@ struct afw_compile_internal_parser_s {
     /* This is the value returned by the compiler. */
     afw_value_compiled_value_t *compiled_value;
 
+    /**
+     * Unit contextual (compiled_value set at parser create). Prefer
+     * &parser->contextual for type-check helpers during parse.
+     */
     afw_compile_value_contextual_t contextual;
 
     const afw_utf8_t *passed_source;

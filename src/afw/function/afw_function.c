@@ -356,6 +356,7 @@ afw_function_evaluate_parameter_with_type(
     const afw_value_t* value,
     afw_size_t parameter_number,
     const afw_value_type_t *type,
+    const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *result;
@@ -374,7 +375,7 @@ afw_function_evaluate_parameter_with_type(
     /* Object-literal arg excess before evaluate (issue #28 call-site). */
     if (type) {
         afw_value_type_check_call_arg_object_literal(type, value,
-            "parameter", xctx);
+            "parameter", contextual, xctx);
     }
 
     /* Just return if no evaluation or conversion needed. */
@@ -382,9 +383,9 @@ afw_function_evaluate_parameter_with_type(
         (!want_dt || want_dt == afw_data_type_any ||
             afw_value_get_data_type(value, xctx) == want_dt))
     {
-        if (afw_value_type_check_runtime_enabled(xctx)) {
+        if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
             afw_value_type_check_assignable(type, value,
-                "parameter", xctx);
+                "parameter", contextual, xctx);
         }
         return value;
     }
@@ -399,8 +400,8 @@ afw_function_evaluate_parameter_with_type(
      * With runtime type checking on: strict assignability (no convert).
      * Otherwise: convert to leaf data type when requested (legacy path).
      */
-    if (afw_value_type_check_runtime_enabled(xctx)) {
-        afw_value_type_check_assignable(type, result, "parameter", xctx);
+    if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
+        afw_value_type_check_assignable(type, result, "parameter", contextual, xctx);
     }
     else if (result && want_dt && want_dt != afw_data_type_any &&
         afw_value_get_data_type(result, xctx) != want_dt)
