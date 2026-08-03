@@ -1732,14 +1732,14 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         };
         break;
 
-    /* #, #{, and #Identifier (pragma_identifier) */
+    /* #, #{, and #Identifier (pound_identifier) */
     case '#':
         /*ebnf>>>
          *
-         *# '#' starts compile-time substitution '#{', a pragma identifier
-         *# '#Name', or a bare pound sign.
+         *# '#' starts compile-time substitution '#{', a pound identifier
+         *# '#Name' (pragma or compiler-private), or a bare pound sign.
          *
-         * PragmaIdentifier ::= '#' Identifier
+         * PoundIdentifier ::= '#' Identifier
          *
          *<<<ebnf*/
         afw_compile_save_cursor(temp_cursor);
@@ -1753,7 +1753,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         {
             /* Name after '#'; do not treat as special literal (true, NaN, …). */
             afw_compile_restore_cursor(temp_cursor);
-            parser->token->type = afw_compile_token_type_pragma_identifier;
+            parser->token->type = afw_compile_token_type_pound_identifier;
             parser->token->identifier_name = impl_get_identifier(parser);
             /* Full lexeme including '#' for error text / display. */
             parser->token->identifier = afw_compile_get_string_literal(

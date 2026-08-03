@@ -924,8 +924,8 @@ afw_compile_parse_Value(afw_compile_parser_t *parser)
         return value;
     }
 
-    /* If next is pragma_identifier, parse compiler-private # form. */
-    if (afw_compile_peek_next_token_is(pragma_identifier))
+    /* If next is pound_identifier, parse compiler-private # form. */
+    if (afw_compile_peek_next_token_is(pound_identifier))
     {
         afw_compile_get_token();
         return afw_compile_parse_CompilerPrivateValue(parser);

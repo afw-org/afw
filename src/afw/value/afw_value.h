@@ -1767,7 +1767,7 @@ afw_value_call_args_expand_spreads(
  * @param xctx of caller.
  *
  * Used for compiled value kinds that have no Adaptive surface form. The leading
- * '#' matches the pragma_identifier token family (not a registered function).
+ * '#' matches the pound_identifier token family (not a registered function).
  */
 AFW_DEFINE(void)
 afw_value_decompile_write_synthetic_function_name(

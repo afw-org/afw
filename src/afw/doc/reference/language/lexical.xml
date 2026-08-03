@@ -58,12 +58,13 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
     </list>
     <paragraph>
         Separately, the lexical analyzer recognizes
-        <literal>pragma_identifier</literal> tokens: a leading
+        <literal>pound_identifier</literal> tokens: a leading
         <literal>#</literal> followed by an identifier-like name (for example
-        <literal>#block</literal>). You may see them in
-        <literal>decompile</literal> output; they are not ordinary
-        identifiers, cannot be used as variable names, and are not something
-        you write in normal scripts (see Language Features).
+        <literal>#block</literal> or <literal>#compile</literal>). You may see
+        them in <literal>decompile</literal> output; they are not ordinary
+        identifiers and cannot be used as variable names. Most are not
+        something you write in normal scripts (see Language Features);
+        policy forms such as <literal>#compile</literal> are the exception.
     </paragraph>
     <header>Reserved Names</header>
     <paragraph>

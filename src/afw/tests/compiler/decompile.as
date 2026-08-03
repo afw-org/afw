@@ -4,7 +4,7 @@
 //? customPurpose: Part of compiler category tests
 //? description: ...
 // Coverage of decompile() for data types and afw_value* compiled kinds.
-// Synthetic forms use #implementation_id(...) (pragma_identifier style).
+// Synthetic forms use #implementation_id(...) (pound_identifier style).
 // Value methods exercised (by kind):
 //   data-type bindings (write_as_expression), block, assignment_target,
 //   call_built_in_function, call, call_script_function, symbol_reference,

@@ -14,7 +14,7 @@
  * # design (author vs compiler-private)
  * ---------------------------------------------------------------------------
  *
- * Lex produces pragma_identifier for any #Name (see afw_compile_lexical.c).
+ * Lex produces pound_identifier for any #Name (see afw_compile_lexical.c).
  * That token is shared by two product surfaces:
  *
  * | Kind | Where | Audience | Role |
@@ -64,7 +64,7 @@
  * hands other #Name forms to CompilerPrivateStatement. Value/expression
  * position does not use this file — see CompilerPrivateValue.
  *
- * On entry the current token is already pragma_identifier. identifier_name is
+ * On entry the current token is already pound_identifier. identifier_name is
  * the name without '#'; identifier is the full "#name" (for errors). There is
  * no qualifier.
  */
@@ -73,7 +73,7 @@
 
 
 
-/* True if current pragma_identifier name equals z. */
+/* True if current pound_identifier name equals z. */
 static afw_boolean_t
 impl_pragma_name_is(
     afw_compile_parser_t *parser,
@@ -86,7 +86,7 @@ impl_pragma_name_is(
 
 /*ebnf>>>
  *
- *# Author compile-policy pragma. Token is already pragma_identifier "compile".
+ *# Author compile-policy pragma. Token is already pound_identifier "compile".
  *# Operands are compile:* flag short names (and special 'off'). At least one
  *# operand required. Spaces separate tokens; no commas.
  *
@@ -248,7 +248,7 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# Statement-position #Name. Token is already pragma_identifier.
+ *# Statement-position #Name. Token is already pound_identifier.
  *# Author policy pragmas first; other # names are compiler-private
  *# (see CompilerPrivateStatement).
  *

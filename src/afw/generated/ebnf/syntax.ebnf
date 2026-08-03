@@ -102,7 +102,7 @@ AssignmentTarget ::= AssignmentBindingTarget | Reference
 
 /* From afw_compile_parse_compiler_private.c                                  */
 /* Compiler-private #block( statementExpression, ... ).                       */
-/* Token is already pragma_identifier with name "block".                      */
+/* Token is already pound_identifier with name "block".                       */
 
 CompilerPrivateBlock ::=
     '#block' '(' ( Expression ( ',' Expression )* )? ')'
@@ -138,9 +138,24 @@ CompilerPrivateTemplateDefinition ::=
 /* From afw_compile_parse_compiler_private.c                                  */
 /* #script_function( param* , body [, returnType] ) — decompile form.         */
 /* Param symbols are introduced before the body is parsed.                    */
+/* A name or Pattern is a parameter only when followed by '?', ':', '=',      */
+/* or ',' (or after '...'); otherwise it starts the body Expression.          */
+
+ScriptFunctionCompilerPrivateParamName ::=
+    Identifier | String
+
+ScriptFunctionCompilerPrivateNameParameter ::=
+    ( '...' )? ScriptFunctionCompilerPrivateParamName
+        ( '?' )? ( ':' Type )? ( '=' Expression )?
+
+ScriptFunctionCompilerPrivatePatternParameter ::=
+    ( AssignmentListDestructureTarget |
+      AssignmentObjectDestructureTarget )
+        ( '?' )? ( '=' Expression )?
 
 ScriptFunctionCompilerPrivateParameter ::=
-    Identifier ( ':' Type )? ( '=' Expression )?
+    ScriptFunctionCompilerPrivateNameParameter |
+    ScriptFunctionCompilerPrivatePatternParameter
 
 ScriptFunctionCompilerPrivateArgs ::=
     ( ScriptFunctionCompilerPrivateParameter
@@ -166,16 +181,16 @@ CompilerPrivateStatements ::=
 
 /* From afw_compile_parse_compiler_private.c                                  */
 /* Statement-position compiler-private #Name.                                 */
-/* Token is already pragma_identifier.                                        */
-/* #closure_binding / #function_thunk are recognized but always compile       */
-/* errors (runtime / C-side only; not recompilable from decompile text).      */
+/* Token is already pound_identifier.                                         */
+/* #closure_binding / #function_thunk are recognized as known rejects         */
+/* (always compile errors; not productions — runtime / C-side only).          */
 
 CompilerPrivateStatement ::=
     CompilerPrivateBlock
 
 /* From afw_compile_parse_compiler_private.c                                  */
 /* Value/expression-position compiler-private #Name.                          */
-/* Token is already pragma_identifier.                                        */
+/* Token is already pound_identifier.                                         */
 /* Forms match decompile #implementation_id where implemented.                */
 /* #closure_binding / #function_thunk are recognized but always compile       */
 /* errors (runtime / C-side only; not recompilable from decompile text).      */
@@ -500,7 +515,7 @@ Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
 Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
 /* From afw_compile_parse_pragma.c                                            */
-/* Author compile-policy pragma. Token is already pragma_identifier "compile". */
+/* Author compile-policy pragma. Token is already pound_identifier "compile". */
 /* Operands are compile:* flag short names (and special 'off'). At least one  */
 /* operand required. Spaces separate tokens; no commas.                       */
 
@@ -517,7 +532,7 @@ CompilePragma ::=
     '#compile' CompilePragmaOperand+ ';'
 
 /* From afw_compile_parse_pragma.c                                            */
-/* Statement-position #Name. Token is already pragma_identifier.              */
+/* Statement-position #Name. Token is already pound_identifier.               */
 /* Author policy pragmas first; other # names are compiler-private            */
 /* (see CompilerPrivateStatement).                                            */
 
@@ -1081,7 +1096,7 @@ UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
 END ::=
 
 /* From afw_compile_lexical.c                                                 */
-/* '#' starts compile-time substitution '#{', a pragma identifier             */
-/* '#Name', or a bare pound sign.                                             */
+/* '#' starts compile-time substitution '#{', a pound identifier              */
+/* '#Name' (pragma or compiler-private), or a bare pound sign.                */
 
-PragmaIdentifier ::= '#' Identifier
+PoundIdentifier ::= '#' Identifier

@@ -11,7 +11,7 @@
 | **Pragma** | `afw_compile_parse_pragma.c` | Script authors | Per-compile **policy** |
 | **Compiler-private** | `afw_compile_parse_compiler_private.c` | Toolchain only | **decompile → recompile** (`#block`, `#script_function`, …) |
 
-Lex: `pragma_identifier` for any `#Name`. Product docs should not teach compiler-private forms as normal script.
+Lex: `pound_identifier` for any `#Name`. Product docs should not teach compiler-private forms as normal script.
 
 ## Pattern B — author pragmas
 

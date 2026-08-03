@@ -10,7 +10,7 @@
  * @file afw_compile_parse_compiler_private.c
  * @brief Parse compiler-private #implementation_id forms (decompile/recompile).
  *
- * Lex produces pragma_identifier for #Name (see afw_compile_lexical.c). That
+ * Lex produces pound_identifier for #Name (see afw_compile_lexical.c). That
  * token is shared with author-facing pragmas (afw_compile_parse_pragma.c).
  * This file owns the non-public accept path: forms that decompile() emits so
  * compile() can rebuild the same compiled-value graph.
@@ -18,7 +18,7 @@
  * Not for ordinary Adaptive Script authoring. Policy directives (#compile)
  * live in afw_compile_parse_pragma.c.
  *
- * On entry the current token is already pragma_identifier. identifier_name is
+ * On entry the current token is already pound_identifier. identifier_name is
  * the name without '#'; identifier is the full "#name" (for errors). There is
  * no qualifier. Dispatch on identifier_name; fall through to unknown if no
  * match. Do not look up names in the Adaptive function registry.
@@ -29,14 +29,14 @@
 
 
 /*
- * Token must already be pragma_identifier. Returns full "#name" for errors.
+ * Token must already be pound_identifier. Returns full "#name" for errors.
  */
 static const afw_utf8_t *
 impl_compiler_private_full_name(afw_compile_parser_t *parser)
 {
-    if (!afw_compile_token_is(pragma_identifier)) {
+    if (!afw_compile_token_is(pound_identifier)) {
         AFW_COMPILE_THROW_ERROR_Z(
-            "Internal error: expecting pragma_identifier");
+            "Internal error: expecting pound_identifier");
     }
 
     if (parser->token->identifier) {
@@ -69,7 +69,7 @@ impl_compiler_private_unknown(
 }
 
 
-/* True if current pragma_identifier name equals z. */
+/* True if current pound_identifier name equals z. */
 static afw_boolean_t
 impl_compiler_private_name_is(
     afw_compile_parser_t *parser,
@@ -112,7 +112,7 @@ impl_compiler_private_function_thunk_not_recompilable(
 /*ebnf>>>
  *
  *# Compiler-private #block( statementExpression, ... ).
- *# Token is already pragma_identifier with name "block".
+ *# Token is already pound_identifier with name "block".
  *
  * CompilerPrivateBlock ::=
  *     '#block' '(' ( Expression ( ',' Expression )* )? ')'
@@ -395,9 +395,24 @@ impl_parse_compiler_private_template_definition(afw_compile_parser_t *parser)
  *
  *# #script_function( param* , body [, returnType] ) — decompile form.
  *# Param symbols are introduced before the body is parsed.
+ *# A name or Pattern is a parameter only when followed by '?', ':', '=',
+ *# or ',' (or after '...'); otherwise it starts the body Expression.
+ *
+ * ScriptFunctionCompilerPrivateParamName ::=
+ *     Identifier | String
+ *
+ * ScriptFunctionCompilerPrivateNameParameter ::=
+ *     ( '...' )? ScriptFunctionCompilerPrivateParamName
+ *         ( '?' )? ( ':' Type )? ( '=' Expression )?
+ *
+ * ScriptFunctionCompilerPrivatePatternParameter ::=
+ *     ( AssignmentListDestructureTarget |
+ *       AssignmentObjectDestructureTarget )
+ *         ( '?' )? ( '=' Expression )?
  *
  * ScriptFunctionCompilerPrivateParameter ::=
- *     Identifier ( ':' Type )? ( '=' Expression )?
+ *     ScriptFunctionCompilerPrivateNameParameter |
+ *     ScriptFunctionCompilerPrivatePatternParameter
  *
  * ScriptFunctionCompilerPrivateArgs ::=
  *     ( ScriptFunctionCompilerPrivateParameter
@@ -415,7 +430,6 @@ impl_parse_compiler_private_script_function(afw_compile_parser_t *parser)
     const afw_value_t *body;
     const afw_value_block_t *block;
     const afw_utf8_t *param_name;
-    const afw_value_type_t *returns;
     afw_value_script_function_signature_t *signature;
     afw_value_script_function_parameter_t *param;
     afw_value_block_symbol_t *symbol;
@@ -437,7 +451,6 @@ impl_parse_compiler_private_script_function(afw_compile_parser_t *parser)
     params = apr_array_make(parser->apr_p, 4,
         sizeof(afw_value_script_function_parameter_t *));
     body = NULL;
-    returns = NULL;
     have_body = false;
 
     afw_compile_get_token();
@@ -470,8 +483,7 @@ impl_parse_compiler_private_script_function(afw_compile_parser_t *parser)
              * (#script_function(..., #block(...), integer)).
              */
             if (afw_compile_token_is(comma)) {
-                returns = afw_compile_parse_Type(parser);
-                signature->returns = returns;
+                signature->returns = afw_compile_parse_Type(parser);
                 afw_compile_get_token();
                 if (!afw_compile_token_is(close_parenthesis)) {
                     AFW_COMPILE_THROW_ERROR_Z(
@@ -668,7 +680,6 @@ impl_parse_compiler_private_script_function(afw_compile_parser_t *parser)
     signature->count = (afw_size_t)params->nelts;
     signature->parameters =
         (const afw_value_script_function_parameter_t **)params->elts;
-    signature->returns = returns;
 
     return afw_value_script_function_definition_create(
         afw_compile_create_contextual_to_cursor(start_offset),
@@ -752,9 +763,9 @@ impl_parse_compiler_private_statements(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  *# Statement-position compiler-private #Name.
- *# Token is already pragma_identifier.
- *# #closure_binding / #function_thunk are recognized but always compile
- *# errors (runtime / C-side only; not recompilable from decompile text).
+ *# Token is already pound_identifier.
+ *# #closure_binding / #function_thunk are recognized as known rejects
+ *# (always compile errors; not productions — runtime / C-side only).
  *
  * CompilerPrivateStatement ::=
  *     CompilerPrivateBlock
@@ -791,7 +802,7 @@ afw_compile_parse_CompilerPrivateStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  *# Value/expression-position compiler-private #Name.
- *# Token is already pragma_identifier.
+ *# Token is already pound_identifier.
  *# Forms match decompile #implementation_id where implemented.
  *# #closure_binding / #function_thunk are recognized but always compile
  *# errors (runtime / C-side only; not recompilable from decompile text).
