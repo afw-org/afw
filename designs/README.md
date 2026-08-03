@@ -26,7 +26,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-28-type-syntax.md`](issue-28-type-syntax.md) | **#28** script type syntax + opt-in checking (implemented on branch) |
 | [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md) | Follow-on: compile typeCheck for adaptive/built-in function calls (design) |
 | [`pragma-hash-design.md`](pragma-hash-design.md) | **`#` design** — pragma vs compiler-internal; Pattern B `#compile` |
-| [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) | Decompile emit vs compiler-internal accept checklist + tests |
+| [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) | Decompile emit vs `#…` accept checklist + tests |
+| [`compile-contextual-audit.md`](compile-contextual-audit.md) | call_create / type-check contextual inventory (NULL policy) |
 
 ## Conventions
 

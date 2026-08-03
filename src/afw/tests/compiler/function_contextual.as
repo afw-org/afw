@@ -6,7 +6,9 @@
 Built-in execute paths that create nested calls (map/reduce/filter/sort,
 switch predicate, stringify replacer) must pass AFW_FUNCTION_CONTEXTUAL
 instead of NULL so nested call values share the outer call's unit link.
-These tests are regressions for that wiring.
+Core libafw has no remaining call_create(NULL) (see
+designs/compile-contextual-audit.md). Curl HTTP script callbacks still
+use NULL at the libcurl C edge (process flags only).
 //? sourceType: script
 //?
 //? test: map-basic

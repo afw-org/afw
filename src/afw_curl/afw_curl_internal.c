@@ -86,6 +86,11 @@ afw_curl_internal_write_response_headers_cb(
             appdata->pool, appdata->xctx);
         header->argv[2] = header->userData;
         if (!header->call) {
+            /*
+             * NULL contextual: libcurl C edge; process flags only for nested
+             * typeCheck until call-site contextual is plumbed from http execute
+             * (see designs/compile-contextual-audit.md).
+             */
             header->call = afw_value_call_create(NULL,
                 2, &header->argv[0], false, appdata->pool, appdata->xctx);
         }
@@ -154,6 +159,7 @@ afw_curl_internal_response_cb(
             &buf, appdata->pool, appdata->xctx);
         writer->argv[2] = writer->userData;
         if (!writer->call) {
+            /* NULL contextual: see header callback / compile-contextual-audit. */
             writer->call = afw_value_call_create(NULL,
                 2, &writer->argv[0], false, appdata->pool, appdata->xctx);
         }
@@ -227,6 +233,7 @@ afw_curl_internal_request_cb(
         reader->argv[3] = afw_value_create_unmanaged_integer(
             nitems, appdata->pool, appdata->xctx);
         if (!reader->call) {
+            /* NULL contextual: see header callback / compile-contextual-audit. */
             reader->call = afw_value_call_create(NULL,
                 3, &reader->argv[0], false, appdata->pool, appdata->xctx);
         }
