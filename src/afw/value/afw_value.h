@@ -108,6 +108,13 @@ struct afw_value_function_parameter_s {
     /* Indicates that dataTypeParameter is polymorphic. */
     const afw_value_boolean_t *polymorphicDataTypeParameter;
 
+    /**
+     * If non-NULL, dataTypeParameter was resolved at generate to this Adaptive
+     * data type (typically ArrayOf element type). NULL: do not use the
+     * parameter string for compile-time type projection.
+     */
+    const afw_data_type_t *data_type_parameter_data_type;
+
 };
 
 
@@ -243,6 +250,13 @@ struct afw_value_function_definition_s {
      * @brief Requires 'execute' access to function.
      */
     const afw_value_boolean_t *requiresExecuteAccess;
+
+    /**
+     * @brief True if this is a script-support / statement IR function
+     *     (const, let, if, …). Not a normal user-callable adaptive function;
+     *     formals in metadata may not match compiler argv shape.
+     */
+    const afw_value_boolean_t *scriptSupport;
 };
 
 
@@ -1797,6 +1811,112 @@ afw_value_decompile_value(
 
 
 /**
+ * @brief Type-check mode from compile:* flags (issue #28).
+ *
+ * Default is off. compile:typeCheckCompileOnly wins over compile:typeCheck.
+ */
+typedef enum afw_value_type_check_mode_e {
+    afw_value_type_check_mode_off = 0,
+    afw_value_type_check_mode_compile_only,
+    afw_value_type_check_mode_on
+} afw_value_type_check_mode_t;
+
+/**
+ * @brief Resolve type-check mode from active flags.
+ */
+AFW_DEFINE(afw_value_type_check_mode_t)
+afw_value_type_check_mode(afw_xctx_t *xctx);
+
+/** @brief True if compile-time type checks should run. */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_check_compile_enabled(afw_xctx_t *xctx);
+
+/** @brief True if runtime type checks should run. */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_check_runtime_enabled(afw_xctx_t *xctx);
+
+/**
+ * @brief True if type is missing, any, or zero-init leaf any.
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_is_any(const afw_value_type_t *type);
+
+/**
+ * @brief Leaf Adaptive data type if kind is data_type; else NULL.
+ */
+AFW_DEFINE(const afw_data_type_t *)
+afw_value_type_get_leaf_data_type(const afw_value_type_t *type);
+
+/**
+ * @brief Whether value is assignable to expected type.
+ *
+ * Handles leaves, unions/intersections, array/tuple elements, and
+ * object/interface properties (with extends) when the value is inspectable.
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_is_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Throw if value is not assignable to expected (when checking on).
+ * @param expected slot/formal type (NULL or any = accept).
+ * @param value evaluated value.
+ * @param what short context (e.g. "assignment", "parameter 1").
+ */
+AFW_DEFINE(void)
+afw_value_type_check_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Compile-time check when RHS data type is known.
+ * Throws syntax error if not assignable and compile checking is enabled.
+ *
+ * Also applies excess-property checks on object literals (unknown keys vs
+ * object/interface shape). Runtime afw_value_type_check_assignable() does
+ * not — adaptive values may carry extra properties.
+ */
+AFW_DEFINE(void)
+afw_value_type_check_compile_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Excess-property check for object-literal call arguments.
+ * Only when the arg is still an object construct/expression; evaluated
+ * objects are not closed.
+ */
+AFW_DEFINE(void)
+afw_value_type_check_call_arg_object_literal(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Compile-time type check for a known adaptive (built-in) function call.
+ * @param function definition (may be polymorphic hub; specialized when possible).
+ * @param argc number of user arguments (not counting argv[0]).
+ * @param argv argv[0] is function; argv[1..argc] are user args.
+ * @param xctx of caller.
+ *
+ * No-op unless compile type checking is enabled. Runtime adaptive execute
+ * paths are unchanged. See designs/adaptive-function-compile-typecheck.md.
+ */
+AFW_DEFINE(void)
+afw_value_type_check_adaptive_function_call(
+    const afw_value_function_definition_t *function,
+    afw_size_t argc,
+    const afw_value_t *const *argv,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Decompile a type as Adaptive Type surface text (no leading ':').
  * @param type to decompile; NULL or "any" writes nothing (caller skips ':').
  * @param writer
@@ -1804,8 +1924,7 @@ afw_value_decompile_value(
  * @return true if anything was written (type is present and not bare any).
  *
  * Used for assignment targets, script_function params/returns, and future
- * type-check work. Prefer reconstructing surface forms (e.g.
- * `integer`, `(array of integer)`).
+ * type-check work. Prefer TS-like surface forms (e.g. `integer`, `integer[]`).
  */
 AFW_DEFINE(afw_boolean_t)
 afw_value_decompile_type(

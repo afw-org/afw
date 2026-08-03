@@ -68,7 +68,7 @@ impl_reader_check_returns = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_integer_direct,
     &afw_lmdb_self_v_integer,
     NULL,
     NULL,
@@ -79,6 +79,7 @@ impl_reader_check_returns = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t
@@ -95,7 +96,7 @@ impl_reader_check_parameter_1 = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_string_direct,
     &afw_lmdb_self_v_string,
     NULL,
     &afw_lmdb_self_v_adapterId,
@@ -106,6 +107,7 @@ impl_reader_check_parameter_1 = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t *
@@ -144,6 +146,7 @@ impl_reader_check = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
@@ -192,7 +195,7 @@ impl_reader_list_returns = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_string_direct,
     &afw_lmdb_self_v_string,
     NULL,
     NULL,
@@ -203,6 +206,7 @@ impl_reader_list_returns = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t
@@ -219,7 +223,7 @@ impl_reader_list_parameter_1 = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_string_direct,
     &afw_lmdb_self_v_string,
     NULL,
     &afw_lmdb_self_v_adapterId,
@@ -230,6 +234,7 @@ impl_reader_list_parameter_1 = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t *
@@ -268,6 +273,7 @@ impl_reader_list = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,

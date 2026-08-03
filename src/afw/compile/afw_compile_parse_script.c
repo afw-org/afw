@@ -31,6 +31,129 @@ impl_function_definition_rethrow =
 
 
 
+
+/* Compile-time type check for const/let/assign (issue #28). */
+static void
+impl_compile_check_list_pattern(
+    afw_compile_parser_t *parser,
+    const afw_compile_list_destructure_t *ld,
+    const afw_value_t *value)
+{
+    const afw_array_t *arr;
+    const afw_compile_assignment_element_t *ae;
+    const afw_value_t *elem;
+    afw_size_t i;
+
+    if (!AFW_VALUE_IS_DATA_TYPE(value, array)) {
+        return;
+    }
+    arr = ((const afw_value_array_t *)value)->internal;
+    for (i = 0, ae = ld->assignment_element; ae; ae = ae->next, i++) {
+        if (!ae->assignment_target || !ae->type ||
+            afw_value_type_is_any(ae->type))
+        {
+            continue;
+        }
+        elem = afw_array_get_entry_value(arr, i, parser->p, parser->xctx);
+        if (!elem) {
+            continue;
+        }
+        afw_value_type_check_compile_assignable(ae->type, elem,
+            "list pattern element", parser->xctx);
+    }
+}
+
+
+
+static void
+impl_compile_check_object_pattern(
+    afw_compile_parser_t *parser,
+    const afw_compile_object_destructure_t *od,
+    const afw_value_t *value)
+{
+    const afw_object_t *obj;
+    const afw_compile_assignment_property_t *ap;
+    const afw_value_t *pv;
+    const afw_value_type_t *type;
+    const afw_utf8_t *name;
+
+    if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        return;
+    }
+    obj = ((const afw_value_object_t *)value)->internal;
+
+    for (ap = od->assignment_property; ap; ap = ap->next) {
+        type = NULL;
+        name = NULL;
+        if (ap->is_rename) {
+            if (ap->property_name_expr) {
+                /* Dynamic name: cannot check at compile. */
+                continue;
+            }
+            name = ap->property_name;
+            if (ap->assignment_element) {
+                type = ap->assignment_element->type;
+            }
+        }
+        else if (ap->symbol_reference && ap->symbol_reference->symbol) {
+            name = ap->symbol_reference->symbol->name;
+            type = &ap->symbol_reference->symbol->type;
+        }
+        if (!name || !type || afw_value_type_is_any(type)) {
+            continue;
+        }
+        pv = afw_object_get_property(obj, name, parser->xctx);
+        if (!pv) {
+            continue;
+        }
+        afw_value_type_check_compile_assignable(type, pv,
+            "object pattern property", parser->xctx);
+    }
+}
+
+
+
+static void
+impl_compile_check_assign_target(
+    afw_compile_parser_t *parser,
+    const afw_value_t *target,
+    const afw_value_t *value)
+{
+    const afw_value_assignment_target_t *at;
+    const afw_value_type_t *type;
+
+    if (!afw_value_type_check_compile_enabled(parser->xctx)) {
+        return;
+    }
+    if (!afw_value_is_assignment_target(target)) {
+        return;
+    }
+    at = (const afw_value_assignment_target_t *)target;
+
+    switch (at->assignment_target->target_type) {
+    case afw_compile_assignment_target_type_symbol_reference:
+        type = &at->assignment_target->symbol_reference->symbol->type;
+        afw_value_type_check_compile_assignable(type, value,
+            "assignment", parser->xctx);
+        break;
+
+    case afw_compile_assignment_target_type_list_destructure:
+        impl_compile_check_list_pattern(parser,
+            at->assignment_target->list_destructure, value);
+        break;
+
+    case afw_compile_assignment_target_type_object_destructure:
+        impl_compile_check_object_pattern(parser,
+            at->assignment_target->object_destructure, value);
+        break;
+
+    case afw_compile_assignment_target_type_max_type:
+    default:
+        break;
+    }
+}
+
+
 /*ebnf>>>
  *
  *#
@@ -301,6 +424,7 @@ afw_compile_parse_AssignmentOperation(
     argv[0] = &afw_function_definition_assign.pub;
     argv[1] = target;
     argv[2] = result;
+    impl_compile_check_assign_target(parser, target, result);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
@@ -443,6 +567,7 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
     }
     argv[2] = afw_compile_parse_Expression(parser);
+    impl_compile_check_assign_target(parser, argv[1], argv[2]);
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
     result = afw_value_call_built_in_function_create(
@@ -458,23 +583,86 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * InterfaceName ::= Identifier
- * 
- * InterfaceStatement ::= 'interface' InterfaceName
- *      '{' 
- *          ( String | Identifier ) ':' Type
- *          ( ','  ( String | Identifier ) ':' Type )*
- *          ','?
- *      '}' ';'
+ *
+ * InterfaceStatement ::=
+ *     'interface' InterfaceName
+ *     ( 'extends' TypeName ( ',' TypeName )* )?
+ *     ObjectTypeLiteral
+ *     ';'
+ *
+ *# Object body is TS-like { prop?: Type, ... } (see Type in expression).
+ *# Script-local only; not adaptive object types (issue #28).
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 {
-    const afw_value_t *result;
+    const afw_utf8_t *name;
+    const afw_value_type_t *body;
+    const afw_value_type_t *base;
+    afw_value_type_t *type;
+    apr_array_header_t *extends;
+    const afw_value_type_t **list;
+    afw_size_t i;
+    afw_size_t brace_offset;
 
-    AFW_COMPILE_THROW_ERROR_Z("interface statement is not supported yet");
+    /* 'interface' already consumed as statement keyword. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is_unqualified_identifier()) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting interface name");
+    }
+    name = parser->token->identifier_name;
 
-    return result;
+    extends = NULL;
+    afw_compile_get_token();
+    if (afw_compile_token_is_name_z("extends")) {
+        extends = apr_array_make(parser->apr_p, 2,
+            sizeof(const afw_value_type_t *));
+        for (;;) {
+            /* Each base: full Type starting at next token (name). */
+            base = afw_compile_parse_Type(parser);
+            APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
+            afw_compile_get_token();
+            if (!afw_compile_token_is(comma)) {
+                break;
+            }
+        }
+    }
+
+    if (!afw_compile_token_is(open_brace)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '{' in interface declaration");
+    }
+
+    /* parse_Type begins with get_token; put '{' back so primary sees it. */
+    brace_offset = parser->token->token_source_offset;
+    afw_compile_restore_cursor(brace_offset);
+    body = afw_compile_parse_Type(parser);
+
+    if (body->kind != afw_value_type_kind_object) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Interface body must be an object type literal");
+    }
+
+    type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
+    type->kind = afw_value_type_kind_object;
+    type->object.properties = body->object.properties;
+    type->object.interface_name = name;
+    if (extends && extends->nelts > 0) {
+        type->object.extends_count = (afw_size_t)extends->nelts;
+        list = afw_pool_malloc(parser->p,
+            sizeof(afw_value_type_t *) * type->object.extends_count,
+            parser->xctx);
+        for (i = 0; i < type->object.extends_count; i++) {
+            list[i] = ((const afw_value_type_t **)extends->elts)[i];
+        }
+        type->object.extends = list;
+    }
+
+    afw_compile_script_type_register(parser, name, type);
+
+    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    return NULL;
 }
 
 
@@ -482,18 +670,32 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * TypeVariableName ::= Identifier
- * 
+ *
  * TypeStatement ::= 'type' TypeVariableName '=' Type ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_TypeStatement(afw_compile_parser_t *parser)
 {
-    const afw_value_t *result;
+    const afw_utf8_t *name;
+    const afw_value_type_t *type;
 
-    AFW_COMPILE_THROW_ERROR_Z("type statement is not supported yet");
+    afw_compile_get_token();
+    if (!afw_compile_token_is_unqualified_identifier()) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting type name");
+    }
+    name = parser->token->identifier_name;
 
-    return result;
+    afw_compile_get_token();
+    if (!afw_compile_token_is(equal)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '=' in type alias");
+    }
+
+    type = afw_compile_parse_Type(parser);
+    afw_compile_script_type_register(parser, name, type);
+
+    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    return NULL;
 }
 
 
@@ -808,9 +1010,13 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
             &function_name_value->internal);
         symbol->symbol_type = afw_value_block_symbol_type_function;
         symbol->initial_value = argv[2];
-        if (return_type) {
-            afw_memory_copy(&symbol->type, return_type);
-        }
+        /*
+         * Do not store the return type as symbol->type: the binding holds a
+         * function value. Return types live on the script_function_definition
+         * (issue #28 typeCheck would reject assigning a function to a
+         * return-type slot).
+         */
+        (void)return_type;
         argv[1] = afw_value_symbol_reference_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             symbol, parser->p, parser->xctx);
@@ -920,6 +1126,7 @@ impl_parse_LetStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
         }
         argv[2] = afw_compile_parse_Expression(parser);
+        impl_compile_check_assign_target(parser, argv[1], argv[2]);
         AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
     }
 
@@ -957,6 +1164,16 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
         argv[1] = afw_compile_parse_Expression(parser);
         AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    }
+
+    /* Compile-time return type check when inside a typed function (issue #28). */
+    if (parser->current_function_returns &&
+        afw_value_type_check_compile_enabled(parser->xctx) &&
+        argv[1] && !afw_value_is_undefined(argv[1]))
+    {
+        afw_value_type_check_compile_assignable(
+            parser->current_function_returns, argv[1],
+            "return", parser->xctx);
     }
 
     result = afw_value_call_built_in_function_create(

@@ -239,19 +239,15 @@ impl_afw_value_decompile(
     afw_value_decompile_value(self->body, writer, xctx);
 
     /*
-     * Trailing return Type after body when present and not bare any/void.
-     * NULL returns means void/unspecified for OptionalReturnType.
+     * Trailing return Type after body when present and not bare any.
      */
     write_returns = false;
-    if (self->returns && self->returns->data_type &&
-        self->returns->data_type != afw_data_type_any)
-    {
-        write_returns = true;
-    }
-    else if (self->returns && !self->returns->data_type &&
-        self->returns->value_meta_object)
-    {
-        write_returns = true;
+    if (self->returns) {
+        if (self->returns->kind != afw_value_type_kind_data_type ||
+            self->returns->data_type != afw_data_type_any)
+        {
+            write_returns = true;
+        }
     }
     if (write_returns) {
         afw_writer_write_z(writer, ",", xctx);

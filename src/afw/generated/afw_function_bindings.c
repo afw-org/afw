@@ -83,6 +83,7 @@ impl_adapter_objectCallback_signature_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119,6 +120,7 @@ impl_adapter_objectCallback_signature_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -155,6 +157,7 @@ impl_adapter_objectCallback_signature_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -205,6 +208,7 @@ afw_function_definition_adapter_objectCallback_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -268,6 +272,7 @@ impl_add_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -304,6 +309,7 @@ impl_add_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -340,6 +346,7 @@ impl_add_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -376,6 +383,7 @@ impl_add_object_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -412,6 +420,7 @@ impl_add_object_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -448,6 +457,7 @@ impl_add_object_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -484,6 +494,7 @@ impl_add_object_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -539,6 +550,7 @@ afw_function_definition_add_object = {
     NULL,
     &impl_add_object_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -607,6 +619,7 @@ impl_add_object_with_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -643,6 +656,7 @@ impl_add_object_with_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -679,6 +693,7 @@ impl_add_object_with_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -715,6 +730,7 @@ impl_add_object_with_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -751,6 +767,7 @@ impl_add_object_with_uri_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -804,6 +821,7 @@ afw_function_definition_add_object_with_uri = {
     NULL,
     &impl_add_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -872,6 +890,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -908,6 +927,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -944,6 +964,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -980,6 +1001,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1016,6 +1038,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1063,6 +1086,7 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -1131,6 +1155,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1167,6 +1192,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1203,6 +1229,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1239,6 +1266,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1285,6 +1313,7 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -1353,6 +1382,7 @@ impl_delete_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1389,6 +1419,7 @@ impl_delete_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1425,6 +1456,7 @@ impl_delete_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1461,6 +1493,7 @@ impl_delete_object_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1497,6 +1530,7 @@ impl_delete_object_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1533,6 +1567,7 @@ impl_delete_object_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1587,6 +1622,7 @@ afw_function_definition_delete_object = {
     NULL,
     &impl_delete_object_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -1655,6 +1691,7 @@ impl_delete_object_with_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1691,6 +1728,7 @@ impl_delete_object_with_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1727,6 +1765,7 @@ impl_delete_object_with_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1763,6 +1802,7 @@ impl_delete_object_with_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1815,6 +1855,7 @@ afw_function_definition_delete_object_with_uri = {
     NULL,
     &impl_delete_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -1883,6 +1924,7 @@ impl_get_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1919,6 +1961,7 @@ impl_get_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1955,6 +1998,7 @@ impl_get_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -1991,6 +2035,7 @@ impl_get_object_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2027,6 +2072,7 @@ impl_get_object_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2063,6 +2109,7 @@ impl_get_object_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2111,6 +2158,7 @@ afw_function_definition_get_object = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -2179,6 +2227,7 @@ impl_get_object_with_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2215,6 +2264,7 @@ impl_get_object_with_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2251,6 +2301,7 @@ impl_get_object_with_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2287,6 +2338,7 @@ impl_get_object_with_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2333,6 +2385,7 @@ afw_function_definition_get_object_with_uri = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -2401,6 +2454,7 @@ impl_modify_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2437,6 +2491,7 @@ impl_modify_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2473,6 +2528,7 @@ impl_modify_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2509,6 +2565,7 @@ impl_modify_object_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2545,6 +2602,7 @@ impl_modify_object_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2581,6 +2639,7 @@ impl_modify_object_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2617,6 +2676,7 @@ impl_modify_object_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2672,6 +2732,7 @@ afw_function_definition_modify_object = {
     NULL,
     &impl_modify_object_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -2740,6 +2801,7 @@ impl_modify_object_with_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2776,6 +2838,7 @@ impl_modify_object_with_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2812,6 +2875,7 @@ impl_modify_object_with_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2848,6 +2912,7 @@ impl_modify_object_with_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2884,6 +2949,7 @@ impl_modify_object_with_uri_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -2937,6 +3003,7 @@ afw_function_definition_modify_object_with_uri = {
     NULL,
     &impl_modify_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3005,6 +3072,7 @@ impl_reconcile_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3041,6 +3109,7 @@ impl_reconcile_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3077,6 +3146,7 @@ impl_reconcile_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3128,6 +3198,7 @@ afw_function_definition_reconcile_object = {
     NULL,
     &impl_reconcile_object_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3196,6 +3267,7 @@ impl_replace_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3232,6 +3304,7 @@ impl_replace_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3268,6 +3341,7 @@ impl_replace_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3304,6 +3378,7 @@ impl_replace_object_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3340,6 +3415,7 @@ impl_replace_object_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3376,6 +3452,7 @@ impl_replace_object_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3412,6 +3489,7 @@ impl_replace_object_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3467,6 +3545,7 @@ afw_function_definition_replace_object = {
     NULL,
     &impl_replace_object_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3535,6 +3614,7 @@ impl_replace_object_with_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3571,6 +3651,7 @@ impl_replace_object_with_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3607,6 +3688,7 @@ impl_replace_object_with_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3643,6 +3725,7 @@ impl_replace_object_with_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3679,6 +3762,7 @@ impl_replace_object_with_uri_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3732,6 +3816,7 @@ afw_function_definition_replace_object_with_uri = {
     NULL,
     &impl_replace_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3800,6 +3885,7 @@ impl_retrieve_objects_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3836,6 +3922,7 @@ impl_retrieve_objects_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3872,6 +3959,7 @@ impl_retrieve_objects_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3908,6 +3996,7 @@ impl_retrieve_objects_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3944,6 +4033,7 @@ impl_retrieve_objects_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -3980,6 +4070,7 @@ impl_retrieve_objects_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4016,6 +4107,7 @@ impl_retrieve_objects_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4065,6 +4157,7 @@ afw_function_definition_retrieve_objects = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4133,6 +4226,7 @@ impl_retrieve_objects_to_callback_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4169,6 +4263,7 @@ impl_retrieve_objects_to_callback_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4205,6 +4300,7 @@ impl_retrieve_objects_to_callback_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4241,6 +4337,7 @@ impl_retrieve_objects_to_callback_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4277,6 +4374,7 @@ impl_retrieve_objects_to_callback_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4313,6 +4411,7 @@ impl_retrieve_objects_to_callback_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4349,6 +4448,7 @@ impl_retrieve_objects_to_callback_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4385,6 +4485,7 @@ impl_retrieve_objects_to_callback_parameter_7 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4435,6 +4536,7 @@ afw_function_definition_retrieve_objects_to_callback = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4503,6 +4605,7 @@ impl_retrieve_objects_to_response_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4539,6 +4642,7 @@ impl_retrieve_objects_to_response_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4575,6 +4679,7 @@ impl_retrieve_objects_to_response_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4611,6 +4716,7 @@ impl_retrieve_objects_to_response_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4647,6 +4753,7 @@ impl_retrieve_objects_to_response_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4683,6 +4790,7 @@ impl_retrieve_objects_to_response_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4731,6 +4839,7 @@ afw_function_definition_retrieve_objects_to_response = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4799,6 +4908,7 @@ impl_retrieve_objects_to_stream_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4835,6 +4945,7 @@ impl_retrieve_objects_to_stream_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4871,6 +4982,7 @@ impl_retrieve_objects_to_stream_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4907,6 +5019,7 @@ impl_retrieve_objects_to_stream_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4943,6 +5056,7 @@ impl_retrieve_objects_to_stream_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -4979,6 +5093,7 @@ impl_retrieve_objects_to_stream_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5015,6 +5130,7 @@ impl_retrieve_objects_to_stream_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5064,6 +5180,7 @@ afw_function_definition_retrieve_objects_to_stream = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -5132,6 +5249,7 @@ impl_retrieve_objects_with_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5168,6 +5286,7 @@ impl_retrieve_objects_with_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5204,6 +5323,7 @@ impl_retrieve_objects_with_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5240,6 +5360,7 @@ impl_retrieve_objects_with_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5276,6 +5397,7 @@ impl_retrieve_objects_with_uri_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5323,6 +5445,7 @@ afw_function_definition_retrieve_objects_with_uri = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -5391,6 +5514,7 @@ impl_retrieve_objects_with_uri_to_callback_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5427,6 +5551,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5463,6 +5588,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5499,6 +5625,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5535,6 +5662,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5571,6 +5699,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5619,6 +5748,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -5687,6 +5817,7 @@ impl_retrieve_objects_with_uri_to_response_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5723,6 +5854,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5759,6 +5891,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5795,6 +5928,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5841,6 +5975,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -5909,6 +6044,7 @@ impl_retrieve_objects_with_uri_to_stream_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5945,6 +6081,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -5981,6 +6118,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6017,6 +6155,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6053,6 +6192,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6100,6 +6240,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -6168,6 +6309,7 @@ impl_update_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6204,6 +6346,7 @@ impl_update_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6240,6 +6383,7 @@ impl_update_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6276,6 +6420,7 @@ impl_update_object_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6312,6 +6457,7 @@ impl_update_object_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6348,6 +6494,7 @@ impl_update_object_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6384,6 +6531,7 @@ impl_update_object_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6439,6 +6587,7 @@ afw_function_definition_update_object = {
     NULL,
     &impl_update_object_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -6507,6 +6656,7 @@ impl_update_object_with_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6543,6 +6693,7 @@ impl_update_object_with_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6579,6 +6730,7 @@ impl_update_object_with_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6615,6 +6767,7 @@ impl_update_object_with_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6651,6 +6804,7 @@ impl_update_object_with_uri_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6704,6 +6858,7 @@ afw_function_definition_update_object_with_uri = {
     NULL,
     &impl_update_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -6772,6 +6927,7 @@ impl_extension_load_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6808,6 +6964,7 @@ impl_extension_load_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6864,6 +7021,7 @@ afw_function_definition_extension_load = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -6926,6 +7084,7 @@ impl_extension_load_by_module_path_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -6962,6 +7121,7 @@ impl_extension_load_by_module_path_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -7018,6 +7178,7 @@ afw_function_definition_extension_load_by_module_path = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -7080,6 +7241,7 @@ impl_flag_get_active_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -7129,6 +7291,7 @@ afw_function_definition_flag_get_active = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -7191,6 +7354,7 @@ impl_flag_get_active_defaults_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -7234,6 +7398,7 @@ afw_function_definition_flag_get_active_defaults = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -7302,6 +7467,7 @@ impl_flag_get_defaults_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -7351,6 +7517,7 @@ afw_function_definition_flag_get_defaults = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -7413,6 +7580,7 @@ impl_flag_modify_defaults_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -7449,6 +7617,7 @@ impl_flag_modify_defaults_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -7485,6 +7654,7 @@ impl_flag_modify_defaults_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -7536,6 +7706,7 @@ afw_function_definition_flag_modify_defaults = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -7598,6 +7769,7 @@ impl_flag_replace_defaults_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -7634,6 +7806,7 @@ impl_flag_replace_defaults_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -7684,6 +7857,7 @@ afw_function_definition_flag_replace_defaults = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -7746,6 +7920,7 @@ impl_flag_set_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -7782,6 +7957,7 @@ impl_flag_set_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -7818,6 +7994,7 @@ impl_flag_set_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -7869,6 +8046,7 @@ afw_function_definition_flag_set = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -7931,6 +8109,7 @@ impl_registry_key_check_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -7967,6 +8146,7 @@ impl_registry_key_check_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8003,6 +8183,7 @@ impl_registry_key_check_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8039,6 +8220,7 @@ impl_registry_key_check_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8097,6 +8279,7 @@ afw_function_definition_registry_key_check = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -8159,6 +8342,7 @@ impl_service_get_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8195,6 +8379,7 @@ impl_service_get_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8245,6 +8430,7 @@ afw_function_definition_service_get = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -8307,6 +8493,7 @@ impl_service_restart_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8343,6 +8530,7 @@ impl_service_restart_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8399,6 +8587,7 @@ afw_function_definition_service_restart = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -8461,6 +8650,7 @@ impl_service_start_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8497,6 +8687,7 @@ impl_service_start_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8553,6 +8744,7 @@ afw_function_definition_service_start = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -8615,6 +8807,7 @@ impl_service_stop_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8651,6 +8844,7 @@ impl_service_stop_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8707,6 +8901,7 @@ afw_function_definition_service_stop = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -8769,6 +8964,7 @@ impl_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8805,6 +9001,7 @@ impl_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8861,6 +9058,7 @@ afw_function_definition_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -8925,6 +9123,7 @@ impl_at_least_one_member_of_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -8961,6 +9160,7 @@ impl_at_least_one_member_of_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -8997,6 +9197,7 @@ impl_at_least_one_member_of_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -9046,6 +9247,7 @@ afw_function_definition_at_least_one_member_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -9110,6 +9312,7 @@ impl_bag_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -9146,6 +9349,7 @@ impl_bag_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -9194,6 +9398,7 @@ afw_function_definition_bag_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -9258,6 +9463,7 @@ impl_bag_size_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9294,6 +9500,7 @@ impl_bag_size_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -9342,6 +9549,7 @@ afw_function_definition_bag_size_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -9406,6 +9614,7 @@ impl_ends_with_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9442,6 +9651,7 @@ impl_ends_with_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9478,6 +9688,7 @@ impl_ends_with_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9527,6 +9738,7 @@ afw_function_definition_ends_with_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -9591,6 +9803,7 @@ impl_eq_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9627,6 +9840,7 @@ impl_eq_anyURI_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9663,6 +9877,7 @@ impl_eq_anyURI_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9720,6 +9935,7 @@ afw_function_definition_eq_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -9784,6 +10000,7 @@ impl_eqx_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9820,6 +10037,7 @@ impl_eqx_anyURI_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9856,6 +10074,7 @@ impl_eqx_anyURI_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -9905,6 +10124,7 @@ afw_function_definition_eqx_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -9969,6 +10189,7 @@ impl_ge_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10005,6 +10226,7 @@ impl_ge_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10041,6 +10263,7 @@ impl_ge_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10090,6 +10313,7 @@ afw_function_definition_ge_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -10154,6 +10378,7 @@ impl_gt_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10190,6 +10415,7 @@ impl_gt_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10226,6 +10452,7 @@ impl_gt_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10275,6 +10502,7 @@ afw_function_definition_gt_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -10339,6 +10567,7 @@ impl_includes_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10375,6 +10604,7 @@ impl_includes_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10411,6 +10641,7 @@ impl_includes_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10447,6 +10678,7 @@ impl_includes_anyURI_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10497,6 +10729,7 @@ afw_function_definition_includes_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -10561,6 +10794,7 @@ impl_index_of_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10597,6 +10831,7 @@ impl_index_of_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10633,6 +10868,7 @@ impl_index_of_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10669,6 +10905,7 @@ impl_index_of_anyURI_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -10719,6 +10956,7 @@ afw_function_definition_index_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -10783,6 +11021,7 @@ impl_intersection_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -10819,6 +11058,7 @@ impl_intersection_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -10855,6 +11095,7 @@ impl_intersection_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -10904,6 +11145,7 @@ afw_function_definition_intersection_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -10968,6 +11210,7 @@ impl_is_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11004,6 +11247,7 @@ impl_is_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11052,6 +11296,7 @@ afw_function_definition_is_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -11116,6 +11361,7 @@ impl_is_in_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11152,6 +11398,7 @@ impl_is_in_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11188,6 +11435,7 @@ impl_is_in_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -11237,6 +11485,7 @@ afw_function_definition_is_in_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -11301,6 +11550,7 @@ impl_last_index_of_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11337,6 +11587,7 @@ impl_last_index_of_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11373,6 +11624,7 @@ impl_last_index_of_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11409,6 +11661,7 @@ impl_last_index_of_anyURI_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11459,6 +11712,7 @@ afw_function_definition_last_index_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -11523,6 +11777,7 @@ impl_le_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11559,6 +11814,7 @@ impl_le_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11595,6 +11851,7 @@ impl_le_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11644,6 +11901,7 @@ afw_function_definition_le_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -11708,6 +11966,7 @@ impl_length_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11744,6 +12003,7 @@ impl_length_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11792,6 +12052,7 @@ afw_function_definition_length_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -11856,6 +12117,7 @@ impl_lt_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11892,6 +12154,7 @@ impl_lt_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11928,6 +12191,7 @@ impl_lt_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -11977,6 +12241,7 @@ afw_function_definition_lt_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -12041,6 +12306,7 @@ impl_ne_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12077,6 +12343,7 @@ impl_ne_anyURI_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12113,6 +12380,7 @@ impl_ne_anyURI_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12170,6 +12438,7 @@ afw_function_definition_ne_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -12234,6 +12503,7 @@ impl_nex_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12270,6 +12540,7 @@ impl_nex_anyURI_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12306,6 +12577,7 @@ impl_nex_anyURI_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12355,6 +12627,7 @@ afw_function_definition_nex_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -12419,6 +12692,7 @@ impl_one_and_only_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12455,6 +12729,7 @@ impl_one_and_only_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -12511,6 +12786,7 @@ afw_function_definition_one_and_only_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -12575,6 +12851,7 @@ impl_regexp_index_of_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12611,6 +12888,7 @@ impl_regexp_index_of_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12647,6 +12925,7 @@ impl_regexp_index_of_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12696,6 +12975,7 @@ afw_function_definition_regexp_index_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -12760,6 +13040,7 @@ impl_regexp_match_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12796,6 +13077,7 @@ impl_regexp_match_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12832,6 +13114,7 @@ impl_regexp_match_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12881,6 +13164,7 @@ afw_function_definition_regexp_match_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -12945,6 +13229,7 @@ impl_regexp_replace_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -12981,6 +13266,7 @@ impl_regexp_replace_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13017,6 +13303,7 @@ impl_regexp_replace_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13053,6 +13340,7 @@ impl_regexp_replace_anyURI_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13089,6 +13377,7 @@ impl_regexp_replace_anyURI_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13140,6 +13429,7 @@ afw_function_definition_regexp_replace_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -13204,6 +13494,7 @@ impl_repeat_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13240,6 +13531,7 @@ impl_repeat_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13276,6 +13568,7 @@ impl_repeat_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13325,6 +13618,7 @@ afw_function_definition_repeat_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -13389,6 +13683,7 @@ impl_replace_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13425,6 +13720,7 @@ impl_replace_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13461,6 +13757,7 @@ impl_replace_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13497,6 +13794,7 @@ impl_replace_anyURI_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13533,6 +13831,7 @@ impl_replace_anyURI_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13584,6 +13883,7 @@ afw_function_definition_replace_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -13648,6 +13948,7 @@ impl_set_equals_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13684,6 +13985,7 @@ impl_set_equals_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -13720,6 +14022,7 @@ impl_set_equals_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -13769,6 +14072,7 @@ afw_function_definition_set_equals_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -13833,6 +14137,7 @@ impl_split_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13869,6 +14174,7 @@ impl_split_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13905,6 +14211,7 @@ impl_split_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13941,6 +14248,7 @@ impl_split_anyURI_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -13991,6 +14299,7 @@ afw_function_definition_split_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -14055,6 +14364,7 @@ impl_starts_with_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14091,6 +14401,7 @@ impl_starts_with_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14127,6 +14438,7 @@ impl_starts_with_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14176,6 +14488,7 @@ afw_function_definition_starts_with_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -14240,6 +14553,7 @@ impl_subset_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14276,6 +14590,7 @@ impl_subset_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -14312,6 +14627,7 @@ impl_subset_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -14361,6 +14677,7 @@ afw_function_definition_subset_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -14425,6 +14742,7 @@ impl_substring_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14461,6 +14779,7 @@ impl_substring_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14497,6 +14816,7 @@ impl_substring_anyURI_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14533,6 +14853,7 @@ impl_substring_anyURI_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14591,6 +14912,7 @@ afw_function_definition_substring_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -14655,6 +14977,7 @@ impl_to_string_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14691,6 +15014,7 @@ impl_to_string_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14739,6 +15063,7 @@ afw_function_definition_to_string_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -14803,6 +15128,7 @@ impl_union_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -14839,6 +15165,7 @@ impl_union_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_anyURI_direct
 };
 
 static const afw_value_object_t
@@ -14887,6 +15214,7 @@ afw_function_definition_union_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -14951,6 +15279,7 @@ impl_url_encode_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -14987,6 +15316,7 @@ impl_url_encode_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15035,6 +15365,7 @@ afw_function_definition_url_encode_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -15099,6 +15430,7 @@ impl_add_entries_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15135,6 +15467,7 @@ impl_add_entries_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15171,6 +15504,7 @@ impl_add_entries_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15222,6 +15556,7 @@ afw_function_definition_add_entries = {
     NULL,
     &impl_add_entries_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -15290,6 +15625,7 @@ impl_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15326,6 +15662,7 @@ impl_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15382,6 +15719,7 @@ afw_function_definition_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -15446,6 +15784,7 @@ impl_at_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15482,6 +15821,7 @@ impl_at_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15518,6 +15858,7 @@ impl_at_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15567,6 +15908,7 @@ afw_function_definition_at = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -15631,6 +15973,7 @@ impl_bag_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -15667,6 +16010,7 @@ impl_bag_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -15715,6 +16059,7 @@ afw_function_definition_bag_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -15779,6 +16124,7 @@ impl_bag_size_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15815,6 +16161,7 @@ impl_bag_size_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -15863,6 +16210,7 @@ afw_function_definition_bag_size_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -15927,6 +16275,7 @@ impl_clone_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -15963,6 +16312,7 @@ impl_clone_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16011,6 +16361,7 @@ afw_function_definition_clone_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -16075,6 +16426,7 @@ impl_eq_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16111,6 +16463,7 @@ impl_eq_array_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16147,6 +16500,7 @@ impl_eq_array_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16204,6 +16558,7 @@ afw_function_definition_eq_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -16268,6 +16623,7 @@ impl_eqx_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16304,6 +16660,7 @@ impl_eqx_array_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16340,6 +16697,7 @@ impl_eqx_array_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16389,6 +16747,7 @@ afw_function_definition_eqx_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -16453,6 +16812,7 @@ impl_freeze_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16489,6 +16849,7 @@ impl_freeze_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16533,6 +16894,7 @@ afw_function_definition_freeze_array = {
     NULL,
     NULL,
     afw_data_type_method_number_freeze,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -16601,6 +16963,7 @@ impl_ge_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16637,6 +17000,7 @@ impl_ge_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16673,6 +17037,7 @@ impl_ge_array_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16722,6 +17087,7 @@ afw_function_definition_ge_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -16786,6 +17152,7 @@ impl_gt_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16822,6 +17189,7 @@ impl_gt_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16858,6 +17226,7 @@ impl_gt_array_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -16907,6 +17276,7 @@ afw_function_definition_gt_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -16971,6 +17341,7 @@ impl_includes_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17007,6 +17378,7 @@ impl_includes_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17043,6 +17415,7 @@ impl_includes_array_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17079,6 +17452,7 @@ impl_includes_array_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17129,6 +17503,7 @@ afw_function_definition_includes_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -17193,6 +17568,7 @@ impl_is_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17229,6 +17605,7 @@ impl_is_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17277,6 +17654,7 @@ afw_function_definition_is_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -17341,6 +17719,7 @@ impl_join_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17377,6 +17756,7 @@ impl_join_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17413,6 +17793,7 @@ impl_join_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17462,6 +17843,7 @@ afw_function_definition_join = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -17526,6 +17908,7 @@ impl_le_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17562,6 +17945,7 @@ impl_le_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17598,6 +17982,7 @@ impl_le_array_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17647,6 +18032,7 @@ afw_function_definition_le_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -17711,6 +18097,7 @@ impl_length_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17747,6 +18134,7 @@ impl_length_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17795,6 +18183,7 @@ afw_function_definition_length_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -17859,6 +18248,7 @@ impl_lt_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17895,6 +18285,7 @@ impl_lt_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17931,6 +18322,7 @@ impl_lt_array_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -17980,6 +18372,7 @@ afw_function_definition_lt_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -18044,6 +18437,7 @@ impl_ne_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18080,6 +18474,7 @@ impl_ne_array_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18116,6 +18511,7 @@ impl_ne_array_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18173,6 +18569,7 @@ afw_function_definition_ne_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -18237,6 +18634,7 @@ impl_nex_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18273,6 +18671,7 @@ impl_nex_array_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18309,6 +18708,7 @@ impl_nex_array_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18358,6 +18758,7 @@ afw_function_definition_nex_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -18422,6 +18823,7 @@ impl_pop_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18458,6 +18860,7 @@ impl_pop_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18508,6 +18911,7 @@ afw_function_definition_pop = {
     NULL,
     &impl_pop_sideEffects[0],
     afw_data_type_method_number_pop,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -18576,6 +18980,7 @@ impl_push_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18612,6 +19017,7 @@ impl_push_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18648,6 +19054,7 @@ impl_push_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18699,6 +19106,7 @@ afw_function_definition_push = {
     NULL,
     &impl_push_sideEffects[0],
     afw_data_type_method_number_push,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -18767,6 +19175,7 @@ impl_reverse_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18803,6 +19212,7 @@ impl_reverse_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18851,6 +19261,7 @@ afw_function_definition_reverse = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -18915,6 +19326,7 @@ impl_shift_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -18951,6 +19363,7 @@ impl_shift_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19001,6 +19414,7 @@ afw_function_definition_shift = {
     NULL,
     &impl_shift_sideEffects[0],
     afw_data_type_method_number_shift,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -19069,6 +19483,7 @@ impl_slice_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19105,6 +19520,7 @@ impl_slice_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19141,6 +19557,7 @@ impl_slice_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19177,6 +19594,7 @@ impl_slice_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19227,6 +19645,7 @@ afw_function_definition_slice = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -19291,6 +19710,7 @@ impl_splice_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19327,6 +19747,7 @@ impl_splice_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19363,6 +19784,7 @@ impl_splice_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19399,6 +19821,7 @@ impl_splice_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19435,6 +19858,7 @@ impl_splice_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19488,6 +19912,7 @@ afw_function_definition_splice = {
     NULL,
     &impl_splice_sideEffects[0],
     afw_data_type_method_number_splice,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -19556,6 +19981,7 @@ impl_to_string_array_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19592,6 +20018,7 @@ impl_to_string_array_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19640,6 +20067,7 @@ afw_function_definition_to_string_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -19704,6 +20132,7 @@ impl_unshift_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19740,6 +20169,7 @@ impl_unshift_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19776,6 +20206,7 @@ impl_unshift_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19827,6 +20258,7 @@ afw_function_definition_unshift = {
     NULL,
     &impl_unshift_sideEffects[0],
     afw_data_type_method_number_unshift,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -19895,6 +20327,7 @@ impl_authorization_check_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19931,6 +20364,7 @@ impl_authorization_check_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -19967,6 +20401,7 @@ impl_authorization_check_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20003,6 +20438,7 @@ impl_authorization_check_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20039,6 +20475,7 @@ impl_authorization_check_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20075,6 +20512,7 @@ impl_authorization_check_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20123,6 +20561,7 @@ afw_function_definition_authorization_check = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -20191,6 +20630,7 @@ impl_at_least_one_member_of_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20227,6 +20667,7 @@ impl_at_least_one_member_of_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -20263,6 +20704,7 @@ impl_at_least_one_member_of_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -20312,6 +20754,7 @@ afw_function_definition_at_least_one_member_of_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -20376,6 +20819,7 @@ impl_bag_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -20412,6 +20856,7 @@ impl_bag_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -20460,6 +20905,7 @@ afw_function_definition_bag_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -20524,6 +20970,7 @@ impl_bag_size_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20560,6 +21007,7 @@ impl_bag_size_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -20608,6 +21056,7 @@ afw_function_definition_bag_size_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -20672,6 +21121,7 @@ impl_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20708,6 +21158,7 @@ impl_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20764,6 +21215,7 @@ afw_function_definition_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -20828,6 +21280,7 @@ impl_decode_to_string_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20864,6 +21317,7 @@ impl_decode_to_string_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -20912,6 +21366,7 @@ afw_function_definition_decode_to_string_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -20976,6 +21431,7 @@ impl_eq_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21012,6 +21468,7 @@ impl_eq_base64Binary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21048,6 +21505,7 @@ impl_eq_base64Binary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21105,6 +21563,7 @@ afw_function_definition_eq_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -21169,6 +21628,7 @@ impl_eqx_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21205,6 +21665,7 @@ impl_eqx_base64Binary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21241,6 +21702,7 @@ impl_eqx_base64Binary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21290,6 +21752,7 @@ afw_function_definition_eqx_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -21354,6 +21817,7 @@ impl_ge_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21390,6 +21854,7 @@ impl_ge_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21426,6 +21891,7 @@ impl_ge_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21475,6 +21941,7 @@ afw_function_definition_ge_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -21539,6 +22006,7 @@ impl_gt_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21575,6 +22043,7 @@ impl_gt_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21611,6 +22080,7 @@ impl_gt_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21660,6 +22130,7 @@ afw_function_definition_gt_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -21724,6 +22195,7 @@ impl_intersection_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -21760,6 +22232,7 @@ impl_intersection_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -21796,6 +22269,7 @@ impl_intersection_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -21845,6 +22319,7 @@ afw_function_definition_intersection_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -21909,6 +22384,7 @@ impl_is_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21945,6 +22421,7 @@ impl_is_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -21993,6 +22470,7 @@ afw_function_definition_is_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -22057,6 +22535,7 @@ impl_is_in_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22093,6 +22572,7 @@ impl_is_in_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22129,6 +22609,7 @@ impl_is_in_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -22178,6 +22659,7 @@ afw_function_definition_is_in_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -22242,6 +22724,7 @@ impl_le_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22278,6 +22761,7 @@ impl_le_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22314,6 +22798,7 @@ impl_le_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22363,6 +22848,7 @@ afw_function_definition_le_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -22427,6 +22913,7 @@ impl_lt_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22463,6 +22950,7 @@ impl_lt_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22499,6 +22987,7 @@ impl_lt_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22548,6 +23037,7 @@ afw_function_definition_lt_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -22612,6 +23102,7 @@ impl_ne_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22648,6 +23139,7 @@ impl_ne_base64Binary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22684,6 +23176,7 @@ impl_ne_base64Binary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22741,6 +23234,7 @@ afw_function_definition_ne_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -22805,6 +23299,7 @@ impl_nex_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22841,6 +23336,7 @@ impl_nex_base64Binary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22877,6 +23373,7 @@ impl_nex_base64Binary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -22926,6 +23423,7 @@ afw_function_definition_nex_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -22990,6 +23488,7 @@ impl_one_and_only_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -23026,6 +23525,7 @@ impl_one_and_only_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -23082,6 +23582,7 @@ afw_function_definition_one_and_only_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -23146,6 +23647,7 @@ impl_set_equals_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -23182,6 +23684,7 @@ impl_set_equals_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -23218,6 +23721,7 @@ impl_set_equals_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -23267,6 +23771,7 @@ afw_function_definition_set_equals_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -23331,6 +23836,7 @@ impl_subset_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -23367,6 +23873,7 @@ impl_subset_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -23403,6 +23910,7 @@ impl_subset_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -23452,6 +23960,7 @@ afw_function_definition_subset_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -23516,6 +24025,7 @@ impl_to_string_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -23552,6 +24062,7 @@ impl_to_string_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -23600,6 +24111,7 @@ afw_function_definition_to_string_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -23664,6 +24176,7 @@ impl_union_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -23700,6 +24213,7 @@ impl_union_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_base64Binary_direct
 };
 
 static const afw_value_object_t
@@ -23748,6 +24262,7 @@ afw_function_definition_union_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -23812,6 +24327,7 @@ impl_at_least_one_member_of_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -23848,6 +24364,7 @@ impl_at_least_one_member_of_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -23884,6 +24401,7 @@ impl_at_least_one_member_of_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -23933,6 +24451,7 @@ afw_function_definition_at_least_one_member_of_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -23997,6 +24516,7 @@ impl_bag_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -24033,6 +24553,7 @@ impl_bag_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -24081,6 +24602,7 @@ afw_function_definition_bag_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -24145,6 +24667,7 @@ impl_bag_size_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24181,6 +24704,7 @@ impl_bag_size_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -24229,6 +24753,7 @@ afw_function_definition_bag_size_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -24293,6 +24818,7 @@ impl_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24329,6 +24855,7 @@ impl_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24385,6 +24912,7 @@ afw_function_definition_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -24449,6 +24977,7 @@ impl_eq_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24485,6 +25014,7 @@ impl_eq_boolean_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24521,6 +25051,7 @@ impl_eq_boolean_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24578,6 +25109,7 @@ afw_function_definition_eq_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -24642,6 +25174,7 @@ impl_eqx_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24678,6 +25211,7 @@ impl_eqx_boolean_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24714,6 +25248,7 @@ impl_eqx_boolean_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24763,6 +25298,7 @@ afw_function_definition_eqx_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -24827,6 +25363,7 @@ impl_ge_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24863,6 +25400,7 @@ impl_ge_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24899,6 +25437,7 @@ impl_ge_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -24948,6 +25487,7 @@ afw_function_definition_ge_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -25012,6 +25552,7 @@ impl_gt_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25048,6 +25589,7 @@ impl_gt_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25084,6 +25626,7 @@ impl_gt_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25133,6 +25676,7 @@ afw_function_definition_gt_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -25197,6 +25741,7 @@ impl_intersection_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -25233,6 +25778,7 @@ impl_intersection_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -25269,6 +25815,7 @@ impl_intersection_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -25318,6 +25865,7 @@ afw_function_definition_intersection_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -25382,6 +25930,7 @@ impl_is_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25418,6 +25967,7 @@ impl_is_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25466,6 +26016,7 @@ afw_function_definition_is_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -25530,6 +26081,7 @@ impl_is_in_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25566,6 +26118,7 @@ impl_is_in_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25602,6 +26155,7 @@ impl_is_in_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -25651,6 +26205,7 @@ afw_function_definition_is_in_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -25715,6 +26270,7 @@ impl_le_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25751,6 +26307,7 @@ impl_le_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25787,6 +26344,7 @@ impl_le_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25836,6 +26394,7 @@ afw_function_definition_le_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -25900,6 +26459,7 @@ impl_lt_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25936,6 +26496,7 @@ impl_lt_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -25972,6 +26533,7 @@ impl_lt_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26021,6 +26583,7 @@ afw_function_definition_lt_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -26085,6 +26648,7 @@ impl_ne_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26121,6 +26685,7 @@ impl_ne_boolean_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26157,6 +26722,7 @@ impl_ne_boolean_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26214,6 +26780,7 @@ afw_function_definition_ne_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -26278,6 +26845,7 @@ impl_nex_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26314,6 +26882,7 @@ impl_nex_boolean_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26350,6 +26919,7 @@ impl_nex_boolean_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26399,6 +26969,7 @@ afw_function_definition_nex_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -26463,6 +27034,7 @@ impl_one_and_only_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26499,6 +27071,7 @@ impl_one_and_only_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -26555,6 +27128,7 @@ afw_function_definition_one_and_only_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -26619,6 +27193,7 @@ impl_set_equals_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26655,6 +27230,7 @@ impl_set_equals_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -26691,6 +27267,7 @@ impl_set_equals_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -26740,6 +27317,7 @@ afw_function_definition_set_equals_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -26804,6 +27382,7 @@ impl_subset_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -26840,6 +27419,7 @@ impl_subset_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -26876,6 +27456,7 @@ impl_subset_boolean_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -26925,6 +27506,7 @@ afw_function_definition_subset_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -26989,6 +27571,7 @@ impl_to_string_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27025,6 +27608,7 @@ impl_to_string_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27073,6 +27657,7 @@ afw_function_definition_to_string_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -27137,6 +27722,7 @@ impl_union_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -27173,6 +27759,7 @@ impl_union_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_boolean_direct
 };
 
 static const afw_value_object_t
@@ -27221,6 +27808,7 @@ afw_function_definition_union_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -27285,6 +27873,7 @@ impl_nullish_coalescing_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27321,6 +27910,7 @@ impl_nullish_coalescing_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27369,6 +27959,7 @@ afw_function_definition_nullish_coalescing = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -27433,6 +28024,7 @@ impl_optional_chaining_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27469,6 +28061,7 @@ impl_optional_chaining_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27505,6 +28098,7 @@ impl_optional_chaining_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27554,6 +28148,7 @@ afw_function_definition_optional_chaining = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -27618,6 +28213,7 @@ impl_void_operator_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27654,6 +28250,7 @@ impl_void_operator_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27698,6 +28295,7 @@ afw_function_definition_void_operator = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -27766,6 +28364,7 @@ impl_assign_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27802,6 +28401,7 @@ impl_assign_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27838,6 +28438,7 @@ impl_assign_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27895,6 +28496,7 @@ afw_function_definition_assign = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -27957,6 +28559,7 @@ impl_break_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -27993,6 +28596,7 @@ impl_break_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28043,6 +28647,7 @@ afw_function_definition_break = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -28105,6 +28710,7 @@ impl_const_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28141,6 +28747,7 @@ impl_const_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -28177,6 +28784,7 @@ impl_const_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28213,6 +28821,7 @@ impl_const_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28265,6 +28874,7 @@ afw_function_definition_const = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -28327,6 +28937,7 @@ impl_continue_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28376,6 +28987,7 @@ afw_function_definition_continue = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -28438,6 +29050,7 @@ impl_do_while_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28474,6 +29087,7 @@ impl_do_while_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28510,6 +29124,7 @@ impl_do_while_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28561,6 +29176,7 @@ afw_function_definition_do_while = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -28623,6 +29239,7 @@ impl_for_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28659,6 +29276,7 @@ impl_for_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28695,6 +29313,7 @@ impl_for_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28731,6 +29350,7 @@ impl_for_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28767,6 +29387,7 @@ impl_for_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28820,6 +29441,7 @@ afw_function_definition_for = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -28882,6 +29504,7 @@ impl_for_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28918,6 +29541,7 @@ impl_for_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -28954,6 +29578,7 @@ impl_for_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -28990,6 +29615,7 @@ impl_for_of_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29042,6 +29668,7 @@ afw_function_definition_for_of = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -29104,6 +29731,7 @@ impl_if_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29140,6 +29768,7 @@ impl_if_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29176,6 +29805,7 @@ impl_if_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29212,6 +29842,7 @@ impl_if_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29264,6 +29895,7 @@ afw_function_definition_if = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -29326,6 +29958,7 @@ impl_let_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29362,6 +29995,7 @@ impl_let_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -29398,6 +30032,7 @@ impl_let_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29434,6 +30069,7 @@ impl_let_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29486,6 +30122,7 @@ afw_function_definition_let = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -29548,6 +30185,7 @@ impl_rethrow_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29597,6 +30235,7 @@ afw_function_definition_rethrow = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -29659,6 +30298,7 @@ impl_return_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29695,6 +30335,7 @@ impl_return_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29745,6 +30386,7 @@ afw_function_definition_return = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -29807,6 +30449,7 @@ impl_switch_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29843,6 +30486,7 @@ impl_switch_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29879,6 +30523,7 @@ impl_switch_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29915,6 +30560,7 @@ impl_switch_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -29967,6 +30613,7 @@ afw_function_definition_switch = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -30029,6 +30676,7 @@ impl_throw_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30065,6 +30713,7 @@ impl_throw_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30101,6 +30750,7 @@ impl_throw_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30152,6 +30802,7 @@ afw_function_definition_throw = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -30214,6 +30865,7 @@ impl_try_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30250,6 +30902,7 @@ impl_try_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30286,6 +30939,7 @@ impl_try_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30322,6 +30976,7 @@ impl_try_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30358,6 +31013,7 @@ impl_try_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30411,6 +31067,7 @@ afw_function_definition_try = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -30473,6 +31130,7 @@ impl_while_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30509,6 +31167,7 @@ impl_while_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30545,6 +31204,7 @@ impl_while_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30596,6 +31256,7 @@ afw_function_definition_while = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -30658,6 +31319,7 @@ impl_assert_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30694,6 +31356,7 @@ impl_assert_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30730,6 +31393,7 @@ impl_assert_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30775,6 +31439,7 @@ afw_function_definition_assert = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -30843,6 +31508,7 @@ impl_compile_from_file_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30879,6 +31545,7 @@ impl_compile_from_file_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30915,6 +31582,7 @@ impl_compile_from_file_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -30964,6 +31632,7 @@ afw_function_definition_compile_from_file = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -31028,6 +31697,7 @@ impl_decompile_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31064,6 +31734,7 @@ impl_decompile_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31100,6 +31771,7 @@ impl_decompile_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31149,6 +31821,7 @@ afw_function_definition_decompile = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -31213,6 +31886,7 @@ impl_eval_from_file_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31249,6 +31923,7 @@ impl_eval_from_file_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31285,6 +31960,7 @@ impl_eval_from_file_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31334,6 +32010,7 @@ afw_function_definition_eval_from_file = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -31398,6 +32075,7 @@ impl_evaluate_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31434,6 +32112,7 @@ impl_evaluate_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31470,6 +32149,7 @@ impl_evaluate_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31515,6 +32195,7 @@ afw_function_definition_evaluate = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -31583,6 +32264,7 @@ impl_evaluate_with_retry_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31619,6 +32301,7 @@ impl_evaluate_with_retry_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31655,6 +32338,7 @@ impl_evaluate_with_retry_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31700,6 +32384,7 @@ afw_function_definition_evaluate_with_retry = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -31768,6 +32453,7 @@ impl_qualifier_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31804,6 +32490,7 @@ impl_qualifier_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31840,6 +32527,7 @@ impl_qualifier_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31885,6 +32573,7 @@ afw_function_definition_qualifier = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -31953,6 +32642,7 @@ impl_qualifiers_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -31989,6 +32679,7 @@ impl_qualifiers_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32033,6 +32724,7 @@ afw_function_definition_qualifiers = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -32101,6 +32793,7 @@ impl_safe_evaluate_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32137,6 +32830,7 @@ impl_safe_evaluate_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32173,6 +32867,7 @@ impl_safe_evaluate_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32218,6 +32913,7 @@ afw_function_definition_safe_evaluate = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -32286,6 +32982,7 @@ impl_stringify_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32322,6 +33019,7 @@ impl_stringify_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32358,6 +33056,7 @@ impl_stringify_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32394,6 +33093,7 @@ impl_stringify_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32444,6 +33144,7 @@ afw_function_definition_stringify = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -32508,6 +33209,7 @@ impl_test_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32544,6 +33246,7 @@ impl_test_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32580,6 +33283,7 @@ impl_test_script_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32616,6 +33320,7 @@ impl_test_script_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32652,6 +33357,7 @@ impl_test_script_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32688,6 +33394,7 @@ impl_test_script_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32736,6 +33443,7 @@ afw_function_definition_test_script = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -32804,6 +33512,7 @@ impl_test_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32840,6 +33549,7 @@ impl_test_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32876,6 +33586,7 @@ impl_test_template_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32912,6 +33623,7 @@ impl_test_template_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32948,6 +33660,7 @@ impl_test_template_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -32984,6 +33697,7 @@ impl_test_template_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33032,6 +33746,7 @@ afw_function_definition_test_template = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -33100,6 +33815,7 @@ impl_test_value_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33136,6 +33852,7 @@ impl_test_value_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33172,6 +33889,7 @@ impl_test_value_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33208,6 +33926,7 @@ impl_test_value_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33244,6 +33963,7 @@ impl_test_value_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33280,6 +34000,7 @@ impl_test_value_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33328,6 +34049,7 @@ afw_function_definition_test_value = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -33396,6 +34118,7 @@ impl_add_dayTimeDuration_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33432,6 +34155,7 @@ impl_add_dayTimeDuration_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33468,6 +34192,7 @@ impl_add_dayTimeDuration_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33517,6 +34242,7 @@ afw_function_definition_add_dayTimeDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -33581,6 +34307,7 @@ impl_add_yearMonthDuration_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33617,6 +34344,7 @@ impl_add_yearMonthDuration_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33653,6 +34381,7 @@ impl_add_yearMonthDuration_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33702,6 +34431,7 @@ afw_function_definition_add_yearMonthDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -33766,6 +34496,7 @@ impl_at_least_one_member_of_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -33802,6 +34533,7 @@ impl_at_least_one_member_of_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -33838,6 +34570,7 @@ impl_at_least_one_member_of_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -33887,6 +34620,7 @@ afw_function_definition_at_least_one_member_of_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -33951,6 +34685,7 @@ impl_bag_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -33987,6 +34722,7 @@ impl_bag_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -34035,6 +34771,7 @@ afw_function_definition_bag_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -34099,6 +34836,7 @@ impl_bag_size_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34135,6 +34873,7 @@ impl_bag_size_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -34183,6 +34922,7 @@ afw_function_definition_bag_size_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -34247,6 +34987,7 @@ impl_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34283,6 +35024,7 @@ impl_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34339,6 +35081,7 @@ afw_function_definition_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -34403,6 +35146,7 @@ impl_eq_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34439,6 +35183,7 @@ impl_eq_dateTime_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34475,6 +35220,7 @@ impl_eq_dateTime_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34532,6 +35278,7 @@ afw_function_definition_eq_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -34596,6 +35343,7 @@ impl_eqx_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34632,6 +35380,7 @@ impl_eqx_dateTime_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34668,6 +35417,7 @@ impl_eqx_dateTime_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34717,6 +35467,7 @@ afw_function_definition_eqx_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -34781,6 +35532,7 @@ impl_ge_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34817,6 +35569,7 @@ impl_ge_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34853,6 +35606,7 @@ impl_ge_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -34902,6 +35656,7 @@ afw_function_definition_ge_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -34966,6 +35721,7 @@ impl_gt_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35002,6 +35758,7 @@ impl_gt_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35038,6 +35795,7 @@ impl_gt_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35087,6 +35845,7 @@ afw_function_definition_gt_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -35151,6 +35910,7 @@ impl_intersection_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -35187,6 +35947,7 @@ impl_intersection_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -35223,6 +35984,7 @@ impl_intersection_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -35272,6 +36034,7 @@ afw_function_definition_intersection_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -35336,6 +36099,7 @@ impl_is_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35372,6 +36136,7 @@ impl_is_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35420,6 +36185,7 @@ afw_function_definition_is_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -35484,6 +36250,7 @@ impl_is_in_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35520,6 +36287,7 @@ impl_is_in_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35556,6 +36324,7 @@ impl_is_in_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -35605,6 +36374,7 @@ afw_function_definition_is_in_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -35669,6 +36439,7 @@ impl_le_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35705,6 +36476,7 @@ impl_le_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35741,6 +36513,7 @@ impl_le_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35790,6 +36563,7 @@ afw_function_definition_le_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -35854,6 +36628,7 @@ impl_lt_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35890,6 +36665,7 @@ impl_lt_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35926,6 +36702,7 @@ impl_lt_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -35975,6 +36752,7 @@ afw_function_definition_lt_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -36039,6 +36817,7 @@ impl_max_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36075,6 +36854,7 @@ impl_max_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36123,6 +36903,7 @@ afw_function_definition_max_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -36187,6 +36968,7 @@ impl_min_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36223,6 +37005,7 @@ impl_min_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36271,6 +37054,7 @@ afw_function_definition_min_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -36335,6 +37119,7 @@ impl_ne_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36371,6 +37156,7 @@ impl_ne_dateTime_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36407,6 +37193,7 @@ impl_ne_dateTime_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36464,6 +37251,7 @@ afw_function_definition_ne_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -36528,6 +37316,7 @@ impl_nex_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36564,6 +37353,7 @@ impl_nex_dateTime_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36600,6 +37390,7 @@ impl_nex_dateTime_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36649,6 +37440,7 @@ afw_function_definition_nex_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -36713,6 +37505,7 @@ impl_one_and_only_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36749,6 +37542,7 @@ impl_one_and_only_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -36805,6 +37599,7 @@ afw_function_definition_one_and_only_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -36869,6 +37664,7 @@ impl_set_equals_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -36905,6 +37701,7 @@ impl_set_equals_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -36941,6 +37738,7 @@ impl_set_equals_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -36990,6 +37788,7 @@ afw_function_definition_set_equals_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -37054,6 +37853,7 @@ impl_subset_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37090,6 +37890,7 @@ impl_subset_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -37126,6 +37927,7 @@ impl_subset_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -37175,6 +37977,7 @@ afw_function_definition_subset_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -37239,6 +38042,7 @@ impl_subtract_dayTimeDuration_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37275,6 +38079,7 @@ impl_subtract_dayTimeDuration_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37311,6 +38116,7 @@ impl_subtract_dayTimeDuration_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37360,6 +38166,7 @@ afw_function_definition_subtract_dayTimeDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -37424,6 +38231,7 @@ impl_subtract_yearMonthDuration_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37460,6 +38268,7 @@ impl_subtract_yearMonthDuration_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37496,6 +38305,7 @@ impl_subtract_yearMonthDuration_dateTime_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37545,6 +38355,7 @@ afw_function_definition_subtract_yearMonthDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -37609,6 +38420,7 @@ impl_to_string_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37645,6 +38457,7 @@ impl_to_string_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37693,6 +38506,7 @@ afw_function_definition_to_string_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -37757,6 +38571,7 @@ impl_union_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -37793,6 +38608,7 @@ impl_union_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dateTime_direct
 };
 
 static const afw_value_object_t
@@ -37841,6 +38657,7 @@ afw_function_definition_union_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -37905,6 +38722,7 @@ impl_add_yearMonthDuration_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37941,6 +38759,7 @@ impl_add_yearMonthDuration_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -37977,6 +38796,7 @@ impl_add_yearMonthDuration_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38026,6 +38846,7 @@ afw_function_definition_add_yearMonthDuration_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -38090,6 +38911,7 @@ impl_at_least_one_member_of_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38126,6 +38948,7 @@ impl_at_least_one_member_of_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -38162,6 +38985,7 @@ impl_at_least_one_member_of_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -38211,6 +39035,7 @@ afw_function_definition_at_least_one_member_of_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -38275,6 +39100,7 @@ impl_bag_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -38311,6 +39137,7 @@ impl_bag_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -38359,6 +39186,7 @@ afw_function_definition_bag_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -38423,6 +39251,7 @@ impl_bag_size_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38459,6 +39288,7 @@ impl_bag_size_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -38507,6 +39337,7 @@ afw_function_definition_bag_size_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -38571,6 +39402,7 @@ impl_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38607,6 +39439,7 @@ impl_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38663,6 +39496,7 @@ afw_function_definition_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -38727,6 +39561,7 @@ impl_eq_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38763,6 +39598,7 @@ impl_eq_date_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38799,6 +39635,7 @@ impl_eq_date_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38856,6 +39693,7 @@ afw_function_definition_eq_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -38920,6 +39758,7 @@ impl_eqx_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38956,6 +39795,7 @@ impl_eqx_date_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -38992,6 +39832,7 @@ impl_eqx_date_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39041,6 +39882,7 @@ afw_function_definition_eqx_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -39105,6 +39947,7 @@ impl_ge_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39141,6 +39984,7 @@ impl_ge_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39177,6 +40021,7 @@ impl_ge_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39226,6 +40071,7 @@ afw_function_definition_ge_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -39290,6 +40136,7 @@ impl_gt_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39326,6 +40173,7 @@ impl_gt_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39362,6 +40210,7 @@ impl_gt_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39411,6 +40260,7 @@ afw_function_definition_gt_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -39475,6 +40325,7 @@ impl_intersection_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -39511,6 +40362,7 @@ impl_intersection_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -39547,6 +40399,7 @@ impl_intersection_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -39596,6 +40449,7 @@ afw_function_definition_intersection_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -39660,6 +40514,7 @@ impl_is_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39696,6 +40551,7 @@ impl_is_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39744,6 +40600,7 @@ afw_function_definition_is_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -39808,6 +40665,7 @@ impl_is_in_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39844,6 +40702,7 @@ impl_is_in_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -39880,6 +40739,7 @@ impl_is_in_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -39929,6 +40789,7 @@ afw_function_definition_is_in_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -39993,6 +40854,7 @@ impl_le_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40029,6 +40891,7 @@ impl_le_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40065,6 +40928,7 @@ impl_le_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40114,6 +40978,7 @@ afw_function_definition_le_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -40178,6 +41043,7 @@ impl_lt_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40214,6 +41080,7 @@ impl_lt_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40250,6 +41117,7 @@ impl_lt_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40299,6 +41167,7 @@ afw_function_definition_lt_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -40363,6 +41232,7 @@ impl_max_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40399,6 +41269,7 @@ impl_max_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40447,6 +41318,7 @@ afw_function_definition_max_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -40511,6 +41383,7 @@ impl_min_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40547,6 +41420,7 @@ impl_min_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40595,6 +41469,7 @@ afw_function_definition_min_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -40659,6 +41534,7 @@ impl_ne_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40695,6 +41571,7 @@ impl_ne_date_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40731,6 +41608,7 @@ impl_ne_date_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40788,6 +41666,7 @@ afw_function_definition_ne_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -40852,6 +41731,7 @@ impl_nex_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40888,6 +41768,7 @@ impl_nex_date_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40924,6 +41805,7 @@ impl_nex_date_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -40973,6 +41855,7 @@ afw_function_definition_nex_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -41037,6 +41920,7 @@ impl_one_and_only_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41073,6 +41957,7 @@ impl_one_and_only_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -41129,6 +42014,7 @@ afw_function_definition_one_and_only_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -41193,6 +42079,7 @@ impl_set_equals_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41229,6 +42116,7 @@ impl_set_equals_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -41265,6 +42153,7 @@ impl_set_equals_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -41314,6 +42203,7 @@ afw_function_definition_set_equals_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -41378,6 +42268,7 @@ impl_subset_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41414,6 +42305,7 @@ impl_subset_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -41450,6 +42342,7 @@ impl_subset_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -41499,6 +42392,7 @@ afw_function_definition_subset_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -41563,6 +42457,7 @@ impl_subtract_yearMonthDuration_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41599,6 +42494,7 @@ impl_subtract_yearMonthDuration_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41635,6 +42531,7 @@ impl_subtract_yearMonthDuration_date_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41684,6 +42581,7 @@ afw_function_definition_subtract_yearMonthDuration_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -41748,6 +42646,7 @@ impl_to_string_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41784,6 +42683,7 @@ impl_to_string_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -41832,6 +42732,7 @@ afw_function_definition_to_string_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -41896,6 +42797,7 @@ impl_union_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -41932,6 +42834,7 @@ impl_union_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_date_direct
 };
 
 static const afw_value_object_t
@@ -41980,6 +42883,7 @@ afw_function_definition_union_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -42044,6 +42948,7 @@ impl_at_least_one_member_of_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42080,6 +42985,7 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -42116,6 +43022,7 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -42165,6 +43072,7 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -42229,6 +43137,7 @@ impl_bag_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -42265,6 +43174,7 @@ impl_bag_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -42313,6 +43223,7 @@ afw_function_definition_bag_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -42377,6 +43288,7 @@ impl_bag_size_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42413,6 +43325,7 @@ impl_bag_size_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -42461,6 +43374,7 @@ afw_function_definition_bag_size_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -42525,6 +43439,7 @@ impl_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42561,6 +43476,7 @@ impl_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42617,6 +43533,7 @@ afw_function_definition_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -42681,6 +43598,7 @@ impl_eq_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42717,6 +43635,7 @@ impl_eq_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42753,6 +43672,7 @@ impl_eq_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42810,6 +43730,7 @@ afw_function_definition_eq_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -42874,6 +43795,7 @@ impl_eqx_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42910,6 +43832,7 @@ impl_eqx_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42946,6 +43869,7 @@ impl_eqx_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -42995,6 +43919,7 @@ afw_function_definition_eqx_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -43059,6 +43984,7 @@ impl_ge_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43095,6 +44021,7 @@ impl_ge_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43131,6 +44058,7 @@ impl_ge_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43180,6 +44108,7 @@ afw_function_definition_ge_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -43244,6 +44173,7 @@ impl_gt_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43280,6 +44210,7 @@ impl_gt_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43316,6 +44247,7 @@ impl_gt_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43365,6 +44297,7 @@ afw_function_definition_gt_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -43429,6 +44362,7 @@ impl_intersection_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -43465,6 +44399,7 @@ impl_intersection_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -43501,6 +44436,7 @@ impl_intersection_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -43550,6 +44486,7 @@ afw_function_definition_intersection_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -43614,6 +44551,7 @@ impl_is_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43650,6 +44588,7 @@ impl_is_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43698,6 +44637,7 @@ afw_function_definition_is_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -43762,6 +44702,7 @@ impl_is_in_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43798,6 +44739,7 @@ impl_is_in_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43834,6 +44776,7 @@ impl_is_in_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -43883,6 +44826,7 @@ afw_function_definition_is_in_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -43947,6 +44891,7 @@ impl_le_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -43983,6 +44928,7 @@ impl_le_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44019,6 +44965,7 @@ impl_le_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44068,6 +45015,7 @@ afw_function_definition_le_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -44132,6 +45080,7 @@ impl_lt_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44168,6 +45117,7 @@ impl_lt_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44204,6 +45154,7 @@ impl_lt_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44253,6 +45204,7 @@ afw_function_definition_lt_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -44317,6 +45269,7 @@ impl_ne_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44353,6 +45306,7 @@ impl_ne_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44389,6 +45343,7 @@ impl_ne_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44446,6 +45401,7 @@ afw_function_definition_ne_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -44510,6 +45466,7 @@ impl_nex_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44546,6 +45503,7 @@ impl_nex_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44582,6 +45540,7 @@ impl_nex_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44631,6 +45590,7 @@ afw_function_definition_nex_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -44695,6 +45655,7 @@ impl_one_and_only_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44731,6 +45692,7 @@ impl_one_and_only_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -44787,6 +45749,7 @@ afw_function_definition_one_and_only_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -44851,6 +45814,7 @@ impl_set_equals_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -44887,6 +45851,7 @@ impl_set_equals_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -44923,6 +45888,7 @@ impl_set_equals_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -44972,6 +45938,7 @@ afw_function_definition_set_equals_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -45036,6 +46003,7 @@ impl_subset_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -45072,6 +46040,7 @@ impl_subset_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -45108,6 +46077,7 @@ impl_subset_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -45157,6 +46127,7 @@ afw_function_definition_subset_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -45221,6 +46192,7 @@ impl_to_string_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -45257,6 +46229,7 @@ impl_to_string_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -45305,6 +46278,7 @@ afw_function_definition_to_string_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -45369,6 +46343,7 @@ impl_union_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -45405,6 +46380,7 @@ impl_union_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dayTimeDuration_direct
 };
 
 static const afw_value_object_t
@@ -45453,6 +46429,7 @@ afw_function_definition_union_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -45517,6 +46494,7 @@ impl_bag_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dnsName_direct
 };
 
 static const afw_value_object_t
@@ -45553,6 +46531,7 @@ impl_bag_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dnsName_direct
 };
 
 static const afw_value_object_t
@@ -45601,6 +46580,7 @@ afw_function_definition_bag_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -45665,6 +46645,7 @@ impl_bag_size_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -45701,6 +46682,7 @@ impl_bag_size_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dnsName_direct
 };
 
 static const afw_value_object_t
@@ -45749,6 +46731,7 @@ afw_function_definition_bag_size_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -45813,6 +46796,7 @@ impl_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -45849,6 +46833,7 @@ impl_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -45905,6 +46890,7 @@ afw_function_definition_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -45969,6 +46955,7 @@ impl_eq_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46005,6 +46992,7 @@ impl_eq_dnsName_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46041,6 +47029,7 @@ impl_eq_dnsName_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46098,6 +47087,7 @@ afw_function_definition_eq_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -46162,6 +47152,7 @@ impl_eqx_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46198,6 +47189,7 @@ impl_eqx_dnsName_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46234,6 +47226,7 @@ impl_eqx_dnsName_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46283,6 +47276,7 @@ afw_function_definition_eqx_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -46347,6 +47341,7 @@ impl_ge_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46383,6 +47378,7 @@ impl_ge_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46419,6 +47415,7 @@ impl_ge_dnsName_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46468,6 +47465,7 @@ afw_function_definition_ge_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -46532,6 +47530,7 @@ impl_gt_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46568,6 +47567,7 @@ impl_gt_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46604,6 +47604,7 @@ impl_gt_dnsName_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46653,6 +47654,7 @@ afw_function_definition_gt_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -46717,6 +47719,7 @@ impl_is_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46753,6 +47756,7 @@ impl_is_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46801,6 +47805,7 @@ afw_function_definition_is_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -46865,6 +47870,7 @@ impl_is_in_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46901,6 +47907,7 @@ impl_is_in_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -46937,6 +47944,7 @@ impl_is_in_dnsName_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_dnsName_direct
 };
 
 static const afw_value_object_t
@@ -46986,6 +47994,7 @@ afw_function_definition_is_in_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -47050,6 +48059,7 @@ impl_le_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47086,6 +48096,7 @@ impl_le_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47122,6 +48133,7 @@ impl_le_dnsName_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47171,6 +48183,7 @@ afw_function_definition_le_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -47235,6 +48248,7 @@ impl_lt_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47271,6 +48285,7 @@ impl_lt_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47307,6 +48322,7 @@ impl_lt_dnsName_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47356,6 +48372,7 @@ afw_function_definition_lt_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -47420,6 +48437,7 @@ impl_ne_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47456,6 +48474,7 @@ impl_ne_dnsName_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47492,6 +48511,7 @@ impl_ne_dnsName_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47549,6 +48569,7 @@ afw_function_definition_ne_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -47613,6 +48634,7 @@ impl_nex_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47649,6 +48671,7 @@ impl_nex_dnsName_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47685,6 +48708,7 @@ impl_nex_dnsName_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47734,6 +48758,7 @@ afw_function_definition_nex_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -47798,6 +48823,7 @@ impl_one_and_only_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47834,6 +48860,7 @@ impl_one_and_only_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -47890,6 +48917,7 @@ afw_function_definition_one_and_only_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -47954,6 +48982,7 @@ impl_regexp_match_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -47990,6 +49019,7 @@ impl_regexp_match_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48026,6 +49056,7 @@ impl_regexp_match_dnsName_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48075,6 +49106,7 @@ afw_function_definition_regexp_match_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -48139,6 +49171,7 @@ impl_to_string_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48175,6 +49208,7 @@ impl_to_string_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48223,6 +49257,7 @@ afw_function_definition_to_string_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -48287,6 +49322,7 @@ impl_abs_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48323,6 +49359,7 @@ impl_abs_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48371,6 +49408,7 @@ afw_function_definition_abs_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -48435,6 +49473,7 @@ impl_add_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48471,6 +49510,7 @@ impl_add_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48519,6 +49559,7 @@ afw_function_definition_add_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -48583,6 +49624,7 @@ impl_at_least_one_member_of_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48619,6 +49661,7 @@ impl_at_least_one_member_of_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -48655,6 +49698,7 @@ impl_at_least_one_member_of_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -48704,6 +49748,7 @@ afw_function_definition_at_least_one_member_of_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -48768,6 +49813,7 @@ impl_bag_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -48804,6 +49850,7 @@ impl_bag_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -48852,6 +49899,7 @@ afw_function_definition_bag_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -48916,6 +49964,7 @@ impl_bag_size_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -48952,6 +50001,7 @@ impl_bag_size_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -49000,6 +50050,7 @@ afw_function_definition_bag_size_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -49064,6 +50115,7 @@ impl_ceil_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49100,6 +50152,7 @@ impl_ceil_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49148,6 +50201,7 @@ afw_function_definition_ceil_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -49212,6 +50266,7 @@ impl_divide_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49248,6 +50303,7 @@ impl_divide_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49284,6 +50340,7 @@ impl_divide_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49333,6 +50390,7 @@ afw_function_definition_divide_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -49397,6 +50455,7 @@ impl_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49433,6 +50492,7 @@ impl_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49489,6 +50549,7 @@ afw_function_definition_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -49553,6 +50614,7 @@ impl_eq_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49589,6 +50651,7 @@ impl_eq_double_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49625,6 +50688,7 @@ impl_eq_double_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49682,6 +50746,7 @@ afw_function_definition_eq_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -49746,6 +50811,7 @@ impl_eqx_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49782,6 +50848,7 @@ impl_eqx_double_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49818,6 +50885,7 @@ impl_eqx_double_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49867,6 +50935,7 @@ afw_function_definition_eqx_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -49931,6 +51000,7 @@ impl_floor_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -49967,6 +51037,7 @@ impl_floor_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50015,6 +51086,7 @@ afw_function_definition_floor_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -50079,6 +51151,7 @@ impl_ge_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50115,6 +51188,7 @@ impl_ge_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50151,6 +51225,7 @@ impl_ge_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50200,6 +51275,7 @@ afw_function_definition_ge_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -50264,6 +51340,7 @@ impl_gt_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50300,6 +51377,7 @@ impl_gt_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50336,6 +51414,7 @@ impl_gt_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50385,6 +51464,7 @@ afw_function_definition_gt_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -50449,6 +51529,7 @@ impl_intersection_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -50485,6 +51566,7 @@ impl_intersection_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -50521,6 +51603,7 @@ impl_intersection_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -50570,6 +51653,7 @@ afw_function_definition_intersection_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -50634,6 +51718,7 @@ impl_is_NaN_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50670,6 +51755,7 @@ impl_is_NaN_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50718,6 +51804,7 @@ afw_function_definition_is_NaN = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -50782,6 +51869,7 @@ impl_is_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50818,6 +51906,7 @@ impl_is_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50866,6 +51955,7 @@ afw_function_definition_is_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -50930,6 +52020,7 @@ impl_is_finite_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -50966,6 +52057,7 @@ impl_is_finite_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51014,6 +52106,7 @@ afw_function_definition_is_finite = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -51078,6 +52171,7 @@ impl_is_in_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51114,6 +52208,7 @@ impl_is_in_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51150,6 +52245,7 @@ impl_is_in_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -51199,6 +52295,7 @@ afw_function_definition_is_in_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -51263,6 +52360,7 @@ impl_le_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51299,6 +52397,7 @@ impl_le_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51335,6 +52434,7 @@ impl_le_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51384,6 +52484,7 @@ afw_function_definition_le_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -51448,6 +52549,7 @@ impl_lt_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51484,6 +52586,7 @@ impl_lt_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51520,6 +52623,7 @@ impl_lt_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51569,6 +52673,7 @@ afw_function_definition_lt_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -51633,6 +52738,7 @@ impl_max_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51669,6 +52775,7 @@ impl_max_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51717,6 +52824,7 @@ afw_function_definition_max_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -51781,6 +52889,7 @@ impl_min_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51817,6 +52926,7 @@ impl_min_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51865,6 +52975,7 @@ afw_function_definition_min_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -51929,6 +53040,7 @@ impl_multiply_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -51965,6 +53077,7 @@ impl_multiply_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52013,6 +53126,7 @@ afw_function_definition_multiply_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -52077,6 +53191,7 @@ impl_ne_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52113,6 +53228,7 @@ impl_ne_double_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52149,6 +53265,7 @@ impl_ne_double_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52206,6 +53323,7 @@ afw_function_definition_ne_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -52270,6 +53388,7 @@ impl_negative_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52306,6 +53425,7 @@ impl_negative_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52354,6 +53474,7 @@ afw_function_definition_negative_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -52418,6 +53539,7 @@ impl_nex_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52454,6 +53576,7 @@ impl_nex_double_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52490,6 +53613,7 @@ impl_nex_double_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52539,6 +53663,7 @@ afw_function_definition_nex_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -52603,6 +53728,7 @@ impl_one_and_only_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52639,6 +53765,7 @@ impl_one_and_only_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -52695,6 +53822,7 @@ afw_function_definition_one_and_only_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -52759,6 +53887,7 @@ impl_pow_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52795,6 +53924,7 @@ impl_pow_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52831,6 +53961,7 @@ impl_pow_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52880,6 +54011,7 @@ afw_function_definition_pow_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -52944,6 +54076,7 @@ impl_round_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -52980,6 +54113,7 @@ impl_round_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53028,6 +54162,7 @@ afw_function_definition_round_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -53092,6 +54227,7 @@ impl_set_equals_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53128,6 +54264,7 @@ impl_set_equals_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -53164,6 +54301,7 @@ impl_set_equals_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -53213,6 +54351,7 @@ afw_function_definition_set_equals_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -53277,6 +54416,7 @@ impl_subset_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53313,6 +54453,7 @@ impl_subset_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -53349,6 +54490,7 @@ impl_subset_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -53398,6 +54540,7 @@ afw_function_definition_subset_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -53462,6 +54605,7 @@ impl_subtract_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53498,6 +54642,7 @@ impl_subtract_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53534,6 +54679,7 @@ impl_subtract_double_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53583,6 +54729,7 @@ afw_function_definition_subtract_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -53647,6 +54794,7 @@ impl_to_integer_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53683,6 +54831,7 @@ impl_to_integer_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53731,6 +54880,7 @@ afw_function_definition_to_integer_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -53795,6 +54945,7 @@ impl_to_string_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53831,6 +54982,7 @@ impl_to_string_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -53879,6 +55031,7 @@ afw_function_definition_to_string_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -53943,6 +55096,7 @@ impl_union_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -53979,6 +55133,7 @@ impl_union_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_double_direct
 };
 
 static const afw_value_object_t
@@ -54027,6 +55182,7 @@ afw_function_definition_union_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -54091,6 +55247,7 @@ impl_bag_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_function_direct
 };
 
 static const afw_value_object_t
@@ -54127,6 +55284,7 @@ impl_bag_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_function_direct
 };
 
 static const afw_value_object_t
@@ -54175,6 +55333,7 @@ afw_function_definition_bag_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -54239,6 +55398,7 @@ impl_bag_size_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54275,6 +55435,7 @@ impl_bag_size_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_function_direct
 };
 
 static const afw_value_object_t
@@ -54323,6 +55484,7 @@ afw_function_definition_bag_size_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -54387,6 +55549,7 @@ impl_eq_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54423,6 +55586,7 @@ impl_eq_function_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54459,6 +55623,7 @@ impl_eq_function_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54516,6 +55681,7 @@ afw_function_definition_eq_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -54580,6 +55746,7 @@ impl_eqx_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54616,6 +55783,7 @@ impl_eqx_function_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54652,6 +55820,7 @@ impl_eqx_function_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54701,6 +55870,7 @@ afw_function_definition_eqx_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -54765,6 +55935,7 @@ impl_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54801,6 +55972,7 @@ impl_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54857,6 +56029,7 @@ afw_function_definition_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -54921,6 +56094,7 @@ impl_ge_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54957,6 +56131,7 @@ impl_ge_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -54993,6 +56168,7 @@ impl_ge_function_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55042,6 +56218,7 @@ afw_function_definition_ge_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -55106,6 +56283,7 @@ impl_gt_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55142,6 +56320,7 @@ impl_gt_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55178,6 +56357,7 @@ impl_gt_function_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55227,6 +56407,7 @@ afw_function_definition_gt_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -55291,6 +56472,7 @@ impl_is_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55327,6 +56509,7 @@ impl_is_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55375,6 +56558,7 @@ afw_function_definition_is_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -55439,6 +56623,7 @@ impl_le_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55475,6 +56660,7 @@ impl_le_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55511,6 +56697,7 @@ impl_le_function_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55560,6 +56747,7 @@ afw_function_definition_le_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -55624,6 +56812,7 @@ impl_lt_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55660,6 +56849,7 @@ impl_lt_function_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55696,6 +56886,7 @@ impl_lt_function_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55745,6 +56936,7 @@ afw_function_definition_lt_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -55809,6 +57001,7 @@ impl_ne_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55845,6 +57038,7 @@ impl_ne_function_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55881,6 +57075,7 @@ impl_ne_function_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -55938,6 +57133,7 @@ afw_function_definition_ne_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -56002,6 +57198,7 @@ impl_nex_function_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56038,6 +57235,7 @@ impl_nex_function_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56074,6 +57272,7 @@ impl_nex_function_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56123,6 +57322,7 @@ afw_function_definition_nex_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -56187,6 +57387,7 @@ impl_at_least_one_member_of_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56223,6 +57424,7 @@ impl_at_least_one_member_of_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -56259,6 +57461,7 @@ impl_at_least_one_member_of_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -56308,6 +57511,7 @@ afw_function_definition_at_least_one_member_of_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -56372,6 +57576,7 @@ impl_bag_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -56408,6 +57613,7 @@ impl_bag_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -56456,6 +57662,7 @@ afw_function_definition_bag_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -56520,6 +57727,7 @@ impl_bag_size_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56556,6 +57764,7 @@ impl_bag_size_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -56604,6 +57813,7 @@ afw_function_definition_bag_size_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -56668,6 +57878,7 @@ impl_decode_to_string_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56704,6 +57915,7 @@ impl_decode_to_string_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56752,6 +57964,7 @@ afw_function_definition_decode_to_string_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -56816,6 +58029,7 @@ impl_eq_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56852,6 +58066,7 @@ impl_eq_hexBinary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56888,6 +58103,7 @@ impl_eq_hexBinary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -56945,6 +58161,7 @@ afw_function_definition_eq_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -57009,6 +58226,7 @@ impl_eqx_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57045,6 +58263,7 @@ impl_eqx_hexBinary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57081,6 +58300,7 @@ impl_eqx_hexBinary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57130,6 +58350,7 @@ afw_function_definition_eqx_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -57194,6 +58415,7 @@ impl_ge_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57230,6 +58452,7 @@ impl_ge_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57266,6 +58489,7 @@ impl_ge_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57315,6 +58539,7 @@ afw_function_definition_ge_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -57379,6 +58604,7 @@ impl_gt_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57415,6 +58641,7 @@ impl_gt_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57451,6 +58678,7 @@ impl_gt_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57500,6 +58728,7 @@ afw_function_definition_gt_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -57564,6 +58793,7 @@ impl_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57600,6 +58830,7 @@ impl_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57656,6 +58887,7 @@ afw_function_definition_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -57720,6 +58952,7 @@ impl_intersection_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -57756,6 +58989,7 @@ impl_intersection_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -57792,6 +59026,7 @@ impl_intersection_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -57841,6 +59076,7 @@ afw_function_definition_intersection_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -57905,6 +59141,7 @@ impl_is_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57941,6 +59178,7 @@ impl_is_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -57989,6 +59227,7 @@ afw_function_definition_is_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -58053,6 +59292,7 @@ impl_is_in_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58089,6 +59329,7 @@ impl_is_in_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58125,6 +59366,7 @@ impl_is_in_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -58174,6 +59416,7 @@ afw_function_definition_is_in_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -58238,6 +59481,7 @@ impl_le_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58274,6 +59518,7 @@ impl_le_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58310,6 +59555,7 @@ impl_le_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58359,6 +59605,7 @@ afw_function_definition_le_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -58423,6 +59670,7 @@ impl_lt_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58459,6 +59707,7 @@ impl_lt_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58495,6 +59744,7 @@ impl_lt_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58544,6 +59794,7 @@ afw_function_definition_lt_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -58608,6 +59859,7 @@ impl_ne_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58644,6 +59896,7 @@ impl_ne_hexBinary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58680,6 +59933,7 @@ impl_ne_hexBinary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58737,6 +59991,7 @@ afw_function_definition_ne_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -58801,6 +60056,7 @@ impl_nex_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58837,6 +60093,7 @@ impl_nex_hexBinary_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58873,6 +60130,7 @@ impl_nex_hexBinary_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -58922,6 +60180,7 @@ afw_function_definition_nex_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -58986,6 +60245,7 @@ impl_one_and_only_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59022,6 +60282,7 @@ impl_one_and_only_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -59078,6 +60339,7 @@ afw_function_definition_one_and_only_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -59142,6 +60404,7 @@ impl_set_equals_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59178,6 +60441,7 @@ impl_set_equals_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -59214,6 +60478,7 @@ impl_set_equals_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -59263,6 +60528,7 @@ afw_function_definition_set_equals_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -59327,6 +60593,7 @@ impl_subset_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59363,6 +60630,7 @@ impl_subset_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -59399,6 +60667,7 @@ impl_subset_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -59448,6 +60717,7 @@ afw_function_definition_subset_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -59512,6 +60782,7 @@ impl_to_string_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59548,6 +60819,7 @@ impl_to_string_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59596,6 +60868,7 @@ afw_function_definition_to_string_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -59660,6 +60933,7 @@ impl_union_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -59696,6 +60970,7 @@ impl_union_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_hexBinary_direct
 };
 
 static const afw_value_object_t
@@ -59744,6 +61019,7 @@ afw_function_definition_union_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -59808,6 +61084,7 @@ impl_all_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59844,6 +61121,7 @@ impl_all_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59880,6 +61158,7 @@ impl_all_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -59929,6 +61208,7 @@ afw_function_definition_all_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -59993,6 +61273,7 @@ impl_all_of_all_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60029,6 +61310,7 @@ impl_all_of_all_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60065,6 +61347,7 @@ impl_all_of_all_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60101,6 +61384,7 @@ impl_all_of_all_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60151,6 +61435,7 @@ afw_function_definition_all_of_all = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -60215,6 +61500,7 @@ impl_all_of_any_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60251,6 +61537,7 @@ impl_all_of_any_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60287,6 +61574,7 @@ impl_all_of_any_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60323,6 +61611,7 @@ impl_all_of_any_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60373,6 +61662,7 @@ afw_function_definition_all_of_any = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -60437,6 +61727,7 @@ impl_any_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60473,6 +61764,7 @@ impl_any_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60509,6 +61801,7 @@ impl_any_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60558,6 +61851,7 @@ afw_function_definition_any_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -60622,6 +61916,7 @@ impl_any_of_all_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60658,6 +61953,7 @@ impl_any_of_all_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60694,6 +61990,7 @@ impl_any_of_all_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60730,6 +62027,7 @@ impl_any_of_all_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60780,6 +62078,7 @@ afw_function_definition_any_of_all = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -60844,6 +62143,7 @@ impl_any_of_any_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60880,6 +62180,7 @@ impl_any_of_any_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60916,6 +62217,7 @@ impl_any_of_any_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -60952,6 +62254,7 @@ impl_any_of_any_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61002,6 +62305,7 @@ afw_function_definition_any_of_any = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -61066,6 +62370,7 @@ impl_every_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61102,6 +62407,7 @@ impl_every_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61138,6 +62444,7 @@ impl_every_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61187,6 +62494,7 @@ afw_function_definition_every = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -61251,6 +62559,7 @@ impl_filter_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61287,6 +62596,7 @@ impl_filter_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61323,6 +62633,7 @@ impl_filter_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61372,6 +62683,7 @@ afw_function_definition_filter = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -61436,6 +62748,7 @@ impl_find_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61472,6 +62785,7 @@ impl_find_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61508,6 +62822,7 @@ impl_find_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61557,6 +62872,7 @@ afw_function_definition_find = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -61621,6 +62937,7 @@ impl_map_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61657,6 +62974,7 @@ impl_map_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61693,6 +63011,7 @@ impl_map_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61742,6 +63061,7 @@ afw_function_definition_map = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -61806,6 +63126,7 @@ impl_reduce_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61842,6 +63163,7 @@ impl_reduce_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61878,6 +63200,7 @@ impl_reduce_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61914,6 +63237,7 @@ impl_reduce_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -61964,6 +63288,7 @@ afw_function_definition_reduce = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -62028,6 +63353,7 @@ impl_some_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62064,6 +63390,7 @@ impl_some_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62100,6 +63427,7 @@ impl_some_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62149,6 +63477,7 @@ afw_function_definition_some = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -62213,6 +63542,7 @@ impl_sort_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62249,6 +63579,7 @@ impl_sort_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62285,6 +63616,7 @@ impl_sort_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62334,6 +63666,7 @@ afw_function_definition_sort = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -62398,6 +63731,7 @@ impl_bag_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_ia5String_direct
 };
 
 static const afw_value_object_t
@@ -62434,6 +63768,7 @@ impl_bag_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_ia5String_direct
 };
 
 static const afw_value_object_t
@@ -62482,6 +63817,7 @@ afw_function_definition_bag_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -62546,6 +63882,7 @@ impl_bag_size_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62582,6 +63919,7 @@ impl_bag_size_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_ia5String_direct
 };
 
 static const afw_value_object_t
@@ -62630,6 +63968,7 @@ afw_function_definition_bag_size_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -62694,6 +64033,7 @@ impl_eq_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62730,6 +64070,7 @@ impl_eq_ia5String_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62766,6 +64107,7 @@ impl_eq_ia5String_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62823,6 +64165,7 @@ afw_function_definition_eq_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -62887,6 +64230,7 @@ impl_eqx_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62923,6 +64267,7 @@ impl_eqx_ia5String_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -62959,6 +64304,7 @@ impl_eqx_ia5String_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63008,6 +64354,7 @@ afw_function_definition_eqx_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -63072,6 +64419,7 @@ impl_ge_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63108,6 +64456,7 @@ impl_ge_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63144,6 +64493,7 @@ impl_ge_ia5String_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63193,6 +64543,7 @@ afw_function_definition_ge_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -63257,6 +64608,7 @@ impl_gt_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63293,6 +64645,7 @@ impl_gt_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63329,6 +64682,7 @@ impl_gt_ia5String_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63378,6 +64732,7 @@ afw_function_definition_gt_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -63442,6 +64797,7 @@ impl_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63478,6 +64834,7 @@ impl_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63534,6 +64891,7 @@ afw_function_definition_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -63598,6 +64956,7 @@ impl_is_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63634,6 +64993,7 @@ impl_is_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63682,6 +65042,7 @@ afw_function_definition_is_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -63746,6 +65107,7 @@ impl_le_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63782,6 +65144,7 @@ impl_le_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63818,6 +65181,7 @@ impl_le_ia5String_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63867,6 +65231,7 @@ afw_function_definition_le_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -63931,6 +65296,7 @@ impl_lt_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -63967,6 +65333,7 @@ impl_lt_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64003,6 +65370,7 @@ impl_lt_ia5String_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64052,6 +65420,7 @@ afw_function_definition_lt_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -64116,6 +65485,7 @@ impl_ne_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64152,6 +65522,7 @@ impl_ne_ia5String_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64188,6 +65559,7 @@ impl_ne_ia5String_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64245,6 +65617,7 @@ afw_function_definition_ne_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -64309,6 +65682,7 @@ impl_nex_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64345,6 +65719,7 @@ impl_nex_ia5String_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64381,6 +65756,7 @@ impl_nex_ia5String_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64430,6 +65806,7 @@ afw_function_definition_nex_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -64494,6 +65871,7 @@ impl_to_string_ia5String_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64530,6 +65908,7 @@ impl_to_string_ia5String_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64578,6 +65957,7 @@ afw_function_definition_to_string_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -64642,6 +66022,7 @@ impl_index_create_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64678,6 +66059,7 @@ impl_index_create_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64714,6 +66096,7 @@ impl_index_create_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64750,6 +66133,7 @@ impl_index_create_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64786,6 +66170,7 @@ impl_index_create_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -64822,6 +66207,7 @@ impl_index_create_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64858,6 +66244,7 @@ impl_index_create_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -64894,6 +66281,7 @@ impl_index_create_parameter_7 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64930,6 +66318,7 @@ impl_index_create_parameter_8 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -64993,6 +66382,7 @@ afw_function_definition_index_create = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -65055,6 +66445,7 @@ impl_index_list_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65091,6 +66482,7 @@ impl_index_list_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65127,6 +66519,7 @@ impl_index_list_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65178,6 +66571,7 @@ afw_function_definition_index_list = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -65240,6 +66634,7 @@ impl_index_remove_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65276,6 +66671,7 @@ impl_index_remove_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65312,6 +66708,7 @@ impl_index_remove_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65369,6 +66766,7 @@ afw_function_definition_index_remove = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -65431,6 +66829,7 @@ impl_abs_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65467,6 +66866,7 @@ impl_abs_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65515,6 +66915,7 @@ afw_function_definition_abs_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -65579,6 +66980,7 @@ impl_add_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65615,6 +67017,7 @@ impl_add_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65663,6 +67066,7 @@ afw_function_definition_add_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -65727,6 +67131,7 @@ impl_at_least_one_member_of_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -65763,6 +67168,7 @@ impl_at_least_one_member_of_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -65799,6 +67205,7 @@ impl_at_least_one_member_of_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -65848,6 +67255,7 @@ afw_function_definition_at_least_one_member_of_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -65912,6 +67320,7 @@ impl_bag_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -65948,6 +67357,7 @@ impl_bag_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -65996,6 +67406,7 @@ afw_function_definition_bag_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -66060,6 +67471,7 @@ impl_bag_size_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66096,6 +67508,7 @@ impl_bag_size_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -66144,6 +67557,7 @@ afw_function_definition_bag_size_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -66208,6 +67622,7 @@ impl_divide_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66244,6 +67659,7 @@ impl_divide_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66280,6 +67696,7 @@ impl_divide_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66329,6 +67746,7 @@ afw_function_definition_divide_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -66393,6 +67811,7 @@ impl_eq_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66429,6 +67848,7 @@ impl_eq_integer_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66465,6 +67885,7 @@ impl_eq_integer_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66522,6 +67943,7 @@ afw_function_definition_eq_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -66586,6 +68008,7 @@ impl_eqx_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66622,6 +68045,7 @@ impl_eqx_integer_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66658,6 +68082,7 @@ impl_eqx_integer_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66707,6 +68132,7 @@ afw_function_definition_eqx_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -66771,6 +68197,7 @@ impl_ge_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66807,6 +68234,7 @@ impl_ge_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66843,6 +68271,7 @@ impl_ge_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66892,6 +68321,7 @@ afw_function_definition_ge_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -66956,6 +68386,7 @@ impl_gt_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -66992,6 +68423,7 @@ impl_gt_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67028,6 +68460,7 @@ impl_gt_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67077,6 +68510,7 @@ afw_function_definition_gt_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -67141,6 +68575,7 @@ impl_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67177,6 +68612,7 @@ impl_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67233,6 +68669,7 @@ afw_function_definition_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -67297,6 +68734,7 @@ impl_intersection_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -67333,6 +68771,7 @@ impl_intersection_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -67369,6 +68808,7 @@ impl_intersection_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -67418,6 +68858,7 @@ afw_function_definition_intersection_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -67482,6 +68923,7 @@ impl_is_in_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67518,6 +68960,7 @@ impl_is_in_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67554,6 +68997,7 @@ impl_is_in_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -67603,6 +69047,7 @@ afw_function_definition_is_in_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -67667,6 +69112,7 @@ impl_is_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67703,6 +69149,7 @@ impl_is_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67751,6 +69198,7 @@ afw_function_definition_is_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -67815,6 +69263,7 @@ impl_le_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67851,6 +69300,7 @@ impl_le_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67887,6 +69337,7 @@ impl_le_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -67936,6 +69387,7 @@ afw_function_definition_le_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -68000,6 +69452,7 @@ impl_lt_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68036,6 +69489,7 @@ impl_lt_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68072,6 +69526,7 @@ impl_lt_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68121,6 +69576,7 @@ afw_function_definition_lt_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -68185,6 +69641,7 @@ impl_max_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68221,6 +69678,7 @@ impl_max_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68269,6 +69727,7 @@ afw_function_definition_max_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -68333,6 +69792,7 @@ impl_min_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68369,6 +69829,7 @@ impl_min_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68417,6 +69878,7 @@ afw_function_definition_min_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -68481,6 +69943,7 @@ impl_mod_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68517,6 +69980,7 @@ impl_mod_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68553,6 +70017,7 @@ impl_mod_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68602,6 +70067,7 @@ afw_function_definition_mod_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -68666,6 +70132,7 @@ impl_multiply_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68702,6 +70169,7 @@ impl_multiply_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68750,6 +70218,7 @@ afw_function_definition_multiply_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -68814,6 +70283,7 @@ impl_ne_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68850,6 +70320,7 @@ impl_ne_integer_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68886,6 +70357,7 @@ impl_ne_integer_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -68943,6 +70415,7 @@ afw_function_definition_ne_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -69007,6 +70480,7 @@ impl_negative_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69043,6 +70517,7 @@ impl_negative_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69091,6 +70566,7 @@ afw_function_definition_negative_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -69155,6 +70631,7 @@ impl_nex_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69191,6 +70668,7 @@ impl_nex_integer_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69227,6 +70705,7 @@ impl_nex_integer_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69276,6 +70755,7 @@ afw_function_definition_nex_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -69340,6 +70820,7 @@ impl_one_and_only_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69376,6 +70857,7 @@ impl_one_and_only_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -69432,6 +70914,7 @@ afw_function_definition_one_and_only_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -69496,6 +70979,7 @@ impl_set_equals_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69532,6 +71016,7 @@ impl_set_equals_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -69568,6 +71053,7 @@ impl_set_equals_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -69617,6 +71103,7 @@ afw_function_definition_set_equals_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -69681,6 +71168,7 @@ impl_subset_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69717,6 +71205,7 @@ impl_subset_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -69753,6 +71242,7 @@ impl_subset_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -69802,6 +71292,7 @@ afw_function_definition_subset_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -69866,6 +71357,7 @@ impl_subtract_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69902,6 +71394,7 @@ impl_subtract_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69938,6 +71431,7 @@ impl_subtract_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -69987,6 +71481,7 @@ afw_function_definition_subtract_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -70051,6 +71546,7 @@ impl_to_double_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70087,6 +71583,7 @@ impl_to_double_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70143,6 +71640,7 @@ afw_function_definition_to_double_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -70207,6 +71705,7 @@ impl_to_string_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70243,6 +71742,7 @@ impl_to_string_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70291,6 +71791,7 @@ afw_function_definition_to_string_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -70355,6 +71856,7 @@ impl_union_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -70391,6 +71893,7 @@ impl_union_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_integer_direct
 };
 
 static const afw_value_object_t
@@ -70439,6 +71942,7 @@ afw_function_definition_union_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -70503,6 +72007,7 @@ impl_bag_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_ipAddress_direct
 };
 
 static const afw_value_object_t
@@ -70539,6 +72044,7 @@ impl_bag_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_ipAddress_direct
 };
 
 static const afw_value_object_t
@@ -70587,6 +72093,7 @@ afw_function_definition_bag_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -70651,6 +72158,7 @@ impl_bag_size_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70687,6 +72195,7 @@ impl_bag_size_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_ipAddress_direct
 };
 
 static const afw_value_object_t
@@ -70735,6 +72244,7 @@ afw_function_definition_bag_size_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -70799,6 +72309,7 @@ impl_eq_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70835,6 +72346,7 @@ impl_eq_ipAddress_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70871,6 +72383,7 @@ impl_eq_ipAddress_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -70928,6 +72441,7 @@ afw_function_definition_eq_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -70992,6 +72506,7 @@ impl_eqx_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71028,6 +72543,7 @@ impl_eqx_ipAddress_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71064,6 +72580,7 @@ impl_eqx_ipAddress_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71113,6 +72630,7 @@ afw_function_definition_eqx_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -71177,6 +72695,7 @@ impl_ge_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71213,6 +72732,7 @@ impl_ge_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71249,6 +72769,7 @@ impl_ge_ipAddress_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71298,6 +72819,7 @@ afw_function_definition_ge_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -71362,6 +72884,7 @@ impl_gt_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71398,6 +72921,7 @@ impl_gt_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71434,6 +72958,7 @@ impl_gt_ipAddress_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71483,6 +73008,7 @@ afw_function_definition_gt_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -71547,6 +73073,7 @@ impl_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71583,6 +73110,7 @@ impl_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71639,6 +73167,7 @@ afw_function_definition_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -71703,6 +73232,7 @@ impl_is_in_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71739,6 +73269,7 @@ impl_is_in_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71775,6 +73306,7 @@ impl_is_in_ipAddress_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_ipAddress_direct
 };
 
 static const afw_value_object_t
@@ -71824,6 +73356,7 @@ afw_function_definition_is_in_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -71888,6 +73421,7 @@ impl_is_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71924,6 +73458,7 @@ impl_is_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -71972,6 +73507,7 @@ afw_function_definition_is_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -72036,6 +73572,7 @@ impl_le_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72072,6 +73609,7 @@ impl_le_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72108,6 +73646,7 @@ impl_le_ipAddress_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72157,6 +73696,7 @@ afw_function_definition_le_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -72221,6 +73761,7 @@ impl_lt_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72257,6 +73798,7 @@ impl_lt_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72293,6 +73835,7 @@ impl_lt_ipAddress_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72342,6 +73885,7 @@ afw_function_definition_lt_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -72406,6 +73950,7 @@ impl_ne_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72442,6 +73987,7 @@ impl_ne_ipAddress_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72478,6 +74024,7 @@ impl_ne_ipAddress_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72535,6 +74082,7 @@ afw_function_definition_ne_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -72599,6 +74147,7 @@ impl_nex_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72635,6 +74184,7 @@ impl_nex_ipAddress_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72671,6 +74221,7 @@ impl_nex_ipAddress_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72720,6 +74271,7 @@ afw_function_definition_nex_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -72784,6 +74336,7 @@ impl_one_and_only_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72820,6 +74373,7 @@ impl_one_and_only_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -72876,6 +74430,7 @@ afw_function_definition_one_and_only_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -72940,6 +74495,7 @@ impl_regexp_match_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -72976,6 +74532,7 @@ impl_regexp_match_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73012,6 +74569,7 @@ impl_regexp_match_ipAddress_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73061,6 +74619,7 @@ afw_function_definition_regexp_match_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -73125,6 +74684,7 @@ impl_to_string_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73161,6 +74721,7 @@ impl_to_string_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73209,6 +74770,7 @@ afw_function_definition_to_string_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -73273,6 +74835,7 @@ impl_journal_advance_cursor_for_consumer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73309,6 +74872,7 @@ impl_journal_advance_cursor_for_consumer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73345,6 +74909,7 @@ impl_journal_advance_cursor_for_consumer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73381,6 +74946,7 @@ impl_journal_advance_cursor_for_consumer_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73433,6 +74999,7 @@ afw_function_definition_journal_advance_cursor_for_consumer = {
     NULL,
     &impl_journal_advance_cursor_for_consumer_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -73501,6 +75068,7 @@ impl_journal_get_by_cursor_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73537,6 +75105,7 @@ impl_journal_get_by_cursor_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73573,6 +75142,7 @@ impl_journal_get_by_cursor_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73618,6 +75188,7 @@ afw_function_definition_journal_get_by_cursor = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -73686,6 +75257,7 @@ impl_journal_get_first_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73722,6 +75294,7 @@ impl_journal_get_first_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73766,6 +75339,7 @@ afw_function_definition_journal_get_first = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -73834,6 +75408,7 @@ impl_journal_get_next_after_cursor_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73870,6 +75445,7 @@ impl_journal_get_next_after_cursor_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73906,6 +75482,7 @@ impl_journal_get_next_after_cursor_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -73951,6 +75528,7 @@ afw_function_definition_journal_get_next_after_cursor = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74019,6 +75597,7 @@ impl_journal_get_next_for_consumer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74055,6 +75634,7 @@ impl_journal_get_next_for_consumer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74091,6 +75671,7 @@ impl_journal_get_next_for_consumer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74127,6 +75708,7 @@ impl_journal_get_next_for_consumer_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74173,6 +75755,7 @@ afw_function_definition_journal_get_next_for_consumer = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74241,6 +75824,7 @@ impl_journal_get_next_for_consumer_after_cursor_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74277,6 +75861,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74313,6 +75898,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74349,6 +75935,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74385,6 +75972,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74432,6 +76020,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74500,6 +76089,7 @@ impl_journal_mark_consumed_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74536,6 +76126,7 @@ impl_journal_mark_consumed_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74572,6 +76163,7 @@ impl_journal_mark_consumed_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74608,6 +76200,7 @@ impl_journal_mark_consumed_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74660,6 +76253,7 @@ afw_function_definition_journal_mark_consumed = {
     NULL,
     &impl_journal_mark_consumed_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74728,6 +76322,7 @@ impl_compile_json_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74764,6 +76359,7 @@ impl_compile_json_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74800,6 +76396,7 @@ impl_compile_json_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74849,6 +76446,7 @@ afw_function_definition_compile_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -74913,6 +76511,7 @@ impl_json_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -74949,6 +76548,7 @@ impl_json_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75005,6 +76605,7 @@ afw_function_definition_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -75069,6 +76670,7 @@ impl_and_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75105,6 +76707,7 @@ impl_and_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75153,6 +76756,7 @@ afw_function_definition_and = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -75217,6 +76821,7 @@ impl_n_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75253,6 +76858,7 @@ impl_n_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75289,6 +76895,7 @@ impl_n_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75346,6 +76953,7 @@ afw_function_definition_n_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -75410,6 +77018,7 @@ impl_not_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75446,6 +77055,7 @@ impl_not_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75494,6 +77104,7 @@ afw_function_definition_not = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -75558,6 +77169,7 @@ impl_or_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75594,6 +77206,7 @@ impl_or_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75642,6 +77255,7 @@ afw_function_definition_or = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -75706,6 +77320,7 @@ impl_compare_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75742,6 +77357,7 @@ impl_compare_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75778,6 +77394,7 @@ impl_compare_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75814,6 +77431,7 @@ impl_compare_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75850,6 +77468,7 @@ impl_compare_uri_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -75901,6 +77520,7 @@ afw_function_definition_compare_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -75965,6 +77585,7 @@ impl_debug_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76001,6 +77622,7 @@ impl_debug_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76037,6 +77659,7 @@ impl_debug_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76088,6 +77711,7 @@ afw_function_definition_debug = {
     NULL,
     &impl_debug_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -76156,6 +77780,7 @@ impl_execution_start_time_local_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76199,6 +77824,7 @@ afw_function_definition_execution_start_time_local = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -76267,6 +77893,7 @@ impl_execution_start_time_utc_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76310,6 +77937,7 @@ afw_function_definition_execution_start_time_utc = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -76378,6 +78006,7 @@ impl_generate_uuid_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76421,6 +78050,7 @@ afw_function_definition_generate_uuid = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -76489,6 +78119,7 @@ impl_is_defined_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76525,6 +78156,7 @@ impl_is_defined_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76573,6 +78205,7 @@ afw_function_definition_is_defined = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -76637,6 +78270,7 @@ impl_is_nullish_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76673,6 +78307,7 @@ impl_is_nullish_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76721,6 +78356,7 @@ afw_function_definition_is_nullish = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -76785,6 +78421,7 @@ impl_log_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76821,6 +78458,7 @@ impl_log_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76871,6 +78509,7 @@ afw_function_definition_log = {
     NULL,
     &impl_log_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -76939,6 +78578,7 @@ impl_now_local_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -76982,6 +78622,7 @@ afw_function_definition_now_local = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -77050,6 +78691,7 @@ impl_now_utc_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77093,6 +78735,7 @@ afw_function_definition_now_utc = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -77161,6 +78804,7 @@ impl_parse_uri_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77197,6 +78841,7 @@ impl_parse_uri_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77233,6 +78878,7 @@ impl_parse_uri_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77269,6 +78915,7 @@ impl_parse_uri_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77319,6 +78966,7 @@ afw_function_definition_parse_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -77383,6 +79031,7 @@ impl_perform_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77419,6 +79068,7 @@ impl_perform_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77463,6 +79113,7 @@ afw_function_definition_perform = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -77531,6 +79182,7 @@ impl_trace_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77567,6 +79219,7 @@ impl_trace_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77603,6 +79256,7 @@ impl_trace_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77639,6 +79293,7 @@ impl_trace_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77691,6 +79346,7 @@ afw_function_definition_trace = {
     NULL,
     &impl_trace_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -77759,6 +79415,7 @@ impl_variable_exists_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77795,6 +79452,7 @@ impl_variable_exists_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77839,6 +79497,7 @@ afw_function_definition_variable_exists = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -77907,6 +79566,7 @@ impl_variable_get_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77943,6 +79603,7 @@ impl_variable_get_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -77979,6 +79640,7 @@ impl_variable_get_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78024,6 +79686,7 @@ afw_function_definition_variable_get = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -78092,6 +79755,7 @@ impl_variable_is_not_null_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78128,6 +79792,7 @@ impl_variable_is_not_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78172,6 +79837,7 @@ afw_function_definition_variable_is_not_null = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -78240,6 +79906,7 @@ impl_model_default_add_object_action_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78276,6 +79943,7 @@ impl_model_default_add_object_action_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78312,6 +79980,7 @@ impl_model_default_add_object_action_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78348,6 +80017,7 @@ impl_model_default_add_object_action_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78384,6 +80054,7 @@ impl_model_default_add_object_action_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78420,6 +80091,7 @@ impl_model_default_add_object_action_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78456,6 +80128,7 @@ impl_model_default_add_object_action_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78505,6 +80178,7 @@ afw_function_definition_model_default_add_object_action = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -78573,6 +80247,7 @@ impl_model_default_delete_object_action_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78609,6 +80284,7 @@ impl_model_default_delete_object_action_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78645,6 +80321,7 @@ impl_model_default_delete_object_action_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78681,6 +80358,7 @@ impl_model_default_delete_object_action_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78717,6 +80395,7 @@ impl_model_default_delete_object_action_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78753,6 +80432,7 @@ impl_model_default_delete_object_action_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78801,6 +80481,7 @@ afw_function_definition_model_default_delete_object_action = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -78869,6 +80550,7 @@ impl_model_default_modify_object_action_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78905,6 +80587,7 @@ impl_model_default_modify_object_action_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78941,6 +80624,7 @@ impl_model_default_modify_object_action_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -78977,6 +80661,7 @@ impl_model_default_modify_object_action_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79013,6 +80698,7 @@ impl_model_default_modify_object_action_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79049,6 +80735,7 @@ impl_model_default_modify_object_action_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79085,6 +80772,7 @@ impl_model_default_modify_object_action_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79134,6 +80822,7 @@ afw_function_definition_model_default_modify_object_action = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -79202,6 +80891,7 @@ impl_model_default_replace_object_action_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79238,6 +80928,7 @@ impl_model_default_replace_object_action_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79274,6 +80965,7 @@ impl_model_default_replace_object_action_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79310,6 +81002,7 @@ impl_model_default_replace_object_action_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79346,6 +81039,7 @@ impl_model_default_replace_object_action_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79382,6 +81076,7 @@ impl_model_default_replace_object_action_parameter_5 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79418,6 +81113,7 @@ impl_model_default_replace_object_action_parameter_6 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79467,6 +81163,7 @@ afw_function_definition_model_default_replace_object_action = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -79535,6 +81232,7 @@ impl_model_mapBackObject_signature_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79571,6 +81269,7 @@ impl_model_mapBackObject_signature_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79620,6 +81319,7 @@ afw_function_definition_model_mapBackObject_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -79683,6 +81383,7 @@ impl_model_mapObject_signature_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79719,6 +81420,7 @@ impl_model_mapObject_signature_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79768,6 +81470,7 @@ afw_function_definition_model_mapObject_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -79831,6 +81534,7 @@ impl_model_returnObject_signature_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79867,6 +81571,7 @@ impl_model_returnObject_signature_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79903,6 +81608,7 @@ impl_model_returnObject_signature_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -79953,6 +81659,7 @@ afw_function_definition_model_returnObject_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -80016,6 +81723,7 @@ impl_bag_null_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_null_direct
 };
 
 static const afw_value_object_t
@@ -80052,6 +81760,7 @@ impl_bag_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_null_direct
 };
 
 static const afw_value_object_t
@@ -80100,6 +81809,7 @@ afw_function_definition_bag_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -80164,6 +81874,7 @@ impl_bag_size_null_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80200,6 +81911,7 @@ impl_bag_size_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_null_direct
 };
 
 static const afw_value_object_t
@@ -80248,6 +81960,7 @@ afw_function_definition_bag_size_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -80312,6 +82025,7 @@ impl_is_null_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80348,6 +82062,7 @@ impl_is_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80396,6 +82111,7 @@ afw_function_definition_is_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -80460,6 +82176,7 @@ impl_null_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80496,6 +82213,7 @@ impl_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80552,6 +82270,7 @@ afw_function_definition_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -80616,6 +82335,7 @@ impl_to_string_null_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80652,6 +82372,7 @@ impl_to_string_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80700,6 +82421,7 @@ afw_function_definition_to_string_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -80764,6 +82486,7 @@ impl_bag_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_objectId_direct
 };
 
 static const afw_value_object_t
@@ -80800,6 +82523,7 @@ impl_bag_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_objectId_direct
 };
 
 static const afw_value_object_t
@@ -80848,6 +82572,7 @@ afw_function_definition_bag_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -80912,6 +82637,7 @@ impl_bag_size_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -80948,6 +82674,7 @@ impl_bag_size_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_objectId_direct
 };
 
 static const afw_value_object_t
@@ -80996,6 +82723,7 @@ afw_function_definition_bag_size_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -81060,6 +82788,7 @@ impl_eq_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81096,6 +82825,7 @@ impl_eq_objectId_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81132,6 +82862,7 @@ impl_eq_objectId_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81189,6 +82920,7 @@ afw_function_definition_eq_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -81253,6 +82985,7 @@ impl_eqx_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81289,6 +83022,7 @@ impl_eqx_objectId_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81325,6 +83059,7 @@ impl_eqx_objectId_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81374,6 +83109,7 @@ afw_function_definition_eqx_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -81438,6 +83174,7 @@ impl_ge_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81474,6 +83211,7 @@ impl_ge_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81510,6 +83248,7 @@ impl_ge_objectId_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81559,6 +83298,7 @@ afw_function_definition_ge_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -81623,6 +83363,7 @@ impl_gt_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81659,6 +83400,7 @@ impl_gt_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81695,6 +83437,7 @@ impl_gt_objectId_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81744,6 +83487,7 @@ afw_function_definition_gt_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -81808,6 +83552,7 @@ impl_is_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81844,6 +83589,7 @@ impl_is_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81892,6 +83638,7 @@ afw_function_definition_is_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -81956,6 +83703,7 @@ impl_le_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -81992,6 +83740,7 @@ impl_le_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82028,6 +83777,7 @@ impl_le_objectId_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82077,6 +83827,7 @@ afw_function_definition_le_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -82141,6 +83892,7 @@ impl_lt_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82177,6 +83929,7 @@ impl_lt_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82213,6 +83966,7 @@ impl_lt_objectId_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82262,6 +84016,7 @@ afw_function_definition_lt_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -82326,6 +84081,7 @@ impl_ne_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82362,6 +84118,7 @@ impl_ne_objectId_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82398,6 +84155,7 @@ impl_ne_objectId_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82455,6 +84213,7 @@ afw_function_definition_ne_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -82519,6 +84278,7 @@ impl_nex_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82555,6 +84315,7 @@ impl_nex_objectId_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82591,6 +84352,7 @@ impl_nex_objectId_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82640,6 +84402,7 @@ afw_function_definition_nex_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -82704,6 +84467,7 @@ impl_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82740,6 +84504,7 @@ impl_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82796,6 +84561,7 @@ afw_function_definition_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -82860,6 +84626,7 @@ impl_to_string_objectId_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82896,6 +84663,7 @@ impl_to_string_objectId_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -82944,6 +84712,7 @@ afw_function_definition_to_string_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -83008,6 +84777,7 @@ impl_bag_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_objectPath_direct
 };
 
 static const afw_value_object_t
@@ -83044,6 +84814,7 @@ impl_bag_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_objectPath_direct
 };
 
 static const afw_value_object_t
@@ -83092,6 +84863,7 @@ afw_function_definition_bag_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -83156,6 +84928,7 @@ impl_bag_size_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83192,6 +84965,7 @@ impl_bag_size_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_objectPath_direct
 };
 
 static const afw_value_object_t
@@ -83240,6 +85014,7 @@ afw_function_definition_bag_size_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -83304,6 +85079,7 @@ impl_eq_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83340,6 +85116,7 @@ impl_eq_objectPath_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83376,6 +85153,7 @@ impl_eq_objectPath_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83433,6 +85211,7 @@ afw_function_definition_eq_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -83497,6 +85276,7 @@ impl_eqx_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83533,6 +85313,7 @@ impl_eqx_objectPath_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83569,6 +85350,7 @@ impl_eqx_objectPath_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83618,6 +85400,7 @@ afw_function_definition_eqx_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -83682,6 +85465,7 @@ impl_ge_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83718,6 +85502,7 @@ impl_ge_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83754,6 +85539,7 @@ impl_ge_objectPath_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83803,6 +85589,7 @@ afw_function_definition_ge_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -83867,6 +85654,7 @@ impl_gt_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83903,6 +85691,7 @@ impl_gt_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83939,6 +85728,7 @@ impl_gt_objectPath_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -83988,6 +85778,7 @@ afw_function_definition_gt_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -84052,6 +85843,7 @@ impl_is_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84088,6 +85880,7 @@ impl_is_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84136,6 +85929,7 @@ afw_function_definition_is_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -84200,6 +85994,7 @@ impl_le_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84236,6 +86031,7 @@ impl_le_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84272,6 +86068,7 @@ impl_le_objectPath_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84321,6 +86118,7 @@ afw_function_definition_le_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -84385,6 +86183,7 @@ impl_lt_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84421,6 +86220,7 @@ impl_lt_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84457,6 +86257,7 @@ impl_lt_objectPath_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84506,6 +86307,7 @@ afw_function_definition_lt_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -84570,6 +86372,7 @@ impl_ne_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84606,6 +86409,7 @@ impl_ne_objectPath_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84642,6 +86446,7 @@ impl_ne_objectPath_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84699,6 +86504,7 @@ afw_function_definition_ne_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -84763,6 +86569,7 @@ impl_nex_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84799,6 +86606,7 @@ impl_nex_objectPath_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84835,6 +86643,7 @@ impl_nex_objectPath_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84884,6 +86693,7 @@ afw_function_definition_nex_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -84948,6 +86758,7 @@ impl_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -84984,6 +86795,7 @@ impl_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85040,6 +86852,7 @@ afw_function_definition_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -85104,6 +86917,7 @@ impl_to_string_objectPath_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85140,6 +86954,7 @@ impl_to_string_objectPath_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85188,6 +87003,7 @@ afw_function_definition_to_string_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -85252,6 +87068,7 @@ impl_add_properties_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85288,6 +87105,7 @@ impl_add_properties_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85324,6 +87142,7 @@ impl_add_properties_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85375,6 +87194,7 @@ afw_function_definition_add_properties = {
     NULL,
     &impl_add_properties_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -85443,6 +87263,7 @@ impl_apply_object_options_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85479,6 +87300,7 @@ impl_apply_object_options_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85515,6 +87337,7 @@ impl_apply_object_options_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85560,6 +87383,7 @@ afw_function_definition_apply_object_options = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -85628,6 +87452,7 @@ impl_bag_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_object_direct
 };
 
 static const afw_value_object_t
@@ -85664,6 +87489,7 @@ impl_bag_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_object_direct
 };
 
 static const afw_value_object_t
@@ -85712,6 +87538,7 @@ afw_function_definition_bag_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -85776,6 +87603,7 @@ impl_bag_size_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85812,6 +87640,7 @@ impl_bag_size_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_object_direct
 };
 
 static const afw_value_object_t
@@ -85860,6 +87689,7 @@ afw_function_definition_bag_size_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -85924,6 +87754,7 @@ impl_clone_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -85960,6 +87791,7 @@ impl_clone_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86008,6 +87840,7 @@ afw_function_definition_clone_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -86072,6 +87905,7 @@ impl_entries_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86108,6 +87942,7 @@ impl_entries_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86156,6 +87991,7 @@ afw_function_definition_entries = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -86220,6 +88056,7 @@ impl_eq_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86256,6 +88093,7 @@ impl_eq_object_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86292,6 +88130,7 @@ impl_eq_object_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86349,6 +88188,7 @@ afw_function_definition_eq_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -86413,6 +88253,7 @@ impl_eqx_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86449,6 +88290,7 @@ impl_eqx_object_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86485,6 +88327,7 @@ impl_eqx_object_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86534,6 +88377,7 @@ afw_function_definition_eqx_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -86598,6 +88442,7 @@ impl_freeze_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86634,6 +88479,7 @@ impl_freeze_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86678,6 +88524,7 @@ afw_function_definition_freeze_object = {
     NULL,
     NULL,
     afw_data_type_method_number_freeze,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -86746,6 +88593,7 @@ impl_ge_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86782,6 +88630,7 @@ impl_ge_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86818,6 +88667,7 @@ impl_ge_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86867,6 +88717,7 @@ afw_function_definition_ge_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -86931,6 +88782,7 @@ impl_gt_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -86967,6 +88819,7 @@ impl_gt_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87003,6 +88856,7 @@ impl_gt_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87052,6 +88906,7 @@ afw_function_definition_gt_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -87116,6 +88971,7 @@ impl_is_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87152,6 +89008,7 @@ impl_is_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87200,6 +89057,7 @@ afw_function_definition_is_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -87264,6 +89122,7 @@ impl_keys_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -87300,6 +89159,7 @@ impl_keys_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87348,6 +89208,7 @@ afw_function_definition_keys = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -87412,6 +89273,7 @@ impl_le_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87448,6 +89310,7 @@ impl_le_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87484,6 +89347,7 @@ impl_le_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87533,6 +89397,7 @@ afw_function_definition_le_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -87597,6 +89462,7 @@ impl_local_object_meta_set_ids_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87633,6 +89499,7 @@ impl_local_object_meta_set_ids_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87669,6 +89536,7 @@ impl_local_object_meta_set_ids_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87705,6 +89573,7 @@ impl_local_object_meta_set_ids_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87741,6 +89610,7 @@ impl_local_object_meta_set_ids_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87794,6 +89664,7 @@ afw_function_definition_local_object_meta_set_ids = {
     NULL,
     &impl_local_object_meta_set_ids_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -87862,6 +89733,7 @@ impl_lt_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87898,6 +89770,7 @@ impl_lt_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87934,6 +89807,7 @@ impl_lt_object_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -87983,6 +89857,7 @@ afw_function_definition_lt_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -88047,6 +89922,7 @@ impl_ne_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88083,6 +89959,7 @@ impl_ne_object_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88119,6 +89996,7 @@ impl_ne_object_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88176,6 +90054,7 @@ afw_function_definition_ne_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -88240,6 +90119,7 @@ impl_nex_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88276,6 +90156,7 @@ impl_nex_object_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88312,6 +90193,7 @@ impl_nex_object_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88361,6 +90243,7 @@ afw_function_definition_nex_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -88425,6 +90308,7 @@ impl_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88461,6 +90345,7 @@ impl_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88517,6 +90402,7 @@ afw_function_definition_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -88581,6 +90467,7 @@ impl_property_delete_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88617,6 +90504,7 @@ impl_property_delete_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88653,6 +90541,7 @@ impl_property_delete_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88698,6 +90587,7 @@ afw_function_definition_property_delete = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -88766,6 +90656,7 @@ impl_property_delete_by_reference_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88802,6 +90693,7 @@ impl_property_delete_by_reference_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88846,6 +90738,7 @@ afw_function_definition_property_delete_by_reference = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -88914,6 +90807,7 @@ impl_property_exists_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88950,6 +90844,7 @@ impl_property_exists_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -88986,6 +90881,7 @@ impl_property_exists_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89031,6 +90927,7 @@ afw_function_definition_property_exists = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -89099,6 +90996,7 @@ impl_property_get_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89135,6 +91033,7 @@ impl_property_get_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89171,6 +91070,7 @@ impl_property_get_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89207,6 +91107,7 @@ impl_property_get_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89253,6 +91154,7 @@ afw_function_definition_property_get = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -89321,6 +91223,7 @@ impl_property_is_not_null_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89357,6 +91260,7 @@ impl_property_is_not_null_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89393,6 +91297,7 @@ impl_property_is_not_null_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89438,6 +91343,7 @@ afw_function_definition_property_is_not_null = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -89506,6 +91412,7 @@ impl_to_string_object_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89542,6 +91449,7 @@ impl_to_string_object_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89590,6 +91498,7 @@ afw_function_definition_to_string_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -89654,6 +91563,7 @@ impl_values_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89690,6 +91600,7 @@ impl_values_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89738,6 +91649,7 @@ afw_function_definition_values = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -89802,6 +91714,7 @@ impl_bag_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_password_direct
 };
 
 static const afw_value_object_t
@@ -89838,6 +91751,7 @@ impl_bag_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_password_direct
 };
 
 static const afw_value_object_t
@@ -89886,6 +91800,7 @@ afw_function_definition_bag_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -89950,6 +91865,7 @@ impl_bag_size_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -89986,6 +91902,7 @@ impl_bag_size_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_password_direct
 };
 
 static const afw_value_object_t
@@ -90034,6 +91951,7 @@ afw_function_definition_bag_size_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -90098,6 +92016,7 @@ impl_eq_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90134,6 +92053,7 @@ impl_eq_password_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90170,6 +92090,7 @@ impl_eq_password_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90227,6 +92148,7 @@ afw_function_definition_eq_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -90291,6 +92213,7 @@ impl_eqx_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90327,6 +92250,7 @@ impl_eqx_password_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90363,6 +92287,7 @@ impl_eqx_password_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90412,6 +92337,7 @@ afw_function_definition_eqx_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -90476,6 +92402,7 @@ impl_ge_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90512,6 +92439,7 @@ impl_ge_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90548,6 +92476,7 @@ impl_ge_password_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90597,6 +92526,7 @@ afw_function_definition_ge_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -90661,6 +92591,7 @@ impl_gt_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90697,6 +92628,7 @@ impl_gt_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90733,6 +92665,7 @@ impl_gt_password_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90782,6 +92715,7 @@ afw_function_definition_gt_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -90846,6 +92780,7 @@ impl_is_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90882,6 +92817,7 @@ impl_is_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -90930,6 +92866,7 @@ afw_function_definition_is_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -90994,6 +92931,7 @@ impl_le_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91030,6 +92968,7 @@ impl_le_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91066,6 +93005,7 @@ impl_le_password_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91115,6 +93055,7 @@ afw_function_definition_le_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -91179,6 +93120,7 @@ impl_lt_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91215,6 +93157,7 @@ impl_lt_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91251,6 +93194,7 @@ impl_lt_password_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91300,6 +93244,7 @@ afw_function_definition_lt_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -91364,6 +93309,7 @@ impl_ne_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91400,6 +93346,7 @@ impl_ne_password_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91436,6 +93383,7 @@ impl_ne_password_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91493,6 +93441,7 @@ afw_function_definition_ne_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -91557,6 +93506,7 @@ impl_nex_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91593,6 +93543,7 @@ impl_nex_password_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91629,6 +93580,7 @@ impl_nex_password_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91678,6 +93630,7 @@ afw_function_definition_nex_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -91742,6 +93695,7 @@ impl_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91778,6 +93732,7 @@ impl_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91834,6 +93789,7 @@ afw_function_definition_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -91898,6 +93854,7 @@ impl_to_string_password_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91934,6 +93891,7 @@ impl_to_string_password_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -91982,6 +93940,7 @@ afw_function_definition_to_string_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -92046,6 +94005,7 @@ impl_abs_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92082,6 +94042,7 @@ impl_abs_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92137,6 +94098,7 @@ afw_function_definition_abs = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -92201,6 +94163,7 @@ impl_add_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92237,6 +94200,7 @@ impl_add_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92293,6 +94257,7 @@ afw_function_definition_add = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -92357,6 +94322,7 @@ impl_add_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92393,6 +94359,7 @@ impl_add_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92429,6 +94396,7 @@ impl_add_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92484,6 +94452,7 @@ afw_function_definition_add_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -92548,6 +94517,7 @@ impl_add_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92584,6 +94554,7 @@ impl_add_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92620,6 +94591,7 @@ impl_add_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92676,6 +94648,7 @@ afw_function_definition_add_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -92740,6 +94713,7 @@ impl_at_least_one_member_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92776,6 +94750,7 @@ impl_at_least_one_member_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92812,6 +94787,7 @@ impl_at_least_one_member_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92882,6 +94858,7 @@ afw_function_definition_at_least_one_member_of = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -92944,6 +94921,7 @@ impl_bag_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -92980,6 +94958,7 @@ impl_bag_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93062,6 +95041,7 @@ afw_function_definition_bag = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -93124,6 +95104,7 @@ impl_bag_size_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93160,6 +95141,7 @@ impl_bag_size_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93242,6 +95224,7 @@ afw_function_definition_bag_size = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -93304,6 +95287,7 @@ impl_ceil_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93340,6 +95324,7 @@ impl_ceil_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93394,6 +95379,7 @@ afw_function_definition_ceil = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -93458,6 +95444,7 @@ impl_clone_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93494,6 +95481,7 @@ impl_clone_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93549,6 +95537,7 @@ afw_function_definition_clone = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -93613,6 +95602,7 @@ impl_compile_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93649,6 +95639,7 @@ impl_compile_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93685,6 +95676,7 @@ impl_compile_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93745,6 +95737,7 @@ afw_function_definition_compile = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -93809,6 +95802,7 @@ impl_decode_to_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93845,6 +95839,7 @@ impl_decode_to_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -93900,6 +95895,7 @@ afw_function_definition_decode_to_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -93964,6 +95960,7 @@ impl_divide_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94000,6 +95997,7 @@ impl_divide_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94036,6 +96034,7 @@ impl_divide_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94092,6 +96091,7 @@ afw_function_definition_divide = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -94156,6 +96156,7 @@ impl_encode_as_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94192,6 +96193,7 @@ impl_encode_as_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94246,6 +96248,7 @@ afw_function_definition_encode_as_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -94310,6 +96313,7 @@ impl_encode_as_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94346,6 +96350,7 @@ impl_encode_as_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94400,6 +96405,7 @@ afw_function_definition_encode_as_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -94464,6 +96470,7 @@ impl_ends_with_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94500,6 +96507,7 @@ impl_ends_with_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94536,6 +96544,7 @@ impl_ends_with_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94592,6 +96601,7 @@ afw_function_definition_ends_with = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -94656,6 +96666,7 @@ impl_eq_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94692,6 +96703,7 @@ impl_eq_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94728,6 +96740,7 @@ impl_eq_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94819,6 +96832,7 @@ afw_function_definition_eq = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -94881,6 +96895,7 @@ impl_eq_ignore_case_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94917,6 +96932,7 @@ impl_eq_ignore_case_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -94953,6 +96969,7 @@ impl_eq_ignore_case_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95008,6 +97025,7 @@ afw_function_definition_eq_ignore_case = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -95072,6 +97090,7 @@ impl_eqx_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95108,6 +97127,7 @@ impl_eqx_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95144,6 +97164,7 @@ impl_eqx_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95227,6 +97248,7 @@ afw_function_definition_eqx = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -95289,6 +97311,7 @@ impl_eval_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95325,6 +97348,7 @@ impl_eval_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95361,6 +97385,7 @@ impl_eval_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95416,6 +97441,7 @@ afw_function_definition_eval = {
     NULL,
     afw_data_type_method_number_eval,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -95483,6 +97509,7 @@ impl_floor_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95519,6 +97546,7 @@ impl_floor_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95573,6 +97601,7 @@ afw_function_definition_floor = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -95637,6 +97666,7 @@ impl_freeze_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95673,6 +97703,7 @@ impl_freeze_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95731,6 +97762,7 @@ afw_function_definition_freeze = {
     &impl_freeze_sideEffects[0],
     afw_data_type_method_number_freeze,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -95798,6 +97830,7 @@ impl_ge_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95834,6 +97867,7 @@ impl_ge_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95870,6 +97904,7 @@ impl_ge_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -95953,6 +97988,7 @@ afw_function_definition_ge = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -96015,6 +98051,7 @@ impl_gt_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96051,6 +98088,7 @@ impl_gt_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96087,6 +98125,7 @@ impl_gt_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96170,6 +98209,7 @@ afw_function_definition_gt = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -96232,6 +98272,7 @@ impl_in_range_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96268,6 +98309,7 @@ impl_in_range_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96304,6 +98346,7 @@ impl_in_range_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96340,6 +98383,7 @@ impl_in_range_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96396,6 +98440,7 @@ afw_function_definition_in_range = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -96460,6 +98505,7 @@ impl_includes_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96496,6 +98542,7 @@ impl_includes_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96532,6 +98579,7 @@ impl_includes_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96568,6 +98616,7 @@ impl_includes_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96626,6 +98675,7 @@ afw_function_definition_includes = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -96690,6 +98740,7 @@ impl_index_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96726,6 +98777,7 @@ impl_index_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96762,6 +98814,7 @@ impl_index_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96798,6 +98851,7 @@ impl_index_of_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96855,6 +98909,7 @@ afw_function_definition_index_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -96919,6 +98974,7 @@ impl_intersection_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96955,6 +99011,7 @@ impl_intersection_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -96991,6 +99048,7 @@ impl_intersection_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97061,6 +99119,7 @@ afw_function_definition_intersection = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -97123,6 +99182,7 @@ impl_is_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97159,6 +99219,7 @@ impl_is_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97242,6 +99303,7 @@ afw_function_definition_is = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -97304,6 +99366,7 @@ impl_is_in_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97340,6 +99403,7 @@ impl_is_in_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97376,6 +99440,7 @@ impl_is_in_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97448,6 +99513,7 @@ afw_function_definition_is_in = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -97510,6 +99576,7 @@ impl_last_index_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97546,6 +99613,7 @@ impl_last_index_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97582,6 +99650,7 @@ impl_last_index_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97618,6 +99687,7 @@ impl_last_index_of_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97675,6 +99745,7 @@ afw_function_definition_last_index_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -97739,6 +99810,7 @@ impl_le_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97775,6 +99847,7 @@ impl_le_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97811,6 +99884,7 @@ impl_le_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97894,6 +99968,7 @@ afw_function_definition_le = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -97956,6 +100031,7 @@ impl_length_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -97992,6 +100068,7 @@ impl_length_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98048,6 +100125,7 @@ afw_function_definition_length = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -98112,6 +100190,7 @@ impl_lt_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98148,6 +100227,7 @@ impl_lt_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98184,6 +100264,7 @@ impl_lt_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98267,6 +100348,7 @@ afw_function_definition_lt = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -98329,6 +100411,7 @@ impl_match_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98365,6 +100448,7 @@ impl_match_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98401,6 +100485,7 @@ impl_match_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98457,6 +100542,7 @@ afw_function_definition_match = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -98521,6 +100607,7 @@ impl_max_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98557,6 +100644,7 @@ impl_max_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98616,6 +100704,7 @@ afw_function_definition_max = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -98680,6 +100769,7 @@ impl_min_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98716,6 +100806,7 @@ impl_min_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98775,6 +100866,7 @@ afw_function_definition_min = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -98839,6 +100931,7 @@ impl_mod_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98875,6 +100968,7 @@ impl_mod_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98911,6 +101005,7 @@ impl_mod_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -98966,6 +101061,7 @@ afw_function_definition_mod = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -99030,6 +101126,7 @@ impl_multiply_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99066,6 +101163,7 @@ impl_multiply_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99121,6 +101219,7 @@ afw_function_definition_multiply = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -99185,6 +101284,7 @@ impl_ne_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99221,6 +101321,7 @@ impl_ne_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99257,6 +101358,7 @@ impl_ne_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99348,6 +101450,7 @@ afw_function_definition_ne = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -99410,6 +101513,7 @@ impl_negative_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99446,6 +101550,7 @@ impl_negative_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99501,6 +101606,7 @@ afw_function_definition_negative = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -99565,6 +101671,7 @@ impl_nex_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99601,6 +101708,7 @@ impl_nex_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99637,6 +101745,7 @@ impl_nex_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99720,6 +101829,7 @@ afw_function_definition_nex = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -99782,6 +101892,7 @@ impl_normalize_space_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99818,6 +101929,7 @@ impl_normalize_space_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99872,6 +101984,7 @@ afw_function_definition_normalize_space = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -99936,6 +102049,7 @@ impl_normalize_to_lower_case_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -99972,6 +102086,7 @@ impl_normalize_to_lower_case_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100026,6 +102141,7 @@ afw_function_definition_normalize_to_lower_case = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -100090,6 +102206,7 @@ impl_one_and_only_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100126,6 +102243,7 @@ impl_one_and_only_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -100205,6 +102323,7 @@ afw_function_definition_one_and_only = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -100267,6 +102386,7 @@ impl_pow_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100303,6 +102423,7 @@ impl_pow_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100339,6 +102460,7 @@ impl_pow_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100394,6 +102516,7 @@ afw_function_definition_pow = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -100458,6 +102581,7 @@ impl_regexp_index_of_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100494,6 +102618,7 @@ impl_regexp_index_of_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100530,6 +102655,7 @@ impl_regexp_index_of_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100586,6 +102712,7 @@ afw_function_definition_regexp_index_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -100650,6 +102777,7 @@ impl_regexp_match_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100686,6 +102814,7 @@ impl_regexp_match_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100722,6 +102851,7 @@ impl_regexp_match_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100782,6 +102912,7 @@ afw_function_definition_regexp_match = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -100846,6 +102977,7 @@ impl_regexp_replace_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100882,6 +103014,7 @@ impl_regexp_replace_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100918,6 +103051,7 @@ impl_regexp_replace_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100954,6 +103088,7 @@ impl_regexp_replace_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -100990,6 +103125,7 @@ impl_regexp_replace_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101048,6 +103184,7 @@ afw_function_definition_regexp_replace = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -101112,6 +103249,7 @@ impl_repeat_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101148,6 +103286,7 @@ impl_repeat_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101184,6 +103323,7 @@ impl_repeat_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101240,6 +103380,7 @@ afw_function_definition_repeat = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -101304,6 +103445,7 @@ impl_replace_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101340,6 +103482,7 @@ impl_replace_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101376,6 +103519,7 @@ impl_replace_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101412,6 +103556,7 @@ impl_replace_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101448,6 +103593,7 @@ impl_replace_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101506,6 +103652,7 @@ afw_function_definition_replace = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -101570,6 +103717,7 @@ impl_round_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101606,6 +103754,7 @@ impl_round_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101660,6 +103809,7 @@ afw_function_definition_round = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -101724,6 +103874,7 @@ impl_set_equals_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101760,6 +103911,7 @@ impl_set_equals_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101796,6 +103948,7 @@ impl_set_equals_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101866,6 +104019,7 @@ afw_function_definition_set_equals = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -101928,6 +104082,7 @@ impl_split_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -101964,6 +104119,7 @@ impl_split_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102000,6 +104156,7 @@ impl_split_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102036,6 +104193,7 @@ impl_split_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102093,6 +104251,7 @@ afw_function_definition_split = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -102157,6 +104316,7 @@ impl_starts_with_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102193,6 +104353,7 @@ impl_starts_with_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102229,6 +104390,7 @@ impl_starts_with_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102285,6 +104447,7 @@ afw_function_definition_starts_with = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -102349,6 +104512,7 @@ impl_subset_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102385,6 +104549,7 @@ impl_subset_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102421,6 +104586,7 @@ impl_subset_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102491,6 +104657,7 @@ afw_function_definition_subset = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -102553,6 +104720,7 @@ impl_substring_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102589,6 +104757,7 @@ impl_substring_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102625,6 +104794,7 @@ impl_substring_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102661,6 +104831,7 @@ impl_substring_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102728,6 +104899,7 @@ afw_function_definition_substring = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -102790,6 +104962,7 @@ impl_subtract_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102826,6 +104999,7 @@ impl_subtract_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102862,6 +105036,7 @@ impl_subtract_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -102918,6 +105093,7 @@ afw_function_definition_subtract = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -102982,6 +105158,7 @@ impl_subtract_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103018,6 +105195,7 @@ impl_subtract_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103054,6 +105232,7 @@ impl_subtract_dayTimeDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103109,6 +105288,7 @@ afw_function_definition_subtract_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -103173,6 +105353,7 @@ impl_subtract_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103209,6 +105390,7 @@ impl_subtract_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103245,6 +105427,7 @@ impl_subtract_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103301,6 +105484,7 @@ afw_function_definition_subtract_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -103365,6 +105549,7 @@ impl_to_anyURI_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103401,6 +105586,7 @@ impl_to_anyURI_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103465,6 +105651,7 @@ afw_function_definition_to_anyURI = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -103527,6 +105714,7 @@ impl_to_boolean_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103563,6 +105751,7 @@ impl_to_boolean_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103627,6 +105816,7 @@ afw_function_definition_to_boolean = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -103689,6 +105879,7 @@ impl_to_date_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103725,6 +105916,7 @@ impl_to_date_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103789,6 +105981,7 @@ afw_function_definition_to_date = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -103851,6 +106044,7 @@ impl_to_dateTime_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103887,6 +106081,7 @@ impl_to_dateTime_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -103951,6 +106146,7 @@ afw_function_definition_to_dateTime = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104013,6 +106209,7 @@ impl_to_dayTimeDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104049,6 +106246,7 @@ impl_to_dayTimeDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104113,6 +106311,7 @@ afw_function_definition_to_dayTimeDuration = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104175,6 +106374,7 @@ impl_to_dnsName_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104211,6 +106411,7 @@ impl_to_dnsName_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104275,6 +106476,7 @@ afw_function_definition_to_dnsName = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104337,6 +106539,7 @@ impl_to_double_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104373,6 +106576,7 @@ impl_to_double_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104438,6 +106642,7 @@ afw_function_definition_to_double = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104500,6 +106705,7 @@ impl_to_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104536,6 +106742,7 @@ impl_to_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104591,6 +106798,7 @@ afw_function_definition_to_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -104655,6 +106863,7 @@ impl_to_ipAddress_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104691,6 +106900,7 @@ impl_to_ipAddress_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104755,6 +106965,7 @@ afw_function_definition_to_ipAddress = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104817,6 +107028,7 @@ impl_to_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104853,6 +107065,7 @@ impl_to_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -104917,6 +107130,7 @@ afw_function_definition_to_rfc822Name = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104979,6 +107193,7 @@ impl_to_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105015,6 +107230,7 @@ impl_to_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105095,6 +107311,7 @@ afw_function_definition_to_string = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -105157,6 +107374,7 @@ impl_to_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105193,6 +107411,7 @@ impl_to_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105257,6 +107476,7 @@ afw_function_definition_to_time = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -105319,6 +107539,7 @@ impl_to_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105355,6 +107576,7 @@ impl_to_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105419,6 +107641,7 @@ afw_function_definition_to_x500Name = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -105481,6 +107704,7 @@ impl_to_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105517,6 +107741,7 @@ impl_to_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105581,6 +107806,7 @@ afw_function_definition_to_yearMonthDuration = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -105643,6 +107869,7 @@ impl_union_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105679,6 +107906,7 @@ impl_union_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105748,6 +107976,7 @@ afw_function_definition_union = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -105810,6 +108039,7 @@ impl_url_encode_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105846,6 +108076,7 @@ impl_url_encode_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -105901,6 +108132,7 @@ afw_function_definition_url_encode = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -105965,6 +108197,7 @@ impl_random_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106001,6 +108234,7 @@ impl_random_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106045,6 +108279,7 @@ afw_function_definition_random_base64Binary = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -106113,6 +108348,7 @@ impl_random_digits_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106149,6 +108385,7 @@ impl_random_digits_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106193,6 +108430,7 @@ afw_function_definition_random_digits = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -106261,6 +108499,7 @@ impl_random_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106297,6 +108536,7 @@ impl_random_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106341,6 +108581,7 @@ afw_function_definition_random_hexBinary = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -106409,6 +108650,7 @@ impl_random_integer_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106445,6 +108687,7 @@ impl_random_integer_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106481,6 +108724,7 @@ impl_random_integer_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106526,6 +108770,7 @@ afw_function_definition_random_integer = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -106594,6 +108839,7 @@ impl_random_number_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106630,6 +108876,7 @@ impl_random_number_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106666,6 +108913,7 @@ impl_random_number_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106711,6 +108959,7 @@ afw_function_definition_random_number = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -106779,6 +109028,7 @@ impl_compile_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106815,6 +109065,7 @@ impl_compile_regexp_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106851,6 +109102,7 @@ impl_compile_regexp_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -106900,6 +109152,7 @@ afw_function_definition_compile_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -106964,6 +109217,7 @@ impl_eq_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107000,6 +109254,7 @@ impl_eq_regexp_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107036,6 +109291,7 @@ impl_eq_regexp_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107093,6 +109349,7 @@ afw_function_definition_eq_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -107157,6 +109414,7 @@ impl_eqx_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107193,6 +109451,7 @@ impl_eqx_regexp_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107229,6 +109488,7 @@ impl_eqx_regexp_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107278,6 +109538,7 @@ afw_function_definition_eqx_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -107342,6 +109603,7 @@ impl_ge_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107378,6 +109640,7 @@ impl_ge_regexp_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107414,6 +109677,7 @@ impl_ge_regexp_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107463,6 +109727,7 @@ afw_function_definition_ge_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -107527,6 +109792,7 @@ impl_gt_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107563,6 +109829,7 @@ impl_gt_regexp_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107599,6 +109866,7 @@ impl_gt_regexp_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107648,6 +109916,7 @@ afw_function_definition_gt_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -107712,6 +109981,7 @@ impl_le_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107748,6 +110018,7 @@ impl_le_regexp_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107784,6 +110055,7 @@ impl_le_regexp_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107833,6 +110105,7 @@ afw_function_definition_le_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -107897,6 +110170,7 @@ impl_lt_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107933,6 +110207,7 @@ impl_lt_regexp_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -107969,6 +110244,7 @@ impl_lt_regexp_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108018,6 +110294,7 @@ afw_function_definition_lt_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -108082,6 +110359,7 @@ impl_ne_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108118,6 +110396,7 @@ impl_ne_regexp_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108154,6 +110433,7 @@ impl_ne_regexp_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108211,6 +110491,7 @@ afw_function_definition_ne_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -108275,6 +110556,7 @@ impl_nex_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108311,6 +110593,7 @@ impl_nex_regexp_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108347,6 +110630,7 @@ impl_nex_regexp_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108396,6 +110680,7 @@ afw_function_definition_nex_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -108460,6 +110745,7 @@ impl_regexp_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108496,6 +110782,7 @@ impl_regexp_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108552,6 +110839,7 @@ afw_function_definition_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -108616,6 +110904,7 @@ impl_compile_relaxed_json_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108652,6 +110941,7 @@ impl_compile_relaxed_json_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108688,6 +110978,7 @@ impl_compile_relaxed_json_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108737,6 +111028,7 @@ afw_function_definition_compile_relaxed_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -108801,6 +111093,7 @@ impl_relaxed_json_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108837,6 +111130,7 @@ impl_relaxed_json_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108893,6 +111187,7 @@ afw_function_definition_relaxed_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -108957,6 +111252,7 @@ impl_at_least_one_member_of_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -108993,6 +111289,7 @@ impl_at_least_one_member_of_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -109029,6 +111326,7 @@ impl_at_least_one_member_of_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -109078,6 +111376,7 @@ afw_function_definition_at_least_one_member_of_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -109142,6 +111441,7 @@ impl_bag_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -109178,6 +111478,7 @@ impl_bag_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -109226,6 +111527,7 @@ afw_function_definition_bag_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -109290,6 +111592,7 @@ impl_bag_size_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109326,6 +111629,7 @@ impl_bag_size_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -109374,6 +111678,7 @@ afw_function_definition_bag_size_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -109438,6 +111743,7 @@ impl_eq_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109474,6 +111780,7 @@ impl_eq_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109510,6 +111817,7 @@ impl_eq_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109567,6 +111875,7 @@ afw_function_definition_eq_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -109631,6 +111940,7 @@ impl_eqx_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109667,6 +111977,7 @@ impl_eqx_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109703,6 +112014,7 @@ impl_eqx_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109752,6 +112064,7 @@ afw_function_definition_eqx_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -109816,6 +112129,7 @@ impl_ge_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109852,6 +112166,7 @@ impl_ge_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109888,6 +112203,7 @@ impl_ge_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -109937,6 +112253,7 @@ afw_function_definition_ge_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -110001,6 +112318,7 @@ impl_gt_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110037,6 +112355,7 @@ impl_gt_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110073,6 +112392,7 @@ impl_gt_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110122,6 +112442,7 @@ afw_function_definition_gt_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -110186,6 +112507,7 @@ impl_intersection_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -110222,6 +112544,7 @@ impl_intersection_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -110258,6 +112581,7 @@ impl_intersection_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -110307,6 +112631,7 @@ afw_function_definition_intersection_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -110371,6 +112696,7 @@ impl_is_in_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110407,6 +112733,7 @@ impl_is_in_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110443,6 +112770,7 @@ impl_is_in_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -110492,6 +112820,7 @@ afw_function_definition_is_in_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -110556,6 +112885,7 @@ impl_is_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110592,6 +112922,7 @@ impl_is_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110640,6 +112971,7 @@ afw_function_definition_is_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -110704,6 +113036,7 @@ impl_le_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110740,6 +113073,7 @@ impl_le_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110776,6 +113110,7 @@ impl_le_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110825,6 +113160,7 @@ afw_function_definition_le_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -110889,6 +113225,7 @@ impl_lt_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110925,6 +113262,7 @@ impl_lt_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -110961,6 +113299,7 @@ impl_lt_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111010,6 +113349,7 @@ afw_function_definition_lt_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -111074,6 +113414,7 @@ impl_match_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111110,6 +113451,7 @@ impl_match_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111146,6 +113488,7 @@ impl_match_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111195,6 +113538,7 @@ afw_function_definition_match_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -111259,6 +113603,7 @@ impl_ne_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111295,6 +113640,7 @@ impl_ne_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111331,6 +113677,7 @@ impl_ne_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111388,6 +113735,7 @@ afw_function_definition_ne_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -111452,6 +113800,7 @@ impl_nex_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111488,6 +113837,7 @@ impl_nex_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111524,6 +113874,7 @@ impl_nex_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111573,6 +113924,7 @@ afw_function_definition_nex_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -111637,6 +113989,7 @@ impl_one_and_only_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111673,6 +114026,7 @@ impl_one_and_only_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -111729,6 +114083,7 @@ afw_function_definition_one_and_only_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -111793,6 +114148,7 @@ impl_regexp_match_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111829,6 +114185,7 @@ impl_regexp_match_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111865,6 +114222,7 @@ impl_regexp_match_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -111914,6 +114272,7 @@ afw_function_definition_regexp_match_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -111978,6 +114337,7 @@ impl_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -112014,6 +114374,7 @@ impl_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -112070,6 +114431,7 @@ afw_function_definition_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -112134,6 +114496,7 @@ impl_set_equals_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -112170,6 +114533,7 @@ impl_set_equals_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -112206,6 +114570,7 @@ impl_set_equals_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -112255,6 +114620,7 @@ afw_function_definition_set_equals_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -112319,6 +114685,7 @@ impl_subset_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -112355,6 +114722,7 @@ impl_subset_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -112391,6 +114759,7 @@ impl_subset_rfc822Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -112440,6 +114809,7 @@ afw_function_definition_subset_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -112504,6 +114874,7 @@ impl_to_string_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -112540,6 +114911,7 @@ impl_to_string_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -112588,6 +114960,7 @@ afw_function_definition_to_string_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -112652,6 +115025,7 @@ impl_union_rfc822Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -112688,6 +115062,7 @@ impl_union_rfc822Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_rfc822Name_direct
 };
 
 static const afw_value_object_t
@@ -112736,6 +115111,7 @@ afw_function_definition_union_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -112800,6 +115176,7 @@ impl_bag_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_script_direct
 };
 
 static const afw_value_object_t
@@ -112836,6 +115213,7 @@ impl_bag_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_script_direct
 };
 
 static const afw_value_object_t
@@ -112884,6 +115262,7 @@ afw_function_definition_bag_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -112948,6 +115327,7 @@ impl_bag_size_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -112984,6 +115364,7 @@ impl_bag_size_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_script_direct
 };
 
 static const afw_value_object_t
@@ -113032,6 +115413,7 @@ afw_function_definition_bag_size_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -113096,6 +115478,7 @@ impl_compile_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113132,6 +115515,7 @@ impl_compile_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113168,6 +115552,7 @@ impl_compile_script_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113217,6 +115602,7 @@ afw_function_definition_compile_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -113281,6 +115667,7 @@ impl_eq_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113317,6 +115704,7 @@ impl_eq_script_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113353,6 +115741,7 @@ impl_eq_script_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113410,6 +115799,7 @@ afw_function_definition_eq_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -113474,6 +115864,7 @@ impl_eqx_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113510,6 +115901,7 @@ impl_eqx_script_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113546,6 +115938,7 @@ impl_eqx_script_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113595,6 +115988,7 @@ afw_function_definition_eqx_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -113659,6 +116053,7 @@ impl_eval_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113695,6 +116090,7 @@ impl_eval_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113731,6 +116127,7 @@ impl_eval_script_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113776,6 +116173,7 @@ afw_function_definition_eval_script = {
     NULL,
     NULL,
     afw_data_type_method_number_eval,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -113844,6 +116242,7 @@ impl_ge_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113880,6 +116279,7 @@ impl_ge_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113916,6 +116316,7 @@ impl_ge_script_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -113965,6 +116366,7 @@ afw_function_definition_ge_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -114029,6 +116431,7 @@ impl_gt_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114065,6 +116468,7 @@ impl_gt_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114101,6 +116505,7 @@ impl_gt_script_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114150,6 +116555,7 @@ afw_function_definition_gt_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -114214,6 +116620,7 @@ impl_is_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114250,6 +116657,7 @@ impl_is_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114298,6 +116706,7 @@ afw_function_definition_is_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -114362,6 +116771,7 @@ impl_le_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114398,6 +116808,7 @@ impl_le_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114434,6 +116845,7 @@ impl_le_script_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114483,6 +116895,7 @@ afw_function_definition_le_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -114547,6 +116960,7 @@ impl_lt_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114583,6 +116997,7 @@ impl_lt_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114619,6 +117034,7 @@ impl_lt_script_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114668,6 +117084,7 @@ afw_function_definition_lt_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -114732,6 +117149,7 @@ impl_ne_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114768,6 +117186,7 @@ impl_ne_script_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114804,6 +117223,7 @@ impl_ne_script_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114861,6 +117281,7 @@ afw_function_definition_ne_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -114925,6 +117346,7 @@ impl_nex_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114961,6 +117383,7 @@ impl_nex_script_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -114997,6 +117420,7 @@ impl_nex_script_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115046,6 +117470,7 @@ afw_function_definition_nex_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -115110,6 +117535,7 @@ impl_script_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115146,6 +117572,7 @@ impl_script_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115202,6 +117629,7 @@ afw_function_definition_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -115266,6 +117694,7 @@ impl_close_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115302,6 +117731,7 @@ impl_close_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115352,6 +117782,7 @@ afw_function_definition_close = {
     NULL,
     &impl_close_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -115420,6 +117851,7 @@ impl_flush_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115456,6 +117888,7 @@ impl_flush_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115506,6 +117939,7 @@ afw_function_definition_flush = {
     NULL,
     &impl_flush_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -115574,6 +118008,7 @@ impl_open_file_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115610,6 +118045,7 @@ impl_open_file_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115646,6 +118082,7 @@ impl_open_file_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115682,6 +118119,7 @@ impl_open_file_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115718,6 +118156,7 @@ impl_open_file_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115777,6 +118216,7 @@ afw_function_definition_open_file = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -115839,6 +118279,7 @@ impl_print_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115875,6 +118316,7 @@ impl_print_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -115925,6 +118367,7 @@ afw_function_definition_print = {
     NULL,
     &impl_print_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -115993,6 +118436,7 @@ impl_println_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116029,6 +118473,7 @@ impl_println_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116079,6 +118524,7 @@ afw_function_definition_println = {
     NULL,
     &impl_println_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -116147,6 +118593,7 @@ impl_read_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116183,6 +118630,7 @@ impl_read_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116219,6 +118667,7 @@ impl_read_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116270,6 +118719,7 @@ afw_function_definition_read = {
     NULL,
     &impl_read_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -116338,6 +118788,7 @@ impl_read_to_base64Binary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116374,6 +118825,7 @@ impl_read_to_base64Binary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116410,6 +118862,7 @@ impl_read_to_base64Binary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116461,6 +118914,7 @@ afw_function_definition_read_to_base64Binary = {
     NULL,
     &impl_read_to_base64Binary_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -116529,6 +118983,7 @@ impl_read_to_hexBinary_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116565,6 +119020,7 @@ impl_read_to_hexBinary_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116601,6 +119057,7 @@ impl_read_to_hexBinary_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116652,6 +119109,7 @@ afw_function_definition_read_to_hexBinary = {
     NULL,
     &impl_read_to_hexBinary_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -116720,6 +119178,7 @@ impl_readln_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116756,6 +119215,7 @@ impl_readln_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116806,6 +119266,7 @@ afw_function_definition_readln = {
     NULL,
     &impl_readln_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -116874,6 +119335,7 @@ impl_stream_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116910,6 +119372,7 @@ impl_stream_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -116954,6 +119417,7 @@ afw_function_definition_stream = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -117022,6 +119486,7 @@ impl_write_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117058,6 +119523,7 @@ impl_write_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117094,6 +119560,7 @@ impl_write_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117145,6 +119612,7 @@ afw_function_definition_write = {
     NULL,
     &impl_write_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -117213,6 +119681,7 @@ impl_write_internal_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117249,6 +119718,7 @@ impl_write_internal_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117285,6 +119755,7 @@ impl_write_internal_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117336,6 +119807,7 @@ afw_function_definition_write_internal = {
     NULL,
     &impl_write_internal_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -117404,6 +119876,7 @@ impl_writeln_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117440,6 +119913,7 @@ impl_writeln_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117476,6 +119950,7 @@ impl_writeln_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117527,6 +120002,7 @@ afw_function_definition_writeln = {
     NULL,
     &impl_writeln_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -117595,6 +120071,7 @@ impl_add_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117631,6 +120108,7 @@ impl_add_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117667,6 +120145,7 @@ impl_add_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117716,6 +120195,7 @@ afw_function_definition_add_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -117780,6 +120260,7 @@ impl_at_least_one_member_of_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -117816,6 +120297,7 @@ impl_at_least_one_member_of_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -117852,6 +120334,7 @@ impl_at_least_one_member_of_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -117901,6 +120384,7 @@ afw_function_definition_at_least_one_member_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -117965,6 +120449,7 @@ impl_bag_size_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118001,6 +120486,7 @@ impl_bag_size_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -118049,6 +120535,7 @@ afw_function_definition_bag_size_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -118113,6 +120600,7 @@ impl_bag_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -118149,6 +120637,7 @@ impl_bag_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -118197,6 +120686,7 @@ afw_function_definition_bag_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -118261,6 +120751,7 @@ impl_concat_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118297,6 +120788,7 @@ impl_concat_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118353,6 +120845,7 @@ afw_function_definition_concat = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -118417,6 +120910,7 @@ impl_encode_as_base64Binary_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118453,6 +120947,7 @@ impl_encode_as_base64Binary_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118501,6 +120996,7 @@ afw_function_definition_encode_as_base64Binary_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -118565,6 +121061,7 @@ impl_encode_as_hexBinary_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118601,6 +121098,7 @@ impl_encode_as_hexBinary_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118649,6 +121147,7 @@ afw_function_definition_encode_as_hexBinary_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -118713,6 +121212,7 @@ impl_ends_with_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118749,6 +121249,7 @@ impl_ends_with_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118785,6 +121286,7 @@ impl_ends_with_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118834,6 +121336,7 @@ afw_function_definition_ends_with_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -118898,6 +121401,7 @@ impl_eq_ignore_case_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118934,6 +121438,7 @@ impl_eq_ignore_case_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -118970,6 +121475,7 @@ impl_eq_ignore_case_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119019,6 +121525,7 @@ afw_function_definition_eq_ignore_case_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -119083,6 +121590,7 @@ impl_eq_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119119,6 +121627,7 @@ impl_eq_string_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119155,6 +121664,7 @@ impl_eq_string_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119212,6 +121722,7 @@ afw_function_definition_eq_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -119276,6 +121787,7 @@ impl_eqx_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119312,6 +121824,7 @@ impl_eqx_string_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119348,6 +121861,7 @@ impl_eqx_string_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119397,6 +121911,7 @@ afw_function_definition_eqx_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -119461,6 +121976,7 @@ impl_eval_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119497,6 +122013,7 @@ impl_eval_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119533,6 +122050,7 @@ impl_eval_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119578,6 +122096,7 @@ afw_function_definition_eval_string = {
     NULL,
     NULL,
     afw_data_type_method_number_eval,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -119646,6 +122165,7 @@ impl_ge_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119682,6 +122202,7 @@ impl_ge_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119718,6 +122239,7 @@ impl_ge_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119767,6 +122289,7 @@ afw_function_definition_ge_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -119831,6 +122354,7 @@ impl_gt_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119867,6 +122391,7 @@ impl_gt_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119903,6 +122428,7 @@ impl_gt_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -119952,6 +122478,7 @@ afw_function_definition_gt_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -120016,6 +122543,7 @@ impl_includes_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120052,6 +122580,7 @@ impl_includes_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120088,6 +122617,7 @@ impl_includes_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120124,6 +122654,7 @@ impl_includes_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120174,6 +122705,7 @@ afw_function_definition_includes_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -120238,6 +122770,7 @@ impl_index_of_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120274,6 +122807,7 @@ impl_index_of_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120310,6 +122844,7 @@ impl_index_of_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120346,6 +122881,7 @@ impl_index_of_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120396,6 +122932,7 @@ afw_function_definition_index_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -120460,6 +122997,7 @@ impl_intersection_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -120496,6 +123034,7 @@ impl_intersection_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -120532,6 +123071,7 @@ impl_intersection_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -120581,6 +123121,7 @@ afw_function_definition_intersection_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -120645,6 +123186,7 @@ impl_is_in_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120681,6 +123223,7 @@ impl_is_in_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120717,6 +123260,7 @@ impl_is_in_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -120766,6 +123310,7 @@ afw_function_definition_is_in_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -120830,6 +123375,7 @@ impl_is_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120866,6 +123412,7 @@ impl_is_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -120914,6 +123461,7 @@ afw_function_definition_is_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -120978,6 +123526,7 @@ impl_last_index_of_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121014,6 +123563,7 @@ impl_last_index_of_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121050,6 +123600,7 @@ impl_last_index_of_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121086,6 +123637,7 @@ impl_last_index_of_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121136,6 +123688,7 @@ afw_function_definition_last_index_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -121200,6 +123753,7 @@ impl_le_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121236,6 +123790,7 @@ impl_le_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121272,6 +123827,7 @@ impl_le_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121321,6 +123877,7 @@ afw_function_definition_le_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -121385,6 +123942,7 @@ impl_length_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121421,6 +123979,7 @@ impl_length_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121469,6 +124028,7 @@ afw_function_definition_length_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -121533,6 +124093,7 @@ impl_lt_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121569,6 +124130,7 @@ impl_lt_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121605,6 +124167,7 @@ impl_lt_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121654,6 +124217,7 @@ afw_function_definition_lt_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -121718,6 +124282,7 @@ impl_max_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121754,6 +124319,7 @@ impl_max_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121802,6 +124368,7 @@ afw_function_definition_max_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -121866,6 +124433,7 @@ impl_min_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121902,6 +124470,7 @@ impl_min_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -121950,6 +124519,7 @@ afw_function_definition_min_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -122014,6 +124584,7 @@ impl_ne_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122050,6 +124621,7 @@ impl_ne_string_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122086,6 +124658,7 @@ impl_ne_string_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122143,6 +124716,7 @@ afw_function_definition_ne_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -122207,6 +124781,7 @@ impl_nex_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122243,6 +124818,7 @@ impl_nex_string_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122279,6 +124855,7 @@ impl_nex_string_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122328,6 +124905,7 @@ afw_function_definition_nex_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -122392,6 +124970,7 @@ impl_normalize_space_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122428,6 +125007,7 @@ impl_normalize_space_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122476,6 +125056,7 @@ afw_function_definition_normalize_space_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -122540,6 +125121,7 @@ impl_normalize_to_lower_case_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122576,6 +125158,7 @@ impl_normalize_to_lower_case_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122624,6 +125207,7 @@ afw_function_definition_normalize_to_lower_case_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -122688,6 +125272,7 @@ impl_one_and_only_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122724,6 +125309,7 @@ impl_one_and_only_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -122780,6 +125366,7 @@ afw_function_definition_one_and_only_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -122844,6 +125431,7 @@ impl_regexp_index_of_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122880,6 +125468,7 @@ impl_regexp_index_of_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122916,6 +125505,7 @@ impl_regexp_index_of_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -122965,6 +125555,7 @@ afw_function_definition_regexp_index_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -123029,6 +125620,7 @@ impl_regexp_match_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123065,6 +125657,7 @@ impl_regexp_match_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123101,6 +125694,7 @@ impl_regexp_match_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123150,6 +125744,7 @@ afw_function_definition_regexp_match_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -123214,6 +125809,7 @@ impl_regexp_replace_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123250,6 +125846,7 @@ impl_regexp_replace_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123286,6 +125883,7 @@ impl_regexp_replace_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123322,6 +125920,7 @@ impl_regexp_replace_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123358,6 +125957,7 @@ impl_regexp_replace_string_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123409,6 +126009,7 @@ afw_function_definition_regexp_replace_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -123473,6 +126074,7 @@ impl_repeat_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123509,6 +126111,7 @@ impl_repeat_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123545,6 +126148,7 @@ impl_repeat_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123594,6 +126198,7 @@ afw_function_definition_repeat_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -123658,6 +126263,7 @@ impl_replace_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123694,6 +126300,7 @@ impl_replace_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123730,6 +126337,7 @@ impl_replace_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123766,6 +126374,7 @@ impl_replace_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123802,6 +126411,7 @@ impl_replace_string_parameter_4 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123853,6 +126463,7 @@ afw_function_definition_replace_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -123917,6 +126528,7 @@ impl_set_equals_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -123953,6 +126565,7 @@ impl_set_equals_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -123989,6 +126602,7 @@ impl_set_equals_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -124038,6 +126652,7 @@ afw_function_definition_set_equals_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -124102,6 +126717,7 @@ impl_split_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124138,6 +126754,7 @@ impl_split_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124174,6 +126791,7 @@ impl_split_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124210,6 +126828,7 @@ impl_split_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124260,6 +126879,7 @@ afw_function_definition_split_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -124324,6 +126944,7 @@ impl_starts_with_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124360,6 +126981,7 @@ impl_starts_with_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124396,6 +127018,7 @@ impl_starts_with_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124445,6 +127068,7 @@ afw_function_definition_starts_with_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -124509,6 +127133,7 @@ impl_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124545,6 +127170,7 @@ impl_string_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124601,6 +127227,7 @@ afw_function_definition_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -124665,6 +127292,7 @@ impl_subset_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124701,6 +127329,7 @@ impl_subset_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -124737,6 +127366,7 @@ impl_subset_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -124786,6 +127416,7 @@ afw_function_definition_subset_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -124850,6 +127481,7 @@ impl_substring_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124886,6 +127518,7 @@ impl_substring_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124922,6 +127555,7 @@ impl_substring_string_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -124958,6 +127592,7 @@ impl_substring_string_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125016,6 +127651,7 @@ afw_function_definition_substring_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -125080,6 +127716,7 @@ impl_to_anyURI_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125116,6 +127753,7 @@ impl_to_anyURI_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125172,6 +127810,7 @@ afw_function_definition_to_anyURI_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -125236,6 +127875,7 @@ impl_to_boolean_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125272,6 +127912,7 @@ impl_to_boolean_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125328,6 +127969,7 @@ afw_function_definition_to_boolean_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -125392,6 +128034,7 @@ impl_to_dateTime_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125428,6 +128071,7 @@ impl_to_dateTime_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125484,6 +128128,7 @@ afw_function_definition_to_dateTime_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -125548,6 +128193,7 @@ impl_to_date_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125584,6 +128230,7 @@ impl_to_date_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125640,6 +128287,7 @@ afw_function_definition_to_date_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -125704,6 +128352,7 @@ impl_to_dayTimeDuration_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125740,6 +128389,7 @@ impl_to_dayTimeDuration_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125796,6 +128446,7 @@ afw_function_definition_to_dayTimeDuration_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -125860,6 +128511,7 @@ impl_to_dnsName_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125896,6 +128548,7 @@ impl_to_dnsName_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -125952,6 +128605,7 @@ afw_function_definition_to_dnsName_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -126016,6 +128670,7 @@ impl_to_double_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126052,6 +128707,7 @@ impl_to_double_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126108,6 +128764,7 @@ afw_function_definition_to_double_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -126172,6 +128829,7 @@ impl_to_integer_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126208,6 +128866,7 @@ impl_to_integer_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126256,6 +128915,7 @@ afw_function_definition_to_integer_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -126320,6 +128980,7 @@ impl_to_ipAddress_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126356,6 +129017,7 @@ impl_to_ipAddress_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126412,6 +129074,7 @@ afw_function_definition_to_ipAddress_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -126476,6 +129139,7 @@ impl_to_rfc822Name_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126512,6 +129176,7 @@ impl_to_rfc822Name_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126568,6 +129233,7 @@ afw_function_definition_to_rfc822Name_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -126632,6 +129298,7 @@ impl_to_string_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126668,6 +129335,7 @@ impl_to_string_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126716,6 +129384,7 @@ afw_function_definition_to_string_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -126780,6 +129449,7 @@ impl_to_time_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126816,6 +129486,7 @@ impl_to_time_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126872,6 +129543,7 @@ afw_function_definition_to_time_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -126936,6 +129608,7 @@ impl_to_x500Name_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -126972,6 +129645,7 @@ impl_to_x500Name_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127028,6 +129702,7 @@ afw_function_definition_to_x500Name_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -127092,6 +129767,7 @@ impl_to_yearMonthDuration_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127128,6 +129804,7 @@ impl_to_yearMonthDuration_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127184,6 +129861,7 @@ afw_function_definition_to_yearMonthDuration_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -127248,6 +129926,7 @@ impl_union_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -127284,6 +129963,7 @@ impl_union_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_string_direct
 };
 
 static const afw_value_object_t
@@ -127332,6 +130012,7 @@ afw_function_definition_union_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -127396,6 +130077,7 @@ impl_url_decode_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127432,6 +130114,7 @@ impl_url_decode_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127480,6 +130163,7 @@ afw_function_definition_url_decode = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -127544,6 +130228,7 @@ impl_url_encode_string_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127580,6 +130265,7 @@ impl_url_encode_string_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127628,6 +130314,7 @@ afw_function_definition_url_encode_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -127692,6 +130379,7 @@ impl_bag_size_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -127728,6 +130416,7 @@ impl_bag_size_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_template_direct
 };
 
 static const afw_value_object_t
@@ -127776,6 +130465,7 @@ afw_function_definition_bag_size_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -127840,6 +130530,7 @@ impl_bag_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_template_direct
 };
 
 static const afw_value_object_t
@@ -127876,6 +130567,7 @@ impl_bag_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_template_direct
 };
 
 static const afw_value_object_t
@@ -127924,6 +130616,7 @@ afw_function_definition_bag_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -127988,6 +130681,7 @@ impl_compile_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128024,6 +130718,7 @@ impl_compile_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128060,6 +130755,7 @@ impl_compile_template_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128109,6 +130805,7 @@ afw_function_definition_compile_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -128173,6 +130870,7 @@ impl_eq_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128209,6 +130907,7 @@ impl_eq_template_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128245,6 +130944,7 @@ impl_eq_template_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128302,6 +131002,7 @@ afw_function_definition_eq_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -128366,6 +131067,7 @@ impl_eqx_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128402,6 +131104,7 @@ impl_eqx_template_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128438,6 +131141,7 @@ impl_eqx_template_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128487,6 +131191,7 @@ afw_function_definition_eqx_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -128551,6 +131256,7 @@ impl_eval_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128587,6 +131293,7 @@ impl_eval_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128623,6 +131330,7 @@ impl_eval_template_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128668,6 +131376,7 @@ afw_function_definition_eval_template = {
     NULL,
     NULL,
     afw_data_type_method_number_eval,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -128736,6 +131445,7 @@ impl_ge_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128772,6 +131482,7 @@ impl_ge_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128808,6 +131519,7 @@ impl_ge_template_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128857,6 +131569,7 @@ afw_function_definition_ge_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -128921,6 +131634,7 @@ impl_gt_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128957,6 +131671,7 @@ impl_gt_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -128993,6 +131708,7 @@ impl_gt_template_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129042,6 +131758,7 @@ afw_function_definition_gt_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -129106,6 +131823,7 @@ impl_is_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129142,6 +131860,7 @@ impl_is_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129190,6 +131909,7 @@ afw_function_definition_is_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -129254,6 +131974,7 @@ impl_le_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129290,6 +132011,7 @@ impl_le_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129326,6 +132048,7 @@ impl_le_template_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129375,6 +132098,7 @@ afw_function_definition_le_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -129439,6 +132163,7 @@ impl_lt_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129475,6 +132200,7 @@ impl_lt_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129511,6 +132237,7 @@ impl_lt_template_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129560,6 +132287,7 @@ afw_function_definition_lt_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -129624,6 +132352,7 @@ impl_ne_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129660,6 +132389,7 @@ impl_ne_template_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129696,6 +132426,7 @@ impl_ne_template_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129753,6 +132484,7 @@ afw_function_definition_ne_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -129817,6 +132549,7 @@ impl_nex_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129853,6 +132586,7 @@ impl_nex_template_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129889,6 +132623,7 @@ impl_nex_template_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -129938,6 +132673,7 @@ afw_function_definition_nex_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -130002,6 +132738,7 @@ impl_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130038,6 +132775,7 @@ impl_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130094,6 +132832,7 @@ afw_function_definition_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -130158,6 +132897,7 @@ impl_to_string_template_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130194,6 +132934,7 @@ impl_to_string_template_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130242,6 +132983,7 @@ afw_function_definition_to_string_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -130306,6 +133048,7 @@ impl_at_least_one_member_of_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130342,6 +133085,7 @@ impl_at_least_one_member_of_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -130378,6 +133122,7 @@ impl_at_least_one_member_of_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -130427,6 +133172,7 @@ afw_function_definition_at_least_one_member_of_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -130491,6 +133237,7 @@ impl_bag_size_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130527,6 +133274,7 @@ impl_bag_size_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -130575,6 +133323,7 @@ afw_function_definition_bag_size_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -130639,6 +133388,7 @@ impl_bag_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -130675,6 +133425,7 @@ impl_bag_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -130723,6 +133474,7 @@ afw_function_definition_bag_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -130787,6 +133539,7 @@ impl_eq_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130823,6 +133576,7 @@ impl_eq_time_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130859,6 +133613,7 @@ impl_eq_time_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -130916,6 +133671,7 @@ afw_function_definition_eq_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -130980,6 +133736,7 @@ impl_eqx_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131016,6 +133773,7 @@ impl_eqx_time_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131052,6 +133810,7 @@ impl_eqx_time_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131101,6 +133860,7 @@ afw_function_definition_eqx_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -131165,6 +133925,7 @@ impl_ge_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131201,6 +133962,7 @@ impl_ge_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131237,6 +133999,7 @@ impl_ge_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131286,6 +134049,7 @@ afw_function_definition_ge_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -131350,6 +134114,7 @@ impl_gt_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131386,6 +134151,7 @@ impl_gt_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131422,6 +134188,7 @@ impl_gt_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131471,6 +134238,7 @@ afw_function_definition_gt_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -131535,6 +134303,7 @@ impl_in_range_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131571,6 +134340,7 @@ impl_in_range_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131607,6 +134377,7 @@ impl_in_range_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131643,6 +134414,7 @@ impl_in_range_time_parameter_3 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131693,6 +134465,7 @@ afw_function_definition_in_range_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -131757,6 +134530,7 @@ impl_intersection_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -131793,6 +134567,7 @@ impl_intersection_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -131829,6 +134604,7 @@ impl_intersection_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -131878,6 +134654,7 @@ afw_function_definition_intersection_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -131942,6 +134719,7 @@ impl_is_in_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -131978,6 +134756,7 @@ impl_is_in_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132014,6 +134793,7 @@ impl_is_in_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -132063,6 +134843,7 @@ afw_function_definition_is_in_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -132127,6 +134908,7 @@ impl_is_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132163,6 +134945,7 @@ impl_is_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132211,6 +134994,7 @@ afw_function_definition_is_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -132275,6 +135059,7 @@ impl_le_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132311,6 +135096,7 @@ impl_le_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132347,6 +135133,7 @@ impl_le_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132396,6 +135183,7 @@ afw_function_definition_le_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -132460,6 +135248,7 @@ impl_lt_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132496,6 +135285,7 @@ impl_lt_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132532,6 +135322,7 @@ impl_lt_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132581,6 +135372,7 @@ afw_function_definition_lt_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -132645,6 +135437,7 @@ impl_max_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132681,6 +135474,7 @@ impl_max_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132729,6 +135523,7 @@ afw_function_definition_max_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -132793,6 +135588,7 @@ impl_min_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132829,6 +135625,7 @@ impl_min_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132877,6 +135674,7 @@ afw_function_definition_min_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -132941,6 +135739,7 @@ impl_ne_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -132977,6 +135776,7 @@ impl_ne_time_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133013,6 +135813,7 @@ impl_ne_time_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133070,6 +135871,7 @@ afw_function_definition_ne_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -133134,6 +135936,7 @@ impl_nex_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133170,6 +135973,7 @@ impl_nex_time_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133206,6 +136010,7 @@ impl_nex_time_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133255,6 +136060,7 @@ afw_function_definition_nex_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -133319,6 +136125,7 @@ impl_one_and_only_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133355,6 +136162,7 @@ impl_one_and_only_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -133411,6 +136219,7 @@ afw_function_definition_one_and_only_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -133475,6 +136284,7 @@ impl_set_equals_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133511,6 +136321,7 @@ impl_set_equals_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -133547,6 +136358,7 @@ impl_set_equals_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -133596,6 +136408,7 @@ afw_function_definition_set_equals_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -133660,6 +136473,7 @@ impl_subset_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133696,6 +136510,7 @@ impl_subset_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -133732,6 +136547,7 @@ impl_subset_time_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -133781,6 +136597,7 @@ afw_function_definition_subset_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -133845,6 +136662,7 @@ impl_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133881,6 +136699,7 @@ impl_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -133937,6 +136756,7 @@ afw_function_definition_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -134001,6 +136821,7 @@ impl_to_string_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134037,6 +136858,7 @@ impl_to_string_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134085,6 +136907,7 @@ afw_function_definition_to_string_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -134149,6 +136972,7 @@ impl_union_time_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -134185,6 +137009,7 @@ impl_union_time_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_time_direct
 };
 
 static const afw_value_object_t
@@ -134233,6 +137058,7 @@ afw_function_definition_union_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -134297,6 +137123,7 @@ impl_is_unevaluated_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134333,6 +137160,7 @@ impl_is_unevaluated_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134381,6 +137209,7 @@ afw_function_definition_is_unevaluated = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -134445,6 +137274,7 @@ impl_meta_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134481,6 +137311,7 @@ impl_meta_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134529,6 +137360,7 @@ afw_function_definition_meta = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -134593,6 +137425,7 @@ impl_metas_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134629,6 +137462,7 @@ impl_metas_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134677,6 +137511,7 @@ afw_function_definition_metas = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -134741,6 +137576,7 @@ impl_at_least_one_member_of_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134777,6 +137613,7 @@ impl_at_least_one_member_of_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -134813,6 +137650,7 @@ impl_at_least_one_member_of_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -134862,6 +137700,7 @@ afw_function_definition_at_least_one_member_of_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -134926,6 +137765,7 @@ impl_bag_size_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -134962,6 +137802,7 @@ impl_bag_size_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -135010,6 +137851,7 @@ afw_function_definition_bag_size_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -135074,6 +137916,7 @@ impl_bag_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -135110,6 +137953,7 @@ impl_bag_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -135158,6 +138002,7 @@ afw_function_definition_bag_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -135222,6 +138067,7 @@ impl_eq_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135258,6 +138104,7 @@ impl_eq_x500Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135294,6 +138141,7 @@ impl_eq_x500Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135351,6 +138199,7 @@ afw_function_definition_eq_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -135415,6 +138264,7 @@ impl_eqx_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135451,6 +138301,7 @@ impl_eqx_x500Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135487,6 +138338,7 @@ impl_eqx_x500Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135536,6 +138388,7 @@ afw_function_definition_eqx_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -135600,6 +138453,7 @@ impl_ge_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135636,6 +138490,7 @@ impl_ge_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135672,6 +138527,7 @@ impl_ge_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135721,6 +138577,7 @@ afw_function_definition_ge_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -135785,6 +138642,7 @@ impl_gt_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135821,6 +138679,7 @@ impl_gt_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135857,6 +138716,7 @@ impl_gt_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -135906,6 +138766,7 @@ afw_function_definition_gt_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -135970,6 +138831,7 @@ impl_intersection_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -136006,6 +138868,7 @@ impl_intersection_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -136042,6 +138905,7 @@ impl_intersection_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -136091,6 +138955,7 @@ afw_function_definition_intersection_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -136155,6 +139020,7 @@ impl_is_in_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136191,6 +139057,7 @@ impl_is_in_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136227,6 +139094,7 @@ impl_is_in_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -136276,6 +139144,7 @@ afw_function_definition_is_in_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -136340,6 +139209,7 @@ impl_is_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136376,6 +139246,7 @@ impl_is_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136424,6 +139295,7 @@ afw_function_definition_is_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -136488,6 +139360,7 @@ impl_le_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136524,6 +139397,7 @@ impl_le_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136560,6 +139434,7 @@ impl_le_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136609,6 +139484,7 @@ afw_function_definition_le_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -136673,6 +139549,7 @@ impl_lt_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136709,6 +139586,7 @@ impl_lt_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136745,6 +139623,7 @@ impl_lt_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136794,6 +139673,7 @@ afw_function_definition_lt_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -136858,6 +139738,7 @@ impl_match_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136894,6 +139775,7 @@ impl_match_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136930,6 +139812,7 @@ impl_match_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -136979,6 +139862,7 @@ afw_function_definition_match_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -137043,6 +139927,7 @@ impl_ne_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137079,6 +139964,7 @@ impl_ne_x500Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137115,6 +140001,7 @@ impl_ne_x500Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137172,6 +140059,7 @@ afw_function_definition_ne_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -137236,6 +140124,7 @@ impl_nex_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137272,6 +140161,7 @@ impl_nex_x500Name_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137308,6 +140198,7 @@ impl_nex_x500Name_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137357,6 +140248,7 @@ afw_function_definition_nex_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -137421,6 +140313,7 @@ impl_one_and_only_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137457,6 +140350,7 @@ impl_one_and_only_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -137513,6 +140407,7 @@ afw_function_definition_one_and_only_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -137577,6 +140472,7 @@ impl_regexp_match_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137613,6 +140509,7 @@ impl_regexp_match_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137649,6 +140546,7 @@ impl_regexp_match_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137698,6 +140596,7 @@ afw_function_definition_regexp_match_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -137762,6 +140661,7 @@ impl_set_equals_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137798,6 +140698,7 @@ impl_set_equals_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -137834,6 +140735,7 @@ impl_set_equals_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -137883,6 +140785,7 @@ afw_function_definition_set_equals_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -137947,6 +140850,7 @@ impl_subset_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -137983,6 +140887,7 @@ impl_subset_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -138019,6 +140924,7 @@ impl_subset_x500Name_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -138068,6 +140974,7 @@ afw_function_definition_subset_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -138132,6 +141039,7 @@ impl_to_string_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -138168,6 +141076,7 @@ impl_to_string_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -138216,6 +141125,7 @@ afw_function_definition_to_string_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -138280,6 +141190,7 @@ impl_union_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -138316,6 +141227,7 @@ impl_union_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_x500Name_direct
 };
 
 static const afw_value_object_t
@@ -138364,6 +141276,7 @@ afw_function_definition_union_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -138428,6 +141341,7 @@ impl_x500Name_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -138464,6 +141378,7 @@ impl_x500Name_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -138520,6 +141435,7 @@ afw_function_definition_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -138584,6 +141500,7 @@ impl_bag_size_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -138620,6 +141537,7 @@ impl_bag_size_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_xpathExpression_direct
 };
 
 static const afw_value_object_t
@@ -138668,6 +141586,7 @@ afw_function_definition_bag_size_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -138732,6 +141651,7 @@ impl_bag_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_xpathExpression_direct
 };
 
 static const afw_value_object_t
@@ -138768,6 +141688,7 @@ impl_bag_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_xpathExpression_direct
 };
 
 static const afw_value_object_t
@@ -138816,6 +141737,7 @@ afw_function_definition_bag_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -138880,6 +141802,7 @@ impl_compile_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -138916,6 +141839,7 @@ impl_compile_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -138952,6 +141876,7 @@ impl_compile_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139001,6 +141926,7 @@ afw_function_definition_compile_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -139065,6 +141991,7 @@ impl_eq_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139101,6 +142028,7 @@ impl_eq_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139137,6 +142065,7 @@ impl_eq_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139194,6 +142123,7 @@ afw_function_definition_eq_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -139258,6 +142188,7 @@ impl_eqx_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139294,6 +142225,7 @@ impl_eqx_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139330,6 +142262,7 @@ impl_eqx_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139379,6 +142312,7 @@ afw_function_definition_eqx_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -139443,6 +142377,7 @@ impl_eval_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139479,6 +142414,7 @@ impl_eval_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139515,6 +142451,7 @@ impl_eval_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139560,6 +142497,7 @@ afw_function_definition_eval_xpathExpression = {
     NULL,
     NULL,
     afw_data_type_method_number_eval,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -139628,6 +142566,7 @@ impl_ge_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139664,6 +142603,7 @@ impl_ge_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139700,6 +142640,7 @@ impl_ge_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139749,6 +142690,7 @@ afw_function_definition_ge_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -139813,6 +142755,7 @@ impl_gt_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139849,6 +142792,7 @@ impl_gt_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139885,6 +142829,7 @@ impl_gt_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -139934,6 +142879,7 @@ afw_function_definition_gt_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -139998,6 +142944,7 @@ impl_is_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140034,6 +142981,7 @@ impl_is_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140082,6 +143030,7 @@ afw_function_definition_is_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -140146,6 +143095,7 @@ impl_le_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140182,6 +143132,7 @@ impl_le_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140218,6 +143169,7 @@ impl_le_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140267,6 +143219,7 @@ afw_function_definition_le_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -140331,6 +143284,7 @@ impl_lt_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140367,6 +143321,7 @@ impl_lt_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140403,6 +143358,7 @@ impl_lt_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140452,6 +143408,7 @@ afw_function_definition_lt_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -140516,6 +143473,7 @@ impl_ne_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140552,6 +143510,7 @@ impl_ne_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140588,6 +143547,7 @@ impl_ne_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140645,6 +143605,7 @@ afw_function_definition_ne_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -140709,6 +143670,7 @@ impl_nex_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140745,6 +143707,7 @@ impl_nex_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140781,6 +143744,7 @@ impl_nex_xpathExpression_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140830,6 +143794,7 @@ afw_function_definition_nex_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -140894,6 +143859,7 @@ impl_to_string_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140930,6 +143896,7 @@ impl_to_string_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -140978,6 +143945,7 @@ afw_function_definition_to_string_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -141042,6 +144010,7 @@ impl_xpathExpression_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141078,6 +144047,7 @@ impl_xpathExpression_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141134,6 +144104,7 @@ afw_function_definition_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -141198,6 +144169,7 @@ impl_xpath_node_count_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141234,6 +144206,7 @@ impl_xpath_node_count_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141282,6 +144255,7 @@ afw_function_definition_xpath_node_count = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -141346,6 +144320,7 @@ impl_xpath_node_eq_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141382,6 +144357,7 @@ impl_xpath_node_eq_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141418,6 +144394,7 @@ impl_xpath_node_eq_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141467,6 +144444,7 @@ afw_function_definition_xpath_node_eq = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -141531,6 +144509,7 @@ impl_xpath_node_match_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141567,6 +144546,7 @@ impl_xpath_node_match_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141603,6 +144583,7 @@ impl_xpath_node_match_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141652,6 +144633,7 @@ afw_function_definition_xpath_node_match = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -141716,6 +144698,7 @@ impl_at_least_one_member_of_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141752,6 +144735,7 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -141788,6 +144772,7 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -141837,6 +144822,7 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -141901,6 +144887,7 @@ impl_bag_size_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -141937,6 +144924,7 @@ impl_bag_size_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -141985,6 +144973,7 @@ afw_function_definition_bag_size_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -142049,6 +145038,7 @@ impl_bag_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -142085,6 +145075,7 @@ impl_bag_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -142133,6 +145124,7 @@ afw_function_definition_bag_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -142197,6 +145189,7 @@ impl_eq_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142233,6 +145226,7 @@ impl_eq_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142269,6 +145263,7 @@ impl_eq_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142326,6 +145321,7 @@ afw_function_definition_eq_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -142390,6 +145386,7 @@ impl_eqx_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142426,6 +145423,7 @@ impl_eqx_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142462,6 +145460,7 @@ impl_eqx_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142511,6 +145510,7 @@ afw_function_definition_eqx_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -142575,6 +145575,7 @@ impl_ge_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142611,6 +145612,7 @@ impl_ge_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142647,6 +145649,7 @@ impl_ge_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142696,6 +145699,7 @@ afw_function_definition_ge_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -142760,6 +145764,7 @@ impl_gt_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142796,6 +145801,7 @@ impl_gt_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142832,6 +145838,7 @@ impl_gt_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -142881,6 +145888,7 @@ afw_function_definition_gt_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -142945,6 +145953,7 @@ impl_intersection_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -142981,6 +145990,7 @@ impl_intersection_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -143017,6 +146027,7 @@ impl_intersection_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -143066,6 +146077,7 @@ afw_function_definition_intersection_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -143130,6 +146142,7 @@ impl_is_in_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143166,6 +146179,7 @@ impl_is_in_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143202,6 +146216,7 @@ impl_is_in_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -143251,6 +146266,7 @@ afw_function_definition_is_in_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -143315,6 +146331,7 @@ impl_is_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143351,6 +146368,7 @@ impl_is_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143399,6 +146417,7 @@ afw_function_definition_is_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -143463,6 +146482,7 @@ impl_le_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143499,6 +146519,7 @@ impl_le_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143535,6 +146556,7 @@ impl_le_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143584,6 +146606,7 @@ afw_function_definition_le_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -143648,6 +146671,7 @@ impl_lt_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143684,6 +146708,7 @@ impl_lt_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143720,6 +146745,7 @@ impl_lt_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143769,6 +146795,7 @@ afw_function_definition_lt_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -143833,6 +146860,7 @@ impl_ne_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143869,6 +146897,7 @@ impl_ne_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143905,6 +146934,7 @@ impl_ne_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -143962,6 +146992,7 @@ afw_function_definition_ne_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -144026,6 +147057,7 @@ impl_nex_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144062,6 +147094,7 @@ impl_nex_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144098,6 +147131,7 @@ impl_nex_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144147,6 +147181,7 @@ afw_function_definition_nex_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -144211,6 +147246,7 @@ impl_one_and_only_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144247,6 +147283,7 @@ impl_one_and_only_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_array_direct
 };
 
 static const afw_value_object_t
@@ -144303,6 +147340,7 @@ afw_function_definition_one_and_only_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -144367,6 +147405,7 @@ impl_set_equals_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144403,6 +147442,7 @@ impl_set_equals_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -144439,6 +147479,7 @@ impl_set_equals_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -144488,6 +147529,7 @@ afw_function_definition_set_equals_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -144552,6 +147594,7 @@ impl_subset_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144588,6 +147631,7 @@ impl_subset_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -144624,6 +147668,7 @@ impl_subset_yearMonthDuration_parameter_2 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -144673,6 +147718,7 @@ afw_function_definition_subset_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -144737,6 +147783,7 @@ impl_to_string_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144773,6 +147820,7 @@ impl_to_string_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -144821,6 +147869,7 @@ afw_function_definition_to_string_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -144885,6 +147934,7 @@ impl_union_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -144921,6 +147971,7 @@ impl_union_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_data_type_yearMonthDuration_direct
 };
 
 static const afw_value_object_t
@@ -144969,6 +148020,7 @@ afw_function_definition_union_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
@@ -145033,6 +148085,7 @@ impl_yearMonthDuration_returns = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -145069,6 +148122,7 @@ impl_yearMonthDuration_parameter_1 = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_object_t
@@ -145125,6 +148179,7 @@ afw_function_definition_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };

@@ -170,27 +170,21 @@ afw_value_decompile_value(
 static afw_boolean_t
 impl_type_is_default_any(const afw_value_type_t *type)
 {
-    if (!type || !type->data_type) {
+    if (!type) {
         return true;
     }
-    if (type->data_type != afw_data_type_any) {
-        return false;
+    /* Zero-init / missing leaf: treat as default any (omit on decompile). */
+    if (type->kind == afw_value_type_kind_data_type &&
+        (!type->data_type || type->data_type == afw_data_type_any))
+    {
+        return true;
     }
-    /* Bare any with no parameters. */
-    return type->data_type_parameter_contextual == NULL &&
-        type->list_type == NULL &&
-        type->media_type == NULL &&
-        type->return_type == NULL &&
-        type->function_signature == NULL &&
-        type->object_type_id == NULL &&
-        type->type == NULL &&
-        type->value_meta_object == NULL;
+    return false;
 }
 
 
 /*
- * Type decompile: Adaptive Type surface (see OptionalType / Type in compile).
- * Omits bare "any" (default when no annotation was written).
+ * Type decompile: TS-like surface (issue #28). Omits bare "any".
  */
 AFW_DEFINE(afw_boolean_t)
 afw_value_decompile_type(
@@ -198,85 +192,144 @@ afw_value_decompile_type(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_type_list_t *list_type;
-    const afw_compile_value_contextual_t *ctx;
+    const afw_value_type_property_t *prop;
+    const afw_value_type_function_param_t *param;
     afw_size_t i;
-    afw_boolean_t need_parens;
-    afw_value_string_t s;
+    afw_boolean_t need_comma;
 
     if (impl_type_is_default_any(type)) {
         return false;
     }
 
-    /*
-     * Parameterized types use (dataType …). Prefer recorded source span when
-     * present and bounded.
-     */
-    ctx = type->data_type_parameter_contextual;
-    need_parens = (ctx != NULL) ||
-        (type->list_type != NULL) ||
-        (type->media_type != NULL) ||
-        (type->object_type_id != NULL) ||
-        (type->return_type != NULL) ||
-        (type->type != NULL);
+    switch (type->kind) {
 
-    if (need_parens) {
-        afw_writer_write_z(writer, "(", xctx);
-    }
+    case afw_value_type_kind_data_type:
+        afw_writer_write_utf8(writer, &type->data_type->data_type_id, xctx);
+        break;
 
-    afw_writer_write_utf8(writer, &type->data_type->data_type_id, xctx);
+    case afw_value_type_kind_reference:
+        afw_writer_write_utf8(writer, type->reference.name, xctx);
+        break;
 
-    if (ctx &&
-        ctx->compiled_value &&
-        ctx->compiled_value->full_source &&
-        ctx->value_size > 0 &&
-        ctx->value_offset + ctx->value_size <=
-            ctx->compiled_value->full_source->len)
-    {
-        afw_writer_write_z(writer, " ", xctx);
-        afw_writer_write(writer,
-            ctx->compiled_value->full_source->s + ctx->value_offset,
-            ctx->value_size, xctx);
-    }
-    else if (type->list_type) {
-        list_type = type->list_type;
-        for (i = 0; i < list_type->dimension; i++) {
-            afw_writer_write_z(writer, " of", xctx);
-            if (i + 1 < list_type->dimension) {
-                afw_writer_write_z(writer, " array", xctx);
+    case afw_value_type_kind_object:
+        if (type->object.interface_name) {
+            afw_writer_write_utf8(writer, type->object.interface_name, xctx);
+            break;
+        }
+        afw_writer_write_z(writer, "{", xctx);
+        need_comma = false;
+        for (prop = type->object.properties; prop; prop = prop->next) {
+            if (need_comma) {
+                afw_writer_write_z(writer, ",", xctx);
             }
-            else if (list_type->cell_type) {
+            need_comma = true;
+            afw_writer_write_utf8(writer, prop->name, xctx);
+            if (prop->optional) {
+                afw_writer_write_z(writer, "?", xctx);
+            }
+            afw_writer_write_z(writer, ":", xctx);
+            if (writer->tab) {
                 afw_writer_write_z(writer, " ", xctx);
-                afw_value_decompile_type(list_type->cell_type, writer, xctx);
             }
-            else {
-                afw_writer_write_z(writer, " array", xctx);
+            if (!afw_value_decompile_type(prop->type, writer, xctx)) {
+                afw_writer_write_z(writer, "any", xctx);
             }
         }
-    }
-    else if (type->media_type) {
-        afw_writer_write_z(writer, " ", xctx);
-        s.inf = &afw_value_unmanaged_string_inf;
-        s.internal = *type->media_type;
-        afw_value_decompile((const afw_value_t *)&s, writer, xctx);
-    }
-    else if (type->object_type_id) {
-        afw_writer_write_z(writer, " ", xctx);
-        s.inf = &afw_value_unmanaged_string_inf;
-        s.internal = *type->object_type_id;
-        afw_value_decompile((const afw_value_t *)&s, writer, xctx);
-    }
-    else if (type->return_type) {
-        afw_writer_write_z(writer, " ", xctx);
-        afw_value_decompile_type(type->return_type, writer, xctx);
-    }
-    else if (type->type) {
-        afw_writer_write_z(writer, " ", xctx);
-        afw_value_decompile_type(type->type, writer, xctx);
-    }
+        afw_writer_write_z(writer, "}", xctx);
+        break;
 
-    if (need_parens) {
-        afw_writer_write_z(writer, ")", xctx);
+    case afw_value_type_kind_array:
+        if (type->array.element &&
+            (type->array.element->kind == afw_value_type_kind_union ||
+                type->array.element->kind ==
+                    afw_value_type_kind_intersection ||
+                type->array.element->kind ==
+                    afw_value_type_kind_function))
+        {
+            afw_writer_write_z(writer, "(", xctx);
+            if (!afw_value_decompile_type(type->array.element, writer,
+                xctx))
+            {
+                afw_writer_write_z(writer, "any", xctx);
+            }
+            afw_writer_write_z(writer, ")", xctx);
+        }
+        else if (type->array.element) {
+            if (!afw_value_decompile_type(type->array.element, writer,
+                xctx))
+            {
+                afw_writer_write_z(writer, "any", xctx);
+            }
+        }
+        else {
+            afw_writer_write_z(writer, "array", xctx);
+            break;
+        }
+        afw_writer_write_z(writer, "[]", xctx);
+        break;
+
+    case afw_value_type_kind_tuple:
+        afw_writer_write_z(writer, "[", xctx);
+        for (i = 0; i < type->tuple.count; i++) {
+            if (i > 0) {
+                afw_writer_write_z(writer, ",", xctx);
+            }
+            if (!afw_value_decompile_type(type->tuple.elements[i], writer,
+                xctx))
+            {
+                afw_writer_write_z(writer, "any", xctx);
+            }
+        }
+        afw_writer_write_z(writer, "]", xctx);
+        break;
+
+    case afw_value_type_kind_function:
+        afw_writer_write_z(writer, "(", xctx);
+        need_comma = false;
+        for (param = type->function.parameters; param; param = param->next) {
+            if (need_comma) {
+                afw_writer_write_z(writer, ",", xctx);
+            }
+            need_comma = true;
+            if (param->is_rest) {
+                afw_writer_write_z(writer, "...", xctx);
+            }
+            if (param->name) {
+                afw_writer_write_utf8(writer, param->name, xctx);
+                if (param->optional) {
+                    afw_writer_write_z(writer, "?", xctx);
+                }
+                afw_writer_write_z(writer, ":", xctx);
+            }
+            if (!afw_value_decompile_type(param->type, writer, xctx)) {
+                afw_writer_write_z(writer, "any", xctx);
+            }
+        }
+        afw_writer_write_z(writer, ")=>", xctx);
+        if (!afw_value_decompile_type(type->function.returns, writer, xctx)) {
+            afw_writer_write_z(writer, "any", xctx);
+        }
+        break;
+
+    case afw_value_type_kind_union:
+    case afw_value_type_kind_intersection:
+        for (i = 0; i < type->compound.count; i++) {
+            if (i > 0) {
+                afw_writer_write_z(writer,
+                    type->kind == afw_value_type_kind_union ? "|" : "&",
+                    xctx);
+            }
+            if (!afw_value_decompile_type(type->compound.members[i], writer,
+                xctx))
+            {
+                afw_writer_write_z(writer, "any", xctx);
+            }
+        }
+        break;
+
+    default:
+        afw_writer_write_z(writer, "any", xctx);
+        break;
     }
 
     return true;

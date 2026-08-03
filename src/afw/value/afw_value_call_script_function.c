@@ -70,6 +70,8 @@ afw_value_call_script_function_create(
     afw_xctx_t *xctx)
 {
     AFW_VALUE_SELF_T *self;
+    afw_size_t i;
+    const afw_value_script_function_parameter_t *param;
 
     self = afw_pool_calloc_type(p, AFW_VALUE_SELF_T, xctx);
     self->inf = &afw_value_call_script_function_inf;
@@ -78,6 +80,27 @@ afw_value_call_script_function_create(
     self->args.contextual = contextual;
     self->args.argc = argc;
     self->args.argv = argv;
+
+    /*
+     * Compile-time call-site checks when the callee is already known
+     * (issue #28): object-literal args vs formal types.
+     */
+    if (afw_value_type_check_compile_enabled(xctx) &&
+        script_function_definition &&
+        script_function_definition->parameters)
+    {
+        for (i = 0; i < script_function_definition->count && i < argc; i++) {
+            param = script_function_definition->parameters[i];
+            if (!param || !param->type || param->is_rest) {
+                continue;
+            }
+            /* argv[0] is function; user args are argv[1..] */
+            if (argv[i + 1]) {
+                afw_value_type_check_compile_assignable(param->type,
+                    argv[i + 1], "parameter", xctx);
+            }
+        }
+    }
    
     /** @fixme add optimization. */
     self->optimized_value = (const afw_value_t *)self;
@@ -318,6 +341,15 @@ impl_afw_value_optional_evaluate(
 
         /* Evaluate body. */
         result = afw_value_evaluate(script->body, p, xctx);
+
+        /* Runtime return type check (issue #28). */
+        if (script->returns &&
+            afw_value_type_check_runtime_enabled(xctx) &&
+            result)
+        {
+            afw_value_type_check_assignable(script->returns, result,
+                "return", xctx);
+        }
     }
 
     AFW_FINALLY{

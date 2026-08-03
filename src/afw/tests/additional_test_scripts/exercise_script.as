@@ -106,10 +106,10 @@ assert(test2('1', '2') == '123');
 function test3 (a: string, b: string, c?: string): string (a + b + string(c));
 assert(test3('1', '2') == '12undefined');
 
-function test4 (a: string, ... b: (array of string)): string (a + string(b));
+function test4 (a: string, ... b: string[]): string (a + string(b));
 assert(test4('1', '2', '3', '4', '5') == '1["2","3","4","5"]');
 
-function test5 (a: string, ... b: (array of string)): string (a + string(b));
+function test5 (a: string, ... b: string[]): string (a + string(b));
 assert(test5('1') == '1[]');
 
 function test6(a: string, b?: string): string
@@ -196,7 +196,7 @@ assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
 
 // ...array
 {
-    const l1: (array of string) = ["a", "b"];
+    const l1: string[] = ["a", "b"];
     const l2: array = ["d", "e"];
     const l3: array = [...l1, "c", ...l2, "f", "g", ...array("h", "i", "j"), "k",
         ...["l","m"], ...[], ...[...["n", "o", "p"], "q", "r", "s"] ];

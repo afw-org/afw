@@ -705,15 +705,32 @@ afw_compile_parse_FunctionSignatureAndBody(
     signature = afw_compile_parse_FunctionSignature(parser, &block,
         function_name_value, return_type);
 
-    /* Parse body. */
-    afw_compile_get_token();
-    if (afw_compile_token_is(open_brace)) {
-        body = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false, false);
-    }
-    else {
-        afw_compile_reuse_token();
-        body = afw_compile_parse_Expression(parser);
+    /* Parse body with return type in scope for compile checks (issue #28). */
+    {
+        const afw_value_type_t *saved_returns;
+
+        saved_returns = parser->current_function_returns;
+        parser->current_function_returns = signature->returns;
+
+        afw_compile_get_token();
+        if (afw_compile_token_is(open_brace)) {
+            body = afw_compile_parse_StatementList(parser,
+                NULL, true, false, false, false);
+        }
+        else {
+            afw_compile_reuse_token();
+            body = afw_compile_parse_Expression(parser);
+            /* Expression body: compile-check against return type when known. */
+            if (parser->current_function_returns &&
+                afw_value_type_check_compile_enabled(parser->xctx))
+            {
+                afw_value_type_check_compile_assignable(
+                    parser->current_function_returns, body,
+                    "return", parser->xctx);
+            }
+        }
+
+        parser->current_function_returns = saved_returns;
     }
 
     /* If there were parameters, pop block. */
@@ -900,229 +917,625 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
 
 
 /*
- * Parse Lambda parameter type.
+ * Script type expressions (TS-like; issue #28). Hard cut: Adaptive Type
+ * forms such as (array of T) / (object "OT") / meta {…} are not accepted.
  *
- *FIXME
+ * EBNF (approximate TypeScript subset):
+ *
+ * Type ::= UnionType
+ * UnionType ::= IntersectionType ( '|' IntersectionType )*
+ * IntersectionType ::= ArrayType ( '&' ArrayType )*
+ * ArrayType ::= PrimaryType ( '[' ']' )*
+ * PrimaryType ::=
+ *     TypeName |
+ *     'Array' '<' Type '>' |
+ *     ObjectTypeLiteral |
+ *     TupleType |
+ *     ParenthesizedOrFunctionType
+ * TypeName ::= Identifier   // data type or script type/interface name
+ * ObjectTypeLiteral ::=
+ *     '{' ( PropertyName '?'? ':' Type
+ *           ( ',' PropertyName '?'? ':' Type )* ','? )? '}'
+ * TupleType ::= '[' ( Type ( ',' Type )* ','? )? ']'
+ * ParenthesizedOrFunctionType ::=
+ *     '(' Type ')' |
+ *     '(' FunctionTypeParameterList? ')' '=>' Type
+ * FunctionTypeParameterList ::=
+ *     FunctionTypeParameter ( ',' FunctionTypeParameter )*
+ * FunctionTypeParameter ::=
+ *     '...'? Identifier '?'? ( ':' Type )? |
+ *     Type
  */
+
+static afw_value_type_t *
+impl_type_alloc(afw_compile_parser_t *parser)
+{
+    return afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
+}
+
+
+
+static const afw_value_type_t *
+impl_type_data_type(
+    afw_compile_parser_t *parser,
+    const afw_data_type_t *data_type)
+{
+    afw_value_type_t *type;
+
+    type = impl_type_alloc(parser);
+    type->kind = afw_value_type_kind_data_type;
+    type->data_type = data_type;
+    return type;
+}
+
+
+
+static const afw_value_type_t *
+impl_type_lookup_name(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    const afw_value_type_t *type;
+    const afw_data_type_t *data_type;
+    afw_value_type_t *ref;
+
+    if (parser->script_type_names) {
+        type = apr_hash_get(parser->script_type_names, name->s, name->len);
+        if (type) {
+            return type;
+        }
+    }
+
+    data_type = afw_environment_get_data_type(name, parser->xctx);
+    if (data_type) {
+        return impl_type_data_type(parser, data_type);
+    }
+
+    /* Unresolved name: keep as reference (non-checking mode). */
+    ref = impl_type_alloc(parser);
+    ref->kind = afw_value_type_kind_reference;
+    ref->reference.name = name;
+    ref->reference.resolved = NULL;
+    return ref;
+}
+
+
+
+AFW_DEFINE_INTERNAL(void)
+afw_compile_script_type_register(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name,
+    const afw_value_type_t *type)
+{
+    if (!parser->script_type_names) {
+        parser->script_type_names = apr_hash_make(parser->apr_p);
+    }
+    if (apr_hash_get(parser->script_type_names, name->s, name->len)) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "Type or interface " AFW_UTF8_FMT_Q " is already defined",
+            AFW_UTF8_FMT_ARG(name));
+    }
+    apr_hash_set(parser->script_type_names, name->s, name->len, type);
+}
+
+
+
+/* Forward: full Type (union). */
+static const afw_value_type_t *
+impl_parse_Type_expression(afw_compile_parser_t *parser);
+
+
+
+static const afw_value_type_t *
+impl_parse_object_type_literal(afw_compile_parser_t *parser)
+{
+    afw_value_type_t *type;
+    afw_value_type_property_t *prop;
+    afw_value_type_property_t *props_head;
+    afw_value_type_property_t *props_tail;
+    const afw_utf8_t *prop_name;
+    afw_boolean_t optional;
+
+    /* Token '{' already consumed or current. */
+    if (!afw_compile_token_is(open_brace)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
+    }
+
+    props_head = props_tail = NULL;
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_brace)) {
+        for (;;) {
+            if (afw_compile_token_is_unqualified_identifier()) {
+                prop_name = parser->token->identifier_name;
+            }
+            else if (afw_compile_token_is(utf8_string)) {
+                prop_name = parser->token->string;
+            }
+            else {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting property name in object type");
+            }
+
+            optional = false;
+            afw_compile_get_token();
+            if (afw_compile_token_is(question_mark)) {
+                optional = true;
+                afw_compile_get_token();
+            }
+            if (!afw_compile_token_is(colon)) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting ':' after property name in object type");
+            }
+
+            prop = afw_pool_calloc_type(parser->p,
+                afw_value_type_property_t, parser->xctx);
+            prop->name = prop_name;
+            prop->optional = optional;
+            prop->type = impl_parse_Type_expression(parser);
+
+            if (!props_head) {
+                props_head = props_tail = prop;
+            }
+            else {
+                props_tail->next = prop;
+                props_tail = prop;
+            }
+
+            afw_compile_get_token();
+            if (afw_compile_token_is(close_brace)) {
+                break;
+            }
+            if (!afw_compile_token_is(comma)) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting ',' or '}' in object type");
+            }
+            afw_compile_get_token();
+            if (afw_compile_token_is(close_brace)) {
+                break;
+            }
+        }
+    }
+
+    type = impl_type_alloc(parser);
+    type->kind = afw_value_type_kind_object;
+    type->object.properties = props_head;
+    return type;
+}
+
+
+
+static const afw_value_type_t *
+impl_parse_tuple_or_array_suffix_start(afw_compile_parser_t *parser)
+{
+    apr_array_header_t *elems;
+    const afw_value_type_t **elements;
+    afw_value_type_t *type;
+    afw_size_t i;
+
+    /* Current token is '['. Type_expression starts with get_token. */
+    elems = apr_array_make(parser->apr_p, 4, sizeof(const afw_value_type_t *));
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_bracket)) {
+        afw_compile_reuse_token();
+        for (;;) {
+            APR_ARRAY_PUSH(elems, const afw_value_type_t *) =
+                impl_parse_Type_expression(parser);
+            afw_compile_get_token();
+            if (afw_compile_token_is(close_bracket)) {
+                break;
+            }
+            if (!afw_compile_token_is(comma)) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting ',' or ']' in tuple type");
+            }
+            afw_compile_get_token();
+            if (afw_compile_token_is(close_bracket)) {
+                break;
+            }
+            afw_compile_reuse_token();
+        }
+    }
+
+    type = impl_type_alloc(parser);
+    type->kind = afw_value_type_kind_tuple;
+    type->tuple.count = (afw_size_t)elems->nelts;
+    if (type->tuple.count > 0) {
+        elements = afw_pool_malloc(parser->p,
+            sizeof(afw_value_type_t *) * type->tuple.count, parser->xctx);
+        for (i = 0; i < type->tuple.count; i++) {
+            elements[i] =
+                ((const afw_value_type_t **)elems->elts)[i];
+        }
+        type->tuple.elements = elements;
+    }
+    return type;
+}
+
+
+
+static const afw_value_type_t *
+impl_parse_function_type_after_open_paren(afw_compile_parser_t *parser)
+{
+    afw_value_type_function_param_t *params_head;
+    afw_value_type_function_param_t *params_tail;
+    afw_value_type_function_param_t *param;
+    afw_value_type_t *type;
+    afw_boolean_t is_rest;
+    afw_boolean_t optional;
+    const afw_utf8_t *name;
+
+    /* '(' already consumed. */
+    params_head = params_tail = NULL;
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_parenthesis)) {
+        for (;;) {
+            is_rest = false;
+            optional = false;
+            name = NULL;
+            param = afw_pool_calloc_type(parser->p,
+                afw_value_type_function_param_t, parser->xctx);
+
+            if (afw_compile_token_is(ellipsis)) {
+                is_rest = true;
+                afw_compile_get_token();
+            }
+
+            /*
+             * Named parameter: name ?: Type
+             * Or bare Type (no name).
+             */
+            if (afw_compile_token_is_unqualified_identifier()) {
+                name = parser->token->identifier_name;
+                afw_compile_get_token();
+                if (afw_compile_token_is(question_mark)) {
+                    optional = true;
+                    afw_compile_get_token();
+                }
+                if (afw_compile_token_is(colon)) {
+                    param->name = name;
+                    param->optional = optional;
+                    param->is_rest = is_rest;
+                    param->type = impl_parse_Type_expression(parser);
+                }
+                else {
+                    /* Identifier was start of a type name, not a param name. */
+                    afw_compile_reuse_token();
+                    /* Restore: re-parse from the identifier as Type. */
+                    /* We already consumed identifier — rebuild as type name. */
+                    param->name = NULL;
+                    param->optional = false;
+                    param->is_rest = is_rest;
+                    param->type = impl_type_lookup_name(parser, name);
+                    /* Apply postfix [] / union is wrong here — only primary.
+                     * For bare type params without composition, OK for v1;
+                     * full Type after bare name needs reuse. Simpler path:
+                     * if no ':' treat name as type and allow [] only via
+                     * full expression by rewinding — use full Type parse
+                     * by putting identifier back. */
+                    {
+                        afw_value_type_t *wrap;
+
+                        /* Postfix arrays: name[] */
+                        afw_compile_get_token();
+                        while (afw_compile_token_is(open_bracket)) {
+                            afw_compile_get_token();
+                            if (!afw_compile_token_is(close_bracket)) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Expecting ']' in array type");
+                            }
+                            wrap = impl_type_alloc(parser);
+                            wrap->kind = afw_value_type_kind_array;
+                            wrap->array.element = param->type;
+                            param->type = wrap;
+                            afw_compile_get_token();
+                        }
+                        afw_compile_reuse_token();
+                    }
+                }
+            }
+            else {
+                param->is_rest = is_rest;
+                param->type = impl_parse_Type_expression(parser);
+            }
+
+            if (!params_head) {
+                params_head = params_tail = param;
+            }
+            else {
+                params_tail->next = param;
+                params_tail = param;
+            }
+
+            afw_compile_get_token();
+            if (afw_compile_token_is(close_parenthesis)) {
+                break;
+            }
+            if (!afw_compile_token_is(comma)) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting ',' or ')' in function type parameters");
+            }
+            afw_compile_get_token();
+        }
+    }
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(fat_arrow)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '=>' in function type");
+    }
+
+    type = impl_type_alloc(parser);
+    type->kind = afw_value_type_kind_function;
+    type->function.parameters = params_head;
+    type->function.returns = impl_parse_Type_expression(parser);
+    return type;
+}
+
+
+
+static const afw_value_type_t *
+impl_parse_parenthesized_or_function_type(afw_compile_parser_t *parser)
+{
+    afw_size_t save_token_offset;
+    const afw_value_type_t *inner;
+    int depth;
+    afw_boolean_t saw_arrow;
+    afw_boolean_t saw_colon;
+
+    /* Current token is '('. */
+    save_token_offset = parser->token->token_source_offset;
+
+    /*
+     * Speculative scan: function type if '=>' follows the matching ')', or
+     * a ':' appears at depth 1 (named parameter).
+     */
+    depth = 1;
+    saw_arrow = false;
+    saw_colon = false;
+    afw_compile_get_token();
+    while (!afw_compile_is_at_eof() && depth > 0) {
+        if (afw_compile_token_is(open_parenthesis)) {
+            depth++;
+        }
+        else if (afw_compile_token_is(close_parenthesis)) {
+            depth--;
+            if (depth == 0) {
+                afw_compile_get_token();
+                if (afw_compile_token_is(fat_arrow)) {
+                    saw_arrow = true;
+                }
+                break;
+            }
+        }
+        else if (depth == 1 && afw_compile_token_is(colon)) {
+            saw_colon = true;
+        }
+        afw_compile_get_token();
+    }
+
+    afw_compile_restore_cursor(save_token_offset);
+    afw_compile_get_token(); /* '(' */
+
+    if (saw_arrow || saw_colon) {
+        return impl_parse_function_type_after_open_paren(parser);
+    }
+
+    /* Parenthesized type: ( Type ) */
+    inner = impl_parse_Type_expression(parser);
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after type");
+    }
+    return inner;
+}
+
+
+
+static const afw_value_type_t *
+impl_parse_primary_type(afw_compile_parser_t *parser)
+{
+    const afw_value_type_t *type;
+    const afw_utf8_t *name;
+    afw_value_type_t *arr;
+
+    afw_compile_get_token();
+
+    if (afw_compile_token_is(open_brace)) {
+        return impl_parse_object_type_literal(parser);
+    }
+
+    if (afw_compile_token_is(open_bracket)) {
+        return impl_parse_tuple_or_array_suffix_start(parser);
+    }
+
+    if (afw_compile_token_is(open_parenthesis)) {
+        return impl_parse_parenthesized_or_function_type(parser);
+    }
+
+    if (!afw_compile_token_is_unqualified_identifier()) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting Type");
+    }
+
+    name = parser->token->identifier_name;
+
+    /* Array<T> sugar (same meaning as T[]). '<' is open_angle_bracket
+     * when not in binary-operator context (see lexical). */
+    if (afw_utf8_equal_utf8_z(name, "Array")) {
+        afw_compile_get_token();
+        if (afw_compile_token_is(open_angle_bracket) ||
+            afw_compile_token_is(less_than))
+        {
+            type = impl_parse_Type_expression(parser);
+            afw_compile_get_token();
+            if (!afw_compile_token_is(close_angle_bracket) &&
+                !afw_compile_token_is(greater_than))
+            {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting '>' after Array type argument");
+            }
+            arr = impl_type_alloc(parser);
+            arr->kind = afw_value_type_kind_array;
+            arr->array.element = type;
+            return arr;
+        }
+        afw_compile_reuse_token();
+    }
+
+    return impl_type_lookup_name(parser, name);
+}
+
+
+
+static const afw_value_type_t *
+impl_parse_array_type(afw_compile_parser_t *parser)
+{
+    const afw_value_type_t *type;
+    afw_value_type_t *arr;
+
+    type = impl_parse_primary_type(parser);
+    for (;;) {
+        afw_compile_get_token();
+        if (!afw_compile_token_is(open_bracket)) {
+            afw_compile_reuse_token();
+            break;
+        }
+        afw_compile_get_token();
+        if (!afw_compile_token_is(close_bracket)) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting ']' in array type (use [T, U] for tuples)");
+        }
+        arr = impl_type_alloc(parser);
+        arr->kind = afw_value_type_kind_array;
+        arr->array.element = type;
+        type = arr;
+    }
+    return type;
+}
+
+
+
+static const afw_value_type_t *
+impl_parse_intersection_type(afw_compile_parser_t *parser)
+{
+    apr_array_header_t *members;
+    const afw_value_type_t *type;
+    const afw_value_type_t **list;
+    afw_value_type_t *node;
+    afw_size_t i;
+
+    type = impl_parse_array_type(parser);
+    afw_compile_get_token();
+    if (!afw_compile_token_is(ampersand)) {
+        afw_compile_reuse_token();
+        return type;
+    }
+
+    members = apr_array_make(parser->apr_p, 4, sizeof(const afw_value_type_t *));
+    APR_ARRAY_PUSH(members, const afw_value_type_t *) = type;
+    while (afw_compile_token_is(ampersand)) {
+        APR_ARRAY_PUSH(members, const afw_value_type_t *) =
+            impl_parse_array_type(parser);
+        afw_compile_get_token();
+    }
+    afw_compile_reuse_token();
+
+    node = impl_type_alloc(parser);
+    node->kind = afw_value_type_kind_intersection;
+    node->compound.count = (afw_size_t)members->nelts;
+    list = afw_pool_malloc(parser->p,
+        sizeof(afw_value_type_t *) * node->compound.count, parser->xctx);
+    for (i = 0; i < node->compound.count; i++) {
+        list[i] = ((const afw_value_type_t **)members->elts)[i];
+    }
+    node->compound.members = list;
+    return node;
+}
+
+
+
+static const afw_value_type_t *
+impl_parse_Type_expression(afw_compile_parser_t *parser)
+{
+    apr_array_header_t *members;
+    const afw_value_type_t *type;
+    const afw_value_type_t **list;
+    afw_value_type_t *node;
+    afw_size_t i;
+
+    type = impl_parse_intersection_type(parser);
+    afw_compile_get_token();
+    if (!afw_compile_token_is(vertical_bar)) {
+        afw_compile_reuse_token();
+        return type;
+    }
+
+    members = apr_array_make(parser->apr_p, 4, sizeof(const afw_value_type_t *));
+    APR_ARRAY_PUSH(members, const afw_value_type_t *) = type;
+    while (afw_compile_token_is(vertical_bar)) {
+        APR_ARRAY_PUSH(members, const afw_value_type_t *) =
+            impl_parse_intersection_type(parser);
+        afw_compile_get_token();
+    }
+    afw_compile_reuse_token();
+
+    node = impl_type_alloc(parser);
+    node->kind = afw_value_type_kind_union;
+    node->compound.count = (afw_size_t)members->nelts;
+    list = afw_pool_malloc(parser->p,
+        sizeof(afw_value_type_t *) * node->compound.count, parser->xctx);
+    for (i = 0; i < node->compound.count; i++) {
+        list[i] = ((const afw_value_type_t **)members->elts)[i];
+    }
+    node->compound.members = list;
+    return node;
+}
+
+
+
 /*ebnf>>>
- * 
- *# See RFC https://tools.ietf.org/html/rfc2616#section-3.7
- *# This is media-type in a quoted string
- * MediaType ::= String
  *
- * ArrayOf ::= ( 'of' 'array' )* ( 'of' Type )
- * 
- * DataTypeWithParameter ::= '('
- *               ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
- *               ( ( 'script' | 'template' ) ReturnType ) |
- *               ( 'function' FunctionSignature ) |
- *               ( 'array' ArrayOf ) |
- *               ( ( 'object' | 'objectId' ) ObjectType ) |
- *               ( 'unevaluated' Type ) |
- *      ')'
- * 
- * TypeName ::= DataType | TypeVariableName | InterfaceName
- * 
- * TypeObject ::=
- *      '{' 
- *          PropertyName '?'?  ':' Type
- *          ( ',' PropertyName '?'?  ':' Type )*
- *          ','?
- *      '}' ';'
- *
- *# An object type _AdaptiveValueMeta_ object.
- * ValueMeta ::= 'meta' Object
- *
- * Type ::=  DataTypeWithParameter | TypeName | TypeObject | ValueMeta
+ *# TS-like type expression (issue #28). Leaves are Adaptive data types.
+ * Type ::= UnionType
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_type_t *)
 afw_compile_parse_Type(afw_compile_parser_t *parser)
 {
-    const afw_utf8_t* dataType;
-    afw_value_type_list_t *list_type;
-    afw_boolean_t enclosed;
-    afw_value_type_t *type;
-    afw_size_t cursor_start_of_data_type_parameters;
-
-    /* Can optionally begin with a '('. */
-    afw_compile_get_token();
-    enclosed = false;
-    if (afw_compile_token_is(open_parenthesis)) {
-        enclosed = true;
-        afw_compile_get_token();
-    }
-
-    /* 'any' or DataType and optional parameters. */
-    type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
-    if (afw_compile_token_is_unqualified_identifier()) {
-
-        /* Get data_type and optional parameters.*/
-        dataType = parser->token->identifier_name;
-        type->data_type = afw_environment_get_data_type(dataType,
-            parser->xctx);
-        if (!type->data_type) {
-            AFW_COMPILE_THROW_ERROR_FZ(
-                "Unknown data type " AFW_UTF8_FMT_Q,
-                AFW_UTF8_FMT_ARG(dataType));
-        }
-
-        /* Get optional data type parameters. */
-        if (enclosed && !afw_compile_token_is(close_parenthesis)) {
-            afw_compile_get_token();
-            cursor_start_of_data_type_parameters =
-                parser->token->token_source_offset;
-            for (list_type = NULL;
-                !afw_compile_token_is(close_parenthesis);
-                afw_compile_get_token())
-            {
-                /* MediaType */
-                if (afw_utf8_equal(dataType, afw_s_string) ||
-                    afw_utf8_equal(dataType, afw_s_base64Binary) ||
-                    afw_utf8_equal(dataType, afw_s_hexBinary))
-                {
-                    if (!afw_compile_token_is(utf8_string)) {
-                        AFW_COMPILE_THROW_ERROR_Z("Expecting quoted string");
-                    }
-                    type->media_type = parser->token->string;
-                }
-
-                /* ReturnType */
-                else if (
-                    afw_utf8_equal(dataType, afw_s_script) ||
-                    afw_utf8_equal(dataType, afw_s_template))
-                {
-                    if (!afw_compile_token_is_name(afw_s_void)) {
-                        afw_compile_reuse_token();
-                        type->return_type = afw_compile_parse_Type(parser);
-                    }
-                }
-
-                /* FunctionSignature */
-                else if (afw_utf8_equal(dataType, afw_s_function))
-                {
-                    afw_compile_reuse_token();
-                    type->function_signature =
-                        afw_compile_parse_FunctionSignature(parser,
-                            NULL, NULL, NULL);
-                }
-
-                /* ArrayOf */
-                else if (afw_utf8_equal(dataType, afw_s_array))
-                {
-                    if (!afw_compile_token_is_name_z("of")) {
-                        AFW_COMPILE_THROW_ERROR_Z(
-                            "Expecting 'of'");
-                    }
-                    if (!list_type) {
-                        list_type = afw_pool_calloc_type(
-                            parser->p, afw_value_type_list_t, parser->xctx);
-                        list_type->dimension = 1;
-                        type->list_type = list_type;
-                    }
-                    afw_compile_get_token();
-                    if (!afw_compile_token_is_name(afw_s_array)) {
-                        list_type->dimension++;
-                    }
-                    else {
-                        if (list_type->cell_type) {
-                            AFW_COMPILE_THROW_ERROR_Z(
-                                "Only 'of array' can be specified except for "
-                                "final 'of'");
-                        }
-                        afw_compile_reuse_token();
-                        list_type->cell_type = afw_compile_parse_Type(parser);
-                    }
-                }
-
-                /* ObjectType */
-                else if (afw_utf8_equal(dataType, afw_s_object) ||
-                    afw_utf8_equal(dataType, afw_s_objectId))
-                {
-                    if (!afw_compile_token_is(utf8_string)) {
-                        AFW_COMPILE_THROW_ERROR_Z("Expecting quoted string");
-                    }
-                    type->object_type_id = parser->token->string;
-                }
-
-                /* Type */
-                else if (afw_utf8_equal(dataType, afw_s_unevaluated))
-                {
-                    afw_compile_reuse_token();
-                    type->type = afw_compile_parse_Type(parser);
-                }
-
-                /* Parameters not allowed. */
-                else {
-                    AFW_COMPILE_THROW_ERROR_Z(
-                        "Parameters are not allowed for this data type");
-                }
-            }
-
-            /* Create contextual for data type parameters */
-            type->data_type_parameter_contextual =
-                afw_compile_create_contextual(parser,
-                    cursor_start_of_data_type_parameters,
-                    parser->token->token_source_offset -
-                    cursor_start_of_data_type_parameters);
-        }
-    }
-
-    /* ValueMetaObject. */
-    else if (afw_compile_token_is(open_brace)) {
-        afw_compile_reuse_token();
-        AFW_COMPILE_THROW_ERROR_Z("Not implemented");
-    }
-
-    /* Expecting Type. */
-    else {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting Type");
-    }
-
-    /* If enclosed, next should be ')' */
-    if (enclosed && !afw_compile_token_is(close_parenthesis)) {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
-    }
-
-    return type;
+    return impl_parse_Type_expression(parser);
 }
 
 
 /*ebnf>>>
  *
- *# If Type is not specified, default is any.
+ *# If Type is not specified, default is any (afw_data_type_any).
  * OptionalType ::= ( ':' Type )?
  *
- * OptionalReturnType ::= ( ':' ( 'void' | Type ) )?
- * 
- *  *<<<ebnf*/
+ * OptionalReturnType ::= ( ':' Type )?
+ *
+ *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_type_t *)
 afw_compile_parse_OptionalType(
     afw_compile_parser_t *parser,
     afw_boolean_t is_return)
 {
-    afw_value_type_t *type;
-
-    /* If next is ':', parse Type. */
+    /* If next is ':', parse Type (including void as data type leaf). */
     afw_compile_get_token();
     if (afw_compile_token_is(colon)) {
-        if (is_return) {
-            afw_compile_get_token();
-            if (afw_compile_token_is_name(afw_s_void)) {
-                return NULL;
-            }
-            afw_compile_reuse_token();
-        }
-        return afw_compile_parse_Type(parser);
+        (void)is_return;
+        return impl_parse_Type_expression(parser);
     }
 
-    /* If next is not ':', return value type for any. */
-    /** @todo use defined constant */
+    /* Missing annotation → any (error if noImplicitAny + type checking). */
     afw_compile_reuse_token();
-    type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
-    type->data_type = afw_data_type_any;
-
-    return type;
+    if (afw_value_type_check_compile_enabled(parser->xctx) &&
+        afw_flag_is_active(
+            parser->xctx->env->flag_index_compile_noImplicitAny_active,
+            parser->xctx))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Type annotation required (compile:noImplicitAny)");
+    }
+    return impl_type_data_type(parser, afw_data_type_any);
 }
 
 

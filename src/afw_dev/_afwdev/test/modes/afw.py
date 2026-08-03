@@ -13,6 +13,7 @@ import os
 import subprocess
 
 from _afwdev.common import msg, nfc
+from _afwdev.test.common import format_abnormal_process_exit
 
 ##
 # @brief Runs the tests over the afw command line tool.
@@ -63,7 +64,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
         stdout = p.stdout.decode("utf-8")         
 
         if p.returncode < 0:
-            return None, "Process exited abnormally with return code {}".format(p.returncode), debug                      
+            return None, format_abnormal_process_exit(p.returncode), debug
         
         if syntax == "test_script":
             # parse the output of the test script

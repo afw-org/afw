@@ -184,8 +184,13 @@ impl_afw_value_get_info(
     info->value_inf_id = &self->inf->rti.implementation_id;
     //contextual
     //detail
-    info->evaluated_data_type =
-        self->script_function_definition->returns->data_type;
+    if (self->script_function_definition->returns &&
+        self->script_function_definition->returns->kind ==
+            afw_value_type_kind_data_type)
+    {
+        info->evaluated_data_type =
+            self->script_function_definition->returns->data_type;
+    }
     info->optimized_value = (const afw_value_t *)self;
     //extended_value_type
 }

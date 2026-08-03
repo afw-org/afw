@@ -359,14 +359,33 @@ afw_function_evaluate_parameter_with_type(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_value_t *result;
+    const afw_data_type_t *want_dt;
 
-    /** @fixme add support for dataTypeParameter. */
+    /*
+     * Only leaf Adaptive data types participate in convert until full
+     * type-check lands (issue #28). Composites (array-of, union, …) do not
+     * use the data_type union arm.
+     */
+    want_dt = NULL;
+    if (type && type->kind == afw_value_type_kind_data_type) {
+        want_dt = type->data_type;
+    }
+
+    /* Object-literal arg excess before evaluate (issue #28 call-site). */
+    if (type) {
+        afw_value_type_check_call_arg_object_literal(type, value,
+            "parameter", xctx);
+    }
 
     /* Just return if no evaluation or conversion needed. */
     if (afw_value_is_defined_and_evaluated(value) &&
-        (!type || !type->data_type || type->data_type == afw_data_type_any ||
-            afw_value_get_data_type(value, xctx) == type->data_type))
+        (!want_dt || want_dt == afw_data_type_any ||
+            afw_value_get_data_type(value, xctx) == want_dt))
     {
+        if (afw_value_type_check_runtime_enabled(xctx)) {
+            afw_value_type_check_assignable(type, value,
+                "parameter", xctx);
+        }
         return value;
     }
 
@@ -376,11 +395,17 @@ afw_function_evaluate_parameter_with_type(
     /* Evaluate value. */
     result = afw_value_evaluate(value, p, xctx);
 
-    /* Convert to requested data type if needed. */
-    if (result && type && type->data_type &&
-        afw_value_get_data_type(value, xctx) != type->data_type)
+    /*
+     * With runtime type checking on: strict assignability (no convert).
+     * Otherwise: convert to leaf data type when requested (legacy path).
+     */
+    if (afw_value_type_check_runtime_enabled(xctx)) {
+        afw_value_type_check_assignable(type, result, "parameter", xctx);
+    }
+    else if (result && want_dt && want_dt != afw_data_type_any &&
+        afw_value_get_data_type(result, xctx) != want_dt)
     {
-        result = afw_value_convert(result, type->data_type, true, p, xctx);
+        result = afw_value_convert(result, want_dt, true, p, xctx);
     }
 
     /* Pop parameter number from evaluation stack and return result. */

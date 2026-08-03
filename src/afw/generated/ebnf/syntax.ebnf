@@ -284,42 +284,16 @@ ParametersExceptFirst ::= Parameters
 ParenthesizedExpression ::= '(' Expression ')' Parameters*
 
 /* From afw_compile_parse_expression.c                                        */
-/* See RFC https://tools.ietf.org/html/rfc2616#section-3.7                    */
-/* This is media-type in a quoted string                                      */
+/* TS-like type expression (issue #28). Leaves are Adaptive data types.       */
 
-MediaType ::= String
-
-ArrayOf ::= ( 'of' 'array' )* ( 'of' Type )
-
-DataTypeWithParameter ::= '('
-              ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
-              ( ( 'script' | 'template' ) ReturnType ) |
-              ( 'function' FunctionSignature ) |
-              ( 'array' ArrayOf ) |
-              ( ( 'object' | 'objectId' ) ObjectType ) |
-              ( 'unevaluated' Type ) |
-     ')'
-
-TypeName ::= DataType | TypeVariableName | InterfaceName
-
-TypeObject ::=
-     '{'
-         PropertyName '?'?  ':' Type
-         ( ',' PropertyName '?'?  ':' Type )*
-         ','?
-     '}' ';'
-/* An object type _AdaptiveValueMeta_ object.                                 */
-
-ValueMeta ::= 'meta' Object
-
-Type ::=  DataTypeWithParameter | TypeName | TypeObject | ValueMeta
+Type ::= UnionType
 
 /* From afw_compile_parse_expression.c                                        */
-/* If Type is not specified, default is any.                                  */
+/* If Type is not specified, default is any (afw_data_type_any).              */
 
 OptionalType ::= ( ':' Type )?
 
-OptionalReturnType ::= ( ':' ( 'void' | Type ) )?
+OptionalReturnType ::= ( ':' Type )?
 
 /* From afw_compile_parse_expression.c                                        */
 
@@ -367,7 +341,11 @@ Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 /* Statement-position pragma (#Name …). Token is pragma_identifier.           */
 
 PragmaStatement ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')'
+    '#block' '(' ( Expression ( ',' Expression )* )? ')' |
+    '#typecheck'
+        ( 'off' | 'on' | 'compileOnly' | 'strict' |
+          'noImplicitAny' | 'strictNullChecks' | ',' )*
+        ';'
 
 /* From afw_compile_parse_pragma.c                                            */
 /* Value/expression-position pragma (#Name …). Token is pragma_identifier.    */
@@ -443,12 +421,13 @@ ConstStatement ::= 'const' AssignmentTarget '=' Expression ';'
 
 InterfaceName ::= Identifier
 
-InterfaceStatement ::= 'interface' InterfaceName
-     '{'
-         ( String | Identifier ) ':' Type
-         ( ','  ( String | Identifier ) ':' Type )*
-         ','?
-     '}' ';'
+InterfaceStatement ::=
+    'interface' InterfaceName
+    ( 'extends' TypeName ( ',' TypeName )* )?
+    ObjectTypeLiteral
+    ';'
+/* Object body is TS-like { prop?: Type, ... } (see Type in expression).      */
+/* Script-local only; not adaptive object types (issue #28).                  */
 
 /* From afw_compile_parse_script.c                                            */
 

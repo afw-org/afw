@@ -246,6 +246,28 @@
                 "valueAccessor": "value"
             }
         },
+        "scriptSupport": {
+            "allowQuery": true,
+            "brief": "Script support function",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "True for core functions that implement Adaptive Script statements (const, let, if, while, …). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+            "label": "Script Support",
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
+        "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+            "allowQuery": true,
+            "brief": "First parameter evaluate deferred to polymorphic execute",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "If true, the first parameter evaluate is deferred to the polymorphic execute function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate function to call.",
+            "label": "Defer First Parameter Evaluate",
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
         "returns": {
             "allowQuery": true,
             "brief": "The return parameter",

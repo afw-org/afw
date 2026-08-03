@@ -30,11 +30,13 @@
     </paragraph>
     <header>Types and Type Casting</header>
     <paragraph>
-        Adaptive Script has a type system that has more in common with 
-        Typescript. For instance, in ECMAScript, you can add values of 
-        different types together without runtime errors, often 
-        resulting in some unexpected results. In Adaptive Script, these will 
-        be caught at compile-time, preventing the script from being loaded.
+        Adaptive Script can annotate values with Adaptive data types
+        (<literal>integer</literal>, <literal>string</literal>, arrays,
+        object shapes, unions, and more). Annotations are always accepted;
+        optional type checking (off by default) can catch mismatches at
+        compile time and/or runtime. See the
+        <link href="types.xml" text="Types"/> language reference for syntax
+        and flags.
     </paragraph>
     <header>Prototypal Inheritance</header>
     <paragraph>

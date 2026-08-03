@@ -23,7 +23,38 @@ from _afwdev.common import msg, nfc
 from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
-    before_each, after_all, after_each, test_group_matches_tags
+    before_each, after_all, after_each, test_group_matches_tags, \
+    test_path_for_display
+
+
+##
+# @brief Build a short detail string for the failure digest
+#
+def _failure_detail(error, response, numFailures):
+    if error is not None:
+        detail = error
+        try:
+            detail = nfc.json_loads(error).get('message') or error
+        except Exception:
+            detail = error
+        return str(detail)
+    if response is not None and response.get('tests'):
+        names = []
+        for tc in response.get('tests') or []:
+            if tc.get('skip'):
+                continue
+            if tc.get('passed', False) is False:
+                names.append(tc.get('test') or '?')
+        if names:
+            shown = names[:3]
+            extra = len(names) - len(shown)
+            text = ", ".join(shown)
+            if extra > 0:
+                text += ", +{} more".format(extra)
+            return text
+    if numFailures:
+        return "{} failed".format(numFailures)
+    return "failed"
 
 
 ##
@@ -32,12 +63,15 @@ from _afwdev.test.common import \
 # @param options The options dictionary
 # @param testEnvironments The list of test environments
 # @param work_dir_prefix The prefix for the working directory
+# @return (testGroup, passed, skipped, failed, failures) where failures is a
+#         list of dicts for the end-of-run digest (empty when none failed)
 #
 def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
 
     failed = 0
     skipped = 0
-    passed = 0    
+    passed = 0
+    failures = []
 
     # save the current environment variables
     prevEnvVars = os.environ.copy()
@@ -45,7 +79,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     # remember the current working directory
     pwd = os.getcwd()
 
-    _, root, tests = testGroup       
+    srcdir, root, tests = testGroup
 
     testGroupConfig = load_test_group_config(root)
     if testGroupConfig:        
@@ -59,14 +93,19 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     # if --tags was specified (non-default), skip groups that do not match
     if not test_group_matches_tags(options, testGroupConfig):
         msg.debug("  Skipping test group because it doesn't match the specified tags")
-        return testGroup, 0, 0, 0
+        return testGroup, 0, 0, 0, []
 
     # get the test environment for this test group
     testEnvironment = get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix)    
     if testEnvironment:
         if not testEnvironment.get('work_dir'):
             msg.error("Test environment '" + testEnvironment['name'] + "' has no 'work_dir' set")            
-            return None
+            return testGroup, 0, 0, 1, [{
+                'test': test_path_for_display(root, pwd),
+                'detail': "environment '{}' has no work_dir".format(
+                    testEnvironment.get('name')),
+                'srcdir': srcdir,
+            }]
         msg.debug("Using test environment: " + testEnvironment['name'] + ', work_dir = ' + testEnvironment['work_dir'])        
 
     test_group_start = time.time()
@@ -103,36 +142,52 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
 
             failed += numFailures
             passed += numPassed
-            skipped += numSkipped            
+            skipped += numSkipped
+
+            test_display = test_path_for_display(test, pwd)
+            duration_ms = round((end - start) * 1000)
 
             if msg.is_debug_mode() and (debug or error):
-                msg.highlighted_info("{}  ({}ms)".format(os.path.relpath(test, pwd), round((end - start) * 1000))) 
+                msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms)) 
 
-            if error != None:                       
-                if error:
-                    # The error could be from a Python exception, or an afw error object
-                    # The best solution will be to make separate Exception classes for
-                    # each type of error, so we can handle them differently.
-                    str = error
-                    try:
-                        str = nfc.json_loads(error).get('message')
-                    except Exception:
-                        str = error
-                    msg.error("\n    \u2717 {}\n".format(str))    
+            if error is not None:
+                # Process death / runner exception: always show path + message.
+                # (Assertion failures use print_test_response below.)
+                err_str = error
+                try:
+                    err_str = nfc.json_loads(error).get('message') or error
+                except Exception:
+                    err_str = error
+                msg.error("\n    \u2717 {}\n".format(err_str))
+                msg.error("      test:  {}\n".format(test_display))
+                msg.error("      group: {}\n".format(
+                    test_path_for_display(root, pwd)))
+                if testEnvironment and testEnvironment.get('work_dir'):
+                    msg.error("      cwd:   {}\n".format(
+                        testEnvironment['work_dir']))
 
             if msg.is_debug_mode() and debug:
                 msg.debug(debug)
 
             after_each(root, testGroupConfig, testEnvironment)
 
+            if hasFailures:
+                failures.append({
+                    'test': test_display,
+                    'detail': _failure_detail(error, response, numFailures),
+                    'srcdir': srcdir,
+                    'group': test_path_for_display(root, pwd),
+                })
+
             # Default is errors-only; --show-all prints successful tests too
             errors_only = options.get('errors', True) and not options.get('show_all')
             if errors_only and not hasFailures:
                 continue
 
-            # already reported test name above
-            if error == None:
-                msg.highlighted_info("{}  ({}ms)".format(os.path.relpath(test, pwd), round((end - start) * 1000)))
+            # Path for assertion failures / --show-all (process errors already
+            # printed identity above).
+            if error is None:
+                msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms))
 
                 if debug:
                     msg.debug('---\n' + debug + '\n---\n')
@@ -165,7 +220,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     if msg.is_debug_mode():
         msg.highlighted_info("Test group {} took {}ms".format(root, round((test_group_end - test_group_start) * 1000)))
 
-    return testGroup, passed, skipped, failed
+    return testGroup, passed, skipped, failed, failures
 
 
 ##
@@ -203,6 +258,7 @@ def run(options, srcdirs):
 
     allTestGroups = []
     allTestResults = {}
+    allFailures = []
     testEnvironments = []
     
     # always include the python client for bindings in the system path
@@ -290,7 +346,7 @@ def run(options, srcdirs):
 
         pool.join()
         
-        for testGroup, passed, skipped, failed in results:
+        for testGroup, passed, skipped, failed, group_failures in results:
             _srcdir = testGroup[0]
 
             if allTestResults.get(_srcdir):
@@ -298,13 +354,15 @@ def run(options, srcdirs):
                 allTestResults[_srcdir][1] += skipped
                 allTestResults[_srcdir][2] += failed
             else:
-                allTestResults[_srcdir] = [passed, skipped, failed]             
+                allTestResults[_srcdir] = [passed, skipped, failed]
+            if group_failures:
+                allFailures.extend(group_failures)
 
     else:
         # run sequentially
         try:
             for testGroup in allTestGroups:
-                _, passed, skipped, failed = run_test_group(
+                _, passed, skipped, failed, group_failures = run_test_group(
                     testGroup, 
                     options, 
                     testEnvironments, 
@@ -318,6 +376,8 @@ def run(options, srcdirs):
                     allTestResults[_srcdir][2] += failed
                 else:
                     allTestResults[_srcdir] = [passed, skipped, failed]
+                if group_failures:
+                    allFailures.extend(group_failures)
 
         except KeyboardInterrupt:
             msg.error("Caught KeyboardInterrupt, terminating test runner")
@@ -327,4 +387,4 @@ def run(options, srcdirs):
             msg.error("Test runner caught Exception: " + str(e))
             sys.exit(1)
 
-    return allTestResults
+    return allTestResults, allFailures

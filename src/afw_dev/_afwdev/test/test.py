@@ -32,7 +32,8 @@ import fnmatch
 from _afwdev.common import msg, nfc, package
 from _afwdev.test import watch, runner, js
 from _afwdev.test.common import (
-    find_test_groups, load_test_group_config, test_group_matches_tags)
+    find_test_groups, load_test_group_config, test_group_matches_tags,
+    print_failure_digest)
 
 
 ##
@@ -136,7 +137,7 @@ def run(options):
     else:
 
         start = time.time()
-        results = runner.run(options, srcdirs)
+        results, failures = runner.run(options, srcdirs)
         end = time.time()
 
         # iterate over results dict and print results
@@ -183,6 +184,9 @@ def run(options):
         msg.highlighted_info("{} total".format(total_tests))
         msg.highlighted_info("Time:          {}s".format(elapsed))
 
+        # Console-only digest so parallel -j runs still end with greppable paths
+        print_failure_digest(failures)
+
         _write_output_summary(options, {
             'srcdirs': {
                 'passed': srcdirs_passed,
@@ -210,4 +214,4 @@ def run(options):
         if total_failed > 0:
             sys.exit(1)
         else:
-            sys.exit(0)  
+            sys.exit(0) 
