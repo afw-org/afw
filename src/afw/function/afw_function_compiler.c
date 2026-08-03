@@ -648,8 +648,8 @@ afw_function_execute_stringify(
                     xctx);
             }
             ctx.f_argv = f_argv;
-            ctx.call = afw_value_call_create(NULL, 2, f_argv, false,
-                x->p, xctx);
+            ctx.call = afw_value_call_create(AFW_FUNCTION_CONTEXTUAL,
+                2, f_argv, false, x->p, xctx);
         }
     }
 

@@ -1338,7 +1338,7 @@ afw_function_execute_switch(
         x->argv[1], p, xctx);
     AFW_FUNCTION_EVALUATE_PARAMETER(args.value1, 2);
     args.value2 = NULL; /* Filled in later. */
-    functor = afw_value_call_create(NULL,
+    functor = afw_value_call_create(AFW_FUNCTION_CONTEXTUAL,
         2, (const afw_value_t **)&args, false, p, xctx);
 
 

@@ -367,6 +367,22 @@ afw_compile_source_location_of_value( \
 
 
 /**
+ * @brief Call-site contextual for this built-in invocation.
+ *
+ * Use when an execute body creates Adaptive values (e.g. afw_value_call_create)
+ * that should carry the same unit link / source attribution as this call.
+ * NULL if there is no call value or no contextual (process defaults only for
+ * type-check helpers). Like all AFW_FUNCTION_* macros, "x" must be the name
+ * of the function execute struct pointer.
+ *
+ * Prefer this over scattering x->self->args.contextual so the path stays
+ * correct in one place.
+ */
+#define AFW_FUNCTION_CONTEXTUAL \
+    ((x)->self ? (x)->self->args.contextual : NULL)
+
+
+/**
  * @brief Execute function if caller has 'execute' access.
  * 
  * This is an execute function that wraps the actual function implementation
