@@ -9,7 +9,7 @@
 | Kind | Parse | Audience | Role |
 |------|--------|----------|------|
 | **Pragma** | `afw_compile_parse_pragma.c` | Script authors | Per-compile **policy** |
-| **Compiler-private** | `afw_compile_parse_compiler_internal.c` | Toolchain only | **decompile → recompile** (`#block`, `#script_function`, …) |
+| **Compiler-internal** | `afw_compile_parse_compiler_internal.c` | Toolchain only | **decompile → recompile** (`#block`, `#script_function`, …) |
 
 Lex: `pound_identifier` for any `#Name`. Product docs should not teach compiler-internal forms as normal script.
 
@@ -35,6 +35,45 @@ Rules:
 5. Type checks use **`AFW_VALUE_TYPE_CHECK_*(contextual, xctx)`** macros: if `contextual->compiled_value` then unit policy, else process flags (`afw_flag_is_active`). No ambient xctx policy.
 6. New script-overridable compile flags → new **allow-listed operands**, not new top-level `#foo` directives.
 7. If a future need is **not** compile policy, add a different `#DirectiveName` — do not invent parallel vocabularies (`#typecheck` was retired for this reason).
+
+### Mid-unit `#compile` (“from here on”)
+
+`#compile` may appear **anywhere a statement is allowed**. It updates the **current unit’s** `compile_policy` **as of that point in the source**:
+
+- **Compile-time** checks for constructs **parsed after** the pragma use the new policy.
+- Constructs **already parsed** before the pragma are not re-checked under the new policy.
+- **Runtime** checks for values in that unit use the unit policy as last mutated (full unit policy object, not a per-statement stack).
+
+This is intentional. Example:
+
+```text
+// process flags may be off; unit starts from snapshot (e.g. off)
+const a: integer = "x";     // not checked if policy still off
+
+#compile typeCheck;
+
+const b: integer = "y";     // checked — fails compile
+```
+
+```text
+#compile typeCheck;
+const a: integer = 1;       // checked
+
+#compile off;
+const b: integer = "ok";    // allowed after off in this unit
+```
+
+### Flags vs unit policy (common confusion)
+
+| Expectation | What actually happens |
+|-------------|------------------------|
+| `flag_set(["compile:typeCheck"], true)` then compile a string | New unit **snapshots** flags **at that compile**; checking applies unless `#compile off` in that source. |
+| `#compile typeCheck` in a script | Only **that unit’s** policy; process flags **unchanged**. Later `compile<script>` without pragma still uses process defaults. |
+| Flag on but source has `#compile off` | Unit policy off for type-check cluster — “nothing happened” relative to the flag is correct for **that unit**. |
+| Flag off but source has `#compile typeCheck` | Unit still checks — override is per-unit, not “flags only.” |
+| Flag set **during** evaluation of an outer script after inner was compiled | Too late for that inner unit’s snapshot; set flags **before** `compile…` or use `#compile` **inside** the unit under test. |
+
+**Author-facing default story remains flags-first** (handbook). `#compile` is the per-unit / mid-unit override; document both so flag_set users are not surprised.
 
 ## Current `#compile` operands (flags they override)
 
@@ -79,6 +118,6 @@ Examples:
 
 - Explicit allow-list metadata on flag registration (“pragma-able”) if the set grows.
 - Whether `noOptimize` stays pragma-able long term (host-only vs script).
-- Handbook language-ref note for `#compile` (flags still primary for authors).
+- Handbook language-ref note for `#compile` (flags still primary; mid-unit “from here on” + flag vs unit table above).
 - Optional: more call sites still pass NULL contextual by design (higher-order) → flags only.
-- **Compiler-private inventory:** [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.
+- **Decompile / `#…` inventory:** [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.

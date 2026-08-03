@@ -35,11 +35,16 @@
  *     compiled unit's afw_compile_policy_t at compile start.
  *   • #compile **mutates only that policy** (never afw_flag_set / process
  *     flags). Sibling compiles and the rest of the request keep their defaults.
+ *   • Mid-unit: #compile may appear as a statement anywhere; policy applies
+ *     **from here on** for later parse/checks in this unit (not process-wide).
+ *     Constructs already parsed are not re-checked under the new policy.
  *   • Unmentioned knobs keep the snapshotted defaults; mentioned names are
  *     forced on for this unit (except **off**, which forces the type-check
  *     cluster off on the policy).
  *   • Type checks use AFW_VALUE_TYPE_CHECK_*(contextual, xctx): unit policy
  *     when contextual->compiled_value is set, else process flags.
+ *     If a flag seems to "do nothing", the unit may have #compile off, or
+ *     the flag was set after that unit was already compiled (snapshot).
  *   • New compile:* flags that should be script-overridable become new
  *     allow-listed operands — not new top-level # directives.
  *   • If a future need is not compile policy, add a different #DirectiveName;

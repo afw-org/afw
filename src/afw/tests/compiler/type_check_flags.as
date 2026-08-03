@@ -10,11 +10,13 @@ noImplicitAny, strictNullChecks, compile:strict, and matching #compile
 operands (flag short names). Behavioral rules live in type_check.as under
 #compile typeCheck in the unit under test.
 Nuances: all //? test: cases share one afw process, so each case clears
-the type-flag family before enabling what it needs; #compile can leave
-env flags set after that compile (see pragma-does-not-affect-sibling-compile).
-typeCheck = compile when known + runtime assign/params; compileOnly = no
-runtime formal checks. Without strictNullChecks, null may assign to
-integer under typeCheck alone.
+the type-flag family before enabling what it needs; #compile does not set
+process flags (see pragma-does-not-affect-sibling-compile). Flags are
+snapshotted at compile start — set them before compile…, or use #compile
+inside the unit (mid-unit applies from that statement on). typeCheck =
+compile when known + runtime assign/params; compileOnly = no runtime
+formal checks. Without strictNullChecks, null may assign to integer under
+typeCheck alone.
 //? sourceType: script
 //?
 //? test: flags-default-off

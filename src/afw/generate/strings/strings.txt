@@ -98,9 +98,13 @@ read
 #
 # compile:* flags — process/session defaults for the Adaptive Script compiler.
 # At each compile start these are snapshotted into the unit's compile policy.
+# Checking uses that unit policy (via contextual->compiled_value), not a live
+# process flag read for every check. So flag_set after compile is too late for
+# that unit; use flag_set before compile… or #compile inside the source.
 # The #compile pragma may override allow-listed knobs for that unit only (never
-# changes process flags). Operand = short name after "compile:". Example:
-#   #compile typeCheck noImplicitAny;
+# changes process flags). Mid-unit #compile applies from that statement on for
+# later parse/checks in the same unit. Operand = short name after "compile:".
+# Example: #compile typeCheck noImplicitAny;
 # #compile off; forces the type-check cluster off for that unit's policy.
 # See designs/pragma-hash-design.md and afw_compile_parse_pragma.c.
 #
@@ -111,11 +115,11 @@ a_flag_compile_noImplicitAny_description=If a type isn't provided where it can b
 
 a_flag_compile_typeCheck=compile:typeCheck
 a_flag_compile_typeCheck_brief=Enable compile and runtime type checking
-a_flag_compile_typeCheck_description=When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins. Process default; a script may override for one compile unit with #compile typeCheck; (or #compile off;) without changing this flag for the rest of the process.
+a_flag_compile_typeCheck_description=When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheck; (or #compile off;), including mid-unit so later statements use the new policy, without changing this flag for the rest of the process.
 
 a_flag_compile_typeCheckCompileOnly=compile:typeCheckCompileOnly
 a_flag_compile_typeCheckCompileOnly_brief=Enable compile-time type checking only
-a_flag_compile_typeCheckCompileOnly_description=When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set. Process default; a script may override for one compile unit with #compile typeCheckCompileOnly; (or #compile off;) without changing this flag for the rest of the process.
+a_flag_compile_typeCheckCompileOnly_description=When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheckCompileOnly; (or #compile off;), including mid-unit, without changing this flag for the rest of the process.
 
 a_flag_compile_strictNullChecks=compile:strictNullChecks
 a_flag_compile_strictNullChecks_brief=Strict null and undefined checks

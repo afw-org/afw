@@ -10821,7 +10821,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_typeCheckCompileOnly_description \
-    "When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set. Process default; a script may override for one compile unit with #compile typeCheckCompileOnly; (or #compile off;) without changing this flag for the rest of the process."
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheckCompileOnly; (or #compile off;), including mid-unit, without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
 #define afw_s_a_flag_compile_typeCheckCompileOnly_description \
@@ -10873,7 +10873,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_typeCheck_description \
-    "When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins. Process default; a script may override for one compile unit with #compile typeCheck; (or #compile off;) without changing this flag for the rest of the process."
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheck; (or #compile off;), including mid-unit so later statements use the new policy, without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck_description */
 #define afw_s_a_flag_compile_typeCheck_description \
