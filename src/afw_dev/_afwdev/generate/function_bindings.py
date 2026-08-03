@@ -184,7 +184,13 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label,
 
 
 def function_arg(fd, arg):
-    types = []
+    """
+    One Parameters:/Returns: line for C/Doxygen comments.
+
+    Type text uses #28 spelling (T[], FunctionType =>). OT / media notes are
+    appended as plain text (not /* */ or //) so this stays safe inside the
+    outer C block comment and description text is not swallowed.
+    """
     line = '  '
 
     if arg.get('name') is not None:
@@ -195,19 +201,24 @@ def function_arg(fd, arg):
         line += str(arg.get('minArgs')) + ' or more '
     elif arg.get('optional', False):
         line += 'optional '
-    line += ' or '.join(types)
+
     if arg.get('polymorphicDataType', False) == True:
         line += '`<Type>`'
-    else:
-        if arg.get('dataType') is not None:
-            line += arg.get('dataType')
+    elif arg.get('polymorphicDataTypeParameter', False) == True:
+        # e.g. bag values: ArrayOf specialized element → `<Type>`[]
+        if arg.get('dataType') == 'array':
+            line += '`<Type>`[]'
         else:
-            line += 'any dataType'
-    if arg.get('polymorphicDataTypeParameter', False) == True:
-        line += ' `<Type>`'
-    elif arg.get('dataTypeParameter') is not None:
-        line += ' ' + arg.get('dataTypeParameter')
-    line +=  ')'
+            base = arg.get('dataType') if arg.get('dataType') is not None else 'any'
+            line += base + ' `<Type>`'
+    else:
+        spelling, note = _type_parts(arg)
+        line += spelling
+        if note:
+            # e.g. object _AdaptiveJournalEntry_  (C-comment safe)
+            line += ' ' + note
+
+    line += ')'
 
     if arg.get('description') is not None:
         line += ' '
@@ -216,19 +227,199 @@ def function_arg(fd, arg):
             line += '.'
     c.write_wrapped(fd, 80, ' * ', line, '      ')
 
-def make_Type(p):
-    type = ""
-    if p.get('dataTypeParameter') is not None:
-        type += "(" 
-    if p.get('dataType') is not None:
-        type += p.get('dataType')
-    elif p.get('polymorphicDataType', False):
-        type += 'dataType'
+
+def _looks_like_function_signature(s):
+    """True if s looks like a function Type / old FunctionSignature string."""
+    if not s:
+        return False
+    s = s.strip()
+    return s.startswith('(') and ')' in s
+
+
+def _modernize_function_signature(sig):
+    """
+    Map old FunctionSignature spelling to #28 FunctionType.
+
+    Old Adaptive:  (a: integer, b: string): boolean
+    New FunctionType: (a: integer, b: string) => boolean
+
+    Also normalizes a space after '...'.
+    """
+    if sig is None:
+        return sig
+    s = sig.strip()
+    # Collapse "... name" / "...  name" to "...name" (rest marker).
+    while '... ' in s:
+        s = s.replace('... ', '...')
+    if '=>' in s:
+        return s
+    # Return separator is the last "):" that closes the parameter list.
+    idx = s.rfind('):')
+    if idx >= 0:
+        rest = s[idx + 2:]
+        if rest.startswith(' '):
+            return s[:idx] + ') =>' + rest
+        return s[:idx] + ') => ' + rest
+    return s
+
+
+def _type_as_array_of(elem_type):
+    """T[] with parentheses when T is a composite FunctionType / union / etc."""
+    t = elem_type.strip()
+    if (t.startswith('(') or '=>' in t or '|' in t or '&' in t or
+            ' ' in t):
+        return '(' + t + ')[]'
+    return t + '[]'
+
+
+def _type_parts(p):
+    """
+    Return (type_spelling, constraint_note_or_None) for a formal/return.
+
+    type_spelling is #28 Type text only. constraint_note is OT id, media type,
+    or other dataTypeParameter that is not script Type syntax (docs only).
+    """
+    if p is None:
+        return ('any', None)
+
+    dt = p.get('dataType')
+    dtp = p.get('dataTypeParameter')
+    if dtp is not None:
+        dtp = str(dtp).strip()
+        if dtp == '':
+            dtp = None
+
+    if dt is None:
+        if p.get('polymorphicDataType', False):
+            base = 'dataType'
+        else:
+            base = None
     else:
-        type += 'any'
-    if p.get('dataTypeParameter') is not None:
-        type += " " + p.get('dataTypeParameter') + ")"
-    return type
+        base = dt
+
+    # Function formal: leaf "function" or FunctionSignature parameter.
+    if base == 'function' or (
+            base is None and dtp is not None and
+            _looks_like_function_signature(dtp)):
+        if dtp is not None and _looks_like_function_signature(dtp):
+            return (_modernize_function_signature(dtp), None)
+        if dtp is not None:
+            return ('function', dtp)
+        return ('function', None)
+
+    # ArrayOf: array + element (data type name, nested array, or object OT).
+    if base == 'array':
+        if dtp is None:
+            return ('array', None)
+        # Nested old spelling "array of T" if it ever appears in metadata.
+        if dtp.startswith('array of '):
+            return (
+                _type_as_array_of(_type_parts({
+                    'dataType': 'array',
+                    'dataTypeParameter': dtp[len('array of '):].strip()
+                })[0]),
+                None)
+        if dtp.startswith('object '):
+            # "object _AdaptiveX_" → object[] + note OT
+            return ('object[]', dtp[len('object '):].strip())
+        # Bare OT id (not a script Type / not an Adaptive data type name).
+        if dtp.startswith('_Adaptive') or dtp.startswith('_'):
+            return ('object[]', dtp)
+        # Element is an Adaptive data type (or TypeName-like) id.
+        return (_type_as_array_of(dtp), None)
+
+    # ObjectType: Type is object; OT id is constraint metadata.
+    if base == 'object':
+        if dtp is None:
+            return ('object', None)
+        return ('object', dtp)
+
+    # objectId + optional OT constraint (rare).
+    if base == 'objectId':
+        if dtp is None:
+            return ('objectId', None)
+        return ('objectId', dtp)
+
+    # MediaType / SourceParameter / other string-ish parameters.
+    if base is not None and dtp is not None:
+        if _looks_like_function_signature(dtp):
+            return (_modernize_function_signature(dtp), None)
+        return (base, dtp)
+
+    if base is not None:
+        return (base, None)
+
+    if dtp is not None:
+        if _looks_like_function_signature(dtp):
+            return (_modernize_function_signature(dtp), None)
+        return (dtp, None)
+
+    return ('any', None)
+
+
+def _doc_type_with_note(type_spelling, note, note_style='block'):
+    """
+    Type plus non-Type constraint as a comment (docs only).
+
+    note_style:
+      'block' — type /* note */  (functionSignature one-liner only; punct after)
+      'line'  — type // note     (avoid; attach // after ','/';' via _c_decl_line_note)
+      'none'  — type only        (functionDeclaration / C comment emitters)
+    """
+    if not note or note_style == 'none':
+        return type_spelling
+    if note_style == 'line':
+        # Prefer make_Type(..., 'none') + ' // ' after punctuation.
+        return type_spelling + ' // ' + note
+    return type_spelling + ' /* ' + note + ' */'
+
+
+def make_Type(p, note_style='block'):
+    """
+    Script-facing Type string for docs prototypes.
+
+    Uses issue #28 spelling (T[], FunctionType with =>). Hard-cut old forms:
+    (array of T), (object OT), (function …). OT / media constraints that are
+    not script Types: 'block' attaches /* note */; multi-line emitters use
+    'none' and put // note after ',' / ';'. Presentation only.
+
+    note_style: 'block' | 'none' (see _doc_type_with_note).
+    """
+    spelling, note = _type_parts(p)
+    return _doc_type_with_note(spelling, note, note_style)
+
+
+def make_Type_note(p):
+    """Constraint note (OT id, media, …) or None — for C Declaration // notes."""
+    return _type_parts(p)[1]
+
+
+def make_rest_Type(p, note_style='block'):
+    """
+    Type of a rest formal (the array that collects remaining args).
+
+    If the formal is already ArrayOf (dataType array), make_Type is the
+    collected type. Otherwise each arg has make_Type(p) and rest is T[].
+    """
+    if p is not None and p.get('dataType') == 'array':
+        return make_Type(p, note_style=note_style)
+    # Rest of non-array formals: T[] — notes rare; keep on element type path.
+    spelling, note = _type_parts(p)
+    return _doc_type_with_note(_type_as_array_of(spelling), note, note_style)
+
+
+def make_rest_Type_note(p):
+    """Note for a rest formal, if any."""
+    if p is not None and p.get('dataType') == 'array':
+        return make_Type_note(p)
+    return make_Type_note(p)
+
+
+def _c_decl_line_note(note):
+    """Suffix for C Declaration lines: punctuation already written."""
+    if not note:
+        return ''
+    return ' // ' + note
 
 
 def function_comment(fd, obj):
@@ -263,7 +454,7 @@ def function_comment(fd, obj):
         fd.write(' *\n')
         c.write_wrapped(fd, 80, ' *   ', ', '.join(obj.get('polymorphicDataTypes')) + '.')
      
-    # function declaration
+    # function declaration (inside C /* … */ — use // notes after ',' / ';')
     fd.write(' *\n')
     fd.write(' * Declaration:\n')
     fd.write(' *\n * ```\n')
@@ -271,30 +462,45 @@ def function_comment(fd, obj):
     fd.write(obj['functionId'])
     if obj.get('polymorphic', False):
         fd.write(" <dataType>")
-    fd.write('(\n *   ')
-    sep = '    '
-    for p in obj.get('parameters'):
-        fd.write(sep)
-        sep = ',\n *       '
+    fd.write('(\n')
+    params = obj.get('parameters') or []
+    for i, p in enumerate(params):
+        is_last = (i == len(params) - 1)
+        fd.write(' *       ')
         if p.get('minArgs') is not None:
-            i = 1
+            # name_1: T, name_2: T, ...name_rest: T[] // note
             n = int(p.get('minArgs'))
-            while i <= n:
-                fd.write(p.get('name') + '_' + str(i) + ': ' + make_Type(p) + sep)
-                i += 1
+            j = 1
+            while j <= n:
+                fd.write(p.get('name') + '_' + str(j) + ': ' +
+                         make_Type(p, note_style='none'))
+                # more fixed args, or rest always follows
+                fd.write(',\n *       ')
+                j += 1
             fd.write('...')
             if n == 0:
-                fd.write(p.get('name') + ': (array of ' + make_Type(p) + ')')
+                fd.write(p.get('name') + ': ' +
+                         make_rest_Type(p, note_style='none'))
             else:
-                fd.write(p.get('name') + '_rest: (array of ' + make_Type(p) + ')')
+                fd.write(p.get('name') + '_rest: ' +
+                         make_rest_Type(p, note_style='none'))
+            if not is_last:
+                fd.write(',')
+            fd.write(_c_decl_line_note(make_rest_Type_note(p)))
         else:
             fd.write(p.get('name'))
             if p.get('optional', False):
                 fd.write('?')
-            fd.write(': ' + make_Type(p))
-    fd.write('\n *   ): ')
-    fd.write(make_Type(obj.get('returns')))
-    fd.write(';\n * ```\n')
+            fd.write(': ' + make_Type(p, note_style='none'))
+            if not is_last:
+                fd.write(',')
+            fd.write(_c_decl_line_note(make_Type_note(p)))
+        fd.write('\n')
+    fd.write(' *   ): ')
+    fd.write(make_Type(obj.get('returns'), note_style='none'))
+    fd.write(';')
+    fd.write(_c_decl_line_note(make_Type_note(obj.get('returns'))))
+    fd.write('\n * ```\n')
 
     fd.write(' *\n')
     fd.write(' * Parameters:\n')
@@ -704,7 +910,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             else:
                 fd.write('    &' + get_string_label(options, description, 'self_v') + ',\n')
           
-            # functionSignature
+            # functionSignature (compact one-line; call-site shape with : return)
+            # One-liner must use /* note */ — // would swallow the rest of the line.
             functionSignature = ""
             if obj.get('polymorphic', False):
                 functionSignature += "`<dataType>`"
@@ -713,7 +920,6 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             for p in obj.get('parameters'):
                 functionSignature += sep
                 sep = ', '
-                saveLen = len(functionSignature)
                 if p.get('minArgs') is not None:
                     i = 1
                     n = int(p.get('minArgs'))
@@ -722,9 +928,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         i += 1
                     functionSignature += '...'
                     if n == 0:
-                        functionSignature += p.get('name') + ': (array of ' + make_Type(p) + ')'
+                        functionSignature += p.get('name') + ': ' + make_rest_Type(p)
                     else:
-                        functionSignature += p.get('name') + '_rest: (array of ' + make_Type(p) + ')'
+                        functionSignature += p.get('name') + '_rest: ' + make_rest_Type(p)
                 else:
                     functionSignature += p.get('name')
                     if p.get('optional', False):
@@ -734,37 +940,25 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             functionSignature += make_Type(obj.get('returns'))
             fd.write('    &' + get_string_label(options, functionSignature, 'self_v') + ',\n')
 
-            # functionDeclaration
+            # functionDeclaration (pretty multi-line; admin reference + Monaco hover).
+            # No briefs. OT / media notes as // after ',' / ';' on the formal line
+            # (same layout as C function_comment Declaration).
             functionDeclaration = ""
-            if obj.get('brief') is not None:
-                functionDeclaration += '/* ' + obj.get('brief') + ' */\n'
             functionDeclaration += "function " + obj.get('functionId') + ' '
             if obj.get('polymorphic', False):
                 functionDeclaration += "`<dataType>`"
- 
-            # functionDeclaration: Calculate max len of "name: Type" part of parameter
-            maxLen = 0
-            for p in obj.get('parameters'):
-                thisLen = 0
-                if p.get('optional', False):
-                    thisLen = 1
-                thisLen += len(p.get('name')) + 2 + len(make_Type(p))
-                if thisLen > maxLen:
-                    maxLen = thisLen
 
-            # functionDeclaration: Emit parameters
             numberOfRequiredParameters = 0
             maximumNumberOfParameters = 0
             encounteredOptional = False
             encounteredMinArgs = False
             functionDeclaration += '(\n'
-            sep = '    '
-            for p in obj.get('parameters'):
+            params = obj.get('parameters') or []
+            for i_param, p in enumerate(params):
+                is_last = (i_param == len(params) - 1)
                 if encounteredMinArgs:
                     msg.error_exit(obj.get('functionId') + ': minArgs can only be specified on last parameter')
-                functionDeclaration += sep
-                sep = ',\n    '
-                saveLen = len(functionDeclaration)
+
                 if p.get('minArgs') is not None:
                     encounteredMinArgs = True
                     i = 1
@@ -774,16 +968,22 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     numberOfRequiredParameters += n
                     maximumNumberOfParameters = -1
                     while i <= n:
-                        functionDeclaration += p.get('name') + '_' + str(i) + ': ' + make_Type(p) + sep
+                        functionDeclaration += (
+                            '    ' + p.get('name') + '_' + str(i) + ': ' +
+                            make_Type(p, note_style='none') + ',\n')
                         i += 1
-                    functionDeclaration += '...'
+                    type_note = make_rest_Type_note(p)
+                    functionDeclaration += '    ...'
                     if n == 0:
-                        functionDeclaration += p.get('name') + ': (array of ' + make_Type(p) + ')'
+                        functionDeclaration += p.get('name') + ': ' + make_rest_Type(
+                            p, note_style='none')
                     else:
-                        functionDeclaration += p.get('name') + '_rest: (array of ' + make_Type(p) + ')'
+                        functionDeclaration += p.get('name') + '_rest: ' + make_rest_Type(
+                            p, note_style='none')
                 else:
                     maximumNumberOfParameters += 1
-                    functionDeclaration += p.get('name')
+                    type_note = make_Type_note(p)
+                    functionDeclaration += '    ' + p.get('name')
                     if p.get('optional', False):
                         encounteredOptional = True
                         functionDeclaration += '?'
@@ -791,19 +991,20 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         if encounteredOptional:
                             msg.error_exit(obj.get('functionId') + ': all required parameters must be first')
                         numberOfRequiredParameters += 1
-                    functionDeclaration += ': ' + make_Type(p)
+                    functionDeclaration += ': ' + make_Type(p, note_style='none')
 
-                if p.get('brief') is not None:
-                    functionDeclaration += ' ' * (maxLen - (len(functionDeclaration) - saveLen))
-                    functionDeclaration += ' /* ' + p.get('brief') + ' */'
-            functionDeclaration += '\n): '
+                if not is_last:
+                    functionDeclaration += ','
+                if type_note is not None:
+                    functionDeclaration += ' // ' + type_note
+                functionDeclaration += '\n'
 
-
-            # functionDeclaration: Return type
-            functionDeclaration += make_Type(obj.get('returns'))
+            # Return: ): type; // OT
+            ret = obj.get('returns')
+            functionDeclaration += '): '
+            functionDeclaration += make_Type(ret, note_style='none')
             functionDeclaration += ';'
-            if obj.get('returns') is not None and obj.get('returns').get('brief') is not None:
-                functionDeclaration += ' /* ' + obj.get('returns').get('brief') + ' */'
+            functionDeclaration += _c_decl_line_note(make_Type_note(ret))
             functionDeclaration += '\n'
 
 

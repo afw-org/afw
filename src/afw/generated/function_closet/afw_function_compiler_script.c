@@ -43,11 +43,11 @@
  *
  *   name - (string) Variable name.
  *
- *   value - (any dataType) This is the value to assign to the variable.
+ *   value - (any) This is the value to assign to the variable.
  *
  * Returns:
  *
- *   (any dataType) The value assigned.
+ *   (any) The value assigned.
  */
 const afw_value_t *
 afw_function_execute_assign(
@@ -82,14 +82,14 @@ afw_function_execute_assign(
  *
  * Parameters:
  *
- *   value - (optional any dataType) The value to evaluate that the enclosing
- *       loop will return. If not specified, the last evaluated value or a null
- *       value will be returned.
+ *   value - (optional any) The value to evaluate that the enclosing loop will
+ *       return. If not specified, the last evaluated value or a null value will
+ *       be returned.
  *
  * Returns:
  *
- *   (any dataType) This function returns from the body of a loop with the last
- *       evaluated value.
+ *   (any) This function returns from the body of a loop with the last evaluated
+ *       value.
  */
 const afw_value_t *
 afw_function_execute_break(
@@ -119,24 +119,24 @@ afw_function_execute_break(
  *
  * ```
  *   function const(
- *       name: (array string),
+ *       name: string[],
  *       value: any,
- *       type?: (object _AdaptiveValueMeta_)
+ *       type?: object // _AdaptiveValueMeta_
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   name - (array string) The name of one or more constants to defined in the
+ *   name - (string[]) The name of one or more constants to defined in the
  *       current block.
  *
- *   value - (any dataType) This is the value of the constant(s).
+ *   value - (any) This is the value of the constant(s).
  *
  *   type - (optional object _AdaptiveValueMeta_) The type of the constant(s).
  *
  * Returns:
  *
- *   (any dataType) The value assigned.
+ *   (any) The value assigned.
  */
 const afw_value_t *
 afw_function_execute_const(
@@ -166,7 +166,6 @@ afw_function_execute_const(
  *
  * ```
  *   function continue(
- *   
  *   ): any;
  * ```
  *
@@ -174,7 +173,7 @@ afw_function_execute_const(
  *
  * Returns:
  *
- *   (any dataType) This function does not return.
+ *   (any) This function does not return.
  */
 const afw_value_t *
 afw_function_execute_continue(
@@ -223,8 +222,7 @@ afw_function_execute_continue(
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if the body is
- *       empty.
+ *   (any) The last value evaluated in body or null if the body is empty.
  */
 const afw_value_t *
 afw_function_execute_do_while(
@@ -282,8 +280,8 @@ afw_function_execute_do_while(
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
+ *   (any) The last value evaluated in body or null if condition evaluates to
+ *       false the first time.
  */
 const afw_value_t *
 afw_function_execute_for(
@@ -316,7 +314,7 @@ afw_function_execute_for(
  *
  * ```
  *   function for_of(
- *       name: (array string),
+ *       name: string[],
  *       value: any,
  *       body?: array
  *   ): any;
@@ -324,9 +322,9 @@ afw_function_execute_for(
  *
  * Parameters:
  *
- *   name - (array string) Variable name(s).
+ *   name - (string[]) Variable name(s).
  *
- *   value - (any dataType) Any array, object or single value.
+ *   value - (any) Any array, object or single value.
  *
  *   body - (optional array) This is an array of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
@@ -335,8 +333,8 @@ afw_function_execute_for(
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
+ *   (any) The last value evaluated in body or null if condition evaluates to
+ *       false the first time.
  */
 const afw_value_t *
 afw_function_execute_for_of(
@@ -386,7 +384,7 @@ afw_function_execute_for_of(
  *
  * Returns:
  *
- *   (any dataType) The result of evaluating 'then' or 'else'.
+ *   (any) The result of evaluating 'then' or 'else'.
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -417,26 +415,25 @@ afw_function_execute_if(
  *
  * ```
  *   function let(
- *       name: (array string),
+ *       name: string[],
  *       value?: any,
- *       type?: (object _AdaptiveValueMeta_)
+ *       type?: object // _AdaptiveValueMeta_
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   name - (array string) The name of one or more variables to declared in the
+ *   name - (string[]) The name of one or more variables to declared in the
  *       current block.
  *
- *   value - (optional any dataType) This is the initial value of the
- *       variable(s). If not specified, the variable will have a value of
- *       undefined.
+ *   value - (optional any) This is the initial value of the variable(s). If not
+ *       specified, the variable will have a value of undefined.
  *
  *   type - (optional object _AdaptiveValueMeta_) The type of the variable(s).
  *
  * Returns:
  *
- *   (any dataType) The value assigned.
+ *   (any) The value assigned.
  */
 const afw_value_t *
 afw_function_execute_let(
@@ -465,7 +462,6 @@ afw_function_execute_let(
  *
  * ```
  *   function rethrow(
- *   
  *   ): any;
  * ```
  *
@@ -473,7 +469,7 @@ afw_function_execute_let(
  *
  * Returns:
  *
- *   (any dataType) This function rethrows the current error in a catch block.
+ *   (any) This function rethrows the current error in a catch block.
  */
 const afw_value_t *
 afw_function_execute_rethrow(
@@ -509,14 +505,14 @@ afw_function_execute_rethrow(
  *
  * Parameters:
  *
- *   value - (optional any dataType) The value to evaluate that the outermost
- *       block will return. If not specified, the last evaluated value or a null
- *       value will be returned.
+ *   value - (optional any) The value to evaluate that the outermost block will
+ *       return. If not specified, the last evaluated value or a null value will
+ *       be returned.
  *
  * Returns:
  *
- *   (any dataType) This function returns from the outermost structured block
- *       with the last evaluated value.
+ *   (any) This function returns from the outermost structured block with the
+ *       last evaluated value.
  */
 const afw_value_t *
 afw_function_execute_return(
@@ -544,29 +540,29 @@ afw_function_execute_return(
  *
  * ```
  *   function switch(
- *       predicate: (function (any value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       value1: any,
  *       case_clause_1: any,
  *       case_clause_2: any,
- *       ...case_clause_rest: (array of any)
+ *       ...case_clause_rest: any[]
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters and must return a boolean. The first
- *       parameter passed is the evaluated value of the value1 parameter and the
- *       second is the value2 from a case clause. This predicate will often be
- *       'eqx' to use the exactly equal function but can also be any other
- *       function such as 'regexp_match' or a lambda function.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters and must return a boolean. The first parameter passed is
+ *       the evaluated value of the value1 parameter and the second is the
+ *       value2 from a case clause. This predicate will often be 'eqx' to use
+ *       the exactly equal function but can also be any other function such as
+ *       'regexp_match' or a lambda function.
  *
- *   value1 - (any dataType) The first parameter passed to the predicate.
+ *   value1 - (any) The first parameter passed to the predicate.
  *
- *   case_clause - (2 or more any dataType) This is one or more case clauses
- *       which are pairs of a value2 parameter followed by a statement list or
- *       undefined parameter. One value2 can be undefined to indicate the
- *       default case clause.
+ *   case_clause - (2 or more any) This is one or more case clauses which are
+ *       pairs of a value2 parameter followed by a statement list or undefined
+ *       parameter. One value2 can be undefined to indicate the default case
+ *       clause.
  * 
  *       For the first value2 that is undefined or calling the predicate returns
  *       true, the statement list followed by any statement lists of subsequent
@@ -575,7 +571,7 @@ afw_function_execute_return(
  *
  * Returns:
  *
- *   (any dataType)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_switch(
@@ -616,8 +612,8 @@ afw_function_execute_switch(
  *   message - (string) This is the message that will be included in the
  *       _AdaptiveError_ error object available in the catch block.
  *
- *   additional - (optional any dataType) Optional additional information that
- *       will be available as a 'additional' property in the error object.
+ *   additional - (optional any) Optional additional information that will be
+ *       available as a 'additional' property in the error object.
  *
  * Returns:
  *
@@ -658,7 +654,7 @@ afw_function_execute_throw(
  *       body: array,
  *       finally?: array,
  *       catch?: array,
- *       error?: (object _AdaptiveObjectType_)
+ *       error?: object // _AdaptiveObjectType_
  *   ): any;
  * ```
  *
@@ -686,7 +682,7 @@ afw_function_execute_throw(
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body.
+ *   (any) The last value evaluated in body.
  */
 const afw_value_t *
 afw_function_execute_try(
@@ -736,8 +732,8 @@ afw_function_execute_try(
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
+ *   (any) The last value evaluated in body or null if condition evaluates to
+ *       false the first time.
  */
 const afw_value_t *
 afw_function_execute_while(

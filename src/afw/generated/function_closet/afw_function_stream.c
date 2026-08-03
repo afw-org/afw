@@ -179,13 +179,13 @@ afw_function_execute_open_file(
  *
  * ```
  *   function print(
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more any dataType) Values to print.
+ *   values - (0 or more any) Values to print.
  *
  * Returns:
  *
@@ -219,13 +219,13 @@ afw_function_execute_print(
  *
  * ```
  *   function println(
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   value - (0 or more any dataType) Values to print.
+ *   value - (0 or more any) Values to print.
  *
  * Returns:
  *
@@ -267,7 +267,7 @@ afw_function_execute_println(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -310,7 +310,7 @@ afw_function_execute_read(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -353,7 +353,7 @@ afw_function_execute_read_to_base64Binary(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -468,7 +468,7 @@ afw_function_execute_stream(
  * ```
  *   function write(
  *       streamNumber: integer,
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
@@ -476,7 +476,7 @@ afw_function_execute_stream(
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (0 or more any dataType) Values to write as their string value.
+ *   value - (0 or more any) Values to write as their string value.
  *
  * Returns:
  *
@@ -518,8 +518,8 @@ afw_function_execute_write(
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (any dataType) The internal memory of this value is written
- *       (string, hexBinary, or base64Binary).
+ *   value - (any) The internal memory of this value is written (string,
+ *       hexBinary, or base64Binary).
  *
  * Returns:
  *
@@ -554,7 +554,7 @@ afw_function_execute_write_internal(
  * ```
  *   function writeln(
  *       streamNumber: integer,
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
@@ -562,7 +562,7 @@ afw_function_execute_write_internal(
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (0 or more any dataType) Values to write.
+ *   value - (0 or more any) Values to write.
  *
  * Returns:
  *

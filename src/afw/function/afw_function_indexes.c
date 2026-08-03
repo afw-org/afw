@@ -36,9 +36,9 @@
  *       adapterId: string,
  *       key: string,
  *       value?: string,
- *       objectType?: (array string),
+ *       objectType?: string[],
  *       filter?: string,
- *       options?: (array string),
+ *       options?: string[],
  *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
@@ -56,15 +56,14 @@
  *       current::key are available (issue #54). If omitted, the property named
  *       by key is indexed.
  *
- *   objectType - (optional array string) Object type id(s) this index may apply
- *       to.
+ *   objectType - (optional string[]) Object type id(s) this index may apply to.
  *
  *   filter - (optional string) Adaptive script that must return a boolean to
  *       decide whether this index applies to a particular object. Uses the same
  *       current:: variables as value (issue #54). If omitted, the filter is
  *       always true.
  *
- *   options - (optional array string) Indexing options.
+ *   options - (optional string[]) Indexing options.
  *
  *   retroactive - (optional boolean) Retroactively generate indexes for
  *       existing objects.

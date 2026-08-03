@@ -105,8 +105,8 @@ impl_get_self_and_model(
  *       object: object,
  *       objectId?: string,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:
@@ -263,8 +263,8 @@ afw_function_execute_model_default_add_object_action(
  *       objectType: string,
  *       objectId: string,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:
@@ -406,8 +406,8 @@ afw_function_execute_model_default_delete_object_action(
  *       objectId: string,
  *       entries: array,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:
@@ -582,8 +582,8 @@ afw_function_execute_model_default_modify_object_action(
  *       objectId: string,
  *       object: object,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:

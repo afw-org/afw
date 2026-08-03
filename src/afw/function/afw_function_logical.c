@@ -33,7 +33,7 @@
  *
  * ```
  *   function and(
- *       ...conditions: (array of boolean)
+ *       ...conditions: boolean[]
  *   ): boolean;
  * ```
  *
@@ -86,7 +86,7 @@ afw_function_execute_and(
  * ```
  *   function n_of(
  *       n: integer,
- *       ...conditions: (array of boolean)
+ *       ...conditions: boolean[]
  *   ): boolean;
  * ```
  *
@@ -195,7 +195,7 @@ afw_function_execute_not(
  *
  * ```
  *   function or(
- *       ...conditions: (array of boolean)
+ *       ...conditions: boolean[]
  *   ): boolean;
  * ```
  *

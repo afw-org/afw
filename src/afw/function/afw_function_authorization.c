@@ -37,7 +37,7 @@
  *       actionId: string,
  *       object?: object,
  *       enforce?: boolean
- *   ): (object _AdaptiveAuthorizationResult_);
+ *   ): object; // _AdaptiveAuthorizationResult_
  * ```
  *
  * Parameters:

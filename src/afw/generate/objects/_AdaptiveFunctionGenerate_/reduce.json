@@ -8,7 +8,7 @@
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(accumulator: any, value: any): any",
+            "dataTypeParameter": "(accumulator: any, value: any) => any",
             "description": "This function is called for each value in an array. The returned value is passed as the accumulator parameter on the next call to functor().",
             "name": "functor"
         },

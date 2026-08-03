@@ -70,15 +70,14 @@ afw_curl_function_bindings_get();
  *
  * ```
  *   function curl_easy_options(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) Returns an array of strings containing the cURL option names
+ *   (string[]) Returns an array of strings containing the cURL option names
  *       that are available with the installed version of libcurl.
  */
 const afw_value_t *
@@ -100,8 +99,7 @@ afw_curl_function_execute_curl_easy_options(
  *
  * ```
  *   function curl_version_info(
- *   
- *   ): (object _AdaptiveCurlVersionInfo_);
+ *   ): object; // _AdaptiveCurlVersionInfo_
  * ```
  *
  * Parameters:
@@ -142,8 +140,8 @@ afw_curl_function_execute_curl_version_info(
  *   function http_delete(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -180,8 +178,8 @@ afw_curl_function_execute_http_delete(
  *   function http_get(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -218,8 +216,8 @@ afw_curl_function_execute_http_get(
  *   function http_head(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -256,8 +254,8 @@ afw_curl_function_execute_http_head(
  *   function http_options(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -295,8 +293,8 @@ afw_curl_function_execute_http_options(
  *       url: string,
  *       payload?: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -336,8 +334,8 @@ afw_curl_function_execute_http_patch(
  *       url: string,
  *       payload?: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -377,8 +375,8 @@ afw_curl_function_execute_http_post(
  *       url: string,
  *       payload?: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -429,7 +427,7 @@ afw_curl_function_execute_http_put(
  *       mail_from: string,
  *       mail_recipients: array,
  *       payload: string,
- *       options?: (object _AdaptiveCurlOptions_)
+ *       options?: object // _AdaptiveCurlOptions_
  *   ): void;
  * ```
  *

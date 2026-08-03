@@ -8,7 +8,7 @@
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(... values: any): any",
+            "dataTypeParameter": "(...values: any) => any",
             "name": "functor"
         },
         {

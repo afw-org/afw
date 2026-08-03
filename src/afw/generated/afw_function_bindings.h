@@ -119,7 +119,7 @@ afw_function_definition_add_object;
  *       objectId?: string,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -177,7 +177,7 @@ afw_function_definition_add_object_with_uri;
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -229,7 +229,7 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  *
  * ```
  *   function convert_AdaptiveQueryCriteria_to_query_string(
- *       queryCriteria: (object _AdaptiveQueryCriteria_),
+ *       queryCriteria: object, // _AdaptiveQueryCriteria_
  *       adapterId?: string,
  *       objectType?: string,
  *       style?: integer
@@ -293,7 +293,7 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
  *       queryString: string,
  *       adapterId?: string,
  *       objectType?: string
- *   ): (object _AdaptiveQueryCriteria_);
+ *   ): object; // _AdaptiveQueryCriteria_
  * ```
  *
  * Parameters:
@@ -339,7 +339,7 @@ afw_function_definition_delete_object;
  *       objectId: string,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -392,7 +392,7 @@ afw_function_definition_delete_object_with_uri;
  *       uri: anyURI,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -444,7 +444,7 @@ afw_function_definition_get_object;
  *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): object;
  * ```
@@ -496,7 +496,7 @@ afw_function_definition_get_object_with_uri;
  * ```
  *   function get_object_with_uri(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): object;
  * ```
@@ -550,7 +550,7 @@ afw_function_definition_modify_object;
  *       entries: array,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -629,7 +629,7 @@ afw_function_definition_modify_object_with_uri;
  *       entries: array,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -704,7 +704,7 @@ afw_function_definition_reconcile_object;
  *   function reconcile_object(
  *       object: object,
  *       checkOnly?: boolean
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -749,7 +749,7 @@ afw_function_definition_replace_object;
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -805,7 +805,7 @@ afw_function_definition_replace_object_with_uri;
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -869,8 +869,8 @@ afw_function_definition_retrieve_objects;
  *   function retrieve_objects(
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object,
  *       maxObjects?: integer
  *   ): array;
@@ -938,27 +938,26 @@ afw_function_definition_retrieve_objects_to_callback;
  *
  * ```
  *   function retrieve_objects_to_callback(
- *       objectCallback: (function (object: object, userData: any): boolean),
+ *       objectCallback: (object: object, userData: any) => boolean,
  *       userData: any,
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   objectCallback - (function (object: object, userData: any): boolean) If
- *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return array. Parameter
- *       object will be an object retrieved or undefined if there are no more
- *       objects. This function should return true if it wants to abort the
- *       retrieve request.
+ *   objectCallback - ((object: object, userData: any) => boolean) If this is
+ *       specified, this function is called once for each object retrieved
+ *       instead of adding the object to the return array. Parameter object will
+ *       be an object retrieved or undefined if there are no more objects. This
+ *       function should return true if it wants to abort the retrieve request.
  *
- *   userData - (any dataType) This value is passed to the objectCallback
- *       function in the userData parameter.
+ *   userData - (any) This value is passed to the objectCallback function in the
+ *       userData parameter.
  *
  *   adapterId - (string) Id of adapter containing objects to retrieve.
  *
@@ -1021,8 +1020,8 @@ afw_function_definition_retrieve_objects_to_response;
  *   function retrieve_objects_to_response(
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1086,8 +1085,8 @@ afw_function_definition_retrieve_objects_to_stream;
  *       streamNumber: integer,
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1154,7 +1153,7 @@ afw_function_definition_retrieve_objects_with_uri;
  * ```
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object,
  *       maxObjects?: integer
  *   ): array;
@@ -1217,22 +1216,21 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *
  * ```
  *   function retrieve_objects_with_uri_to_callback(
- *       objectCallback: (function (object: object, userData: any): boolean),
+ *       objectCallback: (object: object, userData: any) => boolean,
  *       userData: any,
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   objectCallback - (function (object: object, userData: any): boolean) If
- *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return array. Parameter
- *       object will be an object retrieved or undefined if there are no more
- *       objects. This function should return true if it wants to abort the
- *       retrieve request.
+ *   objectCallback - ((object: object, userData: any) => boolean) If this is
+ *       specified, this function is called once for each object retrieved
+ *       instead of adding the object to the return array. Parameter object will
+ *       be an object retrieved or undefined if there are no more objects. This
+ *       function should return true if it wants to abort the retrieve request.
  *
  *   userData - (any) This is the value passed to the objectCallback function in
  *       the userData parameter.
@@ -1291,7 +1289,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  * ```
  *   function retrieve_objects_with_uri_to_response(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1349,7 +1347,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *   function retrieve_objects_with_uri_to_stream(
  *       streamNumber: integer,
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1407,7 +1405,7 @@ afw_function_definition_update_object;
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1466,7 +1464,7 @@ afw_function_definition_update_object_with_uri;
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1609,15 +1607,14 @@ afw_function_definition_flag_get_active;
  *
  * ```
  *   function flag_get_active(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags that are set in the
+ *   (string[]) This is an array of the flagId of flags that are set in the
  *       current execution context (xctx).
  */
 const afw_value_t *
@@ -1642,16 +1639,15 @@ afw_function_definition_flag_get_active_defaults;
  *
  * ```
  *   function flag_get_active_defaults(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags that are set by
- *       default when a new execution context (xctx) is created.
+ *   (string[]) This is an array of the flagId of flags that are set by default
+ *       when a new execution context (xctx) is created.
  */
 const afw_value_t *
 afw_function_execute_flag_get_active_defaults(
@@ -1679,16 +1675,15 @@ afw_function_definition_flag_get_defaults;
  *
  * ```
  *   function flag_get_defaults(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags used to determine
- *       the default active flags.
+ *   (string[]) This is an array of the flagId of flags used to determine the
+ *       default active flags.
  */
 const afw_value_t *
 afw_function_execute_flag_get_defaults(
@@ -1721,14 +1716,14 @@ afw_function_definition_flag_modify_defaults;
  *
  * ```
  *   function flag_modify_defaults(
- *       flagId: (array string),
+ *       flagId: string[],
  *       add?: boolean
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) The flagId of flags to be added or removed.
+ *   flagId - (string[]) The flagId of flags to be added or removed.
  *
  *   add - (optional boolean) Specify true to add and false to remove flags. If
  *       not specified, flags are added.
@@ -1768,14 +1763,14 @@ afw_function_definition_flag_replace_defaults;
  *
  * ```
  *   function flag_replace_defaults(
- *       flagId: (array string)
+ *       flagId: string[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) The array of the flagId of flags used to determine
- *       the default active flags.
+ *   flagId - (string[]) The array of the flagId of flags used to determine the
+ *       default active flags.
  *
  * Returns:
  *
@@ -1804,14 +1799,14 @@ afw_function_definition_flag_set;
  *
  * ```
  *   function flag_set(
- *       flagId: (array string),
+ *       flagId: string[],
  *       setTo?: boolean
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) List of flagId of flags to set or unset.
+ *   flagId - (string[]) List of flagId of flags to set or unset.
  *
  *   setTo - (optional boolean) Specify true to set and false to unset. If not
  *       specified, flags are set.
@@ -1891,7 +1886,7 @@ afw_function_definition_service_get;
  * ```
  *   function service_get(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -1929,7 +1924,7 @@ afw_function_definition_service_restart;
  * ```
  *   function service_restart(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -1967,7 +1962,7 @@ afw_function_definition_service_start;
  * ```
  *   function service_start(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -2005,7 +2000,7 @@ afw_function_definition_service_stop;
  * ```
  *   function service_stop(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -2056,7 +2051,7 @@ afw_function_definition_anyURI;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -2089,16 +2084,16 @@ afw_function_definition_at_least_one_member_of_anyURI;
  *
  * ```
  *   function at_least_one_member_of<anyURI>(
- *       array1: (array anyURI),
- *       array2: (array anyURI)
+ *       array1: anyURI[],
+ *       array2: anyURI[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array anyURI) The first array.
+ *   array1 - (anyURI[]) The first array.
  *
- *   array2 - (array anyURI) The second array.
+ *   array2 - (anyURI[]) The second array.
  *
  * Returns:
  *
@@ -2126,17 +2121,17 @@ afw_function_definition_bag_anyURI;
  *
  * ```
  *   function bag<anyURI>(
- *       ...values: (array of (array anyURI))
- *   ): (array anyURI);
+ *       ...values: anyURI[]
+ *   ): anyURI[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array anyURI)
+ *   values - (0 or more anyURI[])
  *
  * Returns:
  *
- *   (array anyURI)
+ *   (anyURI[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -2160,13 +2155,13 @@ afw_function_definition_bag_size_anyURI;
  *
  * ```
  *   function bag_size<anyURI>(
- *       value: (array anyURI)
+ *       value: anyURI[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array anyURI)
+ *   value - (anyURI[])
  *
  * Returns:
  *
@@ -2242,7 +2237,7 @@ afw_function_definition_eq_anyURI;
  *
  *   arg1 - (anyURI)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -2285,7 +2280,7 @@ afw_function_definition_eqx_anyURI;
  *
  *   arg1 - (anyURI)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -2474,20 +2469,20 @@ afw_function_definition_intersection_anyURI;
  *
  * ```
  *   function intersection<anyURI>(
- *       array1: (array anyURI),
- *       array2: (array anyURI)
- *   ): (array anyURI);
+ *       array1: anyURI[],
+ *       array2: anyURI[]
+ *   ): anyURI[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array anyURI) The first array.
+ *   array1 - (anyURI[]) The first array.
  *
- *   array2 - (array anyURI) The second array.
+ *   array2 - (anyURI[]) The second array.
  *
  * Returns:
  *
- *   (array anyURI)
+ *   (anyURI[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -2517,7 +2512,7 @@ afw_function_definition_is_anyURI;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -2547,7 +2542,7 @@ afw_function_definition_is_in_anyURI;
  * ```
  *   function is_in<anyURI>(
  *       value: anyURI,
- *       array: (array anyURI)
+ *       array: anyURI[]
  *   ): boolean;
  * ```
  *
@@ -2555,7 +2550,7 @@ afw_function_definition_is_in_anyURI;
  *
  *   value - (anyURI)
  *
- *   array - (array anyURI)
+ *   array - (anyURI[])
  *
  * Returns:
  *
@@ -2635,7 +2630,7 @@ afw_function_definition_le_anyURI;
  *
  *   arg1 - (anyURI)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -2749,7 +2744,7 @@ afw_function_definition_ne_anyURI;
  *
  *   arg1 - (anyURI)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -2792,7 +2787,7 @@ afw_function_definition_nex_anyURI;
  *
  *   arg1 - (anyURI)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -2821,13 +2816,13 @@ afw_function_definition_one_and_only_anyURI;
  *
  * ```
  *   function one_and_only<anyURI>(
- *       array: (array array)
+ *       array: array[]
  *   ): anyURI;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -3061,16 +3056,16 @@ afw_function_definition_set_equals_anyURI;
  *
  * ```
  *   function set_equals<anyURI>(
- *       array1: (array anyURI),
- *       array2: (array anyURI)
+ *       array1: anyURI[],
+ *       array2: anyURI[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array anyURI)
+ *   array1 - (anyURI[])
  *
- *   array2 - (array anyURI)
+ *   array2 - (anyURI[])
  *
  * Returns:
  *
@@ -3180,16 +3175,16 @@ afw_function_definition_subset_anyURI;
  *
  * ```
  *   function subset<anyURI>(
- *       array1: (array anyURI),
- *       array2: (array anyURI)
+ *       array1: anyURI[],
+ *       array2: anyURI[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array anyURI) The first array.
+ *   array1 - (anyURI[]) The first array.
  *
- *   array2 - (array anyURI) The second array.
+ *   array2 - (anyURI[]) The second array.
  *
  * Returns:
  *
@@ -3299,19 +3294,19 @@ afw_function_definition_union_anyURI;
  *
  * ```
  *   function union<anyURI>(
- *       arrays_1: (array anyURI),
- *       arrays_2: (array anyURI),
- *       ...arrays_rest: (array of (array anyURI))
- *   ): (array anyURI);
+ *       arrays_1: anyURI[],
+ *       arrays_2: anyURI[],
+ *       ...arrays_rest: anyURI[]
+ *   ): anyURI[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array anyURI) Two or more arrays.
+ *   arrays - (2 or more anyURI[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array anyURI)
+ *   (anyURI[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -3382,7 +3377,7 @@ afw_function_definition_add_entries;
  *   function add_entries(
  *       target: array,
  *       source_1: array,
- *       ...source_rest: (array of array)
+ *       ...source_rest: array
  *   ): array;
  * ```
  *
@@ -3417,17 +3412,17 @@ afw_function_definition_array;
  *
  * ```
  *   function array(
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more any dataType) A value can refer to any adaptable value
- *       belonging to any data type or an array expression. In the case of an
- *       array expression, indicated by '...' followed by an expression that
- *       results in an array, every element within that array is included in the
- *       newly created array.
+ *   values - (0 or more any) A value can refer to any adaptable value belonging
+ *       to any data type or an array expression. In the case of an array
+ *       expression, indicated by '...' followed by an expression that results
+ *       in an array, every element within that array is included in the newly
+ *       created array.
  *
  * Returns:
  *
@@ -3473,7 +3468,7 @@ afw_function_definition_at;
  *
  * Returns:
  *
- *   (any dataType) The value at the index, or undefined if out of range.
+ *   (any) The value at the index, or undefined if out of range.
  */
 const afw_value_t *
 afw_function_execute_at(
@@ -3496,17 +3491,17 @@ afw_function_definition_bag_array;
  *
  * ```
  *   function bag<array>(
- *       ...values: (array of (array array))
- *   ): (array array);
+ *       ...values: array[]
+ *   ): array[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array array)
+ *   values - (0 or more array[])
  *
  * Returns:
  *
- *   (array array)
+ *   (array[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -3530,13 +3525,13 @@ afw_function_definition_bag_size_array;
  *
  * ```
  *   function bag_size<array>(
- *       value: (array array)
+ *       value: array[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array array)
+ *   value - (array[])
  *
  * Returns:
  *
@@ -3609,7 +3604,7 @@ afw_function_definition_eq_array;
  *
  *   arg1 - (array)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -3652,7 +3647,7 @@ afw_function_definition_eqx_array;
  *
  *   arg1 - (array)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -3801,7 +3796,7 @@ afw_function_definition_includes_array;
  *
  *   array - (``<Type>``) The array to search.
  *
- *   searchElement - (any dataType) Element to find.
+ *   searchElement - (any) Element to find.
  *
  *   fromIndex - (optional integer) Index in the array to start search.
  *
@@ -3837,7 +3832,7 @@ afw_function_definition_is_array;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -3912,7 +3907,7 @@ afw_function_definition_le_array;
  *
  *   arg1 - (array)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -4025,7 +4020,7 @@ afw_function_definition_ne_array;
  *
  *   arg1 - (array)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -4068,7 +4063,7 @@ afw_function_definition_nex_array;
  *
  *   arg1 - (array)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -4107,7 +4102,7 @@ afw_function_definition_pop;
  *
  * Returns:
  *
- *   (any dataType) The removed value, or undefined if the array was empty.
+ *   (any) The removed value, or undefined if the array was empty.
  */
 const afw_value_t *
 afw_function_execute_pop(
@@ -4132,7 +4127,7 @@ afw_function_definition_push;
  * ```
  *   function push(
  *       array: array,
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
@@ -4140,7 +4135,7 @@ afw_function_definition_push;
  *
  *   array - (array) Target array. Must not be immutable.
  *
- *   values - (0 or more any dataType) Values to append in order.
+ *   values - (0 or more any) Values to append in order.
  *
  * Returns:
  *
@@ -4212,7 +4207,7 @@ afw_function_definition_shift;
  *
  * Returns:
  *
- *   (any dataType) The removed value, or undefined if the array was empty.
+ *   (any) The removed value, or undefined if the array was empty.
  */
 const afw_value_t *
 afw_function_execute_shift(
@@ -4287,7 +4282,7 @@ afw_function_definition_splice;
  *       array: array,
  *       startIndex: integer,
  *       deleteCount?: integer,
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
@@ -4300,8 +4295,7 @@ afw_function_definition_splice;
  *   deleteCount - (optional integer) Number of values to remove. If omitted,
  *       remove through the end of the array. Negative is treated as zero.
  *
- *   values - (0 or more any dataType) Values to insert at startIndex after
- *       removals.
+ *   values - (0 or more any) Values to insert at startIndex after removals.
  *
  * Returns:
  *
@@ -4365,7 +4359,7 @@ afw_function_definition_unshift;
  * ```
  *   function unshift(
  *       array: array,
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
@@ -4373,7 +4367,7 @@ afw_function_definition_unshift;
  *
  *   array - (array) Target array. Must not be immutable.
  *
- *   values - (0 or more any dataType) Values to insert at the front, in order.
+ *   values - (0 or more any) Values to insert at the front, in order.
  *
  * Returns:
  *
@@ -4416,7 +4410,7 @@ afw_function_definition_authorization_check;
  *       actionId: string,
  *       object?: object,
  *       enforce?: boolean
- *   ): (object _AdaptiveAuthorizationResult_);
+ *   ): object; // _AdaptiveAuthorizationResult_
  * ```
  *
  * Parameters:
@@ -4476,16 +4470,16 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  *
  * ```
  *   function at_least_one_member_of<base64Binary>(
- *       array1: (array base64Binary),
- *       array2: (array base64Binary)
+ *       array1: base64Binary[],
+ *       array2: base64Binary[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array base64Binary) The first array.
+ *   array1 - (base64Binary[]) The first array.
  *
- *   array2 - (array base64Binary) The second array.
+ *   array2 - (base64Binary[]) The second array.
  *
  * Returns:
  *
@@ -4513,17 +4507,17 @@ afw_function_definition_bag_base64Binary;
  *
  * ```
  *   function bag<base64Binary>(
- *       ...values: (array of (array base64Binary))
- *   ): (array base64Binary);
+ *       ...values: base64Binary[]
+ *   ): base64Binary[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array base64Binary)
+ *   values - (0 or more base64Binary[])
  *
  * Returns:
  *
- *   (array base64Binary)
+ *   (base64Binary[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -4547,13 +4541,13 @@ afw_function_definition_bag_size_base64Binary;
  *
  * ```
  *   function bag_size<base64Binary>(
- *       value: (array base64Binary)
+ *       value: base64Binary[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array base64Binary)
+ *   value - (base64Binary[])
  *
  * Returns:
  *
@@ -4587,7 +4581,7 @@ afw_function_definition_base64Binary;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -4664,7 +4658,7 @@ afw_function_definition_eq_base64Binary;
  *
  *   arg1 - (base64Binary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -4707,7 +4701,7 @@ afw_function_definition_eqx_base64Binary;
  *
  *   arg1 - (base64Binary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -4812,20 +4806,20 @@ afw_function_definition_intersection_base64Binary;
  *
  * ```
  *   function intersection<base64Binary>(
- *       array1: (array base64Binary),
- *       array2: (array base64Binary)
- *   ): (array base64Binary);
+ *       array1: base64Binary[],
+ *       array2: base64Binary[]
+ *   ): base64Binary[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array base64Binary) The first array.
+ *   array1 - (base64Binary[]) The first array.
  *
- *   array2 - (array base64Binary) The second array.
+ *   array2 - (base64Binary[]) The second array.
  *
  * Returns:
  *
- *   (array base64Binary)
+ *   (base64Binary[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -4855,7 +4849,7 @@ afw_function_definition_is_base64Binary;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -4885,7 +4879,7 @@ afw_function_definition_is_in_base64Binary;
  * ```
  *   function is_in<base64Binary>(
  *       value: base64Binary,
- *       array: (array base64Binary)
+ *       array: base64Binary[]
  *   ): boolean;
  * ```
  *
@@ -4893,7 +4887,7 @@ afw_function_definition_is_in_base64Binary;
  *
  *   value - (base64Binary)
  *
- *   array - (array base64Binary)
+ *   array - (base64Binary[])
  *
  * Returns:
  *
@@ -4931,7 +4925,7 @@ afw_function_definition_le_base64Binary;
  *
  *   arg1 - (base64Binary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5009,7 +5003,7 @@ afw_function_definition_ne_base64Binary;
  *
  *   arg1 - (base64Binary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5052,7 +5046,7 @@ afw_function_definition_nex_base64Binary;
  *
  *   arg1 - (base64Binary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5081,13 +5075,13 @@ afw_function_definition_one_and_only_base64Binary;
  *
  * ```
  *   function one_and_only<base64Binary>(
- *       array: (array array)
+ *       array: array[]
  *   ): base64Binary;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -5120,16 +5114,16 @@ afw_function_definition_set_equals_base64Binary;
  *
  * ```
  *   function set_equals<base64Binary>(
- *       array1: (array base64Binary),
- *       array2: (array base64Binary)
+ *       array1: base64Binary[],
+ *       array2: base64Binary[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array base64Binary)
+ *   array1 - (base64Binary[])
  *
- *   array2 - (array base64Binary)
+ *   array2 - (base64Binary[])
  *
  * Returns:
  *
@@ -5158,16 +5152,16 @@ afw_function_definition_subset_base64Binary;
  *
  * ```
  *   function subset<base64Binary>(
- *       array1: (array base64Binary),
- *       array2: (array base64Binary)
+ *       array1: base64Binary[],
+ *       array2: base64Binary[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array base64Binary) The first array.
+ *   array1 - (base64Binary[]) The first array.
  *
- *   array2 - (array base64Binary) The second array.
+ *   array2 - (base64Binary[]) The second array.
  *
  * Returns:
  *
@@ -5231,19 +5225,19 @@ afw_function_definition_union_base64Binary;
  *
  * ```
  *   function union<base64Binary>(
- *       arrays_1: (array base64Binary),
- *       arrays_2: (array base64Binary),
- *       ...arrays_rest: (array of (array base64Binary))
- *   ): (array base64Binary);
+ *       arrays_1: base64Binary[],
+ *       arrays_2: base64Binary[],
+ *       ...arrays_rest: base64Binary[]
+ *   ): base64Binary[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array base64Binary) Two or more arrays.
+ *   arrays - (2 or more base64Binary[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array base64Binary)
+ *   (base64Binary[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -5278,16 +5272,16 @@ afw_function_definition_at_least_one_member_of_boolean;
  *
  * ```
  *   function at_least_one_member_of<boolean>(
- *       array1: (array boolean),
- *       array2: (array boolean)
+ *       array1: boolean[],
+ *       array2: boolean[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array boolean) The first array.
+ *   array1 - (boolean[]) The first array.
  *
- *   array2 - (array boolean) The second array.
+ *   array2 - (boolean[]) The second array.
  *
  * Returns:
  *
@@ -5315,17 +5309,17 @@ afw_function_definition_bag_boolean;
  *
  * ```
  *   function bag<boolean>(
- *       ...values: (array of (array boolean))
- *   ): (array boolean);
+ *       ...values: boolean[]
+ *   ): boolean[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array boolean)
+ *   values - (0 or more boolean[])
  *
  * Returns:
  *
- *   (array boolean)
+ *   (boolean[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -5349,13 +5343,13 @@ afw_function_definition_bag_size_boolean;
  *
  * ```
  *   function bag_size<boolean>(
- *       value: (array boolean)
+ *       value: boolean[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array boolean)
+ *   value - (boolean[])
  *
  * Returns:
  *
@@ -5389,7 +5383,7 @@ afw_function_definition_boolean;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -5432,7 +5426,7 @@ afw_function_definition_eq_boolean;
  *
  *   arg1 - (boolean)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5475,7 +5469,7 @@ afw_function_definition_eqx_boolean;
  *
  *   arg1 - (boolean)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5580,20 +5574,20 @@ afw_function_definition_intersection_boolean;
  *
  * ```
  *   function intersection<boolean>(
- *       array1: (array boolean),
- *       array2: (array boolean)
- *   ): (array boolean);
+ *       array1: boolean[],
+ *       array2: boolean[]
+ *   ): boolean[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array boolean) The first array.
+ *   array1 - (boolean[]) The first array.
  *
- *   array2 - (array boolean) The second array.
+ *   array2 - (boolean[]) The second array.
  *
  * Returns:
  *
- *   (array boolean)
+ *   (boolean[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -5623,7 +5617,7 @@ afw_function_definition_is_boolean;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -5653,7 +5647,7 @@ afw_function_definition_is_in_boolean;
  * ```
  *   function is_in<boolean>(
  *       value: boolean,
- *       array: (array boolean)
+ *       array: boolean[]
  *   ): boolean;
  * ```
  *
@@ -5661,7 +5655,7 @@ afw_function_definition_is_in_boolean;
  *
  *   value - (boolean)
  *
- *   array - (array boolean)
+ *   array - (boolean[])
  *
  * Returns:
  *
@@ -5699,7 +5693,7 @@ afw_function_definition_le_boolean;
  *
  *   arg1 - (boolean)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5776,7 +5770,7 @@ afw_function_definition_ne_boolean;
  *
  *   arg1 - (boolean)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5819,7 +5813,7 @@ afw_function_definition_nex_boolean;
  *
  *   arg1 - (boolean)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -5848,13 +5842,13 @@ afw_function_definition_one_and_only_boolean;
  *
  * ```
  *   function one_and_only<boolean>(
- *       array: (array array)
+ *       array: array[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -5887,16 +5881,16 @@ afw_function_definition_set_equals_boolean;
  *
  * ```
  *   function set_equals<boolean>(
- *       array1: (array boolean),
- *       array2: (array boolean)
+ *       array1: boolean[],
+ *       array2: boolean[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array boolean)
+ *   array1 - (boolean[])
  *
- *   array2 - (array boolean)
+ *   array2 - (boolean[])
  *
  * Returns:
  *
@@ -5925,16 +5919,16 @@ afw_function_definition_subset_boolean;
  *
  * ```
  *   function subset<boolean>(
- *       array1: (array boolean),
- *       array2: (array boolean)
+ *       array1: boolean[],
+ *       array2: boolean[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array boolean) The first array.
+ *   array1 - (boolean[]) The first array.
  *
- *   array2 - (array boolean) The second array.
+ *   array2 - (boolean[]) The second array.
  *
  * Returns:
  *
@@ -5998,19 +5992,19 @@ afw_function_definition_union_boolean;
  *
  * ```
  *   function union<boolean>(
- *       arrays_1: (array boolean),
- *       arrays_2: (array boolean),
- *       ...arrays_rest: (array of (array boolean))
- *   ): (array boolean);
+ *       arrays_1: boolean[],
+ *       arrays_2: boolean[],
+ *       ...arrays_rest: boolean[]
+ *   ): boolean[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array boolean) Two or more arrays.
+ *   arrays - (2 or more boolean[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array boolean)
+ *   (boolean[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -6047,17 +6041,17 @@ afw_function_definition_nullish_coalescing;
  *   function nullish_coalescing(
  *       values_1: any,
  *       values_2: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   values - (2 or more any dataType)
+ *   values - (2 or more any)
  *
  * Returns:
  *
- *   (any dataType) The first value of values that is not null or undefined.
+ *   (any) The first value of values that is not null or undefined.
  */
 const afw_value_t *
 afw_function_execute_nullish_coalescing(
@@ -6088,14 +6082,14 @@ afw_function_definition_optional_chaining;
  *
  * Parameters:
  *
- *   arg1 - (any dataType)
+ *   arg1 - (any)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
- *   (any dataType) Undefined value if arg1 is null or undefined but otherwise
- *       evaluated arg2.
+ *   (any) Undefined value if arg1 is null or undefined but otherwise evaluated
+ *       arg2.
  */
 const afw_value_t *
 afw_function_execute_optional_chaining(
@@ -6125,11 +6119,11 @@ afw_function_definition_void_operator;
  *
  * Parameters:
  *
- *   value - (any dataType) This is the value to evaluate.
+ *   value - (any) This is the value to evaluate.
  *
  * Returns:
  *
- *   (any dataType) This always returns undefined.
+ *   (any) This always returns undefined.
  */
 const afw_value_t *
 afw_function_execute_void_operator(
@@ -6174,11 +6168,11 @@ afw_function_definition_assign;
  *
  *   name - (string) Variable name.
  *
- *   value - (any dataType) This is the value to assign to the variable.
+ *   value - (any) This is the value to assign to the variable.
  *
  * Returns:
  *
- *   (any dataType) The value assigned.
+ *   (any) The value assigned.
  */
 const afw_value_t *
 afw_function_execute_assign(
@@ -6208,14 +6202,14 @@ afw_function_definition_break;
  *
  * Parameters:
  *
- *   value - (optional any dataType) The value to evaluate that the enclosing
- *       loop will return. If not specified, the last evaluated value or a null
- *       value will be returned.
+ *   value - (optional any) The value to evaluate that the enclosing loop will
+ *       return. If not specified, the last evaluated value or a null value will
+ *       be returned.
  *
  * Returns:
  *
- *   (any dataType) This function returns from the body of a loop with the last
- *       evaluated value.
+ *   (any) This function returns from the body of a loop with the last evaluated
+ *       value.
  */
 const afw_value_t *
 afw_function_execute_break(
@@ -6240,24 +6234,24 @@ afw_function_definition_const;
  *
  * ```
  *   function const(
- *       name: (array string),
+ *       name: string[],
  *       value: any,
- *       type?: (object _AdaptiveValueMeta_)
+ *       type?: object // _AdaptiveValueMeta_
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   name - (array string) The name of one or more constants to defined in the
+ *   name - (string[]) The name of one or more constants to defined in the
  *       current block.
  *
- *   value - (any dataType) This is the value of the constant(s).
+ *   value - (any) This is the value of the constant(s).
  *
  *   type - (optional object _AdaptiveValueMeta_) The type of the constant(s).
  *
  * Returns:
  *
- *   (any dataType) The value assigned.
+ *   (any) The value assigned.
  */
 const afw_value_t *
 afw_function_execute_const(
@@ -6282,7 +6276,6 @@ afw_function_definition_continue;
  *
  * ```
  *   function continue(
- *   
  *   ): any;
  * ```
  *
@@ -6290,7 +6283,7 @@ afw_function_definition_continue;
  *
  * Returns:
  *
- *   (any dataType) This function does not return.
+ *   (any) This function does not return.
  */
 const afw_value_t *
 afw_function_execute_continue(
@@ -6334,8 +6327,7 @@ afw_function_definition_do_while;
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if the body is
- *       empty.
+ *   (any) The last value evaluated in body or null if the body is empty.
  */
 const afw_value_t *
 afw_function_execute_do_while(
@@ -6388,8 +6380,8 @@ afw_function_definition_for;
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
+ *   (any) The last value evaluated in body or null if condition evaluates to
+ *       false the first time.
  */
 const afw_value_t *
 afw_function_execute_for(
@@ -6417,7 +6409,7 @@ afw_function_definition_for_of;
  *
  * ```
  *   function for_of(
- *       name: (array string),
+ *       name: string[],
  *       value: any,
  *       body?: array
  *   ): any;
@@ -6425,9 +6417,9 @@ afw_function_definition_for_of;
  *
  * Parameters:
  *
- *   name - (array string) Variable name(s).
+ *   name - (string[]) Variable name(s).
  *
- *   value - (any dataType) Any array, object or single value.
+ *   value - (any) Any array, object or single value.
  *
  *   body - (optional array) This is an array of values (statements) that are
  *       evaluated for each iteration of the loop. Each value in body is
@@ -6436,8 +6428,8 @@ afw_function_definition_for_of;
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
+ *   (any) The last value evaluated in body or null if condition evaluates to
+ *       false the first time.
  */
 const afw_value_t *
 afw_function_execute_for_of(
@@ -6482,7 +6474,7 @@ afw_function_definition_if;
  *
  * Returns:
  *
- *   (any dataType) The result of evaluating 'then' or 'else'.
+ *   (any) The result of evaluating 'then' or 'else'.
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -6508,26 +6500,25 @@ afw_function_definition_let;
  *
  * ```
  *   function let(
- *       name: (array string),
+ *       name: string[],
  *       value?: any,
- *       type?: (object _AdaptiveValueMeta_)
+ *       type?: object // _AdaptiveValueMeta_
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   name - (array string) The name of one or more variables to declared in the
+ *   name - (string[]) The name of one or more variables to declared in the
  *       current block.
  *
- *   value - (optional any dataType) This is the initial value of the
- *       variable(s). If not specified, the variable will have a value of
- *       undefined.
+ *   value - (optional any) This is the initial value of the variable(s). If not
+ *       specified, the variable will have a value of undefined.
  *
  *   type - (optional object _AdaptiveValueMeta_) The type of the variable(s).
  *
  * Returns:
  *
- *   (any dataType) The value assigned.
+ *   (any) The value assigned.
  */
 const afw_value_t *
 afw_function_execute_let(
@@ -6551,7 +6542,6 @@ afw_function_definition_rethrow;
  *
  * ```
  *   function rethrow(
- *   
  *   ): any;
  * ```
  *
@@ -6559,7 +6549,7 @@ afw_function_definition_rethrow;
  *
  * Returns:
  *
- *   (any dataType) This function rethrows the current error in a catch block.
+ *   (any) This function rethrows the current error in a catch block.
  */
 const afw_value_t *
 afw_function_execute_rethrow(
@@ -6590,14 +6580,14 @@ afw_function_definition_return;
  *
  * Parameters:
  *
- *   value - (optional any dataType) The value to evaluate that the outermost
- *       block will return. If not specified, the last evaluated value or a null
- *       value will be returned.
+ *   value - (optional any) The value to evaluate that the outermost block will
+ *       return. If not specified, the last evaluated value or a null value will
+ *       be returned.
  *
  * Returns:
  *
- *   (any dataType) This function returns from the outermost structured block
- *       with the last evaluated value.
+ *   (any) This function returns from the outermost structured block with the
+ *       last evaluated value.
  */
 const afw_value_t *
 afw_function_execute_return(
@@ -6620,29 +6610,29 @@ afw_function_definition_switch;
  *
  * ```
  *   function switch(
- *       predicate: (function (any value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       value1: any,
  *       case_clause_1: any,
  *       case_clause_2: any,
- *       ...case_clause_rest: (array of any)
+ *       ...case_clause_rest: any[]
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters and must return a boolean. The first
- *       parameter passed is the evaluated value of the value1 parameter and the
- *       second is the value2 from a case clause. This predicate will often be
- *       'eqx' to use the exactly equal function but can also be any other
- *       function such as 'regexp_match' or a lambda function.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters and must return a boolean. The first parameter passed is
+ *       the evaluated value of the value1 parameter and the second is the
+ *       value2 from a case clause. This predicate will often be 'eqx' to use
+ *       the exactly equal function but can also be any other function such as
+ *       'regexp_match' or a lambda function.
  *
- *   value1 - (any dataType) The first parameter passed to the predicate.
+ *   value1 - (any) The first parameter passed to the predicate.
  *
- *   case_clause - (2 or more any dataType) This is one or more case clauses
- *       which are pairs of a value2 parameter followed by a statement list or
- *       undefined parameter. One value2 can be undefined to indicate the
- *       default case clause.
+ *   case_clause - (2 or more any) This is one or more case clauses which are
+ *       pairs of a value2 parameter followed by a statement list or undefined
+ *       parameter. One value2 can be undefined to indicate the default case
+ *       clause.
  * 
  *       For the first value2 that is undefined or calling the predicate returns
  *       true, the statement list followed by any statement lists of subsequent
@@ -6651,7 +6641,7 @@ afw_function_definition_switch;
  *
  * Returns:
  *
- *   (any dataType)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_switch(
@@ -6687,8 +6677,8 @@ afw_function_definition_throw;
  *   message - (string) This is the message that will be included in the
  *       _AdaptiveError_ error object available in the catch block.
  *
- *   additional - (optional any dataType) Optional additional information that
- *       will be available as a 'additional' property in the error object.
+ *   additional - (optional any) Optional additional information that will be
+ *       available as a 'additional' property in the error object.
  *
  * Returns:
  *
@@ -6724,7 +6714,7 @@ afw_function_definition_try;
  *       body: array,
  *       finally?: array,
  *       catch?: array,
- *       error?: (object _AdaptiveObjectType_)
+ *       error?: object // _AdaptiveObjectType_
  *   ): any;
  * ```
  *
@@ -6752,7 +6742,7 @@ afw_function_definition_try;
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body.
+ *   (any) The last value evaluated in body.
  */
 const afw_value_t *
 afw_function_execute_try(
@@ -6797,8 +6787,8 @@ afw_function_definition_while;
  *
  * Returns:
  *
- *   (any dataType) The last value evaluated in body or null if condition
- *       evaluates to false the first time.
+ *   (any) The last value evaluated in body or null if condition evaluates to
+ *       false the first time.
  */
 const afw_value_t *
 afw_function_execute_while(
@@ -6926,14 +6916,14 @@ afw_function_definition_decompile;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to decompile (may be unevaluated, such as a
- *       compiled script root).
+ *   value - (any) Value to decompile (may be unevaluated, such as a compiled
+ *       script root).
  *
- *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10 or
- *       a string that is used for indentation. If 0 is specified, no whitespace
- *       is added to the resulting string. If 1 through 10 is specified, that
- *       number of spaces is used.
+ *   whitespace - (optional any) Add whitespace for readability if present and
+ *       not 0. This parameter can be an integer between 0 and 10 or a string
+ *       that is used for indentation. If 0 is specified, no whitespace is added
+ *       to the resulting string. If 1 through 10 is specified, that number of
+ *       spaces is used.
  *
  * Returns:
  *
@@ -7002,7 +6992,7 @@ afw_function_definition_evaluate;
  * ```
  *   function evaluate(
  *       value: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *
@@ -7050,13 +7040,13 @@ afw_function_definition_evaluate_with_retry;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to evaluated.
+ *   value - (any) Value to evaluated.
  *
  *   limit - (integer) Maximum number to retry if an exception occurs.
  *
  * Returns:
  *
- *   (any dataType) Evaluated value.
+ *   (any) Evaluated value.
  */
 const afw_value_t *
 afw_function_execute_evaluate_with_retry(
@@ -7122,8 +7112,8 @@ afw_function_definition_qualifier;
  *
  * Returns:
  *
- *   (any dataType) When the qualifier has at least one matching visible stack
- *       entry, each property is a variable name for that qualifier (values from
+ *   (any) When the qualifier has at least one matching visible stack entry,
+ *       each property is a variable name for that qualifier (values from
  *       contribute, most recent entry wins per name). Fresh object on every
  *       call (may be empty if nothing was contributed). When no matching
  *       visible entry exists for that qualifier name, the result is undefined
@@ -7218,14 +7208,14 @@ afw_function_definition_safe_evaluate;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to evaluated.
+ *   value - (any) Value to evaluated.
  *
- *   error - (any dataType) Value to evaluate and return if exception occurs. If
- *       an error occurs evaluating this value, the exception will continue.
+ *   error - (any) Value to evaluate and return if exception occurs. If an error
+ *       occurs evaluating this value, the exception will continue.
  *
  * Returns:
  *
- *   (any dataType) Evaluated adaptive value or error value.
+ *   (any) Evaluated adaptive value or error value.
  */
 const afw_value_t *
 afw_function_execute_safe_evaluate(
@@ -7256,27 +7246,27 @@ afw_function_definition_stringify;
  * ```
  *   function stringify(
  *       value: any,
- *       replacer?: (any (key: string, value: any): any),
+ *       replacer?: (key: string, value: any) => any,
  *       whitespace?: any
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   value - (any dataType) Evaluated value to serialize as JSON.
+ *   value - (any) Evaluated value to serialize as JSON.
  *
- *   replacer - (optional any dataType (key: string, value: any): any) Optional
- *       replacer: a function (key: string, value: any): any called for the root
- *       (key is empty string) and each object property or array element; return
+ *   replacer - (optional (key: string, value: any) => any) Optional replacer: a
+ *       function (key: string, value: any): any called for the root (key is
+ *       empty string) and each object property or array element; return
  *       undefined to omit an object property (array elements become null). Or
  *       an array of string property names to keep when serializing objects.
  *       Omit or null for no replacer.
  *
- *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10 or
- *       a string that is used for indentation. If 0 is specified, no whitespace
- *       is added to the resulting string. If 1 through 10 is specified, that
- *       number of spaces is used.
+ *   whitespace - (optional any) Add whitespace for readability if present and
+ *       not 0. This parameter can be an integer between 0 and 10 or a string
+ *       that is used for indentation. If 0 is specified, no whitespace is added
+ *       to the resulting string. If 1 through 10 is specified, that number of
+ *       spaces is used.
  *
  * Returns:
  *
@@ -7308,7 +7298,7 @@ afw_function_definition_test_script;
  *       description: string,
  *       script: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): object;
  * ```
  *
@@ -7320,7 +7310,7 @@ afw_function_definition_test_script;
  *
  *   script - (string) Script to compile and evaluate.
  *
- *   expected - (optional any dataType) Expected result.
+ *   expected - (optional any) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -7360,7 +7350,7 @@ afw_function_definition_test_template;
  *       description: string,
  *       template: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): object;
  * ```
  *
@@ -7372,7 +7362,7 @@ afw_function_definition_test_template;
  *
  *   template - (string) Template to compile and evaluate.
  *
- *   expected - (optional any dataType) Expected evaluated result.
+ *   expected - (optional any) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -7412,7 +7402,7 @@ afw_function_definition_test_value;
  *       description: string,
  *       value: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): object;
  * ```
  *
@@ -7424,7 +7414,7 @@ afw_function_definition_test_value;
  *
  *   value - (string) Value to evaluate.
  *
- *   expected - (optional any dataType) Expected result.
+ *   expected - (optional any) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -7542,16 +7532,16 @@ afw_function_definition_at_least_one_member_of_dateTime;
  *
  * ```
  *   function at_least_one_member_of<dateTime>(
- *       array1: (array dateTime),
- *       array2: (array dateTime)
+ *       array1: dateTime[],
+ *       array2: dateTime[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dateTime) The first array.
+ *   array1 - (dateTime[]) The first array.
  *
- *   array2 - (array dateTime) The second array.
+ *   array2 - (dateTime[]) The second array.
  *
  * Returns:
  *
@@ -7579,17 +7569,17 @@ afw_function_definition_bag_dateTime;
  *
  * ```
  *   function bag<dateTime>(
- *       ...values: (array of (array dateTime))
- *   ): (array dateTime);
+ *       ...values: dateTime[]
+ *   ): dateTime[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array dateTime)
+ *   values - (0 or more dateTime[])
  *
  * Returns:
  *
- *   (array dateTime)
+ *   (dateTime[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -7613,13 +7603,13 @@ afw_function_definition_bag_size_dateTime;
  *
  * ```
  *   function bag_size<dateTime>(
- *       value: (array dateTime)
+ *       value: dateTime[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array dateTime)
+ *   value - (dateTime[])
  *
  * Returns:
  *
@@ -7653,7 +7643,7 @@ afw_function_definition_dateTime;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -7696,7 +7686,7 @@ afw_function_definition_eq_dateTime;
  *
  *   arg1 - (dateTime)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -7739,7 +7729,7 @@ afw_function_definition_eqx_dateTime;
  *
  *   arg1 - (dateTime)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -7850,20 +7840,20 @@ afw_function_definition_intersection_dateTime;
  *
  * ```
  *   function intersection<dateTime>(
- *       array1: (array dateTime),
- *       array2: (array dateTime)
- *   ): (array dateTime);
+ *       array1: dateTime[],
+ *       array2: dateTime[]
+ *   ): dateTime[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dateTime) The first array.
+ *   array1 - (dateTime[]) The first array.
  *
- *   array2 - (array dateTime) The second array.
+ *   array2 - (dateTime[]) The second array.
  *
  * Returns:
  *
- *   (array dateTime)
+ *   (dateTime[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -7893,7 +7883,7 @@ afw_function_definition_is_dateTime;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -7923,7 +7913,7 @@ afw_function_definition_is_in_dateTime;
  * ```
  *   function is_in<dateTime>(
  *       value: dateTime,
- *       array: (array dateTime)
+ *       array: dateTime[]
  *   ): boolean;
  * ```
  *
@@ -7931,7 +7921,7 @@ afw_function_definition_is_in_dateTime;
  *
  *   value - (dateTime)
  *
- *   array - (array dateTime)
+ *   array - (dateTime[])
  *
  * Returns:
  *
@@ -7972,7 +7962,7 @@ afw_function_definition_le_dateTime;
  *
  *   arg1 - (dateTime)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -8045,7 +8035,7 @@ afw_function_definition_max_dateTime;
  * ```
  *   function max<dateTime>(
  *       values_1: dateTime,
- *       ...values_rest: (array of dateTime)
+ *       ...values_rest: dateTime[]
  *   ): dateTime;
  * ```
  *
@@ -8083,7 +8073,7 @@ afw_function_definition_min_dateTime;
  * ```
  *   function min<dateTime>(
  *       values_1: dateTime,
- *       ...values_rest: (array of dateTime)
+ *       ...values_rest: dateTime[]
  *   ): dateTime;
  * ```
  *
@@ -8128,7 +8118,7 @@ afw_function_definition_ne_dateTime;
  *
  *   arg1 - (dateTime)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -8171,7 +8161,7 @@ afw_function_definition_nex_dateTime;
  *
  *   arg1 - (dateTime)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -8200,13 +8190,13 @@ afw_function_definition_one_and_only_dateTime;
  *
  * ```
  *   function one_and_only<dateTime>(
- *       array: (array array)
+ *       array: array[]
  *   ): dateTime;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -8239,16 +8229,16 @@ afw_function_definition_set_equals_dateTime;
  *
  * ```
  *   function set_equals<dateTime>(
- *       array1: (array dateTime),
- *       array2: (array dateTime)
+ *       array1: dateTime[],
+ *       array2: dateTime[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dateTime)
+ *   array1 - (dateTime[])
  *
- *   array2 - (array dateTime)
+ *   array2 - (dateTime[])
  *
  * Returns:
  *
@@ -8277,16 +8267,16 @@ afw_function_definition_subset_dateTime;
  *
  * ```
  *   function subset<dateTime>(
- *       array1: (array dateTime),
- *       array2: (array dateTime)
+ *       array1: dateTime[],
+ *       array2: dateTime[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dateTime) The first array.
+ *   array1 - (dateTime[]) The first array.
  *
- *   array2 - (array dateTime) The second array.
+ *   array2 - (dateTime[]) The second array.
  *
  * Returns:
  *
@@ -8424,19 +8414,19 @@ afw_function_definition_union_dateTime;
  *
  * ```
  *   function union<dateTime>(
- *       arrays_1: (array dateTime),
- *       arrays_2: (array dateTime),
- *       ...arrays_rest: (array of (array dateTime))
- *   ): (array dateTime);
+ *       arrays_1: dateTime[],
+ *       arrays_2: dateTime[],
+ *       ...arrays_rest: dateTime[]
+ *   ): dateTime[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array dateTime) Two or more arrays.
+ *   arrays - (2 or more dateTime[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array dateTime)
+ *   (dateTime[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -8506,16 +8496,16 @@ afw_function_definition_at_least_one_member_of_date;
  *
  * ```
  *   function at_least_one_member_of<date>(
- *       array1: (array date),
- *       array2: (array date)
+ *       array1: date[],
+ *       array2: date[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array date) The first array.
+ *   array1 - (date[]) The first array.
  *
- *   array2 - (array date) The second array.
+ *   array2 - (date[]) The second array.
  *
  * Returns:
  *
@@ -8543,17 +8533,17 @@ afw_function_definition_bag_date;
  *
  * ```
  *   function bag<date>(
- *       ...values: (array of (array date))
- *   ): (array date);
+ *       ...values: date[]
+ *   ): date[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array date)
+ *   values - (0 or more date[])
  *
  * Returns:
  *
- *   (array date)
+ *   (date[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -8577,13 +8567,13 @@ afw_function_definition_bag_size_date;
  *
  * ```
  *   function bag_size<date>(
- *       value: (array date)
+ *       value: date[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array date)
+ *   value - (date[])
  *
  * Returns:
  *
@@ -8617,7 +8607,7 @@ afw_function_definition_date;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -8660,7 +8650,7 @@ afw_function_definition_eq_date;
  *
  *   arg1 - (date)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -8703,7 +8693,7 @@ afw_function_definition_eqx_date;
  *
  *   arg1 - (date)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -8813,20 +8803,20 @@ afw_function_definition_intersection_date;
  *
  * ```
  *   function intersection<date>(
- *       array1: (array date),
- *       array2: (array date)
- *   ): (array date);
+ *       array1: date[],
+ *       array2: date[]
+ *   ): date[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array date) The first array.
+ *   array1 - (date[]) The first array.
  *
- *   array2 - (array date) The second array.
+ *   array2 - (date[]) The second array.
  *
  * Returns:
  *
- *   (array date)
+ *   (date[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -8856,7 +8846,7 @@ afw_function_definition_is_date;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -8886,7 +8876,7 @@ afw_function_definition_is_in_date;
  * ```
  *   function is_in<date>(
  *       value: date,
- *       array: (array date)
+ *       array: date[]
  *   ): boolean;
  * ```
  *
@@ -8894,7 +8884,7 @@ afw_function_definition_is_in_date;
  *
  *   value - (date)
  *
- *   array - (array date)
+ *   array - (date[])
  *
  * Returns:
  *
@@ -8935,7 +8925,7 @@ afw_function_definition_le_date;
  *
  *   arg1 - (date)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9007,7 +8997,7 @@ afw_function_definition_max_date;
  * ```
  *   function max<date>(
  *       values_1: date,
- *       ...values_rest: (array of date)
+ *       ...values_rest: date[]
  *   ): date;
  * ```
  *
@@ -9045,7 +9035,7 @@ afw_function_definition_min_date;
  * ```
  *   function min<date>(
  *       values_1: date,
- *       ...values_rest: (array of date)
+ *       ...values_rest: date[]
  *   ): date;
  * ```
  *
@@ -9090,7 +9080,7 @@ afw_function_definition_ne_date;
  *
  *   arg1 - (date)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9133,7 +9123,7 @@ afw_function_definition_nex_date;
  *
  *   arg1 - (date)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9162,13 +9152,13 @@ afw_function_definition_one_and_only_date;
  *
  * ```
  *   function one_and_only<date>(
- *       array: (array array)
+ *       array: array[]
  *   ): date;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -9201,16 +9191,16 @@ afw_function_definition_set_equals_date;
  *
  * ```
  *   function set_equals<date>(
- *       array1: (array date),
- *       array2: (array date)
+ *       array1: date[],
+ *       array2: date[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array date)
+ *   array1 - (date[])
  *
- *   array2 - (array date)
+ *   array2 - (date[])
  *
  * Returns:
  *
@@ -9239,16 +9229,16 @@ afw_function_definition_subset_date;
  *
  * ```
  *   function subset<date>(
- *       array1: (array date),
- *       array2: (array date)
+ *       array1: date[],
+ *       array2: date[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array date) The first array.
+ *   array1 - (date[]) The first array.
  *
- *   array2 - (array date) The second array.
+ *   array2 - (date[]) The second array.
  *
  * Returns:
  *
@@ -9348,19 +9338,19 @@ afw_function_definition_union_date;
  *
  * ```
  *   function union<date>(
- *       arrays_1: (array date),
- *       arrays_2: (array date),
- *       ...arrays_rest: (array of (array date))
- *   ): (array date);
+ *       arrays_1: date[],
+ *       arrays_2: date[],
+ *       ...arrays_rest: date[]
+ *   ): date[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array date) Two or more arrays.
+ *   arrays - (2 or more date[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array date)
+ *   (date[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -9395,16 +9385,16 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  *
  * ```
  *   function at_least_one_member_of<dayTimeDuration>(
- *       array1: (array dayTimeDuration),
- *       array2: (array dayTimeDuration)
+ *       array1: dayTimeDuration[],
+ *       array2: dayTimeDuration[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dayTimeDuration) The first array.
+ *   array1 - (dayTimeDuration[]) The first array.
  *
- *   array2 - (array dayTimeDuration) The second array.
+ *   array2 - (dayTimeDuration[]) The second array.
  *
  * Returns:
  *
@@ -9432,17 +9422,17 @@ afw_function_definition_bag_dayTimeDuration;
  *
  * ```
  *   function bag<dayTimeDuration>(
- *       ...values: (array of (array dayTimeDuration))
- *   ): (array dayTimeDuration);
+ *       ...values: dayTimeDuration[]
+ *   ): dayTimeDuration[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array dayTimeDuration)
+ *   values - (0 or more dayTimeDuration[])
  *
  * Returns:
  *
- *   (array dayTimeDuration)
+ *   (dayTimeDuration[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -9466,13 +9456,13 @@ afw_function_definition_bag_size_dayTimeDuration;
  *
  * ```
  *   function bag_size<dayTimeDuration>(
- *       value: (array dayTimeDuration)
+ *       value: dayTimeDuration[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array dayTimeDuration)
+ *   value - (dayTimeDuration[])
  *
  * Returns:
  *
@@ -9506,7 +9496,7 @@ afw_function_definition_dayTimeDuration;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -9550,7 +9540,7 @@ afw_function_definition_eq_dayTimeDuration;
  *
  *   arg1 - (dayTimeDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9593,7 +9583,7 @@ afw_function_definition_eqx_dayTimeDuration;
  *
  *   arg1 - (dayTimeDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9698,20 +9688,20 @@ afw_function_definition_intersection_dayTimeDuration;
  *
  * ```
  *   function intersection<dayTimeDuration>(
- *       array1: (array dayTimeDuration),
- *       array2: (array dayTimeDuration)
- *   ): (array dayTimeDuration);
+ *       array1: dayTimeDuration[],
+ *       array2: dayTimeDuration[]
+ *   ): dayTimeDuration[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dayTimeDuration) The first array.
+ *   array1 - (dayTimeDuration[]) The first array.
  *
- *   array2 - (array dayTimeDuration) The second array.
+ *   array2 - (dayTimeDuration[]) The second array.
  *
  * Returns:
  *
- *   (array dayTimeDuration)
+ *   (dayTimeDuration[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -9742,7 +9732,7 @@ afw_function_definition_is_dayTimeDuration;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -9772,7 +9762,7 @@ afw_function_definition_is_in_dayTimeDuration;
  * ```
  *   function is_in<dayTimeDuration>(
  *       value: dayTimeDuration,
- *       array: (array dayTimeDuration)
+ *       array: dayTimeDuration[]
  *   ): boolean;
  * ```
  *
@@ -9780,7 +9770,7 @@ afw_function_definition_is_in_dayTimeDuration;
  *
  *   value - (dayTimeDuration)
  *
- *   array - (array dayTimeDuration)
+ *   array - (dayTimeDuration[])
  *
  * Returns:
  *
@@ -9818,7 +9808,7 @@ afw_function_definition_le_dayTimeDuration;
  *
  *   arg1 - (dayTimeDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9896,7 +9886,7 @@ afw_function_definition_ne_dayTimeDuration;
  *
  *   arg1 - (dayTimeDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9939,7 +9929,7 @@ afw_function_definition_nex_dayTimeDuration;
  *
  *   arg1 - (dayTimeDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -9968,13 +9958,13 @@ afw_function_definition_one_and_only_dayTimeDuration;
  *
  * ```
  *   function one_and_only<dayTimeDuration>(
- *       array: (array array)
+ *       array: array[]
  *   ): dayTimeDuration;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -10007,16 +9997,16 @@ afw_function_definition_set_equals_dayTimeDuration;
  *
  * ```
  *   function set_equals<dayTimeDuration>(
- *       array1: (array dayTimeDuration),
- *       array2: (array dayTimeDuration)
+ *       array1: dayTimeDuration[],
+ *       array2: dayTimeDuration[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dayTimeDuration)
+ *   array1 - (dayTimeDuration[])
  *
- *   array2 - (array dayTimeDuration)
+ *   array2 - (dayTimeDuration[])
  *
  * Returns:
  *
@@ -10045,16 +10035,16 @@ afw_function_definition_subset_dayTimeDuration;
  *
  * ```
  *   function subset<dayTimeDuration>(
- *       array1: (array dayTimeDuration),
- *       array2: (array dayTimeDuration)
+ *       array1: dayTimeDuration[],
+ *       array2: dayTimeDuration[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array dayTimeDuration) The first array.
+ *   array1 - (dayTimeDuration[]) The first array.
  *
- *   array2 - (array dayTimeDuration) The second array.
+ *   array2 - (dayTimeDuration[]) The second array.
  *
  * Returns:
  *
@@ -10118,19 +10108,19 @@ afw_function_definition_union_dayTimeDuration;
  *
  * ```
  *   function union<dayTimeDuration>(
- *       arrays_1: (array dayTimeDuration),
- *       arrays_2: (array dayTimeDuration),
- *       ...arrays_rest: (array of (array dayTimeDuration))
- *   ): (array dayTimeDuration);
+ *       arrays_1: dayTimeDuration[],
+ *       arrays_2: dayTimeDuration[],
+ *       ...arrays_rest: dayTimeDuration[]
+ *   ): dayTimeDuration[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array dayTimeDuration) Two or more arrays.
+ *   arrays - (2 or more dayTimeDuration[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array dayTimeDuration)
+ *   (dayTimeDuration[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -10164,17 +10154,17 @@ afw_function_definition_bag_dnsName;
  *
  * ```
  *   function bag<dnsName>(
- *       ...values: (array of (array dnsName))
- *   ): (array dnsName);
+ *       ...values: dnsName[]
+ *   ): dnsName[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array dnsName)
+ *   values - (0 or more dnsName[])
  *
  * Returns:
  *
- *   (array dnsName)
+ *   (dnsName[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -10198,13 +10188,13 @@ afw_function_definition_bag_size_dnsName;
  *
  * ```
  *   function bag_size<dnsName>(
- *       value: (array dnsName)
+ *       value: dnsName[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array dnsName)
+ *   value - (dnsName[])
  *
  * Returns:
  *
@@ -10238,7 +10228,7 @@ afw_function_definition_dnsName;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -10281,7 +10271,7 @@ afw_function_definition_eq_dnsName;
  *
  *   arg1 - (dnsName)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -10324,7 +10314,7 @@ afw_function_definition_eqx_dnsName;
  *
  *   arg1 - (dnsName)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -10434,7 +10424,7 @@ afw_function_definition_is_dnsName;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -10464,7 +10454,7 @@ afw_function_definition_is_in_dnsName;
  * ```
  *   function is_in<dnsName>(
  *       value: dnsName,
- *       array: (array dnsName)
+ *       array: dnsName[]
  *   ): boolean;
  * ```
  *
@@ -10472,7 +10462,7 @@ afw_function_definition_is_in_dnsName;
  *
  *   value - (dnsName)
  *
- *   array - (array dnsName)
+ *   array - (dnsName[])
  *
  * Returns:
  *
@@ -10510,7 +10500,7 @@ afw_function_definition_le_dnsName;
  *
  *   arg1 - (dnsName)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -10587,7 +10577,7 @@ afw_function_definition_ne_dnsName;
  *
  *   arg1 - (dnsName)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -10630,7 +10620,7 @@ afw_function_definition_nex_dnsName;
  *
  *   arg1 - (dnsName)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -10659,13 +10649,13 @@ afw_function_definition_one_and_only_dnsName;
  *
  * ```
  *   function one_and_only<dnsName>(
- *       array: (array array)
+ *       array: array[]
  *   ): dnsName;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -10815,7 +10805,7 @@ afw_function_definition_add_double;
  *   function add<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -10849,16 +10839,16 @@ afw_function_definition_at_least_one_member_of_double;
  *
  * ```
  *   function at_least_one_member_of<double>(
- *       array1: (array double),
- *       array2: (array double)
+ *       array1: double[],
+ *       array2: double[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array double) The first array.
+ *   array1 - (double[]) The first array.
  *
- *   array2 - (array double) The second array.
+ *   array2 - (double[]) The second array.
  *
  * Returns:
  *
@@ -10886,17 +10876,17 @@ afw_function_definition_bag_double;
  *
  * ```
  *   function bag<double>(
- *       ...values: (array of (array double))
- *   ): (array double);
+ *       ...values: double[]
+ *   ): double[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array double)
+ *   values - (0 or more double[])
  *
  * Returns:
  *
- *   (array double)
+ *   (double[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -10920,13 +10910,13 @@ afw_function_definition_bag_size_double;
  *
  * ```
  *   function bag_size<double>(
- *       value: (array double)
+ *       value: double[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array double)
+ *   value - (double[])
  *
  * Returns:
  *
@@ -11030,7 +11020,7 @@ afw_function_definition_double;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -11073,7 +11063,7 @@ afw_function_definition_eq_double;
  *
  *   arg1 - (double)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -11116,7 +11106,7 @@ afw_function_definition_eqx_double;
  *
  *   arg1 - (double)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -11255,20 +11245,20 @@ afw_function_definition_intersection_double;
  *
  * ```
  *   function intersection<double>(
- *       array1: (array double),
- *       array2: (array double)
- *   ): (array double);
+ *       array1: double[],
+ *       array2: double[]
+ *   ): double[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array double) The first array.
+ *   array1 - (double[]) The first array.
  *
- *   array2 - (array double) The second array.
+ *   array2 - (double[]) The second array.
  *
  * Returns:
  *
- *   (array double)
+ *   (double[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -11332,7 +11322,7 @@ afw_function_definition_is_double;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -11395,7 +11385,7 @@ afw_function_definition_is_in_double;
  * ```
  *   function is_in<double>(
  *       value: double,
- *       array: (array double)
+ *       array: double[]
  *   ): boolean;
  * ```
  *
@@ -11403,7 +11393,7 @@ afw_function_definition_is_in_double;
  *
  *   value - (double)
  *
- *   array - (array double)
+ *   array - (double[])
  *
  * Returns:
  *
@@ -11441,7 +11431,7 @@ afw_function_definition_le_double;
  *
  *   arg1 - (double)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -11508,7 +11498,7 @@ afw_function_definition_max_double;
  * ```
  *   function max<double>(
  *       values_1: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -11543,7 +11533,7 @@ afw_function_definition_min_double;
  * ```
  *   function min<double>(
  *       values_1: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -11579,7 +11569,7 @@ afw_function_definition_multiply_double;
  *   function multiply<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -11623,7 +11613,7 @@ afw_function_definition_ne_double;
  *
  *   arg1 - (double)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -11699,7 +11689,7 @@ afw_function_definition_nex_double;
  *
  *   arg1 - (double)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -11728,13 +11718,13 @@ afw_function_definition_one_and_only_double;
  *
  * ```
  *   function one_and_only<double>(
- *       array: (array array)
+ *       array: array[]
  *   ): double;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -11769,7 +11759,7 @@ afw_function_definition_pow_double;
  *   function pow<double>(
  *       base: double,
  *       exponent_1: double,
- *       ...exponent_rest: (array of double)
+ *       ...exponent_rest: double[]
  *   ): double;
  * ```
  *
@@ -11838,16 +11828,16 @@ afw_function_definition_set_equals_double;
  *
  * ```
  *   function set_equals<double>(
- *       array1: (array double),
- *       array2: (array double)
+ *       array1: double[],
+ *       array2: double[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array double)
+ *   array1 - (double[])
  *
- *   array2 - (array double)
+ *   array2 - (double[])
  *
  * Returns:
  *
@@ -11876,16 +11866,16 @@ afw_function_definition_subset_double;
  *
  * ```
  *   function subset<double>(
- *       array1: (array double),
- *       array2: (array double)
+ *       array1: double[],
+ *       array2: double[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array double) The first array.
+ *   array1 - (double[]) The first array.
  *
- *   array2 - (array double) The second array.
+ *   array2 - (double[]) The second array.
  *
  * Returns:
  *
@@ -12019,19 +12009,19 @@ afw_function_definition_union_double;
  *
  * ```
  *   function union<double>(
- *       arrays_1: (array double),
- *       arrays_2: (array double),
- *       ...arrays_rest: (array of (array double))
- *   ): (array double);
+ *       arrays_1: double[],
+ *       arrays_2: double[],
+ *       ...arrays_rest: double[]
+ *   ): double[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array double) Two or more arrays.
+ *   arrays - (2 or more double[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array double)
+ *   (double[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -12065,17 +12055,17 @@ afw_function_definition_bag_function;
  *
  * ```
  *   function bag<function>(
- *       ...values: (array of (array function))
- *   ): (array function);
+ *       ...values: function[]
+ *   ): function[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array function)
+ *   values - (0 or more function[])
  *
  * Returns:
  *
- *   (array function)
+ *   (function[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -12099,13 +12089,13 @@ afw_function_definition_bag_size_function;
  *
  * ```
  *   function bag_size<function>(
- *       value: (array function)
+ *       value: function[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array function)
+ *   value - (function[])
  *
  * Returns:
  *
@@ -12144,7 +12134,7 @@ afw_function_definition_eq_function;
  *
  *   arg1 - (function)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -12187,7 +12177,7 @@ afw_function_definition_eqx_function;
  *
  *   arg1 - (function)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -12221,7 +12211,7 @@ afw_function_definition_function;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -12335,7 +12325,7 @@ afw_function_definition_is_function;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -12373,7 +12363,7 @@ afw_function_definition_le_function;
  *
  *   arg1 - (function)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -12450,7 +12440,7 @@ afw_function_definition_ne_function;
  *
  *   arg1 - (function)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -12493,7 +12483,7 @@ afw_function_definition_nex_function;
  *
  *   arg1 - (function)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -12532,16 +12522,16 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  *
  * ```
  *   function at_least_one_member_of<hexBinary>(
- *       array1: (array hexBinary),
- *       array2: (array hexBinary)
+ *       array1: hexBinary[],
+ *       array2: hexBinary[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array hexBinary) The first array.
+ *   array1 - (hexBinary[]) The first array.
  *
- *   array2 - (array hexBinary) The second array.
+ *   array2 - (hexBinary[]) The second array.
  *
  * Returns:
  *
@@ -12569,17 +12559,17 @@ afw_function_definition_bag_hexBinary;
  *
  * ```
  *   function bag<hexBinary>(
- *       ...values: (array of (array hexBinary))
- *   ): (array hexBinary);
+ *       ...values: hexBinary[]
+ *   ): hexBinary[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array hexBinary)
+ *   values - (0 or more hexBinary[])
  *
  * Returns:
  *
- *   (array hexBinary)
+ *   (hexBinary[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -12603,13 +12593,13 @@ afw_function_definition_bag_size_hexBinary;
  *
  * ```
  *   function bag_size<hexBinary>(
- *       value: (array hexBinary)
+ *       value: hexBinary[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array hexBinary)
+ *   value - (hexBinary[])
  *
  * Returns:
  *
@@ -12682,7 +12672,7 @@ afw_function_definition_eq_hexBinary;
  *
  *   arg1 - (hexBinary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -12725,7 +12715,7 @@ afw_function_definition_eqx_hexBinary;
  *
  *   arg1 - (hexBinary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -12835,7 +12825,7 @@ afw_function_definition_hexBinary;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -12868,20 +12858,20 @@ afw_function_definition_intersection_hexBinary;
  *
  * ```
  *   function intersection<hexBinary>(
- *       array1: (array hexBinary),
- *       array2: (array hexBinary)
- *   ): (array hexBinary);
+ *       array1: hexBinary[],
+ *       array2: hexBinary[]
+ *   ): hexBinary[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array hexBinary) The first array.
+ *   array1 - (hexBinary[]) The first array.
  *
- *   array2 - (array hexBinary) The second array.
+ *   array2 - (hexBinary[]) The second array.
  *
  * Returns:
  *
- *   (array hexBinary)
+ *   (hexBinary[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -12911,7 +12901,7 @@ afw_function_definition_is_hexBinary;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -12941,7 +12931,7 @@ afw_function_definition_is_in_hexBinary;
  * ```
  *   function is_in<hexBinary>(
  *       value: hexBinary,
- *       array: (array hexBinary)
+ *       array: hexBinary[]
  *   ): boolean;
  * ```
  *
@@ -12949,7 +12939,7 @@ afw_function_definition_is_in_hexBinary;
  *
  *   value - (hexBinary)
  *
- *   array - (array hexBinary)
+ *   array - (hexBinary[])
  *
  * Returns:
  *
@@ -12987,7 +12977,7 @@ afw_function_definition_le_hexBinary;
  *
  *   arg1 - (hexBinary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -13065,7 +13055,7 @@ afw_function_definition_ne_hexBinary;
  *
  *   arg1 - (hexBinary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -13108,7 +13098,7 @@ afw_function_definition_nex_hexBinary;
  *
  *   arg1 - (hexBinary)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -13137,13 +13127,13 @@ afw_function_definition_one_and_only_hexBinary;
  *
  * ```
  *   function one_and_only<hexBinary>(
- *       array: (array array)
+ *       array: array[]
  *   ): hexBinary;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -13176,16 +13166,16 @@ afw_function_definition_set_equals_hexBinary;
  *
  * ```
  *   function set_equals<hexBinary>(
- *       array1: (array hexBinary),
- *       array2: (array hexBinary)
+ *       array1: hexBinary[],
+ *       array2: hexBinary[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array hexBinary)
+ *   array1 - (hexBinary[])
  *
- *   array2 - (array hexBinary)
+ *   array2 - (hexBinary[])
  *
  * Returns:
  *
@@ -13214,16 +13204,16 @@ afw_function_definition_subset_hexBinary;
  *
  * ```
  *   function subset<hexBinary>(
- *       array1: (array hexBinary),
- *       array2: (array hexBinary)
+ *       array1: hexBinary[],
+ *       array2: hexBinary[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array hexBinary) The first array.
+ *   array1 - (hexBinary[]) The first array.
  *
- *   array2 - (array hexBinary) The second array.
+ *   array2 - (hexBinary[]) The second array.
  *
  * Returns:
  *
@@ -13287,19 +13277,19 @@ afw_function_definition_union_hexBinary;
  *
  * ```
  *   function union<hexBinary>(
- *       arrays_1: (array hexBinary),
- *       arrays_2: (array hexBinary),
- *       ...arrays_rest: (array of (array hexBinary))
- *   ): (array hexBinary);
+ *       arrays_1: hexBinary[],
+ *       arrays_2: hexBinary[],
+ *       ...arrays_rest: hexBinary[]
+ *   ): hexBinary[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array hexBinary) Two or more arrays.
+ *   arrays - (2 or more hexBinary[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array hexBinary)
+ *   (hexBinary[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -13333,21 +13323,21 @@ afw_function_definition_all_of;
  *
  * ```
  *   function all_of(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first array in values or until false is returned.
- *       If no calls return false, the result is true.
+ *   predicate - ((...values: any) => boolean) This function is called for each
+ *       value in the first array in values or until false is returned. If no
+ *       calls return false, the result is true.
  *
- *   values - (1 or more any dataType) These are the parameters passed to
- *       predicate with the exception that the first array is passed one value
- *       at a time. At least one array is required.
+ *   values - (1 or more any) These are the parameters passed to predicate with
+ *       the exception that the first array is passed one value at a time. At
+ *       least one array is required.
  *
  * Returns:
  *
@@ -13375,7 +13365,7 @@ afw_function_definition_all_of_all;
  *
  * ```
  *   function all_of_all(
- *       predicate: (function (any value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -13383,9 +13373,9 @@ afw_function_definition_all_of_all;
  *
  * Parameters:
  *
- *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters, the first is a value from array1
- *       and the second is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -13418,7 +13408,7 @@ afw_function_definition_all_of_any;
  *
  * ```
  *   function all_of_any(
- *       predicate: (function (value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -13426,9 +13416,9 @@ afw_function_definition_all_of_any;
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate is
- *       passed two parameters, the first is a value from array1 and the second
- *       is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -13459,21 +13449,21 @@ afw_function_definition_any_of;
  *
  * ```
  *   function any_of(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first array in values or until true is returned.
- *       If no calls return true, the result is false.
+ *   predicate - ((...values: any) => boolean) This function is called for each
+ *       value in the first array in values or until true is returned. If no
+ *       calls return true, the result is false.
  *
- *   values - (1 or more any dataType) These are the parameters passed to
- *       predicate with the exception that the first array is passed one value
- *       at a time. At least one array is required.
+ *   values - (1 or more any) These are the parameters passed to predicate with
+ *       the exception that the first array is passed one value at a time. At
+ *       least one array is required.
  *
  * Returns:
  *
@@ -13501,7 +13491,7 @@ afw_function_definition_any_of_all;
  *
  * ```
  *   function any_of_all(
- *       predicate: (function (value1: any, value2: any):boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -13509,9 +13499,9 @@ afw_function_definition_any_of_all;
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any):boolean) The predicate is
- *       passed two parameters, the first is a value from array1 and the second
- *       is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -13543,7 +13533,7 @@ afw_function_definition_any_of_any;
  *
  * ```
  *   function any_of_any(
- *       predicate: (function (value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -13551,9 +13541,9 @@ afw_function_definition_any_of_any;
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate is
- *       passed two parameters, the first is a value from array1 and the second
- *       is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -13586,19 +13576,19 @@ afw_function_definition_every;
  *
  * ```
  *   function every(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) Called for each value in
- *       the first array in values or until false is returned.
+ *   predicate - ((...values: any) => boolean) Called for each value in the
+ *       first array in values or until false is returned.
  *
- *   values - (1 or more any dataType) Parameters passed to predicate with the
- *       first array passed one value at a time.
+ *   values - (1 or more any) Parameters passed to predicate with the first
+ *       array passed one value at a time.
  *
  * Returns:
  *
@@ -13627,21 +13617,21 @@ afw_function_definition_filter;
  *
  * ```
  *   function filter(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if an array entry should be
- *       included in the returned array.
+ *   predicate - ((...values: any) => boolean) This is a boolean function that
+ *       is called to determine if an array entry should be included in the
+ *       returned array.
  *
- *   values - (1 or more any dataType) These are the values passed to the
- *       predicate with the exception that the first array is passed as the
- *       single current value from the array. At least one array is required.
+ *   values - (1 or more any) These are the values passed to the predicate with
+ *       the exception that the first array is passed as the single current
+ *       value from the array. At least one array is required.
  *
  * Returns:
  *
@@ -13669,24 +13659,24 @@ afw_function_definition_find;
  *
  * ```
  *   function find(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if an array entry passes the test.
+ *   predicate - ((...values: any) => boolean) This is a boolean function that
+ *       is called to determine if an array entry passes the test.
  *
- *   values - (1 or more any dataType) These are the values passed to the
- *       predicate with the exception that the first array is passed as the
- *       single current value from the array. At least one array is required.
+ *   values - (1 or more any) These are the values passed to the predicate with
+ *       the exception that the first array is passed as the single current
+ *       value from the array. At least one array is required.
  *
  * Returns:
  *
- *   (any dataType) The first value that passes the test is returned.
+ *   (any) The first value that passes the test is returned.
  */
 const afw_value_t *
 afw_function_execute_find(
@@ -13710,19 +13700,19 @@ afw_function_definition_map;
  *
  * ```
  *   function map(
- *       functor: (function (... values: any): any),
+ *       functor: (...values: any) => any,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   functor - (function (... values: any): any)
+ *   functor - ((...values: any) => any)
  *
- *   values - (1 or more any dataType) These are the parameters passed to
- *       functor with the exception that the first array is passed one value at
- *       a time. At least one array is required.
+ *   values - (1 or more any) These are the parameters passed to functor with
+ *       the exception that the first array is passed one value at a time. At
+ *       least one array is required.
  *
  * Returns:
  *
@@ -13753,7 +13743,7 @@ afw_function_definition_reduce;
  *
  * ```
  *   function reduce(
- *       functor: (function (accumulator: any, value: any): any),
+ *       functor: (accumulator: any, value: any) => any,
  *       accumulator: any,
  *       array: array
  *   ): any;
@@ -13761,11 +13751,11 @@ afw_function_definition_reduce;
  *
  * Parameters:
  *
- *   functor - (function (accumulator: any, value: any): any) This function is
- *       called for each value in an array. The returned value is passed as the
+ *   functor - ((accumulator: any, value: any) => any) This function is called
+ *       for each value in an array. The returned value is passed as the
  *       accumulator parameter on the next call to functor().
  *
- *   accumulator - (any dataType) This is an initial accumulator value passed to
+ *   accumulator - (any) This is an initial accumulator value passed to
  *       functor(). Normally, the dataType of accumulator will be the dataTape
  *       for the reduce() return value, but this is not required.
  *
@@ -13773,8 +13763,8 @@ afw_function_definition_reduce;
  *
  * Returns:
  *
- *   (any dataType) This is the final return value from functor() or the
- *       accumulator parameter value if array is empty.
+ *   (any) This is the final return value from functor() or the accumulator
+ *       parameter value if array is empty.
  */
 const afw_value_t *
 afw_function_execute_reduce(
@@ -13799,19 +13789,19 @@ afw_function_definition_some;
  *
  * ```
  *   function some(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) Called for each value in
- *       the first array in values or until true is returned.
+ *   predicate - ((...values: any) => boolean) Called for each value in the
+ *       first array in values or until true is returned.
  *
- *   values - (1 or more any dataType) Parameters passed to predicate with the
- *       first array passed one value at a time.
+ *   values - (1 or more any) Parameters passed to predicate with the first
+ *       array passed one value at a time.
  *
  * Returns:
  *
@@ -13843,15 +13833,15 @@ afw_function_definition_sort;
  *
  * ```
  *   function sort(
- *       compareFunction: (function (value1: any, value2: any): integer),
+ *       compareFunction: (value1: any, value2: any) => integer,
  *       array: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   compareFunction - (function (value1: any, value2: any): integer) This
- *       function is called with two value from array.
+ *   compareFunction - ((value1: any, value2: any) => integer) This function is
+ *       called with two value from array.
  *
  *   array - (array) This is the array to sort.
  *
@@ -13890,17 +13880,17 @@ afw_function_definition_bag_ia5String;
  *
  * ```
  *   function bag<ia5String>(
- *       ...values: (array of (array ia5String))
- *   ): (array ia5String);
+ *       ...values: ia5String[]
+ *   ): ia5String[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array ia5String)
+ *   values - (0 or more ia5String[])
  *
  * Returns:
  *
- *   (array ia5String)
+ *   (ia5String[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -13924,13 +13914,13 @@ afw_function_definition_bag_size_ia5String;
  *
  * ```
  *   function bag_size<ia5String>(
- *       value: (array ia5String)
+ *       value: ia5String[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array ia5String)
+ *   value - (ia5String[])
  *
  * Returns:
  *
@@ -13969,7 +13959,7 @@ afw_function_definition_eq_ia5String;
  *
  *   arg1 - (ia5String)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -14012,7 +14002,7 @@ afw_function_definition_eqx_ia5String;
  *
  *   arg1 - (ia5String)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -14122,7 +14112,7 @@ afw_function_definition_ia5String;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -14160,7 +14150,7 @@ afw_function_definition_is_ia5String;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -14198,7 +14188,7 @@ afw_function_definition_le_ia5String;
  *
  *   arg1 - (ia5String)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -14276,7 +14266,7 @@ afw_function_definition_ne_ia5String;
  *
  *   arg1 - (ia5String)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -14319,7 +14309,7 @@ afw_function_definition_nex_ia5String;
  *
  *   arg1 - (ia5String)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -14397,9 +14387,9 @@ afw_function_definition_index_create;
  *       adapterId: string,
  *       key: string,
  *       value?: string,
- *       objectType?: (array string),
+ *       objectType?: string[],
  *       filter?: string,
- *       options?: (array string),
+ *       options?: string[],
  *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
@@ -14417,15 +14407,14 @@ afw_function_definition_index_create;
  *       current::key are available (issue #54). If omitted, the property named
  *       by key is indexed.
  *
- *   objectType - (optional array string) Object type id(s) this index may apply
- *       to.
+ *   objectType - (optional string[]) Object type id(s) this index may apply to.
  *
  *   filter - (optional string) Adaptive script that must return a boolean to
  *       decide whether this index applies to a particular object. Uses the same
  *       current:: variables as value (issue #54). If omitted, the filter is
  *       always true.
  *
- *   options - (optional array string) Indexing options.
+ *   options - (optional string[]) Indexing options.
  *
  *   retroactive - (optional boolean) Retroactively generate indexes for
  *       existing objects.
@@ -14579,7 +14568,7 @@ afw_function_definition_add_integer;
  *   function add<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (array of integer)
+ *       ...values_rest: integer[]
  *   ): integer;
  * ```
  *
@@ -14613,16 +14602,16 @@ afw_function_definition_at_least_one_member_of_integer;
  *
  * ```
  *   function at_least_one_member_of<integer>(
- *       array1: (array integer),
- *       array2: (array integer)
+ *       array1: integer[],
+ *       array2: integer[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array integer) The first array.
+ *   array1 - (integer[]) The first array.
  *
- *   array2 - (array integer) The second array.
+ *   array2 - (integer[]) The second array.
  *
  * Returns:
  *
@@ -14650,17 +14639,17 @@ afw_function_definition_bag_integer;
  *
  * ```
  *   function bag<integer>(
- *       ...values: (array of (array integer))
- *   ): (array integer);
+ *       ...values: integer[]
+ *   ): integer[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array integer)
+ *   values - (0 or more integer[])
  *
  * Returns:
  *
- *   (array integer)
+ *   (integer[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -14684,13 +14673,13 @@ afw_function_definition_bag_size_integer;
  *
  * ```
  *   function bag_size<integer>(
- *       value: (array integer)
+ *       value: integer[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array integer)
+ *   value - (integer[])
  *
  * Returns:
  *
@@ -14765,7 +14754,7 @@ afw_function_definition_eq_integer;
  *
  *   arg1 - (integer)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -14808,7 +14797,7 @@ afw_function_definition_eqx_integer;
  *
  *   arg1 - (integer)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -14918,7 +14907,7 @@ afw_function_definition_integer;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -14951,20 +14940,20 @@ afw_function_definition_intersection_integer;
  *
  * ```
  *   function intersection<integer>(
- *       array1: (array integer),
- *       array2: (array integer)
- *   ): (array integer);
+ *       array1: integer[],
+ *       array2: integer[]
+ *   ): integer[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array integer) The first array.
+ *   array1 - (integer[]) The first array.
  *
- *   array2 - (array integer) The second array.
+ *   array2 - (integer[]) The second array.
  *
  * Returns:
  *
- *   (array integer)
+ *   (integer[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -14990,7 +14979,7 @@ afw_function_definition_is_in_integer;
  * ```
  *   function is_in<integer>(
  *       value: integer,
- *       array: (array integer)
+ *       array: integer[]
  *   ): boolean;
  * ```
  *
@@ -14998,7 +14987,7 @@ afw_function_definition_is_in_integer;
  *
  *   value - (integer)
  *
- *   array - (array integer)
+ *   array - (integer[])
  *
  * Returns:
  *
@@ -15032,7 +15021,7 @@ afw_function_definition_is_integer;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -15070,7 +15059,7 @@ afw_function_definition_le_integer;
  *
  *   arg1 - (integer)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -15137,7 +15126,7 @@ afw_function_definition_max_integer;
  * ```
  *   function max<integer>(
  *       values_1: integer,
- *       ...values_rest: (array of integer)
+ *       ...values_rest: integer[]
  *   ): integer;
  * ```
  *
@@ -15172,7 +15161,7 @@ afw_function_definition_min_integer;
  * ```
  *   function min<integer>(
  *       values_1: integer,
- *       ...values_rest: (array of integer)
+ *       ...values_rest: integer[]
  *   ): integer;
  * ```
  *
@@ -15244,7 +15233,7 @@ afw_function_definition_multiply_integer;
  *   function multiply<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (array of integer)
+ *       ...values_rest: integer[]
  *   ): integer;
  * ```
  *
@@ -15288,7 +15277,7 @@ afw_function_definition_ne_integer;
  *
  *   arg1 - (integer)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -15364,7 +15353,7 @@ afw_function_definition_nex_integer;
  *
  *   arg1 - (integer)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -15393,13 +15382,13 @@ afw_function_definition_one_and_only_integer;
  *
  * ```
  *   function one_and_only<integer>(
- *       array: (array array)
+ *       array: array[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -15432,16 +15421,16 @@ afw_function_definition_set_equals_integer;
  *
  * ```
  *   function set_equals<integer>(
- *       array1: (array integer),
- *       array2: (array integer)
+ *       array1: integer[],
+ *       array2: integer[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array integer)
+ *   array1 - (integer[])
  *
- *   array2 - (array integer)
+ *   array2 - (integer[])
  *
  * Returns:
  *
@@ -15470,16 +15459,16 @@ afw_function_definition_subset_integer;
  *
  * ```
  *   function subset<integer>(
- *       array1: (array integer),
- *       array2: (array integer)
+ *       array1: integer[],
+ *       array2: integer[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array integer) The first array.
+ *   array1 - (integer[]) The first array.
  *
- *   array2 - (array integer) The second array.
+ *   array2 - (integer[]) The second array.
  *
  * Returns:
  *
@@ -15617,19 +15606,19 @@ afw_function_definition_union_integer;
  *
  * ```
  *   function union<integer>(
- *       arrays_1: (array integer),
- *       arrays_2: (array integer),
- *       ...arrays_rest: (array of (array integer))
- *   ): (array integer);
+ *       arrays_1: integer[],
+ *       arrays_2: integer[],
+ *       ...arrays_rest: integer[]
+ *   ): integer[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array integer) Two or more arrays.
+ *   arrays - (2 or more integer[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array integer)
+ *   (integer[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -15663,17 +15652,17 @@ afw_function_definition_bag_ipAddress;
  *
  * ```
  *   function bag<ipAddress>(
- *       ...values: (array of (array ipAddress))
- *   ): (array ipAddress);
+ *       ...values: ipAddress[]
+ *   ): ipAddress[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array ipAddress)
+ *   values - (0 or more ipAddress[])
  *
  * Returns:
  *
- *   (array ipAddress)
+ *   (ipAddress[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -15697,13 +15686,13 @@ afw_function_definition_bag_size_ipAddress;
  *
  * ```
  *   function bag_size<ipAddress>(
- *       value: (array ipAddress)
+ *       value: ipAddress[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array ipAddress)
+ *   value - (ipAddress[])
  *
  * Returns:
  *
@@ -15742,7 +15731,7 @@ afw_function_definition_eq_ipAddress;
  *
  *   arg1 - (ipAddress)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -15785,7 +15774,7 @@ afw_function_definition_eqx_ipAddress;
  *
  *   arg1 - (ipAddress)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -15895,7 +15884,7 @@ afw_function_definition_ipAddress;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -15929,7 +15918,7 @@ afw_function_definition_is_in_ipAddress;
  * ```
  *   function is_in<ipAddress>(
  *       value: ipAddress,
- *       array: (array ipAddress)
+ *       array: ipAddress[]
  *   ): boolean;
  * ```
  *
@@ -15937,7 +15926,7 @@ afw_function_definition_is_in_ipAddress;
  *
  *   value - (ipAddress)
  *
- *   array - (array ipAddress)
+ *   array - (ipAddress[])
  *
  * Returns:
  *
@@ -15971,7 +15960,7 @@ afw_function_definition_is_ipAddress;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -16009,7 +15998,7 @@ afw_function_definition_le_ipAddress;
  *
  *   arg1 - (ipAddress)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -16087,7 +16076,7 @@ afw_function_definition_ne_ipAddress;
  *
  *   arg1 - (ipAddress)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -16130,7 +16119,7 @@ afw_function_definition_nex_ipAddress;
  *
  *   arg1 - (ipAddress)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -16159,13 +16148,13 @@ afw_function_definition_one_and_only_ipAddress;
  *
  * ```
  *   function one_and_only<ipAddress>(
- *       array: (array array)
+ *       array: array[]
  *   ): ipAddress;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -16647,9 +16636,9 @@ afw_function_definition_compile_json;
  *
  *   source - (json) json string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -16688,7 +16677,7 @@ afw_function_definition_json;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -16732,7 +16721,7 @@ afw_function_definition_and;
  *
  * ```
  *   function and(
- *       ...conditions: (array of boolean)
+ *       ...conditions: boolean[]
  *   ): boolean;
  * ```
  *
@@ -16769,7 +16758,7 @@ afw_function_definition_n_of;
  * ```
  *   function n_of(
  *       n: integer,
- *       ...conditions: (array of boolean)
+ *       ...conditions: boolean[]
  *   ): boolean;
  * ```
  *
@@ -16844,7 +16833,7 @@ afw_function_definition_or;
  *
  * ```
  *   function or(
- *       ...conditions: (array of boolean)
+ *       ...conditions: boolean[]
  *   ): boolean;
  * ```
  *
@@ -16944,8 +16933,8 @@ afw_function_definition_debug;
  *
  * Parameters:
  *
- *   value - (any dataType) This is the value that will be converted to its
- *       string representation and written. An undefined value is represented by
+ *   value - (any) This is the value that will be converted to its string
+ *       representation and written. An undefined value is represented by
  *       'undefined'.
  *
  *   detail - (optional boolean) If true, the string will only written if the
@@ -16978,7 +16967,6 @@ afw_function_definition_execution_start_time_local;
  *
  * ```
  *   function execution_start_time_local(
- *   
  *   ): dateTime;
  * ```
  *
@@ -17010,7 +16998,6 @@ afw_function_definition_execution_start_time_utc;
  *
  * ```
  *   function execution_start_time_utc(
- *   
  *   ): dateTime;
  * ```
  *
@@ -17041,7 +17028,6 @@ afw_function_definition_generate_uuid;
  *
  * ```
  *   function generate_uuid(
- *   
  *   ): string;
  * ```
  *
@@ -17078,7 +17064,7 @@ afw_function_definition_is_defined;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -17111,7 +17097,7 @@ afw_function_definition_is_nullish;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -17144,7 +17130,7 @@ afw_function_definition_log;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to log.
+ *   value - (any) Value to log.
  *
  * Returns:
  *
@@ -17171,7 +17157,6 @@ afw_function_definition_now_local;
  *
  * ```
  *   function now_local(
- *   
  *   ): dateTime;
  * ```
  *
@@ -17202,7 +17187,6 @@ afw_function_definition_now_utc;
  *
  * ```
  *   function now_utc(
- *   
  *   ): dateTime;
  * ```
  *
@@ -17236,7 +17220,7 @@ afw_function_definition_parse_uri;
  *       uri: string,
  *       isValuePath?: boolean,
  *       currentPath?: string
- *   ): (object _AdaptiveParsedURI_);
+ *   ): object; // _AdaptiveParsedURI_
  * ```
  *
  * Parameters:
@@ -17277,8 +17261,8 @@ afw_function_definition_perform;
  *
  * ```
  *   function perform(
- *       request: (object _AdaptiveActions_)
- *   ): (object _AdaptiveResponse_);
+ *       request: object // _AdaptiveActions_
+ *   ): object; // _AdaptiveResponse_
  * ```
  *
  * Parameters:
@@ -17319,8 +17303,8 @@ afw_function_definition_trace;
  *
  * Parameters:
  *
- *   value - (any dataType) This is the value that will be converted to its
- *       string representation and written the trace log. An undefined value is
+ *   value - (any) This is the value that will be converted to its string
+ *       representation and written the trace log. An undefined value is
  *       represented by 'undefined'.
  *
  *   filter - (optional boolean) If this optional filter is false, nothing will
@@ -17399,12 +17383,12 @@ afw_function_definition_variable_get;
  *   name - (string) Name of variable to get. The name can optionally be
  *       preceded with a qualifier followed by '::'.
  *
- *   defaultValue - (optional any dataType) The default value of variable if it
- *       does not exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) The default value of variable if it does not
+ *       exist in object. If not specified, null value is the default.
  *
  * Returns:
  *
- *   (any dataType) Evaluated variable value or default.
+ *   (any) Evaluated variable value or default.
  */
 const afw_value_t *
 afw_function_execute_variable_get(
@@ -17481,8 +17465,8 @@ afw_function_definition_model_default_add_object_action;
  *       object: object,
  *       objectId?: string,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:
@@ -17543,8 +17527,8 @@ afw_function_definition_model_default_delete_object_action;
  *       objectType: string,
  *       objectId: string,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:
@@ -17602,8 +17586,8 @@ afw_function_definition_model_default_modify_object_action;
  *       objectId: string,
  *       entries: array,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:
@@ -17688,8 +17672,8 @@ afw_function_definition_model_default_replace_object_action;
  *       objectId: string,
  *       object: object,
  *       modelId?: string,
- *       context?: (object _AdaptiveContextType_)
- *   ): (object _AdaptiveAction_);
+ *       context?: object // _AdaptiveContextType_
+ *   ): object; // _AdaptiveAction_
  * ```
  *
  * Parameters:
@@ -17862,17 +17846,17 @@ afw_function_definition_bag_null;
  *
  * ```
  *   function bag<null>(
- *       ...values: (array of (array null))
- *   ): (array null);
+ *       ...values: null[]
+ *   ): null[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array null)
+ *   values - (0 or more null[])
  *
  * Returns:
  *
- *   (array null)
+ *   (null[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -17896,13 +17880,13 @@ afw_function_definition_bag_size_null;
  *
  * ```
  *   function bag_size<null>(
- *       value: (array null)
+ *       value: null[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array null)
+ *   value - (null[])
  *
  * Returns:
  *
@@ -17936,7 +17920,7 @@ afw_function_definition_is_null;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -17970,7 +17954,7 @@ afw_function_definition_null;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -18047,17 +18031,17 @@ afw_function_definition_bag_objectId;
  *
  * ```
  *   function bag<objectId>(
- *       ...values: (array of (array objectId))
- *   ): (array objectId);
+ *       ...values: objectId[]
+ *   ): objectId[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array objectId)
+ *   values - (0 or more objectId[])
  *
  * Returns:
  *
- *   (array objectId)
+ *   (objectId[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -18081,13 +18065,13 @@ afw_function_definition_bag_size_objectId;
  *
  * ```
  *   function bag_size<objectId>(
- *       value: (array objectId)
+ *       value: objectId[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array objectId)
+ *   value - (objectId[])
  *
  * Returns:
  *
@@ -18126,7 +18110,7 @@ afw_function_definition_eq_objectId;
  *
  *   arg1 - (objectId)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18169,7 +18153,7 @@ afw_function_definition_eqx_objectId;
  *
  *   arg1 - (objectId)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18279,7 +18263,7 @@ afw_function_definition_is_objectId;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -18317,7 +18301,7 @@ afw_function_definition_le_objectId;
  *
  *   arg1 - (objectId)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18394,7 +18378,7 @@ afw_function_definition_ne_objectId;
  *
  *   arg1 - (objectId)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18437,7 +18421,7 @@ afw_function_definition_nex_objectId;
  *
  *   arg1 - (objectId)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18471,7 +18455,7 @@ afw_function_definition_objectId;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -18548,17 +18532,17 @@ afw_function_definition_bag_objectPath;
  *
  * ```
  *   function bag<objectPath>(
- *       ...values: (array of (array objectPath))
- *   ): (array objectPath);
+ *       ...values: objectPath[]
+ *   ): objectPath[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array objectPath)
+ *   values - (0 or more objectPath[])
  *
  * Returns:
  *
- *   (array objectPath)
+ *   (objectPath[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -18582,13 +18566,13 @@ afw_function_definition_bag_size_objectPath;
  *
  * ```
  *   function bag_size<objectPath>(
- *       value: (array objectPath)
+ *       value: objectPath[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array objectPath)
+ *   value - (objectPath[])
  *
  * Returns:
  *
@@ -18627,7 +18611,7 @@ afw_function_definition_eq_objectPath;
  *
  *   arg1 - (objectPath)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18670,7 +18654,7 @@ afw_function_definition_eqx_objectPath;
  *
  *   arg1 - (objectPath)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18780,7 +18764,7 @@ afw_function_definition_is_objectPath;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -18818,7 +18802,7 @@ afw_function_definition_le_objectPath;
  *
  *   arg1 - (objectPath)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18896,7 +18880,7 @@ afw_function_definition_ne_objectPath;
  *
  *   arg1 - (objectPath)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18939,7 +18923,7 @@ afw_function_definition_nex_objectPath;
  *
  *   arg1 - (objectPath)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -18973,7 +18957,7 @@ afw_function_definition_objectPath;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -19053,7 +19037,7 @@ afw_function_definition_add_properties;
  *   function add_properties(
  *       target: object,
  *       source_1: object,
- *       ...source_rest: (array of object)
+ *       ...source_rest: object[]
  *   ): object;
  * ```
  *
@@ -19091,7 +19075,7 @@ afw_function_definition_apply_object_options;
  * ```
  *   function apply_object_options(
  *       object: object,
- *       options?: (object _AdaptiveObjectOptions_)
+ *       options?: object // _AdaptiveObjectOptions_
  *   ): object;
  * ```
  *
@@ -19127,17 +19111,17 @@ afw_function_definition_bag_object;
  *
  * ```
  *   function bag<object>(
- *       ...values: (array of (array object))
- *   ): (array object);
+ *       ...values: object[]
+ *   ): object[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array object)
+ *   values - (0 or more object[])
  *
  * Returns:
  *
- *   (array object)
+ *   (object[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -19161,13 +19145,13 @@ afw_function_definition_bag_size_object;
  *
  * ```
  *   function bag_size<object>(
- *       value: (array object)
+ *       value: object[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array object)
+ *   value - (object[])
  *
  * Returns:
  *
@@ -19275,7 +19259,7 @@ afw_function_definition_eq_object;
  *
  *   arg1 - (object)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -19318,7 +19302,7 @@ afw_function_definition_eqx_object;
  *
  *   arg1 - (object)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -19463,7 +19447,7 @@ afw_function_definition_is_object;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -19493,7 +19477,7 @@ afw_function_definition_keys;
  * ```
  *   function keys(
  *       object: object
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
@@ -19502,7 +19486,7 @@ afw_function_definition_keys;
  *
  * Returns:
  *
- *   (array string) Array of property name strings.
+ *   (string[]) Array of property name strings.
  */
 const afw_value_t *
 afw_function_execute_keys(
@@ -19535,7 +19519,7 @@ afw_function_definition_le_object;
  *
  *   arg1 - (object)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -19655,7 +19639,7 @@ afw_function_definition_ne_object;
  *
  *   arg1 - (object)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -19698,7 +19682,7 @@ afw_function_definition_nex_object;
  *
  *   arg1 - (object)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -19732,7 +19716,7 @@ afw_function_definition_object;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -19806,8 +19790,7 @@ afw_function_definition_property_delete_by_reference;
  *
  * Parameters:
  *
- *   reference - (any dataType) This is a reference to the object property to
- *       delete.
+ *   reference - (any) This is a reference to the object property to delete.
  *
  * Returns:
  *
@@ -19883,12 +19866,12 @@ afw_function_definition_property_get;
  *
  *   name - (string) Name of property to get.
  *
- *   defaultValue - (optional any dataType) The default value of property if it
- *       does not exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) The default value of property if it does not
+ *       exist in object. If not specified, null value is the default.
  *
  * Returns:
  *
- *   (any dataType) Evaluated property value or default.
+ *   (any) Evaluated property value or default.
  */
 const afw_value_t *
 afw_function_execute_property_get(
@@ -20026,17 +20009,17 @@ afw_function_definition_bag_password;
  *
  * ```
  *   function bag<password>(
- *       ...values: (array of (array password))
- *   ): (array password);
+ *       ...values: password[]
+ *   ): password[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array password)
+ *   values - (0 or more password[])
  *
  * Returns:
  *
- *   (array password)
+ *   (password[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -20060,13 +20043,13 @@ afw_function_definition_bag_size_password;
  *
  * ```
  *   function bag_size<password>(
- *       value: (array password)
+ *       value: password[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array password)
+ *   value - (password[])
  *
  * Returns:
  *
@@ -20105,7 +20088,7 @@ afw_function_definition_eq_password;
  *
  *   arg1 - (password)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -20148,7 +20131,7 @@ afw_function_definition_eqx_password;
  *
  *   arg1 - (password)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -20258,7 +20241,7 @@ afw_function_definition_is_password;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -20296,7 +20279,7 @@ afw_function_definition_le_password;
  *
  *   arg1 - (password)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -20373,7 +20356,7 @@ afw_function_definition_ne_password;
  *
  *   arg1 - (password)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -20416,7 +20399,7 @@ afw_function_definition_nex_password;
  *
  *   arg1 - (password)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -20450,7 +20433,7 @@ afw_function_definition_password;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -20572,7 +20555,7 @@ afw_function_definition_add;
  *   function add <dataType>(
  *       values_1: dataType,
  *       values_2: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -20703,9 +20686,9 @@ afw_function_definition_at_least_one_member_of;
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
@@ -20740,17 +20723,17 @@ afw_function_definition_bag;
  *
  * ```
  *   function bag <dataType>(
- *       ...values: (array of array)
+ *       ...values: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array ``<Type>``)
+ *   values - (0 or more ``<Type>`[]`)
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -20787,7 +20770,7 @@ afw_function_definition_bag_size;
  *
  * Parameters:
  *
- *   value - (array ``<Type>``)
+ *   value - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -20909,9 +20892,9 @@ afw_function_definition_compile;
  *
  *   source - (``<Type>``) `<dataType>` string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -21164,7 +21147,7 @@ afw_function_definition_eq;
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -21256,7 +21239,7 @@ afw_function_definition_eqx;
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -21289,7 +21272,7 @@ afw_function_definition_eval;
  * ```
  *   function eval <dataType>(
  *       source: dataType,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *
@@ -21653,13 +21636,13 @@ afw_function_definition_intersection;
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -21696,7 +21679,7 @@ afw_function_definition_is;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -21740,7 +21723,7 @@ afw_function_definition_is_in;
  *
  *   value - (``<Type>``)
  *
- *   array - (array ``<Type>``)
+ *   array - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -21831,7 +21814,7 @@ afw_function_definition_le;
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -21992,7 +21975,7 @@ afw_function_definition_max;
  * ```
  *   function max <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -22031,7 +22014,7 @@ afw_function_definition_min;
  * ```
  *   function min <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -22113,7 +22096,7 @@ afw_function_definition_multiply;
  *   function multiply <dataType>(
  *       values_1: dataType,
  *       values_2: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -22166,7 +22149,7 @@ afw_function_definition_ne;
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -22254,7 +22237,7 @@ afw_function_definition_nex;
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -22365,13 +22348,13 @@ afw_function_definition_one_and_only;
  *
  * ```
  *   function one_and_only <dataType>(
- *       array: (array array)
+ *       array: array[]
  *   ): dataType;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -22410,7 +22393,7 @@ afw_function_definition_pow;
  *   function pow <dataType>(
  *       base: dataType,
  *       exponent_1: dataType,
- *       ...exponent_rest: (array of dataType)
+ *       ...exponent_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -22719,9 +22702,9 @@ afw_function_definition_set_equals;
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``)
+ *   array1 - (``<Type>`[]`)
  *
- *   array2 - (array ``<Type>``)
+ *   array2 - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -22851,9 +22834,9 @@ afw_function_definition_subset;
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
@@ -23649,17 +23632,17 @@ afw_function_definition_union;
  *   function union <dataType>(
  *       arrays_1: array,
  *       arrays_2: array,
- *       ...arrays_rest: (array of array)
+ *       ...arrays_rest: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array ``<Type>``) Two or more arrays.
+ *   arrays - (2 or more ``<Type>`[]`) Two or more arrays.
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23926,9 +23909,9 @@ afw_function_definition_compile_regexp;
  *
  *   source - (regexp) regexp string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -23972,7 +23955,7 @@ afw_function_definition_eq_regexp;
  *
  *   arg1 - (regexp)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24015,7 +23998,7 @@ afw_function_definition_eqx_regexp;
  *
  *   arg1 - (regexp)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24129,7 +24112,7 @@ afw_function_definition_le_regexp;
  *
  *   arg1 - (regexp)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24206,7 +24189,7 @@ afw_function_definition_ne_regexp;
  *
  *   arg1 - (regexp)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24249,7 +24232,7 @@ afw_function_definition_nex_regexp;
  *
  *   arg1 - (regexp)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24283,7 +24266,7 @@ afw_function_definition_regexp;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -24338,9 +24321,9 @@ afw_function_definition_compile_relaxed_json;
  *
  *   source - (relaxed_json) relaxed_json string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -24379,7 +24362,7 @@ afw_function_definition_relaxed_json;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -24422,16 +24405,16 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  *
  * ```
  *   function at_least_one_member_of<rfc822Name>(
- *       array1: (array rfc822Name),
- *       array2: (array rfc822Name)
+ *       array1: rfc822Name[],
+ *       array2: rfc822Name[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array rfc822Name) The first array.
+ *   array1 - (rfc822Name[]) The first array.
  *
- *   array2 - (array rfc822Name) The second array.
+ *   array2 - (rfc822Name[]) The second array.
  *
  * Returns:
  *
@@ -24459,17 +24442,17 @@ afw_function_definition_bag_rfc822Name;
  *
  * ```
  *   function bag<rfc822Name>(
- *       ...values: (array of (array rfc822Name))
- *   ): (array rfc822Name);
+ *       ...values: rfc822Name[]
+ *   ): rfc822Name[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array rfc822Name)
+ *   values - (0 or more rfc822Name[])
  *
  * Returns:
  *
- *   (array rfc822Name)
+ *   (rfc822Name[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -24493,13 +24476,13 @@ afw_function_definition_bag_size_rfc822Name;
  *
  * ```
  *   function bag_size<rfc822Name>(
- *       value: (array rfc822Name)
+ *       value: rfc822Name[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array rfc822Name)
+ *   value - (rfc822Name[])
  *
  * Returns:
  *
@@ -24538,7 +24521,7 @@ afw_function_definition_eq_rfc822Name;
  *
  *   arg1 - (rfc822Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24581,7 +24564,7 @@ afw_function_definition_eqx_rfc822Name;
  *
  *   arg1 - (rfc822Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24686,20 +24669,20 @@ afw_function_definition_intersection_rfc822Name;
  *
  * ```
  *   function intersection<rfc822Name>(
- *       array1: (array rfc822Name),
- *       array2: (array rfc822Name)
- *   ): (array rfc822Name);
+ *       array1: rfc822Name[],
+ *       array2: rfc822Name[]
+ *   ): rfc822Name[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array rfc822Name) The first array.
+ *   array1 - (rfc822Name[]) The first array.
  *
- *   array2 - (array rfc822Name) The second array.
+ *   array2 - (rfc822Name[]) The second array.
  *
  * Returns:
  *
- *   (array rfc822Name)
+ *   (rfc822Name[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -24725,7 +24708,7 @@ afw_function_definition_is_in_rfc822Name;
  * ```
  *   function is_in<rfc822Name>(
  *       value: rfc822Name,
- *       array: (array rfc822Name)
+ *       array: rfc822Name[]
  *   ): boolean;
  * ```
  *
@@ -24733,7 +24716,7 @@ afw_function_definition_is_in_rfc822Name;
  *
  *   value - (rfc822Name)
  *
- *   array - (array rfc822Name)
+ *   array - (rfc822Name[])
  *
  * Returns:
  *
@@ -24767,7 +24750,7 @@ afw_function_definition_is_rfc822Name;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -24805,7 +24788,7 @@ afw_function_definition_le_rfc822Name;
  *
  *   arg1 - (rfc822Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24920,7 +24903,7 @@ afw_function_definition_ne_rfc822Name;
  *
  *   arg1 - (rfc822Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24963,7 +24946,7 @@ afw_function_definition_nex_rfc822Name;
  *
  *   arg1 - (rfc822Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -24992,13 +24975,13 @@ afw_function_definition_one_and_only_rfc822Name;
  *
  * ```
  *   function one_and_only<rfc822Name>(
- *       array: (array array)
+ *       array: array[]
  *   ): rfc822Name;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -25074,7 +25057,7 @@ afw_function_definition_rfc822Name;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -25107,16 +25090,16 @@ afw_function_definition_set_equals_rfc822Name;
  *
  * ```
  *   function set_equals<rfc822Name>(
- *       array1: (array rfc822Name),
- *       array2: (array rfc822Name)
+ *       array1: rfc822Name[],
+ *       array2: rfc822Name[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array rfc822Name)
+ *   array1 - (rfc822Name[])
  *
- *   array2 - (array rfc822Name)
+ *   array2 - (rfc822Name[])
  *
  * Returns:
  *
@@ -25145,16 +25128,16 @@ afw_function_definition_subset_rfc822Name;
  *
  * ```
  *   function subset<rfc822Name>(
- *       array1: (array rfc822Name),
- *       array2: (array rfc822Name)
+ *       array1: rfc822Name[],
+ *       array2: rfc822Name[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array rfc822Name) The first array.
+ *   array1 - (rfc822Name[]) The first array.
  *
- *   array2 - (array rfc822Name) The second array.
+ *   array2 - (rfc822Name[]) The second array.
  *
  * Returns:
  *
@@ -25218,19 +25201,19 @@ afw_function_definition_union_rfc822Name;
  *
  * ```
  *   function union<rfc822Name>(
- *       arrays_1: (array rfc822Name),
- *       arrays_2: (array rfc822Name),
- *       ...arrays_rest: (array of (array rfc822Name))
- *   ): (array rfc822Name);
+ *       arrays_1: rfc822Name[],
+ *       arrays_2: rfc822Name[],
+ *       ...arrays_rest: rfc822Name[]
+ *   ): rfc822Name[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array rfc822Name) Two or more arrays.
+ *   arrays - (2 or more rfc822Name[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array rfc822Name)
+ *   (rfc822Name[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -25264,17 +25247,17 @@ afw_function_definition_bag_script;
  *
  * ```
  *   function bag<script>(
- *       ...values: (array of (array script))
- *   ): (array script);
+ *       ...values: script[]
+ *   ): script[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array script)
+ *   values - (0 or more script[])
  *
  * Returns:
  *
- *   (array script)
+ *   (script[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -25298,13 +25281,13 @@ afw_function_definition_bag_size_script;
  *
  * ```
  *   function bag_size<script>(
- *       value: (array script)
+ *       value: script[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array script)
+ *   value - (script[])
  *
  * Returns:
  *
@@ -25345,9 +25328,9 @@ afw_function_definition_compile_script;
  *
  *   source - (script) script string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -25391,7 +25374,7 @@ afw_function_definition_eq_script;
  *
  *   arg1 - (script)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -25434,7 +25417,7 @@ afw_function_definition_eqx_script;
  *
  *   arg1 - (script)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -25463,7 +25446,7 @@ afw_function_definition_eval_script;
  * ```
  *   function eval<script>(
  *       source: script,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *
@@ -25586,7 +25569,7 @@ afw_function_definition_is_script;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -25624,7 +25607,7 @@ afw_function_definition_le_script;
  *
  *   arg1 - (script)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -25701,7 +25684,7 @@ afw_function_definition_ne_script;
  *
  *   arg1 - (script)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -25744,7 +25727,7 @@ afw_function_definition_nex_script;
  *
  *   arg1 - (script)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -25778,7 +25761,7 @@ afw_function_definition_script;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -25953,13 +25936,13 @@ afw_function_definition_print;
  *
  * ```
  *   function print(
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more any dataType) Values to print.
+ *   values - (0 or more any) Values to print.
  *
  * Returns:
  *
@@ -25988,13 +25971,13 @@ afw_function_definition_println;
  *
  * ```
  *   function println(
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   value - (0 or more any dataType) Values to print.
+ *   value - (0 or more any) Values to print.
  *
  * Returns:
  *
@@ -26031,7 +26014,7 @@ afw_function_definition_read;
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -26069,7 +26052,7 @@ afw_function_definition_read_to_base64Binary;
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -26107,7 +26090,7 @@ afw_function_definition_read_to_hexBinary;
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -26207,7 +26190,7 @@ afw_function_definition_write;
  * ```
  *   function write(
  *       streamNumber: integer,
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
@@ -26215,7 +26198,7 @@ afw_function_definition_write;
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (0 or more any dataType) Values to write as their string value.
+ *   value - (0 or more any) Values to write as their string value.
  *
  * Returns:
  *
@@ -26252,8 +26235,8 @@ afw_function_definition_write_internal;
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (any dataType) The internal memory of this value is written
- *       (string, hexBinary, or base64Binary).
+ *   value - (any) The internal memory of this value is written (string,
+ *       hexBinary, or base64Binary).
  *
  * Returns:
  *
@@ -26283,7 +26266,7 @@ afw_function_definition_writeln;
  * ```
  *   function writeln(
  *       streamNumber: integer,
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
@@ -26291,7 +26274,7 @@ afw_function_definition_writeln;
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (0 or more any dataType) Values to write.
+ *   value - (0 or more any) Values to write.
  *
  * Returns:
  *
@@ -26331,7 +26314,7 @@ afw_function_definition_add_string;
  *   function add<string>(
  *       string: string,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): string;
  * ```
  *
@@ -26339,7 +26322,7 @@ afw_function_definition_add_string;
  *
  *   string - (string)
  *
- *   values - (1 or more any dataType)
+ *   values - (1 or more any)
  *
  * Returns:
  *
@@ -26367,16 +26350,16 @@ afw_function_definition_at_least_one_member_of_string;
  *
  * ```
  *   function at_least_one_member_of<string>(
- *       array1: (array string),
- *       array2: (array string)
+ *       array1: string[],
+ *       array2: string[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array string) The first array.
+ *   array1 - (string[]) The first array.
  *
- *   array2 - (array string) The second array.
+ *   array2 - (string[]) The second array.
  *
  * Returns:
  *
@@ -26404,13 +26387,13 @@ afw_function_definition_bag_size_string;
  *
  * ```
  *   function bag_size<string>(
- *       value: (array string)
+ *       value: string[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array string)
+ *   value - (string[])
  *
  * Returns:
  *
@@ -26438,17 +26421,17 @@ afw_function_definition_bag_string;
  *
  * ```
  *   function bag<string>(
- *       ...values: (array of (array string))
- *   ): (array string);
+ *       ...values: string[]
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array string)
+ *   values - (0 or more string[])
  *
  * Returns:
  *
- *   (array string)
+ *   (string[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -26475,13 +26458,13 @@ afw_function_definition_concat;
  * ```
  *   function concat(
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   values - (1 or more any dataType) Value to convert.
+ *   values - (1 or more any) Value to convert.
  *
  * Returns:
  *
@@ -26667,7 +26650,7 @@ afw_function_definition_eq_string;
  *
  *   arg1 - (string)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -26710,7 +26693,7 @@ afw_function_definition_eqx_string;
  *
  *   arg1 - (string)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -26739,7 +26722,7 @@ afw_function_definition_eval_string;
  * ```
  *   function eval<string>(
  *       source: string,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *
@@ -26941,20 +26924,20 @@ afw_function_definition_intersection_string;
  *
  * ```
  *   function intersection<string>(
- *       array1: (array string),
- *       array2: (array string)
- *   ): (array string);
+ *       array1: string[],
+ *       array2: string[]
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array string) The first array.
+ *   array1 - (string[]) The first array.
  *
- *   array2 - (array string) The second array.
+ *   array2 - (string[]) The second array.
  *
  * Returns:
  *
- *   (array string)
+ *   (string[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -26980,7 +26963,7 @@ afw_function_definition_is_in_string;
  * ```
  *   function is_in<string>(
  *       value: string,
- *       array: (array string)
+ *       array: string[]
  *   ): boolean;
  * ```
  *
@@ -26988,7 +26971,7 @@ afw_function_definition_is_in_string;
  *
  *   value - (string)
  *
- *   array - (array string)
+ *   array - (string[])
  *
  * Returns:
  *
@@ -27022,7 +27005,7 @@ afw_function_definition_is_string;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -27102,7 +27085,7 @@ afw_function_definition_le_string;
  *
  *   arg1 - (string)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -27206,7 +27189,7 @@ afw_function_definition_max_string;
  * ```
  *   function max<string>(
  *       values_1: string,
- *       ...values_rest: (array of string)
+ *       ...values_rest: string[]
  *   ): string;
  * ```
  *
@@ -27241,7 +27224,7 @@ afw_function_definition_min_string;
  * ```
  *   function min<string>(
  *       values_1: string,
- *       ...values_rest: (array of string)
+ *       ...values_rest: string[]
  *   ): string;
  * ```
  *
@@ -27286,7 +27269,7 @@ afw_function_definition_ne_string;
  *
  *   arg1 - (string)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -27329,7 +27312,7 @@ afw_function_definition_nex_string;
  *
  *   arg1 - (string)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -27424,13 +27407,13 @@ afw_function_definition_one_and_only_string;
  *
  * ```
  *   function one_and_only<string>(
- *       array: (array array)
+ *       array: array[]
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -27664,16 +27647,16 @@ afw_function_definition_set_equals_string;
  *
  * ```
  *   function set_equals<string>(
- *       array1: (array string),
- *       array2: (array string)
+ *       array1: string[],
+ *       array2: string[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array string)
+ *   array1 - (string[])
  *
- *   array2 - (array string)
+ *   array2 - (string[])
  *
  * Returns:
  *
@@ -27785,13 +27768,13 @@ afw_function_definition_string;
  * ```
  *   function string(
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   values - (1 or more any dataType) Value to convert.
+ *   values - (1 or more any) Value to convert.
  *
  * Returns:
  *
@@ -27823,16 +27806,16 @@ afw_function_definition_subset_string;
  *
  * ```
  *   function subset<string>(
- *       array1: (array string),
- *       array2: (array string)
+ *       array1: string[],
+ *       array2: string[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array string) The first array.
+ *   array1 - (string[]) The first array.
  *
- *   array2 - (array string) The second array.
+ *   array2 - (string[]) The second array.
  *
  * Returns:
  *
@@ -28432,19 +28415,19 @@ afw_function_definition_union_string;
  *
  * ```
  *   function union<string>(
- *       arrays_1: (array string),
- *       arrays_2: (array string),
- *       ...arrays_rest: (array of (array string))
- *   ): (array string);
+ *       arrays_1: string[],
+ *       arrays_2: string[],
+ *       ...arrays_rest: string[]
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array string) Two or more arrays.
+ *   arrays - (2 or more string[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array string)
+ *   (string[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -28546,13 +28529,13 @@ afw_function_definition_bag_size_template;
  *
  * ```
  *   function bag_size<template>(
- *       value: (array template)
+ *       value: template[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array template)
+ *   value - (template[])
  *
  * Returns:
  *
@@ -28580,17 +28563,17 @@ afw_function_definition_bag_template;
  *
  * ```
  *   function bag<template>(
- *       ...values: (array of (array template))
- *   ): (array template);
+ *       ...values: template[]
+ *   ): template[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array template)
+ *   values - (0 or more template[])
  *
  * Returns:
  *
- *   (array template)
+ *   (template[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -28627,9 +28610,9 @@ afw_function_definition_compile_template;
  *
  *   source - (template) template string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -28673,7 +28656,7 @@ afw_function_definition_eq_template;
  *
  *   arg1 - (template)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -28716,7 +28699,7 @@ afw_function_definition_eqx_template;
  *
  *   arg1 - (template)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -28745,7 +28728,7 @@ afw_function_definition_eval_template;
  * ```
  *   function eval<template>(
  *       source: template,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *
@@ -28868,7 +28851,7 @@ afw_function_definition_is_template;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -28906,7 +28889,7 @@ afw_function_definition_le_template;
  *
  *   arg1 - (template)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -28983,7 +28966,7 @@ afw_function_definition_ne_template;
  *
  *   arg1 - (template)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -29026,7 +29009,7 @@ afw_function_definition_nex_template;
  *
  *   arg1 - (template)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -29060,7 +29043,7 @@ afw_function_definition_template;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -29137,16 +29120,16 @@ afw_function_definition_at_least_one_member_of_time;
  *
  * ```
  *   function at_least_one_member_of<time>(
- *       array1: (array time),
- *       array2: (array time)
+ *       array1: time[],
+ *       array2: time[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array time) The first array.
+ *   array1 - (time[]) The first array.
  *
- *   array2 - (array time) The second array.
+ *   array2 - (time[]) The second array.
  *
  * Returns:
  *
@@ -29174,13 +29157,13 @@ afw_function_definition_bag_size_time;
  *
  * ```
  *   function bag_size<time>(
- *       value: (array time)
+ *       value: time[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array time)
+ *   value - (time[])
  *
  * Returns:
  *
@@ -29208,17 +29191,17 @@ afw_function_definition_bag_time;
  *
  * ```
  *   function bag<time>(
- *       ...values: (array of (array time))
- *   ): (array time);
+ *       ...values: time[]
+ *   ): time[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array time)
+ *   values - (0 or more time[])
  *
  * Returns:
  *
- *   (array time)
+ *   (time[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -29253,7 +29236,7 @@ afw_function_definition_eq_time;
  *
  *   arg1 - (time)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -29296,7 +29279,7 @@ afw_function_definition_eqx_time;
  *
  *   arg1 - (time)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -29449,20 +29432,20 @@ afw_function_definition_intersection_time;
  *
  * ```
  *   function intersection<time>(
- *       array1: (array time),
- *       array2: (array time)
- *   ): (array time);
+ *       array1: time[],
+ *       array2: time[]
+ *   ): time[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array time) The first array.
+ *   array1 - (time[]) The first array.
  *
- *   array2 - (array time) The second array.
+ *   array2 - (time[]) The second array.
  *
  * Returns:
  *
- *   (array time)
+ *   (time[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -29488,7 +29471,7 @@ afw_function_definition_is_in_time;
  * ```
  *   function is_in<time>(
  *       value: time,
- *       array: (array time)
+ *       array: time[]
  *   ): boolean;
  * ```
  *
@@ -29496,7 +29479,7 @@ afw_function_definition_is_in_time;
  *
  *   value - (time)
  *
- *   array - (array time)
+ *   array - (time[])
  *
  * Returns:
  *
@@ -29530,7 +29513,7 @@ afw_function_definition_is_time;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -29571,7 +29554,7 @@ afw_function_definition_le_time;
  *
  *   arg1 - (time)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -29643,7 +29626,7 @@ afw_function_definition_max_time;
  * ```
  *   function max<time>(
  *       values_1: time,
- *       ...values_rest: (array of time)
+ *       ...values_rest: time[]
  *   ): time;
  * ```
  *
@@ -29681,7 +29664,7 @@ afw_function_definition_min_time;
  * ```
  *   function min<time>(
  *       values_1: time,
- *       ...values_rest: (array of time)
+ *       ...values_rest: time[]
  *   ): time;
  * ```
  *
@@ -29726,7 +29709,7 @@ afw_function_definition_ne_time;
  *
  *   arg1 - (time)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -29769,7 +29752,7 @@ afw_function_definition_nex_time;
  *
  *   arg1 - (time)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -29798,13 +29781,13 @@ afw_function_definition_one_and_only_time;
  *
  * ```
  *   function one_and_only<time>(
- *       array: (array array)
+ *       array: array[]
  *   ): time;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -29837,16 +29820,16 @@ afw_function_definition_set_equals_time;
  *
  * ```
  *   function set_equals<time>(
- *       array1: (array time),
- *       array2: (array time)
+ *       array1: time[],
+ *       array2: time[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array time)
+ *   array1 - (time[])
  *
- *   array2 - (array time)
+ *   array2 - (time[])
  *
  * Returns:
  *
@@ -29875,16 +29858,16 @@ afw_function_definition_subset_time;
  *
  * ```
  *   function subset<time>(
- *       array1: (array time),
- *       array2: (array time)
+ *       array1: time[],
+ *       array2: time[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array time) The first array.
+ *   array1 - (time[]) The first array.
  *
- *   array2 - (array time) The second array.
+ *   array2 - (time[]) The second array.
  *
  * Returns:
  *
@@ -29918,7 +29901,7 @@ afw_function_definition_time;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -29986,19 +29969,19 @@ afw_function_definition_union_time;
  *
  * ```
  *   function union<time>(
- *       arrays_1: (array time),
- *       arrays_2: (array time),
- *       ...arrays_rest: (array of (array time))
- *   ): (array time);
+ *       arrays_1: time[],
+ *       arrays_2: time[],
+ *       ...arrays_rest: time[]
+ *   ): time[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array time) Two or more arrays.
+ *   arrays - (2 or more time[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array time)
+ *   (time[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -30038,7 +30021,7 @@ afw_function_definition_is_unevaluated;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -30083,8 +30066,8 @@ afw_function_definition_meta;
  *
  * Parameters:
  *
- *   value - (any dataType) This is the adaptive value whose meta object is to
- *       be returned.
+ *   value - (any) This is the adaptive value whose meta object is to be
+ *       returned.
  *
  * Returns:
  *
@@ -30120,7 +30103,7 @@ afw_function_definition_metas;
  *
  * Parameters:
  *
- *   value - (any dataType) This is an adaptive array or object.
+ *   value - (any) This is an adaptive array or object.
  *
  * Returns:
  *
@@ -30159,16 +30142,16 @@ afw_function_definition_at_least_one_member_of_x500Name;
  *
  * ```
  *   function at_least_one_member_of<x500Name>(
- *       array1: (array x500Name),
- *       array2: (array x500Name)
+ *       array1: x500Name[],
+ *       array2: x500Name[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array x500Name) The first array.
+ *   array1 - (x500Name[]) The first array.
  *
- *   array2 - (array x500Name) The second array.
+ *   array2 - (x500Name[]) The second array.
  *
  * Returns:
  *
@@ -30196,13 +30179,13 @@ afw_function_definition_bag_size_x500Name;
  *
  * ```
  *   function bag_size<x500Name>(
- *       value: (array x500Name)
+ *       value: x500Name[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array x500Name)
+ *   value - (x500Name[])
  *
  * Returns:
  *
@@ -30230,17 +30213,17 @@ afw_function_definition_bag_x500Name;
  *
  * ```
  *   function bag<x500Name>(
- *       ...values: (array of (array x500Name))
- *   ): (array x500Name);
+ *       ...values: x500Name[]
+ *   ): x500Name[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array x500Name)
+ *   values - (0 or more x500Name[])
  *
  * Returns:
  *
- *   (array x500Name)
+ *   (x500Name[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -30275,7 +30258,7 @@ afw_function_definition_eq_x500Name;
  *
  *   arg1 - (x500Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -30318,7 +30301,7 @@ afw_function_definition_eqx_x500Name;
  *
  *   arg1 - (x500Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -30423,20 +30406,20 @@ afw_function_definition_intersection_x500Name;
  *
  * ```
  *   function intersection<x500Name>(
- *       array1: (array x500Name),
- *       array2: (array x500Name)
- *   ): (array x500Name);
+ *       array1: x500Name[],
+ *       array2: x500Name[]
+ *   ): x500Name[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array x500Name) The first array.
+ *   array1 - (x500Name[]) The first array.
  *
- *   array2 - (array x500Name) The second array.
+ *   array2 - (x500Name[]) The second array.
  *
  * Returns:
  *
- *   (array x500Name)
+ *   (x500Name[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -30462,7 +30445,7 @@ afw_function_definition_is_in_x500Name;
  * ```
  *   function is_in<x500Name>(
  *       value: x500Name,
- *       array: (array x500Name)
+ *       array: x500Name[]
  *   ): boolean;
  * ```
  *
@@ -30470,7 +30453,7 @@ afw_function_definition_is_in_x500Name;
  *
  *   value - (x500Name)
  *
- *   array - (array x500Name)
+ *   array - (x500Name[])
  *
  * Returns:
  *
@@ -30504,7 +30487,7 @@ afw_function_definition_is_x500Name;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -30542,7 +30525,7 @@ afw_function_definition_le_x500Name;
  *
  *   arg1 - (x500Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -30656,7 +30639,7 @@ afw_function_definition_ne_x500Name;
  *
  *   arg1 - (x500Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -30699,7 +30682,7 @@ afw_function_definition_nex_x500Name;
  *
  *   arg1 - (x500Name)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -30728,13 +30711,13 @@ afw_function_definition_one_and_only_x500Name;
  *
  * ```
  *   function one_and_only<x500Name>(
- *       array: (array array)
+ *       array: array[]
  *   ): x500Name;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -30805,16 +30788,16 @@ afw_function_definition_set_equals_x500Name;
  *
  * ```
  *   function set_equals<x500Name>(
- *       array1: (array x500Name),
- *       array2: (array x500Name)
+ *       array1: x500Name[],
+ *       array2: x500Name[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array x500Name)
+ *   array1 - (x500Name[])
  *
- *   array2 - (array x500Name)
+ *   array2 - (x500Name[])
  *
  * Returns:
  *
@@ -30843,16 +30826,16 @@ afw_function_definition_subset_x500Name;
  *
  * ```
  *   function subset<x500Name>(
- *       array1: (array x500Name),
- *       array2: (array x500Name)
+ *       array1: x500Name[],
+ *       array2: x500Name[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array x500Name) The first array.
+ *   array1 - (x500Name[]) The first array.
  *
- *   array2 - (array x500Name) The second array.
+ *   array2 - (x500Name[]) The second array.
  *
  * Returns:
  *
@@ -30916,19 +30899,19 @@ afw_function_definition_union_x500Name;
  *
  * ```
  *   function union<x500Name>(
- *       arrays_1: (array x500Name),
- *       arrays_2: (array x500Name),
- *       ...arrays_rest: (array of (array x500Name))
- *   ): (array x500Name);
+ *       arrays_1: x500Name[],
+ *       arrays_2: x500Name[],
+ *       ...arrays_rest: x500Name[]
+ *   ): x500Name[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array x500Name) Two or more arrays.
+ *   arrays - (2 or more x500Name[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array x500Name)
+ *   (x500Name[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -30958,7 +30941,7 @@ afw_function_definition_x500Name;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -31000,13 +30983,13 @@ afw_function_definition_bag_size_xpathExpression;
  *
  * ```
  *   function bag_size<xpathExpression>(
- *       value: (array xpathExpression)
+ *       value: xpathExpression[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array xpathExpression)
+ *   value - (xpathExpression[])
  *
  * Returns:
  *
@@ -31034,17 +31017,17 @@ afw_function_definition_bag_xpathExpression;
  *
  * ```
  *   function bag<xpathExpression>(
- *       ...values: (array of (array xpathExpression))
- *   ): (array xpathExpression);
+ *       ...values: xpathExpression[]
+ *   ): xpathExpression[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array xpathExpression)
+ *   values - (0 or more xpathExpression[])
  *
  * Returns:
  *
- *   (array xpathExpression)
+ *   (xpathExpression[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -31081,9 +31064,9 @@ afw_function_definition_compile_xpathExpression;
  *
  *   source - (xpathExpression) xpathExpression string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -31128,7 +31111,7 @@ afw_function_definition_eq_xpathExpression;
  *
  *   arg1 - (xpathExpression)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -31171,7 +31154,7 @@ afw_function_definition_eqx_xpathExpression;
  *
  *   arg1 - (xpathExpression)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -31200,7 +31183,7 @@ afw_function_definition_eval_xpathExpression;
  * ```
  *   function eval<xpathExpression>(
  *       source: xpathExpression,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *
@@ -31324,7 +31307,7 @@ afw_function_definition_is_xpathExpression;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -31362,7 +31345,7 @@ afw_function_definition_le_xpathExpression;
  *
  *   arg1 - (xpathExpression)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -31440,7 +31423,7 @@ afw_function_definition_ne_xpathExpression;
  *
  *   arg1 - (xpathExpression)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -31483,7 +31466,7 @@ afw_function_definition_nex_xpathExpression;
  *
  *   arg1 - (xpathExpression)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -31552,7 +31535,7 @@ afw_function_definition_xpathExpression;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *
@@ -31702,16 +31685,16 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  *
  * ```
  *   function at_least_one_member_of<yearMonthDuration>(
- *       array1: (array yearMonthDuration),
- *       array2: (array yearMonthDuration)
+ *       array1: yearMonthDuration[],
+ *       array2: yearMonthDuration[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array yearMonthDuration) The first array.
+ *   array1 - (yearMonthDuration[]) The first array.
  *
- *   array2 - (array yearMonthDuration) The second array.
+ *   array2 - (yearMonthDuration[]) The second array.
  *
  * Returns:
  *
@@ -31739,13 +31722,13 @@ afw_function_definition_bag_size_yearMonthDuration;
  *
  * ```
  *   function bag_size<yearMonthDuration>(
- *       value: (array yearMonthDuration)
+ *       value: yearMonthDuration[]
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   value - (array yearMonthDuration)
+ *   value - (yearMonthDuration[])
  *
  * Returns:
  *
@@ -31773,17 +31756,17 @@ afw_function_definition_bag_yearMonthDuration;
  *
  * ```
  *   function bag<yearMonthDuration>(
- *       ...values: (array of (array yearMonthDuration))
- *   ): (array yearMonthDuration);
+ *       ...values: yearMonthDuration[]
+ *   ): yearMonthDuration[];
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array yearMonthDuration)
+ *   values - (0 or more yearMonthDuration[])
  *
  * Returns:
  *
- *   (array yearMonthDuration)
+ *   (yearMonthDuration[])
  *
  * Implemented by afw_function_execute_bag()
  *
@@ -31819,7 +31802,7 @@ afw_function_definition_eq_yearMonthDuration;
  *
  *   arg1 - (yearMonthDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -31862,7 +31845,7 @@ afw_function_definition_eqx_yearMonthDuration;
  *
  *   arg1 - (yearMonthDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -31967,20 +31950,20 @@ afw_function_definition_intersection_yearMonthDuration;
  *
  * ```
  *   function intersection<yearMonthDuration>(
- *       array1: (array yearMonthDuration),
- *       array2: (array yearMonthDuration)
- *   ): (array yearMonthDuration);
+ *       array1: yearMonthDuration[],
+ *       array2: yearMonthDuration[]
+ *   ): yearMonthDuration[];
  * ```
  *
  * Parameters:
  *
- *   array1 - (array yearMonthDuration) The first array.
+ *   array1 - (yearMonthDuration[]) The first array.
  *
- *   array2 - (array yearMonthDuration) The second array.
+ *   array2 - (yearMonthDuration[]) The second array.
  *
  * Returns:
  *
- *   (array yearMonthDuration)
+ *   (yearMonthDuration[])
  *
  * Implemented by afw_function_execute_intersection()
  *
@@ -32006,7 +31989,7 @@ afw_function_definition_is_in_yearMonthDuration;
  * ```
  *   function is_in<yearMonthDuration>(
  *       value: yearMonthDuration,
- *       array: (array yearMonthDuration)
+ *       array: yearMonthDuration[]
  *   ): boolean;
  * ```
  *
@@ -32014,7 +31997,7 @@ afw_function_definition_is_in_yearMonthDuration;
  *
  *   value - (yearMonthDuration)
  *
- *   array - (array yearMonthDuration)
+ *   array - (yearMonthDuration[])
  *
  * Returns:
  *
@@ -32049,7 +32032,7 @@ afw_function_definition_is_yearMonthDuration;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -32087,7 +32070,7 @@ afw_function_definition_le_yearMonthDuration;
  *
  *   arg1 - (yearMonthDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -32165,7 +32148,7 @@ afw_function_definition_ne_yearMonthDuration;
  *
  *   arg1 - (yearMonthDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -32208,7 +32191,7 @@ afw_function_definition_nex_yearMonthDuration;
  *
  *   arg1 - (yearMonthDuration)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -32237,13 +32220,13 @@ afw_function_definition_one_and_only_yearMonthDuration;
  *
  * ```
  *   function one_and_only<yearMonthDuration>(
- *       array: (array array)
+ *       array: array[]
  *   ): yearMonthDuration;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -32276,16 +32259,16 @@ afw_function_definition_set_equals_yearMonthDuration;
  *
  * ```
  *   function set_equals<yearMonthDuration>(
- *       array1: (array yearMonthDuration),
- *       array2: (array yearMonthDuration)
+ *       array1: yearMonthDuration[],
+ *       array2: yearMonthDuration[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array yearMonthDuration)
+ *   array1 - (yearMonthDuration[])
  *
- *   array2 - (array yearMonthDuration)
+ *   array2 - (yearMonthDuration[])
  *
  * Returns:
  *
@@ -32314,16 +32297,16 @@ afw_function_definition_subset_yearMonthDuration;
  *
  * ```
  *   function subset<yearMonthDuration>(
- *       array1: (array yearMonthDuration),
- *       array2: (array yearMonthDuration)
+ *       array1: yearMonthDuration[],
+ *       array2: yearMonthDuration[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   array1 - (array yearMonthDuration) The first array.
+ *   array1 - (yearMonthDuration[]) The first array.
  *
- *   array2 - (array yearMonthDuration) The second array.
+ *   array2 - (yearMonthDuration[]) The second array.
  *
  * Returns:
  *
@@ -32387,19 +32370,19 @@ afw_function_definition_union_yearMonthDuration;
  *
  * ```
  *   function union<yearMonthDuration>(
- *       arrays_1: (array yearMonthDuration),
- *       arrays_2: (array yearMonthDuration),
- *       ...arrays_rest: (array of (array yearMonthDuration))
- *   ): (array yearMonthDuration);
+ *       arrays_1: yearMonthDuration[],
+ *       arrays_2: yearMonthDuration[],
+ *       ...arrays_rest: yearMonthDuration[]
+ *   ): yearMonthDuration[];
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array yearMonthDuration) Two or more arrays.
+ *   arrays - (2 or more yearMonthDuration[]) Two or more arrays.
  *
  * Returns:
  *
- *   (array yearMonthDuration)
+ *   (yearMonthDuration[])
  *
  * Implemented by afw_function_execute_union()
  *
@@ -32430,7 +32413,7 @@ afw_function_definition_yearMonthDuration;
  *
  * Parameters:
  *
- *   value - (any dataType) Value to convert.
+ *   value - (any) Value to convert.
  *
  * Returns:
  *

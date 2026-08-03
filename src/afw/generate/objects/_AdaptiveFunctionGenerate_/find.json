@@ -8,7 +8,7 @@
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(... values: any): boolean",
+            "dataTypeParameter": "(...values: any) => boolean",
             "description": "This is a boolean function that is called to determine if an array entry passes the test.",
             "name": "predicate"
         },

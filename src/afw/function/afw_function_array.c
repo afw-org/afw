@@ -33,7 +33,7 @@
  *   function add_entries(
  *       target: array,
  *       source_1: array,
- *       ...source_rest: (array of array)
+ *       ...source_rest: array
  *   ): array;
  * ```
  *
@@ -92,17 +92,17 @@ afw_function_execute_add_entries(
  *
  * ```
  *   function array(
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more any dataType) A value can refer to any adaptable value
- *       belonging to any data type or an array expression. In the case of an
- *       array expression, indicated by '...' followed by an expression that
- *       results in an array, every element within that array is included in the
- *       newly created array.
+ *   values - (0 or more any) A value can refer to any adaptable value belonging
+ *       to any data type or an array expression. In the case of an array
+ *       expression, indicated by '...' followed by an expression that results
+ *       in an array, every element within that array is included in the newly
+ *       created array.
  *
  * Returns:
  *
@@ -524,7 +524,7 @@ afw_function_execute_slice(
  *
  * Returns:
  *
- *   (any dataType) The value at the index, or undefined if out of range.
+ *   (any) The value at the index, or undefined if out of range.
  */
 const afw_value_t *
 afw_function_execute_at(
@@ -571,7 +571,7 @@ afw_function_execute_at(
  *
  * Returns:
  *
- *   (any dataType) The removed value, or undefined if the array was empty.
+ *   (any) The removed value, or undefined if the array was empty.
  */
 const afw_value_t *
 afw_function_execute_pop(
@@ -606,7 +606,7 @@ afw_function_execute_pop(
  * ```
  *   function push(
  *       array: array,
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
@@ -614,7 +614,7 @@ afw_function_execute_pop(
  *
  *   array - (array) Target array. Must not be immutable.
  *
- *   values - (0 or more any dataType) Values to append in order.
+ *   values - (0 or more any) Values to append in order.
  *
  * Returns:
  *
@@ -667,7 +667,7 @@ afw_function_execute_push(
  *
  * Returns:
  *
- *   (any dataType) The removed value, or undefined if the array was empty.
+ *   (any) The removed value, or undefined if the array was empty.
  */
 const afw_value_t *
 afw_function_execute_shift(
@@ -706,7 +706,7 @@ afw_function_execute_shift(
  *       array: array,
  *       startIndex: integer,
  *       deleteCount?: integer,
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
@@ -719,8 +719,7 @@ afw_function_execute_shift(
  *   deleteCount - (optional integer) Number of values to remove. If omitted,
  *       remove through the end of the array. Negative is treated as zero.
  *
- *   values - (0 or more any dataType) Values to insert at startIndex after
- *       removals.
+ *   values - (0 or more any) Values to insert at startIndex after removals.
  *
  * Returns:
  *
@@ -808,7 +807,7 @@ afw_function_execute_splice(
  * ```
  *   function unshift(
  *       array: array,
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): array;
  * ```
  *
@@ -816,7 +815,7 @@ afw_function_execute_splice(
  *
  *   array - (array) Target array. Must not be immutable.
  *
- *   values - (0 or more any dataType) Values to insert at the front, in order.
+ *   values - (0 or more any) Values to insert at the front, in order.
  *
  * Returns:
  *

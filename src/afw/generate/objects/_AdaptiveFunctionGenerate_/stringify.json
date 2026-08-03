@@ -14,7 +14,7 @@
             "description": "Optional replacer: a function (key: string, value: any): any called for the root (key is empty string) and each object property or array element; return undefined to omit an object property (array elements become null). Or an array of string property names to keep when serializing objects. Omit or null for no replacer.",
             "name": "replacer",
             "optional": true,
-            "dataTypeParameter": "(key: string, value: any): any"
+            "dataTypeParameter": "(key: string, value: any) => any"
         },
         {
             "description": "Add whitespace for readability if present and not 0. This parameter can be an integer between 0 and 10 or a string that is used for indentation. If 0 is specified, no whitespace is added to the resulting string. If 1 through 10 is specified, that number of spaces is used.",

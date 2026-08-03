@@ -9,7 +9,7 @@
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(value1: any, value2: any): integer",
+            "dataTypeParameter": "(value1: any, value2: any) => integer",
             "description": "This function is called with two value from array.",
             "name": "compareFunction"
         },

@@ -45,6 +45,33 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **Python `Session("local")`** | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
 | **Script types (#28)** | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#typecheck`); hard cut of `(array of …)` / `(object "OT")` |
+| **Function reference prototypes** | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
+
+---
+
+## Function reference prototypes (#28 spelling)
+
+Adaptive **function** docs no longer show old paren Types such as `(array of integer)` or `(object _AdaptiveJournalEntry_)`.
+
+What you see in the **admin Function Reference** (and related generated Declaration text) is script-shaped:
+
+```adaptive
+function retrieve_objects (
+    adapterId: string,
+    objectType: string,
+    queryCriteria?: object, // _AdaptiveQueryCriteria_
+    options?: object, // _AdaptiveObjectOptions_
+    adapterTypeSpecific?: object,
+    maxObjects?: integer
+): array;
+```
+
+- **Arrays:** `string[]`, `integer[]`, rest formals as `...values_rest: integer[]`
+- **Functors:** `(...values: any) => boolean`, `(accumulator: any, value: any) => any`, …
+- **ObjectType extras:** still documented as a trailing `// _Adaptive…_` note (not a script Type import)
+- **Compact one-liner** (Monaco signature help): same Types with `/* OT */` mid-line where needed
+
+This is generate/docs presentation only; Adaptive function call semantics are unchanged. Rebuild/reinstall AFW so runtime strings and admin pick up the new prototypes.
 
 ---
 

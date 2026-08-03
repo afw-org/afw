@@ -566,69 +566,69 @@ afw_ldap_self_v_url = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2693 = {
+afw_ldap_self_v_zz__2516 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2693)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2516)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2694 = {
+afw_ldap_self_v_zz__2517 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2694)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2517)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2695 = {
+afw_ldap_self_v_zz__2518 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2695)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2518)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2696 = {
+afw_ldap_self_v_zz__2519 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2696)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2519)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2697 = {
+afw_ldap_self_v_zz__2520 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2697)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2520)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2698 = {
+afw_ldap_self_v_zz__2521 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2698)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2521)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2699 = {
+afw_ldap_self_v_zz__2522 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2699)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2522)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2700 = {
+afw_ldap_self_v_zz__2523 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2700)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2523)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2701 = {
+afw_ldap_self_v_zz__2524 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2701)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2524)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2702 = {
+afw_ldap_self_v_zz__2525 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2702)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2525)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2703 = {
+afw_ldap_self_v_zz__2526 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2703)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2526)
 };
 
 const afw_value_string_t

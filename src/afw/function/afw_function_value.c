@@ -38,8 +38,8 @@
  *
  * Parameters:
  *
- *   value - (any dataType) This is the adaptive value whose meta object is to
- *       be returned.
+ *   value - (any) This is the adaptive value whose meta object is to be
+ *       returned.
  *
  * Returns:
  *
@@ -83,7 +83,7 @@ afw_function_execute_meta(
  *
  * Parameters:
  *
- *   value - (any dataType) This is an adaptive array or object.
+ *   value - (any) This is an adaptive array or object.
  *
  * Returns:
  *

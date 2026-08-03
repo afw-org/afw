@@ -85,7 +85,7 @@ afw_function_execute_abs_double(
  *   function add<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -309,7 +309,7 @@ afw_function_execute_floor_double(
  *   function multiply<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -403,7 +403,7 @@ afw_function_execute_is_NaN(
  *   function pow<double>(
  *       base: double,
  *       exponent_1: double,
- *       ...exponent_rest: (array of double)
+ *       ...exponent_rest: double[]
  *   ): double;
  * ```
  *

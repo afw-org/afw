@@ -34,7 +34,7 @@
  *   function add<string>(
  *       string: string,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): string;
  * ```
  *
@@ -42,7 +42,7 @@
  *
  *   string - (string)
  *
- *   values - (1 or more any dataType)
+ *   values - (1 or more any)
  *
  * Returns:
  *
@@ -108,13 +108,13 @@ afw_function_execute_add_string(
  * ```
  *   function concat(
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   values - (1 or more any dataType) Value to convert.
+ *   values - (1 or more any) Value to convert.
  *
  * Returns:
  *
@@ -325,13 +325,13 @@ afw_function_execute_normalize_to_lower_case_string(
  * ```
  *   function string(
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   values - (1 or more any dataType) Value to convert.
+ *   values - (1 or more any) Value to convert.
  *
  * Returns:
  *
@@ -437,7 +437,7 @@ afw_function_execute_url_decode(
  * ```
  *   function eval<string>(
  *       source: string,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *

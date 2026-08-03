@@ -136,14 +136,14 @@ afw_function_execute_compile_from_file(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to decompile (may be unevaluated, such as a
- *       compiled script root).
+ *   value - (any) Value to decompile (may be unevaluated, such as a compiled
+ *       script root).
  *
- *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10 or
- *       a string that is used for indentation. If 0 is specified, no whitespace
- *       is added to the resulting string. If 1 through 10 is specified, that
- *       number of spaces is used.
+ *   whitespace - (optional any) Add whitespace for readability if present and
+ *       not 0. This parameter can be an integer between 0 and 10 or a string
+ *       that is used for indentation. If 0 is specified, no whitespace is added
+ *       to the resulting string. If 1 through 10 is specified, that number of
+ *       spaces is used.
  *
  * Returns:
  *
@@ -222,7 +222,7 @@ afw_function_execute_eval_from_file(
  * ```
  *   function evaluate(
  *       value: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *
@@ -275,13 +275,13 @@ afw_function_execute_evaluate(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to evaluated.
+ *   value - (any) Value to evaluated.
  *
  *   limit - (integer) Maximum number to retry if an exception occurs.
  *
  * Returns:
  *
- *   (any dataType) Evaluated value.
+ *   (any) Evaluated value.
  */
 const afw_value_t *
 afw_function_execute_evaluate_with_retry(
@@ -352,8 +352,8 @@ afw_function_execute_evaluate_with_retry(
  *
  * Returns:
  *
- *   (any dataType) When the qualifier has at least one matching visible stack
- *       entry, each property is a variable name for that qualifier (values from
+ *   (any) When the qualifier has at least one matching visible stack entry,
+ *       each property is a variable name for that qualifier (values from
  *       contribute, most recent entry wins per name). Fresh object on every
  *       call (may be empty if nothing was contributed). When no matching
  *       visible entry exists for that qualifier name, the result is undefined
@@ -458,14 +458,14 @@ afw_function_execute_qualifiers(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to evaluated.
+ *   value - (any) Value to evaluated.
  *
- *   error - (any dataType) Value to evaluate and return if exception occurs. If
- *       an error occurs evaluating this value, the exception will continue.
+ *   error - (any) Value to evaluate and return if exception occurs. If an error
+ *       occurs evaluating this value, the exception will continue.
  *
  * Returns:
  *
- *   (any dataType) Evaluated adaptive value or error value.
+ *   (any) Evaluated adaptive value or error value.
  */
 const afw_value_t *
 afw_function_execute_safe_evaluate(
@@ -501,27 +501,27 @@ afw_function_execute_safe_evaluate(
  * ```
  *   function stringify(
  *       value: any,
- *       replacer?: (any (key: string, value: any): any),
+ *       replacer?: (key: string, value: any) => any,
  *       whitespace?: any
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   value - (any dataType) Evaluated value to serialize as JSON.
+ *   value - (any) Evaluated value to serialize as JSON.
  *
- *   replacer - (optional any dataType (key: string, value: any): any) Optional
- *       replacer: a function (key: string, value: any): any called for the root
- *       (key is empty string) and each object property or array element; return
+ *   replacer - (optional (key: string, value: any) => any) Optional replacer: a
+ *       function (key: string, value: any): any called for the root (key is
+ *       empty string) and each object property or array element; return
  *       undefined to omit an object property (array elements become null). Or
  *       an array of string property names to keep when serializing objects.
  *       Omit or null for no replacer.
  *
- *   whitespace - (optional any dataType) Add whitespace for readability if
- *       present and not 0. This parameter can be an integer between 0 and 10 or
- *       a string that is used for indentation. If 0 is specified, no whitespace
- *       is added to the resulting string. If 1 through 10 is specified, that
- *       number of spaces is used.
+ *   whitespace - (optional any) Add whitespace for readability if present and
+ *       not 0. This parameter can be an integer between 0 and 10 or a string
+ *       that is used for indentation. If 0 is specified, no whitespace is added
+ *       to the resulting string. If 1 through 10 is specified, that number of
+ *       spaces is used.
  *
  * Returns:
  *
@@ -558,7 +558,7 @@ afw_function_execute_stringify(
  *       description: string,
  *       script: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): object;
  * ```
  *
@@ -570,7 +570,7 @@ afw_function_execute_stringify(
  *
  *   script - (string) Script to compile and evaluate.
  *
- *   expected - (optional any dataType) Expected result.
+ *   expected - (optional any) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -615,7 +615,7 @@ afw_function_execute_test_script(
  *       description: string,
  *       template: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): object;
  * ```
  *
@@ -627,7 +627,7 @@ afw_function_execute_test_script(
  *
  *   template - (string) Template to compile and evaluate.
  *
- *   expected - (optional any dataType) Expected evaluated result.
+ *   expected - (optional any) Expected evaluated result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -672,7 +672,7 @@ afw_function_execute_test_template(
  *       description: string,
  *       value: string,
  *       expected?: any,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): object;
  * ```
  *
@@ -684,7 +684,7 @@ afw_function_execute_test_template(
  *
  *   value - (string) Value to evaluate.
  *
- *   expected - (optional any dataType) Expected result.
+ *   expected - (optional any) Expected result.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional

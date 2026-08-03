@@ -10,7 +10,7 @@
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(... values: any): boolean",
+            "dataTypeParameter": "(...values: any) => boolean",
             "description": "Called for each value in the first array in values or until true is returned.",
             "name": "predicate"
         },

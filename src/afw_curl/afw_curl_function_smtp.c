@@ -37,7 +37,7 @@
  *       mail_from: string,
  *       mail_recipients: array,
  *       payload: string,
- *       options?: (object _AdaptiveCurlOptions_)
+ *       options?: object // _AdaptiveCurlOptions_
  *   ): void;
  * ```
  *

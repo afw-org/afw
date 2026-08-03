@@ -209,7 +209,7 @@ impl_retrieve_to_stream_cb(const afw_object_t *object, void *context,
  *       objectId?: string,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -314,7 +314,7 @@ afw_function_execute_add_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -418,7 +418,7 @@ afw_function_execute_add_object_with_uri(
  *
  * ```
  *   function convert_AdaptiveQueryCriteria_to_query_string(
- *       queryCriteria: (object _AdaptiveQueryCriteria_),
+ *       queryCriteria: object, // _AdaptiveQueryCriteria_
  *       adapterId?: string,
  *       objectType?: string,
  *       style?: integer
@@ -542,7 +542,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
  *       queryString: string,
  *       adapterId?: string,
  *       objectType?: string
- *   ): (object _AdaptiveQueryCriteria_);
+ *   ): object; // _AdaptiveQueryCriteria_
  * ```
  *
  * Parameters:
@@ -634,7 +634,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  *       objectId: string,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -725,7 +725,7 @@ afw_function_execute_delete_object(
  *       uri: anyURI,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -828,7 +828,7 @@ afw_function_execute_delete_object_with_uri(
  *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): object;
  * ```
@@ -921,7 +921,7 @@ afw_function_execute_get_object(
  * ```
  *   function get_object_with_uri(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): object;
  * ```
@@ -1025,7 +1025,7 @@ afw_function_execute_get_object_with_uri(
  *       entries: array,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1139,7 +1139,7 @@ afw_function_execute_modify_object(
  *       entries: array,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1259,7 +1259,7 @@ afw_function_execute_modify_object_with_uri(
  *   function reconcile_object(
  *       object: object,
  *       checkOnly?: boolean
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1362,7 +1362,7 @@ afw_function_execute_reconcile_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1458,7 +1458,7 @@ afw_function_execute_replace_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1572,8 +1572,8 @@ afw_function_execute_replace_object_with_uri(
  *   function retrieve_objects(
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object,
  *       maxObjects?: integer
  *   ): array;
@@ -1707,27 +1707,26 @@ afw_function_execute_retrieve_objects(
  *
  * ```
  *   function retrieve_objects_to_callback(
- *       objectCallback: (function (object: object, userData: any): boolean),
+ *       objectCallback: (object: object, userData: any) => boolean,
  *       userData: any,
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   objectCallback - (function (object: object, userData: any): boolean) If
- *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return array. Parameter
- *       object will be an object retrieved or undefined if there are no more
- *       objects. This function should return true if it wants to abort the
- *       retrieve request.
+ *   objectCallback - ((object: object, userData: any) => boolean) If this is
+ *       specified, this function is called once for each object retrieved
+ *       instead of adding the object to the return array. Parameter object will
+ *       be an object retrieved or undefined if there are no more objects. This
+ *       function should return true if it wants to abort the retrieve request.
  *
- *   userData - (any dataType) This value is passed to the objectCallback
- *       function in the userData parameter.
+ *   userData - (any) This value is passed to the objectCallback function in the
+ *       userData parameter.
  *
  *   adapterId - (string) Id of adapter containing objects to retrieve.
  *
@@ -1847,8 +1846,8 @@ afw_function_execute_retrieve_objects_to_callback(
  *   function retrieve_objects_to_response(
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1976,8 +1975,8 @@ afw_function_execute_retrieve_objects_to_response(
  *       streamNumber: integer,
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -2136,7 +2135,7 @@ afw_function_execute_retrieve_objects_to_stream(
  * ```
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object,
  *       maxObjects?: integer
  *   ): array;
@@ -2273,22 +2272,21 @@ afw_function_execute_retrieve_objects_with_uri(
  *
  * ```
  *   function retrieve_objects_with_uri_to_callback(
- *       objectCallback: (function (object: object, userData: any): boolean),
+ *       objectCallback: (object: object, userData: any) => boolean,
  *       userData: any,
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   objectCallback - (function (object: object, userData: any): boolean) If
- *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return array. Parameter
- *       object will be an object retrieved or undefined if there are no more
- *       objects. This function should return true if it wants to abort the
- *       retrieve request.
+ *   objectCallback - ((object: object, userData: any) => boolean) If this is
+ *       specified, this function is called once for each object retrieved
+ *       instead of adding the object to the return array. Parameter object will
+ *       be an object retrieved or undefined if there are no more objects. This
+ *       function should return true if it wants to abort the retrieve request.
  *
  *   userData - (any) This is the value passed to the objectCallback function in
  *       the userData parameter.
@@ -2413,7 +2411,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  * ```
  *   function retrieve_objects_with_uri_to_response(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -2547,7 +2545,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  *   function retrieve_objects_with_uri_to_stream(
  *       streamNumber: integer,
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -2678,7 +2676,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -2778,7 +2776,7 @@ afw_function_execute_update_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:

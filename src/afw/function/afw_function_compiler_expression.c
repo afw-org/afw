@@ -34,17 +34,17 @@
  *   function nullish_coalescing(
  *       values_1: any,
  *       values_2: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   values - (2 or more any dataType)
+ *   values - (2 or more any)
  *
  * Returns:
  *
- *   (any dataType) The first value of values that is not null or undefined.
+ *   (any) The first value of values that is not null or undefined.
  */
 const afw_value_t *
 afw_function_execute_nullish_coalescing(
@@ -89,14 +89,14 @@ afw_function_execute_nullish_coalescing(
  *
  * Parameters:
  *
- *   arg1 - (any dataType)
+ *   arg1 - (any)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
- *   (any dataType) Undefined value if arg1 is null or undefined but otherwise
- *       evaluated arg2.
+ *   (any) Undefined value if arg1 is null or undefined but otherwise evaluated
+ *       arg2.
  */
 const afw_value_t *
 afw_function_execute_optional_chaining(
@@ -139,11 +139,11 @@ afw_function_execute_optional_chaining(
  *
  * Parameters:
  *
- *   value - (any dataType) This is the value to evaluate.
+ *   value - (any) This is the value to evaluate.
  *
  * Returns:
  *
- *   (any dataType) This always returns undefined.
+ *   (any) This always returns undefined.
  */
 const afw_value_t *
 afw_function_execute_void_operator(

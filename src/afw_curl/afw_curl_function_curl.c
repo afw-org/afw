@@ -34,8 +34,7 @@
  *
  * ```
  *   function curl_version_info(
- *   
- *   ): (object _AdaptiveCurlVersionInfo_);
+ *   ): object; // _AdaptiveCurlVersionInfo_
  * ```
  *
  * Parameters:
@@ -112,15 +111,14 @@ afw_curl_function_execute_curl_version_info(
  *
  * ```
  *   function curl_easy_options(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) Returns an array of strings containing the cURL option names
+ *   (string[]) Returns an array of strings containing the cURL option names
  *       that are available with the installed version of libcurl.
  */
 const afw_value_t *

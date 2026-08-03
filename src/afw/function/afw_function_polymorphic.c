@@ -128,9 +128,9 @@ impl_add_nondups_to_array(
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
@@ -186,17 +186,17 @@ afw_function_execute_at_least_one_member_of(
  *
  * ```
  *   function bag <dataType>(
- *       ...values: (array of array)
+ *       ...values: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array ``<Type>``)
+ *   values - (0 or more ``<Type>`[]`)
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  */
 const afw_value_t *
 afw_function_execute_bag(
@@ -252,7 +252,7 @@ afw_function_execute_bag(
  *
  * Parameters:
  *
- *   value - (array ``<Type>``)
+ *   value - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -477,7 +477,7 @@ afw_function_execute_ends_with(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -569,7 +569,7 @@ afw_function_execute_eq(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -1000,13 +1000,13 @@ return_result:
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  */
 const afw_value_t *
 afw_function_execute_intersection(
@@ -1082,7 +1082,7 @@ afw_function_execute_intersection(
  *
  *   value - (``<Type>``)
  *
- *   array - (array ``<Type>``)
+ *   array - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -1147,7 +1147,7 @@ afw_function_execute_is_in(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -1356,7 +1356,7 @@ afw_function_execute_lt(
  * ```
  *   function max <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -1417,7 +1417,7 @@ afw_function_execute_max(
  * ```
  *   function min <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -1492,7 +1492,7 @@ afw_function_execute_min(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -1586,7 +1586,7 @@ afw_function_execute_ne(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -1667,13 +1667,13 @@ afw_function_execute_nex(
  *
  * ```
  *   function one_and_only <dataType>(
- *       array: (array array)
+ *       array: array[]
  *   ): dataType;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -2026,9 +2026,9 @@ afw_function_execute_replace(
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``)
+ *   array1 - (``<Type>`[]`)
  *
- *   array2 - (array ``<Type>``)
+ *   array2 - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -2273,9 +2273,9 @@ afw_function_execute_starts_with(
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
@@ -2448,17 +2448,17 @@ afw_function_execute_substring(
  *   function union <dataType>(
  *       arrays_1: array,
  *       arrays_2: array,
- *       ...arrays_rest: (array of array)
+ *       ...arrays_rest: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array ``<Type>``) Two or more arrays.
+ *   arrays - (2 or more ``<Type>`[]`) Two or more arrays.
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  */
 const afw_value_t *
 afw_function_execute_union(
@@ -2880,7 +2880,7 @@ afw_function_execute_encode_as_hexBinary(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *

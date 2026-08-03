@@ -118,8 +118,8 @@ afw_function_execute_compare_uri(
  *
  * Parameters:
  *
- *   value - (any dataType) This is the value that will be converted to its
- *       string representation and written. An undefined value is represented by
+ *   value - (any) This is the value that will be converted to its string
+ *       representation and written. An undefined value is represented by
  *       'undefined'.
  *
  *   detail - (optional boolean) If true, the string will only written if the
@@ -176,7 +176,6 @@ afw_function_execute_debug(
  *
  * ```
  *   function generate_uuid(
- *   
  *   ): string;
  * ```
  *
@@ -221,7 +220,7 @@ afw_function_execute_generate_uuid(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to log.
+ *   value - (any) Value to log.
  *
  * Returns:
  *
@@ -253,7 +252,6 @@ afw_function_execute_log(
  *
  * ```
  *   function now_local(
- *   
  *   ): dateTime;
  * ```
  *
@@ -288,7 +286,6 @@ afw_function_execute_now_local(
  *
  * ```
  *   function now_utc(
- *   
  *   ): dateTime;
  * ```
  *
@@ -326,7 +323,7 @@ afw_function_execute_now_utc(
  *       uri: string,
  *       isValuePath?: boolean,
  *       currentPath?: string
- *   ): (object _AdaptiveParsedURI_);
+ *   ): object; // _AdaptiveParsedURI_
  * ```
  *
  * Parameters:
@@ -396,8 +393,8 @@ afw_function_execute_parse_uri(
  *
  * ```
  *   function perform(
- *       request: (object _AdaptiveActions_)
- *   ): (object _AdaptiveResponse_);
+ *       request: object // _AdaptiveActions_
+ *   ): object; // _AdaptiveResponse_
  * ```
  *
  * Parameters:
@@ -442,7 +439,6 @@ afw_function_execute_perform(
  *
  * ```
  *   function execution_start_time_local(
- *   
  *   ): dateTime;
  * ```
  *
@@ -479,7 +475,6 @@ afw_function_execute_execution_start_time_local(
  *
  * ```
  *   function execution_start_time_utc(
- *   
  *   ): dateTime;
  * ```
  *
@@ -523,8 +518,8 @@ afw_function_execute_execution_start_time_utc(
  *
  * Parameters:
  *
- *   value - (any dataType) This is the value that will be converted to its
- *       string representation and written the trace log. An undefined value is
+ *   value - (any) This is the value that will be converted to its string
+ *       representation and written the trace log. An undefined value is
  *       represented by 'undefined'.
  *
  *   filter - (optional boolean) If this optional filter is false, nothing will
@@ -657,7 +652,7 @@ afw_function_execute_variable_is_not_null(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -698,7 +693,7 @@ afw_function_execute_is_nullish(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -794,12 +789,12 @@ afw_function_execute_variable_exists(
  *   name - (string) Name of variable to get. The name can optionally be
  *       preceded with a qualifier followed by '::'.
  *
- *   defaultValue - (optional any dataType) The default value of variable if it
- *       does not exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) The default value of variable if it does not
+ *       exist in object. If not specified, null value is the default.
  *
  * Returns:
  *
- *   (any dataType) Evaluated variable value or default.
+ *   (any) Evaluated variable value or default.
  */
 const afw_value_t *
 afw_function_execute_variable_get(

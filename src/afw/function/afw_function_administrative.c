@@ -34,15 +34,14 @@
  *
  * ```
  *   function flag_get_active(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags that are set in the
+ *   (string[]) This is an array of the flagId of flags that are set in the
  *       current execution context (xctx).
  */
 const afw_value_t *
@@ -87,16 +86,15 @@ afw_function_execute_flag_get_active(
  *
  * ```
  *   function flag_get_active_defaults(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags that are set by
- *       default when a new execution context (xctx) is created.
+ *   (string[]) This is an array of the flagId of flags that are set by default
+ *       when a new execution context (xctx) is created.
  */
 const afw_value_t *
 afw_function_execute_flag_get_active_defaults(
@@ -144,16 +142,15 @@ afw_function_execute_flag_get_active_defaults(
  *
  * ```
  *   function flag_get_defaults(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags used to determine
- *       the default active flags.
+ *   (string[]) This is an array of the flagId of flags used to determine the
+ *       default active flags.
  */
 const afw_value_t *
 afw_function_execute_flag_get_defaults(
@@ -212,14 +209,14 @@ afw_function_execute_flag_get_defaults(
  *
  * ```
  *   function flag_modify_defaults(
- *       flagId: (array string),
+ *       flagId: string[],
  *       add?: boolean
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) The flagId of flags to be added or removed.
+ *   flagId - (string[]) The flagId of flags to be added or removed.
  *
  *   add - (optional boolean) Specify true to add and false to remove flags. If
  *       not specified, flags are added.
@@ -303,14 +300,14 @@ afw_function_execute_flag_modify_defaults(
  *
  * ```
  *   function flag_replace_defaults(
- *       flagId: (array string)
+ *       flagId: string[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) The array of the flagId of flags used to determine
- *       the default active flags.
+ *   flagId - (string[]) The array of the flagId of flags used to determine the
+ *       default active flags.
  *
  * Returns:
  *
@@ -350,14 +347,14 @@ afw_function_execute_flag_replace_defaults(
  *
  * ```
  *   function flag_set(
- *       flagId: (array string),
+ *       flagId: string[],
  *       setTo?: boolean
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) List of flagId of flags to set or unset.
+ *   flagId - (string[]) List of flagId of flags to set or unset.
  *
  *   setTo - (optional boolean) Specify true to set and false to unset. If not
  *       specified, flags are set.
@@ -639,7 +636,7 @@ afw_function_execute_registry_key_check(
  * ```
  *   function service_get(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -692,7 +689,7 @@ afw_function_execute_service_get(
  * ```
  *   function service_restart(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -747,7 +744,7 @@ afw_function_execute_service_restart(
  * ```
  *   function service_start(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -802,7 +799,7 @@ afw_function_execute_service_start(
  * ```
  *   function service_stop(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:

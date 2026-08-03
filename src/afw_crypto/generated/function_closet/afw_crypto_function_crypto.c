@@ -45,9 +45,9 @@
  *
  *   algorithm - (object) AES-GCM parameters including required iv and tag.
  *
- *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *   key - (any) Key material, CryptoKey, or key reference.
  *
- *   data - (any dataType) Ciphertext without tag (base64Binary or hexBinary).
+ *   data - (any) Ciphertext without tag (base64Binary or hexBinary).
  *
  * Returns:
  *
@@ -87,19 +87,19 @@ afw_crypto_function_execute_crypto_decrypt(
  *   function crypto_derive_key(
  *       algorithm: object,
  *       baseKey: any,
- *       usages?: (array string),
+ *       usages?: string[],
  *       extractable?: boolean
- *   ): (object _AdaptiveCryptoKey_);
+ *   ): object; // _AdaptiveCryptoKey_
  * ```
  *
  * Parameters:
  *
  *   algorithm - (object) PBKDF2 parameters object.
  *
- *   baseKey - (any dataType) Passphrase or key material (polymorphic; utf8
- *       encoding allowed).
+ *   baseKey - (any) Passphrase or key material (polymorphic; utf8 encoding
+ *       allowed).
  *
- *   usages - (optional array string) Default ["encrypt","decrypt"].
+ *   usages - (optional string[]) Default ["encrypt","decrypt"].
  *
  *   extractable - (optional boolean) Default false.
  *
@@ -143,7 +143,7 @@ afw_crypto_function_execute_crypto_derive_key(
  *
  * Parameters:
  *
- *   key - (any dataType) CryptoKey object with keyId.
+ *   key - (any) CryptoKey object with keyId.
  *
  * Returns:
  *
@@ -185,7 +185,7 @@ afw_crypto_function_execute_crypto_destroy_key(
  *
  *   algorithm - (string) Digest algorithm name: SHA-256 or SHA-512.
  *
- *   data - (any dataType) Data to hash (base64Binary or hexBinary).
+ *   data - (any) Data to hash (base64Binary or hexBinary).
  *
  * Returns:
  *
@@ -224,16 +224,16 @@ afw_crypto_function_execute_crypto_digest(
  *       algorithm: object,
  *       key: any,
  *       data: any
- *   ): (object _AdaptiveCryptoEncryptResult_);
+ *   ): object; // _AdaptiveCryptoEncryptResult_
  * ```
  *
  * Parameters:
  *
  *   algorithm - (object) AES-GCM parameters object.
  *
- *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *   key - (any) Key material, CryptoKey, or key reference.
  *
- *   data - (any dataType) Plaintext (base64Binary or hexBinary).
+ *   data - (any) Plaintext (base64Binary or hexBinary).
  *
  * Returns:
  *
@@ -275,7 +275,7 @@ afw_crypto_function_execute_crypto_encrypt(
  *
  * Parameters:
  *
- *   key - (any dataType) CryptoKey object with keyId.
+ *   key - (any) CryptoKey object with keyId.
  *
  * Returns:
  *
@@ -311,17 +311,17 @@ afw_crypto_function_execute_crypto_export_key(
  * ```
  *   function crypto_generate_key(
  *       algorithm: any,
- *       usages?: (array string),
+ *       usages?: string[],
  *       extractable?: boolean
- *   ): (object _AdaptiveCryptoKey_);
+ *   ): object; // _AdaptiveCryptoKey_
  * ```
  *
  * Parameters:
  *
- *   algorithm - (any dataType) Algorithm string or object { name, length? }.
+ *   algorithm - (any) Algorithm string or object { name, length? }.
  *
- *   usages - (optional array string) Optional usages; defaults depend on
- *       algorithm family.
+ *   usages - (optional string[]) Optional usages; defaults depend on algorithm
+ *       family.
  *
  *   extractable - (optional boolean) If true, crypto_export_key may export raw
  *       key. Default false.
@@ -370,10 +370,9 @@ afw_crypto_function_execute_crypto_generate_key(
  *
  *   algorithm - (string) HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.
  *
- *   key - (any dataType) Key material, CryptoKey object, or key reference {
- *       from, ... }.
+ *   key - (any) Key material, CryptoKey object, or key reference { from, ... }.
  *
- *   data - (any dataType) Data to MAC (base64Binary or hexBinary).
+ *   data - (any) Data to MAC (base64Binary or hexBinary).
  *
  * Returns:
  *
@@ -419,11 +418,11 @@ afw_crypto_function_execute_crypto_hmac(
  *
  *   algorithm - (string) HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.
  *
- *   key - (any dataType) Key material, CryptoKey object, or key reference.
+ *   key - (any) Key material, CryptoKey object, or key reference.
  *
- *   data - (any dataType) Data that was MAC'd (base64Binary or hexBinary).
+ *   data - (any) Data that was MAC'd (base64Binary or hexBinary).
  *
- *   mac - (any dataType) Expected MAC (base64Binary or hexBinary).
+ *   mac - (any) Expected MAC (base64Binary or hexBinary).
  *
  * Returns:
  *
@@ -462,20 +461,20 @@ afw_crypto_function_execute_crypto_hmac_verify(
  *   function crypto_import_key(
  *       keySource: any,
  *       algorithm: any,
- *       usages?: (array string),
+ *       usages?: string[],
  *       extractable?: boolean
- *   ): (object _AdaptiveCryptoKey_);
+ *   ): object; // _AdaptiveCryptoKey_
  * ```
  *
  * Parameters:
  *
- *   keySource - (any dataType) Raw binary key, or reference object { from:
+ *   keySource - (any) Raw binary key, or reference object { from:
  *       environment|file|material, ... }.
  *
- *   algorithm - (any dataType) Algorithm string or object { name, length? }.
+ *   algorithm - (any) Algorithm string or object { name, length? }.
  *
- *   usages - (optional array string) Optional usages; defaults depend on
- *       algorithm family.
+ *   usages - (optional string[]) Optional usages; defaults depend on algorithm
+ *       family.
  *
  *   extractable - (optional boolean) If true, crypto_export_key may export raw
  *       key. Default false.
@@ -518,14 +517,14 @@ afw_crypto_function_execute_crypto_import_key(
  *   function crypto_seal(
  *       key: any,
  *       data: any
- *   ): (object _AdaptiveCryptoEncryptResult_);
+ *   ): object; // _AdaptiveCryptoEncryptResult_
  * ```
  *
  * Parameters:
  *
- *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *   key - (any) Key material, CryptoKey, or key reference.
  *
- *   data - (any dataType) Plaintext (base64Binary or hexBinary). Use
+ *   data - (any) Plaintext (base64Binary or hexBinary). Use
  *       encode_as_base64Binary() for UTF-8 text.
  *
  * Returns:
@@ -572,9 +571,9 @@ afw_crypto_function_execute_crypto_seal(
  *
  * Parameters:
  *
- *   key - (any dataType) Key material, CryptoKey, or key reference.
+ *   key - (any) Key material, CryptoKey, or key reference.
  *
- *   sealed - (any dataType) Sealed object or pure JSON string.
+ *   sealed - (any) Sealed object or pure JSON string.
  *
  * Returns:
  *
@@ -609,8 +608,7 @@ afw_crypto_function_execute_crypto_unseal(
  *
  * ```
  *   function crypto_version_info(
- *   
- *   ): (object _AdaptiveCryptoVersionInfo_);
+ *   ): object; // _AdaptiveCryptoVersionInfo_
  * ```
  *
  * Parameters:

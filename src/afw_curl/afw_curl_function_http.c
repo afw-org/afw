@@ -39,8 +39,8 @@
  *       url: string,
  *       payload?: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -116,8 +116,8 @@ afw_curl_function_execute_http_post(
  *   function http_get(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -188,8 +188,8 @@ afw_curl_function_execute_http_get(
  *   function http_delete(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -261,8 +261,8 @@ afw_curl_function_execute_http_delete(
  *       url: string,
  *       payload?: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -339,8 +339,8 @@ afw_curl_function_execute_http_patch(
  *       url: string,
  *       payload?: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -416,8 +416,8 @@ afw_curl_function_execute_http_put(
  *   function http_head(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:
@@ -488,8 +488,8 @@ afw_curl_function_execute_http_head(
  *   function http_options(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
- *   ): (object _AdaptiveCurlHttpResponse_);
+ *       options?: object // _AdaptiveCurlOptions_
+ *   ): object; // _AdaptiveCurlHttpResponse_
  * ```
  *
  * Parameters:

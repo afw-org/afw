@@ -34,7 +34,7 @@
  *   function add_properties(
  *       target: object,
  *       source_1: object,
- *       ...source_rest: (array of object)
+ *       ...source_rest: object[]
  *   ): object;
  * ```
  *
@@ -105,7 +105,7 @@ afw_function_execute_add_properties(
  * ```
  *   function apply_object_options(
  *       object: object,
- *       options?: (object _AdaptiveObjectOptions_)
+ *       options?: object // _AdaptiveObjectOptions_
  *   ): object;
  * ```
  *
@@ -280,8 +280,7 @@ afw_function_execute_property_delete(
  *
  * Parameters:
  *
- *   reference - (any dataType) This is a reference to the object property to
- *       delete.
+ *   reference - (any) This is a reference to the object property to delete.
  *
  * Returns:
  *
@@ -421,12 +420,12 @@ afw_function_execute_property_exists(
  *
  *   name - (string) Name of property to get.
  *
- *   defaultValue - (optional any dataType) The default value of property if it
- *       does not exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) The default value of property if it does not
+ *       exist in object. If not specified, null value is the default.
  *
  * Returns:
  *
- *   (any dataType) Evaluated property value or default.
+ *   (any) Evaluated property value or default.
  */
 const afw_value_t *
 afw_function_execute_property_get(
@@ -589,7 +588,7 @@ afw_function_execute_entries(
  * ```
  *   function keys(
  *       object: object
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
@@ -598,7 +597,7 @@ afw_function_execute_entries(
  *
  * Returns:
  *
- *   (array string) Array of property name strings.
+ *   (string[]) Array of property name strings.
  */
 const afw_value_t *
 afw_function_execute_keys(

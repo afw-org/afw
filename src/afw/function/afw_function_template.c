@@ -44,9 +44,9 @@
  *
  *   source - (template) template string to compile.
  *
- *   listing - (optional any dataType) If specified, a human compiler listing is
- *       produced instead of an unevaluated compiled value (tree + ---Symbols;
- *       not recompilable). Use decompile() for Adaptive compiled-form text and
+ *   listing - (optional any) If specified, a human compiler listing is produced
+ *       instead of an unevaluated compiled value (tree + ---Symbols; not
+ *       recompilable). Use decompile() for Adaptive compiled-form text and
  *       stringify() for pure JSON of evaluated data.
  * 
  *       This parameter can be an integer between 0 and 10 or a string that is
@@ -103,7 +103,7 @@ afw_function_execute_compile_template(
  * ```
  *   function eval<template>(
  *       source: template,
- *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *       additionalUntrustedQualifiedVariables?: object // _AdaptiveTemplatePropertiesObjects_
  *   ): any;
  * ```
  *

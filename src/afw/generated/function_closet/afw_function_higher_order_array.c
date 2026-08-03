@@ -31,21 +31,21 @@
  *
  * ```
  *   function all_of(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first array in values or until false is returned.
- *       If no calls return false, the result is true.
+ *   predicate - ((...values: any) => boolean) This function is called for each
+ *       value in the first array in values or until false is returned. If no
+ *       calls return false, the result is true.
  *
- *   values - (1 or more any dataType) These are the parameters passed to
- *       predicate with the exception that the first array is passed one value
- *       at a time. At least one array is required.
+ *   values - (1 or more any) These are the parameters passed to predicate with
+ *       the exception that the first array is passed one value at a time. At
+ *       least one array is required.
  *
  * Returns:
  *
@@ -78,7 +78,7 @@ afw_function_execute_all_of(
  *
  * ```
  *   function all_of_all(
- *       predicate: (function (any value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -86,9 +86,9 @@ afw_function_execute_all_of(
  *
  * Parameters:
  *
- *   predicate - (function (any value1: any, value2: any): boolean) The
- *       predicate is passed two parameters, the first is a value from array1
- *       and the second is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -126,7 +126,7 @@ afw_function_execute_all_of_all(
  *
  * ```
  *   function all_of_any(
- *       predicate: (function (value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -134,9 +134,9 @@ afw_function_execute_all_of_all(
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate is
- *       passed two parameters, the first is a value from array1 and the second
- *       is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -172,21 +172,21 @@ afw_function_execute_all_of_any(
  *
  * ```
  *   function any_of(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): boolean;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This function is called
- *       for each value in the first array in values or until true is returned.
- *       If no calls return true, the result is false.
+ *   predicate - ((...values: any) => boolean) This function is called for each
+ *       value in the first array in values or until true is returned. If no
+ *       calls return true, the result is false.
  *
- *   values - (1 or more any dataType) These are the parameters passed to
- *       predicate with the exception that the first array is passed one value
- *       at a time. At least one array is required.
+ *   values - (1 or more any) These are the parameters passed to predicate with
+ *       the exception that the first array is passed one value at a time. At
+ *       least one array is required.
  *
  * Returns:
  *
@@ -219,7 +219,7 @@ afw_function_execute_any_of(
  *
  * ```
  *   function any_of_all(
- *       predicate: (function (value1: any, value2: any):boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -227,9 +227,9 @@ afw_function_execute_any_of(
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any):boolean) The predicate is
- *       passed two parameters, the first is a value from array1 and the second
- *       is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -266,7 +266,7 @@ afw_function_execute_any_of_all(
  *
  * ```
  *   function any_of_any(
- *       predicate: (function (value1: any, value2: any): boolean),
+ *       predicate: (value1: any, value2: any) => boolean,
  *       array1: array,
  *       array2: array
  *   ): boolean;
@@ -274,9 +274,9 @@ afw_function_execute_any_of_all(
  *
  * Parameters:
  *
- *   predicate - (function (value1: any, value2: any): boolean) The predicate is
- *       passed two parameters, the first is a value from array1 and the second
- *       is a value from array2.
+ *   predicate - ((value1: any, value2: any) => boolean) The predicate is passed
+ *       two parameters, the first is a value from array1 and the second is a
+ *       value from array2.
  *
  *   array1 - (array)
  *
@@ -313,21 +313,21 @@ afw_function_execute_any_of_any(
  *
  * ```
  *   function filter(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if an array entry should be
- *       included in the returned array.
+ *   predicate - ((...values: any) => boolean) This is a boolean function that
+ *       is called to determine if an array entry should be included in the
+ *       returned array.
  *
- *   values - (1 or more any dataType) These are the values passed to the
- *       predicate with the exception that the first array is passed as the
- *       single current value from the array. At least one array is required.
+ *   values - (1 or more any) These are the values passed to the predicate with
+ *       the exception that the first array is passed as the single current
+ *       value from the array. At least one array is required.
  *
  * Returns:
  *
@@ -360,24 +360,24 @@ afw_function_execute_filter(
  *
  * ```
  *   function find(
- *       predicate: (function (... values: any): boolean),
+ *       predicate: (...values: any) => boolean,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   predicate - (function (... values: any): boolean) This is a boolean
- *       function that is called to determine if an array entry passes the test.
+ *   predicate - ((...values: any) => boolean) This is a boolean function that
+ *       is called to determine if an array entry passes the test.
  *
- *   values - (1 or more any dataType) These are the values passed to the
- *       predicate with the exception that the first array is passed as the
- *       single current value from the array. At least one array is required.
+ *   values - (1 or more any) These are the values passed to the predicate with
+ *       the exception that the first array is passed as the single current
+ *       value from the array. At least one array is required.
  *
  * Returns:
  *
- *   (any dataType) The first value that passes the test is returned.
+ *   (any) The first value that passes the test is returned.
  */
 const afw_value_t *
 afw_function_execute_find(
@@ -406,19 +406,19 @@ afw_function_execute_find(
  *
  * ```
  *   function map(
- *       functor: (function (... values: any): any),
+ *       functor: (...values: any) => any,
  *       values_1: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   functor - (function (... values: any): any)
+ *   functor - ((...values: any) => any)
  *
- *   values - (1 or more any dataType) These are the parameters passed to
- *       functor with the exception that the first array is passed one value at
- *       a time. At least one array is required.
+ *   values - (1 or more any) These are the parameters passed to functor with
+ *       the exception that the first array is passed one value at a time. At
+ *       least one array is required.
  *
  * Returns:
  *
@@ -454,7 +454,7 @@ afw_function_execute_map(
  *
  * ```
  *   function reduce(
- *       functor: (function (accumulator: any, value: any): any),
+ *       functor: (accumulator: any, value: any) => any,
  *       accumulator: any,
  *       array: array
  *   ): any;
@@ -462,11 +462,11 @@ afw_function_execute_map(
  *
  * Parameters:
  *
- *   functor - (function (accumulator: any, value: any): any) This function is
- *       called for each value in an array. The returned value is passed as the
+ *   functor - ((accumulator: any, value: any) => any) This function is called
+ *       for each value in an array. The returned value is passed as the
  *       accumulator parameter on the next call to functor().
  *
- *   accumulator - (any dataType) This is an initial accumulator value passed to
+ *   accumulator - (any) This is an initial accumulator value passed to
  *       functor(). Normally, the dataType of accumulator will be the dataTape
  *       for the reduce() return value, but this is not required.
  *
@@ -474,8 +474,8 @@ afw_function_execute_map(
  *
  * Returns:
  *
- *   (any dataType) This is the final return value from functor() or the
- *       accumulator parameter value if array is empty.
+ *   (any) This is the final return value from functor() or the accumulator
+ *       parameter value if array is empty.
  */
 const afw_value_t *
 afw_function_execute_reduce(
@@ -507,15 +507,15 @@ afw_function_execute_reduce(
  *
  * ```
  *   function sort(
- *       compareFunction: (function (value1: any, value2: any): integer),
+ *       compareFunction: (value1: any, value2: any) => integer,
  *       array: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   compareFunction - (function (value1: any, value2: any): integer) This
- *       function is called with two value from array.
+ *   compareFunction - ((value1: any, value2: any) => integer) This function is
+ *       called with two value from array.
  *
  *   array - (array) This is the array to sort.
  *
