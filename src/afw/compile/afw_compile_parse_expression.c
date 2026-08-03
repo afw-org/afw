@@ -55,10 +55,6 @@
  *    'xpathExpression' |
  *    'yearMonthDuration'
  *
- *# ObjectType should be in quoted string since some may not conform to
- *# Identifier and consistency is desired.
- * ObjectType ::= String
- *
  * Category ::= Identifier
  *
  * FunctionName ::= ( 'fn' '::')? Identifier ( '<' DataType '>' )?
@@ -917,34 +913,9 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
 
 
 /*
- * Script type expressions (TS-like; issue #28). Hard cut: Adaptive Type
- * forms such as (array of T) / (object "OT") / meta {…} are not accepted.
- *
- * EBNF (approximate TypeScript subset):
- *
- * Type ::= UnionType
- * UnionType ::= IntersectionType ( '|' IntersectionType )*
- * IntersectionType ::= ArrayType ( '&' ArrayType )*
- * ArrayType ::= PrimaryType ( '[' ']' )*
- * PrimaryType ::=
- *     TypeName |
- *     'Array' '<' Type '>' |
- *     ObjectTypeLiteral |
- *     TupleType |
- *     ParenthesizedOrFunctionType
- * TypeName ::= Identifier   // data type or script type/interface name
- * ObjectTypeLiteral ::=
- *     '{' ( PropertyName '?'? ':' Type
- *           ( ',' PropertyName '?'? ':' Type )* ','? )? '}'
- * TupleType ::= '[' ( Type ( ',' Type )* ','? )? ']'
- * ParenthesizedOrFunctionType ::=
- *     '(' Type ')' |
- *     '(' FunctionTypeParameterList? ')' '=>' Type
- * FunctionTypeParameterList ::=
- *     FunctionTypeParameter ( ',' FunctionTypeParameter )*
- * FunctionTypeParameter ::=
- *     '...'? Identifier '?'? ( ':' Type )? |
- *     Type
+ * Script type expressions (issue #28). Hard cut: Adaptive Type forms such as
+ * (array of T) / (object "OT") / meta {…} are not accepted. Grammar fragments
+ * are in ebnf comment blocks on the impl_parse_* functions below.
  */
 
 static afw_value_type_t *
@@ -970,6 +941,10 @@ impl_type_data_type(
 
 
 
+/*
+ * Resolve TypeName: script-local type/interface, Adaptive data type id, or
+ * unresolved reference (non-checking mode).
+ */
 static const afw_value_type_t *
 impl_type_lookup_name(
     afw_compile_parser_t *parser,
@@ -1020,14 +995,26 @@ afw_compile_script_type_register(
 
 
 
-/* Forward: full Type (union). */
-static const afw_value_type_t *
-impl_parse_Type_expression(afw_compile_parser_t *parser);
 
 
 
-static const afw_value_type_t *
-impl_parse_object_type_literal(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ *# Property name in an object type literal (identifier or string).
+ * ObjectTypePropertyName ::= PropertyName | String
+ *
+ * ObjectTypeLiteral ::=
+ *     '{'
+ *         (
+ *             ObjectTypePropertyName '?'? ':' Type
+ *             ( ',' ObjectTypePropertyName '?'? ':' Type )*
+ *             ','?
+ *         )?
+ *     '}'
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_ObjectTypeLiteral(afw_compile_parser_t *parser)
 {
     afw_value_type_t *type;
     afw_value_type_property_t *prop;
@@ -1071,7 +1058,7 @@ impl_parse_object_type_literal(afw_compile_parser_t *parser)
                 afw_value_type_property_t, parser->xctx);
             prop->name = prop_name;
             prop->optional = optional;
-            prop->type = impl_parse_Type_expression(parser);
+            prop->type = afw_compile_parse_UnionType(parser);
 
             if (!props_head) {
                 props_head = props_tail = prop;
@@ -1104,22 +1091,27 @@ impl_parse_object_type_literal(afw_compile_parser_t *parser)
 
 
 
-static const afw_value_type_t *
-impl_parse_tuple_or_array_suffix_start(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ * TupleType ::= '[' ( Type ( ',' Type )* ','? )? ']'
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_TupleType(afw_compile_parser_t *parser)
 {
     apr_array_header_t *elems;
     const afw_value_type_t **elements;
     afw_value_type_t *type;
     afw_size_t i;
 
-    /* Current token is '['. Type_expression starts with get_token. */
+    /* Current token is '['. Type / UnionType starts with get_token. */
     elems = apr_array_make(parser->apr_p, 4, sizeof(const afw_value_type_t *));
     afw_compile_get_token();
     if (!afw_compile_token_is(close_bracket)) {
         afw_compile_reuse_token();
         for (;;) {
             APR_ARRAY_PUSH(elems, const afw_value_type_t *) =
-                impl_parse_Type_expression(parser);
+                afw_compile_parse_UnionType(parser);
             afw_compile_get_token();
             if (afw_compile_token_is(close_bracket)) {
                 break;
@@ -1153,8 +1145,31 @@ impl_parse_tuple_or_array_suffix_start(afw_compile_parser_t *parser)
 
 
 
-static const afw_value_type_t *
-impl_parse_function_type_after_open_paren(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ *# Called with '(' already the current token (see ParenthesizedOrFunctionType).
+ * FunctionType ::=
+ *     '(' FunctionTypeParameterList? ')' '=>' Type
+ *
+ * FunctionTypeParameterList ::=
+ *     FunctionTypeParameter ( ',' FunctionTypeParameter )*
+ *
+ *# Named param: name ?: Type. Bare identifier without ':' is TypeName with
+ *# optional '[]' only (not '|' / '&'). Non-identifier Type forms use full Type
+ *# (object/tuple/paren/Array<…>).
+ * FunctionTypeParameter ::=
+ *     '...'? Identifier '?'? ':' Type |
+ *     '...'? TypeName ( '[' ']' )* |
+ *     '...'? (
+ *         ObjectTypeLiteral |
+ *         TupleType |
+ *         ParenthesizedOrFunctionType |
+ *         'Array' '<' Type '>'
+ *     )
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
 {
     afw_value_type_function_param_t *params_head;
     afw_value_type_function_param_t *params_tail;
@@ -1195,7 +1210,7 @@ impl_parse_function_type_after_open_paren(afw_compile_parser_t *parser)
                     param->name = name;
                     param->optional = optional;
                     param->is_rest = is_rest;
-                    param->type = impl_parse_Type_expression(parser);
+                    param->type = afw_compile_parse_UnionType(parser);
                 }
                 else {
                     /* Identifier was start of a type name, not a param name. */
@@ -1235,7 +1250,7 @@ impl_parse_function_type_after_open_paren(afw_compile_parser_t *parser)
             }
             else {
                 param->is_rest = is_rest;
-                param->type = impl_parse_Type_expression(parser);
+                param->type = afw_compile_parse_UnionType(parser);
             }
 
             if (!params_head) {
@@ -1267,14 +1282,23 @@ impl_parse_function_type_after_open_paren(afw_compile_parser_t *parser)
     type = impl_type_alloc(parser);
     type->kind = afw_value_type_kind_function;
     type->function.parameters = params_head;
-    type->function.returns = impl_parse_Type_expression(parser);
+    type->function.returns = afw_compile_parse_UnionType(parser);
     return type;
 }
 
 
 
-static const afw_value_type_t *
-impl_parse_parenthesized_or_function_type(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ *# Current token is '('. Speculative scan chooses FunctionType if '=>'
+ *# follows the matching ')' or a ':' appears at depth 1 (named parameter).
+ * ParenthesizedOrFunctionType ::=
+ *     FunctionType |
+ *     '(' Type ')'
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
 {
     afw_size_t save_token_offset;
     const afw_value_type_t *inner;
@@ -1317,11 +1341,11 @@ impl_parse_parenthesized_or_function_type(afw_compile_parser_t *parser)
     afw_compile_get_token(); /* '(' */
 
     if (saw_arrow || saw_colon) {
-        return impl_parse_function_type_after_open_paren(parser);
+        return afw_compile_parse_FunctionType(parser);
     }
 
     /* Parenthesized type: ( Type ) */
-    inner = impl_parse_Type_expression(parser);
+    inner = afw_compile_parse_UnionType(parser);
     afw_compile_get_token();
     if (!afw_compile_token_is(close_parenthesis)) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after type");
@@ -1331,8 +1355,24 @@ impl_parse_parenthesized_or_function_type(afw_compile_parser_t *parser)
 
 
 
-static const afw_value_type_t *
-impl_parse_primary_type(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ *# Single identifier: resolves to DataType, registered type/interface, or
+ *# unresolved reference (non-checking). TypeVariableName / InterfaceName are
+ *# both Identifier; DataType is the closed set of Adaptive data type ids.
+ * TypeName ::= DataType | Identifier
+ *
+ *# 'Array' without '<' is TypeName (data type array or a name "Array").
+ * PrimaryType ::=
+ *     ObjectTypeLiteral |
+ *     TupleType |
+ *     ParenthesizedOrFunctionType |
+ *     'Array' '<' Type '>' |
+ *     TypeName
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
 {
     const afw_value_type_t *type;
     const afw_utf8_t *name;
@@ -1341,15 +1381,15 @@ impl_parse_primary_type(afw_compile_parser_t *parser)
     afw_compile_get_token();
 
     if (afw_compile_token_is(open_brace)) {
-        return impl_parse_object_type_literal(parser);
+        return afw_compile_parse_ObjectTypeLiteral(parser);
     }
 
     if (afw_compile_token_is(open_bracket)) {
-        return impl_parse_tuple_or_array_suffix_start(parser);
+        return afw_compile_parse_TupleType(parser);
     }
 
     if (afw_compile_token_is(open_parenthesis)) {
-        return impl_parse_parenthesized_or_function_type(parser);
+        return afw_compile_parse_ParenthesizedOrFunctionType(parser);
     }
 
     if (!afw_compile_token_is_unqualified_identifier()) {
@@ -1365,7 +1405,7 @@ impl_parse_primary_type(afw_compile_parser_t *parser)
         if (afw_compile_token_is(open_angle_bracket) ||
             afw_compile_token_is(less_than))
         {
-            type = impl_parse_Type_expression(parser);
+            type = afw_compile_parse_UnionType(parser);
             afw_compile_get_token();
             if (!afw_compile_token_is(close_angle_bracket) &&
                 !afw_compile_token_is(greater_than))
@@ -1381,18 +1421,24 @@ impl_parse_primary_type(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
     }
 
+    /* TypeName */
     return impl_type_lookup_name(parser, name);
 }
 
 
 
-static const afw_value_type_t *
-impl_parse_array_type(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ * ArrayType ::= PrimaryType ( '[' ']' )*
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_ArrayType(afw_compile_parser_t *parser)
 {
     const afw_value_type_t *type;
     afw_value_type_t *arr;
 
-    type = impl_parse_primary_type(parser);
+    type = afw_compile_parse_PrimaryType(parser);
     for (;;) {
         afw_compile_get_token();
         if (!afw_compile_token_is(open_bracket)) {
@@ -1414,8 +1460,13 @@ impl_parse_array_type(afw_compile_parser_t *parser)
 
 
 
-static const afw_value_type_t *
-impl_parse_intersection_type(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ * IntersectionType ::= ArrayType ( '&' ArrayType )*
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_IntersectionType(afw_compile_parser_t *parser)
 {
     apr_array_header_t *members;
     const afw_value_type_t *type;
@@ -1423,7 +1474,7 @@ impl_parse_intersection_type(afw_compile_parser_t *parser)
     afw_value_type_t *node;
     afw_size_t i;
 
-    type = impl_parse_array_type(parser);
+    type = afw_compile_parse_ArrayType(parser);
     afw_compile_get_token();
     if (!afw_compile_token_is(ampersand)) {
         afw_compile_reuse_token();
@@ -1434,7 +1485,7 @@ impl_parse_intersection_type(afw_compile_parser_t *parser)
     APR_ARRAY_PUSH(members, const afw_value_type_t *) = type;
     while (afw_compile_token_is(ampersand)) {
         APR_ARRAY_PUSH(members, const afw_value_type_t *) =
-            impl_parse_array_type(parser);
+            afw_compile_parse_ArrayType(parser);
         afw_compile_get_token();
     }
     afw_compile_reuse_token();
@@ -1453,8 +1504,13 @@ impl_parse_intersection_type(afw_compile_parser_t *parser)
 
 
 
-static const afw_value_type_t *
-impl_parse_Type_expression(afw_compile_parser_t *parser)
+/*ebnf>>>
+ *
+ * UnionType ::= IntersectionType ( '|' IntersectionType )*
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_UnionType(afw_compile_parser_t *parser)
 {
     apr_array_header_t *members;
     const afw_value_type_t *type;
@@ -1462,7 +1518,7 @@ impl_parse_Type_expression(afw_compile_parser_t *parser)
     afw_value_type_t *node;
     afw_size_t i;
 
-    type = impl_parse_intersection_type(parser);
+    type = afw_compile_parse_IntersectionType(parser);
     afw_compile_get_token();
     if (!afw_compile_token_is(vertical_bar)) {
         afw_compile_reuse_token();
@@ -1473,7 +1529,7 @@ impl_parse_Type_expression(afw_compile_parser_t *parser)
     APR_ARRAY_PUSH(members, const afw_value_type_t *) = type;
     while (afw_compile_token_is(vertical_bar)) {
         APR_ARRAY_PUSH(members, const afw_value_type_t *) =
-            impl_parse_intersection_type(parser);
+            afw_compile_parse_IntersectionType(parser);
         afw_compile_get_token();
     }
     afw_compile_reuse_token();
@@ -1494,14 +1550,16 @@ impl_parse_Type_expression(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# TS-like type expression (issue #28). Leaves are Adaptive data types.
+ *# Script type expression (issue #28). Primary leaves are TypeName
+ *# (DataType or script type/interface name). Hard cut: (array of T) /
+ *# (object "OT") / meta {…} are not accepted.
  * Type ::= UnionType
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_type_t *)
 afw_compile_parse_Type(afw_compile_parser_t *parser)
 {
-    return impl_parse_Type_expression(parser);
+    return afw_compile_parse_UnionType(parser);
 }
 
 
@@ -1522,7 +1580,7 @@ afw_compile_parse_OptionalType(
     afw_compile_get_token();
     if (afw_compile_token_is(colon)) {
         (void)is_return;
-        return impl_parse_Type_expression(parser);
+        return afw_compile_parse_UnionType(parser);
     }
 
     /* Missing annotation → any (error if noImplicitAny + type checking). */

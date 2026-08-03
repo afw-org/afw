@@ -1077,6 +1077,11 @@ afw_compile_parse_AssignmentTarget(
 
 
 
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_ArrayType(afw_compile_parser_t *parser);
+
+
+
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Comparison(afw_compile_parser_t *parser);
 
@@ -1177,6 +1182,16 @@ afw_compile_parse_FunctionSignatureAndBody(
 
 
 
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_FunctionType(afw_compile_parser_t *parser);
+
+
+
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_IntersectionType(afw_compile_parser_t *parser);
+
+
+
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Json(afw_compile_parser_t *parser);
 
@@ -1226,6 +1241,11 @@ afw_compile_parse_Object(
     afw_boolean_t allow_enhanced_literals);
 
 
+
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_ObjectTypeLiteral(afw_compile_parser_t *parser);
+
+
 /* afw_compile_parse_OptionalDefineTarget should be called first. */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_OptionalDefineAssignment(
@@ -1266,8 +1286,19 @@ afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser);
 
 
 
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_ParenthesizedOrFunctionType(
+    afw_compile_parser_t *parser);
+
+
+
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Prefixed(afw_compile_parser_t *parser);
+
+
+
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_PrimaryType(afw_compile_parser_t *parser);
 
 
 
@@ -1318,7 +1349,17 @@ afw_compile_parse_TestScript(
 
 
 AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_TupleType(afw_compile_parser_t *parser);
+
+
+
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
 afw_compile_parse_Type(afw_compile_parser_t *parser);
+
+
+
+AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+afw_compile_parse_UnionType(afw_compile_parser_t *parser);
 
 
 

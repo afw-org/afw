@@ -746,7 +746,7 @@ impl_parse_String(afw_compile_parser_t *parser)
  *     DecimalIntegerLiteral |
  *     BinaryIntegerLiteral |
  *     HexIntegerLiteral |
- *     OctetIntegerLiteral )
+ *     OctalIntegerLiteral )
  *
  * DecimalIntegerLiteral ::= '0' | ( [1-9] [0-9]* )
  *
@@ -1171,10 +1171,13 @@ impl_get_identifier(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# ZWNJ - Unicode Zero-width non-joiner (0x200c)
- *# ZWJ - Unicode Zero-width joiner (0x200d)
- *# ID_START is any codepoint with ID_START flag
- *# ID_CONTINUE is any codepoint with ID_CONTINUE flag
+ *# Unicode identifier categories (ECMAScript ID_Start / ID_Continue).
+ *# Not expanded to code-point ranges here.
+ * ID_START ::= "any Unicode ID_Start code point"
+ * ID_CONTINUE ::= "any Unicode ID_Continue code point"
+ *
+ * ZWNJ ::= #x200C
+ * ZWJ ::= #x200D
  *
  * IdentifierStart ::= ID_START | '$' | '_'
  *

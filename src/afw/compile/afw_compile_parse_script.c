@@ -586,11 +586,11 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
  *
  * InterfaceStatement ::=
  *     'interface' InterfaceName
- *     ( 'extends' TypeName ( ',' TypeName )* )?
+ *     ( 'extends' Type ( ',' Type )* )?
  *     ObjectTypeLiteral
  *     ';'
  *
- *# Object body is TS-like { prop?: Type, ... } (see Type in expression).
+ *# Object body is an ObjectTypeLiteral (see Type productions in expression).
  *# Script-local only; not adaptive object types (issue #28).
  *
  *<<<ebnf*/

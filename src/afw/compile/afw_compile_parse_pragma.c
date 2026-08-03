@@ -852,12 +852,28 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
  *# Value/expression-position pragma (#Name …). Token is pragma_identifier.
  *# Structural forms match decompile #implementation_id where implemented.
  *
+ *# Target shape for #assignment_target (symbol name or destructure Pattern).
+ * AssignmentTargetPragmaShape ::=
+ *     Identifier |
+ *     String |
+ *     AssignmentListDestructureTarget |
+ *     AssignmentObjectDestructureTarget
+ *
+ *# #script_function( param* , body [, returnType] ) — decompile form.
+ * ScriptFunctionPragmaParameter ::=
+ *     Identifier ( ':' Type )? ( '=' Expression )?
+ *
+ * ScriptFunctionPragmaArgs ::=
+ *     ( ScriptFunctionPragmaParameter ( ',' ScriptFunctionPragmaParameter )*
+ *       ',' )?
+ *     Expression ( ',' Type )?
+ *
  * PragmaValue ::=
  *     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
  *     '#assignment_target' '(' Expression ','
- *         ( Identifier | String | ListPattern | ObjectPattern ) ')' |
+ *         AssignmentTargetPragmaShape ')' |
  *     '#list_expression' '(' Expression ')' |
- *     '#script_function' '(' ScriptFunctionArgs ')' |
+ *     '#script_function' '(' ScriptFunctionPragmaArgs ')' |
  *     '#template_definition' '(' Expression ( ',' Expression )* ')'
  *
  *# #closure_binding / #function_thunk are recognized but always compile

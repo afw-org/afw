@@ -139,10 +139,6 @@ DataType ::=
    'x500Name' |
    'xpathExpression' |
    'yearMonthDuration'
-/* ObjectType should be in quoted string since some may not conform to        */
-/* Identifier and consistency is desired.                                     */
-
-ObjectType ::= String
 
 Category ::= Identifier
 
@@ -284,7 +280,84 @@ ParametersExceptFirst ::= Parameters
 ParenthesizedExpression ::= '(' Expression ')' Parameters*
 
 /* From afw_compile_parse_expression.c                                        */
-/* TS-like type expression (issue #28). Leaves are Adaptive data types.       */
+/* Property name in an object type literal (identifier or string).            */
+
+ObjectTypePropertyName ::= PropertyName | String
+
+ObjectTypeLiteral ::=
+    '{'
+        (
+            ObjectTypePropertyName '?'? ':' Type
+            ( ',' ObjectTypePropertyName '?'? ':' Type )*
+            ','?
+        )?
+    '}'
+
+/* From afw_compile_parse_expression.c                                        */
+
+TupleType ::= '[' ( Type ( ',' Type )* ','? )? ']'
+
+/* From afw_compile_parse_expression.c                                        */
+/* Called with '(' already the current token (see ParenthesizedOrFunctionType). */
+
+FunctionType ::=
+    '(' FunctionTypeParameterList? ')' '=>' Type
+
+FunctionTypeParameterList ::=
+    FunctionTypeParameter ( ',' FunctionTypeParameter )*
+/* Named param: name ?: Type. Bare identifier without ':' is TypeName with    */
+/* optional '[]' only (not '|' / '&'). Non-identifier Type forms use full Type */
+/* (object/tuple/paren/Array<…>).                                             */
+
+FunctionTypeParameter ::=
+    '...'? Identifier '?'? ':' Type |
+    '...'? TypeName ( '[' ']' )* |
+    '...'? (
+        ObjectTypeLiteral |
+        TupleType |
+        ParenthesizedOrFunctionType |
+        'Array' '<' Type '>'
+    )
+
+/* From afw_compile_parse_expression.c                                        */
+/* Current token is '('. Speculative scan chooses FunctionType if '=>'        */
+/* follows the matching ')' or a ':' appears at depth 1 (named parameter).    */
+
+ParenthesizedOrFunctionType ::=
+    FunctionType |
+    '(' Type ')'
+
+/* From afw_compile_parse_expression.c                                        */
+/* Single identifier: resolves to DataType, registered type/interface, or     */
+/* unresolved reference (non-checking). TypeVariableName / InterfaceName are  */
+/* both Identifier; DataType is the closed set of Adaptive data type ids.     */
+
+TypeName ::= DataType | Identifier
+/* 'Array' without '<' is TypeName (data type array or a name "Array").       */
+
+PrimaryType ::=
+    ObjectTypeLiteral |
+    TupleType |
+    ParenthesizedOrFunctionType |
+    'Array' '<' Type '>' |
+    TypeName
+
+/* From afw_compile_parse_expression.c                                        */
+
+ArrayType ::= PrimaryType ( '[' ']' )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+IntersectionType ::= ArrayType ( '&' ArrayType )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+UnionType ::= IntersectionType ( '|' IntersectionType )*
+
+/* From afw_compile_parse_expression.c                                        */
+/* Script type expression (issue #28). Primary leaves are TypeName            */
+/* (DataType or script type/interface name). Hard cut: (array of T) /         */
+/* (object "OT") / meta {…} are not accepted.                                 */
 
 Type ::= UnionType
 
@@ -350,13 +423,29 @@ PragmaStatement ::=
 /* From afw_compile_parse_pragma.c                                            */
 /* Value/expression-position pragma (#Name …). Token is pragma_identifier.    */
 /* Structural forms match decompile #implementation_id where implemented.     */
+/* Target shape for #assignment_target (symbol name or destructure Pattern).  */
+
+AssignmentTargetPragmaShape ::=
+    Identifier |
+    String |
+    AssignmentListDestructureTarget |
+    AssignmentObjectDestructureTarget
+/* #script_function( param* , body [, returnType] ) — decompile form.         */
+
+ScriptFunctionPragmaParameter ::=
+    Identifier ( ':' Type )? ( '=' Expression )?
+
+ScriptFunctionPragmaArgs ::=
+    ( ScriptFunctionPragmaParameter ( ',' ScriptFunctionPragmaParameter )*
+      ',' )?
+    Expression ( ',' Type )?
 
 PragmaValue ::=
     '#block' '(' ( Expression ( ',' Expression )* )? ')' |
     '#assignment_target' '(' Expression ','
-        ( Identifier | String | ListPattern | ObjectPattern ) ')' |
+        AssignmentTargetPragmaShape ')' |
     '#list_expression' '(' Expression ')' |
-    '#script_function' '(' ScriptFunctionArgs ')' |
+    '#script_function' '(' ScriptFunctionPragmaArgs ')' |
     '#template_definition' '(' Expression ( ',' Expression )* ')'
 /* #closure_binding / #function_thunk are recognized but always compile       */
 /* errors (runtime / C-side only; not recompilable from decompile text).      */
@@ -423,10 +512,10 @@ InterfaceName ::= Identifier
 
 InterfaceStatement ::=
     'interface' InterfaceName
-    ( 'extends' TypeName ( ',' TypeName )* )?
+    ( 'extends' Type ( ',' Type )* )?
     ObjectTypeLiteral
     ';'
-/* Object body is TS-like { prop?: Type, ... } (see Type in expression).      */
+/* Object body is an ObjectTypeLiteral (see Type productions in expression).  */
 /* Script-local only; not adaptive object types (issue #28).                  */
 
 /* From afw_compile_parse_script.c                                            */
@@ -853,7 +942,7 @@ Integer ::= '-'? (
     DecimalIntegerLiteral |
     BinaryIntegerLiteral |
     HexIntegerLiteral |
-    OctetIntegerLiteral )
+    OctalIntegerLiteral )
 
 DecimalIntegerLiteral ::= '0' | ( [1-9] [0-9]* )
 
@@ -868,10 +957,16 @@ Double ::= '-'? ( ( DecimalIntegerLiteral '.' [0-9]+ ([eE] [+-]? [0-9]+)? ) |
    'Infinity' | 'INF' | 'NaN' )
 
 /* From afw_compile_lexical.c                                                 */
-/* ZWNJ - Unicode Zero-width non-joiner (0x200c)                              */
-/* ZWJ - Unicode Zero-width joiner (0x200d)                                   */
-/* ID_START is any codepoint with ID_START flag                               */
-/* ID_CONTINUE is any codepoint with ID_CONTINUE flag                         */
+/* Unicode identifier categories (ECMAScript ID_Start / ID_Continue).         */
+/* Not expanded to code-point ranges here.                                    */
+
+ID_START ::= "any Unicode ID_Start code point"
+
+ID_CONTINUE ::= "any Unicode ID_Continue code point"
+
+ZWNJ ::= #x200C
+
+ZWJ ::= #x200D
 
 IdentifierStart ::= ID_START | '$' | '_'
 
