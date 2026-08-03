@@ -182,8 +182,21 @@ assert(sum3(...[1, 2, 3]) === 6);]]></code>
     <section>
         <title>Interface</title>
         <image generated-src="ebnf/syntax/diagram/InterfaceStatement.png" />
-        <paragraph>            
+        <paragraph>
+            Declares a named object shape for script type checking. Optional
+            properties use <literal>?</literal>; use
+            <literal>extends</literal> for one or more bases. See
+            <link href="types.html" text="Types"/> for syntax, examples, and
+            checking flags.
         </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[interface Point {
+    x: integer,
+    y: integer
+};
+const p: Point = { x: 0, y: 0 };]]></code>
+        </section>
     </section>
     <section>
         <title>Let</title>
@@ -250,7 +263,16 @@ assert(sum3(...[1, 2, 3]) === 6);]]></code>
         <title>Type</title>
         <image generated-src="ebnf/syntax/diagram/TypeStatement.png" />
         <paragraph>
+            Declares a local type alias:
+            <literal>type Name = Type;</literal>. See
+            <link href="types.html" text="Types"/> for the type expression
+            grammar, railroad diagrams, and checking flags.
         </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[type Id = integer;
+const x: Id = 3;]]></code>
+        </section>
     </section>
     <section>
         <title>While</title>

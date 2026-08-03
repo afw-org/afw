@@ -3,9 +3,8 @@
     <title>Types</title>
     <paragraph>
         Adaptive Script can annotate variables, function parameters and
-        returns, and local type names with
-        <literal>Adaptive data types</literal> and simple structured types.
-        Leaves are the registered data types such as
+        returns, and local type names with Adaptive data types and simple
+        structured types. Leaves are registered data types such as
         <literal>integer</literal>, <literal>string</literal>,
         <literal>boolean</literal>, <literal>object</literal>,
         <literal>array</literal>, <literal>any</literal>, and
@@ -19,130 +18,338 @@
         <literal>interface</literal> declarations define shapes used only
         for script type checking.
     </paragraph>
+    <paragraph>
+        Railroad diagrams below match the harvested grammar productions.
+        For the complete syntax, see the
+        <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>.
+    </paragraph>
 
-    <header>Syntax overview</header>
-    <code><![CDATA[const n: integer = 1;
-const s: string = "hi";
+    <section>
+        <title>Type</title>
+        <image generated-src="ebnf/syntax/diagram/Type.png" />
+        <paragraph>
+            A <literal>Type</literal> is a union of intersection types (see
+            below). That is the top production used wherever a type is written:
+            after <literal>:</literal> on bindings and parameters, in
+            <literal>type</literal> aliases, and in object and function type
+            forms.
+        </paragraph>
+        <paragraph>
+            Older spellings such as <literal>(array of integer)</literal> or
+            <literal>(object "…")</literal> are not accepted.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const n: integer = 1;
 const a: integer[] = [1, 2];
-const b: Array<string> = ["x"];
-const t: [integer, string] = [1, "a"];
 const u: integer | string = 1;
 const o: { host: string, port?: integer } = { host: "h" };
 const f: (a: integer) => integer = function (a: integer): integer {
     return a + 1;
-};
+};]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>TypeName and DataType</title>
+        <image generated-src="ebnf/syntax/diagram/TypeName.png" />
+        <image generated-src="ebnf/syntax/diagram/DataType.png" />
+        <image generated-src="ebnf/syntax/diagram/PrimaryType.png" />
+        <paragraph>
+            A primary type is a type name, an object type literal, a tuple,
+            a parenthesized or function type, or
+            <literal>Array&lt;Type&gt;</literal>. A type name is either an
+            Adaptive data type id or a name declared with
+            <literal>type</literal> / <literal>interface</literal> in the
+            script.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const x: integer = 1;
+const y: string = "a";
+const z: any = 1;
 
 type Id = integer;
-interface Base {
+const id: Id = 3;]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>ArrayType</title>
+        <image generated-src="ebnf/syntax/diagram/ArrayType.png" />
+        <paragraph>
+            Write an array of element type <literal>T</literal> as
+            <literal>T[]</literal>, or as <literal>Array&lt;T&gt;</literal>
+            (same meaning). Multiple <literal>[]</literal> suffixes nest
+            (for example <literal>integer[][]</literal>).
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const a: integer[] = [1, 2];
+const b: Array<string> = ["x"];
+const c: integer[][] = [[1], [2, 3]];]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>TupleType</title>
+        <image generated-src="ebnf/syntax/diagram/TupleType.png" />
+        <paragraph>
+            A tuple type lists element types in order inside
+            <literal>[</literal> … <literal>]</literal>. Length and each
+            position matter when the value is known (for example a list
+            literal).
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const t: [integer, string] = [1, "a"];]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>IntersectionType</title>
+        <image generated-src="ebnf/syntax/diagram/IntersectionType.png" />
+        <paragraph>
+            An intersection type is one or more array types joined with
+            <literal>&amp;</literal>. A value must satisfy every arm.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[/* Used with interfaces or object shapes, for example: */
+type Labeled = { id: integer } & { name: string };
+const v: Labeled = { id: 1, name: "a" };]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>UnionType</title>
+        <image generated-src="ebnf/syntax/diagram/UnionType.png" />
+        <paragraph>
+            A union type is one or more intersection types joined with
+            <literal>|</literal>. A value may match any arm.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const u: integer | string = 1;
+const v: integer | string | boolean = true;]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>ObjectTypeLiteral</title>
+        <image generated-src="ebnf/syntax/diagram/ObjectTypeLiteral.png" />
+        <image generated-src="ebnf/syntax/diagram/ObjectTypePropertyName.png" />
+        <paragraph>
+            An object type literal lists named properties with types. A
+            trailing <literal>?</literal> after a property name marks it
+            optional. Property names may be identifiers or string literals.
+        </paragraph>
+        <paragraph>
+            This is a script shape only. It does not import an adaptive object
+            type from an adapter catalog.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const o: { host: string, port?: integer } = { host: "h" };]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>FunctionType</title>
+        <image generated-src="ebnf/syntax/diagram/ParenthesizedOrFunctionType.png" />
+        <image generated-src="ebnf/syntax/diagram/FunctionType.png" />
+        <image generated-src="ebnf/syntax/diagram/FunctionTypeParameterList.png" />
+        <image generated-src="ebnf/syntax/diagram/FunctionTypeParameter.png" />
+        <paragraph>
+            A function type describes a callable value:
+            <literal>(parameters) =&gt; Return</literal>. Parameters may be
+            named with optional <literal>?</literal> and rest
+            <literal>...</literal>, or written as bare type names. A
+            parenthesized type that is not a function type is still a
+            parenthesized <literal>Type</literal>.
+        </paragraph>
+        <paragraph>
+            Script function values use
+            <literal>function (…): Return</literal> (colon before the return
+            type). That is the value form; the type annotation form uses
+            <literal>=&gt;</literal>.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const f: (a: integer) => integer = function (a: integer): integer {
+    return a + 1;
+};
+assert(f(2) === 3);
+
+const pred: (...values: any) => boolean = function (n) {
+    return n % 2 === 0;
+};]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>OptionalType and OptionalReturnType</title>
+        <image generated-src="ebnf/syntax/diagram/OptionalType.png" />
+        <image generated-src="ebnf/syntax/diagram/OptionalReturnType.png" />
+        <paragraph>
+            An optional type is a leading <literal>:</literal> and a
+            <literal>Type</literal>. That form appears on
+            <literal>const</literal> / <literal>let</literal> bindings,
+            pattern leaves, parameters, and similar places. Optional return
+            type is the same idea on a script function declaration.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const n: integer = 1;
+let s: string = "a";
+function add1(a: integer): integer {
+    return a + 1;
+}]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>Type statement</title>
+        <image generated-src="ebnf/syntax/diagram/TypeStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/TypeVariableName.png" />
+        <paragraph>
+            <literal>type Name = Type;</literal> declares a local alias for a
+            type. The name may then be used as a type name in the same script
+            unit.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[type Id = integer;
+const x: Id = 3;]]></code>
+        </section>
+    </section>
+
+    <section>
+        <title>Interface statement</title>
+        <image generated-src="ebnf/syntax/diagram/InterfaceStatement.png" />
+        <image generated-src="ebnf/syntax/diagram/InterfaceName.png" />
+        <paragraph>
+            <literal>interface</literal> declares a named object shape. Use
+            <literal>extends</literal> for one or more base interfaces.
+            Optional properties use <literal>?</literal> after the property
+            name.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[interface Base {
     id: integer
 };
 interface Person extends Base {
     name: string,
     age?: integer
 };
-const p: Person = { id: 1, name: "ada" };]]></code>
-    <paragraph>
-        <literal>T[]</literal> and <literal>Array&lt;T&gt;</literal> describe
-        the same array type. Optional properties use <literal>?</literal>.
-        Unions use <literal>|</literal>; intersections use
-        <literal>&amp;</literal>. Function types use
-        <literal>(parameters) =&gt; Return</literal>.
-    </paragraph>
+const p: Person = { id: 1, name: "a" };]]></code>
+        </section>
+    </section>
 
-    <header>Type checking (default off)</header>
-    <paragraph>
-        Type annotations are always accepted by the compiler. Checking is
-        off by default so existing scripts keep working. Turn checking on
-        with environment flags when you want mismatches reported.
-    </paragraph>
-    <list>
-        <item>
-            <literal>compile:typeCheck</literal> — checks at compile time when
-            the right-hand side type is known, and at runtime on assignment
-            and script function parameters.
-        </item>
-        <item>
-            <literal>compile:typeCheckCompileOnly</literal> — compile-time
-            checks only (used instead of full typeCheck when both are set).
-        </item>
-        <item>
-            <literal>compile:noImplicitAny</literal> — when checking is active,
-            a missing annotation is an error instead of
-            <literal>any</literal>.
-        </item>
-        <item>
-            <literal>compile:strictNullChecks</literal> — stricter handling of
-            <literal>null</literal> and undefined.
-        </item>
-        <item>
-            <literal>compile:strict</literal> — turns on typeCheck,
-            noImplicitAny, and strictNullChecks together.
-        </item>
-    </list>
-    <paragraph>
-        Flags may be set from the host environment or with
-        <literal>flag_set</literal> in a script. When compile checking is
-        on, calls to known Adaptive functions are also checked at compile
-        time against each function’s parameter and return data types (when
-        those types can be determined without running the call).
-    </paragraph>
+    <section>
+        <title>Type checking (default off)</title>
+        <paragraph>
+            Type annotations are always accepted by the compiler. Checking is
+            off by default so existing scripts keep working. Turn checking on
+            with environment flags when you want mismatches reported.
+        </paragraph>
+        <list>
+            <item>
+                <literal>compile:typeCheck</literal> — checks at compile time
+                when the right-hand side type is known, and at runtime on
+                assignment and script function parameters.
+            </item>
+            <item>
+                <literal>compile:typeCheckCompileOnly</literal> — compile-time
+                checks only (used instead of full typeCheck when both are set).
+            </item>
+            <item>
+                <literal>compile:noImplicitAny</literal> — when checking is
+                active, a missing annotation is an error instead of
+                <literal>any</literal>.
+            </item>
+            <item>
+                <literal>compile:strictNullChecks</literal> — stricter handling
+                of <literal>null</literal> and undefined.
+            </item>
+            <item>
+                <literal>compile:strict</literal> — turns on typeCheck,
+                noImplicitAny, and strictNullChecks together.
+            </item>
+        </list>
+        <paragraph>
+            Flags may be set from the host environment or with
+            <literal>flag_set</literal> in a script. When compile checking is
+            on, calls to known Adaptive functions are also checked at compile
+            time against each function’s parameter and return data types (when
+            those types can be determined without running the call).
+        </paragraph>
+    </section>
 
-    <header>What is checked</header>
-    <paragraph>
-        When checking is on:
-    </paragraph>
-    <list>
-        <item>
-            Data type leaves (for example <literal>integer</literal> versus
-            <literal>string</literal>).
-        </item>
-        <item>
-            Unions and intersections.
-        </item>
-        <item>
-            Array types: the value must be an array; element types are checked
-            when the value is known (for example an array literal).
-        </item>
-        <item>
-            Tuples: length and each position when the value is known.
-        </item>
-        <item>
-            Object and interface shapes: required properties must be present;
-            property values must match their types;
-            <literal>extends</literal> bases are included. An object literal
-            may not include properties outside the type (including when used
-            as a function argument). Object literals with spreads or computed
-            property names skip that extra-key check. At runtime, values that
-            are not object literals may still have extra properties, so
-            adaptive objects can be wider than the script type.
-        </item>
-        <item>
-            Function return types when a return type is declared.
-        </item>
-        <item>
-            Function types: script functions and closures are checked for
-            parameter and return compatibility; other function values only
-            need data type <literal>function</literal>.
-        </item>
-        <item>
-            Array and object patterns: binding annotations such as
-            <literal>const [a: integer] = …</literal> or
-            <literal>{ host: h: string }</literal> are enforced when checking
-            is on.
-        </item>
-    </list>
-    <paragraph>
-        Bindings without an annotation, and data that arrives from outside the
-        script, are treated as <literal>any</literal> at compile time unless
-        <literal>noImplicitAny</literal> is set. Runtime data type and adaptive
-        object-type rules still apply on their own.
-    </paragraph>
+    <section>
+        <title>What is checked</title>
+        <paragraph>
+            When checking is on:
+        </paragraph>
+        <list>
+            <item>
+                Data type leaves (for example <literal>integer</literal>
+                versus <literal>string</literal>).
+            </item>
+            <item>
+                Unions and intersections.
+            </item>
+            <item>
+                Array types: the value must be an array; element types are
+                checked when the value is known (for example an array
+                literal).
+            </item>
+            <item>
+                Tuples: length and each position when the value is known.
+            </item>
+            <item>
+                Object and interface shapes: required properties must be
+                present; property values must match their types;
+                <literal>extends</literal> bases are included. An object
+                literal may not include properties outside the type (including
+                when used as a function argument). Object literals with spreads
+                or computed property names skip that extra-key check. At
+                runtime, values that are not object literals may still have
+                extra properties, so adaptive objects can be wider than the
+                script type.
+            </item>
+            <item>
+                Function return types when a return type is declared.
+            </item>
+            <item>
+                Function types: script functions and closures are checked for
+                parameter and return compatibility; other function values only
+                need data type <literal>function</literal>.
+            </item>
+            <item>
+                Array and object patterns: binding annotations such as
+                <literal>const [a: integer] = …</literal> or
+                <literal>{ host: h: string }</literal> are enforced when
+                checking is on.
+            </item>
+        </list>
+        <paragraph>
+            Bindings without an annotation, and data that arrives from outside
+            the script, are treated as <literal>any</literal> at compile time
+            unless <literal>noImplicitAny</literal> is set. Runtime data type
+            and adaptive object-type rules still apply on their own.
+        </paragraph>
+    </section>
 
-    <header>Examples with checking</header>
-    <paragraph>
-        With <literal>compile:typeCheck</literal> active:
-    </paragraph>
-    <code><![CDATA[const ok: integer = 1;
+    <section>
+        <title>Examples with checking</title>
+        <paragraph>
+            With <literal>compile:typeCheck</literal> active:
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[const ok: integer = 1;
 // const bad: integer = "no";   // type error
 
 const nums: integer[] = [1, 2, 3];
@@ -155,4 +362,6 @@ interface Point {
 const p: Point = { x: 0, y: 0 };
 // const q: Point = { x: 0 };   // missing required y
 // const r: Point = { x: 0, y: 0, z: 1 };  // extra property on object literal]]></code>
+        </section>
+    </section>
 </doc>
