@@ -48416,28 +48416,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_compiler_script \
-    "compiler_script"
+#define AFW_Q_compiler_internal \
+    "compiler_internal"
 
-/** @brief 'afw_utf8_t' for AFW_Q_compiler_script */
-#define afw_s_compiler_script \
-    (&afw_self_v_compiler_script.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compiler_internal */
+#define afw_s_compiler_internal \
+    (&afw_self_v_compiler_internal.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_compiler_script */
-#define afw_self_s_compiler_script \
-    (afw_self_v_compiler_script.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compiler_internal */
+#define afw_self_s_compiler_internal \
+    (afw_self_v_compiler_internal.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_compiler_script */
+/** @brief 'afw_value_string_t' for AFW_Q_compiler_internal */
 extern const afw_value_string_t \
-    afw_self_v_compiler_script;
+    afw_self_v_compiler_internal;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_compiler_script */
-#define afw_z_compiler_script \
-    (afw_self_v_compiler_script.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compiler_internal */
+#define afw_z_compiler_internal \
+    (afw_self_v_compiler_internal.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_compiler_script */
-#define afw_v_compiler_script \
-    (&afw_self_v_compiler_script.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_compiler_internal */
+#define afw_v_compiler_internal \
+    (&afw_self_v_compiler_internal.pub)
 
 
 
@@ -131279,7 +131279,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2151 \
-    "These are functions that support compiled scripts at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
+    "Functions that support compiled Adaptive Script at runtime (const, let, assign, control flow, …). They are mainly intended to be called by compiled units produced by the Adaptive compiler (including decompile/recompile). They remain in the function registry and docs for debugging, but are not the normal authoring surface — prefer language syntax. Function ids stay stable for decompile round-trip."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2151 */
 #define afw_s_zz__2151 \
@@ -157174,6 +157174,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Adaptive_compiler_internal_script_runtime \
+    "Adaptive compiler-internal script runtime"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_s_zz__Adaptive_compiler_internal_script_runtime \
+    (&afw_self_v_zz__Adaptive_compiler_internal_script_runtime.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_self_s_zz__Adaptive_compiler_internal_script_runtime \
+    (afw_self_v_zz__Adaptive_compiler_internal_script_runtime.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+extern const afw_value_string_t \
+    afw_self_v_zz__Adaptive_compiler_internal_script_runtime;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_z_zz__Adaptive_compiler_internal_script_runtime \
+    (afw_self_v_zz__Adaptive_compiler_internal_script_runtime.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_v_zz__Adaptive_compiler_internal_script_runtime \
+    (&afw_self_v_zz__Adaptive_compiler_internal_script_runtime.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adaptive_compiler_related_functions \
     "Adaptive compiler related functions"
 
@@ -157222,32 +157248,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_expression */
 #define afw_v_zz__Adaptive_compiler_runtime_support_for_expression \
     (&afw_self_v_zz__Adaptive_compiler_runtime_support_for_expression.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_compiler_runtime_support_for_script \
-    "Adaptive compiler runtime support for script"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_s_zz__Adaptive_compiler_runtime_support_for_script \
-    (&afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_self_s_zz__Adaptive_compiler_runtime_support_for_script \
-    (afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_compiler_runtime_support_for_script;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_z_zz__Adaptive_compiler_runtime_support_for_script \
-    (afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_v_zz__Adaptive_compiler_runtime_support_for_script \
-    (&afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.pub)
 
 
 

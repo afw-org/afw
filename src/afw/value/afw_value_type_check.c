@@ -1534,14 +1534,16 @@ afw_value_type_check_adaptive_function_call(
     }
 
     /*
-     * Script-support / statement IR (const, let, if, …): formals in metadata
-     * may not match compiler argv — skip. Prefer scriptSupport flag; fall
-     * back to category for definitions not yet regenerated.
+     * Script IR (const, let, if, …): formals in metadata may not match
+     * compiler argv — skip. Prefer scriptSupport flag; else category
+     * compiler_internal (legacy name compiler_script still accepted).
      */
     if (afw_value_is_boolean_true(function->scriptSupport) ||
         (function->category &&
-            afw_utf8_equal_utf8_z(&function->category->internal,
-                "compiler_script")))
+            (afw_utf8_equal_utf8_z(&function->category->internal,
+                "compiler_internal") ||
+             afw_utf8_equal_utf8_z(&function->category->internal,
+                "compiler_script"))))
     {
         return;
     }

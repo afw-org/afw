@@ -28464,7 +28464,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_assign = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__assign,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_assign,
     &afw_self_v_zz___afw__AdaptiveFunction__assign,
     &afw_self_v_assign,
@@ -28615,7 +28615,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_break = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__break,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_break,
     &afw_self_v_zz___afw__AdaptiveFunction__break,
     &afw_self_v_break,
@@ -28842,7 +28842,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_const = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__const,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_const,
     &afw_self_v_zz___afw__AdaptiveFunction__const,
     &afw_self_v_const,
@@ -28955,7 +28955,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_continue = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__continue,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_continue,
     &afw_self_v_zz___afw__AdaptiveFunction__continue,
     &afw_self_v_continue,
@@ -29144,7 +29144,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_do_while = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__do_while,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_do_while,
     &afw_self_v_zz___afw__AdaptiveFunction__do_while,
     &afw_self_v_do_while,
@@ -29409,7 +29409,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_for = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__for,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_for,
     &afw_self_v_zz___afw__AdaptiveFunction__for,
     &afw_self_v_for,
@@ -29636,7 +29636,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_for_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__for_of,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_for_of,
     &afw_self_v_zz___afw__AdaptiveFunction__for_of,
     &afw_self_v_for_of,
@@ -29863,7 +29863,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_if = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__if,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_if,
     &afw_self_v_zz___afw__AdaptiveFunction__if,
     &afw_self_v_if,
@@ -30090,7 +30090,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_let = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__let,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_let,
     &afw_self_v_zz___afw__AdaptiveFunction__let,
     &afw_self_v_let,
@@ -30203,7 +30203,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_rethrow = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__rethrow,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_rethrow,
     &afw_self_v_zz___afw__AdaptiveFunction__rethrow,
     &afw_self_v_rethrow,
@@ -30354,7 +30354,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_return = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__return,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_return,
     &afw_self_v_zz___afw__AdaptiveFunction__return,
     &afw_self_v_return,
@@ -30581,7 +30581,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_switch = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__switch,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_switch,
     &afw_self_v_zz___afw__AdaptiveFunction__switch,
     &afw_self_v_switch,
@@ -30770,7 +30770,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_throw = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__throw,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_throw,
     &afw_self_v_zz___afw__AdaptiveFunction__throw,
     &afw_self_v_throw,
@@ -31035,7 +31035,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_try = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__try,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_try,
     &afw_self_v_zz___afw__AdaptiveFunction__try,
     &afw_self_v_try,
@@ -31224,7 +31224,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_while = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__while,
-    &afw_self_v_compiler_script,
+    &afw_self_v_compiler_internal,
     &afw_self_v_while,
     &afw_self_v_zz___afw__AdaptiveFunction__while,
     &afw_self_v_while,

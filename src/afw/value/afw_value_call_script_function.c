@@ -9,7 +9,10 @@
 
 /**
  * @file afw_value_call_script_function.c
- * @brief Implementation of afw_value interface for call_script_function
+ * @brief Call a script function (bind formals, evaluate body, return check).
+ *
+ * Formal evaluate/typeCheck: afw_function_script_evaluate_parameter_with_type
+ * in afw_function_compiler_internal.c — not afw_function_evaluate_parameter.
  */
 
 #include "afw_internal.h"
@@ -269,13 +272,15 @@ impl_afw_value_optional_evaluate(
                             rest_array, p, xctx);
                     }
                     else if (parameter_number <= call_argc) {
-                        value = afw_function_evaluate_parameter_with_type(
-                            *arg, parameter_number,
-                            (*params)->type,
-                            script->contextual
-                                ? script->contextual
-                                : self->args.contextual,
-                            p, xctx);
+                        /* Script formal: type graph + unit typeCheck policy. */
+                        value =
+                            afw_function_script_evaluate_parameter_with_type(
+                                *arg, parameter_number,
+                                (*params)->type,
+                                script->contextual
+                                    ? script->contextual
+                                    : self->args.contextual,
+                                p, xctx);
                     }
                     /* parameters[parameter_number - 1] ← this value */
                     bound_values[parameter_number - 1] = value;

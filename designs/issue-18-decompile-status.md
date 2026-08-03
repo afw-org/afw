@@ -4,6 +4,7 @@
 **Tip (as of 2026-07-31):** `3a7ad36d` — *fix: polish compiler listing for Fiddle* (includes prior stringify pure JSON + replacer, decompile fidelity, crypto TRY/FINALLY ride-alongs).  
 **User-facing notes:** `whats-new.md` — section *stringify, decompile, compiler listing, and binary text*.  
 **Emit vs accept checklist:** [`decompile-compiler-private-inventory.md`](decompile-compiler-private-inventory.md); tests under `src/afw/tests/compiler/decompile_accept/`.  
+**Category:** script IR ops use Adaptive function category **`compiler_internal`** (was `compiler_script`); function ids unchanged for round-trip.  
 **Verify:** decompile/pragma/listing/stringify tests green under `--cdev`; fulldev+valgrind was green at fidelity tip `71bcfc70` (re-run before PR if desired).
 
 ## Goal (locked)

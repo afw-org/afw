@@ -58,3 +58,17 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | `decompile.as` / `pragma.as` | Sample string expects / #block evaluate |
 
 When adding a new decompile `#implementation_id`, update this table, accept dispatch, EBNF, and at least one accept or round-trip case.
+
+## `compiler_internal` naming
+
+| Layer | Name |
+|-------|------|
+| Adaptive function **category** | **`compiler_internal`** (was `compiler_script`) |
+| Execute source file | `afw_function_compiler_internal.c` |
+| Script formal evaluate | `afw_function_script_evaluate_parameter_with_type` (not in `afw_function.c`) |
+
+**Do not** use category name `private` — reserve for a possible future class/member visibility story.
+
+Function **ids** (`const`, `assign`, …) stay stable for **decompile → compile** round-trip. Distinct from **`#…` compiler-private value forms** and author **`#compile`**.
+
+**Built-in formals:** `afw_function.c` / `AFW_FUNCTION_EVALUATE_*` only — no script typeCheck in that hot path.

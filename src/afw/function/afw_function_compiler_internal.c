@@ -1,14 +1,25 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for compiler_script runtime
+ * Adaptive Framework — script compiler-internal runtime
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_compiler_script.c
- * @brief Adaptive function execute implementations for category `compiler_script`.
+ * @file afw_function_compiler_internal.c
+ * @brief Script IR runtime (not built-in Adaptive library formals).
+ *
+ * Contents:
+ * - execute_* for Adaptive function category `compiler_internal` (function
+ *   **ids** like const/let/assign stay stable for decompile round-trip).
+ *   Documented for debug; not normal author surface syntax.
+ * - Script formal evaluate: afw_function_script_evaluate_parameter_with_type
+ *   (used only by afw_value_call_script_function).
+ * - Pattern / assign bind helpers: afw_function_script_assign_pattern and
+ *   const/let/assign type checks under unit typeCheck policy.
+ *
+ * Built-in Adaptive formals: afw_function.c / AFW_FUNCTION_EVALUATE_* only.
  */
 
 #include "afw_internal.h"
@@ -33,7 +44,65 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
-/* Public wrapper for script function Pattern parameters (and similar). */
+/*
+ * Evaluate a script-function formal (call_script_function only).
+ *
+ * When runtime typeCheck is on for contextual's unit: strict assignability.
+ * Otherwise: leaf data_type convert (legacy). Not used by Adaptive built-ins.
+ */
+AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_function_script_evaluate_parameter_with_type(
+    const afw_value_t *value,
+    afw_size_t parameter_number,
+    const afw_value_type_t *type,
+    const afw_compile_value_contextual_t *contextual,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *result;
+    const afw_data_type_t *want_dt;
+
+    /* Leaf convert only; composites use type_check when enabled. */
+    want_dt = NULL;
+    if (type && type->kind == afw_value_type_kind_data_type) {
+        want_dt = type->data_type;
+    }
+
+    if (type) {
+        afw_value_type_check_call_arg_object_literal(type, value,
+            "parameter", contextual, xctx);
+    }
+
+    if (afw_value_is_defined_and_evaluated(value) &&
+        (!want_dt || want_dt == afw_data_type_any ||
+            afw_value_get_data_type(value, xctx) == want_dt))
+    {
+        if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
+            afw_value_type_check_assignable(type, value,
+                "parameter", contextual, xctx);
+        }
+        return value;
+    }
+
+    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
+    result = afw_value_evaluate(value, p, xctx);
+
+    if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
+        afw_value_type_check_assignable(type, result, "parameter",
+            contextual, xctx);
+    }
+    else if (result && want_dt && want_dt != afw_data_type_any &&
+        afw_value_get_data_type(result, xctx) != want_dt)
+    {
+        result = afw_value_convert(result, want_dt, true, p, xctx);
+    }
+
+    afw_xctx_evaluation_stack_pop_parameter_number(xctx);
+    return result;
+}
+
+
+/* Pattern parameters and shared destructure bind paths. */
 AFW_DEFINE_INTERNAL(void)
 afw_function_script_assign_pattern(
     const afw_value_t *target,

@@ -318,7 +318,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_base64Binary.c
     function/afw_function_compiler.c
     function/afw_function_compiler_expression.c
-    function/afw_function_compiler_script.c
+    function/afw_function_compiler_internal.c
     function/afw_function_date.c
     function/afw_function_dateTime.c
     function/afw_function_double.c

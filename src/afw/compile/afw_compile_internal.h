@@ -986,10 +986,26 @@ afw_compile_script_type_register(
     const afw_value_type_t *type);
 
 /**
- * @brief Bind a value into an assignment target / Pattern (runtime).
+ * @brief Evaluate a script-function formal (script IR only).
  *
- * Used by script function Pattern parameters and shared destructure paths.
- * target is symbol_reference, assignment_target (list/object Pattern), etc.
+ * Not for Adaptive built-in execute bodies (use AFW_FUNCTION_EVALUATE_*).
+ * In afw_function_compiler_internal.c; only call_script_function uses this.
+ * Runtime typeCheck on unit → strict assignability; else leaf convert.
+ */
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_function_script_evaluate_parameter_with_type(
+    const afw_value_t *value,
+    afw_size_t parameter_number,
+    const afw_value_type_t *type,
+    const afw_compile_value_contextual_t *contextual,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Bind a value into an assignment target / Pattern (script IR).
+ *
+ * Pattern parameters and destructure; target is symbol_reference,
+ * assignment_target, etc. In afw_function_compiler_internal.c.
  */
 AFW_DECLARE_INTERNAL(void)
 afw_function_script_assign_pattern(

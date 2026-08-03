@@ -6132,9 +6132,9 @@ afw_function_execute_void_operator(
 /** @} */
 
 
-/** @addtogroup afw_functions_compiler_script compiler_script functions
+/** @addtogroup afw_functions_compiler_internal compiler_internal functions
  *
- * compiler_script adaptive functions.
+ * compiler_internal adaptive functions.
  *
  * @{
  */

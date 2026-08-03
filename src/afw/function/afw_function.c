@@ -8,7 +8,11 @@
 
 /**
  * @file afw_function.c
- * @brief Runtime support for adaptive function call and execute.
+ * @brief Built-in Adaptive function execute helpers.
+ *
+ * AFW_FUNCTION_EVALUATE_* → afw_function_evaluate_parameter /
+ * evaluate_required_parameter. Definition-driven leaf formals; no script
+ * typeCheck. Script formals and IR ops: afw_function_compiler_internal.c.
  */
 
 #include "afw_internal.h"
@@ -225,7 +229,10 @@ afw_function_evaluate_function_parameter(
 
 
 
-/* Evaluate a value and cast if necessary without throwing error. */
+/*
+ * Built-in formal: eval + definition metadata + optional convert to caller's
+ * requested leaf data_type. Not script typeCheck (see compiler_internal).
+ */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_parameter(
     afw_function_execute_t *x,
@@ -240,7 +247,7 @@ afw_function_evaluate_parameter(
     /* Push parameter number on evaluation stack. */
     afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
 
-    /* Get function parameter from function definition.  */
+    /* Formal metadata from Adaptive function definition. */
     parameter = x->function->parameters[
             (
                 (parameter_number <= x->function->parameters_count)
@@ -349,68 +356,4 @@ afw_function_evaluate_required_parameter(
 
 
 
-/* Evaluate a parameter with dataTypeParameter. */
-/* Note: This is only called by afw_value_call_script_function at the moment. */
-AFW_DEFINE(const afw_value_t*)
-afw_function_evaluate_parameter_with_type(
-    const afw_value_t* value,
-    afw_size_t parameter_number,
-    const afw_value_type_t *type,
-    const afw_compile_value_contextual_t *contextual,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    const afw_value_t *result;
-    const afw_data_type_t *want_dt;
-
-    /*
-     * Only leaf Adaptive data types participate in convert until full
-     * type-check lands (issue #28). Composites (array-of, union, …) do not
-     * use the data_type union arm.
-     */
-    want_dt = NULL;
-    if (type && type->kind == afw_value_type_kind_data_type) {
-        want_dt = type->data_type;
-    }
-
-    /* Object-literal arg excess before evaluate (issue #28 call-site). */
-    if (type) {
-        afw_value_type_check_call_arg_object_literal(type, value,
-            "parameter", contextual, xctx);
-    }
-
-    /* Just return if no evaluation or conversion needed. */
-    if (afw_value_is_defined_and_evaluated(value) &&
-        (!want_dt || want_dt == afw_data_type_any ||
-            afw_value_get_data_type(value, xctx) == want_dt))
-    {
-        if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
-            afw_value_type_check_assignable(type, value,
-                "parameter", contextual, xctx);
-        }
-        return value;
-    }
-
-    /* Push parameter number on evaluation stack. */
-    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
-
-    /* Evaluate value. */
-    result = afw_value_evaluate(value, p, xctx);
-
-    /*
-     * With runtime type checking on: strict assignability (no convert).
-     * Otherwise: convert to leaf data type when requested (legacy path).
-     */
-    if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
-        afw_value_type_check_assignable(type, result, "parameter", contextual, xctx);
-    }
-    else if (result && want_dt && want_dt != afw_data_type_any &&
-        afw_value_get_data_type(result, xctx) != want_dt)
-    {
-        result = afw_value_convert(result, want_dt, true, p, xctx);
-    }
-
-    /* Pop parameter number from evaluation stack and return result. */
-    afw_xctx_evaluation_stack_pop_parameter_number(xctx);
-    return result;
-}
 

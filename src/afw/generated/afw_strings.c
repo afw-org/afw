@@ -11192,9 +11192,9 @@ afw_self_v_compiler_expression = {
 };
 
 const afw_value_string_t
-afw_self_v_compiler_script = {
+afw_self_v_compiler_internal = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_compiler_script)
+    AFW_UTF8_LITERAL(AFW_Q_compiler_internal)
 };
 
 const afw_value_string_t
@@ -36290,6 +36290,12 @@ afw_self_v_zz__Adaptive_Framework_extension_manifest_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Adaptive_compiler_internal_script_runtime = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_compiler_internal_script_runtime)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Adaptive_compiler_related_functions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_compiler_related_functions)
@@ -36299,12 +36305,6 @@ const afw_value_string_t
 afw_self_v_zz__Adaptive_compiler_runtime_support_for_expression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_compiler_runtime_support_for_expression)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Adaptive_compiler_runtime_support_for_script = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Adaptive_compiler_runtime_support_for_script)
 };
 
 const afw_value_string_t

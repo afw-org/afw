@@ -1,12 +1,12 @@
 #!/usr/bin/env perl
 
 #**
-# @file compiler_script.pm
+# @file compiler_internal.pm
 # @ingroup afw_bindings_perl
-# @brief This file contains the Perl bindings for the compiler_script category.
+# @brief This file contains the Perl bindings for the compiler_internal category.
 #*
 
-package afw::compiler_script;
+package afw::compiler_internal;
 use strict;
 use warnings;
 
@@ -32,7 +32,7 @@ our @EXPORT_OK = qw(
 
 =head1 NAME
 
-afw::compiler_script - Perl module for compiler_script functions
+afw::compiler_internal - Perl module for compiler_internal functions
 
 =head2 Functions
 
