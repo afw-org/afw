@@ -1,33 +1,40 @@
-# Issue #28 — TS-like type syntax and opt-in checking
+# Issue #28 — Type syntax and opt-in checking
 
 **Branch:** `issue-#28`  
-**Status:** Implemented for merge — syntax, IR, decompile, opt-in checking, handbook, tests.
+**Status:** Implemented for merge — syntax, type graph, decompile, opt-in checking (flags + pragma), structural rules, excess on object literals, Adaptive formals (see companion pad), handbook, tests.
 
 ## Decisions
 
 - **Hard cut** of old Adaptive Type spelling (`(array of T)`, `(object "OT")`, `meta {…}`).
-- Reshape **`afw_value_type_t`** (drop param union + `value_meta_object`); TS-like graph in `afw_value_internal.h`.
+- Reshape **`afw_value_type_t`** (drop param union + `value_meta_object`); structured graph in `afw_value_internal.h`.
 - Leaves = permanent **`afw_data_type_*`** pointers (`any` / `void` / … by address).
 - Missing annotation → **`any`** (error when `noImplicitAny` and checking active).
 - Script-local **`type` / `interface` (+ multi `extends`)**; **not** adaptive object types / OT catalogs.
 - Arrays: **`T[]`** and **`Array<T>`** (same); tuples **`[T,U]`**; unions **`|`**; intersections **`&`**.
-- Function types: **`(a: T) => R`** (parse/store; assignability is “is a function” only for now).
-- **Checking default off**; flags + `#typecheck` pragma to enforce.
-- Structural typing for objects: required props + property types + `extends`; **extra properties allowed**.
+- Function types: **`(a: T) => R`** — script functions/closures checked structurally (params contravariant, return covariant); other function values only need data type `function`.
+- **Checking default off**; opt-in via **flags** (handbook) and optional **`#typecheck`** pragma (per compile unit).
+- Object/interface structural: required props + property types + `extends`.
+- **Excess properties (compile):** object **literals** may not include keys outside the type; nested literals checked; **spreads / computed keys skip**; **runtime** assign of non-literals stays open (adaptive-friendly).
+
+## Companion work
+
+- Adaptive function compile formals: `designs/adaptive-function-compile-typecheck.md` (shipped on this branch).
+- Compile-time **optimize** from known types: **not** this issue — separate pad/issue later (`designs/compile-optimize-notes.md`).
 
 ## Key files
 
 | Area | Path |
 |------|------|
-| Type IR | `src/afw/value/afw_value_internal.h` (`afw_value_type_t`) |
+| Type graph | `src/afw/value/afw_value_internal.h` (`afw_value_type_t`) |
 | Parse Type | `src/afw/compile/afw_compile_parse_expression.c` |
 | type/interface statements | `src/afw/compile/afw_compile_parse_script.c` |
 | `#typecheck` pragma | `src/afw/compile/afw_compile_parse_pragma.c` |
-| Assignability | `src/afw/value/afw_value_type_check.c` |
+| Assignability / excess / Adaptive formals | `src/afw/value/afw_value_type_check.c` |
+| Call create (Adaptive formal gate) | `src/afw/value/afw_value_call_built_in_function.c` |
 | Decompile | `src/afw/value/afw_value_decompile.c` |
 | Flags | `src/afw/flag/afw_flag.c`, `generate/strings/strings.txt` |
-| Handbook | `src/afw/doc/reference/language/types.xml` |
-| Tests | `src/afw/tests/compiler/type_syntax.as`, `type_check.as` |
+| Handbook | `src/afw/doc/reference/language/types.xml` (flags-first authoring) |
+| Tests | `type_syntax.as`, `type_check_flags.as`, `type_check.as` |
 | User note | `whats-new.md` (Adaptive Script types) |
 
 ## Type-check flags (default off)
@@ -39,42 +46,48 @@
 | `compile:typeCheck` | compile + runtime |
 | `compile:noImplicitAny` | require annotations when checking is active |
 | `compile:strictNullChecks` | stricter null/undefined assignability |
-| `compile:strict` | includes typeCheck + noImplicitAny + strictNullChecks |
+| `compile:strict` | typeCheck + noImplicitAny + strictNullChecks |
 
 Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value.h`.
 
 **Where checks run**
 
 - **Runtime** (mode `on`): assignment, script function parameters, and function return values.
-- **Compile** (mode `on` or `compileOnly`): const/let/assign when RHS type is known (literals; typed symbols via type-to-type; untyped symbols with open structural only when needed); return expressions; call sites when the callee is a known script function (named `function` form).
+- **Compile** (mode `on` or `compileOnly`): const/let/assign when RHS type is known (literals; typed symbols via type-to-type); return expressions; call sites when the callee is a known script function (named `function` form); known Adaptive function formals (create with `allow_optimize`).
 
 **What is checked**
 
 - Leaf data types; unions / intersections.
 - Object / interface shapes: required properties, property value types, `extends` bases (when the value is known).
 - Array element types; tuple length + per-position types (when known).
-- **Function types:** script functions/closures — param types (contravariant) and return type (covariant); built-ins without a signature only need data type `function`.
+- **Function types:** script functions/closures — param types (contravariant) and return type (covariant).
 - **Returns:** declared return type vs `return` expression / expression-body (compile) and result value (runtime).
-- **Patterns:** list/object destructure element annotations and symbol types on Pattern leaves.
-- **Call sites:** known named script functions check formals against args (including object-literal excess) at compile when bound early.
+- **Patterns:** array/object destructure element annotations and symbol types on Pattern leaves.
+- **Call sites:** known named script functions; known Adaptive functions (projected formals / returns).
 - Error text: composites report missing property, element index, tuple length, or decompiled expected type.
 
-**Excess properties (compile / known call sites):** Object literals may not include keys outside the type (and `extends`; for unions, keys allowed if present on any object member). Nested literals checked. Spreads / computed keys skip. Runtime assign of evaluated objects stays open (adaptive-friendly).
+**Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; commas optional). `#typecheck off;` clears mode and related policy flags for that unit. Handbook teaches **flags**; pragma is optional for tests and compact scripts.
 
-**Pragma:** `#typecheck` mode (`off` / `on` / `compileOnly`) plus options `noImplicitAny`, `strictNullChecks`, `strict` (statement position; commas optional). `#typecheck off;` clears mode and related policy flags for that unit.
+## Tests layout
+
+| File | Role |
+|------|------|
+| `type_syntax.as` | Parse/store/decompile only (checking off) |
+| `type_check_flags.as` | Flag + pragma contract; process isolation patterns |
+| `type_check.as` | Rules under `#typecheck` in the unit under test |
 
 ## Out of scope / residual (not this issue’s merge bar)
 
 - Advanced TS surface (generics, `keyof`, conditionals) unless forced later.
-- Compile-time **optimize** using known types (mentioned on the GitHub issue as a possible side-effect, not a requirement).
+- Compile-time **optimize** using known types (separate issue).
 - Adaptive OT ↔ script type import (intentionally separate).
-
-**Excess properties (compile-only):** Object literals assigned to an object/interface type may not include keys outside that shape (and `extends`). Nested object literals are checked the same way. Spreads / computed keys skip the check. **Runtime** assignability stays open (adaptive objects may have extra props). Untyped RHS (e.g. bare variable) is not excess-checked at compile.
+- Convert-aware Adaptive formal checks; runtime #28 layer on Adaptive execute.
+- Call-site formals from a **variable’s** function-type annotation only (named / early-bound callees today).
 
 ## Verify
 
 ```bash
 ./afwdev build --cdev
 afwdev test -j --srcdir-pattern afw --test-pattern 'type_'
-# optional: ./afwdev build --cdev --scan ; afwdev build --docs
+# pre-PR: ./afwdev build --fulldev ; afwdev test -j --env-mode valgrind
 ```

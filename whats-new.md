@@ -562,7 +562,7 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 
 When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements** and **tuple length/positions** when the value is known (for example a literal), **function param/return shapes** (script functions/closures), **Pattern** element annotations on array/object destructure, and **calls to known Adaptive functions** against metadata formals (compile path only). **Object literals** may not include properties outside the declared type (including as arguments); spreads/computed keys skip that extra-key check. At runtime, non-literal values may still be wider (structural). Type errors name missing properties, element indexes, and decompiled expected types where possible.
 
-Handbook: Language Reference → **Types** (flags-oriented authoring). Tests: `src/afw/tests/compiler/type_syntax.as`, `type_check.as`. Design pads: `designs/issue-28-type-syntax.md`, `designs/adaptive-function-compile-typecheck.md`.
+Handbook: Language Reference → **Types** (flags-oriented authoring). Tests: `type_syntax.as` (parse/decompile), `type_check_flags.as` (flag/pragma contract), `type_check.as` (rules under `#typecheck`). Design pads: `designs/issue-28-type-syntax.md`, `designs/adaptive-function-compile-typecheck.md`.
 
 ---
 

@@ -1,8 +1,8 @@
 # Adaptive function compile-time type checking
 
-**Status:** Implemented on `issue-#28` (uncommitted pending review).  
+**Status:** Implemented and on `issue-#28` (merged with main #28 work for PR).  
 **Depends on:** Issue **#28** script type system (syntax, `afw_value_type_t`, opt-in flags, assignability, object-literal excess).  
-**Related later:** Compile-time optimize (`designs/compile-optimize-notes.md`) — amplifies known types; not required for v1 of this work.  
+**Related later (separate issue):** Compile-time optimize (`designs/compile-optimize-notes.md`) — amplifies how often types are known; **not** part of #28.  
 **Goal fit:** Complete Adaptive Script’s **opt-in type system** so known calls into **adaptive (built-in / registered) functions** are checked at compile the same *way* as script function calls, without expanding function metadata into full script structural types.
 
 ---
@@ -347,8 +347,8 @@ That is a coherent, opt-in type system for Adaptive Script without marrying scri
 | Structs | `afw_value.h` (`afw_value_function_parameter_t`), data type struct in generated interface / bindings |
 | Check | `afw_value_type_check.c`, `afw_value_internal.h` macros |
 | Call | `afw_value_call_built_in_function.c` (create), possibly method call create paths |
-| Tests | `src/afw/tests/compiler/type_check.as` or new `adaptive_function_type_check.as` |
-| Docs | Types handbook short note; `whats-new.md` when shipped |
+| Tests | Adaptive cases in `type_check.as` (under `#typecheck`); flag contract in `type_check_flags.as` |
+| Docs | Types handbook note; `whats-new.md` |
 
 Do not hand-edit `generated/`; regenerate via afwdev.
 
@@ -356,15 +356,16 @@ Do not hand-edit `generated/`; regenerate via afwdev.
 
 ## 11. Review checklist for maintainer
 
-- [ ] Compile-only adaptive checks + no #28 runtime on adaptive execute  
-- [ ] ArrayOf → static `const afw_data_type_t *`; other parameter modes NULL  
-- [ ] OT / FunctionSignature not structural at compile  
-- [ ] Polymorphic: known param1 type via value interface; else defer  
-- [ ] Strict assignability under typeCheck compile  
-- [ ] Returns + arity in v1  
-- [ ] Naming `afw_value_*` / generate statics  
-- [ ] Separate issue from #28 merge; optimize later amplifies only  
+- [x] Compile-only adaptive checks + no #28 runtime on adaptive execute  
+- [x] ArrayOf → static `const afw_data_type_t *`; other parameter modes NULL  
+- [x] OT / FunctionSignature not structural at compile  
+- [x] Polymorphic: known param1 type via value interface; else defer  
+- [x] Strict assignability under typeCheck compile  
+- [x] Returns + arity in v1  
+- [x] Naming `afw_value_*` / generate statics  
+- [x] Formal/return walks gated on `allow_optimize` (runtime map/reduce create safe)  
+- [ ] Compile-time **optimize** — **separate issue**, not #28  
 
 ---
 
-*End of design pad — revise from review comments, then implement on a follow-on branch.*
+*Implemented on `issue-#28` with the main type-system work.*

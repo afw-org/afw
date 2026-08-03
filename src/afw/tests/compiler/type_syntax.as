@@ -2,7 +2,13 @@
 //?
 //? testScript: type_syntax.as
 //? customPurpose: Part of compiler category tests
-//? description: TS-like type syntax parse/store (issue #28; no checking yet)
+//? description: ...
+Type *syntax* only (issue #28): parse, store, and decompile round-trip with
+checking off. Leaves, T[] / Array<T>, tuples, unions, type/interface
+statements, object and function type annotations, hard cut of old
+(array of …) forms. Does not enable typeCheck flags or #typecheck; wrong
+assigns still run. Enforcement lives in type_check.as / type_check_flags.as.
+Nuance: Array<T> and T[] share the same type graph; decompile prefers T[].
 //? sourceType: script
 //?
 //? test: type-data-type-leaf
