@@ -37,18 +37,32 @@ supported by Doxygen; an extra sheet is the durable approach.
 
 ```bash
 ./afwdev build --docs -j
-# After CSS or Doxygen comment changes that must re-run doxygen:
+# After Doxygen *content* (comments, Doxyfile) must re-run doxygen:
 ./afwdev build --docs --clean -j
 ```
 
+**Important:** Doxygen is only invoked when `build/docs/doxygen/` is **missing**
+(skip for speed). A normal `./afwdev build --docs` / `--fulldev` therefore may
+**not** re-copy generated HTML. The docs builder **always refreshes**
+`doxygen-extra.css` from `src/afw/doc/doxygen-extra.css` into
+`build/docs/doxygen/html/` when that html dir exists; with `--install` it is
+then copied to the web root (`--web-root`, default `/usr/share/nginx/html`).
+
 - Output: `build/docs/doxygen/html/` (e.g. `modules.html`, group pages).  
-- Install (if used): `./afwdev build --docs --install -j` → typically
-  `…/docs/doxygen/html/` under the web root.  
-- After editing only the CSS file, you can **copy** it over an existing tree
-  for a quick check:
-  `cp src/afw/doc/doxygen-extra.css build/docs/doxygen/html/doxygen-extra.css`
-  (and the install path if nginx serves from there), then **hard-refresh**
-  the browser.  
+- Served (devcontainer): often `/usr/share/nginx/html/docs/doxygen/html/…`
+  via `./afwdev build --docs --install -j` (or fulldev).  
+- Quick CSS-only check without full rebuild:
+  ```bash
+  cp src/afw/doc/doxygen-extra.css build/docs/doxygen/html/doxygen-extra.css
+  cp src/afw/doc/doxygen-extra.css /usr/share/nginx/html/docs/doxygen/html/doxygen-extra.css
+  ```
+  Docs builds also rewrite HTML to `doxygen-extra.css?v=<mtime>` so browsers
+  do not keep a stale skin after a 304. After a manual `cp`, either run
+  `./afwdev build --docs -j` (refresh + bust) or hard-refresh with
+  DevTools → Network → **Disable cache**.  
+- **`afw.css` is the handbook sheet**, not Doxygen. Doxygen pages load
+  `doxygen.css` + `doxygen-extra.css` only. A 304 on `afw.css` means the
+  browser reused a cached handbook stylesheet; it does not apply to Doxygen.  
 - Handbook reference look (for comparison): docs path
   `afw_dev/html/reference/afwdev/index.html` under the same docs root.
 - **Project version:** `afwdev generate` (package `root_generate`) sets
@@ -67,12 +81,15 @@ supported by Doxygen; an extra sheet is the durable approach.
 | Module names show `@ingroup …` | One-line `@defgroup name Title @ingroup parent` | Multi-line `@defgroup` + `@ingroup` in `afw_doxygen.h` |
 | Source left gutter white / lime-yellow | Stock `span.lineno` uses `#E8E8E8` + `border-right: 2px solid #0F0` | Theme `span.lineno` / `a`; border/background only on `div.fragment`, not every `div.line` |
 | File list white squares | `span.icondoc` uses `doc.png` (white paper) | `background-image: none`; CSS-drawn `.icondoc` / folder icons |
+| Hash / diagram jump lands under sticky bar | Sticky `#top` covers the target | `html { scroll-padding-top: var(--afw-dox-sticky-h) }` and `scroll-margin-top` on `:target` / anchors; retune `--afw-dox-sticky-h` if title+nav height changes |
+| Header shorter / nav unlike handbook | Doxygen default chrome vs handbook `py-4` + `text-sm font-semibold` | Sticky `#top`; taller `#titlearea` padding; `.sm-dox` `text-sm` / `font-weight: 600` / roomier line-height |
 
 ## Guidance for changes
 
 - Prefer **small, targeted** CSS additions when something still looks stock.  
 - Re-check at least: `modules.html`, one group (e.g. compile), one call-macro
-  detail, one `*_source.html` page, light and dark OS preference.  
+  detail, one `*_source.html` page, light and dark OS preference; click a
+  member / diagram link and confirm the target is not under the sticky bar.  
 - Do **not** replace all of `doxygen.css` via `HTML_STYLESHEET` (fragile across
   Doxygen upgrades); stay on `HTML_EXTRA_STYLESHEET`.  
 - A full rewrite/simplification of `doxygen-extra.css` is optional cleanup only;

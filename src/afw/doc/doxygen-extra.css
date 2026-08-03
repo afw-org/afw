@@ -38,6 +38,9 @@
  *      do not put a border on every div.line (only the fragment container).
  *   6. files.html white squares: span.icondoc uses doc.png (white glyph). Drop
  *      PNG; draw slate CSS icons for .icondoc / folder open-closed.
+ *   7. Sticky #top hides in-page / diagram hash targets under the bar. Set
+ *      html { scroll-padding-top } and scroll-margin-top on :target / anchors
+ *      using --afw-dox-sticky-h (tune if titlearea+nav height changes).
  *
  * Palette (approx. Tailwind slate / sky)
  *   Dark:  bg #0f172a, panel #1e293b, border #334155, text #94a3b8/#f1f5f9,
@@ -54,11 +57,51 @@
  */
 
 /* =========================================================================
- * Shared: kill gradient/PNG menu chrome (both modes)
+ * Shared: sticky header, scroll offset, kill gradient/PNG menu chrome
  * ========================================================================= */
+
+/*
+ * Handbook sticky bar is ~py-4 + text-lg (~3.8rem). Doxygen stacks
+ * #titlearea + #main-nav; keep --afw-dox-sticky-h in sync with padding
+ * below so hash/diagram jumps clear the sticky #top.
+ */
+:root {
+  /*
+   * titlearea + main-nav sticky stack. Prefer a little large so hash/diagram
+   * jumps never sit under the bar; retune if header padding changes.
+   */
+  --afw-dox-sticky-h: 9.5rem;
+}
 
 html {
   color-scheme: light dark;
+  scroll-padding-top: var(--afw-dox-sticky-h) !important;
+}
+
+/* In-page targets (member anchors, :target after diagram/map clicks, …) */
+:target,
+a.anchor,
+span.anchor,
+.memitem,
+.memtitle,
+h1, h2, h3, h4, h5, h6,
+.groupheader,
+div.header,
+.contents a[name],
+.contents a[id],
+.contents [id],
+dt,
+.directory .entry,
+tr.heading {
+  scroll-margin-top: var(--afw-dox-sticky-h) !important;
+}
+
+/* Sticky chrome: title + module tabs, family resemblance to handbook sticky */
+#top {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  width: 100%;
 }
 
 /* SmartMenus top bar — solid colors, no tab_*.png */
@@ -124,47 +167,73 @@ a:hover {
 
 #top {
   background: #ffffff;
+  /* sticky + z-index set in Shared block above */
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
 }
 
 #titlearea {
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
-  padding: 0.5rem 1rem;
+  /* Handbook sticky uses py-4; give title row similar vertical air */
+  padding: 0.9rem 1.25rem 0.75rem;
+}
+#titlearea table,
+#titlearea tr {
+  height: auto !important;
 }
 #projectname {
   color: #0f172a;
   font-weight: 700;
+  font-size: 1.125rem; /* text-lg */
+  line-height: 1.75rem;
+  letter-spacing: -0.01em;
 }
-#projectnumber,
+#projectnumber {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: 0.35rem;
+}
 #projectbrief {
   color: #64748b;
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.35rem;
+  margin-top: 0.2rem;
+  font-weight: 400;
 }
 
-/* --- Main menu (.sm-dox) light --- */
+/* --- Main menu (.sm-dox) light — closer to handbook text-sm font-semibold --- */
 #main-nav {
   background: #f1f5f9;
   border-bottom: 1px solid #e2e8f0;
-  padding: 0 0.5rem;
+  padding: 0.35rem 1rem;
 }
 
 .sm-dox {
   background: #f1f5f9 !important;
   background-image: none !important;
-  line-height: 2.25rem;
-  padding: 0 0.5rem !important;
+  line-height: 2.5rem;
+  padding: 0.1rem 0.25rem !important;
+}
+
+.sm-dox > li {
+  margin: 0 0.1rem;
 }
 
 .sm-dox > li > a,
 .sm-dox > li > a:focus,
 .sm-dox > li > a:active {
-  color: #334155 !important;
+  color: #334155 !important; /* slate-700 */
   background: transparent !important;
   background-image: none !important;
   font-family: inherit !important;
-  font-weight: 600;
-  line-height: 2.25rem;
-  padding: 0 0.85rem !important;
-  border-radius: 0.25rem;
+  font-size: 0.875rem !important; /* text-sm */
+  font-weight: 600 !important;
+  line-height: 2.5rem !important;
+  padding: 0 0.7rem !important;
+  border-radius: 0.375rem;
+  letter-spacing: 0.01em;
 }
 
 .sm-dox > li > a:hover,
@@ -491,6 +560,8 @@ div.ah {
 
   #top {
     background: #0f172a;
+    border-bottom: 1px solid rgba(248, 250, 252, 0.06);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   }
 
   #titlearea {
@@ -519,7 +590,7 @@ div.ah {
   .sm-dox > li > a,
   .sm-dox > li > a:focus,
   .sm-dox > li > a:active {
-    color: #e2e8f0 !important;
+    color: #e2e8f0 !important; /* slate-200-ish like handbook dark nav */
     background: transparent !important;
     background-image: none !important;
   }

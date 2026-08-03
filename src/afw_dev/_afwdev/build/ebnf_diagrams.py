@@ -35,9 +35,26 @@ _AFW_RR_THEME_HTML = r'''<!-- AFW-RR-THEME-BEGIN -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="''' + _DOCS_ROOT_REL + r'''afw.css">
 <style type="text/css" id="afw-rr-theme">
-  /* Align Railroad Diagram Generator HTML with AFW handbook slate chrome */
+  /*
+   * Align Railroad Diagram Generator HTML with AFW handbook slate chrome.
+   * Sticky banner height must match --afw-rr-sticky-h (scroll offset for
+   * in-page diagram / production hash jumps).
+   */
+  :root {
+    --afw-rr-sticky-h: 4.25rem; /* ~handbook py-4 + text-lg row */
+  }
   html {
     color-scheme: light dark;
+    scroll-padding-top: var(--afw-rr-sticky-h) !important;
+  }
+  /* Production anchors (name= / id=) and :target after diagram clicks */
+  :target,
+  a[name],
+  [name],
+  [id],
+  p[style*="font-weight:bold"],
+  p[style*="font-weight: bold"] {
+    scroll-margin-top: var(--afw-rr-sticky-h) !important;
   }
   body {
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -54,29 +71,45 @@ _AFW_RR_THEME_HTML = r'''<!-- AFW-RR-THEME-BEGIN -->
   a:hover {
     color: #0ea5e9 !important;           /* sky-500 */
   }
+  /* Tab row under banner — closer to handbook text-sm font-semibold nav */
+  #tabs {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0.35rem 1.25rem !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    list-style: none !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.25rem 0.5rem !important;
+    align-items: center !important;
+  }
+  #tabs li {
+    display: inline-block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+  }
   a.button, #tabs li a {
-    border: 1px solid #cbd5e1 !important;
-    background: #f1f5f9 !important;
-    color: #334155 !important;
-    border-radius: 0.25rem;
+    border: none !important;
+    background: transparent !important;
+    color: #334155 !important;           /* slate-700 like handbook nav */
+    border-radius: 0.375rem !important;
+    font-size: 0.875rem !important;      /* text-sm */
     font-weight: 600 !important;
+    line-height: 1.75rem !important;
+    padding: 0.35rem 0.65rem !important;
+    text-shadow: none !important;
   }
   a.button:hover, #tabs li a:hover {
     color: #0f172a !important;
-    background: #e2e8f0 !important;
-    border-color: #94a3b8 !important;
-  }
-  #tabs {
-    margin-top: 0 !important;
-    padding: 0.5rem 1rem !important;
-    border-bottom: 1px solid #e2e8f0 !important;
-    background: #ffffff;
+    background: #e2e8f0 !important;      /* slate-200 */
+    border-color: transparent !important;
   }
   #tabs li a.active {
-    color: #0369a1 !important;
-    background: #ffffff !important;
-    border-color: #e2e8f0 !important;
-    border-bottom-color: #ffffff !important;
+    color: #0369a1 !important;           /* sky-700 current */
+    background: #f1f5f9 !important;
+    border: none !important;
   }
   #text {
     border-color: #e2e8f0 !important;
@@ -97,6 +130,7 @@ _AFW_RR_THEME_HTML = r'''<!-- AFW-RR-THEME-BEGIN -->
   .signature, a:link.signature, a:visited.signature {
     color: #64748b !important;
   }
+  /* Match handbook sticky bar: py-4-ish + text-lg project name */
   .afw-rr-banner {
     position: sticky;
     top: 0;
@@ -105,21 +139,24 @@ _AFW_RR_THEME_HTML = r'''<!-- AFW-RR-THEME-BEGIN -->
     backdrop-filter: blur(8px);
     background: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid #e2e8f0;
-    padding: 0.75rem 1.25rem;
+    padding: 1rem 1.25rem;               /* ~py-4 */
     box-sizing: border-box;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
+    min-height: var(--afw-rr-sticky-h);
   }
   .afw-rr-banner-inner {
     max-width: 90rem;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     gap: 0.5rem 1rem;
+    min-height: 2.25rem;
   }
   .afw-rr-banner .afw-rr-title {
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 1.125rem;                 /* text-lg */
+    line-height: 1.75rem;
     color: #0f172a;
   }
   .afw-rr-banner .afw-rr-sub {
@@ -128,20 +165,30 @@ _AFW_RR_THEME_HTML = r'''<!-- AFW-RR-THEME-BEGIN -->
   }
   .afw-rr-banner nav {
     margin-left: auto;
-    font-size: 0.875rem;
+    font-size: 0.875rem;                 /* text-sm */
     font-weight: 600;
+    line-height: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
   }
   .afw-rr-banner nav a {
-    color: #0369a1 !important;
+    color: #334155 !important;           /* slate like handbook crumbs */
     text-decoration: none;
   }
   .afw-rr-banner nav a:hover {
-    color: #0ea5e9 !important;
+    color: #0ea5e9 !important;           /* sky-500 */
+  }
+  .afw-rr-banner nav .afw-rr-sep {
+    color: #94a3b8;
+    font-weight: 400;
+    user-select: none;
   }
   .afw-rr-main {
     max-width: 90rem;
     margin: 0 auto;
-    padding: 0 1.25rem;
+    padding: 1rem 1.25rem 0;
   }
   .afw-rr-main p[style*="font-weight:bold"],
   .afw-rr-main p[style*="font-weight: bold"] {
@@ -172,25 +219,22 @@ _AFW_RR_THEME_HTML = r'''<!-- AFW-RR-THEME-BEGIN -->
     a:hover {
       color: #7dd3fc !important;
     }
+    #tabs {
+      background: #0f172a !important;
+      border-bottom-color: rgba(248, 250, 252, 0.08) !important;
+    }
     a.button, #tabs li a {
-      border-color: #334155 !important;
-      background: #1e293b !important;
       color: #e2e8f0 !important;
+      background: transparent !important;
+      border: none !important;
     }
     a.button:hover, #tabs li a:hover {
-      color: #f1f5f9 !important;
+      color: #f8fafc !important;
       background: #334155 !important;
-      border-color: #64748b !important;
-    }
-    #tabs {
-      border-bottom-color: #334155 !important;
-      background: #0f172a;
     }
     #tabs li a.active {
       color: #38bdf8 !important;
-      background: #0f172a !important;
-      border-color: #334155 !important;
-      border-bottom-color: #0f172a !important;
+      background: #1e293b !important;
     }
     #text {
       border-color: #334155 !important;
@@ -215,7 +259,13 @@ _AFW_RR_THEME_HTML = r'''<!-- AFW-RR-THEME-BEGIN -->
       color: #94a3b8;
     }
     .afw-rr-banner nav a {
-      color: #38bdf8 !important;
+      color: #e2e8f0 !important;
+    }
+    .afw-rr-banner nav a:hover {
+      color: #7dd3fc !important;
+    }
+    .afw-rr-banner nav .afw-rr-sep {
+      color: #64748b;
     }
     .afw-rr-main p[style*="font-weight:bold"],
     .afw-rr-main p[style*="font-weight: bold"] {
@@ -245,15 +295,16 @@ _AFW_RR_BANNER = r'''
     <span class="afw-rr-title">Adaptive Framework</span>
     <span class="afw-rr-sub">Syntax EBNF (railroad diagrams)</span>
     <nav>
+      <a href="''' + _DOCS_ROOT_REL + r'''index.html">Docs</a>
+      <span class="afw-rr-sep">/</span>
       <a href="../../index.html">Language</a>
-      &nbsp;·&nbsp;
-      <a href="''' + _DOCS_ROOT_REL + r'''index.html">Docs home</a>
+      <span class="afw-rr-sep">/</span>
+      <span class="afw-rr-sub">Syntax EBNF</span>
     </nav>
   </div>
 </div>
 <div class="afw-rr-main">
 '''
-
 
 def _theme_rr_index_html(index_path):
     """Post-process Railroad Generator index.html for handbook-adjacent look."""
