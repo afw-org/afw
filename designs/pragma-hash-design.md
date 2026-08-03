@@ -2,16 +2,16 @@
 
 **Status:** Active on `issue-#28-pragma-cleanup` (and follow-ons).  
 **Code home:** `src/afw/compile/afw_compile_parse_pragma.c` (file header mirrors this).  
-**Related:** compiler-private `#` forms — `afw_compile_parse_compiler_private.c`; flags — `afw_flag.c` / `generate/strings/strings.txt`.
+**Related:** compiler-internal `#` forms — `afw_compile_parse_compiler_internal.c`; flags — `afw_flag.c` / `generate/strings/strings.txt`.
 
 ## Two surfaces that share the `#Name` token
 
 | Kind | Parse | Audience | Role |
 |------|--------|----------|------|
 | **Pragma** | `afw_compile_parse_pragma.c` | Script authors | Per-compile **policy** |
-| **Compiler-private** | `afw_compile_parse_compiler_private.c` | Toolchain only | **decompile → recompile** (`#block`, `#script_function`, …) |
+| **Compiler-private** | `afw_compile_parse_compiler_internal.c` | Toolchain only | **decompile → recompile** (`#block`, `#script_function`, …) |
 
-Lex: `pound_identifier` for any `#Name`. Product docs should not teach compiler-private forms as normal script.
+Lex: `pound_identifier` for any `#Name`. Product docs should not teach compiler-internal forms as normal script.
 
 ## Pattern B — author pragmas
 
@@ -72,7 +72,7 @@ Examples:
 | Surface | Content |
 |---------|---------|
 | Language reference (authors) | Flags as defaults; short `#compile` override note |
-| Advanced / EBNF | Full accept set; compiler-private as decompile forms only |
+| Advanced / EBNF | Full accept set; compiler-internal as decompile forms only |
 | This pad + pragma.c header | Maintainer source of truth for the pattern |
 
 ## Open / follow-up
@@ -81,4 +81,4 @@ Examples:
 - Whether `noOptimize` stays pragma-able long term (host-only vs script).
 - Handbook language-ref note for `#compile` (flags still primary for authors).
 - Optional: more call sites still pass NULL contextual by design (higher-order) → flags only.
-- **Compiler-private inventory:** [`decompile-compiler-private-inventory.md`](decompile-compiler-private-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.
+- **Compiler-private inventory:** [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.

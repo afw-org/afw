@@ -50,7 +50,7 @@ Script **statement** parsers sometimes stay `static impl_parse_FooStatement` wit
 | Script / TestScript / statements | `afw_compile_parse_script.c` |
 | Expressions / operators / lambdas / **script types** | `afw_compile_parse_expression.c` (`Type`, `UnionType`, `PrimaryType`, `ObjectTypeLiteral`, …) |
 | Pragmas (author policy, e.g. `#typecheck`) | `afw_compile_parse_pragma.c` |
-| Compiler-private `#…` (decompile/recompile) | `afw_compile_parse_compiler_private.c` |
+| Compiler-internal `#…` (decompile/recompile) | `afw_compile_parse_compiler_internal.c` |
 | JSON / literals | `afw_compile_parse_value.c` |
 | Templates (`#{…}` / `${…}`, TemplateString) | `afw_compile_parse_template.c` — compile-time nested script is isolated (`parent=NULL`); `\#`/`\$` suppress openers |
 | Destructuring | `afw_compile_parse_assignment_target.c` |

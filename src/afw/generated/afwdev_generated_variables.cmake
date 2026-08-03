@@ -287,7 +287,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     compile/afw_compile_lexical.c
     compile/afw_compile_parse.c
     compile/afw_compile_parse_assignment_target.c
-    compile/afw_compile_parse_compiler_private.c
+    compile/afw_compile_parse_compiler_internal.c
     compile/afw_compile_parse_expression.c
     compile/afw_compile_parse_pragma.c
     compile/afw_compile_parse_script.c

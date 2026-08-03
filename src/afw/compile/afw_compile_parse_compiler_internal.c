@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Compiler Parser — compiler-private # forms
+ * Adaptive Framework Compiler Parser — compiler-internal # forms
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_compile_parse_compiler_private.c
- * @brief Parse compiler-private #implementation_id forms (decompile/recompile).
+ * @file afw_compile_parse_compiler_internal.c
+ * @brief Parse compiler-internal #implementation_id forms (decompile/recompile).
  *
  * Lex produces pound_identifier for #Name (see afw_compile_lexical.c). That
  * token is shared with author-facing pragmas (afw_compile_parse_pragma.c).
@@ -32,7 +32,7 @@
  * Token must already be pound_identifier. Returns full "#name" for errors.
  */
 static const afw_utf8_t *
-impl_compiler_private_full_name(afw_compile_parser_t *parser)
+impl_compiler_internal_full_name(afw_compile_parser_t *parser)
 {
     if (!afw_compile_token_is(pound_identifier)) {
         AFW_COMPILE_THROW_ERROR_Z(
@@ -47,18 +47,18 @@ impl_compiler_private_full_name(afw_compile_parser_t *parser)
 
 
 /*
- * Unknown compiler-private #Name for the given grammar context.
+ * Unknown compiler-internal #Name for the given grammar context.
  * with_name_format_z must include one AFW_UTF8_FMT_Q.
  */
 static void
-impl_compiler_private_unknown(
+impl_compiler_internal_unknown(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *with_name_format_z,
     const afw_utf8_z_t *without_name_z)
 {
     const afw_utf8_t *full;
 
-    full = impl_compiler_private_full_name(parser);
+    full = impl_compiler_internal_full_name(parser);
     if (full) {
         AFW_COMPILE_THROW_ERROR_FZ(with_name_format_z,
             AFW_UTF8_FMT_ARG(full));
@@ -71,7 +71,7 @@ impl_compiler_private_unknown(
 
 /* True if current pound_identifier name equals z. */
 static afw_boolean_t
-impl_compiler_private_name_is(
+impl_compiler_internal_name_is(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *name_z)
 {
@@ -86,7 +86,7 @@ impl_compiler_private_name_is(
  * Recognized so the error is intentional, not "unknown".
  */
 static void
-impl_compiler_private_closure_binding_not_recompilable(
+impl_compiler_internal_closure_binding_not_recompilable(
     afw_compile_parser_t *parser)
 {
     AFW_COMPILE_THROW_ERROR_Z(
@@ -100,7 +100,7 @@ impl_compiler_private_closure_binding_not_recompilable(
  * prints a label; there is no Adaptive body to recompile.
  */
 static void
-impl_compiler_private_function_thunk_not_recompilable(
+impl_compiler_internal_function_thunk_not_recompilable(
     afw_compile_parser_t *parser)
 {
     AFW_COMPILE_THROW_ERROR_Z(
@@ -111,10 +111,10 @@ impl_compiler_private_function_thunk_not_recompilable(
 
 /*ebnf>>>
  *
- *# Compiler-private #block( statementExpression, ... ).
+ *# Compiler-internal #block( statementExpression, ... ).
  *# Token is already pound_identifier with name "block".
  *
- * CompilerPrivateBlock ::=
+ * CompilerInternalBlock ::=
  *     '#block' '(' ( Expression ( ',' Expression )* )? ')'
  *
  *<<<ebnf*/
@@ -124,7 +124,7 @@ impl_compiler_private_function_thunk_not_recompilable(
  * #block(stmt, ...).
  */
 static const afw_value_t *
-impl_parse_compiler_private_block(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_block(afw_compile_parser_t *parser)
 {
     const afw_value_block_t *block;
     const afw_value_t *expr;
@@ -199,18 +199,18 @@ impl_assignment_type_from_utf8(
 /*ebnf>>>
  *
  *# Target shape for #assignment_target (symbol name or destructure Pattern).
- * AssignmentTargetCompilerPrivateShape ::=
+ * AssignmentTargetCompilerInternalShape ::=
  *     Identifier |
  *     String |
  *     AssignmentListDestructureTarget |
  *     AssignmentObjectDestructureTarget
  *
- *# Compiler-private #assignment_target( assignmentKind, Pattern ).
+ *# Compiler-internal #assignment_target( assignmentKind, Pattern ).
  *# assignmentKind — string Expression, e.g. "const", "let" (matches decompile).
  *
- * CompilerPrivateAssignmentTarget ::=
+ * CompilerInternalAssignmentTarget ::=
  *     '#assignment_target' '(' Expression ','
- *         AssignmentTargetCompilerPrivateShape ')'
+ *         AssignmentTargetCompilerInternalShape ')'
  *
  *<<<ebnf*/
 /*
@@ -220,7 +220,7 @@ impl_assignment_type_from_utf8(
  *   #assignment_target("const", {a, b: c})
  */
 static const afw_value_t *
-impl_parse_compiler_private_assignment_target(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_assignment_target(afw_compile_parser_t *parser)
 {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_t *kind_value;
@@ -296,14 +296,14 @@ impl_parse_compiler_private_assignment_target(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# Compiler-private wrapper for array spread entries. Matches decompile.
+ *# Compiler-internal wrapper for array spread entries. Matches decompile.
  *
- * CompilerPrivateListExpression ::=
+ * CompilerInternalListExpression ::=
  *     '#list_expression' '(' Expression ')'
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_compiler_private_list_expression(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_list_expression(afw_compile_parser_t *parser)
 {
     const afw_value_t *internal;
     afw_size_t start_offset;
@@ -335,12 +335,12 @@ impl_parse_compiler_private_list_expression(afw_compile_parser_t *parser)
  *# Parts are Expressions (string segments and nested #block expressions).
  *# At least one part is required.
  *
- * CompilerPrivateTemplateDefinition ::=
+ * CompilerInternalTemplateDefinition ::=
  *     '#template_definition' '(' Expression ( ',' Expression )* ')'
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_compiler_private_template_definition(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_template_definition(afw_compile_parser_t *parser)
 {
     const afw_value_t *expr;
     const afw_value_t **argv;
@@ -398,34 +398,34 @@ impl_parse_compiler_private_template_definition(afw_compile_parser_t *parser)
  *# A name or Pattern is a parameter only when followed by '?', ':', '=',
  *# or ',' (or after '...'); otherwise it starts the body Expression.
  *
- * ScriptFunctionCompilerPrivateParamName ::=
+ * ScriptFunctionCompilerInternalParamName ::=
  *     Identifier | String
  *
- * ScriptFunctionCompilerPrivateNameParameter ::=
- *     ( '...' )? ScriptFunctionCompilerPrivateParamName
+ * ScriptFunctionCompilerInternalNameParameter ::=
+ *     ( '...' )? ScriptFunctionCompilerInternalParamName
  *         ( '?' )? ( ':' Type )? ( '=' Expression )?
  *
- * ScriptFunctionCompilerPrivatePatternParameter ::=
+ * ScriptFunctionCompilerInternalPatternParameter ::=
  *     ( AssignmentListDestructureTarget |
  *       AssignmentObjectDestructureTarget )
  *         ( '?' )? ( '=' Expression )?
  *
- * ScriptFunctionCompilerPrivateParameter ::=
- *     ScriptFunctionCompilerPrivateNameParameter |
- *     ScriptFunctionCompilerPrivatePatternParameter
+ * ScriptFunctionCompilerInternalParameter ::=
+ *     ScriptFunctionCompilerInternalNameParameter |
+ *     ScriptFunctionCompilerInternalPatternParameter
  *
- * ScriptFunctionCompilerPrivateArgs ::=
- *     ( ScriptFunctionCompilerPrivateParameter
- *       ( ',' ScriptFunctionCompilerPrivateParameter )*
+ * ScriptFunctionCompilerInternalArgs ::=
+ *     ( ScriptFunctionCompilerInternalParameter
+ *       ( ',' ScriptFunctionCompilerInternalParameter )*
  *       ',' )?
  *     Expression ( ',' Type )?
  *
- * CompilerPrivateScriptFunction ::=
- *     '#script_function' '(' ScriptFunctionCompilerPrivateArgs ')'
+ * CompilerInternalScriptFunction ::=
+ *     '#script_function' '(' ScriptFunctionCompilerInternalArgs ')'
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_compiler_private_script_function(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_script_function(afw_compile_parser_t *parser)
 {
     const afw_value_t *body;
     const afw_value_block_t *block;
@@ -693,12 +693,12 @@ impl_parse_compiler_private_script_function(afw_compile_parser_t *parser)
  *
  *# Switch default-clause marker (unique permanent null). Optional "()".
  *
- * CompilerPrivateSwitchDefault ::=
+ * CompilerInternalSwitchDefault ::=
  *     '#switch_default' ( '(' ')' )?
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_compiler_private_switch_default(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_switch_default(afw_compile_parser_t *parser)
 {
     afw_compile_get_token();
     if (afw_compile_token_is(open_parenthesis)) {
@@ -720,12 +720,12 @@ impl_parse_compiler_private_switch_default(afw_compile_parser_t *parser)
  *# Array value of compiled nodes without evaluating them (for for/switch
  *# statement lists). Unlike array(), elements stay as call/block nodes.
  *
- * CompilerPrivateStatements ::=
+ * CompilerInternalStatements ::=
  *     '#statements' '(' ( Expression ( ',' Expression )* )? ')'
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_compiler_private_statements(afw_compile_parser_t *parser)
+impl_parse_compiler_internal_statements(afw_compile_parser_t *parser)
 {
     const afw_value_t *expr;
     const afw_array_t *list;
@@ -762,107 +762,107 @@ impl_parse_compiler_private_statements(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# Statement-position compiler-private #Name.
+ *# Statement-position compiler-internal #Name.
  *# Token is already pound_identifier.
  *# #closure_binding / #function_thunk are recognized as known rejects
  *# (always compile errors; not productions — runtime / C-side only).
  *
- * CompilerPrivateStatement ::=
- *     CompilerPrivateBlock
+ * CompilerInternalStatement ::=
+ *     CompilerInternalBlock
  *
  *<<<ebnf*/
 /**
- * Parse a compiler-private form in statement position.
+ * Parse a compiler-internal form in statement position.
  */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_compile_parse_CompilerPrivateStatement(afw_compile_parser_t *parser)
+afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
 {
     /* #block is allowed as a statement so decompile output can recompile. */
-    if (impl_compiler_private_name_is(parser, "block")) {
-        return impl_parse_compiler_private_block(parser);
+    if (impl_compiler_internal_name_is(parser, "block")) {
+        return impl_parse_compiler_internal_block(parser);
     }
 
-    if (impl_compiler_private_name_is(parser, "closure_binding")) {
-        impl_compiler_private_closure_binding_not_recompilable(parser);
+    if (impl_compiler_internal_name_is(parser, "closure_binding")) {
+        impl_compiler_internal_closure_binding_not_recompilable(parser);
         return NULL; /* not reached */
     }
 
-    if (impl_compiler_private_name_is(parser, "function_thunk")) {
-        impl_compiler_private_function_thunk_not_recompilable(parser);
+    if (impl_compiler_internal_name_is(parser, "function_thunk")) {
+        impl_compiler_internal_function_thunk_not_recompilable(parser);
         return NULL; /* not reached */
     }
 
-    impl_compiler_private_unknown(parser,
-        "Unknown compiler-private statement " AFW_UTF8_FMT_Q,
-        "Unknown compiler-private statement");
+    impl_compiler_internal_unknown(parser,
+        "Unknown compiler-internal statement " AFW_UTF8_FMT_Q,
+        "Unknown compiler-internal statement");
     return NULL; /* not reached */
 }
 
 
 /*ebnf>>>
  *
- *# Value/expression-position compiler-private #Name.
+ *# Value/expression-position compiler-internal #Name.
  *# Token is already pound_identifier.
  *# Forms match decompile #implementation_id where implemented.
  *# #closure_binding / #function_thunk are recognized but always compile
  *# errors (runtime / C-side only; not recompilable from decompile text).
  *
- * CompilerPrivateValue ::=
- *     CompilerPrivateBlock |
- *     CompilerPrivateAssignmentTarget |
- *     CompilerPrivateListExpression |
- *     CompilerPrivateScriptFunction |
- *     CompilerPrivateTemplateDefinition |
- *     CompilerPrivateSwitchDefault |
- *     CompilerPrivateStatements
+ * CompilerInternalValue ::=
+ *     CompilerInternalBlock |
+ *     CompilerInternalAssignmentTarget |
+ *     CompilerInternalListExpression |
+ *     CompilerInternalScriptFunction |
+ *     CompilerInternalTemplateDefinition |
+ *     CompilerInternalSwitchDefault |
+ *     CompilerInternalStatements
  *
  *<<<ebnf*/
 /**
- * Parse a compiler-private form in value/expression position.
+ * Parse a compiler-internal form in value/expression position.
  */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_compile_parse_CompilerPrivateValue(afw_compile_parser_t *parser)
+afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
 {
-    if (impl_compiler_private_name_is(parser, "block")) {
-        return impl_parse_compiler_private_block(parser);
+    if (impl_compiler_internal_name_is(parser, "block")) {
+        return impl_parse_compiler_internal_block(parser);
     }
 
-    if (impl_compiler_private_name_is(parser, "assignment_target")) {
-        return impl_parse_compiler_private_assignment_target(parser);
+    if (impl_compiler_internal_name_is(parser, "assignment_target")) {
+        return impl_parse_compiler_internal_assignment_target(parser);
     }
 
-    if (impl_compiler_private_name_is(parser, "list_expression")) {
-        return impl_parse_compiler_private_list_expression(parser);
+    if (impl_compiler_internal_name_is(parser, "list_expression")) {
+        return impl_parse_compiler_internal_list_expression(parser);
     }
 
-    if (impl_compiler_private_name_is(parser, "script_function")) {
-        return impl_parse_compiler_private_script_function(parser);
+    if (impl_compiler_internal_name_is(parser, "script_function")) {
+        return impl_parse_compiler_internal_script_function(parser);
     }
 
-    if (impl_compiler_private_name_is(parser, "template_definition")) {
-        return impl_parse_compiler_private_template_definition(parser);
+    if (impl_compiler_internal_name_is(parser, "template_definition")) {
+        return impl_parse_compiler_internal_template_definition(parser);
     }
 
-    if (impl_compiler_private_name_is(parser, "closure_binding")) {
-        impl_compiler_private_closure_binding_not_recompilable(parser);
+    if (impl_compiler_internal_name_is(parser, "closure_binding")) {
+        impl_compiler_internal_closure_binding_not_recompilable(parser);
         return NULL; /* not reached */
     }
 
-    if (impl_compiler_private_name_is(parser, "function_thunk")) {
-        impl_compiler_private_function_thunk_not_recompilable(parser);
+    if (impl_compiler_internal_name_is(parser, "function_thunk")) {
+        impl_compiler_internal_function_thunk_not_recompilable(parser);
         return NULL; /* not reached */
     }
 
-    if (impl_compiler_private_name_is(parser, "switch_default")) {
-        return impl_parse_compiler_private_switch_default(parser);
+    if (impl_compiler_internal_name_is(parser, "switch_default")) {
+        return impl_parse_compiler_internal_switch_default(parser);
     }
 
-    if (impl_compiler_private_name_is(parser, "statements")) {
-        return impl_parse_compiler_private_statements(parser);
+    if (impl_compiler_internal_name_is(parser, "statements")) {
+        return impl_parse_compiler_internal_statements(parser);
     }
 
-    impl_compiler_private_unknown(parser,
-        "Unknown compiler-private value " AFW_UTF8_FMT_Q,
-        "Unknown compiler-private value");
+    impl_compiler_internal_unknown(parser,
+        "Unknown compiler-internal value " AFW_UTF8_FMT_Q,
+        "Unknown compiler-internal value");
     return NULL; /* not reached */
 }

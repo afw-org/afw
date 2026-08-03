@@ -1638,7 +1638,7 @@ afw_compile_parse_Statement(
         return result;
     }
 
-    /* If pound_identifier, parse pragma or compiler-private # form. */
+    /* If pound_identifier, parse pragma or compiler-internal # form. */
     if (afw_compile_token_is(pound_identifier)) {
         return afw_compile_parse_PragmaStatement(parser);
     }

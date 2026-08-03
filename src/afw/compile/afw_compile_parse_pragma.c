@@ -11,7 +11,7 @@
  * @brief Parse author-facing # pragma directives (compile-time policy).
  *
  * ---------------------------------------------------------------------------
- * # design (author vs compiler-private)
+ * # design (author vs compiler-internal)
  * ---------------------------------------------------------------------------
  *
  * Lex produces pound_identifier for any #Name (see afw_compile_lexical.c).
@@ -20,10 +20,11 @@
  * | Kind | Where | Audience | Role |
  * |------|--------|----------|------|
  * | **Pragma** (this file) | Statement | Script authors | Per-compile policy |
- * | **Compiler-private** | Statement/value | Toolchain only | decompile → recompile |
+ * | **Compiler-internal** | Statement/value | Toolchain only | decompile → recompile |
  *
- * Compiler-private forms (#block, #script_function, …) live in
- * afw_compile_parse_compiler_private.c — not ordinary authoring.
+ * Compiler-internal # forms (#block, #script_function, …) live in
+ * afw_compile_parse_compiler_internal.c (with compiler_internal function
+ * category IR) — not ordinary authoring.
  *
  * Pattern B — author pragmas (current intent):
  *
@@ -61,8 +62,8 @@
  * ---------------------------------------------------------------------------
  *
  * Statement position: PragmaStatement dispatches known policy pragmas, then
- * hands other #Name forms to CompilerPrivateStatement. Value/expression
- * position does not use this file — see CompilerPrivateValue.
+ * hands other #Name forms to CompilerInternalStatement. Value/expression
+ * position does not use this file — see CompilerInternalValue.
  *
  * On entry the current token is already pound_identifier. identifier_name is
  * the name without '#'; identifier is the full "#name" (for errors). There is
@@ -249,16 +250,16 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  *# Statement-position #Name. Token is already pound_identifier.
- *# Author policy pragmas first; other # names are compiler-private
- *# (see CompilerPrivateStatement).
+ *# Author policy pragmas first; other # names are compiler-internal
+ *# (see CompilerInternalStatement).
  *
  * PragmaStatement ::=
  *     CompilePragma |
- *     CompilerPrivateStatement
+ *     CompilerInternalStatement
  *
  *<<<ebnf*/
 /**
- * Parse a #Name in statement position (pragma or compiler-private).
+ * Parse a #Name in statement position (pragma or compiler-internal).
  */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
@@ -267,6 +268,6 @@ afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
         return impl_parse_compile_pragma(parser);
     }
 
-    /* Non-policy #Name — compiler-private decompile/recompile forms. */
-    return afw_compile_parse_CompilerPrivateStatement(parser);
+    /* Non-policy #Name — compiler-internal decompile/recompile forms. */
+    return afw_compile_parse_CompilerInternalStatement(parser);
 }

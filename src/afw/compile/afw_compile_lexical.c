@@ -1737,7 +1737,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         /*ebnf>>>
          *
          *# '#' starts compile-time substitution '#{', a pound identifier
-         *# '#Name' (pragma or compiler-private), or a bare pound sign.
+         *# '#Name' (pragma or compiler-internal), or a bare pound sign.
          *
          * PoundIdentifier ::= '#' Identifier
          *

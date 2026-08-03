@@ -6,7 +6,7 @@
 Compiler-private # forms: direct accept path (issue #28 / decompile inventory).
 Each case compiles hand-written decompile-shaped text and evaluates when
 meaningful. Emit/round-trip coverage is emit_and_roundtrip.as; rejects are
-reject_forms.as. Design pad: designs/decompile-compiler-private-inventory.md.
+reject_forms.as. Design pad: designs/decompile-compiler-internal-inventory.md.
 //? sourceType: script
 //?
 //? test: accept-block-evaluate

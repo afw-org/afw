@@ -5,7 +5,7 @@
 //? description: ...
 Compiler-private known rejects and unknown # forms (decompile inventory).
 Separate file so expect:error cases stay focused. Design pad:
-designs/decompile-compiler-private-inventory.md.
+designs/decompile-compiler-internal-inventory.md.
 //? sourceType: script
 //?
 //? test: reject-closure-binding-statement

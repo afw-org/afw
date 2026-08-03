@@ -3,9 +3,9 @@
 //? testScript: emit_and_roundtrip.as
 //? customPurpose: Part of compiler decompile_accept tests
 //? description: ...
-Per-form emit and d1==d2 round-trip for compiler-private # shapes.
+Per-form emit and d1==d2 round-trip for compiler-internal # shapes.
 Broader construct matrix remains decompile_fidelity.as. Inventory:
-designs/decompile-compiler-private-inventory.md.
+designs/decompile-compiler-internal-inventory.md.
 //? sourceType: script
 //?
 //? test: emit-block-assignment-target

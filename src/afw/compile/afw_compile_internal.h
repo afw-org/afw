@@ -63,7 +63,7 @@ typedef enum {
     afw_compile_token_type_identifier,
     /*
      * #Identifier — pound_identifier (no qualifier): author pragmas and
-     * compiler-private decompile forms. identifier_name is the spelling
+     * compiler-internal decompile forms. identifier_name is the spelling
      * after '#'; identifier is full "#name". Bare '#' is pound_sign.
      */
     afw_compile_token_type_pound_identifier,
@@ -1104,27 +1104,27 @@ AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser);
 
 /**
- * @brief Parse compiler-private #Name in statement position.
+ * @brief Parse compiler-internal #Name in statement position.
  * @param parser
  * @return value if the form produces one; throws if unknown or invalid.
  *
  * Current token must be pound_identifier. See
- * afw_compile_parse_compiler_private.c. Not for ordinary script authoring.
+ * afw_compile_parse_compiler_internal.c. Not for ordinary script authoring.
  */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_CompilerPrivateStatement(afw_compile_parser_t *parser);
+afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser);
 
 /**
- * @brief Parse compiler-private #Name in value/expression position.
+ * @brief Parse compiler-internal #Name in value/expression position.
  * @param parser
  * @return adaptive value; throws if unknown or invalid.
  *
  * Current token must be pound_identifier. See
- * afw_compile_parse_compiler_private.c. Not for ordinary script authoring.
+ * afw_compile_parse_compiler_internal.c. Not for ordinary script authoring.
  * Decompile/recompile accept path (#block, #script_function, …).
  */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_compile_parse_CompilerPrivateValue(afw_compile_parser_t *parser);
+afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser);
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_EntryFunctionLambdaOrVariableReference(
@@ -1240,8 +1240,8 @@ afw_compile_parse_ParenthesizedOrFunctionType(
  * @return value if the form produces one; throws if unknown or invalid.
  *
  * Current token must be pound_identifier. Dispatches author-facing policy
- * pragmas (afw_compile_parse_pragma.c) then compiler-private forms
- * (afw_compile_parse_CompilerPrivateStatement).
+ * pragmas (afw_compile_parse_pragma.c) then compiler-internal forms
+ * (afw_compile_parse_CompilerInternalStatement).
  */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser);

@@ -1,7 +1,7 @@
-# Decompile vs compiler-private accept inventory
+# Decompile vs compiler-internal accept inventory
 
 **Status:** Active checklist (issue #28 pragma cleanup / #18 decompile fidelity).  
-**Code:** accept — `src/afw/compile/afw_compile_parse_compiler_private.c`; emit — value `impl_afw_value_decompile` + `afw_value_decompile_call_args`.  
+**Code:** accept — `src/afw/compile/afw_compile_parse_compiler_internal.c`; emit — value `impl_afw_value_decompile` + `afw_value_decompile_call_args`.  
 **Tests:** `src/afw/tests/compiler/decompile_accept/`; broad round-trips — `decompile_fidelity.as`, samples — `decompile.as` / `pragma.as`.
 
 Author-facing `#compile` is **not** in this inventory (policy pragma).  
@@ -11,8 +11,8 @@ Compiler-private forms are **toolchain only** (decompile → recompile).
 
 | Position | Entry | Allowed names |
 |----------|--------|----------------|
-| Statement | `afw_compile_parse_CompilerPrivateStatement` | `block`; known rejects `closure_binding`, `function_thunk` |
-| Value / expression | `afw_compile_parse_CompilerPrivateValue` | `block`, `assignment_target`, `list_expression`, `script_function`, `template_definition`, `switch_default`, `statements`; same known rejects |
+| Statement | `afw_compile_parse_CompilerInternalStatement` | `block`; known rejects `closure_binding`, `function_thunk` |
+| Value / expression | `afw_compile_parse_CompilerInternalValue` | `block`, `assignment_target`, `list_expression`, `script_function`, `template_definition`, `switch_default`, `statements`; same known rejects |
 
 Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statement vs value wording differs).
 
@@ -29,7 +29,7 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | `#switch_default` | Yes (`afw_value_decompile` permanent null marker) | Value | Yes | Optional `()` |
 | `#closure_binding` | Yes (live closure) | Known **reject** | No | Runtime enclosing scope not reconstructible from text |
 | `#function_thunk` | Yes (C thunk label) | Known **reject** | No | C-side only (e.g. model hooks) |
-| `#compile` | Never (policy pragma) | Pragma path only | n/a | Not compiler-private |
+| `#compile` | Never (policy pragma) | Pragma path only | n/a | Not compiler-internal |
 | other `#Name` | — | Unknown error | No | |
 
 ## Emit helpers
@@ -45,7 +45,7 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | `#list_expression` rarely appears in decompile text | Intentional surface `...`; keep accept for recompile / explicit forms |
 | Statement position only `#block` (+ rejects) | Intentional; other forms are values nested under `#block` / calls |
 | `#closure_binding` / `#function_thunk` | Documented non-round-trip; specific error text |
-| EBNF harvest | Statement EBNF lists only `CompilerPrivateBlock`; value EBNF lists all accept productions |
+| EBNF harvest | Statement EBNF lists only `CompilerInternalBlock`; value EBNF lists all accept productions |
 
 ## Test map
 
@@ -69,6 +69,6 @@ When adding a new decompile `#implementation_id`, update this table, accept disp
 
 **Do not** use category name `private` — reserve for a possible future class/member visibility story.
 
-Function **ids** (`const`, `assign`, …) stay stable for **decompile → compile** round-trip. Distinct from **`#…` compiler-private value forms** and author **`#compile`**.
+Function **ids** (`const`, `assign`, …) stay stable for **decompile → compile** round-trip. Distinct from **`#…` compiler-internal value forms** and author **`#compile`**.
 
 **Built-in formals:** `afw_function.c` / `AFW_FUNCTION_EVALUATE_*` only — no script typeCheck in that hot path.
