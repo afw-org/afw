@@ -2,23 +2,23 @@
 
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * PHP Bindings for compiler_script
+ * PHP Bindings for compiler_internal
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file compiler_script.php
+ * @file compiler_internal.php
  * @ingroup afw_bindings_php
- * @brief Class definition for function category compiler_script
+ * @brief Class definition for function category compiler_internal
  */
-class compiler_script
+class compiler_internal
 {
     private $session;
 
     /**
-     * Constructs the compiler_script class, using a session.
+     * Constructs the compiler_internal class, using a session.
      */
     public function __construct($session = null)
     {

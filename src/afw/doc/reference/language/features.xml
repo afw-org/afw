@@ -267,11 +267,16 @@ compile<script>(script("const x = 1;\nreturn x;"), 2);
 decode_to_string(encode_as_base64Binary("secret"));]]></code>
     <header>Pragma forms</header>
     <paragraph>
-        You may see names that begin with <literal>#</literal> (pragma
-        identifiers) in the output of <literal>decompile</literal> when a
-        compiled construct has no ordinary Adaptive Script surface form.
-        Examples include <literal>#block</literal>,
-        <literal>#assignment_target</literal>,
+        You may write <literal>#compile</literal> in a script to change
+        type-checking options for that script. See Types for the options and
+        examples. For everyday use, prefer the environment flags described
+        there.
+    </paragraph>
+    <paragraph>
+        You may also see other names that begin with <literal>#</literal> in
+        the output of <literal>decompile</literal> when a compiled construct
+        has no ordinary Adaptive Script surface form. Examples include
+        <literal>#block</literal>, <literal>#assignment_target</literal>,
         <literal>#list_expression</literal>,
         <literal>#script_function</literal>,
         <literal>#template_definition</literal>,

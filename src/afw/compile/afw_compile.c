@@ -598,3 +598,38 @@ afw_compile_source_location_of_value(
     
     return result;
 }
+
+
+
+/*
+ * Initialize per-compile policy from process/xctx flags (defaults only).
+ */
+AFW_DEFINE(void)
+afw_compile_policy_init_from_flags(
+    afw_compile_policy_t *policy,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t strict;
+
+    memset(policy, 0, sizeof(*policy));
+
+    strict = afw_flag_is_active(
+        xctx->env->flag_index_compile_strict_active, xctx);
+
+    policy->type_check_compile_only = afw_flag_is_active(
+        xctx->env->flag_index_compile_typeCheckCompileOnly_active, xctx);
+    policy->type_check =
+        strict ||
+        afw_flag_is_active(
+            xctx->env->flag_index_compile_typeCheck_active, xctx);
+    policy->no_implicit_any =
+        strict ||
+        afw_flag_is_active(
+            xctx->env->flag_index_compile_noImplicitAny_active, xctx);
+    policy->strict_null_checks =
+        strict ||
+        afw_flag_is_active(
+            xctx->env->flag_index_compile_strictNullChecks_active, xctx);
+    policy->no_optimize = afw_flag_is_active(
+        xctx->env->flag_index_compile_noOptimize_active, xctx);
+}

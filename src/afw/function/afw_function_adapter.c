@@ -47,6 +47,8 @@ typedef struct impl_retrieve_cb_ctx_s {
     const afw_object_options_t *object_options;
     const afw_value_t *call;
     const afw_value_t *argv[3];
+    /* Call-site contextual from the retrieve_* adaptive function (may be NULL). */
+    const afw_compile_value_contextual_t *contextual;
     /* Array materialization only: default 100; 0 = unlimited. */
     afw_integer_t max_objects;
     afw_integer_t object_count;
@@ -87,7 +89,7 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
             ctx->argv[1] = afw_value_create_unmanaged_object(object, p, xctx);
             ctx->argv[2] = ctx->userData;
             if (!ctx->call) {
-                ctx->call = afw_value_call_create(NULL,
+                ctx->call = afw_value_call_create(ctx->contextual,
                     2, &ctx->argv[0], false, ctx->p, xctx);
             }
             abort_value = afw_value_evaluate(ctx->call, p, xctx);
@@ -1769,6 +1771,7 @@ afw_function_execute_retrieve_objects_to_callback(
 
     afw_memory_clear(&ctx);
     ctx.p = x->p;
+    ctx.contextual = afw_function_execute_contextual(x);
     criteria = NULL;
 
     AFW_FUNCTION_EVALUATE_PARAMETER(ctx.objectCallback,
@@ -2329,6 +2332,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
+    ctx.contextual = afw_function_execute_contextual(x);
 
     AFW_FUNCTION_EVALUATE_PARAMETER(ctx.objectCallback,
         1);

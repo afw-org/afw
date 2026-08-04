@@ -18,16 +18,24 @@
 
 /**
  * @file afw_function.h
- * @brief Header file for Adaptive Framework Runtime Basic Function Support.
+ * @brief Built-in Adaptive function execute support.
  *
  * See @ref afw_function (defined centrally in afw_doxygen.h).
  *
- * Use the AFW_FUNCTION_* macros inside execute functions.
- * Polymorphic dispatch uses dataTypeMethod and execute == NULL.
+ * This header is the surface for **built-in Adaptive function** `execute_*`
+ * implementations under `function/afw_function_*.c`:
+ * - `AFW_FUNCTION_EVALUATE_*` macros and `afw_function_evaluate_parameter*`
+ *   use the Adaptive function **definition** (leaf data types, requiredness)
+ *   and optional convert-to-requested-type. Short hot path; no script type
+ *   graph / unit typeCheck branching here.
+ * - Polymorphic dispatch uses dataTypeMethod and execute == NULL.
+ * - Operator functions are prepared in
+ *   `afw_function_internal_prepare_environment`.
  *
- * Operator functions are prepared in afw_function_internal_prepare_environment.
- *
- * All functions are registered via environment; see afw_generated_register.
+ * Script language IR (const/let/assign/return, script formals, Patterns) lives
+ * in `afw_function_compiler_internal.c` and `afw_value_call_script_function.c`,
+ * not in these evaluate helpers. All Adaptive functions are still registered
+ * via the environment; see `afw_generated_register`.
  */
 
 AFW_BEGIN_DECLARES
@@ -51,10 +59,10 @@ AFW_BEGIN_DECLARES
 
 
 /**
- * @brief Function execute parameter
- * 
- * This is the parameter sent to implementation of a built-in function
- * during evaluation.
+ * @brief Argument block for a built-in Adaptive function execute_* call.
+ *
+ * Filled by afw_value_call_built_in_function and passed as `x` to execute
+ * bodies. Script language calls use call_script_function instead.
  */
 struct afw_function_execute_s {
 
@@ -367,6 +375,21 @@ afw_compile_source_location_of_value( \
 
 
 /**
+ * @brief Call-site contextual for this built-in invocation.
+ * @param x Function execute struct pointer (`execute_*` argument).
+ * @return Unit contextual from the call, or NULL if no call value.
+ *
+ * Use for nested afw_value_call_create (and similar) from execute_* so the
+ * new call shares this invocation's unit link / source attribution. Prefer
+ * this over NULL: NULL means type-check helpers use process flags only.
+ * Safe from core and extensions (call_built_in layout stays opaque via
+ * afw.h). See designs/compile-contextual-audit.md.
+ */
+AFW_DECLARE(const afw_compile_value_contextual_t *)
+afw_function_execute_contextual(const afw_function_execute_t *x);
+
+
+/**
  * @brief Execute function if caller has 'execute' access.
  * 
  * This is an execute function that wraps the actual function implementation
@@ -409,22 +432,24 @@ afw_function_evaluate_whitespace_parameter(
 
 
 /**
- * @brief Evaluate a parameter and convert if necessary.
+ * @brief Evaluate a built-in formal and convert if the caller requests a type.
  * @param x function execute struct pointer.
  * @param parameter_number 1-based (first user parameter is 1 → x->argv[1]).
- * @param data_type result will be converted to if needed or NULL.
+ * @param data_type convert result to this leaf type if needed, or NULL.
  * @return value of parameter or undefined (NULL).
  *
+ * Built-in Adaptive formals only. Reads `x->function->parameters[]` for
+ * required/optional and declared leaf data type; optional convert uses the
+ * `data_type` argument from the implementer (via AFW_FUNCTION_EVALUATE_*).
+ * Does not apply script typeCheck policy.
+ *
  * Uses the same 1-based numbering as AFW_FUNCTION_ARGV and "Parameter N"
- * errors. Does not count argv[0] (the function value).
+ * errors. Does not count argv[0] (the function value). Pushes parameter
+ * number on the evaluation stack when evaluating/converting, then pops.
  *
- * This function adds the parameter number to the evaluation stack if an
- * evaluation or conversion is needed then removes it if successful.
- *
- * It's up to the caller to check if the returned value is undefined. Use
- * afw_function_evaluate_required_parameter() instead for required parameters.
- *
- * If data_type specified and result can't be converted, an error is thrown.
+ * Caller must handle NULL (undefined). Prefer
+ * afw_function_evaluate_required_parameter() when a non-NULL result is
+ * required. Throws if data_type is set and convert fails.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_function_evaluate_parameter(
@@ -435,17 +460,14 @@ afw_function_evaluate_parameter(
 
 
 /**
- * @brief Evaluate a required parameter and convert if necessary.
+ * @brief Like afw_function_evaluate_parameter, but throws if undefined.
  * @param x function execute struct pointer.
  * @param parameter_number starting at 1.
- * @param data_type result will be converted to if needed or NULL.
- * @return value of parameter.
+ * @param data_type convert result to this leaf type if needed, or NULL.
+ * @return non-NULL parameter value.
  *
- * This function adds the parameter number to the evaluation stack if an
- * evaluation or conversion is needed then removes it if successful.
- *
- * If result is undefined or data_type is specified and can't be converted, an
- * error is thrown.
+ * Built-in Adaptive formals only (same rules as evaluate_parameter).
+ * Throws if the result is undefined or if data_type convert fails.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_required_parameter(
@@ -455,30 +477,8 @@ afw_function_evaluate_required_parameter(
 
 
 
-/**
- * @brief Evaluate a script-function argument with an optional type.
- * @param value unevaluated or evaluated argument expression.
- * @param parameter_number 1-based (for backtrace / "Parameter N" only).
- * @param type for result or NULL if not converting.
- * @param p Pool
- * @param xctx of caller.
- * @return value or undefined if there is an error.
- *
- * Used when binding script-function formals (see call_script_function). The
- * value is already selected from argv[parameter_number]; this helper only
- * evaluates/converts. Numbering matches built-in parameter_number (1-based).
- */
-AFW_DECLARE(const afw_value_t *)
-afw_function_evaluate_parameter_with_type(
-    const afw_value_t *value,
-    afw_size_t parameter_number,
-    const afw_value_type_t *type,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-
-
 AFW_END_DECLARES
 
-/** @} */  // end of @addtogroup @addtogroup
+/** @} */
 
 #endif /* __AFW_FUNCTION_H__ */

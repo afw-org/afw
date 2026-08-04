@@ -31,6 +31,20 @@
 
 AFW_BEGIN_DECLARES
 
+/**
+ * @brief Initialize compile policy from current process/xctx flags.
+ * @param policy out; fully written.
+ * @param xctx of caller.
+ *
+ * Used at the start of each compile. #compile then mutates the policy on the
+ * compiled value only — never flag_set.
+ */
+AFW_DECLARE(void)
+afw_compile_policy_init_from_flags(
+    afw_compile_policy_t *policy,
+    afw_xctx_t *xctx);
+
+
 /**  @brief Struc for afw_compile_type_info_t. */
 struct afw_compile_type_info_s {
     afw_compile_type_t compile_type;

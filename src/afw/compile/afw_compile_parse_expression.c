@@ -24,10 +24,11 @@
  * DataType ::=
  *    'any' |
  *    'anyURI' |
+ *    'array' |
  *    'base64Binary' |
  *    'boolean' |
- *    'date' |
  *    'dataTimeDuration' |
+ *    'date' |
  *    'dnsName' |
  *    'double' |
  *    'expression' |
@@ -36,7 +37,6 @@
  *    'ia5String' |
  *    'integer' |
  *    'ipAddress' |
- *    'array' |
  *    'null' |
  *    'object' |
  *    'objectId' |
@@ -718,11 +718,12 @@ afw_compile_parse_FunctionSignatureAndBody(
             body = afw_compile_parse_Expression(parser);
             /* Expression body: compile-check against return type when known. */
             if (parser->current_function_returns &&
-                afw_value_type_check_compile_enabled(parser->xctx))
+                AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+                    &parser->contextual, parser->xctx))
             {
                 afw_value_type_check_compile_assignable(
                     parser->current_function_returns, body,
-                    "return", parser->xctx);
+                    "return", &parser->contextual, parser->xctx);
             }
         }
 
@@ -1585,10 +1586,10 @@ afw_compile_parse_OptionalType(
 
     /* Missing annotation → any (error if noImplicitAny + type checking). */
     afw_compile_reuse_token();
-    if (afw_value_type_check_compile_enabled(parser->xctx) &&
-        afw_flag_is_active(
-            parser->xctx->env->flag_index_compile_noImplicitAny_active,
-            parser->xctx))
+    if (AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+            &parser->contextual, parser->xctx) &&
+        AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY(
+            &parser->contextual, parser->xctx))
     {
         AFW_COMPILE_THROW_ERROR_Z(
             "Type annotation required (compile:noImplicitAny)");

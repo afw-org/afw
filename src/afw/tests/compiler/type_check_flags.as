@@ -3,18 +3,20 @@
 //? testScript: type_check_flags.as
 //? customPurpose: Part of compiler category tests
 //? description: ...
-Flag and #typecheck pragma *contract* only (issue #28).
+Flag and #compile pragma *contract* only (issue #28 / Pattern B).
 Proves how checking is turned on/off: env/flag_set compile:typeCheck,
 typeCheckCompileOnly (compileOnly wins when both mode flags are set),
-noImplicitAny, strictNullChecks, compile:strict, and matching #typecheck
-forms. Behavioral assignability/shapes/Adaptive formals live in
-type_check.as under #typecheck in the unit under test.
+noImplicitAny, strictNullChecks, compile:strict, and matching #compile
+operands (flag short names). Behavioral rules live in type_check.as under
+#compile typeCheck in the unit under test.
 Nuances: all //? test: cases share one afw process, so each case clears
-the type-flag family before enabling what it needs; #typecheck can leave
-env flags set after that compile (see pragma-does-not-affect-sibling-compile).
-typeCheck = compile when known + runtime assign/params; compileOnly = no
-runtime formal checks. Without strictNullChecks, null may assign to
-integer under typeCheck alone.
+the type-flag family before enabling what it needs; #compile does not set
+process flags (see pragma-does-not-affect-sibling-compile). Flags are
+snapshotted at compile start — set them before compile…, or use #compile
+inside the unit (mid-unit applies from that statement on). typeCheck =
+compile when known + runtime assign/params; compileOnly = no runtime
+formal checks. Without strictNullChecks, null may assign to integer under
+typeCheck alone.
 //? sourceType: script
 //?
 //? test: flags-default-off
@@ -210,7 +212,7 @@ return 0;
 
 //?
 //? test: pragma-on
-//? description: #typecheck; enables checking for that compile unit
+//? description: #compile typeCheck; enables checking for that compile unit
 //? expect: error
 //? source: ...
 
@@ -222,13 +224,13 @@ flag_set([
     "compile:strict"
 ], false);
 compile<script>(script(
-    "#typecheck;\nconst x: integer = \"hello\";\nreturn 0;"
+    "#compile typeCheck;\nconst x: integer = \"hello\";\nreturn 0;"
 ));
 return 0;
 
 //?
 //? test: pragma-compileOnly
-//? description: #typecheck compileOnly;
+//? description: #compile typeCheckCompileOnly;
 //? expect: error
 //? source: ...
 
@@ -240,13 +242,13 @@ flag_set([
     "compile:strict"
 ], false);
 compile<script>(script(
-    "#typecheck compileOnly;\nconst x: integer = \"hello\";\nreturn 0;"
+    "#compile typeCheckCompileOnly;\nconst x: integer = \"hello\";\nreturn 0;"
 ));
 return 0;
 
 //?
-//? test: pragma-off-after-flags
-//? description: #typecheck off; disables checking for that unit despite flags
+//? test: pragma-noTypeCheck-after-flags
+//? description: #compile noTypeCheck; disables checking for that unit despite flags
 //? expect: 0
 //? source: ...
 
@@ -259,13 +261,13 @@ flag_set([
 ], false);
 flag_set(["compile:typeCheck"], true);
 const r: any = evaluate(compile<script>(script(
-    "#typecheck off;\nconst x: integer = \"hello\";\nreturn 0;"
+    "#compile noTypeCheck;\nconst x: integer = \"hello\";\nreturn 0;"
 )));
 return 0;
 
 //?
 //? test: pragma-noImplicitAny
-//? description: #typecheck on noImplicitAny;
+//? description: #compile typeCheck noImplicitAny;
 //? expect: error
 //? source: ...
 
@@ -277,13 +279,13 @@ flag_set([
     "compile:strict"
 ], false);
 compile<script>(script(
-    "#typecheck on noImplicitAny;\nconst x = 1;\nreturn 0;"
+    "#compile typeCheck noImplicitAny;\nconst x = 1;\nreturn 0;"
 ));
 return 0;
 
 //?
 //? test: pragma-strict-bundle
-//? description: #typecheck strict; enables noImplicitAny
+//? description: #compile strict; enables noImplicitAny
 //? expect: error
 //? source: ...
 
@@ -295,31 +297,13 @@ flag_set([
     "compile:strict"
 ], false);
 compile<script>(script(
-    "#typecheck strict;\nconst x = 1;\nreturn 0;"
-));
-return 0;
-
-//?
-//? test: pragma-options-comma
-//? description: #typecheck on, noImplicitAny; with comma
-//? expect: error
-//? source: ...
-
-flag_set([
-    "compile:typeCheck",
-    "compile:typeCheckCompileOnly",
-    "compile:noImplicitAny",
-    "compile:strictNullChecks",
-    "compile:strict"
-], false);
-compile<script>(script(
-    "#typecheck on, noImplicitAny;\nconst x = 1;\nreturn 0;"
+    "#compile strict;\nconst x = 1;\nreturn 0;"
 ));
 return 0;
 
 //?
 //? test: pragma-strictNullChecks
-//? description: #typecheck on strictNullChecks;
+//? description: #compile typeCheck strictNullChecks;
 //? expect: error
 //? source: ...
 
@@ -331,14 +315,14 @@ flag_set([
     "compile:strict"
 ], false);
 evaluate(compile<script>(script(
-    "#typecheck on strictNullChecks;\n" +
+    "#compile typeCheck strictNullChecks;\n" +
     "const x: integer = null;\nreturn 0;"
 )));
 return 0;
 
 //?
 //? test: pragma-does-not-affect-sibling-compile
-//? description: pragma in one unit does not force checking on a later unit
+//? description: #compile on one unit must not change process flags for a later unit
 //? expect: 0
 //? source: ...
 
@@ -349,19 +333,30 @@ flag_set([
     "compile:strictNullChecks",
     "compile:strict"
 ], false);
-/* First unit turns checking on (and may leave env flags set). */
+/* First unit turns checking on via #compile only (policy, not flags). */
 try {
     compile<script>(script(
-        "#typecheck;\nconst x: integer = \"bad\";\nreturn 0;"
+        "#compile typeCheck;\nconst x: integer = \"bad\";\nreturn 0;"
     ));
     assert(false);
 } catch (e) {
     /* expected */
 }
 /*
- * Clear flags explicitly so a sibling compile is opt-in again.
- * Without clear, env flags can linger for the process.
+ * Do not clear flags — #compile must not have set process typeCheck.
+ * Sibling unit with defaults off must still allow the wrong assign.
  */
+const r: any = evaluate(compile<script>(script(
+    "const x: integer = \"hello\";\nreturn 0;"
+)));
+return 0;
+
+//?
+//? test: mid-unit-typeCheck-after-unchecked
+//? description: mid-unit #compile typeCheck checks only statements after the pragma
+//? expect: error
+//? source: ...
+
 flag_set([
     "compile:typeCheck",
     "compile:typeCheckCompileOnly",
@@ -369,7 +364,86 @@ flag_set([
     "compile:strictNullChecks",
     "compile:strict"
 ], false);
-const r: any = evaluate(compile<script>(script(
-    "const x: integer = \"hello\";\nreturn 0;"
+/*
+ * Before the pragma, process snapshot is off — bad assign is not compile-checked.
+ * After #compile typeCheck, the bad assign must fail compile.
+ */
+compile<script>(script(
+    "const a: integer = \"x\";\n" +
+    "#compile typeCheck;\n" +
+    "const b: integer = \"y\";\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: mid-unit-unchecked-before-typeCheck-ok
+//? description: bad assign before mid-unit #compile typeCheck is not re-checked at compile
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+/*
+ * Compile-time only: constructs already parsed are not re-checked after the
+ * pragma. (Runtime uses final unit policy — see mid-unit-runtime-final-policy.)
+ */
+compile<script>(script(
+    "const a: integer = \"x\";\n" +
+    "#compile typeCheck;\n" +
+    "const b: integer = 1;\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: mid-unit-runtime-final-policy
+//? description: runtime typeCheck uses final unit policy (mid-unit typeCheck applies to earlier assigns)
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+/*
+ * Compile succeeds (bad assign was before typeCheck). Evaluating still fails
+ * because unit policy ends with typeCheck on — runtime uses last-mutated policy.
+ */
+evaluate(compile<script>(script(
+    "const a: integer = \"x\";\n" +
+    "#compile typeCheck;\n" +
+    "const b: integer = 1;\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: mid-unit-noTypeCheck-after-typeCheck
+//? description: mid-unit #compile noTypeCheck allows bad assigns after typeCheck
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+const r_mid2: any = evaluate(compile<script>(script(
+    "#compile typeCheck;\n" +
+    "const a: integer = 1;\n" +
+    "#compile noTypeCheck;\n" +
+    "const b: integer = \"ok\";\n" +
+    "return 0;"
 )));
 return 0;

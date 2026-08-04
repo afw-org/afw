@@ -85,6 +85,7 @@ afw_curl_function_execute_smtp_send(
         mail_recipients->internal,
         &payload->internal,
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_undefined;

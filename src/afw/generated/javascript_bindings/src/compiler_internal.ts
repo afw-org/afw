@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Javascript Bindings for compiler_script
+ * Javascript Bindings for compiler_internal
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,9 +8,9 @@
 
 
 /**
- * @file compiler_script.ts
+ * @file compiler_internal.ts
  * @ingroup afw_bindings_javascript
- * @brief This file contains the Javascript bindings for the compiler_script category.
+ * @brief This file contains the Javascript bindings for the compiler_internal category.
  */
 
 interface IAnyObject {

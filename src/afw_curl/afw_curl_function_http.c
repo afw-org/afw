@@ -89,6 +89,7 @@ afw_curl_function_execute_http_post(
         &payload->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
@@ -161,6 +162,7 @@ afw_curl_function_execute_http_get(
         &url->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
@@ -233,6 +235,7 @@ afw_curl_function_execute_http_delete(
         &url->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
@@ -311,6 +314,7 @@ afw_curl_function_execute_http_patch(
         &payload->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
@@ -389,6 +393,7 @@ afw_curl_function_execute_http_put(
         &payload->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
@@ -461,6 +466,7 @@ afw_curl_function_execute_http_head(
         &url->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
@@ -533,6 +539,7 @@ afw_curl_function_execute_http_options(
         &url->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        afw_function_execute_contextual(x),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);

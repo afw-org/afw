@@ -59,7 +59,7 @@ impl_compile_check_list_pattern(
             continue;
         }
         afw_value_type_check_compile_assignable(ae->type, elem,
-            "list pattern element", parser->xctx);
+            "list pattern element", &parser->contextual, parser->xctx);
     }
 }
 
@@ -107,7 +107,7 @@ impl_compile_check_object_pattern(
             continue;
         }
         afw_value_type_check_compile_assignable(type, pv,
-            "object pattern property", parser->xctx);
+            "object pattern property", &parser->contextual, parser->xctx);
     }
 }
 
@@ -122,7 +122,9 @@ impl_compile_check_assign_target(
     const afw_value_assignment_target_t *at;
     const afw_value_type_t *type;
 
-    if (!afw_value_type_check_compile_enabled(parser->xctx)) {
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+            &parser->contextual, parser->xctx))
+    {
         return;
     }
     if (!afw_value_is_assignment_target(target)) {
@@ -134,7 +136,7 @@ impl_compile_check_assign_target(
     case afw_compile_assignment_target_type_symbol_reference:
         type = &at->assignment_target->symbol_reference->symbol->type;
         afw_value_type_check_compile_assignable(type, value,
-            "assignment", parser->xctx);
+            "assignment", &parser->contextual, parser->xctx);
         break;
 
     case afw_compile_assignment_target_type_list_destructure:
@@ -728,19 +730,6 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * DeclareStatement ::= 'declare' AssignmentTarget ';'
- *
- *<<<ebnf*/
-static const afw_value_t *
-impl_parse_DeclareStatement(afw_compile_parser_t *parser)
-{
-    AFW_COMPILE_THROW_ERROR_Z("Not implemented");
-}
-
-
-
-/*ebnf>>>
- *
  * DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
  *
  *<<<ebnf*/
@@ -1168,12 +1157,13 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
 
     /* Compile-time return type check when inside a typed function (issue #28). */
     if (parser->current_function_returns &&
-        afw_value_type_check_compile_enabled(parser->xctx) &&
+        AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+            &parser->contextual, parser->xctx) &&
         argv[1] && !afw_value_is_undefined(argv[1]))
     {
         afw_value_type_check_compile_assignable(
             parser->current_function_returns, argv[1],
-            "return", parser->xctx);
+            "return", &parser->contextual, parser->xctx);
     }
 
     result = afw_value_call_built_in_function_create(
@@ -1598,7 +1588,6 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    CallStatement |
  *    ConstStatement |
  *    ContinueStatement |
- *    DeclareStatement |
  *    DoWhileStatement |
  *    ForStatement |
  *    FunctionStatement |
@@ -1608,8 +1597,10 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    PragmaStatement |
  *    ReturnStatement |
  *    SwitchStatement |
+ *    ThrowStatement |
+ *    TryStatement |
  *    TypeStatement |
- *    WhileStatement 
+ *    WhileStatement
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -1635,11 +1626,11 @@ afw_compile_parse_Statement(
         return result;
     }
 
-    /* If pragma_identifier, parse PragmaStatement. */
-    if (afw_compile_token_is(pragma_identifier)) {
+    /* If pound_identifier, parse pragma or compiler-internal # form. */
+    if (afw_compile_token_is(pound_identifier)) {
         return afw_compile_parse_PragmaStatement(parser);
     }
-   
+
     /* If not assignment, process statement. */
     result = NULL;
     if (afw_compile_token_is(identifier) &&
@@ -1719,11 +1710,6 @@ afw_compile_parse_Statement(
             afw_s_type))
         {
             result = impl_parse_TypeStatement(parser);
-        }
-        else if (afw_utf8_equal(parser->token->identifier_name,
-            afw_s_declare))
-        {
-            result = impl_parse_DeclareStatement(parser);
         }
     }
 

@@ -9,7 +9,10 @@
 
 /**
  * @file afw_value_call_script_function.c
- * @brief Implementation of afw_value interface for call_script_function
+ * @brief Call a script function (bind formals, evaluate body, return check).
+ *
+ * Formal evaluate/typeCheck: afw_function_script_evaluate_parameter_with_type
+ * in afw_function_compiler_internal.c — not afw_function_evaluate_parameter.
  */
 
 #include "afw_internal.h"
@@ -85,7 +88,7 @@ afw_value_call_script_function_create(
      * Compile-time call-site checks when the callee is already known
      * (issue #28): object-literal args vs formal types.
      */
-    if (afw_value_type_check_compile_enabled(xctx) &&
+    if (AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) &&
         script_function_definition &&
         script_function_definition->parameters)
     {
@@ -97,7 +100,7 @@ afw_value_call_script_function_create(
             /* argv[0] is function; user args are argv[1..] */
             if (argv[i + 1]) {
                 afw_value_type_check_compile_assignable(param->type,
-                    argv[i + 1], "parameter", xctx);
+                    argv[i + 1], "parameter", contextual, xctx);
             }
         }
     }
@@ -269,10 +272,15 @@ impl_afw_value_optional_evaluate(
                             rest_array, p, xctx);
                     }
                     else if (parameter_number <= call_argc) {
-                        value = afw_function_evaluate_parameter_with_type(
-                            *arg, parameter_number,
-                            (*params)->type,
-                            p, xctx);
+                        /* Script formal: type graph + unit typeCheck policy. */
+                        value =
+                            afw_function_script_evaluate_parameter_with_type(
+                                *arg, parameter_number,
+                                (*params)->type,
+                                script->contextual
+                                    ? script->contextual
+                                    : self->args.contextual,
+                                p, xctx);
                     }
                     /* parameters[parameter_number - 1] ← this value */
                     bound_values[parameter_number - 1] = value;
@@ -342,13 +350,20 @@ impl_afw_value_optional_evaluate(
         /* Evaluate body. */
         result = afw_value_evaluate(script->body, p, xctx);
 
-        /* Runtime return type check (issue #28). */
-        if (script->returns &&
-            afw_value_type_check_runtime_enabled(xctx) &&
-            result)
+        /* Runtime return type check (issue #28): definition unit, else call. */
         {
-            afw_value_type_check_assignable(script->returns, result,
-                "return", xctx);
+            const afw_compile_value_contextual_t *check_ctx;
+
+            check_ctx = script->contextual
+                ? script->contextual
+                : self->args.contextual;
+            if (script->returns &&
+                AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(check_ctx, xctx) &&
+                result)
+            {
+                afw_value_type_check_assignable(script->returns, result,
+                    "return", check_ctx, xctx);
+            }
         }
     }
 

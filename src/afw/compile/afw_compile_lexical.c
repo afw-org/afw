@@ -1315,12 +1315,15 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_undefined)    ||
 
 /*ebnf>>>
- * 
- * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' | 
- *      'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' | 
- *      'function' | 'if' | 'let' | 'return' | 'switch' |
- *      'throw' | 'try' | 'void' | 'while' )
- * 
+ *
+ *# Statement / clause keywords (including type-system statements and
+ *# interface 'extends'). 'void' is reserved with statements though it is
+ *# also a data-type name.
+ * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
+ *      'continue' | 'default' | 'do' | 'else' | 'extends' | 'finally' |
+ *      'for' | 'function' | 'if' | 'interface' | 'let' | 'return' |
+ *      'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
+ *
  *<<<ebnf*/
 
         afw_utf8_equal(s, afw_s_break)        ||
@@ -1331,23 +1334,29 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_default)      ||
         afw_utf8_equal(s, afw_s_do)           ||
         afw_utf8_equal(s, afw_s_else)         ||
+        afw_utf8_equal(s, afw_s_extends)      ||
         afw_utf8_equal(s, afw_s_finally)      ||
         afw_utf8_equal(s, afw_s_for)          ||
         afw_utf8_equal(s, afw_s_function)     ||
         afw_utf8_equal(s, afw_s_if)           ||
+        afw_utf8_equal(s, afw_s_interface)    ||
         afw_utf8_equal(s, afw_s_let)          ||
         afw_utf8_equal(s, afw_s_return)       ||
         afw_utf8_equal(s, afw_s_switch)       ||
         afw_utf8_equal(s, afw_s_throw)        ||
         afw_utf8_equal(s, afw_s_try)          ||
+        afw_utf8_equal(s, afw_s_type)         ||
         afw_utf8_equal(s, afw_s_void)         ||
         afw_utf8_equal(s, afw_s_while)        ||
 
 /*ebnf>>>
- * 
- * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
- *      'export' | 'extends' | 'from' | 'import' | 'in' | 'interface' |
- *      'instanceof' | 'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
+ *
+ *# Not implemented as syntax today; reserved for possible future TS/JS-shaped
+ *# surface (or to block bad identifiers). 'var' kept so scripts cannot use it.
+ *# Dropped: 'delete', 'with' (removed operators / no plan to adopt).
+ * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
+ *      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
+ *      'this' | 'typeof' | 'var' )
  *
  *<<<ebnf*/
 
@@ -1355,20 +1364,15 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_async)        ||
         afw_utf8_equal(s, afw_s_await)        ||
         afw_utf8_equal(s, afw_s_class)        ||
-        afw_utf8_equal(s, afw_s_delete)       ||
         afw_utf8_equal(s, afw_s_export)       ||
-        afw_utf8_equal(s, afw_s_extends)      ||
         afw_utf8_equal(s, afw_s_from)         ||
         afw_utf8_equal(s, afw_s_import)       ||
         afw_utf8_equal(s, afw_s_in)           ||
         afw_utf8_equal(s, afw_s_instanceof)   ||
-        afw_utf8_equal(s, afw_s_interface)    ||
         afw_utf8_equal(s, afw_s_super)        ||
         afw_utf8_equal(s, afw_s_this)         ||
-        afw_utf8_equal(s, afw_s_type)         ||
         afw_utf8_equal(s, afw_s_typeof)       ||
-        afw_utf8_equal(s, afw_s_var)          ||
-        afw_utf8_equal(s, afw_s_with)         )
+        afw_utf8_equal(s, afw_s_var)          )
     {
         return true;
     }
@@ -1732,14 +1736,20 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         };
         break;
 
-    /* #, #{, and #Identifier (pragma_identifier) */
+    /*
+     * '#' splits into three token types (no EBNF production for bare '#'):
+     *   '#{'     → compile_time_substitute_start  (CompileTimeSubstitution)
+     *   '#Name'  → pound_identifier               (PoundIdentifier / pragmas)
+     *   bare '#' → pound_sign                     (token only; parse rejects)
+     */
     case '#':
         /*ebnf>>>
          *
-         *# '#' starts compile-time substitution '#{', a pragma identifier
-         *# '#Name', or a bare pound sign.
+         *# '#' starts compile-time substitution '#{', a pound identifier
+         *# '#Name' (pragma or compiler-internal), or a bare pound sign.
+         *# Bare '#' is a token only (pound_sign) — not a production.
          *
-         * PragmaIdentifier ::= '#' Identifier
+         * PoundIdentifier ::= '#' Identifier
          *
          *<<<ebnf*/
         afw_compile_save_cursor(temp_cursor);
@@ -1753,7 +1763,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         {
             /* Name after '#'; do not treat as special literal (true, NaN, …). */
             afw_compile_restore_cursor(temp_cursor);
-            parser->token->type = afw_compile_token_type_pragma_identifier;
+            parser->token->type = afw_compile_token_type_pound_identifier;
             parser->token->identifier_name = impl_get_identifier(parser);
             /* Full lexeme including '#' for error text / display. */
             parser->token->identifier = afw_compile_get_string_literal(
@@ -1763,12 +1773,13 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
             /* identifier_qualifier remains NULL (memset). */
         }
         else {
+            /* Not '{' or IdentifierStart — leave following char for next token. */
             afw_compile_restore_cursor(temp_cursor);
             parser->token->type = afw_compile_token_type_pound_sign;
         }
         break;
 
-    /* $ and ${ */
+    /* '$' vs '${' (bare '$' may also begin Identifier elsewhere). */
     case '$':
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
@@ -2318,6 +2329,15 @@ afw_compile_lexical_parser_create(
         parser->compiled_value->current_block = parent->current_block;
     }
 
+    /*
+     * Snapshot flags into this unit's policy; #compile may override the
+     * snapshot only (never process flags). Wire parser contextual so
+     * type-check helpers can resolve unit policy via contextual->compiled_value.
+     */
+    afw_compile_policy_init_from_flags(
+        &parser->compiled_value->compile_policy, xctx);
+    parser->contextual.compiled_value = parser->compiled_value;
+
     return parser;
 }
 
@@ -2327,7 +2347,9 @@ afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
     afw_xctx_t *xctx)
 {
-
+    /* No ambient xctx compile policy to restore (unit policy is on compiled_value). */
+    (void)parser;
+    (void)xctx;
 }
 
 

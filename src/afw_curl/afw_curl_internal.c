@@ -86,7 +86,7 @@ afw_curl_internal_write_response_headers_cb(
             appdata->pool, appdata->xctx);
         header->argv[2] = header->userData;
         if (!header->call) {
-            header->call = afw_value_call_create(NULL,
+            header->call = afw_value_call_create(header->contextual,
                 2, &header->argv[0], false, appdata->pool, appdata->xctx);
         }
         return_value = afw_value_evaluate(header->call, 
@@ -154,7 +154,7 @@ afw_curl_internal_response_cb(
             &buf, appdata->pool, appdata->xctx);
         writer->argv[2] = writer->userData;
         if (!writer->call) {
-            writer->call = afw_value_call_create(NULL,
+            writer->call = afw_value_call_create(writer->contextual,
                 2, &writer->argv[0], false, appdata->pool, appdata->xctx);
         }
         return_value = afw_value_evaluate(writer->call, 
@@ -227,7 +227,7 @@ afw_curl_internal_request_cb(
         reader->argv[3] = afw_value_create_unmanaged_integer(
             nitems, appdata->pool, appdata->xctx);
         if (!reader->call) {
-            reader->call = afw_value_call_create(NULL,
+            reader->call = afw_value_call_create(reader->contextual,
                 3, &reader->argv[0], false, appdata->pool, appdata->xctx);
         }
         return_value = afw_value_evaluate(reader->call, 
@@ -535,6 +535,7 @@ afw_curl_internal_http_post(
     const afw_utf8_t        * payload,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx)
 {
@@ -600,6 +601,9 @@ afw_curl_internal_http_post(
             afw_curl_internal_script_cb_t, xctx);
         reader = afw_pool_calloc_type(pool,
             afw_curl_internal_script_cb_t, xctx);
+        writer->contextual = contextual;
+        header->contextual = contextual;
+        reader->contextual = contextual;
 
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
@@ -679,6 +683,7 @@ afw_curl_internal_http_get(
     const afw_utf8_t    * url,
     const afw_array_t   * headers,
     const afw_object_t  * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t    * pool,
     afw_xctx_t          * xctx)
 {
@@ -730,6 +735,8 @@ afw_curl_internal_http_get(
             afw_curl_internal_script_cb_t, xctx);
         header = afw_pool_calloc_type(pool,
             afw_curl_internal_script_cb_t, xctx);
+        writer->contextual = contextual;
+        header->contextual = contextual;
 
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, NULL, writer, header, pool, xctx);
@@ -813,6 +820,7 @@ afw_curl_internal_http_delete(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx)
 {
@@ -868,6 +876,8 @@ afw_curl_internal_http_delete(
             afw_curl_internal_script_cb_t, xctx);
         header = afw_pool_calloc_type(pool,
             afw_curl_internal_script_cb_t, xctx);
+        writer->contextual = contextual;
+        header->contextual = contextual;
 
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
@@ -948,6 +958,7 @@ afw_curl_internal_http_put(
     const afw_utf8_t        * payload,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx)
 {
@@ -1013,6 +1024,9 @@ afw_curl_internal_http_put(
             afw_curl_internal_script_cb_t, xctx);
         header = afw_pool_calloc_type(pool,
             afw_curl_internal_script_cb_t, xctx);
+        reader->contextual = contextual;
+        writer->contextual = contextual;
+        header->contextual = contextual;
 
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
@@ -1093,6 +1107,7 @@ afw_curl_internal_http_patch(
     const afw_utf8_t        * payload,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx)
 {
@@ -1158,6 +1173,9 @@ afw_curl_internal_http_patch(
             afw_curl_internal_script_cb_t, xctx);
         reader = afw_pool_calloc_type(pool,
             afw_curl_internal_script_cb_t, xctx);
+        writer->contextual = contextual;
+        header->contextual = contextual;
+        reader->contextual = contextual;
 
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
@@ -1234,6 +1252,7 @@ afw_curl_internal_http_head(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx)
 {
@@ -1286,6 +1305,8 @@ afw_curl_internal_http_head(
             afw_curl_internal_script_cb_t, xctx);
         header = afw_pool_calloc_type(pool,
             afw_curl_internal_script_cb_t, xctx);
+        writer->contextual = contextual;
+        header->contextual = contextual;
 
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
@@ -1362,6 +1383,7 @@ afw_curl_internal_http_options(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx)
 {
@@ -1416,6 +1438,8 @@ afw_curl_internal_http_options(
             afw_curl_internal_script_cb_t, xctx);
         header = afw_pool_calloc_type(pool,
             afw_curl_internal_script_cb_t, xctx);
+        writer->contextual = contextual;
+        header->contextual = contextual;
 
         /* set any options, that may have been specified */
         afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
@@ -1494,6 +1518,7 @@ afw_curl_internal_smtp_send(
     const afw_array_t       * mail_recipients,
     const afw_utf8_t        * payload,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx)
 {

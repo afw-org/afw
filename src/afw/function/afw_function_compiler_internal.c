@@ -1,14 +1,25 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for compiler_script runtime
+ * Adaptive Framework — script compiler-internal runtime
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_compiler_script.c
- * @brief Adaptive function execute implementations for category `compiler_script`.
+ * @file afw_function_compiler_internal.c
+ * @brief Script IR runtime (not built-in Adaptive library formals).
+ *
+ * Contents:
+ * - execute_* for Adaptive function category `compiler_internal` (function
+ *   **ids** like const/let/assign stay stable for decompile round-trip).
+ *   Documented for debug; not normal author surface syntax.
+ * - Script formal evaluate: afw_function_script_evaluate_parameter_with_type
+ *   (used only by afw_value_call_script_function).
+ * - Pattern / assign bind helpers: afw_function_script_assign_pattern and
+ *   const/let/assign type checks under unit typeCheck policy.
+ *
+ * Built-in Adaptive formals: afw_function.c / AFW_FUNCTION_EVALUATE_* only.
  */
 
 #include "afw_internal.h"
@@ -33,7 +44,65 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
-/* Public wrapper for script function Pattern parameters (and similar). */
+/*
+ * Evaluate a script-function formal (call_script_function only).
+ *
+ * When runtime typeCheck is on for contextual's unit: strict assignability.
+ * Otherwise: leaf data_type convert (legacy). Not used by Adaptive built-ins.
+ */
+AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_function_script_evaluate_parameter_with_type(
+    const afw_value_t *value,
+    afw_size_t parameter_number,
+    const afw_value_type_t *type,
+    const afw_compile_value_contextual_t *contextual,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *result;
+    const afw_data_type_t *want_dt;
+
+    /* Leaf convert only; composites use type_check when enabled. */
+    want_dt = NULL;
+    if (type && type->kind == afw_value_type_kind_data_type) {
+        want_dt = type->data_type;
+    }
+
+    if (type) {
+        afw_value_type_check_call_arg_object_literal(type, value,
+            "parameter", contextual, xctx);
+    }
+
+    if (afw_value_is_defined_and_evaluated(value) &&
+        (!want_dt || want_dt == afw_data_type_any ||
+            afw_value_get_data_type(value, xctx) == want_dt))
+    {
+        if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
+            afw_value_type_check_assignable(type, value,
+                "parameter", contextual, xctx);
+        }
+        return value;
+    }
+
+    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
+    result = afw_value_evaluate(value, p, xctx);
+
+    if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
+        afw_value_type_check_assignable(type, result, "parameter",
+            contextual, xctx);
+    }
+    else if (result && want_dt && want_dt != afw_data_type_any &&
+        afw_value_get_data_type(result, xctx) != want_dt)
+    {
+        result = afw_value_convert(result, want_dt, true, p, xctx);
+    }
+
+    afw_xctx_evaluation_stack_pop_parameter_number(xctx);
+    return result;
+}
+
+
+/* Pattern parameters and shared destructure bind paths. */
 AFW_DEFINE_INTERNAL(void)
 afw_function_script_assign_pattern(
     const afw_value_t *target,
@@ -107,6 +176,7 @@ impl_list_destructure(
     const afw_compile_list_destructure_t *ld,
     const afw_value_t *value,
     afw_compile_internal_assignment_type_t assignment_type,
+    const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -149,7 +219,7 @@ impl_list_destructure(
         /* Element annotation on Pattern (may also live on symbol->type). */
         if (ae->type && v && !afw_value_is_undefined(v)) {
             afw_value_type_check_assignable(ae->type, v,
-                "list pattern element", xctx);
+                "list pattern element", contextual, xctx);
         }
         impl_assign_value(ae->assignment_target, v, assignment_type,
             p, xctx);
@@ -177,7 +247,7 @@ impl_list_destructure(
         v = afw_value_create_unmanaged_array(rest, p, xctx);
         if (ld->rest_type) {
             afw_value_type_check_assignable(ld->rest_type, v,
-                "list pattern rest", xctx);
+                "list pattern rest", contextual, xctx);
         }
         impl_assign_value(ld->rest, v, assignment_type, p, xctx);
     }
@@ -191,6 +261,7 @@ impl_object_destructure(
     const afw_compile_object_destructure_t *od,
     const afw_value_t *value,
     afw_compile_internal_assignment_type_t assignment_type,
+    const afw_compile_value_contextual_t *contextual,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -230,7 +301,7 @@ impl_object_destructure(
             {
                 afw_value_type_check_assignable(
                     ap->assignment_element->type, v,
-                    "object pattern property", xctx);
+                    "object pattern property", contextual, xctx);
             }
             impl_assign_value(ap->assignment_element->assignment_target, v,
                 assignment_type, p, xctx);
@@ -289,7 +360,7 @@ impl_object_destructure(
         v = afw_value_create_unmanaged_object(rest, p, xctx);
         if (od->rest_type) {
             afw_value_type_check_assignable(od->rest_type, v,
-                "object pattern rest", xctx);
+                "object pattern rest", contextual, xctx);
         }
         impl_assign_value(od->rest, v, assignment_type, p, xctx);
     }
@@ -308,6 +379,7 @@ impl_assignment_target(
     const afw_compile_assignment_target_t *at =
         target->assignment_target;
     const afw_value_block_symbol_t *symbol;
+    const afw_compile_value_contextual_t *contextual = target->contextual;
 
     switch (at->target_type) {
     case afw_compile_assignment_target_type_list_destructure:
@@ -315,7 +387,7 @@ impl_assignment_target(
             value = afw_value_evaluate(value, p, xctx);
         }
         impl_list_destructure(at, at->list_destructure, value,
-            assignment_type, p, xctx);
+            assignment_type, contextual, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_object_destructure:
@@ -323,7 +395,7 @@ impl_assignment_target(
             value = afw_value_evaluate(value, p, xctx);
         }
         impl_object_destructure(at, at->object_destructure, value,
-            assignment_type, p, xctx);
+            assignment_type, contextual, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_symbol_reference:
@@ -334,7 +406,7 @@ impl_assignment_target(
             value = afw_value_evaluate(value, p, xctx);
         }
         afw_value_type_check_assignable(&symbol->type, value,
-            "assignment", xctx);
+            "assignment", contextual, xctx);
         afw_xctx_scope_symbol_set_value(symbol, value, xctx);
         break;
 
@@ -425,7 +497,7 @@ impl_assign_value(
          */
         if (value && !afw_value_is_undefined(value)) {
             afw_value_type_check_assignable(&t->symbol->type, value,
-                "assignment", xctx);
+                "assignment", t->contextual, xctx);
         }
         afw_xctx_scope_symbol_set_value(t->symbol, value, xctx);
     }
@@ -1335,7 +1407,7 @@ afw_function_execute_switch(
         x->argv[1], p, xctx);
     AFW_FUNCTION_EVALUATE_PARAMETER(args.value1, 2);
     args.value2 = NULL; /* Filled in later. */
-    functor = afw_value_call_create(NULL,
+    functor = afw_value_call_create(afw_function_execute_contextual(x),
         2, (const afw_value_t **)&args, false, p, xctx);
 
 

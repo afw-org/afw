@@ -139,7 +139,18 @@
 #define AFW_COMPILER_ANNOTATION_NONNULL
 #endif
 
-/** @fixme Remove this as soon as no source contains it. */
+/**
+ * @deprecated Do not use in new or changed code.
+ *
+ * Expands to C `assert()` and can **abort the process**. That is unsafe under
+ * a long-running server / request (takes down the worker). Use
+ * `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / `AFW_COMPILE_THROW_ERROR_*`
+ * so failures participate in `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY` and the
+ * request can fail cleanly. There is intentionally **no** `AFW_ABORT` (or
+ * similar) helper — do not invent process-abort wrappers.
+ *
+ * @fixme Remove when no remaining call sites.
+ */
 #define AFW_ASSERT(e) assert(e)
 
 /** @fixme */
@@ -1868,6 +1879,27 @@ struct afw_environment_s {
 
 };
 
+
+/**
+ * @brief Per-compile policy (flags as defaults; #compile overrides this only).
+ *
+ * Snapshot of effective compile:* knobs for one compiled unit. Process flags
+ * are defaults; #compile mutates this snapshot only (never process flags).
+ * Type checks resolve policy via contextual->compiled_value, else flags.
+ * See designs/pragma-hash-design.md and afw_compile_parse_pragma.c.
+ */
+struct afw_compile_policy_s {
+    /** Full typeCheck (compile + runtime). compile_only wins if both set. */
+    afw_boolean_t type_check;
+    /** Compile-time type checking only. */
+    afw_boolean_t type_check_compile_only;
+    /** Require annotations when type checking is active. */
+    afw_boolean_t no_implicit_any;
+    /** Strict null/undefined assignability when type checking is active. */
+    afw_boolean_t strict_null_checks;
+    /** Prefer unoptimized built-in call evaluation. */
+    afw_boolean_t no_optimize;
+};
 
 /**
  * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.

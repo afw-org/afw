@@ -287,6 +287,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     compile/afw_compile_lexical.c
     compile/afw_compile_parse.c
     compile/afw_compile_parse_assignment_target.c
+    compile/afw_compile_parse_compiler_internal.c
     compile/afw_compile_parse_expression.c
     compile/afw_compile_parse_pragma.c
     compile/afw_compile_parse_script.c
@@ -317,7 +318,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_base64Binary.c
     function/afw_function_compiler.c
     function/afw_function_compiler_expression.c
-    function/afw_function_compiler_script.c
+    function/afw_function_compiler_internal.c
     function/afw_function_date.c
     function/afw_function_dateTime.c
     function/afw_function_double.c

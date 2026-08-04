@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for compiler_script
+ * afw_function_execute_* functions for compiler_internal
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_compiler_script.c
- * @brief afw_function_execute_* functions for compiler_script.
+ * @file afw_function_compiler_internal.c
+ * @brief afw_function_execute_* functions for compiler_internal.
  */
 
 #include "afw.h"

@@ -10483,7 +10483,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_noImplicitAny_description \
-    "If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed. Only applies when type checking is active (compile:typeCheck or compile:typeCheckCompileOnly)."
+    "If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed. Only applies when type checking is active (compile:typeCheck or compile:typeCheckCompileOnly). Process default; a script may override for one compile unit with #compile noImplicitAny; (or #compile noTypeCheck; on that unit) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_noImplicitAny_description */
 #define afw_s_a_flag_compile_noImplicitAny_description \
@@ -10561,7 +10561,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_noOptimize_description \
-    "Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core."
+    "Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core. Process default; a script may override for one compile unit with #compile noOptimize; without changing this flag for the rest of the process (#compile noTypeCheck; does not clear noOptimize on the unit)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_noOptimize_description */
 #define afw_s_a_flag_compile_noOptimize_description \
@@ -10665,7 +10665,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_strictNullChecks_description \
-    "When type checking is active, null and undefined are not assignable to non-nullish types unless the type includes them. Similar to TypeScript strictNullChecks."
+    "When type checking is active, null and undefined are not assignable to non-nullish types unless the type includes them. Similar to TypeScript strictNullChecks. Process default; a script may override for one compile unit with #compile strictNullChecks; (or #compile noTypeCheck;) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strictNullChecks_description */
 #define afw_s_a_flag_compile_strictNullChecks_description \
@@ -10717,7 +10717,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_strict_description \
-    "Enables compile:typeCheck (compile and runtime), compile:noImplicitAny, and compile:strictNullChecks. Similar to TypeScript compilerOption strict."
+    "Enables compile:typeCheck (compile and runtime), compile:noImplicitAny, and compile:strictNullChecks. Similar to TypeScript compilerOption strict. Process default; a script may override for one compile unit with #compile strict; (or #compile noTypeCheck;) without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_strict_description */
 #define afw_s_a_flag_compile_strict_description \
@@ -10821,7 +10821,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_typeCheckCompileOnly_description \
-    "When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set."
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheckCompileOnly; (or #compile noTypeCheck;), including mid-unit, without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheckCompileOnly_description */
 #define afw_s_a_flag_compile_typeCheckCompileOnly_description \
@@ -10873,7 +10873,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_a_flag_compile_typeCheck_description \
-    "When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins."
+    "When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheck; (or #compile noTypeCheck;), including mid-unit so later statements use the new policy, without changing this flag for the rest of the process."
 
 /** @brief 'afw_utf8_t' for AFW_Q_a_flag_compile_typeCheck_description */
 #define afw_s_a_flag_compile_typeCheck_description \
@@ -48416,28 +48416,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_compiler_script \
-    "compiler_script"
+#define AFW_Q_compiler_internal \
+    "compiler_internal"
 
-/** @brief 'afw_utf8_t' for AFW_Q_compiler_script */
-#define afw_s_compiler_script \
-    (&afw_self_v_compiler_script.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compiler_internal */
+#define afw_s_compiler_internal \
+    (&afw_self_v_compiler_internal.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_compiler_script */
-#define afw_self_s_compiler_script \
-    (afw_self_v_compiler_script.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_compiler_internal */
+#define afw_self_s_compiler_internal \
+    (afw_self_v_compiler_internal.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_compiler_script */
+/** @brief 'afw_value_string_t' for AFW_Q_compiler_internal */
 extern const afw_value_string_t \
-    afw_self_v_compiler_script;
+    afw_self_v_compiler_internal;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_compiler_script */
-#define afw_z_compiler_script \
-    (afw_self_v_compiler_script.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compiler_internal */
+#define afw_z_compiler_internal \
+    (afw_self_v_compiler_internal.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_compiler_script */
-#define afw_v_compiler_script \
-    (&afw_self_v_compiler_script.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_compiler_internal */
+#define afw_v_compiler_internal \
+    (&afw_self_v_compiler_internal.pub)
 
 
 
@@ -131279,7 +131279,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2151 \
-    "These are functions that support compiled scripts at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
+    "Functions that support compiled Adaptive Script at runtime (const, let, assign, control flow, …). They are mainly intended to be called by compiled units produced by the Adaptive compiler (including decompile/recompile). They remain in the function registry and docs for debugging, but are not the normal authoring surface — prefer language syntax. Function ids stay stable for decompile round-trip."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2151 */
 #define afw_s_zz__2151 \
@@ -157174,6 +157174,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Adaptive_compiler_internal_script_runtime \
+    "Adaptive compiler-internal script runtime"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_s_zz__Adaptive_compiler_internal_script_runtime \
+    (&afw_self_v_zz__Adaptive_compiler_internal_script_runtime.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_self_s_zz__Adaptive_compiler_internal_script_runtime \
+    (afw_self_v_zz__Adaptive_compiler_internal_script_runtime.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+extern const afw_value_string_t \
+    afw_self_v_zz__Adaptive_compiler_internal_script_runtime;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_z_zz__Adaptive_compiler_internal_script_runtime \
+    (afw_self_v_zz__Adaptive_compiler_internal_script_runtime.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_compiler_internal_script_runtime */
+#define afw_v_zz__Adaptive_compiler_internal_script_runtime \
+    (&afw_self_v_zz__Adaptive_compiler_internal_script_runtime.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adaptive_compiler_related_functions \
     "Adaptive compiler related functions"
 
@@ -157222,32 +157248,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_expression */
 #define afw_v_zz__Adaptive_compiler_runtime_support_for_expression \
     (&afw_self_v_zz__Adaptive_compiler_runtime_support_for_expression.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_compiler_runtime_support_for_script \
-    "Adaptive compiler runtime support for script"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_s_zz__Adaptive_compiler_runtime_support_for_script \
-    (&afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_self_s_zz__Adaptive_compiler_runtime_support_for_script \
-    (afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_compiler_runtime_support_for_script;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_z_zz__Adaptive_compiler_runtime_support_for_script \
-    (afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_compiler_runtime_support_for_script */
-#define afw_v_zz__Adaptive_compiler_runtime_support_for_script \
-    (&afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.pub)
 
 
 

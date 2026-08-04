@@ -141715,19 +141715,19 @@ static const afw_runtime_const_object_instance_t
 impl_1384;
 
 /*
- * /afw/_AdaptiveFunctionCategory_/compiler_script
+ * /afw/_AdaptiveFunctionCategory_/compiler_internal
  */
 
 static const afw_runtime_property_t
 impl_1384_property_brief = {
     &afw_self_s_brief,
-    &afw_self_v_zz__Adaptive_compiler_runtime_support_for_script.pub
+    &afw_self_v_zz__Adaptive_compiler_internal_script_runtime.pub
 };
 
 static const afw_runtime_property_t
 impl_1384_property_category = {
     &afw_self_s_category,
-    &afw_self_v_compiler_script.pub
+    &afw_self_v_compiler_internal.pub
 };
 
 static const afw_runtime_property_t
@@ -141766,7 +141766,7 @@ impl_1384_meta_object__value = {
 
 static const afw_utf8_t
 impl_1384_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/compiler_script");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/compiler_internal");
 
 static const afw_value_object_t
 impl_1384__value;
@@ -141780,7 +141780,7 @@ impl_1384 = {
         {
             (const afw_object_t *)&impl_1384_meta_object,
             NULL,
-            &afw_self_s_compiler_script,
+            &afw_self_s_compiler_internal,
             &afw_self_s__AdaptiveFunctionCategory_,
             &impl_1384_meta_path
         }

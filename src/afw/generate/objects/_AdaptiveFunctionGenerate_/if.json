@@ -1,6 +1,6 @@
 {
     "brief": "If/then/else function",
-    "category": "compiler_script",
+    "category": "compiler_internal",
     "description": "Evaluate one of two different values depending on test condition.",
     "functionId": "if",
     "functionLabel": "if",

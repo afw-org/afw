@@ -38,9 +38,25 @@ assert(...);
 return 0;
 ```
 
-- Each case is a **separate script** (fresh variables). Prefer focused cases over one huge case.
+- Prefer focused cases over one huge case.
 - Language quirks (structural `===`, nullish, defaults): **`afw-adaptive-script`**.
 
+### How the runner compiles and evaluates (important)
+
+Two layers (`afw_value_call_test_script.c` + `afw_compile_parse_TestScript`):
+
+1. **File once** — `//?` metadata is **not** Adaptive Script. The file compiles as `test_script` → a `call_test_script` value; each case `source:` is a **string** in a tests array.
+2. **Each case at evaluate** — for every non-skipped case: **`compile_script` on that source string** (new compile unit; `compile_policy` snapshotted from **process flags at that compile**), then **evaluate**. Errors are caught per case; the loop continues.
+3. **One process / one xctx** for all cases in a file. Process flags **persist** across cases unless cleared.
+
+Implications for process flags / unit policy (`compile:typeCheck`, `#compile`, …):
+
+- `flag_set` at the top of a case runs at **evaluate** — it does **not** change that case’s **own** outer unit policy (already snapshotted when the case source was compiled).
+- Put the unit under test in nested `compile<script>(script(…))` (or equivalent) **after** `flag_set` when process defaults matter.
+- `#compile` mutates only that nested unit’s policy, never process flags.
+- Soft isolation in one file: clear type-flag family at case start; if a case **enables** process typeCheck, clear again at end so the **next** case’s outer compile is not polluted.
+- **True process isolation** → separate `.as` files (each `afwdev test` / `afw` run is a new process). Prefer that over elaborate in-file flag gymnastics when defaults must differ.
+- Script function **runtime** formals/returns prefer **definition** unit contextual; **compile-time** formal checks on a call use the **call-site** unit (outer case unit if the call is in the case body).
 ## Regression tests for runtime bugs
 
 When fixing a C/runtime bug, add `.as` coverage that fails without the fix:

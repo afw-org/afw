@@ -100,6 +100,110 @@ AssignmentBindingTarget ::=
 
 AssignmentTarget ::= AssignmentBindingTarget | Reference
 
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Compiler-internal #block( statementExpression, ... ).                      */
+/* Token is already pound_identifier with name "block".                       */
+
+CompilerInternalBlock ::=
+    '#block' '(' ( Expression ( ',' Expression )* )? ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Target shape for #assignment_target (symbol name or destructure Pattern).  */
+
+AssignmentTargetCompilerInternalShape ::=
+    Identifier |
+    String |
+    AssignmentListDestructureTarget |
+    AssignmentObjectDestructureTarget
+/* Compiler-internal #assignment_target( assignmentKind, Pattern ).           */
+/* assignmentKind — string Expression, e.g. "const", "let" (matches decompile). */
+
+CompilerInternalAssignmentTarget ::=
+    '#assignment_target' '(' Expression ','
+        AssignmentTargetCompilerInternalShape ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Compiler-internal wrapper for array spread entries. Matches decompile.     */
+
+CompilerInternalListExpression ::=
+    '#list_expression' '(' Expression ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Parts are Expressions (string segments and nested #block expressions).     */
+/* At least one part is required.                                             */
+
+CompilerInternalTemplateDefinition ::=
+    '#template_definition' '(' Expression ( ',' Expression )* ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* #script_function( param* , body [, returnType] ) — decompile form.         */
+/* Param symbols are introduced before the body is parsed.                    */
+/* A name or Pattern is a parameter only when followed by '?', ':', '=',      */
+/* or ',' (or after '...'); otherwise it starts the body Expression.          */
+
+ScriptFunctionCompilerInternalParamName ::=
+    Identifier | String
+
+ScriptFunctionCompilerInternalNameParameter ::=
+    ( '...' )? ScriptFunctionCompilerInternalParamName
+        ( '?' )? ( ':' Type )? ( '=' Expression )?
+
+ScriptFunctionCompilerInternalPatternParameter ::=
+    ( AssignmentListDestructureTarget |
+      AssignmentObjectDestructureTarget )
+        ( '?' )? ( '=' Expression )?
+
+ScriptFunctionCompilerInternalParameter ::=
+    ScriptFunctionCompilerInternalNameParameter |
+    ScriptFunctionCompilerInternalPatternParameter
+
+ScriptFunctionCompilerInternalArgs ::=
+    ( ScriptFunctionCompilerInternalParameter
+      ( ',' ScriptFunctionCompilerInternalParameter )*
+      ',' )?
+    Expression ( ',' Type )?
+
+CompilerInternalScriptFunction ::=
+    '#script_function' '(' ScriptFunctionCompilerInternalArgs ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Switch default-clause marker (unique permanent null). Optional "()".       */
+
+CompilerInternalSwitchDefault ::=
+    '#switch_default' ( '(' ')' )?
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Array value of compiled nodes without evaluating them (for for/switch      */
+/* statement lists). Unlike array(), elements stay as call/block nodes.       */
+
+CompilerInternalStatements ::=
+    '#statements' '(' ( Expression ( ',' Expression )* )? ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Statement-position compiler-internal #Name.                                */
+/* Token is already pound_identifier.                                         */
+/* #closure_binding / #function_thunk are recognized as known rejects         */
+/* (always compile errors; not productions — runtime / C-side only).          */
+
+CompilerInternalStatement ::=
+    CompilerInternalBlock
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Value/expression-position compiler-internal #Name.                         */
+/* Token is already pound_identifier.                                         */
+/* Forms match decompile #implementation_id where implemented.                */
+/* #closure_binding / #function_thunk are recognized but always compile       */
+/* errors (runtime / C-side only; not recompilable from decompile text).      */
+
+CompilerInternalValue ::=
+    CompilerInternalBlock |
+    CompilerInternalAssignmentTarget |
+    CompilerInternalListExpression |
+    CompilerInternalScriptFunction |
+    CompilerInternalTemplateDefinition |
+    CompilerInternalSwitchDefault |
+    CompilerInternalStatements
+
 /* From afw_compile_parse_expression.c                                        */
 /* The objectId of any /afw/_AdaptiveDataType_/ objects.                      */
 /* This production only applies if ':' occurs before the end of current line. */
@@ -109,10 +213,11 @@ ColonBeforeEndOfLine ::= ':'
 DataType ::=
    'any' |
    'anyURI' |
+   'array' |
    'base64Binary' |
    'boolean' |
-   'date' |
    'dataTimeDuration' |
+   'date' |
    'dnsName' |
    'double' |
    'expression' |
@@ -121,7 +226,6 @@ DataType ::=
    'ia5String' |
    'integer' |
    'ipAddress' |
-   'array' |
    'null' |
    'object' |
    'objectId' |
@@ -411,44 +515,30 @@ Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
 Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
 /* From afw_compile_parse_pragma.c                                            */
-/* Statement-position pragma (#Name …). Token is pragma_identifier.           */
+/* Author compile-policy pragma. Token is already pound_identifier "compile". */
+/* Operands are compile:* flag short names (and special 'noTypeCheck').       */
+/* At least one operand required. Spaces separate tokens; no commas.          */
 
-PragmaStatement ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')' |
-    '#typecheck'
-        ( 'off' | 'on' | 'compileOnly' | 'strict' |
-          'noImplicitAny' | 'strictNullChecks' | ',' )*
-        ';'
+CompilePragmaOperand ::=
+    'noImplicitAny' |
+    'noOptimize' |
+    'noTypeCheck' |
+    'strict' |
+    'strictNullChecks' |
+    'typeCheck' |
+    'typeCheckCompileOnly'
+
+CompilePragma ::=
+    '#compile' CompilePragmaOperand+ ';'
 
 /* From afw_compile_parse_pragma.c                                            */
-/* Value/expression-position pragma (#Name …). Token is pragma_identifier.    */
-/* Structural forms match decompile #implementation_id where implemented.     */
-/* Target shape for #assignment_target (symbol name or destructure Pattern).  */
+/* Statement-position #Name. Token is already pound_identifier.               */
+/* Author policy pragmas first; other # names are compiler-internal           */
+/* (see CompilerInternalStatement).                                           */
 
-AssignmentTargetPragmaShape ::=
-    Identifier |
-    String |
-    AssignmentListDestructureTarget |
-    AssignmentObjectDestructureTarget
-/* #script_function( param* , body [, returnType] ) — decompile form.         */
-
-ScriptFunctionPragmaParameter ::=
-    Identifier ( ':' Type )? ( '=' Expression )?
-
-ScriptFunctionPragmaArgs ::=
-    ( ScriptFunctionPragmaParameter ( ',' ScriptFunctionPragmaParameter )*
-      ',' )?
-    Expression ( ',' Type )?
-
-PragmaValue ::=
-    '#block' '(' ( Expression ( ',' Expression )* )? ')' |
-    '#assignment_target' '(' Expression ','
-        AssignmentTargetPragmaShape ')' |
-    '#list_expression' '(' Expression ')' |
-    '#script_function' '(' ScriptFunctionPragmaArgs ')' |
-    '#template_definition' '(' Expression ( ',' Expression )* ')'
-/* #closure_binding / #function_thunk are recognized but always compile       */
-/* errors (runtime / C-side only; not recompilable from decompile text).      */
+PragmaStatement ::=
+    CompilePragma |
+    CompilerInternalStatement
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */
@@ -527,10 +617,6 @@ TypeStatement ::= 'type' TypeVariableName '=' Type ';'
 /* From afw_compile_parse_script.c                                            */
 
 ContinueStatement ::= 'continue' ';'
-
-/* From afw_compile_parse_script.c                                            */
-
-DeclareStatement ::= 'declare' AssignmentTarget ';'
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -629,7 +715,6 @@ Statement ::=
    CallStatement |
    ConstStatement |
    ContinueStatement |
-   DeclareStatement |
    DoWhileStatement |
    ForStatement |
    FunctionStatement |
@@ -639,6 +724,8 @@ Statement ::=
    PragmaStatement |
    ReturnStatement |
    SwitchStatement |
+   ThrowStatement |
+   TryStatement |
    TypeStatement |
    WhileStatement
 
@@ -854,7 +941,7 @@ Value ::= ListValue |
         ParenthesizedExpression |
         TemplateString |
         CompileTimeSubstitution |
-        PragmaValue
+        CompilerInternalValue
 
 /* From afw_compile_lexical.c                                                 */
 
@@ -988,17 +1075,23 @@ PredefinedConstReservedWords ::= ( 'false' | 'INF' | 'Infinity' | 'NaN'  |
      'null' | 'true' | 'undefined' )
 
 /* From afw_compile_lexical.c                                                 */
+/* Statement / clause keywords (including type-system statements and          */
+/* interface 'extends'). 'void' is reserved with statements though it is      */
+/* also a data-type name.                                                     */
 
 StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
-     'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' |
-     'function' | 'if' | 'let' | 'return' | 'switch' |
-     'throw' | 'try' | 'void' | 'while' )
+     'continue' | 'default' | 'do' | 'else' | 'extends' | 'finally' |
+     'for' | 'function' | 'if' | 'interface' | 'let' | 'return' |
+     'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
 
 /* From afw_compile_lexical.c                                                 */
+/* Not implemented as syntax today; reserved for possible future TS/JS-shaped */
+/* surface (or to block bad identifiers). 'var' kept so scripts cannot use it. */
+/* Dropped: 'delete', 'with' (removed operators / no plan to adopt).          */
 
-UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
-     'export' | 'extends' | 'from' | 'import' | 'in' | 'interface' |
-     'instanceof' | 'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
+UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
+     'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
+     'this' | 'typeof' | 'var' )
 
 /* From afw_compile_lexical.c                                                 */
 /* End of source                                                              */
@@ -1006,7 +1099,8 @@ UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
 END ::=
 
 /* From afw_compile_lexical.c                                                 */
-/* '#' starts compile-time substitution '#{', a pragma identifier             */
-/* '#Name', or a bare pound sign.                                             */
+/* '#' starts compile-time substitution '#{', a pound identifier              */
+/* '#Name' (pragma or compiler-internal), or a bare pound sign.               */
+/* Bare '#' is a token only (pound_sign) — not a production.                  */
 
-PragmaIdentifier ::= '#' Identifier
+PoundIdentifier ::= '#' Identifier
