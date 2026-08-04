@@ -18,34 +18,36 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 
 ## Highlights
 
+Each **Area** links to the detail section below (when there is one).
+
 | Area | What changed |
 |------|----------------|
-| **Object / array helpers (#55)** | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` — **recompile** out-of-tree commands/extensions |
-| **Expression property names (#38)** | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
-| **Qualifier snapshots (#9)** | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
-| **Multi-frame `::` get** | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with #15 work) |
-| **Retrieve arrays (#49)** | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **100**, **0** = unlimited; over max → **`payload_too_large`**) |
-| **Admin / JS client** | `AfwModel` sends **`maxObjects: 0`** for full metadata catalogs so admin loads after the #49 default of 100 |
-| **Adapter auth (#90)** | `checkIndividualObjectReadAccess` wiring fixed + tests (action **`read`** as well as **`query`**) |
-| **File streams (#103)** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
-| **Conf path templates (#15)** | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
-| **VFS adapter (#79)** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
-| **Model adapters (#109)** | `mappedAdapterId` is **optional** for pure-script models |
-| **`afw` CLI** | Optional interactive line editing and history (#30); **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) |
-| **JSON Schema (#3)** | Cleaner editor schemas for Adaptive object types |
-| **Process env (#71)** | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
-| **`process::` (#74 partial)** | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
-| **`afw_crypto` (#74 partial)** | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
-| **Templates (#97)** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
-| **Adapter index `current::` (#54 partial)** | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
-| **C builders / afwdev (#1)** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
-| **Value / memory (α/β, #2)** | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions |
-| **`stringify` / `decompile` / listing (#18)** | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
-| **UTF-8 in JSON / Fiddle** | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
-| **Python `Session("local")`** | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
-| **Param / catch Patterns (#140)** | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
-| **Script types (#28)** | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
-| **Function reference prototypes** | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
+| [**Object / array helpers (#55)**](#object-and-array-helpers-issue-55) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` — **recompile** out-of-tree commands/extensions |
+| [**Expression property names (#38)**](#expression-property-names-in-object-values-issue-38) | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
+| [**Qualifier snapshots (#9)**](#list-active-qualified-variables-issue-9) | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
+| [**Multi-frame `::` get**](#multi-frame-get-aligned-with-snapshots) | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with #15 work) |
+| [**Retrieve arrays (#49)**](#materializing-retrieve-maxobjects-issue-49) | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **100**, **0** = unlimited; over max → **`payload_too_large`**) |
+| [**Admin / JS client**](#admin-afwclient-after-the-default-of-100) | `AfwModel` sends **`maxObjects: 0`** for full metadata catalogs so admin loads after the #49 default of 100 |
+| [**Adapter auth (#90)**](#adapter-getretrieve-authorization-issue-90) | `checkIndividualObjectReadAccess` wiring fixed + tests (action **`read`** as well as **`query`**) |
+| [**File streams (#103)**](#file-streams-open_file-and-friends) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
+| [**Conf path templates (#15)**](#conf-path-templates-issue-15) | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
+| [**VFS adapter (#79)**](#vfs-adapter-afw_vfs) | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
+| [**Model adapters (#109)**](#pure-script-model-adapters) | `mappedAdapterId` is **optional** for pure-script models |
+| [**`afw` CLI**](#interactive-afw-line-editing-and-history) | Optional interactive line editing and history (#30); **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) — see also [YAML / `--allow`](#afw-allow-and-yaml-value-output-issue-14) |
+| [**JSON Schema (#3)**](#json-schema-for-adaptive-object-types) | Cleaner editor schemas for Adaptive object types |
+| [**Process env (#71)**](#process-environment-variables-issue-71) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
+| [**`process::` (#74 partial)**](#process-ambient-environment-and-process-issues-71-74) | Ambient `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create (with `environment::`) |
+| [**`afw_crypto` (#74 partial)**](#crypto-extension-afw_crypto-issue-74-partial) | Optional extension: AES-GCM encrypt/decrypt/**seal**/**unseal**, digest/HMAC, keystore, key refs, PBKDF2; LDAP `bindParameters` recipe |
+| [**Templates (#97)**](#compile-time-template-substitutions-issue-97) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
+| [**Adapter index `current::` (#54 partial)**](#adapter-index-filtervalue-current-issue-54-partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
+| [**C builders / afwdev (#1)**](#c-api-docs-and-full-package-builds-issue-1) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
+| [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions |
+| [**`stringify` / `decompile` / listing (#18)**](#stringify-decompile-compiler-listing-and-binary-text) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
+| [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
+| [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
+| [**Param / catch Patterns (#140)**](#function-parameter-and-catch-patterns-issue-140) | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
+| [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
+| [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
 
 ---
 
@@ -930,3 +932,14 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 ## How this was produced
 
 Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**–**#142**, and follow-up fixes on `mgg-develop`). For full commit history, see those PRs on the repository hosting Adaptive Framework.
+
+### Maintaining the Highlights table (for agents)
+
+When adding or rewriting `whats-new.md` content:
+
+1. **Every user-facing theme gets a `##` detail section** (and optional `###` subsections). Put the short pitch in the Highlights table and the full story under the section.
+2. **Link the Area cell** to that section: `[**Short name (#N)**](#github-heading-slug)`. Leave “What changed” unlinked.
+3. **Slug** = GitHub auto-anchor for the `##` title: lower-case, strip punctuation/`backticks`, spaces → `-` (verify in the rendered PR if unsure). Prefer **stable, boring headings** so slugs don’t thrash.
+4. **One theme, one primary section.** If two table rows share a section (e.g. UTF-8 + Python local), both may link to the same `#…`. Prefer a `###` link only when the jump is much clearer.
+5. **No orphan links.** If there is no detail section yet, either add one or leave the Area unlinked until there is.
+6. **After renames**, update Highlights links in the same edit as the heading change.
