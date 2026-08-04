@@ -1351,12 +1351,12 @@ afw_compile_is_reserved_word(
 
 /*ebnf>>>
  *
- *# Not implemented as syntax today; reserved for possible future TS/JS-shaped
- *# surface (or to block bad identifiers). 'var' kept so scripts cannot use it.
- *# Dropped: 'delete', 'with' (removed operators / no plan to adopt).
- * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
+ *# Not implemented as syntax today; reserved for possible future surface or
+ *# to block awkward identifiers. Keep 'var', 'delete', and 'with' reserved
+ *# even though Adaptive Script does not implement those keywords.
+ * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
  *      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
- *      'this' | 'typeof' | 'var' )
+ *      'this' | 'typeof' | 'var' | 'with' )
  *
  *<<<ebnf*/
 
@@ -1364,6 +1364,7 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_async)        ||
         afw_utf8_equal(s, afw_s_await)        ||
         afw_utf8_equal(s, afw_s_class)        ||
+        afw_utf8_equal(s, afw_s_delete)       ||
         afw_utf8_equal(s, afw_s_export)       ||
         afw_utf8_equal(s, afw_s_from)         ||
         afw_utf8_equal(s, afw_s_import)       ||
@@ -1372,7 +1373,8 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_super)        ||
         afw_utf8_equal(s, afw_s_this)         ||
         afw_utf8_equal(s, afw_s_typeof)       ||
-        afw_utf8_equal(s, afw_s_var)          )
+        afw_utf8_equal(s, afw_s_var)          ||
+        afw_utf8_equal(s, afw_s_with)         )
     {
         return true;
     }

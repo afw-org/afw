@@ -78,9 +78,9 @@ default     do          else        extends     finally
 for         function    if          interface   let
 return      switch      throw       try         type
 void        while
-as          async       await       class       export
-from        import      in          instanceof  super
-this        typeof      var</code> 
+as          async       await       class       delete
+export      from        import      in          instanceof
+super       this        typeof      var         with</code> 
     <header>Literals</header>
     <paragraph>
         Literals are constant that can be used as a values inside expressions. There are 

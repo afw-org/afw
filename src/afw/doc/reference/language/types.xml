@@ -252,32 +252,9 @@ const p: Person = { id: 1, name: "a" };]]></code>
         <paragraph>
             Type annotations are always accepted by the compiler. Checking is
             off by default so existing scripts keep working. Turn checking on
-            with environment flags when you want mismatches reported.
+            with environment flags, or with a
+            <literal>#compile</literal> pragma in a script.
         </paragraph>
-        <list>
-            <item>
-                <literal>compile:typeCheck</literal> — checks at compile time
-                when the right-hand side type is known, and at runtime on
-                assignment and script function parameters.
-            </item>
-            <item>
-                <literal>compile:typeCheckCompileOnly</literal> — compile-time
-                checks only (used instead of full typeCheck when both are set).
-            </item>
-            <item>
-                <literal>compile:noImplicitAny</literal> — when checking is
-                active, a missing annotation is an error instead of
-                <literal>any</literal>.
-            </item>
-            <item>
-                <literal>compile:strictNullChecks</literal> — stricter handling
-                of <literal>null</literal> and undefined.
-            </item>
-            <item>
-                <literal>compile:strict</literal> — turns on typeCheck,
-                noImplicitAny, and strictNullChecks together.
-            </item>
-        </list>
         <paragraph>
             Flags may be set from the host environment or with
             <literal>flag_set</literal> in a script. When compile checking is
@@ -285,30 +262,103 @@ const p: Person = { id: 1, name: "a" };]]></code>
             time against each function’s parameter and return data types (when
             those types can be determined without running the call).
         </paragraph>
+
+        <header>Environment flags</header>
         <paragraph>
-            You can also write a <literal>#compile</literal> statement in a
-            script to turn the same options on or off for that script only.
-            Use the part of the flag name after <literal>compile:</literal>
-            (for example <literal>typeCheck</literal>), or
-            <literal>noTypeCheck</literal> to turn type checking off again in
-            the script. End the statement with a semicolon. This does not
-            change the environment flags used by other scripts.
+            These flags control type checking for scripts compiled while they
+            are set:
+        </paragraph>
+        <list>
+            <item>
+                <literal>compile:typeCheck</literal> — check at compile time
+                when types are known, and at runtime on assignment and script
+                function parameters
+            </item>
+            <item>
+                <literal>compile:typeCheckCompileOnly</literal> — compile-time
+                checks only (used instead of full typeCheck when both are set)
+            </item>
+            <item>
+                <literal>compile:noImplicitAny</literal> — when checking is
+                active, a missing annotation is an error instead of
+                <literal>any</literal>
+            </item>
+            <item>
+                <literal>compile:strictNullChecks</literal> — stricter handling
+                of <literal>null</literal> and undefined
+            </item>
+            <item>
+                <literal>compile:strict</literal> — turns on
+                <literal>typeCheck</literal>,
+                <literal>noImplicitAny</literal>, and
+                <literal>strictNullChecks</literal> together
+            </item>
+        </list>
+
+        <header>#compile pragma</header>
+        <paragraph>
+            In a script you may write
+            <literal>#compile</literal> followed by one or more options and a
+            semicolon. Options use the name after
+            <literal>compile:</literal> (case-sensitive). A
+            <literal>#compile</literal> pragma overrides the environment flags
+            for that script only; it does not change the environment flags
+            used by other scripts.
+        </paragraph>
+        <paragraph>
+            Options you can write after <literal>#compile</literal>:
+        </paragraph>
+        <list>
+            <item>
+                <literal>typeCheck</literal> — same as
+                <literal>compile:typeCheck</literal>
+            </item>
+            <item>
+                <literal>typeCheckCompileOnly</literal> — same as
+                <literal>compile:typeCheckCompileOnly</literal>
+            </item>
+            <item>
+                <literal>noImplicitAny</literal> — same as
+                <literal>compile:noImplicitAny</literal>
+            </item>
+            <item>
+                <literal>strictNullChecks</literal> — same as
+                <literal>compile:strictNullChecks</literal>
+            </item>
+            <item>
+                <literal>strict</literal> — same as
+                <literal>compile:strict</literal>
+            </item>
+            <item>
+                <literal>noOptimize</literal> — same as
+                <literal>compile:noOptimize</literal> (evaluate without the
+                usual value optimizations; mainly for core debugging)
+            </item>
+            <item>
+                <literal>noTypeCheck</literal> — turn type checking off for
+                this script (does not turn off
+                <literal>noOptimize</literal>)
+            </item>
+        </list>
+        <paragraph>
+            You may combine options in one statement (spaces between them, no
+            commas), for example
+            <literal>#compile typeCheck noImplicitAny;</literal>.
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[/* Turn checking on for this script */
+            <code><![CDATA[/* Environment flags (host or flag_set) */
+flag_set(["compile:typeCheck"], true);
+flag_set(["compile:strict"], true);
+
+/* Or the same options in this script only */
 #compile typeCheck;
-const n: integer = 1;
-
-/* Require annotations as well */
 #compile typeCheck noImplicitAny;
-
-/* Or enable the full strict set */
+#compile typeCheckCompileOnly;
+#compile strictNullChecks;
 #compile strict;
-
-/* Turn type checking off again in this script */
-#compile noTypeCheck;
-const loose: integer = "ok";]]></code>
+#compile noOptimize;
+#compile noTypeCheck;]]></code>
         </section>
     </section>
 

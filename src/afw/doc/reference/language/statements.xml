@@ -85,12 +85,6 @@ let [z] = [ 3 ];]]></code>
         </section>
     </section>
     <section>
-        <title>Declare</title>
-        <image generated-src="ebnf/syntax/diagram/DeclareStatement.png" />
-        <paragraph>            
-        </paragraph>
-    </section>
-    <section>
         <title>Do While</title>
         <image generated-src="ebnf/syntax/diagram/DoWhileStatement.png" />
         <paragraph>

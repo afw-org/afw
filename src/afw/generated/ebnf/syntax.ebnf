@@ -1085,13 +1085,13 @@ StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
      'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
 
 /* From afw_compile_lexical.c                                                 */
-/* Not implemented as syntax today; reserved for possible future TS/JS-shaped */
-/* surface (or to block bad identifiers). 'var' kept so scripts cannot use it. */
-/* Dropped: 'delete', 'with' (removed operators / no plan to adopt).          */
+/* Not implemented as syntax today; reserved for possible future surface or   */
+/* to block awkward identifiers. Keep 'var', 'delete', and 'with' reserved    */
+/* even though Adaptive Script does not implement those keywords.             */
 
-UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
+UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
-     'this' | 'typeof' | 'var' )
+     'this' | 'typeof' | 'var' | 'with' )
 
 /* From afw_compile_lexical.c                                                 */
 /* End of source                                                              */
