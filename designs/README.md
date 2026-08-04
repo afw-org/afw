@@ -22,7 +22,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-18-decompile-status.md`](issue-18-decompile-status.md) | **#18** decompile/recompile status |
 | [`issue-38-expression-property-names.md`](issue-38-expression-property-names.md) | **#38** — `[expr]: value` in object values |
 | [`issue-138-meta-on-the-wire.md`](issue-138-meta-on-the-wire.md) | **#138** — `"_meta_"` wire / options / rich types |
-| [`compile-optimize-notes.md`](compile-optimize-notes.md) | Future compile-time optimize; #140 Pattern/param/catch notes (mostly landed) + binding sites |
+| [`compile-optimize-notes.md`](compile-optimize-notes.md) | Future compile-time optimize; #140 Pattern/param/catch (landed) + binding-site inventory |
 | [`issue-28-type-syntax.md`](issue-28-type-syntax.md) | **#28** script type syntax + opt-in checking (implemented on branch) |
 | [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md) | Follow-on: compile typeCheck for adaptive/built-in function calls (design) |
 | [`pragma-hash-design.md`](pragma-hash-design.md) | **`#` design** — pragma vs compiler-internal; Pattern B `#compile` |

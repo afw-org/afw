@@ -30,7 +30,7 @@
 | Item | Where parked / status |
 |------|------------------------|
 | Compile-time **optimize** / constant fold pure calls | Still future — `designs/compile-optimize-notes.md` |
-| Function **parameter-list / catch Pattern sugar** (+ call-site `f(...arr)`, computed/string Pattern keys) | **Done** — [#140](https://github.com/afw-org/afw/issues/140) / PR [#141](https://github.com/afw-org/afw/pull/141); follow-up branch `Issue-#140-followup`. Pad: `designs/compile-optimize-notes.md` |
+| Function **parameter-list / catch Pattern sugar** (+ call-site `f(...arr)`, computed/string Pattern keys) | **Done** — [#140](https://github.com/afw-org/afw/issues/140) closed; PRs [#141](https://github.com/afw-org/afw/pull/141), [#142](https://github.com/afw-org/afw/pull/142). Pad: `designs/compile-optimize-notes.md` |
 | Fake recompile of **runtime** `#closure_binding` | known **reject** with clear error |
 | Recompile of **C-side** `#function_thunk` | known **reject** with clear error |
 

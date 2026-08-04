@@ -56,7 +56,7 @@ Implementing the optimizer, pragma, or permanent purity audits. This file is onl
 - Nested patterns decompile as nested `[`/`{` only (no nested `#assignment_target` wrapper).
 - Prefer **not** a forest of nested `#list_destructure` / `#assignment_element` pragmas as the primary form.
 
-**Still open:** later improvements to destructure *parsing* itself; binding-site Pattern sugar where the grammar still takes a bare name (below).
+**Landed:** binding-site Pattern sugar for params and catch (#140). Remaining: later improvements to destructure *parsing* itself if needed; no new binding sites planned.
 
 ### Binding sites that use Pattern / `AssignmentTarget`
 
@@ -74,10 +74,10 @@ Inventory of where Adaptive Script binds names, and whether a list/object **Patt
 
 Removed: stub `declare …` statement (was never implemented; no longer reserved).
 
-**Pattern feature residuals** (apply everywhere Patterns exist, not new sites):
+**Pattern features (shared across all Pattern sites):**
 
-- Computed keys in object destructure `{ [k]: x }` still open (near #38).
-- Param surface defaults are `= Literal` only; destructure element defaults already allow **Expression** (align when touching params).
+- **Computed / string keys** in object destructure: `{ [k]: x }`, `{ "name": x }` — **done** (#140 follow-up / PR #142). Near #38 for expression property names on *literals*, not destructure.
+- **Param and destructure defaults** are both `= Expression` (aligned in #141).
 
 **Not a Pattern site — related “args as a whole” asks:**
 
@@ -85,25 +85,24 @@ Removed: stub `declare …` statement (was never implemented; no longer reserved
 |------|--------|-------------------|
 | **Process / CLI args as one array** (script body, Node-like `process.argv`) | **Done** (close pending Jeremy) | Jeremy **[#74](https://github.com/afw-org/afw/issues/74)** → `process::args` (+ `programName`, `pid`, …). Secrets path via `afw_crypto` + file/stream; interactive `readpass` never built (asked Jeremy if close is OK without it). |
 | **All call arguments inside a script function** (ES `arguments` object) | Rest param covers common case | Use `function f(...args)` (already supported). No separate ES `arguments` binding unless someone files a real need. |
-| **Call-site spread** `f(...arr)` | **Done** (follow-up) | list_expression marker + expand at call; see TS-shaped table |
+| **Call-site spread** `f(...arr)` | **Done** (#140 follow-up / #142) | list_expression marker + expand at call; see TS-shaped table |
 
 Do **not** conflate `process::args` (#74) with function-parameter rest or param destructure.
 
-### Function parameter destructuring (issue #140 — implemented on branch)
+### Function parameter destructuring (issue #140 — closed)
 
 **GitHub:** [#140](https://github.com/afw-org/afw/issues/140) (enhancement; assignee mike000000000).
 
-**Status:** Core landed on `issue-#140` / PR **#141** (params + catch Patterns, Expression defaults, bind order). Follow-up on `Issue-#140-followup`: call-site `f(...arr)`, string/computed Pattern keys, catch Pattern decompile d1==d2, type syntax on formals/leaves, TS-shaped confidence tests. Tests: `language/script/param_destructure.as`, `language/list/spread.as`, decompile fidelity / pragma.
+**Status:** **Done on `mgg-develop`.** PR **#141** (params + catch Patterns, Expression defaults, bind order) + PR **#142** (call-site `f(...arr)`, string/computed Pattern keys, catch Pattern decompile d1==d2, type syntax on formals/leaves, TS-shaped confidence tests). Tests: `language/script/param_destructure.as`, `language/list/spread.as`, decompile fidelity / pragma. Docs: Language Reference Function + Features; `whats-new.md`.
 
-### Cleanup notes for a later major pass (do not block #140)
+### Post-#140 residual (non-blocking; not open work for this issue)
 
 | Item | Notes |
 |------|--------|
 | **Destructure runtime** | Still in `afw_function_compiler_script.c` as static helpers; consider a small public bind API if more sites appear. |
-| **Object Pattern property names** | **Done** for string + `[expr]` keys (follow-up). Residual: exotic edge cases only. |
-| **Catch identifier vs Pattern** | Identifier: StatementList callback + `symbol_reference`. Pattern: early block + AssignmentTarget + `use_existing_current_block`. **Decompile d1==d2 for Pattern catch done** (embed bind in catch `#block`; execute uses first-statement bind when no argv[4]). |
+| **Object Pattern property names** | String + `[expr]` keys landed (#142). Residual: exotic edge cases only. |
+| **Catch identifier vs Pattern** | Identifier: StatementList callback + `symbol_reference`. Pattern: early block + AssignmentTarget + `use_existing_current_block`. Decompile d1==d2 for Pattern catch done (embed bind in catch `#block`; execute uses first-statement bind when no argv[4]). |
 | **`#script_function` Pattern vs body `{`/`[`** | Speculative parse then cursor restore; advanced pragma only. |
-| **Call-site `f(...arr)`** | **Done** (follow-up). |
 | **argv / parameter_number** | Documented in `afw_function.h` + `afw_value_call_args_s` + call_script_function bind comments (1-based params, `argv[0]` = function). |
 
 ### TS-shaped confidence (ranked high → low)
