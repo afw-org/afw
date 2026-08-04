@@ -52,6 +52,63 @@
 - Nested creates with unit link: `function_contextual.as`
 - Multi-unit policy / definition formals: `type_check_multi_unit.as`
 
+## NULL first-arg hygiene (grep audit)
+
+**As of 2026-08 (pragma-cleanup):** no residual literal `NULL` first argument on:
+
+- `afw_value_call_create`
+- `afw_value_call_built_in_function_create`
+- `afw_value_call_script_function_create`
+
+under `src/**/*.c` (excluding false positives in comments / docs). Curl header/writer/reader use `script_cb->contextual` from `afw_function_execute_contextual(x)`.
+
+Cheap re-check from package root:
+
+```bash
+# Same-line NULL (quick)
+grep -Rn 'afw_value_call\(.*\|_built_in_function\|_script_function\)_create' src --include='*.c' \
+  | grep -i NULL || true
+
+# First-arg NULL (handles multi-line)
+python3 - <<'PY'
+import re, os
+from pathlib import Path
+creators = re.compile(
+    r'afw_value_call(?:_built_in_function|_script_function)?_create\s*\(')
+for root, _, files in os.walk('src'):
+    for f in files:
+        if not f.endswith('.c'):
+            continue
+        p = Path(root) / f
+        if 'generated' in p.parts:
+            continue
+        text = p.read_text(errors='replace')
+        for m in creators.finditer(text):
+            i, depth, arg0 = m.end(), 1, []
+            while i < len(text) and depth:
+                c = text[i]
+                if c == '(':
+                    depth += 1; arg0.append(c)
+                elif c == ')':
+                    depth -= 1
+                    if depth == 0:
+                        break
+                    arg0.append(c)
+                elif c == ',' and depth == 1:
+                    break
+                else:
+                    arg0.append(c)
+                i += 1
+            first = ''.join(arg0).strip()
+            if re.search(r'\bNULL\b', first):
+                line = text[:m.start()].count('\n') + 1
+                print(f'{p}:{line}: {first[:60]!r}')
+print('done')
+PY
+```
+
+Expect empty output. Any new hit should either pass real contextual or be justified as a true host edge with no unit.
+
 ## When adding new code
 
 1. Prefer `afw_function_execute_contextual(x)` (or explicit call/parser contextual) for any nested `call_create` from execute.
