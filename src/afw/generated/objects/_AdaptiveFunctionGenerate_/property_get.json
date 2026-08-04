@@ -1,9 +1,9 @@
 {
     "afwCamelCaseFunctionLabel": "afwPropertyGet",
-    "brief": "Get property value",
+    "brief": "Get a property value",
     "camelCaseFunctionLabel": "propertyGet",
     "category": "object",
-    "description": "Return the value of a property of an object. If property is not available, return a default or null value.",
+    "description": "Return the value of a property. Optional default applies only when the property is missing \u2014 not when the value is undefined. If missing and no default is given, the result is undefined. Mutable defaults are cloned.",
     "functionId": "property_get",
     "functionLabel": "property_get",
     "parameters": [
@@ -14,16 +14,16 @@
         },
         {
             "dataType": "string",
-            "description": "Name of property to get.",
+            "description": "Property name.",
             "name": "name"
         },
         {
-            "description": "The default value of property if it does not exist in object. If not specified, null value is the default.",
+            "description": "Value to return only if the property is missing. Cloned when used.",
             "name": "defaultValue",
             "optional": true
         }
     ],
     "returns": {
-        "description": "Evaluated property value or default."
+        "description": "Property value, or default / undefined if missing."
     }
 }

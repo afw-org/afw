@@ -177,12 +177,13 @@ def generate_uuid(session):
 
 def is_defined(session, value):
     """
-    Is defined
+    True if value is not undefined
 
-    Test value returning boolean True if it is not undefined.
+    Return true if the value is not undefined. Does not check whether a
+    variable name is bound — use variable_exists for that. null is defined.
 
     Args:
-        value (object): Value to check
+        value (object): Value to check.
 
     Returns:
         bool: True if value is not undefined.
@@ -205,12 +206,13 @@ def is_defined(session, value):
 
 def is_nullish(session, value):
     """
-    Is nullish
+    True if value is null or undefined
 
-    Test value returning boolean True if it is null or undefined.
+    Return true if the value is null or undefined. Does not check whether a
+    variable name is bound — use variable_exists for that.
 
     Args:
-        value (object): Value to check
+        value (object): Value to check.
 
     Returns:
         bool: True if value is null or undefined.
@@ -424,16 +426,19 @@ def trace(session, value, filter=None, number=None):
 
 def variable_exists(session, name):
     """
-    Determine if a variable exists
+    True if a variable name is bound
 
-    Return the true if the named variable exists.
+    Return true if the named variable is bound: a lexical symbol in the
+    current scope chain, or a name defined on a visible qualifier frame. Still
+    true when the value is undefined (including an uninitialized let) or null.
+    False only when the name is not bound. Use is_defined / is_nullish for the
+    value.
 
     Args:
-        name (str): Name of variable to check. The name can optionally be
-        preceded with a qualifier followed by '::'.
+        name (str): Name of variable to check. Optionally qualifier::name.
 
     Returns:
-        bool: True if variable exists.
+        bool: True if the name is bound.
     """
 
     request = session.Request()
@@ -453,20 +458,20 @@ def variable_exists(session, name):
 
 def variable_get(session, name, defaultValue=None):
     """
-    Get a variable value
+    Get a bound variable value
 
-    Return the value of a variable. If variable is not available, return a
-    default or null value.
+    Return the value of a bound variable. Optional default applies only when
+    the name is not bound — not when the value is undefined. If unbound and no
+    default is given, the result is undefined. Mutable defaults are cloned.
 
     Args:
-        name (str): Name of variable to get. The name can optionally be
-        preceded with a qualifier followed by '::'.
+        name (str): Name of variable to get. Optionally qualifier::name.
 
-        defaultValue (object): The default value of variable if it does not
-        exist in object. If not specified, null value is the default.
+        defaultValue (object): Value to return only if the name is not bound.
+        Cloned when used.
 
     Returns:
-        object: Evaluated variable value or default.
+        object: Bound variable value, or default / undefined if unbound.
     """
 
     request = session.Request()
@@ -489,16 +494,18 @@ def variable_get(session, name, defaultValue=None):
 
 def variable_is_not_null(session, name):
     """
-    Determine if a variable exists and is not null
+    True if bound and not Adaptive null
 
-    Return the true if the named variable exists and is not null.
+    Return true if the named variable is bound and its value is not Adaptive
+    null. Undefined (including an uninitialized let) counts as not null. False
+    if the name is not bound or the value is null. This is not the same as
+    is_defined or not is_nullish.
 
     Args:
-        name (str): Name of variable to check. The name can optionally be
-        preceded with a qualifier followed by '::'.
+        name (str): Name of variable to check. Optionally qualifier::name.
 
     Returns:
-        bool: True if variable exists and is not null.
+        bool: True if bound and value is not Adaptive null.
     """
 
     request = session.Request()

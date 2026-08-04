@@ -267,7 +267,7 @@ afw_xctx_scope_symbol_get_value_by_name(
 
 
 
-/* Determine if the named symbol exists in the current scope chain. */
+/* True if lexical symbol is bound (any slot value, including C NULL). */
 AFW_DECLARE(afw_boolean_t)
 afw_xctx_scope_symbol_exists_by_name(
     const afw_utf8_t *symbol_name,
@@ -290,6 +290,14 @@ afw_xctx_scope_symbol_set_value(
     value_address = afw_xctx_scope_symbol_get_value_address(
         symbol, afw_xctx_scope_current(xctx), xctx);
 
+    /*
+     * Prefer permanent undefined singleton over C NULL in slots so "bound
+     * with undefined" is never confused with "not applicable" at the pointer
+     * level (issue #131). let without initializer and nullish assigns land here.
+     */
+    if (!value) {
+        value = afw_value_undefined;
+    }
     *value_address = value;
 }
 
@@ -314,12 +322,24 @@ afw_xctx_scope_symbol_set_value_by_name(
             AFW_UTF8_FMT_ARG(symbol_name));
     }
 
+    if (!value) {
+        value = afw_value_undefined;
+    }
     *value_address = value;
 }
 
 
 
-/* Get a variable from xctx stack. */
+/*
+ * Get optionally qualified variable value.
+ *
+ * Unqualified: return slot contents (*address). Bound empty values are the
+ * undefined singleton after scope create / set_value; use address/exists
+ * helpers for “is bound?” (issue #131).
+ *
+ * Qualified: get_cb contract — non-NULL including undefined/null singletons
+ * means defined on that frame; C NULL means not on this frame.
+ */
 AFW_DEFINE(const afw_value_t *)
 afw_xctx_get_optionally_qualified_variable(
     const afw_utf8_t *qualifier,
@@ -331,6 +351,7 @@ afw_xctx_get_optionally_qualified_variable(
     const afw_value_t **value_address;
 
     if (!qualifier || (qualifier->len == 0)) {
+        /* Lexical: NULL only if name not bound (slots start as undefined). */
         value_address = afw_xctx_scope_symbol_get_value_address_by_name(
             name, xctx);
         if (value_address) {
@@ -698,6 +719,19 @@ afw_xctx_scope_create(
     scope->block = block;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
+
+    /*
+     * Bound symbols start as Adaptive undefined (singleton), not C NULL, so
+     * slot contents are never "not a value pointer" while the name is bound
+     * (issue #131). set_value also coerces NULL → undefined.
+     */
+    {
+        afw_size_t i;
+
+        for (i = 0; i < block->symbol_count; i++) {
+            scope->symbol_values[i] = afw_value_undefined;
+        }
+    }
 
     /* If there is a parent_lexical_scope, update its reference count. */
     if (parent_lexical_scope) {

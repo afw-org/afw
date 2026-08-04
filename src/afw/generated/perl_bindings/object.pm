@@ -339,24 +339,27 @@ This is a reference to the object property to delete.
 
 =head3 property_exists
 
-Return true if the named property exists in an object.
-Determine if a property exists in an object
+Return true if the named property is present on the object, including when its
+value is undefined or null. False only when the key is missing. Use is_defined
+/ is_nullish for the value.
+True if a property is present on an object
 
 =head4 Parameters
 
     $object
 
-Object to get property from.
+Object to check.
 
     $name
 
-Name of property to check.
+Property name.
 
 =head3 property_get
 
-Return the value of a property of an object. If property is not available,
-return a default or null value.
-Get property value
+Return the value of a property. Optional default applies only when the
+property is missing — not when the value is undefined. If missing and no
+default is given, the result is undefined. Mutable defaults are cloned.
+Get a property value
 
 =head4 Parameters
 
@@ -366,27 +369,28 @@ Object to get property from.
 
     $name
 
-Name of property to get.
+Property name.
 
     $defaultValue
 
-The default value of property if it does not exist in object. If not
-specified, null value is the default.
+Value to return only if the property is missing. Cloned when used.
 
 =head3 property_is_not_null
 
-Return true if the named property exists in an object and is not null.
-Determine if a property exists in an object and is not null
+Return true if the named property is present and its value is not Adaptive
+null. Undefined counts as not null. False if the property is missing or the
+value is null. Not the same as is_defined or not is_nullish.
+True if property present and not Adaptive null
 
 =head4 Parameters
 
     $object
 
-Object to get property from.
+Object to check.
 
     $name
 
-Name of property to check.
+Property name.
 
 =head3 to_string_object
 

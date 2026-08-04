@@ -47,6 +47,7 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
 | [**Param / catch Patterns (#140)**](#function-parameter-and-catch-patterns-issue-140) | Function/lambda params + `catch` Patterns; Expression defaults; call-site `f(...arr)`; computed/string keys; type syntax for later checking |
+| [**`variable_exists` bound vs value (#131)**](#variable_exists-bound-vs-undefined-issue-131) | `variable_exists` is **bound** (true for uninit / undefined); `variable_get` default only if **not bound**; light function briefs |
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
 
@@ -123,6 +124,34 @@ assert(sum3(...[1, 2, 3]) === 6);
 ```
 
 Not included: arrow functions, ES `arguments` object (use formal `...rest`). Language Reference: Function statement; Features — Exception Handling, Functions and parameters.
+
+---
+
+[↑ Highlights](#highlights)
+## `variable_exists`: bound vs undefined (issue #131)
+
+**Issue #131** on `mgg-develop` (branch `issue-#131-variable-exists`).
+
+A declared name is **bound** even when its value is `undefined` (including `let x` with no initializer and an omitted optional parameter). That matches object `property_exists` (key present with undefined still exists) and TypeScript-shaped expectations for the same syntax.
+
+| API | Meaning |
+|-----|---------|
+| **`variable_exists(name)`** | True if the name is bound (lexical symbol or defined on a qualifier frame), including value undefined or null |
+| **`variable_get(name, default?)`** | Value if bound; optional **default only when not bound** (not when the value is undefined) |
+| **`variable_is_not_null(name)`** | Bound and value is not Adaptive **null** (undefined counts as not null) |
+| **`is_defined` / `is_nullish`** | Value predicates (unchanged role) |
+
+Lexical scope slots start as the permanent **undefined** singleton (not C “empty”); assigns of missing/nullish values store that singleton. Function reference briefs for these helpers (and related `property_*`) were clarified.
+
+```adaptive
+let a: any;
+assert(variable_exists("a") === true);
+assert(is_nullish(a) === true);
+assert(is_nullish(variable_get("a", "D"))); /* bound: default not used */
+assert(variable_get("missing", "D") === "D");
+```
+
+Maintainer notes: root `typescript-differences.md` (bound vs value).
 
 ---
 
@@ -947,6 +976,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | `stringify` / `decompile` / listing / binary text | #18 | #137 |
 | Expression property names in object values | #38 | #139 |
 | Param / catch Patterns + call-site spread | #140 | #141, #142 |
+| `variable_exists` bound vs undefined | #131 | #146 |
 | UTF-8 JSON emitters + Python local FIFO | — | on `mgg-develop` (post-#142) |
 | Permanent `src/*/tests` regression assets | — | #121 (docs only) |
 | `afw --allow` + YAML block strings / integers | #14 | — (feature earlier; regression tests on `mgg-develop`) |

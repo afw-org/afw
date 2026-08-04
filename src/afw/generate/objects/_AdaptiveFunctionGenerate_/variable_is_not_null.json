@@ -1,18 +1,18 @@
 {
-    "brief": "Determine if a variable exists and is not null",
+    "brief": "True if bound and not Adaptive null",
     "category": "miscellaneous",
-    "description": "Return the true if the named variable exists and is not null.",
+    "description": "Return true if the named variable is bound and its value is not Adaptive null. Undefined (including an uninitialized let) counts as not null. False if the name is not bound or the value is null. This is not the same as is_defined or not is_nullish.",
     "functionId": "variable_is_not_null",
     "functionLabel": "variable_is_not_null",
     "parameters": [
         {
             "dataType": "string",
-            "description": "Name of variable to check. The name can optionally be preceded with a qualifier followed by '::'.",
+            "description": "Name of variable to check. Optionally qualifier::name.",
             "name": "name"
         }
     ],
     "returns": {
         "dataType": "boolean",
-        "description": "True if variable exists and is not null."
+        "description": "True if bound and value is not Adaptive null."
     }
 }

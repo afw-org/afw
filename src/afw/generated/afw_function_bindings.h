@@ -17049,7 +17049,8 @@ afw_function_definition_is_defined;
  * @brief Adaptive Function `is_defined`
  * @param x function execute parameter.
  *
- * Test value returning boolean True if it is not undefined.
+ * Return true if the value is not undefined. Does not check whether a variable
+ * name is bound — use variable_exists for that. null is defined.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -17082,7 +17083,8 @@ afw_function_definition_is_nullish;
  * @brief Adaptive Function `is_nullish`
  * @param x function execute parameter.
  *
- * Test value returning boolean True if it is null or undefined.
+ * Return true if the value is null or undefined. Does not check whether a
+ * variable name is bound — use variable_exists for that.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -17329,7 +17331,10 @@ afw_function_definition_variable_exists;
  * @brief Adaptive Function `variable_exists`
  * @param x function execute parameter.
  *
- * Return the true if the named variable exists.
+ * Return true if the named variable is bound: a lexical symbol in the current
+ * scope chain, or a name defined on a visible qualifier frame. Still true when
+ * the value is undefined (including an uninitialized let) or null. False only
+ * when the name is not bound. Use is_defined / is_nullish for the value.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -17344,12 +17349,11 @@ afw_function_definition_variable_exists;
  *
  * Parameters:
  *
- *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to check. Optionally qualifier::name.
  *
  * Returns:
  *
- *   (boolean) True if variable exists.
+ *   (boolean) True if the name is bound.
  */
 const afw_value_t *
 afw_function_execute_variable_exists(
@@ -17363,8 +17367,9 @@ afw_function_definition_variable_get;
  * @brief Adaptive Function `variable_get`
  * @param x function execute parameter.
  *
- * Return the value of a variable. If variable is not available, return a
- * default or null value.
+ * Return the value of a bound variable. Optional default applies only when the
+ * name is not bound — not when the value is undefined. If unbound and no
+ * default is given, the result is undefined. Mutable defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -17380,15 +17385,14 @@ afw_function_definition_variable_get;
  *
  * Parameters:
  *
- *   name - (string) Name of variable to get. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to get. Optionally qualifier::name.
  *
- *   defaultValue - (optional any) The default value of variable if it does not
- *       exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) Value to return only if the name is not
+ *       bound. Cloned when used.
  *
  * Returns:
  *
- *   (any) Evaluated variable value or default.
+ *   (any) Bound variable value, or default / undefined if unbound.
  */
 const afw_value_t *
 afw_function_execute_variable_get(
@@ -17402,7 +17406,10 @@ afw_function_definition_variable_is_not_null;
  * @brief Adaptive Function `variable_is_not_null`
  * @param x function execute parameter.
  *
- * Return the true if the named variable exists and is not null.
+ * Return true if the named variable is bound and its value is not Adaptive
+ * null. Undefined (including an uninitialized let) counts as not null. False if
+ * the name is not bound or the value is null. This is not the same as
+ * is_defined or not is_nullish.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -17417,12 +17424,11 @@ afw_function_definition_variable_is_not_null;
  *
  * Parameters:
  *
- *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to check. Optionally qualifier::name.
  *
  * Returns:
  *
- *   (boolean) True if variable exists and is not null.
+ *   (boolean) True if bound and value is not Adaptive null.
  */
 const afw_value_t *
 afw_function_execute_variable_is_not_null(
@@ -19808,7 +19814,9 @@ afw_function_definition_property_exists;
  * @brief Adaptive Function `property_exists`
  * @param x function execute parameter.
  *
- * Return true if the named property exists in an object.
+ * Return true if the named property is present on the object, including when
+ * its value is undefined or null. False only when the key is missing. Use
+ * is_defined / is_nullish for the value.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -19824,13 +19832,13 @@ afw_function_definition_property_exists;
  *
  * Parameters:
  *
- *   object - (object) Object to get property from.
+ *   object - (object) Object to check.
  *
- *   name - (string) Name of property to check.
+ *   name - (string) Property name.
  *
  * Returns:
  *
- *   (boolean) True if object has named property.
+ *   (boolean) True if the property is present.
  */
 const afw_value_t *
 afw_function_execute_property_exists(
@@ -19844,8 +19852,9 @@ afw_function_definition_property_get;
  * @brief Adaptive Function `property_get`
  * @param x function execute parameter.
  *
- * Return the value of a property of an object. If property is not available,
- * return a default or null value.
+ * Return the value of a property. Optional default applies only when the
+ * property is missing — not when the value is undefined. If missing and no
+ * default is given, the result is undefined. Mutable defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -19864,14 +19873,14 @@ afw_function_definition_property_get;
  *
  *   object - (object) Object to get property from.
  *
- *   name - (string) Name of property to get.
+ *   name - (string) Property name.
  *
- *   defaultValue - (optional any) The default value of property if it does not
- *       exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) Value to return only if the property is
+ *       missing. Cloned when used.
  *
  * Returns:
  *
- *   (any) Evaluated property value or default.
+ *   (any) Property value, or default / undefined if missing.
  */
 const afw_value_t *
 afw_function_execute_property_get(
@@ -19885,7 +19894,9 @@ afw_function_definition_property_is_not_null;
  * @brief Adaptive Function `property_is_not_null`
  * @param x function execute parameter.
  *
- * Return true if the named property exists in an object and is not null.
+ * Return true if the named property is present and its value is not Adaptive
+ * null. Undefined counts as not null. False if the property is missing or the
+ * value is null. Not the same as is_defined or not is_nullish.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -19901,13 +19912,13 @@ afw_function_definition_property_is_not_null;
  *
  * Parameters:
  *
- *   object - (object) Object to get property from.
+ *   object - (object) Object to check.
  *
- *   name - (string) Name of property to check.
+ *   name - (string) Property name.
  *
  * Returns:
  *
- *   (boolean) True if object has named property that is not null.
+ *   (boolean) True if present and value is not Adaptive null.
  */
 const afw_value_t *
 afw_function_execute_property_is_not_null(

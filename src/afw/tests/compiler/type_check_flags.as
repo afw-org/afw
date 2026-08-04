@@ -211,6 +211,26 @@ assert(r === null);
 return 0;
 
 //?
+//? test: flags-typeCheck-uninit-let-loose
+//? description: typeCheck without strictNull allows uninit let integer (NULL≡undefined)
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+flag_set(["compile:typeCheck"], true);
+const r: any = evaluate(compile<script>(script(
+    "let x: integer;\nreturn is_nullish(x);"
+)));
+assert(r === true);
+return 0;
+
+//?
 //? test: pragma-on
 //? description: #compile typeCheck; enables checking for that compile unit
 //? expect: error

@@ -1,25 +1,25 @@
 {
     "afwCamelCaseFunctionLabel": "afwPropertyIsNotNull",
-    "brief": "Determine if a property exists in an object and is not null",
+    "brief": "True if property present and not Adaptive null",
     "camelCaseFunctionLabel": "propertyIsNotNull",
     "category": "object",
-    "description": "Return true if the named property exists in an object and is not null.",
+    "description": "Return true if the named property is present and its value is not Adaptive null. Undefined counts as not null. False if the property is missing or the value is null. Not the same as is_defined or not is_nullish.",
     "functionId": "property_is_not_null",
     "functionLabel": "property_is_not_null",
     "parameters": [
         {
             "dataType": "object",
-            "description": "Object to get property from.",
+            "description": "Object to check.",
             "name": "object"
         },
         {
             "dataType": "string",
-            "description": "Name of property to check.",
+            "description": "Property name.",
             "name": "name"
         }
     ],
     "returns": {
         "dataType": "boolean",
-        "description": "True if object has named property that is not null."
+        "description": "True if present and value is not Adaptive null."
     }
 }

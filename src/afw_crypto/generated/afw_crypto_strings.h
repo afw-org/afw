@@ -2994,34 +2994,8 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2438 \
-    "Decrypt AES-GCM ciphertext. algorithm must include name, iv, and tag (16 octets). additionalData must match encrypt if used. Requires execute access. Auth failure yields a generic decryption error."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2438 */
-#define afw_crypto_s_zz__2438 \
-    (&afw_crypto_self_v_zz__2438.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2438 */
-#define afw_crypto_self_s_zz__2438 \
-    (afw_crypto_self_v_zz__2438.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2438 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2438;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2438 */
-#define afw_crypto_z_zz__2438 \
-    (afw_crypto_self_v_zz__2438.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2438 */
-#define afw_crypto_v_zz__2438 \
-    (&afw_crypto_self_v_zz__2438.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2439 \
-    "function crypto_decrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): base64Binary;\n"
+    "Decrypt AES-GCM ciphertext. algorithm must include name, iv, and tag (16 octets). additionalData must match encrypt if used. Requires execute access. Auth failure yields a generic decryption error."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2439 */
 #define afw_crypto_s_zz__2439 \
@@ -3047,7 +3021,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2440 \
-    "Derived CryptoKey (algorithm AES-GCM sized to length*8 when 16 or 32 octets)."
+    "function crypto_decrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): base64Binary;\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2440 */
 #define afw_crypto_s_zz__2440 \
@@ -3073,7 +3047,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2441 \
-    "Passphrase or key material (polymorphic; utf8 encoding allowed)."
+    "Derived CryptoKey (algorithm AES-GCM sized to length*8 when 16 or 32 octets)."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2441 */
 #define afw_crypto_s_zz__2441 \
@@ -3099,7 +3073,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2442 \
-    "Derive a key via PBKDF2-HMAC-SHA256 and store it in the keystore. algorithm object requires name PBKDF2, salt (min 16 octets), length (output octets), optional iterations (default 600000, min 100000), optional hash SHA-256. baseKey may be polymorphic including utf8 encoding for passphrases. Requires execute access."
+    "Passphrase or key material (polymorphic; utf8 encoding allowed)."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2442 */
 #define afw_crypto_s_zz__2442 \
@@ -3125,7 +3099,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2443 \
-    "(algorithm: object, baseKey: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
+    "Derive a key via PBKDF2-HMAC-SHA256 and store it in the keystore. algorithm object requires name PBKDF2, salt (min 16 octets), length (output octets), optional iterations (default 600000, min 100000), optional hash SHA-256. baseKey may be polymorphic including utf8 encoding for passphrases. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2443 */
 #define afw_crypto_s_zz__2443 \
@@ -3151,7 +3125,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2444 \
-    "function crypto_derive_key (\n    algorithm: object,\n    baseKey: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
+    "(algorithm: object, baseKey: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2444 */
 #define afw_crypto_s_zz__2444 \
@@ -3177,7 +3151,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2445 \
-    "Remove a key from the process keystore and cleanse its material. Requires execute access."
+    "function crypto_derive_key (\n    algorithm: object,\n    baseKey: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2445 */
 #define afw_crypto_s_zz__2445 \
@@ -3203,7 +3177,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2446 \
-    "Compute a cryptographic digest of binary data. Algorithm must be SHA-256 or SHA-512. Data may be base64Binary or hexBinary."
+    "Remove a key from the process keystore and cleanse its material. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2446 */
 #define afw_crypto_s_zz__2446 \
@@ -3229,7 +3203,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2447 \
-    "function crypto_digest (\n    algorithm: string,\n    data: any\n): base64Binary;\n"
+    "Compute a cryptographic digest of binary data. Algorithm must be SHA-256 or SHA-512. Data may be base64Binary or hexBinary."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2447 */
 #define afw_crypto_s_zz__2447 \
@@ -3255,7 +3229,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2448 \
-    "Encrypt binary plaintext with AES-GCM. algorithm is an object { name: \"AES-GCM\", length?, iv?, additionalData? }. If iv is omitted, a 12-octet IV is generated. Returns ciphertext, iv, and tag. Requires execute access."
+    "function crypto_digest (\n    algorithm: string,\n    data: any\n): base64Binary;\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2448 */
 #define afw_crypto_s_zz__2448 \
@@ -3281,7 +3255,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2449 \
-    "(algorithm: object, key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
+    "Encrypt binary plaintext with AES-GCM. algorithm is an object { name: \"AES-GCM\", length?, iv?, additionalData? }. If iv is omitted, a 12-octet IV is generated. Returns ciphertext, iv, and tag. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2449 */
 #define afw_crypto_s_zz__2449 \
@@ -3307,7 +3281,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2450 \
-    "function crypto_encrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
+    "(algorithm: object, key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2450 */
 #define afw_crypto_s_zz__2450 \
@@ -3333,7 +3307,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2451 \
-    "Export raw key octets from a CryptoKey if extractable is true. Requires execute access."
+    "function crypto_encrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2451 */
 #define afw_crypto_s_zz__2451 \
@@ -3359,7 +3333,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2452 \
-    "If true, crypto_export_key may export raw key. Default false."
+    "Export raw key octets from a CryptoKey if extractable is true. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2452 */
 #define afw_crypto_s_zz__2452 \
@@ -3385,7 +3359,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2453 \
-    "Generate a random key in the process keystore. Algorithm string or object. AES-GCM length defaults to 256 bits. Requires execute access."
+    "If true, crypto_export_key may export raw key. Default false."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2453 */
 #define afw_crypto_s_zz__2453 \
@@ -3411,7 +3385,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2454 \
-    "(algorithm: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
+    "Generate a random key in the process keystore. Algorithm string or object. AES-GCM length defaults to 256 bits. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2454 */
 #define afw_crypto_s_zz__2454 \
@@ -3437,7 +3411,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2455 \
-    "function crypto_generate_key (\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
+    "(algorithm: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2455 */
 #define afw_crypto_s_zz__2455 \
@@ -3463,7 +3437,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2456 \
-    "Key material, CryptoKey object, or key reference { from, ... }."
+    "function crypto_generate_key (\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2456 */
 #define afw_crypto_s_zz__2456 \
@@ -3489,7 +3463,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2457 \
-    "Compute HMAC over binary data. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Key is polymorphic (CryptoKey, raw binary, or reference object). Requires execute access."
+    "Key material, CryptoKey object, or key reference { from, ... }."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2457 */
 #define afw_crypto_s_zz__2457 \
@@ -3515,7 +3489,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2458 \
-    "function crypto_hmac (\n    algorithm: string,\n    key: any,\n    data: any\n): base64Binary;\n"
+    "Compute HMAC over binary data. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Key is polymorphic (CryptoKey, raw binary, or reference object). Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2458 */
 #define afw_crypto_s_zz__2458 \
@@ -3541,7 +3515,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2459 \
-    "Verify an HMAC in constant time. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Requires execute access."
+    "function crypto_hmac (\n    algorithm: string,\n    key: any,\n    data: any\n): base64Binary;\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2459 */
 #define afw_crypto_s_zz__2459 \
@@ -3567,7 +3541,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2460 \
-    "function crypto_hmac_verify (\n    algorithm: string,\n    key: any,\n    data: any,\n    mac: any\n): boolean;\n"
+    "Verify an HMAC in constant time. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2460 */
 #define afw_crypto_s_zz__2460 \
@@ -3593,7 +3567,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2461 \
-    "Raw binary key, or reference object { from: environment|file|material, ... }."
+    "function crypto_hmac_verify (\n    algorithm: string,\n    key: any,\n    data: any,\n    mac: any\n): boolean;\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2461 */
 #define afw_crypto_s_zz__2461 \
@@ -3619,7 +3593,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2462 \
-    "Import key material (or a key reference resolved to octets) into the process keystore and return a CryptoKey handle. Algorithm is a string registry name or object with name (and optional length for AES-GCM). Default extractable is false. Requires execute access."
+    "Raw binary key, or reference object { from: environment|file|material, ... }."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2462 */
 #define afw_crypto_s_zz__2462 \
@@ -3645,7 +3619,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2463 \
-    "(keySource: any, algorithm: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
+    "Import key material (or a key reference resolved to octets) into the process keystore and return a CryptoKey handle. Algorithm is a string registry name or object with name (and optional length for AES-GCM). Default extractable is false. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2463 */
 #define afw_crypto_s_zz__2463 \
@@ -3671,7 +3645,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2464 \
-    "function crypto_import_key (\n    keySource: any,\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
+    "(keySource: any, algorithm: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2464 */
 #define afw_crypto_s_zz__2464 \
@@ -3697,7 +3671,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2465 \
-    "Sealed object with algorithm, keyLength, iv, tag, and ciphertext."
+    "function crypto_import_key (\n    keySource: any,\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2465 */
 #define afw_crypto_s_zz__2465 \
@@ -3723,7 +3697,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2466 \
-    "Plaintext (base64Binary or hexBinary). Use encode_as_base64Binary() for UTF-8 text."
+    "Sealed object with algorithm, keyLength, iv, tag, and ciphertext."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2466 */
 #define afw_crypto_s_zz__2466 \
@@ -3749,7 +3723,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2467 \
-    "Convenience for AES-GCM encryption: generates an IV, encrypts data, and returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }. Equivalent to crypto_encrypt({ name: \"AES-GCM\" }, key, data) with an auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to store the result. Requires execute access."
+    "Plaintext (base64Binary or hexBinary). Use encode_as_base64Binary() for UTF-8 text."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2467 */
 #define afw_crypto_s_zz__2467 \
@@ -3775,7 +3749,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2468 \
-    "(key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
+    "Convenience for AES-GCM encryption: generates an IV, encrypts data, and returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }. Equivalent to crypto_encrypt({ name: \"AES-GCM\" }, key, data) with an auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to store the result. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2468 */
 #define afw_crypto_s_zz__2468 \
@@ -3801,7 +3775,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2469 \
-    "function crypto_seal (\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
+    "(key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2469 */
 #define afw_crypto_s_zz__2469 \
@@ -3827,7 +3801,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2470 \
-    "Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as base64/hex strings; (2) a string of pure JSON with those properties as base64 strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext octets. Requires execute access."
+    "function crypto_seal (\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2470 */
 #define afw_crypto_s_zz__2470 \
@@ -3853,7 +3827,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2471 \
-    "function crypto_unseal (\n    key: any,\n    sealed: any\n): base64Binary;\n"
+    "Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as base64/hex strings; (2) a string of pure JSON with those properties as base64 strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext octets. Requires execute access."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2471 */
 #define afw_crypto_s_zz__2471 \
@@ -3879,7 +3853,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2472 \
-    "Returns runtime OpenSSL and afw_crypto version information and the list of supported algorithm names."
+    "function crypto_unseal (\n    key: any,\n    sealed: any\n): base64Binary;\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2472 */
 #define afw_crypto_s_zz__2472 \
@@ -3905,7 +3879,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2473 \
-    "function crypto_version_info (\n): object; // _AdaptiveCryptoVersionInfo_\n"
+    "Returns runtime OpenSSL and afw_crypto version information and the list of supported algorithm names."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2473 */
 #define afw_crypto_s_zz__2473 \
@@ -3931,7 +3905,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2474 \
-    "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt."
+    "function crypto_version_info (\n): object; // _AdaptiveCryptoVersionInfo_\n"
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2474 */
 #define afw_crypto_s_zz__2474 \
@@ -3957,7 +3931,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2475 \
-    "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256)."
+    "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2475 */
 #define afw_crypto_s_zz__2475 \
@@ -3983,7 +3957,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2476 \
-    "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false."
+    "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256)."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2476 */
 #define afw_crypto_s_zz__2476 \
@@ -4009,7 +3983,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2477 \
-    "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto."
+    "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2477 */
 #define afw_crypto_s_zz__2477 \
@@ -4035,7 +4009,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__2478 \
-    "Functions from this category provide digest, HMAC, AEAD encrypt/decrypt, key import/reference, and key derivation via OpenSSL libcrypto (extension afw_crypto). See issue #74 and designs/secrets-and-afw-crypto.md."
+    "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto."
 
 /** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2478 */
 #define afw_crypto_s_zz__2478 \
@@ -4056,6 +4030,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2478 */
 #define afw_crypto_v_zz__2478 \
     (&afw_crypto_self_v_zz__2478.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__2479 \
+    "Functions from this category provide digest, HMAC, AEAD encrypt/decrypt, key import/reference, and key derivation via OpenSSL libcrypto (extension afw_crypto). See issue #74 and designs/secrets-and-afw-crypto.md."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2479 */
+#define afw_crypto_s_zz__2479 \
+    (&afw_crypto_self_v_zz__2479.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2479 */
+#define afw_crypto_self_s_zz__2479 \
+    (afw_crypto_self_v_zz__2479.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2479 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__2479;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2479 */
+#define afw_crypto_z_zz__2479 \
+    (afw_crypto_self_v_zz__2479.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2479 */
+#define afw_crypto_v_zz__2479 \
+    (&afw_crypto_self_v_zz__2479.pub)
 
 
 

@@ -229,7 +229,8 @@ afw_function_execute_generate_uuid(
  *
  * See afw_function_bindings.h for more information.
  *
- * Test value returning boolean True if it is not undefined.
+ * Return true if the value is not undefined. Does not check whether a variable
+ * name is bound — use variable_exists for that. null is defined.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -267,7 +268,8 @@ afw_function_execute_is_defined(
  *
  * See afw_function_bindings.h for more information.
  *
- * Test value returning boolean True if it is null or undefined.
+ * Return true if the value is null or undefined. Does not check whether a
+ * variable name is bound — use variable_exists for that.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -549,7 +551,10 @@ afw_function_execute_trace(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the true if the named variable exists.
+ * Return true if the named variable is bound: a lexical symbol in the current
+ * scope chain, or a name defined on a visible qualifier frame. Still true when
+ * the value is undefined (including an uninitialized let) or null. False only
+ * when the name is not bound. Use is_defined / is_nullish for the value.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -564,12 +569,11 @@ afw_function_execute_trace(
  *
  * Parameters:
  *
- *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to check. Optionally qualifier::name.
  *
  * Returns:
  *
- *   (boolean) True if variable exists.
+ *   (boolean) True if the name is bound.
  */
 const afw_value_t *
 afw_function_execute_variable_exists(
@@ -588,8 +592,9 @@ afw_function_execute_variable_exists(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the value of a variable. If variable is not available, return a
- * default or null value.
+ * Return the value of a bound variable. Optional default applies only when the
+ * name is not bound — not when the value is undefined. If unbound and no
+ * default is given, the result is undefined. Mutable defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -605,15 +610,14 @@ afw_function_execute_variable_exists(
  *
  * Parameters:
  *
- *   name - (string) Name of variable to get. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to get. Optionally qualifier::name.
  *
- *   defaultValue - (optional any) The default value of variable if it does not
- *       exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) Value to return only if the name is not
+ *       bound. Cloned when used.
  *
  * Returns:
  *
- *   (any) Evaluated variable value or default.
+ *   (any) Bound variable value, or default / undefined if unbound.
  */
 const afw_value_t *
 afw_function_execute_variable_get(
@@ -632,7 +636,10 @@ afw_function_execute_variable_get(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the true if the named variable exists and is not null.
+ * Return true if the named variable is bound and its value is not Adaptive
+ * null. Undefined (including an uninitialized let) counts as not null. False if
+ * the name is not bound or the value is null. This is not the same as
+ * is_defined or not is_nullish.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -647,12 +654,11 @@ afw_function_execute_variable_get(
  *
  * Parameters:
  *
- *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to check. Optionally qualifier::name.
  *
  * Returns:
  *
- *   (boolean) True if variable exists and is not null.
+ *   (boolean) True if bound and value is not Adaptive null.
  */
 const afw_value_t *
 afw_function_execute_variable_is_not_null(
