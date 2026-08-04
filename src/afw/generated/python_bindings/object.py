@@ -674,17 +674,19 @@ def property_delete_by_reference(session, reference):
 
 def property_exists(session, object, name):
     """
-    Determine if a property exists in an object
+    True if a property is present on an object
 
-    Return true if the named property exists in an object.
+    Return true if the named property is present on the object, including when
+    its value is undefined or null. False only when the key is missing. Use
+    is_defined / is_nullish for the value.
 
     Args:
-        object (dict): Object to get property from.
+        object (dict): Object to check.
 
-        name (str): Name of property to check.
+        name (str): Property name.
 
     Returns:
-        bool: True if object has named property.
+        bool: True if the property is present.
     """
 
     request = session.Request()
@@ -705,21 +707,22 @@ def property_exists(session, object, name):
 
 def property_get(session, object, name, defaultValue=None):
     """
-    Get property value
+    Get a property value
 
-    Return the value of a property of an object. If property is not available,
-    return a default or null value.
+    Return the value of a property. Optional default applies only when the
+    property is missing — not when the value is undefined. If missing and no
+    default is given, the result is undefined. Mutable defaults are cloned.
 
     Args:
         object (dict): Object to get property from.
 
-        name (str): Name of property to get.
+        name (str): Property name.
 
-        defaultValue (object): The default value of property if it does not
-        exist in object. If not specified, null value is the default.
+        defaultValue (object): Value to return only if the property is
+        missing. Cloned when used.
 
     Returns:
-        object: Evaluated property value or default.
+        object: Property value, or default / undefined if missing.
     """
 
     request = session.Request()
@@ -743,17 +746,19 @@ def property_get(session, object, name, defaultValue=None):
 
 def property_is_not_null(session, object, name):
     """
-    Determine if a property exists in an object and is not null
+    True if property present and not Adaptive null
 
-    Return true if the named property exists in an object and is not null.
+    Return true if the named property is present and its value is not Adaptive
+    null. Undefined counts as not null. False if the property is missing or
+    the value is null. Not the same as is_defined or not is_nullish.
 
     Args:
-        object (dict): Object to get property from.
+        object (dict): Object to check.
 
-        name (str): Name of property to check.
+        name (str): Property name.
 
     Returns:
-        bool: True if object has named property that is not null.
+        bool: True if present and value is not Adaptive null.
     """
 
     request = session.Request()

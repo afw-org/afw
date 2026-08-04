@@ -315,7 +315,9 @@ afw_function_execute_property_delete_by_reference(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return true if the named property exists in an object.
+ * Return true if the named property is present on the object, including when
+ * its value is undefined or null. False only when the key is missing. Use
+ * is_defined / is_nullish for the value.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -331,13 +333,13 @@ afw_function_execute_property_delete_by_reference(
  *
  * Parameters:
  *
- *   object - (object) Object to get property from.
+ *   object - (object) Object to check.
  *
- *   name - (string) Name of property to check.
+ *   name - (string) Property name.
  *
  * Returns:
  *
- *   (boolean) True if object has named property.
+ *   (boolean) True if the property is present.
  */
 const afw_value_t *
 afw_function_execute_property_exists(
@@ -356,8 +358,9 @@ afw_function_execute_property_exists(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the value of a property of an object. If property is not available,
- * return a default or null value.
+ * Return the value of a property. Optional default applies only when the
+ * property is missing — not when the value is undefined. If missing and no
+ * default is given, the result is undefined. Mutable defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -376,14 +379,14 @@ afw_function_execute_property_exists(
  *
  *   object - (object) Object to get property from.
  *
- *   name - (string) Name of property to get.
+ *   name - (string) Property name.
  *
- *   defaultValue - (optional any) The default value of property if it does not
- *       exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) Value to return only if the property is
+ *       missing. Cloned when used.
  *
  * Returns:
  *
- *   (any) Evaluated property value or default.
+ *   (any) Property value, or default / undefined if missing.
  */
 const afw_value_t *
 afw_function_execute_property_get(
@@ -402,7 +405,9 @@ afw_function_execute_property_get(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return true if the named property exists in an object and is not null.
+ * Return true if the named property is present and its value is not Adaptive
+ * null. Undefined counts as not null. False if the property is missing or the
+ * value is null. Not the same as is_defined or not is_nullish.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -418,13 +423,13 @@ afw_function_execute_property_get(
  *
  * Parameters:
  *
- *   object - (object) Object to get property from.
+ *   object - (object) Object to check.
  *
- *   name - (string) Name of property to check.
+ *   name - (string) Property name.
  *
  * Returns:
  *
- *   (boolean) True if object has named property that is not null.
+ *   (boolean) True if present and value is not Adaptive null.
  */
 const afw_value_t *
 afw_function_execute_property_is_not_null(

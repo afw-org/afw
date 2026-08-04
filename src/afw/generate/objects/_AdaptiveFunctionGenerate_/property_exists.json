@@ -1,23 +1,23 @@
 {
-    "brief": "Determine if a property exists in an object",
+    "brief": "True if a property is present on an object",
     "category": "object",
-    "description": "Return true if the named property exists in an object.",
+    "description": "Return true if the named property is present on the object, including when its value is undefined or null. False only when the key is missing. Use is_defined / is_nullish for the value.",
     "functionId": "property_exists",
     "functionLabel": "property_exists",
     "parameters": [
         {
             "dataType": "object",
-            "description": "Object to get property from.",
+            "description": "Object to check.",
             "name": "object"
         },
         {
             "dataType": "string",
-            "description": "Name of property to check.",
+            "description": "Property name.",
             "name": "name"
         }
     ],
     "returns": {
         "dataType": "boolean",
-        "description": "True if object has named property."
+        "description": "True if the property is present."
     }
 }

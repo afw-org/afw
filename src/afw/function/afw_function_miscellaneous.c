@@ -585,7 +585,10 @@ afw_function_execute_trace(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the true if the named variable exists and is not null.
+ * Return true if the named variable is bound and its value is not Adaptive
+ * null. Undefined (including an uninitialized let) counts as not null. False if
+ * the name is not bound or the value is null. This is not the same as
+ * is_defined or not is_nullish.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -600,12 +603,11 @@ afw_function_execute_trace(
  *
  * Parameters:
  *
- *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to check. Optionally qualifier::name.
  *
  * Returns:
  *
- *   (boolean) True if variable exists and is not null.
+ *   (boolean) True if bound and value is not Adaptive null.
  */
 const afw_value_t *
 afw_function_execute_variable_is_not_null(
@@ -615,17 +617,35 @@ afw_function_execute_variable_is_not_null(
     afw_utf8_t qualifier;
     afw_utf8_t name;
     const afw_value_t *value;
+    const afw_value_t **value_address;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(qualified_name, 1, string);
 
     afw_compile_split_qualified_name(&qualified_name->internal,
         &qualifier, &name, x->xctx);
 
-    value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name, x->xctx);
+    /* Unqualified: symbol must be bound; empty slot is undefined, not null. */
+    if (qualifier.len == 0) {
+        value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+            &name, x->xctx);
+        if (!value_address) {
+            return afw_boolean_v_false;
+        }
+        value = *value_address;
+        return afw_value_is_null(value)
+            ? afw_boolean_v_false
+            : afw_boolean_v_true;
+    }
 
-    return (value && !afw_value_is_null(value))
-        ? afw_boolean_v_true
-        : afw_boolean_v_false;
+    value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name,
+        x->xctx);
+    /* Qualified: C NULL means not defined on any frame. */
+    if (!value) {
+        return afw_boolean_v_false;
+    }
+    return afw_value_is_null(value)
+        ? afw_boolean_v_false
+        : afw_boolean_v_true;
 }
 
 
@@ -637,7 +657,8 @@ afw_function_execute_variable_is_not_null(
  *
  * See afw_function_bindings.h for more information.
  *
- * Test value returning boolean True if it is null or undefined.
+ * Return true if the value is null or undefined. Does not check whether a
+ * variable name is bound — use variable_exists for that.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -678,7 +699,8 @@ afw_function_execute_is_nullish(
  *
  * See afw_function_bindings.h for more information.
  *
- * Test value returning boolean True if it is not undefined.
+ * Return true if the value is not undefined. Does not check whether a variable
+ * name is bound — use variable_exists for that. null is defined.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -719,7 +741,10 @@ afw_function_execute_is_defined(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the true if the named variable exists.
+ * Return true if the named variable is bound: a lexical symbol in the current
+ * scope chain, or a name defined on a visible qualifier frame. Still true when
+ * the value is undefined (including an uninitialized let) or null. False only
+ * when the name is not bound. Use is_defined / is_nullish for the value.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -734,12 +759,11 @@ afw_function_execute_is_defined(
  *
  * Parameters:
  *
- *   name - (string) Name of variable to check. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to check. Optionally qualifier::name.
  *
  * Returns:
  *
- *   (boolean) True if variable exists.
+ *   (boolean) True if the name is bound.
  */
 const afw_value_t *
 afw_function_execute_variable_exists(
@@ -755,9 +779,20 @@ afw_function_execute_variable_exists(
     afw_compile_split_qualified_name(&qualified_name->internal,
         &qualifier, &name, x->xctx);
 
-    value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name, x->xctx);
+    /* Unqualified: symbol present, even if slot is still C NULL. */
+    if (qualifier.len == 0) {
+        return afw_xctx_scope_symbol_exists_by_name(&name, x->xctx)
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
+    }
 
-    return (value) ? afw_boolean_v_true : afw_boolean_v_false;
+    /*
+     * Qualified: get_cb non-NULL (including afw_value_undefined / null) means
+     * defined on a frame; C NULL means not defined (keep walking / missing).
+     */
+    value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name,
+        x->xctx);
+    return value ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -769,8 +804,9 @@ afw_function_execute_variable_exists(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return the value of a variable. If variable is not available, return a
- * default or null value.
+ * Return the value of a bound variable. Optional default applies only when the
+ * name is not bound — not when the value is undefined. If unbound and no
+ * default is given, the result is undefined. Mutable defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -786,15 +822,14 @@ afw_function_execute_variable_exists(
  *
  * Parameters:
  *
- *   name - (string) Name of variable to get. The name can optionally be
- *       preceded with a qualifier followed by '::'.
+ *   name - (string) Name of variable to get. Optionally qualifier::name.
  *
- *   defaultValue - (optional any) The default value of variable if it does not
- *       exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) Value to return only if the name is not
+ *       bound. Cloned when used.
  *
  * Returns:
  *
- *   (any) Evaluated variable value or default.
+ *   (any) Bound variable value, or default / undefined if unbound.
  */
 const afw_value_t *
 afw_function_execute_variable_get(
@@ -804,16 +839,37 @@ afw_function_execute_variable_get(
     afw_utf8_t qualifier;
     afw_utf8_t name;
     const afw_value_t *value;
+    const afw_value_t **value_address;
+    afw_boolean_t bound;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(qualified_name, 1, string);
-  
+
     afw_compile_split_qualified_name(&qualified_name->internal,
         &qualifier, &name, x->xctx);
 
-    value = afw_xctx_get_optionally_qualified_variable(
-        &qualifier, &name, x->xctx);
+    bound = false;
+    value = NULL;
 
-    if (!value) {
+    if (qualifier.len == 0) {
+        value_address = afw_xctx_scope_symbol_get_value_address_by_name(
+            &name, x->xctx);
+        if (value_address) {
+            bound = true;
+            value = *value_address;
+            if (!value) {
+                value = afw_value_undefined;
+            }
+        }
+    }
+    else {
+        value = afw_xctx_get_optionally_qualified_variable(
+            &qualifier, &name, x->xctx);
+        if (value) {
+            bound = true;
+        }
+    }
+
+    if (!bound) {
         value = afw_value_undefined;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
             value = afw_value_evaluate(x->argv[2], x->p, x->xctx);

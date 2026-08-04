@@ -127,9 +127,10 @@ export function afwGenerateUuid(client : any) : any {
 }
 
 /**
- * Test value returning boolean True if it is not undefined.
+ * Return true if the value is not undefined. Does not check whether a
+ * variable name is bound — use variable_exists for that. null is defined.
  * 
- * @param {} value - Value to check
+ * @param {} value - Value to check.
  * 
  * @returns {boolean} True if value is not undefined.
  */
@@ -144,9 +145,10 @@ export function afwIsDefined(client : any, value : any) : any {
 }
 
 /**
- * Test value returning boolean True if it is null or undefined.
+ * Return true if the value is null or undefined. Does not check whether a
+ * variable name is bound — use variable_exists for that.
  * 
- * @param {} value - Value to check
+ * @param {} value - Value to check.
  * 
  * @returns {boolean} True if value is null or undefined.
  */
@@ -287,12 +289,15 @@ export function afwTrace(client : any, value : any, filter? : boolean, number? :
 }
 
 /**
- * Return the true if the named variable exists.
+ * Return true if the named variable is bound: a lexical symbol in the current
+ * scope chain, or a name defined on a visible qualifier frame. Still true
+ * when the value is undefined (including an uninitialized let) or null. False
+ * only when the name is not bound. Use is_defined / is_nullish for the value.
  * 
- * @param {string} name - Name of variable to check. The name can optionally
- *     be preceded with a qualifier followed by '::'.
+ * @param {string} name - Name of variable to check. Optionally
+ *     qualifier::name.
  * 
- * @returns {boolean} True if variable exists.
+ * @returns {boolean} True if the name is bound.
  */
 export function afwVariableExists(client : any, name : string) : any {
 
@@ -305,16 +310,16 @@ export function afwVariableExists(client : any, name : string) : any {
 }
 
 /**
- * Return the value of a variable. If variable is not available, return a
- * default or null value.
+ * Return the value of a bound variable. Optional default applies only when
+ * the name is not bound — not when the value is undefined. If unbound and no
+ * default is given, the result is undefined. Mutable defaults are cloned.
  * 
- * @param {string} name - Name of variable to get. The name can optionally be
- *     preceded with a qualifier followed by '::'.
+ * @param {string} name - Name of variable to get. Optionally qualifier::name.
  * 
- * @param {} defaultValue - The default value of variable if it does not exist
- *     in object. If not specified, null value is the default.
+ * @param {} defaultValue - Value to return only if the name is not bound.
+ *     Cloned when used.
  * 
- * @returns {} Evaluated variable value or default.
+ * @returns {} Bound variable value, or default / undefined if unbound.
  */
 export function afwVariableGet(client : any, name : string, defaultValue? : any) : any {
 
@@ -330,12 +335,15 @@ export function afwVariableGet(client : any, name : string, defaultValue? : any)
 }
 
 /**
- * Return the true if the named variable exists and is not null.
+ * Return true if the named variable is bound and its value is not Adaptive
+ * null. Undefined (including an uninitialized let) counts as not null. False
+ * if the name is not bound or the value is null. This is not the same as
+ * is_defined or not is_nullish.
  * 
- * @param {string} name - Name of variable to check. The name can optionally
- *     be preceded with a qualifier followed by '::'.
+ * @param {string} name - Name of variable to check. Optionally
+ *     qualifier::name.
  * 
- * @returns {boolean} True if variable exists and is not null.
+ * @returns {boolean} True if bound and value is not Adaptive null.
  */
 export function afwVariableIsNotNull(client : any, name : string) : any {
 

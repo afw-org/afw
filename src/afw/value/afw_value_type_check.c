@@ -748,10 +748,12 @@ afw_value_type_is_assignable(
     if (afw_value_type_is_any(expected)) {
         return true;
     }
-    if (!value) {
-        return false;
-    }
 
+    /*
+     * C NULL is undefined for assignability (same as afw_value_undefined).
+     * Do not reject early — uninit let slots and optional missing args use
+     * NULL; explicit undefined uses the singleton (issue #131 / TS-shaped).
+     */
     strict_null = impl_strict_null_checks(contextual, xctx);
 
     if (expected->kind == afw_value_type_kind_union) {

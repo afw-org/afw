@@ -1,13 +1,13 @@
 {
-    "brief": "Is nullish",
+    "brief": "True if value is null or undefined",
     "category": "miscellaneous",
-    "description": "Test value returning boolean True if it is null or undefined.",
+    "description": "Return true if the value is null or undefined. Does not check whether a variable name is bound — use variable_exists for that.",
     "functionId": "is_nullish",
     "functionLabel": "is_nullish",
     "parameters": [
         {
             "canBeUndefined": true,
-            "description": "Value to check",
+            "description": "Value to check.",
             "name": "value"
         }
     ],

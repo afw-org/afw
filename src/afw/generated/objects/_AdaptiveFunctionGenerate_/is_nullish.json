@@ -1,15 +1,15 @@
 {
     "afwCamelCaseFunctionLabel": "afwIsNullish",
-    "brief": "Is nullish",
+    "brief": "True if value is null or undefined",
     "camelCaseFunctionLabel": "isNullish",
     "category": "miscellaneous",
-    "description": "Test value returning boolean True if it is null or undefined.",
+    "description": "Return true if the value is null or undefined. Does not check whether a variable name is bound \u2014 use variable_exists for that.",
     "functionId": "is_nullish",
     "functionLabel": "is_nullish",
     "parameters": [
         {
             "canBeUndefined": true,
-            "description": "Value to check",
+            "description": "Value to check.",
             "name": "value"
         }
     ],

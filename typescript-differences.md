@@ -67,7 +67,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 - **`null`**, **`undefined`**, **`true` / `false`**.
 - **`??`** nullish coalescing; **`?.`** optional chaining (forms the parser accepts).
 - **`is_nullish(v)`** / **`is_defined(v)`** for values.
-- **`property_get` / `variable_get`** with defaults when a missing name should not throw—see Should fix for binding vs value semantics.
+- **`property_get` / `variable_get`** with defaults when the **name/key is missing** (not when the value is undefined). **`variable_exists` / `property_exists`** mean bound/present, not “value defined.”
 
 ### Objects, arrays, Patterns
 
@@ -132,19 +132,19 @@ Leaves are Adaptive **data types** (`integer`, `string`, …), not TS `number` o
 
 | Item | Priority | Notes / issue |
 |------|----------|----------------|
-| **`variable_exists`** = name **bound**, not “value pointer non-NULL” | P0 | Uninit `let` and empty optional formals currently look “missing”; explicit `= undefined` looks present. Branch `issue-#131-variable-exists`. **#131** |
-| **`variable_get(name, default)`** default only if **not bound** | P0/P1 | Today uninit uses default; bound-to-undefined does not. Align with exists. |
-| Optional formals: binding exists when arg omitted | P0 | Value may be undefined; exists should be true. |
-| Type-check: C **NULL** uninit vs **`undefined` singleton** | P1 | Under typeCheck, uninit typed `let` can fail while `= undefined` follows nullish/`strictNullChecks`. One story with #131. |
-| Light Adaptive function **descriptions** | P1 | `variable_exists`, `variable_get`, `variable_is_not_null`, `property_exists`, `property_get`, `property_is_not_null`, `is_defined`, `is_nullish`: bound vs value; default only if missing; “not null” ≠ “not nullish”. Keep briefs short. |
+| **`variable_exists`** = name **bound**, not “value pointer non-NULL” | **Done** (branch `issue-#131-variable-exists`) | Uninit `let` / optional formals / explicit undefined all bound. **#131** |
+| **`variable_get(name, default)`** default only if **not bound** | **Done** | Uninit no longer takes default; missing name still does. |
+| Optional formals: binding exists when arg omitted | **Done** | Covered in `variables.as`. |
+| Type-check: C **NULL** uninit vs **`undefined` singleton** | **Done** | Assignability treats C NULL as undefined (same nullish / `strictNullChecks` rules). |
+| Light Adaptive function **descriptions** | **Done** | `variable_*`, `property_*` exists/get/is_not_null, `is_defined`, `is_nullish` briefs. |
 
-**Target semantics (when done):**
+**Semantics (landed):**
 
 | API | Meaning |
 |-----|---------|
 | `variable_exists("name")` | Bound (lexical symbol or defined on a qualifier frame), including value undefined/null |
 | `is_defined` / `is_nullish` | Value |
-| `property_exists` | Key present (already true for undefined values—keep) |
+| `property_exists` | Key present (already true for undefined values) |
 | `variable_get` / `property_get` + default | Default only if name/key **missing**, not if value is undefined |
 
 ### Built-ins and authoring experience
