@@ -285,6 +285,31 @@ const p: Person = { id: 1, name: "a" };]]></code>
             time against each function’s parameter and return data types (when
             those types can be determined without running the call).
         </paragraph>
+        <paragraph>
+            You can also write a <literal>#compile</literal> statement in a
+            script to turn the same options on or off for that script only.
+            Use the part of the flag name after <literal>compile:</literal>
+            (for example <literal>typeCheck</literal>), or
+            <literal>noTypeCheck</literal> to turn type checking off again in
+            the script. End the statement with a semicolon. This does not
+            change the environment flags used by other scripts.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[/* Turn checking on for this script */
+#compile typeCheck;
+const n: integer = 1;
+
+/* Require annotations as well */
+#compile typeCheck noImplicitAny;
+
+/* Or enable the full strict set */
+#compile strict;
+
+/* Turn type checking off again in this script */
+#compile noTypeCheck;
+const loose: integer = "ok";]]></code>
+        </section>
     </section>
 
     <section>

@@ -590,7 +590,7 @@ Operands match flag short names (case-sensitive). Flags are **process defaults**
 
 When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements** and **tuple length/positions** when the value is known (for example a literal), **function param/return shapes** (script functions/closures), **Pattern** element annotations on array/object destructure, and **calls to known Adaptive functions** against metadata formals (compile path only). **Object literals** may not include properties outside the declared type (including as arguments); spreads/computed keys skip that extra-key check. At runtime, non-literal values may still be wider (structural). Type errors name missing properties, element indexes, and decompiled expected types where possible.
 
-Handbook: Language Reference → **Types** (flags-oriented authoring). Tests: `type_syntax.as` (parse/decompile), `type_check_flags.as` (flag/pragma contract), `type_check.as` (rules under `#compile typeCheck`). Design pads: `designs/issue-28-type-syntax.md`, `designs/pragma-hash-design.md`, `designs/adaptive-function-compile-typecheck.md`.
+Handbook: Language Reference → **Types** (flags first; optional `#compile` in a script), plus **Lexical** reserved names and **Language Features** for other `#` names you may see in decompile. Tests: `type_syntax.as`, `type_check_flags.as`, `type_check.as`, `type_check_multi_unit.as`.
 
 ---
 

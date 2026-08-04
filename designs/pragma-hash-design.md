@@ -117,8 +117,9 @@ Examples:
 
 ## Open / follow-up
 
-- Handbook language-ref note for `#compile` (flags still primary; mid-unit “from here on” + flag vs unit table above).
 - **Decompile / `#…` inventory:** [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.
+
+**Docs (landed on this branch):** Language Reference **Types** (flags + short `#compile` note), **Lexical** reserved names, **Features** author vs decompile `#` split; `whats-new.md` pointer.
 
 **Closed for this surface**
 
