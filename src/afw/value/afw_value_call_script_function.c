@@ -326,8 +326,13 @@ impl_afw_value_optional_evaluate(
                                 afw_compile_assignment_type_parameter,
                                 p, xctx);
                         }
+                        /* else: leaves stay scope_create undefined (issue #131) */
                     }
                     else if ((*params)->symbol) {
+                        /* NULL / missing optional → permanent undefined singleton. */
+                        if (!value) {
+                            value = afw_value_undefined;
+                        }
                         *afw_xctx_scope_symbol_get_value_address(
                             (*params)->symbol, parameter_scope, xctx) = value;
                     }

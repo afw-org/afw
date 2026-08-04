@@ -258,10 +258,11 @@ struct afw_xctx_scope_s {
  * @return New xctx scope.
  *
  * Function afw_xctx_scope_create() is used to create a new scope for the
- * supplied block. Symbol value slots are zero-filled: C NULL until first
- * store means Adaptive undefined for evaluation, but the **symbol is still
- * bound** (see afw_xctx_scope_symbol_exists_by_name). Prefer storing
- * afw_value_undefined when setting an explicit undefined value.
+ * supplied block. Symbol value slots start as the permanent
+ * **afw_value_undefined** singleton (not C NULL) so a bound name always has a
+ * value pointer; see afw_xctx_scope_symbol_exists_by_name and issue #131.
+ * afw_xctx_scope_symbol_set_value() also stores that singleton when given
+ * C NULL.
  *
  * If a parent_lexical_scope is specified, it's reference count will be
  * incremented. The block depth of the block supplied must be 1 more than the
@@ -431,9 +432,9 @@ afw_xctx_scope_unwind(
  * An error is thrown if the symbol's value location is not found. This most
  * likely is caused by a compile error.
  *
- * The pointed-to value may still be C NULL (uninitialized slot = Adaptive
- * undefined until first assignment). Non-NULL address means the symbol is
- * bound; use *address (and afw_value_is_undefined) for the value.
+ * Non-NULL address means the symbol is bound. Slot contents are normally the
+ * permanent undefined singleton until assigned (or an explicit value); C NULL
+ * in a slot is legacy — treat with afw_value_is_undefined().
  */
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
@@ -450,9 +451,10 @@ afw_xctx_scope_symbol_get_value_address(
  * @return value address, or NULL if no symbol with that name is bound.
  *
  * NULL return means the name is **not bound**. Non-NULL means bound; *address
- * may still be C NULL (undefined value). Script variable_exists uses this
- * distinction (issue #131). Prefer this or
- * afw_xctx_scope_symbol_exists_by_name() over truthiness-testing a get result.
+ * is the current value (undefined singleton until assigned). Script
+ * variable_exists uses this distinction (issue #131). Prefer this or
+ * afw_xctx_scope_symbol_exists_by_name() over truthiness-testing a get
+ * result from the unqualified get path alone.
  */
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address_by_name(
@@ -465,11 +467,11 @@ afw_xctx_scope_symbol_get_value_address_by_name(
  * @brief Get the value of a symbol in the current scope chain.
  * @param symbol to get value of.
  * @param xctx of caller.
- * @return value pointer, which may be C NULL (undefined).
+ * @return value pointer (undefined singleton until assigned; use
+ *     afw_value_is_undefined).
  *
- * An error is thrown if the symbol's value location is not found. A NULL
- * **return** is not “missing symbol” — it is a bound slot whose value is still
- * undefined (same as afw_value_is_undefined).
+ * An error is thrown if the symbol's value location is not found. Does not mean
+ * “missing symbol” when the value is undefined.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_symbol_get_value(
@@ -482,10 +484,9 @@ afw_xctx_scope_symbol_get_value(
  * @brief Get the value of a named symbol in the current scope chain.
  * @param symbol_name of value to get.
  * @param xctx of caller.
- * @return value pointer, which may be C NULL (undefined).
+ * @return value pointer (undefined singleton until assigned).
  *
- * An error is thrown if the name is not bound. A NULL return means the symbol
- * is bound but the value is undefined, not that the name is missing.
+ * An error is thrown if the name is not bound. Undefined value is not “missing.”
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_symbol_get_value_by_name(
@@ -499,7 +500,7 @@ afw_xctx_scope_symbol_get_value_by_name(
  * @param symbol_name of symbol to check.
  * @param xctx of caller.
  * @return true if a symbol with that name exists (any value, including
- *     undefined / C NULL in the slot).
+ *     the undefined singleton).
  *
  * This is the C-side “variable_exists” for unqualified names: **bound**, not
  * “value is non-nullish.” Does not consult the qualifier stack (use
@@ -754,12 +755,11 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
  * @return value pointer, or C NULL (see below — meaning depends on path).
  *
  * **Unqualified** (no qualifier): looks up a lexical symbol by name and
- * returns the **slot contents**. C NULL means either (a) name not bound, or
- * (b) bound but uninitialized / undefined value. Do **not** treat a NULL
- * return as “does not exist” alone — use
- * afw_xctx_scope_symbol_get_value_address_by_name() or
- * afw_xctx_scope_symbol_exists_by_name() for bound vs missing (issue #131;
- * script variable_exists / variable_get).
+ * returns the **slot contents**. After scope create / set_value, bound slots
+ * use afw_value_undefined rather than C NULL for empty values, so a NULL
+ * return normally means **not bound**. Still prefer
+ * afw_xctx_scope_symbol_exists_by_name() / get_value_address_by_name() for
+ * existence (issue #131; script variable_exists / variable_get).
  *
  * **Qualified** (`qualifier::name`): walks matching visible frames newest →
  * oldest. First frame whose get_cb returns non-NULL wins (including
