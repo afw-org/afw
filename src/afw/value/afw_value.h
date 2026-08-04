@@ -362,10 +362,10 @@ afw_value_symbol_reference_inf;
 
 
 /**
- * @brief Adaptive value null.
+ * @brief Adaptive value null (typed singleton).
  *
- * Note: this is different from c NULL which is represented by undefined.  See
- * afw_value_undefined.
+ * This is Adaptive/JSON **null**, not C NULL and not undefined. See
+ * afw_value_undefined and afw_value_is_nullish().
  */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_null;
@@ -373,16 +373,18 @@ afw_value_null;
 
 
 /**
- * @brief Adaptive value null.
+ * @brief Adaptive value undefined (permanent singleton).
  *
- * Undefined values are represented by C NULL or a pointer to this exact value.
- * Throughout source NULL and undefined are used interchangeably, but it's
- * preferred that undefined is represented by a pointer to this value. This is
- * because C NULL is sometimes used as a return value to mean something other
- * than undefined such as "not applicable".
+ * For **values**, undefined may be represented by C NULL **or** a pointer to
+ * this exact singleton. Prefer storing/returning this singleton when the
+ * meaning is “present but undefined” (e.g. object properties, qualifier
+ * get_cb). C NULL is also treated as undefined by afw_value_is_undefined() /
+ * is_nullish(), but in some APIs C NULL means something else (not bound, not
+ * applicable, keep walking) — see afw_xctx_get_optionally_qualified_variable()
+ * and afw_xctx_get_variable_cb_t.
  *
- * Macro afw_value_is_undefined() should always be used to check for an
- * undefined value since it checks for both of these conditions.
+ * Always use afw_value_is_undefined() (or is_nullish()) to test; do not rely
+ * on pointer identity alone unless you know you stored the singleton.
  */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_undefined;
@@ -437,13 +439,14 @@ afw_value_unique_default_case_value;
 
 
 /**
- * @brief Determine if value is undefined or null.
+ * @brief Determine if value is undefined or Adaptive null.
  * @param value to test.
- * @param xctx of caller.
  * @return boolean result.
  *
- * NOTE: Undefined values are represented by c NULL which is different from
- * an adaptive null value.
+ * True for C NULL, afw_value_undefined, or Adaptive null. Script nullish
+ * coalescing / is_nullish and type-check nullish assignability use this idea.
+ * Does **not** mean “variable name is unbound” — that is an xctx/symbol
+ * question (see afw_xctx_scope_symbol_exists_by_name).
  */
 #define afw_value_is_nullish(A_VALUE) \
 ( \
@@ -456,11 +459,12 @@ afw_value_unique_default_case_value;
 /**
  * @brief Determine if value is undefined.
  * @param value to test.
- * @param xctx of caller.
  * @return boolean result.
  *
- * NOTE: Undefined values are represented by c NULL or an exact pointer to
- * afw_value_undefined.
+ * True for C NULL or the afw_value_undefined singleton. Not Adaptive null.
+ * Type assignability treats C NULL like undefined for nullish /
+ * strictNullChecks (issue #131). Prefer the singleton when storing a present
+ * undefined value so APIs that use C NULL for “not defined” stay unambiguous.
  */
 #define afw_value_is_undefined(A_VALUE) \
     (!A_VALUE || (A_VALUE) == afw_value_undefined)
@@ -1917,12 +1921,15 @@ afw_value_type_get_leaf_data_type(const afw_value_type_t *type);
 
 /**
  * @brief Whether value is assignable to expected type.
+ * @param expected target type graph.
+ * @param value candidate (C NULL is treated as undefined for nullish rules).
+ * @param contextual call/assign site (NULL => process flags for strictNull).
+ * @param xctx of caller.
  *
  * Handles leaves, unions/intersections, array/tuple elements, and
  * object/interface properties (with extends) when the value is inspectable.
- */
-/**
- * @param contextual call/assign site (NULL => process flags for strictNull).
+ * Nullish (C NULL, afw_value_undefined, Adaptive null) follows unit/process
+ * strictNullChecks policy when checking is active.
  */
 AFW_DEFINE(afw_boolean_t)
 afw_value_type_is_assignable(

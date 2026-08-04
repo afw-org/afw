@@ -267,7 +267,7 @@ afw_xctx_scope_symbol_get_value_by_name(
 
 
 
-/* Determine if the named symbol exists in the current scope chain. */
+/* True if lexical symbol is bound (any slot value, including C NULL). */
 AFW_DECLARE(afw_boolean_t)
 afw_xctx_scope_symbol_exists_by_name(
     const afw_utf8_t *symbol_name,
@@ -319,7 +319,16 @@ afw_xctx_scope_symbol_set_value_by_name(
 
 
 
-/* Get a variable from xctx stack. */
+/*
+ * Get optionally qualified variable value.
+ *
+ * Unqualified: return slot contents (*address). Bound-but-uninit slots are
+ * still C NULL — callers that need “is bound?” must use address/exists
+ * helpers, not truthiness of this return (issue #131).
+ *
+ * Qualified: get_cb contract — non-NULL including undefined/null singletons
+ * means defined on that frame; C NULL means not on this frame.
+ */
 AFW_DEFINE(const afw_value_t *)
 afw_xctx_get_optionally_qualified_variable(
     const afw_utf8_t *qualifier,
@@ -331,6 +340,7 @@ afw_xctx_get_optionally_qualified_variable(
     const afw_value_t **value_address;
 
     if (!qualifier || (qualifier->len == 0)) {
+        /* Lexical: may return NULL for a bound uninitialized symbol. */
         value_address = afw_xctx_scope_symbol_get_value_address_by_name(
             name, xctx);
         if (value_address) {
