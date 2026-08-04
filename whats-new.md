@@ -964,7 +964,8 @@ When adding or rewriting `whats-new.md` content:
 
 1. **Every user-facing theme gets a `##` detail section** (and optional `###` subsections). Put the short pitch in the Highlights table and the full story under the section.
 2. **Link the Area cell** to that section: `[**Short name (#N)**](#github-heading-slug)`. Leave “What changed” unlinked.
-3. **Slug** = GitHub auto-anchor for the `##` title: lower-case, strip punctuation/`backticks`, spaces → `-` (verify in the rendered PR if unsure). Prefer **stable, boring headings** so slugs don’t thrash.
-4. **One theme, one primary section.** If two table rows share a section (e.g. UTF-8 + Python local), both may link to the same `#…`. Prefer a `###` link only when the jump is much clearer.
-5. **No orphan links.** If there is no detail section yet, either add one or leave the Area unlinked until there is.
-6. **After renames**, update Highlights links in the same edit as the heading change.
+3. **End each detail `##` section** with `[↑ Highlights](#highlights)` (not after every `###`). Skip meta sections (Reliability, Breaking checklist, Related issues, How this was produced).
+4. **Slug** = GitHub auto-anchor for the `##` title: lower-case, strip punctuation/`backticks`, spaces → `-` (verify in the rendered page if unsure). Prefer **stable, boring headings** so slugs don’t thrash.
+5. **One theme, one primary section.** If two table rows share a section (e.g. UTF-8 + Python local), both may link to the same `#…`. Prefer a `###` link only when the jump is much clearer.
+6. **No orphan links.** If there is no detail section yet, either add one or leave the Area unlinked until there is.
+7. **After renames**, update Highlights links in the same edit as the heading change.
