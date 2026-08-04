@@ -19,9 +19,9 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Summary counts
 
-- **Open issues:** 47
-- **Jeremy:** 32 issues (as assignee, including shared)
-- **Mike:** 26 issues (as assignee, including shared)
+- **Open issues:** 46
+- **Jeremy:** 31 issues (as assignee, including shared)
+- **Mike:** 25 issues (as assignee, including shared)
 - **—:** 3 issues (as assignee, including shared)
 
 ## All open issues
@@ -33,7 +33,6 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#7](https://github.com/afw-org/afw/issues/7) | Jeremy | Internal documentation for afwdev | The Python code in afwdev may be able to leverage Doxyen using comment syntax compatible with Python. | Backlog docs (afwdev internal Doxygen-style). No recent activity. | 2023-04-14 |
 | [#8](https://github.com/afw-org/afw/issues/8) | Jeremy | Migrate away from create-react-app | There are some unpleasant workarounds required to get the plumbing right for a create-react-app project like our current admin app to use package modules, and still no way to make flexible build options. Furthermore,… | Admin app build system (CRA → Vite etc.). No recent activity. | 2023-04-14 |
 | [#13](https://github.com/afw-org/afw/issues/13) | Jeremy | Support stress testing in afwdev | Currently, we can use the following command to send tests to afwfcgi in parallel: | afwdev stress-test options (rounds/continuous). No recent activity. | 2023-05-09 |
-| [#15](https://github.com/afw-org/afw/issues/15) | Mike, Jeremy | Config file path enhancements | 1. Resolve relative file path parameter values in conf files to full path at create time when when appropriate. The base parameter of file adaptor is an example. 2. Change these file path parameter to data type… | Partial: conf path templates, process/environment ambient on mgg-develop. Residual hybrid/path cases possible. | 2026-07-30 |
 | [#17](https://github.com/afw-org/afw/issues/17) | Mike | Make object literals immutable and fix the resulting errors | Make object literals immutable and fix the resulting errors | Object literals immutable — labeled in development; not verified as fully merged. | 2026-07-30 |
 | [#22](https://github.com/afw-org/afw/issues/22) | Jeremy | Finishing documenting differences between Adaptive Script and ECMAScript | Finishing documenting differences between Adaptive Script and ECMAScript | Jeremy’s polished ES differences doc. Maintainer notes in root typescript-differences.md (not a substitute). | 2023-07-27 |
 | [#28](https://github.com/afw-org/afw/issues/28) | Mike | Compile time type (dataType) checking | Opt-in type syntax and type checking for Adaptive Script (Adaptive data types as leaves). Branch: issue-28. | Core shipped on mgg-develop (syntax, flags, #compile, checks, handbook Types, type_* tests green). Left open intentionally for residuals/packaging; advanced TS + optimize out of issue bar. | 2026-08-03 |
@@ -85,7 +84,7 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | Built-ins / JSON | #69, #70 | stringify #18 **closed** 2026-08-04 |
 | Adapters / auth / RQL | #41, #54, #85–#87, #91, #102 | Review and feature work |
 | Retrieve / limits | #49, #127 | maxObjects partial; release incomplete |
-| Conf / process / crypto | #15, #74 | Partial landings |
+| Conf / process / crypto | #74 | #15 **closed** 2026-08-04 (PR #135); #74 still partial (`process::` landed, interactive read/readpass open) |
 | Admin / Fiddle / UI | #8, #59, #60, #80, #114 | Jeremy / unassigned UI |
 | afwdev / CI / packaging | #6, #7, #13, #44, #45, #61, #81 | Tooling and workflows |
 | Meta / wire / journal | #126, #138 | Trackers / design pads |
@@ -98,6 +97,7 @@ Useful for “don’t restart this.” Process-close batch **2026-08-04** verifi
 | # | Title (short) | Note |
 |---|---------------|------|
 | #9 | Qualifier snapshots | Closed earlier |
+| #15 | Config file path enhancements | **Closed 2026-08-04** — PR #135 conf path templates + ambient; no further residual conf host paths at this time |
 | #14 | `afw --allow` + YAML block strings | **Closed 2026-08-04** — 22 yaml tests green |
 | #18 | stringify second param (replacer) | **Closed 2026-08-04** — PR #137; 18 stringify tests |
 | #38 | Computed property names in object values | **Closed 2026-08-04** — PR #139; 11 tests |
@@ -112,6 +112,7 @@ Useful for “don’t restart this.” Process-close batch **2026-08-04** verifi
 | Issue | Decision |
 |-------|----------|
 | #14, #55, #38, #18 | Verified green → closed |
+| #15 | Shipped on mgg-develop via PR #135; residual conf host-path inventory empty (curl `caInfo`/`caPath` are runtime options, not conf create). **Closed 2026-08-04** — reopen if more path templates wanted |
 | #35 | Investigated; **leave open** — 25/36 closures tests pass; 11 skips are #2 escape/lifetime; handbook Features still wrong |
 | #28 | Investigated; **leave open** (maintainer choice) — core shipped; residuals/packaging still tracked on issue |
 
