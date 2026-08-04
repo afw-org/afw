@@ -647,6 +647,8 @@ Handbook: Language Reference **Types** (flags and `#compile` options), **Languag
 [↑ Highlights](#highlights)
 ## Conf path templates (issue #15)
 
+**Issue #15 closed** (2026-08-04) after PR **#135** on `mgg-develop`. Path-like conf properties use **`template`** (not hybrid) by design. No further conf host-path residuals planned at this time; curl `caInfo`/`caPath` remain plain runtime options.
+
 Several conf properties that hold host paths or module paths are now **`template`** (or array of template). Plain strings still work as before; substitutions such as **`environment::`** (and other ambient qualifiers available after env create) are evaluated when the conf entry is processed.
 
 | Property | Evaluated at | Full path? |
