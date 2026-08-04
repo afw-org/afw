@@ -213,10 +213,11 @@ ColonBeforeEndOfLine ::= ':'
 DataType ::=
    'any' |
    'anyURI' |
+   'array' |
    'base64Binary' |
    'boolean' |
-   'date' |
    'dataTimeDuration' |
+   'date' |
    'dnsName' |
    'double' |
    'expression' |
@@ -225,7 +226,6 @@ DataType ::=
    'ia5String' |
    'integer' |
    'ipAddress' |
-   'array' |
    'null' |
    'object' |
    'objectId' |
@@ -516,17 +516,17 @@ Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
 /* From afw_compile_parse_pragma.c                                            */
 /* Author compile-policy pragma. Token is already pound_identifier "compile". */
-/* Operands are compile:* flag short names (and special 'off'). At least one  */
-/* operand required. Spaces separate tokens; no commas.                       */
+/* Operands are compile:* flag short names (and special 'noTypeCheck').       */
+/* At least one operand required. Spaces separate tokens; no commas.          */
 
 CompilePragmaOperand ::=
-    'off' |
-    'typeCheck' |
-    'typeCheckCompileOnly' |
     'noImplicitAny' |
-    'strictNullChecks' |
+    'noOptimize' |
+    'noTypeCheck' |
     'strict' |
-    'noOptimize'
+    'strictNullChecks' |
+    'typeCheck' |
+    'typeCheckCompileOnly'
 
 CompilePragma ::=
     '#compile' CompilePragmaOperand+ ';'
@@ -1078,17 +1078,23 @@ PredefinedConstReservedWords ::= ( 'false' | 'INF' | 'Infinity' | 'NaN'  |
      'null' | 'true' | 'undefined' )
 
 /* From afw_compile_lexical.c                                                 */
+/* Statement / clause keywords (including type-system statements and          */
+/* interface 'extends'). 'void' is reserved with statements though it is      */
+/* also a data-type name. 'declare' is reserved (stub statement today).       */
 
 StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
-     'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' |
-     'function' | 'if' | 'let' | 'return' | 'switch' |
-     'throw' | 'try' | 'void' | 'while' )
+     'continue' | 'declare' | 'default' | 'do' | 'else' | 'extends' |
+     'finally' | 'for' | 'function' | 'if' | 'interface' | 'let' |
+     'return' | 'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
 
 /* From afw_compile_lexical.c                                                 */
+/* Not implemented as syntax today; reserved for possible future TS/JS-shaped */
+/* surface (or to block bad identifiers). 'var' kept so scripts cannot use it. */
+/* Dropped: 'delete', 'with' (removed operators / no plan to adopt).          */
 
-UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
-     'export' | 'extends' | 'from' | 'import' | 'in' | 'interface' |
-     'instanceof' | 'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
+UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
+     'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
+     'this' | 'typeof' | 'var' )
 
 /* From afw_compile_lexical.c                                                 */
 /* End of source                                                              */

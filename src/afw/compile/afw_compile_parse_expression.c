@@ -24,10 +24,11 @@
  * DataType ::=
  *    'any' |
  *    'anyURI' |
+ *    'array' |
  *    'base64Binary' |
  *    'boolean' |
- *    'date' |
  *    'dataTimeDuration' |
+ *    'date' |
  *    'dnsName' |
  *    'double' |
  *    'expression' |
@@ -36,7 +37,6 @@
  *    'ia5String' |
  *    'integer' |
  *    'ipAddress' |
- *    'array' |
  *    'null' |
  *    'object' |
  *    'objectId' |

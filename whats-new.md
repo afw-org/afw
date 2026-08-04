@@ -581,12 +581,12 @@ Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")`
 | `compile:strict` | typeCheck + noImplicitAny + strictNullChecks |
 | `#compile typeCheck;` | Full typeCheck for that compile |
 | `#compile typeCheckCompileOnly;` | Compile-only for that compile |
-| `#compile off;` | Off for that compile (clears type-check cluster) |
+| `#compile noTypeCheck;` | Clears type-check cluster for that unit (not noOptimize) |
 | `#compile typeCheck noImplicitAny;` | Full check + require annotations |
 | `#compile typeCheck strictNullChecks;` | Full check + strict null/undefined |
 | `#compile strict;` | Same as `compile:strict` |
 
-Operands match flag short names (case-sensitive). Flags are **process defaults** (snapshotted at each compile start into the unit’s policy). `#compile` overrides **only that unit’s policy** and does not change process flags for siblings or the rest of the request. Mid-unit `#compile` applies **from that statement on** for later checks in the same source (already-parsed constructs are not re-checked). If a flag seems to do nothing, the unit may have `#compile off`, or the flag was set **after** that unit was already compiled. See `designs/pragma-hash-design.md`.
+Operands match flag short names (case-sensitive). Flags are **process defaults** (snapshotted at each compile start into the unit’s policy). `#compile` overrides **only that unit’s policy** and does not change process flags for siblings or the rest of the request. Mid-unit `#compile` applies **from that statement on** for later checks in the same source (already-parsed constructs are not re-checked). If a flag seems to do nothing, the unit may have `#compile noTypeCheck`, or the flag was set **after** that unit was already compiled. See `designs/pragma-hash-design.md`.
 
 When checking is on, assignment and script function parameters are checked for leaf data types, unions/intersections, **object/interface shapes** (required props, property types, `extends`), **array elements** and **tuple length/positions** when the value is known (for example a literal), **function param/return shapes** (script functions/closures), **Pattern** element annotations on array/object destructure, and **calls to known Adaptive functions** against metadata formals (compile path only). **Object literals** may not include properties outside the declared type (including as arguments); spreads/computed keys skip that extra-key check. At runtime, non-literal values may still be wider (structural). Type errors name missing properties, element indexes, and decompiled expected types where possible.
 

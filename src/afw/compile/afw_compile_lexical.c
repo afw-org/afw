@@ -1315,12 +1315,15 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_undefined)    ||
 
 /*ebnf>>>
- * 
- * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' | 
- *      'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' | 
- *      'function' | 'if' | 'let' | 'return' | 'switch' |
- *      'throw' | 'try' | 'void' | 'while' )
- * 
+ *
+ *# Statement / clause keywords (including type-system statements and
+ *# interface 'extends'). 'void' is reserved with statements though it is
+ *# also a data-type name. 'declare' is reserved (stub statement today).
+ * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
+ *      'continue' | 'declare' | 'default' | 'do' | 'else' | 'extends' |
+ *      'finally' | 'for' | 'function' | 'if' | 'interface' | 'let' |
+ *      'return' | 'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
+ *
  *<<<ebnf*/
 
         afw_utf8_equal(s, afw_s_break)        ||
@@ -1328,26 +1331,33 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_catch)        ||
         afw_utf8_equal(s, afw_s_const)        ||
         afw_utf8_equal(s, afw_s_continue)     ||
+        afw_utf8_equal(s, afw_s_declare)      ||
         afw_utf8_equal(s, afw_s_default)      ||
         afw_utf8_equal(s, afw_s_do)           ||
         afw_utf8_equal(s, afw_s_else)         ||
+        afw_utf8_equal(s, afw_s_extends)      ||
         afw_utf8_equal(s, afw_s_finally)      ||
         afw_utf8_equal(s, afw_s_for)          ||
         afw_utf8_equal(s, afw_s_function)     ||
         afw_utf8_equal(s, afw_s_if)           ||
+        afw_utf8_equal(s, afw_s_interface)    ||
         afw_utf8_equal(s, afw_s_let)          ||
         afw_utf8_equal(s, afw_s_return)       ||
         afw_utf8_equal(s, afw_s_switch)       ||
         afw_utf8_equal(s, afw_s_throw)        ||
         afw_utf8_equal(s, afw_s_try)          ||
+        afw_utf8_equal(s, afw_s_type)         ||
         afw_utf8_equal(s, afw_s_void)         ||
         afw_utf8_equal(s, afw_s_while)        ||
 
 /*ebnf>>>
- * 
- * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
- *      'export' | 'extends' | 'from' | 'import' | 'in' | 'interface' |
- *      'instanceof' | 'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
+ *
+ *# Not implemented as syntax today; reserved for possible future TS/JS-shaped
+ *# surface (or to block bad identifiers). 'var' kept so scripts cannot use it.
+ *# Dropped: 'delete', 'with' (removed operators / no plan to adopt).
+ * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' |
+ *      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
+ *      'this' | 'typeof' | 'var' )
  *
  *<<<ebnf*/
 
@@ -1355,20 +1365,15 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_async)        ||
         afw_utf8_equal(s, afw_s_await)        ||
         afw_utf8_equal(s, afw_s_class)        ||
-        afw_utf8_equal(s, afw_s_delete)       ||
         afw_utf8_equal(s, afw_s_export)       ||
-        afw_utf8_equal(s, afw_s_extends)      ||
         afw_utf8_equal(s, afw_s_from)         ||
         afw_utf8_equal(s, afw_s_import)       ||
         afw_utf8_equal(s, afw_s_in)           ||
         afw_utf8_equal(s, afw_s_instanceof)   ||
-        afw_utf8_equal(s, afw_s_interface)    ||
         afw_utf8_equal(s, afw_s_super)        ||
         afw_utf8_equal(s, afw_s_this)         ||
-        afw_utf8_equal(s, afw_s_type)         ||
         afw_utf8_equal(s, afw_s_typeof)       ||
-        afw_utf8_equal(s, afw_s_var)          ||
-        afw_utf8_equal(s, afw_s_with)         )
+        afw_utf8_equal(s, afw_s_var)          )
     {
         return true;
     }

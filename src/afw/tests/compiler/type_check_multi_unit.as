@@ -126,7 +126,7 @@ const strict_f = evaluate(compile<script>(script(
     "return function (a: integer) { return a; };"
 )));
 const loose_f = evaluate(compile<script>(script(
-    "#compile off;\n" +
+    "#compile noTypeCheck;\n" +
     "return function (a: integer) { return a; };"
 )));
 const loose_r = loose_f("1");
@@ -163,7 +163,7 @@ return 0;
 
 //?
 //? test: definition-policy-off-allows-convert-param
-//? description: function defined under #compile off converts leaf arg despite process typeCheck
+//? description: function defined under #compile noTypeCheck converts leaf arg despite process typeCheck
 //? expect: 0
 //? source: ...
 
@@ -176,7 +176,7 @@ flag_set([
 ], false);
 flag_set(["compile:typeCheck"], true);
 const f = evaluate(compile<script>(script(
-    "#compile off;\n" +
+    "#compile noTypeCheck;\n" +
     "return function (a: integer) { return a; };"
 )));
 /* Definition policy off → convert path; "1" becomes 1. */
@@ -214,7 +214,7 @@ return 0;
 
 //?
 //? test: definition-policy-off-skips-return-check
-//? description: #compile off on definition unit skips runtime return check despite process typeCheck
+//? description: #compile noTypeCheck on definition unit skips runtime return check despite process typeCheck
 //? expect: 0
 //? source: ...
 
@@ -227,7 +227,7 @@ flag_set([
 ], false);
 flag_set(["compile:typeCheck"], true);
 const f = evaluate(compile<script>(script(
-    "#compile off;\n" +
+    "#compile noTypeCheck;\n" +
     "return function (): integer { return \"x\"; };"
 )));
 const r = f();

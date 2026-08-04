@@ -247,8 +247,8 @@ compile<script>(script(
 return 0;
 
 //?
-//? test: pragma-off-after-flags
-//? description: #compile off; disables checking for that unit despite flags
+//? test: pragma-noTypeCheck-after-flags
+//? description: #compile noTypeCheck; disables checking for that unit despite flags
 //? expect: 0
 //? source: ...
 
@@ -261,7 +261,7 @@ flag_set([
 ], false);
 flag_set(["compile:typeCheck"], true);
 const r: any = evaluate(compile<script>(script(
-    "#compile off;\nconst x: integer = \"hello\";\nreturn 0;"
+    "#compile noTypeCheck;\nconst x: integer = \"hello\";\nreturn 0;"
 )));
 return 0;
 
