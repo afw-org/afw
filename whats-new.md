@@ -976,7 +976,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | `stringify` / `decompile` / listing / binary text | #18 | #137 |
 | Expression property names in object values | #38 | #139 |
 | Param / catch Patterns + call-site spread | #140 | #141, #142 |
-| `variable_exists` bound vs undefined | #131 | (this branch) |
+| `variable_exists` bound vs undefined | #131 | #146 |
 | UTF-8 JSON emitters + Python local FIFO | — | on `mgg-develop` (post-#142) |
 | Permanent `src/*/tests` regression assets | — | #121 (docs only) |
 | `afw --allow` + YAML block strings / integers | #14 | — (feature earlier; regression tests on `mgg-develop`) |
