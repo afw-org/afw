@@ -255,8 +255,8 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 ### Issue #55 — object/array helpers + array as vector
 
-**Status:** Feature work **landed on branch** `issue-#55` (C setter, script helpers, handbook, metas, residual memory-array polish). Process: push/PR/close still open.  
-**GitHub:** [#55 Common object and array methods](https://github.com/afw-org/afw/issues/55) (Jeremy: JS-flavored list)
+**Status:** **Closed** 2026-08-04 (PR **#134** on `mgg-develop`; re-verified). Feature work landed (C setter, script helpers, handbook, metas, residual memory-array polish).  
+**GitHub:** [#55 Common object and array methods](https://github.com/afw-org/afw/issues/55) (closed)
 
 #### Heritage / product framing (remember)
 
@@ -311,7 +311,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 1. **Done:** C setter + O(1) memory `get_count` + signed get/set indexes + residual memory-array polish above.
 2. **Done:** script APIs + tests (`keys`/`values`/`entries`, `at`/stack/`splice`, `freeze`, `every`/`some`, metas, limits/combined).
 3. **Done:** Language Reference **Objects and Arrays** + Features + `whats-new`.
-4. **Process:** push branch, PR to `mgg-develop`, close #55.
+4. **Process:** done — PR #134 merged; #55 closed 2026-08-04.
 5. **Parallel / later:** full hold-on-store (#2); test262 burn-down; differences doc (#22).
 
 #### Adaptive Script vs ECMAScript — structural (not optional polish)

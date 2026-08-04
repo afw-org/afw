@@ -1,7 +1,7 @@
 # Issue #18 — decompile / recompile / PragmaValues (status)
 
-**Branch:** `issue-#18` (tracks `origin/issue-#18`)  
-**Tip (as of 2026-07-31):** `3a7ad36d` — *fix: polish compiler listing for Fiddle* (includes prior stringify pure JSON + replacer, decompile fidelity, crypto TRY/FINALLY ride-alongs).  
+**Branch:** `issue-#18` (merged via PR **#137** on `mgg-develop`)  
+**GitHub #18** (stringify second param / replacer): **closed** 2026-08-04 after re-verify.  
 **User-facing notes:** `whats-new.md` — section *stringify, decompile, compiler listing, and binary text*.  
 **Emit vs accept checklist:** [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md); tests under `src/afw/tests/compiler/decompile_accept/`.  
 **Category:** script IR ops use Adaptive function category **`compiler_internal`** (was `compiler_script`); function ids unchanged for round-trip.  

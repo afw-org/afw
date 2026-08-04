@@ -2,8 +2,8 @@
 
 **Repo:** [afw-org/afw](https://github.com/afw-org/afw)  
 **Branch context:** `mgg-develop` (beta readiness)  
-**Generated:** 2026-08-04  
-**Source:** live GitHub open issues + maintainer notes from recent `mgg-develop` work.
+**Generated / refreshed:** 2026-08-04  
+**Source:** live GitHub open issues + maintainer notes from recent `mgg-develop` work and process-close pass.
 
 This is a **working tracker**, not a substitute for issue bodies or PRs. “How it stands” mixes GitHub metadata with known landings on `mgg-develop`; re-verify before closing anything.
 
@@ -19,29 +19,26 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Summary counts
 
-- **Open issues:** 51
-- **Jeremy:** 34 issues (as assignee, including shared)
-- **Mike:** 29 issues (as assignee, including shared)
+- **Open issues:** 47
+- **Jeremy:** 32 issues (as assignee, including shared)
+- **Mike:** 26 issues (as assignee, including shared)
 - **—:** 3 issues (as assignee, including shared)
 
 ## All open issues
 
 | # | Working on | Title | Brief | How it stands | Updated |
 |---|------------|-------|-------|---------------|---------|
-| [#2](https://github.com/afw-org/afw/issues/2) | Mike | Memory Management | In order to support long-running scripts, a new memory management system is required. | Active long-running concern. Partial α/β value/memory work on mgg-develop; design pad + more open. | 2026-07-22 |
+| [#2](https://github.com/afw-org/afw/issues/2) | Mike | Memory Management | In order to support long-running scripts, a new memory management system is required. | Active long-running concern. Partial α/β value/memory work on mgg-develop; design pad + more open. Closures escape skips (#35) also tied here. | 2026-07-22 |
 | [#6](https://github.com/afw-org/afw/issues/6) | Mike, Jeremy | Use CMake/CPACK for packages | This can replace much of the current Actions+Docker way of creating .rpm/.deb packages by leveraging CMake's CPACK instead. | Backlog enhancement (CPack packaging). No recent activity. | 2023-04-14 |
 | [#7](https://github.com/afw-org/afw/issues/7) | Jeremy | Internal documentation for afwdev | The Python code in afwdev may be able to leverage Doxyen using comment syntax compatible with Python. | Backlog docs (afwdev internal Doxygen-style). No recent activity. | 2023-04-14 |
 | [#8](https://github.com/afw-org/afw/issues/8) | Jeremy | Migrate away from create-react-app | There are some unpleasant workarounds required to get the plumbing right for a create-react-app project like our current admin app to use package modules, and still no way to make flexible build options. Furthermore,… | Admin app build system (CRA → Vite etc.). No recent activity. | 2023-04-14 |
 | [#13](https://github.com/afw-org/afw/issues/13) | Jeremy | Support stress testing in afwdev | Currently, we can use the following command to send tests to afwfcgi in parallel: | afwdev stress-test options (rounds/continuous). No recent activity. | 2023-05-09 |
-| [#14](https://github.com/afw-org/afw/issues/14) | Jeremy | Add --allow parameter to afw command and add block (pipe) character output support for YAML strings with newlines | Add a --allow (-a) parameter to the afw command to be able to specify the content type for adaptive value output. | Mostly landed on mgg-develop (`afw --allow`, YAML block strings, tests). Confirm residual then close. | 2026-07-30 |
 | [#15](https://github.com/afw-org/afw/issues/15) | Mike, Jeremy | Config file path enhancements | 1. Resolve relative file path parameter values in conf files to full path at create time when when appropriate. The base parameter of file adaptor is an example. 2. Change these file path parameter to data type… | Partial: conf path templates, process/environment ambient on mgg-develop. Residual hybrid/path cases possible. | 2026-07-30 |
 | [#17](https://github.com/afw-org/afw/issues/17) | Mike | Make object literals immutable and fix the resulting errors | Make object literals immutable and fix the resulting errors | Object literals immutable — labeled in development; not verified as fully merged. | 2026-07-30 |
-| [#18](https://github.com/afw-org/afw/issues/18) | Mike | Second parameter of stringify() needs to be implemented | Built-in function stringify() works for any adaptive value, not just objects. The second parameter of stringify() has not been implemented. We need to decide how it should work since more than object can be involved… | stringify replacer + pure JSON path largely on mgg-develop with decompile/listing work. Confirm vs issue body then close. | 2026-07-31 |
-| [#22](https://github.com/afw-org/afw/issues/22) | Jeremy | Finishing documenting differences between Adaptive Script and ECMAScript | Finishing documenting differences between Adaptive Script and ECMAScript | Jeremy’s polished ES differences doc. Maintainer notes exist in root typescript-differences.md (not a substitute). | 2023-07-27 |
-| [#28](https://github.com/afw-org/afw/issues/28) | Mike | Compile time type (dataType) checking | Opt-in type syntax and type checking for Adaptive Script (Adaptive data types as leaves). Branch: issue-28. | Core shipped on mgg-develop (syntax, flags, #compile, checks). Residuals: advanced TS surface, optimize, packaging close-out. | 2026-08-03 |
+| [#22](https://github.com/afw-org/afw/issues/22) | Jeremy | Finishing documenting differences between Adaptive Script and ECMAScript | Finishing documenting differences between Adaptive Script and ECMAScript | Jeremy’s polished ES differences doc. Maintainer notes in root typescript-differences.md (not a substitute). | 2023-07-27 |
+| [#28](https://github.com/afw-org/afw/issues/28) | Mike | Compile time type (dataType) checking | Opt-in type syntax and type checking for Adaptive Script (Adaptive data types as leaves). Branch: issue-28. | Core shipped on mgg-develop (syntax, flags, #compile, checks, handbook Types, type_* tests green). Left open intentionally for residuals/packaging; advanced TS + optimize out of issue bar. | 2026-08-03 |
 | [#33](https://github.com/afw-org/afw/issues/33) | Mike, Jeremy | Review/Change Error Codes | Now that we can try/catch in Adaptive Script, we need to review current error codes and change any, or create new ones that may be more appropriate. | Review/change error codes for try/catch. Stale; no recent activity. | 2023-07-25 |
-| [#35](https://github.com/afw-org/afw/issues/35) | Mike, Jeremy | Support for closures | Here are a few tests that we expect to fail, because we do not currently implement closures like ECMAScript does: | Closures largely work (tests on mgg-develop). Issue still open — handbook Features may lag; confirm close bar. | 2026-07-22 |
-| [#38](https://github.com/afw-org/afw/issues/38) | Mike | Support for computed property names | https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Objectinitializercomputedpropertynames | Computed property names in object values landed (PR #139 area). Confirm residual vs full issue scope. | 2026-08-01 |
+| [#35](https://github.com/afw-org/afw/issues/35) | Mike, Jeremy | Support for closures | Here are a few tests that we expect to fail, because we do not currently implement closures like ECMAScript does: | Closures largely work (closures.as 25 pass). 11 skips are before2/after2 escape/lifetime (#2), not “no closures.” Handbook Features still says no closures (stale). Left open 2026-08-04 process-close pass. | 2026-07-22 |
 | [#39](https://github.com/afw-org/afw/issues/39) | Mike | Support holes in list literals | Support holes in list literals and deal with all of the consequences of entries in lists being able to be undefined. There are a lot of functions that can traverse lists that need to deal with this properly like the… | Array literal holes + fallout across list HOFs/for-of. Labeled in development; status unclear. | 2026-07-30 |
 | [#40](https://github.com/afw-org/afw/issues/40) | Jeremy | Documentation for Language Bindings | We need docs on the Javascript and Python bindings (they are currently empty on the GitHub pages site). Perhaps these can be easily generated. | Language binding docs empty on GH Pages. Open documentation. | 2023-07-28 |
 | [#41](https://github.com/afw-org/afw/issues/41) | Jeremy | Review the calls to afw_authorization_check() in afw_adaptor_impl.c | Review all calls to afwauthorizationcheck() in afwadaptorimpl.c and make sure the information is passed that is needed to make a decision. Include test, especially ones that have query criteria. | Review adapter authorization_check call sites + tests. Open review. | 2026-07-19 |
@@ -52,7 +49,6 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#50](https://github.com/afw-org/afw/issues/50) | Mike | A return inside a switch doesn't return from a function block | The return true; here should return true from the function, f: | return inside switch vs function — open bug (2023). | 2023-08-14 |
 | [#53](https://github.com/afw-org/afw/issues/53) | Jeremy | Generate javascript "mock" data | Currently, the Javascript test code heavily uses "mock" data for simulating requests for the UI. These reside in src/afwtest/javascript/src/mocks. They often get out of date and need to be manually updated. Ideally,… | Generate JS mock data for admin. Open. | 2023-08-17 |
 | [#54](https://github.com/afw-org/afw/issues/54) | Jeremy | Add custom:: variable to replace deprecated variable sets in afw_adaptor_impl_index.c | AFW core no longer supports afwxctxscopedeprecatedvariableset(). Change these to 'current::' variables. | Partial: index filter/value current::. custom:: multi-layer redesign deferred. | 2026-07-22 |
-| [#55](https://github.com/afw-org/afw/issues/55) | Mike, Jeremy | Common object and array methods that will be useful | Here's a list of current Javascript Object functions that are useful: | Object/array helpers largely landed on mgg-develop. Likely close-pending residual process. | 2026-07-30 |
 | [#57](https://github.com/afw-org/afw/issues/57) | Jeremy | Create tests for indexes | The LMDB adaptor uses the core index interface, which needs some tests written for it. | Adapter index tests. Open. | 2023-08-19 |
 | [#59](https://github.com/afw-org/afw/issues/59) | Jeremy | Fiddle output does not react to resizing browser window | Fiddle output does not react to resizing browser window | Fiddle output resize reactivity. Open UI. | 2023-08-29 |
 | [#60](https://github.com/afw-org/afw/issues/60) | Jeremy | Fiddle output would be more useful if it changed when switching input tabs | This would take a re-design of how the tabbed editor and resizable pane are placed inside the fiddle page. | Fiddle output refresh on tab switch. Open UI. | 2023-08-29 |
@@ -84,9 +80,9 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 | Cluster | Issues | Notes |
 |---------|--------|-------|
-| Memory / long-running | #2, #127, related #49 | Value lifetimes, progressive release |
-| Adaptive Script language | #28, #35, #38, #39, #62, #101, #22 | Types mostly shipped; closures/docs residuals |
-| Built-ins / JSON / stringify | #18, #69, #70 | stringify partly done |
+| Memory / long-running | #2, #127, related #49 | Value lifetimes, progressive release; #35 escape skips |
+| Adaptive Script language | #28, #35, #39, #62, #101, #22 | Types mostly shipped (left open); closures left open for #2 |
+| Built-ins / JSON | #69, #70 | stringify #18 **closed** 2026-08-04 |
 | Adapters / auth / RQL | #41, #54, #85–#87, #91, #102 | Review and feature work |
 | Retrieve / limits | #49, #127 | maxObjects partial; release incomplete |
 | Conf / process / crypto | #15, #74 | Partial landings |
@@ -97,15 +93,27 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Recently closed (context only)
 
-Not in the open table; useful for “don’t restart this”:
+Useful for “don’t restart this.” Process-close batch **2026-08-04** verified on `mgg-develop` then closed:
 
 | # | Title (short) | Note |
 |---|---------------|------|
-| #9 | Qualifier snapshots | Closed |
-| #90 | checkIndividualObjectReadAccess | Closed |
-| #109 | Pure-script model adapters | Closed |
+| #9 | Qualifier snapshots | Closed earlier |
+| #14 | `afw --allow` + YAML block strings | **Closed 2026-08-04** — 22 yaml tests green |
+| #18 | stringify second param (replacer) | **Closed 2026-08-04** — PR #137; 18 stringify tests |
+| #38 | Computed property names in object values | **Closed 2026-08-04** — PR #139; 11 tests |
+| #55 | Object/array helpers | **Closed 2026-08-04** — PR #134; 65 tests |
+| #90 | checkIndividualObjectReadAccess | Closed earlier |
+| #109 | Pure-script model adapters | Closed earlier |
 | #131 | variable_exists bound vs undefined | Closed via PR #146 |
 | #140 | Param/catch Patterns | Closed via #141/#142 |
+
+## Process-close notes (2026-08-04)
+
+| Issue | Decision |
+|-------|----------|
+| #14, #55, #38, #18 | Verified green → closed |
+| #35 | Investigated; **leave open** — 25/36 closures tests pass; 11 skips are #2 escape/lifetime; handbook Features still wrong |
+| #28 | Investigated; **leave open** (maintainer choice) — core shipped; residuals/packaging still tracked on issue |
 
 ## How to maintain
 

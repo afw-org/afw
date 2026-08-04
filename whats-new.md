@@ -158,7 +158,7 @@ Maintainer notes: root `typescript-differences.md` (bound vs value).
 [↑ Highlights](#highlights)
 ## Object and array helpers (issue #55)
 
-**Issue #55** on `mgg-develop` (branch `issue-#55`).
+**Issue #55** — **closed** 2026-08-04 (landed via PR **#134** on `mgg-develop`).
 
 Adaptive Script gains common object/array helpers and stack/queue-style mutators. These are **Adaptive functions** registered in the environment (with optional `value->method(...)` sugar when the function is a data-type method).
 
@@ -216,7 +216,7 @@ metadata when docs are built.
 [↑ Highlights](#highlights)
 ## Expression property names in object values (issue #38)
 
-**Issue #38** on `mgg-develop` (branch `issue-#38`).
+**Issue #38** — **closed** 2026-08-04 (landed via PR **#139** on `mgg-develop`).
 
 In an **object value**, a property name may be an **expression in square brackets**, not only an identifier or string literal. The expression is evaluated when the object value is evaluated; the result is used as the property name (a string). This matches **`obj[expression]`** get and assignment on an existing object.
 
@@ -581,6 +581,8 @@ Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_templat
 [↑ Highlights](#highlights)
 ## `stringify`, `decompile`, compiler listing, and binary text
 
+**Issue #18** (stringify second parameter / replacer) — **closed** 2026-08-04 (PR **#137**; re-verified). Broader decompile/listing work remains documented here for users.
+
 These are easy to confuse; they do different jobs:
 
 | Path | Output |
@@ -834,7 +836,7 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 [↑ Highlights](#highlights)
 ## `afw --allow` and YAML value output (issue #14)
 
-**Issue #14** (feature on the tree for a long time; **regression suite** added on `mgg-develop`)
+**Issue #14** — **closed** 2026-08-04 (feature long on tree; regression suite on `mgg-develop`; re-verified 22 yaml tests)
 
 The `afw` command can print evaluated adaptive values using any registered **content type**, not only JSON:
 
@@ -971,16 +973,17 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Adapter index `current::` | #54 | #130 (partial; see #57) |
 | `qualifier` / `qualifiers` snapshots + admin `maxObjects: 0` | #9 | #129 |
 | Multi-frame `::` get + conf path templates + `process::` ambient | #15 (also #71/#74 partial) | #135 |
-| Object / array helpers | #55 | #134 |
+| Object / array helpers | #55 (closed) | #134 |
 | `afw_crypto` + secrets composition | #74 (partial; stays open for readpass) | #136 |
-| `stringify` / `decompile` / listing / binary text | #18 | #137 |
-| Expression property names in object values | #38 | #139 |
-| Param / catch Patterns + call-site spread | #140 | #141, #142 |
-| `variable_exists` bound vs undefined | #131 | #146 |
+| `stringify` / `decompile` / listing / binary text | #18 (closed) | #137 |
+| Expression property names in object values | #38 (closed) | #139 |
+| Param / catch Patterns + call-site spread | #140 (closed) | #141, #142 |
+| `variable_exists` bound vs undefined | #131 (closed) | #146 |
 | UTF-8 JSON emitters + Python local FIFO | — | on `mgg-develop` (post-#142) |
 | Permanent `src/*/tests` regression assets | — | #121 (docs only) |
-| `afw --allow` + YAML block strings / integers | #14 | — (feature earlier; regression tests on `mgg-develop`) |
+| `afw --allow` + YAML block strings / integers | #14 (closed) | regression tests on `mgg-develop` |
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
+| Adaptive Script types | #28 (open; core shipped) | issue-#28 / #145 line on `mgg-develop` |
 
 ---
 

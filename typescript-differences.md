@@ -60,7 +60,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 - **`let` / `const`** (no `var`). Semicolons **required**. Bare expressions are not statements.
 - **`if` / `while` / `do` / `for` / `for-of` / `switch` / `try` / `throw` / `return` / `break` / `continue`**.
 - **`for-of`** over arrays. Objects: walk **`keys` / `values` / `entries`** (no `for-in`).
-- Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as`; issue **#35** direction). Handbook Features text that still says “no closures” is **stale**—trust tests/runtime until handbook is updated (see Should fix).
+- Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as` — **25** pass; **11** skips are escape/lifetime under **#2**, not “no closures”). Issue **#35** left open for that bar. Handbook Features text that still says “no closures” is **stale** (Should fix P2).
 
 ### Nullish and short-circuit forms
 
@@ -71,8 +71,8 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 
 ### Objects, arrays, Patterns
 
-- Object/array literals; property names may be identifier, string, or **`[expression]`** (**#38**).
-- **Destructuring Patterns** on `let`/`const`, assignment (object Patterns often need parens), `for`/`for-of` heads, **function parameters**, and **`catch`** (**#140**).
+- Object/array literals; property names may be identifier, string, or **`[expression]`** (**#38** closed).
+- **Destructuring Patterns** on `let`/`const`, assignment (object Patterns often need parens), `for`/`for-of` heads, **function parameters**, and **`catch`** (**#140** closed).
 - Options-object style:
 
   ```adaptive
@@ -82,7 +82,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
   ```
 
 - Rest/spread: **`...rest` formals**, call-site **`f(...arr)`**, rest in Patterns.
-- Helpers as Adaptive functions (**#55**): `keys`, `values`, `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (also `->` method sugar when registered). Keep XACML-shaped names (`all_of` / `any_of`, …) as first-class too—not a rename-everything-to-JS project.
+- Helpers as Adaptive functions (**#55** closed): `keys`, `values`, `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (also `->` method sugar when registered). Keep XACML-shaped names (`all_of` / `any_of`, …) as first-class too—not a rename-everything-to-JS project.
 - Out-of-range **`at`**, empty **`pop`/`shift`**: **undefined** (nullish), not throw.
 
 ### Functions and exceptions
@@ -261,7 +261,7 @@ Many JS/TS keywords are reserved even when unimplemented (`class`, `async`, `awa
 | [`.cursor/rules/afw-adaptive-script.mdc`](.cursor/rules/afw-adaptive-script.mdc) | Authoring quirks |
 | [`.cursor/rules/afw-qualified-variables.mdc`](.cursor/rules/afw-qualified-variables.mdc) | Qualifier get vs snapshots |
 | GitHub **#22** | Jeremy’s ES differences **document** work (separate from this file) |
-| **#28**, **#35**, **#55**, **#131**, **#140**, **#9**, **#110** | Types, closures, helpers, exists, Patterns, snapshots, get defaults |
+| **#28**, **#35** (open); **#14**, **#18**, **#38**, **#55**, **#131**, **#140**, **#9**, **#110** (closed) | Types/closures residuals vs landed helpers, exists, Patterns, snapshots, get defaults |
 
 ---
 

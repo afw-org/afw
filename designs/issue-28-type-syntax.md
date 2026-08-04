@@ -1,7 +1,7 @@
 # Issue #28 — Type syntax and opt-in checking
 
-**Branch:** `issue-#28` (merged line) + follow-on `issue-#28-pragma-cleanup`  
-**Status:** Implemented for merge — syntax, type graph, decompile, opt-in checking (flags + `#compile` Pattern B), structural rules, excess on object literals, Adaptive formals (see companion pad), handbook, tests.
+**Branch:** `issue-#28` (merged line) + follow-on `issue-#28-pragma-cleanup` (PR **#145**)  
+**GitHub #28:** **Still open** (2026-08-04 process-close pass left it open for residuals/packaging). Core product bar is **shipped** on `mgg-develop` — syntax, type graph, decompile, opt-in checking (flags + `#compile` Pattern B), structural rules, excess on object literals, Adaptive formals (companion pad), handbook Types, tests.
 
 ## Decisions
 
