@@ -117,8 +117,11 @@ Examples:
 
 ## Open / follow-up
 
-- Explicit allow-list metadata on flag registration (“pragma-able”) if the set grows.
-- Whether `noOptimize` stays pragma-able long term (host-only vs script).
 - Handbook language-ref note for `#compile` (flags still primary; mid-unit “from here on” + flag vs unit table above).
-- Optional: more call sites still pass NULL contextual by design (higher-order) → flags only.
 - **Decompile / `#…` inventory:** [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.
+- Curl nested script functors still pass NULL contextual (process flags only) — see [`compile-contextual-audit.md`](compile-contextual-audit.md). **Not** planned as pragma-able flag metadata; keep a hand allow-list of `#compile` operands.
+
+**Closed for this surface**
+
+- No registry “pragma-able” flag metadata — operands stay an explicit allow-list in `afw_compile_parse_pragma.c`.
+- `noOptimize` stays a valid `#compile` operand; optimize work is a separate issue (flag + unit policy remain useful for tests/debug).

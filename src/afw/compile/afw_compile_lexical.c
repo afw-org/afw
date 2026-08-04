@@ -1318,11 +1318,11 @@ afw_compile_is_reserved_word(
  *
  *# Statement / clause keywords (including type-system statements and
  *# interface 'extends'). 'void' is reserved with statements though it is
- *# also a data-type name. 'declare' is reserved (stub statement today).
+ *# also a data-type name.
  * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
- *      'continue' | 'declare' | 'default' | 'do' | 'else' | 'extends' |
- *      'finally' | 'for' | 'function' | 'if' | 'interface' | 'let' |
- *      'return' | 'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
+ *      'continue' | 'default' | 'do' | 'else' | 'extends' | 'finally' |
+ *      'for' | 'function' | 'if' | 'interface' | 'let' | 'return' |
+ *      'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
  *
  *<<<ebnf*/
 
@@ -1331,7 +1331,6 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_catch)        ||
         afw_utf8_equal(s, afw_s_const)        ||
         afw_utf8_equal(s, afw_s_continue)     ||
-        afw_utf8_equal(s, afw_s_declare)      ||
         afw_utf8_equal(s, afw_s_default)      ||
         afw_utf8_equal(s, afw_s_do)           ||
         afw_utf8_equal(s, afw_s_else)         ||

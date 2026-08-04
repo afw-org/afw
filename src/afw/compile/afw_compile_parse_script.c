@@ -730,19 +730,6 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * DeclareStatement ::= 'declare' AssignmentTarget ';'
- *
- *<<<ebnf*/
-static const afw_value_t *
-impl_parse_DeclareStatement(afw_compile_parser_t *parser)
-{
-    AFW_COMPILE_THROW_ERROR_Z("Not implemented");
-}
-
-
-
-/*ebnf>>>
- *
  * DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
  *
  *<<<ebnf*/
@@ -1601,7 +1588,6 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    CallStatement |
  *    ConstStatement |
  *    ContinueStatement |
- *    DeclareStatement |
  *    DoWhileStatement |
  *    ForStatement |
  *    FunctionStatement |
@@ -1724,11 +1710,6 @@ afw_compile_parse_Statement(
             afw_s_type))
         {
             result = impl_parse_TypeStatement(parser);
-        }
-        else if (afw_utf8_equal(parser->token->identifier_name,
-            afw_s_declare))
-        {
-            result = impl_parse_DeclareStatement(parser);
         }
     }
 

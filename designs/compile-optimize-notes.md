@@ -70,8 +70,9 @@ Inventory of where Adaptive Script binds names, and whether a list/object **Patt
 | C-style **`for` init** | `OptionalDefineAssignment` → `AssignmentTarget` | **Yes already** | e.g. `for (let [x] = [23]; ;)` |
 | **Function / lambda params** | `ParameterName` or Pattern | **Yes (#140)** | Options-object style; whole-arg default then Pattern |
 | **`catch (…)`** | Identifier or Pattern | **Yes (#140)** | Same assign path as let Patterns |
-| `declare …` | `AssignmentTarget` in EBNF | n/a | Whole statement still **not implemented** |
 | Import / class / `for await` | — | n/a | Not in the language |
+
+Removed: stub `declare …` statement (was never implemented; no longer reserved).
 
 **Pattern feature residuals** (apply everywhere Patterns exist, not new sites):
 
