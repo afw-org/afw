@@ -18,7 +18,8 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 
 ## Highlights
 
-Each **Area** links to the detail section below (when there is one).
+Each **Area** links to the detail section below (when there is one). Detail
+sections end with **[↑ Highlights](#highlights)** to return here.
 
 | Area | What changed |
 |------|----------------|
@@ -77,6 +78,7 @@ This is generate/docs presentation only; Adaptive function call semantics are un
 
 ---
 
+[↑ Highlights](#highlights)
 ## UTF-8 in JSON results and Python local mode
 
 ### JSON / `stringify` / Fiddle
@@ -99,6 +101,7 @@ The Adaptive Framework local protocol length-prefixes chunks by **UTF-8 octet co
 
 ---
 
+[↑ Highlights](#highlights)
 ## Function parameter and catch Patterns (issue #140)
 
 **Issue #140** — PRs **#141** (params + catch Patterns) and **#142** (call-site spread, Pattern keys, catch decompile, type syntax) on `mgg-develop`.
@@ -123,6 +126,7 @@ Not included: arrow functions, ES `arguments` object (use formal `...rest`). Lan
 
 ---
 
+[↑ Highlights](#highlights)
 ## Object and array helpers (issue #55)
 
 **Issue #55** on `mgg-develop` (branch `issue-#55`).
@@ -180,6 +184,7 @@ metadata when docs are built.
 
 ---
 
+[↑ Highlights](#highlights)
 ## Expression property names in object values (issue #38)
 
 **Issue #38** on `mgg-develop` (branch `issue-#38`).
@@ -210,6 +215,7 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ---
 
+[↑ Highlights](#highlights)
 ## Value lifetime / memory management (issue #2) — alpha/beta
 
 **Issue #2** — work in progress on `mgg-develop` via branch `issue-#2` (partial land; design continues).
@@ -244,6 +250,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 
 ---
 
+[↑ Highlights](#highlights)
 ## C API docs and full package builds (issue #1)
 
 **Issue #1** / PR **#132** (merged to `mgg-develop`)
@@ -276,6 +283,7 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 
 ---
 
+[↑ Highlights](#highlights)
 ## Adapter index filter/value `current::` (issue #54) — partial
 
 **Issue #54** / PR **#130** (core eval context; LMDB create path still has known issues)
@@ -295,6 +303,7 @@ Bare ambient **`object`** (old unqualified scope push) is **not** set. Prefer `c
 
 ---
 
+[↑ Highlights](#highlights)
 ## List active qualified variables (issue #9)
 
 **Issue #9** / PR **#129**. (Multi-frame **`::` get** alignment is separate — see subsection below and issue **#15** / PR **#135**.)
@@ -335,6 +344,7 @@ Older builds stopped **`qualifier::name` get** after the **first matching qualif
 
 ---
 
+[↑ Highlights](#highlights)
 ## Materializing retrieve: `maxObjects` (issue #49)
 
 **Issue #49** (partial)
@@ -390,6 +400,7 @@ Rebuild/install the admin app (or full JS install) and hard-refresh the browser.
 
 ---
 
+[↑ Highlights](#highlights)
 ## Adapter get/retrieve authorization (issue #90)
 
 **Issue #90**
@@ -408,6 +419,7 @@ Retrieve collection resource ids use a trailing slash (e.g. `/adapterId/ObjectTy
 
 ---
 
+[↑ Highlights](#highlights)
 ## Compile-time template substitutions (issue #97)
 
 **Issue #97** (feature largely landed earlier as PR **#100**; completed on this branch)
@@ -440,6 +452,7 @@ Language reference **Templates and Expressions** and a short note under **Qualif
 
 ---
 
+[↑ Highlights](#highlights)
 ## Process environment variables (issue #71)
 
 `retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` now returns a **single** `current` object (process environment), not two identical ones. The `environment::` qualifier is unchanged.
@@ -450,6 +463,7 @@ Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `r
 
 ---
 
+[↑ Highlights](#highlights)
 ## Process ambient: `environment::` and `process::` (issues #71 / #74)
 
 Process environment variables and invocation info are created at **environment create** (not per host) and pushed on **every** xctx via `afw_application_internal_push_qualifiers` (called from xctx finishup):
@@ -490,6 +504,7 @@ Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_ev
 
 ---
 
+[↑ Highlights](#highlights)
 ## Crypto extension `afw_crypto` (issue #74 partial)
 
 Optional loadable extension **`afw_crypto`** (`libafwcrypto`, OpenSSL **libcrypto**) adds Adaptive functions for “hide values in plain sight” composition with streams, files, and process env. Load with conf `"extensions": ["afw_crypto"]`.
@@ -534,6 +549,7 @@ Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_templat
 
 ---
 
+[↑ Highlights](#highlights)
 ## `stringify`, `decompile`, compiler listing, and binary text
 
 These are easy to confuse; they do different jobs:
@@ -565,6 +581,7 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ---
 
+[↑ Highlights](#highlights)
 ## Adaptive Script types (issue #28)
 
 **Type syntax** uses **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …) plus simple structured types. Examples: `integer[]`, `Array<string>`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs).
@@ -596,6 +613,7 @@ Handbook: Language Reference **Types** (flags and `#compile` options), **Languag
 
 ---
 
+[↑ Highlights](#highlights)
 ## Conf path templates (issue #15)
 
 Several conf properties that hold host paths or module paths are now **`template`** (or array of template). Plain strings still work as before; substitutions such as **`environment::`** (and other ambient qualifiers available after env create) are evaluated when the conf entry is processed.
@@ -628,6 +646,7 @@ Examples:
 
 ---
 
+[↑ Highlights](#highlights)
 ## File streams (`open_file` and friends)
 
 **Issue #103 / PR #120**
@@ -675,6 +694,7 @@ Modes cover text and binary (`r`, `w`, `a`, `r+`, … and `rb`, `wb`, …). `ope
 
 ---
 
+[↑ Highlights](#highlights)
 ## VFS adapter (`afw_vfs`)
 
 **Issue #79** (empty-file read and related hardening on the issue branch)
@@ -742,6 +762,7 @@ Handbook: administrative guide **Adapters → VFS**. Tests:
 
 ---
 
+[↑ Highlights](#highlights)
 ## Pure-script model adapters
 
 **Issue #109 / PR #119**
@@ -759,6 +780,7 @@ In scripts, `current::mappedAdapterId` is nullish when unset (it does not throw)
 
 ---
 
+[↑ Highlights](#highlights)
 ## Interactive `afw`: line editing and history
 
 **Issue #30 / PR #117**
@@ -780,6 +802,7 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 
 ---
 
+[↑ Highlights](#highlights)
 ## `afw --allow` and YAML value output (issue #14)
 
 **Issue #14** (feature on the tree for a long time; **regression suite** added on `mgg-develop`)
@@ -841,6 +864,7 @@ Covers `--allow` short/media ids, invalid allow, JSON path sanity, block-scalar 
 
 ---
 
+[↑ Highlights](#highlights)
 ## JSON Schema for Adaptive object types
 
 **Issue #3 / PR #116**
@@ -856,6 +880,7 @@ If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-ba
 
 ---
 
+[↑ Highlights](#highlights)
 ## Reliability notes
 
 ### Default values from `property_get` / `variable_get`
