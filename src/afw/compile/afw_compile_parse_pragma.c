@@ -205,11 +205,20 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
 
     if (!saw_operand) {
         AFW_COMPILE_THROW_ERROR_Z(
-            "Expecting at least one operand after #compile");
+            "Expecting at least one operand after #compile "
+            "(off, typeCheck, typeCheckCompileOnly, noImplicitAny, "
+            "strictNullChecks, strict, or noOptimize)");
     }
 
     if (!afw_compile_token_is(semicolon)) {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting ';' after #compile");
+        if (afw_compile_token_is_unqualified_identifier()) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Unknown #compile operand (expecting off, typeCheck, "
+                "typeCheckCompileOnly, noImplicitAny, strictNullChecks, "
+                "strict, or noOptimize, then ';')");
+        }
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting ';' after #compile operands");
     }
 
     /* Mutate unit policy only — never process flags. */

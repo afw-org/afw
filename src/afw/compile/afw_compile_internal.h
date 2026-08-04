@@ -62,9 +62,10 @@ typedef enum {
     afw_compile_token_type_boolean,
     afw_compile_token_type_identifier,
     /*
-     * #Identifier — pound_identifier (no qualifier): author pragmas and
-     * compiler-internal decompile forms. identifier_name is the spelling
-     * after '#'; identifier is full "#name". Bare '#' is pound_sign.
+     * #Name — pound_identifier (no qualifier): author pragmas (#compile)
+     * and compiler-internal decompile forms (#block, …). identifier_name is
+     * the spelling after '#'; identifier is full "#name".
+     * Not a bare '#'; that is pound_sign (token only, no EBNF production).
      */
     afw_compile_token_type_pound_identifier,
     afw_compile_token_type_integer,
@@ -81,7 +82,14 @@ typedef enum {
     afw_compile_token_type_caret,                        /* ^ */
     afw_compile_token_type_colon,                        /* : */
     afw_compile_token_type_comma,                        /* , */
+    /*
+     * '#{' one token (not '#' then '{'). Opens CompileTimeSubstitution.
+     */
     afw_compile_token_type_compile_time_substitute_start,    /* #{ */
+    /*
+     * Bare '$' only — not a production by itself; '$' can start Identifier.
+     * '${' is evaluation_time_substitute_start.
+     */
     afw_compile_token_type_dollar_sign,                      /* $ */
     afw_compile_token_type_evaluation_time_substitute_start, /* ${ */
     afw_compile_token_type_ellipsis,                     /* ... */
@@ -92,6 +100,10 @@ typedef enum {
     afw_compile_token_type_optional_chaining_thin_arrow, /* ?-> */
     afw_compile_token_type_percent,                      /* % */
     afw_compile_token_type_period,                       /* . */
+    /*
+     * Bare '#' only (not followed by '{' or IdentifierStart). Token only —
+     * not an EBNF production; parse rejects unless a production lists it.
+     */
     afw_compile_token_type_pound_sign,                   /* # */
     afw_compile_token_type_question_mark,                /* ? */
     afw_compile_token_type_semicolon,                    /* ; */

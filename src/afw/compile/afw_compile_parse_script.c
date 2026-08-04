@@ -1642,7 +1642,7 @@ afw_compile_parse_Statement(
     if (afw_compile_token_is(pound_identifier)) {
         return afw_compile_parse_PragmaStatement(parser);
     }
-   
+
     /* If not assignment, process statement. */
     result = NULL;
     if (afw_compile_token_is(identifier) &&

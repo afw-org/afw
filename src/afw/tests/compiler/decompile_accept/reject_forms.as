@@ -3,9 +3,8 @@
 //? testScript: reject_forms.as
 //? customPurpose: Part of compiler decompile_accept tests
 //? description: ...
-Compiler-private known rejects and unknown # forms (decompile inventory).
-Separate file so expect:error cases stay focused. Design pad:
-designs/decompile-compiler-internal-inventory.md.
+Compiler-internal known rejects, unknown # forms, and bare '#' errors.
+Design pad: designs/decompile-compiler-internal-inventory.md.
 //? sourceType: script
 //?
 //? test: reject-closure-binding-statement
@@ -77,4 +76,59 @@ return 0;
 //? source: ...
 
 compile<script>(script("#script_function(a,#block(return(a)));"));
+return 0;
+
+//?
+//? test: reject-bare-pound-statement
+//? description: bare # (pound_sign) is not legal statement syntax
+//? expect: error
+//? source: ...
+
+/* Same generic path as any other unexpected token (not a special if). */
+compile<script>(script("#;"));
+return 0;
+
+//?
+//? test: reject-bare-pound-value
+//? description: bare # is not legal value syntax
+//? expect: error
+//? source: ...
+
+compile<script>(script("return #;"));
+return 0;
+
+//?
+//? test: reject-pound-then-digit
+//? description: #1 is pound_sign then number, not #Name (generic expect error)
+//? expect: error
+//? source: ...
+
+compile<script>(script("#1;"));
+return 0;
+
+//?
+//? test: reject-compile-no-operand
+//? description: #compile requires at least one operand
+//? expect: error
+//? source: ...
+
+compile<script>(script("#compile;"));
+return 0;
+
+//?
+//? test: reject-compile-unknown-operand
+//? description: unknown #compile operand name
+//? expect: error
+//? source: ...
+
+compile<script>(script("#compile notAFlag;"));
+return 0;
+
+//?
+//? test: reject-compile-missing-semicolon
+//? description: #compile operands must end with semicolon
+//? expect: error
+//? source: ...
+
+compile<script>(script("#compile typeCheck"));
 return 0;

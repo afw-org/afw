@@ -1098,5 +1098,6 @@ END ::=
 /* From afw_compile_lexical.c                                                 */
 /* '#' starts compile-time substitution '#{', a pound identifier              */
 /* '#Name' (pragma or compiler-internal), or a bare pound sign.               */
+/* Bare '#' is a token only (pound_sign) — not a production.                  */
 
 PoundIdentifier ::= '#' Identifier

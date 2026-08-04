@@ -1732,12 +1732,18 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         };
         break;
 
-    /* #, #{, and #Identifier (pound_identifier) */
+    /*
+     * '#' splits into three token types (no EBNF production for bare '#'):
+     *   '#{'     → compile_time_substitute_start  (CompileTimeSubstitution)
+     *   '#Name'  → pound_identifier               (PoundIdentifier / pragmas)
+     *   bare '#' → pound_sign                     (token only; parse rejects)
+     */
     case '#':
         /*ebnf>>>
          *
          *# '#' starts compile-time substitution '#{', a pound identifier
          *# '#Name' (pragma or compiler-internal), or a bare pound sign.
+         *# Bare '#' is a token only (pound_sign) — not a production.
          *
          * PoundIdentifier ::= '#' Identifier
          *
@@ -1763,12 +1769,13 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
             /* identifier_qualifier remains NULL (memset). */
         }
         else {
+            /* Not '{' or IdentifierStart — leave following char for next token. */
             afw_compile_restore_cursor(temp_cursor);
             parser->token->type = afw_compile_token_type_pound_sign;
         }
         break;
 
-    /* $ and ${ */
+    /* '$' vs '${' (bare '$' may also begin Identifier elsewhere). */
     case '$':
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
