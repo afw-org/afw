@@ -729,6 +729,8 @@ Statement ::=
    PragmaStatement |
    ReturnStatement |
    SwitchStatement |
+   ThrowStatement |
+   TryStatement |
    TypeStatement |
    WhileStatement
 

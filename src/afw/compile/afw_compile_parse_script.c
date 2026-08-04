@@ -1611,8 +1611,10 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    PragmaStatement |
  *    ReturnStatement |
  *    SwitchStatement |
+ *    ThrowStatement |
+ *    TryStatement |
  *    TypeStatement |
- *    WhileStatement 
+ *    WhileStatement
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)

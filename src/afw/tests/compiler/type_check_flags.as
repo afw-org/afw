@@ -350,3 +350,100 @@ const r: any = evaluate(compile<script>(script(
     "const x: integer = \"hello\";\nreturn 0;"
 )));
 return 0;
+
+//?
+//? test: mid-unit-typeCheck-after-unchecked
+//? description: mid-unit #compile typeCheck checks only statements after the pragma
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+/*
+ * Before the pragma, process snapshot is off — bad assign is not compile-checked.
+ * After #compile typeCheck, the bad assign must fail compile.
+ */
+compile<script>(script(
+    "const a: integer = \"x\";\n" +
+    "#compile typeCheck;\n" +
+    "const b: integer = \"y\";\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: mid-unit-unchecked-before-typeCheck-ok
+//? description: bad assign before mid-unit #compile typeCheck is not re-checked at compile
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+/*
+ * Compile-time only: constructs already parsed are not re-checked after the
+ * pragma. (Runtime uses final unit policy — see mid-unit-runtime-final-policy.)
+ */
+compile<script>(script(
+    "const a: integer = \"x\";\n" +
+    "#compile typeCheck;\n" +
+    "const b: integer = 1;\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: mid-unit-runtime-final-policy
+//? description: runtime typeCheck uses final unit policy (mid-unit typeCheck applies to earlier assigns)
+//? expect: error
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+/*
+ * Compile succeeds (bad assign was before typeCheck). Evaluating still fails
+ * because unit policy ends with typeCheck on — runtime uses last-mutated policy.
+ */
+evaluate(compile<script>(script(
+    "const a: integer = \"x\";\n" +
+    "#compile typeCheck;\n" +
+    "const b: integer = 1;\n" +
+    "return 0;"
+)));
+return 0;
+
+//?
+//? test: mid-unit-noTypeCheck-after-typeCheck
+//? description: mid-unit #compile noTypeCheck allows bad assigns after typeCheck
+//? expect: 0
+//? source: ...
+
+flag_set([
+    "compile:typeCheck",
+    "compile:typeCheckCompileOnly",
+    "compile:noImplicitAny",
+    "compile:strictNullChecks",
+    "compile:strict"
+], false);
+const r_mid2: any = evaluate(compile<script>(script(
+    "#compile typeCheck;\n" +
+    "const a: integer = 1;\n" +
+    "#compile noTypeCheck;\n" +
+    "const b: integer = \"ok\";\n" +
+    "return 0;"
+)));
+return 0;
