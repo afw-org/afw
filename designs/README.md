@@ -12,6 +12,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | Parked features with enough detail to resume later | Multi-theme “don’t forget” list → `beta-backlog.md` (root) |
 | In-flight branch status snapshots | User-facing changes → `whats-new.md` (root, while on `mgg-develop`) |
 | | Adaptive Script vs TS/JS — beta decision notes → [`typescript-differences.md`](../typescript-differences.md) (root; not Jeremy’s #22 author doc) |
+| | Open issues snapshot (assignees + status) → [`open-issues-status.md`](../open-issues-status.md) (root; refresh from GitHub) |
 | | Real developer docs → `src/afw/doc/` (and extension `doc/`) |
 
 ## Current pads (non-exhaustive)
