@@ -17,6 +17,19 @@
 
 #include "afw_internal.h"
 
+/*
+ * Call-site contextual for nested call_create from execute_*. Public so
+ * extensions need not see afw_value_call_built_in_function_t layout.
+ */
+AFW_DEFINE(const afw_compile_value_contextual_t *)
+afw_function_execute_contextual(const afw_function_execute_t *x)
+{
+    if (!x || !x->self) {
+        return NULL;
+    }
+    return x->self->args.contextual;
+}
+
 AFW_DEFINE_INTERNAL(void)
 afw_function_internal_prepare_environment(afw_xctx_t *xctx)
 {

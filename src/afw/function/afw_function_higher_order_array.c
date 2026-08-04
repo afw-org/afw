@@ -55,7 +55,7 @@ impl_over_array(
         e.xctx);
     functor_argv[0] = afw_function_evaluate_function_parameter(
         x->argv[1], e.p, e.xctx);
-    e.functor = afw_value_call_create(AFW_FUNCTION_CONTEXTUAL,
+    e.functor = afw_value_call_create(afw_function_execute_contextual(x),
         functor_argc, functor_argv, false, e.p, e.xctx);
 
     /*
@@ -179,7 +179,7 @@ impl_bag_of_bag(
     /* The first arg is the function to call, and other 2 are typed arrays. */
     f_argv[0] = afw_function_evaluate_function_parameter(
         x->argv[1], x->p, x->xctx);
-    call = afw_value_call_create(AFW_FUNCTION_CONTEXTUAL,
+    call = afw_value_call_create(afw_function_execute_contextual(x),
         2, &f_argv[0], false, x->p, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array1, 2, array);
@@ -816,7 +816,7 @@ afw_function_execute_reduce(
 
     f_argv[0] = afw_function_evaluate_function_parameter(
         x->argv[1], x->p, x->xctx);
-    call = afw_value_call_create(AFW_FUNCTION_CONTEXTUAL,
+    call = afw_value_call_create(afw_function_execute_contextual(x),
         2, &f_argv[0], false, x->p, x->xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(accumulator, 2);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 3, array);
@@ -965,7 +965,7 @@ afw_function_execute_sort(
     /* The first arg is the function to call, and other 2 are typed arrays. */
     ctx.args[0] = (afw_value_common_t *)
         afw_function_evaluate_function_parameter(x->argv[1], ctx.p, ctx.xctx);
-    ctx.compareFunction = afw_value_call_create(AFW_FUNCTION_CONTEXTUAL,
+    ctx.compareFunction = afw_value_call_create(afw_function_execute_contextual(x),
         2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 2, array);
 

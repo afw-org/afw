@@ -1771,7 +1771,7 @@ afw_function_execute_retrieve_objects_to_callback(
 
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.contextual = AFW_FUNCTION_CONTEXTUAL;
+    ctx.contextual = afw_function_execute_contextual(x);
     criteria = NULL;
 
     AFW_FUNCTION_EVALUATE_PARAMETER(ctx.objectCallback,
@@ -2332,7 +2332,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
     criteria = NULL;
     afw_memory_clear(&ctx);
     ctx.p = x->p;
-    ctx.contextual = AFW_FUNCTION_CONTEXTUAL;
+    ctx.contextual = afw_function_execute_contextual(x);
 
     AFW_FUNCTION_EVALUATE_PARAMETER(ctx.objectCallback,
         1);

@@ -86,7 +86,6 @@ Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value
 - Adaptive OT ↔ script type import (intentionally separate).
 - Convert-aware Adaptive formal checks; runtime #28 layer on Adaptive execute.
 - Call-site formals from a **variable’s** function-type annotation only (named / early-bound callees today).
-- Curl nested functor contextual (process flags until plumbed — `compile-contextual-audit.md`; separate from this issue’s merge bar).
 
 ## Verify
 

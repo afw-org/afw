@@ -32,6 +32,8 @@ typedef struct afw_curl_internal_script_cb_s {
     const afw_value_t   * userData;
     const afw_value_t   * call;
     const afw_value_t   * argv[4];
+    /* Call-site contextual from http_* execute (may be NULL). */
+    const afw_compile_value_contextual_t * contextual;
 } afw_curl_internal_script_cb_t;
 
 /* callback structs for writing responses and reading requests */
@@ -69,6 +71,7 @@ afw_curl_internal_http_post(
     const afw_utf8_t        * payload,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
@@ -77,6 +80,7 @@ afw_curl_internal_http_get(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
@@ -85,6 +89,7 @@ afw_curl_internal_http_delete(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
@@ -94,6 +99,7 @@ afw_curl_internal_http_put(
     const afw_utf8_t        * payload,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
@@ -103,6 +109,7 @@ afw_curl_internal_http_patch(
     const afw_utf8_t        * payload,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
@@ -111,6 +118,7 @@ afw_curl_internal_http_head(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
@@ -119,6 +127,7 @@ afw_curl_internal_http_options(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
@@ -129,6 +138,7 @@ afw_curl_internal_smtp_send(
     const afw_array_t       * mail_recipients,
     const afw_utf8_t        * payload,
     const afw_object_t      * options,
+    const afw_compile_value_contextual_t * contextual,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 

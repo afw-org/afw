@@ -376,15 +376,17 @@ afw_compile_source_location_of_value( \
 
 /**
  * @brief Call-site contextual for this built-in invocation.
+ * @param x Function execute struct pointer (`execute_*` argument).
+ * @return Unit contextual from the call, or NULL if no call value.
  *
  * Use for nested afw_value_call_create (and similar) from execute_* so the
  * new call shares this invocation's unit link / source attribution. Prefer
  * this over NULL: NULL means type-check helpers use process flags only.
- * Expands to NULL if there is no call value (x->self). "x" must be the
- * function execute struct pointer. See designs/compile-contextual-audit.md.
+ * Safe from core and extensions (call_built_in layout stays opaque via
+ * afw.h). See designs/compile-contextual-audit.md.
  */
-#define AFW_FUNCTION_CONTEXTUAL \
-    ((x)->self ? (x)->self->args.contextual : NULL)
+AFW_DECLARE(const afw_compile_value_contextual_t *)
+afw_function_execute_contextual(const afw_function_execute_t *x);
 
 
 /**

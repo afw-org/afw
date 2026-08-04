@@ -1,7 +1,7 @@
 # Compile / call contextual audit
 
-**Status:** Done for core libafw (2026-08, `issue-#28-pragma-cleanup`).  
-**Related:** multi-unit policy (`type_check_multi_unit.as`), `AFW_FUNCTION_CONTEXTUAL`, Pattern B `#compile`.
+**Status:** Done for core libafw + curl extension (2026-08, `issue-#28-pragma-cleanup`).  
+**Related:** multi-unit policy (`type_check_multi_unit.as`), `afw_function_execute_contextual(x)`, Pattern B `#compile`.
 
 ## Rules
 
@@ -9,7 +9,7 @@
 |------------|----------|
 | **Parser / create-time** `contextual` | Compile creates call/built_in nodes for this unit |
 | **Definition** `script->contextual` | Script formal/return **runtime** checks (prefer over call-site) |
-| **Call-site** `args.contextual` / `AFW_FUNCTION_CONTEXTUAL` | Nested `call_create` from a built-in execute so nested values share the outer call’s unit link |
+| **Call-site** `args.contextual` / `afw_function_execute_contextual(x)` | Nested `call_create` from a built-in execute so nested values share the outer call’s unit link. |
 | **NULL** | No compiled unit: type-check macros use **process flags only**. Prefer only at host/C edges with no call value |
 
 ## Core libafw (`src/afw`)
@@ -19,10 +19,10 @@
 | Site | First arg | Classification |
 |------|-----------|----------------|
 | `compile/afw_compile_parse_expression.c` | `contextual` | Compile unit |
-| `function/afw_function_higher_order_array.c` | `AFW_FUNCTION_CONTEXTUAL` | Nested functor/compare calls |
-| `function/afw_function_compiler.c` | `AFW_FUNCTION_CONTEXTUAL` | stringify replacer, etc. |
-| `function/afw_function_compiler_internal.c` | `AFW_FUNCTION_CONTEXTUAL` | switch predicate |
-| `function/afw_function_adapter.c` | `ctx->contextual` (from macro at setup) | retrieve callbacks |
+| `function/afw_function_higher_order_array.c` | `afw_function_execute_contextual(x)` | Nested functor/compare calls |
+| `function/afw_function_compiler.c` | `afw_function_execute_contextual(x)` | stringify replacer, etc. |
+| `function/afw_function_compiler_internal.c` | `afw_function_execute_contextual(x)` | switch predicate |
+| `function/afw_function_adapter.c` | `ctx->contextual` (from `afw_function_execute_contextual(x)` at setup) | retrieve callbacks |
 | `value/afw_value_call.c` | (API implementation) | — |
 
 **No `afw_value_call_create(NULL, …)` in core libafw.**
@@ -41,11 +41,11 @@
 - Runtime assignability: `call_script_function` (formals/returns), `compiler_internal` assign/Pattern — always pass a real contextual when available; gates inside `type_check_assignable`.
 - Compile assignability: parse + known Adaptive call sites with parser/call contextual.
 
-## Extensions residual
+## Extensions
 
 | Site | First arg | Classification |
 |------|-----------|----------------|
-| `src/afw_curl/afw_curl_internal.c` (×3) | **NULL** | Libcurl C callbacks invoke script functors after `http_*` execute returns into curl; `script_cb` does not yet store call-site contextual. **Intentional residual:** process flags for nested typeCheck until contextual is plumbed from `afw_curl_function_execute_http_*` through internals into `afw_curl_internal_script_cb_t`. |
+| `src/afw_curl/afw_curl_internal.c` (header/writer/reader `call_create`) | **`script_cb->contextual`** | Plumbed from `afw_function_execute_contextual(x)` at `http_*` / `smtp_send` execute through internal helpers into `afw_curl_internal_script_cb_t`. NULL only when the outer call has no unit link (same as other execute paths). |
 
 ## Regression coverage
 
@@ -54,7 +54,7 @@
 
 ## When adding new code
 
-1. Prefer `AFW_FUNCTION_CONTEXTUAL` (or explicit call/parser contextual) for any nested `call_create` from execute.
+1. Prefer `afw_function_execute_contextual(x)` (or explicit call/parser contextual) for any nested `call_create` from execute.
 2. Do not use NULL unless there is no compiled-value unit to attach.
 3. Script formals/returns: definition contextual first.
 4. Leave built-in `afw_function_evaluate_parameter` free of typeCheck branching.

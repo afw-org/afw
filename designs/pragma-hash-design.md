@@ -119,7 +119,6 @@ Examples:
 
 - Handbook language-ref note for `#compile` (flags still primary; mid-unit “from here on” + flag vs unit table above).
 - **Decompile / `#…` inventory:** [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) + `src/afw/tests/compiler/decompile_accept/`.
-- Curl nested script functors still pass NULL contextual (process flags only) — see [`compile-contextual-audit.md`](compile-contextual-audit.md). **Not** planned as pragma-able flag metadata; keep a hand allow-list of `#compile` operands.
 
 **Closed for this surface**
 
