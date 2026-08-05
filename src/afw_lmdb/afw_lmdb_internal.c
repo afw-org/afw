@@ -1294,9 +1294,16 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
      */
     apr_thread_rwlock_rdlock(session->adapter->dbLock);
 
+    afw_trace_z(1, session->adapter->pub.trace_flag_index, 
+        NULL, "LMDB Begin read transaction.", xctx);
+
     rc = mdb_txn_begin(session->adapter->dbEnv, NULL, 0, &self->txn);
     if (rc) {
         apr_thread_rwlock_unlock(session->adapter->dbLock);
+
+        afw_trace_fz(1, session->adapter->pub.trace_flag_index,
+            NULL, xctx, "LMDB transaction begin failed with error: "
+            AFW_INTEGER_FMT, rc);
 
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to begin transaction.", xctx);
@@ -1329,6 +1336,9 @@ impl_afw_adapter_transaction_release (
     if (session->transaction) {
         mdb_txn_abort(self->txn);
         apr_thread_rwlock_unlock(session->adapter->dbLock);
+
+        afw_trace_z(1, session->adapter->pub.trace_flag_index, 
+            NULL, "LMDB Transaction aborted.", xctx);
     }
 
     self->txn = NULL;
@@ -1359,6 +1369,9 @@ impl_afw_adapter_transaction_commit (
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to commit transaction.", xctx);
     }
+
+    afw_trace_z(1, session->adapter->pub.trace_flag_index, 
+        NULL, "LMDB Transaction committed.", xctx);
 
     apr_thread_rwlock_unlock(session->adapter->dbLock);
 
