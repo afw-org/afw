@@ -144,10 +144,10 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
             fd.write('\nstatic const afw_value_array_t\n')
             fd.write(value_label + ';\n')
 
-            fd.write('\nstatic const afw_array_wrapper_for_array_self_t\n')
+            fd.write('\nstatic const afw_array_view_of_c_array_self_t\n')
             fd.write(label + ' = {\n')
             fd.write('    {\n')
-            fd.write('        &afw_array_wrapper_for_array_inf,\n')
+            fd.write('        &afw_array_view_of_c_array_inf,\n')
             fd.write('        NULL,\n')
             fd.write('        (const afw_value_t *)&' + value_label +'\n')
             fd.write('    },\n')
@@ -225,9 +225,9 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
             comma = ',\n'
         fd.write('\n};\n')
 
-        fd.write('\nstatic const afw_array_wrapper_for_array_self_t\n')
+        fd.write('\nstatic const afw_array_view_of_c_array_self_t\n')
         fd.write(meta.get('_label_') + '_parentPaths_list = {\n')
-        fd.write('    { &afw_array_wrapper_for_array_inf, NULL, NULL },\n')
+        fd.write('    { &afw_array_view_of_c_array_inf, NULL, NULL },\n')
         fd.write('    &afw_data_type_anyURI_direct,\n')
         fd.write('    sizeof(' +  meta.get('_label_') + '_parentPaths_array) / sizeof(afw_utf8_t),\n')
         fd.write('    (const void *)&' + meta.get('_label_') + '_parentPaths_array\n')

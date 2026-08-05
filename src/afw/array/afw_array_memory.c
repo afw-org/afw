@@ -987,7 +987,7 @@ afw_array_of_create_from_value(
     }
     else {
         v = afw_value_convert(value, data_type, true, p, xctx);
-        value_array = afw_array_create_wrapper_for_array(
+        value_array = afw_array_create_view_of_c_array(
             AFW_VALUE_INTERNAL(v), false, data_type, 1, p, xctx);
     }
 

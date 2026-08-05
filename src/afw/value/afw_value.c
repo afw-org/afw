@@ -602,7 +602,7 @@ afw_value_convert(
 
         /* Upconvert to one entry list. */
         if (to_data_type == afw_data_type_array) {
-            list = afw_array_create_wrapper_for_array(
+            list = afw_array_create_view_of_c_array(
                 &((afw_value_common_t *)result)->internal, false,
                 v_data_type, 1, p, xctx);
             result = afw_value_create_unmanaged_array(list, p, xctx);

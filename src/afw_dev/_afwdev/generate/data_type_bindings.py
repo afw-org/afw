@@ -918,7 +918,7 @@ def write_c_section(fd, prefix, obj):
 
     # Declare for empty array of this data type
     fd.write('\n/* Value for empty array of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)\n')
+    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
     fd.write('impl_empty_array_of_' + id + ';\n')
     
     # Declare for empty array value of this data type
@@ -1036,10 +1036,10 @@ def write_c_section(fd, prefix, obj):
 
         # Define for empty array of this data type
         fd.write('\n/* Value for empty array of ' + id + '. */\n')
-        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)\n')
+        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
         fd.write('impl_empty_array_of_' + id + ' = {\n')
         fd.write('    {\n')
-        fd.write('        &afw_array_wrapper_for_array_inf,\n')
+        fd.write('        &afw_array_view_of_c_array_inf,\n')
         fd.write('        NULL,\n')
         fd.write('        (const afw_value_t *)&impl_value_empty_array_of_' + id + '\n')
         fd.write('    },\n')

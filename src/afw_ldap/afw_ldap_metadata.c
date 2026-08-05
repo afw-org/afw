@@ -272,7 +272,7 @@ impl_get_value(impl_lexical_t *self)
 
         /* Allocate list to hold strings and populate it. */
         s = afw_pool_malloc(self->p, count * sizeof(afw_utf8_t), self->xctx);
-        list = afw_array_create_wrapper_for_array(s, false,
+        list = afw_array_create_view_of_c_array(s, false,
             afw_data_type_string, count, self->p, self->xctx);
         val = afw_value_create_unmanaged_array(list, self->p, self->xctx);
         for (;;) {
@@ -731,7 +731,7 @@ impl_a_property_to_object_type(
     if (parent) {
         s = afw_object_meta_get_path(parent, xctx);
         parent_paths = afw_value_allocate_unmanaged_array(prop->p, xctx);
-        parent_paths->internal = afw_array_create_wrapper_for_array(
+        parent_paths->internal = afw_array_create_view_of_c_array(
             (const void *)s, false, afw_data_type_anyURI, 1, prop->p, xctx);
         afw_object_meta_set_parent_paths(prop, parent_paths, xctx);
     }

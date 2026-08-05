@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework afw_array interface for array
+ * Adaptive Framework immutable afw_array view of a C array
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_array_wrapper_for_array.c
- * @brief Adaptive Framework afw_array interface for array.
+ * @file afw_array_view_of_c_array.c
+ * @brief Adaptive Framework immutable afw_array view of a C array.
  */
 
 #include "afw_internal.h"
@@ -19,18 +19,18 @@
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
 
 /* Declares and rti/inf defines for interface afw_array */
-#define AFW_IMPLEMENTATION_ID "afw_array_wrapper_for_array"
+#define AFW_IMPLEMENTATION_ID "afw_array_view_of_c_array"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_array_wrapper_for_array_inf
-#define AFW_ARRAY_SELF_T afw_array_wrapper_for_array_self_t
+#define AFW_IMPLEMENTATION_INF_LABEL afw_array_view_of_c_array_inf
+#define AFW_ARRAY_SELF_T afw_array_view_of_c_array_self_t
 #include "afw_array_impl_declares.h"
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
 
 
-/* Create a immutable array wrapper for an array. */
+/* Create an immutable afw_array that views a C array of internals. */
 AFW_DEFINE(const afw_array_t *)
-afw_array_create_wrapper_for_array(
+afw_array_create_view_of_c_array(
     const void *internal,
     afw_boolean_t indirect,
     const afw_data_type_t *data_type,
@@ -38,18 +38,18 @@ afw_array_create_wrapper_for_array(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_wrapper_for_array_self_t *self;
+    afw_array_view_of_c_array_self_t *self;
     afw_value_array_t *value;
     const afw_octet_t *ptr;
 
     self = afw_pool_calloc(p,
-        sizeof(afw_array_wrapper_for_array_self_t) +
+        sizeof(afw_array_view_of_c_array_self_t) +
         sizeof(afw_value_array_t),
         xctx);
-    self->pub.inf = &afw_array_wrapper_for_array_inf;
+    self->pub.inf = &afw_array_view_of_c_array_inf;
     self->pub.p = p;
     value = (afw_value_array_t *)
-        ((char *)self + sizeof(afw_array_wrapper_for_array_self_t));
+        ((char *)self + sizeof(afw_array_view_of_c_array_self_t));
     self->pub.value = (const afw_value_t *)value;
     /* Embedded value in pool alloc; unmanaged face (do not free header). */
     value->inf = &afw_value_unmanaged_array_inf;
@@ -90,7 +90,7 @@ afw_array_convert_to_array_of_strings(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_array_wrapper_for_array_self_t *self;
+    afw_array_view_of_c_array_self_t *self;
     afw_size_t count;
     const afw_data_type_t *data_type;
     void *internal;
@@ -113,8 +113,8 @@ afw_array_convert_to_array_of_strings(
 
     /* Allocate array for internal values and self for wrapper. */
     internal = afw_pool_malloc(p, count * sizeof(afw_utf8_t), xctx);
-    self = afw_pool_calloc_type(p, afw_array_wrapper_for_array_self_t, xctx);
-    self->pub.inf = &afw_array_wrapper_for_array_inf;
+    self = afw_pool_calloc_type(p, afw_array_view_of_c_array_self_t, xctx);
+    self->pub.inf = &afw_array_view_of_c_array_inf;
     self->pub.p = p;
     self->internal = internal;
     self->data_type = afw_data_type_string;

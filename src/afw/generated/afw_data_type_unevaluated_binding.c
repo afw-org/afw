@@ -163,7 +163,7 @@ impl_data_type_object_unevaluated__value = {
 };
 
 /* Value for empty array of unevaluated. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
 impl_empty_array_of_unevaluated;
 
 /* Value for empty array of unevaluated. */
@@ -198,10 +198,10 @@ afw_data_type_unevaluated_direct = {
 };
 
 /* Value for empty array of unevaluated. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
 impl_empty_array_of_unevaluated = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_unevaluated
     },
