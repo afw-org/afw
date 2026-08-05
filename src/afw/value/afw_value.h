@@ -427,7 +427,8 @@ afw_value_unique_default_case_value;
  * @param value to test.
  * @return boolean result.
  *
- * NOTE: If the value is NULL or not boolean it will always be false.
+ * Requires an evaluated boolean (cast-safe like `afw_value_is_boolean`). If
+ * A_VALUE is NULL or not an evaluated boolean, the result is false.
  */
 #define afw_value_is_boolean_true(A_VALUE) \
 ( \
@@ -493,9 +494,14 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 
 
 /**
- * @brief Macro to determine if value is defined and evaluated.
+ * @brief True if A_VALUE is non-NULL and already evaluated (any data type).
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * True when `inf->is_evaluated_of_data_type` is non-NULL: finished data-type
+ * layout (cast-safe to the matching `const afw_value_<datatype>_t *` after an
+ * `afw_value_is_*` / `AFW_VALUE_IS_DATA_TYPE` check for that type). False for
+ * C NULL and for unevaluated IR (calls, constructs, references, …).
  */
 #define afw_value_is_defined_and_evaluated(A_VALUE) \
 ( \
@@ -506,9 +512,13 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 
 
 /**
- * @brief Macro to determine if value is undefined or evaluated.
+ * @brief True if A_VALUE is C NULL/undefined or already evaluated.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * Same “evaluated” sense as `afw_value_is_defined_and_evaluated` (field
+ * `is_evaluated_of_data_type`), or A_VALUE is missing. Not a produce-type
+ * check — see `AFW_VALUE_EVALUATES_TO_DATA_TYPE`.
  */
 #define afw_value_is_undefined_or_evaluated(A_VALUE) \
 ( \
@@ -519,10 +529,13 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 
 
 /**
- * @brief Determine if value and all of it contained values are evaluated.
+ * @brief Determine if value and all of its contained values are evaluated.
  * @param value to test.
  * @param xctx of caller.
  * @return boolean result.
+ *
+ * Recursive: the value and nested contents are finished evaluated data-type
+ * layouts, not merely known produce types.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_value_is_fully_evaluated(
@@ -530,6 +543,14 @@ afw_value_is_fully_evaluated(
     afw_xctx_t *xctx);
 
 
+
+/**
+ * Value-kind predicates (`afw_value_is_block`, `afw_value_is_call`, …) test
+ * `inf` identity for IR / structural kinds — not data type. When true, it is
+ * safe to cast A_VALUE to the matching `const afw_value_<kind>_t *` (e.g.
+ * `afw_value_block_t`). For evaluated data types use `afw_value_is_*` /
+ * `AFW_VALUE_IS_DATA_TYPE` instead.
+ */
 
 /**
  * @brief Macro to determine if value is an assignment target.
@@ -769,36 +790,49 @@ afw_value_is_fully_evaluated(
 )
 
  
-/** @brief Throw and error if A_VALUE is not value inf id. */
+/**
+ * @brief Throw if A_VALUE is not value kind A_TYPE_ID.
+ * @param A_VALUE value to test.
+ * @param A_TYPE_ID unquoted kind id (e.g. block, call, symbol_reference).
+ * @param A_SCOPE xctx or scope for the throw.
+ *
+ * Kind / inf-id assert (not data type). After success it is safe to cast
+ * A_VALUE to `const afw_value_<A_TYPE_ID>_t *`. For evaluated data types use
+ * `AFW_VALUE_ASSERT_IS_DATA_TYPE` instead.
+ */
 #define AFW_VALUE_ASSERT_IS(A_VALUE, A_TYPE_ID, A_SCOPE) \
 if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
     AFW_THROW_ERROR_Z(cast_error, "Expecting " #A_TYPE_ID, A_SCOPE)
 
 
 /**
- * @brief Get the easily accessible data type for a value.
- * @param value
+ * @brief Get inf->data_type without calling get_data_type().
+ * @param A_VALUE value (must be non-NULL).
  * @return data_type or NULL.
- * 
- * This will return the data type of value if inf->data_type is not NULL.
- * This will be available for all evaluated values and some other values.
+ *
+ * Reads the produce-type field on the value's inf when set (evaluated values
+ * and some unevaluated kinds that know their result type). Not a cast-safety
+ * gate: NULL does not mean "not that type after evaluate," and a non-NULL
+ * result does not alone justify casting to `afw_value_<datatype>_t`. Prefer
+ * `afw_value_get_data_type()` / `AFW_VALUE_EVALUATES_TO_DATA_TYPE` when the
+ * method may compute type, or `AFW_VALUE_IS_DATA_TYPE` before a typed cast.
  */
 #define afw_value_quick_data_type(A_VALUE) \
 ((A_VALUE)->inf->data_type)
 
 
 /**
- * @brief Get the easily accessible data type id for a value.
- * @param value
- * 
- * This will return the data type id of value if inf->data_type is not NULL.
- * This will be available for all evaluated values and some other values.  If
- * the data type id is not available, "unknown" is returned.
+ * @brief Get quick data type id string, or "unknown".
+ * @param A_VALUE value (may be NULL).
+ * @return pointer to data_type_id utf8, or afw_s_unknown.
+ *
+ * Same field as `afw_value_quick_data_type` (`inf->data_type`). Produce-type
+ * hint only — not cast-safe; see that macro.
  */
 #define afw_value_get_quick_data_type_id(A_VALUE) \
 (((A_VALUE) && (A_VALUE)->inf->data_type) \
 ? &((A_VALUE)->inf->data_type->data_type_id) \
-: afw_s_unknown )
+: afw_s_unknown)
 
 
 
@@ -961,11 +995,11 @@ afw_value_contains(
 
 /**
  * @brief Macro to get const void * of the internal of a value
- * @param value internal must align with afw_value_common_t *.
- * @return const void * of internal.
+ * @param _VALUE_ internal must align with afw_value_common_t *.
+ * @return void * of internal (caller treats as const of the right type).
  *
- * This should be used with extreme care.  The intended is to access internal
- * of an evaluated value.
+ * Use only on finished evaluated data-type values (after
+ * `AFW_VALUE_IS_DATA_TYPE` / `afw_value_is_*`). Not valid for unevaluated IR.
  */
 #define AFW_VALUE_INTERNAL(_VALUE_) \
 ((void *)(&((afw_value_common_t *)(_VALUE_))->internal))
@@ -973,22 +1007,29 @@ afw_value_contains(
  
  
 /**
- * @brief Test whether the data type of two adaptive values is the same.
+ * @brief True if two values have the same known produce data type.
  * @param value1 is an adaptive value.
  * @param value2 is an adaptive value.
  * @param xctx of caller.
+ * @return boolean result.
+ *
+ * Compares `afw_value_get_data_type()` results (produce type), not cast-safe
+ * evaluated layout. Either side may still be unevaluated.
  */
 #define AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx) \
-(afw_value_get_data_type(value1, xctx) != \
+(afw_value_get_data_type(value1, xctx) == \
     afw_value_get_data_type(value2, xctx))
 
 
 
 /**
- * @brief Assert that the data type of two adaptive values is the same.
+ * @brief Throw if two values do not have the same known produce data type.
  * @param value1 is an adaptive value.
  * @param value2 is an adaptive value.
  * @param xctx of caller.
+ *
+ * Uses `AFW_VALUE_DATA_TYPES_EQUAL` (`get_data_type`). Does not assert
+ * cast-safe evaluated layouts.
  */
 #define AFW_VALUE_ASSERT_DATA_TYPES_EQUAL(value1, value2, xctx) \
 if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \

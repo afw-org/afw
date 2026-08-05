@@ -276,18 +276,18 @@ if (!(A_VALUE) || !afw_utf8_equal( \
 
 
 /**
- * @brief Evaluate an arg for a particular data type
- * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param A_N is the 1 based parameter number in of argv to evaluate.
- * @param A_TYPE is the unquoted dataType.
- * @return the value casted to `afw_value_<A_TYPE>_t` * or NULL (undefined).
+ * @brief Evaluate an optional parameter as data type A_TYPE.
+ * @param A_RESULT const `afw_value_<A_TYPE>_t` * variable for the result.
+ * @param A_N 1-based parameter number in argv.
+ * @param A_TYPE unquoted data type id (e.g. string, object).
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
- * 
- * It is up to the implementation to check if A_RESULT is NULL and the
- * correct data type.
+ * Evaluates the argument, then yields a cast-safe
+ * `const afw_value_<A_TYPE>_t *` (or NULL if optional/undefined). This is
+ * evaluate-then-typed-pointer — not a produce-type probe like
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE`. Like other AFW_FUNCTION_* macros, "x"
+ * is the function execute struct pointer.
+ *
+ * It is up to the implementation to handle a NULL A_RESULT.
  */
 #define AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(A_RESULT, A_N, A_TYPE) \
 A_RESULT = (const afw_value_##A_TYPE##_t *) \
@@ -296,16 +296,15 @@ A_RESULT = (const afw_value_##A_TYPE##_t *) \
 
 
 /**
- * @brief Evaluate a parameter.
- * @param A_RESULT is a const afw_value_t * variable name for result.
- * @param A_N is the 1 based parameter number in argv to evaluate.
+ * @brief Evaluate an optional parameter (any type).
+ * @param A_RESULT const afw_value_t * variable for the result.
+ * @param A_N 1-based parameter number in argv.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * Result stays `const afw_value_t *` until you check with
+ * `AFW_VALUE_IS_DATA_TYPE` / `afw_value_is_*` before a typed cast. "x" is the
+ * function execute struct pointer.
  *
- * It is up to the implementation to check if A_RESULT is NULL and the
- * correct data type.
+ * It is up to the implementation to handle a NULL A_RESULT.
  */
 #define AFW_FUNCTION_EVALUATE_PARAMETER(A_RESULT, A_N) \
 A_RESULT = afw_function_evaluate_parameter(x, A_N, NULL)
@@ -313,15 +312,13 @@ A_RESULT = afw_function_evaluate_parameter(x, A_N, NULL)
 
 
 /**
- * @brief Evaluate an required parameter
- * @param A_RESULT is a const afw_value_t * variable name for result.
- * @param A_N is the 1 based parameter number in argv to evaluate.
+ * @brief Evaluate a required parameter (any type).
+ * @param A_RESULT const afw_value_t * variable for the result.
+ * @param A_N 1-based parameter number in argv.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
- *
- * A undefined error is thrown if result is NULL.
+ * Throws if the result is undefined/NULL. Result is still
+ * `const afw_value_t *` until a cast-safe `is_*` / `IS_DATA_TYPE` check. "x"
+ * is the function execute struct pointer.
  */
 #define AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(A_RESULT, A_N) \
 A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
@@ -329,13 +326,13 @@ A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
 
 
 /**
- * @brief Evaluate an arg that is a required condition
- * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param A_N is the 1 based parameter number in of argv to evaluate.
+ * @brief Evaluate a required boolean condition parameter.
+ * @param A_RESULT const afw_value_boolean_t * variable for the result.
+ * @param A_N 1-based parameter number in argv.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * Evaluates the arg, requires evaluated boolean (cast-safe
+ * `const afw_value_boolean_t *`), else throws arg_error. "x" is the function
+ * execute struct pointer.
  */
 #define AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(A_RESULT, A_N) \
 A_RESULT = (const afw_value_boolean_t *) \
@@ -347,14 +344,14 @@ A_RESULT = (const afw_value_boolean_t *) \
 
 
 /**
- * @brief Evaluate an arg for a particular data type
- * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param A_N is the 1 based parameter number in of argv to evaluate.
- * @param A_TYPE is the unquoted dataType.
+ * @brief Evaluate a required parameter as data type A_TYPE.
+ * @param A_RESULT const `afw_value_<A_TYPE>_t` * variable for the result.
+ * @param A_N 1-based parameter number in argv.
+ * @param A_TYPE unquoted data type id (e.g. string, object).
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * Evaluates the argument and requires data type A_TYPE, then yields a
+ * cast-safe `const afw_value_<A_TYPE>_t *`. Throws if missing or wrong type.
+ * Not a produce-type-only check. "x" is the function execute struct pointer.
  */
 #define AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(A_RESULT, A_N, A_TYPE) \
 A_RESULT = (const afw_value_##A_TYPE##_t *) \

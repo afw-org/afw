@@ -258,7 +258,9 @@ assert(s ==
 return 0;
 
 //? test: decompile-reference-by-key
-//? description: Property and index access decompile as agg[key]
+//? description: ...
+Property and index access decompile as agg[key]. Object literal RHS is
+wrap_literal_object(...) under issue #17 emit (arrays stay bare).
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -335,7 +337,9 @@ assert(s ==
 return 0;
 
 //? test: decompile-assignment-target-destructure
-//? description: Destructure assignment targets decompile with synthetic tags
+//? description: ...
+Destructure assignment targets decompile with synthetic tags. Object Pattern
+RHS is wrap_literal_object(...); list Pattern RHS stays a bare array.
 //? skip: false
 //? expect: 0
 //? source: ...

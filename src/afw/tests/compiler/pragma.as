@@ -168,7 +168,10 @@ assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-assignment-target-object-destructure-roundtrip
-//? description: decompile/compile round-trip for object destructure Pattern
+//? description: ...
+decompile/compile round-trip for object destructure Pattern. Expect
+wrap_literal_object on the object literal RHS (issue #17); evaluate and
+re-decompile must match.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -198,7 +201,9 @@ assert(decompile(compile<script>(script(d))) == d);
 return 0;
 
 //? test: pragma-assignment-target-object-rename-default-rest
-//? description: object Pattern with rename, default, and rest
+//? description: ...
+object Pattern with rename, default, and rest; decompile shows
+wrap_literal_object on the RHS object literal (issue #17); round-trip evaluate.
 //? skip: false
 //? expect: 0
 //? source: ...

@@ -7014,14 +7014,23 @@ struct afw_value_inf_s {
     afw_value_get_info_t get_info;
 
     /**
-     * This is the data type of the value if already evaluated or know before
-     * evaluation.
+     * Known produce/return data type when set: the type of the value after
+     * evaluation, or known before evaluation for some kinds (e.g. calls with
+     * a fixed return type). May be set when is_evaluated_of_data_type is
+     * still NULL. Not a cast-safety gate by itself — use
+     * is_evaluated_of_data_type / AFW_VALUE_IS_DATA_TYPE before casting to
+     * a typed evaluated value struct. Corresponds to
+     * afw_value_quick_data_type and afw_value_get_data_type when the method
+     * reports this field.
      */
     const afw_data_type_t * data_type;
 
     /**
-     * This is the data type of the value if it's already evaluated. If the
-     * value is not evaluated, this value will be NULL.
+     * Data type of this value when it is already fully evaluated (finished
+     * typed layout). NULL if the value is not yet evaluated (IR such as
+     * calls, constructs, references). When non-NULL, AFW_VALUE_IS_DATA_TYPE
+     * / afw_value_is_* may cast to the matching typed struct. Distinct from
+     * data_type (produce type may be known earlier).
      */
     const afw_data_type_t     * is_evaluated_of_data_type;
 };

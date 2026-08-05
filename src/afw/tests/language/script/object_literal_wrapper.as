@@ -2,11 +2,21 @@
 //?
 //? testScript: object_literal_wrapper.as
 //? customPurpose: Part of language/script tests
-//? description: wrap_literal_object and constant object isolation (issue #17)
+//? description: ...
+Issue #17 — mutable object faces / shared object-literal isolation.
+
+Compiler emits wrap_literal_object for top-level script object literals so each
+evaluation gets a memory look-through face (sets stay local; base not poisoned).
+Also covers explicit wrap_literal_object, multi-call isolation (function /
+lambda / compiled function / return mutate), nested literals, param defaults,
+and pattern bind. Arrays and #110 default clone are separate.
+
 //? sourceType: script
 //?
 //? test: wrap_literal_object-basic
-//? description: Function evaluates object, wraps, and returns object face
+//? description: ...
+Explicit wrap_literal_object: evaluate object arg, return object face; look-through
+get for base properties; meta dataType remains object.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -22,12 +32,14 @@ return 0;
 
 //?
 //? test: wrap_literal_object-set-local-not-base
-//? description: Independent literal sites; idempotent re-wrap same face
+//? description: ...
+Two independent wrap_literal_object({a:1}) sites get separate faces (mutate one
+does not affect the other). Re-wrap of an already-wrapped face is idempotent
+(same face, mutations visible through both handles).
 //? skip: false
 //? expect: 0
 //? source: ...
 
-/* Two separate literal sites → two faces (auto-wrap + explicit wrap). */
 const w1 = wrap_literal_object({ a: 1 });
 const w2 = wrap_literal_object({ a: 1 });
 
@@ -39,7 +51,6 @@ assert(w1.local === "only-w1", "wrapper local property");
 assert(w2.a === 1, "second face still sees its base a");
 assert(is_nullish(w2.local), "second face has no local prop");
 
-/* Idempotent: wrap of an already-wrapped face returns the same face. */
 const face = wrap_literal_object({ b: 1 });
 const again = wrap_literal_object(face);
 face.b = 2;
@@ -49,7 +60,8 @@ return 0;
 
 //?
 //? test: wrap_literal_object-literal-arg
-//? description: Direct object literal argument works
+//? description: ...
+Direct object literal as wrap_literal_object argument; get and set on the face.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -63,16 +75,15 @@ return 0;
 
 //?
 //? test: shared-literal-function-two-calls
-//? description: Function twice; mutate object literal must not leak (issue #17 baseline)
+//? description: ...
+Core isolation baseline (issue #17): named function body with const object
+literal mutated each call. Second call must see a fresh face (n starts 0), not
+the first call's mutated bag. Models this class of bug for scripts compiled once
+and re-entered (e.g. model onGetObject).
 //? skip: false
 //? expect: 0
 //? source: ...
 
-/*
- * Original class of bug: script compiled once (e.g. model onGetObject), each
- * evaluation mutates a const/let object literal; next evaluation still sees
- * those properties because the compile graph held one shared bag.
- */
 function bump() {
     const o = { n: 0 };
     o.n = o.n + 1;
@@ -86,16 +97,14 @@ return 0;
 
 //?
 //? test: shared-literal-compile-evaluate-twice
-//? description: compile once, run body twice via returned function (issue #17)
+//? description: ...
+compile<script> once of a factory that returns a function; each fn() call must
+get an isolated object literal face (extra set on first result must not appear
+on second). Avoids top-level scripts that constant-fold away multi-eval.
 //? skip: false
 //? expect: 0
 //? source: ...
 
-/*
- * Top-level scripts that only mutate and return a constant object can be
- * constant-folded at compile (decompile becomes the object). Model-style
- * isolation is a function body invoked twice after one compile.
- */
 const compiled = compile<script>(script(
     "return function () {\n" +
     "    const o = {};\n" +
@@ -127,15 +136,13 @@ return 0;
 
 //?
 //? test: shared-literal-compiled-function-two-calls
-//? description: compile function once, call twice; count must restart (issue #17 baseline)
+//? description: ...
+Same multi-eval shape as model on* hooks: one compiled function value, many
+invocations; count on object literal must restart each call (not climb).
 //? skip: false
 //? expect: 0
 //? source: ...
 
-/*
- * Model on* style: one compiled function value, many invocations. Avoid a
- * top-level script that constant-folds to a scalar (see count pitfall above).
- */
 const fn = evaluate(compile<script>(script(
     "return function () {\n" +
     "    const o = { n: 0 };\n" +
@@ -151,7 +158,8 @@ return 0;
 
 //?
 //? test: shared-literal-let-two-calls
-//? description: let (not const) object literal must isolate across calls (issue #17)
+//? description: ...
+let-bound object literal (not only const) must isolate across function calls.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -169,7 +177,9 @@ return 0;
 
 //?
 //? test: shared-literal-return-mutate
-//? description: return {…} then mutate; next return must be clean (issue #17)
+//? description: ...
+return {…} then mutate the result; next return of the same function must be a
+clean face (prior tag/extra must not leak).
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -192,7 +202,9 @@ return 0;
 
 //?
 //? test: shared-literal-nested-object
-//? description: Nested object literal property must isolate across calls (issue #17)
+//? description: ...
+Nested object literal property (o.child) must isolate across calls; promote-on-get
+/ face semantics for nested objects.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -210,7 +222,9 @@ return 0;
 
 //?
 //? test: shared-literal-nested-assign-empty
-//? description: y.z = {} shared empty bag across calls (issue #17 / #110 shape)
+//? description: ...
+Assign empty {} into a property (y.z = {}) each call; marker on first.z must not
+appear on second.z. Same shape as default-object / #110 style nested bags.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -236,7 +250,8 @@ return 0;
 
 //?
 //? test: shared-literal-param-default
-//? description: Object param default {} must isolate across calls (issue #17)
+//? description: ...
+Object parameter default {} must isolate across calls; explicit arg still works.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -254,7 +269,8 @@ return 0;
 
 //?
 //? test: shared-literal-param-pattern-default
-//? description: Whole-parameter default object Pattern must isolate (issue #17)
+//? description: ...
+Whole-parameter default object Pattern with nested bag must isolate across calls.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -271,7 +287,9 @@ return 0;
 
 //?
 //? test: shared-literal-object-pattern-bind
-//? description: const { x } = { x: { n: 0 } }; mutate x across calls (issue #17)
+//? description: ...
+const { x } = { x: { n: 0 } }; mutate x.n across calls — nested literal in
+destructure RHS must not share.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -289,7 +307,9 @@ return 0;
 
 //?
 //? test: shared-literal-loop-calls
-//? description: Loop calling mutator; each iteration fresh literal (issue #17)
+//? description: ...
+Loop invoking a mutator that starts from {}; residual property from prior
+iteration must not appear on the next face.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -303,8 +323,6 @@ function once() {
 for (let i = 0; i < 3; i = i + 1) {
     const o = once();
     assert(o.hit === true);
-    /* If shared, second iteration still has hit before set — still true.
-     * Detect share via residual key: */
     assert(
         is_nullish(property_get(o, "i", null)),
         "loop iteration must not see prior residual property on shared literal"
@@ -316,7 +334,9 @@ return 0;
 
 //?
 //? test: shared-literal-lambda-two-calls
-//? description: Lambda mutates object literal; two calls isolate (issue #17)
+//? description: ...
+Lambda (function expression) body with object literal; two calls isolate like
+named functions.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -334,7 +354,9 @@ return 0;
 
 //?
 //? test: shared-literal-empty-property-exists
-//? description: Empty {} gets a property; next call property_exists false (issue #17)
+//? description: ...
+Empty {} each call: property_exists starts false; after set, sibling call's face
+must not see the first face's onlyA.
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -353,7 +375,6 @@ const a = flag();
 assert(a.seen === true);
 const b = flag();
 assert(b.seen === true, "second call sets seen on its face");
-/* Independence: if a and b share, still both true — check identity or extra */
 a.onlyA = 1;
 assert(
     is_nullish(property_get(b, "onlyA", null)),
