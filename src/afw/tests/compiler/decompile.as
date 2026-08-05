@@ -276,7 +276,7 @@ s = decompile(compile<script>(script(
     "const a = [10, 20];\nreturn a[1];"
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",a),[10,20],undefined),return(a[1]))");
+    "#block(const(#assignment_target(\"const\",a),wrap_literal_array([10,20]),undefined),return(a[1]))");
 
 return 0;
 
@@ -305,7 +305,7 @@ const s = decompile(compile<script>(script(
     "const a = [1, 2];\nreturn [...a, 3];"
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",a),[1,2],undefined),return(array(...a,3)))");
+    "#block(const(#assignment_target(\"const\",a),wrap_literal_array([1,2]),undefined),return(array(...a,3)))");
 
 return 0;
 
@@ -339,7 +339,7 @@ return 0;
 //? test: decompile-assignment-target-destructure
 //? description: ...
 Destructure assignment targets decompile with synthetic tags. Object Pattern
-RHS is wrap_literal_object(...); list Pattern RHS stays a bare array.
+RHS is wrap_literal_object(...); list Pattern RHS is wrap_literal_array(...).
 //? skip: false
 //? expect: 0
 //? source: ...
@@ -349,7 +349,7 @@ let s = decompile(compile<script>(script(
     "const [a, b] = [1, 2];\nreturn a;"
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",[a,b]),[1,2],undefined),return(a))");
+    "#block(const(#assignment_target(\"const\",[a,b]),wrap_literal_array([1,2]),undefined),return(a))");
 
 s = decompile(compile<script>(script(
     "const {a, b} = {a: 1, b: 2};\nreturn a;"
@@ -398,10 +398,12 @@ assert(s ==
     "        b\n" +
     "      ]\n" +
     "    ),\n" +
-    "    [\n" +
-    "      1,\n" +
-    "      2\n" +
-    "    ],\n" +
+    "    wrap_literal_array(\n" +
+    "      [\n" +
+    "        1,\n" +
+    "        2\n" +
+    "      ]\n" +
+    "    ),\n" +
     "    undefined\n" +
     "  ),\n" +
     "  return(\n" +

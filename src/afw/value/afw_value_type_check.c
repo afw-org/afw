@@ -331,11 +331,13 @@ impl_type_is_type_assignable(
 /* ---------- value inspection helpers ---------- */
 
 /*
- * See through compile-time wrap_literal_object(...) (issue #17) so type
- * excess / shape checks still see the constant object argument.
+ * See through compile-time wrap_literal_object / wrap_literal_array (issue #17)
+ * so type excess / shape checks still see the constant argument.
  */
 static const afw_value_t *
-impl_unwrap_wrap_literal_object(const afw_value_t *value)
+impl_unwrap_wrap_literal_call(
+    const afw_value_t *value,
+    const afw_utf8_z_t *function_id)
 {
     const afw_value_call_built_in_function_t *call;
 
@@ -345,12 +347,26 @@ impl_unwrap_wrap_literal_object(const afw_value_t *value)
     call = (const afw_value_call_built_in_function_t *)value;
     if (!call->function ||
         !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
-            "wrap_literal_object") ||
+            function_id) ||
         call->args.argc < 1 || !call->args.argv[1])
     {
         return value;
     }
     return call->args.argv[1];
+}
+
+
+static const afw_value_t *
+impl_unwrap_wrap_literal_object(const afw_value_t *value)
+{
+    return impl_unwrap_wrap_literal_call(value, "wrap_literal_object");
+}
+
+
+static const afw_value_t *
+impl_unwrap_wrap_literal_array(const afw_value_t *value)
+{
+    return impl_unwrap_wrap_literal_call(value, "wrap_literal_array");
 }
 
 
@@ -408,6 +424,7 @@ impl_get_typed_object_property(
 static const afw_array_t *
 impl_try_array_internal(const afw_value_t *value)
 {
+    value = impl_unwrap_wrap_literal_array(value);
     if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
         return ((const afw_value_array_t *)value)->internal;
     }

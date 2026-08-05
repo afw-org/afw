@@ -285,37 +285,56 @@ impl_has_local_property_name(
 
 
 /*
- * If value is a mutable object and this wrapper is mutable, create a nested
- * wrapper, store it on self (shadowing base), and return the wrap value.
- * Arrays are not promoted yet.
+ * If value is a mutable object or array and this wrapper is mutable, create a
+ * nested face, store it on self (shadowing base), and return the wrap value.
  */
 static const afw_value_t *
-impl_promote_mutable_object_from_base(
+impl_promote_structured_from_base(
     AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     const afw_value_t *value,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *nested;
-    const afw_object_t *wrap;
+    const afw_object_t *nested_obj;
+    const afw_array_t *nested_arr;
+    const afw_object_t *wrap_obj;
+    const afw_array_t *wrap_arr;
 
-    if (!value || self->immutable || !afw_value_is_object(value)) {
+    if (!value || self->immutable) {
         return value;
     }
 
-    nested = ((const afw_value_object_t *)value)->internal;
-    if (!nested || afw_object_is_immutable(nested, xctx)) {
-        return value;
+    if (afw_value_is_object(value)) {
+        nested_obj = ((const afw_value_object_t *)value)->internal;
+        if (!nested_obj ||
+            afw_object_is_immutable(nested_obj, xctx) ||
+            afw_object_is_memory_wrapper(nested_obj))
+        {
+            return value;
+        }
+        wrap_obj = afw_object_create_wrapper_unmanaged(nested_obj,
+            self->pub.p, xctx);
+        afw_object_set_property((const afw_object_t *)self, property_name,
+            wrap_obj->value, xctx);
+        return wrap_obj->value;
     }
 
-    /*
-     * Nested wrapper lives in this object's pool (unmanaged) so its lifetime
-     * matches the embedding wrapper without an extra managed subpool.
-     */
-    wrap = afw_object_create_wrapper_unmanaged(nested, self->pub.p, xctx);
-    afw_object_set_property((const afw_object_t *)self, property_name,
-        wrap->value, xctx);
-    return wrap->value;
+    if (afw_value_is_array(value)) {
+        nested_arr = ((const afw_value_array_t *)value)->internal;
+        if (!nested_arr ||
+            afw_array_is_immutable(nested_arr, xctx) ||
+            afw_array_is_memory_wrapper(nested_arr))
+        {
+            return value;
+        }
+        wrap_arr = afw_array_create_wrapper_unmanaged(nested_arr,
+            self->pub.p, xctx);
+        afw_object_set_property((const afw_object_t *)self, property_name,
+            wrap_arr->value, xctx);
+        return wrap_arr->value;
+    }
+
+    return value;
 }
 
 
@@ -347,8 +366,8 @@ impl_afw_object_get_property(
         return NULL;
     }
 
-    /* Promote mutable nested objects onto this wrapper (objects only). */
-    return impl_promote_mutable_object_from_base(self, property_name, value,
+    /* Promote mutable nested objects/arrays onto this wrapper. */
+    return impl_promote_structured_from_base(self, property_name, value,
         xctx);
 }
 
@@ -451,7 +470,7 @@ impl_afw_object_get_next_property(
             continue;
         }
 
-        value = impl_promote_mutable_object_from_base(self, name, value, xctx);
+        value = impl_promote_structured_from_base(self, name, value, xctx);
         if (property_name) {
             *property_name = name;
         }

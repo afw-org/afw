@@ -802,7 +802,7 @@ afw_object_create_with_options(
  * promoted to a nested wrapper on the first get and stored on the wrapper
  * so the shared base is not mutated through nested access.
  *
- * Array values are not promoted yet (objects only).
+ * Nested mutable objects and arrays are promoted to faces on get.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_wrapper_with_options(

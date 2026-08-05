@@ -32,6 +32,31 @@ impl_function_definition_rethrow =
 
 
 
+/*
+ * See through compile-time wrap_literal_array(...) (issue #17) for pattern
+ * element type checks against the constant array argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_array(const afw_value_t *value)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            "wrap_literal_array") ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+
 /* Compile-time type check for const/let/assign (issue #28). */
 static void
 impl_compile_check_list_pattern(
@@ -44,7 +69,14 @@ impl_compile_check_list_pattern(
     const afw_value_t *elem;
     afw_size_t i;
 
-    /* Cast-safe evaluated array required to open entries (no array wrap yet). */
+    /*
+     * Evaluates to array (includes wrap_literal_array). Then require cast-safe
+     * evaluated array (after unwrap) to open entries.
+     */
+    if (!AFW_VALUE_EVALUATES_TO_DATA_TYPE(value, array, parser->xctx)) {
+        return;
+    }
+    value = impl_unwrap_wrap_literal_array(value);
     if (!AFW_VALUE_IS_DATA_TYPE(value, array)) {
         return;
     }

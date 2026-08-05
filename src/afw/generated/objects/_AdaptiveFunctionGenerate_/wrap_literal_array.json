@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwWrapLiteralArray",
+    "brief": "Wrap an evaluated array in a memory face",
+    "camelCaseFunctionLabel": "wrapLiteralArray",
+    "category": "compiler_internal",
+    "description": "Evaluate an array value, create a memory array wrapper (afw_array_create_wrapper_*) over its instance, and return that wrapper as an array value. Entry mutators stay on the face; nested objects/arrays are promoted on get. Intended for compile/runtime isolation of array literals (issue #17); not normal author surface syntax.",
+    "functionId": "wrap_literal_array",
+    "functionLabel": "wrap_literal_array",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "Array to evaluate and wrap (typically a constant array literal once the compiler emits isolation).",
+            "name": "array",
+            "optional": false
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "array",
+        "description": "A new memory-wrapper array face over the evaluated base."
+    },
+    "scriptSupport": true
+}

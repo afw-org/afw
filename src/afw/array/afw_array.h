@@ -49,6 +49,58 @@ afw_array_create_with_options(
     afw_xctx_t *xctx);
 
 
+
+/**
+ * @brief Create a memory array that wraps another array (mutable face).
+ * @param options reserved (same convention as create_with_options; usually 0).
+ * @param wrapped base array for isolation. Required (non-NULL). Any
+ *     afw_array implementation is allowed (memory, adapter-backed, view of
+ *     C array, …).
+ * @param p to use for the face.
+ * @param xctx of caller.
+ * @return instance of new wrapper array.
+ *
+ * The face materializes entry value pointers into a local ring so mutators
+ * only touch the face. Nested mutable objects/arrays are promoted to nested
+ * faces on get. Sets never write to @p wrapped (issue #17).
+ *
+ * Not the same as afw_array_create_view_of_c_array (immutable C storage view).
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_create_wrapper_with_options(
+    int options,
+    const afw_array_t *wrapped,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a memory wrapper over another array (options 0).
+ */
+#define afw_array_create_wrapper(wrapped, p, xctx) \
+    afw_array_create_wrapper_with_options(0, wrapped, p, xctx)
+
+
+/**
+ * @brief Create an unmanaged memory wrapper over another array.
+ * Same as create_wrapper for current memory arrays (pool-owned face).
+ */
+#define afw_array_create_wrapper_unmanaged(wrapped, p, xctx) \
+    afw_array_create_wrapper_with_options(0, wrapped, p, xctx)
+
+
+/**
+ * @brief True if array is a memory wrapper face (create_wrapper_*).
+ * @param array to test (may be NULL).
+ * @return true if create_wrapper_* produced this instance.
+ *
+ * Used by wrap_literal_array for idempotent wrap (issue #17).
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_array_is_memory_wrapper(const afw_array_t *array);
+
+
+
 /**
  * @brief Create an array of a specific data type in memory.
  * @param data_type if array only holds one data type or NULL.

@@ -622,6 +622,39 @@ def while_(session, condition, body):
 
     return response['actions'][0]['result']
 
+def wrap_literal_array(session, array):
+    """
+    Wrap an evaluated array in a memory face
+
+    Evaluate an array value, create a memory array wrapper
+    (afw_array_create_wrapper_*) over its instance, and return that wrapper as
+    an array value. Entry mutators stay on the face; nested objects/arrays are
+    promoted on get. Intended for compile/runtime isolation of array literals
+    (issue #17); not normal author surface syntax.
+
+    Args:
+        array (list): Array to evaluate and wrap (typically a constant array
+        literal once the compiler emits isolation).
+
+    Returns:
+        list: A new memory-wrapper array face over the evaluated base.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "wrap_literal_array",
+        "array": array
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def wrap_literal_object(session, object):
     """
     Wrap an evaluated object in a memory look-through face

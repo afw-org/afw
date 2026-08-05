@@ -552,6 +552,34 @@ class compiler_internal
     }
 
     /**
+     * wrap_literal_array()
+     *
+     * Evaluate an array value, create a memory array wrapper
+     * (afw_array_create_wrapper_*) over its instance, and return that wrapper
+     * as an array value. Entry mutators stay on the face; nested
+     * objects/arrays are promoted on get. Intended for compile/runtime
+     * isolation of array literals (issue #17); not normal author surface
+     * syntax.
+     *
+     * @param array $array Array to evaluate and wrap (typically a constant
+     *                     array literal once the compiler emits isolation).
+     *
+     * @return array A new memory-wrapper array face over the evaluated base.
+     */
+    public function wrap_literal_array(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "wrap_literal_array");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * wrap_literal_object()
      *
      * Evaluate an object value, create a memory object wrapper

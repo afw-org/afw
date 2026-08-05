@@ -311,23 +311,35 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
             }
 
             /*
-             * Arguments of wrap_literal_object must not auto-wrap again
-             * (issue #17 decompile/recompile round-trip).
+             * Arguments of wrap_literal_object / wrap_literal_array must not
+             * auto-wrap again (issue #17 decompile/recompile round-trip).
              */
             saved_suppress_wrap = parser->suppress_object_literal_wrap;
-            fn_def = NULL;
-            if (afw_value_is_function_definition(result)) {
-                fn_def = (const afw_value_function_definition_t *)result;
-            }
-            if (fn_def &&
-                afw_utf8_equal_utf8_z(&fn_def->functionId->internal,
-                    "wrap_literal_object"))
             {
-                parser->suppress_object_literal_wrap = true;
-            }
+                afw_boolean_t saved_suppress_array =
+                    parser->suppress_array_literal_wrap;
 
-            afw_compile_parse_Parameters(parser, args);
-            parser->suppress_object_literal_wrap = saved_suppress_wrap;
+                fn_def = NULL;
+                if (afw_value_is_function_definition(result)) {
+                    fn_def = (const afw_value_function_definition_t *)result;
+                }
+                if (fn_def &&
+                    afw_utf8_equal_utf8_z(&fn_def->functionId->internal,
+                        "wrap_literal_object"))
+                {
+                    parser->suppress_object_literal_wrap = true;
+                }
+                if (fn_def &&
+                    afw_utf8_equal_utf8_z(&fn_def->functionId->internal,
+                        "wrap_literal_array"))
+                {
+                    parser->suppress_array_literal_wrap = true;
+                }
+
+                afw_compile_parse_Parameters(parser, args);
+                parser->suppress_object_literal_wrap = saved_suppress_wrap;
+                parser->suppress_array_literal_wrap = saved_suppress_array;
+            }
 
             afw_compile_args_finalize(args, &argc, &argv);
             contextual = afw_compile_create_contextual_to_cursor(start_offset);
