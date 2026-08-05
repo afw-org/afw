@@ -106,11 +106,10 @@ afw_value_permanent_array_inf;
  * @return boolean result.
  *
  * For evaluated values only. When true, it is safe to cast A_VALUE to
- * `const afw_value_array_t *` (e.g. to read `.internal`).
- * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, array)`.
- * Not the same as "will evaluate to array" — see
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
- * finished typed layout.
+ * `const afw_value_array_t *`.
+ * If you want to know if the value will be array when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, array, xctx)` instead.
  */
 #define afw_value_is_array(A_VALUE) \
 ( \

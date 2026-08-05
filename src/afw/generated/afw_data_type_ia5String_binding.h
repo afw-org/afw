@@ -116,11 +116,10 @@ afw_value_permanent_ia5String_inf;
  * @return boolean result.
  *
  * For evaluated values only. When true, it is safe to cast A_VALUE to
- * `const afw_value_ia5String_t *` (e.g. to read `.internal`).
- * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, ia5String)`.
- * Not the same as "will evaluate to ia5String" — see
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
- * finished typed layout.
+ * `const afw_value_ia5String_t *`.
+ * If you want to know if the value will be ia5String when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, ia5String, xctx)` instead.
  */
 #define afw_value_is_ia5String(A_VALUE) \
 ( \

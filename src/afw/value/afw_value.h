@@ -808,12 +808,11 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
  * @param A_DATA_TYPE unquoted data type id (e.g. object, string).
  *
  * For evaluated values only. Uses `inf->is_evaluated_of_data_type`. When true,
- * it is safe to cast A_VALUE to `const afw_value_<A_DATA_TYPE>_t *` (e.g. to
- * read `.internal`). Same as generated `afw_value_is_<A_DATA_TYPE>()`.
+ * it is safe to cast A_VALUE to `const afw_value_<A_DATA_TYPE>_t *`.
  *
- * Does **not** use `get_data_type()` — that is produce type, not cast safety.
- * See `AFW_VALUE_EVALUATES_TO_DATA_TYPE` when the value may still be unevaluated
- * (call, wrap_literal_object, etc.) but is known to evaluate to A_DATA_TYPE.
+ * If you want to know if the value will be A_DATA_TYPE when fully evaluated
+ * (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, A_DATA_TYPE, xctx)` instead.
  */
 #define AFW_VALUE_IS_DATA_TYPE(A_VALUE,A_DATA_TYPE) \
 ( \
@@ -829,8 +828,9 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
  * @param A_DATA_TYPE unquoted data type id (e.g. object, string).
  * @param xctx of caller (required by afw_value_get_data_type).
  *
- * Uses `afw_value_get_data_type()` for known produce/return type (evaluated
- * values, calls with known return type such as wrap_literal_object, etc.).
+ * Uses `afw_value_get_data_type()` for known produce/return type when fully
+ * evaluated (evaluated values, calls with known return type such as
+ * wrap_literal_object, etc.).
  *
  * This is **not** a cast-safety gate. When true, keep the pointer as
  * `const afw_value_t *` only — do **not** cast to

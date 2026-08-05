@@ -116,11 +116,10 @@ afw_value_permanent_string_inf;
  * @return boolean result.
  *
  * For evaluated values only. When true, it is safe to cast A_VALUE to
- * `const afw_value_string_t *` (e.g. to read `.internal`).
- * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, string)`.
- * Not the same as "will evaluate to string" — see
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
- * finished typed layout.
+ * `const afw_value_string_t *`.
+ * If you want to know if the value will be string when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, string, xctx)` instead.
  */
 #define afw_value_is_string(A_VALUE) \
 ( \

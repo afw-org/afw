@@ -106,11 +106,10 @@ afw_value_permanent_time_inf;
  * @return boolean result.
  *
  * For evaluated values only. When true, it is safe to cast A_VALUE to
- * `const afw_value_time_t *` (e.g. to read `.internal`).
- * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, time)`.
- * Not the same as "will evaluate to time" — see
- * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
- * finished typed layout.
+ * `const afw_value_time_t *`.
+ * If you want to know if the value will be time when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, time, xctx)` instead.
  */
 #define afw_value_is_time(A_VALUE) \
 ( \
