@@ -100105,7 +100105,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1067 \
-    "Value to return only if the property is missing. Cloned when used."
+    "Value to return only if the property is missing. Isolated when used (object/array face; otherwise clone)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1067 */
 #define afw_s_zz__1067 \
@@ -100131,7 +100131,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1068 \
-    "Return the value of a property. Optional default applies only when the property is missing — not when the value is undefined. If missing and no default is given, the result is undefined. Mutable defaults are cloned."
+    "Return the value of a property. Optional default applies only when the property is missing — not when the value is undefined. If missing and no default is given, the result is undefined. Object/array defaults get a mutable memory face (issues #110 / #17); other defaults are cloned."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1068 */
 #define afw_s_zz__1068 \
@@ -153171,7 +153171,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__938 \
-    "Value to return only if the name is not bound. Cloned when used."
+    "Value to return only if the name is not bound. Isolated when used (object/array face; otherwise clone)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__938 */
 #define afw_s_zz__938 \
@@ -153197,7 +153197,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__939 \
-    "Return the value of a bound variable. Optional default applies only when the name is not bound — not when the value is undefined. If unbound and no default is given, the result is undefined. Mutable defaults are cloned."
+    "Return the value of a bound variable. Optional default applies only when the name is not bound — not when the value is undefined. If unbound and no default is given, the result is undefined. Object/array defaults get a mutable memory face (issues #110 / #17); other defaults are cloned."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__939 */
 #define afw_s_zz__939 \

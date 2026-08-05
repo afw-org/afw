@@ -860,6 +860,15 @@ afw_object_is_memory_wrapper(const afw_object_t *object);
 
 
 /**
+ * @brief Base object under a memory face, or object itself if not a face.
+ * @param object may be NULL.
+ * @return wrapped base if create_wrapper_* face; else object; NULL if object NULL.
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_memory_wrapper_base(const afw_object_t *object);
+
+
+/**
  * @brief Create a composite of immutable objects.
  * @param mutable true makes composite mutable.
  * @param p is pool for result.

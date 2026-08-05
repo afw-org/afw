@@ -382,3 +382,38 @@ assert(
 );
 
 return 0;
+
+//?
+//? test: shared-literal-object-with-nested-array
+//? description: ...
+Object literal with nested array property; mutate array across calls must
+isolate (promote nested array on face get).
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function nestArr() {
+    const o = { items: [0] };
+    o.items[0] = o.items[0] + 1;
+    return o.items[0];
+}
+
+assert(nestArr() === 1);
+assert(nestArr() === 1, "nested array under object literal must not share");
+
+return 0;
+
+//?
+//? test: wrap_literal_object-idempotent-after-emit
+//? description: ...
+const o = {} is already auto-wrapped; wrap_literal_object(o) is idempotent.
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const o = { a: 1 };
+const w = wrap_literal_object(o);
+o.a = 2;
+assert(w.a === 2, "idempotent wrap of auto face shares same face");
+
+return 0;

@@ -169,6 +169,24 @@ afw_array_is_memory_wrapper(const afw_array_t *array)
 
 
 
+/* Base under a face, or array if not a face. */
+AFW_DEFINE(const afw_array_t *)
+afw_array_memory_wrapper_base(const afw_array_t *array)
+{
+    const afw_memory_internal_array_t *self;
+
+    if (!array) {
+        return NULL;
+    }
+    if (array->inf != &impl_afw_array_inf) {
+        return array;
+    }
+    self = (const afw_memory_internal_array_t *)array;
+    return self->wrapped ? self->wrapped : array;
+}
+
+
+
 /*
  * If value is a mutable object or array, promote to a nested wrapper face
  * and store it on the ring entry. Only when this face is a wrapper
@@ -192,10 +210,7 @@ impl_promote_structured_entry(
 
     if (afw_value_is_object(value)) {
         nested_obj = ((const afw_value_object_t *)value)->internal;
-        if (!nested_obj ||
-            afw_object_is_immutable(nested_obj, xctx) ||
-            afw_object_is_memory_wrapper(nested_obj))
-        {
+        if (!nested_obj || afw_object_is_memory_wrapper(nested_obj)) {
             return value;
         }
         wrap_obj = afw_object_create_wrapper_unmanaged(nested_obj,
@@ -206,10 +221,7 @@ impl_promote_structured_entry(
 
     if (afw_value_is_array(value)) {
         nested_arr = ((const afw_value_array_t *)value)->internal;
-        if (!nested_arr ||
-            afw_array_is_immutable(nested_arr, xctx) ||
-            afw_array_is_memory_wrapper(nested_arr))
-        {
+        if (!nested_arr || afw_array_is_memory_wrapper(nested_arr)) {
             return value;
         }
         wrap_arr = afw_array_create_wrapper_unmanaged(nested_arr,

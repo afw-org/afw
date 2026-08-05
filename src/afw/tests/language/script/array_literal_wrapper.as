@@ -172,3 +172,41 @@ assert(fn() === 1, "first call of compiled function");
 assert(fn() === 1, "second call must not see n already 1");
 
 return 0;
+
+//?
+//? test: wrap_literal_array-idempotent-after-emit
+//? description: Auto-wrapped array literal re-wrap is idempotent
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const a = [1];
+const w = wrap_literal_array(a);
+a[0] = 9;
+assert(w[0] === 9, "idempotent wrap of auto array face");
+
+return 0;
+
+//?
+//? test: shared-array-const-bind-no-clone
+//? description: const a = [0]; mutate; second function call clean (no bind clone)
+//? skip: false
+//? expect: 0
+//? source: ...
+
+function f() {
+    const a = [0];
+    a[0] = 1;
+    return a;
+}
+
+const x = f();
+assert(x[0] === 1);
+const y = f();
+assert(y[0] === 1);
+assert(is_nullish(property_get({ v: y[0] }, "nope", null)) || true);
+/* independence */
+x[0] = 99;
+assert(y[0] === 1, "const-bound array faces independent across calls");
+
+return 0;

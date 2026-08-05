@@ -1262,6 +1262,25 @@ afw_value_clone(
 
 
 /**
+ * @brief Isolate a default value for script (issue #110 / #17).
+ * @param value evaluated default (may be NULL / undefined).
+ * @param p pool for any new face or clone.
+ * @param xctx of caller.
+ * @return value safe for the caller to mutate without sharing the base.
+ *
+ * Object/array: memory face (`create_wrapper_*`) over the default instance
+ * when not already a face. Other types: `afw_value_clone`. Used by
+ * `property_get` / `variable_get` when returning a default.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_isolate_mutable_default(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create assignment target value.
  * @param contextual information for assignment target.
  * @param assignment_target (see afw_compile_internal.h).

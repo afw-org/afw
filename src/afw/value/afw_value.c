@@ -259,6 +259,53 @@ afw_value_clone(const afw_value_t *value,
 
 
 
+/* Isolate default for property_get / variable_get (issues #110 / #17). */
+AFW_DEFINE(const afw_value_t *)
+afw_value_isolate_mutable_default(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *obj;
+    const afw_array_t *arr;
+    const afw_object_t *face_obj;
+    const afw_array_t *face_arr;
+
+    if (!value || afw_value_is_undefined(value) || afw_value_is_nullish(value)) {
+        return value;
+    }
+
+    if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        obj = ((const afw_value_object_t *)value)->internal;
+        if (!obj) {
+            return value;
+        }
+        /* Always a *new* face over the base (even if value was already a face). */
+        obj = afw_object_memory_wrapper_base(obj);
+        face_obj = afw_object_create_wrapper_unmanaged(obj, p, xctx);
+        return face_obj->value
+            ? face_obj->value
+            : afw_value_create_unmanaged_object(face_obj, p, xctx);
+    }
+
+    if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
+        arr = ((const afw_value_array_t *)value)->internal;
+        if (!arr) {
+            return value;
+        }
+        arr = afw_array_memory_wrapper_base(arr);
+        face_arr = afw_array_create_wrapper_unmanaged(arr, p, xctx);
+        return face_arr->value
+            ? face_arr->value
+            : afw_value_create_unmanaged_array(face_arr, p, xctx);
+    }
+
+    /* Scalars and other types: clone as before. */
+    return afw_value_clone(value, p, xctx);
+}
+
+
+
 /* Convert value->internal to afw_utf8_z_t * */
 AFW_DEFINE(const afw_utf8_z_t *)
 afw_value_as_utf8_z(const afw_value_t *value,

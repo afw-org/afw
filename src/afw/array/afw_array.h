@@ -100,6 +100,15 @@ AFW_DECLARE(afw_boolean_t)
 afw_array_is_memory_wrapper(const afw_array_t *array);
 
 
+/**
+ * @brief Base array under a memory face, or array itself if not a face.
+ * @param array may be NULL.
+ * @return wrapped base if create_wrapper_* face; else array; NULL if array NULL.
+ */
+AFW_DECLARE(const afw_array_t *)
+afw_array_memory_wrapper_base(const afw_array_t *array);
+
+
 
 /**
  * @brief Create an array of a specific data type in memory.

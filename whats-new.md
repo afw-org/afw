@@ -64,7 +64,7 @@ Adaptive Script often hands you an **object** that is really a **shared instance
 
 - The same **object or array literal** in a function or loop can be **one bag** reused across evaluations, so mutating it “sticks” the next time.
 - **Binding** a literal into `const` / `let` / Patterns historically **cloned** as a safety net.
-- **Defaults** on helpers such as `property_get` / `variable_get` **clone** mutable defaults for the same class of reason (issue **#110**).
+- **Defaults** on helpers such as `property_get` / `variable_get` used to share or clone whole bags (issue **#110**); object/array defaults now get a **mutable face**.
 - **Adapter get/retrieve** may return a **view** or other clever, low-cost object implementation (not a plain mutable memory bag). Authors from an **ECMAScript** background expect “I got an object → I can set properties,” and often wrap the call in **`clone()`** by hand (including when the result is an object **view**).
 
 The product goal of this work is **one story**:
@@ -83,6 +83,7 @@ You generally **no longer need** a defensive `clone()` only so you can mutate:
 | **`get_object` / `get_object_with_uri`** | Result is a mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` still returns the entity/view so `reconcile_object` can diff — use `clone()` there if you also want a free-form mutable bag. |
 | **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
 | **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
+| **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** (not a deep clone of the whole graph); safer than the old full clone for #110-style multi-call hosts |
 
 Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
 
@@ -974,7 +975,7 @@ If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-ba
 
 ### Default values from `property_get` / `variable_get`
 
-The clone-on-return fix for mutable defaults (issue **#110**) landed on `develop` before this branch. On `mgg-develop`, dedicated Adaptive Script regression tests lock that behavior in: a default object or array returned for a missing property/variable is isolated so later mutations do not poison other calls (important in long-running hosts and model `on*` handlers).
+Mutable defaults for `property_get` / `variable_get` (issue **#110**) are isolated so later mutations do not poison other calls (important in long-running hosts and model `on*` handlers). On this branch, object/array defaults use a **memory face** (`afw_value_isolate_mutable_default`) rather than a full structural clone; scalars still clone. Regression tests in `property_get.as` / `variable_get.as` lock the isolation behavior.
 
 ### Tests under `src/*/tests`
 

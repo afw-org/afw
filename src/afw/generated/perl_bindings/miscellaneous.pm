@@ -231,7 +231,8 @@ Name of variable to check. Optionally qualifier::name.
 
 Return the value of a bound variable. Optional default applies only when the
 name is not bound — not when the value is undefined. If unbound and no default
-is given, the result is undefined. Mutable defaults are cloned.
+is given, the result is undefined. Object/array defaults get a mutable memory
+face (issues #110 / #17); other defaults are cloned.
 Get a bound variable value
 
 =head4 Parameters
@@ -242,7 +243,8 @@ Name of variable to get. Optionally qualifier::name.
 
     $defaultValue
 
-Value to return only if the name is not bound. Cloned when used.
+Value to return only if the name is not bound. Isolated when used
+(object/array face; otherwise clone).
 
 =head3 variable_is_not_null
 

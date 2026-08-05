@@ -21,6 +21,30 @@ assert(obj.TestString1 === "This is a test string.");
 
 return 0;
 
+//?
+//? test: retrieve_objects-mutable-face
+//? description: ...
+Issue #17: each retrieve_objects hit is a mutable face; mutate first list
+element and re-retrieve — store view must not keep face-only props.
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const list1: array = retrieve_objects("file", "TestObjectType1");
+const o1: object = list1[0];
+assert(o1.TestString1 === "This is a test string.");
+o1.TestString1 = "face-only";
+o1.marker = "from_retrieve_1";
+
+const list2: array = retrieve_objects("file", "TestObjectType1");
+const o2: object = list2[0];
+assert(o2.TestString1 === "This is a test string.",
+    "second retrieve must not see face mutation of first");
+assert(is_nullish(property_get(o2, "marker", null)),
+    "second retrieve must not see marker from first face");
+
+return 0;
+
 
 //? test: retrieve_objects_query_criteria_eq_double
 //? description: Test file adapter retrieve_objects with query criteria.

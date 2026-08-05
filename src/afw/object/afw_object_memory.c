@@ -110,6 +110,24 @@ afw_object_is_memory_wrapper(const afw_object_t *object)
 }
 
 
+
+/* Base under a face, or object if not a face. */
+AFW_DEFINE(const afw_object_t *)
+afw_object_memory_wrapper_base(const afw_object_t *object)
+{
+    const afw_object_internal_memory_object_t *self;
+
+    if (!object) {
+        return NULL;
+    }
+    if (object->inf != &impl_afw_object_inf) {
+        return object;
+    }
+    self = (const afw_object_internal_memory_object_t *)object;
+    return self->wrapped ? self->wrapped : object;
+}
+
+
 AFW_DEFINE(const afw_object_t *)
 afw_object_create_embedded(
     const afw_object_t *embedding_object,
@@ -312,12 +330,10 @@ impl_promote_structured_from_base(
 
     if (afw_value_is_object(value)) {
         nested_obj = ((const afw_value_object_t *)value)->internal;
-        if (!nested_obj ||
-            afw_object_is_immutable(nested_obj, xctx) ||
-            afw_object_is_memory_wrapper(nested_obj))
-        {
+        if (!nested_obj || afw_object_is_memory_wrapper(nested_obj)) {
             return value;
         }
+        /* Face even over immutable bases so local sets do not need clone. */
         wrap_obj = afw_object_create_wrapper_unmanaged(nested_obj,
             self->pub.p, xctx);
         afw_object_set_property((const afw_object_t *)self, property_name,
@@ -327,10 +343,7 @@ impl_promote_structured_from_base(
 
     if (afw_value_is_array(value)) {
         nested_arr = ((const afw_value_array_t *)value)->internal;
-        if (!nested_arr ||
-            afw_array_is_immutable(nested_arr, xctx) ||
-            afw_array_is_memory_wrapper(nested_arr))
-        {
+        if (!nested_arr || afw_array_is_memory_wrapper(nested_arr)) {
             return value;
         }
         wrap_arr = afw_array_create_wrapper_unmanaged(nested_arr,
