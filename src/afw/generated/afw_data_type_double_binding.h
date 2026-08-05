@@ -101,9 +101,16 @@ afw_value_permanent_double_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated double.
+ * @brief True if A_VALUE is an evaluated double value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_double_t *` (e.g. to read `.internal`).
+ * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, double)`.
+ * Not the same as "will evaluate to double" — see
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
+ * finished typed layout.
  */
 #define afw_value_is_double(A_VALUE) \
 ( \
@@ -112,9 +119,12 @@ afw_value_permanent_double_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of double.
+ * @brief True if A_VALUE is an evaluated array of double.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is double.
  */
 #define afw_value_is_array_of_double(A_VALUE) \
 ( \

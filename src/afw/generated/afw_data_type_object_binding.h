@@ -101,9 +101,16 @@ afw_value_permanent_object_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated object.
+ * @brief True if A_VALUE is an evaluated object value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_object_t *` (e.g. to read `.internal`).
+ * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, object)`.
+ * Not the same as "will evaluate to object" — see
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
+ * finished typed layout.
  */
 #define afw_value_is_object(A_VALUE) \
 ( \
@@ -112,9 +119,12 @@ afw_value_permanent_object_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of object.
+ * @brief True if A_VALUE is an evaluated array of object.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is object.
  */
 #define afw_value_is_array_of_object(A_VALUE) \
 ( \

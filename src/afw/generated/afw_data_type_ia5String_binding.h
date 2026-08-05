@@ -111,9 +111,16 @@ afw_value_permanent_ia5String_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated ia5String.
+ * @brief True if A_VALUE is an evaluated ia5String value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_ia5String_t *` (e.g. to read `.internal`).
+ * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, ia5String)`.
+ * Not the same as "will evaluate to ia5String" — see
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
+ * finished typed layout.
  */
 #define afw_value_is_ia5String(A_VALUE) \
 ( \
@@ -122,9 +129,12 @@ afw_value_permanent_ia5String_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of ia5String.
+ * @brief True if A_VALUE is an evaluated array of ia5String.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is ia5String.
  */
 #define afw_value_is_array_of_ia5String(A_VALUE) \
 ( \

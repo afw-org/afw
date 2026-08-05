@@ -111,9 +111,16 @@ afw_value_permanent_base64Binary_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated base64Binary.
+ * @brief True if A_VALUE is an evaluated base64Binary value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_base64Binary_t *` (e.g. to read `.internal`).
+ * Same as `AFW_VALUE_IS_DATA_TYPE(A_VALUE, base64Binary)`.
+ * Not the same as "will evaluate to base64Binary" — see
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE` for known produce type without a
+ * finished typed layout.
  */
 #define afw_value_is_base64Binary(A_VALUE) \
 ( \
@@ -122,9 +129,12 @@ afw_value_permanent_base64Binary_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of base64Binary.
+ * @brief True if A_VALUE is an evaluated array of base64Binary.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is base64Binary.
  */
 #define afw_value_is_array_of_base64Binary(A_VALUE) \
 ( \
