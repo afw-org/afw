@@ -6794,6 +6794,44 @@ const afw_value_t *
 afw_function_execute_while(
     afw_function_execute_t *x);
 
+/** @brief Function definition wrap_literal_object */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_wrap_literal_object;
+
+/**
+ * @brief Adaptive Function `wrap_literal_object`
+ * @param x function execute parameter.
+ *
+ * Evaluate an object value, create a memory object wrapper
+ * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
+ * an object value. Local property sets stay on the face; gets look through to
+ * the shared base. Intended for compile/runtime isolation of object literals
+ * (issue #17); not normal author surface syntax.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function wrap_literal_object(
+ *       object: object
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to evaluate and wrap (typically a constant object
+ *       literal once the compiler emits isolation).
+ *
+ * Returns:
+ *
+ *   (object) A new memory-wrapper object face over the evaluated base.
+ */
+const afw_value_t *
+afw_function_execute_wrap_literal_object(
+    afw_function_execute_t *x);
+
 /** @} */
 
 

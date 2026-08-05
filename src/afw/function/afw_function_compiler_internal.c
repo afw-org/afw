@@ -1326,6 +1326,55 @@ afw_function_execute_return(
 
 
 /*
+ * Adaptive function: wrap_literal_object
+ *
+ * afw_function_execute_wrap_literal_object
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Evaluate an object value, create a memory object wrapper
+ * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
+ * an object value. Local property sets stay on the face; gets look through to
+ * the shared base. Intended for compile/runtime isolation of object literals
+ * (issue #17); not normal author surface syntax.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function wrap_literal_object(
+ *       object: object
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to evaluate and wrap (typically a constant object
+ *       literal once the compiler emits isolation).
+ *
+ * Returns:
+ *
+ *   (object) A new memory-wrapper object face over the evaluated base.
+ */
+const afw_value_t *
+afw_function_execute_wrap_literal_object(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_object_t *wrap;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    wrap = afw_object_create_wrapper_unmanaged(object->internal, x->p, x->xctx);
+    return wrap->value;
+}
+
+
+
+/*
  * Adaptive function: switch
  *
  * afw_function_execute_switch
