@@ -44,6 +44,7 @@ impl_compile_check_list_pattern(
     const afw_value_t *elem;
     afw_size_t i;
 
+    /* Cast-safe evaluated array required to open entries (no array wrap yet). */
     if (!AFW_VALUE_IS_DATA_TYPE(value, array)) {
         return;
     }
@@ -102,6 +103,13 @@ impl_compile_check_object_pattern(
     const afw_value_type_t *type;
     const afw_utf8_t *name;
 
+    /*
+     * Evaluates to object (includes wrap_literal_object call). Then require a
+     * cast-safe evaluated object (after unwrap) to walk properties.
+     */
+    if (!AFW_VALUE_EVALUATES_TO_DATA_TYPE(value, object, parser->xctx)) {
+        return;
+    }
     value = impl_unwrap_wrap_literal_object(value);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
         return;

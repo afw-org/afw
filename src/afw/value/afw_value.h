@@ -802,11 +802,38 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
 
 
 
-/** @brief Test that the value in A_VALUE is an evaluated data type A_DATA_TYPE. */
+/**
+ * @brief Test that A_VALUE is already evaluated as data type A_DATA_TYPE.
+ *
+ * Uses `inf->is_evaluated_of_data_type` only: finished cast-safe
+ * `afw_value_<A_DATA_TYPE>_t` layout. Same contract as `afw_value_is_*()`.
+ * Does **not** use `get_data_type()` — see `AFW_VALUE_EVALUATES_TO_DATA_TYPE`
+ * for known produce/return type (e.g. calls such as wrap_literal_object).
+ */
 #define AFW_VALUE_IS_DATA_TYPE(A_VALUE,A_DATA_TYPE) \
 ( \
     (A_VALUE) && (A_VALUE)->inf->is_evaluated_of_data_type && \
     (A_VALUE)->inf->is_evaluated_of_data_type == afw_data_type_ ## A_DATA_TYPE \
+)
+
+
+
+/**
+ * @brief Test that A_VALUE evaluates to data type A_DATA_TYPE.
+ * @param A_VALUE value to test (may be unevaluated).
+ * @param A_DATA_TYPE unquoted data type id (e.g. object, string).
+ * @param xctx of caller (required by afw_value_get_data_type).
+ *
+ * Uses `afw_value_get_data_type()` — known type after evaluation when the
+ * value's inf can report it (evaluated values, calls with known return type,
+ * etc.). Not the same as `AFW_VALUE_IS_DATA_TYPE`, which requires a finished
+ * evaluated layout safe to cast.
+ */
+#define AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, A_DATA_TYPE, xctx) \
+( \
+    (A_VALUE) && \
+    afw_value_get_data_type((A_VALUE), (xctx)) == \
+        afw_data_type_ ## A_DATA_TYPE \
 )
 
 

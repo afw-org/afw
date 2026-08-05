@@ -1096,6 +1096,12 @@ impl_object_type_property_type(
 /**
  * @return true if value is an object literal (for excess-property checks).
  * @param open_keys set when keys are not fully static (skip excess).
+ *
+ * See through wrap_literal_object first so wrap(construct) still matches.
+ * Then require construct/expression IR or cast-safe evaluated object — not
+ * every call whose get_data_type is object (e.g. get_object). Use
+ * AFW_VALUE_IS_DATA_TYPE (not EVALUATES_TO) after unwrap: we need a walkable
+ * layout, not only a known produce type.
  */
 static afw_boolean_t
 impl_is_object_literal_for_excess(
@@ -1125,10 +1131,7 @@ impl_is_object_literal_for_excess(
         return true;
     }
 
-    /*
-     * Compile-time constant object literals evaluate to unmanaged objects
-     * while still being the direct RHS of const/let.
-     */
+    /* Compile-time constant object: finished cast-safe layout. */
     if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
         return true;
     }
@@ -1403,18 +1406,11 @@ afw_value_type_check_call_arg_object_literal(
     {
         return;
     }
-    value = impl_unwrap_wrap_literal_object(value);
-
-    /* Only unevaluated object constructs/expressions count as call-site literals. */
-    if (!afw_value_is_object_construct(value) &&
-        !afw_value_is_object_expression(value) &&
-        !AFW_VALUE_IS_DATA_TYPE(value, object))
-    {
-        return;
-    }
+    /* Constructs, expressions, wrap_literal_object / evaluated object literals. */
     if (!impl_is_object_literal_for_excess(value, &open_keys) || open_keys) {
         return;
     }
+    value = impl_unwrap_wrap_literal_object(value);
     impl_check_excess_properties(expected, value, what,
         AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) &&
             !AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx),
