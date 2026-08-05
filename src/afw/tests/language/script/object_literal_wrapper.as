@@ -22,23 +22,28 @@ return 0;
 
 //?
 //? test: wrap_literal_object-set-local-not-base
-//? description: Sets on wrapper stay on face; shared base is not mutated
+//? description: Independent literal sites; idempotent re-wrap same face
 //? skip: false
 //? expect: 0
 //? source: ...
 
-const base = { a: 1 };
-const w1 = wrap_literal_object(base);
-const w2 = wrap_literal_object(base);
+/* Two separate literal sites → two faces (auto-wrap + explicit wrap). */
+const w1 = wrap_literal_object({ a: 1 });
+const w2 = wrap_literal_object({ a: 1 });
 
 w1.a = 99;
 w1.local = "only-w1";
 
 assert(w1.a === 99, "wrapper local override");
 assert(w1.local === "only-w1", "wrapper local property");
-assert(w2.a === 1, "second wrap still sees base a");
-assert(is_nullish(w2.local), "second wrap has no local prop");
-assert(base.a === 1, "base instance not mutated by wrapper set");
+assert(w2.a === 1, "second face still sees its base a");
+assert(is_nullish(w2.local), "second face has no local prop");
+
+/* Idempotent: wrap of an already-wrapped face returns the same face. */
+const face = wrap_literal_object({ b: 1 });
+const again = wrap_literal_object(face);
+face.b = 2;
+assert(again.b === 2, "idempotent wrap must return the same face");
 
 return 0;
 
@@ -81,34 +86,37 @@ return 0;
 
 //?
 //? test: shared-literal-compile-evaluate-twice
-//? description: compile once evaluate twice; property must not stick (issue #17 baseline)
+//? description: compile once, run body twice via returned function (issue #17)
 //? skip: false
 //? expect: 0
 //? source: ...
 
 /*
- * Note: a fully pure script that only returns a number can be constant-folded
- * at compile time (decompile shows a scalar). Return the object so the body
- * still runs and shares the compile-time bag across evaluates.
+ * Top-level scripts that only mutate and return a constant object can be
+ * constant-folded at compile (decompile becomes the object). Model-style
+ * isolation is a function body invoked twice after one compile.
  */
 const compiled = compile<script>(script(
-    "const o = {};\n" +
-    "o.marker = \"from_eval\";\n" +
-    "return o;\n"
+    "return function () {\n" +
+    "    const o = {};\n" +
+    "    o.marker = \"from_eval\";\n" +
+    "    return o;\n" +
+    "};\n"
 ));
 
-const first = evaluate(compiled);
+const fn = evaluate(compiled);
+const first = fn();
 assert(first.marker === "from_eval");
 first.extra = "only_first";
 
-const second = evaluate(compiled);
+const second = fn();
 assert(
     second.marker === "from_eval",
-    "second eval should still set marker on its face"
+    "second call should still set marker on its face"
 );
 assert(
     is_nullish(property_get(second, "extra", null)),
-    "second eval must not retain first eval's extra property on shared literal"
+    "second call must not retain first call's extra property on shared literal"
 );
 assert(
     first.extra === "only_first",

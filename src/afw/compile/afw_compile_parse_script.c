@@ -65,6 +65,31 @@ impl_compile_check_list_pattern(
 
 
 
+/*
+ * See through compile-time wrap_literal_object(...) (issue #17) for pattern
+ * property type checks against the constant object argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_object(const afw_value_t *value)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            "wrap_literal_object") ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+
 static void
 impl_compile_check_object_pattern(
     afw_compile_parser_t *parser,
@@ -77,6 +102,7 @@ impl_compile_check_object_pattern(
     const afw_value_type_t *type;
     const afw_utf8_t *name;
 
+    value = impl_unwrap_wrap_literal_object(value);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
         return;
     }

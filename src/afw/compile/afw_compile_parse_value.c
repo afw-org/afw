@@ -665,6 +665,31 @@ afw_compile_parse_Object(
         afw_object_meta_set_meta_object(obj, _meta_, parser->xctx);
         result = afw_value_create_unmanaged_object(
             obj, parser->p, parser->xctx);
+
+        /*
+         * Top-level constant object literal in script/template: emit
+         * wrap_literal_object so each evaluation gets a mutable face over the
+         * shared compile-time bag (issue #17). Nested objects use embedding
+         * (saved embedding_object non-NULL) and are not wrapped here. JSON /
+         * relaxed_json stay unwrapped for conf and data documents.
+         */
+        if (!embedding_object &&
+            !parser->suppress_object_literal_wrap &&
+            (parser->compile_type == afw_compile_type_script ||
+                parser->compile_type == afw_compile_type_test_script ||
+                parser->compile_type == afw_compile_type_template))
+        {
+            const afw_value_t **wrap_argv;
+
+            wrap_argv = afw_pool_calloc(parser->p,
+                sizeof(afw_value_t *) * 2, parser->xctx);
+            wrap_argv[0] =
+                &afw_function_definition_wrap_literal_object.pub;
+            wrap_argv[1] = result;
+            result = afw_value_call_built_in_function_create(
+                afw_compile_create_contextual_to_cursor(start_offset),
+                1, wrap_argv, true, parser->p, parser->xctx);
+        }
     }
 
     /* Restore saved embedding object and property name. */

@@ -177,7 +177,7 @@ const d = decompile(compile<script>(script(
     "const {a, b} = {a: 1, b: 2};\nreturn b;"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",{a,b}),{\"a\":1,\"b\":2},undefined),return(b))");
+    "#block(const(#assignment_target(\"const\",{a,b}),wrap_literal_object({\"a\":1,\"b\":2}),undefined),return(b))");
 assert(evaluate(compile<script>(script(d))) == 2);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;
@@ -207,7 +207,7 @@ const d = decompile(compile<script>(script(
     "const {a: x, b = 3, ...r} = {a: 1, c: 4};\nreturn [x, b, r];"
 )));
 assert(d ==
-    "#block(const(#assignment_target(\"const\",{a:x,b=3,...r}),{\"a\":1,\"c\":4},undefined),return(array(x,b,r)))");
+    "#block(const(#assignment_target(\"const\",{a:x,b=3,...r}),wrap_literal_object({\"a\":1,\"c\":4}),undefined),return(array(x,b,r)))");
 assert(evaluate(compile<script>(script(d))) == [1, 3, {"c": 4}]);
 assert(decompile(compile<script>(script(d))) == d);
 return 0;

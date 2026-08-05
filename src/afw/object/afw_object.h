@@ -849,6 +849,17 @@ afw_object_create_wrapper_with_options(
 
 
 /**
+ * @brief True if object is a memory look-through wrapper face.
+ * @param object to test (may be NULL).
+ * @return true if create_wrapper_* produced this instance (has a wrapped base).
+ *
+ * Used by wrap_literal_object for idempotent wrap (issue #17).
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_object_is_memory_wrapper(const afw_object_t *object);
+
+
+/**
  * @brief Create a composite of immutable objects.
  * @param mutable true makes composite mutable.
  * @param p is pool for result.

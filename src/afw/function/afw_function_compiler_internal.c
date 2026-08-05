@@ -1373,6 +1373,15 @@ afw_function_execute_wrap_literal_object(
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
 
+    /*
+     * Idempotent: compiler is the normal producer of this call; double wrap
+     * (emit + explicit call, or nested call) returns the existing face.
+     * Cross-pool re-home is not required for that path.
+     */
+    if (afw_object_is_memory_wrapper(object->internal)) {
+        return (const afw_value_t *)object;
+    }
+
     wrap = afw_object_create_wrapper_unmanaged(object->internal, x->p, x->xctx);
     return wrap->value;
 }

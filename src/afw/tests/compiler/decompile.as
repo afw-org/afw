@@ -268,7 +268,7 @@ let s = decompile(compile<script>(script(
     'const o = {a: 1};\nreturn o["a"];'
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",o),{\"a\":1},undefined),return(o[\"a\"]))");
+    "#block(const(#assignment_target(\"const\",o),wrap_literal_object({\"a\":1}),undefined),return(o[\"a\"]))");
 
 s = decompile(compile<script>(script(
     "const a = [10, 20];\nreturn a[1];"
@@ -351,7 +351,7 @@ s = decompile(compile<script>(script(
     "const {a, b} = {a: 1, b: 2};\nreturn a;"
 )));
 assert(s ==
-    "#block(const(#assignment_target(\"const\",{a,b}),{\"a\":1,\"b\":2},undefined),return(a))");
+    "#block(const(#assignment_target(\"const\",{a,b}),wrap_literal_object({\"a\":1,\"b\":2}),undefined),return(a))");
 
 return 0;
 

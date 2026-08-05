@@ -330,6 +330,31 @@ impl_type_is_type_assignable(
 
 /* ---------- value inspection helpers ---------- */
 
+/*
+ * See through compile-time wrap_literal_object(...) (issue #17) so type
+ * excess / shape checks still see the constant object argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_object(const afw_value_t *value)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            "wrap_literal_object") ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+
 static const afw_value_t *
 impl_get_typed_object_property(
     const afw_value_t *value,
@@ -343,6 +368,7 @@ impl_get_typed_object_property(
     const afw_value_t *found;
 
     *has_open_props = false;
+    value = impl_unwrap_wrap_literal_object(value);
 
     if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
         obj = ((const afw_value_object_t *)value)->internal;
@@ -1080,6 +1106,7 @@ impl_is_object_literal_for_excess(
     const afw_value_object_construct_entry_t *e;
 
     *open_keys = false;
+    value = impl_unwrap_wrap_literal_object(value);
 
     if (afw_value_is_object_construct(value)) {
         construct = (const afw_value_object_construct_t *)value;
@@ -1128,6 +1155,8 @@ impl_foreach_object_literal_prop(
     const afw_value_t *pv;
     const afw_value_object_construct_t *construct;
     const afw_value_object_construct_entry_t *e;
+
+    value = impl_unwrap_wrap_literal_object(value);
 
     if (afw_value_is_object_construct(value)) {
         construct = (const afw_value_object_construct_t *)value;
@@ -1374,9 +1403,12 @@ afw_value_type_check_call_arg_object_literal(
     {
         return;
     }
+    value = impl_unwrap_wrap_literal_object(value);
+
     /* Only unevaluated object constructs/expressions count as call-site literals. */
     if (!afw_value_is_object_construct(value) &&
-        !afw_value_is_object_expression(value))
+        !afw_value_is_object_expression(value) &&
+        !AFW_VALUE_IS_DATA_TYPE(value, object))
     {
         return;
     }

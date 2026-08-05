@@ -507,7 +507,15 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
 
     result = NULL;
     if (untrusted_qualified_variables) {
-        AFW_VALUE_ASSERT_IS_DATA_TYPE(untrusted_qualified_variables, object, xctx);
+        /*
+         * Second argument of evaluate() may be wrap_literal_object(...) or
+         * other unevaluated form (issue #17). Evaluate to a finished object
+         * before cast / property walk.
+         */
+        untrusted_qualified_variables = afw_value_evaluate(
+            untrusted_qualified_variables, p, xctx);
+        AFW_VALUE_ASSERT_IS_DATA_TYPE(untrusted_qualified_variables, object,
+            xctx);
 
         top = afw_xctx_qualifier_stack_top_get(xctx);
         AFW_TRY {

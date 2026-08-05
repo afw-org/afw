@@ -89,6 +89,21 @@ afw_object_create_wrapper_with_options(
 }
 
 
+
+/* True if object is a memory look-through wrapper (has wrapped base). */
+AFW_DEFINE(afw_boolean_t)
+afw_object_is_memory_wrapper(const afw_object_t *object)
+{
+    const afw_object_internal_memory_object_t *self;
+
+    if (!object || object->inf != &impl_afw_object_inf) {
+        return false;
+    }
+    self = (const afw_object_internal_memory_object_t *)object;
+    return self->wrapped != NULL;
+}
+
+
 AFW_DEFINE(const afw_object_t *)
 afw_object_create_embedded(
     const afw_object_t *embedding_object,
