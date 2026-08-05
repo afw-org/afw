@@ -237,6 +237,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 **Status:** pointer / **beta-relevant**
 
 - Umbrella **#2** (memory). Working design pad: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
+- **#17 mutable object faces** (shared instances: literals, bind, defaults #110, later adapter returns). Branch `issue-#17-object-literals-immutable`. Pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md). User framing (in progress): **`whats-new.md`**. Direction: memory **create_wrapper** + emit **`wrap_literal_object`** calls.
 - **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats-new.md`.
   - Another reason **memory management / managed release / long-running escape** needs to be solid **before calling the tree beta**: scripts that snapshot often (or hold results) will stress pools and lifetimes harder than `qualifier::name` get.
   - Do **not** treat #9 as “done for beta” solely because the API exists; couple with #2 progress and real long-running exercise if tools use snapshots heavily.

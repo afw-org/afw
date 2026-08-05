@@ -50,8 +50,51 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**`variable_exists` bound vs value (#131)**](#variable_exists-bound-vs-undefined-issue-131) | `variable_exists` is **bound** (true for uninit / undefined); `variable_get` default only if **not bound**; light function briefs |
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
+| [**Mutable object faces (#17, in progress)**](#mutable-object-faces-issue-17-in-progress) | **Draft / landing on branch** — objects you work with (literals, binds, later adapter returns) should feel like **your** mutable face, not a shared bag; less surprise vs ES; less need for manual `clone()` |
 
 ---
+
+## Mutable object faces (issue #17, in progress)
+
+> **Status:** Work is active on branch `issue-#17-object-literals-immutable` (off `mgg-develop`). This section is **user-facing framing** for the theme as it lands. Not everything below is on `mgg-develop` yet. When slices merge, keep this section honest (partial vs done) or fold bullets into Highlights only after they ship. Maintainer design pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md).
+
+### What problem this is about
+
+Adaptive Script often hands you an **object** that is really a **shared instance** under the hood:
+
+- The same **object literal** `{…}` in a function or loop can be **one bag** reused across evaluations, so mutating it “sticks” the next time.
+- **Binding** a literal into `const` / `let` / Patterns historically **cloned** as a safety net.
+- **Defaults** on helpers such as `property_get` / `variable_get` **clone** mutable defaults for the same class of reason (issue **#110**).
+- **Built-ins** that return objects (`get_object`, retrieve paths, …) may return a **view or shared face**; authors from an **ECMAScript** background often expect “I got an object → I can mutate it and it is mine,” and end up calling **`clone()`** by hand.
+
+The product goal of this work is **one story**, not only “freeze literals”:
+
+> When you work with an object in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time bag, or the shared base the platform still owns.
+
+Under the hood that face is a **look-through memory wrapper** (local sets; get falls through to a shared base; nested objects can be promoted on get). Authors do not need to learn that API for the happy path.
+
+### What you should notice over time (as slices land)
+
+- **Fewer “shared bag” surprises** with object values that come from literals and common script paths.
+- **Closer to ES intuition** for “this object is mine to mutate” in those paths — without pretending every adapter return is a free write-through to the store.
+- **`clone()` remains** for explicit **deep** copies and cases where the platform still returns a shared view until that path is converted.
+- **`const` stays binding-level** — not “deep freeze the whole tree.” Use `freeze` when you want immutability.
+
+### What this is *not* (yet / by design)
+
+- Not a promise that **every** built-in return is already wrapped on day one — adapter returns and list-of-objects paths may land later under the same theme.
+- Not full **array** isolation in the first slices (same pattern is planned).
+- Not replacing intentional **immutability** (`freeze`) or **deep** `clone()` where you need them.
+
+### Migration / habits
+
+- Prefer relying on platform isolation once a path is documented as fixed; drop redundant manual `clone()` only after you confirm that path.
+- If you mutate something that is still a **shared view** (until that built-in is converted), you may still need `clone()` or an explicit mutable face.
+- Out-of-tree commands/extensions: only need rebuild if public C/object APIs they link change; pure script authors follow behavior notes as slices ship.
+
+---
+
+[↑ Highlights](#highlights)
 
 ## Function reference prototypes (#28 spelling)
 
@@ -986,6 +1029,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | `afw --allow` + YAML block strings / integers | #14 (closed) | regression tests on `mgg-develop` |
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
 | Adaptive Script types | #28 (open; core shipped) | issue-#28 / #145 line on `mgg-develop` |
+| Mutable object faces (shared instances) | #17 (open; in progress) | `issue-#17-object-literals-immutable` (framing in this file + `designs/issue-17-mutable-object-faces.md`) |
 
 ---
 

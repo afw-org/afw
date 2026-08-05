@@ -30,6 +30,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`pragma-hash-design.md`](pragma-hash-design.md) | **`#` design** — pragma vs compiler-internal; Pattern B `#compile` |
 | [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) | Decompile emit vs `#…` accept checklist + tests |
 | [`compile-contextual-audit.md`](compile-contextual-audit.md) | call_create / type-check contextual inventory (NULL policy) |
+| [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) | **#17** — shared mutable objects / mutable faces (literals, bind, defaults, adapter returns); branch notes |
 
 ## Conventions
 
