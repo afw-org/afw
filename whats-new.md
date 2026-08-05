@@ -50,7 +50,7 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**`variable_exists` bound vs value (#131)**](#variable_exists-bound-vs-undefined-issue-131) | `variable_exists` is **bound** (true for uninit / undefined); `variable_get` default only if **not bound**; light function briefs |
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
-| [**Mutable object faces (#17, in progress)**](#mutable-object-faces-issue-17-in-progress) | **Draft / landing on branch** — objects you work with (literals, binds, later adapter returns) should feel like **your** mutable face, not a shared bag; less surprise vs ES; less need for manual `clone()` |
+| [**Mutable object faces (#17, in progress)**](#mutable-object-faces-issue-17-in-progress) | **Draft / landing on branch** — literals, binds, and adapter **get/retrieve/callback** give a **mutable face**; drop many manual `clone()` calls |
 
 ---
 
@@ -60,37 +60,50 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 
 ### What problem this is about
 
-Adaptive Script often hands you an **object** that is really a **shared instance** under the hood:
+Adaptive Script often hands you an **object** that is really a **shared instance** or a **non-bag impl** under the hood:
 
-- The same **object literal** `{…}` in a function or loop can be **one bag** reused across evaluations, so mutating it “sticks” the next time.
+- The same **object or array literal** in a function or loop can be **one bag** reused across evaluations, so mutating it “sticks” the next time.
 - **Binding** a literal into `const` / `let` / Patterns historically **cloned** as a safety net.
 - **Defaults** on helpers such as `property_get` / `variable_get` **clone** mutable defaults for the same class of reason (issue **#110**).
-- **Built-ins** that return objects (`get_object`, retrieve paths, …) may return a **view or shared face**; authors from an **ECMAScript** background often expect “I got an object → I can mutate it and it is mine,” and end up calling **`clone()`** by hand.
+- **Adapter get/retrieve** may return a **view** or other clever, low-cost object implementation (not a plain mutable memory bag). Authors from an **ECMAScript** background expect “I got an object → I can set properties,” and often wrap the call in **`clone()`** by hand (including when the result is an object **view**).
 
-The product goal of this work is **one story**, not only “freeze literals”:
+The product goal of this work is **one story**:
 
-> When you work with an object in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time bag, or the shared base the platform still owns.
+> When you work with an object (or array) in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time bag, or the shared base the platform still owns — and without needing `clone()` just to set a property.
 
-Under the hood that face is a **look-through memory wrapper** (local sets; get falls through to a shared base; nested objects can be promoted on get). Authors do not need to learn that API for the happy path.
+Under the hood that face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays can be promoted on get). Authors do not need to call a wrap API for the happy path.
 
-### What you should notice over time (as slices land)
+### Where you can drop manual `clone()` (on this branch)
 
-- **Fewer “shared bag” surprises** with object values that come from literals and common script paths.
-- **Closer to ES intuition** for “this object is mine to mutate” in those paths — without pretending every adapter return is a free write-through to the store.
-- **`clone()` remains** for explicit **deep** copies and cases where the platform still returns a shared view until that path is converted.
-- **`const` stays binding-level** — not “deep freeze the whole tree.” Use `freeze` when you want immutability.
+You generally **no longer need** a defensive `clone()` only so you can mutate:
 
-### What this is *not* (yet / by design)
+| Path | Notes |
+|------|--------|
+| **Object / array literals** in script (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
+| **`get_object` / `get_object_with_uri`** | Result is a mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` still returns the entity/view so `reconcile_object` can diff — use `clone()` there if you also want a free-form mutable bag. |
+| **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
+| **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
 
-- Not a promise that **every** built-in return is already wrapped on day one — adapter returns and list-of-objects paths may land later under the same theme.
-- Not full **array** isolation in the first slices (same pattern is planned).
-- Not replacing intentional **immutability** (`freeze`) or **deep** `clone()` where you need them.
+Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
+
+### Still use `clone()` when
+
+- You want an explicit **deep** independent copy of a whole graph.
+- You mutate something from a path that is **not** converted yet (see below).
+- You need a full snapshot for other reasons.
+
+### What this is *not* / still open
+
+- **`retrieve_*_to_response` / `_to_stream`** — write/encode only; no script-owned face (and no need for `clone()` there).
+- **Journal entry returns** from add/modify/replace/… — already fresh memory “receipts”; not store rows.
+- **Journal category getters** (`journal_get_*`) — same face idea later if needed; not this adapter slice.
+- **`const` stays binding-level** — not deep freeze. Use **`freeze`** for immutability.
+- Faces are **not** “write-through to the adapter store”; change persistence still goes through add/modify/replace/update.
 
 ### Migration / habits
 
-- Prefer relying on platform isolation once a path is documented as fixed; drop redundant manual `clone()` only after you confirm that path.
-- If you mutate something that is still a **shared view** (until that built-in is converted), you may still need `clone()` or an explicit mutable face.
-- Out-of-tree commands/extensions: only need rebuild if public C/object APIs they link change; pure script authors follow behavior notes as slices ship.
+- After this ships on your branch/build, drop redundant `clone()` around **get_object / retrieve / callback** and literal isolation paths once you confirm behavior.
+- Out-of-tree commands/extensions: rebuild if they link object/array face APIs; pure script authors follow this section.
 
 ---
 

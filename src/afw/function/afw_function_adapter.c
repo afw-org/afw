@@ -38,6 +38,32 @@ impl_create_journal_entry(const afw_value_object_t *journal,
 
     return journal_entry;
 }
+
+
+
+/*
+ * Mutable memory face for objects script will hold (issue #17).
+ * Covers view / exotic / shared adapter impls so authors need not clone()
+ * before set. Idempotent if already a face. Not used for stream/response
+ * write paths or fresh journal-entry receipts.
+ */
+static const afw_object_t *
+impl_script_face_object(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!object) {
+        return NULL;
+    }
+    if (afw_object_is_memory_wrapper(object)) {
+        return object;
+    }
+    return afw_object_create_wrapper_unmanaged(object, p, xctx);
+}
+
+
+
 /* Used by retrieve_objects*() */
 typedef struct impl_retrieve_cb_ctx_s {
     const afw_pool_t *p;
@@ -65,8 +91,15 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
 
     abort = false;
     if (object) {
+        const afw_object_t *face;
+
         p = (object->p) ? object->p : ctx->p;
         /** @fixme Need corresponding releases. See issue #127. */
+        /*
+         * Face for script (materialized array or user callback). Stream /
+         * response CBs do not use this helper.
+         */
+        face = impl_script_face_object(object, ctx->p, xctx);
         if (ctx->array) {
             /*
              * Bound memory for materializing retrieve_objects /
@@ -82,11 +115,11 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
             }
             afw_object_get_reference(object, xctx);
             afw_array_push_value(ctx->array,
-                afw_value_create_unmanaged_object(object, ctx->p, xctx), xctx);
+                afw_value_create_unmanaged_object(face, ctx->p, xctx), xctx);
         }
         else {
             ctx->argv[0] = ctx->objectCallback;
-            ctx->argv[1] = afw_value_create_unmanaged_object(object, p, xctx);
+            ctx->argv[1] = afw_value_create_unmanaged_object(face, p, xctx);
             ctx->argv[2] = ctx->userData;
             if (!ctx->call) {
                 ctx->call = afw_value_call_create(ctx->contextual,
@@ -901,6 +934,14 @@ afw_function_execute_get_object(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
+    /*
+     * Face for normal script mutate (issue #17). Skip when reconcilable:
+     * reconcile_object diffs against meta reconcilable and needs the
+     * adapter/view entity, not an empty look-through face.
+     */
+    if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
+        obj = impl_script_face_object(obj, x->p, x->xctx);
+    }
     return afw_value_create_unmanaged_object(obj, x->p, x->xctx);
 }
 
@@ -1000,6 +1041,9 @@ afw_function_execute_get_object_with_uri(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
+    if (!AFW_OBJECT_OPTION_IS(object_options, reconcilable)) {
+        obj = impl_script_face_object(obj, x->p, x->xctx);
+    }
     return afw_value_create_unmanaged_object(obj, x->p, x->xctx);
 }
 

@@ -85,6 +85,12 @@ afw_object_create_wrapper_with_options(
     self = (afw_object_internal_memory_object_t *)
         afw_object_create_with_options(options, p, xctx);
     self->wrapped = wrapped;
+    /*
+     * Carry meta (path, objectId, reconcilable, …) onto the face so
+     * meta(face) matches the adapter entity. Property gets still look
+     * through to wrapped for bag content.
+     */
+    afw_object_meta_clone_and_set((const afw_object_t *)self, wrapped, xctx);
     return (const afw_object_t *)self;
 }
 
