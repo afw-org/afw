@@ -87,13 +87,57 @@ No special value kind. Compiler will emit a **call** to this function, like othe
 
 1. ~~Memory `create_wrapper_*`~~  
 2. ~~`wrap_literal_object` + tests~~  
-3. Compiler emit + auto-isolate tests  
-4. Revisit assign/pattern clone  
-5. Arrays  
-6. Built-in returns  
-7. Defaults  
-8. YAML if needed  
-9. Issue rename + finalize whats-new on `mgg-develop`  
+3. ~~Baseline: remove object clone-on-bind (arrays still clone)~~ — see below  
+4. Compiler emit + auto-isolate tests  
+5. Revisit assign/pattern **array** clone  
+6. Arrays isolation  
+7. Built-in returns  
+8. Defaults  
+9. YAML if needed  
+10. Issue rename + finalize whats-new on `mgg-develop`  
+
+---
+
+## Baseline: object clone-on-bind removed (working tree)
+
+**Change:** `impl_assign` + `afw_function_script_assign_pattern` clone **arrays only**; objects only evaluate.
+
+**`afwdev test -j --srcdir-pattern afw`** (after `--cdev`):
+
+| | |
+|--|--|
+| Passed | 3183 |
+| Failed | **1** |
+| Skipped | 182 |
+
+### Failures (baseline without object clone-on-bind)
+
+| Location | Sub-tests / notes |
+|----------|-------------------|
+| `miscellaneous/property_get.as` | `property_get-issue-110-onGetObject-shape` |
+| `language/script/object_literal_wrapper.as` | **13 red** isolation cases (below); **3 green** explicit `wrap_literal_object` |
+
+**Isolation cases in `object_literal_wrapper.as` (all expect fail until real fix):**
+
+- `shared-literal-function-two-calls` — const + mutate, two calls  
+- `shared-literal-let-two-calls` — let variant  
+- `shared-literal-return-mutate` — `return {}` then mutate  
+- `shared-literal-nested-object` — nested `{ child: { n: 0 } }`  
+- `shared-literal-nested-assign-empty` — `y.z = {}` residual  
+- `shared-literal-param-default` — `function f(o = {})`  
+- `shared-literal-param-pattern-default` — `{ bag } = { bag: { n: 0 } }`  
+- `shared-literal-object-pattern-bind` — `const { x } = { x: { n: 0 } }`  
+- `shared-literal-loop-calls` — loop residual property  
+- `shared-literal-lambda-two-calls` — lambda body  
+- `shared-literal-empty-property-exists` — empty `{}` + extra prop  
+- `shared-literal-compile-evaluate-twice` — compile once, evaluate twice  
+- `shared-literal-compiled-function-two-calls` — model **on*** style  
+
+**Pitfall:** pure top-level script returning only a number may **constant-fold**; prefer return object or call a function twice.
+
+### Takeaway
+
+These reds are the intentional gate for object-literal isolation (not array bind-clone, still temporary).  
 
 ---
 

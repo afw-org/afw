@@ -111,7 +111,11 @@ afw_function_script_assign_pattern(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (afw_value_is_object(value) || afw_value_is_array(value)) {
+    /*
+     * Arrays: still clone-on-bind (temporary). Objects: no clone — issue #17
+     * baseline so shared object literals surface in tests.
+     */
+    if (afw_value_is_array(value)) {
         value = afw_value_clone(value, p, xctx);
     }
     else if (value && !afw_value_is_undefined(value)) {
@@ -419,8 +423,9 @@ impl_assignment_target(
 
 /*
  * Call this without value being evaluated so that the need for a clone can
- * be determined. Evaluated objects and lists need to be cloned so they can
- * potentially be modified. If needed, value will be evaluated.
+ * be determined. Evaluated arrays are still cloned so they can potentially
+ * be modified (temporary). Object clone-on-bind removed for issue #17
+ * baseline. If needed, value will be evaluated.
  */
 static const afw_value_t *
 impl_assign(
@@ -432,7 +437,7 @@ impl_assign(
 {
     const afw_value_assignment_target_t *at;
 
-    if (afw_value_is_object(value) || afw_value_is_array(value))
+    if (afw_value_is_array(value))
     {
         value = afw_value_clone(value, p, xctx);
     }
