@@ -59,6 +59,13 @@ struct afw_object_internal_memory_object_s {
         apr_hash_t *properties_ht;
     };
 
+    /*
+     * Optional base for look-through gets (NULL for a normal memory object).
+     * Local properties shadow this object; sets never write to it.
+     * See afw_object_create_wrapper_with_options().
+     */
+    const afw_object_t *wrapped;
+
     afw_boolean_t immutable;
     afw_boolean_t clone_on_set;
     afw_boolean_t unmanaged;

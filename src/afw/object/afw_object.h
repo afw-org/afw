@@ -789,6 +789,66 @@ afw_object_create_with_options(
 
 
 /**
+ * @brief Create a memory object that wraps another object (look-through).
+ * @param options as defined by AFW_OBJECT_MEMORY_OPTION_* defines.
+ * @param wrapped base object for property look-through. Required (non-NULL).
+ * @param p to use based on options.
+ * @param xctx of caller.
+ * @return instance of new wrapper object.
+ *
+ * The result is a normal memory object whose local properties start empty.
+ * Gets search local properties first, then @p wrapped. Sets only affect the
+ * wrapper. Mutable object property values resolved from @p wrapped are
+ * promoted to a nested wrapper on the first get and stored on the wrapper
+ * so the shared base is not mutated through nested access.
+ *
+ * Array values are not promoted yet (objects only).
+ */
+AFW_DECLARE(const afw_object_t *)
+afw_object_create_wrapper_with_options(
+    int options,
+    const afw_object_t *wrapped,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create a managed memory wrapper over another object.
+ * @param wrapped base object for property look-through.
+ * @param p parent pool (a subpool is created for the wrapper).
+ * @param xctx of caller.
+ * @return instance of new wrapper object.
+ */
+#define afw_object_create_wrapper(wrapped, p, xctx) \
+    afw_object_create_wrapper_with_options( \
+        AFW_OBJECT_MEMORY_OPTION_managed, wrapped, p, xctx)
+
+
+/**
+ * @brief Create an unmanaged memory wrapper over another object.
+ * @param wrapped base object for property look-through.
+ * @param p pool that controls the wrapper lifetime.
+ * @param xctx of caller.
+ * @return instance of new wrapper object.
+ */
+#define afw_object_create_wrapper_unmanaged(wrapped, p, xctx) \
+    afw_object_create_wrapper_with_options( \
+        AFW_OBJECT_MEMORY_OPTION_unmanaged, wrapped, p, xctx)
+
+
+/**
+ * @brief Create a memory wrapper that cedes control of pool p.
+ * @param wrapped base object for property look-through.
+ * @param p pool ceded to the wrapper.
+ * @param xctx of caller.
+ * @return instance of new wrapper object.
+ */
+#define afw_object_create_wrapper_cede_p(wrapped, p, xctx) \
+    afw_object_create_wrapper_with_options( \
+        AFW_OBJECT_MEMORY_OPTION_managed_cede_p, wrapped, p, xctx)
+
+
+/**
  * @brief Create a composite of immutable objects.
  * @param mutable true makes composite mutable.
  * @param p is pool for result.

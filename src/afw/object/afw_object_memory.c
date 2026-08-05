@@ -59,8 +59,32 @@ afw_object_create_with_options(
     //FIXME self->clone_on_set = AFW_OBJECT_MEMORY_OPTION_IS(options, clone_on_set);
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
+    /* self->wrapped is NULL (calloc). */
 
     /* Return new object. */
+    return (const afw_object_t *)self;
+}
+
+
+/* Create memory object that looks through to a wrapped base. */
+AFW_DEFINE(const afw_object_t *)
+afw_object_create_wrapper_with_options(
+    int options,
+    const afw_object_t *wrapped,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_memory_object_t *self;
+
+    if (!wrapped) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_object_create_wrapper_with_options requires a wrapped object",
+            xctx);
+    }
+
+    self = (afw_object_internal_memory_object_t *)
+        afw_object_create_with_options(options, p, xctx);
+    self->wrapped = wrapped;
     return (const afw_object_t *)self;
 }
 
@@ -206,6 +230,81 @@ impl_afw_object_get_count(
 
 
 /*
+ * Look up a local property only (no wrapped look-through, no promote).
+ * Deleted entries (NULL value) are skipped for match purposes: a NULL value
+ * marks a deleted local property that does not fall through to wrapped.
+ */
+static const afw_value_t *
+impl_get_local_property(
+    AFW_OBJECT_SELF_T *self,
+    const afw_utf8_t *property_name,
+    afw_boolean_t *found_local,
+    afw_xctx_t *xctx)
+{
+    afw_object_internal_name_value_entry_t *e;
+
+    *found_local = false;
+
+    for (e = self->first_property; e; e = e->next) {
+        if (afw_utf8_equal(e->name, property_name)) {
+            *found_local = true;
+            return e->value;
+        }
+    }
+    return NULL;
+}
+
+
+/* True if name is present on the local list (including deleted). */
+static afw_boolean_t
+impl_has_local_property_name(
+    AFW_OBJECT_SELF_T *self,
+    const afw_utf8_t *property_name,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t found_local;
+
+    impl_get_local_property(self, property_name, &found_local, xctx);
+    return found_local;
+}
+
+
+/*
+ * If value is a mutable object and this wrapper is mutable, create a nested
+ * wrapper, store it on self (shadowing base), and return the wrap value.
+ * Arrays are not promoted yet.
+ */
+static const afw_value_t *
+impl_promote_mutable_object_from_base(
+    AFW_OBJECT_SELF_T *self,
+    const afw_utf8_t *property_name,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *nested;
+    const afw_object_t *wrap;
+
+    if (!value || self->immutable || !afw_value_is_object(value)) {
+        return value;
+    }
+
+    nested = ((const afw_value_object_t *)value)->internal;
+    if (!nested || afw_object_is_immutable(nested, xctx)) {
+        return value;
+    }
+
+    /*
+     * Nested wrapper lives in this object's pool (unmanaged) so its lifetime
+     * matches the embedding wrapper without an extra managed subpool.
+     */
+    wrap = afw_object_create_wrapper_unmanaged(nested, self->pub.p, xctx);
+    afw_object_set_property((const afw_object_t *)self, property_name,
+        wrap->value, xctx);
+    return wrap->value;
+}
+
+
+/*
  * Implementation of method get_property of interface afw_object.
  */
 const afw_value_t *
@@ -214,25 +313,39 @@ impl_afw_object_get_property(
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
-    /** @fixme Add parent support. */
-
     const afw_value_t *value;
-    afw_object_internal_name_value_entry_t *e;
+    afw_boolean_t found_local;
 
-    value = NULL;
-
-    /* Search property list. */
-    for (value = NULL, e = self->first_property; e; e = e->next) {
-        if (afw_utf8_equal(e->name, property_name)) {
-            value = e->value;
-            break;
-        }
+    /* Local properties shadow wrapped (including deleted → not found). */
+    value = impl_get_local_property(self, property_name, &found_local, xctx);
+    if (found_local) {
+        return value;
     }
 
-    /* Return value. */
-    return value;
+    /* Look through to wrapped base. */
+    if (!self->wrapped) {
+        return NULL;
+    }
+
+    value = afw_object_get_property(self->wrapped, property_name, xctx);
+    if (!value) {
+        return NULL;
+    }
+
+    /* Promote mutable nested objects onto this wrapper (objects only). */
+    return impl_promote_mutable_object_from_base(self, property_name, value,
+        xctx);
 }
 
+
+
+/* Iterator when self->wrapped is set: local first, then wrapped (skip local). */
+typedef struct {
+    AFW_OBJECT_SELF_T *self;
+    afw_boolean_t on_wrapped;
+    afw_object_internal_name_value_entry_t *local_e;
+    const afw_iterator_t *wrapped_iterator;
+} impl_memory_wrapped_iterator_t;
 
 
 /*
@@ -246,38 +359,89 @@ impl_afw_object_get_next_property(
     afw_xctx_t *xctx)
 {
     afw_object_internal_name_value_entry_t *e;
+    impl_memory_wrapped_iterator_t *wit;
+    const afw_value_t *value;
+    const afw_utf8_t *name;
 
-    /* If iterator is NULL, get first. */
-    if (!*iterator) {
-        e = self->first_property;
-    }
-
-    /* If iterator is not NULL, get next. */
-    else {
-        e = (afw_object_internal_name_value_entry_t *)*iterator;
-        e = e->next;
-    }
-
-    /* Skip any deleted properties. */
-    for (; e && !e->value; e = e->next);
-
-    /* Set iterator to entry. */
-    *iterator = (afw_iterator_t *)e;
-
-    /* If e NULL, return not found. */
-    if (!e)
-    {
-        if (property_name) {
-            *property_name = NULL;
+    /* Fast path: no wrapped base — original list walk. */
+    if (!self->wrapped) {
+        if (!*iterator) {
+            e = self->first_property;
         }
-        return NULL;
+        else {
+            e = (afw_object_internal_name_value_entry_t *)*iterator;
+            e = e->next;
+        }
+
+        for (; e && !e->value; e = e->next);
+
+        *iterator = (afw_iterator_t *)e;
+
+        if (!e) {
+            if (property_name) {
+                *property_name = NULL;
+            }
+            return NULL;
+        }
+
+        if (property_name) {
+            *property_name = e->name;
+        }
+        return e->value;
     }
 
-    /* Return entries property name and value. */
-    if (property_name) {
-        *property_name = e->name;
+    /* Wrapper path: allocate iterator state on first call. */
+    if (!*iterator) {
+        wit = afw_pool_calloc_type(self->pub.p,
+            impl_memory_wrapped_iterator_t, xctx);
+        wit->self = self;
+        wit->on_wrapped = false;
+        wit->local_e = self->first_property;
+        wit->wrapped_iterator = NULL;
+        *iterator = (const afw_iterator_t *)wit;
     }
-    return e->value;
+    else {
+        wit = (impl_memory_wrapped_iterator_t *)*iterator;
+    }
+
+    /* Local properties first (skip deleted). */
+    if (!wit->on_wrapped) {
+        e = wit->local_e;
+        for (; e && !e->value; e = e->next);
+        if (e) {
+            wit->local_e = e->next;
+            if (property_name) {
+                *property_name = e->name;
+            }
+            return e->value;
+        }
+        wit->on_wrapped = true;
+        wit->wrapped_iterator = NULL;
+    }
+
+    /* Then wrapped names not present locally; promote mutable objects. */
+    for (;;) {
+        name = NULL;
+        value = afw_object_get_next_property(self->wrapped,
+            &wit->wrapped_iterator, &name, xctx);
+        if (!value) {
+            *iterator = NULL;
+            if (property_name) {
+                *property_name = NULL;
+            }
+            return NULL;
+        }
+
+        if (impl_has_local_property_name(self, name, xctx)) {
+            continue;
+        }
+
+        value = impl_promote_mutable_object_from_base(self, name, value, xctx);
+        if (property_name) {
+            *property_name = name;
+        }
+        return value;
+    }
 }
 
 
@@ -292,12 +456,19 @@ impl_afw_object_has_property(
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
+    afw_boolean_t found_local;
 
-    /* Search for property.  If found, set exists to true. */
-    value = impl_afw_object_get_property(self, property_name, xctx);
+    /* Do not promote on has — only test presence. */
+    value = impl_get_local_property(self, property_name, &found_local, xctx);
+    if (found_local) {
+        return (value) ? AFW_TRUE : AFW_FALSE;
+    }
 
-    /* Return true or false. */
-    return (value) ? AFW_TRUE : AFW_FALSE;
+    if (self->wrapped) {
+        return afw_object_has_property(self->wrapped, property_name, xctx);
+    }
+
+    return AFW_FALSE;
 }
 
 
