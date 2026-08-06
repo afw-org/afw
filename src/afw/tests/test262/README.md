@@ -51,9 +51,35 @@ official** ones for this suite and for language tests in general:
 | **`differences`** | Optional. **Language** differences between ECMAScript and Adaptive for the construct under test only. Not harness wrapping. Good future harvest input for differences docs. |
 | **`expect`** | Expected result (`0`, `error`, …) |
 | **`skip`** | `true` / `false` — do not run |
-| **`skipReason`** | Why skipped. Include **`FIXME`** when Adaptive should fix or decide; omit FIXME for deliberate non-support. |
+| **`skipReason`** | Why skipped (see prefixes below) |
 | **`source`** | Adaptive Script body of the case |
 | **`sourceType`** | Usually `script` (file-level default OK) |
+
+#### Suggested `skipReason` prefixes
+
+Not enforced by the compiler — a shared vocabulary so bulk reviews and
+harvests stay consistent. Prefer a **prefix + short clause**:
+
+| Prefix | Use when |
+|--------|----------|
+| **`Incompatible:`** | Never plan to convert (generators, `class`, prototypes, typed arrays via `new`, full ES iterator exotics, …) |
+| **`FIXME:`** | Adaptive should fix or decide; stays on the burn-down list |
+| **`Deferred:`** | Plausible later, not current priority |
+| **`Harness:`** | Rare — blocked by runner/adaptation limits, not language (prefer fixing harness instead) |
+
+Examples:
+
+```text
+//? skipReason: Incompatible: ES generators / function*
+//? skipReason: Incompatible: String.fromCharCode and prototype string APIs
+//? skipReason: FIXME: for-of member LHS (x.y)
+//? skipReason: FIXME: TDZ for for-of head const binding
+//? skipReason: Deferred: deep TCO; not planned for beta
+```
+
+Plain **`Incompatible`** with no detail is fine for a bulk first pass; enrich
+when you touch the file. Do **not** use `Incompatible` for “not yet” features
+that Adaptive might still implement — use **`FIXME:`** or **`Deferred:`**.
 
 Suggested order when several are present:
 

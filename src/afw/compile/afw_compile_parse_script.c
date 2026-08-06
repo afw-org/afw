@@ -2313,8 +2313,9 @@ impl_test_script_get_next_key_value(
  *# Skip when the case is not ready to run (or permanently out of scope).
  * TestSkip ::= TestScriptLineStart 'skip:' ( 'true' | 'false' ) '\n'
  *
- *# Why skip is true. Include "FIXME" when Adaptive should fix or decide;
- *# omit FIXME for deliberate non-support / out of scope.
+ *# Why skip is true. Suggested prefixes (convention): Incompatible: never
+ *# convert; FIXME: Adaptive should fix/decide; Deferred: later; Harness: rare
+ *# runner limit. See src/afw/tests/test262/README.md.
  * TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
  *
  *# Default is script or the one specified in TestScriptDefinition

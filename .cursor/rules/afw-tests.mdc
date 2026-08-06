@@ -39,9 +39,20 @@ agree:
 | **`differences`** | Optional ES vs Adaptive **language** delta for the construct under test (not harness) |
 | **`expect`** | Expected outcome (`0`, `error`, …) |
 | **`skip`** | `true` / `false` |
-| **`skipReason`** | Why skipped; include **`FIXME`** if Adaptive should fix or decide |
+| **`skipReason`** | Why skipped; suggested prefixes below |
 | **`source`** | Case body |
 | **`sourceType`** | Usually `script` |
+
+**Suggested `skipReason` prefixes** (convention, not enforced):
+
+| Prefix | Meaning |
+|--------|---------|
+| **`Incompatible:`** | Never plan to convert |
+| **`FIXME:`** | Adaptive should fix or decide |
+| **`Deferred:`** | Later, not current priority |
+| **`Harness:`** | Runner/adaptation limit (rare) |
+
+Examples: `Incompatible: ES generators / function*`; `FIXME: for-of member LHS (x.y)`; `Deferred: deep TCO`. Full notes: `src/afw/tests/test262/README.md`.
 
 Typical case skeleton:
 
@@ -51,7 +62,7 @@ Typical case skeleton:
 //? description: What this case checks
 //? differences: Optional ES vs Adaptive language note
 //? skip: false
-//? skipReason: If skip true — why; FIXME if we should fix
+//? skipReason: Incompatible: … / FIXME: … / Deferred: …
 //? expect: 0
 //? source: ...
 
