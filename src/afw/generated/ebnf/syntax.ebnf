@@ -1032,7 +1032,21 @@ U ::= '\u' ( ( HexDigit HexDigit HexDigit HexDigit ) |
 String ::= '"' Char* '"'
 
 Char ::= [^\#x0-#x20] | '\"' | "\'" | '\`' | "\\" | '\/' |
-        '\b' | '\f' | '\n' | '\r' | '\t' | U
+        '\b' | '\f' | '\n' | '\r' | '\t' | '\v' | '\0' |
+        '\x' HexDigit HexDigit | U | NonEscapeSequence |
+        LineContinuation
+/* LineContinuation: backslash + line terminator contributes no characters.   */
+
+LineContinuation ::= '\' ( #x0A | #x0D #x0A? | LS | PS )
+/* NonEscapeSequence: backslash + a character that is not a recognized        */
+/* escape introducer; the character is taken as itself (e.g. \A → A).         */
+/* Digits 1-9 after backslash are not identity escapes (reserved for          */
+/* legacy octal, which Adaptive does not implement).                          */
+
+NonEscapeSequence ::= '\' ( #x00-#xFF - ( EscapeIntroducer | [1-9] |
+    #x0A | #x0D ) )
+
+EscapeIntroducer ::= [bfnrtv'"\`/ux0]
 
 UnicodeCodePoint ::= #x0-#x10FFFF
 
@@ -1056,10 +1070,17 @@ BinaryIntegerLiteral ::= '0' ('b' | 'B' ) BinaryDigit+
 HexIntegerLiteral ::= '0' ('x' | 'X' ) HexDigit+
 
 OctalIntegerLiteral ::= '0' ('o' | 'O' ) OctalDigit+
-/* Infinity, INF and NaN are not allowed in strict mode.                      */
 
-Double ::= '-'? ( ( DecimalIntegerLiteral '.' [0-9]+ ([eE] [+-]? [0-9]+)? ) |
-   'Infinity' | 'INF' | 'NaN' )
+ExponentPart ::= [eE] [+-]? [0-9]+
+/* Infinity, INF and NaN are not allowed in strict mode.                      */
+/* Decimal / double forms match ECMAScript DecimalLiteral: leading-dot        */
+/* (e.g. .5, .1e1), trailing-dot (e.g. 1., 1.e10), and full fraction.         */
+
+Double ::= '-'? (
+    DecimalIntegerLiteral '.' [0-9]* ExponentPart? |
+    '.' [0-9]+ ExponentPart? |
+    DecimalIntegerLiteral ExponentPart? |
+    'Infinity' | 'INF' | 'NaN' )
 
 /* From afw_compile_lexical.c                                                 */
 /* Unicode identifier categories (ECMAScript ID_Start / ID_Continue).         */

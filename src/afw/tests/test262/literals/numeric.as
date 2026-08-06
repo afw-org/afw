@@ -1020,11 +1020,9 @@ if (9E0 !== 9.0) {
 
 //? test: S7.8.3_A2.1_T1
 //? description: Use .DecimalDigit
-//? expect: error:Parse error at offset 69 around line 6 column 5: Expecting Value
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0 !== 0.0) {
@@ -1079,11 +1077,9 @@ if (.9 !== 0.9) {
 
 //? test: S7.8.3_A2.1_T2
 //? description: Use .DecimalDigits
-//? expect: error:Parse error at offset 69 around line 6 column 5: Expecting Value
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.00 !== 0.00) {
@@ -1138,11 +1134,9 @@ if (.99 !== 0.99) {
 
 //? test: S7.8.3_A2.1_T3
 //? description: Use .DecimalDigits that have at the end zeros
-//? expect: error:Parse error at offset 69 around line 6 column 5: Expecting Value
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.00 !== 0.0) {
@@ -1198,14 +1192,8 @@ if (.90 !== 0.9) {
 //? test: S7.8.3_A2.2_T1
 //? description: "ExponentPart :: e DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0e1 !== 0.0) {
@@ -1261,14 +1249,8 @@ if (.9e1 !== 9.0) {
 //? test: S7.8.3_A2.2_T2
 //? description: "ExponentPart :: E DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0E1 !== 0.0) {
@@ -1324,14 +1306,8 @@ if (.9E1 !== 9.0) {
 //? test: S7.8.3_A2.2_T3
 //? description: "ExponentPart :: e +DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0e-1 !== 0.0) {
@@ -1387,14 +1363,8 @@ if (.9e-1 !== 0.09) {
 //? test: S7.8.3_A2.2_T4
 //? description: "ExponentPart :: E +DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0E-1 !== 0.0) {
@@ -1450,14 +1420,8 @@ if (.9E-1 !== 0.09) {
 //? test: S7.8.3_A2.2_T5
 //? description: "ExponentPart :: e +DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0e+1 !== 0.0) {
@@ -1513,14 +1477,8 @@ if (.9e+1 !== 9.0) {
 //? test: S7.8.3_A2.2_T6
 //? description: "ExponentPart :: E +DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0E+1 !== 0.0) {
@@ -1576,14 +1534,8 @@ if (.9E+1 !== 9.0) {
 //? test: S7.8.3_A2.2_T7
 //? description: "ExponentPart :: e 0"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0e0 !== 0.0) {
@@ -1639,14 +1591,8 @@ if (.9e0 !== 0.9) {
 //? test: S7.8.3_A2.2_T8
 //? description: "ExponentPart :: E 0"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
-implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (.0E0 !== 0.0) {
@@ -1702,12 +1648,8 @@ if (.9E0 !== 0.9) {
 //? test: S7.8.3_A3.1_T1
 //? description: "DecimalIntegerLiteral :: 0, NoNZeroDigit"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or not?
 
 //CHECK#0
 if (0. !== 0.0) {
@@ -1763,12 +1705,8 @@ if (9. !== 9.0) {
 //? test: S7.8.3_A3.1_T2
 //? description: "DecimalIntegerLiteral :: NoNZeroDigit DecimalDigigts"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme implement these or no?
 
 //CHECK#1
 if (11. !== 11.0) {
@@ -1993,12 +1931,8 @@ if (9.9 !== 9.9) {
 //? test: S7.8.3_A3.3_T1
 //? description: "ExponentPart :: e DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.e1 !== 0.0) {
@@ -2054,12 +1988,8 @@ if (9.e1 !== 90.0) {
 //? test: S7.8.3_A3.3_T2
 //? description: "ExponentPart :: E DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.E1 !== 0.0) {
@@ -2115,12 +2045,8 @@ if (9.E1 !== 90.0) {
 //? test: S7.8.3_A3.3_T3
 //? description: "ExponentPart :: e -DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.e-1 !== 0.0) {
@@ -2176,12 +2102,8 @@ if (9.e-1 !== 0.9) {
 //? test: S7.8.3_A3.3_T4
 //? description: "ExponentPart :: E -DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.E-1 !== 0.0) {
@@ -2237,12 +2159,8 @@ if (9.E-1 !== 0.9) {
 //? test: S7.8.3_A3.3_T5
 //? description: "ExponentPart :: e +DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.e+1 !== 0.0) {
@@ -2298,12 +2216,8 @@ if (9.e+1 !== 90.0) {
 //? test: S7.8.3_A3.3_T6
 //? description: "ExponentPart :: E +DecimalDigits"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.E+1 !== 0.0) {
@@ -2359,12 +2273,8 @@ if (9.E+1 !== 90.0) {
 //? test: S7.8.3_A3.3_T7
 //? description: "ExponentPart :: e 0"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.e0 !== 0.0) {
@@ -2420,12 +2330,8 @@ if (9.e0 !== 9.0) {
 //? test: S7.8.3_A3.3_T8
 //? description: "ExponentPart :: E 0"
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should these be legal exponent expressions?
 
 //CHECK#0
 if (0.E0 !== 0.0) {

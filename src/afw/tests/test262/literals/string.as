@@ -207,11 +207,9 @@ assert('\377', '\xff' ===  '\\377');
 
 //? test: line-continuation-double
 //? description: line-continuation-double
-//? expect: error:Parse error at offset 87 around line 6 column 8: Invalid escape code
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme support these?
 
 // LineTerminatorSequence :: <LF>
 assert("\
@@ -236,11 +234,9 @@ assert("\
 
 //? test: line-continuation-single
 //? description: line-continuation-single
-//? expect: error:Parse error at offset 87 around line 6 column 8: Invalid escape code
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme support these?
 
 // LineTerminatorSequence :: <LF>
 assert('\
@@ -607,14 +603,8 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? test: S7.8.4_A4.2_T2
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 //CHECK#A-Z
 if ("A" !== "\A") {
@@ -744,14 +734,8 @@ for (let index = 0; index <= 17; index = index + 1) {
 //? test: S7.8.4_A4.2_T4
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 //CHECK#a-z without b, f, n, r, t, v, x, u
 
@@ -851,14 +835,8 @@ for (let index = 0; index <= 32; index = index + 1) {
 //? test: S7.8.4_A4.2_T6
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 //CHECK#А-Я
 
@@ -1017,14 +995,8 @@ for (let index = 0; index <= 32; index = index + 1) {
 //? test: S7.8.4_A4.2_T8
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 
 //CHECK#а-я
@@ -1238,14 +1210,8 @@ if (String.fromCharCode(0x0000) !== "\0") {
 //? test: S7.8.4_A5.1_T2
 //? description: "\"\\u0000\""
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 //CHECK#1
 if ("\u0000" !== "\0") {
@@ -1256,14 +1222,8 @@ if ("\u0000" !== "\0") {
 //? test: S7.8.4_A5.1_T3
 //? description: "\"\\x00\""
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 //CHECK#1
 if ("\x00" !== "\0") {
@@ -1364,14 +1324,8 @@ if ("\x0F" !== String.fromCharCode("15")) {
 //? test: S7.8.4_A6.1_T2
 //? description: "HexEscapeSequence ::  ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 //CHECK#A-Z
 let hex = ["\x41", "\x42", "\x43", "\x44", "\x45", "\x46", "\x47", "\x48", "\x49", "\x4A", "\x4B", "\x4C", "\x4D", "\x4E", "\x4F", "\x50", "\x51", "\x52", "\x53", "\x54", "\x55", "\x56", "\x57", "\x58", "\x59", "\x5A"];
@@ -1386,14 +1340,8 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? test: S7.8.4_A6.1_T3
 //? description: "HexEscapeSequence ::  ENGLISH SMALL ALPHABET"
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: NonEscapeSequence identity escapes (backslash + letter equals
-letter) not decided
 //? source: ...
 #!/usr/bin/env afw
-
-// \fixme should we recognize these escape sequences as valid?
 
 //CHECK#a-z
 let hex = ["\x61", "\x62", "\x63", "\x64", "\x65", "\x66", "\x67", "\x68", "\x69", "\x6A", "\x6B", "\x6C", "\x6D", "\x6E", "\x6F", "\x70", "\x71", "\x72", "\x73", "\x74", "\x75", "\x76", "\x77", "\x78", "\x79", "\x7A"];

@@ -629,7 +629,23 @@ error:
  * String ::= '"' Char* '"'
  *
  * Char ::= [^\#x0-#x20] | '\"' | "\'" | '\`' | "\\" | '\/' |
- *         '\b' | '\f' | '\n' | '\r' | '\t' | U
+ *         '\b' | '\f' | '\n' | '\r' | '\t' | '\v' | '\0' |
+ *         '\x' HexDigit HexDigit | U | NonEscapeSequence |
+ *         LineContinuation
+ *
+ *# LineContinuation: backslash + line terminator contributes no characters.
+ *
+ * LineContinuation ::= '\' ( #x0A | #x0D #x0A? | LS | PS )
+ *
+ *# NonEscapeSequence: backslash + a character that is not a recognized
+ *# escape introducer; the character is taken as itself (e.g. \A → A).
+ *# Digits 1-9 after backslash are not identity escapes (reserved for
+ *# legacy octal, which Adaptive does not implement).
+ *
+ * NonEscapeSequence ::= '\' ( #x00-#xFF - ( EscapeIntroducer | [1-9] |
+ *     #x0A | #x0D ) )
+ *
+ * EscapeIntroducer ::= [bfnrtv'"\`/ux0]
  *
  * UnicodeCodePoint ::= #x0-#x10FFFF
  *
@@ -643,12 +659,15 @@ error:
  * characters. Input string must begin with either a single or double quote.
  * Whichever one is used, it must be escaped if contained within the string.
  * The binary value of control characters is allowed in the string as well
- * as the escaped form.  \uxxxx and utf16be surrogates are supported.
+ * as the escaped form.  \uxxxx, \xHH, \0, identity NonEscapeSequence, and
+ * utf16be surrogates are supported.
  */
 static void
 impl_parse_String(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t quot, o;
+    afw_size_t save_cursor;
+    int hi, lo;
 
     /* Clear array used for building string. */
     apr_array_clear(parser->s);
@@ -710,12 +729,81 @@ impl_parse_String(afw_compile_parser_t *parser)
                 APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_VT;
                 break;
 
+            case '0':
+                /*
+                 * Null escape \0 when not followed by a digit. Digits after
+                 * \0 would be legacy octal, which Adaptive does not support.
+                 */
+                afw_compile_save_cursor(save_cursor);
+                o = afw_compile_get_octet(parser);
+                if (!afw_compile_is_at_eof() && o >= '0' && o <= '9') {
+                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                }
+                afw_compile_restore_cursor(save_cursor);
+                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = 0;
+                break;
+
+            case 'x':
+                /* HexEscapeSequence \xHH (exactly two hex digits). */
+                hi = impl_get_HexDigit(parser);
+                lo = impl_get_HexDigit(parser);
+                if (hi < 0 || lo < 0) {
+                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                }
+                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) =
+                    (afw_utf8_octet_t)((hi << 4) | lo);
+                break;
+
             case 'u':
                 impl_parse_u(parser);
                 break;
 
             default:
-                AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                /*
+                 * LineContinuation: backslash + LineTerminatorSequence
+                 * contributes no characters (ES string grammar).
+                 *   LF / CR / CR LF / LS (U+2028) / PS (U+2029)
+                 */
+                if (o == AFW_ASCII_LF) {
+                    break;
+                }
+                if (o == AFW_ASCII_CR) {
+                    afw_compile_save_cursor(save_cursor);
+                    o = afw_compile_get_octet(parser);
+                    if (afw_compile_is_at_eof() || o != AFW_ASCII_LF) {
+                        afw_compile_restore_cursor(save_cursor);
+                    }
+                    break;
+                }
+                /* UTF-8 LS E2 80 A8, PS E2 80 A9 */
+                if ((afw_utf8_octet_t)o == (afw_utf8_octet_t)0xE2) {
+                    afw_compile_save_cursor(save_cursor);
+                    hi = -1;
+                    lo = -1;
+                    if (!afw_compile_is_at_eof()) {
+                        hi = (int)(unsigned char)
+                            afw_compile_get_octet(parser);
+                        if (!afw_compile_is_at_eof()) {
+                            lo = (int)(unsigned char)
+                                afw_compile_get_octet(parser);
+                        }
+                    }
+                    if (hi == 0x80 && (lo == 0xA8 || lo == 0xA9)) {
+                        break;
+                    }
+                    afw_compile_restore_cursor(save_cursor);
+                    /* fall through: identity of first octet 0xE2 */
+                }
+                /*
+                 * NonEscapeSequence / identity escape: backslash + letter
+                 * (or other non-special octet) yields that octet. Digits
+                 * 1-9 are not identity escapes.
+                 */
+                if (o >= '1' && o <= '9') {
+                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                }
+                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = o;
+                break;
             }
         }
 
@@ -756,10 +844,18 @@ impl_parse_String(afw_compile_parser_t *parser)
  *
  * OctalIntegerLiteral ::= '0' ('o' | 'O' ) OctalDigit+
  *
+ * ExponentPart ::= [eE] [+-]? [0-9]+
+ *
  *# Infinity, INF and NaN are not allowed in strict mode.
  *
- * Double ::= '-'? ( ( DecimalIntegerLiteral '.' [0-9]+ ([eE] [+-]? [0-9]+)? ) |
- *    'Infinity' | 'INF' | 'NaN' )
+ *# Decimal / double forms match ECMAScript DecimalLiteral: leading-dot
+ *# (e.g. .5, .1e1), trailing-dot (e.g. 1., 1.e10), and full fraction.
+ *
+ * Double ::= '-'? (
+ *     DecimalIntegerLiteral '.' [0-9]* ExponentPart? |
+ *     '.' [0-9]+ ExponentPart? |
+ *     DecimalIntegerLiteral ExponentPart? |
+ *     'Infinity' | 'INF' | 'NaN' )
  *
  *<<<ebnf*/
 /*
@@ -871,6 +967,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     afw_boolean_t is_negative;
     afw_boolean_t is_integer;
     afw_boolean_t is_zero;
+    afw_boolean_t leading_dot;
     afw_utf8_octet_t o;
     afw_code_point_t cp;
 
@@ -879,6 +976,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     is_negative = false;
     is_integer = true;
     is_zero = true;
+    leading_dot = false;
 
     /* Determine if negative and handle reserved identifiers. */
     o = afw_compile_get_octet(parser);
@@ -914,48 +1012,71 @@ impl_parse_number(afw_compile_parser_t *parser)
         afw_compile_restore_cursor(start_offset);
     }
 
-    /* Parse integer part and prescan floating point part. */
-    do {
-        o = afw_compile_get_octet(parser);
+    o = afw_compile_get_octet(parser);
 
-        /* Number can't end here. */
-        if (afw_compile_is_at_eof()) {
+    /* Number can't end here. */
+    if (afw_compile_is_at_eof()) {
+        goto error;
+    }
+
+    /*
+     * Leading-dot form: '.' DecimalDigits ExponentPart?
+     * (e.g. .5, .1e1). Digits after the dot are required.
+     */
+    if (o == '.') {
+        leading_dot = true;
+        is_integer = false;
+        o = afw_compile_get_octet(parser);
+        if (afw_compile_is_at_eof() || o < '0' || o > '9') {
             goto error;
         }
-
-        /* Can be '0' or digits'1'-'9' followed by additional digits '0'-'9'. */
-        if (o >= '1' && o <= '9') {
+        if (o != '0') {
             is_zero = false;
-            /* Sum digits as a negative number.  Negative is one larger. */
-            negative = -(o - '0');
-            for (;;) {
-                o = afw_compile_get_octet(parser);
-                if (afw_compile_is_at_eof()) {
-                    break;
-                }
-                if (o < '0' || o > '9') {
-                    parser->cursor--;
-                    break;
-                }
-                if (negative < AFW_INTEGER_MIN / 10)
-                {
-                    AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
-                }
-                negative = (negative * 10);
-                if (negative < AFW_INTEGER_MIN + (o - '0'))
-                {
-                    AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
-                }
-                negative -= (o - '0');
-            }
         }
-        else if (o == '0') {
+        for (;;) {
             o = afw_compile_get_octet(parser);
             if (afw_compile_is_at_eof()) {
                 break;
             }
-
-            /* Decimal literal can not start with a '0'. */
+            if (o < '0' || o > '9') {
+                parser->cursor--;
+                break;
+            }
+            if (o != '0') {
+                is_zero = false;
+            }
+        }
+    }
+    /* Can be '0' or digits '1'-'9' followed by additional digits '0'-'9'. */
+    else if (o >= '1' && o <= '9') {
+        is_zero = false;
+        /* Sum digits as a negative number.  Negative is one larger. */
+        negative = -(o - '0');
+        for (;;) {
+            o = afw_compile_get_octet(parser);
+            if (afw_compile_is_at_eof()) {
+                break;
+            }
+            if (o < '0' || o > '9') {
+                parser->cursor--;
+                break;
+            }
+            if (negative < AFW_INTEGER_MIN / 10)
+            {
+                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+            }
+            negative = (negative * 10);
+            if (negative < AFW_INTEGER_MIN + (o - '0'))
+            {
+                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+            }
+            negative -= (o - '0');
+        }
+    }
+    else if (o == '0') {
+        o = afw_compile_get_octet(parser);
+        if (!afw_compile_is_at_eof()) {
+            /* Decimal literal can not start with a multi-digit '0…'. */
             if (o >= '0' && o <= '9') {
                 goto error;
             }
@@ -991,36 +1112,25 @@ impl_parse_number(afw_compile_parser_t *parser)
                 }
             }
 
-            /* Parse as double or decimal integer. */
+            /* Put back for fraction / exponent scan. */
             parser->cursor--;
         }
-        else {
-            goto error;
-        }
+    }
+    else {
+        goto error;
+    }
 
-        /* Number is an integer if at end of eof. */
-        if (afw_compile_is_at_eof()) {
-            break;
-        }
-
-        /* Next can be an optional period followed by digits '0'-'9'. */
+    /*
+     * Optional fraction after integer part: '.' DecimalDigits?
+     * Trailing-dot forms (1., 1.e10) are allowed; digits are optional.
+     */
+    if (!leading_dot && !afw_compile_is_at_eof()) {
         o = afw_compile_get_octet(parser);
-        if (afw_compile_is_at_eof()) {
-            break;
-        }
         if (o != '.') {
             parser->cursor--;
         }
         else {
             is_integer = false;
-            o = afw_compile_get_octet(parser);
-            /* Number can't end here. */
-            if (afw_compile_is_at_eof() || o < '0' || o > '9') {
-                goto error;
-            }
-            if (o != '0') {
-                is_zero = false;
-            }
             for (;;) {
                 o = afw_compile_get_octet(parser);
                 if (afw_compile_is_at_eof()) {
@@ -1035,16 +1145,12 @@ impl_parse_number(afw_compile_parser_t *parser)
                 }
             }
         }
+    }
 
-        /* Number can end here. */
-        if (afw_compile_is_at_eof()) {
-            break;
-        }
-
-        /*
-         * Next can be an 'e' or 'E' followed by optional '-' or '+' followed
-         * by digits '0' - '9'.
-         */
+    /*
+     * Optional ExponentPart: 'e' or 'E', optional sign, one or more digits.
+     */
+    if (!afw_compile_is_at_eof()) {
         o = afw_compile_get_octet(parser);
         if (o != 'e' && o != 'E') {
             parser->cursor--;
@@ -1064,7 +1170,9 @@ impl_parse_number(afw_compile_parser_t *parser)
             }
 
             /* Number can't end here. */
-            if (afw_compile_is_at_eof() || o < '0' || o > '9') goto error;
+            if (afw_compile_is_at_eof() || o < '0' || o > '9') {
+                goto error;
+            }
 
             /* Skip digits. */
             for (;;) {
@@ -1078,7 +1186,7 @@ impl_parse_number(afw_compile_parser_t *parser)
                 }
             }
         }
-    } while (0);
+    }
 
     /*
      * If is_integer (no '.', 'e', or 'E'), return integer.
@@ -1102,7 +1210,7 @@ impl_parse_number(afw_compile_parser_t *parser)
 
 
     /*
-     * Not integer, create a double value. Use atof to convert number if it
+     * Not integer, create a double value. Use strtod to convert number if it
      * is not zero.
      */
     if (is_negative)
@@ -1483,6 +1591,8 @@ impl_unescaped(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t o;
     afw_code_point_t cp, cp2;
+    afw_size_t save_cursor;
+    int hi, lo;
 
     /* If escape, get next octet and break if eof.*/
     o = afw_compile_get_octet(parser);
@@ -1525,6 +1635,27 @@ impl_unescaped(afw_compile_parser_t *parser)
         cp = AFW_ASCII_VT;
         break;
 
+    case '0':
+        /* Null escape \0 when not followed by a digit. */
+        afw_compile_save_cursor(save_cursor);
+        o = afw_compile_get_octet(parser);
+        if (!afw_compile_is_at_eof() && o >= '0' && o <= '9') {
+            goto error;
+        }
+        afw_compile_restore_cursor(save_cursor);
+        cp = 0;
+        break;
+
+    case 'x':
+        /* HexEscapeSequence \xHH. */
+        hi = impl_get_HexDigit(parser);
+        lo = impl_get_HexDigit(parser);
+        if (hi < 0 || lo < 0) {
+            goto error;
+        }
+        cp = (afw_code_point_t)((hi << 4) | lo);
+        break;
+
     case 'u':
         /* Code point for /uxxxx. */
         cp =
@@ -1552,7 +1683,12 @@ impl_unescaped(afw_compile_parser_t *parser)
         break;
 
     default:
-        goto error;
+        /* Identity NonEscapeSequence for non-digit characters. */
+        if (o >= '1' && o <= '9') {
+            goto error;
+        }
+        cp = o;
+        break;
     }
 
     return cp;
@@ -1806,7 +1942,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         }
         break;
 
-    /* . and ... */
+    /* ., leading-dot number (.5, .1e1), and ... */
     case '.':
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
@@ -1818,6 +1954,13 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
             else {
                 afw_compile_restore_cursor(temp_cursor);
                 parser->token->type = afw_compile_token_type_period;
+            }
+        }
+        else if (cp2 >= '0' && cp2 <= '9') {
+            /* Leading-dot decimal / double literal. */
+            afw_compile_restore_cursor(entry_cursor);
+            if (!impl_parse_number(parser)) {
+                AFW_COMPILE_THROW_ERROR_Z("Invalid number");
             }
         }
         else {

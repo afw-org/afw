@@ -16,8 +16,8 @@ Use this to pick **a few** converts later. Prefer cases that need a small Adapti
 | **4** | **for-of temporal-dead-zone head / member LHS** | Real gaps; decide implement vs document permanent | 2 | `head-const-bound-names-fordecl-tdz`, `head-lhs-member` (member done) |
 | **5** | **Temporal dead zone / self-init** | Adaptive: no temporal dead zone (undefined); opaque `closure_binding` errors → **#35/#2** or Adaptive `differences` | 3 | const/let self-init cases |
 | **6** | **const reassignment errors** | Opaque errors on `const` assign in for / for-of | 2 | `const/syntax.as` for head + for-of body |
-| **7** | **Leading-dot numerics** | Single product decision: support `.1e1` **or** rebucket **Incompatible** | 8 | `literals/numeric.as` `S7.8.3_A2.2_T*` |
-| **8** | **String NonEscapeSequence** | Decide `\A === "A"` (and friends) or permanent non-support | 8 | `literals/string.as` `S7.8.4_A4.2_T2` etc. |
+| **7** | **Leading-dot numerics** | ~~Decide~~ **Done** — ES DecimalLiteral (`.5`, `.1e1`, `1.`, `1.e10`) | 8+ | `literals/numeric.as` `S7.8.3_A2.*` / `A3.*` |
+| **8** | **String NonEscapeSequence** | ~~Decide~~ **Done** — identity `\A`, plus `\xHH` / `\0` | 8 | `literals/string.as` `S7.8.4_A4.2_*` / `A5.1_*` / `A6.1_*` |
 | **9** | **for-of string iteration** | ES code-unit / code-point walk vs one whole-string step — **#22** / product | 2 | `string-bmp`, `string-astral` |
 | **10** | **try `cptn-*` completion** | ES completion values; large rewrite, lower beta urgency | 7 | `statements/try.as` `cptn-*` |
 | **11** | **Arithmetic IEEE / coercion batch** | Many skips; need Adaptive `is_NaN` / double cases **without** `Number`/`Math`/`valueOf` | ~26 + related | `modulus.as`, `division.as`, `subtraction.as` (many labeled IEEE rewrite) |
@@ -55,6 +55,8 @@ Do **not** try to “finish” those in a test262 labeling pass without #35/#2 d
 | **const assign** | `const` reassignment | **Fixed in C** (`read_only` / clear message); for-of body + classic for update tests unskipped |
 | **no temporal dead zone (Adaptive)** | self-init `let x = x` etc. | Converted to Adaptive semantics + `differences` |
 | **for-of const + closures** | `head-const-fresh-binding-per-iteration` | **skip+FIXME (#35 / #2)**; `expect: 0` desired — not `expect: error` stand-in |
+| **7 leading-dot / trailing-dot numerics** | `numeric.as` `A2.1_*`, `A2.2_*`, `A3.1_*`, `A3.3_*` | **Fixed in C** (`impl_parse_number` + `.` token); unskipped / false-green expects fixed |
+| **8 string NonEscape / `\x` / `\0` / line-continuation** | `string.as` `A4.2_T2/T4/T6/T8`, `A5.1_T2/T3`, `A6.1_T2/T3`, `line-continuation-*` | **Fixed in C** (identity, hex, null, `\`+LT); fromCharCode cases stay **Incompatible** |
 
 ## Theme inventory (all FIXME)
 
@@ -62,9 +64,9 @@ Do **not** try to “finish” those in a test262 labeling pass without #35/#2 d
 |-------|---:|-------|
 | Arithmetic / IEEE / coercion rewrite | 26 | Mostly modulus/division/subtraction; half still need Adaptive operators, not ES objects |
 | Half-converted / other rewrite | 16 | Numeric forms, try, switch, void, ASI |
-| String escapes / line terminators | 11 | NonEscapeSequence + raw LT in strings |
+| String escapes / line terminators | ~3 | Remaining: fromCharCode / other rewrite (NonEscape + `\x`/`\0` done) |
 | for-of | 10 | Errors, TDZ, member LHS, string iteration, newline ASI-ish |
-| Numeric leading-dot | 8 | `.0e1` family |
+| Numeric leading-dot | 0 | Done (ES DecimalLiteral forms) |
 | try/catch completion (`cptn-*`) | 7 | ES completion model |
 | Exponentiation edges | 5 | −∞ / −0 / non-integer |
 | Operators / eval order / `??=` / fn name | 4 | Side-effect order, binding id |
