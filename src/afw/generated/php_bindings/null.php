@@ -94,28 +94,6 @@ class null
     }
 
     /**
-     * null()
-     *
-     * Converts value to data type null returning null result.
-     *
-     * @param  $value Value to convert
-     *
-     * @return void Converted value
-     */
-    public function null(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "null");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * to_string_null()
      *
      * Converts null value to string. For array values, the to_string() value

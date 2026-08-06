@@ -19,6 +19,11 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 - Do **not** call an adaptive object a “bag” or “property bag” in new rules, docs, designs, or chat. Residual comments/APIs may still say “bag” (old polymorphic names, decompile, “bag of paths”); that is **legacy**, not the object model.
 - **Meta** is sideband (`object->meta` / meta APIs), not a normal property. Map content types may spell meta on the wire as `"_meta_"` — a serialization convention, not “meta is a bag property.”
 
+## Prose and chat (plain language)
+- Prefer **clear words and short phrases** over casual acronyms in chat, commits, designs, handbook, tests, and comments **when a short phrase is enough**.
+- Examples: say **“out of range”** / **“out of bounds”**, not **OOB**; say **“compiled form”** (what compile produced), not **IR**. Established product names and code identifiers (`JSON`, `UTF-8`, `CMake`, API ids) stay as they are.
+- Handbook author voice: plain Adaptive language (see contributing / language reference style); do not invent jargon for the reader.
+
 ## Layout
 - `src/afw` — **libafw core** (values, pools, xctx, compile/evaluate)
 - `src/afw_dev` — `afwdev` CLI

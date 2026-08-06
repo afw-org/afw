@@ -275,8 +275,10 @@ afw_function_execute_normalize_to_lower_case_string(
  *
  * See afw_function_bindings.h for more information.
  *
- * Convert one or more values of any data type to string and return the
- * concatenated result. A value with an undefined value is represented by
+ * Conversion function for string: convert one or more values of any data type
+ * to string and return the concatenated result. With one argument this is
+ * convert-to-string; with more arguments each is converted then concatenated in
+ * order (no separator). A value with an undefined value is represented by
  * 'undefined'.
  *
  * This function is pure, so it will always return the same result

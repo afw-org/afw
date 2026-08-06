@@ -125,28 +125,6 @@ class function
     }
 
     /**
-     * function()
-     *
-     * Converts value to data type function returning function result.
-     *
-     * @param  $value Value to convert
-     *
-     * @return function Converted value
-     */
-    public function function(, $value)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "function");
-
-        /* pass along required parameters to the request payload */
-        $request->set("value", $value);
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * ge_function()
      *
      * Checks for function arg1 is greater than or equal to function arg2 and

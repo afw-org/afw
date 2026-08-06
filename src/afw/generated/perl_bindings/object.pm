@@ -303,7 +303,9 @@ Checks for not equal value or type
 
 =head3 object
 
-Converts value to data type object returning object result.
+Converts value to data type object returning object result. A string is parsed
+as JSON (or relaxed JSON) and must yield an object; an object is left
+unchanged. This is not an object-literal constructor — use { ... } for that.
 Convert to data type object
 
 =head4 Parameters

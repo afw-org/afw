@@ -71,23 +71,6 @@ export function afwIsNull(client : any, value : any) : any {
 }
 
 /**
- * Converts value to data type null returning null result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {void} Converted value
- */
-export function afwNull(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "null";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Converts null value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  * 

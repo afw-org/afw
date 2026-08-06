@@ -82,7 +82,7 @@ Returns the number of values in a bag
 =head3 dayTimeDuration
 
 Converts value to data type dayTimeDuration returning dayTimeDuration result.
-Convert to data type dateTimeDuration
+Convert to data type dayTimeDuration
 
 =head4 Parameters
 

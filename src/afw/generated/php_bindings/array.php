@@ -54,9 +54,13 @@ class array
     /**
      * array()
      *
-     * Construct a new array from the given values. If a value is written as
-     * ...expression and the expression is an array, each of its entries is
-     * included in order. An empty call produces an empty array.
+     * Construct a new array from the given values (not a conversion
+     * function). Each argument becomes one element, in order. If a value is
+     * written as ...expression and the expression is an array, each of its
+     * entries is included in order. An empty call produces an empty array. A
+     * non-spread array argument is nested as a single element (array([1,2])
+     * is [[1,2]]); use spread or a list literal to flatten. For a length of
+     * undefined slots use create_array(n).
      *
      * @param  $values A value can refer to any adaptable value belonging to
      *                 any data type or an array expression. In the case of an
@@ -176,12 +180,13 @@ class array
     }
 
     /**
-     * empty_array()
+     * create_array()
      *
      * Create a new mutable array of the given length where every entry is
      * undefined. Useful when you want a known length up front before
      * assigning or filling entries. Length must be a non-negative integer and
-     * must not exceed 1,000,000.
+     * must not exceed 1,000,000. This is a length-based constructor, not a
+     * conversion function (see also array(...), which builds from elements).
      *
      * @param integer $length Number of undefined elements (0 or more, up to
      *                        the maximum).
@@ -189,11 +194,11 @@ class array
      * @return array A new array of the requested length; each entry is
      *               undefined.
      */
-    public function empty_array(, $length)
+    public function create_array(, $length)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "empty_array");
+        $request->set("function", "create_array");
 
         /* pass along required parameters to the request payload */
         $request->set("length", $length);

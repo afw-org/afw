@@ -53,6 +53,8 @@ export function afwCompileRelaxedJson(client : any, source : any, listing? : any
 
 /**
  * Converts value to data type relaxed_json returning relaxed_json result.
+ * Holds relaxed JSON source text as a relaxed_json value (does not
+ * parse/compile). Use polymorphic compile to compile the source.
  * 
  * @param {} value - Value to convert
  * 

@@ -32,14 +32,14 @@ assert(at(a, -3) === 10, "at -3");
 return 0;
 
 //?
-//? test: at-oob
+//? test: at-out-of-range
 //? description: at out of range is undefined
 //? expect: 0
 //? source: ...
 
 let a = [1];
-assert(is_nullish(at(a, 1)), "oob positive");
-assert(is_nullish(at(a, -2)), "oob negative");
+assert(is_nullish(at(a, 1)), "out of range positive");
+assert(is_nullish(at(a, -2)), "out of range negative");
 assert(is_nullish(at([], 0)), "empty");
 
 return 0;

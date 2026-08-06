@@ -51,7 +51,8 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
 | [**Mutable object faces (#17)**](#mutable-object-faces-issue-17) | Literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces — drop many manual `clone()` calls (**PR #150** → `mgg-develop`) |
-| [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`empty_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
+| [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
+| [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
 
 ---
 
@@ -64,11 +65,30 @@ Adaptive **`array`** is a **dense** ordered sequence of values (not an object, n
 | **Literal elision** | `['a', ,'b']` has length **3**; the middle slot is **undefined** (same as writing `undefined`). Allowed in **script** and **`relaxed_json`**. |
 | **Strict JSON** | Elision and trailing commas remain **invalid** (RFC JSON). |
 | **`a[i] =`** | Replace when `0 ≤ i < length`. **Append** when `i === length`. **Error** if `i > length` (no gap fill). |
-| **`empty_array(n)`** | New array of length **n** filled with **undefined** (`n` from **0** to **1_000_000**). |
+| **`create_array(n)`** | New array of length **n** filled with **undefined** (`n` from **0** to **1_000_000**). Renamed from `empty_array`. |
 | **Get out of range** | Bracket `a[i]` and **`at(a, i)`** both return **undefined**. |
 | **`for-of` / list HOFs** | Visit every index, including undefined slots (no ES “skip holes”). |
 
 Not supported (by design): `for-in`, `in`, `delete`, sparse present/missing indexes. See maintainer pad [`designs/array-semantics.md`](designs/array-semantics.md). Tests: `src/afw/tests/language/script/array_semantics.as`.
+
+---
+
+## Conversion functions (type-named)
+
+Many Adaptive **data types** have a same-named **conversion function** `T(value)` that produces a value of type **T** (or fails with `cast_error`). Meta types (`any`, `undefined`, `void`, …) never had one.
+
+| Kind | Examples | Notes |
+|------|----------|--------|
+| **Classic convert** | `integer`, `boolean`, `double`, dates, binaries, XACML-ish stringy types, … | Shared `afw_function_execute_convert` |
+| **Source-holding** | `json`, `relaxed_json`, `script`, `template`, `regexp`, `xpathExpression` | Value holds **source text** of that kind; does **not** compile. Polymorphic **`compile`** compiles it. Good property types for source fields. |
+| **`string(...)`** | convert + optional multi-arg **concat** | One arg ≈ convert-to-string |
+| **`object(x)`** | JSON text → object, or object unchanged | Not an object-literal constructor (`{…}`) |
+| **`array(...)`** | **Constructor** from elements / spread | **Not** a conversion function |
+| **`create_array(n)`** | Length-based constructor, all **undefined** | **Not** a conversion function |
+
+**Removed** type-named converts (data types remain): **`null()`**, **`function()`** — the names clash with the null literal and function syntax; use the literal / function values instead of a convert.
+
+Maintainer pad: [`designs/conversion-functions.md`](designs/conversion-functions.md).
 
 ---
 

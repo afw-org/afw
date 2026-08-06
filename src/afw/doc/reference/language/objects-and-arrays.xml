@@ -200,15 +200,18 @@ a[1] = "y";             /* length becomes 2 */
 a[0] = "z";             /* replace */
 /* a[5] = "no";        → error: index is past the end */]]></code>
         <paragraph>
-            <literal>empty_array(n)</literal> creates a new mutable array of
+            <literal>create_array(n)</literal> creates a new mutable array of
             length <literal>n</literal> whose entries are all
             <literal>undefined</literal>. The length must be a non-negative
             integer within the implementation limit documented for that
             function in the Function Reference. Use it when you want a known
             length up front; use <literal>push</literal> or assignment at the
-            next free index when growing as you go.
+            next free index when growing as you go. This is a length-based
+            constructor, not a conversion function.
+            <literal>array(...)</literal> builds from elements (and optional
+            spread); a non-spread array argument is nested as one element.
         </paragraph>
-        <code><![CDATA[let a = empty_array(3);
+        <code><![CDATA[let a = create_array(3);
 assert(length(a) === 3);
 assert(a[0] === undefined);
 a[1] = "ready";]]></code>

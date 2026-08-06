@@ -37,10 +37,10 @@ Trailing commas before `]` are allowed in non-strict (script / relaxed); not in 
 
 | API | Meaning |
 |-----|---------|
-| `[]` / `array(...)` | Empty or from elements |
-| **`empty_array(n)`** | Dense length **n**, all **undefined**; `n` in `0 .. 1_000_000` |
+| `[]` / `array(...)` | Element-list constructor (not a conversion function); optional `...` spread |
+| **`create_array(n)`** | Dense length **n**, all **undefined**; `n` in `0 .. 1_000_000` |
 
-No fill argument on `empty_array` (a separate helper can be added later if needed).
+No fill argument on `create_array` (add later only if real use demands it).
 
 ## Explicit non-goals
 
@@ -51,7 +51,7 @@ No fill argument on `empty_array` (a separate helper can be added later if neede
 
 ## Tests
 
-- `src/afw/tests/language/script/array_semantics.as` — elision, assign-append, empty_array, OOB, HOFs/`for-of` with undefined slots
+- `src/afw/tests/language/script/array_semantics.as` — elision, assign-append, create_array, out-of-range get, HOFs/`for-of` with undefined slots
 
 ## Related
 

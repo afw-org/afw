@@ -3405,9 +3405,12 @@ afw_function_definition_array;
  * @brief Adaptive Function `array`
  * @param x function execute parameter.
  *
- * Construct a new array from the given values. If a value is written as
+ * Construct a new array from the given values (not a conversion function). Each
+ * argument becomes one element, in order. If a value is written as
  * ...expression and the expression is an array, each of its entries is included
- * in order. An empty call produces an empty array.
+ * in order. An empty call produces an empty array. A non-spread array argument
+ * is nested as a single element (array([1,2]) is [[1,2]]); use spread or a list
+ * literal to flatten. For a length of undefined slots use create_array(n).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3431,10 +3434,6 @@ afw_function_definition_array;
  * Returns:
  *
  *   (array) The constructed array.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_array(
@@ -3581,18 +3580,19 @@ afw_function_definition_clone_array;
  * __________
  */
 
-/** @brief Function definition empty_array */
+/** @brief Function definition create_array */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_empty_array;
+afw_function_definition_create_array;
 
 /**
- * @brief Adaptive Function `empty_array`
+ * @brief Adaptive Function `create_array`
  * @param x function execute parameter.
  *
  * Create a new mutable array of the given length where every entry is
  * undefined. Useful when you want a known length up front before assigning or
  * filling entries. Length must be a non-negative integer and must not exceed
- * 1,000,000.
+ * 1,000,000. This is a length-based constructor, not a conversion function (see
+ * also array(...), which builds from elements).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3600,7 +3600,7 @@ afw_function_definition_empty_array;
  * Declaration:
  *
  * ```
- *   function empty_array(
+ *   function create_array(
  *       length: integer
  *   ): array;
  * ```
@@ -3619,7 +3619,7 @@ afw_function_definition_empty_array;
  *   arg_error - length is negative or exceeds the maximum allowed
  */
 const afw_value_t *
-afw_function_execute_empty_array(
+afw_function_execute_create_array(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<array> */
@@ -12311,44 +12311,6 @@ afw_function_definition_eqx_function;
  * __________
  */
 
-/** @brief Function definition function */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_function;
-
-/**
- * @brief Adaptive Function `function`
- * @param x function execute parameter.
- *
- * Converts value to data type function returning function result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function function(
- *       value: any
- *   ): function;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (function) Converted value.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition ge<function> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_function;
@@ -16797,7 +16759,9 @@ afw_function_definition_json;
  * @brief Adaptive Function `json`
  * @param x function execute parameter.
  *
- * Converts value to data type json returning json result.
+ * Converts value to data type json returning json result. Holds JSON source
+ * text as a json value (does not parse/compile). Use polymorphic compile to
+ * compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18069,44 +18033,6 @@ afw_function_definition_is_null;
  *   (boolean)
  *
  * Implemented by afw_function_execute_is()
- *
- * __________
- */
-
-/** @brief Function definition null */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_null;
-
-/**
- * @brief Adaptive Function `null`
- * @param x function execute parameter.
- *
- * Converts value to data type null returning null result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function null(
- *       value: any
- *   ): void;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (void) Converted value.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
  *
  * __________
  */
@@ -19844,7 +19770,9 @@ afw_function_definition_object;
  * @brief Adaptive Function `object`
  * @param x function execute parameter.
  *
- * Converts value to data type object returning object result.
+ * Converts value to data type object returning object result. A string is
+ * parsed as JSON (or relaxed JSON) and must yield an object; an object is left
+ * unchanged. This is not an object-literal constructor — use { ... } for that.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24401,7 +24329,10 @@ afw_function_definition_regexp;
  * @brief Adaptive Function `regexp`
  * @param x function execute parameter.
  *
- * Converts value to data type regexp returning regexp result.
+ * Converts value to data type regexp returning regexp result. Holds a regular
+ * expression source string as a regexp value (does not compile the pattern for
+ * matching by itself). Use polymorphic compile when a compiled form is
+ * required.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24497,7 +24428,9 @@ afw_function_definition_relaxed_json;
  * @brief Adaptive Function `relaxed_json`
  * @param x function execute parameter.
  *
- * Converts value to data type relaxed_json returning relaxed_json result.
+ * Converts value to data type relaxed_json returning relaxed_json result. Holds
+ * relaxed JSON source text as a relaxed_json value (does not parse/compile).
+ * Use polymorphic compile to compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25896,7 +25829,9 @@ afw_function_definition_script;
  * @brief Adaptive Function `script`
  * @param x function execute parameter.
  *
- * Converts value to data type script returning script result.
+ * Converts value to data type script returning script result. Holds Adaptive
+ * Script source text as a script value (does not compile or run). Use
+ * polymorphic compile to compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27906,8 +27841,10 @@ afw_function_definition_string;
  * @brief Adaptive Function `string`
  * @param x function execute parameter.
  *
- * Convert one or more values of any data type to string and return the
- * concatenated result. A value with an undefined value is represented by
+ * Conversion function for string: convert one or more values of any data type
+ * to string and return the concatenated result. With one argument this is
+ * convert-to-string; with more arguments each is converted then concatenated in
+ * order (no separator). A value with an undefined value is represented by
  * 'undefined'.
  *
  * This function is pure, so it will always return the same result
@@ -29178,7 +29115,9 @@ afw_function_definition_template;
  * @brief Adaptive Function `template`
  * @param x function execute parameter.
  *
- * Converts value to data type template returning template result.
+ * Converts value to data type template returning template result. Holds
+ * template source text as a template value (does not compile). Use polymorphic
+ * compile to compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31671,6 +31610,8 @@ afw_function_definition_xpathExpression;
  * @param x function execute parameter.
  *
  * Converts value to data type xpathExpression returning xpathExpression result.
+ * Holds an XPath expression source string as an xpathExpression value (does not
+ * evaluate). Use polymorphic compile when a compiled form is required.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32920,7 +32861,6 @@ afw_function_execute_clone(
  * to_string<dnsName>
  * double
  * to_string<double>
- * function
  * hexBinary
  * to_string<hexBinary>
  * ia5String
@@ -32930,7 +32870,6 @@ afw_function_execute_clone(
  * ipAddress
  * to_string<ipAddress>
  * json
- * null
  * to_string<null>
  * objectId
  * to_string<objectId>

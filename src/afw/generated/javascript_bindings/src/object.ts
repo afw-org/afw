@@ -392,7 +392,10 @@ export function afwNexObject(client : any, arg1 : object, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type object returning object result.
+ * Converts value to data type object returning object result. A string is
+ * parsed as JSON (or relaxed JSON) and must yield an object; an object is
+ * left unchanged. This is not an object-literal constructor — use { ... } for
+ * that.
  * 
  * @param {} value - Value to convert
  * 

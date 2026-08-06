@@ -19,7 +19,7 @@ our @EXPORT_OK = qw(
     bag_array 
     bag_size_array 
     clone_array 
-    empty_array 
+    create_array 
     eq_array 
     eqx_array 
     freeze_array 
@@ -70,9 +70,12 @@ Source array(s).
 
 =head3 array
 
-Construct a new array from the given values. If a value is written as
-...expression and the expression is an array, each of its entries is included
-in order. An empty call produces an empty array.
+Construct a new array from the given values (not a conversion function). Each
+argument becomes one element, in order. If a value is written as ...expression
+and the expression is an array, each of its entries is included in order. An
+empty call produces an empty array. A non-spread array argument is nested as a
+single element (array([1,2]) is [[1,2]]); use spread or a list literal to
+flatten. For a length of undefined slots use create_array(n).
 Construct an array from values or spread arrays
 
 =head4 Parameters
@@ -133,11 +136,13 @@ Clone array value
 
 The array value to clone.
 
-=head3 empty_array
+=head3 create_array
 
 Create a new mutable array of the given length where every entry is undefined.
 Useful when you want a known length up front before assigning or filling
 entries. Length must be a non-negative integer and must not exceed 1,000,000.
+This is a length-based constructor, not a conversion function (see also
+array(...), which builds from elements).
 Create an array of a given length filled with undefined
 
 =head4 Parameters
@@ -534,12 +539,12 @@ sub clone_array {
     return $request->getResult();
 }
 
-sub empty_array {
+sub create_array {
     my ($length) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "empty_array");
+    $request->set("function" => "create_array");
     $request->set("length", $length);
 
     return $request->getResult();

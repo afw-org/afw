@@ -85,9 +85,12 @@ afw_function_execute_add_entries(
  *
  * See afw_function_bindings.h for more information.
  *
- * Construct a new array from the given values. If a value is written as
+ * Construct a new array from the given values (not a conversion function). Each
+ * argument becomes one element, in order. If a value is written as
  * ...expression and the expression is an array, each of its entries is included
- * in order. An empty call produces an empty array.
+ * in order. An empty call produces an empty array. A non-spread array argument
+ * is nested as a single element (array([1,2]) is [[1,2]]); use spread or a list
+ * literal to flatten. For a length of undefined slots use create_array(n).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -111,10 +114,6 @@ afw_function_execute_add_entries(
  * Returns:
  *
  *   (array) The constructed array.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_array(
@@ -239,16 +238,17 @@ afw_function_execute_includes_array(
 }
 
 /*
- * Adaptive function: empty_array
+ * Adaptive function: create_array
  *
- * afw_function_execute_empty_array
+ * afw_function_execute_create_array
  *
  * See afw_function_bindings.h for more information.
  *
  * Create a new mutable array of the given length where every entry is
  * undefined. Useful when you want a known length up front before assigning or
  * filling entries. Length must be a non-negative integer and must not exceed
- * 1,000,000.
+ * 1,000,000. This is a length-based constructor, not a conversion function (see
+ * also array(...), which builds from elements).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -256,7 +256,7 @@ afw_function_execute_includes_array(
  * Declaration:
  *
  * ```
- *   function empty_array(
+ *   function create_array(
  *       length: integer
  *   ): array;
  * ```
@@ -274,11 +274,11 @@ afw_function_execute_includes_array(
  *
  *   arg_error - length is negative or exceeds the maximum allowed
  */
-/* Hard cap so empty_array(huge) cannot allocate without bound. */
-#define AFW_EMPTY_ARRAY_MAX_LENGTH 1000000
+/* Hard cap so create_array(huge) cannot allocate without bound. */
+#define AFW_CREATE_ARRAY_MAX_LENGTH 1000000
 
 const afw_value_t *
-afw_function_execute_empty_array(
+afw_function_execute_create_array(
     afw_function_execute_t *x)
 {
     const afw_value_integer_t *length;
@@ -289,10 +289,10 @@ afw_function_execute_empty_array(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(length, 1, integer);
     n = length->internal;
 
-    if (n < 0 || n > AFW_EMPTY_ARRAY_MAX_LENGTH) {
+    if (n < 0 || n > AFW_CREATE_ARRAY_MAX_LENGTH) {
         AFW_THROW_ERROR_FZ(arg_error, x->xctx,
-            "empty_array length must be between 0 and %d inclusive",
-            AFW_EMPTY_ARRAY_MAX_LENGTH);
+            "create_array length must be between 0 and %d inclusive",
+            AFW_CREATE_ARRAY_MAX_LENGTH);
     }
 
     array = afw_array_create_generic(x->p, x->xctx);

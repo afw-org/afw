@@ -419,7 +419,9 @@ class xpathExpression
      * xpathExpression()
      *
      * Converts value to data type xpathExpression returning xpathExpression
-     * result.
+     * result. Holds an XPath expression source string as an xpathExpression
+     * value (does not evaluate). Use polymorphic compile when a compiled form
+     * is required.
      *
      * @param  $value Value to convert
      *

@@ -60,7 +60,9 @@ def json(session, value):
     """
     Convert to data type json
 
-    Converts value to data type json returning json result.
+    Converts value to data type json returning json result. Holds JSON source
+    text as a json value (does not parse/compile). Use polymorphic compile to
+    compile the source.
 
     Args:
         value (object): Value to convert

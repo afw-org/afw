@@ -229,7 +229,9 @@ Checks for not equal value or type
 
 =head3 script
 
-Converts value to data type script returning script result.
+Converts value to data type script returning script result. Holds Adaptive
+Script source text as a script value (does not compile or run). Use
+polymorphic compile to compile the source.
 Convert to data type script
 
 =head4 Parameters

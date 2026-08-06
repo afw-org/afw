@@ -7,9 +7,10 @@ Issue #39 and related Adaptive array product semantics:
 - Literal elision (holes) → dense undefined elements (script / non-strict)
 - Strict JSON forbids elision (covered lightly via compile/json path where practical)
 - Assign replace in range; append when index === length; no gap fill
-- empty_array(n) pre-size with undefined slots and length caps
+- create_array(n) pre-size with undefined slots and length caps (not empty_array)
+- array(...) is element constructor (not convert); non-spread array nests
 - for-of / list helpers visit undefined slots (no ES sparse skip model)
-- Bracket OOB get throws; at() OOB returns undefined
+- Bracket a[i] and at() both return undefined when index is out of range
 //? sourceType: script
 //?
 //? test: elision-middle-basic
@@ -276,24 +277,24 @@ assert(out2[0] === "a" && out2[1] === "U" && out2[2] === "b");
 return 0;
 
 //?
-//? test: empty-array-zero
-//? description: empty_array(0) is empty mutable array
+//? test: create-array-zero
+//? description: create_array(0) is empty mutable array
 //? expect: 0
 //? source: ...
 
-let a = empty_array(0);
+let a = create_array(0);
 assert(length(a) === 0);
 a[0] = 1;
 assert(length(a) === 1 && a[0] === 1);
 return 0;
 
 //?
-//? test: empty-array-prefill-undefined
-//? description: empty_array(n) length n all undefined then assign
+//? test: create-array-prefill-undefined
+//? description: create_array(n) length n all undefined then assign
 //? expect: 0
 //? source: ...
 
-let a = empty_array(4);
+let a = create_array(4);
 assert(length(a) === 4);
 assert(a[0] === undefined && a[3] === undefined);
 a[2] = "z";
@@ -302,33 +303,71 @@ assert(a[1] === undefined);
 return 0;
 
 //?
-//? test: empty-array-negative-throws
-//? description: empty_array(-1) throws arg_error
+//? test: create-array-negative-throws
+//? description: create_array(-1) throws arg_error
 //? expect: error
 //? source: ...
 
-empty_array(-1);
+create_array(-1);
 return 0;
 
 //?
-//? test: empty-array-over-max-throws
-//? description: empty_array beyond max length throws
+//? test: create-array-over-max-throws
+//? description: create_array beyond max length throws
 //? expect: error
 //? source: ...
 
-empty_array(1000001);
+create_array(1000001);
 return 0;
 
 //?
-//? test: empty-array-independent-instances
-//? description: two empty_array calls do not share storage
+//? test: create-array-independent-instances
+//? description: two create_array calls do not share storage
 //? expect: 0
 //? source: ...
 
-let a = empty_array(2);
-let b = empty_array(2);
+let a = create_array(2);
+let b = create_array(2);
 a[0] = 1;
 assert(b[0] === undefined, "independent");
+return 0;
+
+//?
+//? test: array-ctor-from-elements
+//? description: array(...) builds from elements; empty call is []
+//? expect: 0
+//? source: ...
+
+assert(eq(array(), []));
+assert(eq(array(1, 2, 3), [1, 2, 3]));
+assert(eq(array("x"), ["x"]));
+return 0;
+
+//?
+//? test: array-ctor-nests-array-arg
+//? description: non-spread array argument is one nested element
+//? expect: 0
+//? source: ...
+
+assert(eq(array([1, 2]), [[1, 2]]));
+return 0;
+
+//?
+//? test: array-ctor-spread-flattens
+//? description: ...array spreads elements into constructed array
+//? expect: 0
+//? source: ...
+
+assert(eq(array(...[1, 2], 3, ...[4]), [1, 2, 3, 4]));
+return 0;
+
+//?
+//? test: empty-array-name-removed
+//? description: empty_array is no longer a built-in (renamed to create_array)
+//? expect: error
+//? source: ...
+
+empty_array(1);
 return 0;
 
 //?

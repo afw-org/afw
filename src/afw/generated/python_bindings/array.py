@@ -48,9 +48,13 @@ def array(session, values):
     """
     Construct an array from values or spread arrays
 
-    Construct a new array from the given values. If a value is written as
+    Construct a new array from the given values (not a conversion function).
+    Each argument becomes one element, in order. If a value is written as
     ...expression and the expression is an array, each of its entries is
-    included in order. An empty call produces an empty array.
+    included in order. An empty call produces an empty array. A non-spread
+    array argument is nested as a single element (array([1,2]) is [[1,2]]);
+    use spread or a list literal to flatten. For a length of undefined slots
+    use create_array(n).
 
     Args:
         values (object): A value can refer to any adaptable value belonging to
@@ -198,14 +202,15 @@ def clone_array(session, value):
 
     return response['actions'][0]['result']
 
-def empty_array(session, length):
+def create_array(session, length):
     """
     Create an array of a given length filled with undefined
 
     Create a new mutable array of the given length where every entry is
     undefined. Useful when you want a known length up front before assigning
     or filling entries. Length must be a non-negative integer and must not
-    exceed 1,000,000.
+    exceed 1,000,000. This is a length-based constructor, not a conversion
+    function (see also array(...), which builds from elements).
 
     Args:
         length (int): Number of undefined elements (0 or more, up to the
@@ -218,7 +223,7 @@ def empty_array(session, length):
     request = session.Request()
 
     action = {
-        "function": "empty_array",
+        "function": "create_array",
         "length": length
     }
 

@@ -134,7 +134,7 @@ try {
         (<literal>push</literal>, <literal>pop</literal>,
         <literal>shift</literal>, <literal>unshift</literal>,
         <literal>splice</literal>), creating a fixed-length array of
-        <literal>undefined</literal> entries (<literal>empty_array</literal>),
+        <literal>undefined</literal> entries (<literal>create_array</literal>),
         immutability (<literal>freeze</literal>), and quantifiers
         (<literal>every</literal> / <literal>some</literal>, same family as
         <literal>all_of</literal> / <literal>any_of</literal>). Array literals

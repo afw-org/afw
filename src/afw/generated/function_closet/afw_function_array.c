@@ -66,9 +66,12 @@ afw_function_execute_add_entries(
  *
  * See afw_function_bindings.h for more information.
  *
- * Construct a new array from the given values. If a value is written as
+ * Construct a new array from the given values (not a conversion function). Each
+ * argument becomes one element, in order. If a value is written as
  * ...expression and the expression is an array, each of its entries is included
- * in order. An empty call produces an empty array.
+ * in order. An empty call produces an empty array. A non-spread array argument
+ * is nested as a single element (array([1,2]) is [[1,2]]); use spread or a list
+ * literal to flatten. For a length of undefined slots use create_array(n).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -92,10 +95,6 @@ afw_function_execute_add_entries(
  * Returns:
  *
  *   (array) The constructed array.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_array(
@@ -152,16 +151,17 @@ afw_function_execute_at(
 
 
 /*
- * Adaptive function: empty_array
+ * Adaptive function: create_array
  *
- * afw_function_execute_empty_array
+ * afw_function_execute_create_array
  *
  * See afw_function_bindings.h for more information.
  *
  * Create a new mutable array of the given length where every entry is
  * undefined. Useful when you want a known length up front before assigning or
  * filling entries. Length must be a non-negative integer and must not exceed
- * 1,000,000.
+ * 1,000,000. This is a length-based constructor, not a conversion function (see
+ * also array(...), which builds from elements).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -169,7 +169,7 @@ afw_function_execute_at(
  * Declaration:
  *
  * ```
- *   function empty_array(
+ *   function create_array(
  *       length: integer
  *   ): array;
  * ```
@@ -188,7 +188,7 @@ afw_function_execute_at(
  *   arg_error - length is negative or exceeds the maximum allowed
  */
 const afw_value_t *
-afw_function_execute_empty_array(
+afw_function_execute_create_array(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

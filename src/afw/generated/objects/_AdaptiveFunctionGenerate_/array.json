@@ -3,13 +3,7 @@
     "brief": "Construct an array from values or spread arrays",
     "camelCaseFunctionLabel": "array",
     "category": "array",
-    "description": "Construct a new array from the given values. If a value is written as ...expression and the expression is an array, each of its entries is included in order. An empty call produces an empty array.",
-    "errorsThrown": [
-        {
-            "error": "cast_error",
-            "reason": "value could not be converted"
-        }
-    ],
+    "description": "Construct a new array from the given values (not a conversion function). Each argument becomes one element, in order. If a value is written as ...expression and the expression is an array, each of its entries is included in order. An empty call produces an empty array. A non-spread array argument is nested as a single element (array([1,2]) is [[1,2]]); use spread or a list literal to flatten. For a length of undefined slots use create_array(n).",
     "functionId": "array",
     "functionLabel": "array",
     "parameters": [

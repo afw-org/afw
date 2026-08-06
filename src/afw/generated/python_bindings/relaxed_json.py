@@ -61,6 +61,8 @@ def relaxed_json(session, value):
     Convert to data type relaxed_json
 
     Converts value to data type relaxed_json returning relaxed_json result.
+    Holds relaxed JSON source text as a relaxed_json value (does not
+    parse/compile). Use polymorphic compile to compile the source.
 
     Args:
         value (object): Value to convert
