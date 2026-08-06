@@ -1,6 +1,6 @@
 # Type-named conversion functions
 
-**Status:** product decisions (2026-08), with #39 array work.  
+**Status:** shipped on **`mgg-develop`** with #39 / [PR #152](https://github.com/afw-org/afw/pull/152) (2026-08-06).  
 **Audience:** maintainers / handbook authors.
 
 ## What they are

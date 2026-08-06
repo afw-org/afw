@@ -1,7 +1,7 @@
 # Adaptive array semantics (issue #39 and related)
 
-**Status:** product decisions for Adaptive Script `array` (2026-08).  
-**Branch work:** `issue-39-list-literal-holes` and follow-ons.
+**Status:** shipped on **`mgg-develop`** via [PR #152](https://github.com/afw-org/afw/pull/152) (2026-08-06); issue **#39** closed.  
+**Pads:** this file + [`conversion-functions.md`](conversion-functions.md).
 
 ## What an array is
 
