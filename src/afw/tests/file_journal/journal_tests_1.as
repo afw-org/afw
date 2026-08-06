@@ -66,7 +66,29 @@ assert(cursor != null);
 assert(entry.entry != null);
 
 let j1 = journal_get_next_after_cursor("journal", cursor);
-assert(j1.entry == null);
+assert(is_nullish(j1.entry), "no next entry after last cursor");
 
+
+return 0;
+
+
+//? test: journal_get_first-mutable-face
+//? description: ...
+Issue #17: journal_get_first returns a mutable face; face-only props must not
+appear on a second get_first. Runs after cursor tests so journal length stays
+stable for earlier cases.
+//? skip: false
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let j1 = journal_get_first("journal");
+assert(j1.entry !== undefined);
+j1.faceOnly = true;
+
+let j2 = journal_get_first("journal");
+assert(is_nullish(property_get(j2, "faceOnly", null)),
+    "second journal_get_first must not see faceOnly from first face");
+assert(j2.entry !== undefined);
 
 return 0;

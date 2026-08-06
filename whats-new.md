@@ -84,6 +84,7 @@ You generally **no longer need** a defensive `clone()` only so you can mutate:
 | **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
 | **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
 | **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** (not a deep clone of the whole graph); safer than the old full clone for #110-style multi-call hosts |
+| **`journal_get_*` / `journal_advance_cursor_for_consumer`** | Response objects are faces (same as adapter get) |
 
 Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
 
@@ -97,7 +98,7 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 
 - **`retrieve_*_to_response` / `_to_stream`** — write/encode only; no script-owned face (and no need for `clone()` there).
 - **Journal entry returns** from add/modify/replace/… — already fresh memory “receipts”; not store rows.
-- **Journal category getters** (`journal_get_*`) — same face idea later if needed; not this adapter slice.
+- **`journal_get_*` response objects** — faces on return (mutate without `clone()`); nested `entry` promoted on get when needed.
 - **`const` stays binding-level** — not deep freeze. Use **`freeze`** for immutability.
 - Faces are **not** “write-through to the adapter store”; change persistence still goes through add/modify/replace/update.
 

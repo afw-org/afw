@@ -16,6 +16,39 @@
 
 
 /*
+ * Mutable memory face for journal response objects script will hold
+ * (issue #17). Same policy as adapter get/retrieve: wrap before return.
+ */
+static const afw_object_t *
+impl_script_face_object(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!object) {
+        return NULL;
+    }
+    if (afw_object_is_memory_wrapper(object)) {
+        return object;
+    }
+    return afw_object_create_wrapper_unmanaged(object, p, xctx);
+}
+
+
+
+static const afw_value_t *
+impl_return_faced_object(
+    const afw_object_t *object,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    object = impl_script_face_object(object, p, xctx);
+    return afw_value_create_unmanaged_object(object, p, xctx);
+}
+
+
+
+/*
  * Adaptive function: journal_advance_cursor_for_consumer
  *
  * afw_function_execute_journal_advance_cursor_for_consumer
@@ -90,7 +123,7 @@ afw_function_execute_journal_advance_cursor_for_consumer(
     
     result = afw_adapter_journal_advance_cursor_for_consumer(
         &adapterId->internal, &consumerId->internal, limit, x->p, x->xctx);
-    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
+    return impl_return_faced_object(result, x->p, x->xctx);
 }
 
 
@@ -143,7 +176,7 @@ afw_function_execute_journal_get_by_cursor(
     
     result = afw_adapter_journal_get_by_cursor(
         &adapterId->internal, &cursor->internal, x->p, x->xctx);
-    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
+    return impl_return_faced_object(result, x->p, x->xctx);
 }
 
 
@@ -190,7 +223,7 @@ afw_function_execute_journal_get_first(
    
     result = afw_adapter_journal_get_first(
         &adapterId->internal, x->p, x->xctx);
-    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
+    return impl_return_faced_object(result, x->p, x->xctx);
 }
 
 
@@ -243,7 +276,7 @@ afw_function_execute_journal_get_next_after_cursor(
     
     result = afw_adapter_journal_get_next_after_cursor(
         &adapterId->internal, &cursor->internal, x->p, x->xctx);
-    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
+    return impl_return_faced_object(result, x->p, x->xctx);
 }
 
 
@@ -332,7 +365,7 @@ afw_function_execute_journal_get_next_for_consumer(
     
     result = afw_adapter_journal_get_next_for_consumer(
         &adapterId->internal, &consumerId->internal, limit, x->p, x->xctx);
-    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
+    return impl_return_faced_object(result, x->p, x->xctx);
 }
 
 
@@ -414,7 +447,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
     result = afw_adapter_journal_get_next_for_consumer_after_cursor(
         &adapterId->internal, &consumerId->internal, &cursor->internal,
         limit, x->p, x->xctx);
-    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
+    return impl_return_faced_object(result, x->p, x->xctx);
 }
 
 
