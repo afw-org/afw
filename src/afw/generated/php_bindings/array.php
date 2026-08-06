@@ -171,6 +171,33 @@ class array
     }
 
     /**
+     * empty_array()
+     *
+     * Create a new mutable array of the given length. Every element is
+     * undefined. This is a dense pre-size helper (issue #39), not a sparse or
+     * bounded-max-length type. Length must be a non-negative integer and must
+     * not exceed the implementation maximum (1,000,000).
+     *
+     * @param integer $length Number of undefined elements (0 or more, up to
+     *                        the maximum).
+     *
+     * @return array A new array of the requested length filled with
+     *               undefined.
+     */
+    public function empty_array(, $length)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "empty_array");
+
+        /* pass along required parameters to the request payload */
+        $request->set("length", $length);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * eq_array()
      *
      * Determine if array arg1 is equal to the value of arg2 converted to the

@@ -134,6 +134,27 @@ export function afwCloneArray(client : any, value : any[]) : any {
 }
 
 /**
+ * Create a new mutable array of the given length. Every element is undefined.
+ * This is a dense pre-size helper (issue #39), not a sparse or
+ * bounded-max-length type. Length must be a non-negative integer and must not
+ * exceed the implementation maximum (1,000,000).
+ * 
+ * @param {integer} length - Number of undefined elements (0 or more, up to
+ *     the maximum).
+ * 
+ * @returns {array} A new array of the requested length filled with undefined.
+ */
+export function afwEmptyArray(client : any, length : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "empty_array";
+    _action["length"] = length;
+
+    return client.perform(_action);
+}
+
+/**
  * Determine if array arg1 is equal to the value of arg2 converted to the data
  * type of arg1 then return the boolean result. Use 'eqx' ('===') instead if
  * you want false to be returned if arg1 and arg2's data type don't match.

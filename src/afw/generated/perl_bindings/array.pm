@@ -19,6 +19,7 @@ our @EXPORT_OK = qw(
     bag_array 
     bag_size_array 
     clone_array 
+    empty_array 
     eq_array 
     eqx_array 
     freeze_array 
@@ -126,6 +127,20 @@ Clone array value
     $value
 
 The array value to clone.
+
+=head3 empty_array
+
+Create a new mutable array of the given length. Every element is undefined.
+This is a dense pre-size helper (issue #39), not a sparse or
+bounded-max-length type. Length must be a non-negative integer and must not
+exceed the implementation maximum (1,000,000).
+Create a dense array of length n with undefined elements
+
+=head4 Parameters
+
+    $length
+
+Number of undefined elements (0 or more, up to the maximum).
 
 =head3 eq_array
 
@@ -510,6 +525,17 @@ sub clone_array {
 
     $request->set("function" => "clone<array>");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub empty_array {
+    my ($length) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "empty_array");
+    $request->set("length", $length);
 
     return $request->getResult();
 }

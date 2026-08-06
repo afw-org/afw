@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEmptyArray",
+    "brief": "Create a dense array of length n with undefined elements",
+    "camelCaseFunctionLabel": "emptyArray",
+    "category": "array",
+    "description": "Create a new mutable array of the given length. Every element is undefined. This is a dense pre-size helper (issue #39), not a sparse or bounded-max-length type. Length must be a non-negative integer and must not exceed the implementation maximum (1,000,000).",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "length is negative or exceeds the maximum allowed"
+        }
+    ],
+    "functionId": "empty_array",
+    "functionLabel": "empty_array",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "description": "Number of undefined elements (0 or more, up to the maximum).",
+            "name": "length"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "A new array of the requested length filled with undefined."
+    }
+}

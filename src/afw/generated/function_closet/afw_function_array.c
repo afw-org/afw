@@ -147,6 +147,52 @@ afw_function_execute_at(
 
 
 /*
+ * Adaptive function: empty_array
+ *
+ * afw_function_execute_empty_array
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Create a new mutable array of the given length. Every element is undefined.
+ * This is a dense pre-size helper (issue #39), not a sparse or
+ * bounded-max-length type. Length must be a non-negative integer and must not
+ * exceed the implementation maximum (1,000,000).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function empty_array(
+ *       length: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   length - (integer) Number of undefined elements (0 or more, up to the
+ *       maximum).
+ *
+ * Returns:
+ *
+ *   (array) A new array of the requested length filled with undefined.
+ *
+ * Errors thrown:
+ *
+ *   arg_error - length is negative or exceeds the maximum allowed
+ */
+const afw_value_t *
+afw_function_execute_empty_array(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: join
  *
  * afw_function_execute_join

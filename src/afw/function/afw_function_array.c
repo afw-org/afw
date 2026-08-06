@@ -235,6 +235,71 @@ afw_function_execute_includes_array(
 }
 
 /*
+ * Adaptive function: empty_array
+ *
+ * afw_function_execute_empty_array
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Create a new mutable array of the given length. Every element is undefined.
+ * This is a dense pre-size helper (issue #39), not a sparse or
+ * bounded-max-length type. Length must be a non-negative integer and must not
+ * exceed the implementation maximum (1,000,000).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function empty_array(
+ *       length: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   length - (integer) Number of undefined elements (0 or more, up to the
+ *       maximum).
+ *
+ * Returns:
+ *
+ *   (array) A new array of the requested length filled with undefined.
+ *
+ * Errors thrown:
+ *
+ *   arg_error - length is negative or exceeds the maximum allowed
+ */
+/* Hard cap so empty_array(huge) cannot allocate without bound. */
+#define AFW_EMPTY_ARRAY_MAX_LENGTH 1000000
+
+const afw_value_t *
+afw_function_execute_empty_array(
+    afw_function_execute_t *x)
+{
+    const afw_value_integer_t *length;
+    const afw_array_t *array;
+    afw_integer_t n;
+    afw_integer_t i;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(length, 1, integer);
+    n = length->internal;
+
+    if (n < 0 || n > AFW_EMPTY_ARRAY_MAX_LENGTH) {
+        AFW_THROW_ERROR_FZ(arg_error, x->xctx,
+            "empty_array length must be between 0 and %d inclusive",
+            AFW_EMPTY_ARRAY_MAX_LENGTH);
+    }
+
+    array = afw_array_create_generic(x->p, x->xctx);
+    for (i = 0; i < n; i++) {
+        afw_array_push_value(array, afw_value_undefined, x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
+}
+
+/*
  * Adaptive function: join
  *
  * afw_function_execute_join

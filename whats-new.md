@@ -51,8 +51,28 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
 | [**Mutable object faces (#17)**](#mutable-object-faces-issue-17) | Literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces — drop many manual `clone()` calls (**PR #150** → `mgg-develop`) |
+| [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`empty_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 
 ---
+
+## Array semantics (issue #39)
+
+Adaptive **`array`** is a **dense** ordered sequence of values (not an object, not a sparse ES array).
+
+| Topic | Behavior |
+|-------|----------|
+| **Literal elision** | `['a', ,'b']` has length **3**; the middle slot is **undefined** (same as writing `undefined`). Allowed in **script** and **`relaxed_json`**. |
+| **Strict JSON** | Elision and trailing commas remain **invalid** (RFC JSON). |
+| **`a[i] =`** | Replace when `0 ≤ i < length`. **Append** when `i === length`. **Error** if `i > length` (no gap fill). |
+| **`empty_array(n)`** | New array of length **n** filled with **undefined** (`n` from **0** to **1_000_000**). |
+| **Get OOB** | Bracket `a[i]` **throws**; helper **`at(a, i)`** returns **undefined**. |
+| **`for-of` / list HOFs** | Visit every index, including undefined slots (no ES “skip holes”). |
+
+Not supported (by design): `for-in`, `in`, `delete`, sparse present/missing indexes. See maintainer pad [`designs/array-semantics.md`](designs/array-semantics.md). Tests: `src/afw/tests/language/script/array_semantics.as`.
+
+---
+
+[↑ Highlights](#highlights)
 
 ## Mutable object faces (issue #17)
 

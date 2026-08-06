@@ -957,6 +957,10 @@ impl_afw_array_setter_insert_internal(
 
 /*
  * Implementation of method set_value for interface afw_array_setter.
+ *
+ * In-range replace, or append when index === count (grow by one). Never
+ * fills gaps for index > count (no sparse assign). Negative indexes only
+ * resolve into existing elements (no grow from the end).
  */
 void
 impl_afw_array_setter_set_value(
@@ -969,6 +973,14 @@ impl_afw_array_setter_set_value(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)self)->array;
     afw_memory_internal_array_entry_t *lep;
     afw_size_t at;
+
+    /* Append at length: dense grow-by-one (issue #39 array semantics). */
+    if (index >= 0 &&
+        (afw_size_t)index == array_self->count)
+    {
+        impl_afw_array_setter_insert_value(self, index, value, xctx);
+        return;
+    }
 
     at = impl_resolve_element_index(index, array_self->count, xctx);
     impl_note_value_data_type(array_self, value, false, xctx);

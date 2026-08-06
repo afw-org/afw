@@ -837,27 +837,34 @@ TemplateString ::= '`' + Template + '`'
 /* Expression must produce a value of data type list.                         */
 
 ListExpression ::= Expression
+/* Strict JSON: dense values only (no elision, no trailing comma).            */
 
 List ::=
    '['
        ( Json (',' Json)* )?
    ']'
+/* Relaxed / script: optional elision (hole → undefined) and trailing comma.  */
+/* Elision is a missing element between commas (or after '[' before a comma), */
+/* not a third array state. Same rules for script ListValue and relaxed_json. */
+/* Elision is written here as empty alternative between commas.               */
 
 RelaxedList ::=
    '['
-       ( RelaxedJson (',' RelaxedJson)* )? ','?
+       ( RelaxedJson? (',' RelaxedJson? )* )?
+       ','?
    ']'
 
 ListLiteral ::=
    '['
-       ( Literal (',' Literal )* )? ','?
+       ( Literal? (',' Literal? )* )?
+       ','?
    ']'
 
 ListValue ::=
    '['
        (
-           ( Expression | ( '...' ListExpression ) )
-           (',' ( Expression | ( '...' ListExpression ) ) )*
+           ( Expression | ( '...' ListExpression ) )?
+           (',' ( Expression | ( '...' ListExpression ) )? )*
        )?
        ','?
    ']'

@@ -193,6 +193,38 @@ def clone_array(session, value):
 
     return response['actions'][0]['result']
 
+def empty_array(session, length):
+    """
+    Create a dense array of length n with undefined elements
+
+    Create a new mutable array of the given length. Every element is
+    undefined. This is a dense pre-size helper (issue #39), not a sparse or
+    bounded-max-length type. Length must be a non-negative integer and must
+    not exceed the implementation maximum (1,000,000).
+
+    Args:
+        length (int): Number of undefined elements (0 or more, up to the
+        maximum).
+
+    Returns:
+        list: A new array of the requested length filled with undefined.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "empty_array",
+        "length": length
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def eq_array(session, arg1, arg2):
     """
     Checks for equal
