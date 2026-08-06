@@ -1713,8 +1713,10 @@ for (const [x, x] of []) {}
 //? expect: error
 //? skip: true
 //? skipReason: ...
-FIXME: Adaptive does not enforce TDZ for for-of head const binding
-(outer x may be readable in [x]); ES requires error.
+FIXME: Adaptive has no general TDZ for let/const (inner binding is visible
+as undefined, not ReferenceError). for-of shares that gap: evaluating
+[x] with for (const x of [x]) does not throw. Needs language-wide TDZ,
+not a for-of-only hack.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1804,15 +1806,11 @@ for (x of [], []) {}
 
 
 //? test: head-expr-obj-iterator-method
-//? description: for-of head must be iterable; plain object is not an array/iterator
-//? differences: Adaptive requires array-like head (errors); ES uses @@iterator
-//? expect: error
+//? description: for-of head must be iterable; plain object is not an array or string
+//? differences: Adaptive for-of accepts array or string only; ES uses @@iterator
+//? expect: error:for-of head must be an array or string
 //? source: ...
 #!/usr/bin/env afw
-
-// FIXME: expect is generic "error" so any failure passes. Prefer a stable
-// non-iterable (or not-array) message and pin expect: error:<that message>.
-// Today the path is often Internal error / cast — product diagnostic debt.
 
 let x;
 
@@ -1821,13 +1819,10 @@ for (x of {}) {}
 
 //? test: head-expr-primitive-iterator-method
 //? description: for-of head must be iterable; boolean primitive is not
-//? differences: Adaptive requires array-like head (errors); ES uses @@iterator
-//? expect: error
+//? differences: Adaptive for-of accepts array or string only; ES uses @@iterator
+//? expect: error:for-of head must be an array or string
 //? source: ...
 #!/usr/bin/env afw
-
-// FIXME: generic expect: error — pin expect: error:<clear message> when
-// for-of rejects non-array heads with a stable diagnostic (not Internal error).
 
 let x;
 
@@ -1836,13 +1831,10 @@ for (x of false) {}
 
 //? test: head-expr-primitive-iterator-method-2
 //? description: for-of head must be iterable; number primitive is not
-//? differences: Adaptive requires array-like head (errors); ES uses @@iterator
-//? expect: error
+//? differences: Adaptive for-of accepts array or string only; ES uses @@iterator
+//? expect: error:for-of head must be an array or string
 //? source: ...
 #!/usr/bin/env afw
-
-// FIXME: generic expect: error — pin expect: error:<clear message> when
-// for-of rejects non-array heads with a stable diagnostic (not Internal error).
 
 let x;
 
@@ -1851,14 +1843,10 @@ for (x of 37) {}
 
 //? test: head-expr-to-obj
 //? description: for-of head null should fail (non-iterable)
-//? differences: Adaptive requires array-like head (errors); ES ToObject / iterator
-//? expect: error
+//? differences: Adaptive for-of accepts array or string only; ES ToObject / iterator
+//? expect: error:for-of head must be an array or string
 //? source: ...
 #!/usr/bin/env afw
-
-// FIXME: generic expect: error — pin expect: error:<clear message> when
-// for-of rejects null with a stable diagnostic (not Internal error).
-// Compare head-expr-to-obj-2 (undefined) which already pins a message.
 
 let x;
 
@@ -2103,10 +2091,6 @@ for ( let of [] ) ;
 //? test: head-lhs-member
 //? description: for-of left-hand side may be a MemberExpression (e.g. x.y)
 //? expect: 0
-//? skip: true
-//? skipReason: ...
-FIXME: Adaptive for-of does not accept member LHS (for (x.y of …));
-still errors. Use a local binding then assign until fixed.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3268,9 +3252,9 @@ for (let x of []) label1: label2: function f() {}
 //? expect: error
 //? skip: true
 //? skipReason: ...
-FIXME: Empty iterable never executes the body, so Adaptive may not
-surface the intended parse/runtime error for `let` newline `[a] = 0`
-after for-of.
+FIXME: ASI / let-as-identifier vs let-declaration after for-of empty body.
+Empty for-of does not force parse of the following statement the same way
+as ES; needs compiler ASI / statement parsing work, not for-of iteration.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3953,13 +3937,9 @@ assert(iterationCount === 8);
 
 
 //? test: string-astral
-//? description: for-of over a string with astral (surrogate-pair) symbols yields code points / units as in ES
+//? description: for-of over a string with astral symbols yields Unicode code points
+//? differences: Adaptive is UTF-8; for-of walks Unicode code points. Source \uD801\uDC28 becomes one code point (not two UTF-16 units as in ES string indexing)
 //? expect: 0
-//? skip: true
-//? skipReason: ...
-FIXME: Adaptive for-of does not iterate strings as ES
-character/code-point sequences (same as string-bmp). Define string
-iteration or document permanent non-support (#22).
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4014,12 +3994,8 @@ assert(iterationCount === 4);
 
 //? test: string-bmp
 //? description: for-of over a BMP string yields each character (test262 string for-of)
+//? differences: Adaptive is UTF-8; for-of walks Unicode code points (not ES UTF-16 code units)
 //? expect: 0
-//? skip: true
-//? skipReason: ...
-FIXME: Adaptive for-of does not walk string code units like ES (one
-whole-string step today). FIXME if we want char iteration; otherwise
-permanent non-support and document in #22.
 //? source: ...
 #!/usr/bin/env afw
 

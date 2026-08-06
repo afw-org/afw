@@ -32,7 +32,10 @@ Use this to pick **a few** converts later. Prefer cases that need a small Adapti
 |---------|-------|--------|
 | **1 void** | `void.as` `S11.4.2_A4_T3`–`T5` | Fixed bad `isNaN(void …)` → `void x === undefined`; T4 null only (`void undefined` still errors — note in `differences`); unskipped |
 | **2 raw LT in strings** | `string.as` `S7.8.4_A1.1_T2`, `A1.2_T2`; `line-terminators.as` `invalid-string-cr` / `lf` | Unskipped as **Adaptive allows** raw CR/LF in strings (`differences`); assert length 1 |
-| **3 for-of non-iterable** | `for-of.as` `head-expr-obj-iterator-method`, `head-expr-primitive-iterator-method` (+ `-2`), `head-expr-to-obj` | Unskipped with generic `expect: error` + `differences`. **Source `// FIXME`:** pin `expect: error:<message>` when diagnostics are stable (not Internal error) |
+| **3 for-of non-iterable** | `for-of.as` heads `{}` / boolean / number / null | Unskipped; **`expect: error:for-of head must be an array or string`** (C message) |
+| **for-of member LHS** | `head-lhs-member` | **Fixed in C** (`impl_assign` accepts `reference_by_key`); unskipped |
+| **for-of string iteration** | `string-bmp`, `string-astral` | **Fixed in C** (UTF-8 code points); unskipped + `differences` |
+| **for-of TDZ / ASI let[** | `head-const-bound-names-fordecl-tdz`, `let-array-with-newline` | Still **skip+FIXME** — need language-wide TDZ / ASI, not for-of-only |
 
 ## Theme inventory (all FIXME)
 

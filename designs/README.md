@@ -34,6 +34,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) | **#17** — mutable faces (landed PR **#150** → `mgg-develop`; issue closed) |
 | [`array-semantics.md`](array-semantics.md) | **#39** — dense arrays, elision, create_array, out-of-range bracket get |
 | [`conversion-functions.md`](conversion-functions.md) | Type-named converts vs constructors; no null()/function() convert |
+| [`utf8-code-point-sequences.md`](utf8-code-point-sequences.md) | **#153** — utf8-backed values as immutable code-point sequences (index, for-of, array consumers) |
 
 ## Conventions
 
