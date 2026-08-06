@@ -782,20 +782,33 @@ TestScriptValue ::= (
 TestScriptBegin ::= TestScriptLineStart 'test_script:' TestScriptValue
 
 TestBegin ::= TestScriptLineStart 'test:' TestScriptValue
-/* Identifier should be one that will not collide with standard ones.         */
+/* Official case properties (also accepted at file level where listed).       */
+/* Any other Identifier key is still accepted as TestCustomProperty and       */
+/* stored as a string on the test object (no compiler enum required).         */
 
 TestCustomProperty ::= Identifier ':' TestScriptValue
+/* What the case checks. For test262-derived cases, stay close to the TC39    */
+/* description (light Adaptive tweaks OK). Not the place for harness notes.   */
 
 TestDescription ::= TestScriptLineStart 'description:' TestScriptValue
+/* Optional ES vs Adaptive language delta for the construct under test only   */
+/* (not try/assert wrappers). Harvestable for differences docs later.         */
+
+TestDifferences ::= TestScriptLineStart 'differences:' TestScriptValue
 
 TestExpect ::= TestScriptLineStart
    'expect:' (
        ( 'error' '\n' ) |
        ( 'result' TestScriptValue )
    )
-/* Skip can be use for source that is not ready to test                       */
+/* Skip when the case is not ready to run (or permanently out of scope).      */
 
-TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
+TestSkip ::= TestScriptLineStart 'skip:' ( 'true' | 'false' ) '\n'
+/* Why skip is true. Suggested prefixes (convention): Incompatible: never     */
+/* convert; FIXME: Adaptive should fix/decide; Deferred: later; Harness: rare */
+/* runner limit. See src/afw/tests/test262/README.md.                         */
+
+TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
 /* Default is script or the one specified in TestScriptDefinition             */
 
 TestSourceType ::= TestScriptLineStart 'source_type:'

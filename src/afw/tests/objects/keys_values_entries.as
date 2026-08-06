@@ -70,6 +70,41 @@ assert(v[0].n === 1, "nested value");
 return 0;
 
 //?
+//? test: keys-values-entries-undefined-property
+//? description: object may hold undefined property values; values and entries see them
+//? expect: 0
+//? source: ...
+
+let o = { "a": 1, "b": undefined, "c": 3 };
+let v = values(o);
+assert(length(v) === 3, "values length");
+assert(v[0] === 1, "v0");
+assert(v[1] === undefined, "v1 undefined");
+assert(v[2] === 3, "v2");
+
+let e = entries(o);
+assert(length(e) === 3, "entries length");
+assert(e[1][0] === "b", "entry name");
+assert(e[1][1] === undefined, "entry value");
+assert(length(keys(o)) === 3, "keys still three");
+return 0;
+
+//?
+//? test: keys-values-snapshot
+//? description: keys/values snapshots do not change when object is later mutated
+//? expect: 0
+//? source: ...
+
+let o = { "a": 1 };
+let k = keys(o);
+let v = values(o);
+o.b = 2;
+assert(length(k) === 1, "keys snapshot length");
+assert(length(v) === 1, "values snapshot length");
+assert(length(keys(o)) === 2, "live keys");
+return 0;
+
+//?
 //? test: entries-basic
 //? description: entries returns [name, value] pairs
 //? expect: 0

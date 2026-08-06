@@ -151,9 +151,10 @@ class object
     /**
      * entries()
      *
-     * Return an array of property entries for an object. Each entry is a
-     * two-element array [name, value] where name is a string. The order
-     * matches keys() for the same object.
+     * Return a new array of property entries for an object. Each entry is a
+     * two-element array [name, value] where name is a string. Order matches
+     * keys() for the same object. The value may be undefined. The result is a
+     * snapshot.
      *
      * @param object $object Object to list property entries from.
      *
@@ -323,8 +324,9 @@ class object
     /**
      * keys()
      *
-     * Return an array of the property names of an object. The order of names
-     * is the object's property iteration order.
+     * Return a new array of the property names of an object, in the object's
+     * property iteration order. The array is a snapshot; later changes to the
+     * object do not change a previous result.
      *
      * @param object $object Object to list property names from.
      *
@@ -658,8 +660,9 @@ class object
     /**
      * values()
      *
-     * Return an array of the property values of an object. The order matches
-     * keys() for the same object.
+     * Return a new array of the property values of an object, in the same
+     * order as keys() for that object. Values may be undefined if a property
+     * was set to undefined. The array is a snapshot.
      *
      * @param object $object Object to list property values from.
      *

@@ -134,7 +134,8 @@ assert(a[1] === b[1]);]]></code>
             every element).
         </paragraph>
         <paragraph>
-            <literal>for-of</literal> and other walks over an array visit every
+            <literal>for-of</literal> and higher-order functions such as
+            <literal>map</literal> and <literal>filter</literal> walk every
             index from zero through length minus one, including positions whose
             value is <literal>undefined</literal>.
         </paragraph>

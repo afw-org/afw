@@ -245,6 +245,42 @@ assert(at(a, -10) === undefined, "at far negative undefined");
 return 0;
 
 //?
+//? test: map-identity-homogeneous-strings
+//? description: map identity over a string array keeps each element (not last repeated)
+//? expect: 0
+//? source: ...
+
+let out = map(function (v) { return v; }, ["a", "b", "c"]);
+assert(length(out) === 3);
+assert(out[0] === "a" && out[1] === "b" && out[2] === "c");
+return 0;
+
+//?
+//? test: map-with-undefined-and-elision
+//? description: map visits every index including undefined and omitted elements
+//? expect: 0
+//? source: ...
+
+let out1 = map(function (v) {
+    if (v === undefined) {
+        return "U";
+    }
+    return v;
+}, ["a", undefined, "b"]);
+assert(length(out1) === 3);
+assert(out1[0] === "a" && out1[1] === "U" && out1[2] === "b");
+
+let out2 = map(function (v) {
+    if (v === undefined) {
+        return "U";
+    }
+    return v;
+}, ["a", , "b"]);
+assert(length(out2) === 3);
+assert(out2[0] === "a" && out2[1] === "U" && out2[2] === "b");
+return 0;
+
+//?
 //? test: empty-array-zero
 //? description: empty_array(0) is empty mutable array
 //? expect: 0

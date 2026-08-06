@@ -53,8 +53,10 @@ The following functions are exported by default
 
 =head3 add_entries
 
-Add the entries of one or more arrays to another.
-Add entries of one or more arrays to another
+Append every entry of each source array onto the end of target, in order.
+target must be mutable. Entries are copied by value reference; nested objects
+and arrays are not deeply cloned.
+Append entries from arrays onto a target array
 
 =head4 Parameters
 
@@ -68,8 +70,10 @@ Source array(s).
 
 =head3 array
 
-Construct an array with 0 or more elements.
-Construct an array with 0 or more elements
+Construct a new array from the given values. If a value is written as
+...expression and the expression is an array, each of its entries is included
+in order. An empty call produces an empty array.
+Construct an array from values or spread arrays
 
 =head4 Parameters
 
@@ -84,7 +88,8 @@ array is included in the newly created array.
 
 Return the value at a zero-based index in an array. Negative indexes count
 from the end (-1 is the last element). If the index is out of range, the
-result is undefined.
+result is undefined (not an error). Bracket indexing a[index] is different: an
+out-of-range index raises an error.
 Value at array index
 
 =head4 Parameters
@@ -130,11 +135,10 @@ The array value to clone.
 
 =head3 empty_array
 
-Create a new mutable array of the given length. Every element is undefined.
-This is a dense pre-size helper (issue #39), not a sparse or
-bounded-max-length type. Length must be a non-negative integer and must not
-exceed the implementation maximum (1,000,000).
-Create a dense array of length n with undefined elements
+Create a new mutable array of the given length where every entry is undefined.
+Useful when you want a known length up front before assigning or filling
+entries. Length must be a non-negative integer and must not exceed 1,000,000.
+Create an array of a given length filled with undefined
 
 =head4 Parameters
 
@@ -341,8 +345,9 @@ Target array. Must not be immutable.
 
 =head3 push
 
-Append one or more values to the end of a mutable array (push back). Returns
-the modified array.
+Append one or more values to the end of a mutable array. Returns the same
+array after modification. The array must not be immutable (for example after
+freeze).
 Append values to an array
 
 =head4 Parameters

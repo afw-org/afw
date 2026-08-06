@@ -518,9 +518,9 @@ afw_function_execute_property_is_not_null(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return an array of property entries for an object. Each entry is a
- * two-element array [name, value] where name is a string. The order matches
- * keys() for the same object.
+ * Return a new array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. Order matches keys()
+ * for the same object. The value may be undefined. The result is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -583,8 +583,9 @@ afw_function_execute_entries(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return an array of the property names of an object. The order of names is the
- * object's property iteration order.
+ * Return a new array of the property names of an object, in the object's
+ * property iteration order. The array is a snapshot; later changes to the
+ * object do not change a previous result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -641,8 +642,9 @@ afw_function_execute_keys(
  *
  * See afw_function_bindings.h for more information.
  *
- * Return an array of the property values of an object. The order matches keys()
- * for the same object.
+ * Return a new array of the property values of an object, in the same order as
+ * keys() for that object. Values may be undefined if a property was set to
+ * undefined. The array is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.

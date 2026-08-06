@@ -13,9 +13,11 @@ import json
 
 def add_entries(session, target, source):
     """
-    Add entries of one or more arrays to another
+    Append entries from arrays onto a target array
 
-    Add the entries of one or more arrays to another.
+    Append every entry of each source array onto the end of target, in order.
+    target must be mutable. Entries are copied by value reference; nested
+    objects and arrays are not deeply cloned.
 
     Args:
         target (list): Target array. This array must not be immutable.
@@ -44,9 +46,11 @@ def add_entries(session, target, source):
 
 def array(session, values):
     """
-    Construct an array with 0 or more elements
+    Construct an array from values or spread arrays
 
-    Construct an array with 0 or more elements.
+    Construct a new array from the given values. If a value is written as
+    ...expression and the expression is an array, each of its entries is
+    included in order. An empty call produces an empty array.
 
     Args:
         values (object): A value can refer to any adaptable value belonging to
@@ -80,7 +84,8 @@ def at(session, array, index):
 
     Return the value at a zero-based index in an array. Negative indexes count
     from the end (-1 is the last element). If the index is out of range, the
-    result is undefined.
+    result is undefined (not an error). Bracket indexing a[index] is
+    different: an out-of-range index raises an error.
 
     Args:
         array (list): Array to index.
@@ -195,19 +200,19 @@ def clone_array(session, value):
 
 def empty_array(session, length):
     """
-    Create a dense array of length n with undefined elements
+    Create an array of a given length filled with undefined
 
-    Create a new mutable array of the given length. Every element is
-    undefined. This is a dense pre-size helper (issue #39), not a sparse or
-    bounded-max-length type. Length must be a non-negative integer and must
-    not exceed the implementation maximum (1,000,000).
+    Create a new mutable array of the given length where every entry is
+    undefined. Useful when you want a known length up front before assigning
+    or filling entries. Length must be a non-negative integer and must not
+    exceed 1,000,000.
 
     Args:
         length (int): Number of undefined elements (0 or more, up to the
         maximum).
 
     Returns:
-        list: A new array of the requested length filled with undefined.
+        list: A new array of the requested length; each entry is undefined.
     """
 
     request = session.Request()
@@ -679,8 +684,9 @@ def push(session, array, values=None):
     """
     Append values to an array
 
-    Append one or more values to the end of a mutable array (push back).
-    Returns the modified array.
+    Append one or more values to the end of a mutable array. Returns the same
+    array after modification. The array must not be immutable (for example
+    after freeze).
 
     Args:
         array (list): Target array. Must not be immutable.

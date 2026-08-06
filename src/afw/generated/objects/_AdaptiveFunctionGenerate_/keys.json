@@ -4,7 +4,7 @@
     "camelCaseFunctionLabel": "keys",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return an array of the property names of an object. The order of names is the object's property iteration order.",
+    "description": "Return a new array of the property names of an object, in the object's property iteration order. The array is a snapshot; later changes to the object do not change a previous result.",
     "functionId": "keys",
     "functionLabel": "keys",
     "parameters": [

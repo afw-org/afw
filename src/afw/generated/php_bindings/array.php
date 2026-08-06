@@ -28,7 +28,9 @@ class array
     /**
      * add_entries()
      *
-     * Add the entries of one or more arrays to another.
+     * Append every entry of each source array onto the end of target, in
+     * order. target must be mutable. Entries are copied by value reference;
+     * nested objects and arrays are not deeply cloned.
      *
      * @param array $target Target array. This array must not be immutable.
      * @param array $source Source array(s).
@@ -52,7 +54,9 @@ class array
     /**
      * array()
      *
-     * Construct an array with 0 or more elements.
+     * Construct a new array from the given values. If a value is written as
+     * ...expression and the expression is an array, each of its entries is
+     * included in order. An empty call produces an empty array.
      *
      * @param  $values A value can refer to any adaptable value belonging to
      *                 any data type or an array expression. In the case of an
@@ -81,7 +85,8 @@ class array
      *
      * Return the value at a zero-based index in an array. Negative indexes
      * count from the end (-1 is the last element). If the index is out of
-     * range, the result is undefined.
+     * range, the result is undefined (not an error). Bracket indexing
+     * a[index] is different: an out-of-range index raises an error.
      *
      * @param array $array Array to index.
      * @param integer $index Zero-based index, or negative from the end.
@@ -173,15 +178,15 @@ class array
     /**
      * empty_array()
      *
-     * Create a new mutable array of the given length. Every element is
-     * undefined. This is a dense pre-size helper (issue #39), not a sparse or
-     * bounded-max-length type. Length must be a non-negative integer and must
-     * not exceed the implementation maximum (1,000,000).
+     * Create a new mutable array of the given length where every entry is
+     * undefined. Useful when you want a known length up front before
+     * assigning or filling entries. Length must be a non-negative integer and
+     * must not exceed 1,000,000.
      *
      * @param integer $length Number of undefined elements (0 or more, up to
      *                        the maximum).
      *
-     * @return array A new array of the requested length filled with
+     * @return array A new array of the requested length; each entry is
      *               undefined.
      */
     public function empty_array(, $length)
@@ -555,8 +560,9 @@ class array
     /**
      * push()
      *
-     * Append one or more values to the end of a mutable array (push back).
-     * Returns the modified array.
+     * Append one or more values to the end of a mutable array. Returns the
+     * same array after modification. The array must not be immutable (for
+     * example after freeze).
      *
      * @param array $array Target array. Must not be immutable.
      * @param  $values Values to append in order.

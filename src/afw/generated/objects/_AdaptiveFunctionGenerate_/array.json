@@ -1,9 +1,9 @@
 {
     "afwCamelCaseFunctionLabel": "afwArray",
-    "brief": "Construct an array with 0 or more elements",
+    "brief": "Construct an array from values or spread arrays",
     "camelCaseFunctionLabel": "array",
     "category": "array",
-    "description": "Construct an array with 0 or more elements.",
+    "description": "Construct a new array from the given values. If a value is written as ...expression and the expression is an array, each of its entries is included in order. An empty call produces an empty array.",
     "errorsThrown": [
         {
             "error": "cast_error",

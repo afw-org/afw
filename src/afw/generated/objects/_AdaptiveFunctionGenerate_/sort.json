@@ -1,27 +1,27 @@
 {
     "afwCamelCaseFunctionLabel": "afwSort",
-    "brief": "Sort values in an array",
+    "brief": "Return a sorted copy of a single-type array",
     "camelCaseFunctionLabel": "sort",
     "category": "higher_order_array",
-    "description": "This produces an array with values sorted based on result of compareFunction. The compareFunction is passed two values from the array and must return an integer less than 0 if the first value is less than the second value, 0 if they are equal, and a integer greater than 0 if the first value is greater than the second value.",
+    "description": "Return a new array with the same entries as array, ordered using compareFunction. The array must have a single element data type (for example all integers or all strings); mixed or empty untyped arrays are not accepted. compareFunction is called with two entries and must return true when the first should sort before the second (boolean), not a numeric sort key.",
     "functionId": "sort",
     "functionLabel": "sort",
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(value1: any, value2: any) => integer",
-            "description": "This function is called with two value from array.",
+            "dataTypeParameter": "(value1: any, value2: any) => boolean",
+            "description": "Return true if value1 should be ordered before value2.",
             "name": "compareFunction"
         },
         {
             "dataType": "array",
-            "description": "This is the array to sort.",
+            "description": "Array to sort. Must be single-type (all entries the same data type).",
             "name": "array"
         }
     ],
     "pure": true,
     "returns": {
         "dataType": "array",
-        "description": "This the the resulting sorted array."
+        "description": "A new array with the entries of array in sorted order."
     }
 }

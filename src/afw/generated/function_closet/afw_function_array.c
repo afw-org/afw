@@ -22,7 +22,9 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Add the entries of one or more arrays to another.
+ * Append every entry of each source array onto the end of target, in order.
+ * target must be mutable. Entries are copied by value reference; nested objects
+ * and arrays are not deeply cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -64,7 +66,9 @@ afw_function_execute_add_entries(
  *
  * See afw_function_bindings.h for more information.
  *
- * Construct an array with 0 or more elements.
+ * Construct a new array from the given values. If a value is written as
+ * ...expression and the expression is an array, each of its entries is included
+ * in order. An empty call produces an empty array.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -112,7 +116,8 @@ afw_function_execute_array(
  *
  * Return the value at a zero-based index in an array. Negative indexes count
  * from the end (-1 is the last element). If the index is out of range, the
- * result is undefined.
+ * result is undefined (not an error). Bracket indexing a[index] is different:
+ * an out-of-range index raises an error.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -153,10 +158,10 @@ afw_function_execute_at(
  *
  * See afw_function_bindings.h for more information.
  *
- * Create a new mutable array of the given length. Every element is undefined.
- * This is a dense pre-size helper (issue #39), not a sparse or
- * bounded-max-length type. Length must be a non-negative integer and must not
- * exceed the implementation maximum (1,000,000).
+ * Create a new mutable array of the given length where every entry is
+ * undefined. Useful when you want a known length up front before assigning or
+ * filling entries. Length must be a non-negative integer and must not exceed
+ * 1,000,000.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -176,7 +181,7 @@ afw_function_execute_at(
  *
  * Returns:
  *
- *   (array) A new array of the requested length filled with undefined.
+ *   (array) A new array of the requested length; each entry is undefined.
  *
  * Errors thrown:
  *
@@ -280,8 +285,9 @@ afw_function_execute_pop(
  *
  * See afw_function_bindings.h for more information.
  *
- * Append one or more values to the end of a mutable array (push back). Returns
- * the modified array.
+ * Append one or more values to the end of a mutable array. Returns the same
+ * array after modification. The array must not be immutable (for example after
+ * freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
