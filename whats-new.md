@@ -65,7 +65,7 @@ Adaptive **`array`** is a **dense** ordered sequence of values (not an object, n
 | **Strict JSON** | Elision and trailing commas remain **invalid** (RFC JSON). |
 | **`a[i] =`** | Replace when `0 ≤ i < length`. **Append** when `i === length`. **Error** if `i > length` (no gap fill). |
 | **`empty_array(n)`** | New array of length **n** filled with **undefined** (`n` from **0** to **1_000_000**). |
-| **Get OOB** | Bracket `a[i]` **throws**; helper **`at(a, i)`** returns **undefined**. |
+| **Get out of range** | Bracket `a[i]` and **`at(a, i)`** both return **undefined**. |
 | **`for-of` / list HOFs** | Visit every index, including undefined slots (no ES “skip holes”). |
 
 Not supported (by design): `for-in`, `in`, `delete`, sparse present/missing indexes. See maintainer pad [`designs/array-semantics.md`](designs/array-semantics.md). Tests: `src/afw/tests/language/script/array_semantics.as`.

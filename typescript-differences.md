@@ -83,7 +83,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 
 - Rest/spread: **`...rest` formals**, call-site **`f(...arr)`**, rest in Patterns.
 - Helpers as Adaptive functions (**#55** closed): `keys`, `values`, `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (also `->` method sugar when registered). Keep XACML-shaped names (`all_of` / `any_of`, …) as first-class too—not a rename-everything-to-JS project.
-- Out-of-range **`at`**, empty **`pop`/`shift`**: **undefined** (nullish), not throw. Bracket **`a[i]`** OOB **throws** (stricter than `at`).
+- Out-of-range **`at`** / bracket **`a[i]`**, empty **`pop`/`shift`**: **undefined** (nullish), not throw.
 - Array literal **elision** (`['a', ,'b']`) → dense **undefined** slots (script / relaxed_json; not strict JSON). Assign **`a[length] = x`** appends; no gap fill. **`empty_array(n)`** pre-sizes with undefined.
 
 ### Functions and exceptions

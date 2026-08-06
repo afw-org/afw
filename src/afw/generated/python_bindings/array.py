@@ -84,8 +84,8 @@ def at(session, array, index):
 
     Return the value at a zero-based index in an array. Negative indexes count
     from the end (-1 is the last element). If the index is out of range, the
-    result is undefined (not an error). Bracket indexing a[index] is
-    different: an out-of-range index raises an error.
+    result is undefined. Bracket indexing a[index] uses the same out-of-range
+    result (undefined).
 
     Args:
         array (list): Array to index.

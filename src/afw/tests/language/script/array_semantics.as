@@ -226,22 +226,17 @@ assert(threw, "negative on empty throws");
 return 0;
 
 //?
-//? test: bracket-get-oob-throws
-//? description: a[i] past end throws; at() returns undefined
+//? test: bracket-get-out-of-range-undefined
+//? description: a[i] and at() both yield undefined when index is out of range
 //? expect: 0
 //? source: ...
 
 let a = [1, 2, 3];
-let threw = false;
-try {
-    let _ = a[10];
-} catch (e) {
-    threw = true;
-    assert(e.id === "evaluate" || is_defined(e.message), "error shape");
-}
-assert(threw, "bracket OOB throws");
-assert(at(a, 10) === undefined, "at OOB undefined");
-assert(at(a, -10) === undefined, "at far negative undefined");
+assert(a[10] === undefined, "bracket past end");
+assert(at(a, 10) === undefined, "at past end");
+assert(at(a, -10) === undefined, "at far negative");
+assert(a[-1] === 3, "bracket negative last");
+assert(a[-10] === undefined, "bracket far negative");
 return 0;
 
 //?

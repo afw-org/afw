@@ -154,11 +154,11 @@ assert(at(a, 0) === "a");
 assert(a->at(-1) === "c");
 assert(is_nullish(at(a, 3)));]]></code>
         <paragraph>
-            Bracket indexing <literal>a[index]</literal> is also zero-based.
-            When the index is outside the array (for example past the end),
-            evaluation raises an error. Prefer <literal>at</literal> when an
-            out-of-range index should produce <literal>undefined</literal>
-            instead of an error.
+            Bracket indexing <literal>a[index]</literal> is also zero-based
+            and accepts negative indexes from the end. When the index is
+            outside the array (for example past the end), the result is
+            <literal>undefined</literal>, the same as
+            <literal>at(array, index)</literal>.
         </paragraph>
     </section>
 

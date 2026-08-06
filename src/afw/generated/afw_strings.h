@@ -129719,7 +129719,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__209 \
-    "Return the value at a zero-based index in an array. Negative indexes count from the end (-1 is the last element). If the index is out of range, the result is undefined (not an error). Bracket indexing a[index] is different: an out-of-range index raises an error."
+    "Return the value at a zero-based index in an array. Negative indexes count from the end (-1 is the last element). If the index is out of range, the result is undefined. Bracket indexing a[index] uses the same out-of-range result (undefined)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__209 */
 #define afw_s_zz__209 \

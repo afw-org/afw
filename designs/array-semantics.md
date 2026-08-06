@@ -26,8 +26,8 @@ Trailing commas before `]` are allowed in non-strict (script / relaxed); not in 
 | Op | Behavior |
 |----|----------|
 | `a[i]` get, in range | Element (may be undefined) |
-| `a[i]` get, OOB | **Throw** (`Index out of range for array`) |
-| `at(a, i)` OOB | **undefined** |
+| `a[i]` get, out of range | **undefined** (same as `at`) |
+| `at(a, i)` out of range | **undefined** |
 | `a[i] =` in range | Replace |
 | `a[i] =` with `i === length` | **Append** (grow by one) |
 | `a[i] =` with `i > length` | **Throw** (no gap fill) |
