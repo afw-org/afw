@@ -2291,10 +2291,18 @@ impl_test_script_get_next_key_value(
  *
  * TestBegin ::= TestScriptLineStart 'test:' TestScriptValue
  *
- *# Identifier should be one that will not collide with standard ones.
+ *# Official case properties (also accepted at file level where listed).
+ *# Any other Identifier key is still accepted as TestCustomProperty and
+ *# stored as a string on the test object (no compiler enum required).
  * TestCustomProperty ::= Identifier ':' TestScriptValue
  *
+ *# What the case checks. For test262-derived cases, stay close to the TC39
+ *# description (light Adaptive tweaks OK). Not the place for harness notes.
  * TestDescription ::= TestScriptLineStart 'description:' TestScriptValue
+ *
+ *# Optional ES vs Adaptive language delta for the construct under test only
+ *# (not try/assert wrappers). Harvestable for differences docs later.
+ * TestDifferences ::= TestScriptLineStart 'differences:' TestScriptValue
  *
  * TestExpect ::= TestScriptLineStart
  *    'expect:' (
@@ -2302,12 +2310,11 @@ impl_test_script_get_next_key_value(
  *        ( 'result' TestScriptValue )
  *    )
  *
- *# Skip can be use for source that is not ready to test
- * TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
+ *# Skip when the case is not ready to run (or permanently out of scope).
+ * TestSkip ::= TestScriptLineStart 'skip:' ( 'true' | 'false' ) '\n'
  *
- *# Optional free-text reason when skip is true (custom property; stored on the
- *# test object). Prefer: description = why the case exists; skipReason = why
- *# it is skipped. Include "FIXME" in skipReason when Adaptive should fix it.
+ *# Why skip is true. Include "FIXME" when Adaptive should fix or decide;
+ *# omit FIXME for deliberate non-support / out of scope.
  * TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
  *
  *# Default is script or the one specified in TestScriptDefinition

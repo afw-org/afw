@@ -24,20 +24,48 @@ alwaysApply: false
 - Shebang: `#!/usr/bin/env -S afw --syntax test_script`
 - Metadata and cases via `//?` comments (multiple `//? test:` blocks per file).
 - Example pattern: `src/afw/tests/rql/eq.as`.
-- Typical case skeleton:
+- **test262-derived** suite: `src/afw/tests/test262/README.md` (TC39 lineage, purpose, metadata).
+
+### Official `//?` keys (documented)
+
+The compiler accepts **any** identifier as a custom string property
+(`TestCustomProperty`). Prefer these **official** names so tools and humans
+agree:
+
+| Key | Role |
+|-----|------|
+| **`test`** | Case id |
+| **`description`** | What the case checks (test262: stay close to TC39 text) |
+| **`differences`** | Optional ES vs Adaptive **language** delta for the construct under test (not harness) |
+| **`expect`** | Expected outcome (`0`, `error`, …) |
+| **`skip`** | `true` / `false` |
+| **`skipReason`** | Why skipped; include **`FIXME`** if Adaptive should fix or decide |
+| **`source`** | Case body |
+| **`sourceType`** | Usually `script` |
+
+Typical case skeleton:
 
 ```adaptive
 //?
 //? test: short_name
-//? description: What this case checks (reason for the test)
+//? description: What this case checks
+//? differences: Optional ES vs Adaptive language note
 //? skip: false
-//? skipReason: Why skipped when skip is true; include FIXME if Adaptive should fix
+//? skipReason: If skip true — why; FIXME if we should fix
 //? expect: 0
 //? source: ...
 
 assert(...);
 return 0;
 ```
+
+### Harness pattern (once, not per case)
+
+Shared runner adaptation (try/`assert`, `return 0`, no bare expression
+statements, no `assert.throws` / `typeof`, …) is the same for almost every
+test. Document it here; do **not** restate it in every `description` or
+`differences`. If one case is special, use a short **`//` comment in
+`source`**.
 
 ### `//?` keys: single-line and multi-line values
 

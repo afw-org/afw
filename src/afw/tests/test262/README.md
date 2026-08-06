@@ -1,29 +1,96 @@
-# Language Tests
+# Language Tests (test262-derived)
 
-These folders contain tests that were derived from the Official ECMAScript 
-Conformance Test Suite, where you can find the source to here:  
-https://github.com/tc39/test262/tree/main/test/language.
+These folders contain tests that were derived from the Official ECMAScript
+Conformance Test Suite (**test262**), language chapter only:
 
-Each test has an id, whose prefix aligns with the chapter/section located in 
-the ECMAScript Language Specification (5.1 Edition) found here:  
-https://262.ecma-international.org/5.1/. If a folder contains several tests, 
-we have changed that into a individual test file (.as) with multiple tests, 
-in order to minimize the number of test files.
+https://github.com/tc39/test262/tree/main/test/language
 
-The functionality of ECMAScript and Adaptive Script have some overlap. This was 
-intentional, in order to provide users with some comforts of a modern, 
-well-received language. However, ECMAScript has some history and syntax that 
-was designed for backwards compatibility, dating back to the beginning of the 
-web browsers. Some if its rules for comparison and data type conversions 
-reflect this.
+Each test has an id whose prefix aligns with the chapter/section in the
+ECMAScript Language Specification (historically 5.1 edition numbering is a
+useful map):
 
-The full Conformance Tests rely on constructs such as Objects, generators, 
-async operations and prototypes. It also depends on a small number of 
-primitive data types. Furthermore, not all of the syntax and semantics are the 
-same between the two, and our EBNF and their grammar names do not always match 
-up. Because of these differences, we used a subset of the Conformance tests and 
-changed some of them, along with their descriptions, to meet our needs.
+https://262.ecma-international.org/5.1/
 
-The script in this directory, _convert.py, was a helper script to attempt to 
-automate some of this conversion.  There was still a lot of adjustments to 
-be made after it was run.
+If a folder in test262 contained several tests, we usually collapsed them
+into one Adaptive `.as` file with multiple `//? test:` cases to keep the
+file count manageable.
+
+## Why this suite exists
+
+Adaptive Script is **not** ECMAScript, but we intentionally share a lot of
+syntax and everyday semantics so authors who know JavaScript/TypeScript are
+not surprised. This tree is a **regression fence** for that shared surface:
+when Adaptive means to behave like ES for a construct, keep it working that
+way. It is **not** a goal to pass full test262 or to grow prototypes,
+`class`, DOM, or a JS runtime.
+
+Broader product notes: root `typescript-differences.md` (maintainer/beta).
+Polished author-facing ES differences may live under GitHub **#22**.
+
+## Conversion history
+
+The full Conformance Tests rely on Objects-as-ES-exotics, generators, async,
+prototypes, and a small set of primitive types. Grammar names and EBNF also
+differ. We took a **subset** of the language tests and adapted them (and
+their descriptions) for Adaptive Script.
+
+`_convert.py` in this directory was a **helper** for a first-pass `.js` →
+`.as` conversion. Most cases still needed **hand** adjustment after it ran.
+
+## Adaptive test_script metadata (official tags)
+
+Cases use `//?` keys (see also `.cursor/rules/afw-tests.mdc` and the
+TestScript EBNF in `afw_compile_parse_script.c`). The compiler accepts **any**
+identifier as a custom property; the following are the **documented
+official** ones for this suite and for language tests in general:
+
+| Key | Role |
+|-----|------|
+| **`test`** | Case id (stable name) |
+| **`description`** | What the case checks. Prefer staying **close to the TC39 description**, lightly tweaked for Adaptive wording. |
+| **`differences`** | Optional. **Language** differences between ECMAScript and Adaptive for the construct under test only. Not harness wrapping. Good future harvest input for differences docs. |
+| **`expect`** | Expected result (`0`, `error`, …) |
+| **`skip`** | `true` / `false` — do not run |
+| **`skipReason`** | Why skipped. Include **`FIXME`** when Adaptive should fix or decide; omit FIXME for deliberate non-support. |
+| **`source`** | Adaptive Script body of the case |
+| **`sourceType`** | Usually `script` (file-level default OK) |
+
+Suggested order when several are present:
+
+```text
+//? test: name
+//? description: TC39-ish purpose
+//? differences: ES vs Adaptive for this construct (optional)
+//? expect: 0
+//? skip: true
+//? skipReason: FIXME … or permanent non-support reason
+//? source: ...
+```
+
+### Harness pattern (document once, not per test)
+
+Shared adaptation for Adaptive’s runner (try/`assert`, `return 0`, no bare
+expression statements, no `assert.throws` / `typeof`, etc.) is **the same
+for almost every case**. That pattern lives in developer/test rules
+(`.cursor/rules/afw-tests.mdc`); do **not** restate it in every
+`description` or `differences`.
+
+If a case has something **unusual**, put a short **`//` comment in the
+source** next to the oddity. No special metadata tag is required for
+harness notes.
+
+### What belongs in `differences` vs comments
+
+| Put in **`differences`** | Put in **source `//` comments** (or nowhere) |
+|--------------------------|-----------------------------------------------|
+| Dense elision vs ES sparse holes | try/catch instead of `assert.throws` |
+| Structural `===` on objects | `return 0` / shebang |
+| No `for (x.y of …)` member LHS | “no typeof; assert the value only” |
+
+## Running
+
+From the package root (narrow as needed):
+
+```bash
+afwdev test -j --srcdir-pattern afw --test-pattern 'test262'
+```
