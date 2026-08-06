@@ -430,6 +430,15 @@ struct afw_compile_internal_parser_s {
     afw_boolean_t doing_object_spread;
 
     /*
+     * When true, do not emit wrap_literal_object on constant object literals
+     * (e.g. while parsing arguments of wrap_literal_object itself).
+     */
+    afw_boolean_t suppress_object_literal_wrap;
+    afw_boolean_t suppress_array_literal_wrap;
+    /* Nesting depth of parse_List (1 = outermost script array literal). */
+    afw_size_t array_literal_depth;
+
+    /*
      * Set by afw_compile_get_token_before_eol() and reset in
      * afw_compile_get_token_impl().
      */

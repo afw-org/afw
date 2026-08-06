@@ -402,7 +402,8 @@ afw_function_execute_property_exists(
  *
  * Return the value of a property. Optional default applies only when the
  * property is missing — not when the value is undefined. If missing and no
- * default is given, the result is undefined. Mutable defaults are cloned.
+ * default is given, the result is undefined. Object/array defaults get a
+ * mutable memory face (issues #110 / #17); other defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -424,7 +425,7 @@ afw_function_execute_property_exists(
  *   name - (string) Property name.
  *
  *   defaultValue - (optional any) Value to return only if the property is
- *       missing. Cloned when used.
+ *       missing. Isolated when used (object/array face; otherwise clone).
  *
  * Returns:
  *
@@ -447,7 +448,7 @@ afw_function_execute_property_get(
         result = afw_value_undefined;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
             result = afw_value_evaluate(x->argv[3], x->p, x->xctx);
-            result = afw_value_clone(result, x->p, x->xctx);
+            result = afw_value_isolate_mutable_default(result, x->p, x->xctx);
         }
     }
 

@@ -28,6 +28,8 @@ our @EXPORT_OK = qw(
     throw 
     try 
     while 
+    wrap_literal_array 
+    wrap_literal_object 
 );
 
 =head1 NAME
@@ -362,6 +364,38 @@ of the loop. Each value in body is evaluated in order until the end of the
 list or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
+=head3 wrap_literal_array
+
+Evaluate an array value, create a memory array wrapper
+(afw_array_create_wrapper_*) over its instance, and return that wrapper as an
+array value. Entry mutators stay on the face; nested objects/arrays are
+promoted on get. Intended for compile/runtime isolation of array literals
+(issue #17); not normal author surface syntax.
+Wrap an evaluated array in a memory face
+
+=head4 Parameters
+
+    $array
+
+Array to evaluate and wrap (typically a constant array literal once the
+compiler emits isolation).
+
+=head3 wrap_literal_object
+
+Evaluate an object value, create a memory object wrapper
+(afw_object_create_wrapper_*) over its instance, and return that wrapper as an
+object value. Local property sets stay on the face; gets look through to the
+shared base. Intended for compile/runtime isolation of object literals (issue
+#17); not normal author surface syntax.
+Wrap an evaluated object in a memory look-through face
+
+=head4 Parameters
+
+    $object
+
+Object to evaluate and wrap (typically a constant object literal once the
+compiler emits isolation).
+
 =cut
 
 sub assign {
@@ -573,6 +607,28 @@ sub while_ {
     $request->set("function" => "while");
     $request->set("condition", $condition);
     $request->set("body", $body);
+
+    return $request->getResult();
+}
+
+sub wrap_literal_array {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "wrap_literal_array");
+    $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub wrap_literal_object {
+    my ($object) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "wrap_literal_object");
+    $request->set("object", $object);
 
     return $request->getResult();
 }

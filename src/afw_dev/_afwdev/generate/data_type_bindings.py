@@ -206,9 +206,15 @@ def write_h_section(fd, prefix, obj):
     if not special:
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Macro to determine if value is evaluated ' + id + '.\n')
+        fd.write(' * @brief True if A_VALUE is an evaluated ' + id + ' value.\n')
         fd.write(' * @param A_VALUE to test.\n')
         fd.write(' * @return boolean result.\n')
+        fd.write(' *\n')
+        fd.write(' * For evaluated values only. When true, it is safe to cast A_VALUE to\n')
+        fd.write(' * `const afw_value_' + id + '_t *`.\n')
+        fd.write(' * If you want to know if the value will be ' + id + ' when fully\n')
+        fd.write(' * evaluated (not necessarily cast-safe yet), use\n')
+        fd.write(' * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, ' + id + ', xctx)` instead.\n')
         fd.write(' */\n')
         fd.write('#define afw_value_is_' + id + '(A_VALUE) \\\n')
         fd.write('( \\\n')
@@ -217,9 +223,12 @@ def write_h_section(fd, prefix, obj):
         fd.write(')\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Macro to determine if value is evaluated array of ' + id + '.\n')
+        fd.write(' * @brief True if A_VALUE is an evaluated array of ' + id + '.\n')
         fd.write(' * @param A_VALUE to test.\n')
         fd.write(' * @return boolean result.\n')
+        fd.write(' *\n')
+        fd.write(' * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)\n')
+        fd.write(' * whose element data type is ' + id + '.\n')
         fd.write(' */\n')
         fd.write('#define afw_value_is_array_of_' + id + '(A_VALUE) \\\n')
         fd.write('( \\\n')
@@ -909,7 +918,7 @@ def write_c_section(fd, prefix, obj):
 
     # Declare for empty array of this data type
     fd.write('\n/* Value for empty array of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)\n')
+    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
     fd.write('impl_empty_array_of_' + id + ';\n')
     
     # Declare for empty array value of this data type
@@ -1027,10 +1036,10 @@ def write_c_section(fd, prefix, obj):
 
         # Define for empty array of this data type
         fd.write('\n/* Value for empty array of ' + id + '. */\n')
-        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)\n')
+        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
         fd.write('impl_empty_array_of_' + id + ' = {\n')
         fd.write('    {\n')
-        fd.write('        &afw_array_wrapper_for_array_inf,\n')
+        fd.write('        &afw_array_view_of_c_array_inf,\n')
         fd.write('        NULL,\n')
         fd.write('        (const afw_value_t *)&impl_value_empty_array_of_' + id + '\n')
         fd.write('    },\n')

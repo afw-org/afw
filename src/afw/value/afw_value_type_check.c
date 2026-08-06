@@ -330,6 +330,47 @@ impl_type_is_type_assignable(
 
 /* ---------- value inspection helpers ---------- */
 
+/*
+ * See through compile-time wrap_literal_object / wrap_literal_array (issue #17)
+ * so type excess / shape checks still see the constant argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_call(
+    const afw_value_t *value,
+    const afw_utf8_z_t *function_id)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            function_id) ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+static const afw_value_t *
+impl_unwrap_wrap_literal_object(const afw_value_t *value)
+{
+    return impl_unwrap_wrap_literal_call(value, "wrap_literal_object");
+}
+
+
+static const afw_value_t *
+impl_unwrap_wrap_literal_array(const afw_value_t *value)
+{
+    return impl_unwrap_wrap_literal_call(value, "wrap_literal_array");
+}
+
+
+
 static const afw_value_t *
 impl_get_typed_object_property(
     const afw_value_t *value,
@@ -343,6 +384,7 @@ impl_get_typed_object_property(
     const afw_value_t *found;
 
     *has_open_props = false;
+    value = impl_unwrap_wrap_literal_object(value);
 
     if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
         obj = ((const afw_value_object_t *)value)->internal;
@@ -382,6 +424,7 @@ impl_get_typed_object_property(
 static const afw_array_t *
 impl_try_array_internal(const afw_value_t *value)
 {
+    value = impl_unwrap_wrap_literal_array(value);
     if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
         return ((const afw_value_array_t *)value)->internal;
     }
@@ -1070,6 +1113,12 @@ impl_object_type_property_type(
 /**
  * @return true if value is an object literal (for excess-property checks).
  * @param open_keys set when keys are not fully static (skip excess).
+ *
+ * See through wrap_literal_object first so wrap(construct) still matches.
+ * Then require construct/expression IR or cast-safe evaluated object — not
+ * every call whose get_data_type is object (e.g. get_object). Use
+ * AFW_VALUE_IS_DATA_TYPE (not EVALUATES_TO) after unwrap: we need a walkable
+ * layout, not only a known produce type.
  */
 static afw_boolean_t
 impl_is_object_literal_for_excess(
@@ -1080,6 +1129,7 @@ impl_is_object_literal_for_excess(
     const afw_value_object_construct_entry_t *e;
 
     *open_keys = false;
+    value = impl_unwrap_wrap_literal_object(value);
 
     if (afw_value_is_object_construct(value)) {
         construct = (const afw_value_object_construct_t *)value;
@@ -1098,10 +1148,7 @@ impl_is_object_literal_for_excess(
         return true;
     }
 
-    /*
-     * Compile-time constant object literals evaluate to unmanaged objects
-     * while still being the direct RHS of const/let.
-     */
+    /* Compile-time constant object: finished cast-safe layout. */
     if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
         return true;
     }
@@ -1128,6 +1175,8 @@ impl_foreach_object_literal_prop(
     const afw_value_t *pv;
     const afw_value_object_construct_t *construct;
     const afw_value_object_construct_entry_t *e;
+
+    value = impl_unwrap_wrap_literal_object(value);
 
     if (afw_value_is_object_construct(value)) {
         construct = (const afw_value_object_construct_t *)value;
@@ -1374,15 +1423,11 @@ afw_value_type_check_call_arg_object_literal(
     {
         return;
     }
-    /* Only unevaluated object constructs/expressions count as call-site literals. */
-    if (!afw_value_is_object_construct(value) &&
-        !afw_value_is_object_expression(value))
-    {
-        return;
-    }
+    /* Constructs, expressions, wrap_literal_object / evaluated object literals. */
     if (!impl_is_object_literal_for_excess(value, &open_keys) || open_keys) {
         return;
     }
+    value = impl_unwrap_wrap_literal_object(value);
     impl_check_excess_properties(expected, value, what,
         AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) &&
             !AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx),

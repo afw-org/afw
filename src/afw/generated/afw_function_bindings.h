@@ -6794,6 +6794,82 @@ const afw_value_t *
 afw_function_execute_while(
     afw_function_execute_t *x);
 
+/** @brief Function definition wrap_literal_array */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_wrap_literal_array;
+
+/**
+ * @brief Adaptive Function `wrap_literal_array`
+ * @param x function execute parameter.
+ *
+ * Evaluate an array value, create a memory array wrapper
+ * (afw_array_create_wrapper_*) over its instance, and return that wrapper as an
+ * array value. Entry mutators stay on the face; nested objects/arrays are
+ * promoted on get. Intended for compile/runtime isolation of array literals
+ * (issue #17); not normal author surface syntax.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function wrap_literal_array(
+ *       array: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Array to evaluate and wrap (typically a constant array
+ *       literal once the compiler emits isolation).
+ *
+ * Returns:
+ *
+ *   (array) A new memory-wrapper array face over the evaluated base.
+ */
+const afw_value_t *
+afw_function_execute_wrap_literal_array(
+    afw_function_execute_t *x);
+
+/** @brief Function definition wrap_literal_object */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_wrap_literal_object;
+
+/**
+ * @brief Adaptive Function `wrap_literal_object`
+ * @param x function execute parameter.
+ *
+ * Evaluate an object value, create a memory object wrapper
+ * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
+ * an object value. Local property sets stay on the face; gets look through to
+ * the shared base. Intended for compile/runtime isolation of object literals
+ * (issue #17); not normal author surface syntax.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function wrap_literal_object(
+ *       object: object
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to evaluate and wrap (typically a constant object
+ *       literal once the compiler emits isolation).
+ *
+ * Returns:
+ *
+ *   (object) A new memory-wrapper object face over the evaluated base.
+ */
+const afw_value_t *
+afw_function_execute_wrap_literal_object(
+    afw_function_execute_t *x);
+
 /** @} */
 
 
@@ -17369,7 +17445,8 @@ afw_function_definition_variable_get;
  *
  * Return the value of a bound variable. Optional default applies only when the
  * name is not bound — not when the value is undefined. If unbound and no
- * default is given, the result is undefined. Mutable defaults are cloned.
+ * default is given, the result is undefined. Object/array defaults get a
+ * mutable memory face (issues #110 / #17); other defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -17388,7 +17465,7 @@ afw_function_definition_variable_get;
  *   name - (string) Name of variable to get. Optionally qualifier::name.
  *
  *   defaultValue - (optional any) Value to return only if the name is not
- *       bound. Cloned when used.
+ *       bound. Isolated when used (object/array face; otherwise clone).
  *
  * Returns:
  *
@@ -19854,7 +19931,8 @@ afw_function_definition_property_get;
  *
  * Return the value of a property. Optional default applies only when the
  * property is missing — not when the value is undefined. If missing and no
- * default is given, the result is undefined. Mutable defaults are cloned.
+ * default is given, the result is undefined. Object/array defaults get a
+ * mutable memory face (issues #110 / #17); other defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -19876,7 +19954,7 @@ afw_function_definition_property_get;
  *   name - (string) Property name.
  *
  *   defaultValue - (optional any) Value to return only if the property is
- *       missing. Cloned when used.
+ *       missing. Isolated when used (object/array face; otherwise clone).
  *
  * Returns:
  *

@@ -577,13 +577,14 @@ class object
      *
      * Return the value of a property. Optional default applies only when the
      * property is missing — not when the value is undefined. If missing and
-     * no default is given, the result is undefined. Mutable defaults are
-     * cloned.
+     * no default is given, the result is undefined. Object/array defaults get
+     * a mutable memory face (issues #110 / #17); other defaults are cloned.
      *
      * @param object $object Object to get property from.
      * @param string $name Property name.
      * @param  $defaultValue Value to return only if the property is missing.
-     *                       Cloned when used.
+     *                       Isolated when used (object/array face; otherwise
+     *                       clone).
      *
      * @return  Property value, or default / undefined if missing.
      */

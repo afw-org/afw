@@ -101,9 +101,15 @@ afw_value_permanent_integer_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated integer.
+ * @brief True if A_VALUE is an evaluated integer value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_integer_t *`.
+ * If you want to know if the value will be integer when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, integer, xctx)` instead.
  */
 #define afw_value_is_integer(A_VALUE) \
 ( \
@@ -112,9 +118,12 @@ afw_value_permanent_integer_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of integer.
+ * @brief True if A_VALUE is an evaluated array of integer.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is integer.
  */
 #define afw_value_is_array_of_integer(A_VALUE) \
 ( \

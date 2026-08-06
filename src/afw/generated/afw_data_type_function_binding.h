@@ -101,9 +101,15 @@ afw_value_permanent_function_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated function.
+ * @brief True if A_VALUE is an evaluated function value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_function_t *`.
+ * If you want to know if the value will be function when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, function, xctx)` instead.
  */
 #define afw_value_is_function(A_VALUE) \
 ( \
@@ -112,9 +118,12 @@ afw_value_permanent_function_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of function.
+ * @brief True if A_VALUE is an evaluated array of function.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is function.
  */
 #define afw_value_is_array_of_function(A_VALUE) \
 ( \

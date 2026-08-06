@@ -192,7 +192,7 @@ impl_data_type_object_json__value = {
 };
 
 /* Value for empty array of json. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
 impl_empty_array_of_json;
 
 /* Value for empty array of json. */
@@ -227,10 +227,10 @@ afw_data_type_json_direct = {
 };
 
 /* Value for empty array of json. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
 impl_empty_array_of_json = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_json
     },

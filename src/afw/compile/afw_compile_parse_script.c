@@ -32,6 +32,31 @@ impl_function_definition_rethrow =
 
 
 
+/*
+ * See through compile-time wrap_literal_array(...) (issue #17) for pattern
+ * element type checks against the constant array argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_array(const afw_value_t *value)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            "wrap_literal_array") ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+
 /* Compile-time type check for const/let/assign (issue #28). */
 static void
 impl_compile_check_list_pattern(
@@ -44,6 +69,14 @@ impl_compile_check_list_pattern(
     const afw_value_t *elem;
     afw_size_t i;
 
+    /*
+     * Evaluates to array (includes wrap_literal_array). Then require cast-safe
+     * evaluated array (after unwrap) to open entries.
+     */
+    if (!AFW_VALUE_EVALUATES_TO_DATA_TYPE(value, array, parser->xctx)) {
+        return;
+    }
+    value = impl_unwrap_wrap_literal_array(value);
     if (!AFW_VALUE_IS_DATA_TYPE(value, array)) {
         return;
     }
@@ -65,6 +98,31 @@ impl_compile_check_list_pattern(
 
 
 
+/*
+ * See through compile-time wrap_literal_object(...) (issue #17) for pattern
+ * property type checks against the constant object argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_object(const afw_value_t *value)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            "wrap_literal_object") ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+
 static void
 impl_compile_check_object_pattern(
     afw_compile_parser_t *parser,
@@ -77,6 +135,14 @@ impl_compile_check_object_pattern(
     const afw_value_type_t *type;
     const afw_utf8_t *name;
 
+    /*
+     * Evaluates to object (includes wrap_literal_object call). Then require a
+     * cast-safe evaluated object (after unwrap) to walk properties.
+     */
+    if (!AFW_VALUE_EVALUATES_TO_DATA_TYPE(value, object, parser->xctx)) {
+        return;
+    }
+    value = impl_unwrap_wrap_literal_object(value);
     if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
         return;
     }

@@ -111,9 +111,15 @@ afw_value_permanent_dnsName_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated dnsName.
+ * @brief True if A_VALUE is an evaluated dnsName value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_dnsName_t *`.
+ * If you want to know if the value will be dnsName when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, dnsName, xctx)` instead.
  */
 #define afw_value_is_dnsName(A_VALUE) \
 ( \
@@ -122,9 +128,12 @@ afw_value_permanent_dnsName_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of dnsName.
+ * @brief True if A_VALUE is an evaluated array of dnsName.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is dnsName.
  */
 #define afw_value_is_array_of_dnsName(A_VALUE) \
 ( \

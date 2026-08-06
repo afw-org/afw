@@ -309,6 +309,24 @@ def run():
         )
     )
 
+    tests.append(
+        _expect_equal(
+            "empty_array_flow",
+            "empty array emits flow []",
+            "array()",
+            "---\n  []",
+        )
+    )
+
+    tests.append(
+        _expect_equal(
+            "empty_object_flow",
+            "empty object emits flow {}",
+            "object({})",
+            "---\n  {}",
+        )
+    )
+
     # --- conf input: -t yaml ---------------------------------------------
 
     with tempfile.TemporaryDirectory(prefix="afw_yaml_conf_") as td:

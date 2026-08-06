@@ -237,10 +237,10 @@ impl_1_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_1_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_1_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_1_list_collectionURIs__value
     },
@@ -270,7 +270,7 @@ impl_1_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2517.pub
+    &afw_ldap_self_v_zz__2522.pub
 };
 
 static const afw_runtime_property_t
@@ -486,7 +486,7 @@ impl_7_property_dataType = {
 static const afw_runtime_property_t
 impl_7_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2518.pub
+    &afw_ldap_self_v_zz__2523.pub
 };
 
 static const afw_runtime_property_t
@@ -596,7 +596,7 @@ impl_8_property_dataType = {
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2519.pub
+    &afw_ldap_self_v_zz__2524.pub
 };
 
 static const afw_runtime_property_t
@@ -732,9 +732,9 @@ impl_5_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_5_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_5_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_5_parentPaths_array
@@ -814,10 +814,10 @@ impl_4_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_4_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_4_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_4_list_collectionURIs__value
     },
@@ -1263,10 +1263,10 @@ impl_9_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_9_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_9_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_9_list_collectionURIs__value
     },
@@ -1296,7 +1296,7 @@ impl_9_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_9_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2520.pub
+    &afw_ldap_self_v_zz__2525.pub
 };
 
 static const afw_runtime_property_t
@@ -1899,10 +1899,10 @@ impl_13_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_13_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_13_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_13_list_collectionURIs__value
     },
@@ -1932,7 +1932,7 @@ impl_13_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_13_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2521.pub
+    &afw_ldap_self_v_zz__2526.pub
 };
 
 static const afw_runtime_property_t
@@ -2130,10 +2130,10 @@ impl_20_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_20_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_20_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_20_list_collectionURIs__value
     },
@@ -2163,7 +2163,7 @@ impl_20_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_20_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2522.pub
+    &afw_ldap_self_v_zz__2527.pub
 };
 
 static const afw_runtime_property_t
@@ -2348,10 +2348,10 @@ impl_22_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_22_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_22_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_22_list_collectionURIs__value
     },
@@ -2381,7 +2381,7 @@ impl_22_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_22_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2523.pub
+    &afw_ldap_self_v_zz__2528.pub
 };
 
 static const afw_runtime_property_t
@@ -3506,10 +3506,10 @@ impl_24_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_24_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_24_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_24_list_collectionURIs__value
     },
@@ -3539,7 +3539,7 @@ impl_24_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_24_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2524.pub
+    &afw_ldap_self_v_zz__2529.pub
 };
 
 static const afw_runtime_property_t
@@ -3737,10 +3737,10 @@ impl_36_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_36_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_36_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_36_list_collectionURIs__value
     },
@@ -3770,7 +3770,7 @@ impl_36_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_36_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2525.pub
+    &afw_ldap_self_v_zz__2530.pub
 };
 
 static const afw_runtime_property_t
@@ -3955,10 +3955,10 @@ impl_38_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_38_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_38_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_38_list_collectionURIs__value
     },
@@ -3988,7 +3988,7 @@ impl_38_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_38_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2526.pub
+    &afw_ldap_self_v_zz__2531.pub
 };
 
 static const afw_runtime_property_t
@@ -4413,10 +4413,10 @@ impl_40_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_40_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_40_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_40_list_collectionURIs__value
     },
@@ -4446,7 +4446,7 @@ impl_40_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_40_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2527.pub
+    &afw_ldap_self_v_zz__2532.pub
 };
 
 static const afw_runtime_property_t

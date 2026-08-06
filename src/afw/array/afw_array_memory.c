@@ -51,6 +51,12 @@ struct afw_memory_internal_array_s {
     afw_memory_internal_array_ring_t *ring;
     /** Number of entries in ring; kept in sync by all mutators. */
     afw_size_t count;
+    /*
+     * Optional base for create_wrapper_* faces (NULL for a normal memory
+     * array). After materialize, entry values live on the local ring; sets
+     * never write to wrapped. See afw_array_create_wrapper_with_options().
+     */
+    const afw_array_t *wrapped;
     afw_boolean_t immutable;
     afw_boolean_t generic;
 };
@@ -102,6 +108,181 @@ afw_array_create_with_options(
     /* Return new object. */
     return (const afw_array_t *)self;
 
+}
+
+
+
+/*
+ * Give nested object/array entries a *new* face over the instance as given.
+ * Always re-face (do not return an existing face pointer): bag / default
+ * entries may already be faces, and sharing them across array faces is the
+ * nested hard edge (issue #17). Do not peel to ultimate base — array faces
+ * can hold content only on the face ring (e.g. let l=[]; add_entries(l,…)).
+ */
+static const afw_value_t *
+impl_face_nested_structured_value(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *nested_obj;
+    const afw_array_t *nested_arr;
+    const afw_object_t *wrap_obj;
+    const afw_array_t *wrap_arr;
+
+    if (!value) {
+        return value;
+    }
+
+    if (afw_value_is_object(value)) {
+        nested_obj = ((const afw_value_object_t *)value)->internal;
+        if (!nested_obj) {
+            return value;
+        }
+        wrap_obj = afw_object_create_wrapper_unmanaged(nested_obj, p, xctx);
+        return wrap_obj->value
+            ? wrap_obj->value
+            : afw_value_create_unmanaged_object(wrap_obj, p, xctx);
+    }
+
+    if (afw_value_is_array(value)) {
+        nested_arr = ((const afw_value_array_t *)value)->internal;
+        if (!nested_arr) {
+            return value;
+        }
+        wrap_arr = afw_array_create_wrapper_unmanaged(nested_arr, p, xctx);
+        return wrap_arr->value
+            ? wrap_arr->value
+            : afw_value_create_unmanaged_array(wrap_arr, p, xctx);
+    }
+
+    return value;
+}
+
+
+/* Create memory array face that wraps another array (issue #17). */
+AFW_DEFINE(const afw_array_t *)
+afw_array_create_wrapper_with_options(
+    int options,
+    const afw_array_t *wrapped,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_memory_internal_array_t *self;
+    const afw_iterator_t *iterator;
+    const afw_value_t *value;
+    const afw_data_type_t *data_type;
+
+    if (!wrapped) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_array_create_wrapper_with_options requires a wrapped array",
+            xctx);
+    }
+
+    data_type = afw_array_get_data_type(wrapped, xctx);
+    self = (afw_memory_internal_array_t *)
+        afw_array_create_with_options(options, data_type, p, xctx);
+    self->wrapped = wrapped;
+
+    /*
+     * Materialize entries onto the face so ring mutators only touch local
+     * storage (base is not written). Nested objects/arrays are faced up
+     * front so typed higher-order paths (get_next_internal / map) cannot
+     * mutate shared bases — see nested hard edge / issue #17.
+     */
+    for (iterator = NULL;;) {
+        value = afw_array_get_next_value(wrapped, &iterator, p, xctx);
+        if (!value) {
+            break;
+        }
+        if (!self->immutable) {
+            value = impl_face_nested_structured_value(value, p, xctx);
+        }
+        afw_array_push_value((const afw_array_t *)self, value, xctx);
+    }
+
+    return (const afw_array_t *)self;
+}
+
+
+
+/* True if array is a memory look-through / materialize wrapper face. */
+AFW_DEFINE(afw_boolean_t)
+afw_array_is_memory_wrapper(const afw_array_t *array)
+{
+    const afw_memory_internal_array_t *self;
+
+    if (!array || array->inf != &impl_afw_array_inf) {
+        return false;
+    }
+    self = (const afw_memory_internal_array_t *)array;
+    return self->wrapped != NULL;
+}
+
+
+
+/* Base under a face, or array if not a face. */
+AFW_DEFINE(const afw_array_t *)
+afw_array_memory_wrapper_base(const afw_array_t *array)
+{
+    const afw_memory_internal_array_t *self;
+
+    if (!array) {
+        return NULL;
+    }
+    if (array->inf != &impl_afw_array_inf) {
+        return array;
+    }
+    self = (const afw_memory_internal_array_t *)array;
+    return self->wrapped ? self->wrapped : array;
+}
+
+
+
+/*
+ * Promote nested structured entry onto a wrapper face (get path). Normal
+ * memory arrays (self->wrapped NULL) are unchanged. Materialize already
+ * faces nested values; this covers late push / set of bare bases.
+ *
+ * If the ring slot is already a face, leave it (same face for this array
+ * face's lifetime). Only re-face bare bases or faces that are not yet
+ * stored as this slot's value after materialize.
+ */
+static const afw_value_t *
+impl_promote_structured_entry(
+    AFW_ARRAY_SELF_T *self,
+    afw_memory_internal_array_entry_t *ep,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *faced;
+    const afw_object_t *obj;
+    const afw_array_t *arr;
+
+    if (!value || !ep || !self->wrapped || self->immutable) {
+        return value;
+    }
+
+    /* Already a nested face on this slot — keep stable for this array face. */
+    if (afw_value_is_object(value)) {
+        obj = ((const afw_value_object_t *)value)->internal;
+        if (obj && afw_object_is_memory_wrapper(obj)) {
+            return value;
+        }
+    }
+    else if (afw_value_is_array(value)) {
+        arr = ((const afw_value_array_t *)value)->internal;
+        if (arr && afw_array_is_memory_wrapper(arr)) {
+            return value;
+        }
+    }
+    else {
+        return value;
+    }
+
+    faced = impl_face_nested_structured_value(value, self->pub.p, xctx);
+    ep->value = faced;
+    return faced;
 }
 
 
@@ -219,7 +400,10 @@ impl_afw_array_get_entry_value(
     }
 
     ep = impl_entry_at(self, (afw_size_t)resolved);
-    return ep ? ep->value : NULL;
+    if (!ep) {
+        return NULL;
+    }
+    return impl_promote_structured_entry(self, ep, ep->value, xctx);
 }
 
 
@@ -258,11 +442,16 @@ impl_afw_array_get_next_internal(
         return false;
     }
 
-    /* Return next value; store current entry as iterator position. */
+    /* Promote nested faces on wrapper arrays (typed map / get_next_internal). */
     *iterator = (afw_iterator_t *)ep;
-    *internal = AFW_VALUE_INTERNAL(ep->value);
-    if (data_type) {
-        *data_type = afw_value_get_data_type(ep->value, xctx);
+    {
+        const afw_value_t *value;
+
+        value = impl_promote_structured_entry(self, ep, ep->value, xctx);
+        *internal = AFW_VALUE_INTERNAL(value);
+        if (data_type) {
+            *data_type = afw_value_get_data_type(value, xctx);
+        }
     }
     return true;
 }
@@ -298,9 +487,9 @@ impl_afw_array_get_next_value(
         return NULL;
     }
 
-    /* Return next value. */
+    /* Return next value (promote nested faces on wrapper arrays). */
     *iterator = (afw_iterator_t *)ep;
-    return ep->value;
+    return impl_promote_structured_entry(self, ep, ep->value, xctx);
 }
 
 
@@ -987,7 +1176,7 @@ afw_array_of_create_from_value(
     }
     else {
         v = afw_value_convert(value, data_type, true, p, xctx);
-        value_array = afw_array_create_wrapper_for_array(
+        value_array = afw_array_create_view_of_c_array(
             AFW_VALUE_INTERNAL(v), false, data_type, 1, p, xctx);
     }
 

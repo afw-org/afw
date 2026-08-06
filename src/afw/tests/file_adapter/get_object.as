@@ -65,3 +65,64 @@ assert(meta(obj).objectType === "TestObjectType1");
 assert(meta(obj).reconcilable !== undefined);
 
 return 0;
+
+//?
+//? test: get_object-mutable-face-no-clone
+//? description: ...
+Issue #17: get_object returns a mutable face — set properties without clone().
+Second get still sees store data (mutation stays on the face, not the bag).
+//? skip: false
+//? expect: 0
+//? source: ...
+
+let a: object = get_object("file", "TestObjectType1", "Test1");
+assert(a.TestString1 === "This is a test string.");
+a.TestString1 = "mutated on face";
+a.extraLocal = 1;
+assert(a.TestString1 === "mutated on face");
+assert(a.extraLocal === 1);
+
+let b: object = get_object("file", "TestObjectType1", "Test1");
+assert(b.TestString1 === "This is a test string.",
+    "second get_object must not see first face mutation");
+assert(is_nullish(property_get(b, "extraLocal", null)),
+    "second get must not see extraLocal from first face");
+
+return 0;
+
+//?
+//? test: get_object-face-lookthrough-base-props
+//? description: ...
+Face still reads store properties that were not set locally; only overrides
+shadow the base.
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const o = get_object("file", "TestObjectType1", "Test1");
+assert(o.TestString1 === "This is a test string.");
+o.onlyFace = true;
+assert(o.TestString1 === "This is a test string.", "unrelated base prop still visible");
+assert(o.onlyFace === true);
+
+return 0;
+
+//?
+//? test: get_object-reconcilable-still-works
+//? description: ...
+reconcilable:true skips face so meta.reconcilable and path remain on the
+entity/view (issue #17 exception). Full reconcile covered in reconcile_object.as.
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const o = get_object("file", "TestObjectType1", "Test1", {
+    reconcilable: true,
+    path: true,
+    objectId: true
+});
+assert(meta(o).reconcilable !== undefined);
+assert(meta(o).path === anyURI("/file/TestObjectType1/Test1"));
+assert(meta(o).objectId === "Test1");
+
+return 0;

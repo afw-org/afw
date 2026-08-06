@@ -712,6 +712,30 @@ impl_afw_adapter_journal_get_entry_internal(
                 get_first = true;
             }
         }
+
+        /*
+         * advance_cursor_for_consumer does not use reissue/consumeCursor
+         * semantics, but still needs a scan start from peer advance/current
+         * (or the start of the journal). Without this, entry_object_id stays
+         * NULL and get_entry fails with "get_first or entry_object_id required".
+         */
+        else if (advance_consumer_cursor) {
+            advanceCursor = afw_object_old_get_property_as_string(peer,
+                afw_s_advanceCursor, xctx);
+            currentCursor = afw_object_old_get_property_as_string(peer,
+                afw_s_currentCursor, xctx);
+            if (advanceCursor) {
+                entry_object_id = advanceCursor;
+                skip_first_entry = false;
+            }
+            else if (currentCursor) {
+                entry_object_id = currentCursor;
+                skip_first_entry = true;
+            }
+            else {
+                get_first = true;
+            }
+        }
     }
 
     /* If get_first, get path to first journal file. */

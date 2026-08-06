@@ -142,12 +142,16 @@
 /**
  * @deprecated Do not use in new or changed code.
  *
- * Expands to C `assert()` and can **abort the process**. That is unsafe under
- * a long-running server / request (takes down the worker). Use
- * `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / `AFW_COMPILE_THROW_ERROR_*`
- * so failures participate in `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY` and the
- * request can fail cleanly. There is intentionally **no** `AFW_ABORT` (or
- * similar) helper — do not invent process-abort wrappers.
+ * **Do not use.** Expands to C `assert()` and can **abort the process**.
+ * That is unsafe under a long-running server / request (takes down the
+ * worker). Use `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` /
+ * `AFW_COMPILE_THROW_ERROR_*` so failures participate in `AFW_TRY` /
+ * `AFW_CATCH` / `AFW_FINALLY` and the request can fail cleanly. There is
+ * intentionally **no** `AFW_ABORT` (or similar) helper — do not invent
+ * process-abort wrappers.
+ *
+ * Kept only until remaining call sites are removed; new code must not add
+ * `AFW_ASSERT`.
  *
  * @fixme Remove when no remaining call sites.
  */

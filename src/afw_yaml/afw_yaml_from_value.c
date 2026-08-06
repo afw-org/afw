@@ -167,7 +167,7 @@ void put_yaml_string(
 
 
 /*
- * This write a string using the literal block scalar style as described in
+ * Write a string using the literal block scalar style as described in
  * Chapter 8 at https://yaml.org/spec/1.2.2/#rule-c-indentation-indicator.
  */
 void convert_string_to_literal_style_yaml(
@@ -180,6 +180,12 @@ void convert_string_to_literal_style_yaml(
 
     s = string->s;
     len = string->len;
+
+    /* Caller only uses this when len > 0 and the string contains '\n'. */
+    if (len == 0) {
+        impl_puts(wa, "\"\"");
+        return;
+    }
 
     /* Indicate literal style. */
     impl_putc(wa, '|');
@@ -194,7 +200,7 @@ void convert_string_to_literal_style_yaml(
         impl_putc(wa, '+');
     }
 
-    /* If string does not ends with a newline, use STRIP chomping indicator. */
+    /* If string does not end with a newline, use STRIP chomping indicator. */
     else {
         impl_putc(wa, '-');
     }
@@ -270,11 +276,9 @@ void convert_integer_to_yaml(
 }
 
 /*
- * Since JSON numbers are a valid subset of YAML numbers, we'll just use
- * JSON's representation.
- *
- * FIXME:  I've read that numeric one (1) should be quoted, otherwise
- * it will be parsed as boolean true.
+ * Finite doubles use JSON-like %.23G (valid YAML plain numbers). Non-finite
+ * values are quoted strings (NaN / INF), matching JSON helpers. YAML 1.2 Core
+ * Schema does not treat plain 1 as boolean — no special-case quoting needed.
  */
 void convert_number_to_yaml(
     from_value_wa_t *wa,
@@ -332,21 +336,24 @@ void convert_list_to_yaml(
     const afw_iterator_t *list_iterator;
     const afw_value_t *next;
 
-    impl_puts(wa, "- ");
-
-
     list_iterator = NULL;
     next = afw_array_get_next_value(list, &list_iterator, wa->p, wa->xctx);
 
+    /* Empty array → flow []. */
+    if (!next) {
+        impl_puts(wa, "[]");
+        return;
+    }
+
     while (next) {
+        impl_puts(wa, "- ");
         (wa->indent)++;
         convert_value_to_yaml(wa, next);
         (wa->indent)--;
-        put_ws(wa);
         next = afw_array_get_next_value(list, &list_iterator,
             wa->p, wa->xctx);
         if (next) {
-            impl_puts(wa, "- ");
+            put_ws(wa);
         }
     }
 }
@@ -365,10 +372,16 @@ void convert_object_to_yaml(
     next = afw_object_get_next_property(obj, &property_iterator,
         &property_name, wa->xctx);
 
-
     /* If object has meta, convert it first. */
     meta = afw_object_meta_create_accessor_with_options(obj,
         wa->options, wa->p, wa->xctx);
+
+    /* Empty object with no meta → flow {}. */
+    if (!meta && !next) {
+        impl_puts(wa, "{}");
+        return;
+    }
+
     if (meta) {
         (wa->indent)++;
         put_yaml_string(wa, afw_s__meta_);
@@ -380,7 +393,6 @@ void convert_object_to_yaml(
             put_ws(wa);
         }
     }
-
 
     /* Add each object property. */
     if (next) {
@@ -396,8 +408,9 @@ void convert_object_to_yaml(
                 &property_iterator, &property_name, wa->xctx);
 
             (wa->indent)--;
-            if (next)
-            put_ws(wa);
+            if (next) {
+                put_ws(wa);
+            }
             if (!next) {
                 break;
             }
@@ -488,15 +501,14 @@ void convert_value_to_yaml(
             convert_boolean_to_yaml(wa,
                 ((afw_value_boolean_t *)value)->internal);
         }
-    }
 
-    /* If value is function, evaluated value and convert value to json. */
-    else  if (0 /** @fixmeAFW_VALUE_INSTANCE_IS(value,Function)*/) {
-        /** @fixme
-        evaluated_value = afw_value_evaluate(&value->pub,
-            wa->p, wa->xctx);
-        convert_value_to_yaml(wa, evaluated_value);
-         */
+        /* Evaluated but not a YAML-encodable primitive. */
+        else {
+            AFW_THROW_ERROR_FZ(general, wa->xctx,
+                "Value data type is not supported for YAML "
+                "(" AFW_UTF8_FMT ")",
+                AFW_UTF8_FMT_ARG(&value_data_type->data_type_id));
+        }
     }
 
     /* If none of above then it's an error. */
@@ -507,7 +519,7 @@ void convert_value_to_yaml(
 }
 
 
-/* Convert a value to json and write it. */
+/* Convert a value to YAML and write it. */
 extern void afw_yaml_internal_write_value(
     const afw_value_t *value,
     const afw_object_options_t *options,
@@ -529,7 +541,7 @@ extern void afw_yaml_internal_write_value(
     impl_puts(wa, "---");
     (wa->indent)++;
 
-    /* Convert object to json. */
+    /* Convert value to YAML. */
     convert_value_to_yaml(wa, value);
 }
 

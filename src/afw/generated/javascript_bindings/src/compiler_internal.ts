@@ -460,3 +460,47 @@ export function afwWhile(client : any, condition : boolean, body : any[]) : any 
     return client.perform(_action);
 }
 
+/**
+ * Evaluate an array value, create a memory array wrapper
+ * (afw_array_create_wrapper_*) over its instance, and return that wrapper as
+ * an array value. Entry mutators stay on the face; nested objects/arrays are
+ * promoted on get. Intended for compile/runtime isolation of array literals
+ * (issue #17); not normal author surface syntax.
+ * 
+ * @param {array} array - Array to evaluate and wrap (typically a constant
+ *     array literal once the compiler emits isolation).
+ * 
+ * @returns {array} A new memory-wrapper array face over the evaluated base.
+ */
+export function afwWrapLiteralArray(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "wrap_literal_array";
+    _action["array"] = array;
+
+    return client.perform(_action);
+}
+
+/**
+ * Evaluate an object value, create a memory object wrapper
+ * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
+ * an object value. Local property sets stay on the face; gets look through to
+ * the shared base. Intended for compile/runtime isolation of object literals
+ * (issue #17); not normal author surface syntax.
+ * 
+ * @param {object} object - Object to evaluate and wrap (typically a constant
+ *     object literal once the compiler emits isolation).
+ * 
+ * @returns {object} A new memory-wrapper object face over the evaluated base.
+ */
+export function afwWrapLiteralObject(client : any, object : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "wrap_literal_object";
+    _action["object"] = object;
+
+    return client.perform(_action);
+}
+

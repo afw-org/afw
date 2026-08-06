@@ -50,8 +50,69 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**`variable_exists` bound vs value (#131)**](#variable_exists-bound-vs-undefined-issue-131) | `variable_exists` is **bound** (true for uninit / undefined); `variable_get` default only if **not bound**; light function briefs |
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
+| [**Mutable object faces (#17)**](#mutable-object-faces-issue-17-in-progress) | **On `issue-#17-…` → PR `mgg-develop`** — literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces; drop many manual `clone()` calls |
 
 ---
+
+## Mutable object faces (issue #17, in progress)
+
+> **Status:** Feature-complete on branch `issue-#17-object-literals-immutable` (off `mgg-develop`); not all of this is on `mgg-develop` until merge. Maintainer design pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md).
+
+### What problem this is about
+
+Adaptive Script often hands you an **object** or **array** that is really a **shared instance** or a **non-bag impl** under the hood:
+
+- The same **object or array literal** in a function or loop can be **one bag** reused across evaluations, so mutating it “sticks” the next time.
+- **Binding** used to **clone** as a safety net; that clone-on-bind is **gone** for objects **and** arrays — isolation comes from **faces** on literals, defaults, and script-facing returns.
+- **Defaults** on helpers such as `property_get` / `variable_get` (issue **#110**) get a **mutable face** (not a deep clone of the whole graph).
+- **Adapter get/retrieve** may return a **view** or other low-cost implementation. ECMAScript authors often expect “I got an object → I can set properties” and used to wrap in **`clone()`** by hand.
+
+Product goal:
+
+> When you work with an object (or array) in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time bag, or the shared base the platform still owns — and without needing `clone()` just to set a property.
+
+Under the hood a face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays get **fresh faces** so typed `map` / index paths do not share nested bags). Authors do not need a wrap API for the happy path.
+
+### Where you can drop manual `clone()` (on this branch)
+
+| Path | Notes |
+|------|--------|
+| **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
+| **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` keeps the entity/view for `reconcile_object` — use `clone()` if you also want a free-form mutable bag. |
+| **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
+| **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
+| **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** |
+| **`journal_get_*`**, **consumer** gets, **after_cursor**, **advance** | Response objects are faces |
+
+Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
+
+### `clone()` vs `freeze` vs `const` vs faces
+
+| Tool | Meaning |
+|------|---------|
+| **Face (platform)** | Mutable local layer; base not poisoned; **not** a deep copy and **not** store write-through |
+| **`clone()`** | Explicit **deep** independent copy of a graph (or when you still need a free bag over reconcilable/entity paths) |
+| **`freeze`** | Explicit **immutability** of a value graph (or as documented for that API) |
+| **`const`** | **Binding-level** only — the name cannot be reassigned; nested properties may still be mutable unless frozen |
+
+**Still use `clone()` when:** you want a true deep independent copy; you need a free-form bag while keeping reconcilable identity separate; or you need a full snapshot for other reasons.
+
+### What this is *not*
+
+- **`retrieve_*_to_response` / `_to_stream`** — write/encode only; no script-owned face.
+- **Journal entry returns** from add/modify/replace/… — fresh memory “receipts,” not store rows.
+- **Faces are not write-through** to the adapter store — persist with add / modify / replace / update.
+- **YAML conf / content-type parse** stays plain objects (no parse-time faces); script isolation for YAML-backed **file** data still goes through adapter get faces when applicable.
+- **Runtime / `afw` catalog** objects (environment registry, live maps) are a separate lifetime topic — see issue **#149** (under **#2**), not this faces feature.
+
+### Migration / habits
+
+- After this ships on your branch/build, drop redundant `clone()` around **get_object / retrieve / callback / journal get** and literal isolation paths once you confirm behavior.
+- Out-of-tree commands/extensions: rebuild if they link object/array face APIs; pure script authors follow this section.
+
+---
+
+[↑ Highlights](#highlights)
 
 ## Function reference prototypes (#28 spelling)
 
@@ -840,6 +901,13 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 
 **Issue #14** — **closed** 2026-08-04 (feature long on tree; regression suite on `mgg-develop`; re-verified 22 yaml tests)
 
+**Beta hygiene (this branch):**
+
+- `afw_yaml_to_object` (**`raw_to_object`**) fixed so **file adapters with `contentType: yaml`** work; libyaml parser always deleted.
+- Plain scalars: full-string **integer vs double** (`afw_number_parse`), `true`/`false`/`null`/`~`; quoted/literal/folded always strings; partial numbers like `123foo` stay strings.
+- Empty array/object emit **`[]` / `{}`**; mapping value without key errors.
+- No parse-time issue-#17 faces (conf/store plain; adapter/journal faces on return).
+
 The `afw` command can print evaluated adaptive values using any registered **content type**, not only JSON:
 
 | Option | Meaning |
@@ -885,7 +953,12 @@ Invalid `--allow` values fail with **`Invalid --allow content-type.`**
 
 ### Tests
 
-Permanent suite: **`src/afw_yaml/tests/yaml_allow_output.py`** (tags `yaml`, `content_type`).
+Permanent suite under **`src/afw_yaml/tests/`** (tags `yaml`, `content_type`):
+
+| File | Covers |
+|------|--------|
+| **`yaml_allow_output.py`** | `--allow` short/media ids, block scalars, primitives, objects/arrays, `-t yaml` conf |
+| **`yaml_to_object.py`** | `raw_to_object` / file adapter `contentType: yaml` get/add, non-mapping root reject, #17 face isolation on get |
 
 ```bash
 afwdev test -p afw_yaml --show-all
@@ -893,7 +966,7 @@ afwdev test -p afw_yaml --show-all
 afwdev test -p afw_yaml --tags yaml
 ```
 
-Covers `--allow` short/media ids, invalid allow, JSON path sanity, block-scalar chomping/indent, integers and other primitives, objects/arrays, and `-t yaml` conf parse. Handbook `usage.xml` may still omit `-a` until a docs pass; live **`afw -h`** lists it.
+Handbook `usage.xml` may still omit `-a` until a docs pass; live **`afw -h`** lists it.
 
 ---
 
@@ -918,7 +991,7 @@ If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-ba
 
 ### Default values from `property_get` / `variable_get`
 
-The clone-on-return fix for mutable defaults (issue **#110**) landed on `develop` before this branch. On `mgg-develop`, dedicated Adaptive Script regression tests lock that behavior in: a default object or array returned for a missing property/variable is isolated so later mutations do not poison other calls (important in long-running hosts and model `on*` handlers).
+Mutable defaults for `property_get` / `variable_get` (issue **#110**) are isolated so later mutations do not poison other calls (important in long-running hosts and model `on*` handlers). On this branch, object/array defaults use a **memory face** (`afw_value_isolate_mutable_default`) rather than a full structural clone; scalars still clone. Regression tests in `property_get.as` / `variable_get.as` lock the isolation behavior.
 
 ### Tests under `src/*/tests`
 
@@ -986,6 +1059,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | `afw --allow` + YAML block strings / integers | #14 (closed) | regression tests on `mgg-develop` |
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
 | Adaptive Script types | #28 (open; core shipped) | issue-#28 / #145 line on `mgg-develop` |
+| Mutable object faces (shared instances) | #17 (open; in progress) | `issue-#17-object-literals-immutable` (framing in this file + `designs/issue-17-mutable-object-faces.md`) |
 
 ---
 

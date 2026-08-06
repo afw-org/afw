@@ -110,7 +110,7 @@ impl_data_type_object_undefined__value = {
 };
 
 /* Value for empty array of undefined. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
 impl_empty_array_of_undefined;
 
 /* Value for empty array of undefined. */

@@ -607,10 +607,10 @@ impl_1_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_1_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_1_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_1_list_collectionURIs__value
     },
@@ -640,7 +640,7 @@ impl_1_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2475.pub
+    &afw_crypto_self_v_zz__2480.pub
 };
 
 static const afw_runtime_property_t
@@ -752,7 +752,7 @@ impl_10_property_dataType = {
 static const afw_runtime_property_t
 impl_10_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2476.pub
+    &afw_crypto_self_v_zz__2481.pub
 };
 
 static const afw_runtime_property_t *
@@ -1408,10 +1408,10 @@ impl_8_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_8_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_8_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_8_list_collectionURIs__value
     },
@@ -1441,7 +1441,7 @@ impl_8_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2477.pub
+    &afw_crypto_self_v_zz__2482.pub
 };
 
 static const afw_runtime_property_t
@@ -1921,10 +1921,10 @@ impl_16_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_16_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_16_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_16_list_collectionURIs__value
     },
@@ -1954,7 +1954,7 @@ impl_16_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_16_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2478.pub
+    &afw_crypto_self_v_zz__2483.pub
 };
 
 static const afw_runtime_property_t
@@ -2060,7 +2060,7 @@ impl_21_property_category = {
 static const afw_runtime_property_t
 impl_21_property_description = {
     &afw_crypto_self_s_description,
-    &afw_crypto_self_v_zz__2479.pub
+    &afw_crypto_self_v_zz__2484.pub
 };
 
 static const afw_runtime_property_t *

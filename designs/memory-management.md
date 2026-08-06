@@ -9,6 +9,8 @@ Living design / discussion notes for long-running AFW process memory: pools, val
 
 **End goal of the discussion:** a coherent **AFW memory-management story** — useful for implementing **#2** now, and as durable context for **humans and assistants** on later work (not only this issue). Prefer clear narrative and invariants over a pile of undigested archaeology.
 
+**Related (not the same work as #17 faces):** GitHub **[#149](https://github.com/afw-org/afw/issues/149)** — runtime / `afw` adapter catalog lifetime (live object maps vs full `EnvironmentRegistry` materialize cost). Notes: [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md).
+
 ### Adaptive values are a big deal
 
 **`afw_value` (adaptive values) are central to AFW** — not a minor helper type. Script/eval is a graph of values; compile returns a value; functions, literals, objects-as-data, arrays, closures, and scope variables are (or carry) values. Lifetime and escape for long-running work hang on **value inf policy** (`optional_evaluate`, `optional_release`, `clone_or_reference`) with pools/subpools underneath. When in doubt for #2 and script MM: **think in values first**; hide pool/object nastiness behind the value. (Stated again in other conversations; recorded here so it is not only chat memory.)
@@ -684,7 +686,7 @@ Also re-grep for `afw_object_impl_declares.h` and for object factories **without
 
 | Target | Action |
 |--------|--------|
-| memory, const_array, wrapper_for_array, meta_values_* | Confirm `pub.value` always set (1a: mostly yes) |
+| memory, const_array, view_of_c_array, meta_values_* | Confirm `pub.value` always set (1a: mostly yes) |
 | Any gap or wrong inf | Fix |
 | Permanent empty arrays | Confirm still permanent + mutual (no regression) |
 
@@ -972,7 +974,7 @@ Typical preamble:
 |-------------------|--------|----------|---------------------|--------|
 | `memory` | `array/afw_array_memory.c` | **Y** | managed_array | Workhorse |
 | `afw_array_const_array_of_values` | `array/afw_array_const_array.c` | **Y** | (const path) | |
-| `afw_array_wrapper_for_array` | `array/afw_array_wrapper_for_array.c` | **Y** | points at passed/own value | Used by permanent empty arrays |
+| `afw_array_view_of_c_array` | `array/afw_array_view_of_c_array.c` | **Y** | points at passed/own value | Used by permanent empty arrays |
 | `afw_value_meta_values_list` | `value/afw_value_meta_values_list.c` | **Y** | | Meta as array |
 | `afw_value_meta_values_object` | `value/afw_value_meta_values_object.c` | **Y** | | |
 
@@ -1488,7 +1490,7 @@ Closure_binding and compiled_value are the hand-side peers of “managed escape�
 
 **Objects** (examples): `memory`, composite, view, meta / meta_accessor, properties_callback, const_key_value, aggregate_external, runtime indirect, FCGI request properties, env variables object, …
 
-**Arrays** (examples): `memory`, const array of values, wrapper_for_array, …
+**Arrays** (examples): `memory`, const array of values, view_of_c_array, …
 
 Different impls mean different lifetime stories: pure views over external data, const permanent, callback-backed, vs **memory** containers that own storage.
 
@@ -2064,7 +2066,7 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - **object meta (`impl_set_meta_object`):** `value.internal` was the **entity** — fixed to **meta_self**; face **unmanaged** (pool-owned).
 - **memory object:** managed vs unmanaged create option selects **managed/unmanaged_object** value inf.
 - **property_meta / fcgi properties:** unmanaged dual face (pool/xctx-owned).
-- **arrays:** const_array, wrapper_for_array, meta_values_* use **unmanaged_array** face (embedded/pool; avoid free-header). Memory array still managed in 1b′; **1c** moves it to unmanaged.
+- **arrays:** const_array, view_of_c_array, meta_values_* use **unmanaged_array** face (embedded/pool; avoid free-header). Memory array still managed in 1b′; **1c** moves it to unmanaged.
 - **const meta / registry / generate const_objects:** already set value (static init); no code change.
 - Tests: **2832** passed. Create policy still **1d**.
 

@@ -594,7 +594,8 @@ afw_function_execute_variable_exists(
  *
  * Return the value of a bound variable. Optional default applies only when the
  * name is not bound — not when the value is undefined. If unbound and no
- * default is given, the result is undefined. Mutable defaults are cloned.
+ * default is given, the result is undefined. Object/array defaults get a
+ * mutable memory face (issues #110 / #17); other defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -613,7 +614,7 @@ afw_function_execute_variable_exists(
  *   name - (string) Name of variable to get. Optionally qualifier::name.
  *
  *   defaultValue - (optional any) Value to return only if the name is not
- *       bound. Cloned when used.
+ *       bound. Isolated when used (object/array face; otherwise clone).
  *
  * Returns:
  *

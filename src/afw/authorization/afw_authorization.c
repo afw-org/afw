@@ -390,7 +390,7 @@ afw_authorization_internal_set_control(
         (deny_if_not_applicable)
         ? afw_s_deny
         : afw_s_permit;
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         &impl_s_a_notApplicable_policy_id,
         false, afw_data_type_anyURI, 1, p, xctx);
     afw_object_set_property_as_array(not_applicable_object,

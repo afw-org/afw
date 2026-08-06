@@ -36,7 +36,7 @@ impl_1;
 static const afw_runtime_property_t
 impl_1_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2181.pub
+    &afw_components_self_v_zz__2186.pub
 };
 
 static const afw_runtime_property_t
@@ -54,7 +54,7 @@ impl_1_property_componentType = {
 static const afw_runtime_property_t
 impl_1_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2182.pub
+    &afw_components_self_v_zz__2187.pub
 };
 
 static const afw_runtime_property_t
@@ -165,7 +165,7 @@ impl_2_property_componentType = {
 static const afw_runtime_property_t
 impl_2_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2183.pub
+    &afw_components_self_v_zz__2188.pub
 };
 
 static const afw_runtime_property_t
@@ -276,7 +276,7 @@ impl_3_property_componentType = {
 static const afw_runtime_property_t
 impl_3_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2184.pub
+    &afw_components_self_v_zz__2189.pub
 };
 
 static const afw_runtime_property_t
@@ -387,7 +387,7 @@ impl_4_property_componentType = {
 static const afw_runtime_property_t
 impl_4_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2185.pub
+    &afw_components_self_v_zz__2190.pub
 };
 
 static const afw_runtime_property_t
@@ -498,7 +498,7 @@ impl_5_property_componentType = {
 static const afw_runtime_property_t
 impl_5_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2186.pub
+    &afw_components_self_v_zz__2191.pub
 };
 
 static const afw_runtime_property_t
@@ -609,7 +609,7 @@ impl_6_property_componentType = {
 static const afw_runtime_property_t
 impl_6_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2187.pub
+    &afw_components_self_v_zz__2192.pub
 };
 
 static const afw_runtime_property_t
@@ -720,7 +720,7 @@ impl_7_property_componentType = {
 static const afw_runtime_property_t
 impl_7_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2188.pub
+    &afw_components_self_v_zz__2193.pub
 };
 
 static const afw_runtime_property_t
@@ -831,7 +831,7 @@ impl_8_property_componentType = {
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2189.pub
+    &afw_components_self_v_zz__2194.pub
 };
 
 static const afw_runtime_property_t
@@ -942,7 +942,7 @@ impl_9_property_componentType = {
 static const afw_runtime_property_t
 impl_9_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2190.pub
+    &afw_components_self_v_zz__2195.pub
 };
 
 static const afw_runtime_property_t
@@ -1035,7 +1035,7 @@ impl_10;
 static const afw_runtime_property_t
 impl_10_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2191.pub
+    &afw_components_self_v_zz__2196.pub
 };
 
 static const afw_runtime_property_t
@@ -1053,7 +1053,7 @@ impl_10_property_componentType = {
 static const afw_runtime_property_t
 impl_10_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2192.pub
+    &afw_components_self_v_zz__2197.pub
 };
 
 static const afw_runtime_property_t
@@ -1146,7 +1146,7 @@ impl_11;
 static const afw_runtime_property_t
 impl_11_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2193.pub
+    &afw_components_self_v_zz__2198.pub
 };
 
 static const afw_runtime_property_t
@@ -1164,7 +1164,7 @@ impl_11_property_componentType = {
 static const afw_runtime_property_t
 impl_11_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2194.pub
+    &afw_components_self_v_zz__2199.pub
 };
 
 static const afw_runtime_property_t
@@ -1275,7 +1275,7 @@ impl_12_property_componentType = {
 static const afw_runtime_property_t
 impl_12_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2195.pub
+    &afw_components_self_v_zz__2200.pub
 };
 
 static const afw_runtime_property_t
@@ -1368,7 +1368,7 @@ impl_13;
 static const afw_runtime_property_t
 impl_13_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2196.pub
+    &afw_components_self_v_zz__2201.pub
 };
 
 static const afw_runtime_property_t
@@ -1386,7 +1386,7 @@ impl_13_property_componentType = {
 static const afw_runtime_property_t
 impl_13_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2197.pub
+    &afw_components_self_v_zz__2202.pub
 };
 
 static const afw_runtime_property_t
@@ -1590,7 +1590,7 @@ impl_15;
 static const afw_runtime_property_t
 impl_15_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2198.pub
+    &afw_components_self_v_zz__2203.pub
 };
 
 static const afw_runtime_property_t
@@ -1608,7 +1608,7 @@ impl_15_property_componentType = {
 static const afw_runtime_property_t
 impl_15_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2199.pub
+    &afw_components_self_v_zz__2204.pub
 };
 
 static const afw_runtime_property_t
@@ -1701,7 +1701,7 @@ impl_16;
 static const afw_runtime_property_t
 impl_16_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2200.pub
+    &afw_components_self_v_zz__2205.pub
 };
 
 static const afw_runtime_property_t
@@ -1719,7 +1719,7 @@ impl_16_property_componentType = {
 static const afw_runtime_property_t
 impl_16_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2201.pub
+    &afw_components_self_v_zz__2206.pub
 };
 
 static const afw_runtime_property_t
@@ -1812,7 +1812,7 @@ impl_17;
 static const afw_runtime_property_t
 impl_17_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2202.pub
+    &afw_components_self_v_zz__2207.pub
 };
 
 static const afw_runtime_property_t
@@ -1830,7 +1830,7 @@ impl_17_property_componentType = {
 static const afw_runtime_property_t
 impl_17_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2203.pub
+    &afw_components_self_v_zz__2208.pub
 };
 
 static const afw_runtime_property_t
@@ -1923,7 +1923,7 @@ impl_18;
 static const afw_runtime_property_t
 impl_18_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2204.pub
+    &afw_components_self_v_zz__2209.pub
 };
 
 static const afw_runtime_property_t
@@ -1941,7 +1941,7 @@ impl_18_property_componentType = {
 static const afw_runtime_property_t
 impl_18_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2205.pub
+    &afw_components_self_v_zz__2210.pub
 };
 
 static const afw_runtime_property_t
@@ -2034,7 +2034,7 @@ impl_19;
 static const afw_runtime_property_t
 impl_19_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2206.pub
+    &afw_components_self_v_zz__2211.pub
 };
 
 static const afw_runtime_property_t
@@ -2052,7 +2052,7 @@ impl_19_property_componentType = {
 static const afw_runtime_property_t
 impl_19_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2207.pub
+    &afw_components_self_v_zz__2212.pub
 };
 
 static const afw_runtime_property_t
@@ -2145,7 +2145,7 @@ impl_20;
 static const afw_runtime_property_t
 impl_20_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2208.pub
+    &afw_components_self_v_zz__2213.pub
 };
 
 static const afw_runtime_property_t
@@ -2163,7 +2163,7 @@ impl_20_property_componentType = {
 static const afw_runtime_property_t
 impl_20_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2209.pub
+    &afw_components_self_v_zz__2214.pub
 };
 
 static const afw_runtime_property_t
@@ -2256,7 +2256,7 @@ impl_21;
 static const afw_runtime_property_t
 impl_21_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2210.pub
+    &afw_components_self_v_zz__2215.pub
 };
 
 static const afw_runtime_property_t
@@ -2274,7 +2274,7 @@ impl_21_property_componentType = {
 static const afw_runtime_property_t
 impl_21_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2211.pub
+    &afw_components_self_v_zz__2216.pub
 };
 
 static const afw_runtime_property_t
@@ -2385,7 +2385,7 @@ impl_22_property_componentType = {
 static const afw_runtime_property_t
 impl_22_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2212.pub
+    &afw_components_self_v_zz__2217.pub
 };
 
 static const afw_runtime_property_t
@@ -2496,7 +2496,7 @@ impl_23_property_componentType = {
 static const afw_runtime_property_t
 impl_23_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2213.pub
+    &afw_components_self_v_zz__2218.pub
 };
 
 static const afw_runtime_property_t
@@ -2607,7 +2607,7 @@ impl_24_property_componentType = {
 static const afw_runtime_property_t
 impl_24_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2214.pub
+    &afw_components_self_v_zz__2219.pub
 };
 
 static const afw_runtime_property_t
@@ -2718,7 +2718,7 @@ impl_25_property_componentType = {
 static const afw_runtime_property_t
 impl_25_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2215.pub
+    &afw_components_self_v_zz__2220.pub
 };
 
 static const afw_runtime_property_t
@@ -2811,7 +2811,7 @@ impl_26;
 static const afw_runtime_property_t
 impl_26_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2216.pub
+    &afw_components_self_v_zz__2221.pub
 };
 
 static const afw_runtime_property_t
@@ -2829,7 +2829,7 @@ impl_26_property_componentType = {
 static const afw_runtime_property_t
 impl_26_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2217.pub
+    &afw_components_self_v_zz__2222.pub
 };
 
 static const afw_runtime_property_t
@@ -2940,7 +2940,7 @@ impl_27_property_componentType = {
 static const afw_runtime_property_t
 impl_27_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2218.pub
+    &afw_components_self_v_zz__2223.pub
 };
 
 static const afw_runtime_property_t
@@ -3051,7 +3051,7 @@ impl_28_property_componentType = {
 static const afw_runtime_property_t
 impl_28_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2219.pub
+    &afw_components_self_v_zz__2224.pub
 };
 
 static const afw_runtime_property_t
@@ -3162,7 +3162,7 @@ impl_29_property_componentType = {
 static const afw_runtime_property_t
 impl_29_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2186.pub
+    &afw_components_self_v_zz__2191.pub
 };
 
 static const afw_runtime_property_t
@@ -3273,7 +3273,7 @@ impl_30_property_componentType = {
 static const afw_runtime_property_t
 impl_30_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2220.pub
+    &afw_components_self_v_zz__2225.pub
 };
 
 static const afw_runtime_property_t
@@ -3384,7 +3384,7 @@ impl_31_property_componentType = {
 static const afw_runtime_property_t
 impl_31_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2221.pub
+    &afw_components_self_v_zz__2226.pub
 };
 
 static const afw_runtime_property_t
@@ -3477,7 +3477,7 @@ impl_32;
 static const afw_runtime_property_t
 impl_32_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2222.pub
+    &afw_components_self_v_zz__2227.pub
 };
 
 static const afw_runtime_property_t
@@ -3495,7 +3495,7 @@ impl_32_property_componentType = {
 static const afw_runtime_property_t
 impl_32_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2223.pub
+    &afw_components_self_v_zz__2228.pub
 };
 
 static const afw_runtime_property_t
@@ -3588,7 +3588,7 @@ impl_33;
 static const afw_runtime_property_t
 impl_33_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2224.pub
+    &afw_components_self_v_zz__2229.pub
 };
 
 static const afw_runtime_property_t
@@ -3606,7 +3606,7 @@ impl_33_property_componentType = {
 static const afw_runtime_property_t
 impl_33_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2225.pub
+    &afw_components_self_v_zz__2230.pub
 };
 
 static const afw_runtime_property_t
@@ -3699,7 +3699,7 @@ impl_34;
 static const afw_runtime_property_t
 impl_34_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2226.pub
+    &afw_components_self_v_zz__2231.pub
 };
 
 static const afw_runtime_property_t
@@ -3717,7 +3717,7 @@ impl_34_property_componentType = {
 static const afw_runtime_property_t
 impl_34_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2227.pub
+    &afw_components_self_v_zz__2232.pub
 };
 
 static const afw_runtime_property_t
@@ -3810,7 +3810,7 @@ impl_35;
 static const afw_runtime_property_t
 impl_35_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2228.pub
+    &afw_components_self_v_zz__2233.pub
 };
 
 static const afw_runtime_property_t
@@ -3828,7 +3828,7 @@ impl_35_property_componentType = {
 static const afw_runtime_property_t
 impl_35_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2229.pub
+    &afw_components_self_v_zz__2234.pub
 };
 
 static const afw_runtime_property_t
@@ -3921,7 +3921,7 @@ impl_36;
 static const afw_runtime_property_t
 impl_36_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2230.pub
+    &afw_components_self_v_zz__2235.pub
 };
 
 static const afw_runtime_property_t
@@ -3939,7 +3939,7 @@ impl_36_property_componentType = {
 static const afw_runtime_property_t
 impl_36_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2231.pub
+    &afw_components_self_v_zz__2236.pub
 };
 
 static const afw_runtime_property_t
@@ -4050,7 +4050,7 @@ impl_37_property_componentType = {
 static const afw_runtime_property_t
 impl_37_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2232.pub
+    &afw_components_self_v_zz__2237.pub
 };
 
 static const afw_runtime_property_t
@@ -4143,7 +4143,7 @@ impl_38;
 static const afw_runtime_property_t
 impl_38_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2233.pub
+    &afw_components_self_v_zz__2238.pub
 };
 
 static const afw_runtime_property_t
@@ -4161,7 +4161,7 @@ impl_38_property_componentType = {
 static const afw_runtime_property_t
 impl_38_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2233.pub
+    &afw_components_self_v_zz__2238.pub
 };
 
 static const afw_runtime_property_t
@@ -4272,7 +4272,7 @@ impl_39_property_componentType = {
 static const afw_runtime_property_t
 impl_39_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2234.pub
+    &afw_components_self_v_zz__2239.pub
 };
 
 static const afw_runtime_property_t
@@ -4365,7 +4365,7 @@ impl_40;
 static const afw_runtime_property_t
 impl_40_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2235.pub
+    &afw_components_self_v_zz__2240.pub
 };
 
 static const afw_runtime_property_t
@@ -4383,7 +4383,7 @@ impl_40_property_componentType = {
 static const afw_runtime_property_t
 impl_40_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2236.pub
+    &afw_components_self_v_zz__2241.pub
 };
 
 static const afw_runtime_property_t
@@ -4494,7 +4494,7 @@ impl_41_property_componentType = {
 static const afw_runtime_property_t
 impl_41_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2237.pub
+    &afw_components_self_v_zz__2242.pub
 };
 
 static const afw_runtime_property_t
@@ -4605,7 +4605,7 @@ impl_42_property_componentType = {
 static const afw_runtime_property_t
 impl_42_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2238.pub
+    &afw_components_self_v_zz__2243.pub
 };
 
 static const afw_runtime_property_t
@@ -4698,7 +4698,7 @@ impl_43;
 static const afw_runtime_property_t
 impl_43_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2239.pub
+    &afw_components_self_v_zz__2244.pub
 };
 
 static const afw_runtime_property_t
@@ -4716,7 +4716,7 @@ impl_43_property_componentType = {
 static const afw_runtime_property_t
 impl_43_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2240.pub
+    &afw_components_self_v_zz__2245.pub
 };
 
 static const afw_runtime_property_t
@@ -4827,7 +4827,7 @@ impl_44_property_componentType = {
 static const afw_runtime_property_t
 impl_44_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2241.pub
+    &afw_components_self_v_zz__2246.pub
 };
 
 static const afw_runtime_property_t
@@ -4938,7 +4938,7 @@ impl_45_property_componentType = {
 static const afw_runtime_property_t
 impl_45_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2242.pub
+    &afw_components_self_v_zz__2247.pub
 };
 
 static const afw_runtime_property_t
@@ -5049,7 +5049,7 @@ impl_46_property_componentType = {
 static const afw_runtime_property_t
 impl_46_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2243.pub
+    &afw_components_self_v_zz__2248.pub
 };
 
 static const afw_runtime_property_t
@@ -5142,7 +5142,7 @@ impl_47;
 static const afw_runtime_property_t
 impl_47_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2244.pub
+    &afw_components_self_v_zz__2249.pub
 };
 
 static const afw_runtime_property_t
@@ -5160,7 +5160,7 @@ impl_47_property_componentType = {
 static const afw_runtime_property_t
 impl_47_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2245.pub
+    &afw_components_self_v_zz__2250.pub
 };
 
 static const afw_runtime_property_t
@@ -5253,7 +5253,7 @@ impl_48;
 static const afw_runtime_property_t
 impl_48_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2246.pub
+    &afw_components_self_v_zz__2251.pub
 };
 
 static const afw_runtime_property_t
@@ -5271,7 +5271,7 @@ impl_48_property_componentType = {
 static const afw_runtime_property_t
 impl_48_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2247.pub
+    &afw_components_self_v_zz__2252.pub
 };
 
 static const afw_runtime_property_t
@@ -5364,7 +5364,7 @@ impl_49;
 static const afw_runtime_property_t
 impl_49_property_brief = {
     &afw_components_self_s_brief,
-    &afw_components_self_v_zz__2248.pub
+    &afw_components_self_v_zz__2253.pub
 };
 
 static const afw_runtime_property_t
@@ -5382,7 +5382,7 @@ impl_49_property_componentType = {
 static const afw_runtime_property_t
 impl_49_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2249.pub
+    &afw_components_self_v_zz__2254.pub
 };
 
 static const afw_runtime_property_t
@@ -5493,7 +5493,7 @@ impl_50_property_componentType = {
 static const afw_runtime_property_t
 impl_50_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2250.pub
+    &afw_components_self_v_zz__2255.pub
 };
 
 static const afw_runtime_property_t
@@ -5604,7 +5604,7 @@ impl_51_property_componentType = {
 static const afw_runtime_property_t
 impl_51_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2251.pub
+    &afw_components_self_v_zz__2256.pub
 };
 
 static const afw_runtime_property_t
@@ -5715,7 +5715,7 @@ impl_52_property_componentType = {
 static const afw_runtime_property_t
 impl_52_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2252.pub
+    &afw_components_self_v_zz__2257.pub
 };
 
 static const afw_runtime_property_t
@@ -5832,7 +5832,7 @@ impl_55_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_55_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2253.pub
+    &afw_components_self_v_zz__2258.pub
 };
 
 static const afw_runtime_property_t
@@ -5923,7 +5923,7 @@ impl_56_property_dataType = {
 static const afw_runtime_property_t
 impl_56_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2254.pub
+    &afw_components_self_v_zz__2259.pub
 };
 
 static const afw_runtime_property_t
@@ -6013,7 +6013,7 @@ impl_57_property_dataType = {
 static const afw_runtime_property_t
 impl_57_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2255.pub
+    &afw_components_self_v_zz__2260.pub
 };
 
 static const afw_runtime_property_t
@@ -6103,7 +6103,7 @@ impl_58_property_dataType = {
 static const afw_runtime_property_t
 impl_58_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2256.pub
+    &afw_components_self_v_zz__2261.pub
 };
 
 static const afw_runtime_property_t
@@ -6237,9 +6237,9 @@ impl_54_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_54_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_54_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_54_parentPaths_array
@@ -6337,10 +6337,10 @@ impl_53_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_53_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_53_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_53_list_collectionURIs__value
     },
@@ -6370,7 +6370,7 @@ impl_53_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_53_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2257.pub
+    &afw_components_self_v_zz__2262.pub
 };
 
 static const afw_runtime_property_t
@@ -6675,7 +6675,7 @@ impl_63_property_defaultValue = {
 static const afw_runtime_property_t
 impl_63_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2258.pub
+    &afw_components_self_v_zz__2263.pub
 };
 
 static const afw_runtime_property_t
@@ -6960,7 +6960,7 @@ impl_66_property_dataType = {
 static const afw_runtime_property_t
 impl_66_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2259.pub
+    &afw_components_self_v_zz__2264.pub
 };
 
 static const afw_runtime_property_t
@@ -7340,9 +7340,9 @@ impl_60_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_60_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_60_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_60_parentPaths_array
@@ -7440,10 +7440,10 @@ impl_59_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_59_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_59_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_59_list_collectionURIs__value
     },
@@ -7864,10 +7864,10 @@ impl_69_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_69_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_69_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_69_list_collectionURIs__value
     },
@@ -8026,10 +8026,10 @@ impl_75_array_allowedValues[] = {
 static const afw_value_array_t
 impl_75_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_75_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_75_list_allowedValues__value
     },
@@ -8071,7 +8071,7 @@ impl_75_property_dataType = {
 static const afw_runtime_property_t
 impl_75_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2260.pub
+    &afw_components_self_v_zz__2265.pub
 };
 
 static const afw_runtime_property_t
@@ -8172,10 +8172,10 @@ impl_76_array_allowedValues[] = {
 static const afw_value_array_t
 impl_76_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_76_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_76_list_allowedValues__value
     },
@@ -8223,7 +8223,7 @@ impl_76_property_defaultValue = {
 static const afw_runtime_property_t
 impl_76_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2261.pub
+    &afw_components_self_v_zz__2266.pub
 };
 
 static const afw_runtime_property_t
@@ -8422,10 +8422,10 @@ impl_78_array_allowedValues[] = {
 static const afw_value_array_t
 impl_78_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_78_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_78_list_allowedValues__value
     },
@@ -8473,7 +8473,7 @@ impl_78_property_defaultValue = {
 static const afw_runtime_property_t
 impl_78_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2262.pub
+    &afw_components_self_v_zz__2267.pub
 };
 
 static const afw_runtime_property_t
@@ -8574,10 +8574,10 @@ impl_79_array_allowedValues[] = {
 static const afw_value_array_t
 impl_79_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_79_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_79_list_allowedValues__value
     },
@@ -8625,7 +8625,7 @@ impl_79_property_defaultValue = {
 static const afw_runtime_property_t
 impl_79_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2263.pub
+    &afw_components_self_v_zz__2268.pub
 };
 
 static const afw_runtime_property_t
@@ -8719,10 +8719,10 @@ impl_80_array_allowedValues[] = {
 static const afw_value_array_t
 impl_80_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_80_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_80_list_allowedValues__value
     },
@@ -8770,7 +8770,7 @@ impl_80_property_defaultValue = {
 static const afw_runtime_property_t
 impl_80_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2264.pub
+    &afw_components_self_v_zz__2269.pub
 };
 
 static const afw_runtime_property_t
@@ -8933,9 +8933,9 @@ impl_74_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_74_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_74_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_74_parentPaths_array
@@ -9033,10 +9033,10 @@ impl_73_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_73_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_73_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_73_list_collectionURIs__value
     },
@@ -9190,7 +9190,7 @@ impl_83_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_83_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2265.pub
+    &afw_components_self_v_zz__2270.pub
 };
 
 static const afw_runtime_property_t
@@ -9294,7 +9294,7 @@ impl_84_property_defaultValue = {
 static const afw_runtime_property_t
 impl_84_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2266.pub
+    &afw_components_self_v_zz__2271.pub
 };
 
 static const afw_runtime_property_t *
@@ -9391,7 +9391,7 @@ impl_85_property_defaultValue = {
 static const afw_runtime_property_t
 impl_85_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2267.pub
+    &afw_components_self_v_zz__2272.pub
 };
 
 static const afw_runtime_property_t *
@@ -9488,7 +9488,7 @@ impl_86_property_defaultValue = {
 static const afw_runtime_property_t
 impl_86_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2268.pub
+    &afw_components_self_v_zz__2273.pub
 };
 
 static const afw_runtime_property_t *
@@ -9617,9 +9617,9 @@ impl_82_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_82_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_82_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_82_parentPaths_array
@@ -9717,10 +9717,10 @@ impl_81_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_81_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_81_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_81_list_collectionURIs__value
     },
@@ -9750,7 +9750,7 @@ impl_81_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_81_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2269.pub
+    &afw_components_self_v_zz__2274.pub
 };
 
 static const afw_runtime_property_t
@@ -9978,9 +9978,9 @@ impl_88_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_88_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_88_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_88_parentPaths_array
@@ -10078,10 +10078,10 @@ impl_87_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_87_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_87_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_87_list_collectionURIs__value
     },
@@ -10449,9 +10449,9 @@ impl_91_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_91_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_91_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_91_parentPaths_array
@@ -10549,10 +10549,10 @@ impl_90_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_90_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_90_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_90_list_collectionURIs__value
     },
@@ -10582,7 +10582,7 @@ impl_90_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_90_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2270.pub
+    &afw_components_self_v_zz__2275.pub
 };
 
 static const afw_runtime_property_t
@@ -10694,7 +10694,7 @@ impl_96_property_dataType = {
 static const afw_runtime_property_t
 impl_96_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2271.pub
+    &afw_components_self_v_zz__2276.pub
 };
 
 static const afw_runtime_property_t
@@ -10714,10 +10714,10 @@ impl_96_array_possibleValues[] = {
 static const afw_value_array_t
 impl_96_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_96_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_96_list_possibleValues__value
     },
@@ -11193,7 +11193,7 @@ impl_101_property_dataType = {
 static const afw_runtime_property_t
 impl_101_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2272.pub
+    &afw_components_self_v_zz__2277.pub
 };
 
 static const afw_runtime_property_t
@@ -11302,10 +11302,10 @@ impl_102_array_possibleValues[] = {
 static const afw_value_array_t
 impl_102_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_102_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_102_list_possibleValues__value
     },
@@ -11434,10 +11434,10 @@ impl_103_array_possibleValues[] = {
 static const afw_value_array_t
 impl_103_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_103_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_103_list_possibleValues__value
     },
@@ -11642,9 +11642,9 @@ impl_95_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_95_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_95_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_95_parentPaths_array
@@ -11742,10 +11742,10 @@ impl_94_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_94_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_94_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_94_list_collectionURIs__value
     },
@@ -11893,7 +11893,7 @@ impl_106_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_106_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2259.pub
+    &afw_components_self_v_zz__2264.pub
 };
 
 static const afw_runtime_property_t
@@ -12177,7 +12177,7 @@ impl_109_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_109_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2273.pub
+    &afw_components_self_v_zz__2278.pub
 };
 
 static const afw_runtime_property_t
@@ -12312,9 +12312,9 @@ impl_105_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_105_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_105_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_105_parentPaths_array
@@ -12412,10 +12412,10 @@ impl_104_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_104_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_104_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_104_list_collectionURIs__value
     },
@@ -12968,9 +12968,9 @@ impl_111_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_111_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_111_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_111_parentPaths_array
@@ -13068,10 +13068,10 @@ impl_110_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_110_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_110_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_110_list_collectionURIs__value
     },
@@ -13499,10 +13499,10 @@ impl_116_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_116_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_116_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_116_list_collectionURIs__value
     },
@@ -14172,9 +14172,9 @@ impl_121_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_121_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_121_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_121_parentPaths_array
@@ -14272,10 +14272,10 @@ impl_120_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_120_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_120_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_120_list_collectionURIs__value
     },
@@ -14618,7 +14618,7 @@ impl_131_property_dataType = {
 static const afw_runtime_property_t
 impl_131_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2274.pub
+    &afw_components_self_v_zz__2279.pub
 };
 
 static const afw_runtime_property_t
@@ -14636,10 +14636,10 @@ impl_131_array_possibleValues[] = {
 static const afw_value_array_t
 impl_131_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_131_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_131_list_possibleValues__value
     },
@@ -14985,9 +14985,9 @@ impl_128_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_128_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_128_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_128_parentPaths_array
@@ -15085,10 +15085,10 @@ impl_127_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_127_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_127_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_127_list_collectionURIs__value
     },
@@ -15299,7 +15299,7 @@ impl_137_property_dataType = {
 static const afw_runtime_property_t
 impl_137_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2275.pub
+    &afw_components_self_v_zz__2280.pub
 };
 
 static const afw_runtime_property_t
@@ -15688,10 +15688,10 @@ impl_134_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_134_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_134_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_134_list_collectionURIs__value
     },
@@ -15721,7 +15721,7 @@ impl_134_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_134_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2276.pub
+    &afw_components_self_v_zz__2281.pub
 };
 
 static const afw_runtime_property_t
@@ -15853,7 +15853,7 @@ impl_142_property_dataType = {
 static const afw_runtime_property_t
 impl_142_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2277.pub
+    &afw_components_self_v_zz__2282.pub
 };
 
 static const afw_runtime_property_t
@@ -15943,7 +15943,7 @@ impl_143_property_dataType = {
 static const afw_runtime_property_t
 impl_143_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2278.pub
+    &afw_components_self_v_zz__2283.pub
 };
 
 static const afw_runtime_property_t
@@ -16033,7 +16033,7 @@ impl_144_property_dataType = {
 static const afw_runtime_property_t
 impl_144_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2279.pub
+    &afw_components_self_v_zz__2284.pub
 };
 
 static const afw_runtime_property_t
@@ -16123,7 +16123,7 @@ impl_145_property_dataType = {
 static const afw_runtime_property_t
 impl_145_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2280.pub
+    &afw_components_self_v_zz__2285.pub
 };
 
 static const afw_runtime_property_t
@@ -16367,9 +16367,9 @@ impl_141_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_141_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_141_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_141_parentPaths_array
@@ -16467,10 +16467,10 @@ impl_140_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_140_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_140_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_140_list_collectionURIs__value
     },
@@ -16625,7 +16625,7 @@ impl_149_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_149_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2281.pub
+    &afw_components_self_v_zz__2286.pub
 };
 
 static const afw_runtime_property_t
@@ -16722,7 +16722,7 @@ impl_150_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_150_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2282.pub
+    &afw_components_self_v_zz__2287.pub
 };
 
 static const afw_runtime_property_t
@@ -16819,7 +16819,7 @@ impl_151_property_defaultValue = {
 static const afw_runtime_property_t
 impl_151_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2283.pub
+    &afw_components_self_v_zz__2288.pub
 };
 
 static const afw_runtime_property_t
@@ -16916,7 +16916,7 @@ impl_152_property_defaultValue = {
 static const afw_runtime_property_t
 impl_152_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2284.pub
+    &afw_components_self_v_zz__2289.pub
 };
 
 static const afw_runtime_property_t
@@ -17051,9 +17051,9 @@ impl_148_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_148_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_148_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_148_parentPaths_array
@@ -17151,10 +17151,10 @@ impl_147_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_147_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_147_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_147_list_collectionURIs__value
     },
@@ -17365,7 +17365,7 @@ impl_156_property_dataType = {
 static const afw_runtime_property_t
 impl_156_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2285.pub
+    &afw_components_self_v_zz__2290.pub
 };
 
 static const afw_runtime_property_t
@@ -17455,7 +17455,7 @@ impl_157_property_dataType = {
 static const afw_runtime_property_t
 impl_157_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2286.pub
+    &afw_components_self_v_zz__2291.pub
 };
 
 static const afw_runtime_property_t
@@ -17635,7 +17635,7 @@ impl_159_property_dataType = {
 static const afw_runtime_property_t
 impl_159_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2287.pub
+    &afw_components_self_v_zz__2292.pub
 };
 
 static const afw_runtime_property_t
@@ -17815,7 +17815,7 @@ impl_161_property_dataType = {
 static const afw_runtime_property_t
 impl_161_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2288.pub
+    &afw_components_self_v_zz__2293.pub
 };
 
 static const afw_runtime_property_t
@@ -17842,10 +17842,10 @@ impl_161_array_possibleValues[] = {
 static const afw_value_array_t
 impl_161_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_161_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_161_list_possibleValues__value
     },
@@ -17960,7 +17960,7 @@ impl_162_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_162_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2289.pub
+    &afw_components_self_v_zz__2294.pub
 };
 
 static const afw_runtime_property_t
@@ -18318,10 +18318,10 @@ impl_153_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_153_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_153_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_153_list_collectionURIs__value
     },
@@ -18997,9 +18997,9 @@ impl_165_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_165_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_165_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_165_parentPaths_array
@@ -19097,10 +19097,10 @@ impl_164_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_164_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_164_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_164_list_collectionURIs__value
     },
@@ -19770,9 +19770,9 @@ impl_172_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_172_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_172_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_172_parentPaths_array
@@ -19870,10 +19870,10 @@ impl_171_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_171_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_171_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_171_list_collectionURIs__value
     },
@@ -20125,7 +20125,7 @@ impl_181_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_181_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2290.pub
+    &afw_components_self_v_zz__2295.pub
 };
 
 static const afw_runtime_property_t
@@ -20313,7 +20313,7 @@ impl_183_property_dataType = {
 static const afw_runtime_property_t
 impl_183_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2291.pub
+    &afw_components_self_v_zz__2296.pub
 };
 
 static const afw_runtime_property_t
@@ -20423,10 +20423,10 @@ impl_184_array_possibleValues[] = {
 static const afw_value_array_t
 impl_184_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_184_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_184_list_possibleValues__value
     },
@@ -20631,7 +20631,7 @@ impl_186_property_defaultValue = {
 static const afw_runtime_property_t
 impl_186_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2292.pub
+    &afw_components_self_v_zz__2297.pub
 };
 
 static const afw_runtime_property_t
@@ -20722,7 +20722,7 @@ impl_187_property_dataType = {
 static const afw_runtime_property_t
 impl_187_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2293.pub
+    &afw_components_self_v_zz__2298.pub
 };
 
 static const afw_runtime_property_t
@@ -21011,9 +21011,9 @@ impl_179_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_179_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_179_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_179_parentPaths_array
@@ -21111,10 +21111,10 @@ impl_178_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_178_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_178_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_178_list_collectionURIs__value
     },
@@ -21256,7 +21256,7 @@ impl_191_property_dataType = {
 static const afw_runtime_property_t
 impl_191_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2294.pub
+    &afw_components_self_v_zz__2299.pub
 };
 
 static const afw_runtime_property_t
@@ -21353,7 +21353,7 @@ impl_192_property_dataType = {
 static const afw_runtime_property_t
 impl_192_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2295.pub
+    &afw_components_self_v_zz__2300.pub
 };
 
 static const afw_runtime_property_t
@@ -21450,7 +21450,7 @@ impl_193_property_dataType = {
 static const afw_runtime_property_t
 impl_193_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2296.pub
+    &afw_components_self_v_zz__2301.pub
 };
 
 static const afw_runtime_property_t
@@ -21571,9 +21571,9 @@ impl_190_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_190_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_190_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_190_parentPaths_array
@@ -21671,10 +21671,10 @@ impl_189_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_189_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_189_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_189_list_collectionURIs__value
     },
@@ -21815,9 +21815,9 @@ impl_195_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_195_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_195_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_195_parentPaths_array
@@ -21915,10 +21915,10 @@ impl_194_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_194_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_194_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_194_list_collectionURIs__value
     },
@@ -22069,10 +22069,10 @@ impl_198_array_allowedValues[] = {
 static const afw_value_array_t
 impl_198_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_198_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_198_list_allowedValues__value
     },
@@ -22120,7 +22120,7 @@ impl_198_property_defaultValue = {
 static const afw_runtime_property_t
 impl_198_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2297.pub
+    &afw_components_self_v_zz__2302.pub
 };
 
 static const afw_runtime_property_t
@@ -22225,7 +22225,7 @@ impl_199_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_199_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2298.pub
+    &afw_components_self_v_zz__2303.pub
 };
 
 static const afw_runtime_property_t
@@ -22415,10 +22415,10 @@ impl_201_array_allowedValues[] = {
 static const afw_value_array_t
 impl_201_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_201_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_201_list_allowedValues__value
     },
@@ -22466,7 +22466,7 @@ impl_201_property_defaultValue = {
 static const afw_runtime_property_t
 impl_201_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2299.pub
+    &afw_components_self_v_zz__2304.pub
 };
 
 static const afw_runtime_property_t
@@ -22603,9 +22603,9 @@ impl_197_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_197_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_197_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_197_parentPaths_array
@@ -22703,10 +22703,10 @@ impl_196_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_196_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_196_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_196_list_collectionURIs__value
     },
@@ -22945,7 +22945,7 @@ impl_205_property_dataType = {
 static const afw_runtime_property_t
 impl_205_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2300.pub
+    &afw_components_self_v_zz__2305.pub
 };
 
 static const afw_runtime_property_t
@@ -23486,9 +23486,9 @@ impl_203_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_203_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_203_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_203_parentPaths_array
@@ -23586,10 +23586,10 @@ impl_202_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_202_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_202_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_202_list_collectionURIs__value
     },
@@ -23828,7 +23828,7 @@ impl_213_property_dataType = {
 static const afw_runtime_property_t
 impl_213_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2300.pub
+    &afw_components_self_v_zz__2305.pub
 };
 
 static const afw_runtime_property_t
@@ -24362,9 +24362,9 @@ impl_211_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_211_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_211_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_211_parentPaths_array
@@ -24462,10 +24462,10 @@ impl_210_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_210_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_210_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_210_list_collectionURIs__value
     },
@@ -24962,10 +24962,10 @@ impl_218_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_218_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_218_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_218_list_collectionURIs__value
     },
@@ -24995,7 +24995,7 @@ impl_218_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_218_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2301.pub
+    &afw_components_self_v_zz__2306.pub
 };
 
 static const afw_runtime_property_t
@@ -25404,7 +25404,7 @@ impl_228_property_dataType = {
 static const afw_runtime_property_t
 impl_228_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2302.pub
+    &afw_components_self_v_zz__2307.pub
 };
 
 static const afw_runtime_property_t
@@ -25641,9 +25641,9 @@ impl_224_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_224_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_224_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_224_parentPaths_array
@@ -25741,10 +25741,10 @@ impl_223_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_223_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_223_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_223_list_collectionURIs__value
     },
@@ -25774,7 +25774,7 @@ impl_223_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_223_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2303.pub
+    &afw_components_self_v_zz__2308.pub
 };
 
 static const afw_runtime_property_t
@@ -25893,7 +25893,7 @@ impl_232_property_dataType = {
 static const afw_runtime_property_t
 impl_232_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2304.pub
+    &afw_components_self_v_zz__2309.pub
 };
 
 static const afw_runtime_property_t
@@ -25983,7 +25983,7 @@ impl_233_property_dataType = {
 static const afw_runtime_property_t
 impl_233_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2302.pub
+    &afw_components_self_v_zz__2307.pub
 };
 
 static const afw_runtime_property_t
@@ -26208,9 +26208,9 @@ impl_231_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_231_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_231_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_231_parentPaths_array
@@ -26308,10 +26308,10 @@ impl_230_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_230_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_230_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_230_list_collectionURIs__value
     },
@@ -26563,7 +26563,7 @@ impl_238_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_238_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2305.pub
+    &afw_components_self_v_zz__2310.pub
 };
 
 static const afw_runtime_property_t
@@ -26654,7 +26654,7 @@ impl_239_property_dataType = {
 static const afw_runtime_property_t
 impl_239_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2306.pub
+    &afw_components_self_v_zz__2311.pub
 };
 
 static const afw_runtime_property_t
@@ -26744,7 +26744,7 @@ impl_240_property_dataType = {
 static const afw_runtime_property_t
 impl_240_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2307.pub
+    &afw_components_self_v_zz__2312.pub
 };
 
 static const afw_runtime_property_t
@@ -26834,7 +26834,7 @@ impl_241_property_dataType = {
 static const afw_runtime_property_t
 impl_241_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2308.pub
+    &afw_components_self_v_zz__2313.pub
 };
 
 static const afw_runtime_property_t
@@ -26924,7 +26924,7 @@ impl_242_property_dataType = {
 static const afw_runtime_property_t
 impl_242_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2309.pub
+    &afw_components_self_v_zz__2314.pub
 };
 
 static const afw_runtime_property_t
@@ -27187,9 +27187,9 @@ impl_236_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_236_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_236_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_236_parentPaths_array
@@ -27287,10 +27287,10 @@ impl_235_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_235_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_235_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_235_list_collectionURIs__value
     },
@@ -27534,9 +27534,9 @@ impl_245_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_245_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_245_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_245_parentPaths_array
@@ -27634,10 +27634,10 @@ impl_244_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_244_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_244_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_244_list_collectionURIs__value
     },
@@ -27881,9 +27881,9 @@ impl_248_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_248_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_248_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_248_parentPaths_array
@@ -27981,10 +27981,10 @@ impl_247_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_247_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_247_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_247_list_collectionURIs__value
     },
@@ -28441,9 +28441,9 @@ impl_251_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_251_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_251_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_251_parentPaths_array
@@ -28541,10 +28541,10 @@ impl_250_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_250_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_250_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_250_list_collectionURIs__value
     },
@@ -29008,9 +29008,9 @@ impl_256_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_256_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_256_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_256_parentPaths_array
@@ -29108,10 +29108,10 @@ impl_255_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_255_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_255_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_255_list_collectionURIs__value
     },
@@ -29266,7 +29266,7 @@ impl_262_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_262_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2310.pub
+    &afw_components_self_v_zz__2315.pub
 };
 
 static const afw_runtime_property_t
@@ -29465,9 +29465,9 @@ impl_261_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_261_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_261_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_261_parentPaths_array
@@ -29565,10 +29565,10 @@ impl_260_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_260_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_260_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_260_list_collectionURIs__value
     },
@@ -29922,9 +29922,9 @@ impl_265_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_265_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_265_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_265_parentPaths_array
@@ -30022,10 +30022,10 @@ impl_264_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_264_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_264_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_264_list_collectionURIs__value
     },
@@ -30453,10 +30453,10 @@ impl_268_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_268_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_268_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_268_list_collectionURIs__value
     },
@@ -30810,9 +30810,9 @@ impl_273_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_273_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_273_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_273_parentPaths_array
@@ -30910,10 +30910,10 @@ impl_272_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_272_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_272_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_272_list_collectionURIs__value
     },
@@ -31746,10 +31746,10 @@ impl_276_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_276_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_276_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_276_list_collectionURIs__value
     },
@@ -31994,7 +31994,7 @@ impl_287_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_287_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2311.pub
+    &afw_components_self_v_zz__2316.pub
 };
 
 static const afw_runtime_property_t
@@ -32291,10 +32291,10 @@ impl_290_array_possibleValues[] = {
 static const afw_value_array_t
 impl_290_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_290_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_290_list_possibleValues__value
     },
@@ -32460,9 +32460,9 @@ impl_285_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_285_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_285_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_285_parentPaths_array
@@ -32560,10 +32560,10 @@ impl_284_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_284_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_284_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_284_list_collectionURIs__value
     },
@@ -32711,7 +32711,7 @@ impl_293_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_293_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2259.pub
+    &afw_components_self_v_zz__2264.pub
 };
 
 static const afw_runtime_property_t
@@ -32802,7 +32802,7 @@ impl_294_property_dataType = {
 static const afw_runtime_property_t
 impl_294_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2312.pub
+    &afw_components_self_v_zz__2317.pub
 };
 
 static const afw_runtime_property_t
@@ -33020,9 +33020,9 @@ impl_292_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_292_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_292_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_292_parentPaths_array
@@ -33120,10 +33120,10 @@ impl_291_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_291_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_291_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_291_list_collectionURIs__value
     },
@@ -33360,9 +33360,9 @@ impl_297_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_297_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_297_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_297_parentPaths_array
@@ -33460,10 +33460,10 @@ impl_296_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_296_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_296_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_296_list_collectionURIs__value
     },
@@ -33707,9 +33707,9 @@ impl_300_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_300_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_300_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_300_parentPaths_array
@@ -33807,10 +33807,10 @@ impl_299_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_299_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_299_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_299_list_collectionURIs__value
     },
@@ -34540,10 +34540,10 @@ impl_302_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_302_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_302_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_302_list_collectionURIs__value
     },
@@ -35007,9 +35007,9 @@ impl_310_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_310_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_310_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_310_parentPaths_array
@@ -35107,10 +35107,10 @@ impl_309_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_309_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_309_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_309_list_collectionURIs__value
     },
@@ -35574,9 +35574,9 @@ impl_315_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_315_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_315_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_315_parentPaths_array
@@ -35674,10 +35674,10 @@ impl_314_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_314_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_314_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_314_list_collectionURIs__value
     },
@@ -36098,10 +36098,10 @@ impl_319_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_319_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_319_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_319_list_collectionURIs__value
     },
@@ -36272,10 +36272,10 @@ impl_325_array_possibleValues[] = {
 static const afw_value_array_t
 impl_325_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_325_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_325_list_possibleValues__value
     },
@@ -36405,10 +36405,10 @@ impl_326_array_possibleValues[] = {
 static const afw_value_array_t
 impl_326_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_326_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_326_list_possibleValues__value
     },
@@ -36538,10 +36538,10 @@ impl_327_array_possibleValues[] = {
 static const afw_value_array_t
 impl_327_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_327_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_327_list_possibleValues__value
     },
@@ -36656,7 +36656,7 @@ impl_328_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_328_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2313.pub
+    &afw_components_self_v_zz__2318.pub
 };
 
 static const afw_runtime_property_t
@@ -36775,10 +36775,10 @@ impl_329_array_possibleValues[] = {
 static const afw_value_array_t
 impl_329_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_329_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_329_list_possibleValues__value
     },
@@ -36944,9 +36944,9 @@ impl_324_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_324_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_324_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_324_parentPaths_array
@@ -37044,10 +37044,10 @@ impl_323_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_323_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_323_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_323_list_collectionURIs__value
     },
@@ -37202,7 +37202,7 @@ impl_332_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_332_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2314.pub
+    &afw_components_self_v_zz__2319.pub
 };
 
 static const afw_runtime_property_t
@@ -37299,7 +37299,7 @@ impl_333_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_333_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2315.pub
+    &afw_components_self_v_zz__2320.pub
 };
 
 static const afw_runtime_property_t
@@ -37489,10 +37489,10 @@ impl_330_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_330_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_330_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_330_list_collectionURIs__value
     },
@@ -37647,7 +37647,7 @@ impl_336_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_336_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2316.pub
+    &afw_components_self_v_zz__2321.pub
 };
 
 static const afw_runtime_property_t
@@ -37831,10 +37831,10 @@ impl_334_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_334_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_334_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_334_list_collectionURIs__value
     },
@@ -38011,10 +38011,10 @@ impl_339_array_possibleValues[] = {
 static const afw_value_array_t
 impl_339_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_339_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_339_list_possibleValues__value
     },
@@ -38151,10 +38151,10 @@ impl_340_array_possibleValues[] = {
 static const afw_value_array_t
 impl_340_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_340_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_340_list_possibleValues__value
     },
@@ -38291,10 +38291,10 @@ impl_341_array_possibleValues[] = {
 static const afw_value_array_t
 impl_341_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_341_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_341_list_possibleValues__value
     },
@@ -38431,10 +38431,10 @@ impl_342_array_possibleValues[] = {
 static const afw_value_array_t
 impl_342_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_342_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_342_list_possibleValues__value
     },
@@ -38543,7 +38543,7 @@ impl_343_property_dataType = {
 static const afw_runtime_property_t
 impl_343_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2317.pub
+    &afw_components_self_v_zz__2322.pub
 };
 
 static const afw_runtime_property_t
@@ -38571,10 +38571,10 @@ impl_343_array_possibleValues[] = {
 static const afw_value_array_t
 impl_343_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_343_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_343_list_possibleValues__value
     },
@@ -38683,7 +38683,7 @@ impl_344_property_dataType = {
 static const afw_runtime_property_t
 impl_344_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2318.pub
+    &afw_components_self_v_zz__2323.pub
 };
 
 static const afw_runtime_property_t
@@ -38711,10 +38711,10 @@ impl_344_array_possibleValues[] = {
 static const afw_value_array_t
 impl_344_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_344_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_344_list_possibleValues__value
     },
@@ -38974,10 +38974,10 @@ impl_337_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_337_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_337_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_337_list_collectionURIs__value
     },
@@ -39007,7 +39007,7 @@ impl_337_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_337_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2319.pub
+    &afw_components_self_v_zz__2324.pub
 };
 
 static const afw_runtime_property_t
@@ -39413,9 +39413,9 @@ impl_346_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_346_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_346_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_346_parentPaths_array
@@ -39513,10 +39513,10 @@ impl_345_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_345_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_345_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_345_list_collectionURIs__value
     },
@@ -40509,9 +40509,9 @@ impl_351_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_351_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_351_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_351_parentPaths_array
@@ -40609,10 +40609,10 @@ impl_350_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_350_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_350_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_350_list_collectionURIs__value
     },
@@ -41031,7 +41031,7 @@ impl_365_property_dataType = {
 static const afw_runtime_property_t
 impl_365_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2320.pub
+    &afw_components_self_v_zz__2325.pub
 };
 
 static const afw_runtime_property_t
@@ -41051,10 +41051,10 @@ impl_365_array_possibleValues[] = {
 static const afw_value_array_t
 impl_365_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_365_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_365_list_possibleValues__value
     },
@@ -41207,9 +41207,9 @@ impl_361_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_361_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_361_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_361_parentPaths_array
@@ -41307,10 +41307,10 @@ impl_360_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_360_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_360_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_360_list_collectionURIs__value
     },
@@ -42097,9 +42097,9 @@ impl_367_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_367_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_367_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_367_parentPaths_array
@@ -42197,10 +42197,10 @@ impl_366_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_366_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_366_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_366_list_collectionURIs__value
     },
@@ -42547,9 +42547,9 @@ impl_375_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_375_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_375_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_375_parentPaths_array
@@ -42647,10 +42647,10 @@ impl_374_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_374_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_374_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_374_list_collectionURIs__value
     },
@@ -42888,7 +42888,7 @@ impl_381_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_381_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2321.pub
+    &afw_components_self_v_zz__2326.pub
 };
 
 static const afw_runtime_property_t
@@ -42997,9 +42997,9 @@ impl_379_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_379_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_379_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_379_parentPaths_array
@@ -43097,10 +43097,10 @@ impl_378_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_378_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_378_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_378_list_collectionURIs__value
     },
@@ -43304,7 +43304,7 @@ impl_385_property_dataType = {
 static const afw_runtime_property_t
 impl_385_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2322.pub
+    &afw_components_self_v_zz__2327.pub
 };
 
 static const afw_runtime_property_t *
@@ -43387,7 +43387,7 @@ impl_386_property_dataType = {
 static const afw_runtime_property_t
 impl_386_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2323.pub
+    &afw_components_self_v_zz__2328.pub
 };
 
 static const afw_runtime_property_t *
@@ -43470,7 +43470,7 @@ impl_387_property_dataType = {
 static const afw_runtime_property_t
 impl_387_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2324.pub
+    &afw_components_self_v_zz__2329.pub
 };
 
 static const afw_runtime_property_t *
@@ -43553,7 +43553,7 @@ impl_388_property_dataType = {
 static const afw_runtime_property_t
 impl_388_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2325.pub
+    &afw_components_self_v_zz__2330.pub
 };
 
 static const afw_runtime_property_t *
@@ -43719,7 +43719,7 @@ impl_390_property_dataType = {
 static const afw_runtime_property_t
 impl_390_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2326.pub
+    &afw_components_self_v_zz__2331.pub
 };
 
 static const afw_runtime_property_t *
@@ -43802,7 +43802,7 @@ impl_391_property_dataType = {
 static const afw_runtime_property_t
 impl_391_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2327.pub
+    &afw_components_self_v_zz__2332.pub
 };
 
 static const afw_runtime_property_t *
@@ -43885,7 +43885,7 @@ impl_392_property_dataType = {
 static const afw_runtime_property_t
 impl_392_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2328.pub
+    &afw_components_self_v_zz__2333.pub
 };
 
 static const afw_runtime_property_t *
@@ -43968,7 +43968,7 @@ impl_393_property_dataType = {
 static const afw_runtime_property_t
 impl_393_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2329.pub
+    &afw_components_self_v_zz__2334.pub
 };
 
 static const afw_runtime_property_t *
@@ -44300,7 +44300,7 @@ impl_397_property_dataType = {
 static const afw_runtime_property_t
 impl_397_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2330.pub
+    &afw_components_self_v_zz__2335.pub
 };
 
 static const afw_runtime_property_t *
@@ -44383,7 +44383,7 @@ impl_398_property_dataType = {
 static const afw_runtime_property_t
 impl_398_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2331.pub
+    &afw_components_self_v_zz__2336.pub
 };
 
 static const afw_runtime_property_t *
@@ -44466,7 +44466,7 @@ impl_399_property_dataType = {
 static const afw_runtime_property_t
 impl_399_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2332.pub
+    &afw_components_self_v_zz__2337.pub
 };
 
 static const afw_runtime_property_t *
@@ -44798,7 +44798,7 @@ impl_403_property_dataType = {
 static const afw_runtime_property_t
 impl_403_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2333.pub
+    &afw_components_self_v_zz__2338.pub
 };
 
 static const afw_runtime_property_t *
@@ -45130,7 +45130,7 @@ impl_407_property_dataType = {
 static const afw_runtime_property_t
 impl_407_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2334.pub
+    &afw_components_self_v_zz__2339.pub
 };
 
 static const afw_runtime_property_t *
@@ -45213,7 +45213,7 @@ impl_408_property_dataType = {
 static const afw_runtime_property_t
 impl_408_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2335.pub
+    &afw_components_self_v_zz__2340.pub
 };
 
 static const afw_runtime_property_t *
@@ -45379,7 +45379,7 @@ impl_410_property_dataType = {
 static const afw_runtime_property_t
 impl_410_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2336.pub
+    &afw_components_self_v_zz__2341.pub
 };
 
 static const afw_runtime_property_t *
@@ -45462,7 +45462,7 @@ impl_411_property_dataType = {
 static const afw_runtime_property_t
 impl_411_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2337.pub
+    &afw_components_self_v_zz__2342.pub
 };
 
 static const afw_runtime_property_t *
@@ -45711,7 +45711,7 @@ impl_414_property_dataType = {
 static const afw_runtime_property_t
 impl_414_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2338.pub
+    &afw_components_self_v_zz__2343.pub
 };
 
 static const afw_runtime_property_t *
@@ -45794,7 +45794,7 @@ impl_415_property_dataType = {
 static const afw_runtime_property_t
 impl_415_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2339.pub
+    &afw_components_self_v_zz__2344.pub
 };
 
 static const afw_runtime_property_t *
@@ -45877,7 +45877,7 @@ impl_416_property_dataType = {
 static const afw_runtime_property_t
 impl_416_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2340.pub
+    &afw_components_self_v_zz__2345.pub
 };
 
 static const afw_runtime_property_t *
@@ -45960,7 +45960,7 @@ impl_417_property_dataType = {
 static const afw_runtime_property_t
 impl_417_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2341.pub
+    &afw_components_self_v_zz__2346.pub
 };
 
 static const afw_runtime_property_t *
@@ -46043,7 +46043,7 @@ impl_418_property_dataType = {
 static const afw_runtime_property_t
 impl_418_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2342.pub
+    &afw_components_self_v_zz__2347.pub
 };
 
 static const afw_runtime_property_t *
@@ -46375,7 +46375,7 @@ impl_422_property_dataType = {
 static const afw_runtime_property_t
 impl_422_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2343.pub
+    &afw_components_self_v_zz__2348.pub
 };
 
 static const afw_runtime_property_t *
@@ -46707,7 +46707,7 @@ impl_426_property_dataType = {
 static const afw_runtime_property_t
 impl_426_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2344.pub
+    &afw_components_self_v_zz__2349.pub
 };
 
 static const afw_runtime_property_t *
@@ -46790,7 +46790,7 @@ impl_427_property_dataType = {
 static const afw_runtime_property_t
 impl_427_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2345.pub
+    &afw_components_self_v_zz__2350.pub
 };
 
 static const afw_runtime_property_t *
@@ -47205,7 +47205,7 @@ impl_432_property_dataType = {
 static const afw_runtime_property_t
 impl_432_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2346.pub
+    &afw_components_self_v_zz__2351.pub
 };
 
 static const afw_runtime_property_t *
@@ -47288,7 +47288,7 @@ impl_433_property_dataType = {
 static const afw_runtime_property_t
 impl_433_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2347.pub
+    &afw_components_self_v_zz__2352.pub
 };
 
 static const afw_runtime_property_t *
@@ -47454,7 +47454,7 @@ impl_435_property_dataType = {
 static const afw_runtime_property_t
 impl_435_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2348.pub
+    &afw_components_self_v_zz__2353.pub
 };
 
 static const afw_runtime_property_t *
@@ -47537,7 +47537,7 @@ impl_436_property_dataType = {
 static const afw_runtime_property_t
 impl_436_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2349.pub
+    &afw_components_self_v_zz__2354.pub
 };
 
 static const afw_runtime_property_t *
@@ -47786,7 +47786,7 @@ impl_439_property_dataType = {
 static const afw_runtime_property_t
 impl_439_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2350.pub
+    &afw_components_self_v_zz__2355.pub
 };
 
 static const afw_runtime_property_t *
@@ -47952,7 +47952,7 @@ impl_441_property_dataType = {
 static const afw_runtime_property_t
 impl_441_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2351.pub
+    &afw_components_self_v_zz__2356.pub
 };
 
 static const afw_runtime_property_t *
@@ -48118,7 +48118,7 @@ impl_443_property_dataType = {
 static const afw_runtime_property_t
 impl_443_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2352.pub
+    &afw_components_self_v_zz__2357.pub
 };
 
 static const afw_runtime_property_t *
@@ -48284,7 +48284,7 @@ impl_445_property_dataType = {
 static const afw_runtime_property_t
 impl_445_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2353.pub
+    &afw_components_self_v_zz__2358.pub
 };
 
 static const afw_runtime_property_t *
@@ -48367,7 +48367,7 @@ impl_446_property_dataType = {
 static const afw_runtime_property_t
 impl_446_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2354.pub
+    &afw_components_self_v_zz__2359.pub
 };
 
 static const afw_runtime_property_t *
@@ -48533,7 +48533,7 @@ impl_448_property_dataType = {
 static const afw_runtime_property_t
 impl_448_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2355.pub
+    &afw_components_self_v_zz__2360.pub
 };
 
 static const afw_runtime_property_t *
@@ -48782,7 +48782,7 @@ impl_451_property_dataType = {
 static const afw_runtime_property_t
 impl_451_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2356.pub
+    &afw_components_self_v_zz__2361.pub
 };
 
 static const afw_runtime_property_t *
@@ -49114,7 +49114,7 @@ impl_455_property_dataType = {
 static const afw_runtime_property_t
 impl_455_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2357.pub
+    &afw_components_self_v_zz__2362.pub
 };
 
 static const afw_runtime_property_t *
@@ -49280,7 +49280,7 @@ impl_457_property_dataType = {
 static const afw_runtime_property_t
 impl_457_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2358.pub
+    &afw_components_self_v_zz__2363.pub
 };
 
 static const afw_runtime_property_t *
@@ -49363,7 +49363,7 @@ impl_458_property_dataType = {
 static const afw_runtime_property_t
 impl_458_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2359.pub
+    &afw_components_self_v_zz__2364.pub
 };
 
 static const afw_runtime_property_t *
@@ -49695,7 +49695,7 @@ impl_462_property_dataType = {
 static const afw_runtime_property_t
 impl_462_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2360.pub
+    &afw_components_self_v_zz__2365.pub
 };
 
 static const afw_runtime_property_t *
@@ -49944,7 +49944,7 @@ impl_465_property_dataType = {
 static const afw_runtime_property_t
 impl_465_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2361.pub
+    &afw_components_self_v_zz__2366.pub
 };
 
 static const afw_runtime_property_t *
@@ -50027,7 +50027,7 @@ impl_466_property_dataType = {
 static const afw_runtime_property_t
 impl_466_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2362.pub
+    &afw_components_self_v_zz__2367.pub
 };
 
 static const afw_runtime_property_t *
@@ -50359,7 +50359,7 @@ impl_470_property_dataType = {
 static const afw_runtime_property_t
 impl_470_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2363.pub
+    &afw_components_self_v_zz__2368.pub
 };
 
 static const afw_runtime_property_t *
@@ -50442,7 +50442,7 @@ impl_471_property_dataType = {
 static const afw_runtime_property_t
 impl_471_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2364.pub
+    &afw_components_self_v_zz__2369.pub
 };
 
 static const afw_runtime_property_t *
@@ -50525,7 +50525,7 @@ impl_472_property_dataType = {
 static const afw_runtime_property_t
 impl_472_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2365.pub
+    &afw_components_self_v_zz__2370.pub
 };
 
 static const afw_runtime_property_t *
@@ -50608,7 +50608,7 @@ impl_473_property_dataType = {
 static const afw_runtime_property_t
 impl_473_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2366.pub
+    &afw_components_self_v_zz__2371.pub
 };
 
 static const afw_runtime_property_t *
@@ -50691,7 +50691,7 @@ impl_474_property_dataType = {
 static const afw_runtime_property_t
 impl_474_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2367.pub
+    &afw_components_self_v_zz__2372.pub
 };
 
 static const afw_runtime_property_t *
@@ -51023,7 +51023,7 @@ impl_478_property_dataType = {
 static const afw_runtime_property_t
 impl_478_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2368.pub
+    &afw_components_self_v_zz__2373.pub
 };
 
 static const afw_runtime_property_t *
@@ -51106,7 +51106,7 @@ impl_479_property_dataType = {
 static const afw_runtime_property_t
 impl_479_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2369.pub
+    &afw_components_self_v_zz__2374.pub
 };
 
 static const afw_runtime_property_t *
@@ -51189,7 +51189,7 @@ impl_480_property_dataType = {
 static const afw_runtime_property_t
 impl_480_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2370.pub
+    &afw_components_self_v_zz__2375.pub
 };
 
 static const afw_runtime_property_t *
@@ -51355,7 +51355,7 @@ impl_482_property_dataType = {
 static const afw_runtime_property_t
 impl_482_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2371.pub
+    &afw_components_self_v_zz__2376.pub
 };
 
 static const afw_runtime_property_t *
@@ -51604,7 +51604,7 @@ impl_485_property_dataType = {
 static const afw_runtime_property_t
 impl_485_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2372.pub
+    &afw_components_self_v_zz__2377.pub
 };
 
 static const afw_runtime_property_t *
@@ -51687,7 +51687,7 @@ impl_486_property_dataType = {
 static const afw_runtime_property_t
 impl_486_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2373.pub
+    &afw_components_self_v_zz__2378.pub
 };
 
 static const afw_runtime_property_t *
@@ -51770,7 +51770,7 @@ impl_487_property_dataType = {
 static const afw_runtime_property_t
 impl_487_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2374.pub
+    &afw_components_self_v_zz__2379.pub
 };
 
 static const afw_runtime_property_t *
@@ -51853,7 +51853,7 @@ impl_488_property_dataType = {
 static const afw_runtime_property_t
 impl_488_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2375.pub
+    &afw_components_self_v_zz__2380.pub
 };
 
 static const afw_runtime_property_t *
@@ -52185,7 +52185,7 @@ impl_492_property_dataType = {
 static const afw_runtime_property_t
 impl_492_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2376.pub
+    &afw_components_self_v_zz__2381.pub
 };
 
 static const afw_runtime_property_t *
@@ -52517,7 +52517,7 @@ impl_496_property_dataType = {
 static const afw_runtime_property_t
 impl_496_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2377.pub
+    &afw_components_self_v_zz__2382.pub
 };
 
 static const afw_runtime_property_t *
@@ -53264,7 +53264,7 @@ impl_505_property_dataType = {
 static const afw_runtime_property_t
 impl_505_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2378.pub
+    &afw_components_self_v_zz__2383.pub
 };
 
 static const afw_runtime_property_t *
@@ -53430,7 +53430,7 @@ impl_507_property_dataType = {
 static const afw_runtime_property_t
 impl_507_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2379.pub
+    &afw_components_self_v_zz__2384.pub
 };
 
 static const afw_runtime_property_t *
@@ -53513,7 +53513,7 @@ impl_508_property_dataType = {
 static const afw_runtime_property_t
 impl_508_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2380.pub
+    &afw_components_self_v_zz__2385.pub
 };
 
 static const afw_runtime_property_t *
@@ -53596,7 +53596,7 @@ impl_509_property_dataType = {
 static const afw_runtime_property_t
 impl_509_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2381.pub
+    &afw_components_self_v_zz__2386.pub
 };
 
 static const afw_runtime_property_t *
@@ -53679,7 +53679,7 @@ impl_510_property_dataType = {
 static const afw_runtime_property_t
 impl_510_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2382.pub
+    &afw_components_self_v_zz__2387.pub
 };
 
 static const afw_runtime_property_t *
@@ -53762,7 +53762,7 @@ impl_511_property_dataType = {
 static const afw_runtime_property_t
 impl_511_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2383.pub
+    &afw_components_self_v_zz__2388.pub
 };
 
 static const afw_runtime_property_t *
@@ -53928,7 +53928,7 @@ impl_513_property_dataType = {
 static const afw_runtime_property_t
 impl_513_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2384.pub
+    &afw_components_self_v_zz__2389.pub
 };
 
 static const afw_runtime_property_t *
@@ -54011,7 +54011,7 @@ impl_514_property_dataType = {
 static const afw_runtime_property_t
 impl_514_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2385.pub
+    &afw_components_self_v_zz__2390.pub
 };
 
 static const afw_runtime_property_t *
@@ -54094,7 +54094,7 @@ impl_515_property_dataType = {
 static const afw_runtime_property_t
 impl_515_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2386.pub
+    &afw_components_self_v_zz__2391.pub
 };
 
 static const afw_runtime_property_t *
@@ -54509,7 +54509,7 @@ impl_520_property_dataType = {
 static const afw_runtime_property_t
 impl_520_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2387.pub
+    &afw_components_self_v_zz__2392.pub
 };
 
 static const afw_runtime_property_t *
@@ -54592,7 +54592,7 @@ impl_521_property_dataType = {
 static const afw_runtime_property_t
 impl_521_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2388.pub
+    &afw_components_self_v_zz__2393.pub
 };
 
 static const afw_runtime_property_t *
@@ -54675,7 +54675,7 @@ impl_522_property_dataType = {
 static const afw_runtime_property_t
 impl_522_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2389.pub
+    &afw_components_self_v_zz__2394.pub
 };
 
 static const afw_runtime_property_t *
@@ -54758,7 +54758,7 @@ impl_523_property_dataType = {
 static const afw_runtime_property_t
 impl_523_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2390.pub
+    &afw_components_self_v_zz__2395.pub
 };
 
 static const afw_runtime_property_t *
@@ -55422,7 +55422,7 @@ impl_531_property_dataType = {
 static const afw_runtime_property_t
 impl_531_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2391.pub
+    &afw_components_self_v_zz__2396.pub
 };
 
 static const afw_runtime_property_t *
@@ -55588,7 +55588,7 @@ impl_533_property_dataType = {
 static const afw_runtime_property_t
 impl_533_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2392.pub
+    &afw_components_self_v_zz__2397.pub
 };
 
 static const afw_runtime_property_t *
@@ -55671,7 +55671,7 @@ impl_534_property_dataType = {
 static const afw_runtime_property_t
 impl_534_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2393.pub
+    &afw_components_self_v_zz__2398.pub
 };
 
 static const afw_runtime_property_t *
@@ -55754,7 +55754,7 @@ impl_535_property_dataType = {
 static const afw_runtime_property_t
 impl_535_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2394.pub
+    &afw_components_self_v_zz__2399.pub
 };
 
 static const afw_runtime_property_t *
@@ -56003,7 +56003,7 @@ impl_538_property_dataType = {
 static const afw_runtime_property_t
 impl_538_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2395.pub
+    &afw_components_self_v_zz__2400.pub
 };
 
 static const afw_runtime_property_t *
@@ -56169,7 +56169,7 @@ impl_540_property_dataType = {
 static const afw_runtime_property_t
 impl_540_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2396.pub
+    &afw_components_self_v_zz__2401.pub
 };
 
 static const afw_runtime_property_t *
@@ -56667,7 +56667,7 @@ impl_546_property_dataType = {
 static const afw_runtime_property_t
 impl_546_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2397.pub
+    &afw_components_self_v_zz__2402.pub
 };
 
 static const afw_runtime_property_t *
@@ -56750,7 +56750,7 @@ impl_547_property_dataType = {
 static const afw_runtime_property_t
 impl_547_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2398.pub
+    &afw_components_self_v_zz__2403.pub
 };
 
 static const afw_runtime_property_t *
@@ -57331,7 +57331,7 @@ impl_554_property_dataType = {
 static const afw_runtime_property_t
 impl_554_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2399.pub
+    &afw_components_self_v_zz__2404.pub
 };
 
 static const afw_runtime_property_t *
@@ -57497,7 +57497,7 @@ impl_556_property_dataType = {
 static const afw_runtime_property_t
 impl_556_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2400.pub
+    &afw_components_self_v_zz__2405.pub
 };
 
 static const afw_runtime_property_t *
@@ -57580,7 +57580,7 @@ impl_557_property_dataType = {
 static const afw_runtime_property_t
 impl_557_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2401.pub
+    &afw_components_self_v_zz__2406.pub
 };
 
 static const afw_runtime_property_t *
@@ -57746,7 +57746,7 @@ impl_559_property_dataType = {
 static const afw_runtime_property_t
 impl_559_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2402.pub
+    &afw_components_self_v_zz__2407.pub
 };
 
 static const afw_runtime_property_t *
@@ -57829,7 +57829,7 @@ impl_560_property_dataType = {
 static const afw_runtime_property_t
 impl_560_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2403.pub
+    &afw_components_self_v_zz__2408.pub
 };
 
 static const afw_runtime_property_t *
@@ -57912,7 +57912,7 @@ impl_561_property_dataType = {
 static const afw_runtime_property_t
 impl_561_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2404.pub
+    &afw_components_self_v_zz__2409.pub
 };
 
 static const afw_runtime_property_t *
@@ -58078,7 +58078,7 @@ impl_563_property_dataType = {
 static const afw_runtime_property_t
 impl_563_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2405.pub
+    &afw_components_self_v_zz__2410.pub
 };
 
 static const afw_runtime_property_t *
@@ -58161,7 +58161,7 @@ impl_564_property_dataType = {
 static const afw_runtime_property_t
 impl_564_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2406.pub
+    &afw_components_self_v_zz__2411.pub
 };
 
 static const afw_runtime_property_t *
@@ -58493,7 +58493,7 @@ impl_568_property_dataType = {
 static const afw_runtime_property_t
 impl_568_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2407.pub
+    &afw_components_self_v_zz__2412.pub
 };
 
 static const afw_runtime_property_t *
@@ -61137,10 +61137,10 @@ impl_382_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_382_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_382_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_382_list_collectionURIs__value
     },
@@ -61823,9 +61823,9 @@ impl_571_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_571_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_571_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_571_parentPaths_array
@@ -61923,10 +61923,10 @@ impl_570_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_570_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_570_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_570_list_collectionURIs__value
     },
@@ -62075,7 +62075,7 @@ impl_579_property_dataType = {
 static const afw_runtime_property_t
 impl_579_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2408.pub
+    &afw_components_self_v_zz__2413.pub
 };
 
 static const afw_runtime_property_t
@@ -62442,7 +62442,7 @@ impl_583_property_dataType = {
 static const afw_runtime_property_t
 impl_583_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2409.pub
+    &afw_components_self_v_zz__2414.pub
 };
 
 static const afw_runtime_property_t
@@ -62532,7 +62532,7 @@ impl_584_property_dataType = {
 static const afw_runtime_property_t
 impl_584_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2410.pub
+    &afw_components_self_v_zz__2415.pub
 };
 
 static const afw_runtime_property_t
@@ -62622,7 +62622,7 @@ impl_585_property_dataType = {
 static const afw_runtime_property_t
 impl_585_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2411.pub
+    &afw_components_self_v_zz__2416.pub
 };
 
 static const afw_runtime_property_t
@@ -62883,10 +62883,10 @@ impl_577_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_577_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_577_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_577_list_collectionURIs__value
     },
@@ -63115,10 +63115,10 @@ impl_586_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_586_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_586_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_586_list_collectionURIs__value
     },
@@ -63472,9 +63472,9 @@ impl_589_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_589_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_589_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_589_parentPaths_array
@@ -63572,10 +63572,10 @@ impl_588_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_588_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_588_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_588_list_collectionURIs__value
     },
@@ -63724,7 +63724,7 @@ impl_594_property_dataType = {
 static const afw_runtime_property_t
 impl_594_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2412.pub
+    &afw_components_self_v_zz__2417.pub
 };
 
 static const afw_runtime_property_t
@@ -64113,10 +64113,10 @@ impl_592_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_592_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_592_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_592_list_collectionURIs__value
     },
@@ -64272,7 +64272,7 @@ impl_599_property_dataType = {
 static const afw_runtime_property_t
 impl_599_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2413.pub
+    &afw_components_self_v_zz__2418.pub
 };
 
 static const afw_runtime_property_t
@@ -65109,9 +65109,9 @@ impl_598_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_598_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_598_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_598_parentPaths_array
@@ -65209,10 +65209,10 @@ impl_597_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_597_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_597_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_597_list_collectionURIs__value
     },
@@ -65361,7 +65361,7 @@ impl_609_property_dataType = {
 static const afw_runtime_property_t
 impl_609_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2414.pub
+    &afw_components_self_v_zz__2419.pub
 };
 
 static const afw_runtime_property_t
@@ -65451,7 +65451,7 @@ impl_610_property_dataType = {
 static const afw_runtime_property_t
 impl_610_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2415.pub
+    &afw_components_self_v_zz__2420.pub
 };
 
 static const afw_runtime_property_t
@@ -65825,7 +65825,7 @@ impl_614_property_dataType = {
 static const afw_runtime_property_t
 impl_614_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2416.pub
+    &afw_components_self_v_zz__2421.pub
 };
 
 static const afw_runtime_property_t
@@ -65985,9 +65985,9 @@ impl_608_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_608_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_608_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_608_parentPaths_array
@@ -66085,10 +66085,10 @@ impl_607_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_607_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_607_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_607_list_collectionURIs__value
     },
@@ -66435,9 +66435,9 @@ impl_616_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_616_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_616_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_616_parentPaths_array
@@ -66535,10 +66535,10 @@ impl_615_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_615_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_615_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_615_list_collectionURIs__value
     },
@@ -66892,9 +66892,9 @@ impl_620_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_620_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_620_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_620_parentPaths_array
@@ -66992,10 +66992,10 @@ impl_619_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_619_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_619_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_619_list_collectionURIs__value
     },
@@ -67651,9 +67651,9 @@ impl_624_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_624_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_624_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_624_parentPaths_array
@@ -67751,10 +67751,10 @@ impl_623_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_623_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_623_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_623_list_collectionURIs__value
     },
@@ -68321,9 +68321,9 @@ impl_631_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_631_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_631_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_631_parentPaths_array
@@ -68421,10 +68421,10 @@ impl_630_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_630_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_630_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_630_list_collectionURIs__value
     },
@@ -68595,10 +68595,10 @@ impl_638_array_possibleValues[] = {
 static const afw_value_array_t
 impl_638_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_638_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_638_list_possibleValues__value
     },
@@ -68728,10 +68728,10 @@ impl_639_array_possibleValues[] = {
 static const afw_value_array_t
 impl_639_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_639_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_639_list_possibleValues__value
     },
@@ -68944,7 +68944,7 @@ impl_641_property_dataType = {
 static const afw_runtime_property_t
 impl_641_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2417.pub
+    &afw_components_self_v_zz__2422.pub
 };
 
 static const afw_runtime_property_t
@@ -69056,10 +69056,10 @@ impl_642_array_possibleValues[] = {
 static const afw_value_array_t
 impl_642_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_642_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_642_list_possibleValues__value
     },
@@ -69190,10 +69190,10 @@ impl_643_array_possibleValues[] = {
 static const afw_value_array_t
 impl_643_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_643_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_643_list_possibleValues__value
     },
@@ -69372,9 +69372,9 @@ impl_637_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_637_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_637_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_637_parentPaths_array
@@ -69472,10 +69472,10 @@ impl_636_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_636_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_636_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_636_list_collectionURIs__value
     },
@@ -70035,9 +70035,9 @@ impl_645_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_645_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_645_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_645_parentPaths_array
@@ -70135,10 +70135,10 @@ impl_644_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_644_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_644_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_644_list_collectionURIs__value
     },
@@ -70712,9 +70712,9 @@ impl_651_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_651_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_651_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_651_parentPaths_array
@@ -70812,10 +70812,10 @@ impl_650_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_650_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_650_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_650_list_collectionURIs__value
     },
@@ -71573,10 +71573,10 @@ impl_656_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_656_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_656_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_656_list_collectionURIs__value
     },
@@ -71731,7 +71731,7 @@ impl_665_property_dataType = {
 static const afw_runtime_property_t
 impl_665_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2418.pub
+    &afw_components_self_v_zz__2423.pub
 };
 
 static const afw_runtime_property_t
@@ -71754,10 +71754,10 @@ impl_665_array_possibleValues[] = {
 static const afw_value_array_t
 impl_665_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_665_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_665_list_possibleValues__value
     },
@@ -71900,10 +71900,10 @@ impl_666_array_possibleValues[] = {
 static const afw_value_array_t
 impl_666_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_666_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_666_list_possibleValues__value
     },
@@ -72019,7 +72019,7 @@ impl_667_property_dataType = {
 static const afw_runtime_property_t
 impl_667_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2419.pub
+    &afw_components_self_v_zz__2424.pub
 };
 
 static const afw_runtime_property_t
@@ -72044,10 +72044,10 @@ impl_667_array_possibleValues[] = {
 static const afw_value_array_t
 impl_667_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_667_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_667_list_possibleValues__value
     },
@@ -72312,9 +72312,9 @@ impl_664_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_664_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_664_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_664_parentPaths_array
@@ -72412,10 +72412,10 @@ impl_663_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_663_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_663_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_663_list_collectionURIs__value
     },
@@ -72563,7 +72563,7 @@ impl_671_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_671_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2314.pub
+    &afw_components_self_v_zz__2319.pub
 };
 
 static const afw_runtime_property_t
@@ -72854,7 +72854,7 @@ impl_674_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_674_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2420.pub
+    &afw_components_self_v_zz__2425.pub
 };
 
 static const afw_runtime_property_t
@@ -72951,7 +72951,7 @@ impl_675_property_defaultValue = {
 static const afw_runtime_property_t
 impl_675_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2421.pub
+    &afw_components_self_v_zz__2426.pub
 };
 
 static const afw_runtime_property_t
@@ -72971,10 +72971,10 @@ impl_675_array_possibleValues[] = {
 static const afw_value_array_t
 impl_675_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_675_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_675_list_possibleValues__value
     },
@@ -73090,7 +73090,7 @@ impl_676_property_defaultValue = {
 static const afw_runtime_property_t
 impl_676_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2422.pub
+    &afw_components_self_v_zz__2427.pub
 };
 
 static const afw_runtime_property_t
@@ -73278,7 +73278,7 @@ impl_678_property_dataType = {
 static const afw_runtime_property_t
 impl_678_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2423.pub
+    &afw_components_self_v_zz__2428.pub
 };
 
 static const afw_runtime_property_t
@@ -73465,10 +73465,10 @@ impl_680_array_allowedValues[] = {
 static const afw_value_array_t
 impl_680_list_allowedValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_680_list_allowedValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_680_list_allowedValues__value
     },
@@ -73510,7 +73510,7 @@ impl_680_property_defaultValue = {
 static const afw_runtime_property_t
 impl_680_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2424.pub
+    &afw_components_self_v_zz__2429.pub
 };
 
 static const afw_runtime_property_t
@@ -73608,7 +73608,7 @@ impl_681_property_defaultValue = {
 static const afw_runtime_property_t
 impl_681_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2425.pub
+    &afw_components_self_v_zz__2430.pub
 };
 
 static const afw_runtime_property_t
@@ -73705,7 +73705,7 @@ impl_682_property_defaultValue = {
 static const afw_runtime_property_t
 impl_682_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2426.pub
+    &afw_components_self_v_zz__2431.pub
 };
 
 static const afw_runtime_property_t
@@ -73892,7 +73892,7 @@ impl_684_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_684_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2427.pub
+    &afw_components_self_v_zz__2432.pub
 };
 
 static const afw_runtime_property_t
@@ -74260,9 +74260,9 @@ impl_670_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/*/*/_AdaptiveLayoutComponentType_Common/propertyTypes")
 };
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_670_parentPaths_list = {
-    { &afw_array_wrapper_for_array_inf, NULL, NULL },
+    { &afw_array_view_of_c_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_670_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_670_parentPaths_array
@@ -74360,10 +74360,10 @@ impl_669_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_669_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_669_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_669_list_collectionURIs__value
     },
@@ -74526,10 +74526,10 @@ impl_688_array_possibleValues[] = {
 static const afw_value_array_t
 impl_688_list_possibleValues__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_688_list_possibleValues = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_688_list_possibleValues__value
     },
@@ -74724,10 +74724,10 @@ impl_686_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_686_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_686_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_686_list_collectionURIs__value
     },
@@ -74757,7 +74757,7 @@ impl_686_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_686_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2428.pub
+    &afw_components_self_v_zz__2433.pub
 };
 
 static const afw_runtime_property_t
@@ -74875,7 +74875,7 @@ impl_691_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_691_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2429.pub
+    &afw_components_self_v_zz__2434.pub
 };
 
 static const afw_runtime_property_t
@@ -74972,7 +74972,7 @@ impl_692_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_692_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2430.pub
+    &afw_components_self_v_zz__2435.pub
 };
 
 static const afw_runtime_property_t
@@ -75801,10 +75801,10 @@ impl_689_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_689_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_689_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_689_list_collectionURIs__value
     },
@@ -75946,7 +75946,7 @@ impl_701_property_dataType = {
 static const afw_runtime_property_t
 impl_701_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2431.pub
+    &afw_components_self_v_zz__2436.pub
 };
 
 static const afw_runtime_property_t
@@ -76036,7 +76036,7 @@ impl_702_property_dataType = {
 static const afw_runtime_property_t
 impl_702_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2432.pub
+    &afw_components_self_v_zz__2437.pub
 };
 
 static const afw_runtime_property_t
@@ -76126,7 +76126,7 @@ impl_703_property_dataType = {
 static const afw_runtime_property_t
 impl_703_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2433.pub
+    &afw_components_self_v_zz__2438.pub
 };
 
 static const afw_runtime_property_t
@@ -76216,7 +76216,7 @@ impl_704_property_dataType = {
 static const afw_runtime_property_t
 impl_704_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2434.pub
+    &afw_components_self_v_zz__2439.pub
 };
 
 static const afw_runtime_property_t
@@ -76431,10 +76431,10 @@ impl_699_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_699_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_699_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_699_list_collectionURIs__value
     },
@@ -76464,7 +76464,7 @@ impl_699_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_699_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2428.pub
+    &afw_components_self_v_zz__2433.pub
 };
 
 static const afw_runtime_property_t
@@ -76860,7 +76860,7 @@ impl_710_property_dataType = {
 static const afw_runtime_property_t
 impl_710_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2435.pub
+    &afw_components_self_v_zz__2440.pub
 };
 
 static const afw_runtime_property_t
@@ -77075,10 +77075,10 @@ impl_705_array_collectionURIs[] = {
 static const afw_value_array_t
 impl_705_list_collectionURIs__value;
 
-static const afw_array_wrapper_for_array_self_t
+static const afw_array_view_of_c_array_self_t
 impl_705_list_collectionURIs = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_705_list_collectionURIs__value
     },
@@ -77208,7 +77208,7 @@ impl_711_property_category = {
 static const afw_runtime_property_t
 impl_711_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2436.pub
+    &afw_components_self_v_zz__2441.pub
 };
 
 static const afw_runtime_property_t
@@ -77623,7 +77623,7 @@ impl_716_property_category = {
 static const afw_runtime_property_t
 impl_716_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2437.pub
+    &afw_components_self_v_zz__2442.pub
 };
 
 static const afw_runtime_property_t
@@ -77789,7 +77789,7 @@ impl_718_property_category = {
 static const afw_runtime_property_t
 impl_718_property_description = {
     &afw_components_self_s_description,
-    &afw_components_self_v_zz__2438.pub
+    &afw_components_self_v_zz__2443.pub
 };
 
 static const afw_runtime_property_t

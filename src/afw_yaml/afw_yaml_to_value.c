@@ -51,9 +51,6 @@ void afw_yaml_token_cleanup(
     yaml_token_delete(token);
 }
 
-/** @fixme
-    2.  Debugging/Tracing?
- */
 yaml_token_t * afw_yaml_parser_scan(
     afw_yaml_parser_t *parser, afw_xctx_t *xctx)
 {
@@ -76,49 +73,73 @@ yaml_token_t * afw_yaml_parser_scan(
     return token;
 }
 
+/*
+ * Plain scalars: YAML 1.2 Core-ish — true/false/null/~ then full-string
+ * integer/double via afw_number_parse; else string. Quoted / literal /
+ * folded styles are always strings (never type-sniffed).
+ */
 const afw_value_t * afw_yaml_parse_scalar(
     afw_yaml_parser_t *parser, yaml_token_t *token, afw_xctx_t *xctx)
 {
     const afw_value_t *value;
     const afw_utf8_t *str;
-    double number;
+    const afw_utf8_octet_t *s;
+    afw_size_t len;
+    afw_size_t nlen;
+    afw_integer_t i;
+    afw_double_t d;
+    afw_boolean_t is_double;
 
-    /* examine the "style" property to help decide how to interpret */
+    s = (const afw_utf8_octet_t *)token->data.scalar.value;
+    len = token->data.scalar.length;
+
     switch (token->data.scalar.style) {
         case YAML_PLAIN_SCALAR_STYLE:
-        case YAML_LITERAL_SCALAR_STYLE:
-            /** @fixme figure out if it should be a number.  
-                Maybe use the JSON code? For now, just try sscanf()*/
-            if (sscanf((const char *)token->data.scalar.value, "%lf", &number) > 0) {
-                value = afw_value_create_unmanaged_double(
-                    number, parser->p, xctx);
-            } else if (strcmp((const char *)token->data.scalar.value, "true") == 0) {
+            /* Boolean / null (lowercase Core Schema + common ~). */
+            if (len == 4 && memcmp(s, "true", 4) == 0) {
                 value = afw_boolean_v_true;
-            } else if (strcmp((const char *)token->data.scalar.value, "false") == 0) {
+            }
+            else if (len == 5 && memcmp(s, "false", 5) == 0) {
                 value = afw_boolean_v_false;
-            } else if (strcmp((const char *)token->data.scalar.value, "null") == 0) {
+            }
+            else if ((len == 4 && memcmp(s, "null", 4) == 0) ||
+                (len == 1 && s[0] == '~'))
+            {
                 value = afw_value_null;
-            } else {
-                /* else must be a string value */
-                str = afw_utf8_create_copy((const afw_utf8_octet_t *)token->data.scalar.value,
-                    strlen((const afw_utf8_octet_t *)token->data.scalar.value), parser->p,
-                    xctx);
-
-                value = afw_value_create_unmanaged_string(str, parser->p, xctx);
+            }
+            else {
+                /*
+                 * Full-string number only (rejects "123foo"). Prefer integer
+                 * when the token has no fractional/exponent form.
+                 */
+                nlen = afw_number_parse(s, len, &i, &d, &is_double,
+                    parser->p, xctx);
+                if (nlen == len) {
+                    if (is_double) {
+                        value = afw_value_create_unmanaged_double(
+                            d, parser->p, xctx);
+                    }
+                    else {
+                        value = afw_value_create_unmanaged_integer(
+                            i, parser->p, xctx);
+                    }
+                }
+                else {
+                    str = afw_utf8_create_copy(s, len, parser->p, xctx);
+                    value = afw_value_create_unmanaged_string(
+                        str, parser->p, xctx);
+                }
             }
             break;
 
-        /* treat all of these as string data types */
-        case YAML_ANY_SCALAR_STYLE:
+        /* Quoted, literal (|), folded (>), and unknown: always string. */
+        case YAML_LITERAL_SCALAR_STYLE:
         case YAML_FOLDED_SCALAR_STYLE:
         case YAML_SINGLE_QUOTED_SCALAR_STYLE:
         case YAML_DOUBLE_QUOTED_SCALAR_STYLE:
+        case YAML_ANY_SCALAR_STYLE:
         default:
-            str = afw_utf8_create_copy(
-                (const afw_utf8_octet_t *)token->data.scalar.value,
-                strlen((const afw_utf8_octet_t *)token->data.scalar.value),
-                parser->p, xctx);
-
+            str = afw_utf8_create_copy(s, len, parser->p, xctx);
             value = afw_value_create_unmanaged_string(str, parser->p, xctx);
             break;
     }
@@ -192,12 +213,20 @@ const afw_object_t * afw_yaml_parse_object(
         } else if (token->type == YAML_VALUE_TOKEN) {
             v = afw_yaml_parse_value(parser, xctx);
             if (v) {
-                /** @fixme, check that key is not NULL, or throw an exception? */
+                if (!key) {
+                    AFW_THROW_ERROR_RV_FZ(general, yaml_token_type,
+                        token->type, xctx,
+                        "YAML mapping value without a key, near line %d, "
+                        "column %d",
+                        parser->parser.mark.line,
+                        parser->parser.mark.column);
+                }
 
                 /* check if it's a meta object */
                 if (afw_utf8_equal(key, afw_s__meta_)) {
                     if (!afw_value_is_object(v)) {
-                        AFW_THROW_ERROR_Z(general, "_meta_ property must be an object", xctx);
+                        AFW_THROW_ERROR_Z(general,
+                            "_meta_ property must be an object", xctx);
                     }
                     _meta_ = ((const afw_value_object_t*)v)->internal;
                 }
@@ -210,6 +239,10 @@ const afw_object_t * afw_yaml_parse_object(
                 else if (!afw_value_is_object(v)) {
                     afw_object_set_property(object, key, v, xctx);
                 }
+
+                /* Next pair needs its own key. */
+                key = NULL;
+                parser->property_name = NULL;
             }
         } else if (token->type != YAML_BLOCK_END_TOKEN &&
                     token->type != YAML_FLOW_MAPPING_END_TOKEN) {
@@ -306,17 +339,18 @@ const afw_value_t * afw_yaml_parse_value(
                 break;
 
             case YAML_TAG_TOKEN:
-                /* A tag tells the application about the data, which could be useful in helping
-                    us determine the data type */
+                /*
+                 * Node tags ignored for now (no typed tags beyond plain
+                 * Core Schema sniffing on plain scalars).
+                 */
                 break;
 
             case YAML_VERSION_DIRECTIVE_TOKEN:
-                /* This tells us about the YAML version.  FIXME: we may want to restrict features */
+                /* %YAML version directive — accepted, not enforced. */
                 break;
 
             case YAML_TAG_DIRECTIVE_TOKEN:
-                /* This establishes shorthand notation for specifying node tags.  Allows for readability */
-                /** @fixme we may decide to store tags in a global hash, so they can be referenced by tag tokens */
+                /* %TAG shorthand — accepted, not stored. */
                 break;
 
             default:
@@ -330,8 +364,87 @@ const afw_value_t * afw_yaml_parse_value(
     return value;
 }
 
+
 /*
- * Create an adaptive object from yaml.
+ * Shared parse: bytes → adaptive value. cede_p controls entity object pool
+ * ownership (true for adapter raw_to_object; false for conf / raw_to_value).
+ * path is applied as meta ids when the root value is an object entity.
+ */
+static const afw_value_t *
+impl_yaml_to_value(
+    const afw_memory_t *yaml,
+    const afw_utf8_t *path,
+    afw_boolean_t cede_p,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    yaml_token_t *token;
+    const afw_value_t *value = NULL;
+    afw_yaml_parser_t parser;
+    afw_boolean_t parser_initialized;
+
+    memset(&parser, 0, sizeof(afw_yaml_parser_t));
+    parser.embedding_object = NULL;
+    parser.property_name = NULL;
+    parser.p = p;
+    parser.path = path;
+    parser.cede_p = cede_p;
+    parser_initialized = false;
+
+    AFW_TRY {
+
+        if (!yaml_parser_initialize(&parser.parser)) {
+            AFW_THROW_ERROR_Z(general,
+                "Unable to initialize libyaml parser", xctx);
+        }
+        parser_initialized = true;
+
+        parser.anchors = apr_hash_make(afw_pool_get_apr_pool(xctx->p));
+
+        yaml_parser_set_input_string(&parser.parser, yaml->ptr, yaml->size);
+
+        /* We should expect a STREAM_START */
+        token = afw_yaml_parser_scan(&parser, xctx);
+        if (token->type != YAML_STREAM_START_TOKEN) {
+            AFW_THROW_ERROR_RV_Z(general, yaml_token_type, token->type,
+                "Expected start of stream token", xctx);
+        }
+
+        /* Now parse and return the top-level afw_value_t */
+        value = afw_yaml_parse_value(&parser, xctx);
+
+        /* We should expect a STREAM_END */
+        token = afw_yaml_parser_scan(&parser, xctx);
+        if (token->type != YAML_STREAM_END_TOKEN) {
+            AFW_THROW_ERROR_RV_Z(general, yaml_token_type, token->type,
+                "Expected end of stream token", xctx);
+        }
+
+        /*
+         * Entity path for object roots (documented on afw_yaml_to_value).
+         * Nested / non-object roots leave path unused.
+         */
+        if (path && value && afw_value_is_object(value)) {
+            afw_object_meta_set_ids_using_path(
+                ((const afw_value_object_t *)value)->internal,
+                path, xctx);
+        }
+    }
+    AFW_FINALLY {
+        if (parser_initialized) {
+            yaml_parser_delete(&parser.parser);
+        }
+    }
+    AFW_ENDTRY;
+
+    return value;
+}
+
+
+/*
+ * Create an adaptive value from yaml (conf, request body, journal, …).
+ * Does not face-wrap objects/arrays: conf and adapter storage stay plain;
+ * script-facing adapter/journal APIs apply issue #17 faces on return.
  */
 const afw_value_t * afw_yaml_to_value(
     const afw_memory_t *yaml,
@@ -339,49 +452,14 @@ const afw_value_t * afw_yaml_to_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    yaml_token_t *token;
-    const afw_value_t *value = NULL;
-    afw_yaml_parser_t parser;
-
-    memset(&parser, 0, sizeof(afw_yaml_parser_t));
-    parser.embedding_object = NULL;
-    parser.property_name = NULL;
-    parser.p = p;
-    parser.path = path;
-    parser.cede_p = false;
-
-    /* Initialize parser */
-    if (!yaml_parser_initialize(&parser.parser)) {
-        AFW_THROW_ERROR_Z(general, 
-            "Unable to initialize libyaml parser", xctx);
-    }
-
-    parser.anchors = apr_hash_make(afw_pool_get_apr_pool(xctx->p));
-
-    yaml_parser_set_input_string(&parser.parser, yaml->ptr, yaml->size);
-
-    /* We should expect a STREAM_START */
-    token = afw_yaml_parser_scan(&parser, xctx);
-    if (token->type != YAML_STREAM_START_TOKEN) {
-        AFW_THROW_ERROR_RV_Z(general, yaml_token_type, token->type, 
-            "Expected start of stream token", xctx);
-    }
-
-    /* Now parse and return the top-level afw_value_t */
-    value = afw_yaml_parse_value(&parser, xctx);
-
-    /* We should expect a STREAM_END */
-    token = afw_yaml_parser_scan(&parser, xctx);
-    if (token->type != YAML_STREAM_END_TOKEN) {
-        AFW_THROW_ERROR_RV_Z(general, yaml_token_type, token->type, 
-            "Expected end of stream token", xctx);
-    }
-
-    return value;
+    return impl_yaml_to_value(yaml, path, false, p, xctx);
 }
 
 /*
  * Implementation of method raw_to_object of interface afw_content_type.
+ *
+ * Used by file (and similar) adapters when contentType is yaml. Mirrors
+ * afw_compile_to_object: subpool when !cede_p, require object root, set ids.
  */
 const afw_object_t * afw_yaml_to_object(
     const afw_memory_t  * yaml,
@@ -393,15 +471,46 @@ const afw_object_t * afw_yaml_to_object(
     const afw_pool_t * p,
     afw_xctx_t      * xctx)
 {
-    afw_yaml_parser_t parser;
+    const afw_pool_t *use_p;
+    const afw_value_t *value;
+    const afw_object_t *object;
 
-    memset(&parser, 0, sizeof(afw_yaml_parser_t));
-    parser.embedding_object = NULL;
-    parser.property_name = NULL;
-    parser.p = (cede_p) ? p : afw_pool_create(p, xctx);
-    parser.cede_p = afw_object_path_make(
-        adapter_id, object_type_id, object_id, parser.p, xctx); 
-   
-    /* Parse and return object. */
-    return afw_yaml_parse_object(&parser, xctx); 
+    if ((adapter_id || object_type_id || object_id) &&
+        (!adapter_id || !object_type_id || !object_id))
+    {
+        AFW_THROW_ERROR_Z(general,
+            "If adapter_id, object_type_id, or object_id is not NULL, all must "
+            "not be NULL",
+            xctx);
+    }
+
+    /* If not cede_p, allocate a subpool owned by the created entity. */
+    use_p = (cede_p) ? p : afw_pool_create(p, xctx);
+
+    /*
+     * Entity always cedes use_p (caller already ceded p, or we created a
+     * subpool that the object must own). Meta ids applied after parse.
+     * source_location is accepted for interface parity with JSON.
+     */
+    value = impl_yaml_to_value(yaml, NULL, true, use_p, xctx);
+
+    if (!value || !afw_value_is_object(value)) {
+        AFW_THROW_ERROR_Z(general,
+            "YAML root must be a mapping (object) for raw_to_object",
+            xctx);
+    }
+
+    object = ((const afw_value_object_t *)value)->internal;
+
+    /* Same id policy as afw_compile_to_object (source_location is not path). */
+    if (adapter_id) {
+        afw_object_meta_set_ids(object,
+            adapter_id, object_type_id, object_id, xctx);
+    }
+    else {
+        /* Interface parity; reserved for future error context. */
+        (void)source_location;
+    }
+
+    return object;
 }

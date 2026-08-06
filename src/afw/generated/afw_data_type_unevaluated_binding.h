@@ -101,9 +101,15 @@ afw_value_permanent_unevaluated_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated unevaluated.
+ * @brief True if A_VALUE is an evaluated unevaluated value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_unevaluated_t *`.
+ * If you want to know if the value will be unevaluated when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, unevaluated, xctx)` instead.
  */
 #define afw_value_is_unevaluated(A_VALUE) \
 ( \
@@ -112,9 +118,12 @@ afw_value_permanent_unevaluated_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of unevaluated.
+ * @brief True if A_VALUE is an evaluated array of unevaluated.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is unevaluated.
  */
 #define afw_value_is_array_of_unevaluated(A_VALUE) \
 ( \

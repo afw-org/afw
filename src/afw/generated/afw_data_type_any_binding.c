@@ -110,7 +110,7 @@ impl_data_type_object_any__value = {
 };
 
 /* Value for empty array of any. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
 impl_empty_array_of_any;
 
 /* Value for empty array of any. */

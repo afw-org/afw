@@ -66,6 +66,13 @@ Update this section if the plan changes.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
 - **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev` (implies `-j`). Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev`** (`--all --generate --clean --install --scan` + `-j`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
 
+### Session wrap-up — 2026-08-06 (#17 faces + ship prep)
+
+- **#17** feature work complete on `issue-#17-object-literals-immutable` (faces, nested hard edge, adapter/journal/consumer, #110 defaults, YAML hygiene). Docs pads + whats-new refreshed for PR.
+- **#149** opened (child of **#2**) for runtime/`afw` catalog lifetime; pad `designs/runtime-catalog-lifetime.md`. Does not block #17.
+- Optional residuals O1–O4: clone-on-bind already gone (pad fixed); rest-pattern no code change; freeze/write-through docs in whats-new.
+- **Next:** merge PR to `mgg-develop`; then close checklist on #17 pad. Not starting #149 until later.
+
 ### Session wrap-up — 2026-07-20
 
 - Explored **#54** (indexes / deprecated variables); did **not** implement — notes under Indexes below.
@@ -237,6 +244,8 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 **Status:** pointer / **beta-relevant**
 
 - Umbrella **#2** (memory). Working design pad: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
+- **#149** (child of **#2**) — runtime / `afw` adapter **catalog lifetime** (live maps vs `EnvironmentRegistry` materialize / admin catalogs). Pad: [`designs/runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md). **Not** part of #17; do not block faces merge on this.
+- **#17 mutable object faces** — **feature-complete** on branch `issue-#17-object-literals-immutable` (PR → `mgg-develop`). Literals + emit, no object/array clone-on-bind, nested hard edge, adapter get/retrieve/callback, #110 defaults, journal get/consumer/advance, YAML hygiene (`raw_to_object`, scalars). Pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md). User: **`whats-new.md`**. After merge: mark done here, fold Highlights, optional issue rename/close checklist.
 - **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats-new.md`.
   - Another reason **memory management / managed release / long-running escape** needs to be solid **before calling the tree beta**: scripts that snapshot often (or hold results) will stress pools and lifetimes harder than `qualifier::name` get.
   - Do **not** treat #9 as “done for beta” solely because the API exists; couple with #2 progress and real long-running exercise if tools use snapshots heavily.

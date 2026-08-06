@@ -38,6 +38,18 @@ assert(...);
 return 0;
 ```
 
+### `//?` keys: single-line and multi-line values
+
+Each `//?` line is roughly **`key: value`** (not Adaptive Script, not YAML).
+
+| Form | Meaning |
+|------|---------|
+| `//? description: short text on this line` | Value is the rest of the line after `key:`. |
+| `//? description: ...` | Value is the **following lines** until the next `//` line (usually the next `//? …`). |
+| `//? source: ...` | Same: body of the case is the lines until the next `//` / `//?` block. |
+
+Use `...` for **longer descriptions**, multi-paragraph purpose notes, or any property that does not fit one line. Examples: file-level `//? description: ...` in `compiler/type_check.as`, case-level in `crypto_seal_unseal.as`. Do **not** invent YAML block markers (`|`, `>`, indent-only blocks); `...` is the supported continuation.
+
 - Prefer focused cases over one huge case.
 - Language quirks (structural `===`, nullish, defaults): **`afw-adaptive-script`**.
 

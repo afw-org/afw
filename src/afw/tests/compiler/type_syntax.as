@@ -141,5 +141,5 @@ const d = decompile(compile<script>(script(
 )));
 /* Array<T> and T[] are the same IR; decompile prefers T[]. */
 assert(d ==
-    "#block(const(#assignment_target(\"const\",x:string[]),[\"a\"],undefined),return(x))");
+    "#block(const(#assignment_target(\"const\",x:string[]),wrap_literal_array([\"a\"]),undefined),return(x))");
 return 0;

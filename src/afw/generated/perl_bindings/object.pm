@@ -358,7 +358,8 @@ Property name.
 
 Return the value of a property. Optional default applies only when the
 property is missing — not when the value is undefined. If missing and no
-default is given, the result is undefined. Mutable defaults are cloned.
+default is given, the result is undefined. Object/array defaults get a mutable
+memory face (issues #110 / #17); other defaults are cloned.
 Get a property value
 
 =head4 Parameters
@@ -373,7 +374,8 @@ Property name.
 
     $defaultValue
 
-Value to return only if the property is missing. Cloned when used.
+Value to return only if the property is missing. Isolated when used
+(object/array face; otherwise clone).
 
 =head3 property_is_not_null
 

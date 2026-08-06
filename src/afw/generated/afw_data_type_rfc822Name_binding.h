@@ -111,9 +111,15 @@ afw_value_permanent_rfc822Name_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated rfc822Name.
+ * @brief True if A_VALUE is an evaluated rfc822Name value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_rfc822Name_t *`.
+ * If you want to know if the value will be rfc822Name when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, rfc822Name, xctx)` instead.
  */
 #define afw_value_is_rfc822Name(A_VALUE) \
 ( \
@@ -122,9 +128,12 @@ afw_value_permanent_rfc822Name_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of rfc822Name.
+ * @brief True if A_VALUE is an evaluated array of rfc822Name.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is rfc822Name.
  */
 #define afw_value_is_array_of_rfc822Name(A_VALUE) \
 ( \

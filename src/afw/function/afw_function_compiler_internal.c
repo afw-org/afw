@@ -111,10 +111,11 @@ afw_function_script_assign_pattern(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    if (afw_value_is_object(value) || afw_value_is_array(value)) {
-        value = afw_value_clone(value, p, xctx);
-    }
-    else if (value && !afw_value_is_undefined(value)) {
+    /*
+     * Objects and arrays: no clone-on-bind — issue #17 faces
+     * (wrap_literal_object / wrap_literal_array) isolate shared literals.
+     */
+    if (value && !afw_value_is_undefined(value)) {
         value = afw_value_evaluate(value, p, xctx);
     }
     impl_assign_value(target, value, assignment_type, p, xctx);
@@ -418,9 +419,8 @@ impl_assignment_target(
 
 
 /*
- * Call this without value being evaluated so that the need for a clone can
- * be determined. Evaluated objects and lists need to be cloned so they can
- * potentially be modified. If needed, value will be evaluated.
+ * Evaluate value then assign. Object/array clone-on-bind removed for issue
+ * #17 (faces via wrap_literal_*).
  */
 static const afw_value_t *
 impl_assign(
@@ -432,14 +432,7 @@ impl_assign(
 {
     const afw_value_assignment_target_t *at;
 
-    if (afw_value_is_object(value) || afw_value_is_array(value))
-    {
-        value = afw_value_clone(value, p, xctx);
-    }
-    else
-    {
-        value = afw_value_evaluate(value, p, xctx);
-    }
+    value = afw_value_evaluate(value, p, xctx);
 
     if (assignment_type == afw_compile_assignment_type_use_assignment_targets)
     {
@@ -1321,6 +1314,118 @@ afw_function_execute_return(
     afw_xctx_statement_flow_set_type(return, xctx);
 
     return result;
+}
+
+
+
+/*
+ * Adaptive function: wrap_literal_object
+ *
+ * afw_function_execute_wrap_literal_object
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Evaluate an object value, create a memory object wrapper
+ * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
+ * an object value. Local property sets stay on the face; gets look through to
+ * the shared base. Intended for compile/runtime isolation of object literals
+ * (issue #17); not normal author surface syntax.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function wrap_literal_object(
+ *       object: object
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to evaluate and wrap (typically a constant object
+ *       literal once the compiler emits isolation).
+ *
+ * Returns:
+ *
+ *   (object) A new memory-wrapper object face over the evaluated base.
+ */
+const afw_value_t *
+afw_function_execute_wrap_literal_object(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_object_t *wrap;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    /*
+     * Idempotent: compiler is the normal producer of this call; double wrap
+     * (emit + explicit call, or nested call) returns the existing face.
+     * Cross-pool re-home is not required for that path.
+     */
+    if (afw_object_is_memory_wrapper(object->internal)) {
+        return (const afw_value_t *)object;
+    }
+
+    wrap = afw_object_create_wrapper_unmanaged(object->internal, x->p, x->xctx);
+    return wrap->value;
+}
+
+
+
+/*
+ * Adaptive function: wrap_literal_array
+ *
+ * afw_function_execute_wrap_literal_array
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Evaluate an array value, create a memory array wrapper
+ * (afw_array_create_wrapper_*) over its instance, and return that wrapper as an
+ * array value. Entry mutators stay on the face; nested objects/arrays are
+ * promoted on get. Intended for compile/runtime isolation of array literals
+ * (issue #17); not normal author surface syntax.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function wrap_literal_array(
+ *       array: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Array to evaluate and wrap (typically a constant array
+ *       literal once the compiler emits isolation).
+ *
+ * Returns:
+ *
+ *   (array) A new memory-wrapper array face over the evaluated base.
+ */
+const afw_value_t *
+afw_function_execute_wrap_literal_array(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_array_t *wrap;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(1);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+
+    /* Idempotent: already a face — return as-is. */
+    if (afw_array_is_memory_wrapper(array->internal)) {
+        return (const afw_value_t *)array;
+    }
+
+    wrap = afw_array_create_wrapper_unmanaged(array->internal, x->p, x->xctx);
+    return wrap->value;
 }
 
 

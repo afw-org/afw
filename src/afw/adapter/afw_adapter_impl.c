@@ -551,7 +551,7 @@ afw_adapter_impl_set_supported_core_object_type(
         afw_object_meta_set_ids(e->object, &adapter->adapter_id,
             afw_s__AdaptiveObjectType_, object_type_id, xctx);
         parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
-        parent_paths->internal = afw_array_create_wrapper_for_array(
+        parent_paths->internal = afw_array_create_view_of_c_array(
             (const void *)path, false, afw_data_type_anyURI, 1, p, xctx);
         afw_object_meta_set_parent_paths(e->object, parent_paths, xctx);
 
