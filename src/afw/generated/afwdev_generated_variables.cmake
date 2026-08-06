@@ -404,7 +404,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     number/afw_number.c
     object/afw_object.c
     object/afw_object_aggregate_external.c
-    object/afw_object_composite.c
     object/afw_object_const_key_value.c
     object/afw_object_impl.c
     object/afw_object_impl_property_meta.c
@@ -414,7 +413,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     object/afw_object_meta_accessor.c
     object/afw_object_options.c
     object/afw_object_path.c
-    object/afw_object_properties_callback.c
     object/afw_object_type.c
     object/afw_object_view.c
     os/nix/afw_os.c

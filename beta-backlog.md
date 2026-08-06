@@ -73,6 +73,23 @@ Update this section if the plan changes.
 - Optional residuals O1–O4 done as docs/audit only before merge.
 - **Next session:** not #17 feature work; pick other beta items or #149 later.
 
+### Session notes — 2026-08-06 (object multi-impl cleanup)
+
+- Branch **`cleanup-object-composite-impls`**: remove dead half-finished object impls deferred from #17.
+  - **Removed:** `afw_object_create_composite` + `afw_object_create_properties_callback` (sources, public decls, internal selfs, opaque). No in-tree callers; unfinished (NIY get_count, broken/empty iterators, composite `get_setter` always NULL).
+  - **Kept:** `afw_object_create_merged` (actions); `afw_object_aggregate_external_create` (**live** — `afw_command_local_server` request properties); object **option** `composite` (views / parentPaths — different thing).
+  - **Residual:** memory `clone_on_set` field always false; not productized.
+  - Product mutable look-through remains **faces** (`create_wrapper_*`), not these APIs.
+- **#127** (progressive retrieve release): **not** app-only. C still has `@fixme Need corresponding releases` on script/materialize `impl_retrieve_cb` in `afw_function_adapter.c`; stream/to_response paths differ. Caps/faces landed earlier; progressive **release** still C (+ any app progressive consumer). Blocked on focused work / Jeremy for end-to-end progressive path, not “only app.”
+
+### Session wrap-up — 2026-08-06 (cleanup + managed face pin)
+
+- Landed on branch then **PR → `mgg-develop`**: dead composite/properties_callback removal + **`afw_pool_release` → pool or NULL** + managed object face pins `wrapped`.
+- **Invariant (objects):** managed memory object lifetime = **its pool’s RC**. Managed face: `get_reference(wrapped)` once at create; on face release, if `afw_pool_release(face->p) == NULL`, `release(wrapped)`. Unmanaged face still borrows. Save `wrapped` before pool release (self may be freed).
+- **Arrays:** memory arrays still pool-owned, **noop** `release` / unmanaged value face — **not** the same bug today. When #2 gives arrays real managed RC, mirror object face pin (plus other array MM work).
+- **Not removed:** `create_merged`, `aggregate_external`, views, meta, `create_view_of_c_array` — different jobs than faces.
+- Durable notes: `designs/memory-management.md`, `designs/issue-17-mutable-object-faces.md`, comment on **#2**.
+
 ### Session wrap-up — 2026-07-20
 
 - Explored **#54** (indexes / deprecated variables); did **not** implement — notes under Indexes below.

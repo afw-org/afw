@@ -42,7 +42,7 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**Templates (#97)**](#compile-time-template-substitutions-issue-97) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
 | [**Adapter index `current::` (#54 partial)**](#adapter-index-filtervalue-current-issue-54-partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev (#1)**](#c-api-docs-and-full-package-builds-issue-1) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
-| [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions |
+| [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base — **recompile** out-of-tree commands/extensions |
 | [**`stringify` / `decompile` / listing (#18)**](#stringify-decompile-compiler-listing-and-binary-text) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
@@ -317,6 +317,7 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 - Prefer **shared permanent Adaptive values** (generate bag / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
 - **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf.
 - **Managed object values**: container-aware `optional_release` / `clone_or_reference` paths that do **not** free an embedded dual-face header; `create_managed_object` requires a non-null object and takes a container hold.
+- **`afw_pool_release`**: returns the pool if still referenced, or **NULL** if that call destroyed the pool (C API; ignore return if you do not care). Used so managed **object faces** can hold one reference on the wrapped base and drop it only when the face pool is destroyed. Unmanaged faces still borrow. Array faces remain pool-owned for now.
 - Living design notes for maintainers: `designs/memory-management.md` (not user docs).
 
 ### Rebuild / recompile requirement

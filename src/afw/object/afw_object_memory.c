@@ -56,7 +56,7 @@ afw_object_create_with_options(
         : &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
-    //FIXME self->clone_on_set = AFW_OBJECT_MEMORY_OPTION_IS(options, clone_on_set);
+    /* clone_on_set: residual field; always false (no public option). */
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
     /* self->wrapped is NULL (calloc). */
@@ -85,6 +85,14 @@ afw_object_create_wrapper_with_options(
     self = (afw_object_internal_memory_object_t *)
         afw_object_create_with_options(options, p, xctx);
     self->wrapped = wrapped;
+    /*
+     * Managed face: one reference on wrapped for the face's life. Released
+     * when the face pool is destroyed (see impl_afw_object_release). Unmanaged
+     * faces borrow only; caller owns base lifetime.
+     */
+    if (!self->unmanaged) {
+        afw_object_get_reference(wrapped, xctx);
+    }
     /*
      * Carry meta (path, objectId, reconcilable, …) onto the face so
      * meta(face) matches the adapter entity. Property gets still look
@@ -203,6 +211,7 @@ impl_afw_object_release(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entity;
+    const afw_object_t *wrapped;
 
     /* If unmanaged, just return. */
     if (self->unmanaged) {
@@ -219,8 +228,15 @@ impl_afw_object_release(
         return;
     }
 
-    /* Release pool holding managed object. */
-    afw_pool_release(self->pub.p, xctx);
+    /*
+     * Save wrapped before pool release: if this call destroys the face pool,
+     * self is gone. Drop the create-time pin only when the pool is destroyed
+     * (afw_pool_release returns NULL).
+     */
+    wrapped = self->wrapped;
+    if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
+        afw_object_release(wrapped, xctx);
+    }
 }
 
 

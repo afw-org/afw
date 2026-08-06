@@ -263,6 +263,10 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 | 2026-07-24 | Classic-style pools (free no-op) for short-lived/request; subpools for script/long-running | Direction, not immediate code |
 | 2026-07-24 | OOM / error paths must not leave unbalanced pool pins or half-promoted slots | |
 | 2026-07-24 | Target model does **not** replace phased plan order; highest-priority pieces for long-run safety listed in target section | Continue 1d when ready |
+| 2026-08-06 | **`afw_pool_release` returns** `const afw_pool_t *` — pool if still alive, **NULL** if this call destroyed it | Callers can free side holds without reading internal RC; void callers still valid |
+| 2026-08-06 | **Managed object face** (`create_wrapper_*`): pin `wrapped` once at create; `release(wrapped)` only when face pool destroy (`pool_release` → NULL). Unmanaged face borrows | Object look-through needs base for face life; save `wrapped` before pool release |
+| 2026-08-06 | **Array faces** not the same bug today (pool-owned instance, noop `release`, materialize ring). When arrays get real managed RC, mirror object pin + other #2 array work | Do not invent array pin early |
+| 2026-08-06 | Removed unfinished **`create_composite`** / **`properties_callback`**; keep **`create_merged`**, **`aggregate_external`**, views / option composite | Faces are product look-through; multi-base aggregate is different |
 
 ### Open questions (need maintainer perspective when back)
 
@@ -939,22 +943,22 @@ Typical preamble:
 | External factory | `afw_runtime_object_create_indirect_using_inf` allocates value + sets `obj->pub.value` |
 | Gap | Object exists but `pub.value` never set; value may live only as a side struct (e.g. value_meta) |
 
-**No file today multi-includes `afw_object_impl_declares.h` twice** (multiple object infs in one `.c`). Several files **do** multi-interface: object + `afw_object_setter_impl_declares.h` (memory, meta, properties_callback, property_meta, value_meta).
+**No file today multi-includes `afw_object_impl_declares.h` twice** (multiple object infs in one `.c`). Several files **do** multi-interface: object + `afw_object_setter_impl_declares.h` (memory, meta, property_meta, value_meta).
 
 ###### Object implementations (`afw_object_impl_declares.h`)
 
 | IMPLEMENTATION_ID | Source | `value` on instance? | Embedded / paired value inf (typical) | Notes |
 |-------------------|--------|----------------------|----------------------------------------|--------|
-| `memory` | `object/afw_object_memory.c` | **Y** (create + embedded) | `managed_object_inf` always | Workhorse; also object_setter. Unmanaged option still uses **managed** value inf. |
-| `composite` | `object/afw_object_composite.c` | **Y** | managed_object | |
-| `afw_object_view` | `object/afw_object_view.c` | **Y** | managed (+ unmanaged symbol present) | |
-| `afw_object_aggregate_external` | `object/afw_object_aggregate_external.c` | **Y** | managed_object | |
+| `memory` | `object/afw_object_memory.c` | **Y** (create + embedded) | `managed_object_inf` always | Workhorse; also object_setter. Unmanaged option still uses **managed** value inf. Faces via `wrapped`. |
+| `afw_object_view` | `object/afw_object_view.c` | **Y** | managed (+ unmanaged symbol present) | ParentPaths / object-option composite (not the removed `create_composite` API) |
+| `afw_object_aggregate_external` | `object/afw_object_aggregate_external.c` | **Y** | managed_object | Live multi-object read merge; used by `afw_command` local server request props |
 | `afw_object_const_key_value` | `object/afw_object_const_key_value.c` | **Y** | managed_object | Const-ish data, managed value inf |
 | `object_meta` | `object/afw_object_meta.c` | **Y** | managed_object | + setter |
 | `afw_object_meta_accessor` | `object/afw_object_meta_accessor.c` | **Y** | managed_object | |
 | `object_impl_property_meta` | `object/afw_object_impl_property_meta.c` | **Y** | managed (+ unmanaged ref) | + setter |
-| `properties_callback` | `object/afw_object_properties_callback.c` | **Y** | managed_object | + setter |
 | `environment_variables` | `environment/afw_environment_variables_object.c` | **Y** | managed_object | |
+
+**Removed (2026-08, cleanup branch):** unfinished `composite` (`afw_object_create_composite`) and `properties_callback` (`afw_object_create_properties_callback`) — no callers; product mutable look-through is memory faces (`create_wrapper_*`). Keep **`afw_object_create_merged`** (eager copy-merge; used by actions).
 | `fcgi_request_properties` | `afw_server_fcgi/..._properties_object.c` | **Y** | managed_object | Outside `src/afw/` core |
 | `afw_environment_registry` | `environment/afw_environment_registry_object.c` | **Y** (static init, not `pub.value=`) | **permanent_object_inf** | Permanent singleton path; easy to miss if only grepping assigns |
 | `afw_runtime_const_meta` | `runtime/afw_runtime_const_meta.c` | **Not on create in this file** | inf only; instances elsewhere | Const meta **inf**; instance `value` must be set by whoever builds the meta object (const_objects / runtime). Audit consumers in 1d. |
@@ -1488,7 +1492,7 @@ Closure_binding and compiled_value are the hand-side peers of “managed escape�
 
 #### Many implementations (not exhaustive)
 
-**Objects** (examples): `memory`, composite, view, meta / meta_accessor, properties_callback, const_key_value, aggregate_external, runtime indirect, FCGI request properties, env variables object, …
+**Objects** (examples): `memory` (incl. faces/`wrapped`), view, meta / meta_accessor, const_key_value, aggregate_external, runtime indirect, FCGI request properties, env variables object, …
 
 **Arrays** (examples): `memory`, const array of values, view_of_c_array, …
 

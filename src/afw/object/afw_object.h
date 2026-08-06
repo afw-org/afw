@@ -803,6 +803,9 @@ afw_object_create_with_options(
  * so the shared base is not mutated through nested access.
  *
  * Nested mutable objects and arrays are promoted to faces on get.
+ *
+ * Managed faces take one reference on @p wrapped at create and release it
+ * when the face pool is destroyed. Unmanaged faces borrow @p wrapped only.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_wrapper_with_options(
@@ -866,86 +869,6 @@ afw_object_is_memory_wrapper(const afw_object_t *object);
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_memory_wrapper_base(const afw_object_t *object);
-
-
-/**
- * @brief Create a composite of immutable objects.
- * @param mutable true makes composite mutable.
- * @param p is pool for result.
- * @param xctx of caller.
- * @param ... is one or more objects terminated by a NULL.
- * @return instance of new object.
- *
- */
-AFW_DECLARE(const afw_object_t *)
-afw_object_create_composite(
-    afw_boolean_t mutable,
-    const afw_pool_t *p, afw_xctx_t *xctx,
-    ...);
-
-
-
-/**
- * @brief Typedef for an object property get callback.
- * @param data to passed to afw_object_create_properties_callback().
- * @param property_name to get.
- * @param xctx of caller.
- * @return property value or NULL if not found.
- */
-typedef const afw_value_t *(*afw_object_properties_callback_entry_get_t) (
-    void *data,
-    const afw_utf8_t *property_name,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Typedef for an object property set callback.
- * @param data to passed to afw_object_create_properties_callback().
- * @param property_name to set.
- * @param value to set.
- * @param xctx of caller.
- */
-typedef void (*afw_object_properties_callback_entry_set_t) (
-    void *data,
-    const afw_utf8_t *property_name,
-    const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Struct for afw_object_properties_callback_entry_t.
- *
- * An array of this is passed to the afw_object_create_properties_callback()
- * in as the callback parameter.  This consists of the property name, get
- * callback, and set callback or NULL if immutable.
- */
-struct afw_object_properties_callback_entry_s {
-    const afw_utf8_t *property_name;
-    afw_object_properties_callback_entry_get_t get;
-    afw_object_properties_callback_entry_set_t set;
-};
-
-
-
-/**
- * @brief Create a mutable composite of unmutable objects.
- * @param data to pass as first parameter to callbacks.
- * @param count is number of callbacks.
- * @param callbacks array.
- * @param p is pool for result.
- * @param xctx of caller.
- * @return instance of new object.
- *
- */
-AFW_DECLARE(const afw_object_t *)
-afw_object_create_properties_callback(
-    void *data,
-    afw_size_t count,
-    const afw_object_properties_callback_entry_t callbacks[],
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
 
 
 /**

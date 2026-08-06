@@ -20,7 +20,7 @@
 /*
  * Implementation of method release for interface afw_pool.
  */
-void
+const afw_pool_t *
 impl_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx)

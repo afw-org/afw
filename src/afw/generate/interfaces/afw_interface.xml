@@ -5288,6 +5288,11 @@ AFW_DEFINE(const afw_request_handler_t *)
       <description>
         Reduce the reference count to pool. If count reaches 0, afw_pool_destroy()
         is called.
+
+        Returns the pool instance if it still exists after this call, or NULL if
+        this call destroyed the pool (reference count reached zero). Callers that
+        hold other resources for the life of the pool can release them when the
+        return is NULL. If the return is NULL, do not use the pool pointer again.
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
@@ -5298,7 +5303,11 @@ AFW_DEFINE(const afw_request_handler_t *)
     <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="void" />
+      <return type="const afw_pool_t *">
+    <description>
+      Pool instance if still referenced; NULL if this call destroyed the pool.
+    </description>
+      </return>
 
     </method>
 

@@ -67,53 +67,14 @@ struct afw_object_internal_memory_object_s {
     const afw_object_t *wrapped;
 
     afw_boolean_t immutable;
+    /*
+     * Residual: public clone_on_set memory option was never productized.
+     * Field remains for embedder copy; always false on create today.
+     */
     afw_boolean_t clone_on_set;
     afw_boolean_t unmanaged;
     afw_boolean_t managed_by_entity;
 };
-
-
-
-/* Self for meta accessor object. */
-typedef struct {
-    afw_object_t pub;
-    afw_value_object_t value;
-
-    /* Mutable object or NULL if always immutable. */
-    const afw_object_t *mutable;
-
-    /* The objects to search. */
-    const afw_object_t * *objects;
-
-    /* Address of end of objects array. */
-    const afw_object_t * *end;
-
-    /* Object is immutable. */
-    afw_boolean_t immutable;
-
-} afw_object_internal_composite_self_t;
-
-
-
-/* Self for meta accessor object. */
-typedef struct {
-    afw_object_t pub;
-    afw_value_object_t value;
-    afw_object_setter_t setter;
-
-    /* Passed on create. */
-    void *data;
-
-    /* Array of callback entries. */
-    const afw_object_properties_callback_entry_t *callbacks;
-
-    /* Address of end of callback entries. */
-    const afw_object_properties_callback_entry_t *end;
-
-    /* Object is immutable. */
-    afw_boolean_t immutable;
-
-} afw_object_internal_properties_callback_self_t;
 
 
 
