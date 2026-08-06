@@ -37,7 +37,7 @@ Whats-new speaks this theme (mutable faces / shared instances), not only “lite
 
 - Local properties first, then look-through to `wrapped` base  
 - Sets stay on the face  
-- Nested **objects** promoted on get (arrays not yet)  
+- Nested **objects/arrays**: new face over ultimate base on promote / array materialize (always re-face; do not share existing nested faces)
 
 ### 2. Isolation step as a normal function (landed)
 

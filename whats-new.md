@@ -71,7 +71,7 @@ The product goal of this work is **one story**:
 
 > When you work with an object (or array) in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time bag, or the shared base the platform still owns — and without needing `clone()` just to set a property.
 
-Under the hood that face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays can be promoted on get). Authors do not need to call a wrap API for the happy path.
+Under the hood that face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays get **fresh faces** over their base on promote / array materialize so typed `map` / index paths do not share nested bags). Authors do not need to call a wrap API for the happy path.
 
 ### Where you can drop manual `clone()` (on this branch)
 

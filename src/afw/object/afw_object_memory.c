@@ -309,8 +309,11 @@ impl_has_local_property_name(
 
 
 /*
- * If value is a mutable object or array and this wrapper is mutable, create a
- * nested face, store it on self (shadowing base), and return the wrap value.
+ * If value is object or array and this wrapper is mutable, create a *new*
+ * nested face over the instance as given, shadow it on self, and return it.
+ * Always re-face (even if value is already a face) so callers do not share
+ * nested faces across parents — issue #17 nested hard edge. Do not peel to
+ * ultimate base (array faces may hold content only on the face ring).
  */
 static const afw_value_t *
 impl_promote_structured_from_base(
@@ -330,10 +333,9 @@ impl_promote_structured_from_base(
 
     if (afw_value_is_object(value)) {
         nested_obj = ((const afw_value_object_t *)value)->internal;
-        if (!nested_obj || afw_object_is_memory_wrapper(nested_obj)) {
+        if (!nested_obj) {
             return value;
         }
-        /* Face even over immutable bases so local sets do not need clone. */
         wrap_obj = afw_object_create_wrapper_unmanaged(nested_obj,
             self->pub.p, xctx);
         afw_object_set_property((const afw_object_t *)self, property_name,
@@ -343,7 +345,7 @@ impl_promote_structured_from_base(
 
     if (afw_value_is_array(value)) {
         nested_arr = ((const afw_value_array_t *)value)->internal;
-        if (!nested_arr || afw_array_is_memory_wrapper(nested_arr)) {
+        if (!nested_arr) {
             return value;
         }
         wrap_arr = afw_array_create_wrapper_unmanaged(nested_arr,
