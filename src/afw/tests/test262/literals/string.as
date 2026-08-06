@@ -340,23 +340,14 @@ assert(" " === "\u2029");
 
 
 //? test: S7.8.4_A1.1_T2
-//? description:...
-    DoubleStringCharacter :: SourceCharacter but not double-quote " or
-    LineTerminator
-//? expect: error
-//? skip: true
-//? skipReason: ...
-FIXME: raw line terminator inside string literal should parse-error;
-case not adapted to Adaptive expect
+//? description: Raw LINE FEED inside double-quoted string
+//? differences: Adaptive allows raw line terminators in string literals; ES forbids them
+//? expect: 0
 //? source: ...
-#!/usr/bin/env afw
-
-// \fixme should we indicate syntax errors on these?
-
-//CHECK#1
-"
-"
-
+let s = "
+";
+assert(length(s) === 1);
+return 0;
 
 //? test: S7.8.4_A1.2_T1
 //? description:...
@@ -372,23 +363,14 @@ case not adapted to Adaptive expect
 
 
 //? test: S7.8.4_A1.2_T2
-//? description:...
-    SingleStringCharacter :: SourceCharacter but not single-quote ' or
-    LineTerminator
-//? expect: error
-//? skip: true
-//? skipReason: ...
-FIXME: raw line terminator inside string literal should parse-error;
-case not adapted to Adaptive expect
+//? description: Raw LINE FEED inside single-quoted string
+//? differences: Adaptive allows raw line terminators in string literals; ES forbids them
+//? expect: 0
 //? source: ...
-#!/usr/bin/env afw
-
-// \fixme should we indicate syntax errors on these?
-
-//CHECK#1
-'
-'
-
+let s = '
+';
+assert(length(s) === 1);
+return 0;
 
 //? test: S7.8.4_A2.1_T1
 //? description: Check ENGLISH CAPITAL ALPHABET

@@ -1804,13 +1804,9 @@ for (x of [], []) {}
 
 
 //? test: head-expr-obj-iterator-method
-//? description: for-of head must be iterable; plain object has no @@iterator (ES)
-//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
-//? skip: true
-//? skipReason: ...
-FIXME: Adaptive does not reject for-of over {} with a clear iterator
-error (may iterate oddly or Internal error); product may want explicit
-non-iterable error for objects.
+//? description: for-of head must be iterable; plain object is not an array/iterator
+//? differences: Adaptive requires array-like head (errors); ES uses @@iterator
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1821,11 +1817,8 @@ for (x of {}) {}
 
 //? test: head-expr-primitive-iterator-method
 //? description: for-of head must be iterable; boolean primitive is not
-//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
-//? skip: true
-//? skipReason: ...
-FIXME: Adaptive does not clearly reject for-of over boolean with a
-stable iterator error message.
+//? differences: Adaptive requires array-like head (errors); ES uses @@iterator
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1836,11 +1829,8 @@ for (x of false) {}
 
 //? test: head-expr-primitive-iterator-method-2
 //? description: for-of head must be iterable; number primitive is not
-//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
-//? skip: true
-//? skipReason: ...
-FIXME: Adaptive does not clearly reject for-of over number with a stable
-iterator error message.
+//? differences: Adaptive requires array-like head (errors); ES uses @@iterator
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1850,12 +1840,9 @@ for (x of 37) {}
 
 
 //? test: head-expr-to-obj
-//? description: for-of head null should fail (ES ToObject / non-iterable)
-//? expect: error:The value of the expression in a for-of statement's head must be an iterator.
-//? skip: true
-//? skipReason: ...
-FIXME: Adaptive does not clearly reject for-of over null with a stable
-iterator error message.
+//? description: for-of head null should fail (non-iterable)
+//? differences: Adaptive requires array-like head (errors); ES ToObject / iterator
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 

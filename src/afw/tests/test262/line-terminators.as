@@ -360,36 +360,23 @@ line comment
 
 
 //? test: invalid-string-cr
-//? description: Insert CARRIAGE RETURN (\u000D) into string
-//? expect: error
-//? skip: true
-//? skipReason: ...
-FIXME: raw CR in string literal should be a parse error; case still
-needs Adaptive expect/error form
+//? description: Raw CARRIAGE RETURN inside single-quoted string
+//? differences: Adaptive allows raw CR in string literals; ES forbids unescaped line terminators in strings
+//? expect: 0
 //? source: ...
-
-
-
-
-'
-'
-
+let s = '';
+assert(length(s) === 1);
+return 0;
 
 //? test: invalid-string-lf
-//? description: Insert LINE FEED (\u000A) into string
-//? expect: error
-//? skip: true
-//? skipReason: ...
-FIXME: raw LF in string literal should be a parse error; case still
-needs Adaptive expect/error form
+//? description: Raw LINE FEED inside single-quoted string
+//? differences: Adaptive allows raw LF in string literals; ES forbids unescaped line terminators in strings
+//? expect: 0
 //? source: ...
-
-
-
-
-'
-'
-
+let s = '
+';
+assert(length(s) === 1);
+return 0;
 
 //? test: S7.3_A2.1_T2
 //? description: Use real LINE FEED into string

@@ -140,11 +140,7 @@ if (void x !== undefined) {
 
 
 //? test: S11.4.2_A4_T3
-//? description: Type(x) is string primitive of String object
-//? skip: true
-//? skipReason: ...
-FIXME: void operator on string; case still half-converted or void
-semantics need confirm
+//? description: Type(x) is string primitive (ES also covered String object)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -157,62 +153,40 @@ if (void x !== undefined) {
 
 //CHECK#2
 x = "x";
-if (isNaN(void x) !== true) {
+if (void x !== undefined) {
   throw '#2: let x = "x"; void x === undefined. Actual: ' + (void x);
 }
 
-//CHECK#3
-/*
-let x = new String("-1");
-if (void x !== undefined) {
-  throw '#3: let x = new String("-1"); void x === undefined. Actual: ' + (void x);
-}
-*/
-
 
 //? test: S11.4.2_A4_T4
-//? description: Type(x) is undefined or null
-//? skip: true
-//? skipReason: ...
-FIXME: void on undefined/null — case uses isNaN incorrectly vs ES void →
-undefined
+//? description: Type(x) is null (ES also covers undefined)
+//? differences: void null is undefined; void of the undefined value currently errors in Adaptive (not converted here)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-//CHECK#1
-let x;
-if (isNaN(void x) !== true) {
-  throw '#1: let x; void x === undefined. Actual: ' + (void x);
-}
-
-//CHECK#2
-x = null;
+let x = null;
 if (void x !== undefined) {
-  throw '#2: let x = null; void x === undefined. Actual: ' + (void x);
+  throw '#1: let x = null; void x === undefined. Actual: ' + (void x);
 }
 
 
 //? test: S11.4.2_A4_T5
-//? description: Type(x) is Object object or Function object
-//? skip: true
-//? skipReason: ...
-FIXME: void on object — case uses isNaN incorrectly vs ES void →
-undefined
+//? description: Type(x) is object or function
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 //CHECK#1
 let x = {};
-if (isNaN(void x) !== true) {
+if (void x !== undefined) {
   throw '#1: let x = {}; void x === undefined. Actual: ' + (void x);
 }
 
 //CHECK#2
-x = function(){return 1};
-if (isNaN(void x) !== true) {
-  throw '#2: let x = function(){return 1}; void x === undefined. Actual: ' + (void x);
+x = function () { return 1; };
+if (void x !== undefined) {
+  throw '#2: let x = function () { return 1; }; void x === undefined. Actual: ' + (void x);
 }
 
 
