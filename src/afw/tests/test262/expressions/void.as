@@ -159,20 +159,19 @@ if (void x !== undefined) {
 
 
 //? test: S11.4.2_A4_T4
-//? description: Type(x) is null (ES also covers undefined)
-//? differences: void null is undefined; void of the undefined value currently errors in Adaptive (not converted here)
+//? description: Type(x) is undefined or null
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-// FIXME: ES also checks void undefined === undefined. Adaptive currently
-// errors when evaluating void of the undefined value — add a case with
-// expect: undefined and skip+FIXME skipReason when we track that gap explicitly.
-// (Bare let x; is also unreadable / not the same as undefined here.)
-
-let x = null;
+let x = undefined;
 if (void x !== undefined) {
-  throw '#1: let x = null; void x === undefined. Actual: ' + (void x);
+  throw '#1: let x = undefined; void x === undefined. Actual: ' + (void x);
+}
+
+x = null;
+if (void x !== undefined) {
+  throw '#2: let x = null; void x === undefined. Actual: ' + (void x);
 }
 
 

@@ -81,7 +81,8 @@ def void_operator(session, value):
     and returns undefined.
 
     Args:
-        value (object): This is the value to evaluate.
+        value (object): This is the value to evaluate (including undefined).
+        Evaluated for side effects only.
 
     Returns:
         object: This always returns undefined.

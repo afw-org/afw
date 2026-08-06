@@ -61,9 +61,10 @@ export function afwOptionalChaining(client : any, arg1 : any, arg2 : any) : any 
  * This is the support function for the void operator which evaluates value
  * and returns undefined.
  * 
- * @param {} value - This is the value to evaluate.
+ * @param {} value - This is the value to evaluate (including undefined).
+ *     Evaluated for side effects only.
  * 
- * @returns {} This always returns undefined.
+ * @returns {undefined} This always returns undefined.
  */
 export function afwVoidOperator(client : any, value : any) : any {
 

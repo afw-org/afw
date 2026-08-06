@@ -80,9 +80,10 @@ class compiler_expression
      * This is the support function for the void operator which evaluates
      * value and returns undefined.
      *
-     * @param  $value This is the value to evaluate.
+     * @param  $value This is the value to evaluate (including undefined).
+     *                Evaluated for side effects only.
      *
-     * @return  This always returns undefined.
+     * @return undefined This always returns undefined.
      */
     public function void_operator(, $value)
     {

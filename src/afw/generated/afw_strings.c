@@ -30644,6 +30644,12 @@ afw_self_v_zz__2194 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2195 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2195)
+};
+
+const afw_value_string_t
 afw_self_v_zz__22 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__22)
@@ -46844,12 +46850,6 @@ afw_self_v_zz__This_is_the_value_to_assign_to_the_variable_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__This_is_the_value_to_evaluate_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__This_is_the_value_to_evaluate_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__This_is_used_to_uniquely_identify_this_particular_decision_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__This_is_used_to_uniquely_identify_this_particular_decision_)
@@ -54050,12 +54050,6 @@ afw_self_v_zz___value__anyURI__times__integer___anyURI = {
 };
 
 const afw_value_string_t
-afw_self_v_zz___value__any___any = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___value__any___any)
-};
-
-const afw_value_string_t
 afw_self_v_zz___value__any___anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___value__any___anyURI)
@@ -54191,6 +54185,12 @@ const afw_value_string_t
 afw_self_v_zz___value__any___time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___value__any___time)
+};
+
+const afw_value_string_t
+afw_self_v_zz___value__any___undefined = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___value__any___undefined)
 };
 
 const afw_value_string_t
@@ -56720,9 +56720,9 @@ afw_self_v_zz__function_variable_exists_______name__string____boolean__ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__function_void_operator_______value__any____any__ = {
+afw_self_v_zz__function_void_operator_______value__any____undefined__ = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__function_void_operator_______value__any____any__)
+    AFW_UTF8_LITERAL(AFW_Q_zz__function_void_operator_______value__any____undefined__)
 };
 
 const afw_value_string_t

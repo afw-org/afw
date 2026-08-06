@@ -6161,16 +6161,17 @@ afw_function_definition_void_operator;
  * ```
  *   function void_operator(
  *       value: any
- *   ): any;
+ *   ): undefined;
  * ```
  *
  * Parameters:
  *
- *   value - (any) This is the value to evaluate.
+ *   value - (any) This is the value to evaluate (including undefined).
+ *       Evaluated for side effects only.
  *
  * Returns:
  *
- *   (any) This always returns undefined.
+ *   (undefined) This always returns undefined.
  */
 const afw_value_t *
 afw_function_execute_void_operator(
