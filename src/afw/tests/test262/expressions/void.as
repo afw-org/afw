@@ -165,6 +165,11 @@ if (void x !== undefined) {
 //? source: ...
 #!/usr/bin/env afw
 
+// FIXME: ES also checks void undefined === undefined. Adaptive currently
+// errors when evaluating void of the undefined value — add a case with
+// expect: undefined and skip+FIXME skipReason when we track that gap explicitly.
+// (Bare let x; is also unreadable / not the same as undefined here.)
+
 let x = null;
 if (void x !== undefined) {
   throw '#1: let x = null; void x === undefined. Actual: ' + (void x);

@@ -32,7 +32,7 @@ Use this to pick **a few** converts later. Prefer cases that need a small Adapti
 |---------|-------|--------|
 | **1 void** | `void.as` `S11.4.2_A4_T3`–`T5` | Fixed bad `isNaN(void …)` → `void x === undefined`; T4 null only (`void undefined` still errors — note in `differences`); unskipped |
 | **2 raw LT in strings** | `string.as` `S7.8.4_A1.1_T2`, `A1.2_T2`; `line-terminators.as` `invalid-string-cr` / `lf` | Unskipped as **Adaptive allows** raw CR/LF in strings (`differences`); assert length 1 |
-| **3 for-of non-iterable** | `for-of.as` `head-expr-obj-iterator-method`, `head-expr-primitive-iterator-method` (+ `-2`), `head-expr-to-obj` | Unskipped with generic `expect: error` + `differences` (array head vs ES iterator). Message polish still open |
+| **3 for-of non-iterable** | `for-of.as` `head-expr-obj-iterator-method`, `head-expr-primitive-iterator-method` (+ `-2`), `head-expr-to-obj` | Unskipped with generic `expect: error` + `differences`. **Source `// FIXME`:** pin `expect: error:<message>` when diagnostics are stable (not Internal error) |
 
 ## Theme inventory (all FIXME)
 

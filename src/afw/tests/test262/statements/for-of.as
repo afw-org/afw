@@ -1810,6 +1810,10 @@ for (x of [], []) {}
 //? source: ...
 #!/usr/bin/env afw
 
+// FIXME: expect is generic "error" so any failure passes. Prefer a stable
+// non-iterable (or not-array) message and pin expect: error:<that message>.
+// Today the path is often Internal error / cast — product diagnostic debt.
+
 let x;
 
 for (x of {}) {}
@@ -1821,6 +1825,9 @@ for (x of {}) {}
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
+
+// FIXME: generic expect: error — pin expect: error:<clear message> when
+// for-of rejects non-array heads with a stable diagnostic (not Internal error).
 
 let x;
 
@@ -1834,6 +1841,9 @@ for (x of false) {}
 //? source: ...
 #!/usr/bin/env afw
 
+// FIXME: generic expect: error — pin expect: error:<clear message> when
+// for-of rejects non-array heads with a stable diagnostic (not Internal error).
+
 let x;
 
 for (x of 37) {}
@@ -1845,6 +1855,10 @@ for (x of 37) {}
 //? expect: error
 //? source: ...
 #!/usr/bin/env afw
+
+// FIXME: generic expect: error — pin expect: error:<clear message> when
+// for-of rejects null with a stable diagnostic (not Internal error).
+// Compare head-expr-to-obj-2 (undefined) which already pins a message.
 
 let x;
 
