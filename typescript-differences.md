@@ -162,7 +162,7 @@ Leaves are Adaptive **data types** (`integer`, `string`, …), not TS `number` o
 |------|----------|--------|
 | Features: “no closures” | P2 | Runtime supports closures; update handbook Features when doing a docs pass. |
 | Features / Types | Ongoing | Keep Adaptive-first; deep ES essays belong in Jeremy’s #22 doc or here as maintainer notes. |
-| `test262/` skips | Long-burn | Convert when Adaptive behavior is decided; permanent non-support → [Will not do](#explicitly-will-not-do) or Jeremy’s doc—not silent forever skips. |
+| `test262/` skips | Long-burn | Convert when Adaptive behavior is decided; permanent non-support → [Will not do](#explicitly-will-not-do) or Jeremy’s doc—not silent forever skips. Case-level done log since `mgg-develop` fork: [`src/afw/tests/test262/changes.md`](src/afw/tests/test262/changes.md). |
 
 ### Types residuals (alignment, not full TS)
 

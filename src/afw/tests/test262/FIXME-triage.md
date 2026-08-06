@@ -1,92 +1,50 @@
-# test262 `FIXME:` triage (first pass after skipReason sweep)
+# test262 `FIXME:` triage
 
-**Branch:** `test262-skipreason-sweep`  
-**Scope:** inventory only — no converts required by this note.  
-**Counts:** ~98 `FIXME:` (of 132 skips). `Incompatible:` / `Deferred:` / `Harness:` excluded here.
+**Branch:** `test262-skipreason-sweep` (stacked on `mgg-develop` since merge-base `f945f97c`)  
+**Done log:** [`changes.md`](changes.md) — what already converted  
+**Suite rules:** [`README.md`](README.md)
 
-Use this to pick **a few** converts later. Prefer cases that need a small Adaptive rewrite or a single product decision over full ES ports.
+**Skip counts (approx, re-grep after edits):** ~76 skips total — **FIXME ~37**, **Incompatible ~18**, **Harness ~19**, **Deferred ~2**.
 
-## Priority shortlist (suggested convert / decide order)
+Use this to pick **next** converts. Prefer small rewrites or single product decisions over full ES ports.
 
-| Pri | Cluster | Why next | Rough size | Example cases |
-|-----|---------|----------|------------|---------------|
-| **1** | **void rewrite** | Wrong probe (`isNaN` vs `undefined`); likely **unskip after body fix**, no language change | 2–3 | `expressions/void.as` `S11.4.2_A4_T4`, `_T5` (and `_T3` if needed) |
-| **2** | **Raw line terminators in strings** | Product expects parse **error**; adapt `expect` / source, may already error | 4 | `literals/string.as` `S7.8.4_A1.1_T2`, `A1.2_T2`; `line-terminators.as` `invalid-string-cr` / `lf` |
-| **3** | **for-of error quality** | Clear non-iterable / primitive / null errors — **product + messages**, high author value | 4 | `for-of.as` `head-expr-obj-iterator-method`, `…-primitive…`, `head-expr-to-obj` |
-| **4** | **for-of temporal-dead-zone head / member LHS** | Real gaps; decide implement vs document permanent | 2 | `head-const-bound-names-fordecl-tdz`, `head-lhs-member` (member done) |
-| **5** | **Temporal dead zone / self-init** | Adaptive: no temporal dead zone (undefined); opaque `closure_binding` errors → **#35/#2** or Adaptive `differences` | 3 | const/let self-init cases |
-| **6** | **const reassignment errors** | Opaque errors on `const` assign in for / for-of | 2 | `const/syntax.as` for head + for-of body |
-| **7** | **Leading-dot numerics** | ~~Decide~~ **Done** — ES DecimalLiteral (`.5`, `.1e1`, `1.`, `1.e10`) | 8+ | `literals/numeric.as` `S7.8.3_A2.*` / `A3.*` |
-| **8** | **String NonEscapeSequence** | ~~Decide~~ **Done** — identity `\A`, plus `\xHH` / `\0` | 8 | `literals/string.as` `S7.8.4_A4.2_*` / `A5.1_*` / `A6.1_*` |
-| **9** | **for-of string iteration** | ES code-unit / code-point walk vs one whole-string step — **#22** / product | 2 | `string-bmp`, `string-astral` |
-| **10** | **try `cptn-*` completion** | ES completion values; large rewrite, lower beta urgency | 7 | `statements/try.as` `cptn-*` |
-| **11** | **Arithmetic IEEE / coercion batch** | Many skips; need Adaptive `is_NaN` / double cases **without** `Number`/`Math`/`valueOf` | ~26 + related | `modulus.as`, `division.as`, `subtraction.as` (many labeled IEEE rewrite) |
-| **12** | **`**` signed-zero / ∞ edges** | Needs double/`-0` policy + rewrite | 5 | `exponentiation.as` `applying-the-exp-operator_A*` |
-| **13** | **Harness leftovers** | Still ES `valueOf` / `assert.throws` (also under **Harness:** prefix elsewhere) | various | division ASI; switch `is_NaN`; catch Pattern `#140` |
+## Priority shortlist (remaining)
 
-**Practical “convert a few” slice:** do **1 → 2 → 3** first (high chance of green unskips or clear product wins without a multi-week language project). Then **4–6** if focusing language quality.
+| Pri | Cluster | Status | Rough size | Notes |
+|-----|---------|--------|------------|-------|
+| **1** | **Arithmetic IEEE (more)** | In progress | division/subtraction/`**` residual | **modulus** pure `A4_*` + **division** `A4_T4/T5/T7–T9` done; coerce → **Incompatible** |
+| **2** | **try `cptn-*` completion** | Open | ~7 | ES completion values; large rewrite |
+| **3** | **`**` signed-zero / ∞** | Open | ~5 | `exponentiation.as` edges |
+| **4** | **for-of TDZ / ASI leftovers** | Open | ~2–3 | `head-const-…-tdz`, `let-array-with-newline`; language-wide |
+| **5** | **for-of const + closures** | Blocked | 1 | **#35 / #2** — keep skip+FIXME, honest expect |
+| **6** | **Harness leftovers** | Open | ~19 | `valueOf` / `assert.throws` / ASI block-eval |
+| **7** | **Half-converted try/catch Pattern** | Open | few | `#140` residuals |
+
+**Already done on this line of work** (see [`changes.md`](changes.md)): void probes + `void` undefined; raw LT in strings; for-of non-iterable / member LHS / string CP; const reassignment; no TDZ self-init; leading/trailing-dot numerics; NonEscape/`\x`/`\0`/line-continuation; unary+ identity; `??=` whitespace; switch rewrite; LTR without assign-in-expr; modulus + division IEEE template; #55 array helpers; #39 elision; #140 param defaults.
 
 ## Closures and lifetime (**#35**, **#2**)
 
-Adaptive **has** closures, but many ES-style tests still fail or only “pass” by expecting the wrong failure because of **escape / capture / lifetime** (pools, `closure_binding` JSON noise, for-of const “fresh binding per iteration” with closures, etc.).
+Adaptive **has** closures; many ES-style fails are **escape / capture / lifetime**. Prefer **`skip: true`** + **`FIXME: … (#35 / #2)`** with correct desired `expect` — not false-green `expect: error` stand-ins.
 
-| Tracker | Role |
-|---------|------|
-| **[#35](https://github.com/afw-org/afw/issues/35)** | Closures support — left open; many `closures.as` skips are escape/lifetime, not “no closures” |
-| **[#2](https://github.com/afw-org/afw/issues/2)** | Value lifetime / memory — closures that escape scopes need managed paths |
+## Theme inventory (remaining FIXME-ish)
 
-**Policy for this suite:** when a case is really about **closure capture or escaped bindings**, prefer **`skip: true`** + **`FIXME: … (#35 / #2)`** (and correct `expect` for the *desired* Adaptive/ES outcome) over:
-
-- leaving a green test that only asserts today’s broken capture, or  
-- `expect: error:Assertion failed: …` as a permanent stand-in for “closures wrong.”
-
-Do **not** try to “finish” those in a test262 labeling pass without #35/#2 design work.
-
-### Converted on this branch (first slice)
-
-| Cluster | Cases | Notes |
-|---------|-------|--------|
-| **1 void** | `void.as` `S11.4.2_A4_T3`–`T5` | Fixed bad `isNaN(void …)` → `void x === undefined`; T4 null only (`void undefined` still errors — note in `differences`); unskipped |
-| **2 raw LT in strings** | `string.as` `S7.8.4_A1.1_T2`, `A1.2_T2`; `line-terminators.as` `invalid-string-cr` / `lf` | Unskipped as **Adaptive allows** raw CR/LF in strings (`differences`); assert length 1 |
-| **3 for-of non-iterable** | `for-of.as` heads `{}` / boolean / number / null | Unskipped; **`expect: error:for-of head must be an array or string`** (C message) |
-| **for-of member LHS** | `head-lhs-member` | **Fixed in C** (`impl_assign` accepts `reference_by_key`); unskipped |
-| **for-of string iteration** | `string-bmp`, `string-astral` | **Fixed in C** (UTF-8 code points); unskipped + `differences` |
-| **for-of temporal dead zone / semicolon insertion** | `head-const-bound-names-fordecl-tdz`, `let-array-with-newline` | Still **skip+FIXME** — language-wide, not for-of-only |
-| **const assign** | `const` reassignment | **Fixed in C** (`read_only` / clear message); for-of body + classic for update tests unskipped |
-| **no temporal dead zone (Adaptive)** | self-init `let x = x` etc. | Converted to Adaptive semantics + `differences` |
-| **for-of const + closures** | `head-const-fresh-binding-per-iteration` | **skip+FIXME (#35 / #2)**; `expect: 0` desired — not `expect: error` stand-in |
-| **7 leading-dot / trailing-dot numerics** | `numeric.as` `A2.1_*`, `A2.2_*`, `A3.1_*`, `A3.3_*` | **Fixed in C** (`impl_parse_number` + `.` token); unskipped / false-green expects fixed |
-| **8 string NonEscape / `\x` / `\0` / line-continuation** | `string.as` `A4.2_T2/T4/T6/T8`, `A5.1_T2/T3`, `A6.1_T2/T3`, `line-continuation-*` | **Fixed in C** (identity, hex, null, `\`+LT); fromCharCode cases stay **Incompatible** |
-| **unary + null** | `unary-plus.as` `S9.3_A2_T2`, `S11.4.6_A3_T4` | **Product: identity** (no ToNumber); `+null === null` + `differences` |
-| **half-converted leftovers** | `??=` whitespace; switch `is_NaN`; `>` / `>=` LTR | Unskipped/rewritten (throw order; Adaptive switch rewrite). **Assignment-as-expression is permanent non-support** (differences / typescript-differences). |
-| **IEEE modulus template** | `modulus.as` `A4_T*` pure double | **`mod<double>` via fmod**; coercion null/string → **Incompatible** |
-
-## Theme inventory (all FIXME)
-
-| Theme | ~N | Notes |
-|-------|---:|-------|
-| Arithmetic / IEEE / coercion rewrite | 26 | Mostly modulus/division/subtraction; half still need Adaptive operators, not ES objects |
-| Half-converted / other rewrite | 16 | Numeric forms, try, switch, void, ASI |
-| String escapes / line terminators | ~3 | Remaining: fromCharCode / other rewrite (NonEscape + `\x`/`\0` done) |
-| for-of | 10 | Errors, TDZ, member LHS, string iteration, newline ASI-ish |
-| Numeric leading-dot | 0 | Done (ES DecimalLiteral forms) |
-| try/catch completion (`cptn-*`) | 7 | ES completion model |
-| Exponentiation edges | 5 | −∞ / −0 / non-integer |
-| Operators / eval order / `??=` / fn name | 4 | Side-effect order, binding id |
-| TDZ / binding init | 3 | Clean errors |
-| unary / void (decision) | 3 | Overlaps void rewrite + unary+ null |
-| const assign / completion | 2 | |
-| let shadowing rewrite | 1 | |
-| line-terminators.as CR/LF | 2 | Overlaps theme “raw LT” |
+| Theme | Notes |
+|-------|--------|
+| Arithmetic IEEE / coercion | More `division`/`subtraction`/`**`; ToNumber cases → Incompatible |
+| try/catch `cptn-*` | ES completion model |
+| for-of TDZ / ASI / closures | Language / #35 |
+| Harness | Runner form first |
+| Half-converted try/switch | Rewrite under #140 / differences |
 
 ## Explicitly **not** first convert targets
 
 | Bucket | Why |
 |--------|-----|
-| **`Incompatible:`** (13) | e.g. `String.fromCharCode`, unary `+` on boolean — permanent unless product flips |
-| **`Deferred:`** (2) | TCO deep recursion |
-| **`Harness:`** (19) | Fix runner form first; then may move to FIXME/unskip |
-| Full **cptn-*** / full **IEEE tables** in one go | Too large for “a few” |
+| **`Incompatible:`** | e.g. `String.fromCharCode`, unary `+` boolean, `%`/`/` ToNumber — permanent unless product flips |
+| **`Deferred:`** | TCO deep recursion |
+| **`Harness:`** | Fix runner form first |
+| **Assignment as expression** | Permanent non-support (typescript-differences) |
+| Full **cptn-*** / full IEEE in one go | Too large for one PR slice |
 
 ## How to convert one candidate later
 
@@ -94,10 +52,11 @@ Do **not** try to “finish” those in a test262 labeling pass without #35/#2 d
 2. Rewrite Adaptive `source` (assert / expect / no ES globals).  
 3. Unskip; run `afwdev test` on that file.  
 4. Refresh `description` / optional `differences`; keep prefixed `skipReason` only if still skipped.  
-5. Prefer product decision notes in `differences` or #22 over silent behavior drift.
+5. Add/update a row in [`changes.md`](changes.md) in the **same** change.  
+6. Prefer product notes in `differences` or #22 over silent behavior drift.
 
 ## Related
 
 - Suite conventions: [`README.md`](README.md)  
-- **Done log** (unskips / product notes): [`changes.md`](changes.md)  
+- **Done log:** [`changes.md`](changes.md)  
 - Skip prefixes also in `.cursor/rules/afw-tests.mdc`  

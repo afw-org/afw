@@ -136,32 +136,20 @@ if (+0.1 !== 0.1) {
 
 
 //? test: S11.4.6_A3_T3
-//? description: Type(x) is string primitive or String object
-//? expect: error:Parameter 1 of function 'is_NaN' must evaluate to data type 'double' but evaluated to be 'string'
+//? description: Type(x) is string primitive (Adaptive unary + identity)
+//? expect: undefined
+//? differences: Adaptive unary + is identity (no ToNumber); +"x" stays string, not NaN
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
-/* This won't work in AS
-if (+"1" !== 1) {
-  throw '#1: +"1" === 1. Actual: ' + (+"1");
+if (+"1" !== "1") {
+  throw '#1: +"1" === "1" (identity). Actual: ' + string(+"1");
 }
-*/
 
 //CHECK#3
-if (is_NaN(+"x") !== true) {
-  throw '#3: +"x" === Not-a-Number. Actual: ' + (+"x");
-}
-
-//CHECK#4
-if (is_NaN(+"INFINITY") !== true) {
-  throw '#4: +"INFINITY" === Not-a-Number. Actual: ' + (+"INFINITY");
-}
-
-//CHECK#5
-if (is_NaN(+"infinity") !== true) {
-  throw '#5: +"infinity" === Not-a-Number. Actual: ' + (+"infinity");
+if (+"x" !== "x") {
+  throw '#3: +"x" === "x" (identity). Actual: ' + string(+"x");
 }
 
 
@@ -184,44 +172,40 @@ if (+null !== null) {
 
 
 //? test: S11.4.6_A3_T5
-//? description: Type(x) is Object object or Function object
-//? expect: error:Parameter 1 of function 'is_NaN' must evaluate to data type 'double' but evaluated to be 'object'
+//? description: Type(x) is Object object or Function object (Adaptive unary + identity)
+//? expect: undefined
+//? differences: Adaptive unary + is identity; +{} and +function stay object/function, not NaN
 //? source: ...
 #!/usr/bin/env afw
 
 //CHECK#1
-if (is_NaN(+{}) !== true) {
-  throw '#1: +{} === Not-a-Number. Actual: ' + (+{});
+let o = {};
+if (+o !== o) {
+  throw '#1: +o === o (identity)';
 }
 
 //CHECK#2
-if (is_NaN(+function(){return 1;}) !== true) {
-  throw '#2: +function(){return 1;} === Not-a-Number. Actual: ' + (+function(){return 1;});
+let f = function(){ return 1; };
+if (+f !== f) {
+  throw '#2: +f === f (identity)';
 }
 
 
 //? test: S9.3_A1_T2
-//? description: Undefined convert to Number by implicit transformation
-//? expect: error:Parameter 1 of function 'is_NaN' can not be undefined
+//? description: undefined with unary + (Adaptive: identity, not ToNumber NaN)
+//? expect: undefined
+//? differences: Adaptive unary + is identity; +undefined === undefined (not NaN)
 //? source: ...
 #!/usr/bin/env afw
 
-
 // CHECK#1
-if (is_NaN(+(undefined)) !== true) {
-  throw '#1: +(undefined) === Not-a-Number. Actual: ' + (+(undefined));
+if (+(undefined) !== undefined) {
+  throw '#1: +(undefined) === undefined';
 }
 
-// CHECK#2
-/* can't do this in AS
-if (is_NaN(+(void 0)) !== true) {
-  throw '#2: +(void 0) === Not-a-Number. Actual: ' + (+(void 0));
-}
-*/
-
-// CHECK#3
-if (is_NaN(+(eval(script("let x;")))) !== true) {
-  throw '#3: +(eval(script("let x;")) === Not-a-Number. Actual: ' + (+(eval(script("let x;"))));
+// CHECK#3 — uninit binding via eval(script) is undefined; + still identity
+if (+(eval(script("let x;"))) !== undefined) {
+  throw '#3: +(eval(script("let x;"))) === undefined';
 }
 
 

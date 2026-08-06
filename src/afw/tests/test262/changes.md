@@ -126,6 +126,10 @@ Rough time order: **#55 → #140 → #39 / docs → skipReason sweep → convert
 | [`>=` `A2.4_T4` `(y=1)`](#assignment-is-statement-only) | →diff | Expect error; permanent non-support |
 | [modulus `A4_T*` IEEE](#double-mod-ieee-template) | →impl | C: `mod<double>` via fmod |
 | [modulus null/string `%`](#double-mod-ieee-template) | →inc | No ToNumber on `%` |
+| [division `A4_T4/T5/T7–T8` IEEE](#double-mod-ieee-template) | →impl / →fix | Double `/` IEEE; 0.0/0.0 → NaN |
+| division null/object `/` | →inc | No ToNumber on `/` |
+| [unary+ string/object/undef false greens](#unary-plus-identity) | →diff | Identity, not is_NaN type-error expects |
+| [id-res `S10.2.2_A1_T4`](#identifier-resolution-inner-let) | →diff | Outer x (0); not expect-error on assert |
 
 ### Related (outside pure test-only)
 
@@ -260,11 +264,11 @@ message; `??` short-circuits so later poisons do not run.
 **Cases:** `expressions/unary-plus.as` — `S9.3_A2_T2`, `S11.4.6_A3_T4`.
 
 **Product:** Unary `+` is a **no-op** (parse-time identity). It does **not**
-ES `ToNumber`. So `+null === null`, `+undefined === undefined`. Boolean
-coercion with `+` stays **Incompatible** elsewhere.
+ES `ToNumber`. So `+null === null`, `+undefined === undefined`, `+"x" === "x"`,
+`+obj === obj`. Boolean coercion with `+` stays **Incompatible** elsewhere.
 
-Fixed false-green `expect:error` that only documented the throw from an
-ES-style assert.
+Cleared false-green `expect:error` on `is_NaN(+…)` type errors (string/object/
+undefined) — rewrote to identity asserts.
 
 [↑ Index](#index)
 
@@ -424,6 +428,22 @@ mod (integer `%` still **throws** on divide-by-zero).
 **→inc:** null/string/object `%` that rely on ES **ToNumber** — Adaptive
 requires integer or double operands, no coercion.
 
-Template for later division/subtraction/`**` IEEE batches.
+**Division follow-on:** `expressions/division.as` — unskipped/rewrote pure
+IEEE `S11.5.2_A4_T4`, `T5`, `T8`; fixed **false green** `A4_T7`
+(integer `0/0` throw expect → double `0.0/0.0` → NaN). Coercion
+null/object `/` → **Incompatible**. `A4_T9`/`A4_T10` still FIXME (extreme
+literal exponents). Same pattern for later subtraction/`**`.
+
+[↑ Index](#index)
+
+---
+
+## identifier resolution inner let
+
+**Case:** `identifier-resolution.as` — `S10.2.2_A1_T4`.
+
+Was **false green**: `expect: error:#1: Scope chain disturbed` (assert throw).
+Adaptive: nested `f2` returns **outer** `x` (**0**), not inner `let x = 1`.
+Converted to hard expect `0` + `differences` (no var-hoist / ES TDZ lineage).
 
 [↑ Index](#index)
