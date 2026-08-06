@@ -93,6 +93,9 @@ behavior Adaptive does not plan to support (confirm against the original
 test262 case when unsure); default uncertain skips to **`FIXME:`** or
 **`Deferred:`**.
 
+**FIXME triage (what to convert next):** see [`FIXME-triage.md`](FIXME-triage.md)
+— shortlist and theme inventory after the labeling pass.
+
 Suggested order when several are present:
 
 ```text
