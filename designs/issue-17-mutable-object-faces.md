@@ -3,7 +3,8 @@
 **Audience:** maintainers / assistants. **Not** handbook.  
 **GitHub:** [#17](https://github.com/afw-org/afw/issues/17) (title may widen beyond “object literals immutable”).  
 **Branch:** `issue-#17-object-literals-immutable` (off `mgg-develop`).  
-**User-facing framing:** [`whats-new.md`](../whats-new.md) — *Mutable object faces (issue #17, in progress)*.
+**User-facing framing:** [`whats-new.md`](../whats-new.md) — *Mutable object faces (issue #17)*.  
+**Tip (pushed as of 2026-08):** journal consumer faces + nested hard edge; YAML hygiene on same branch.
 
 ---
 
@@ -13,11 +14,11 @@ Callers often expect an object value to be **theirs to mutate**. AFW often hands
 
 | Area | Example |
 |------|---------|
-| Script **literals** | Same `{…}` bag across evals / re-entry |
-| **Bind / assign** | Shared bag unless cloned today |
+| Script **literals** | Same `{…}` / `[…]` bag across evals / re-entry |
+| **Bind / assign** | Shared bag unless isolated (was clone; now faces on literals/returns) |
 | **Defaults** (#110) | `property_get` / `variable_get` mutable defaults |
-| **Built-in returns** | `get_object`, retrieve, … — ES authors often `clone()` by hand |
-| **Arrays** | Same class of problem; later slices |
+| **Built-in returns** | `get_object`, retrieve, journal get, … |
+| **Arrays** | Same class of problem as objects |
 
 **Goal:** platform supplies a **mutable face** (look-through wrapper) so the common path does not poison shared bases or the next evaluation.
 
@@ -25,122 +26,113 @@ Callers often expect an object value to be **theirs to mutate**. AFW often hands
 - **`freeze`** — explicit immutability  
 - **`clone()`** — deep copy / escape hatch when still needed  
 
-Whats-new speaks this theme (mutable faces / shared instances), not only “literal IR.” Issue rename is fine later.
-
 ---
 
-## Approach (current)
+## Landed approach
 
-### 1. Memory face (landed)
+### 1. Memory faces
 
-`afw_object_create_wrapper_*` (`afw_object.h` / `afw_object_memory.c`):
+- **Objects:** `afw_object_create_wrapper_*` — local props first, look-through base, sets stay on face.  
+- **Arrays:** `afw_array_create_wrapper_*` — local ring; nested structured values re-faced on materialize / promote.  
+- **Nested hard edge:** always put a **new** face over the nested **instance as given** (do **not** peel to ultimate base — preserves face-ring content, e.g. model `onGetProperty` `let l=[]; add_entries…`). Typed `map` uses `get_next_internal`, which promotes like `get_next_value`.
 
-- Local properties first, then look-through to `wrapped` base  
-- Sets stay on the face  
-- Nested **objects/arrays**: new face over ultimate base on promote / array materialize (always re-face; do not share existing nested faces)
+### 2. Isolation helpers + compiler emit
 
-### 2. Isolation step as a normal function (landed)
+- `wrap_literal_object` / `wrap_literal_array` (`compiler_internal`).  
+- Compiler emits wrap on **script/template** constant object/array literals; **not** on pure `json` / `relaxed_json` conf paths.  
+- Nested structure under faces: promote-on-get / array materialize (not a second full-tree wrap emit).
 
-**`wrap_literal_object`** (`compiler_internal`):
+### 3. Bind / assign (no clone-on-bind)
 
-- Evaluate object arg → `create_wrapper_unmanaged` → return face as normal object value  
-- Metadata + execute in `afw_function_compiler_internal.c`  
-- Tests: `object_literal_wrapper.as` (function tests on; auto-isolate placeholder skipped)  
+**Audit (2026-08):** `impl_assign` and `afw_function_script_assign_pattern` **evaluate only** — **no** `afw_value_clone` for objects or arrays.
 
-No special value kind. Compiler will emit a **call** to this function, like other compiler_internal helpers.
+```c
+/* Objects and arrays: no clone-on-bind — issue #17 faces */
+```
 
-### 3. Compiler emit (next major step; not done)
+Temporary “arrays still clone” was removed when object clone-on-bind dropped; array faces cover multi-call isolation. **Rest pattern** `const [a, ...rest] = arr` still **builds a new array** of remaining entry values — that is **destructure semantics**, not bind clone (must allocate; empty rest is `[]`).
 
-**Where:** `afw_compile_parse_Object` in `afw_compile_parse_value.c` (value `{…}` funnel; nested recurses here).
+### 4. Defaults (#110)
 
-**Not:** type-syntax `ObjectTypeLiteral`; YAML has its own parser (see below).
+`afw_value_isolate_mutable_default` — always a **new** face over object/array default base (not deep clone of whole graph).
 
-**Embedding:** `parser->embedding_object` / `property_name` — entity (top for embedding) when parent is NULL at entry.
+### 5. Built-in returns (script-facing)
 
-**Gate with `compile_type`:** wrap on script/template-ish paths; **not** on `json` / `relaxed_json` (conf and pure data stay plain objects).
-
-**v1 rule of thumb:** topmost/entity constant objects on script paths; nested via promote-on-get.
-
----
-
-## Other call sites (same theme, later)
-
-| Site | Notes |
+| Path | Policy |
 |------|--------|
-| **Assign / Pattern bind** | Today clones evaluated object/array — revisit after emit (may become redundant) |
-| **Defaults (#110)** | Clone mutable defaults — keep until wrap-equivalent |
-| **Built-in returns** | Prefer wrap face for ES-friendly “mine to mutate”; policy for write-back / cost |
-| **YAML** | Separate parser (`afw_yaml_to_value.c`); **no parse-time faces** (conf/store plain). Adapter/journal faces cover script gets. `raw_to_object` fixed for file `contentType: yaml` (beta hygiene). |
-| **User `clone()`** | Keep |
+| Adapter `get_object*` | Face (except reconcilable get — keep entity for reconcile) |
+| Materializing `retrieve_objects*` | Face each object |
+| `retrieve_*_to_callback` | Face before user CB |
+| `retrieve_*_to_response` / `_to_stream` | **No** face (encode path) |
+| Journal get / next / by_cursor / consumer / after_cursor / advance | Face response object |
+| Journal CRUD “receipt” entries | Fresh memory, not store rows — no face required |
+| YAML parse | **No** parse-time face; conf/store plain; adapter/journal faces on script get |
+
+### 6. YAML (same branch, beta hygiene)
+
+- Fixed `afw_yaml_to_object` / raw_to_object for file `contentType: yaml`.  
+- Plain scalar typing, empty `[]`/`{}`, parser delete.  
+- Tests under `src/afw_yaml/tests/`.
 
 ---
 
-## Process
+## Tests (representative)
 
-- Step-by-step; implement/commit only when asked.  
-- One thing at a time when possible.  
-- Tests before user-visible commits.  
-
----
-
-## Sequence (flexible)
-
-1. ~~Memory `create_wrapper_*`~~  
-2. ~~`wrap_literal_object` + tests~~  
-3. ~~Baseline: remove object clone-on-bind (arrays still clone)~~ — see below  
-4. Compiler emit + auto-isolate tests  
-5. Revisit assign/pattern **array** clone  
-6. Arrays isolation  
-7. Built-in returns  
-8. Defaults  
-9. ~~YAML if needed~~ — parse stays plain; to_object fixed; faces via adapter/journal  
-10. Issue rename + finalize whats-new on `mgg-develop`  
+| Suite | Covers |
+|-------|--------|
+| `object_literal_wrapper.as` / `array_literal_wrapper.as` | Literals, multi-call, nested hard edge, property_get/variable_get defaults + map |
+| `issue17_faces_regression.as` | Cross-path mix |
+| File adapter / journal tests | get/retrieve faces; journal consumer peers seeded on journal adapter |
+| `src/afw_yaml/tests/` | allow output + to_object |
 
 ---
 
-## Baseline: object clone-on-bind removed (working tree)
+## Not goals of #17
 
-**Change:** `impl_assign` + `afw_function_script_assign_pattern` clone **arrays only**; objects only evaluate.
-
-**`afwdev test -j --srcdir-pattern afw`** (after `--cdev`):
-
-| | |
-|--|--|
-| Passed | 3183 |
-| Failed | **1** |
-| Skipped | 182 |
-
-### Failures (baseline without object clone-on-bind)
-
-| Location | Sub-tests / notes |
-|----------|-------------------|
-| `miscellaneous/property_get.as` | `property_get-issue-110-onGetObject-shape` |
-| `language/script/object_literal_wrapper.as` | **13 red** isolation cases (below); **3 green** explicit `wrap_literal_object` |
-
-**Isolation cases in `object_literal_wrapper.as` (all expect fail until real fix):**
-
-- `shared-literal-function-two-calls` — const + mutate, two calls  
-- `shared-literal-let-two-calls` — let variant  
-- `shared-literal-return-mutate` — `return {}` then mutate  
-- `shared-literal-nested-object` — nested `{ child: { n: 0 } }`  
-- `shared-literal-nested-assign-empty` — `y.z = {}` residual  
-- `shared-literal-param-default` — `function f(o = {})`  
-- `shared-literal-param-pattern-default` — `{ bag } = { bag: { n: 0 } }`  
-- `shared-literal-object-pattern-bind` — `const { x } = { x: { n: 0 } }`  
-- `shared-literal-loop-calls` — loop residual property  
-- `shared-literal-lambda-two-calls` — lambda body  
-- `shared-literal-empty-property-exists` — empty `{}` + extra prop  
-- `shared-literal-compile-evaluate-twice` — compile once, evaluate twice  
-- `shared-literal-compiled-function-two-calls` — model **on*** style  
-
-**Pitfall:** pure top-level script returning only a number may **constant-fold**; prefer return object or call a function twice.
-
-### Takeaway
-
-These reds are the intentional gate for object-literal isolation (not array bind-clone, still temporary).  
+- Deep freeze trees via `const`  
+- Write-through faces into adapter stores  
+- Sparse array holes (**#39**, separate)  
+- Runtime / `afw` catalog liveness & materialize cost — **[#149](https://github.com/afw-org/afw/issues/149)** under **#2** ([`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md))
 
 ---
 
-## Related
+## Remaining process / handoff
 
-- #110 — default clone · #2 / `memory-management.md` · #22 ES expectations · `afw-function.mdc` (mutable defaults)  
+1. **PR → `mgg-develop`** (feature-complete; docs refreshed 2026-08).  
+2. After merge: mark **beta-backlog** done; fold **whats-new** Highlights if still “branch” wording; optional **#17** rename/close.  
+3. **Do not** pull **#149** (runtime catalogs) into this PR.  
+4. **#39** holes stay separate.  
+
+### Close checklist (after merge)
+
+- [ ] PR merged to `mgg-develop`  
+- [ ] `beta-backlog.md` #17 line → done  
+- [ ] whats-new Highlights no longer “branch only” if fully on line  
+- [ ] Comment on GitHub **#17** with ship summary + non-goals  
+- [ ] Optional: rename issue title to “mutable faces / shared instances”  
+- [ ] Close **#17** only when maintainer agrees acceptance  
+
+### Next session (if starting cold)
+
+- Branch tip + pad + whats-new are source of truth.  
+- Tests: `object_literal_wrapper.as`, `array_literal_wrapper.as`, `issue17_faces_regression.as`, file_journal consumer faces, `src/afw_yaml/tests/`.  
+- Face code: `afw_object_memory.c`, `afw_array_memory.c`, `afw_function_adapter.c`, `afw_function_journal.c`, `afw_value_isolate_mutable_default`, compile emit in `afw_compile_parse_value.c`.
+
+---
+
+## Author rules of thumb
+
+| Want | Use |
+|------|-----|
+| Mutate without poison (common path) | Face (platform) — drop defensive `clone()` |
+| True independent deep graph | `clone()` |
+| Immutability | `freeze` (not `const` alone) |
+| Persist adapter data | add / modify / replace / update — not face sets |
+| Reconcile after edit | reconcilable get + platform path; face may not be the entity |
+
+---
+
+## Process notes
+
+- Step-by-step; commit when asked.  
+- Design pads under `designs/` for maintainers; whats-new for users.  

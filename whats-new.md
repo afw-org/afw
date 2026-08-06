@@ -50,61 +50,64 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**`variable_exists` bound vs value (#131)**](#variable_exists-bound-vs-undefined-issue-131) | `variable_exists` is **bound** (true for uninit / undefined); `variable_get` default only if **not bound**; light function briefs |
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
-| [**Mutable object faces (#17, in progress)**](#mutable-object-faces-issue-17-in-progress) | **Draft / landing on branch** — literals, binds, and adapter **get/retrieve/callback** give a **mutable face**; drop many manual `clone()` calls |
+| [**Mutable object faces (#17)**](#mutable-object-faces-issue-17-in-progress) | **On `issue-#17-…` → PR `mgg-develop`** — literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces; drop many manual `clone()` calls |
 
 ---
 
 ## Mutable object faces (issue #17, in progress)
 
-> **Status:** Work is active on branch `issue-#17-object-literals-immutable` (off `mgg-develop`). This section is **user-facing framing** for the theme as it lands. Not everything below is on `mgg-develop` yet. When slices merge, keep this section honest (partial vs done) or fold bullets into Highlights only after they ship. Maintainer design pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md).
+> **Status:** Feature-complete on branch `issue-#17-object-literals-immutable` (off `mgg-develop`); not all of this is on `mgg-develop` until merge. Maintainer design pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md).
 
 ### What problem this is about
 
-Adaptive Script often hands you an **object** that is really a **shared instance** or a **non-bag impl** under the hood:
+Adaptive Script often hands you an **object** or **array** that is really a **shared instance** or a **non-bag impl** under the hood:
 
 - The same **object or array literal** in a function or loop can be **one bag** reused across evaluations, so mutating it “sticks” the next time.
-- **Binding** a literal into `const` / `let` / Patterns historically **cloned** as a safety net.
-- **Defaults** on helpers such as `property_get` / `variable_get` used to share or clone whole bags (issue **#110**); object/array defaults now get a **mutable face**.
-- **Adapter get/retrieve** may return a **view** or other clever, low-cost object implementation (not a plain mutable memory bag). Authors from an **ECMAScript** background expect “I got an object → I can set properties,” and often wrap the call in **`clone()`** by hand (including when the result is an object **view**).
+- **Binding** used to **clone** as a safety net; that clone-on-bind is **gone** for objects **and** arrays — isolation comes from **faces** on literals, defaults, and script-facing returns.
+- **Defaults** on helpers such as `property_get` / `variable_get` (issue **#110**) get a **mutable face** (not a deep clone of the whole graph).
+- **Adapter get/retrieve** may return a **view** or other low-cost implementation. ECMAScript authors often expect “I got an object → I can set properties” and used to wrap in **`clone()`** by hand.
 
-The product goal of this work is **one story**:
+Product goal:
 
 > When you work with an object (or array) in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time bag, or the shared base the platform still owns — and without needing `clone()` just to set a property.
 
-Under the hood that face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays get **fresh faces** over their base on promote / array materialize so typed `map` / index paths do not share nested bags). Authors do not need to call a wrap API for the happy path.
+Under the hood a face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays get **fresh faces** so typed `map` / index paths do not share nested bags). Authors do not need a wrap API for the happy path.
 
 ### Where you can drop manual `clone()` (on this branch)
 
-You generally **no longer need** a defensive `clone()` only so you can mutate:
-
 | Path | Notes |
 |------|--------|
-| **Object / array literals** in script (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
-| **`get_object` / `get_object_with_uri`** | Result is a mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` still returns the entity/view so `reconcile_object` can diff — use `clone()` there if you also want a free-form mutable bag. |
+| **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
+| **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` keeps the entity/view for `reconcile_object` — use `clone()` if you also want a free-form mutable bag. |
 | **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
 | **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
-| **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** (not a deep clone of the whole graph); safer than the old full clone for #110-style multi-call hosts |
-| **`journal_get_*` / `journal_advance_cursor_for_consumer`** | Response objects are faces (same as adapter get) |
+| **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** |
+| **`journal_get_*`**, **consumer** gets, **after_cursor**, **advance** | Response objects are faces |
 
 Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` required for that mutate-on-face pattern.
 
-### Still use `clone()` when
+### `clone()` vs `freeze` vs `const` vs faces
 
-- You want an explicit **deep** independent copy of a whole graph.
-- You mutate something from a path that is **not** converted yet (see below).
-- You need a full snapshot for other reasons.
+| Tool | Meaning |
+|------|---------|
+| **Face (platform)** | Mutable local layer; base not poisoned; **not** a deep copy and **not** store write-through |
+| **`clone()`** | Explicit **deep** independent copy of a graph (or when you still need a free bag over reconcilable/entity paths) |
+| **`freeze`** | Explicit **immutability** of a value graph (or as documented for that API) |
+| **`const`** | **Binding-level** only — the name cannot be reassigned; nested properties may still be mutable unless frozen |
 
-### What this is *not* / still open
+**Still use `clone()` when:** you want a true deep independent copy; you need a free-form bag while keeping reconcilable identity separate; or you need a full snapshot for other reasons.
 
-- **`retrieve_*_to_response` / `_to_stream`** — write/encode only; no script-owned face (and no need for `clone()` there).
-- **Journal entry returns** from add/modify/replace/… — already fresh memory “receipts”; not store rows.
-- **`journal_get_*` response objects** — faces on return (mutate without `clone()`); nested `entry` promoted on get when needed.
-- **`const` stays binding-level** — not deep freeze. Use **`freeze`** for immutability.
-- Faces are **not** “write-through to the adapter store”; change persistence still goes through add/modify/replace/update.
+### What this is *not*
+
+- **`retrieve_*_to_response` / `_to_stream`** — write/encode only; no script-owned face.
+- **Journal entry returns** from add/modify/replace/… — fresh memory “receipts,” not store rows.
+- **Faces are not write-through** to the adapter store — persist with add / modify / replace / update.
+- **YAML conf / content-type parse** stays plain objects (no parse-time faces); script isolation for YAML-backed **file** data still goes through adapter get faces when applicable.
+- **Runtime / `afw` catalog** objects (environment registry, live maps) are a separate lifetime topic — see issue **#149** (under **#2**), not this faces feature.
 
 ### Migration / habits
 
-- After this ships on your branch/build, drop redundant `clone()` around **get_object / retrieve / callback** and literal isolation paths once you confirm behavior.
+- After this ships on your branch/build, drop redundant `clone()` around **get_object / retrieve / callback / journal get** and literal isolation paths once you confirm behavior.
 - Out-of-tree commands/extensions: rebuild if they link object/array face APIs; pure script authors follow this section.
 
 ---

@@ -9,6 +9,8 @@ Living design / discussion notes for long-running AFW process memory: pools, val
 
 **End goal of the discussion:** a coherent **AFW memory-management story** — useful for implementing **#2** now, and as durable context for **humans and assistants** on later work (not only this issue). Prefer clear narrative and invariants over a pile of undigested archaeology.
 
+**Related (not the same work as #17 faces):** GitHub **[#149](https://github.com/afw-org/afw/issues/149)** — runtime / `afw` adapter catalog lifetime (live object maps vs full `EnvironmentRegistry` materialize cost). Notes: [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md).
+
 ### Adaptive values are a big deal
 
 **`afw_value` (adaptive values) are central to AFW** — not a minor helper type. Script/eval is a graph of values; compile returns a value; functions, literals, objects-as-data, arrays, closures, and scope variables are (or carry) values. Lifetime and escape for long-running work hang on **value inf policy** (`optional_evaluate`, `optional_release`, `clone_or_reference`) with pools/subpools underneath. When in doubt for #2 and script MM: **think in values first**; hide pool/object nastiness behind the value. (Stated again in other conversations; recorded here so it is not only chat memory.)
