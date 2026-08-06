@@ -305,7 +305,9 @@ export function afwNexTemplate(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type template returning template result.
+ * Converts value to data type template returning template result. Holds
+ * template source text as a template value (does not compile). Use
+ * polymorphic compile to compile the source.
  * 
  * @param {} value - Value to convert
  * 

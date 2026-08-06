@@ -1,10 +1,10 @@
 {
     "additionalArgCheck": true,
     "afwCamelCaseFunctionLabel": "afwAllOf",
-    "brief": "All values pass a test",
+    "brief": "Whether every array entry passes a test",
     "camelCaseFunctionLabel": "allOf",
     "category": "higher_order_array",
-    "description": "Returns true if all values in an array pass the predicate test.",
+    "description": "Return true if predicate returns true for every entry of the first array in values (index order), or if that array is empty. Entries whose value is undefined are included. every() is an alias for the common single-array form.",
     "functionId": "all_of",
     "functionLabel": "all_of",
     "parameters": [

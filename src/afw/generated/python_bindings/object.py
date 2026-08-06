@@ -168,11 +168,12 @@ def clone_object(session, value):
 
 def entries(session, object):
     """
-    Property name/value pairs of an object
+    Property name and value pairs of an object
 
-    Return an array of property entries for an object. Each entry is a
-    two-element array [name, value] where name is a string. The order matches
-    keys() for the same object.
+    Return a new array of property entries for an object. Each entry is a
+    two-element array [name, value] where name is a string. Order matches
+    keys() for the same object. The value may be undefined. The result is a
+    snapshot.
 
     Args:
         object (dict): Object to list property entries from.
@@ -388,8 +389,9 @@ def keys(session, object):
     """
     Property names of an object
 
-    Return an array of the property names of an object. The order of names is
-    the object's property iteration order.
+    Return a new array of the property names of an object, in the object's
+    property iteration order. The array is a snapshot; later changes to the
+    object do not change a previous result.
 
     Args:
         object (dict): Object to list property names from.
@@ -588,7 +590,10 @@ def object(session, value):
     """
     Convert to data type object
 
-    Converts value to data type object returning object result.
+    Converts value to data type object returning object result. A string is
+    parsed as JSON (or relaxed JSON) and must yield an object; an object is
+    left unchanged. This is not an object-literal constructor — use { ... }
+    for that.
 
     Args:
         value (object): Value to convert
@@ -811,8 +816,9 @@ def values(session, object):
     """
     Property values of an object
 
-    Return an array of the property values of an object. The order matches
-    keys() for the same object.
+    Return a new array of the property values of an object, in the same order
+    as keys() for that object. Values may be undefined if a property was set
+    to undefined. The array is a snapshot.
 
     Args:
         object (dict): Object to list property values from.

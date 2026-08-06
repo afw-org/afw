@@ -29,8 +29,8 @@ let m2 = at(m, -1);
 assert(property_get(m2, "dataType") === "boolean", "dataType last");
 assert(property_get(m2, "value") === true, "value last");
 
-assert(is_nullish(at(m, 3)), "oob");
-assert(is_nullish(at(m, -4)), "oob neg");
+assert(is_nullish(at(m, 3)), "out of range");
+assert(is_nullish(at(m, -4)), "out of range negative");
 
 return 0;
 
@@ -99,8 +99,8 @@ assert(property_get(m2, "dataType") === "boolean", "dataType last");
 assert(property_get(m2, "key") === "c", "key last");
 assert(property_get(m2, "value") === true, "value last");
 
-assert(is_nullish(at(m, 3)), "oob");
-assert(is_nullish(at(m, -4)), "oob neg");
+assert(is_nullish(at(m, 3)), "out of range");
+assert(is_nullish(at(m, -4)), "out of range negative");
 
 return 0;
 

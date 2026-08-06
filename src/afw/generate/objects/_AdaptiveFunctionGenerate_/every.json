@@ -1,8 +1,8 @@
 {
     "additionalArgCheck": true,
-    "brief": "All values pass a test",
+    "brief": "Whether every array entry passes a test",
     "category": "higher_order_array",
-    "description": "Returns true if all values in an array pass the predicate test. Same behavior as all_of for a single array (and additional parameters). Empty array yields true.",
+    "description": "Return true if predicate returns true for every entry of the first array in values (index order), or if that array is empty. Entries whose value is undefined are included. Same single-array behavior as all_of.",
     "functionId": "every",
     "functionLabel": "every",
     "pure": true,

@@ -18,7 +18,10 @@ interface IAnyObject {
 }
 
 /**
- * Returns true if all values in an array pass the predicate test.
+ * Return true if predicate returns true for every entry of the first array in
+ * values (index order), or if that array is empty. Entries whose value is
+ * undefined are included. every() is an alias for the common single-array
+ * form.
  * 
  * @param {function} predicate - This function is called for each value in the
  *     first array in values or until false is returned. If no calls return
@@ -93,7 +96,9 @@ export function afwAllOfAny(client : any, predicate : any, array1 : any[], array
 }
 
 /**
- * Returns true if any value in an array pass the predicate test.
+ * Return true if predicate returns true for any entry of the first array in
+ * values (index order). Entries whose value is undefined are included. Empty
+ * array yields false. some() is an alias for the common single-array form.
  * 
  * @param {function} predicate - This function is called for each value in the
  *     first array in values or until true is returned. If no calls return
@@ -167,9 +172,9 @@ export function afwAnyOfAny(client : any, predicate : any, array1 : any[], array
 }
 
 /**
- * Returns true if all values in an array pass the predicate test. Same
- * behavior as all_of for a single array (and additional parameters). Empty
- * array yields true.
+ * Return true if predicate returns true for every entry of the first array in
+ * values (index order), or if that array is empty. Entries whose value is
+ * undefined are included. Same single-array behavior as all_of.
  * 
  * @param {function} predicate - Called for each value in the first array in
  *     values or until false is returned.
@@ -191,8 +196,9 @@ export function afwEvery(client : any, predicate : any, values : any) : any {
 }
 
 /**
- * This produces an array containing only values from another array that pass
- * a predicate test.
+ * Return a new array of entries from the first array in values for which
+ * predicate returns true. Every index is considered, including entries whose
+ * value is undefined. Order of kept entries is preserved.
  * 
  * @param {function} predicate - This is a boolean function that is called to
  *     determine if an array entry should be included in the returned array.
@@ -201,7 +207,8 @@ export function afwEvery(client : any, predicate : any, values : any) : any {
  *     exception that the first array is passed as the single current value
  *     from the array. At least one array is required.
  * 
- * @returns {array} This is the resulting filtered array.
+ * @returns {array} A new array of the entries that passed the test (possibly
+ *     empty).
  */
 export function afwFilter(client : any, predicate : any, values : any) : any {
 
@@ -215,8 +222,11 @@ export function afwFilter(client : any, predicate : any, values : any) : any {
 }
 
 /**
- * The predicate is called for each value in the first array in values until
- * true is returned, then that value is returned.
+ * Call predicate for each entry of the first array in values, in index order,
+ * until it returns true, then return that entry. Entries whose value is
+ * undefined are included. If no entry passes, the result is undefined (the
+ * same as a found undefined entry; use filter if you need to tell those
+ * apart).
  * 
  * @param {function} predicate - This is a boolean function that is called to
  *     determine if an array entry passes the test.
@@ -225,7 +235,7 @@ export function afwFilter(client : any, predicate : any, values : any) : any {
  *     exception that the first array is passed as the single current value
  *     from the array. At least one array is required.
  * 
- * @returns {} The first value that passes the test is returned.
+ * @returns {} The first matching entry, or undefined if none match.
  */
 export function afwFind(client : any, predicate : any, values : any) : any {
 
@@ -239,16 +249,20 @@ export function afwFind(client : any, predicate : any, values : any) : any {
 }
 
 /**
- * This function creates an array of the results of calling functor with each
- * value of the first array in values
+ * Call functor once for each entry of the first array in values, in index
+ * order from 0 through length minus one, and return a new array of the same
+ * length with the results. Entries whose value is undefined (including
+ * omitted elements in array literals) are included; the functor receives
+ * undefined for those indexes. Additional values parameters, if present, are
+ * passed through on every call.
  * 
  * @param {function} functor -
  * 
- * @param {} values - These are the parameters passed to functor with the
- *     exception that the first array is passed one value at a time. At least
- *     one array is required.
+ * @param {} values - The first array is walked one entry at a time as the
+ *     first argument to functor. Additional parameters are passed on every
+ *     call. At least one array is required.
  * 
- * @returns {array}
+ * @returns {array} A new array with one result per entry of the first array.
  */
 export function afwMap(client : any, functor : any, values : any) : any {
 
@@ -262,25 +276,24 @@ export function afwMap(client : any, functor : any, values : any) : any {
 }
 
 /**
- * Reduce calls functor for each value in array with two parameters,
- * accumulator and value, and must return a value of any dataType. Parameter
- * accumulator is the reduce() accumulator parameter value on first call and
- * the return value of previous functor() call on subsequent calls. The
- * dataType of the return value should normally be the same as accumulator,
- * but this is not required.
+ * Call functor for each entry of array, in index order, with the current
+ * accumulator and that entry. The first call uses the accumulator argument;
+ * each later call uses the previous return value. Every index is visited,
+ * including undefined entries. If array is empty, the accumulator argument is
+ * returned without calling functor.
  * 
  * @param {function} functor - This function is called for each value in an
  *     array. The returned value is passed as the accumulator parameter on the
  *     next call to functor().
  * 
  * @param {} accumulator - This is an initial accumulator value passed to
- *     functor(). Normally, the dataType of accumulator will be the dataTape
+ *     functor(). Normally, the dataType of accumulator will be the data type
  *     for the reduce() return value, but this is not required.
  * 
  * @param {array} array - This is an array to be reduced.
  * 
- * @returns {} This is the final return value from functor() or the
- *     accumulator parameter value if array is empty.
+ * @returns {} The final value returned by functor, or the initial accumulator
+ *     if array is empty.
  */
 export function afwReduce(client : any, functor : any, accumulator : any, array : any[]) : any {
 
@@ -295,9 +308,9 @@ export function afwReduce(client : any, functor : any, accumulator : any, array 
 }
 
 /**
- * Returns true if any value in an array passes the predicate test. Same
- * behavior as any_of for a single array (and additional parameters). Empty
- * array yields false.
+ * Return true if predicate returns true for any entry of the first array in
+ * values (index order). Entries whose value is undefined are included. Empty
+ * array yields false. Same single-array behavior as any_of.
  * 
  * @param {function} predicate - Called for each value in the first array in
  *     values or until true is returned.
@@ -319,18 +332,20 @@ export function afwSome(client : any, predicate : any, values : any) : any {
 }
 
 /**
- * This produces an array with values sorted based on result of
- * compareFunction. The compareFunction is passed two values from the array
- * and must return an integer less than 0 if the first value is less than the
- * second value, 0 if they are equal, and a integer greater than 0 if the
- * first value is greater than the second value.
+ * Return a new array with the same entries as array, ordered using
+ * compareFunction. The array must have a single element data type (for
+ * example all integers or all strings); mixed or empty untyped arrays are not
+ * accepted. compareFunction is called with two entries and must return true
+ * when the first should sort before the second (boolean), not a numeric sort
+ * key.
  * 
- * @param {function} compareFunction - This function is called with two value
- *     from array.
+ * @param {function} compareFunction - Return true if value1 should be ordered
+ *     before value2.
  * 
- * @param {array} array - This is the array to sort.
+ * @param {array} array - Array to sort. Must be single-type (all entries the
+ *     same data type).
  * 
- * @returns {array} This the the resulting sorted array.
+ * @returns {array} A new array with the entries of array in sorted order.
  */
 export function afwSort(client : any, compareFunction : any, array : any[]) : any {
 

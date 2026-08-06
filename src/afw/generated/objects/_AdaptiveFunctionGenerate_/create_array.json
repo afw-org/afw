@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCreateArray",
+    "brief": "Create an array of a given length filled with undefined",
+    "camelCaseFunctionLabel": "createArray",
+    "category": "array",
+    "description": "Create a new mutable array of the given length where every entry is undefined. Useful when you want a known length up front before assigning or filling entries. Length must be a non-negative integer and must not exceed 1,000,000. This is a length-based constructor, not a conversion function (see also array(...), which builds from elements).",
+    "errorsThrown": [
+        {
+            "error": "arg_error",
+            "reason": "length is negative or exceeds the maximum allowed"
+        }
+    ],
+    "functionId": "create_array",
+    "functionLabel": "create_array",
+    "parameters": [
+        {
+            "dataType": "integer",
+            "description": "Number of undefined elements (0 or more, up to the maximum).",
+            "name": "length"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "A new array of the requested length; each entry is undefined."
+    }
+}

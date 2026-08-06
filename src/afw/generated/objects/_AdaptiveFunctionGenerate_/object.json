@@ -3,7 +3,7 @@
     "brief": "Convert to data type object",
     "camelCaseFunctionLabel": "object",
     "category": "object",
-    "description": "Converts value to data type object returning object result.",
+    "description": "Converts value to data type object returning object result. A string is parsed as JSON (or relaxed JSON) and must yield an object; an object is left unchanged. This is not an object-literal constructor \u2014 use { ... } for that.",
     "errorsThrown": [
         {
             "error": "cast_error",

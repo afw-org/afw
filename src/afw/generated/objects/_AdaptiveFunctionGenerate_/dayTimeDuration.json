@@ -1,6 +1,6 @@
 {
     "afwCamelCaseFunctionLabel": "afwDayTimeDuration",
-    "brief": "Convert to data type dateTimeDuration",
+    "brief": "Convert to data type dayTimeDuration",
     "camelCaseFunctionLabel": "dayTimeDuration",
     "category": "dayTimeDuration",
     "description": "Converts value to data type dayTimeDuration returning dayTimeDuration result.",

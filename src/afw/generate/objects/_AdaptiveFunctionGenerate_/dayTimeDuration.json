@@ -1,5 +1,5 @@
 {
-    "brief": "Convert to data type dateTimeDuration",
+    "brief": "Convert to data type dayTimeDuration",
     "category": "dayTimeDuration",
     "description": "Converts value to data type dayTimeDuration returning dayTimeDuration result.",
     "errorsThrown": [

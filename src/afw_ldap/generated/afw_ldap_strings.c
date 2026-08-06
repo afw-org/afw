@@ -566,60 +566,6 @@ afw_ldap_self_v_url = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2522 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2522)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2523 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2523)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2524 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2524)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2525 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2525)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2526 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2526)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2527 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2527)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2528 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2528)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2529 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2529)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__2530 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2530)
-};
-
-const afw_value_string_t
 afw_ldap_self_v_zz__2531 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2531)
@@ -629,6 +575,60 @@ const afw_value_string_t
 afw_ldap_self_v_zz__2532 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2532)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2533 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2533)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2534 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2534)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2535 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2535)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2536 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2536)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2537 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2537)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2538 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2538)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2539 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2539)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2540 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2540)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2541 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2541)
 };
 
 const afw_value_string_t

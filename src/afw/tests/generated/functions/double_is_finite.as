@@ -71,7 +71,7 @@ is_finite(
 //? source: ...
 
 is_finite(
-    null(null)
+    null
 )
 
 //?

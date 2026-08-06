@@ -2,7 +2,7 @@
     "brief": "Property values of an object",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return an array of the property values of an object. The order matches keys() for the same object.",
+    "description": "Return a new array of the property values of an object, in the same order as keys() for that object. Values may be undefined if a property was set to undefined. The array is a snapshot.",
     "functionId": "values",
     "functionLabel": "values",
     "pure": true,

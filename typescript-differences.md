@@ -83,7 +83,8 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 
 - Rest/spread: **`...rest` formals**, call-site **`f(...arr)`**, rest in Patterns.
 - Helpers as Adaptive functions (**#55** closed): `keys`, `values`, `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (also `->` method sugar when registered). Keep XACML-shaped names (`all_of` / `any_of`, …) as first-class too—not a rename-everything-to-JS project.
-- Out-of-range **`at`**, empty **`pop`/`shift`**: **undefined** (nullish), not throw.
+- Out-of-range **`at`** / bracket **`a[i]`**, empty **`pop`/`shift`**: **undefined** (nullish), not throw.
+- Array literal **elision** (`['a', ,'b']`) → dense **undefined** slots (script / relaxed_json; not strict JSON). Assign **`a[length] = x`** appends; no gap fill. **`create_array(n)`** pre-sizes with undefined.
 
 ### Functions and exceptions
 
@@ -93,12 +94,12 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 
 ### Types (**#28**)
 
-TypeScript-like **spelling** where Adaptive supports it; Adaptive **semantics** and **opt-in** checking.
+TypeScript-like **spelling** where Adaptive supports it; Adaptive **semantics** and **opt-in** checking. Prefer one clear form over dual TS sugar.
 
 | Feature | Adaptive |
 |---------|----------|
 | Annotations | `: Type` on bindings, params, returns, Pattern leaves |
-| Arrays / tuples | `T[]`, `Array<T>`, `[T, U]` |
+| Arrays / tuples | **`T[]`**, **`[T, U]`** (not `Array<T>` — see [motivated differences](#motivated-differences-not-bugs)) |
 | Unions / intersections | `A \| B`, `A & B` |
 | Object shapes / optional props | `{ host: string, port?: integer }` |
 | Function **types** | `(a: integer) => integer` |
@@ -195,7 +196,8 @@ Hard stops for beta and beyond unless product **explicitly** reopens them. Do no
 | Arrow **functions** as values (`=>`) | Explicit non-goal for now; **`=>` in function types** is supported |
 | `var`, automatic semicolon insertion, expression-as-statement | Semicolons required; statements are statements |
 | `for-in` | Use `keys` / `values` / `entries` + `for-of` |
-| Full advanced TS type system | No merge-bar for generics, `keyof`, conditionals, mapped types, etc. |
+| Full advanced TS type system | No merge-bar for generics, `keyof`, conditionals, mapped types, `ReadonlyArray`, etc. |
+| TypeScript **`Array<T>`** type spelling | Use **`T[]` only**; same meaning in TS, one form in Adaptive |
 | JS `typeof` / `instanceof` operator semantics | Keywords may be reserved; not the JS operators |
 | TDZ (ReferenceError on uninit `let`/`const`) | Adaptive reads uninit as undefined today; changing that is a product decision, not an assumed “fix” |
 
@@ -219,6 +221,7 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | **Outside names** | **Qualifiers**, not globals |
 | **Methods** | Adaptive functions + optional `->` sugar, not prototype walk |
 | **Script types vs OT** | Script `interface` ≠ adapter object type catalog |
+| **Array element types** | **`T[]` only** — not `Array<T>`. TS treats both as the same; Adaptive keeps a single spelling (matches typical app/client `string[]` style and avoids a second path into generics) |
 | **`null` vs `undefined`** | Both nullish; Adaptive `null` is a typed singleton; C APIs may use NULL for undefined—script authors should think in nullish + exists/get rules above |
 | **Closure lifetime** | Supported; long-running hosts still care about pools / **#2** |
 | **Default `{}` / `[]` literals** | May be shared when used as script defaults—by-design hazard unless we later change compile policy |

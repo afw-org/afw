@@ -71,7 +71,7 @@ is_NaN(
 //? source: ...
 
 is_NaN(
-    null(null)
+    null
 )
 
 //?

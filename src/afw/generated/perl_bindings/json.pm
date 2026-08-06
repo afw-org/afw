@@ -52,7 +52,9 @@ string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 json
 
-Converts value to data type json returning json result.
+Converts value to data type json returning json result. Holds JSON source text
+as a json value (does not parse/compile). Use polymorphic compile to compile
+the source.
 Convert to data type json
 
 =head4 Parameters

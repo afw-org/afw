@@ -1,10 +1,10 @@
 {
     "additionalArgCheck": true,
     "afwCamelCaseFunctionLabel": "afwAnyOf",
-    "brief": "Any values pass a test",
+    "brief": "Whether any array entry passes a test",
     "camelCaseFunctionLabel": "anyOf",
     "category": "higher_order_array",
-    "description": "Returns true if any value in an array pass the predicate test.",
+    "description": "Return true if predicate returns true for any entry of the first array in values (index order). Entries whose value is undefined are included. Empty array yields false. some() is an alias for the common single-array form.",
     "functionId": "any_of",
     "functionLabel": "any_of",
     "parameters": [

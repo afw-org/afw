@@ -1,8 +1,8 @@
 {
-    "brief": "Property name/value pairs of an object",
+    "brief": "Property name and value pairs of an object",
     "category": "object",
     "dataTypeMethod": true,
-    "description": "Return an array of property entries for an object. Each entry is a two-element array [name, value] where name is a string. The order matches keys() for the same object.",
+    "description": "Return a new array of property entries for an object. Each entry is a two-element array [name, value] where name is a string. Order matches keys() for the same object. The value may be undefined. The result is a snapshot.",
     "functionId": "entries",
     "functionLabel": "entries",
     "pure": true,

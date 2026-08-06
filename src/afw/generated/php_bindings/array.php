@@ -28,7 +28,9 @@ class array
     /**
      * add_entries()
      *
-     * Add the entries of one or more arrays to another.
+     * Append every entry of each source array onto the end of target, in
+     * order. target must be mutable. Entries are copied by value reference;
+     * nested objects and arrays are not deeply cloned.
      *
      * @param array $target Target array. This array must not be immutable.
      * @param array $source Source array(s).
@@ -52,7 +54,13 @@ class array
     /**
      * array()
      *
-     * Construct an array with 0 or more elements.
+     * Construct a new array from the given values (not a conversion
+     * function). Each argument becomes one element, in order. If a value is
+     * written as ...expression and the expression is an array, each of its
+     * entries is included in order. An empty call produces an empty array. A
+     * non-spread array argument is nested as a single element (array([1,2])
+     * is [[1,2]]); use spread or a list literal to flatten. For a length of
+     * undefined slots use create_array(n).
      *
      * @param  $values A value can refer to any adaptable value belonging to
      *                 any data type or an array expression. In the case of an
@@ -81,7 +89,8 @@ class array
      *
      * Return the value at a zero-based index in an array. Negative indexes
      * count from the end (-1 is the last element). If the index is out of
-     * range, the result is undefined.
+     * range, the result is undefined. Bracket indexing a[index] uses the same
+     * out-of-range result (undefined).
      *
      * @param array $array Array to index.
      * @param integer $index Zero-based index, or negative from the end.
@@ -165,6 +174,34 @@ class array
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * create_array()
+     *
+     * Create a new mutable array of the given length where every entry is
+     * undefined. Useful when you want a known length up front before
+     * assigning or filling entries. Length must be a non-negative integer and
+     * must not exceed 1,000,000. This is a length-based constructor, not a
+     * conversion function (see also array(...), which builds from elements).
+     *
+     * @param integer $length Number of undefined elements (0 or more, up to
+     *                        the maximum).
+     *
+     * @return array A new array of the requested length; each entry is
+     *               undefined.
+     */
+    public function create_array(, $length)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "create_array");
+
+        /* pass along required parameters to the request payload */
+        $request->set("length", $length);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -528,8 +565,9 @@ class array
     /**
      * push()
      *
-     * Append one or more values to the end of a mutable array (push back).
-     * Returns the modified array.
+     * Append one or more values to the end of a mutable array. Returns the
+     * same array after modification. The array must not be immutable (for
+     * example after freeze).
      *
      * @param array $array Target array. Must not be immutable.
      * @param  $values Values to append in order.

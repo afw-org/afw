@@ -561,7 +561,7 @@ impl_8_property_dataType = {
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2506.pub
+    &afw_curl_self_v_zz__2515.pub
 };
 
 static const afw_runtime_property_t
@@ -644,7 +644,7 @@ impl_9_property_dataType = {
 static const afw_runtime_property_t
 impl_9_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2507.pub
+    &afw_curl_self_v_zz__2516.pub
 };
 
 static const afw_runtime_property_t
@@ -1308,7 +1308,7 @@ impl_17_property_dataType = {
 static const afw_runtime_property_t
 impl_17_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2508.pub
+    &afw_curl_self_v_zz__2517.pub
 };
 
 static const afw_runtime_property_t
@@ -1391,7 +1391,7 @@ impl_18_property_dataType = {
 static const afw_runtime_property_t
 impl_18_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2509.pub
+    &afw_curl_self_v_zz__2518.pub
 };
 
 static const afw_runtime_property_t
@@ -1550,7 +1550,7 @@ impl_20_property_dataType = {
 static const afw_runtime_property_t
 impl_20_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2510.pub
+    &afw_curl_self_v_zz__2519.pub
 };
 
 static const afw_runtime_property_t
@@ -1716,7 +1716,7 @@ impl_22_property_dataType = {
 static const afw_runtime_property_t
 impl_22_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2511.pub
+    &afw_curl_self_v_zz__2520.pub
 };
 
 static const afw_runtime_property_t
@@ -1882,7 +1882,7 @@ impl_24_property_dataType = {
 static const afw_runtime_property_t
 impl_24_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2512.pub
+    &afw_curl_self_v_zz__2521.pub
 };
 
 static const afw_runtime_property_t
@@ -1965,7 +1965,7 @@ impl_25_property_dataType = {
 static const afw_runtime_property_t
 impl_25_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2513.pub
+    &afw_curl_self_v_zz__2522.pub
 };
 
 static const afw_runtime_property_t
@@ -2048,7 +2048,7 @@ impl_26_property_dataType = {
 static const afw_runtime_property_t
 impl_26_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2514.pub
+    &afw_curl_self_v_zz__2523.pub
 };
 
 static const afw_runtime_property_t
@@ -2207,7 +2207,7 @@ impl_28_property_dataType = {
 static const afw_runtime_property_t
 impl_28_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2515.pub
+    &afw_curl_self_v_zz__2524.pub
 };
 
 static const afw_runtime_property_t
@@ -2622,7 +2622,7 @@ impl_33_property_dataType = {
 static const afw_runtime_property_t
 impl_33_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2516.pub
+    &afw_curl_self_v_zz__2525.pub
 };
 
 static const afw_runtime_property_t
@@ -2788,7 +2788,7 @@ impl_35_property_dataType = {
 static const afw_runtime_property_t
 impl_35_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2517.pub
+    &afw_curl_self_v_zz__2526.pub
 };
 
 static const afw_runtime_property_t
@@ -2954,7 +2954,7 @@ impl_37_property_dataType = {
 static const afw_runtime_property_t
 impl_37_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2518.pub
+    &afw_curl_self_v_zz__2527.pub
 };
 
 static const afw_runtime_property_t
@@ -4945,7 +4945,7 @@ impl_52_property_category = {
 static const afw_runtime_property_t
 impl_52_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2519.pub
+    &afw_curl_self_v_zz__2528.pub
 };
 
 static const afw_runtime_property_t *
@@ -5028,7 +5028,7 @@ impl_53_property_category = {
 static const afw_runtime_property_t
 impl_53_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2520.pub
+    &afw_curl_self_v_zz__2529.pub
 };
 
 static const afw_runtime_property_t *
@@ -5111,7 +5111,7 @@ impl_54_property_category = {
 static const afw_runtime_property_t
 impl_54_property_description = {
     &afw_curl_self_s_description,
-    &afw_curl_self_v_zz__2521.pub
+    &afw_curl_self_v_zz__2530.pub
 };
 
 static const afw_runtime_property_t *

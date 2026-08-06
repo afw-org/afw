@@ -10,7 +10,7 @@
 - Leaves = permanent **`afw_data_type_*`** pointers (`any` / `void` / … by address).
 - Missing annotation → **`any`** (error when `noImplicitAny` and checking active).
 - Script-local **`type` / `interface` (+ multi `extends`)**; **not** adaptive object types / OT catalogs.
-- Arrays: **`T[]`** and **`Array<T>`** (same); tuples **`[T,U]`**; unions **`|`**; intersections **`&`**.
+- Arrays: **`T[]` only** (no TypeScript **`Array<T>`**); tuples **`[T,U]`**; unions **`|`**; intersections **`&`**.
 - Function types: **`(a: T) => R`** — script functions/closures checked structurally (params contravariant, return covariant); other function values only need data type `function`.
 - **Checking default off**; opt-in via **flags** (handbook) and optional **`#compile`** pragma (per compile unit; Pattern B — see `designs/pragma-hash-design.md`).
 - Object/interface structural: required props + property types + `extends`.

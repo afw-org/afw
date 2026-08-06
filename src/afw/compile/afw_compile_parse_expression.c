@@ -1191,15 +1191,14 @@ afw_compile_parse_TupleType(afw_compile_parser_t *parser)
  *
  *# Named param: name ?: Type. Bare identifier without ':' is TypeName with
  *# optional '[]' only (not '|' / '&'). Non-identifier Type forms use full Type
- *# (object/tuple/paren/Array<…>).
+ *# (object/tuple/paren).
  * FunctionTypeParameter ::=
  *     '...'? Identifier '?'? ':' Type |
  *     '...'? TypeName ( '[' ']' )* |
  *     '...'? (
  *         ObjectTypeLiteral |
  *         TupleType |
- *         ParenthesizedOrFunctionType |
- *         'Array' '<' Type '>'
+ *         ParenthesizedOrFunctionType
  *     )
  *
  *<<<ebnf*/
@@ -1397,21 +1396,18 @@ afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
  *# both Identifier; DataType is the closed set of Adaptive data type ids.
  * TypeName ::= DataType | Identifier
  *
- *# 'Array' without '<' is TypeName (data type array or a name "Array").
+ *# Array element types use postfix T[] only (not TypeScript Array<T>).
  * PrimaryType ::=
  *     ObjectTypeLiteral |
  *     TupleType |
  *     ParenthesizedOrFunctionType |
- *     'Array' '<' Type '>' |
  *     TypeName
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_type_t *)
 afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
 {
-    const afw_value_type_t *type;
     const afw_utf8_t *name;
-    afw_value_type_t *arr;
 
     afw_compile_get_token();
 
@@ -1433,30 +1429,7 @@ afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
 
     name = parser->token->identifier_name;
 
-    /* Array<T> sugar (same meaning as T[]). '<' is open_angle_bracket
-     * when not in binary-operator context (see lexical). */
-    if (afw_utf8_equal_utf8_z(name, "Array")) {
-        afw_compile_get_token();
-        if (afw_compile_token_is(open_angle_bracket) ||
-            afw_compile_token_is(less_than))
-        {
-            type = afw_compile_parse_UnionType(parser);
-            afw_compile_get_token();
-            if (!afw_compile_token_is(close_angle_bracket) &&
-                !afw_compile_token_is(greater_than))
-            {
-                AFW_COMPILE_THROW_ERROR_Z(
-                    "Expecting '>' after Array type argument");
-            }
-            arr = impl_type_alloc(parser);
-            arr->kind = afw_value_type_kind_array;
-            arr->array.element = type;
-            return arr;
-        }
-        afw_compile_reuse_token();
-    }
-
-    /* TypeName */
+    /* TypeName (includes data type id "array"; no Array<T> generic). */
     return impl_type_lookup_name(parser, name);
 }
 

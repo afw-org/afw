@@ -2,7 +2,7 @@
     "brief": "Append values to an array",
     "category": "array",
     "dataTypeMethod": true,
-    "description": "Append one or more values to the end of a mutable array (push back). Returns the modified array.",
+    "description": "Append one or more values to the end of a mutable array. Returns the same array after modification. The array must not be immutable (for example after freeze).",
     "functionId": "push",
     "functionLabel": "push",
     "pure": false,

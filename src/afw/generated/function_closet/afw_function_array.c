@@ -22,7 +22,9 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * Add the entries of one or more arrays to another.
+ * Append every entry of each source array onto the end of target, in order.
+ * target must be mutable. Entries are copied by value reference; nested objects
+ * and arrays are not deeply cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -64,7 +66,12 @@ afw_function_execute_add_entries(
  *
  * See afw_function_bindings.h for more information.
  *
- * Construct an array with 0 or more elements.
+ * Construct a new array from the given values (not a conversion function). Each
+ * argument becomes one element, in order. If a value is written as
+ * ...expression and the expression is an array, each of its entries is included
+ * in order. An empty call produces an empty array. A non-spread array argument
+ * is nested as a single element (array([1,2]) is [[1,2]]); use spread or a list
+ * literal to flatten. For a length of undefined slots use create_array(n).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -88,10 +95,6 @@ afw_function_execute_add_entries(
  * Returns:
  *
  *   (array) The constructed array.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_array(
@@ -112,7 +115,8 @@ afw_function_execute_array(
  *
  * Return the value at a zero-based index in an array. Negative indexes count
  * from the end (-1 is the last element). If the index is out of range, the
- * result is undefined.
+ * result is undefined. Bracket indexing a[index] uses the same out-of-range
+ * result (undefined).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -138,6 +142,53 @@ afw_function_execute_array(
  */
 const afw_value_t *
 afw_function_execute_at(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: create_array
+ *
+ * afw_function_execute_create_array
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Create a new mutable array of the given length where every entry is
+ * undefined. Useful when you want a known length up front before assigning or
+ * filling entries. Length must be a non-negative integer and must not exceed
+ * 1,000,000. This is a length-based constructor, not a conversion function (see
+ * also array(...), which builds from elements).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function create_array(
+ *       length: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   length - (integer) Number of undefined elements (0 or more, up to the
+ *       maximum).
+ *
+ * Returns:
+ *
+ *   (array) A new array of the requested length; each entry is undefined.
+ *
+ * Errors thrown:
+ *
+ *   arg_error - length is negative or exceeds the maximum allowed
+ */
+const afw_value_t *
+afw_function_execute_create_array(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
@@ -234,8 +285,9 @@ afw_function_execute_pop(
  *
  * See afw_function_bindings.h for more information.
  *
- * Append one or more values to the end of a mutable array (push back). Returns
- * the modified array.
+ * Append one or more values to the end of a mutable array. Returns the same
+ * array after modification. The array must not be immutable (for example after
+ * freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.

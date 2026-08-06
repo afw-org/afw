@@ -3,7 +3,7 @@
     "brief": "Convert to data type script",
     "camelCaseFunctionLabel": "script",
     "category": "script",
-    "description": "Converts value to data type script returning script result.",
+    "description": "Converts value to data type script returning script result. Holds Adaptive Script source text as a script value (does not compile or run). Use polymorphic compile to compile the source.",
     "errorsThrown": [
         {
             "error": "cast_error",

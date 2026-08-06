@@ -224,7 +224,10 @@ export function afwNexRegexp(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type regexp returning regexp result.
+ * Converts value to data type regexp returning regexp result. Holds a regular
+ * expression source string as a regexp value (does not compile the pattern
+ * for matching by itself). Use polymorphic compile when a compiled form is
+ * required.
  * 
  * @param {} value - Value to convert
  * 

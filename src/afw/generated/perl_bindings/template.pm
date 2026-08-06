@@ -231,7 +231,9 @@ Checks for not equal value or type
 
 =head3 template
 
-Converts value to data type template returning template result.
+Converts value to data type template returning template result. Holds template
+source text as a template value (does not compile). Use polymorphic compile to
+compile the source.
 Convert to data type template
 
 =head4 Parameters

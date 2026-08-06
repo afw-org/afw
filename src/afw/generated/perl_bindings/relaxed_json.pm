@@ -52,7 +52,9 @@ string. If 1 through 10 is specified, that number of spaces is used.
 
 =head3 relaxed_json
 
-Converts value to data type relaxed_json returning relaxed_json result.
+Converts value to data type relaxed_json returning relaxed_json result. Holds
+relaxed JSON source text as a relaxed_json value (does not parse/compile). Use
+polymorphic compile to compile the source.
 Convert to data type relaxed_json
 
 =head4 Parameters

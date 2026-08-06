@@ -115,10 +115,10 @@ The object value to clone.
 
 =head3 entries
 
-Return an array of property entries for an object. Each entry is a two-element
-array [name, value] where name is a string. The order matches keys() for the
-same object.
-Property name/value pairs of an object
+Return a new array of property entries for an object. Each entry is a
+two-element array [name, value] where name is a string. Order matches keys()
+for the same object. The value may be undefined. The result is a snapshot.
+Property name and value pairs of an object
 
 =head4 Parameters
 
@@ -209,8 +209,9 @@ Value to check
 
 =head3 keys
 
-Return an array of the property names of an object. The order of names is the
-object's property iteration order.
+Return a new array of the property names of an object, in the object's
+property iteration order. The array is a snapshot; later changes to the object
+do not change a previous result.
 Property names of an object
 
 =head4 Parameters
@@ -302,7 +303,9 @@ Checks for not equal value or type
 
 =head3 object
 
-Converts value to data type object returning object result.
+Converts value to data type object returning object result. A string is parsed
+as JSON (or relaxed JSON) and must yield an object; an object is left
+unchanged. This is not an object-literal constructor — use { ... } for that.
 Convert to data type object
 
 =head4 Parameters
@@ -408,8 +411,9 @@ A object value.
 
 =head3 values
 
-Return an array of the property values of an object. The order matches keys()
-for the same object.
+Return a new array of the property values of an object, in the same order as
+keys() for that object. Values may be undefined if a property was set to
+undefined. The array is a snapshot.
 Property values of an object
 
 =head4 Parameters

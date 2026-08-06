@@ -391,7 +391,9 @@ class script
     /**
      * script()
      *
-     * Converts value to data type script returning script result.
+     * Converts value to data type script returning script result. Holds
+     * Adaptive Script source text as a script value (does not compile or
+     * run). Use polymorphic compile to compile the source.
      *
      * @param  $value Value to convert
      *

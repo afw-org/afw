@@ -3,7 +3,7 @@
     "brief": "Convert to data type template",
     "camelCaseFunctionLabel": "template",
     "category": "template",
-    "description": "Converts value to data type template returning template result.",
+    "description": "Converts value to data type template returning template result. Holds template source text as a template value (does not compile). Use polymorphic compile to compile the source.",
     "errorsThrown": [
         {
             "error": "cast_error",

@@ -133,10 +133,13 @@ try {
         (<literal>at</literal>), stack and queue mutators
         (<literal>push</literal>, <literal>pop</literal>,
         <literal>shift</literal>, <literal>unshift</literal>,
-        <literal>splice</literal>), immutability (<literal>freeze</literal>),
-        and quantifiers (<literal>every</literal> / <literal>some</literal>,
-        same family as <literal>all_of</literal> / <literal>any_of</literal>).
-        See the Language Reference section
+        <literal>splice</literal>), creating a fixed-length array of
+        <literal>undefined</literal> entries (<literal>create_array</literal>),
+        immutability (<literal>freeze</literal>), and quantifiers
+        (<literal>every</literal> / <literal>some</literal>, same family as
+        <literal>all_of</literal> / <literal>any_of</literal>). Array literals
+        may omit a value between commas (that entry is
+        <literal>undefined</literal>). See the Language Reference section
         <literal>Objects and Arrays</literal> and the Function Reference
         categories <literal>object</literal>, <literal>array</literal>, and
         <literal>higher_order_array</literal>.

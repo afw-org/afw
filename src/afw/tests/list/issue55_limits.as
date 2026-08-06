@@ -27,8 +27,8 @@ return 0;
 let a = ["only"];
 assert(at(a, 0) === "only", "0");
 assert(at(a, -1) === "only", "-1");
-assert(is_nullish(at(a, 1)), "1 oob");
-assert(is_nullish(at(a, -2)), "-2 oob");
+assert(is_nullish(at(a, 1)), "1 out of range");
+assert(is_nullish(at(a, -2)), "-2 out of range");
 
 return 0;
 

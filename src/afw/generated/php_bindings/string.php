@@ -1017,9 +1017,11 @@ class string
     /**
      * string()
      *
-     * Convert one or more values of any data type to string and return the
-     * concatenated result. A value with an undefined value is represented by
-     * 'undefined'.
+     * Conversion function for string: convert one or more values of any data
+     * type to string and return the concatenated result. With one argument
+     * this is convert-to-string; with more arguments each is converted then
+     * concatenated in order (no separator). A value with an undefined value
+     * is represented by 'undefined'.
      *
      * @param  $values Value to convert
      *

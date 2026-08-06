@@ -20,26 +20,33 @@
  *# Expression must produce a value of data type list.
  * ListExpression ::= Expression
  *
+ *# Strict JSON: dense values only (no elision, no trailing comma).
  * List ::=
  *    '['
  *        ( Json (',' Json)* )?
  *    ']'
  *
+ *# Relaxed / script: optional elision (hole → undefined) and trailing comma.
+ *# Elision is a missing element between commas (or after '[' before a comma),
+ *# not a third array state. Same rules for script ListValue and relaxed_json.
+ *# Elision is written here as empty alternative between commas.
  * RelaxedList ::=
  *    '['
- *        ( RelaxedJson (',' RelaxedJson)* )? ','?
+ *        ( RelaxedJson? (',' RelaxedJson? )* )?
+ *        ','?
  *    ']'
  *
  * ListLiteral ::=
  *    '['
- *        ( Literal (',' Literal )* )? ','?
+ *        ( Literal? (',' Literal? )* )?
+ *        ','?
  *    ']'
  *
  * ListValue ::=
  *    '['
  *        (
- *            ( Expression | ( '...' ListExpression ) )
- *            (',' ( Expression | ( '...' ListExpression ) ) )*
+ *            ( Expression | ( '...' ListExpression ) )?
+ *            (',' ( Expression | ( '...' ListExpression ) )? )*
  *        )?
  *        ','?
  *    ']'
@@ -61,6 +68,7 @@ afw_compile_parse_List(
     afw_size_t argc;
     afw_size_t start_offset;
     const afw_iterator_t *iterator;
+    afw_boolean_t first;
 
     /* Return NULL if next token is not '['. */
     afw_compile_save_cursor(start_offset);
@@ -75,113 +83,127 @@ afw_compile_parse_List(
     /* Create result list. */
     list = NULL;
     args = NULL;
+    first = true;
 
-    /* Process array values until ']'. */
-    afw_compile_get_token();
-    if (!afw_compile_token_is(close_bracket)) {
-        afw_compile_reuse_token();
-        for (;;) {
+    /*
+     * Element list (Babel/Acorn-style): after '[' or ',', either a value,
+     * spread, or elision (current token still ','). Trailing comma before
+     * ']' is allowed only when not strict JSON. Holes are dense undefined.
+     */
+    for (;;) {
+        afw_compile_get_token();
 
-            /* Spread operator. */
-            afw_compile_get_token();
-            if (allow_expression && afw_compile_token_is(ellipsis)) {
-                if ((parser)->compile_type == afw_compile_type_json ||
-                    (parser)->compile_type == afw_compile_type_relaxed_json)
-                {
-                    AFW_COMPILE_THROW_ERROR_Z(
-                        "'...' is not allowed as json list entry");
-                }
-
-                /* Entry is list expression. */
-                entry = afw_value_create_array_expression(
-                    afw_compile_create_contextual_to_cursor(start_offset),
-                    afw_compile_parse_Expression(parser),
-                    parser->p, parser->xctx);
-            }
-
-            /* Not spread operator. */
-            else {
-                afw_compile_reuse_token();
-
-                /* Next should be a value. */
-                if (allow_expression) {
-                    entry = afw_compile_parse_Expression(parser);
-                }
-                else if (allow_enhanced_literals) {
-                    entry = afw_compile_parse_Literal(parser,
-                        NULL, true, false);
-                }
-                else {
-                    entry = afw_compile_parse_Json(parser);
-                }
-            }
-
-            /*
-             * If not already building list constructor and this is not an
-             * evaluated value, start building its args.
-             */
-            if (!args && !afw_value_is_defined_and_evaluated(entry)) {
-                args = afw_compile_args_create(parser);
-                afw_compile_args_add_value(args,
-                    &afw_function_definition_array.pub);
-
-                /* Add previous list entries as args for constructor. */
-                if (list) {
-                    for (iterator = NULL;;) {
-                        value = afw_array_get_next_value(list, &iterator,
-                            parser->p, parser->xctx);
-                        if (!value) {
-                            break;
-                        }
-                        afw_compile_args_add_value(args, value);
-                    }
-                }
-                list = NULL;
-            }
-
-            /* If building constructor, add entry as arg. */
-            if (args) {
-                afw_compile_args_add_value(args, entry);               
-            }
-
-            /* If all values so far are evaluated, add entry to list. */
-            else {
-                if (!list) {
-                    list = afw_array_create_generic(parser->p, parser->xctx);
-                }
-
-                /* Add value to list. */
-                afw_array_push_value(list, entry, parser->xctx);
-            }
-
-            /*
-             * If next token is ',' continue if strict mode or next tokens is
-             * not ']'.
-             */
-            afw_compile_get_token();
-            if (afw_compile_token_is(comma)) {
-                if (!parser->strict) {
-                    afw_compile_get_token();
-                    if (afw_compile_token_is(close_bracket)) {
-                        break;
-                    }
-                    afw_compile_reuse_token();
-                }
-                continue;
-            }
-
-            /* Or if it is a ']', it's end of array. */
+        if (!first) {
+            /* Expect comma between elements, or ']' to end. */
             if (afw_compile_token_is(close_bracket)) {
                 break;
             }
+            if (!afw_compile_token_is(comma)) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Array values must be separated with a comma");
+            }
+            /* After comma: trailing ']' or start of next element. */
+            afw_compile_get_token();
+            if (afw_compile_token_is(close_bracket)) {
+                if (parser->strict) {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Trailing comma is not allowed in JSON array");
+                }
+                break;
+            }
+            /* Current token is start of next element (value, '...', or hole). */
+        }
+        else if (afw_compile_token_is(close_bracket)) {
+            /* Empty array. */
+            break;
+        }
 
-            /* Anything else is an error. */
-            AFW_COMPILE_THROW_ERROR_Z(
-                "Array values must be separated with a comma");
+        first = false;
+
+        /* Spread operator (script expressions only). */
+        if (allow_expression && afw_compile_token_is(ellipsis)) {
+            if ((parser)->compile_type == afw_compile_type_json ||
+                (parser)->compile_type == afw_compile_type_relaxed_json)
+            {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "'...' is not allowed as json list entry");
+            }
+
+            entry = afw_value_create_array_expression(
+                afw_compile_create_contextual_to_cursor(start_offset),
+                afw_compile_parse_Expression(parser),
+                parser->p, parser->xctx);
+        }
+
+        /*
+         * Elision / hole: element position is a comma (left in place for the
+         * next iteration's separator). Dense undefined — not sparse.
+         * Forbidden in strict JSON.
+         */
+        else if (afw_compile_token_is(comma)) {
+            if (parser->strict) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Array elision (holes) is not allowed in JSON");
+            }
+            afw_compile_reuse_token();
+            entry = afw_value_undefined;
+        }
+
+        /* Value element. */
+        else {
+            afw_compile_reuse_token();
+
+            if (allow_expression) {
+                entry = afw_compile_parse_Expression(parser);
+            }
+            else if (allow_enhanced_literals) {
+                entry = afw_compile_parse_Literal(parser,
+                    NULL, true, false);
+            }
+            else {
+                entry = afw_compile_parse_Json(parser);
+            }
+        }
+
+        /*
+         * If not already building list constructor and this is not an
+         * evaluated value, start building its args.
+         */
+        if (!args && !afw_value_is_defined_and_evaluated(entry)) {
+            args = afw_compile_args_create(parser);
+            afw_compile_args_add_value(args,
+                &afw_function_definition_array.pub);
+
+            /* Add previous list entries as args for constructor. */
+            if (list) {
+                for (iterator = NULL;;) {
+                    value = afw_array_get_next_value(list, &iterator,
+                        parser->p, parser->xctx);
+                    if (!value) {
+                        break;
+                    }
+                    afw_compile_args_add_value(args, value);
+                }
+            }
+            list = NULL;
+        }
+
+        /* If building constructor, add entry as arg. */
+        if (args) {
+            afw_compile_args_add_value(args, entry);
+        }
+
+        /* If all values so far are evaluated, add entry to list. */
+        else {
+            if (!list) {
+                list = afw_array_create_generic(parser->p, parser->xctx);
+            }
+
+            afw_array_push_value(list, entry, parser->xctx);
         }
     }
 
-    /* If there is a spread, a result is call to add_entries(). */
+    /* If there is a spread, a result is call to array(...). */
     if (args) {
         afw_compile_args_finalize(args, &argc, &argv);
         result = afw_value_call_built_in_function_create(

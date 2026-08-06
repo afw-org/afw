@@ -88,7 +88,11 @@ for (let pair of entries(o)) {
     <paragraph>
         Arrays are ordered sequences. Literals use square brackets. Indexing is
         zero-based. In normal script use, arrays are dense sequences of values
-        (every index from zero through length minus one holds an entry).
+        (every index from zero through length minus one holds an entry). An
+        entry may be <literal>undefined</literal>. Arrays are not objects:
+        there is no <literal>for-in</literal> over array indexes, and Adaptive
+        Script does not support the <literal>in</literal> or
+        <literal>delete</literal> keywords.
     </paragraph>
     <code><![CDATA[let a = [10, 20, 30];
 assert(a[0] === 10);
@@ -107,7 +111,38 @@ assert(is_nullish(at(a, 99))); /* out of range → undefined */]]></code>
     </paragraph>
 
     <section>
-        <header>Indexing with at</header>
+        <header>Array literals and omitted elements</header>
+        <paragraph>
+            Between commas in an array literal you may omit a value. That
+            position still counts toward the length and holds
+            <literal>undefined</literal> (the same idea as writing
+            <literal>undefined</literal> explicitly).
+        </paragraph>
+        <code><![CDATA[let a = ["a", , "b"];
+assert(length(a) === 3);
+assert(a[0] === "a");
+assert(a[1] === undefined);
+assert(a[2] === "b");
+
+let b = ["a", undefined, "b"];
+assert(a[1] === b[1]);]]></code>
+        <paragraph>
+            A trailing comma before the closing bracket does not add an extra
+            entry: <literal>[1,]</literal> has length 1. Omitted elements in
+            array literals are allowed in Adaptive Script and in relaxed JSON.
+            Strict JSON does not allow them (JSON arrays must list a value for
+            every element).
+        </paragraph>
+        <paragraph>
+            <literal>for-of</literal> and higher-order functions such as
+            <literal>map</literal> and <literal>filter</literal> walk every
+            index from zero through length minus one, including positions whose
+            value is <literal>undefined</literal>.
+        </paragraph>
+    </section>
+
+    <section>
+        <header>Indexing with at and bracket form</header>
         <paragraph>
             <literal>at(array, index)</literal> returns the value at a signed
             index. Negative indexes count from the end (<literal>-1</literal>
@@ -118,6 +153,13 @@ assert(is_nullish(at(a, 99))); /* out of range → undefined */]]></code>
 assert(at(a, 0) === "a");
 assert(a->at(-1) === "c");
 assert(is_nullish(at(a, 3)));]]></code>
+        <paragraph>
+            Bracket indexing <literal>a[index]</literal> is also zero-based
+            and accepts negative indexes from the end. When the index is
+            outside the array (for example past the end), the result is
+            <literal>undefined</literal>, the same as
+            <literal>at(array, index)</literal>.
+        </paragraph>
     </section>
 
     <section>
@@ -144,6 +186,35 @@ add_entries(b, [1, 2], [3]);]]></code>
             queue (FIFO). Method form is available, for example
             <literal>a-&gt;push(4)</literal>, <literal>a-&gt;pop()</literal>.
         </paragraph>
+        <paragraph>
+            Assignment to an index can also grow a mutable array by one entry
+            when the index is exactly the current length (the next free
+            index). Assignment to an existing index replaces that entry.
+            Assignment past the end (an index greater than the length) is an
+            error; Adaptive Script does not fill missing indexes with
+            <literal>undefined</literal> on assign.
+        </paragraph>
+        <code><![CDATA[let a = [];
+a[0] = "x";             /* length becomes 1 */
+a[1] = "y";             /* length becomes 2 */
+a[0] = "z";             /* replace */
+/* a[5] = "no";        → error: index is past the end */]]></code>
+        <paragraph>
+            <literal>create_array(n)</literal> creates a new mutable array of
+            length <literal>n</literal> whose entries are all
+            <literal>undefined</literal>. The length must be a non-negative
+            integer within the implementation limit documented for that
+            function in the Function Reference. Use it when you want a known
+            length up front; use <literal>push</literal> or assignment at the
+            next free index when growing as you go. This is a length-based
+            constructor, not a conversion function.
+            <literal>array(...)</literal> builds from elements (and optional
+            spread); a non-spread array argument is nested as one element.
+        </paragraph>
+        <code><![CDATA[let a = create_array(3);
+assert(length(a) === 3);
+assert(a[0] === undefined);
+a[1] = "ready";]]></code>
         <paragraph>
             <literal>splice(array, startIndex, deleteCount?, …values)</literal>
             removes zero or more values starting at

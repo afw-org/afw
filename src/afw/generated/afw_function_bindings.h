@@ -3366,7 +3366,9 @@ afw_function_definition_add_entries;
  * @brief Adaptive Function `add_entries`
  * @param x function execute parameter.
  *
- * Add the entries of one or more arrays to another.
+ * Append every entry of each source array onto the end of target, in order.
+ * target must be mutable. Entries are copied by value reference; nested objects
+ * and arrays are not deeply cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -3403,7 +3405,12 @@ afw_function_definition_array;
  * @brief Adaptive Function `array`
  * @param x function execute parameter.
  *
- * Construct an array with 0 or more elements.
+ * Construct a new array from the given values (not a conversion function). Each
+ * argument becomes one element, in order. If a value is written as
+ * ...expression and the expression is an array, each of its entries is included
+ * in order. An empty call produces an empty array. A non-spread array argument
+ * is nested as a single element (array([1,2]) is [[1,2]]); use spread or a list
+ * literal to flatten. For a length of undefined slots use create_array(n).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3427,10 +3434,6 @@ afw_function_definition_array;
  * Returns:
  *
  *   (array) The constructed array.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_array(
@@ -3446,7 +3449,8 @@ afw_function_definition_at;
  *
  * Return the value at a zero-based index in an array. Negative indexes count
  * from the end (-1 is the last element). If the index is out of range, the
- * result is undefined.
+ * result is undefined. Bracket indexing a[index] uses the same out-of-range
+ * result (undefined).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3575,6 +3579,48 @@ afw_function_definition_clone_array;
  *
  * __________
  */
+
+/** @brief Function definition create_array */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_create_array;
+
+/**
+ * @brief Adaptive Function `create_array`
+ * @param x function execute parameter.
+ *
+ * Create a new mutable array of the given length where every entry is
+ * undefined. Useful when you want a known length up front before assigning or
+ * filling entries. Length must be a non-negative integer and must not exceed
+ * 1,000,000. This is a length-based constructor, not a conversion function (see
+ * also array(...), which builds from elements).
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function create_array(
+ *       length: integer
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   length - (integer) Number of undefined elements (0 or more, up to the
+ *       maximum).
+ *
+ * Returns:
+ *
+ *   (array) A new array of the requested length; each entry is undefined.
+ *
+ * Errors thrown:
+ *
+ *   arg_error - length is negative or exceeds the maximum allowed
+ */
+const afw_value_t *
+afw_function_execute_create_array(
+    afw_function_execute_t *x);
 
 /** @brief Function definition eq<array> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
@@ -4116,8 +4162,9 @@ afw_function_definition_push;
  * @brief Adaptive Function `push`
  * @param x function execute parameter.
  *
- * Append one or more values to the end of a mutable array (push back). Returns
- * the modified array.
+ * Append one or more values to the end of a mutable array. Returns the same
+ * array after modification. The array must not be immutable (for example after
+ * freeze).
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -12264,44 +12311,6 @@ afw_function_definition_eqx_function;
  * __________
  */
 
-/** @brief Function definition function */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_function;
-
-/**
- * @brief Adaptive Function `function`
- * @param x function execute parameter.
- *
- * Converts value to data type function returning function result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function function(
- *       value: any
- *   ): function;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (function) Converted value.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition ge<function> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_ge_function;
@@ -13390,7 +13399,9 @@ afw_function_definition_all_of;
  * @brief Adaptive Function `all_of`
  * @param x function execute parameter.
  *
- * Returns true if all values in an array pass the predicate test.
+ * Return true if predicate returns true for every entry of the first array in
+ * values (index order), or if that array is empty. Entries whose value is
+ * undefined are included. every() is an alias for the common single-array form.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13516,7 +13527,9 @@ afw_function_definition_any_of;
  * @brief Adaptive Function `any_of`
  * @param x function execute parameter.
  *
- * Returns true if any value in an array pass the predicate test.
+ * Return true if predicate returns true for any entry of the first array in
+ * values (index order). Entries whose value is undefined are included. Empty
+ * array yields false. some() is an alias for the common single-array form.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13641,9 +13654,9 @@ afw_function_definition_every;
  * @brief Adaptive Function `every`
  * @param x function execute parameter.
  *
- * Returns true if all values in an array pass the predicate test. Same behavior
- * as all_of for a single array (and additional parameters). Empty array yields
- * true.
+ * Return true if predicate returns true for every entry of the first array in
+ * values (index order), or if that array is empty. Entries whose value is
+ * undefined are included. Same single-array behavior as all_of.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13683,8 +13696,9 @@ afw_function_definition_filter;
  * @brief Adaptive Function `filter`
  * @param x function execute parameter.
  *
- * This produces an array containing only values from another array that pass a
- * predicate test.
+ * Return a new array of entries from the first array in values for which
+ * predicate returns true. Every index is considered, including entries whose
+ * value is undefined. Order of kept entries is preserved.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13711,7 +13725,7 @@ afw_function_definition_filter;
  *
  * Returns:
  *
- *   (array) This is the resulting filtered array.
+ *   (array) A new array of the entries that passed the test (possibly empty).
  */
 const afw_value_t *
 afw_function_execute_filter(
@@ -13725,8 +13739,10 @@ afw_function_definition_find;
  * @brief Adaptive Function `find`
  * @param x function execute parameter.
  *
- * The predicate is called for each value in the first array in values until
- * true is returned, then that value is returned.
+ * Call predicate for each entry of the first array in values, in index order,
+ * until it returns true, then return that entry. Entries whose value is
+ * undefined are included. If no entry passes, the result is undefined (the same
+ * as a found undefined entry; use filter if you need to tell those apart).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13752,7 +13768,7 @@ afw_function_definition_find;
  *
  * Returns:
  *
- *   (any) The first value that passes the test is returned.
+ *   (any) The first matching entry, or undefined if none match.
  */
 const afw_value_t *
 afw_function_execute_find(
@@ -13766,8 +13782,12 @@ afw_function_definition_map;
  * @brief Adaptive Function `map`
  * @param x function execute parameter.
  *
- * This function creates an array of the results of calling functor with each
- * value of the first array in values
+ * Call functor once for each entry of the first array in values, in index order
+ * from 0 through length minus one, and return a new array of the same length
+ * with the results. Entries whose value is undefined (including omitted
+ * elements in array literals) are included; the functor receives undefined for
+ * those indexes. Additional values parameters, if present, are passed through
+ * on every call.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13786,13 +13806,13 @@ afw_function_definition_map;
  *
  *   functor - ((...values: any) => any)
  *
- *   values - (1 or more any) These are the parameters passed to functor with
- *       the exception that the first array is passed one value at a time. At
- *       least one array is required.
+ *   values - (1 or more any) The first array is walked one entry at a time as
+ *       the first argument to functor. Additional parameters are passed on
+ *       every call. At least one array is required.
  *
  * Returns:
  *
- *   (array)
+ *   (array) A new array with one result per entry of the first array.
  */
 const afw_value_t *
 afw_function_execute_map(
@@ -13806,11 +13826,11 @@ afw_function_definition_reduce;
  * @brief Adaptive Function `reduce`
  * @param x function execute parameter.
  *
- * Reduce calls functor for each value in array with two parameters, accumulator
- * and value, and must return a value of any dataType. Parameter accumulator is
- * the reduce() accumulator parameter value on first call and the return value
- * of previous functor() call on subsequent calls. The dataType of the return
- * value should normally be the same as accumulator, but this is not required.
+ * Call functor for each entry of array, in index order, with the current
+ * accumulator and that entry. The first call uses the accumulator argument;
+ * each later call uses the previous return value. Every index is visited,
+ * including undefined entries. If array is empty, the accumulator argument is
+ * returned without calling functor.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13832,15 +13852,15 @@ afw_function_definition_reduce;
  *       accumulator parameter on the next call to functor().
  *
  *   accumulator - (any) This is an initial accumulator value passed to
- *       functor(). Normally, the dataType of accumulator will be the dataTape
+ *       functor(). Normally, the dataType of accumulator will be the data type
  *       for the reduce() return value, but this is not required.
  *
  *   array - (array) This is an array to be reduced.
  *
  * Returns:
  *
- *   (any) This is the final return value from functor() or the accumulator
- *       parameter value if array is empty.
+ *   (any) The final value returned by functor, or the initial accumulator if
+ *       array is empty.
  */
 const afw_value_t *
 afw_function_execute_reduce(
@@ -13854,9 +13874,9 @@ afw_function_definition_some;
  * @brief Adaptive Function `some`
  * @param x function execute parameter.
  *
- * Returns true if any value in an array passes the predicate test. Same
- * behavior as any_of for a single array (and additional parameters). Empty
- * array yields false.
+ * Return true if predicate returns true for any entry of the first array in
+ * values (index order). Entries whose value is undefined are included. Empty
+ * array yields false. Same single-array behavior as any_of.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13896,11 +13916,11 @@ afw_function_definition_sort;
  * @brief Adaptive Function `sort`
  * @param x function execute parameter.
  *
- * This produces an array with values sorted based on result of compareFunction.
- * The compareFunction is passed two values from the array and must return an
- * integer less than 0 if the first value is less than the second value, 0 if
- * they are equal, and a integer greater than 0 if the first value is greater
- * than the second value.
+ * Return a new array with the same entries as array, ordered using
+ * compareFunction. The array must have a single element data type (for example
+ * all integers or all strings); mixed or empty untyped arrays are not accepted.
+ * compareFunction is called with two entries and must return true when the
+ * first should sort before the second (boolean), not a numeric sort key.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -13909,21 +13929,22 @@ afw_function_definition_sort;
  *
  * ```
  *   function sort(
- *       compareFunction: (value1: any, value2: any) => integer,
+ *       compareFunction: (value1: any, value2: any) => boolean,
  *       array: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   compareFunction - ((value1: any, value2: any) => integer) This function is
- *       called with two value from array.
+ *   compareFunction - ((value1: any, value2: any) => boolean) Return true if
+ *       value1 should be ordered before value2.
  *
- *   array - (array) This is the array to sort.
+ *   array - (array) Array to sort. Must be single-type (all entries the same
+ *       data type).
  *
  * Returns:
  *
- *   (array) This the the resulting sorted array.
+ *   (array) A new array with the entries of array in sorted order.
  */
 const afw_value_t *
 afw_function_execute_sort(
@@ -16738,7 +16759,9 @@ afw_function_definition_json;
  * @brief Adaptive Function `json`
  * @param x function execute parameter.
  *
- * Converts value to data type json returning json result.
+ * Converts value to data type json returning json result. Holds JSON source
+ * text as a json value (does not parse/compile). Use polymorphic compile to
+ * compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -18014,44 +18037,6 @@ afw_function_definition_is_null;
  * __________
  */
 
-/** @brief Function definition null */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_null;
-
-/**
- * @brief Adaptive Function `null`
- * @param x function execute parameter.
- *
- * Converts value to data type null returning null result.
- *
- * This function is pure, so it will always return the same result
- * given exactly the same parameters and has no side effects.
- *
- * Declaration:
- *
- * ```
- *   function null(
- *       value: any
- *   ): void;
- * ```
- *
- * Parameters:
- *
- *   value - (any) Value to convert.
- *
- * Returns:
- *
- *   (void) Converted value.
- *
- * Errors thrown:
- *
- *   cast_error - value could not be converted
- *
- * Implemented by afw_function_execute_convert()
- *
- * __________
- */
-
 /** @brief Function definition to_string<null> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_null;
@@ -19287,9 +19272,9 @@ afw_function_definition_entries;
  * @brief Adaptive Function `entries`
  * @param x function execute parameter.
  *
- * Return an array of property entries for an object. Each entry is a
- * two-element array [name, value] where name is a string. The order matches
- * keys() for the same object.
+ * Return a new array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. Order matches keys()
+ * for the same object. The value may be undefined. The result is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19549,8 +19534,9 @@ afw_function_definition_keys;
  * @brief Adaptive Function `keys`
  * @param x function execute parameter.
  *
- * Return an array of the property names of an object. The order of names is the
- * object's property iteration order.
+ * Return a new array of the property names of an object, in the object's
+ * property iteration order. The array is a snapshot; later changes to the
+ * object do not change a previous result.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -19784,7 +19770,9 @@ afw_function_definition_object;
  * @brief Adaptive Function `object`
  * @param x function execute parameter.
  *
- * Converts value to data type object returning object result.
+ * Converts value to data type object returning object result. A string is
+ * parsed as JSON (or relaxed JSON) and must yield an object; an object is left
+ * unchanged. This is not an object-literal constructor — use { ... } for that.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -20045,8 +20033,9 @@ afw_function_definition_values;
  * @brief Adaptive Function `values`
  * @param x function execute parameter.
  *
- * Return an array of the property values of an object. The order matches keys()
- * for the same object.
+ * Return a new array of the property values of an object, in the same order as
+ * keys() for that object. Values may be undefined if a property was set to
+ * undefined. The array is a snapshot.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24340,7 +24329,10 @@ afw_function_definition_regexp;
  * @brief Adaptive Function `regexp`
  * @param x function execute parameter.
  *
- * Converts value to data type regexp returning regexp result.
+ * Converts value to data type regexp returning regexp result. Holds a regular
+ * expression source string as a regexp value (does not compile the pattern for
+ * matching by itself). Use polymorphic compile when a compiled form is
+ * required.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -24436,7 +24428,9 @@ afw_function_definition_relaxed_json;
  * @brief Adaptive Function `relaxed_json`
  * @param x function execute parameter.
  *
- * Converts value to data type relaxed_json returning relaxed_json result.
+ * Converts value to data type relaxed_json returning relaxed_json result. Holds
+ * relaxed JSON source text as a relaxed_json value (does not parse/compile).
+ * Use polymorphic compile to compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -25835,7 +25829,9 @@ afw_function_definition_script;
  * @brief Adaptive Function `script`
  * @param x function execute parameter.
  *
- * Converts value to data type script returning script result.
+ * Converts value to data type script returning script result. Holds Adaptive
+ * Script source text as a script value (does not compile or run). Use
+ * polymorphic compile to compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27845,8 +27841,10 @@ afw_function_definition_string;
  * @brief Adaptive Function `string`
  * @param x function execute parameter.
  *
- * Convert one or more values of any data type to string and return the
- * concatenated result. A value with an undefined value is represented by
+ * Conversion function for string: convert one or more values of any data type
+ * to string and return the concatenated result. With one argument this is
+ * convert-to-string; with more arguments each is converted then concatenated in
+ * order (no separator). A value with an undefined value is represented by
  * 'undefined'.
  *
  * This function is pure, so it will always return the same result
@@ -29117,7 +29115,9 @@ afw_function_definition_template;
  * @brief Adaptive Function `template`
  * @param x function execute parameter.
  *
- * Converts value to data type template returning template result.
+ * Converts value to data type template returning template result. Holds
+ * template source text as a template value (does not compile). Use polymorphic
+ * compile to compile the source.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -31610,6 +31610,8 @@ afw_function_definition_xpathExpression;
  * @param x function execute parameter.
  *
  * Converts value to data type xpathExpression returning xpathExpression result.
+ * Holds an XPath expression source string as an xpathExpression value (does not
+ * evaluate). Use polymorphic compile when a compiled form is required.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -32859,7 +32861,6 @@ afw_function_execute_clone(
  * to_string<dnsName>
  * double
  * to_string<double>
- * function
  * hexBinary
  * to_string<hexBinary>
  * ia5String
@@ -32869,7 +32870,6 @@ afw_function_execute_clone(
  * ipAddress
  * to_string<ipAddress>
  * json
- * null
  * to_string<null>
  * objectId
  * to_string<objectId>

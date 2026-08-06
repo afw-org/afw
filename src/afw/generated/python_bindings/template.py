@@ -446,7 +446,9 @@ def template(session, value):
     """
     Convert to data type template
 
-    Converts value to data type template returning template result.
+    Converts value to data type template returning template result. Holds
+    template source text as a template value (does not compile). Use
+    polymorphic compile to compile the source.
 
     Args:
         value (object): Value to convert

@@ -4,11 +4,11 @@
 //? customPurpose: Part of compiler category tests
 //? description: ...
 Type *syntax* only (issue #28): parse, store, and decompile round-trip with
-checking off. Leaves, T[] / Array<T>, tuples, unions, type/interface
-statements, object and function type annotations, hard cut of old
-(array of …) forms. Does not enable typeCheck flags or #compile; wrong
-assigns still run. Enforcement lives in type_check.as / type_check_flags.as.
-Nuance: Array<T> and T[] share the same type graph; decompile prefers T[].
+checking off. Leaves, T[], tuples, unions, type/interface statements,
+object and function type annotations, hard cut of old (array of …) forms
+and TypeScript Array<T>. Does not enable typeCheck flags or #compile;
+wrong assigns still run. Enforcement lives in type_check.as /
+type_check_flags.as.
 //? sourceType: script
 //?
 //? test: type-data-type-leaf
@@ -22,13 +22,14 @@ const z: any = 1;
 return 0;
 
 //?
-//? test: type-array-and-Array-generic
-//? description: integer[] and Array<integer> parse
+//? test: type-array-postfix
+//? description: integer[] and nested string[][] parse
 //? expect: 0
 //? source: ...
 
 const a: integer[] = [1, 2];
-const b: Array<string> = ["x"];
+const b: string[] = ["x"];
+const c: integer[][] = [[1], [2, 3]];
 return 0;
 
 //?
@@ -131,15 +132,10 @@ assert(evaluate(compile<script>(script(d1))) == 3);
 return 0;
 
 //?
-//? test: type-Array-generic-decompile
-//? description: Array<string> decompiles as string[]
-//? expect: 0
+//? test: type-Array-generic-rejected
+//? description: TypeScript Array<T> spelling is a parse error
+//? expect: error
 //? source: ...
 
-const d = decompile(compile<script>(script(
-    "const x: Array<string> = [\"a\"];\nreturn x;"
-)));
-/* Array<T> and T[] are the same IR; decompile prefers T[]. */
-assert(d ==
-    "#block(const(#assignment_target(\"const\",x:string[]),wrap_literal_array([\"a\"]),undefined),return(x))");
+const x: Array<string> = ["a"];
 return 0;

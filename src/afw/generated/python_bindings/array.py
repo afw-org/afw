@@ -13,9 +13,11 @@ import json
 
 def add_entries(session, target, source):
     """
-    Add entries of one or more arrays to another
+    Append entries from arrays onto a target array
 
-    Add the entries of one or more arrays to another.
+    Append every entry of each source array onto the end of target, in order.
+    target must be mutable. Entries are copied by value reference; nested
+    objects and arrays are not deeply cloned.
 
     Args:
         target (list): Target array. This array must not be immutable.
@@ -44,9 +46,15 @@ def add_entries(session, target, source):
 
 def array(session, values):
     """
-    Construct an array with 0 or more elements
+    Construct an array from values or spread arrays
 
-    Construct an array with 0 or more elements.
+    Construct a new array from the given values (not a conversion function).
+    Each argument becomes one element, in order. If a value is written as
+    ...expression and the expression is an array, each of its entries is
+    included in order. An empty call produces an empty array. A non-spread
+    array argument is nested as a single element (array([1,2]) is [[1,2]]);
+    use spread or a list literal to flatten. For a length of undefined slots
+    use create_array(n).
 
     Args:
         values (object): A value can refer to any adaptable value belonging to
@@ -80,7 +88,8 @@ def at(session, array, index):
 
     Return the value at a zero-based index in an array. Negative indexes count
     from the end (-1 is the last element). If the index is out of range, the
-    result is undefined.
+    result is undefined. Bracket indexing a[index] uses the same out-of-range
+    result (undefined).
 
     Args:
         array (list): Array to index.
@@ -183,6 +192,39 @@ def clone_array(session, value):
     action = {
         "function": "clone<array>",
         "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def create_array(session, length):
+    """
+    Create an array of a given length filled with undefined
+
+    Create a new mutable array of the given length where every entry is
+    undefined. Useful when you want a known length up front before assigning
+    or filling entries. Length must be a non-negative integer and must not
+    exceed 1,000,000. This is a length-based constructor, not a conversion
+    function (see also array(...), which builds from elements).
+
+    Args:
+        length (int): Number of undefined elements (0 or more, up to the
+        maximum).
+
+    Returns:
+        list: A new array of the requested length; each entry is undefined.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "create_array",
+        "length": length
     }
 
     request.add_action(action)
@@ -647,8 +689,9 @@ def push(session, array, values=None):
     """
     Append values to an array
 
-    Append one or more values to the end of a mutable array (push back).
-    Returns the modified array.
+    Append one or more values to the end of a mutable array. Returns the same
+    array after modification. The array must not be immutable (for example
+    after freeze).
 
     Args:
         array (list): Target array. Must not be immutable.

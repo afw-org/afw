@@ -52,7 +52,9 @@ export function afwCompileJson(client : any, source : any, listing? : any) : any
 }
 
 /**
- * Converts value to data type json returning json result.
+ * Converts value to data type json returning json result. Holds JSON source
+ * text as a json value (does not parse/compile). Use polymorphic compile to
+ * compile the source.
  * 
  * @param {} value - Value to convert
  * 

@@ -98,7 +98,6 @@ impl_afw_value_optional_evaluate(
     const afw_value_array_t *list;
     const afw_value_t *key;
     const afw_utf8_t *name;
-    afw_size_t i;
     const afw_value_t *result;
     const afw_compile_value_contextual_t *saved_contextual;
 
@@ -131,7 +130,7 @@ impl_afw_value_optional_evaluate(
         result = afw_value_evaluate(v, p, xctx);
     }
 
-    /* If value is single list, index is index is index into list. */
+    /* If value is single list, index is index into the array. */
     else if (afw_value_is_array(v)) {
         list = (const afw_value_array_t *)v;
 
@@ -140,15 +139,16 @@ impl_afw_value_optional_evaluate(
             AFW_THROW_ERROR_Z(evaluate,
                 "Index must be integer for array", xctx);
         }
-        i = afw_safe_cast_integer_to_size(
-            ((const afw_value_integer_t *)key)->internal,
-            xctx);
 
+        /*
+         * Pass a signed index so negative indexes count from the end (same
+         * as at()). Out of range yields undefined, like ECMAScript a[i],
+         * not an error (at() already used this nullish form).
+         */
         result = afw_array_get_entry_value(list->internal,
-            i, p, xctx);
+            ((const afw_value_integer_t *)key)->internal, p, xctx);
         if (!result) {
-            AFW_THROW_ERROR_Z(evaluate,
-                "Index out of range for array", xctx);
+            result = afw_value_undefined;
         }
     }
 
