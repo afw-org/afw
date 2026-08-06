@@ -1199,6 +1199,9 @@ if (.90 !== 0.9) {
 //? description: "ExponentPart :: e DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1259,6 +1262,9 @@ if (.9e1 !== 9.0) {
 //? description: "ExponentPart :: E DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1319,6 +1325,9 @@ if (.9E1 !== 9.0) {
 //? description: "ExponentPart :: e +DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1379,6 +1388,9 @@ if (.9e-1 !== 0.09) {
 //? description: "ExponentPart :: E +DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1439,6 +1451,9 @@ if (.9E-1 !== 0.09) {
 //? description: "ExponentPart :: e +DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1499,6 +1514,9 @@ if (.9e+1 !== 9.0) {
 //? description: "ExponentPart :: E +DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1559,6 +1577,9 @@ if (.9E+1 !== 9.0) {
 //? description: "ExponentPart :: e 0"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1619,6 +1640,9 @@ if (.9e0 !== 0.9) {
 //? description: "ExponentPart :: E 0"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: leading-dot decimal / exponent numeric literals (e.g. .1e1) not
+implemented or undecided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1679,6 +1703,7 @@ if (.9E0 !== 0.9) {
 //? description: "DecimalIntegerLiteral :: 0, NoNZeroDigit"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1739,6 +1764,7 @@ if (9. !== 9.0) {
 //? description: "DecimalIntegerLiteral :: NoNZeroDigit DecimalDigigts"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1968,6 +1994,7 @@ if (9.9 !== 9.9) {
 //? description: "ExponentPart :: e DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2028,6 +2055,7 @@ if (9.e1 !== 90.0) {
 //? description: "ExponentPart :: E DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2088,6 +2116,7 @@ if (9.E1 !== 90.0) {
 //? description: "ExponentPart :: e -DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2148,6 +2177,7 @@ if (9.e-1 !== 0.9) {
 //? description: "ExponentPart :: E -DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2208,6 +2238,7 @@ if (9.E-1 !== 0.9) {
 //? description: "ExponentPart :: e +DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2268,6 +2299,7 @@ if (9.e+1 !== 90.0) {
 //? description: "ExponentPart :: E +DecimalDigits"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2328,6 +2360,7 @@ if (9.E+1 !== 90.0) {
 //? description: "ExponentPart :: e 0"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2388,6 +2421,7 @@ if (9.e0 !== 9.0) {
 //? description: "ExponentPart :: E 0"
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: numeric literal form from test262 not accepted or half-converted
 //? source: ...
 #!/usr/bin/env afw
 

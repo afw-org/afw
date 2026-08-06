@@ -30,6 +30,9 @@ assert(x === 1);
 //? description: Type coercion order of operations for modulus operator
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? source: ...
 #!/usr/bin/env afw
 
@@ -274,6 +277,9 @@ x % 1;
 //? description: Checking with "throw"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? source: ...
 #!/usr/bin/env afw
 
@@ -299,6 +305,7 @@ try {
 //? description: Checking with "throw"
 //? expect: undefined
 //? skip: true
+//? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
 #!/usr/bin/env afw
 
@@ -345,6 +352,9 @@ if (1 % 1 !== 0) {
 //? test: S11.5.3_A3_T1.3
 //? description: Type(x) and Type(y) vary between primitive string and String object
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -384,6 +394,9 @@ if (is_NaN("1" % "x") !== true) {
 //? test: S11.5.3_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -413,6 +426,9 @@ if (is_NaN(null % null) !== true) {
 //? test: S11.5.3_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -443,6 +459,9 @@ if (is_NaN({} % {}) !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and String (primitive and object)
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -474,6 +493,9 @@ if (is_NaN(1 % "x") !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Null
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -495,6 +517,9 @@ if (null % 1 !== 0) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -516,6 +541,9 @@ if (is_NaN(undefined % 1) !== true) {
     Type(x) is different from Type(y) and both types vary between
     String (primitive or object) and Undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -547,6 +575,9 @@ if (is_NaN(undefined % new String("1")) !== true) {
     Type(x) is different from Type(y) and both types vary between
     String (primitive or object) and Null
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -576,6 +607,9 @@ if (null % new String("1") !== 0) {
 //? test: S11.5.3_A4_T1.1
 //? description: If either operand is NaN, the result is NaN
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -625,6 +659,9 @@ if (is_NaN(NaN % 1) !== true) {
 //? test: S11.5.3_A4_T1.2
 //? description: If either operand is NaN, the result is NaN
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -741,6 +778,9 @@ if (-101 % -51 !== -50) {
 //? test: S11.5.3_A4_T3
 //? description: If the dividend is an infinity results is NaN
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -811,6 +851,9 @@ if (is_NaN(Infinity % -Number.MAX_VALUE) !== true) {
 //? description: If the divisor is zero results is NaN
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 #!/usr/bin/env afw
 
@@ -902,6 +945,9 @@ if (is_NaN(Number.MAX_VALUE % -0) !== true) {
     If dividend is finite and the divisor is an infinity, the result
     equals the dividend
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -1007,6 +1053,9 @@ if (-Number.MIN_VALUE % -Infinity !== -Number.MIN_VALUE) {
     If dividend is a zero and the divisor is nonzero finite, the
     result equals the dividend
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -1090,6 +1139,9 @@ if (-0 % Number.MIN_VALUE !== -0) {
     If operands neither an infinity, nor a zero, nor NaN, return x -
     truncate(x / y) * y
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw

@@ -345,6 +345,9 @@ assert(" " === "\u2029");
     LineTerminator
 //? expect: error
 //? skip: true
+//? skipReason: ...
+FIXME: raw line terminator inside string literal should parse-error;
+case not adapted to Adaptive expect
 //? source: ...
 #!/usr/bin/env afw
 
@@ -374,6 +377,9 @@ assert(" " === "\u2029");
     LineTerminator
 //? expect: error
 //? skip: true
+//? skipReason: ...
+FIXME: raw line terminator inside string literal should parse-error;
+case not adapted to Adaptive expect
 //? source: ...
 #!/usr/bin/env afw
 
@@ -525,6 +531,7 @@ for (let index = 0; index <= 9; index = index + 1) {
 //? description: "SingleEscapeSequence :: one of b f n r t v"
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -564,6 +571,7 @@ if (String.fromCharCode(0x000D) !== "\r") {
 //? description: "SingleEscapeSequence :: one of ' \" \\"
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -599,6 +607,7 @@ if ('\"' !== '"') {
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -617,6 +626,9 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -732,6 +744,7 @@ if ("Z" !== "\Z") {
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -750,6 +763,9 @@ for (let index = 0; index <= 17; index = index + 1) {
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -835,6 +851,7 @@ if ("z" !== "\z") {
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -853,6 +870,9 @@ for (let index = 0; index <= 32; index = index + 1) {
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -997,6 +1017,7 @@ if ("Ё" !== "\Ё") {
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1015,6 +1036,9 @@ for (let index = 0; index <= 32; index = index + 1) {
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1217,6 +1241,7 @@ if ("v" === "\v") {
 //? description: String.fromCharCode(0x0000)
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1232,6 +1257,9 @@ if (String.fromCharCode(0x0000) !== "\0") {
 //? description: "\"\\u0000\""
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1247,6 +1275,9 @@ if ("\u0000" !== "\0") {
 //? description: "\"\\x00\""
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1262,6 +1293,7 @@ if ("\x00" !== "\0") {
 //? description: "HexEscapeSequence ::  HexDigit"
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1351,6 +1383,9 @@ if ("\x0F" !== String.fromCharCode("15")) {
 //? description: "HexEscapeSequence ::  ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1370,6 +1405,9 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? description: "HexEscapeSequence ::  ENGLISH SMALL ALPHABET"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: NonEscapeSequence identity escapes (backslash + letter equals
+letter) not decided
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1389,6 +1427,7 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? description: Check similar to ('\x01F' === String.fromCharCode('1') + 'F')
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1473,6 +1512,7 @@ if ('\x0F1' !== String.fromCharCode('15') + '1') {
 //? description: Check similar to ("\u0000" === String.fromCharCode("0"))
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1687,6 +1727,7 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? description: Check similar to ("\u0001F" === String.fromCharCode("1") + "F")
 //? expect: undefined
 //? skip: true
+//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 

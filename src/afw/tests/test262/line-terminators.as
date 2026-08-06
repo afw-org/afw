@@ -363,6 +363,9 @@ line comment
 //? description: Insert CARRIAGE RETURN (\u000D) into string
 //? expect: error
 //? skip: true
+//? skipReason: ...
+FIXME: raw CR in string literal should be a parse error; case still
+needs Adaptive expect/error form
 //? source: ...
 
 
@@ -376,6 +379,9 @@ line comment
 //? description: Insert LINE FEED (\u000A) into string
 //? expect: error
 //? skip: true
+//? skipReason: ...
+FIXME: raw LF in string literal should be a parse error; case still
+needs Adaptive expect/error form
 //? source: ...
 
 

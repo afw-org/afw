@@ -51,6 +51,9 @@ let = "irrelevant initializer";
     const: invalid assignment in next expression
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: const reassignment in for head; currently opaque closure/JSON
+error instead of clean assign error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -79,6 +82,9 @@ function() {
     const: invalid assignment in Statement body
 //? expect: error
 //? skip: true
+//? skipReason: ...
+FIXME: const reassignment in for-of body; currently opaque error instead
+of clean assign error
 //? source: ...
 #!/usr/bin/env afw
 

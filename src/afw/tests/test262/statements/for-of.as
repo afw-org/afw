@@ -1712,7 +1712,9 @@ for (const [x, x] of []) {}
 //? description: Bound names of for-of ForDeclaration are in TDZ when evaluating the iterable (const head shadows outer x)
 //? expect: error
 //? skip: true
-//? skipReason: FIXME Adaptive does not enforce TDZ for for-of head const binding (outer x may be readable in [x]); ES requires error.
+//? skipReason: ...
+FIXME: Adaptive does not enforce TDZ for for-of head const binding
+(outer x may be readable in [x]); ES requires error.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1805,7 +1807,10 @@ for (x of [], []) {}
 //? description: for-of head must be iterable; plain object has no @@iterator (ES)
 //? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
-//? skipReason: FIXME Adaptive does not reject for-of over {} with a clear iterator error (may iterate oddly or Internal error); product may want explicit non-iterable error for objects.
+//? skipReason: ...
+FIXME: Adaptive does not reject for-of over {} with a clear iterator
+error (may iterate oddly or Internal error); product may want explicit
+non-iterable error for objects.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1818,7 +1823,9 @@ for (x of {}) {}
 //? description: for-of head must be iterable; boolean primitive is not
 //? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
-//? skipReason: FIXME Adaptive does not clearly reject for-of over boolean with a stable iterator error message.
+//? skipReason: ...
+FIXME: Adaptive does not clearly reject for-of over boolean with a
+stable iterator error message.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1831,7 +1838,9 @@ for (x of false) {}
 //? description: for-of head must be iterable; number primitive is not
 //? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
-//? skipReason: FIXME Adaptive does not clearly reject for-of over number with a stable iterator error message.
+//? skipReason: ...
+FIXME: Adaptive does not clearly reject for-of over number with a stable
+iterator error message.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1844,7 +1853,9 @@ for (x of 37) {}
 //? description: for-of head null should fail (ES ToObject / non-iterable)
 //? expect: error:The value of the expression in a for-of statement's head must be an iterator.
 //? skip: true
-//? skipReason: FIXME Adaptive does not clearly reject for-of over null with a stable iterator error message.
+//? skipReason: ...
+FIXME: Adaptive does not clearly reject for-of over null with a stable
+iterator error message.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2092,7 +2103,9 @@ for ( let of [] ) ;
 //? description: for-of left-hand side may be a MemberExpression (e.g. x.y)
 //? expect: 0
 //? skip: true
-//? skipReason: FIXME Adaptive for-of does not accept member LHS (for (x.y of …)); still errors. Use a local binding then assign until fixed.
+//? skipReason: ...
+FIXME: Adaptive for-of does not accept member LHS (for (x.y of …));
+still errors. Use a local binding then assign until fixed.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3253,7 +3266,10 @@ for (let x of []) label1: label2: function f() {}
 //? description: ExpressionStatement has a lookahead restriction for let [ (ASI / let vs destructure)
 //? expect: error
 //? skip: true
-//? skipReason: FIXME Empty iterable never executes the body, so Adaptive may not surface the intended parse/runtime error for `let` newline `[a] = 0` after for-of.
+//? skipReason: ...
+FIXME: Empty iterable never executes the body, so Adaptive may not
+surface the intended parse/runtime error for `let` newline `[a] = 0`
+after for-of.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3939,7 +3955,10 @@ assert(iterationCount === 8);
 //? description: for-of over a string with astral (surrogate-pair) symbols yields code points / units as in ES
 //? expect: 0
 //? skip: true
-//? skipReason: FIXME Adaptive for-of does not iterate strings as ES character/code-point sequences (same as string-bmp). Define string iteration or document permanent non-support (#22).
+//? skipReason: ...
+FIXME: Adaptive for-of does not iterate strings as ES
+character/code-point sequences (same as string-bmp). Define string
+iteration or document permanent non-support (#22).
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3996,7 +4015,10 @@ assert(iterationCount === 4);
 //? description: for-of over a BMP string yields each character (test262 string for-of)
 //? expect: 0
 //? skip: true
-//? skipReason: FIXME Adaptive for-of does not walk string code units like ES (one whole-string step today). FIXME if we want char iteration; otherwise permanent non-support and document in #22.
+//? skipReason: ...
+FIXME: Adaptive for-of does not walk string code units like ES (one
+whole-string step today). FIXME if we want char iteration; otherwise
+permanent non-support and document in #22.
 //? source: ...
 #!/usr/bin/env afw
 

@@ -142,6 +142,9 @@ if (void x !== undefined) {
 //? test: S11.4.2_A4_T3
 //? description: Type(x) is string primitive of String object
 //? skip: true
+//? skipReason: ...
+FIXME: void operator on string; case still half-converted or void
+semantics need confirm
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -170,6 +173,9 @@ if (void x !== undefined) {
 //? test: S11.4.2_A4_T4
 //? description: Type(x) is undefined or null
 //? skip: true
+//? skipReason: ...
+FIXME: void on undefined/null — case uses isNaN incorrectly vs ES void →
+undefined
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -190,6 +196,9 @@ if (void x !== undefined) {
 //? test: S11.4.2_A4_T5
 //? description: Type(x) is Object object or Function object
 //? skip: true
+//? skipReason: ...
+FIXME: void on object — case uses isNaN incorrectly vs ES void →
+undefined
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw

@@ -51,7 +51,7 @@ official** ones for this suite and for language tests in general:
 | **`differences`** | Optional. **Language** differences between ECMAScript and Adaptive for the construct under test only. Not harness wrapping. Good future harvest input for differences docs. |
 | **`expect`** | Expected result (`0`, `error`, …) |
 | **`skip`** | `true` / `false` — do not run |
-| **`skipReason`** | Why skipped (see prefixes below) |
+| **`skipReason`** | Why skipped (see prefixes below). Long text: use `//? skipReason: ...` then body lines until the next `//?` (same `...` form as `description` / `source`; any key can do this for ~80-column editing) |
 | **`source`** | Adaptive Script body of the case |
 | **`sourceType`** | Usually `script` (file-level default OK) |
 
@@ -75,11 +75,23 @@ Examples:
 //? skipReason: FIXME: for-of member LHS (x.y)
 //? skipReason: FIXME: TDZ for for-of head const binding
 //? skipReason: Deferred: deep TCO; not planned for beta
+
+// Long reason (any //? key can use this form):
+//? skipReason: ...
+FIXME: Adaptive for-of does not enforce TDZ for for-of head const
+binding (outer x may be readable in [x]); ES requires error.
 ```
 
 Plain **`Incompatible`** with no detail is fine for a bulk first pass; enrich
 when you touch the file. Do **not** use `Incompatible` for “not yet” features
 that Adaptive might still implement — use **`FIXME:`** or **`Deferred:`**.
+
+**First-pass status (2026-08, branch `test262-skipreason-sweep`):** every
+skipped case has a prefixed `skipReason`. Counts will drift as cases unskip or
+reclassify — re-grep after edits. Use **`Incompatible:`** only for ES-only
+behavior Adaptive does not plan to support (confirm against the original
+test262 case when unsure); default uncertain skips to **`FIXME:`** or
+**`Deferred:`**.
 
 Suggested order when several are present:
 

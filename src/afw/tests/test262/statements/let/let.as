@@ -206,6 +206,7 @@ verifyConfigurable(gen, 'name');
     (TDZ, Temporal Dead Zone)
 //? expect: error
 //? skip: true
+//? skipReason: FIXME: let TDZ / use-before-init in function local declaration statement
 //? source: ...
 #!/usr/bin/env afw
 

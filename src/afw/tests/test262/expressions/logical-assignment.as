@@ -195,6 +195,9 @@ eval ??= 20;
 //? description: Checking by evaluating expression "x[...]??=[...]y"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: nullish assignment (??=) with unusual whitespace / half-adapted
+assertions
 //? source: ...
 #!/usr/bin/env afw
 

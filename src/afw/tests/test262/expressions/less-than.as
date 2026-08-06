@@ -119,6 +119,9 @@ x < 1;
 //? description: Checking with "throw"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? source: ...
 #!/usr/bin/env afw
 
@@ -441,6 +444,9 @@ if ((NaN < Number.MIN_VALUE) !== false) {
 //? test: S11.8.1_A4.2
 //? description: x is number primitive
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -602,6 +608,9 @@ if ((Infinity < Number.MIN_VALUE) !== false) {
 //? test: S11.8.1_A4.6
 //? description: x is number primitive
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw

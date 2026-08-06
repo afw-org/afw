@@ -29,6 +29,9 @@ assert(x ===  1);
 //? description: division after block statement (no ASI)
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: ASI / block-eval interaction around division vs regexp;
+half-converted
 //? source: ...
 
 
@@ -148,6 +151,7 @@ if (x / y !== 1) {
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: undefined
 //? skip: true
+//? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
 
 
@@ -167,6 +171,7 @@ catch (e) {
 //? description: If GetBase(y) is null, throw ReferenceError
 //? expect: undefined
 //? skip: true
+//? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
 
 
@@ -186,6 +191,7 @@ catch (e) {
 //? description: Checking with "throw"
 //? expect: undefined
 //? skip: true
+//? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
 
 
@@ -222,6 +228,9 @@ if (1 / 1 !== 1) {
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 
 
@@ -250,6 +259,9 @@ if (is_NaN(null / null) !== true) {
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 
 
@@ -278,6 +290,9 @@ if (is_NaN({} / {}) !== true) {
 //? description: Type(x) is different from Type(y) and both types vary between String (primitive or object) and Undefined
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? source: ...
 
 
@@ -307,6 +322,9 @@ if (is_NaN(undefined / new String("1")) !== true) {
 //? description: If both operands are finite and nonzero, the quotient is computed and rounded using IEEE 754 round-to-nearest mode.  If the magnitude is too small to represent, the result is then a zero of appropriate sign throw new Test262Error('#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0'); throw new Test262Error('#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0');
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 
 
@@ -515,6 +533,9 @@ if (Infinity / -0.0 !== -Infinity) {
 //? description: Division of an infinity by an infinity results in NaN
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 
 
@@ -543,6 +564,9 @@ if (is_NaN(Infinity / -Infinity) !== true) {
 //? description: Division of an infinity by a finite non-zero value results in a signed infinity
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 
 
@@ -652,6 +676,9 @@ if (is_NaN(-0 / -0) !== true) {
 //? description: Division of a zero by any non-zero finite value -0 results in zero of appropriate sign throw new Test262Error('#1.2: -0 / 1 === - 0. Actual: +0'); throw new Test262Error('#2.2: -0 / -1 === + 0. Actual: -0'); throw new Test262Error('#3.2: +0 / 1 === + 0. Actual: -0'); throw new Test262Error('#4.2: +0 / -1 === - 0. Actual: +0'); throw new Test262Error('#5.2: +0 / -Number.MAX_VALUE === - 0. Actual: +0'); throw new Test262Error('#6.2: -0 / Number.MIN_VALUE === - 0. Actual: +0');
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 
 
@@ -714,6 +741,9 @@ if (-0 / Number.MIN_VALUE !== -0) {
 //? description: If the magnitude is too large to represent, the result is then an infinity of appropriate sign
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? source: ...
 
 

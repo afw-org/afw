@@ -107,6 +107,9 @@ if (+(+x) !== 1) {
 //? description: Type(x) is boolean primitive or Boolean object
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Incompatible: Adaptive does not coerce boolean with unary + (ES
+ToNumber)
 //? source: ...
 #!/usr/bin/env afw
 
@@ -228,6 +231,9 @@ if (is_NaN(+(eval(script("let x;")))) !== true) {
 //? description: null convert to Number by implicit transformation
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: unary + on null (ES ToNumber → 0) — decide if Adaptive should
+allow
 //? source: ...
 #!/usr/bin/env afw
 
@@ -247,6 +253,9 @@ if (+(null) !== 0) {
 //? description: False and true convert to Number by implicit transformation
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Incompatible: Adaptive does not coerce boolean with unary + (ES
+ToNumber)
 //? source: ...
 #!/usr/bin/env afw
 

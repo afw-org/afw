@@ -233,6 +233,9 @@ function f() {
     outer let binding unchanged by for-loop let binding
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: nested for-let shadowing case needs rewrite (multiple let decls /
+Adaptive for form)
 //? source: ...
 #!/usr/bin/env afw
 

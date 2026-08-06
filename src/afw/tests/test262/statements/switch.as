@@ -798,6 +798,9 @@ if(!(SwitchTest(Infinity) === 768)){
 //? test: S12.11_A1_T4
 //? description: Using case with isNaN and isNaN(value)
 //? skip: true
+//? skipReason: ...
+FIXME: switch with is_NaN / NaN case matching half-converted from ES
+isNaN
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw

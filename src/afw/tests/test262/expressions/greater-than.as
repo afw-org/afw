@@ -97,6 +97,9 @@ x > 1;
 //? description: first expression is evaluated first, then second expression: checking with "="
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: left-to-right evaluation with assignment side effects in
+relational operands
 //? source: ...
 
 let x: integer = 0;

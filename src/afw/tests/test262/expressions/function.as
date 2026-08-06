@@ -151,6 +151,9 @@ assert(callCount === 1, "function invoked exactly once");
 //? description: Reassignment of function name is silently ignored.
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: reassignment of function BindingIdentifier in body (ES silent
+ignore in sloppy mode) not modeled
 //? source: ...
 #!/usr/bin/env afw
 

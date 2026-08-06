@@ -9,6 +9,9 @@
 //? description: Type coercion order of operations for subtraction operator
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? source: ...
 #!/usr/bin/env afw
 
@@ -253,6 +256,9 @@ x - 1;
 //? description: Checking with "throw"
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? source: ...
 #!/usr/bin/env afw
 
@@ -279,6 +285,7 @@ try {
 //? description: Checking with "throw"
 //? expect: undefined
 //? skip: true
+//? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
 #!/usr/bin/env afw
 
@@ -375,6 +382,9 @@ if (-Infinity - Infinity !== -Infinity ) {
 //? test: S11.6.2_A4_T3
 //? description: The difference of two infinities of the same sign is NaN
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -396,6 +406,9 @@ if (is_NaN(-Infinity - -Infinity) !== true ) {
     The difference of an infinity and a finite value is equal to
     infinity of appropriate sign
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -494,6 +507,9 @@ if (0 - 0 !== 0 ) {
     Using the rule of sum of a zero and a nonzero finite value and the
     fact that a - b = a + (-b)
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -545,6 +561,9 @@ if (0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
     The mathematical difference of two nonzero finite values of the
     same magnitude and same sign is +0
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -583,6 +602,9 @@ if (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE !== +0) {
     If the magnitude is too large to represent, the operation
     overflows and the result is then an infinity of appropriate sign
 //? skip: true
+//? skipReason: ...
+FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
+(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw

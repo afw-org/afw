@@ -416,7 +416,9 @@ assert(x === 42);
 //? description: null ?? recursive call is a candidate for tail-call optimization (deep recursion)
 //? expect: 0
 //? skip: true
-//? skipReason: Adaptive does not implement ES-style tail-call optimization; deep f(100000) would blow the stack. Not a short-term FIXME.
+//? skipReason: ...
+Deferred: ES-style tail-call optimization not planned for beta (deep
+recursion would overflow)
 //? source: ...
 #!/usr/bin/env afw
 
@@ -437,7 +439,9 @@ return 0;
 //? description: undefined ?? recursive call is a candidate for tail-call optimization (deep recursion)
 //? expect: 0
 //? skip: true
-//? skipReason: Adaptive does not implement ES-style tail-call optimization; deep f(100000) would blow the stack. Not a short-term FIXME.
+//? skipReason: ...
+Deferred: ES-style tail-call optimization not planned for beta (deep
+recursion would overflow)
 //? source: ...
 #!/usr/bin/env afw
 

@@ -72,6 +72,9 @@ if (x !== 1) {
 //? description: Syntax check if "x = x" throws ReferenceError
 //? expect: error
 //? skip: true
+//? skipReason: ...
+FIXME: self-init let x = x may be accepted; ES expects ReferenceError in
+some modes — confirm Adaptive TDZ/init rules
 //? source: ...
 #!/usr/bin/env afw
 
@@ -144,7 +147,10 @@ if (x !== true) {
 
 //? test: member-expr-ident-name-break-escaped
 //? description: break is a valid identifier name, using escape (MemberExpression IdentifierName)
-//? skip: true 
+//? skip: true
+//? skipReason: ...
+FIXME: escaped reserved words as property names (break spelled with
+unicode escape) not decided
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -227,6 +233,9 @@ assert(x === 1);
 //? description: Assignment Operator evaluates the value prior validating a MemberExpression's reference (null)
 //? expect: error
 //? skip: true
+//? skipReason: ...
+Harness: Adaptive assignment statement cannot appear in expression
+position as this ES test requires
 //? source: ...
 #!/usr/bin/env afw
 

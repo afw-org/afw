@@ -50,6 +50,9 @@ x >= 1;
 //? description: First expression is evaluated first, and then the second epxression
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: left-to-right evaluation with assignment side effects in
+relational operands
 //? source: ...
 
 let x: integer = 1;

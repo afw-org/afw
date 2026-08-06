@@ -631,6 +631,9 @@ assert(completion === undefined);
 //? description: Completion value from `catch` clause of a try..catch statement
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: try/catch/finally completion values (cptn-*) not matching ES;
+rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
@@ -642,6 +645,9 @@ assert(eval(script('2; try { throw null; } catch (err) { 3; }') === 3);
 //? description: Abrupt completion from finally block calls UpdatEmpty()
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: try/catch/finally completion values (cptn-*) not matching ES;
+rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
@@ -654,6 +660,9 @@ assert(completion === undefined);
 //? description: Abrupt completion from finally block calls UpdatEmpty()
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: try/catch/finally completion values (cptn-*) not matching ES;
+rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
@@ -668,6 +677,9 @@ assert(completion === undefined);
     (following execution of `catch` block)
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: try/catch/finally completion values (cptn-*) not matching ES;
+rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
@@ -691,6 +703,9 @@ assert(
     (when `catch` block is not executed)
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: try/catch/finally completion values (cptn-*) not matching ES;
+rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
@@ -708,6 +723,9 @@ assert(eval(script('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18
 //? description: Completion value from `finally` clause of a try..finally statement
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: try/catch/finally completion values (cptn-*) not matching ES;
+rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
@@ -721,6 +739,9 @@ assert(eval(script('6; try { 7; } finally { 8; }') === 7);
 //? description: Completion value from `try` clause of a try..catch statement
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: try/catch/finally completion values (cptn-*) not matching ES;
+rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3542,6 +3563,7 @@ if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
     varying values within
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: try statement semantics half-converted from test262
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4531,6 +4553,7 @@ assert(probe() === 'inside');
 //? description: Creation of new lexical environment for `catch` block
 //? expect: undefined
 //? skip: true
+//? skipReason: FIXME: catch binding / scope rules half-converted or incomplete
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4620,7 +4643,9 @@ assert(probeParam() === 'inside');
 //? test: scope-catch-param-var-none
 //? description: Retainment of existing variable environment for `catch` parameter
 //? skip: true
-//? skipReason: Incomplete half-converted test262 catch Pattern + eval(script) probe; needs rewrite under #140/differences
+//? skipReason: ...
+FIXME: half-converted catch Pattern + eval(script) probe; rewrite under
+#140 / differences
 //? expect: error:Parse error at offset 297 around line 15 column 54: Expecting Value
 //? source: ...
 #!/usr/bin/env afw

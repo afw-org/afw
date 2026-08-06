@@ -28,6 +28,9 @@
     (TDZ, Temporal Dead Zone)
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: const TDZ / use-before-init surfaces bad closure_binding JSON
+error instead of clean TDZ error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -60,6 +63,9 @@ function() {
 //? description: Returns an empty completion
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: const/let declaration completion value should be undefined
+(eval(script(...)) probe)
 //? source: ...
 #!/usr/bin/env afw
 
