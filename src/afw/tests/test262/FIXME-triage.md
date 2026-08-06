@@ -99,4 +99,5 @@ Do **not** try to “finish” those in a test262 labeling pass without #35/#2 d
 ## Related
 
 - Suite conventions: [`README.md`](README.md)  
+- **Done log** (unskips / product notes): [`changes.md`](changes.md)  
 - Skip prefixes also in `.cursor/rules/afw-tests.mdc`  

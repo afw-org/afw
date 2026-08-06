@@ -96,6 +96,12 @@ test262 case when unsure); default uncertain skips to **`FIXME:`** or
 **FIXME triage (what to convert next):** see [`FIXME-triage.md`](FIXME-triage.md)
 — shortlist and theme inventory after the labeling pass.
 
+**Case change log (what we already did):** see [`changes.md`](changes.md) —
+Index of unskips / rewrites / product `differences` **since `mgg-develop`
+branched** (merge-base `f945f97c`; same horizon as root `whats-new.md`).
+Two-way links like `whats-new.md`. Update it when you change a case’s
+run/skip/expect meaning.
+
 Suggested order when several are present:
 
 ```text
