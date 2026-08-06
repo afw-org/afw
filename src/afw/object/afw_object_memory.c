@@ -86,6 +86,14 @@ afw_object_create_wrapper_with_options(
         afw_object_create_with_options(options, p, xctx);
     self->wrapped = wrapped;
     /*
+     * Managed face: one reference on wrapped for the face's life. Released
+     * when the face pool is destroyed (see impl_afw_object_release). Unmanaged
+     * faces borrow only; caller owns base lifetime.
+     */
+    if (!self->unmanaged) {
+        afw_object_get_reference(wrapped, xctx);
+    }
+    /*
      * Carry meta (path, objectId, reconcilable, …) onto the face so
      * meta(face) matches the adapter entity. Property gets still look
      * through to wrapped for bag content.
@@ -203,6 +211,7 @@ impl_afw_object_release(
     afw_xctx_t *xctx)
 {
     const afw_object_t *entity;
+    const afw_object_t *wrapped;
 
     /* If unmanaged, just return. */
     if (self->unmanaged) {
@@ -219,8 +228,15 @@ impl_afw_object_release(
         return;
     }
 
-    /* Release pool holding managed object. */
-    afw_pool_release(self->pub.p, xctx);
+    /*
+     * Save wrapped before pool release: if this call destroys the face pool,
+     * self is gone. Drop the create-time pin only when the pool is destroyed
+     * (afw_pool_release returns NULL).
+     */
+    wrapped = self->wrapped;
+    if (afw_pool_release(self->pub.p, xctx) == NULL && wrapped) {
+        afw_object_release(wrapped, xctx);
+    }
 }
 
 

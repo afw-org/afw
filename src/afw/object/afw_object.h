@@ -803,6 +803,9 @@ afw_object_create_with_options(
  * so the shared base is not mutated through nested access.
  *
  * Nested mutable objects and arrays are promoted to faces on get.
+ *
+ * Managed faces take one reference on @p wrapped at create and release it
+ * when the face pool is destroyed. Unmanaged faces borrow @p wrapped only.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_object_create_wrapper_with_options(

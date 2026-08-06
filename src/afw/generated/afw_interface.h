@@ -6420,7 +6420,7 @@ struct afw_pool_s {
 "afw_pool"
 
 /** @sa afw_pool_release() */
-typedef void
+typedef const afw_pool_t *
 (*afw_pool_release_t)(
     const afw_pool_t * instance,
     afw_xctx_t * xctx);
@@ -6505,8 +6505,15 @@ struct afw_pool_inf_s {
  *
  * Reduce the reference count to pool. If count reaches 0, afw_pool_destroy()
  * is called.
+ * 
+ * Returns the pool instance if it still exists after this call, or NULL if
+ * this call destroyed the pool (reference count reached zero). Callers that
+ * hold other resources for the life of the pool can release them when the
+ * return is NULL. If the return is NULL, do not use the pool pointer again.
  * @param instance Pointer to this pool instance.
  * @param xctx This is the caller's xctx.
+ * @return Pool instance if still referenced; NULL if this call destroyed the
+ * pool.
  * @relates afw_pool_t
  * @see @ref afw_pool_s "afw_pool_t"
  */
