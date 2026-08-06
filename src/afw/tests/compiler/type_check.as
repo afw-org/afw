@@ -230,14 +230,14 @@ assert(r === 2);
 return 0;
 
 //?
-//? test: check-Array-generic-element-bad
-//? description: Array<string> rejects integer element
+//? test: check-array-element-bad
+//? description: string[] rejects integer element
 //? expect: error
 //? source: ...
 
 compile<script>(script(
     "#compile typeCheck;\n" +
-    "const a: Array<string> = [\"a\", 1];\n" +
+    "const a: string[] = [\"a\", 1];\n" +
     "return 0;"
 ));
 return 0;

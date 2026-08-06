@@ -1352,8 +1352,19 @@ afw_compile_is_reserved_word(
 /*ebnf>>>
  *
  *# Not implemented as syntax today; reserved for possible future surface or
- *# to block awkward identifiers. Keep 'var', 'delete', and 'with' reserved
- *# even though Adaptive Script does not implement those keywords.
+ *# to block awkward identifiers. Keep 'var' and 'with' reserved even though
+ *# Adaptive Script does not implement those keywords.
+ *#
+ *# 'in' is reserved and is not planned as Adaptive Script syntax: arrays are
+ *# not objects, and there is no for-in / "property in value" enumeration
+ *# model. Walk objects with keys/values/entries and for-of instead. Keeping
+ *# 'in' reserved blocks it as an identifier without implying a future
+ *# operator.
+ *#
+ *# 'delete' is reserved and is not planned as Adaptive Script syntax for the
+ *# same object-model reasons (no sparse "punch a hole" / property-remove
+ *# operator). Mutate arrays with splice and related helpers; remove object
+ *# properties through Adaptive object/adapter APIs, not a delete keyword.
  * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
  *      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
  *      'this' | 'typeof' | 'var' | 'with' )

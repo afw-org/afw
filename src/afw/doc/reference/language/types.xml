@@ -57,8 +57,7 @@ const f: (a: integer) => integer = function (a: integer): integer {
         <image generated-src="ebnf/syntax/diagram/PrimaryType.png" />
         <paragraph>
             A primary type is a type name, an object type literal, a tuple,
-            a parenthesized or function type, or
-            <literal>Array&lt;Type&gt;</literal>. A type name is either an
+            or a parenthesized or function type. A type name is either an
             Adaptive data type id or a name declared with
             <literal>type</literal> / <literal>interface</literal> in the
             script.
@@ -79,14 +78,14 @@ const id: Id = 3;]]></code>
         <image generated-src="ebnf/syntax/diagram/ArrayType.png" />
         <paragraph>
             Write an array of element type <literal>T</literal> as
-            <literal>T[]</literal>, or as <literal>Array&lt;T&gt;</literal>
-            (same meaning). Multiple <literal>[]</literal> suffixes nest
-            (for example <literal>integer[][]</literal>).
+            <literal>T[]</literal>. Multiple <literal>[]</literal> suffixes
+            nest (for example <literal>integer[][]</literal>). TypeScript’s
+            <literal>Array&lt;T&gt;</literal> spelling is not used.
         </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[const a: integer[] = [1, 2];
-const b: Array<string> = ["x"];
+const b: string[] = ["x"];
 const c: integer[][] = [[1], [2, 3]];]]></code>
         </section>
     </section>

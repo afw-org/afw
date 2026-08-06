@@ -122,7 +122,7 @@ typedef enum afw_value_type_kind_e {
     /** Object type literal or interface body: { a?: T, … }. */
     afw_value_type_kind_object,
 
-    /** Array type: T[] or Array<T>. */
+    /** Array type: T[] (element type). */
     afw_value_type_kind_array,
 
     /** Tuple type: [T, U, …]. */

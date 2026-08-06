@@ -411,7 +411,7 @@ FunctionTypeParameterList ::=
     FunctionTypeParameter ( ',' FunctionTypeParameter )*
 /* Named param: name ?: Type. Bare identifier without ':' is TypeName with    */
 /* optional '[]' only (not '|' / '&'). Non-identifier Type forms use full Type */
-/* (object/tuple/paren/Array<…>).                                             */
+/* (object/tuple/paren).                                                      */
 
 FunctionTypeParameter ::=
     '...'? Identifier '?'? ':' Type |
@@ -419,8 +419,7 @@ FunctionTypeParameter ::=
     '...'? (
         ObjectTypeLiteral |
         TupleType |
-        ParenthesizedOrFunctionType |
-        'Array' '<' Type '>'
+        ParenthesizedOrFunctionType
     )
 
 /* From afw_compile_parse_expression.c                                        */
@@ -437,13 +436,12 @@ ParenthesizedOrFunctionType ::=
 /* both Identifier; DataType is the closed set of Adaptive data type ids.     */
 
 TypeName ::= DataType | Identifier
-/* 'Array' without '<' is TypeName (data type array or a name "Array").       */
+/* Array element types use postfix T[] only (not TypeScript Array<T>).        */
 
 PrimaryType ::=
     ObjectTypeLiteral |
     TupleType |
     ParenthesizedOrFunctionType |
-    'Array' '<' Type '>' |
     TypeName
 
 /* From afw_compile_parse_expression.c                                        */
@@ -1086,8 +1084,19 @@ StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
 
 /* From afw_compile_lexical.c                                                 */
 /* Not implemented as syntax today; reserved for possible future surface or   */
-/* to block awkward identifiers. Keep 'var', 'delete', and 'with' reserved    */
-/* even though Adaptive Script does not implement those keywords.             */
+/* to block awkward identifiers. Keep 'var' and 'with' reserved even though   */
+/* Adaptive Script does not implement those keywords.                         */
+/*                                                                            */
+/* 'in' is reserved and is not planned as Adaptive Script syntax: arrays are  */
+/* not objects, and there is no for-in / "property in value" enumeration      */
+/* model. Walk objects with keys/values/entries and for-of instead. Keeping   */
+/* 'in' reserved blocks it as an identifier without implying a future         */
+/* operator.                                                                  */
+/*                                                                            */
+/* 'delete' is reserved and is not planned as Adaptive Script syntax for the  */
+/* same object-model reasons (no sparse "punch a hole" / property-remove      */
+/* operator). Mutate arrays with splice and related helpers; remove object    */
+/* properties through Adaptive object/adapter APIs, not a delete keyword.     */
 
 UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
