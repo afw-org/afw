@@ -82,6 +82,14 @@ Update this section if the plan changes.
   - Product mutable look-through remains **faces** (`create_wrapper_*`), not these APIs.
 - **#127** (progressive retrieve release): **not** app-only. C still has `@fixme Need corresponding releases` on script/materialize `impl_retrieve_cb` in `afw_function_adapter.c`; stream/to_response paths differ. Caps/faces landed earlier; progressive **release** still C (+ any app progressive consumer). Blocked on focused work / Jeremy for end-to-end progressive path, not “only app.”
 
+### Session wrap-up — 2026-08-06 (cleanup + managed face pin)
+
+- Landed on branch then **PR → `mgg-develop`**: dead composite/properties_callback removal + **`afw_pool_release` → pool or NULL** + managed object face pins `wrapped`.
+- **Invariant (objects):** managed memory object lifetime = **its pool’s RC**. Managed face: `get_reference(wrapped)` once at create; on face release, if `afw_pool_release(face->p) == NULL`, `release(wrapped)`. Unmanaged face still borrows. Save `wrapped` before pool release (self may be freed).
+- **Arrays:** memory arrays still pool-owned, **noop** `release` / unmanaged value face — **not** the same bug today. When #2 gives arrays real managed RC, mirror object face pin (plus other array MM work).
+- **Not removed:** `create_merged`, `aggregate_external`, views, meta, `create_view_of_c_array` — different jobs than faces.
+- Durable notes: `designs/memory-management.md`, `designs/issue-17-mutable-object-faces.md`, comment on **#2**.
+
 ### Session wrap-up — 2026-07-20
 
 - Explored **#54** (indexes / deprecated variables); did **not** implement — notes under Indexes below.

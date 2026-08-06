@@ -263,6 +263,10 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 | 2026-07-24 | Classic-style pools (free no-op) for short-lived/request; subpools for script/long-running | Direction, not immediate code |
 | 2026-07-24 | OOM / error paths must not leave unbalanced pool pins or half-promoted slots | |
 | 2026-07-24 | Target model does **not** replace phased plan order; highest-priority pieces for long-run safety listed in target section | Continue 1d when ready |
+| 2026-08-06 | **`afw_pool_release` returns** `const afw_pool_t *` — pool if still alive, **NULL** if this call destroyed it | Callers can free side holds without reading internal RC; void callers still valid |
+| 2026-08-06 | **Managed object face** (`create_wrapper_*`): pin `wrapped` once at create; `release(wrapped)` only when face pool destroy (`pool_release` → NULL). Unmanaged face borrows | Object look-through needs base for face life; save `wrapped` before pool release |
+| 2026-08-06 | **Array faces** not the same bug today (pool-owned instance, noop `release`, materialize ring). When arrays get real managed RC, mirror object pin + other #2 array work | Do not invent array pin early |
+| 2026-08-06 | Removed unfinished **`create_composite`** / **`properties_callback`**; keep **`create_merged`**, **`aggregate_external`**, views / option composite | Faces are product look-through; multi-base aggregate is different |
 
 ### Open questions (need maintainer perspective when back)
 
