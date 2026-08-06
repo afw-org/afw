@@ -50,13 +50,13 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**`variable_exists` bound vs value (#131)**](#variable_exists-bound-vs-undefined-issue-131) | `variable_exists` is **bound** (true for uninit / undefined); `variable_get` default only if **not bound**; light function briefs |
 | [**Script types (#28)**](#adaptive-script-types-issue-28) | Type annotations on Adaptive dataType leaves + shapes; opt-in `compile:typeCheck*` flags (and optional `#compile` pragma); hard cut of `(array of …)` / `(object "OT")` |
 | [**Function reference prototypes**](#function-reference-prototypes-28-spelling) | Generated Adaptive function prototypes (admin Function Reference, Monaco, C Declaration comments) use **#28 Type** spelling (`T[]`, `(…) => R`); OT ids stay as `//` notes on multi-line forms |
-| [**Mutable object faces (#17)**](#mutable-object-faces-issue-17-in-progress) | **On `issue-#17-…` → PR `mgg-develop`** — literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces; drop many manual `clone()` calls |
+| [**Mutable object faces (#17)**](#mutable-object-faces-issue-17) | Literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces — drop many manual `clone()` calls (**PR #150** → `mgg-develop`) |
 
 ---
 
-## Mutable object faces (issue #17, in progress)
+## Mutable object faces (issue #17)
 
-> **Status:** Feature-complete on branch `issue-#17-object-literals-immutable` (off `mgg-develop`); not all of this is on `mgg-develop` until merge. Maintainer design pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md).
+> **Status:** **Landed on `mgg-develop`** via [PR #150](https://github.com/afw-org/afw/pull/150) (2026-08-06). Maintainer design pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md).
 
 ### What problem this is about
 
@@ -73,7 +73,7 @@ Product goal:
 
 Under the hood a face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays get **fresh faces** so typed `map` / index paths do not share nested bags). Authors do not need a wrap API for the happy path.
 
-### Where you can drop manual `clone()` (on this branch)
+### Where you can drop manual `clone()`
 
 | Path | Notes |
 |------|--------|
@@ -107,7 +107,7 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 
 ### Migration / habits
 
-- After this ships on your branch/build, drop redundant `clone()` around **get_object / retrieve / callback / journal get** and literal isolation paths once you confirm behavior.
+- Drop redundant `clone()` around **get_object / retrieve / callback / journal get** and literal isolation paths once you confirm behavior on this tree.
 - Out-of-tree commands/extensions: rebuild if they link object/array face APIs; pure script authors follow this section.
 
 ---
@@ -1059,7 +1059,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | `afw --allow` + YAML block strings / integers | #14 (closed) | regression tests on `mgg-develop` |
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
 | Adaptive Script types | #28 (open; core shipped) | issue-#28 / #145 line on `mgg-develop` |
-| Mutable object faces (shared instances) | #17 (open; in progress) | `issue-#17-object-literals-immutable` (framing in this file + `designs/issue-17-mutable-object-faces.md`) |
+| Mutable object faces (shared instances) | #17 (closed) | PR **#150** → `mgg-develop` (this file + `designs/issue-17-mutable-object-faces.md`) |
 
 ---
 

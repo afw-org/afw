@@ -1,10 +1,9 @@
 # Issue #17 — mutable object faces (shared instance problem)
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**GitHub:** [#17](https://github.com/afw-org/afw/issues/17) (title may widen beyond “object literals immutable”).  
-**Branch:** `issue-#17-object-literals-immutable` (off `mgg-develop`).  
-**User-facing framing:** [`whats-new.md`](../whats-new.md) — *Mutable object faces (issue #17)*.  
-**Tip (pushed as of 2026-08):** journal consumer faces + nested hard edge; YAML hygiene on same branch.
+**GitHub:** [#17](https://github.com/afw-org/afw/issues/17) — **closed** (merged).  
+**Landed:** [PR #150](https://github.com/afw-org/afw/pull/150) → `mgg-develop` (2026-08-06, merge `dd318e4f`).  
+**User-facing framing:** [`whats-new.md`](../whats-new.md) — *Mutable object faces (issue #17)*.
 
 ---
 
@@ -96,28 +95,31 @@ Temporary “arrays still clone” was removed when object clone-on-bind dropped
 
 ---
 
-## Remaining process / handoff
+## Ship status
 
-1. **PR → `mgg-develop`** (feature-complete; docs refreshed 2026-08).  
-2. After merge: mark **beta-backlog** done; fold **whats-new** Highlights if still “branch” wording; optional **#17** rename/close.  
-3. **Do not** pull **#149** (runtime catalogs) into this PR.  
-4. **#39** holes stay separate.  
+**Done** — PR **#150** merged to `mgg-develop`. Post-merge checklist complete (2026-08-06).
 
-### Close checklist (after merge)
+### Close checklist
 
-- [ ] PR merged to `mgg-develop`  
-- [ ] `beta-backlog.md` #17 line → done  
-- [ ] whats-new Highlights no longer “branch only” if fully on line  
-- [ ] Comment on GitHub **#17** with ship summary + non-goals  
-- [ ] Optional: rename issue title to “mutable faces / shared instances”  
-- [ ] Close **#17** only when maintainer agrees acceptance  
+- [x] PR merged to `mgg-develop`  
+- [x] `beta-backlog.md` #17 line → done  
+- [x] whats-new Highlights / section status for landed line  
+- [x] Comment on GitHub **#17** with ship summary  
+- [x] Rename issue title to mutable faces / shared instances  
+- [x] Close **#17**  
 
-### Next session (if starting cold)
+### Related (not #17)
 
-- Branch tip + pad + whats-new are source of truth.  
-- Tests: `object_literal_wrapper.as`, `array_literal_wrapper.as`, `issue17_faces_regression.as`, file_journal consumer faces, `src/afw_yaml/tests/`.  
-- Face code: `afw_object_memory.c`, `afw_array_memory.c`, `afw_function_adapter.c`, `afw_function_journal.c`, `afw_value_isolate_mutable_default`, compile emit in `afw_compile_parse_value.c`.
+- **#149** runtime catalogs under **#2** — [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md)  
+- **#39** array holes — separate  
 
+### Code map (for archaeology)
+
+- Faces: `afw_object_memory.c`, `afw_array_memory.c`  
+- Adapter/journal: `afw_function_adapter.c`, `afw_function_journal.c`, `afw_file_journal.c` (advance start)  
+- Defaults: `afw_value_isolate_mutable_default`  
+- Emit: `afw_compile_parse_value.c`, `wrap_literal_*`  
+- Tests: `object_literal_wrapper.as`, `array_literal_wrapper.as`, `issue17_faces_regression.as`, file_journal, `src/afw_yaml/tests/`
 ---
 
 ## Author rules of thumb
