@@ -112,6 +112,7 @@ Temporary “arrays still clone” was removed when object clone-on-bind dropped
 
 - **#149** runtime catalogs under **#2** — [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md)  
 - **#39** array holes — separate  
+- **Object multi-impl cleanup (2026-08):** removed unfinished `afw_object_create_composite` + `properties_callback` (no callers). **Kept:** `create_merged`, `aggregate_external` (local server request props), object-option **composite** views. Residual memory `clone_on_set` field only (not productized). See [`memory-management.md`](memory-management.md) object impl table.
 
 ### Code map (for archaeology)
 

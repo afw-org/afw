@@ -56,7 +56,7 @@ afw_object_create_with_options(
         : &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
-    //FIXME self->clone_on_set = AFW_OBJECT_MEMORY_OPTION_IS(options, clone_on_set);
+    /* clone_on_set: residual field; always false (no public option). */
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
     /* self->wrapped is NULL (calloc). */

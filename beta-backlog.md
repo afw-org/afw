@@ -73,6 +73,15 @@ Update this section if the plan changes.
 - Optional residuals O1–O4 done as docs/audit only before merge.
 - **Next session:** not #17 feature work; pick other beta items or #149 later.
 
+### Session notes — 2026-08-06 (object multi-impl cleanup)
+
+- Branch **`cleanup-object-composite-impls`**: remove dead half-finished object impls deferred from #17.
+  - **Removed:** `afw_object_create_composite` + `afw_object_create_properties_callback` (sources, public decls, internal selfs, opaque). No in-tree callers; unfinished (NIY get_count, broken/empty iterators, composite `get_setter` always NULL).
+  - **Kept:** `afw_object_create_merged` (actions); `afw_object_aggregate_external_create` (**live** — `afw_command_local_server` request properties); object **option** `composite` (views / parentPaths — different thing).
+  - **Residual:** memory `clone_on_set` field always false; not productized.
+  - Product mutable look-through remains **faces** (`create_wrapper_*`), not these APIs.
+- **#127** (progressive retrieve release): **not** app-only. C still has `@fixme Need corresponding releases` on script/materialize `impl_retrieve_cb` in `afw_function_adapter.c`; stream/to_response paths differ. Caps/faces landed earlier; progressive **release** still C (+ any app progressive consumer). Blocked on focused work / Jeremy for end-to-end progressive path, not “only app.”
+
 ### Session wrap-up — 2026-07-20
 
 - Explored **#54** (indexes / deprecated variables); did **not** implement — notes under Indexes below.

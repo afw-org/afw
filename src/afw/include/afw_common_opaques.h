@@ -541,14 +541,6 @@ typedef struct afw_object_path_property_name_entry_s
 afw_object_path_property_name_entry_t;
 
 /**
- * @brief Opaque `afw_object_properties_callback_entry_t`.
- *
- * See afw_object.h for struct and more information.
- */
-typedef struct afw_object_properties_callback_entry_s
-afw_object_properties_callback_entry_t;
-
-/**
  * @brief Opaque `afw_object_type_t`.
  *
  * See afw_object_type.h for struct and more information.
