@@ -2305,6 +2305,11 @@ impl_test_script_get_next_key_value(
  *# Skip can be use for source that is not ready to test
  * TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
  *
+ *# Optional free-text reason when skip is true (custom property; stored on the
+ *# test object). Prefer: description = why the case exists; skipReason = why
+ *# it is skipped. Include "FIXME" in skipReason when Adaptive should fix it.
+ * TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
+ *
  *# Default is script or the one specified in TestScriptDefinition
  * TestSourceType ::= TestScriptLineStart 'source_type:'
  *     ( 'json' | 'relaxed_json' | 'script' | 'template' )

@@ -29,8 +29,9 @@ alwaysApply: false
 ```adaptive
 //?
 //? test: short_name
-//? description: What this case checks
+//? description: What this case checks (reason for the test)
 //? skip: false
+//? skipReason: Why skipped when skip is true; include FIXME if Adaptive should fix
 //? expect: 0
 //? source: ...
 
