@@ -50,7 +50,7 @@ static const afw_memory_t impl_raw_last_object_separator = {
 /* Raw end object list. */
 static const afw_memory_t impl_raw_end_object_list = {
     (const afw_byte_t *)"]\n",
-    sizeof("[\n") - 1
+    sizeof("]\n") - 1
 };
 
 /* Content type singleton instance for this implementation. */
@@ -88,7 +88,7 @@ afw_yaml_content_type_get()
 
 
 
-/* Register xml support. */
+/* Register yaml content-type support. */
 void afw_yaml_register(afw_xctx_t *xctx)
 {
     afw_content_type_register(afw_yaml_content_type_get(), xctx);

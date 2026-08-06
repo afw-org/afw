@@ -898,6 +898,8 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 
 **Issue #14** — **closed** 2026-08-04 (feature long on tree; regression suite on `mgg-develop`; re-verified 22 yaml tests)
 
+**Beta hygiene (this branch):** `afw_yaml_to_object` (content-type **`raw_to_object`**) was incomplete and is fixed so **file adapters with `contentType: yaml`** can get/add objects. Parse still does **not** issue-#17 face-wrap (conf and store stay plain); script faces come from adapter/journal return paths. See also `yaml_to_object.py`.
+
 The `afw` command can print evaluated adaptive values using any registered **content type**, not only JSON:
 
 | Option | Meaning |
@@ -943,7 +945,12 @@ Invalid `--allow` values fail with **`Invalid --allow content-type.`**
 
 ### Tests
 
-Permanent suite: **`src/afw_yaml/tests/yaml_allow_output.py`** (tags `yaml`, `content_type`).
+Permanent suite under **`src/afw_yaml/tests/`** (tags `yaml`, `content_type`):
+
+| File | Covers |
+|------|--------|
+| **`yaml_allow_output.py`** | `--allow` short/media ids, block scalars, primitives, objects/arrays, `-t yaml` conf |
+| **`yaml_to_object.py`** | `raw_to_object` / file adapter `contentType: yaml` get/add, non-mapping root reject, #17 face isolation on get |
 
 ```bash
 afwdev test -p afw_yaml --show-all
@@ -951,7 +958,7 @@ afwdev test -p afw_yaml --show-all
 afwdev test -p afw_yaml --tags yaml
 ```
 
-Covers `--allow` short/media ids, invalid allow, JSON path sanity, block-scalar chomping/indent, integers and other primitives, objects/arrays, and `-t yaml` conf parse. Handbook `usage.xml` may still omit `-a` until a docs pass; live **`afw -h`** lists it.
+Handbook `usage.xml` may still omit `-a` until a docs pass; live **`afw -h`** lists it.
 
 ---
 

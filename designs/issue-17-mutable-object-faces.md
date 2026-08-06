@@ -70,7 +70,7 @@ No special value kind. Compiler will emit a **call** to this function, like othe
 | **Assign / Pattern bind** | Today clones evaluated object/array — revisit after emit (may become redundant) |
 | **Defaults (#110)** | Clone mutable defaults — keep until wrap-equivalent |
 | **Built-in returns** | Prefer wrap face for ES-friendly “mine to mutate”; policy for write-back / cost |
-| **YAML** | Separate parser (`afw_yaml_to_value.c`); not `parse_Object` — later if needed |
+| **YAML** | Separate parser (`afw_yaml_to_value.c`); **no parse-time faces** (conf/store plain). Adapter/journal faces cover script gets. `raw_to_object` fixed for file `contentType: yaml` (beta hygiene). |
 | **User `clone()`** | Keep |
 
 ---
@@ -93,7 +93,7 @@ No special value kind. Compiler will emit a **call** to this function, like othe
 6. Arrays isolation  
 7. Built-in returns  
 8. Defaults  
-9. YAML if needed  
+9. ~~YAML if needed~~ — parse stays plain; to_object fixed; faces via adapter/journal  
 10. Issue rename + finalize whats-new on `mgg-develop`  
 
 ---
