@@ -6680,6 +6680,12 @@ afw_self_v_afwMod = {
 };
 
 const afw_value_string_t
+afw_self_v_afwModDouble = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afwModDouble)
+};
+
+const afw_value_string_t
 afw_self_v_afwModInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModInteger)
@@ -16880,9 +16886,21 @@ afw_self_v_mod = {
 };
 
 const afw_value_string_t
+afw_self_v_modDouble = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_modDouble)
+};
+
+const afw_value_string_t
 afw_self_v_modInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modInteger)
+};
+
+const afw_value_string_t
+afw_self_v_mod_double = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_mod_double)
 };
 
 const afw_value_string_t
@@ -30647,6 +30665,18 @@ const afw_value_string_t
 afw_self_v_zz__2195 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__2195)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2196 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2196)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2197 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2197)
 };
 
 const afw_value_string_t
@@ -50960,6 +50990,12 @@ afw_self_v_zz___afw__AdaptiveFunction__mod = {
 };
 
 const afw_value_string_t
+afw_self_v_zz___afw__AdaptiveFunction__mod_double_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__mod_double_)
+};
+
+const afw_value_string_t
 afw_self_v_zz___afw__AdaptiveFunction__mod_integer_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__mod_integer_)
@@ -57953,6 +57989,12 @@ const afw_value_string_t
 afw_self_v_zz__min_time_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__min_time_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__mod_double_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__mod_double_)
 };
 
 const afw_value_string_t

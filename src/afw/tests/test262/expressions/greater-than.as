@@ -94,23 +94,31 @@ x > 1;
 1 > y;
 
 //? test: 11.8.2_A2.4_T1
-//? description: first expression is evaluated first, then second expression: checking with "="
+//? description: first expression is evaluated first, then second expression (throw side effects)
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: left-to-right evaluation with assignment side effects in
-relational operands
+//? differences: Adaptive assignment is statement-only (never an expression value) — permanent, not a planned gap; LTR order uses throw side effects instead of (x = 1) > x
 //? source: ...
 
-let x: integer = 0;
-if ((x = 1) > x !== false) {
-    throw "(x = 1) > x !== false";
+let x1: integer = 0;
+let y1: integer = 0;
+
+function x(): any {
+    x1 = 1;
+    throw "x";
 }
 
-x = 1;
-if (x > (x = 0) !== true) {
-    throw "x > (x = 0) !== true";
+function y(): any {
+    y1 = 1;
+    throw "y";
 }
+
+safe_evaluate(
+    x() > y(),
+    "error"
+);
+
+assert(x1 === 1, "left operand evaluated");
+assert(y1 === 0, "right operand not evaluated after left threw");
 
 
 

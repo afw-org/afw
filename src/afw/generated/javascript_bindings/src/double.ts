@@ -439,6 +439,26 @@ export function afwMinDouble(client : any, values : number) : any {
 }
 
 /**
+ * Divide double dividend by double divisor and return the double remainder.
+ * 
+ * @param {double} dividend -
+ * 
+ * @param {double} divisor -
+ * 
+ * @returns {double}
+ */
+export function afwModDouble(client : any, dividend : number, divisor : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "mod<double>";
+    _action["dividend"] = dividend;
+    _action["divisor"] = divisor;
+
+    return client.perform(_action);
+}
+
+/**
  * Multiply 2 or more double values and return the double result.
  * 
  * @param {double} values -

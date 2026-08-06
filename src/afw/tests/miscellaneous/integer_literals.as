@@ -190,3 +190,15 @@ return 1. === 1.0 && 1.e1 === 10.0 && 0. === 0.0;
 //? source: ...
 
 return -.5 === -0.5 && -.1e1 === -1.0;
+
+//? test: Double-mod-IEEE
+//? description: double % (fmod) NaN / signed-zero / Infinity edges
+//? expect: true
+//? source: ...
+
+return is_NaN(NaN % 1.0) &&
+    is_NaN(1.0 % 0.0) &&
+    is_NaN(Infinity % 1.0) &&
+    (5.0 % 2.0 === 1.0) &&
+    (1.0 % Infinity === 1.0) &&
+    (1.0 / (-0.0 % 1.0) === -Infinity);

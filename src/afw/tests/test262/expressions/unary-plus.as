@@ -167,21 +167,19 @@ if (is_NaN(+"infinity") !== true) {
 
 //? test: S11.4.6_A3_T4
 //? description: Type(x) is undefined or null
-//? expect: error:#2: +null === 0. Actual: null
+//? expect: undefined
+//? differences: Adaptive unary + is identity; +null === null, +undefined === undefined (not ES ToNumber)
 //? source: ...
 #!/usr/bin/env afw
 
-
 //CHECK#1
-/* can't do this in AS
-if (isNaN(+void 0) !== true) {
-  throw '#1: +void 0 === Not-a-Number. Actual: ' + (+void 0);
+if (+undefined !== undefined) {
+  throw '#1: +undefined === undefined. Actual: ' + string(+undefined);
 }
-*/
 
 //CHECK#2
-if (+null !== 0) {
-  throw '#2: +null === 0. Actual: ' + (+null);
+if (+null !== null) {
+  throw '#2: +null === null. Actual: ' + string(+null);
 }
 
 
@@ -228,24 +226,15 @@ if (is_NaN(+(eval(script("let x;")))) !== true) {
 
 
 //? test: S9.3_A2_T2
-//? description: null convert to Number by implicit transformation
+//? description: null with unary + (Adaptive: identity, not ES ToNumber)
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: unary + on null (ES ToNumber → 0) — decide if Adaptive should
-allow
+//? differences: Adaptive unary + is a no-op (no ToNumber); +null === null, not 0
 //? source: ...
 #!/usr/bin/env afw
 
-// \fixme should we allow this?
-
-// CHECK #1
-if (+(null) !== 0) {
-  throw '#1.1: +(null) === 0. Actual: ' + string(+(null));
-} else {
-  if (1/+(null) !== Infinity) {
-    throw '#1.2: +(null) === +0. Actual: -0';
-  }
+// CHECK #1 — Adaptive: unary + does not coerce null to 0
+if (+(null) !== null) {
+  throw '#1: +(null) === null. Actual: ' + string(+(null));
 }
 
 

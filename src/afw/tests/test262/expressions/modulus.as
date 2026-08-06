@@ -394,9 +394,7 @@ if (is_NaN("1" % "x") !== true) {
 //? test: S11.5.3_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -426,9 +424,7 @@ if (is_NaN(null % null) !== true) {
 //? test: S11.5.3_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -459,9 +455,7 @@ if (is_NaN({} % {}) !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and String (primitive and object)
 //? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -493,9 +487,7 @@ if (is_NaN(1 % "x") !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Null
 //? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -517,9 +509,7 @@ if (null % 1 !== 0) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Undefined
 //? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -605,63 +595,47 @@ if (null % new String("1") !== 0) {
 
 
 //? test: S11.5.3_A4_T1.1
-//? description: If either operand is NaN, the result is NaN
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? description: If either operand is NaN, the result is NaN (left NaN; double mod)
 //? expect: undefined
+//? differences: Adaptive double % uses fmod (IEEE); integer % still throws on divide-by-zero
 //? source: ...
 #!/usr/bin/env afw
 
 
 //CHECK#1
 if (is_NaN(NaN % NaN) !== true) {
-  throw '#1: NaN % NaN === Not-a-Number. Actual: ' + (NaN % NaN);
+  throw '#1: NaN % NaN === Not-a-Number';
 }
 
 //CHECK#2
-if (is_NaN(NaN % +0) !== true) {
-  throw '#2: NaN % +0 === Not-a-Number. Actual: ' + (NaN % +0);
+if (is_NaN(NaN % 0.0) !== true) {
+  throw '#2: NaN % 0.0 === Not-a-Number';
 }
 
 //CHECK#3
-if (is_NaN(NaN % -0) !== true) {
-  throw '#3: NaN % -0 === Not-a-Number. Actual: ' + (NaN % -0);
+if (is_NaN(NaN % -0.0) !== true) {
+  throw '#3: NaN % -0.0 === Not-a-Number';
 }
 
 //CHECK#4
 if (is_NaN(NaN % Infinity) !== true) {
-  throw '#4: NaN % Infinity === Not-a-Number. Actual: ' + (NaN % Infinity);
+  throw '#4: NaN % Infinity === Not-a-Number';
 }
 
 //CHECK#5
 if (is_NaN(NaN % -Infinity) !== true) {
-  throw '#5: NaN % -Infinity === Not-a-Number. Actual: ' + (NaN % -Infinity);
+  throw '#5: NaN % -Infinity === Not-a-Number';
 }
 
 //CHECK#6
-if (is_NaN(NaN % Number.MAX_VALUE) !== true) {
-  throw '#6: NaN % Number.MAX_VALUE === Not-a-Number. Actual: ' + (NaN % Number.MAX_VALUE);
+if (is_NaN(NaN % 1.0) !== true) {
+  throw '#6: NaN % 1.0 === Not-a-Number';
 }
 
-//CHECK#7
-if (is_NaN(NaN % Number.MIN_VALUE) !== true) {
-  throw '#7: NaN % Number.MIN_VALUE === Not-a-Number. Actual: ' + (NaN % Number.MIN_VALUE);
-}
-
-//CHECK#8
-if (is_NaN(NaN % 1) !== true) {
-  throw '#8: NaN % 1 === Not-a-Number. Actual: ' + (NaN % 1);
-}
 
 
 //? test: S11.5.3_A4_T1.2
-//? description: If either operand is NaN, the result is NaN
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? description: If either operand is NaN, the result is NaN (right NaN; double mod)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -669,43 +643,34 @@ FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
 
 //CHECK#1
 if (is_NaN(NaN % NaN) !== true) {
-  throw '#1: NaN % NaN === Not-a-Number. Actual: ' + (NaN % NaN);
+  throw '#1: NaN % NaN === Not-a-Number';
 }
 
 //CHECK#2
-if (is_NaN(+0 % NaN) !== true) {
-  throw '#2: +0 % NaN === Not-a-Number. Actual: ' + (+0 % NaN);
+if (is_NaN(0.0 % NaN) !== true) {
+  throw '#2: 0.0 % NaN === Not-a-Number';
 }
 
 //CHECK#3
-if (is_NaN(-0 % NaN) !== true) {
-  throw '#3: -0 % NaN === Not-a-Number. Actual: ' + (-0 % NaN);
+if (is_NaN(-0.0 % NaN) !== true) {
+  throw '#3: -0.0 % NaN === Not-a-Number';
 }
 
 //CHECK#4
 if (is_NaN(Infinity % NaN) !== true) {
-  throw '#4: Infinity % NaN === Not-a-Number. Actual: ' + (Infinity % NaN);
+  throw '#4: Infinity % NaN === Not-a-Number';
 }
 
 //CHECK#5
 if (is_NaN(-Infinity % NaN) !== true) {
-  throw '#5:  -Infinity % NaN === Not-a-Number. Actual: ' + ( -Infinity % NaN);
+  throw '#5: -Infinity % NaN === Not-a-Number';
 }
 
 //CHECK#6
-if (is_NaN(Number.MAX_VALUE % NaN) !== true) {
-  throw '#6: Number.MAX_VALUE % NaN === Not-a-Number. Actual: ' + (Number.MAX_VALUE % NaN);
+if (is_NaN(1.0 % NaN) !== true) {
+  throw '#6: 1.0 % NaN === Not-a-Number';
 }
 
-//CHECK#7
-if (is_NaN(Number.MIN_VALUE % NaN) !== true) {
-  throw '#7: Number.MIN_VALUE % NaN === Not-a-Number. Actual: ' + (Number.MIN_VALUE % NaN);
-}
-
-//CHECK#8
-if (is_NaN(1 % NaN) !== true) {
-  throw '#8: 1 % NaN === Not-a-Number. Actual: ' + (1 % NaN);
-}
 
 
 //? test: S11.5.3_A4_T2
@@ -776,11 +741,7 @@ if (-101 % -51 !== -50) {
 
 
 //? test: S11.5.3_A4_T3
-//? description: If the dividend is an infinity results is NaN
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? description: If the dividend is an infinity results is NaN (double mod)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -788,263 +749,178 @@ FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
 
 //CHECK#1
 if (is_NaN(-Infinity % Infinity) !== true) {
-  throw '#1: -Infinity % Infinity === Not-a-Number. Actual: ' + (-Infinity % Infinity);
+  throw '#1: -Infinity % Infinity === Not-a-Number';
 }
 
 //CHECK#2
 if (is_NaN(-Infinity % -Infinity) !== true) {
-  throw '#2: -Infinity % -Infinity === Not-a-Number. Actual: ' + (-Infinity % -Infinity);
+  throw '#2: -Infinity % -Infinity === Not-a-Number';
 }
 
 //CHECK#3
 if (is_NaN(Infinity % Infinity) !== true) {
-  throw '#3: Infinity % Infinity === Not-a-Number. Actual: ' + (Infinity % Infinity);
+  throw '#3: Infinity % Infinity === Not-a-Number';
 }
 
 //CHECK#4
 if (is_NaN(Infinity % -Infinity) !== true) {
-  throw '#4: Infinity % -Infinity === Not-a-Number. Actual: ' + (Infinity % -Infinity);
+  throw '#4: Infinity % -Infinity === Not-a-Number';
 }
 
 //CHECK#5
-if (is_NaN(-Infinity % 1) !== true) {
-  throw '#5: Infinity % 1 === Not-a-Number. Actual: ' + (Infinity % 1);
+if (is_NaN(-Infinity % 1.0) !== true) {
+  throw '#5: -Infinity % 1.0 === Not-a-Number';
 }
 
 //CHECK#6
-if (is_NaN(-Infinity % -1) !== true) {
-  throw '#6: -Infinity % -1 === Not-a-Number. Actual: ' + (-Infinity % -1);
+if (is_NaN(-Infinity % -1.0) !== true) {
+  throw '#6: -Infinity % -1.0 === Not-a-Number';
 }
 
 //CHECK#7
-if (is_NaN(Infinity % 1) !== true) {
-  throw '#7: Infinity % 1 === Not-a-Number. Actual: ' + (Infinity % 1);
+if (is_NaN(Infinity % 1.0) !== true) {
+  throw '#7: Infinity % 1.0 === Not-a-Number';
 }
 
 //CHECK#8
-if (is_NaN(Infinity % -1) !== true) {
-  throw '#8: Infinity % -1 === Not-a-Number. Actual: ' + (Infinity % -1);
+if (is_NaN(Infinity % -1.0) !== true) {
+  throw '#8: Infinity % -1.0 === Not-a-Number';
 }
 
 //CHECK#9
-if (is_NaN(-Infinity % Number.MAX_VALUE) !== true) {
-  throw '#9: Infinity % Number.MAX_VALUE === Not-a-Number. Actual: ' + (Infinity % Number.MAX_VALUE);
+if (is_NaN(Infinity % 1.7976931348623157e+308) !== true) {
+  throw '#9: Infinity % max-double === Not-a-Number';
 }
 
-//CHECK#10
-if (is_NaN(-Infinity % -Number.MAX_VALUE) !== true) {
-  throw '#10: -Infinity % -Number.MAX_VALUE === Not-a-Number. Actual: ' + (-Infinity % -Number.MAX_VALUE);
-}
-
-//CHECK#11
-if (is_NaN(Infinity % Number.MAX_VALUE) !== true) {
-  throw '#11: Infinity % Number.MAX_VALUE === Not-a-Number. Actual: ' + (Infinity % Number.MAX_VALUE);
-}
-
-//CHECK#12
-if (is_NaN(Infinity % -Number.MAX_VALUE) !== true) {
-  throw '#12: Infinity % -Number.MAX_VALUE === Not-a-Number. Actual: ' + (Infinity % -Number.MAX_VALUE);
-}
 
 
 //? test: S11.5.3_A4_T4
-//? description: If the divisor is zero results is NaN
+//? description: If the divisor is zero results is NaN (double mod; not integer %)
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
+//? differences: Integer % still throws Integer divide by zero; double % yields NaN via fmod
 //? source: ...
 #!/usr/bin/env afw
 
 
+// Use double literals so % resolves to mod<double> (fmod), not integer
+// which throws on divide-by-zero.
+
 //CHECK#1
-if (is_NaN(-0 % 0) !== true) {
-  throw '#1: -0 % 0 === Not-a-Number. Actual: ' + (-0 % 0);
+if (is_NaN(-0.0 % 0.0) !== true) {
+  throw '#1: -0.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#2
-if (is_NaN(-0 % -0) !== true) {
-  throw '#2: -0 % -0 === Not-a-Number. Actual: ' + (-0 % -0);
+if (is_NaN(-0.0 % -0.0) !== true) {
+  throw '#2: -0.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#3
-if (is_NaN(0 % 0) !== true) {
-  throw '#3: 0 % 0 === Not-a-Number. Actual: ' + (0 % 0);
+if (is_NaN(0.0 % 0.0) !== true) {
+  throw '#3: 0.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#4
-if (is_NaN(0 % -0) !== true) {
-  throw '#4: 0 % -0 === Not-a-Number. Actual: ' + (0 % -0);
+if (is_NaN(0.0 % -0.0) !== true) {
+  throw '#4: 0.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#5
-if (is_NaN(-1 % 0) !== true) {
-  throw '#5: 1 % 0 === Not-a-Number. Actual: ' + (1 % 0);
+if (is_NaN(-1.0 % 0.0) !== true) {
+  throw '#5: -1.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#6
-if (is_NaN(-1 % -0) !== true) {
-  throw '#6: -1 % -0 === Not-a-Number. Actual: ' + (-1 % -0);
+if (is_NaN(-1.0 % -0.0) !== true) {
+  throw '#6: -1.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#7
-if (is_NaN(1 % 0) !== true) {
-  throw '#7: 1 % 0 === Not-a-Number. Actual: ' + (1 % 0);
+if (is_NaN(1.0 % 0.0) !== true) {
+  throw '#7: 1.0 % 0.0 === Not-a-Number';
 }
 
 //CHECK#8
-if (is_NaN(1 % -0) !== true) {
-  throw '#8: 1 % -0 === Not-a-Number. Actual: ' + (1 % -0);
+if (is_NaN(1.0 % -0.0) !== true) {
+  throw '#8: 1.0 % -0.0 === Not-a-Number';
 }
 
 //CHECK#9
-if (is_NaN(-Infinity % 0) !== true) {
-  throw '#9: Infinity % 0 === Not-a-Number. Actual: ' + (Infinity % 0);
+if (is_NaN(Infinity % 0.0) !== true) {
+  throw '#9: Infinity % 0.0 === Not-a-Number';
 }
 
 //CHECK#10
-if (is_NaN(-Infinity % -0) !== true) {
-  throw '#10: -Infinity % -0 === Not-a-Number. Actual: ' + (-Infinity % -0);
+if (is_NaN(-Infinity % 0.0) !== true) {
+  throw '#10: -Infinity % 0.0 === Not-a-Number';
 }
 
-//CHECK#11
-if (is_NaN(Infinity % 0) !== true) {
-  throw '#11: Infinity % 0 === Not-a-Number. Actual: ' + (Infinity % 0);
-}
 
-//CHECK#12
-if (is_NaN(Infinity % -0) !== true) {
-  throw '#12: Infinity % -0 === Not-a-Number. Actual: ' + (Infinity % -0);
-}
-
-/*
-//CHECK#13
-if (is_NaN(Number.MIN_VALUE % 0) !== true) {
-  throw '#13: Number.MIN_VALUE % 0 === Not-a-Number. Actual: ' + (Number.MIN_VALUE % 0);
-}
-
-//CHECK#14
-if (is_NaN(Number.MIN_VALUE % -0) !== true) {
-  throw '#14: -Number.MIN_VALUE % -0 === Not-a-Number. Actual: ' + (-Number.MIN_VALUE % -0);
-}
-
-//CHECK#15
-if (is_NaN(Number.MAX_VALUE % 0) !== true) {
-  throw '#15: Number.MAX_VALUE % 0 === Not-a-Number. Actual: ' + (Number.MAX_VALUE % 0);
-}
-
-//CHECK#16
-if (is_NaN(Number.MAX_VALUE % -0) !== true) {
-  throw '#16: Number.MAX_VALUE % -0 === Not-a-Number. Actual: ' + (Number.MAX_VALUE % -0);
-}
-*/
 
 //? test: S11.5.3_A4_T5
 //? description:...
     If dividend is finite and the divisor is an infinity, the result
     equals the dividend
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 
+// Double literals so % uses mod<double>
+
 //CHECK#1
-if (1 % -Infinity !== 1) {
-  throw '#1: 1 % -Infinity === 1. Actual: ' + (1 % -Infinity);
+if (1.0 % -Infinity !== 1.0) {
+  throw '#1: 1.0 % -Infinity === 1.0. Actual: ' + string(1.0 % -Infinity);
 }
 //CHECK#2
-if (1 % Infinity !==1) {
-  throw '#2: 1 % Infinity === 1. Actual: ' + (1 % Infinity);
+if (1.0 % Infinity !== 1.0) {
+  throw '#2: 1.0 % Infinity === 1.0. Actual: ' + string(1.0 % Infinity);
 }
 
 //CHECK#3
-if (-1 % Infinity !== -1) {
-  throw '#3: -1 % Infinity === -1. Actual: ' + (-1 % Infinity);
+if (-1.0 % Infinity !== -1.0) {
+  throw '#3: -1.0 % Infinity === -1.0. Actual: ' + string(-1.0 % Infinity);
 }
 
 //CHECK#4
-if (-1 % -Infinity !== -1) {
-  throw '#4: -1 % -Infinity === -1. Actual: ' + (-1 % -Infinity);
+if (-1.0 % -Infinity !== -1.0) {
+  throw '#4: -1.0 % -Infinity === -1.0. Actual: ' + string(-1.0 % -Infinity);
 }
 
 //CHECK#5
-if (0 % Infinity !== 0) {
-  throw '#5.1: 0 % Infinity === 0. Actual: ' + (0 % Infinity);
+if (0.0 % Infinity !== 0.0) {
+  throw '#5.1: 0.0 % Infinity === 0.0. Actual: ' + string(0.0 % Infinity);
 } else {
-  if (1 / (0 % Infinity) !== Infinity) {
-    throw '#5.2: 0 % Infinity === + 0. Actual: -0';
+  if (1.0 / (0.0 % Infinity) !== Infinity) {
+    throw '#5.2: 0.0 % Infinity === +0';
   }
 }
 
 //CHECK#6
-if (0 % -Infinity !== 0) {
-  throw '#6.1: 0 % -Infinity === 0. Actual: ' + (0 % -Infinity);
+if (0.0 % -Infinity !== 0.0) {
+  throw '#6.1: 0.0 % -Infinity === 0.0. Actual: ' + string(0.0 % -Infinity);
 } else {
-  if (1 / (0 %  -Infinity) !== Infinity) {
-    throw '#6.2: 0 % -Infinity === + 0. Actual: -0';
+  if (1.0 / (0.0 % -Infinity) !== Infinity) {
+    throw '#6.2: 0.0 % -Infinity === +0';
   }
 }
 
 //CHECK#7
-if (-0 % Infinity !== -0) {
-  throw '#7.1: -0 % Infinity === 0. Actual: ' + (-0 % Infinity);
+if (-0.0 % Infinity !== -0.0) {
+  throw '#7.1: -0.0 % Infinity === -0. Actual: ' + string(-0.0 % Infinity);
 } else {
-  if (1 / (-0 % Infinity) !== -Infinity) {
-    throw '#7.2: -0 % Infinity === - 0. Actual: +0';
+  if (1.0 / (-0.0 % Infinity) !== -Infinity) {
+    throw '#7.2: -0.0 % Infinity === -0';
   }
 }
 
 //CHECK#8
-if (-0 %  -Infinity !== -0) {
-  throw '#8.1: -0 % -Infinity === 0. Actual: ' + (-0 % -Infinity);
+if (-0.0 % -Infinity !== -0.0) {
+  throw '#8.1: -0.0 % -Infinity === -0. Actual: ' + string(-0.0 % -Infinity);
 } else {
-  if (1 / (-0 %  -Infinity) !== -Infinity) {
-    throw '#8.2: -0 % -Infinity === - 0. Actual: +0';
+  if (1.0 / (-0.0 % -Infinity) !== -Infinity) {
+    throw '#8.2: -0.0 % -Infinity === -0';
   }
-}
-
-//CHECK#9
-if (Number.MAX_VALUE % -Infinity !== Number.MAX_VALUE) {
-  throw '#9: Number.MAX_VALUE % -Infinity === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE % -Infinity);
-}
-
-//CHECK#10
-if (Number.MAX_VALUE % Infinity !== Number.MAX_VALUE) {
-  throw '#10: Number.MAX_VALUE % Infinity === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE % Infinity);
-}
-
-//CHECK#11
-if (-Number.MAX_VALUE % Infinity !== -Number.MAX_VALUE) {
-  throw '#11: -Number.MAX_VALUE % Infinity === -Number.MAX_VALUE. Actual: ' + (-Number.MAX_VALUE % Infinity);
-}
-
-//CHECK#12
-if (-Number.MAX_VALUE % -Infinity !== -Number.MAX_VALUE) {
-  throw '#12: -Number.MAX_VALUE % -Infinity === -Number.MAX_VALUE. Actual: ' + (-Number.MAX_VALUE % -Infinity);
-}
-
-//CHECK#13
-if (Number.MIN_VALUE % -Infinity !== Number.MIN_VALUE) {
-  throw '#13: Number.MIN_VALUE % -Infinity === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE % -Infinity);
-}
-//CHECK#14
-if (Number.MIN_VALUE % Infinity !== Number.MIN_VALUE) {
-  throw '#14: Number.MIN_VALUE % Infinity === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE % Infinity);
-}
-
-//CHECK#15
-if (-Number.MIN_VALUE % Infinity !== -Number.MIN_VALUE) {
-  throw '#15: -Number.MIN_VALUE % Infinity === -Number.MIN_VALUE. Actual: ' + (-Number.MIN_VALUE % Infinity);
-}
-
-//CHECK#16
-if (-Number.MIN_VALUE % -Infinity !== -Number.MIN_VALUE) {
-  throw '#16: -Number.MIN_VALUE % -Infinity === -Number.MIN_VALUE. Actual: ' + (-Number.MIN_VALUE % -Infinity);
 }
 
 
@@ -1052,84 +928,64 @@ if (-Number.MIN_VALUE % -Infinity !== -Number.MIN_VALUE) {
 //? description:...
     If dividend is a zero and the divisor is nonzero finite, the
     result equals the dividend
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 
+// Double literals for signed-zero and fmod path
+
 //CHECK#1
-if (0 % 1 !== 0) {
-  throw '#1.1: 0 % 1 === 0. Actual: ' + (0 % 1);
+if (0.0 % 1.0 !== 0.0) {
+  throw '#1.1: 0.0 % 1.0 === 0.0';
 } else {
-  if (1 / (0 % 1) !== Infinity) {
-    throw '#1.2: 0 % 1 === + 0. Actual: -0';
+  if (1.0 / (0.0 % 1.0) !== Infinity) {
+    throw '#1.2: 0.0 % 1.0 === +0';
   }
 }
 
 //CHECK#2
-if (0 % -1 !== 0) {
-  throw '#2.1: 0 % -1 === 0. Actual: ' + (0 % -1);
+if (0.0 % -1.0 !== 0.0) {
+  throw '#2.1: 0.0 % -1.0 === 0.0';
 } else {
-  if (1 / (0 %  -1) !== Infinity) {
-    throw '#2.2: 0 % -1 === + 0. Actual: -0';
+  if (1.0 / (0.0 % -1.0) !== Infinity) {
+    throw '#2.2: 0.0 % -1.0 === +0';
   }
 }
 
 //CHECK#3
-if (-0 % 1 !== -0) {
-  throw '#3.1: -0 % 1 === 0. Actual: ' + (-0 % 1);
+if (-0.0 % 1.0 !== -0.0) {
+  throw '#3.1: -0.0 % 1.0 === -0';
 } else {
-  if (1 / (-0 % 1) !== -Infinity) {
-    throw '#3.2: -0 % 1 === - 0. Actual: +0';
+  if (1.0 / (-0.0 % 1.0) !== -Infinity) {
+    throw '#3.2: -0.0 % 1.0 === -0';
   }
 }
 
 //CHECK#4
-if (-0 %  -1 !== -0) {
-  throw '#4.1: -0 % -1 === 0. Actual: ' + (-0 % -1);
+if (-0.0 % -1.0 !== -0.0) {
+  throw '#4.1: -0.0 % -1.0 === -0';
 } else {
-  if (1 / (-0 %  -1) !== -Infinity) {
-    throw '#4.2: 0 % -1 === - 0. Actual: +0';
+  if (1.0 / (-0.0 % -1.0) !== -Infinity) {
+    throw '#4.2: -0.0 % -1.0 === -0';
   }
 }
 
 //CHECK#5
-if (0 % Number.MAX_VALUE !== 0) {
-  throw '#5.1: 0 % Number.MAX_VALUE === 0. Actual: ' + (0 % Number.MAX_VALUE);
+if (0.0 % 1.7976931348623157e+308 !== 0.0) {
+  throw '#5.1: 0.0 % max-double === 0.0';
 } else {
-  if (1 / (0 % Number.MAX_VALUE) !== Infinity) {
-    throw '#5.2: 0 % Number.MAX_VALUE === + 0. Actual: -0';
+  if (1.0 / (0.0 % 1.7976931348623157e+308) !== Infinity) {
+    throw '#5.2: 0.0 % max-double === +0';
   }
 }
 
 //CHECK#6
-if (0 % Number.MIN_VALUE !== 0) {
-  throw '#6.1: 0 % Number.MIN_VALUE === 0. Actual: ' + (0 % Number.MIN_VALUE);
+if (-0.0 % 1.7976931348623157e+308 !== -0.0) {
+  throw '#6.1: -0.0 % max-double === -0';
 } else {
-  if (1 / (0 % Number.MIN_VALUE) !== Infinity) {
-    throw '#6.2: 0 % Number.MIN_VALUE === + 0. Actual: -0';
-  }
-}
-
-//CHECK#7
-if (-0 % Number.MAX_VALUE !== -0) {
-  throw '#7.1: -0 % Number.MAX_VALUE === 0. Actual: ' + (-0 % Number.MAX_VALUE);
-} else {
-  if (1 / (-0 % Number.MAX_VALUE) !== -Infinity) {
-    throw '#7.2: -0 % Number.MAX_VALUE === - 0. Actual: +0';
-  }
-}
-
-//CHECK#8
-if (-0 % Number.MIN_VALUE !== -0) {
-  throw '#8.1: -0 % Number.MIN_VALUE === 0. Actual: ' + (-0 % Number.MIN_VALUE);
-} else {
-  if (1 / (-0 % Number.MIN_VALUE) !== -Infinity) {
-    throw '#8.2: 0 % Number.MIN_VALUE === - 0. Actual: +0';
+  if (1.0 / (-0.0 % 1.7976931348623157e+308) !== -Infinity) {
+    throw '#6.2: -0.0 % max-double === -0';
   }
 }
 
@@ -1138,79 +994,74 @@ if (-0 % Number.MIN_VALUE !== -0) {
 //? description:...
     If operands neither an infinity, nor a zero, nor NaN, return x -
     truncate(x / y) * y
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 
 function truncate(x) {
-  if (x > 0) {
-    return Math.floor(x);
+  if (x > 0.0) {
+    return floor(x);
   } else {
-    return Math.ceil(x);
+    return ceil(x);
   }
 }
 
-let x, y;
+let x;
+let y;
 
 //CHECK#1
 x = 1.3;
 y = 1.1;
 if (x % y !== 0.19999999999999996) {
-  throw '#1: x = 1.3; y = 1.1; x % y === 0.19999999999999996. Actual: ' + (x % y);
+  throw '#1: 1.3 % 1.1 === 0.19999999999999996. Actual: ' + string(x % y);
 }
 
 //CHECK#2
 x = -1.3;
 y = 1.1;
 if (x % y !== -0.19999999999999996) {
-  throw '#2: x = -1.3; y = 1.1; x % y === -0.19999999999999996. Actual: ' + (x % y);
+  throw '#2: -1.3 % 1.1 === -0.19999999999999996. Actual: ' + string(x % y);
 }
 
 //CHECK#3
 x = 1.3;
 y = -1.1;
 if (x % y !== 0.19999999999999996) {
-  throw '#3: x = 1.3; y = -1.1; x % y === 0.19999999999999996. Actual: ' + (x % y);
+  throw '#3: 1.3 % -1.1 === 0.19999999999999996. Actual: ' + string(x % y);
 }
 
 //CHECK#4
 x = -1.3;
 y = -1.1;
 if (x % y !== -0.19999999999999996) {
-  throw '#4: x = -1.3; y = -1.1; x % y === -0.19999999999999996. Actual: ' + (x % y);
+  throw '#4: -1.3 % -1.1 === -0.19999999999999996. Actual: ' + string(x % y);
 }
 
 //CHECK#5
 x = 1.3;
 y = 1.1;
 if (x % y !== x - truncate(x / y) * y) {
-  throw '#5: x = 1.3; y = 1.1; x % y === x - truncate(x / y) * y. Actual: ' + (x % y);
+  throw '#5: 1.3 % 1.1 === x - truncate(x / y) * y. Actual: ' + string(x % y);
 }
 
 //CHECK#6
 x = -1.3;
 y = 1.1;
 if (x % y !== x - truncate(x / y) * y) {
-  throw '#6: x = -1.3; y = 1.1; x % y === x - truncate(x / y) * y. Actual: ' + (x % y);
+  throw '#6: -1.3 % 1.1 === x - truncate(x / y) * y. Actual: ' + string(x % y);
 }
 
 //CHECK#7
 x = 1.3;
 y = -1.1;
 if (x % y !== x - truncate(x / y) * y) {
-  throw '#7: x = 1.3; y = -1.1; x % y === x - truncate(x / y) * y. Actual: ' + (x % y);
+  throw '#7: 1.3 % -1.1 === x - truncate(x / y) * y. Actual: ' + string(x % y);
 }
 
 //CHECK#8
 x = -1.3;
 y = -1.1;
 if (x % y !== x - truncate(x / y) * y) {
-  throw '#8: x = -1.3; y = -1.1; x % y === x - truncate(x / y) * y. Actual: ' + (x % y);
+  throw '#8: -1.3 % -1.1 === x - truncate(x / y) * y. Actual: ' + string(x % y);
 }
-
-

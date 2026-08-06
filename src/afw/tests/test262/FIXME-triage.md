@@ -57,6 +57,9 @@ Do **not** try to “finish” those in a test262 labeling pass without #35/#2 d
 | **for-of const + closures** | `head-const-fresh-binding-per-iteration` | **skip+FIXME (#35 / #2)**; `expect: 0` desired — not `expect: error` stand-in |
 | **7 leading-dot / trailing-dot numerics** | `numeric.as` `A2.1_*`, `A2.2_*`, `A3.1_*`, `A3.3_*` | **Fixed in C** (`impl_parse_number` + `.` token); unskipped / false-green expects fixed |
 | **8 string NonEscape / `\x` / `\0` / line-continuation** | `string.as` `A4.2_T2/T4/T6/T8`, `A5.1_T2/T3`, `A6.1_T2/T3`, `line-continuation-*` | **Fixed in C** (identity, hex, null, `\`+LT); fromCharCode cases stay **Incompatible** |
+| **unary + null** | `unary-plus.as` `S9.3_A2_T2`, `S11.4.6_A3_T4` | **Product: identity** (no ToNumber); `+null === null` + `differences` |
+| **half-converted leftovers** | `??=` whitespace; switch `is_NaN`; `>` / `>=` LTR | Unskipped/rewritten (throw order; Adaptive switch rewrite). **Assignment-as-expression is permanent non-support** (differences / typescript-differences). |
+| **IEEE modulus template** | `modulus.as` `A4_T*` pure double | **`mod<double>` via fmod**; coercion null/string → **Incompatible** |
 
 ## Theme inventory (all FIXME)
 
