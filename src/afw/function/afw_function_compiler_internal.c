@@ -401,6 +401,17 @@ impl_assignment_target(
 
     case afw_compile_assignment_target_type_symbol_reference:
         symbol = at->symbol_reference->symbol;
+        /*
+         * const may only be set when establishing the binding (const/let
+         * define path). Plain assign_only must not overwrite a const.
+         */
+        if (assignment_type == afw_compile_assignment_type_assign_only &&
+            symbol->symbol_type == afw_value_block_symbol_type_const)
+        {
+            AFW_THROW_ERROR_FZ(read_only, xctx,
+                "Cannot assign to const variable \"" AFW_UTF8_FMT "\"",
+                AFW_UTF8_FMT_ARG(symbol->name));
+        }
         if (symbol->type.kind != afw_value_type_kind_data_type ||
             symbol->type.data_type != afw_data_type_unevaluated)
         {
@@ -487,6 +498,13 @@ impl_assign_value(
     else if (afw_value_is_symbol_reference(target)) {
         const afw_value_symbol_reference_t *t =
             (afw_value_symbol_reference_t *)target;
+        if (assignment_type == afw_compile_assignment_type_assign_only &&
+            t->symbol->symbol_type == afw_value_block_symbol_type_const)
+        {
+            AFW_THROW_ERROR_FZ(read_only, xctx,
+                "Cannot assign to const variable \"" AFW_UTF8_FMT "\"",
+                AFW_UTF8_FMT_ARG(t->symbol->name));
+        }
         if (t->symbol->symbol_type != afw_value_block_symbol_type_function &&
             afw_value_is_script_function_definition(value))
         {
@@ -1081,6 +1099,26 @@ afw_function_execute_for_of(
         iterable = afw_function_evaluate_required_parameter(x, 2, NULL);
 
         assignment_type = afw_compile_assignment_type_use_assignment_targets;
+        /*
+         * After the first iteration, let/var heads reassign the same slot
+         * (assign_only). const for-of must rebind each iteration without
+         * treating that as a user assignment to const (ES: fresh binding
+         * per iteration; Adaptive: same slot, const define type each time).
+         */
+        {
+            const afw_value_t *for_of_target = x->argv[1];
+            afw_boolean_t const_for_of_head;
+
+            const_for_of_head = false;
+            if (afw_value_is_assignment_target(for_of_target)) {
+                const afw_value_assignment_target_t *at =
+                    (const afw_value_assignment_target_t *)for_of_target;
+                if (at->assignment_target->assignment_type ==
+                    afw_compile_assignment_type_const)
+                {
+                    const_for_of_head = true;
+                }
+            }
 
         if (afw_value_is_string(iterable)) {
             strv = (const afw_value_string_t *)iterable;
@@ -1104,7 +1142,10 @@ afw_function_execute_for_of(
                 value = afw_value_create_unmanaged_string(&one, p, xctx);
 
                 impl_assign(x->argv[1], value, assignment_type, p, xctx);
-                assignment_type = afw_compile_assignment_type_assign_only;
+                if (!const_for_of_head) {
+                    assignment_type =
+                        afw_compile_assignment_type_assign_only;
+                }
                 result = afw_value_block_evaluate_statement(
                     x, x->argv[3], p, xctx);
                 if (afw_xctx_statement_flow_is_leave(xctx)) {
@@ -1121,7 +1162,10 @@ afw_function_execute_for_of(
                     break;
                 }
                 impl_assign(x->argv[1], value, assignment_type, p, xctx);
-                assignment_type = afw_compile_assignment_type_assign_only;
+                if (!const_for_of_head) {
+                    assignment_type =
+                        afw_compile_assignment_type_assign_only;
+                }
                 result = afw_value_block_evaluate_statement(
                     x, x->argv[3], p, xctx);
                 if (afw_xctx_statement_flow_is_leave(xctx)) {
@@ -1134,6 +1178,7 @@ afw_function_execute_for_of(
                 "for-of head must be an array or string",
                 xctx);
         }
+        } /* const_for_of_head scope */
     }
     AFW_FINALLY{
 

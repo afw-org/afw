@@ -215,7 +215,8 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | Topic | Adaptive choice |
 |-------|-----------------|
 | **`===` / `!==` on objects and arrays** | **Structural** (deep) equality, not reference identity |
-| **Uninitialized `let`** | Readable as **undefined** (no TDZ) |
+| **Uninitialized `let`** | Readable as **undefined** (no TDZ); self-init `let x = x` is allowed |
+| **`const` reassignment** | **Rejected** (`Cannot assign to const variable "…"` / `read_only`); for-of **rebinds** const head each iteration without treating that as user assign |
 | **`throw` / `catch`** | String message + optional data; fixed catch object shape |
 | **Type checking** | **Opt-in** (not always-on `tsc`) |
 | **Outside names** | **Qualifiers**, not globals |

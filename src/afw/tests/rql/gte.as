@@ -45,7 +45,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
 // we should have more than one object
 assert(length(objects) > 0);
 
-const found = false;
+let found = false;
 
 // verify they all match
 for (const obj of objects) {

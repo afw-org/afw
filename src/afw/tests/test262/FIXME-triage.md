@@ -13,8 +13,8 @@ Use this to pick **a few** converts later. Prefer cases that need a small Adapti
 | **1** | **void rewrite** | Wrong probe (`isNaN` vs `undefined`); likely **unskip after body fix**, no language change | 2–3 | `expressions/void.as` `S11.4.2_A4_T4`, `_T5` (and `_T3` if needed) |
 | **2** | **Raw line terminators in strings** | Product expects parse **error**; adapt `expect` / source, may already error | 4 | `literals/string.as` `S7.8.4_A1.1_T2`, `A1.2_T2`; `line-terminators.as` `invalid-string-cr` / `lf` |
 | **3** | **for-of error quality** | Clear non-iterable / primitive / null errors — **product + messages**, high author value | 4 | `for-of.as` `head-expr-obj-iterator-method`, `…-primitive…`, `head-expr-to-obj` |
-| **4** | **for-of TDZ / member LHS** | Real gaps; decide implement vs document permanent | 2 | `head-const-bound-names-fordecl-tdz`, `head-lhs-member` |
-| **5** | **TDZ error quality** | Opaque `closure_binding` JSON vs clean TDZ — **#2-adjacent**, good beta UX | 3 | `const/const.as` block-local TDZ; `let/let.as` function-local TDZ; maybe `assignment.as` `11.13.1_A4_T2` |
+| **4** | **for-of temporal-dead-zone head / member LHS** | Real gaps; decide implement vs document permanent | 2 | `head-const-bound-names-fordecl-tdz`, `head-lhs-member` (member done) |
+| **5** | **Temporal dead zone / self-init** | Adaptive: no temporal dead zone (undefined); opaque `closure_binding` errors → **#35/#2** or Adaptive `differences` | 3 | const/let self-init cases |
 | **6** | **const reassignment errors** | Opaque errors on `const` assign in for / for-of | 2 | `const/syntax.as` for head + for-of body |
 | **7** | **Leading-dot numerics** | Single product decision: support `.1e1` **or** rebucket **Incompatible** | 8 | `literals/numeric.as` `S7.8.3_A2.2_T*` |
 | **8** | **String NonEscapeSequence** | Decide `\A === "A"` (and friends) or permanent non-support | 8 | `literals/string.as` `S7.8.4_A4.2_T2` etc. |
@@ -26,6 +26,22 @@ Use this to pick **a few** converts later. Prefer cases that need a small Adapti
 
 **Practical “convert a few” slice:** do **1 → 2 → 3** first (high chance of green unskips or clear product wins without a multi-week language project). Then **4–6** if focusing language quality.
 
+## Closures and lifetime (**#35**, **#2**)
+
+Adaptive **has** closures, but many ES-style tests still fail or only “pass” by expecting the wrong failure because of **escape / capture / lifetime** (pools, `closure_binding` JSON noise, for-of const “fresh binding per iteration” with closures, etc.).
+
+| Tracker | Role |
+|---------|------|
+| **[#35](https://github.com/afw-org/afw/issues/35)** | Closures support — left open; many `closures.as` skips are escape/lifetime, not “no closures” |
+| **[#2](https://github.com/afw-org/afw/issues/2)** | Value lifetime / memory — closures that escape scopes need managed paths |
+
+**Policy for this suite:** when a case is really about **closure capture or escaped bindings**, prefer **`skip: true`** + **`FIXME: … (#35 / #2)`** (and correct `expect` for the *desired* Adaptive/ES outcome) over:
+
+- leaving a green test that only asserts today’s broken capture, or  
+- `expect: error:Assertion failed: …` as a permanent stand-in for “closures wrong.”
+
+Do **not** try to “finish” those in a test262 labeling pass without #35/#2 design work.
+
 ### Converted on this branch (first slice)
 
 | Cluster | Cases | Notes |
@@ -35,7 +51,10 @@ Use this to pick **a few** converts later. Prefer cases that need a small Adapti
 | **3 for-of non-iterable** | `for-of.as` heads `{}` / boolean / number / null | Unskipped; **`expect: error:for-of head must be an array or string`** (C message) |
 | **for-of member LHS** | `head-lhs-member` | **Fixed in C** (`impl_assign` accepts `reference_by_key`); unskipped |
 | **for-of string iteration** | `string-bmp`, `string-astral` | **Fixed in C** (UTF-8 code points); unskipped + `differences` |
-| **for-of TDZ / ASI let[** | `head-const-bound-names-fordecl-tdz`, `let-array-with-newline` | Still **skip+FIXME** — need language-wide TDZ / ASI, not for-of-only |
+| **for-of temporal dead zone / semicolon insertion** | `head-const-bound-names-fordecl-tdz`, `let-array-with-newline` | Still **skip+FIXME** — language-wide, not for-of-only |
+| **const assign** | `const` reassignment | **Fixed in C** (`read_only` / clear message); for-of body + classic for update tests unskipped |
+| **no temporal dead zone (Adaptive)** | self-init `let x = x` etc. | Converted to Adaptive semantics + `differences` |
+| **for-of const + closures** | `head-const-fresh-binding-per-iteration` | **skip+FIXME (#35 / #2)**; `expect: 0` desired — not `expect: error` stand-in |
 
 ## Theme inventory (all FIXME)
 

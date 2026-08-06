@@ -69,17 +69,15 @@ if (x !== 1) {
 
 
 //? test: 11.13.1_A4_T2
-//? description: Syntax check if "x = x" throws ReferenceError
-//? expect: error
-//? skip: true
-//? skipReason: ...
-FIXME: self-init let x = x may be accepted; ES expects ReferenceError in
-some modes — confirm Adaptive TDZ/init rules
+//? description: let x = x self-init (ES TDZ ReferenceError in some modes)
+//? differences: Adaptive has no TDZ; let x = x yields undefined
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-// This seems to work when perhaps it shouldn't?
 let x = x;
+assert(x === undefined);
+return 0;
 
 
 //? test: S8.12.5_A2
