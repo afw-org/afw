@@ -51,9 +51,6 @@ void afw_yaml_token_cleanup(
     yaml_token_delete(token);
 }
 
-/** @fixme
-    2.  Debugging/Tracing?
- */
 yaml_token_t * afw_yaml_parser_scan(
     afw_yaml_parser_t *parser, afw_xctx_t *xctx)
 {
@@ -76,49 +73,73 @@ yaml_token_t * afw_yaml_parser_scan(
     return token;
 }
 
+/*
+ * Plain scalars: YAML 1.2 Core-ish — true/false/null/~ then full-string
+ * integer/double via afw_number_parse; else string. Quoted / literal /
+ * folded styles are always strings (never type-sniffed).
+ */
 const afw_value_t * afw_yaml_parse_scalar(
     afw_yaml_parser_t *parser, yaml_token_t *token, afw_xctx_t *xctx)
 {
     const afw_value_t *value;
     const afw_utf8_t *str;
-    double number;
+    const afw_utf8_octet_t *s;
+    afw_size_t len;
+    afw_size_t nlen;
+    afw_integer_t i;
+    afw_double_t d;
+    afw_boolean_t is_double;
 
-    /* examine the "style" property to help decide how to interpret */
+    s = (const afw_utf8_octet_t *)token->data.scalar.value;
+    len = token->data.scalar.length;
+
     switch (token->data.scalar.style) {
         case YAML_PLAIN_SCALAR_STYLE:
-        case YAML_LITERAL_SCALAR_STYLE:
-            /** @fixme figure out if it should be a number.  
-                Maybe use the JSON code? For now, just try sscanf()*/
-            if (sscanf((const char *)token->data.scalar.value, "%lf", &number) > 0) {
-                value = afw_value_create_unmanaged_double(
-                    number, parser->p, xctx);
-            } else if (strcmp((const char *)token->data.scalar.value, "true") == 0) {
+            /* Boolean / null (lowercase Core Schema + common ~). */
+            if (len == 4 && memcmp(s, "true", 4) == 0) {
                 value = afw_boolean_v_true;
-            } else if (strcmp((const char *)token->data.scalar.value, "false") == 0) {
+            }
+            else if (len == 5 && memcmp(s, "false", 5) == 0) {
                 value = afw_boolean_v_false;
-            } else if (strcmp((const char *)token->data.scalar.value, "null") == 0) {
+            }
+            else if ((len == 4 && memcmp(s, "null", 4) == 0) ||
+                (len == 1 && s[0] == '~'))
+            {
                 value = afw_value_null;
-            } else {
-                /* else must be a string value */
-                str = afw_utf8_create_copy((const afw_utf8_octet_t *)token->data.scalar.value,
-                    strlen((const afw_utf8_octet_t *)token->data.scalar.value), parser->p,
-                    xctx);
-
-                value = afw_value_create_unmanaged_string(str, parser->p, xctx);
+            }
+            else {
+                /*
+                 * Full-string number only (rejects "123foo"). Prefer integer
+                 * when the token has no fractional/exponent form.
+                 */
+                nlen = afw_number_parse(s, len, &i, &d, &is_double,
+                    parser->p, xctx);
+                if (nlen == len) {
+                    if (is_double) {
+                        value = afw_value_create_unmanaged_double(
+                            d, parser->p, xctx);
+                    }
+                    else {
+                        value = afw_value_create_unmanaged_integer(
+                            i, parser->p, xctx);
+                    }
+                }
+                else {
+                    str = afw_utf8_create_copy(s, len, parser->p, xctx);
+                    value = afw_value_create_unmanaged_string(
+                        str, parser->p, xctx);
+                }
             }
             break;
 
-        /* treat all of these as string data types */
-        case YAML_ANY_SCALAR_STYLE:
+        /* Quoted, literal (|), folded (>), and unknown: always string. */
+        case YAML_LITERAL_SCALAR_STYLE:
         case YAML_FOLDED_SCALAR_STYLE:
         case YAML_SINGLE_QUOTED_SCALAR_STYLE:
         case YAML_DOUBLE_QUOTED_SCALAR_STYLE:
+        case YAML_ANY_SCALAR_STYLE:
         default:
-            str = afw_utf8_create_copy(
-                (const afw_utf8_octet_t *)token->data.scalar.value,
-                strlen((const afw_utf8_octet_t *)token->data.scalar.value),
-                parser->p, xctx);
-
+            str = afw_utf8_create_copy(s, len, parser->p, xctx);
             value = afw_value_create_unmanaged_string(str, parser->p, xctx);
             break;
     }
@@ -192,12 +213,20 @@ const afw_object_t * afw_yaml_parse_object(
         } else if (token->type == YAML_VALUE_TOKEN) {
             v = afw_yaml_parse_value(parser, xctx);
             if (v) {
-                /** @fixme, check that key is not NULL, or throw an exception? */
+                if (!key) {
+                    AFW_THROW_ERROR_RV_FZ(general, yaml_token_type,
+                        token->type, xctx,
+                        "YAML mapping value without a key, near line %d, "
+                        "column %d",
+                        parser->parser.mark.line,
+                        parser->parser.mark.column);
+                }
 
                 /* check if it's a meta object */
                 if (afw_utf8_equal(key, afw_s__meta_)) {
                     if (!afw_value_is_object(v)) {
-                        AFW_THROW_ERROR_Z(general, "_meta_ property must be an object", xctx);
+                        AFW_THROW_ERROR_Z(general,
+                            "_meta_ property must be an object", xctx);
                     }
                     _meta_ = ((const afw_value_object_t*)v)->internal;
                 }
@@ -210,6 +239,10 @@ const afw_object_t * afw_yaml_parse_object(
                 else if (!afw_value_is_object(v)) {
                     afw_object_set_property(object, key, v, xctx);
                 }
+
+                /* Next pair needs its own key. */
+                key = NULL;
+                parser->property_name = NULL;
             }
         } else if (token->type != YAML_BLOCK_END_TOKEN &&
                     token->type != YAML_FLOW_MAPPING_END_TOKEN) {
@@ -306,17 +339,18 @@ const afw_value_t * afw_yaml_parse_value(
                 break;
 
             case YAML_TAG_TOKEN:
-                /* A tag tells the application about the data, which could be useful in helping
-                    us determine the data type */
+                /*
+                 * Node tags ignored for now (no typed tags beyond plain
+                 * Core Schema sniffing on plain scalars).
+                 */
                 break;
 
             case YAML_VERSION_DIRECTIVE_TOKEN:
-                /* This tells us about the YAML version.  FIXME: we may want to restrict features */
+                /* %YAML version directive — accepted, not enforced. */
                 break;
 
             case YAML_TAG_DIRECTIVE_TOKEN:
-                /* This establishes shorthand notation for specifying node tags.  Allows for readability */
-                /** @fixme we may decide to store tags in a global hash, so they can be referenced by tag tokens */
+                /* %TAG shorthand — accepted, not stored. */
                 break;
 
             default:

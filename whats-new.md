@@ -898,7 +898,12 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 
 **Issue #14** — **closed** 2026-08-04 (feature long on tree; regression suite on `mgg-develop`; re-verified 22 yaml tests)
 
-**Beta hygiene (this branch):** `afw_yaml_to_object` (content-type **`raw_to_object`**) was incomplete and is fixed so **file adapters with `contentType: yaml`** can get/add objects. Parse still does **not** issue-#17 face-wrap (conf and store stay plain); script faces come from adapter/journal return paths. See also `yaml_to_object.py`.
+**Beta hygiene (this branch):**
+
+- `afw_yaml_to_object` (**`raw_to_object`**) fixed so **file adapters with `contentType: yaml`** work; libyaml parser always deleted.
+- Plain scalars: full-string **integer vs double** (`afw_number_parse`), `true`/`false`/`null`/`~`; quoted/literal/folded always strings; partial numbers like `123foo` stay strings.
+- Empty array/object emit **`[]` / `{}`**; mapping value without key errors.
+- No parse-time issue-#17 faces (conf/store plain; adapter/journal faces on return).
 
 The `afw` command can print evaluated adaptive values using any registered **content type**, not only JSON:
 

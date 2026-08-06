@@ -73,12 +73,10 @@ extern void afw_yaml_internal_write_value(
 
 
 /**
- * @brief Get the content type instance for FIXME.
+ * @brief Get the YAML content type singleton.
  *
- * Call this from extension impl_initialize() function
- * as parameter to afw_content_type_register() function.
- *
- * afw_content_type_register(afw_yaml_content_type_get(), xctx);
+ * Call from extension impl_initialize() via afw_yaml_register(), which
+ * registers this instance with the environment.
  */
 const afw_content_type_t *
 afw_yaml_content_type_get()

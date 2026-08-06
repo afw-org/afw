@@ -8,11 +8,12 @@ Why Python (not .as)?
   surface for content-type input + adapter get/mutate.
 
 Coverage:
-  - conf -t yaml with nested object and array entries
+  - conf -t yaml with file adapter entry
   - file adapter contentType yaml: get_object, property read, path meta
   - issue #17: get_object face isolation (mutate face, second get clean)
   - add_object + get round-trip through YAML encode/decode
   - non-object YAML root rejected for adapter object load
+  - plain scalar typing (integer vs double, null/~, quoted, partial number)
 """
 
 from __future__ import annotations
@@ -250,6 +251,46 @@ def run():
             _case(
                 "file_adapter_yaml_reject_array_root",
                 "YAML raw_to_object rejects non-mapping root",
+                code == 0 and body == "0",
+                detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
+            )
+        )
+
+        # plain scalar typing: integer vs double, null/~, quoted stays string,
+        # partial numbers stay string
+        _write(
+            os.path.join(ot_dir, "scalars.yaml"),
+            textwrap.dedent(
+                """\
+                i: 7
+                d: 3.5
+                b: true
+                z: null
+                t: ~
+                quoted: "true"
+                partial: 123foo
+                """
+            ),
+        )
+        code, out, err = _yaml_script(
+            """\
+            let o = get_object("yamlfile", "YamlOt", "scalars");
+            assert(o.i === 7);
+            assert(meta(o.i).dataType === "integer", "i is integer");
+            assert(meta(o.d).dataType === "double", "d is double");
+            assert(o.b === true);
+            assert(is_nullish(o.z), "null");
+            assert(is_nullish(o.t), "tilde null");
+            assert(o.quoted === "true", "quoted true is string");
+            assert(o.partial === "123foo", "partial number is string");
+            return 0;
+            """
+        )
+        body = out.strip()
+        tests.append(
+            _case(
+                "file_adapter_yaml_plain_scalar_types",
+                "plain scalars: integer/double/bool/null/~; quoted/partial string",
                 code == 0 and body == "0",
                 detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
             )
