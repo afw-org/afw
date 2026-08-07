@@ -620,15 +620,14 @@ return 0;
 
 //?
 //? test: before2-pass-closure-as-argument
-//? description: Pass returned closure into another function and call it (could fix before #2)
-//? skip: true
+//? description: Pass returned closure into another function and call it (#89 call path)
 //? expect: 0
 //? source: ...
 
 /*
- * apply(make()) can hit evaluation-limit / convert issues (related comfort for
- * "functions as values"). Direct call make()() works. Unskip when call path is
- * solid; may overlap issue #89-style function-as-value bugs.
+ * Regression for function-as-value call args (issue #89). Lifetime/escape of
+ * the closed-over binding under long-running use remains #2 (see after2-*).
+ * Duplicate coverage lives in language/script/function.as.
  */
 function apply(fn) {
     return fn();
