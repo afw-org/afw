@@ -41,7 +41,7 @@ afw_object_meta_create_accessor_with_options(
     afw_xctx_t *xctx)
 {
     afw_object_internal_meta_accessor_self_t *self;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
 
     /* If instance of this implementation with no meta, return NULL. */
@@ -140,7 +140,7 @@ impl_afw_object_get_property(
 const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {

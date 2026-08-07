@@ -44,11 +44,35 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
+/* Formal expects array of values: leaf array, T[], or tuple (#153). */
+static afw_boolean_t
+impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
+{
+    if (!type) {
+        return false;
+    }
+    if (type->kind == afw_value_type_kind_data_type &&
+        type->data_type == afw_data_type_array)
+    {
+        return true;
+    }
+    if (type->kind == afw_value_type_kind_array ||
+        type->kind == afw_value_type_kind_tuple)
+    {
+        return true;
+    }
+    return false;
+}
+
+
 /*
  * Evaluate a script-function formal (call_script_function only).
  *
  * When runtime typeCheck is on for contextual's unit: strict assignability.
  * Otherwise: leaf data_type convert (legacy). Not used by Adaptive built-ins.
+ *
+ * Array-shaped formals accept utf8 code-point sequences via
+ * afw_value_as_array_sequence (#153), same language rule as built-ins.
  */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_function_script_evaluate_parameter_with_type(
@@ -61,12 +85,14 @@ afw_function_script_evaluate_parameter_with_type(
 {
     const afw_value_t *result;
     const afw_data_type_t *want_dt;
+    afw_boolean_t wants_array_sequence;
 
     /* Leaf convert only; composites use type_check when enabled. */
     want_dt = NULL;
     if (type && type->kind == afw_value_type_kind_data_type) {
         want_dt = type->data_type;
     }
+    wants_array_sequence = impl_script_formal_expects_array_sequence(type);
 
     if (type) {
         afw_value_type_check_call_arg_object_literal(type, value,
@@ -86,6 +112,11 @@ afw_function_script_evaluate_parameter_with_type(
 
     afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
     result = afw_value_evaluate(value, p, xctx);
+
+    /* #153: materialize utf8 sequences before check/convert. */
+    if (wants_array_sequence) {
+        result = afw_value_as_array_sequence(result, p, xctx);
+    }
 
     if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
         afw_value_type_check_assignable(type, result, "parameter",
@@ -182,7 +213,7 @@ impl_list_destructure(
     afw_xctx_t *xctx)
 {
     const afw_compile_assignment_element_t *ae;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *v;
     const afw_array_t *rest;
     afw_boolean_t eol;
@@ -268,7 +299,7 @@ impl_object_destructure(
 {
     const afw_compile_assignment_property_t *ap;
     const afw_object_t *object;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *bound_name;
     const afw_value_t *v;
@@ -569,6 +600,12 @@ impl_assign_value(
                 value, xctx);
         }
 
+        else if (afw_value_has_iterator(aggregate_value)) {
+            /* Utf8 code-point sequences are immutable (#153). */
+            AFW_THROW_ERROR_Z(general,
+                "Cannot assign into a utf8 code-point sequence", xctx);
+        }
+
         else {
             AFW_THROW_ERROR_Z(general, "Invalid assignment target", xctx);
         }
@@ -595,7 +632,7 @@ impl_evaluate_one_or_more_values(
 {
     const afw_value_t *result;
     const afw_value_t *value;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     result = NULL;
     if (afw_value_is_array(values)) {
@@ -1079,23 +1116,19 @@ afw_function_execute_for_of(
     const afw_pool_t *p = x->p;
     const afw_value_t *result;
     const afw_value_t *iterable;
-    const afw_value_array_t *list;
-    const afw_value_string_t *strv;
-    const afw_iterator_t *iterator;
     const afw_value_t *value;
     afw_compile_internal_assignment_type_t assignment_type;
-    afw_size_t offset;
-    afw_code_point_t cp;
-    afw_utf8_t one;
-    afw_size_t start;
-    afw_size_t n;
+    afw_iterator_t iterator;
 
     result = afw_value_undefined;
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(3);
 
-        /* Evaluate head without forcing array (string for-of is special). */
+        /*
+         * Evaluate head without forcing array. Keyless afw_iterator covers
+         * array and utf8-backed types (code points as managed strings) — #153.
+         */
         iterable = afw_function_evaluate_required_parameter(x, 2, NULL);
 
         assignment_type = afw_compile_assignment_type_use_assignment_targets;
@@ -1120,63 +1153,24 @@ afw_function_execute_for_of(
                 }
             }
 
-        if (afw_value_is_string(iterable)) {
-            strv = (const afw_value_string_t *)iterable;
-            for (offset = 0; offset < strv->internal.len; ) {
-                start = offset;
-                cp = afw_utf8_next_code_point(strv->internal.s, &offset,
-                    strv->internal.len, xctx);
-                if (cp < 0) {
-                    AFW_THROW_ERROR_Z(general,
-                        "Invalid UTF-8 in for-of string", xctx);
-                }
-                /* One-character string for this code point (UTF-8 bytes). */
-                n = offset - start;
-                if (n == 0 || n > 4) {
-                    AFW_THROW_ERROR_Z(general,
-                        "Invalid UTF-8 code point length in for-of string",
-                        xctx);
-                }
-                one.s = strv->internal.s + start;
-                one.len = n;
-                value = afw_value_create_unmanaged_string(&one, p, xctx);
-
-                impl_assign(x->argv[1], value, assignment_type, p, xctx);
-                if (!const_for_of_head) {
-                    assignment_type =
-                        afw_compile_assignment_type_assign_only;
-                }
-                result = afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx);
-                if (afw_xctx_statement_flow_is_leave(xctx)) {
-                    break;
-                }
-            }
-        }
-        else if (afw_value_is_array(iterable)) {
-            list = (const afw_value_array_t *)iterable;
-            for (iterator = NULL;;) {
-                value = afw_array_get_next_value(
-                    list->internal, &iterator, p, xctx);
-                if (!value) {
-                    break;
-                }
-                impl_assign(x->argv[1], value, assignment_type, p, xctx);
-                if (!const_for_of_head) {
-                    assignment_type =
-                        afw_compile_assignment_type_assign_only;
-                }
-                result = afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx);
-                if (afw_xctx_statement_flow_is_leave(xctx)) {
-                    break;
-                }
-            }
-        }
-        else {
+        if (!afw_value_has_iterator(iterable)) {
             AFW_THROW_ERROR_Z(general,
-                "for-of head must be an array or string",
+                "for-of head must be an array or utf8 code-point sequence",
                 xctx);
+        }
+
+        afw_value_initialize_iterator(iterable, &iterator, xctx);
+        while ((value = afw_iterator_get_next(&iterator, p, xctx)) != NULL) {
+            impl_assign(x->argv[1], value, assignment_type, p, xctx);
+            if (!const_for_of_head) {
+                assignment_type =
+                    afw_compile_assignment_type_assign_only;
+            }
+            result = afw_value_block_evaluate_statement(
+                x, x->argv[3], p, xctx);
+            if (afw_xctx_statement_flow_is_leave(xctx)) {
+                break;
+            }
         }
         } /* const_for_of_head scope */
     }
@@ -1601,7 +1595,7 @@ afw_function_execute_switch(
     const afw_value_t * const *default_pair;     
     const afw_value_t *statement;
     const afw_array_t *statement_list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     result = afw_value_undefined;
 

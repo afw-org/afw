@@ -350,7 +350,7 @@ afw_object_get_next_property_as_integer_source( \
 AFW_DECLARE(afw_integer_t)
 afw_object_get_next_property_as_integer_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
@@ -410,7 +410,7 @@ afw_object_set_property_as_integer(
 AFW_DECLARE(afw_integer_t)
 afw_array_of_integer_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);

@@ -341,7 +341,7 @@ afw_value_call_args_expand_spreads(
     const afw_value_t *evaled;
     const afw_value_t **new_argv;
     const afw_array_t *arr;
-    const afw_iterator_t *it;
+    const afw_iterator_old_t *it;
     const afw_value_t *elem;
 
     *argc_out = argc_in;

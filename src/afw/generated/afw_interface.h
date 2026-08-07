@@ -2884,6 +2884,23 @@ struct afw_data_type_s {
      * value but can be used to specify what data types a value can be.
      */
     afw_boolean_t special;
+
+    /**
+     * Fixed data type of each value from a keyless afw_iterator for values
+     * of this type (get_next / get_by_index), or NULL if this type has no
+     * iterator or the step type is not fixed at the data type level.
+     * 
+     * Distinct from optional_initialize_iterator: that method being non-NULL
+     * means iteration is supported; this pointer names the step type when
+     * every instance yields the same type (e.g. utf8-backed types yield
+     * string code-point values). Array supports iteration but leaves this
+     * NULL because element type is per array instance.
+     * 
+     * Generate property iteratorReturnDataType (data type id string) fills
+     * this as a pointer to the static afw_data_type_*_direct instance.
+     * See issue #153.
+     */
+    const afw_data_type_t * iterator_return_data_type;
 };
 
 /** @brief String name of interface `afw_data_type` (`AFW_DATA_TYPE_INTERFACE_NAME`). */
@@ -2950,6 +2967,14 @@ typedef void
     const void * from_internal,
     afw_xctx_t * xctx);
 
+/** @sa afw_data_type_optional_initialize_iterator() */
+typedef void
+(*afw_data_type_optional_initialize_iterator_t)(
+    const afw_data_type_t * instance,
+    const void * internal,
+    const afw_iterator_t * iterator,
+    afw_xctx_t * xctx);
+
 /**
  * @brief Method table (inf) for interface `afw_data_type`.
  *
@@ -2965,6 +2990,7 @@ struct afw_data_type_inf_s {
     afw_data_type_clone_internal_t clone_internal;
     afw_data_type_value_compiler_listing_t value_compiler_listing;
     afw_data_type_write_as_expression_t write_as_expression;
+    afw_data_type_optional_initialize_iterator_t optional_initialize_iterator;
 };
 
 /**
@@ -3155,6 +3181,49 @@ struct afw_data_type_inf_s {
     (instance), \
     (writer), \
     (from_internal), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `optional_initialize_iterator` of interface
+ * `afw_data_type`.
+ *
+ * Optional: initialize a caller-defined keyless afw_iterator for a
+ * value of this data type. NULL on the inf means this type does not
+ * support sequence iteration via afw_iterator.
+ * 
+ * When present, fills iterator (inf and cursor) for walking the
+ * value's internal representation. Caller provides iterator storage
+ * (typically on the stack). Do not release the iterator instance.
+ * 
+ * Prefer the convenience macro afw_data_type_initialize_iterator(),
+ * which throws if this method is NULL. Check
+ * instance->inf->optional_initialize_iterator non-NULL for a soft
+ * probe.
+ * 
+ * Implementations live in afw_data_type.c (shared array / utf8 code
+ * point paths). Elements of utf8-backed types are managed string
+ * values (one code point each), not the parent data type.
+ * @param instance Pointer to this data type instance.
+ * @param internal Pointer to the value's cType internal (e.g. afw_utf8_t * for
+ * string, const afw_array_t ** for array).
+ * @param iterator Address of caller-defined afw_iterator_t storage to
+ * initialize. Typed const so callers treat it as opaque; the implementation
+ * fills inf and cursor.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_data_type_t
+ * @see @ref afw_data_type_s "afw_data_type_t"
+ */
+#define afw_data_type_optional_initialize_iterator( \
+    instance, \
+    internal, \
+    iterator, \
+    xctx \
+) \
+(instance)->inf->optional_initialize_iterator( \
+    (instance), \
+    (internal), \
+    (iterator), \
     (xctx) \
 )
 
@@ -3789,7 +3858,7 @@ typedef const afw_value_t *
 typedef const afw_value_t *
 (*afw_array_get_next_entry_meta_t)(
     const afw_array_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
@@ -3797,7 +3866,7 @@ typedef const afw_value_t *
 typedef afw_boolean_t
 (*afw_array_get_next_internal_t)(
     const afw_array_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t * xctx);
@@ -3806,8 +3875,15 @@ typedef afw_boolean_t
 typedef const afw_value_t *
 (*afw_array_get_next_value_t)(
     const afw_array_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_initialize_iterator() */
+typedef void
+(*afw_array_initialize_iterator_t)(
+    const afw_array_t * instance,
+    const afw_iterator_t * iterator,
     afw_xctx_t * xctx);
 
 /** @sa afw_array_get_setter() */
@@ -3833,6 +3909,7 @@ struct afw_array_inf_s {
     afw_array_get_next_entry_meta_t get_next_entry_meta;
     afw_array_get_next_internal_t get_next_internal;
     afw_array_get_next_value_t get_next_value;
+    afw_array_initialize_iterator_t initialize_iterator;
     afw_array_get_setter_t get_setter;
 };
 
@@ -4069,6 +4146,38 @@ struct afw_array_inf_s {
     (instance), \
     (iterator), \
     (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `initialize_iterator` of interface `afw_array`.
+ *
+ * Initialize a caller-defined afw_iterator_t for this array.
+ * 
+ * The caller provides storage for the iterator (typically on the stack).
+ * This method sets the iterator's inf to the array implementation's
+ * iterator vtable and resets cursor fields so get_next / get_by_index /
+ * get_count can be used. Same idea as get_setter returning a known inf,
+ * but here the host fills a defined_instance_storage object in place.
+ * 
+ * No release of the iterator instance is required.
+ * @param instance Pointer to this array instance.
+ * @param iterator Address of caller-defined afw_iterator_t storage to
+ * initialize. Typed const so callers treat it as opaque: only the array
+ * implementation fills inf and cursor fields (it may cast away const). Callers
+ * must not set up the iterator themselves.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_t
+ * @see @ref afw_array_s "afw_array_t"
+ */
+#define afw_array_initialize_iterator( \
+    instance, \
+    iterator, \
+    xctx \
+) \
+(instance)->inf->initialize_iterator( \
+    (instance), \
+    (iterator), \
     (xctx) \
 )
 
@@ -4561,7 +4670,7 @@ typedef const afw_value_t *
 typedef const afw_value_t *
 (*afw_object_get_next_property_t)(
     const afw_object_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t * xctx);
 
@@ -4569,7 +4678,7 @@ typedef const afw_value_t *
 typedef const afw_value_t *
 (*afw_object_get_next_property_meta_t)(
     const afw_object_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
@@ -5709,9 +5818,26 @@ struct afw_connection_inf_s {
 /**
  * @addtogroup afw_iterator_interface afw_iterator
  *
- * Iterator over elements of a value that supports iteration (e.g. arrays).
- * Created by afw_value_create_iterator() when non-NULL. Call methods via
- * afw_iterator_*() macros. See group afw_value and afw_array.
+ * Caller-defined iterator over a dense or sequential stream of adaptive
+ * values without keys (array elements, string code points, …).
+ * 
+ * defined_instance_storage: the public afw_iterator_t is fixed-size
+ * storage the caller provides (typically on the stack). A host method
+ * initializes it (sets inf and cursor), e.g.
+ * afw_array_initialize_iterator(array, &it, xctx). Do not release
+ * the instance. Implementations use only the published fields.
+ * 
+ * After host initialize:
+ * - get_next — next value, or NULL when done (same idea as
+ * afw_array_get_next_value returning NULL)
+ * - get_by_index — dense index; does not advance get_next cursor
+ * - get_count — dense length when indexable
+ * 
+ * For key+value walks (e.g. object properties), use
+ * afw_iterator_with_key instead.
+ * 
+ * Call methods via afw_iterator_*() macros. Legacy array/object
+ * get_next_* cursors remain afw_iterator_old_t until migrated.
  *
  * @{
  */
@@ -5722,29 +5848,60 @@ struct afw_connection_inf_s {
  *
  * API type name is `afw_iterator_t` (see opaques).
  * Call methods with `afw_iterator_<method>(…)` macros.
- * Implementations often embed this as the first field of
- * a larger self struct in .c files.
+ *
+ * **Defined instance storage:** the caller provides this
+ * complete fixed-size struct (typically on the stack or
+ * embedded). A host object initializes it (e.g.
+ * `afw_array_initialize_iterator(array, &it, xctx)`),
+ * which sets `inf` and cursor fields for that source.
+ * Do **not** release the instance. Implementations use only
+ * these published fields (not a larger private self with
+ * this as the first field).
  */
 struct afw_iterator_s {
     const afw_iterator_inf_t *inf;
+
+    /**
+     * Implementation-private cursor or source pointer. Opaque to callers.
+     */
+    void * impl;
+
+    /**
+     * Common cursor field (byte offset, entry index, or similar).
+     */
+    afw_size_t offset;
+
+    /**
+     * Spare word for implementations that need a second size_t without
+     * allocating.
+     */
+    afw_size_t reserved;
 };
 
 /** @brief String name of interface `afw_iterator` (`AFW_ITERATOR_INTERFACE_NAME`). */
 #define AFW_ITERATOR_INTERFACE_NAME \
 "afw_iterator"
 
-/** @sa afw_iterator_release() */
-typedef void
-(*afw_iterator_release_t)(
+/** @sa afw_iterator_get_next() */
+typedef const afw_value_t *
+(*afw_iterator_get_next_t)(
     const afw_iterator_t * instance,
+    const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_iterator_next() */
-typedef afw_boolean_t
-(*afw_iterator_next_t)(
+/** @sa afw_iterator_get_by_index() */
+typedef const afw_value_t *
+(*afw_iterator_get_by_index_t)(
     const afw_iterator_t * instance,
-    const afw_value_t ** key,
-    const afw_value_t ** value);
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_iterator_get_count() */
+typedef afw_size_t
+(*afw_iterator_get_count_t)(
+    const afw_iterator_t * instance,
+    afw_xctx_t * xctx);
 
 /**
  * @brief Method table (inf) for interface `afw_iterator`.
@@ -5754,20 +5911,340 @@ typedef afw_boolean_t
  */
 struct afw_iterator_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_iterator_release_t release;
-    afw_iterator_next_t next;
+    afw_iterator_get_next_t get_next;
+    afw_iterator_get_by_index_t get_by_index;
+    afw_iterator_get_count_t get_count;
 };
 
 /**
- * @brief Call method `release` of interface `afw_iterator`.
+ * @brief Call method `get_next` of interface `afw_iterator`.
  *
- * This method releases the iterator.
- * @param instance Pointer to this stream instance.
+ * Advance the sequential cursor and return the next value, or NULL
+ * when there are no more elements. Call only after host initialize
+ * (e.g. afw_array_initialize_iterator).
+ * 
+ * A non-NULL return is the element value (which may itself represent
+ * undefined). NULL means end of iteration — not an undefined element.
+ * @param instance Pointer to this defined iterator instance.
+ * @param p Pool for any allocated result value.
  * @param xctx This is the caller's xctx.
+ * @return Next element value, or NULL if iteration is finished.
  * @relates afw_iterator_t
  * @see @ref afw_iterator_s "afw_iterator_t"
  */
-#define afw_iterator_release( \
+#define afw_iterator_get_next( \
+    instance, \
+    p, \
+    xctx \
+) \
+(instance)->inf->get_next( \
+    (instance), \
+    (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `get_by_index` of interface `afw_iterator`.
+ *
+ * Return the value at dense zero-based index i. Does not advance the
+ * get_next cursor. Walk-only iterators may throw. Out-of-range should
+ * align with array soft get (undefined or NULL) per source policy.
+ * @param instance Pointer to this defined iterator instance.
+ * @param index Zero-based dense index.
+ * @param p Pool for any allocated result value.
+ * @param xctx This is the caller's xctx.
+ * @return Element at index, or undefined / NULL per policy.
+ * @relates afw_iterator_t
+ * @see @ref afw_iterator_s "afw_iterator_t"
+ */
+#define afw_iterator_get_by_index( \
+    instance, \
+    index, \
+    p, \
+    xctx \
+) \
+(instance)->inf->get_by_index( \
+    (instance), \
+    (index), \
+    (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `get_count` of interface `afw_iterator`.
+ *
+ * Dense element count when indexable. Walk-only iterators may throw.
+ * @param instance Pointer to this defined iterator instance.
+ * @param xctx This is the caller's xctx.
+ * @return Number of dense elements.
+ * @relates afw_iterator_t
+ * @see @ref afw_iterator_s "afw_iterator_t"
+ */
+#define afw_iterator_get_count( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->get_count( \
+    (instance), \
+    (xctx) \
+)
+
+/** @} */
+
+/**
+ * @addtogroup afw_iterator_with_key_interface afw_iterator_with_key
+ *
+ * Caller-defined iterator that yields both a key and a value each step
+ * (e.g. object properties: property name + value; or array with integer
+ * index as key).
+ * 
+ * Same defined_instance_storage rules as afw_iterator: caller provides
+ * storage; a host method initializes inf and cursor; no instance release.
+ * 
+ * Array hosts only initialize the keyless afw_iterator for now. Hosts for
+ * afw_iterator_with_key (object, etc.) will be added later.
+ * 
+ * After host initialize:
+ * - get_next — sequential key+value step; returns true when done
+ * - get_by_index / get_count — optional dense support where meaningful
+ * 
+ * Call methods via afw_iterator_with_key_*() macros.
+ *
+ * @{
+ */
+
+
+/**
+ * @brief Public instance layout for interface `afw_iterator_with_key`.
+ *
+ * API type name is `afw_iterator_with_key_t` (see opaques).
+ * Call methods with `afw_iterator_with_key_<method>(…)` macros.
+ *
+ * **Defined instance storage:** the caller provides this
+ * complete fixed-size struct (typically on the stack or
+ * embedded). A host object initializes it (e.g.
+ * `afw_array_initialize_iterator(array, &it, xctx)`),
+ * which sets `inf` and cursor fields for that source.
+ * Do **not** release the instance. Implementations use only
+ * these published fields (not a larger private self with
+ * this as the first field).
+ */
+struct afw_iterator_with_key_s {
+    const afw_iterator_with_key_inf_t *inf;
+
+    /**
+     * Implementation-private cursor or source pointer. Opaque to callers.
+     */
+    void * impl;
+
+    /**
+     * Common cursor field (byte offset, entry index, or similar).
+     */
+    afw_size_t offset;
+
+    /**
+     * Spare word for implementations that need a second size_t without
+     * allocating.
+     */
+    afw_size_t reserved;
+};
+
+/** @brief String name of interface `afw_iterator_with_key` (`AFW_ITERATOR_WITH_KEY_INTERFACE_NAME`). */
+#define AFW_ITERATOR_WITH_KEY_INTERFACE_NAME \
+"afw_iterator_with_key"
+
+/** @sa afw_iterator_with_key_get_next() */
+typedef afw_boolean_t
+(*afw_iterator_with_key_get_next_t)(
+    const afw_iterator_with_key_t * instance,
+    const afw_value_t ** key,
+    const afw_value_t ** value,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_iterator_with_key_get_by_index() */
+typedef afw_boolean_t
+(*afw_iterator_with_key_get_by_index_t)(
+    const afw_iterator_with_key_t * instance,
+    afw_integer_t index,
+    const afw_value_t ** key,
+    const afw_value_t ** value,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+
+/** @sa afw_iterator_with_key_get_count() */
+typedef afw_size_t
+(*afw_iterator_with_key_get_count_t)(
+    const afw_iterator_with_key_t * instance,
+    afw_xctx_t * xctx);
+
+/**
+ * @brief Method table (inf) for interface `afw_iterator_with_key`.
+ *
+ * API type name is `afw_iterator_with_key_inf_t`.
+ * Pointed to by the instance `inf` field; call macros use it.
+ */
+struct afw_iterator_with_key_inf_s {
+    afw_interface_implementation_rti_t rti;
+    afw_iterator_with_key_get_next_t get_next;
+    afw_iterator_with_key_get_by_index_t get_by_index;
+    afw_iterator_with_key_get_count_t get_count;
+};
+
+/**
+ * @brief Call method `get_next` of interface `afw_iterator_with_key`.
+ *
+ * Advance the sequential cursor. If key is non-NULL, receives the key
+ * (e.g. property name or integer index). If value is non-NULL, receives
+ * the element value. Returns true if done (no more elements).
+ * Returns false if this step produced key/value as requested.
+ * @param instance Pointer to this defined iterator instance.
+ * @param key Place to return the key, or NULL if the key is not needed.
+ * @param value Place to return the value, or NULL if the value is not needed.
+ * @param p Pool for any allocated result values.
+ * @param xctx This is the caller's xctx.
+ * @return True if done. False if this step produced key/value as requested.
+ * @relates afw_iterator_with_key_t
+ * @see @ref afw_iterator_with_key_s "afw_iterator_with_key_t"
+ */
+#define afw_iterator_with_key_get_next( \
+    instance, \
+    key, \
+    value, \
+    p, \
+    xctx \
+) \
+(instance)->inf->get_next( \
+    (instance), \
+    (key), \
+    (value), \
+    (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `get_by_index` of interface `afw_iterator_with_key`.
+ *
+ * Dense zero-based entry at index i, if supported: key and value out
+ * params match get_next (e.g. property name + value, or integer index
+ * + element). Does not advance get_next. May throw if not indexable.
+ * 
+ * Returns true if index is out of range / no entry (key and value not
+ * useful). Returns false if key/value were set for this index.
+ * @param instance Pointer to this defined iterator instance.
+ * @param index Zero-based dense index.
+ * @param key Place to return the key, or NULL if the key is not needed.
+ * @param value Place to return the value, or NULL if the value is not needed.
+ * @param p Pool for any allocated result values.
+ * @param xctx This is the caller's xctx.
+ * @return True if no entry at index. False if this call produced key/value as
+ * requested.
+ * @relates afw_iterator_with_key_t
+ * @see @ref afw_iterator_with_key_s "afw_iterator_with_key_t"
+ */
+#define afw_iterator_with_key_get_by_index( \
+    instance, \
+    index, \
+    key, \
+    value, \
+    p, \
+    xctx \
+) \
+(instance)->inf->get_by_index( \
+    (instance), \
+    (index), \
+    (key), \
+    (value), \
+    (p), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `get_count` of interface `afw_iterator_with_key`.
+ *
+ * Dense element count when indexable. May throw if not indexable.
+ * @param instance Pointer to this defined iterator instance.
+ * @param xctx This is the caller's xctx.
+ * @return Number of dense elements.
+ * @relates afw_iterator_with_key_t
+ * @see @ref afw_iterator_with_key_s "afw_iterator_with_key_t"
+ */
+#define afw_iterator_with_key_get_count( \
+    instance, \
+    xctx \
+) \
+(instance)->inf->get_count( \
+    (instance), \
+    (xctx) \
+)
+
+/** @} */
+
+/**
+ * @addtogroup afw_iterator_old_interface afw_iterator_old
+ *
+ * Legacy iterator interface (renamed from afw_iterator during #153).
+ * Also used as the opaque cursor token type for array/object get_next_*
+ * (pointer-sized slot). Created by afw_value_create_iterator() when
+ * non-NULL. Call methods via afw_iterator_old_*() macros. See group
+ * afw_value and afw_array. Will be replaced by the new afw_iterator
+ * (defined_instance_storage) design.
+ *
+ * @{
+ */
+
+
+/**
+ * @brief Public instance layout for interface `afw_iterator_old`.
+ *
+ * API type name is `afw_iterator_old_t` (see opaques).
+ * Call methods with `afw_iterator_old_<method>(…)` macros.
+ * Implementations often embed this as the first field of
+ * a larger self struct in .c files.
+ */
+struct afw_iterator_old_s {
+    const afw_iterator_old_inf_t *inf;
+};
+
+/** @brief String name of interface `afw_iterator_old` (`AFW_ITERATOR_OLD_INTERFACE_NAME`). */
+#define AFW_ITERATOR_OLD_INTERFACE_NAME \
+"afw_iterator_old"
+
+/** @sa afw_iterator_old_release() */
+typedef void
+(*afw_iterator_old_release_t)(
+    const afw_iterator_old_t * instance,
+    afw_xctx_t * xctx);
+
+/** @sa afw_iterator_old_next() */
+typedef afw_boolean_t
+(*afw_iterator_old_next_t)(
+    const afw_iterator_old_t * instance,
+    const afw_value_t ** key,
+    const afw_value_t ** value);
+
+/**
+ * @brief Method table (inf) for interface `afw_iterator_old`.
+ *
+ * API type name is `afw_iterator_old_inf_t`.
+ * Pointed to by the instance `inf` field; call macros use it.
+ */
+struct afw_iterator_old_inf_s {
+    afw_interface_implementation_rti_t rti;
+    afw_iterator_old_release_t release;
+    afw_iterator_old_next_t next;
+};
+
+/**
+ * @brief Call method `release` of interface `afw_iterator_old`.
+ *
+ * This method releases the iterator.
+ * @param instance Pointer to this iterator instance.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_iterator_old_t
+ * @see @ref afw_iterator_old_s "afw_iterator_old_t"
+ */
+#define afw_iterator_old_release( \
     instance, \
     xctx \
 ) \
@@ -5777,11 +6254,11 @@ struct afw_iterator_inf_s {
 )
 
 /**
- * @brief Call method `next` of interface `afw_iterator`.
+ * @brief Call method `next` of interface `afw_iterator_old`.
  *
  * This method will return the next value. If there are no more values,
  * 'done' is set to 'true'.
- * @param instance Pointer to this stream instance.
+ * @param instance Pointer to this iterator instance.
  * @param key This is a pointer to the place to return the key value or NULL if
  * it does not need to be returned.
  * @param value This is a pointer to the place to return the value or NULL if it
@@ -5789,10 +6266,10 @@ struct afw_iterator_inf_s {
  * @return Returns 'true' if 'done', in which case 'key' and 'value' will be
  * NULL. If 'false', 'key' and 'value' will be set to the next key and value.
  * NULL is a valid 'value' which indicates 'undefined'.
- * @relates afw_iterator_t
- * @see @ref afw_iterator_s "afw_iterator_t"
+ * @relates afw_iterator_old_t
+ * @see @ref afw_iterator_old_s "afw_iterator_old_t"
  */
-#define afw_iterator_next( \
+#define afw_iterator_old_next( \
     instance, \
     key, \
     value \
@@ -6946,7 +7423,7 @@ typedef const afw_value_t *
     afw_xctx_t * xctx);
 
 /** @sa afw_value_create_iterator() */
-typedef const afw_iterator_t *
+typedef const afw_iterator_old_t *
 (*afw_value_create_iterator_t)(
     const afw_value_t * instance,
     const afw_pool_t * p,
@@ -7101,12 +7578,12 @@ struct afw_value_inf_s {
 /**
  * @brief Call method `create_iterator` of interface `afw_value`.
  *
- * This will return an 'afw_iterator' instance or NULL if this value does
+ * This will return an 'afw_iterator_old' instance or NULL if this value does
  * not support iteration.
  * @param instance Pointer to this adaptive value instance.
  * @param p Pool for result.
  * @param xctx This is the caller's xctx.
- * @return This is an new instance of afw_iterator.
+ * @return This is an new instance of afw_iterator_old.
  * @relates afw_value_t
  * @see @ref afw_value_s "afw_value_t"
  */

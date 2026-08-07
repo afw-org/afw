@@ -742,7 +742,7 @@ impl_check_manifest_cb(
     afw_utf8_t registry_type_id;
     afw_utf8_t registry_key;
     const afw_utf8_t *entry;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     impl_check_manifest_cb_context_t *ctx = context;
 

@@ -68,6 +68,22 @@ afw_runtime_value_accessor_compile_type(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
+ * @brief Runtime value accessor 'data_type_id' for const afw_data_type_t *.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to const afw_data_type_t * (may be NULL).
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return string value of data_type->data_type_id, or NULL if pointer is NULL.
+ *
+ * Used for Adaptive properties that store a data type pointer in C but expose
+ * the type id string (e.g. iteratorReturnDataType on _AdaptiveDataType_).
+ */
+const afw_value_t *
+afw_runtime_value_accessor_data_type_id(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
  * @brief Runtime value accessor 'indirect' for indirect internal.
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is pointer to pointer of internal for result afw_value_t.

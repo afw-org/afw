@@ -162,7 +162,7 @@ afw_object_type_property_type_get_extended(
 AFW_DECLARE(const afw_object_type_property_type_t *)
 afw_object_type_property_type_get_next(
     const afw_object_type_t *object_type,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     afw_xctx_t *xctx);
 

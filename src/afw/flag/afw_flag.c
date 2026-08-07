@@ -86,7 +86,7 @@ impl_flag_add_included_by(
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p = xctx->env->p;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
     const afw_data_type_t *data_type;
     afw_boolean_t *new_applicable;
@@ -920,7 +920,7 @@ afw_flag_set_default_flag_ids(
     const afw_utf8_t **id;
     const afw_utf8_t *s;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {
         p = afw_pool_create(xctx->env->p, xctx);

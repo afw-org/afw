@@ -343,7 +343,7 @@ afw_object_get_next_property_as_yearMonthDuration_source( \
 AFW_DECLARE(const afw_yearMonthDuration_t *)
 afw_object_get_next_property_as_yearMonthDuration_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -399,7 +399,7 @@ afw_object_set_property_as_yearMonthDuration(
 AFW_DECLARE(const afw_yearMonthDuration_t *)
 afw_array_of_yearMonthDuration_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 

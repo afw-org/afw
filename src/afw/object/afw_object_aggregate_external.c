@@ -117,14 +117,14 @@ impl_afw_object_get_property(
 const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
 
     if (!*iterator) {
-        *iterator = (const afw_iterator_t *)&self->iterator;
+        *iterator = (const afw_iterator_old_t *)&self->iterator;
         self->iterator.object = self->object_list;
         self->iterator.iterator = NULL;
     }

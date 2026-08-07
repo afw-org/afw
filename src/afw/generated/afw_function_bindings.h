@@ -2934,7 +2934,7 @@ afw_function_definition_regexp_replace_anyURI;
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
- *   ): anyURI;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -2950,7 +2950,7 @@ afw_function_definition_regexp_replace_anyURI;
  *
  * Returns:
  *
- *   (anyURI) A anyURI value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_regexp_replace()
  *
@@ -2976,7 +2976,7 @@ afw_function_definition_repeat_anyURI;
  *   function repeat<anyURI>(
  *       value: anyURI,
  *       times: integer
- *   ): anyURI;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -2987,7 +2987,7 @@ afw_function_definition_repeat_anyURI;
  *
  * Returns:
  *
- *   (anyURI) The repeated anyURI value.
+ *   (string) Repeated text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_repeat()
  *
@@ -3015,7 +3015,7 @@ afw_function_definition_replace_anyURI;
  *       match: string,
  *       replacement: string,
  *       limit?: integer
- *   ): anyURI;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -3031,7 +3031,7 @@ afw_function_definition_replace_anyURI;
  *
  * Returns:
  *
- *   (anyURI) A anyURI value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_replace()
  *
@@ -3203,9 +3203,10 @@ afw_function_definition_substring_anyURI;
  * @brief Adaptive Function `substring<anyURI>`
  * @param x function execute parameter.
  *
- * Returns the anyURI substring of value beginning at zero-based position
+ * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of anyURI.
+ * Specify -1 or omit endIndex to return through the end of value. The result is
+ * always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3217,7 +3218,7 @@ afw_function_definition_substring_anyURI;
  *       string: anyURI,
  *       startIndex: integer,
  *       endIndex?: integer
- *   ): anyURI;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -3230,7 +3231,7 @@ afw_function_definition_substring_anyURI;
  *
  * Returns:
  *
- *   (anyURI)
+ *   (string) Substring as string (not re-typed as the input data type).
  *
  * Errors thrown:
  *
@@ -22636,7 +22637,7 @@ afw_function_definition_regexp_replace;
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -22652,7 +22653,7 @@ afw_function_definition_regexp_replace;
  *
  * Returns:
  *
- *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22682,7 +22683,7 @@ afw_function_definition_repeat;
  *   function repeat <dataType>(
  *       value: dataType,
  *       times: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -22693,7 +22694,7 @@ afw_function_definition_repeat;
  *
  * Returns:
  *
- *   (``<Type>``) The repeated `<dataType>` value.
+ *   (string) Repeated text as string (not re-typed as the input data type).
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22725,7 +22726,7 @@ afw_function_definition_replace;
  *       match: string,
  *       replacement: string,
  *       limit?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -22741,7 +22742,7 @@ afw_function_definition_replace;
  *
  * Returns:
  *
- *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -22970,9 +22971,10 @@ afw_function_definition_substring;
  * @brief Adaptive Function `substring`
  * @param x function execute parameter.
  *
- * Returns the `<dataType>` substring of value beginning at zero-based position
+ * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of `<dataType>`.
+ * Specify -1 or omit endIndex to return through the end of value. The result is
+ * always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22988,7 +22990,7 @@ afw_function_definition_substring;
  *       string: dataType,
  *       startIndex: integer,
  *       endIndex?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -23001,7 +23003,7 @@ afw_function_definition_substring;
  *
  * Returns:
  *
- *   (``<Type>``)
+ *   (string) Substring as string (not re-typed as the input data type).
  *
  * Errors thrown:
  *
@@ -27663,7 +27665,7 @@ afw_function_definition_regexp_replace_string;
  *
  * Returns:
  *
- *   (string) A string value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_regexp_replace()
  *
@@ -27700,7 +27702,7 @@ afw_function_definition_repeat_string;
  *
  * Returns:
  *
- *   (string) The repeated string value.
+ *   (string) Repeated text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_repeat()
  *
@@ -27744,7 +27746,7 @@ afw_function_definition_replace_string;
  *
  * Returns:
  *
- *   (string) A string value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  *
  * Implemented by afw_function_execute_replace()
  *
@@ -27960,7 +27962,8 @@ afw_function_definition_substring_string;
  *
  * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of string.
+ * Specify -1 or omit endIndex to return through the end of value. The result is
+ * always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27985,7 +27988,7 @@ afw_function_definition_substring_string;
  *
  * Returns:
  *
- *   (string)
+ *   (string) Substring as string (not re-typed as the input data type).
  *
  * Errors thrown:
  *

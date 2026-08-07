@@ -463,7 +463,7 @@ impl_check_manifest_cb(
     const afw_utf8_t *extension_id;
     const afw_utf8_t *module_path;
     const afw_utf8_t *entry;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     impl_check_manifest_cb_context_t *ctx = context;
     afw_utf8_t s;
@@ -1143,7 +1143,7 @@ afw_runtime_object_get_property_meta(
 const afw_value_t *
 afw_runtime_object_get_next_own_property(
     const afw_object_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
@@ -1161,7 +1161,7 @@ afw_runtime_object_get_next_own_property(
     }
     else {
         i = afw_xctx_calloc_type(impl_runtime_iterator_t, xctx);
-        *iterator = (afw_iterator_t *)i;
+        *iterator = (afw_iterator_old_t *)i;
         i->map_entry = (meta->property_map) 
             ? meta->property_map->properties
             : NULL;
@@ -1227,7 +1227,7 @@ afw_runtime_object_get_next_own_property(
 const afw_value_t *
 afw_runtime_object_get_next_property_meta(
     const afw_object_t *instance,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

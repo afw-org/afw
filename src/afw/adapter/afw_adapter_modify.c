@@ -168,9 +168,9 @@ afw_adapter_modify_entries_from_list(
     const afw_array_t *list, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     apr_array_header_t *ary;
-    const afw_iterator_t *entry_i;
-    const afw_iterator_t *tuple_i;
-    const afw_iterator_t *names_i;
+    const afw_iterator_old_t *entry_i;
+    const afw_iterator_old_t *tuple_i;
+    const afw_iterator_old_t *names_i;
     const afw_array_t *tuple;
     afw_adapter_modify_entry_t *entry;
     const afw_utf8_t *s;
@@ -356,7 +356,7 @@ afw_adapter_modify_entries_apply_to_unnormalized_object(
     const afw_utf8_t *s;
 
     /** @fixme is this supposed to be use **/
-    // const afw_iterator_t *iterator = NULL;
+    // const afw_iterator_old_t *iterator = NULL;
 
     /* Process all entries. */
     for (entry = entries; *entry; entry++)
@@ -575,7 +575,7 @@ impl_reconcile_object(
     const afw_object_t *modified,
     const afw_object_t *journal_entry)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *original_value;
     const afw_value_t *modified_value;
@@ -877,7 +877,7 @@ afw_adapter_modify_using_update_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
     const afw_array_t *entries;

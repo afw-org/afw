@@ -96,7 +96,7 @@ impl_afw_value_optional_evaluate(
     const afw_value_t *v;
     const afw_value_t *name_v;
     const afw_utf8_t *property_name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_compile_value_contextual_t *saved_contextual;
 
     saved_contextual = xctx->error->contextual;

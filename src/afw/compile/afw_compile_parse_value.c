@@ -67,7 +67,7 @@ afw_compile_parse_List(
     const afw_value_t **argv;
     afw_size_t argc;
     afw_size_t start_offset;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_boolean_t first;
 
     /* Return NULL if next token is not '['. */
@@ -365,7 +365,7 @@ impl_object_migrate_properties_to_entries(
     afw_value_object_construct_entry_t **entries_head,
     afw_value_object_construct_entry_t **entries_tail)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *name;
     const afw_value_t *v;
 

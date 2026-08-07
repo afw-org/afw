@@ -17,6 +17,7 @@
 
 #define impl_afw_array_get_entry_meta afw_array_impl_get_entry_meta
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
+#define impl_afw_array_initialize_iterator afw_array_impl_initialize_iterator
 
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "afw_value_meta_values_list"
@@ -25,7 +26,7 @@
 
 
 typedef struct {
-    const afw_iterator_t *inner;
+    const afw_iterator_old_t *inner;
     afw_integer_t index;
 } impl_meta_values_list_iterator_t;
 
@@ -135,7 +136,7 @@ impl_afw_array_get_entry_value(
 afw_boolean_t
 impl_afw_array_get_next_internal(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_data_type_t **data_type,
     const void **internal,
     afw_xctx_t *xctx)
@@ -165,7 +166,7 @@ impl_afw_array_get_next_internal(
 const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -184,7 +185,7 @@ impl_afw_array_get_next_value(
             impl_meta_values_list_iterator_t, xctx);
         state->inner = NULL;
         state->index = 0;
-        *iterator = (const afw_iterator_t *)state;
+        *iterator = (const afw_iterator_old_t *)state;
     }
     else {
         state = (impl_meta_values_list_iterator_t *)*iterator;

@@ -610,8 +610,9 @@ afw_connection_inf_t;
  * `struct afw_iterator_s` is in the generated
  * interface header. Call methods via
  * `afw_iterator_<method>(…)` macros, not by
- * assuming a single private layout beyond the published
- * struct (implementations may embed/extend in .c).
+ * assuming extra private fields: this type is the
+ * complete defined instance (host initializes via e.g.
+ * `afw_array_initialize_iterator`).
  */
 typedef struct afw_iterator_s
 afw_iterator_t;
@@ -624,6 +625,51 @@ afw_iterator_t;
  */
 typedef struct afw_iterator_inf_s
 afw_iterator_inf_t;
+
+/**
+ * @brief Opaque instance type for interface `afw_iterator_with_key`.
+ *
+ * Public name is `afw_iterator_with_key_t`. Full
+ * `struct afw_iterator_with_key_s` is in the generated
+ * interface header. Call methods via
+ * `afw_iterator_with_key_<method>(…)` macros, not by
+ * assuming extra private fields: this type is the
+ * complete defined instance (host initializes via e.g.
+ * `afw_array_initialize_iterator`).
+ */
+typedef struct afw_iterator_with_key_s
+afw_iterator_with_key_t;
+
+/**
+ * @brief Vtable/inf type for interface `afw_iterator_with_key`.
+ *
+ * Public name is `afw_iterator_with_key_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
+typedef struct afw_iterator_with_key_inf_s
+afw_iterator_with_key_inf_t;
+
+/**
+ * @brief Opaque instance type for interface `afw_iterator_old`.
+ *
+ * Public name is `afw_iterator_old_t`. Full
+ * `struct afw_iterator_old_s` is in the generated
+ * interface header. Call methods via
+ * `afw_iterator_old_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
+typedef struct afw_iterator_old_s
+afw_iterator_old_t;
+
+/**
+ * @brief Vtable/inf type for interface `afw_iterator_old`.
+ *
+ * Public name is `afw_iterator_old_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
+typedef struct afw_iterator_old_inf_s
+afw_iterator_old_inf_t;
 
 /**
  * @brief Opaque instance type for interface `afw_request`.

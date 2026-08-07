@@ -563,7 +563,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(declare + '(' + return_type + ')\n')
         fd.write('afw_object_get_next_property_as_' + id + '_source(\n')
         fd.write('    const afw_object_t *object,\n')
-        fd.write('    const afw_iterator_t * *iterator,\n')
+        fd.write('    const afw_iterator_old_t * *iterator,\n')
         fd.write('    const afw_utf8_t * *property_name,\n')
         if needs_found:
             fd.write('    afw_boolean_t *found,\n')
@@ -633,7 +633,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(declare + '(' + return_type + ')\n')
         fd.write(prefix + 'array_of_' + id + '_get_next_source(\n')
         fd.write('    const afw_array_t *instance,\n')
-        fd.write('    const afw_iterator_t * *iterator,\n')
+        fd.write('    const afw_iterator_old_t * *iterator,\n')
         if needs_found:
             fd.write('    afw_boolean_t *found,\n')
         fd.write('    const afw_utf8_z_t *source_z,\n')
@@ -1026,9 +1026,16 @@ def write_c_section(fd, prefix, obj):
 
     # special
     if obj.get('special', False) == True:
-        fd.write('    true\n')
+        fd.write('    true,\n')
     else:
-        fd.write('    false\n')
+        fd.write('    false,\n')
+
+    # iterator_return_data_type (const afw_data_type_t *; generate id or NULL)
+    irt = obj.get('iteratorReturnDataType')
+    if irt:
+        fd.write('    &afw_data_type_' + irt + '_direct\n')
+    else:
+        fd.write('    NULL\n')
 
     fd.write('};\n')
 
@@ -1455,7 +1462,7 @@ def write_c_section(fd, prefix, obj):
             fd.write(define + '(' + return_type + ')\n')
             fd.write('afw_object_get_next_property_as_' + id + '_source(\n')
             fd.write('    const afw_object_t *object,\n')
-            fd.write('    const afw_iterator_t * *iterator,\n')
+            fd.write('    const afw_iterator_old_t * *iterator,\n')
             fd.write('    const afw_utf8_t * *property_name,\n')
             fd.write('    afw_boolean_t *found,\n')
             fd.write('    const afw_utf8_z_t *source_z,\n')
@@ -1491,7 +1498,7 @@ def write_c_section(fd, prefix, obj):
             fd.write(define + '(' + return_type + ')\n')
             fd.write('afw_object_get_next_property_as_' + id + '_source(\n')
             fd.write('    const afw_object_t *object,\n')
-            fd.write('    const afw_iterator_t * *iterator,\n')
+            fd.write('    const afw_iterator_old_t * *iterator,\n')
             fd.write('    const afw_utf8_t * *property_name,\n')
             fd.write('    const afw_utf8_z_t *source_z,\n')
             fd.write('    const afw_pool_t *p,\n')
@@ -1786,7 +1793,7 @@ def write_c_section(fd, prefix, obj):
         fd.write(define + '(' + return_type + ')\n')
         fd.write(prefix + 'array_of_' + id + '_get_next_source(\n')
         fd.write('    const afw_array_t *instance,\n')
-        fd.write('    const afw_iterator_t * *iterator,\n')
+        fd.write('    const afw_iterator_old_t * *iterator,\n')
         if needs_found:
             fd.write('    afw_boolean_t *found,\n')
         fd.write('    const afw_utf8_z_t *source_z,\n')

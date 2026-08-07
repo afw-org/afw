@@ -127,6 +127,8 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_interface.h
     generated/afw_interface_opaques.h
     generated/afw_iterator_impl_declares.h
+    generated/afw_iterator_old_impl_declares.h
+    generated/afw_iterator_with_key_impl_declares.h
     generated/afw_log_factory_impl_declares.h
     generated/afw_log_impl_declares.h
     generated/afw_object_associative_array_impl_declares.h

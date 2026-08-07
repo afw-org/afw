@@ -192,7 +192,7 @@ impl_afw_object_get_property(
 const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {
@@ -205,7 +205,7 @@ impl_afw_object_get_next_property(
      * impl_handler[] entry.
      */
     if (!*iterator) {
-        *iterator = (const afw_iterator_t *)&impl_handler[0];
+        *iterator = (const afw_iterator_old_t *)&impl_handler[0];
     }
 
     /*
@@ -224,7 +224,7 @@ impl_afw_object_get_next_property(
         for (; h < impl_handler_end; h++)
         {
             result = h->get(self, h->property_name, xctx);
-            *iterator = (const afw_iterator_t *)(h + 1);
+            *iterator = (const afw_iterator_old_t *)(h + 1);
             if (result) {
                 if (property_name) {
                     *property_name = h->property_name;

@@ -2449,6 +2449,24 @@ impl_afw_content_type =
       </description>
     </variable>
 
+    <variable name="iterator_return_data_type" type="const afw_data_type_t *">
+      <description>
+        Fixed data type of each value from a keyless afw_iterator for values
+        of this type (get_next / get_by_index), or NULL if this type has no
+        iterator or the step type is not fixed at the data type level.
+
+        Distinct from optional_initialize_iterator: that method being non-NULL
+        means iteration is supported; this pointer names the step type when
+        every instance yields the same type (e.g. utf8-backed types yield
+        string code-point values). Array supports iteration but leaves this
+        NULL because element type is per array instance.
+
+        Generate property iteratorReturnDataType (data type id string) fills
+        this as a pointer to the static afw_data_type_*_direct instance.
+        See issue #153.
+      </description>
+    </variable>
+
     <method name="internal_to_utf8">
 
       <description>Convert from cType value to const afw_utf8_t *.</description>
@@ -2670,6 +2688,55 @@ impl_afw_content_type =
 
       <parameter name="xctx" type="afw_xctx_t *">
     <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="optional_initialize_iterator">
+
+      <description>
+        Optional: initialize a caller-defined keyless afw_iterator for a
+        value of this data type. NULL on the inf means this type does not
+        support sequence iteration via afw_iterator.
+
+        When present, fills iterator (inf and cursor) for walking the
+        value's internal representation. Caller provides iterator storage
+        (typically on the stack). Do not release the iterator instance.
+
+        Prefer the convenience macro afw_data_type_initialize_iterator(),
+        which throws if this method is NULL. Check
+        instance-&gt;inf-&gt;optional_initialize_iterator non-NULL for a soft
+        probe.
+
+        Implementations live in afw_data_type.c (shared array / utf8 code
+        point paths). Elements of utf8-backed types are managed string
+        values (one code point each), not the parent data type.
+      </description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>
+          Pointer to the value's cType internal (e.g. afw_utf8_t * for
+          string, const afw_array_t ** for array).
+        </description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t *">
+        <description>
+          Address of caller-defined afw_iterator_t storage to initialize.
+          Typed const so callers treat it as opaque; the implementation
+          fills inf and cursor.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -3362,7 +3429,7 @@ impl_afw_content_type =
     <description>Pointer to this value array instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer.</description>
       </parameter>
 
@@ -3401,7 +3468,7 @@ impl_afw_content_type =
         </description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>
           Address of iterator pointer.
         </description>
@@ -3448,7 +3515,7 @@ impl_afw_content_type =
     <description>Pointer to this value array instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer.</description>
       </parameter>
 
@@ -3467,6 +3534,42 @@ impl_afw_content_type =
           Pointer to next value or NULL if there are no more.
         </description>
       </return>
+
+    </method>
+
+
+    <method name="initialize_iterator">
+
+      <description>
+        Initialize a caller-defined afw_iterator_t for this array.
+
+        The caller provides storage for the iterator (typically on the stack).
+        This method sets the iterator's inf to the array implementation's
+        iterator vtable and resets cursor fields so get_next / get_by_index /
+        get_count can be used. Same idea as get_setter returning a known inf,
+        but here the host fills a defined_instance_storage object in place.
+
+        No release of the iterator instance is required.
+      </description>
+
+      <parameter name="instance" type="const afw_array_t *">
+        <description>Pointer to this array instance.</description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t *">
+        <description>
+          Address of caller-defined afw_iterator_t storage to initialize.
+          Typed const so callers treat it as opaque: only the array
+          implementation fills inf and cursor fields (it may cast away
+          const). Callers must not set up the iterator themselves.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
 
     </method>
 
@@ -3996,7 +4099,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
       </parameter>
 
@@ -4027,7 +4130,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
       </parameter>
 
@@ -4758,12 +4861,309 @@ AFW_DEFINE(const afw_request_handler_t *)
   </interface>
 
 
-  <interface name="afw_iterator" id="afww">
+  <!--
+    #153 defined-instance iterators. Two interfaces:
+    - afw_iterator: values only (get_next → value or NULL)
+    - afw_iterator_with_key: key + value walk (object properties, etc.)
+    Hosts initialize storage (e.g. afw_array_initialize_iterator).
+    See designs/utf8-code-point-sequences.md.
+  -->
+  <interface name="afw_iterator" id="afwit"
+      defined_instance_storage="true">
 
     <description>
-      Iterator over elements of a value that supports iteration (e.g. arrays).
-      Created by afw_value_create_iterator() when non-NULL. Call methods via
-      afw_iterator_*() macros. See group afw_value and afw_array.
+      Caller-defined iterator over a dense or sequential stream of adaptive
+      values without keys (array elements, string code points, …).
+
+      defined_instance_storage: the public afw_iterator_t is fixed-size
+      storage the caller provides (typically on the stack). A host method
+      initializes it (sets inf and cursor), e.g.
+      afw_array_initialize_iterator(array, &amp;it, xctx). Do not release
+      the instance. Implementations use only the published fields.
+
+      After host initialize:
+      - get_next — next value, or NULL when done (same idea as
+        afw_array_get_next_value returning NULL)
+      - get_by_index — dense index; does not advance get_next cursor
+      - get_count — dense length when indexable
+
+      For key+value walks (e.g. object properties), use
+      afw_iterator_with_key instead.
+
+      Call methods via afw_iterator_*() macros. Legacy array/object
+      get_next_* cursors remain afw_iterator_old_t until migrated.
+    </description>
+
+    <variable name="impl" type="void *">
+      <description>
+        Implementation-private cursor or source pointer. Opaque to callers.
+      </description>
+    </variable>
+
+    <variable name="offset" type="afw_size_t">
+      <description>
+        Common cursor field (byte offset, entry index, or similar).
+      </description>
+    </variable>
+
+    <variable name="reserved" type="afw_size_t">
+      <description>
+        Spare word for implementations that need a second size_t without
+        allocating.
+      </description>
+    </variable>
+
+    <method name="get_next">
+
+      <description>
+        Advance the sequential cursor and return the next value, or NULL
+        when there are no more elements. Call only after host initialize
+        (e.g. afw_array_initialize_iterator).
+
+        A non-NULL return is the element value (which may itself represent
+        undefined). NULL means end of iteration — not an undefined element.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_t *">
+        <description>Pointer to this defined iterator instance.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool for any allocated result value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          Next element value, or NULL if iteration is finished.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_by_index">
+
+      <description>
+        Return the value at dense zero-based index i. Does not advance the
+        get_next cursor. Walk-only iterators may throw. Out-of-range should
+        align with array soft get (undefined or NULL) per source policy.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_t *">
+        <description>Pointer to this defined iterator instance.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>Zero-based dense index.</description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool for any allocated result value.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>Element at index, or undefined / NULL per policy.</description>
+      </return>
+
+    </method>
+
+    <method name="get_count">
+
+      <description>
+        Dense element count when indexable. Walk-only iterators may throw.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_t *">
+        <description>Pointer to this defined iterator instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_size_t">
+        <description>Number of dense elements.</description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <interface name="afw_iterator_with_key" id="afwitk"
+      defined_instance_storage="true">
+
+    <description>
+      Caller-defined iterator that yields both a key and a value each step
+      (e.g. object properties: property name + value; or array with integer
+      index as key).
+
+      Same defined_instance_storage rules as afw_iterator: caller provides
+      storage; a host method initializes inf and cursor; no instance release.
+
+      Array hosts only initialize the keyless afw_iterator for now. Hosts for
+      afw_iterator_with_key (object, etc.) will be added later.
+
+      After host initialize:
+      - get_next — sequential key+value step; returns true when done
+      - get_by_index / get_count — optional dense support where meaningful
+
+      Call methods via afw_iterator_with_key_*() macros.
+    </description>
+
+    <variable name="impl" type="void *">
+      <description>
+        Implementation-private cursor or source pointer. Opaque to callers.
+      </description>
+    </variable>
+
+    <variable name="offset" type="afw_size_t">
+      <description>
+        Common cursor field (byte offset, entry index, or similar).
+      </description>
+    </variable>
+
+    <variable name="reserved" type="afw_size_t">
+      <description>
+        Spare word for implementations that need a second size_t without
+        allocating.
+      </description>
+    </variable>
+
+    <method name="get_next">
+
+      <description>
+        Advance the sequential cursor. If key is non-NULL, receives the key
+        (e.g. property name or integer index). If value is non-NULL, receives
+        the element value. Returns true if done (no more elements).
+        Returns false if this step produced key/value as requested.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_with_key_t *">
+        <description>Pointer to this defined iterator instance.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_value_t **">
+        <description>
+          Place to return the key, or NULL if the key is not needed.
+        </description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t **">
+        <description>
+          Place to return the value, or NULL if the value is not needed.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool for any allocated result values.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t">
+        <description>
+          True if done. False if this step produced key/value as requested.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_by_index">
+
+      <description>
+        Dense zero-based entry at index i, if supported: key and value out
+        params match get_next (e.g. property name + value, or integer index
+        + element). Does not advance get_next. May throw if not indexable.
+
+        Returns true if index is out of range / no entry (key and value not
+        useful). Returns false if key/value were set for this index.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_with_key_t *">
+        <description>Pointer to this defined iterator instance.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>Zero-based dense index.</description>
+      </parameter>
+
+      <parameter name="key" type="const afw_value_t **">
+        <description>
+          Place to return the key, or NULL if the key is not needed.
+        </description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t **">
+        <description>
+          Place to return the value, or NULL if the value is not needed.
+        </description>
+      </parameter>
+
+      <parameter name="p" type="const afw_pool_t *">
+        <description>Pool for any allocated result values.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_boolean_t">
+        <description>
+          True if no entry at index. False if this call produced key/value
+          as requested.
+        </description>
+      </return>
+
+    </method>
+
+    <method name="get_count">
+
+      <description>
+        Dense element count when indexable. May throw if not indexable.
+      </description>
+
+      <parameter name="instance" type="const afw_iterator_with_key_t *">
+        <description>Pointer to this defined iterator instance.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="afw_size_t">
+        <description>Number of dense elements.</description>
+      </return>
+
+    </method>
+
+  </interface>
+
+
+  <!--
+    Temporary rename (issue #153 branch): old first-class iterator interface
+    and opaque get_next_* cursor type, so the new defined-instance
+    afw_iterator can take the name. Callers of array/object get_next_* use
+    afw_iterator_old_t ** as the cursor token until the new design lands.
+  -->
+  <interface name="afw_iterator_old" id="afwwold">
+
+    <description>
+      Legacy iterator interface (renamed from afw_iterator during #153).
+      Also used as the opaque cursor token type for array/object get_next_*
+      (pointer-sized slot). Created by afw_value_create_iterator() when
+      non-NULL. Call methods via afw_iterator_old_*() macros. See group
+      afw_value and afw_array. Will be replaced by the new afw_iterator
+      (defined_instance_storage) design.
     </description>
 
     <method name="release">
@@ -4772,8 +5172,8 @@ AFW_DEFINE(const afw_request_handler_t *)
         This method releases the iterator.
       </description>
 
-      <parameter name="instance" type="const afw_iterator_t *">
-    <description>Pointer to this stream instance.</description>
+      <parameter name="instance" type="const afw_iterator_old_t *">
+    <description>Pointer to this iterator instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -4791,8 +5191,8 @@ AFW_DEFINE(const afw_request_handler_t *)
         'done' is set to 'true'.
       </description>
 
-      <parameter name="instance" type="const afw_iterator_t *">
-    <description>Pointer to this stream instance.</description>
+      <parameter name="instance" type="const afw_iterator_old_t *">
+    <description>Pointer to this iterator instance.</description>
       </parameter>
 
       <parameter name="key" type="const afw_value_t **">
@@ -5761,7 +6161,7 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="create_iterator">
 
       <description>
-        This will return an 'afw_iterator' instance or NULL if this value does
+        This will return an 'afw_iterator_old' instance or NULL if this value does
         not support iteration.
       </description>
 
@@ -5783,9 +6183,9 @@ AFW_DEFINE(const afw_request_handler_t *)
         </description>
       </parameter>
 
-      <return type="const afw_iterator_t *">
+      <return type="const afw_iterator_old_t *">
     <description>
-          This is an new instance of afw_iterator.
+          This is an new instance of afw_iterator_old.
       </description>
       </return>
 

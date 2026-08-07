@@ -194,7 +194,8 @@ afw_data_type_double_direct = {
     true,
     true,
     true,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of double. */
@@ -368,7 +369,7 @@ afw_object_get_property_as_double_source(
 AFW_DEFINE(double)
 afw_object_get_next_property_as_double_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
@@ -518,7 +519,7 @@ impl_afw_value_get_info(
 AFW_DEFINE(double)
 afw_array_of_double_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)

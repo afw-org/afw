@@ -84,7 +84,7 @@ typedef struct {
     afw_value_object_t value;
     const afw_object_t *instance;
     const afw_object_options_t *options;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_boolean_t embedded;
     afw_boolean_t limited_meta;
 
@@ -119,7 +119,7 @@ afw_object_aggregate_external_self_s {
     const afw_object_t * const *object_list;
     struct {
         const afw_object_t * const *object;
-        const afw_iterator_t *iterator;
+        const afw_iterator_old_t *iterator;
     } iterator; 
 } afw_object_aggregate_external_self_t;
 

@@ -18,6 +18,7 @@
 
 #define impl_afw_array_get_entry_meta afw_array_impl_get_entry_meta
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
+#define impl_afw_array_initialize_iterator afw_array_impl_initialize_iterator
 
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "memory"
@@ -169,7 +170,7 @@ afw_array_create_wrapper_with_options(
     afw_xctx_t *xctx)
 {
     afw_memory_internal_array_t *self;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_data_type_t *data_type;
 
@@ -414,7 +415,7 @@ impl_afw_array_get_entry_value(
 afw_boolean_t
 impl_afw_array_get_next_internal(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t *xctx)
@@ -443,7 +444,7 @@ impl_afw_array_get_next_internal(
     }
 
     /* Promote nested faces on wrapper arrays (typed map / get_next_internal). */
-    *iterator = (afw_iterator_t *)ep;
+    *iterator = (afw_iterator_old_t *)ep;
     {
         const afw_value_t *value;
 
@@ -464,7 +465,7 @@ impl_afw_array_get_next_internal(
 const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
@@ -488,7 +489,7 @@ impl_afw_array_get_next_value(
     }
 
     /* Return next value (promote nested faces on wrapper arrays). */
-    *iterator = (afw_iterator_t *)ep;
+    *iterator = (afw_iterator_old_t *)ep;
     return impl_promote_structured_entry(self, ep, ep->value, xctx);
 }
 
@@ -1124,7 +1125,7 @@ afw_array_create_or_clone(
     afw_boolean_t clone_values,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *result;
     const afw_value_t *value;
     const afw_data_type_t *use_data_type;
@@ -1165,7 +1166,7 @@ afw_array_of_create_from_value(
     const afw_data_type_t *value_data_type;
     const afw_array_t *value_array;
     const afw_array_t *old_array;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *v;
 
     value_data_type = afw_value_get_data_type(value, xctx);

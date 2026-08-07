@@ -546,7 +546,7 @@ afw_curl_internal_http_post(
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
-    const afw_iterator_t *header_iterator;
+    const afw_iterator_old_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
@@ -694,7 +694,7 @@ afw_curl_internal_http_get(
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t * value;
-    const afw_iterator_t * header_iterator;
+    const afw_iterator_old_t * header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
@@ -831,7 +831,7 @@ afw_curl_internal_http_delete(
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
-    const afw_iterator_t *header_iterator;
+    const afw_iterator_old_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
@@ -969,7 +969,7 @@ afw_curl_internal_http_put(
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
-    const afw_iterator_t *header_iterator;
+    const afw_iterator_old_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
@@ -1118,7 +1118,7 @@ afw_curl_internal_http_patch(
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
-    const afw_iterator_t *header_iterator;
+    const afw_iterator_old_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
@@ -1263,7 +1263,7 @@ afw_curl_internal_http_head(
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
-    const afw_iterator_t *header_iterator;
+    const afw_iterator_old_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
@@ -1394,7 +1394,7 @@ afw_curl_internal_http_options(
     afw_curl_internal_write_cb_t * response = NULL;
     long response_code;
     const afw_value_t *value;
-    const afw_iterator_t *header_iterator;
+    const afw_iterator_old_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
     afw_curl_internal_script_cb_t * header = NULL;
@@ -1525,7 +1525,7 @@ afw_curl_internal_smtp_send(
     CURL * curl = NULL;
     CURLcode res = CURLE_OK;
     struct curl_slist * recipients = NULL;
-    const afw_iterator_t * iterator;
+    const afw_iterator_old_t * iterator;
     const afw_value_t * value;
 
     curl = curl_easy_init();

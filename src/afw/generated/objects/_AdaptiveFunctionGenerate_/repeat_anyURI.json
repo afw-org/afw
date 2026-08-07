@@ -21,8 +21,8 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "anyURI",
-        "description": "The repeated anyURI value."
+        "dataType": "string",
+        "description": "Repeated text as string (not re-typed as the input data type)."
     },
     "useExecuteFunction": "afw_function_execute_repeat"
 }

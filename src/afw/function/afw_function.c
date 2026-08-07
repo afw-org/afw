@@ -307,6 +307,17 @@ afw_function_evaluate_parameter(
         return result;
     }
 
+    /*
+     * Caller requested array (EVALUATE_* … array): materialize keyless-
+     * iterator sequences (utf8 code points) as a temporary array (#153).
+     * Do not key off parameter->data_type alone — polymorphic bag rest
+     * formals are typed array in metadata but take scalar bag members
+     * (XACML bag-of-one), not code-point sequences.
+     */
+    if (data_type == afw_data_type_array) {
+        result = afw_value_as_array_sequence(result, x->p, xctx);
+    }
+
     /* Get result's data type. */
     result_data_type = afw_value_get_data_type(result, xctx);
 

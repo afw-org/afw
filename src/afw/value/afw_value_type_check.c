@@ -1170,7 +1170,7 @@ impl_foreach_object_literal_prop(
     afw_xctx_t *xctx)
 {
     const afw_object_t *obj;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *name;
     const afw_value_t *pv;
     const afw_value_object_construct_t *construct;

@@ -39,6 +39,79 @@ Implementing the optimizer, pragma, or permanent purity audits. This file is onl
 
 ---
 
+## Produce type percolation (`inf->data_type`) — deferred
+
+**Not #28 type-checking proper** and **not #153 iterator surface**. Captured during
+#153 brainstorm (2026-08); implement on a compile-optimize / produce-type pass.
+
+### Intent
+
+At compile time, when the result type of an expression is knowable, **percolate
+it into the value produce-type channel** so soft probes work without evaluating:
+
+- Inf variable **`data_type`** (`afw_value_quick_data_type`) — preferred for kinds
+  that can put a fixed type on the shared inf.
+- For **call** IR, produce type is often per-instance today
+  (`evaluated_data_type` + `get_data_type()`), because one shared call inf cannot
+  hold every return type. Long-term: keep the *intent* (known produce type without
+  eval); design how that surfaces (instance + method, helpers, or other).
+
+**`is_evaluated_of_data_type`** remains cast-safe / finished layout only.
+
+When produce type **cannot** be known (true dynamic), leave it NULL and rely on
+**compile-time type checking** (#28) rather than inventing a type on the IR.
+
+### Situation snapshot (explore, branch tip ~#153)
+
+| Kind | Produce type today |
+|------|--------------------|
+| Evaluated data-type values | Both inf fields set (good). |
+| Built-in **call** (compile create, `allow_optimize`) | Instance `evaluated_data_type` from fixed `returns->data_type`; poly return-from-param1 when arg1 type known; specialized poly hub when first arg type known. **`inf->data_type` still NULL** (shared call inf). |
+| Built-in call (runtime create, no optimize) | Often unset (by design — HOF argv slots). |
+| **Script function definition** | Produce type **function** (correct for pass-as-value). Signature `returns` defaults to **any** if omitted; author `: Type` stored on definition for checks. |
+| **Script function call** / generic **call** | `get_data_type` → **NULL**; create has `@fixme Get right data type`. |
+| `reference_by_key`, block, many other IR | Often NULL / incomplete. |
+
+#153 macros: `afw_value_iterator_return_data_type` uses **quick** `inf->data_type`
+only — correct field, sparse coverage until percolation lands. Eval-time
+has/initialize use `is_evaluated_of_data_type` (separate).
+
+### Tests to add when this work is done
+
+Prefer compiler-listing / decompile / small C or Adaptive probes over only
+end-to-end script luck. Ideas:
+
+1. **Fixed-return builtin call** (e.g. `substring`, `bag_size`): after compile,
+   produce type is string/integer (via `get_data_type` and, if design puts it
+   there, any quick path). Soft step-type for string-returning call →
+   `iterator_return_data_type` string when produce type is string.
+2. **Polymorphic return ≈ param1** (e.g. `clone(x)`): when `x` has known type,
+   call produce type matches; when `x` is unknown, produce type NULL (no lie).
+3. **Polymorphic hub specialized** at create when arg1 type known: produce type
+   matches specialized method returns (not the open hub).
+4. **Script call with `: string` (etc.) return**: call produce type is that leaf
+   when known; **without** annotation still **any** / unknown policy (document).
+5. **Script / function *value*** (not call): produce type remains **function**.
+6. **Dynamic only at eval**: expression that cannot be typed at compile stays
+   NULL produce type; with `#typecheck` / flags, assignability still enforced
+   where #28 already covers (regression that we did not fake a type).
+7. **Quick vs method**: tests that document which channel is authoritative for
+   calls after the design choice (avoid flaky tests that only read
+   `inf->data_type` if instance remains source of truth for calls).
+8. **Constant fold** (this pad’s original idea): pure call with constant args
+   becomes literal; produce type of folded node is the literal’s type; decompile
+   shows fold under optimize flag/pragma.
+9. **#153 consumers later**: for-of / index soft probes on expressions that are
+   calls returning string/array only after produce type is honest — optional
+   cross-link tests, not a substitute for (1)–(4).
+
+### Explicitly not in this deferred bag
+
+- Rewiring for-of / `s[i]` onto iterators (#153 consumer step).
+- Expanding #28 annotation surface (generics, etc.).
+
+---
+
 ## Related #18 follow-ups (not optimize)
 
 ### Destructuring `#assignment_target` (implemented direction)

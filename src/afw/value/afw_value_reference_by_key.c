@@ -152,9 +152,48 @@ impl_afw_value_optional_evaluate(
         }
     }
 
+    /*
+     * Utf8-backed values (string, anyURI, …): code-point index via keyless
+     * afw_iterator (#153). Out of range → undefined (soft, like array).
+     * Negative indexes count from the end.
+     */
+    else if (afw_value_has_iterator(v)) {
+        afw_iterator_t iterator;
+        afw_integer_t index;
+        afw_size_t count;
+
+        key = afw_value_evaluate(self->key, p, xctx);
+        if (!afw_value_is_integer(key)) {
+            AFW_THROW_ERROR_Z(evaluate,
+                "Index must be integer for string code-point sequence",
+                xctx);
+        }
+        index = ((const afw_value_integer_t *)key)->internal;
+        afw_value_initialize_iterator(v, &iterator, xctx);
+        if (index < 0) {
+            count = afw_iterator_get_count(&iterator, xctx);
+            if ((afw_size_t)(-index) > count) {
+                result = afw_value_undefined;
+            }
+            else {
+                index = (afw_integer_t)count + index;
+                result = afw_iterator_get_by_index(&iterator, index, p, xctx);
+                if (!result) {
+                    result = afw_value_undefined;
+                }
+            }
+        }
+        else {
+            result = afw_iterator_get_by_index(&iterator, index, p, xctx);
+            if (!result) {
+                result = afw_value_undefined;
+            }
+        }
+    }
+
     else {
         AFW_THROW_ERROR_Z(evaluate,
-            "Expecting object or array", xctx);
+            "Expecting object, array, or utf8 code-point sequence", xctx);
     }
 
     /* Pop value from evaluation stack and return result. */

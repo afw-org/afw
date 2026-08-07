@@ -822,6 +822,66 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
 
 
 /**
+ * @brief True if A_VALUE is evaluated and its data type supports keyless
+ *        afw_iterator (#153).
+ * @param A_VALUE value to test.
+ *
+ * Uses inf->is_evaluated_of_data_type (cast-safe face) and
+ * optional_initialize_iterator on that data type. Not a produce-type probe.
+ * Soft only — does not throw.
+ */
+#define afw_value_has_iterator(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf->is_evaluated_of_data_type && \
+    (A_VALUE)->inf->is_evaluated_of_data_type->inf && \
+    (A_VALUE)->inf->is_evaluated_of_data_type->inf->optional_initialize_iterator \
+)
+
+
+/**
+ * @brief Fixed iterator step data type for A_VALUE's produce type, or NULL.
+ * @param A_VALUE value (evaluated or not).
+ * @return const afw_data_type_t * or NULL.
+ *
+ * Quick path only: inf->data_type->iterator_return_data_type. Does not call
+ * get_data_type(). NULL if produce type is unknown on the inf, or the type
+ * has no fixed iterator step type. See issue #153.
+ */
+#define afw_value_iterator_return_data_type(A_VALUE) \
+( \
+    ((A_VALUE) && (A_VALUE)->inf->data_type) \
+    ? (A_VALUE)->inf->data_type->iterator_return_data_type \
+    : NULL \
+)
+
+
+/**
+ * @brief Initialize a keyless afw_iterator for an evaluated value (#153).
+ * @param A_VALUE evaluated value with a data type that supports iterator.
+ * @param iterator caller-defined afw_iterator_t storage (opaque; host fills).
+ * @param xctx of caller.
+ *
+ * Requires finished evaluated layout (is_evaluated_of_data_type). Throws if
+ * the value is missing, not evaluated, or its type has no iterator. Soft
+ * probe: afw_value_has_iterator() first.
+ */
+#define afw_value_initialize_iterator(A_VALUE, iterator, xctx) \
+do { \
+    const afw_data_type_t *_afw_it_dt = \
+        (A_VALUE) ? (A_VALUE)->inf->is_evaluated_of_data_type : NULL; \
+    if (!_afw_it_dt || !_afw_it_dt->inf || \
+        !_afw_it_dt->inf->optional_initialize_iterator) \
+    { \
+        AFW_THROW_ERROR_Z(general, \
+            "Value does not support iterator", (xctx)); \
+    } \
+    _afw_it_dt->inf->optional_initialize_iterator( \
+        _afw_it_dt, AFW_VALUE_INTERNAL(A_VALUE), (iterator), (xctx)); \
+} while (0)
+
+
+/**
  * @brief Get quick data type id string, or "unknown".
  * @param A_VALUE value (may be NULL).
  * @return pointer to data_type_id utf8, or afw_s_unknown.
@@ -1182,6 +1242,38 @@ AFW_DECLARE(const afw_utf8_z_t *)
 afw_value_as_utf8_z(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
+
+
+/**
+ * @brief Array or keyless-iterator sequence as an array value (#153).
+ * @param value evaluated value (may be NULL).
+ * @param p pool for a materialized array when needed.
+ * @param xctx of caller.
+ * @return value unchanged if already an array, NULL, or non-iterable;
+ *         otherwise a new array value of get_next elements (utf8 code
+ *         points as one-code-point strings, etc.).
+ *
+ * Used when a built-in formal or HOF expects an array of values but the
+ * author passed a utf8-backed sequence. Does not mutate the original
+ * value; materialization is a temporary array. Not a syntax change.
+ *
+ * **C implementers:** prefer this helper (or keyless `afw_iterator`) over
+ * open-coding utf8 walks when an API expects an array of values. Call only
+ * when the formal truly wants a value sequence (e.g. EVALUATE … array, HOF
+ * walked list, script `array` / `T[]` / tuple). Do **not** use for XACML
+ * bag rest formals that take scalar bag members typed as `array` in
+ * metadata — bag-of-one is not code-point expansion.
+ *
+ * **Deferred (not required for beta language semantics):** an immutable
+ * array *face* over utf8 (lazy get_next / get_by_index without eager
+ * materialize). Same public contract; optional later if cost or clear
+ * mutation-reject matters. See `designs/utf8-code-point-sequences.md`.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_as_array_sequence(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 
 /**

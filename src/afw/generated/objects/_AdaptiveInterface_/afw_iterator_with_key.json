@@ -1,0 +1,4 @@
+{
+    "name": "afw_iterator_with_key",
+    "description": "Caller-defined iterator that yields both a key and a value each step\n      (e.g. object properties: property name + value; or array with integer\n      index as key).\n\n      Same defined_instance_storage rules as afw_iterator: caller provides\n      storage; a host method initializes inf and cursor; no instance release.\n\n      Array hosts only initialize the keyless afw_iterator for now. Hosts for\n      afw_iterator_with_key (object, etc.) will be added later.\n\n      After host initialize:\n      - get_next — sequential key+value step; returns true when done\n      - get_by_index / get_count — optional dense support where meaningful\n\n      Call methods via afw_iterator_with_key_*() macros."
+}

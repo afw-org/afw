@@ -209,7 +209,7 @@ afw_object_impl_get_property_meta(
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_object_impl_internal_get_next_property_meta(
     const afw_object_t *instance,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -234,7 +234,7 @@ afw_object_impl_internal_get_next_property_meta(
  * const afw_value_t *
  * impl_afw_object_get_next_property_meta(
  *    const afw_object_t *instance,
- *    const afw_iterator_t **iterator,
+ *    const afw_iterator_old_t **iterator,
  *    const afw_utf8_t **property_name,
  *    afw_xctx_t *xctx)
  * {
@@ -245,7 +245,7 @@ afw_object_impl_internal_get_next_property_meta(
 AFW_DECLARE(const afw_value_t *)
 afw_object_impl_get_next_property_meta(
     const afw_object_t *instance,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

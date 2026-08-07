@@ -22,7 +22,7 @@ impl_is_in_array(
     const afw_array_t *array,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *entry_internal;
     const afw_data_type_t *entry_data_type;
 
@@ -57,7 +57,7 @@ impl_is_subset_array(
     const afw_array_t *array2,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
     const afw_data_type_t *data_type;
 
@@ -82,7 +82,7 @@ impl_add_nondups_to_array(
     const afw_array_t *to,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
 
     for (iterator = NULL;;) {
@@ -142,7 +142,7 @@ afw_function_execute_at_least_one_member_of(
 {
     const afw_value_array_t *array1;
     const afw_value_array_t *array2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
 
@@ -831,9 +831,10 @@ afw_function_execute_includes(
     const afw_value_string_t *a1;
     const afw_value_string_t *a2;
     const afw_value_integer_t *position;
-    const afw_utf8_octet_t *c;
-    afw_integer_t start;
-    afw_size_t len;
+    afw_size_t index;
+    afw_size_t offset;
+    afw_size_t count;
+    afw_integer_t start_cp;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg2, 2);
@@ -844,24 +845,53 @@ afw_function_execute_includes(
 
     a1 = (const afw_value_string_t *)arg1;
     a2 = (const afw_value_string_t *)arg2;
-    
-    c = a1->internal.s;
-    len = a1->internal.len;
-    
+
+    /*
+     * Search at code-point boundaries only (#153). Position is a zero-based
+     * code-point index (negative counts from end), not a byte offset.
+     */
+    index = 0;
     if (position) {
-        start = abs((int)position->internal) % a1->internal.len;
-
-        if (position->internal < 0 && start != 0) {
-            start = a1->internal.len - start;
+        start_cp = position->internal;
+        if (start_cp < 0) {
+            count = 0;
+            for (offset = 0;
+                afw_utf8_next_code_point(a1->internal.s, &offset,
+                    a1->internal.len, x->xctx) >= 0; )
+            {
+                count++;
+            }
+            if ((afw_size_t)(-start_cp) > count) {
+                return afw_boolean_v_false;
+            }
+            index = count + (afw_size_t)start_cp;
         }
-
-        c += start;
-        len -= start;
+        else {
+            index = (afw_size_t)start_cp;
+        }
     }
 
-    for ( ; a2->internal.len <= len; c++, len--) {
-        if (memcmp(c, a2->internal.s, a2->internal.len) == 0) {
+    for (offset = 0; offset < index; ) {
+        if (afw_utf8_next_code_point(a1->internal.s, &offset,
+            a1->internal.len, x->xctx) < 0)
+        {
+            return afw_boolean_v_false;
+        }
+    }
+
+    for (;;) {
+        if (offset + a2->internal.len > a1->internal.len) {
+            break;
+        }
+        if (memcmp(a1->internal.s + offset,
+            a2->internal.s, a2->internal.len) == 0)
+        {
             return afw_boolean_v_true;
+        }
+        if (afw_utf8_next_code_point(a1->internal.s, &offset,
+            a1->internal.len, x->xctx) < 0)
+        {
+            break;
         }
     }
 
@@ -1014,7 +1044,7 @@ afw_function_execute_intersection(
 {
     const afw_value_array_t *array1;
     const afw_value_array_t *array2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
     const afw_array_t *array;
@@ -1690,7 +1720,7 @@ afw_function_execute_one_and_only(
     const afw_value_array_t *array;
     const afw_data_type_t *data_type;
     const void *internal;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     if (afw_array_get_count(array->internal, x->xctx) != 1) {
@@ -1806,7 +1836,7 @@ afw_function_execute_regexp_match(
  *   function repeat <dataType>(
  *       value: dataType,
  *       times: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -1817,7 +1847,7 @@ afw_function_execute_regexp_match(
  *
  * Returns:
  *
- *   (``<Type>``) The repeated `<dataType>` value.
+ *   (string) Repeated text as string (not re-typed as the input data type).
  */
 const afw_value_t *
 afw_function_execute_repeat(
@@ -1882,7 +1912,7 @@ afw_function_execute_repeat(
  *       match: string,
  *       replacement: string,
  *       limit?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -1898,7 +1928,7 @@ afw_function_execute_repeat(
  *
  * Returns:
  *
- *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  */
 const afw_value_t *
 afw_function_execute_replace(
@@ -1941,20 +1971,29 @@ afw_function_execute_replace(
     if (remaining.len == 0) {
         return afw_v_a_empty_string;
     }
-    for (count = 0; count < limit && remaining.len > match->internal.len; )
+    /*
+     * Advance search by code point only (#153) so matches are not attempted
+     * mid multi-byte sequence.
+     */
+    for (count = 0; count < limit && remaining.len >= match->internal.len; )
     {
-        for (;
-            remaining.len >= match->internal.len;
-            remaining.s++, remaining.len--)
+        if (memcmp(remaining.s, match->internal.s, match->internal.len) == 0)
         {
-            if (memcmp(remaining.s, match->internal.s, match->internal.len)
-                == 0)
+            remaining.s += match->internal.len;
+            remaining.len -= match->internal.len;
+            count++;
+        }
+        else {
+            afw_size_t cp_len;
+
+            cp_len = 0;
+            if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                remaining.len, x->xctx) < 0)
             {
-                remaining.s += match->internal.len;
-                remaining.len -= match->internal.len;
-                count++;
                 break;
             }
+            remaining.s += cp_len;
+            remaining.len -= cp_len;
         }
     }
 
@@ -1972,10 +2011,12 @@ afw_function_execute_replace(
     result->internal.len = len;
     result->internal.s = s;
 
-    /* Do replaces and return result. */
+    /* Do replaces and return result (same CP-step search). */
     for (; count > 0; count--) {
         for (;;) {
-            if (memcmp(remaining.s, match->internal.s, match->internal.len) == 0)
+            if (remaining.len >= match->internal.len &&
+                memcmp(remaining.s, match->internal.s, match->internal.len)
+                    == 0)
             {
                 memcpy(s, replacement->internal.s, replacement->internal.len);
                 s += replacement->internal.len;
@@ -1984,10 +2025,21 @@ afw_function_execute_replace(
                 break;
             }
             else {
-                *s++ = *remaining.s++;
-                remaining.len--;
+                afw_size_t cp_len;
+
+                cp_len = 0;
+                if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                    remaining.len, x->xctx) < 0)
+                {
+                    AFW_THROW_ERROR_Z(general,
+                        "Invalid UTF-8 in replace", x->xctx);
+                }
+                memcpy(s, remaining.s, cp_len);
+                s += cp_len;
+                remaining.s += cp_len;
+                remaining.len -= cp_len;
             }
-        }            
+        }
     }
     if (remaining.len > 0) {
         memcpy(s, remaining.s, remaining.len);
@@ -2143,11 +2195,11 @@ afw_function_execute_split(
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
     if (separator) {
+        /* Find separator only at code-point boundaries (#153). */
         for (count = 0; count < limit && remaining.len > 0; count++) {
-            for (split.s = remaining.s, split.len = remaining.len;
-                ;
-                remaining.s++, remaining.len--)
-            {
+            split.s = remaining.s;
+            split.len = remaining.len;
+            for (;;) {
                 if (remaining.len < separator->len) {
                     remaining.len = 0;
                     break;
@@ -2158,7 +2210,20 @@ afw_function_execute_split(
                     remaining.len -= separator->len;
                     break;
                 }
-            }            
+                {
+                    afw_size_t cp_len;
+
+                    cp_len = 0;
+                    if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                        remaining.len, x->xctx) < 0)
+                    {
+                        AFW_THROW_ERROR_Z(general,
+                            "Invalid UTF-8 in split", x->xctx);
+                    }
+                    remaining.s += cp_len;
+                    remaining.len -= cp_len;
+                }
+            }
             afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
@@ -2329,9 +2394,10 @@ afw_function_execute_subset(
  *
  * See afw_function_bindings.h for more information.
  *
- * Returns the `<dataType>` substring of value beginning at zero-based position
+ * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of `<dataType>`.
+ * Specify -1 or omit endIndex to return through the end of value. The result is
+ * always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2347,7 +2413,7 @@ afw_function_execute_subset(
  *       string: dataType,
  *       startIndex: integer,
  *       endIndex?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -2360,7 +2426,7 @@ afw_function_execute_subset(
  *
  * Returns:
  *
- *   (``<Type>``)
+ *   (string) Substring as string (not re-typed as the input data type).
  *
  * Errors thrown:
  *
@@ -2683,7 +2749,7 @@ afw_function_execute_regexp_index_of(
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -2699,7 +2765,7 @@ afw_function_execute_regexp_index_of(
  *
  * Returns:
  *
- *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  */
 const afw_value_t *
 afw_function_execute_regexp_replace(

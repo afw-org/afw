@@ -1056,6 +1056,16 @@ impl_properties__AdaptiveDataType_[] = {
         afw_runtime_value_accessor_default
     },
     {
+        &afw_self_s_iteratorReturnDataType,
+        offsetof(afw_data_type_t, iterator_return_data_type),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_data_type_id,
+        afw_runtime_value_accessor_data_type_id
+    },
+    {
         &afw_self_s_jsonImpliesDataType,
         offsetof(afw_data_type_t, json_implies_data_type),
         -1,
@@ -1130,7 +1140,7 @@ impl_properties__AdaptiveDataType_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveDataType_ = {
     &afw_self_s__AdaptiveDataType_,
-    15,
+    16,
     &impl_properties__AdaptiveDataType_[0]
 };
 

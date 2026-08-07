@@ -887,9 +887,10 @@ The second array.
 
 =head3 substring
 
-Returns the `<dataType>` substring of value beginning at zero-based position
-integer startIndex and ending at the position before integer endIndex. Specify
--1 or omitting endIndex to return up to end of `<dataType>`.
+Returns the string substring of value beginning at zero-based position integer
+startIndex and ending at the position before integer endIndex. Specify -1 or
+omit endIndex to return through the end of value. The result is always string
+(a slice of anyURI is not an anyURI).
 Extract a substring
 
 =head4 Parameters

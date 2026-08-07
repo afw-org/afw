@@ -127,7 +127,7 @@ impl_afw_value_clone_or_reference(
 
 #ifndef impl_afw_value_create_iterator
 /* Declare method create_iterator */
-AFW_DECLARE_STATIC(const afw_iterator_t *)
+AFW_DECLARE_STATIC(const afw_iterator_old_t *)
 impl_afw_value_create_iterator(
     AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,

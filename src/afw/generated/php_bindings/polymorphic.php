@@ -1238,7 +1238,8 @@ class polymorphic
      * @param integer $limit This is the maximum times to replace. The default
      *                       is 1. Specify -1 to replace all occurrences.
      *
-     * @return  A `<dataType>` value with the matched string(s) replaced.
+     * @return string Result text as string (not re-typed as the input data
+     *                type).
      */
     public function regexp_replace(, $value, $regexp, $replacement, $limit = null)
     {
@@ -1266,7 +1267,8 @@ class polymorphic
      * @param  $value The `<dataType>` value to repeat.
      * @param integer $times The number of times to repeat the value.
      *
-     * @return  The repeated `<dataType>` value.
+     * @return string Repeated text as string (not re-typed as the input data
+     *                type).
      */
     public function repeat(, $value, $times)
     {
@@ -1293,7 +1295,8 @@ class polymorphic
      * @param integer $limit This is the maximum times to replace. The default
      *                       is 1. Specify -1 to replace all occurrences.
      *
-     * @return  A `<dataType>` value with the matched string(s) replaced.
+     * @return string Result text as string (not re-typed as the input data
+     *                type).
      */
     public function replace(, $value, $match, $replacement, $limit = null)
     {
@@ -1447,16 +1450,17 @@ class polymorphic
     /**
      * substring()
      *
-     * Returns the `<dataType>` substring of value beginning at zero-based
-     * position integer startIndex and ending at the position before integer
-     * endIndex. Specify -1 or omitting endIndex to return up to end of
-     * `<dataType>`.
+     * Returns the string substring of value beginning at zero-based position
+     * integer startIndex and ending at the position before integer endIndex.
+     * Specify -1 or omit endIndex to return through the end of value. The
+     * result is always string (a slice of anyURI is not an anyURI).
      *
      * @param  $string
      * @param integer $startIndex
      * @param integer $endIndex
      *
-     * @return
+     * @return string Substring as string (not re-typed as the input data
+     *                type).
      */
     public function substring(, $string, $startIndex, $endIndex = null)
     {

@@ -1365,7 +1365,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     afw_query_criteria_filter_entry_t *child_tree;
     afw_query_criteria_filter_entry_t *previous_entry;
     afw_query_criteria_filter_entry_t *previous_tree;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *filters_list;
     const afw_object_t *child_object;
     const afw_value_t *value;
@@ -1490,7 +1490,7 @@ impl_AdaptiveQueryCriteria_object_parse_select(
     afw_const_utf8_a_stack_t *names;
     const afw_utf8_t *name;
     const afw_utf8_t * const *result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
 
     names = afw_stack_create(afw_const_utf8_a_stack_t, 20, 0, true,
@@ -1522,7 +1522,7 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
     afw_query_criteria_sort_entry_t *prev;
     afw_query_criteria_sort_entry_t *curr;
     const afw_utf8_t *name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
 
     for (iterator = NULL, result = NULL, curr = NULL;;)
@@ -1573,7 +1573,7 @@ impl_compare_value(
 {
     afw_boolean_t is_true;
     const void *i1, *i2;
-    const afw_iterator_t *iterator, *iterator2;
+    const afw_iterator_old_t *iterator, *iterator2;
     const afw_value_t *entry_value;
     const afw_data_type_t *data_type;
     const afw_data_type_t *entry_data_type, *value_data_type;
@@ -1994,7 +1994,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
 {
     afw_query_criteria_t *criteria;
     const afw_object_t *filter_object;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *sort;
     const afw_array_t *select;
     const afw_utf8_t *property_name;
@@ -2322,7 +2322,7 @@ impl_entry_to_query_string(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
     afw_boolean_t first_loop;

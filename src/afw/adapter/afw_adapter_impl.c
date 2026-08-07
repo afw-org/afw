@@ -438,7 +438,7 @@ afw_adapter_impl_call_object_cb_from_list(
     afw_xctx_t *xctx)
 {
     const afw_object_t *obj;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* Call callback for each object in list. */
     for (iterator = NULL;;) {

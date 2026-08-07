@@ -4,6 +4,7 @@
     "compileType": "template",
     "dataType": "template",
     "dataTypeParameterType": "SourceParameter",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'template' holds the source for an adaptive template.",
     "directReturn": false,
     "evaluated": true,

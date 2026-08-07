@@ -18,11 +18,12 @@
 #include "afw_iterator_impl_declares.h"
 
 /*
- * Implementation of method release for interface afw_iterator.
+ * Implementation of method get_next for interface afw_iterator.
  */
-void
-impl_afw_iterator_release(
+const afw_value_t *
+impl_afw_iterator_get_next(
     AFW_ITERATOR_SELF_T *self,
+    const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */
@@ -30,13 +31,26 @@ impl_afw_iterator_release(
 }
 
 /*
- * Implementation of method next for interface afw_iterator.
+ * Implementation of method get_by_index for interface afw_iterator.
  */
-afw_boolean_t
-impl_afw_iterator_next(
+const afw_value_t *
+impl_afw_iterator_get_by_index(
     AFW_ITERATOR_SELF_T *self,
-    const afw_value_t ** key,
-    const afw_value_t ** value)
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method get_count for interface afw_iterator.
+ */
+afw_size_t
+impl_afw_iterator_get_count(
+    AFW_ITERATOR_SELF_T *self,
+    afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);

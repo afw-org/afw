@@ -427,7 +427,7 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *qualifier_name;
     const afw_object_t *qualifier_object;
 
@@ -510,7 +510,7 @@ impl_contribute_object_variables_cb(
     afw_boolean_t include_untrusted,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
 

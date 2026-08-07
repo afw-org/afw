@@ -14,6 +14,8 @@ If you maintain **anything that links AFW outside a full in-tree rebuild** — e
 
 In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine. Individual sections below also call this out where the ABI surface changed.
 
+Most work on this line needs **only a recompile** against the new install. **C code** that used the old first-class **`afw_iterator`** name for the legacy opaque cursor must use **`afw_iterator_old`** after **#153** (new keyless **`afw_iterator`** is a different type). Array/object `get_next_*` call sites that already used the old cursor style need that rename, not a behavior rewrite.
+
 ---
 
 ## Highlights
@@ -53,8 +55,32 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**Mutable object faces (#17)**](#mutable-object-faces-issue-17) | Literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces — drop many manual `clone()` calls (**PR #150** → `mgg-develop`) |
 | [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
+| [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (**recompile** out-of-tree; rename legacy cursor to **`afw_iterator_old`**) |
 
 ---
+
+## UTF-8 code-point sequences (issue #153)
+
+Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and other utf8-backed types) are treated as **immutable sequences of Unicode code points** (not UTF-16 code units, not raw bytes).
+
+| Topic | Behavior |
+|-------|----------|
+| **`length` / `substring` / `index_of` / …** | Indexes and length are **code points** (as before; kept consistent). |
+| **`s[i]`** | Read one code point as a **one-code-point string**; out of range → **undefined** (soft, like arrays). Negative indexes count from the end. **No** `s[i] = …` (immutable). |
+| **`for-of`** | Walks **code points** (same element shape as `s[i]`). Also still walks **arrays**. Not plain objects. |
+| **Array formals / HOFs** | When a built-in expects an **array of values** (e.g. `map` / `filter` / `reduce`) or a script formal is **`array` / `T[]` / tuple**, a utf8 value is accepted as that sequence (temporary materialize). Does **not** permanently retype the string to `array`. **XACML bag** formals still treat a scalar string as **bag-of-one**, not code-point expansion. |
+| **Search** | `includes` (with optional start), `replace`, and non-empty `split` search at **code-point boundaries**. |
+| **Substring / replace / repeat returns** | Polymorphic string ops return **`string`**, not the input’s specialized utf8 type. |
+
+Storage remains **valid NFC UTF-8**. The value’s **data type stays** `string` / `anyURI` / … — it is not retyped to `array`.
+
+**C / extensions:** keyless **`afw_iterator`** + data-type `optional_initialize_iterator`; value helpers `afw_value_has_iterator` / `initialize_iterator` / `as_array_sequence`. Legacy opaque cursor type renamed **`afw_iterator_old`**. **Recompile** out-of-tree commands/extensions. Maintainer pad: [`designs/utf8-code-point-sequences.md`](designs/utf8-code-point-sequences.md). Tests: `src/afw/tests/language/script/string_code_points.as`.
+
+Residuals (not required for this language story): lazy array **face** over utf8; shared `afw_utf8_*` index helpers; produce-type percolation on call IR (see `designs/compile-optimize-notes.md` / #28).
+
+---
+
+[↑ Highlights](#highlights)
 
 ## Array semantics (issue #39)
 
@@ -1101,6 +1127,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
 | Adaptive Script types | #28 (open; core shipped) | issue-#28 / #145 line on `mgg-develop` |
 | Mutable object faces (shared instances) | #17 (closed) | PR **#150** → `mgg-develop` (this file + `designs/issue-17-mutable-object-faces.md`) |
+| UTF-8 code-point sequences (`s[i]`, for-of, formals) | #153 | issue-#153 branch → `mgg-develop` (this file + `designs/utf8-code-point-sequences.md`) |
 
 ---
 

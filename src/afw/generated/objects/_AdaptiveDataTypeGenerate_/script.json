@@ -4,6 +4,7 @@
     "compileType": "script",
     "dataType": "script",
     "dataTypeParameterType": "SourceParameter",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'script' holds the source for an adaptive script.",
     "directReturn": false,
     "evaluated": true,

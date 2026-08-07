@@ -309,7 +309,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     const afw_utf8_t *application_id;
     const afw_utf8_t *conf_adapter_id;
     const afw_adapter_session_t *session;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_value_t *entry_value;
     const afw_utf8_t *property_name;

@@ -241,7 +241,7 @@ afw_action_perform(
     const afw_utf8_t *name;
     afw_integer_t action_number = 0;
     const afw_value_t *value;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *error;
     const afw_stream_t *stream;
     afw_compile_value_contextual_t *contextual;

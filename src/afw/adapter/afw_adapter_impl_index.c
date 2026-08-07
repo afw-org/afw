@@ -223,7 +223,7 @@ afw_boolean_t afw_adapter_impl_index_object_type_applicable(
 {
     const afw_utf8_t   * nextObjectType;
     const afw_array_t   * objectTypes;
-    const afw_iterator_t * object_type_iterator;
+    const afw_iterator_old_t * object_type_iterator;
 
     objectTypes = afw_object_old_get_property_as_array(
         indexDefinition, afw_s_objectType, xctx);
@@ -305,7 +305,7 @@ afw_boolean_t afw_adapter_impl_index_option_case_insensitive(
 {
     const afw_array_t  * options;
     const afw_value_t * option;
-    const afw_iterator_t * option_iterator;
+    const afw_iterator_old_t * option_iterator;
 
     options = afw_object_old_get_property_as_array(
         indexDefinition, afw_s_options, xctx);
@@ -344,7 +344,7 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
 {
     const afw_array_t  * options;
     const afw_value_t * option;
-    const afw_iterator_t * option_iterator;
+    const afw_iterator_old_t * option_iterator;
 
     options = afw_object_old_get_property_as_array(
         indexDefinition, afw_s_options, xctx);
@@ -389,7 +389,7 @@ void afw_adapter_impl_index_apply(
 {
     const afw_array_t  * options;
     const afw_value_t * option;
-    const afw_iterator_t * option_iterator;
+    const afw_iterator_old_t * option_iterator;
     afw_boolean_t       case_sensitive = true;
     afw_boolean_t       unique = false;
     const afw_utf8_t  * value_string;
@@ -588,8 +588,8 @@ void afw_adapter_impl_index_open_definition(
     const afw_array_t *objectType;
     const afw_array_t *options;
     const afw_value_t *option;
-    const afw_iterator_t *option_iterator;
-    const afw_iterator_t *object_type_iterator;
+    const afw_iterator_old_t *option_iterator;
+    const afw_iterator_old_t *object_type_iterator;
     const afw_utf8_t *object_type_id;
     afw_boolean_t unique  = false;
     afw_boolean_t reverse = false;
@@ -646,7 +646,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_open_definitions(
     afw_xctx_t                    * xctx)
 {
     const afw_object_t * indexDefinition;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
     const afw_utf8_t   * key;
 
     index_iterator = NULL;
@@ -731,7 +731,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
 {
     const afw_adapter_impl_index_t * instance;
     const afw_adapter_session_t    * session;
-    const afw_iterator_t           * index_iterator;
+    const afw_iterator_old_t           * index_iterator;
     const afw_object_t             * indexDefinition;
     const afw_object_t             * result;
     const afw_utf8_t               * key;
@@ -779,7 +779,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     const afw_object_t                 * indexDefinition;
     const afw_array_t                   * objectTypes;
     const afw_object_t                 * result;
-    const afw_iterator_t               * object_type_iterator;
+    const afw_iterator_old_t               * object_type_iterator;
     const afw_utf8_t                   * object_type_id;
     afw_rc_t                             rc;
 
@@ -1041,7 +1041,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_object(
 {
     const afw_utf8_t   * index_name;
     const afw_object_t * indexDefinition;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
 
     if (instance->indexDefinitions) {
         /* iterate through each indexDefinition to see if it applies */
@@ -1076,7 +1076,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_unindex_object(
 {
     const afw_utf8_t   * index_name;
     const afw_object_t * indexDefinition;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
 
     if (instance->indexDefinitions) {
         /* iterate through each indexDefinition to see if it applies */
@@ -1113,7 +1113,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
     afw_xctx_t                    * xctx)
 {
     const afw_utf8_t   * index_name;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
     const afw_object_t * indexDefinition;
 
     if (instance->indexDefinitions) {

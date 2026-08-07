@@ -55,6 +55,48 @@ Prefer **Modules → each interface group** (and the macro detail there) over hu
 - `generated/*_impl_declares.h` — include from implementation `.c` only  
 - `generated/interface_closet/` — skeletons for afwdev (templates, not product code)
 
+## Instance storage (created vs defined)
+
+Most interfaces are **created** instances: obtain a `const T *` from a
+create/factory API; lifetime is pool or explicit release.
+
+Rare interfaces may set on the `<interface>` element:
+
+```xml
+defined_instance_storage="true"
+```
+
+(and often `self_const="false"` when methods mutate the instance).
+
+**Defined instance storage** means:
+
+- The public `afw_*_t` is a **fixed complete** layout the caller provides
+  (stack or embed).
+- The caller does **not** invent the `inf` pointer. A **host** method on the
+  source fills the defined instance (sets `inf` + cursor), similar in spirit
+  to `get_setter` knowing which inf to return—but initializing storage in
+  place.
+- Caller uses call macros and does **not** release the instance.
+- Implementations use only the published struct fields.
+
+Example: **`afw_iterator`** (values only) and **`afw_iterator_with_key`**
+(key+value), both `defined_instance_storage` (#153):
+
+```c
+afw_iterator_t it;
+afw_array_initialize_iterator(array, &it, xctx);
+while ((value = afw_iterator_get_next(&it, p, xctx)) != NULL) { ... }
+```
+
+`afw_iterator_with_key` is for hosts that expose keys (e.g. object
+properties); array only initializes the keyless `afw_iterator` for now.
+
+Legacy cursor type remains `afw_iterator_old_t` on array/object `get_next_*`
+until migrated.
+
+When `defined_instance_storage` is omitted, the interface uses the normal
+created-instance model (no host `initialize_*` for the face itself).
+
 ## Related
 
 - @ref afw_interface group  

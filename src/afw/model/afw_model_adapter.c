@@ -1361,7 +1361,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
     const afw_value_t *mapped_value;
     const afw_model_property_type_t *pt;
     const afw_model_property_type_t * const *pts;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* */
     result = afw_object_create_unmanaged(p, xctx);

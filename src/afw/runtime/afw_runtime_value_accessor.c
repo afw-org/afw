@@ -31,6 +31,12 @@ void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx)
     );
 
     afw_environment_register_runtime_value_accessor(
+        afw_s_data_type_id,
+        afw_runtime_value_accessor_data_type_id,
+        xctx
+    );
+
+    afw_environment_register_runtime_value_accessor(
         afw_s_indirect,
         afw_runtime_value_accessor_indirect,
         xctx
@@ -200,7 +206,27 @@ afw_runtime_value_accessor_compile_type(
     return result;   
 }
 
- 
+
+/* Runtime value accessor 'data_type_id' for const afw_data_type_t *. */
+const afw_value_t *
+afw_runtime_value_accessor_data_type_id(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_data_type_t *data_type;
+
+    (void)prop;
+
+    if (!internal) {
+        return NULL;
+    }
+    data_type = *(const afw_data_type_t * const *)internal;
+    if (!data_type) {
+        return NULL;
+    }
+    return afw_value_create_unmanaged_string(&data_type->data_type_id, p, xctx);
+}
+
  
 /* Runtime value accessor for indirect internal. */
 const afw_value_t *

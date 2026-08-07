@@ -45,7 +45,7 @@ impl_afw_value_clone_or_reference(
 /*
  * Implementation of method create_iterator for interface afw_value.
  */
-const afw_iterator_t *
+const afw_iterator_old_t *
 impl_afw_value_create_iterator(
     AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,

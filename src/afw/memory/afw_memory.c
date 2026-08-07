@@ -156,7 +156,7 @@ AFW_DEFINE(const afw_object_t *) afw_object_create_merged(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *result;
     const afw_value_t *value;
     const afw_utf8_t *property_name;

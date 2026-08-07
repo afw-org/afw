@@ -39,7 +39,7 @@ impl_over_array(
 
     afw_size_t functor_argc;
     const afw_value_t * (*functor_argv);
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     impl_call_over_array_cb_e_t e;
 
     /* Initialize param. */
@@ -59,8 +59,11 @@ impl_over_array(
         functor_argc, functor_argv, false, e.p, e.xctx);
 
     /*
-     * Evaluate argv[n+1] to the new argv[n]. Replace first typed array with
-     * pointer to an allocated value of the same data type.
+     * Evaluate argv[n+1] to the new argv[n]. Prefer a real array as the
+     * walked sequence; only then fall back to materializing the first
+     * keyless-iterator value (utf8 code points) via as_array_sequence
+     * (#153). Do not materialize every string arg — filter/find/any_of
+     * pass scalar string thresholds next to the bag.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
         functor_argv[e.n] = afw_value_evaluate(x->argv[e.n + 1], e.p, e.xctx);
@@ -75,8 +78,30 @@ impl_over_array(
             }
         }
     }
+    if (!e.entry_arg_ptr) {
+        for (e.n = 1; e.n <= functor_argc; e.n++) {
+            if (afw_value_has_iterator(functor_argv[e.n])) {
+                functor_argv[e.n] = afw_value_as_array_sequence(
+                    functor_argv[e.n], e.p, e.xctx);
+                if (afw_value_is_array(functor_argv[e.n])) {
+                    e.entry_arg_ptr = &functor_argv[e.n];
+                    e.array =
+                        ((const afw_value_array_t *)*e.entry_arg_ptr)->
+                            internal;
+                    *e.entry_arg_ptr = NULL;
+                    e.data_type = afw_array_get_data_type(e.array, e.xctx);
+                    if (e.data_type) {
+                        *e.entry_arg_ptr = (const afw_value_t *)
+                            afw_value_common_allocate(
+                                e.data_type, e.p, e.xctx);
+                    }
+                    break;
+                }
+            }
+        }
+    }
 
-    /* There must be a typed array in parameter array. */
+    /* There must be a typed array (or materializable sequence) arg. */
     if (!e.entry_arg_ptr) {
         AFW_THROW_ERROR_Z(arg_error, "Missing typed array arg", e.xctx);
     }
@@ -195,7 +220,7 @@ impl_bag_of_bag(
 {
     const afw_value_array_t *array1, *array2, *arrayx;
     const afw_data_type_t *data_type_1, *data_type_2;
-    const afw_iterator_t *iterator1, *iterator2;
+    const afw_iterator_old_t *iterator1, *iterator2;
     const void *internal1, *internal2;
     void *e1, *e2;
     const afw_value_t * f_argv[3];
@@ -880,7 +905,7 @@ afw_function_execute_reduce(
 {
     const afw_value_array_t *array;
     const afw_value_t *accumulator;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t * f_argv[3];
     const afw_value_t *call;
 
@@ -1024,7 +1049,7 @@ afw_function_execute_sort(
     const afw_value_array_t *array;
     const afw_array_t *result_array;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void **value;
     impl_sort_ctx_t ctx;
 

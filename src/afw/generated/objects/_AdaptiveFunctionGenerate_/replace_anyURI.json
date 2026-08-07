@@ -32,8 +32,8 @@
     ],
     "pure": true,
     "returns": {
-        "dataType": "anyURI",
-        "description": "A anyURI value with the matched string(s) replaced."
+        "dataType": "string",
+        "description": "Result text as string (not re-typed as the input data type)."
     },
     "useExecuteFunction": "afw_function_execute_replace"
 }

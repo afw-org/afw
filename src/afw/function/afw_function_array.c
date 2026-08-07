@@ -55,7 +55,7 @@ afw_function_execute_add_entries(
 {
     const afw_value_array_t *target;
     const afw_value_array_t *source;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     afw_size_t count;
 
@@ -125,7 +125,7 @@ afw_function_execute_array(
     const afw_value_t * const * arg;
     const afw_value_t *entry;
     const afw_value_t *value;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* Construct a new array with elements passed as arguments. */
     array = afw_array_create_generic(x->p, x->xctx);
@@ -342,7 +342,7 @@ afw_function_execute_join(
     const afw_value_array_t *value;
     const afw_value_string_t *separator;
     const afw_utf8_t *sep;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *array_of_string;
     const afw_utf8_t *s;
     afw_size_t len;
@@ -438,7 +438,7 @@ afw_function_execute_reverse(
 {
     const afw_value_array_t *array;
     const afw_array_t *result_array;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_array_setter_t *setter;
     const afw_data_type_t *data_type;
@@ -509,7 +509,7 @@ afw_function_execute_slice(
     const afw_value_array_t *array;
     const afw_array_t *result_array;
     const afw_value_integer_t *integer;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     afw_integer_t start;
     afw_integer_t end;

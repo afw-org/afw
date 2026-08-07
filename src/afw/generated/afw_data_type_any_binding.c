@@ -141,7 +141,8 @@ afw_data_type_any_direct = {
     true,
     false,
     false,
-    true
+    true,
+    NULL
 };
 
 /* Data type struct for any. */

@@ -232,7 +232,7 @@ impl_set_usages_on_entry(
     const afw_array_t *usages,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *v;
     const afw_utf8_t *s;
 

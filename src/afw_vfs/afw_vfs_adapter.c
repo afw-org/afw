@@ -37,7 +37,7 @@ afw_vfs_adapter_internal_create_cede_p(
     const afw_array_t *vfs_map;
     const afw_array_t *x_list;
     afw_utf8_utf8_z_t *mark_executable;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_key_z_string_z_t *entries;
     afw_key_z_string_z_t *e;
     afw_key_z_string_z_t temp_entry;

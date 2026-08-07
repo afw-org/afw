@@ -232,7 +232,7 @@ afw_function_execute_flag_modify_defaults(
     const afw_value_array_t *array_value;
     const afw_value_boolean_t *set_to_value;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
     const void *internal;
     afw_boolean_t add;
@@ -370,7 +370,7 @@ afw_function_execute_flag_set(
     const afw_value_array_t *array_value;
     const afw_value_boolean_t *set_to_value;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
     const void *internal;
     afw_boolean_t set_to;

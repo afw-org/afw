@@ -194,7 +194,8 @@ afw_data_type_array_direct = {
     true,
     false,
     false,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of array. */
@@ -371,7 +372,7 @@ afw_object_get_property_as_array_source(
 AFW_DEFINE(const afw_array_t *)
 afw_object_get_next_property_as_array_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -537,7 +538,7 @@ impl_afw_value_get_info(
 AFW_DEFINE(const afw_array_t *)
 afw_array_of_array_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
