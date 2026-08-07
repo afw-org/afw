@@ -1041,12 +1041,14 @@ LineContinuation ::= '\' ( #x0A | #x0D #x0A? | LS | PS )
 /* NonEscapeSequence: backslash + a character that is not a recognized        */
 /* escape introducer; the character is taken as itself (e.g. \A → A).         */
 /* Digits 1-9 after backslash are not identity escapes (reserved for          */
-/* legacy octal, which Adaptive does not implement).                          */
+/* legacy octal, which Adaptive does not implement). Line terminators         */
+/* after backslash are LineContinuation, not NonEscapeSequence.               */
+/* Recognized introducers: b f n r t v ' " ` / u x 0 (and single-escape       */
+/* forms listed under Char).                                                  */
 
-NonEscapeSequence ::= '\' ( #x00-#xFF - ( EscapeIntroducer | [1-9] |
-    #x0A | #x0D ) )
+NonEscapeSequence ::= '\' IdentityEscapeChar
 
-EscapeIntroducer ::= [bfnrtv'"\`/ux0]
+IdentityEscapeChar ::= [A-Za-z] | [#x80-#xFF]
 
 UnicodeCodePoint ::= #x0-#x10FFFF
 
