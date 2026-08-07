@@ -114,6 +114,27 @@ afw_array_impl_get_next_entry_meta(
 
 
 /**
+ * @brief Shared afw_array initialize_iterator (#153 defined afw_iterator).
+ * @param instance array to walk.
+ * @param iterator caller-defined afw_iterator_t storage to fill.
+ * @param xctx of caller.
+ *
+ * Sets iterator->inf to the shared array-as-iterator vtable and resets
+ * cursor fields. Use:
+ *
+ * #define impl_afw_array_initialize_iterator \\
+ *    afw_array_impl_initialize_iterator
+ *
+ * before including afw_array_impl_declares.h.
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_array_impl_initialize_iterator(
+    const afw_array_t *instance,
+    const afw_iterator_t *iterator,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief A general impl of method get_next_entry_meta for interface
  *    afw_array that can be accessed externally.
  * @param instance of array.

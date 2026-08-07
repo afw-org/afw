@@ -44,6 +44,8 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
         # each interface
         for interface in root.findall('interface'):
             interface_name = interface.get('name')
+            defined_instance_storage = (
+                interface.get('defined_instance_storage', 'false') == 'true')
 
             # addtogroup and description
             fd.write('/**\n * @addtogroup ' + interface_name + '_interface ' +  interface_name + '\n')
@@ -64,8 +66,19 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
             fd.write(' * API type name is `' + interface_name + '_t` (see opaques).\n')
             fd.write(' * Call methods with `' + interface_name
                      + '_<method>(…)` macros.\n')
-            fd.write(' * Implementations often embed this as the first field of\n')
-            fd.write(' * a larger self struct in .c files.\n')
+            if defined_instance_storage:
+                fd.write(' *\n')
+                fd.write(' * **Defined instance storage:** the caller provides this\n')
+                fd.write(' * complete fixed-size struct (typically on the stack or\n')
+                fd.write(' * embedded). A host object initializes it (e.g.\n')
+                fd.write(' * `afw_array_initialize_iterator(array, &it, xctx)`),\n')
+                fd.write(' * which sets `inf` and cursor fields for that source.\n')
+                fd.write(' * Do **not** release the instance. Implementations use only\n')
+                fd.write(' * these published fields (not a larger private self with\n')
+                fd.write(' * this as the first field).\n')
+            else:
+                fd.write(' * Implementations often embed this as the first field of\n')
+                fd.write(' * a larger self struct in .c files.\n')
             if interface_name == 'afw_value':
                 fd.write(' *\n')
                 fd.write(' * **Note:** Many value-kind structs are also passed as\n')
@@ -277,6 +290,8 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, cop
         # each interface
         for interface in root.findall('interface'):
             interface_name = interface.get('name')
+            defined_instance_storage = (
+                interface.get('defined_instance_storage', 'false') == 'true')
 
             # Briefs so Doxygen Data Structures / typedef pages use the public
             # *_t names (with TYPEDEF_HIDES_STRUCT) and explain the opaque.
@@ -288,8 +303,13 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, cop
             fd.write(' * `struct ' + interface_name + '_s` is in the generated\n')
             fd.write(' * interface header. Call methods via\n')
             fd.write(' * `' + interface_name + '_<method>(…)` macros, not by\n')
-            fd.write(' * assuming a single private layout beyond the published\n')
-            fd.write(' * struct (implementations may embed/extend in .c).\n')
+            if defined_instance_storage:
+                fd.write(' * assuming extra private fields: this type is the\n')
+                fd.write(' * complete defined instance (host initializes via e.g.\n')
+                fd.write(' * `afw_array_initialize_iterator`).\n')
+            else:
+                fd.write(' * assuming a single private layout beyond the published\n')
+                fd.write(' * struct (implementations may embed/extend in .c).\n')
             if interface_name == 'afw_value':
                 fd.write(' *\n')
                 fd.write(' * **Special:** many different value-kind structs are\n')

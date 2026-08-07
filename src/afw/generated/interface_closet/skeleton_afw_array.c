@@ -140,6 +140,19 @@ impl_afw_array_get_next_value(
 }
 
 /*
+ * Implementation of method initialize_iterator for interface afw_array.
+ */
+void
+impl_afw_array_initialize_iterator(
+    AFW_ARRAY_SELF_T *self,
+    const afw_iterator_t * iterator,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
  * Implementation of method get_setter for interface afw_array.
  */
 const afw_array_setter_t *

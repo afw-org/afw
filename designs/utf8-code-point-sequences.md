@@ -102,49 +102,65 @@ release).
 
 ### Interface instance model
 
-| Mode | XML (draft) | Lifecycle |
-|------|-------------|-----------|
+| Mode | XML | Lifecycle |
+|------|-----|-----------|
 | **Created** (default, almost all interfaces) | attribute omitted | create → `const T *`; pool/release as today |
-| **Defined** | `defined_instance_storage="true"` | Caller **defines** full public `afw_*_t` (stack or embed); `afw_*_initialize()`; **no instance release** |
+| **Defined** | `defined_instance_storage="true"` | Caller **defines** full public `afw_*_t` (stack or embed); **host** initializes it (sets `inf`); **no instance release** |
 
 - Name **`defined_instance_storage`** matches C wording (declare vs **define**).
-- Generate may always emit `afw_<interface>_initialize()`; macro Doxygen
-  explains both modes. Document in `src/afw/doc/developer/interfaces.md`
-  when implemented.
-- Capability discovery: **inf / method presence** (like `get_setter`), not
-  a docs flag in the hot path. Optional human-facing flags elsewhere.
+- **No** generated zeroing `afw_iterator_initialize()` macro: only the host
+  knows which `inf` to install (like `get_setter` knowing its inf).
+- Host API example: **`afw_array_initialize_iterator(array, &it, xctx)`**.
+  Later: object, utf8 value, etc. See `src/afw/doc/developer/interfaces.md`.
+- Capability discovery: host method / inf presence, not a docs flag in the
+  hot path.
 
 Stack-resident iterator: fixed public layout holds `inf` + cursor words;
 caller provides memory; common path needs no alloc/release. Impl may
 spill to a pool only when the fixed cursor is too small; that cleanup is
 impl-managed, not a required caller `release`.
 
-### Agreed method names on `afw_iterator`
+### Two interfaces
+
+| Interface | Walk shape | Typical host |
+|-----------|------------|--------------|
+| **`afw_iterator`** | Values only | array, string code points |
+| **`afw_iterator_with_key`** | Key + value each step | object properties (later) |
+
+Both are `defined_instance_storage`. Array has **`initialize_iterator`** only
+for keyless **`afw_iterator`**.
+
+### Method names
+
+**`afw_iterator` (keyless):**
 
 | Method | Role |
 |--------|------|
-| **`get_next`** | Sequential advance; optional key + value out-params; done = no more (same idea as current IDL `next`, name aligned with array `get_next_*`) |
-| **`get_by_index`** | Value at dense index *i*; **does not** advance the `get_next` cursor |
-| **`get_count`** | Dense length when indexable; unsupported / N/A when walk-only |
+| **`get_next`** | Next value, or **NULL** when done (like `get_next_value`) |
+| **`get_by_index`** | Value at dense index *i*; does not advance `get_next` |
+| **`get_count`** | Dense length when indexable |
 
-- Prefer these names over bare `next` / `get` (too vague next to object get).
-- **Index is optional:** dense sequences (array, string code points) implement
-  `get_by_index` / `get_count`. Property-style or stream-like walks may be
-  **`get_next` only**.
-- **`s[i]`** and array formals use index/count; for-of uses `get_next`
-  (or keeps specialized fast paths that share utf8 helpers).
+**`afw_iterator_with_key`:**
 
-### Attach / initialize (draft)
+| Method | Role |
+|--------|------|
+| **`get_next`** | Key + value out-params; **true** when done |
+| **`get_by_index`** | Key + value out-params at dense index *i*; **true** if no entry; does not advance `get_next` |
+| **`get_count`** | Dense length when indexable |
+
+- NULL from keyless `get_next` means **end**, not an undefined element.
+- **`s[i]`** / formals use index/count on keyless iterator; for-of may use
+  `get_next` or specialized fast paths sharing utf8 helpers.
+
+### Host initialize + use (array)
 
 ```c
 afw_iterator_t it;
-afw_iterator_initialize(&it);     /* inactive: inf NULL, cursors clear */
-/* attach from value/array/… then: */
-while (!afw_iterator_get_next(&it, &key, &value /*, xctx */)) { ... }
-v = afw_iterator_get_by_index(&it, i /*, xctx */);  /* if supported */
+afw_array_initialize_iterator(array, &it, xctx);  /* sets inf + cursor */
+while ((v = afw_iterator_get_next(&it, p, xctx)) != NULL) { ... }
+v = afw_iterator_get_by_index(&it, i, p, xctx);
+n = afw_iterator_get_count(&it, xctx);
 ```
-
-Exact attach API (`afw_value_iterate` vs first `get_next`) TBD at implement.
 
 ### Relation to #153 phases
 

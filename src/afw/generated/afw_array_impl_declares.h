@@ -190,6 +190,15 @@ impl_afw_array_get_next_value(
     afw_xctx_t * xctx);
 #endif
 
+#ifndef impl_afw_array_initialize_iterator
+/* Declare method initialize_iterator */
+AFW_DECLARE_STATIC(void)
+impl_afw_array_initialize_iterator(
+    AFW_ARRAY_SELF_T *self,
+    const afw_iterator_t * iterator,
+    afw_xctx_t * xctx);
+#endif
+
 #ifndef impl_afw_array_get_setter
 /* Declare method get_setter */
 AFW_DECLARE_STATIC(const afw_array_setter_t *)
@@ -239,6 +248,8 @@ impl_afw_array_inf = {
     impl_afw_array_get_next_internal,
     (afw_array_get_next_value_t)
     impl_afw_array_get_next_value,
+    (afw_array_initialize_iterator_t)
+    impl_afw_array_initialize_iterator,
     (afw_array_get_setter_t)
     impl_afw_array_get_setter
 };
