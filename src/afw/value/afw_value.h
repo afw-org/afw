@@ -1256,6 +1256,18 @@ afw_value_as_utf8_z(const afw_value_t *value,
  * Used when a built-in formal or HOF expects an array of values but the
  * author passed a utf8-backed sequence. Does not mutate the original
  * value; materialization is a temporary array. Not a syntax change.
+ *
+ * **C implementers:** prefer this helper (or keyless `afw_iterator`) over
+ * open-coding utf8 walks when an API expects an array of values. Call only
+ * when the formal truly wants a value sequence (e.g. EVALUATE … array, HOF
+ * walked list, script `array` / `T[]` / tuple). Do **not** use for XACML
+ * bag rest formals that take scalar bag members typed as `array` in
+ * metadata — bag-of-one is not code-point expansion.
+ *
+ * **Deferred (not required for beta language semantics):** an immutable
+ * array *face* over utf8 (lazy get_next / get_by_index without eager
+ * materialize). Same public contract; optional later if cost or clear
+ * mutation-reject matters. See `designs/utf8-code-point-sequences.md`.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_as_array_sequence(

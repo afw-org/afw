@@ -831,9 +831,10 @@ afw_function_execute_includes(
     const afw_value_string_t *a1;
     const afw_value_string_t *a2;
     const afw_value_integer_t *position;
-    const afw_utf8_octet_t *c;
-    afw_integer_t start;
-    afw_size_t len;
+    afw_size_t index;
+    afw_size_t offset;
+    afw_size_t count;
+    afw_integer_t start_cp;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg2, 2);
@@ -844,24 +845,53 @@ afw_function_execute_includes(
 
     a1 = (const afw_value_string_t *)arg1;
     a2 = (const afw_value_string_t *)arg2;
-    
-    c = a1->internal.s;
-    len = a1->internal.len;
-    
+
+    /*
+     * Search at code-point boundaries only (#153). Position is a zero-based
+     * code-point index (negative counts from end), not a byte offset.
+     */
+    index = 0;
     if (position) {
-        start = abs((int)position->internal) % a1->internal.len;
-
-        if (position->internal < 0 && start != 0) {
-            start = a1->internal.len - start;
+        start_cp = position->internal;
+        if (start_cp < 0) {
+            count = 0;
+            for (offset = 0;
+                afw_utf8_next_code_point(a1->internal.s, &offset,
+                    a1->internal.len, x->xctx) >= 0; )
+            {
+                count++;
+            }
+            if ((afw_size_t)(-start_cp) > count) {
+                return afw_boolean_v_false;
+            }
+            index = count + (afw_size_t)start_cp;
         }
-
-        c += start;
-        len -= start;
+        else {
+            index = (afw_size_t)start_cp;
+        }
     }
 
-    for ( ; a2->internal.len <= len; c++, len--) {
-        if (memcmp(c, a2->internal.s, a2->internal.len) == 0) {
+    for (offset = 0; offset < index; ) {
+        if (afw_utf8_next_code_point(a1->internal.s, &offset,
+            a1->internal.len, x->xctx) < 0)
+        {
+            return afw_boolean_v_false;
+        }
+    }
+
+    for (;;) {
+        if (offset + a2->internal.len > a1->internal.len) {
+            break;
+        }
+        if (memcmp(a1->internal.s + offset,
+            a2->internal.s, a2->internal.len) == 0)
+        {
             return afw_boolean_v_true;
+        }
+        if (afw_utf8_next_code_point(a1->internal.s, &offset,
+            a1->internal.len, x->xctx) < 0)
+        {
+            break;
         }
     }
 

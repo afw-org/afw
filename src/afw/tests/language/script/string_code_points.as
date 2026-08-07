@@ -244,6 +244,31 @@ assert(first("\u20ac" + "a") === "\u20ac");
 return 0;
 
 //?
+//? test: includes-code-point-position
+//? description: includes position is code-point index not byte (#153)
+//? expect: 0
+//? source: ...
+
+/* Euro is one CP (3 bytes); position 1 is 'z', not mid-euro */
+const s = "\u20ac" + "z";
+assert(includes(s, "z") === true);
+assert(includes(s, "z", 1) === true);
+assert(includes(s, "z", 0) === true);
+assert(includes(s, "\u20ac", 0) === true);
+assert(includes(s, "\u20ac", 1) === false);
+return 0;
+
+//?
+//? test: index-of-code-point
+//? description: index_of returns code-point index for multi-byte
+//? expect: 0
+//? source: ...
+
+const s = "\u20ac" + "z";
+assert(index_of(s, "z") === 1);
+assert(index_of(s, "\u20ac") === 0);
+return 0;
+//?
 //? test: Deferred-produce-type-script-call-return
 //? description: script call produce type for typed return (compile soft probes)
 //? skip: true

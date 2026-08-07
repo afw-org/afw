@@ -36,9 +36,21 @@ See also `typescript-differences.md` (motivated differences).
 | empty-separator `split` | Must be code points (octet step is a bug) |
 | `s[i]` on strings | Keyless `afw_iterator` `get_by_index` in `reference_by_key` (#153) |
 | HOFs / array formals with string | `afw_value_as_array_sequence` choke (#153) |
-| Immutable array face over utf8 | Optional later (eager materialize is current) |
+| Immutable array face over utf8 | **Skipped for this branch** — eager materialize is the beta model; face is optional later (same choke body). C notes on `afw_value_as_array_sequence` in `afw_value.h`. |
 
 Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share the **same definition of index** (code point). Prefer thin shared `afw_utf8_*` helpers over copy-pasted loops (“get it right at most once”).
+
+### Octet-as-character audit (#153 A5)
+
+| Area | Status |
+|------|--------|
+| `length` / `substring` / `index_of` / `last_index_of` | Code-point index (step with `afw_utf8_next_code_point`) |
+| empty-separator `split` | Code points |
+| for-of / `s[i]` / iterator | Code points |
+| **`includes`** (+ optional position) | **Fixed on this branch** — was byte start / `c++` step; now CP index + CP step |
+| `starts_with` / `ends_with` | Full-string byte compare (OK for complete valid UTF-8 strings) |
+| **`replace` / search loops** that `s++` by octet | Residual: can theoretically match mid-sequence; step-by-CP preferred later (A4 helpers) |
+| XACML bag formals | **Not** code-point expand (bag-of-one scalar); see `as_array_sequence` notes |
 
 ## Goals
 
