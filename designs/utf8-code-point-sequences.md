@@ -35,8 +35,8 @@ See also `typescript-differences.md` (motivated differences).
 | for-of over strings | Keyless `afw_iterator` (utf8 + array) via `for_of` (#153) |
 | empty-separator `split` | Must be code points (octet step is a bug) |
 | `s[i]` on strings | Keyless `afw_iterator` `get_by_index` in `reference_by_key` (#153) |
-| HOFs / array formals with string | **Not** yet (need face or shared sequence) |
-| Immutable array face over utf8 | **Not** yet |
+| HOFs / array formals with string | `afw_value_as_array_sequence` choke (#153) |
+| Immutable array face over utf8 | Optional later (eager materialize is current) |
 
 Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share the **same definition of index** (code point). Prefer thin shared `afw_utf8_*` helpers over copy-pasted loops (“get it right at most once”).
 
@@ -200,10 +200,14 @@ n = afw_iterator_get_count(&it, xctx);
 - **Consumers (this branch):** `for_of` and `reference_by_key` (`s[i]`) use
   `afw_value_has_iterator` / `initialize_iterator` / `get_next` /
   `get_by_index`. Tests: `language/script/string_code_points.as`.
+- **Array formals / HOFs:** `afw_value_as_array_sequence()` materializes a
+  temporary array of iterator elements when a built-in expects array (or
+  HOF `impl_over_array` / `evaluate_parameter` with array). No syntax change.
+  Mutation of the temp does not write back to the string.
 - **Deferred:** produce-type percolation / compile-time optimize —
   `designs/compile-optimize-notes.md` and
   [comment on #28](https://github.com/afw-org/afw/issues/28#issuecomment-5222169246).
-  HOF / array-formal accept of utf8 sequences still later.
+  Script function formals (A2) still separate.
 
 ## Related
 

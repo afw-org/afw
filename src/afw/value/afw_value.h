@@ -1245,6 +1245,26 @@ afw_value_as_utf8_z(const afw_value_t *value,
 
 
 /**
+ * @brief Array or keyless-iterator sequence as an array value (#153).
+ * @param value evaluated value (may be NULL).
+ * @param p pool for a materialized array when needed.
+ * @param xctx of caller.
+ * @return value unchanged if already an array, NULL, or non-iterable;
+ *         otherwise a new array value of get_next elements (utf8 code
+ *         points as one-code-point strings, etc.).
+ *
+ * Used when a built-in formal or HOF expects an array of values but the
+ * author passed a utf8-backed sequence. Does not mutate the original
+ * value; materialization is a temporary array. Not a syntax change.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_as_array_sequence(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Return value from one entry list or single value.
  * @param value list or single value.
  * @param p  Pool for result.

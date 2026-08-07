@@ -158,6 +158,62 @@ assert(seen[1] === "b");
 return 0;
 
 //?
+//? test: map-string-identity
+//? description: map over string walks code points (array formal / HOF choke)
+//? expect: 0
+//? source: ...
+
+let out = map(function (c) { return c; }, "ab");
+assert(length(out) === 2);
+assert(out[0] === "a");
+assert(out[1] === "b");
+return 0;
+
+//?
+//? test: map-string-multibyte
+//? description: map over string with multi-byte code point
+//? expect: 0
+//? source: ...
+
+let out = map(function (c) { return c; }, "\u20ac" + "z");
+assert(length(out) === 2);
+assert(out[0] === "\u20ac");
+assert(out[1] === "z");
+return 0;
+
+//?
+//? test: filter-string
+//? description: filter over string keeps selected code points
+//? expect: 0
+//? source: ...
+
+let out = filter(function (c) { return c !== "b"; }, "abc");
+assert(length(out) === 2);
+assert(out[0] === "a");
+assert(out[1] === "c");
+return 0;
+
+//?
+//? test: reduce-string
+//? description: reduce over string concatenates code points
+//? expect: 0
+//? source: ...
+
+let s = reduce(function (acc, c) { return acc + c; }, "", "xy");
+assert(s === "xy");
+return 0;
+
+//?
+//? test: map-empty-string
+//? description: map of empty string is empty array
+//? expect: 0
+//? source: ...
+
+let out = map(function (c) { return c; }, "");
+assert(length(out) === 0);
+return 0;
+
+//?
 //? test: Deferred-produce-type-script-call-return
 //? description: script call produce type for typed return (compile soft probes)
 //? skip: true

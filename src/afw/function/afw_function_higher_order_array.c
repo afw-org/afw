@@ -60,10 +60,13 @@ impl_over_array(
 
     /*
      * Evaluate argv[n+1] to the new argv[n]. Replace first typed array with
-     * pointer to an allocated value of the same data type.
+     * pointer to an allocated value of the same data type. Utf8 sequences
+     * materialize via afw_value_as_array_sequence (#153).
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
         functor_argv[e.n] = afw_value_evaluate(x->argv[e.n + 1], e.p, e.xctx);
+        functor_argv[e.n] = afw_value_as_array_sequence(
+            functor_argv[e.n], e.p, e.xctx);
         if (!e.entry_arg_ptr && afw_value_is_array(functor_argv[e.n])) {
             e.entry_arg_ptr = &functor_argv[e.n];
             e.array = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;

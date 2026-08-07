@@ -840,6 +840,47 @@ afw_value_as_array_of_values(const afw_value_t * value,
 }
 
 
+/*
+ * Array formal / HOF choke: array as-is; non-array keyless iterator
+ * (utf8 code-point sequence) materializes to a temporary array (#153).
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_as_array_sequence(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+    const afw_data_type_t *element_dt;
+    const afw_array_t *array;
+    const afw_value_t *v;
+    afw_iterator_t iterator;
+
+    if (!value || afw_value_is_array(value)) {
+        return value;
+    }
+    if (!afw_value_has_iterator(value)) {
+        return value;
+    }
+
+    dt = value->inf->is_evaluated_of_data_type;
+    element_dt = dt ? dt->iterator_return_data_type : NULL;
+    if (element_dt) {
+        array = afw_array_of_create(element_dt, p, xctx);
+    }
+    else {
+        array = afw_array_create_generic(p, xctx);
+    }
+
+    afw_value_initialize_iterator(value, &iterator, xctx);
+    while ((v = afw_iterator_get_next(&iterator, p, xctx)) != NULL) {
+        afw_array_push_value(array, v, xctx);
+    }
+
+    return afw_value_create_unmanaged_array(array, p, xctx);
+}
+
+
 
 /* Return a NULL terminated list of strings in a specified pool. */
 AFW_DEFINE(const afw_utf8_t * const *)
