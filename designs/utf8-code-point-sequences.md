@@ -197,9 +197,10 @@ n = afw_iterator_get_count(&it, xctx);
     (`inf->data_type` → field); no `get_data_type()` call.
 - Adaptive runtime property uses value accessor **`data_type_id`** (pointer →
   type id string).
-- **Later on this branch:** produce-type coverage audit (built-in calls and
-  other value kinds set `inf->data_type` when known); optional rewiring of
-  for-of / formals / `s[i]`.
+- **Deferred (not this branch’s first priority):** produce-type percolation /
+  compile-time optimize — see `designs/compile-optimize-notes.md` and
+  [comment on #28](https://github.com/afw-org/afw/issues/28#issuecomment-5222169246).
+  Optional later: rewire for-of / formals / `s[i]` onto iterators.
 
 ## Related
 
