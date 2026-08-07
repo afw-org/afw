@@ -38,6 +38,29 @@ feature branches  →  mgg-develop  →  (user testing) develop  →  main
 - After this large pass: **major user testing**, then merge **`mgg-develop` → `develop`**. Then **`develop` is again the main develop branch**.
 - Over weeks/months, most work should return to feature branches off `develop` (mgg-develop is not the permanent forever trunk).
 
+### When merging `mgg-develop` → `develop` (retarget)
+
+**Don’t forget:** a merge only moves tree content. Branch names in prose and
+URLs do **not** update automatically.
+
+**Remind yourself (or the assistant) at cutover** — immediately before the
+merge PR or right after it lands is fine:
+
+> Retarget maintainer docs and history links from **`mgg-develop`** to
+> **`develop`**.
+
+Checklist when that happens:
+
+- [ ] **`whats-new.md`** — title / window wording (no longer “on mgg-develop”)
+- [ ] **`src/afw/tests/test262/changes.md`** — Index **How** commit URLs
+  (`…/commits/mgg-develop/…` → `…/commits/develop/…`) and intro / window text
+- [ ] **This file** and other maintainer notes — day-to-day trunk is **`develop`**
+  again; stop pointing new work at `mgg-develop`
+- [ ] Issue/PR links (`/issues/N`, `/pull/N`) — **no change** (not branch-scoped)
+
+Then cut feature branches off **`develop`** and treat `mgg-develop` as done
+(optional: delete remote branch when nobody needs the tip name).
+
 Update this section if the plan changes.
 
 ## How to use this file
@@ -383,7 +406,8 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 - [ ] Large materializations constrained or progressive where needed (**#49**, **#127**, client progressive path)
 - [ ] Snapshot / debug APIs (e.g. **#9** `qualifier`/`qualifiers`) documented as non-hot-path and size-aware; not used as everyday data access
 - [ ] User-facing behavior documented in `whats-new.md` / real docs as appropriate
-- [ ] `mgg-develop` merged to `develop` when ready; `develop` → `main` when beta-ready
+- [ ] `mgg-develop` merged to `develop` when ready; **run Branch plan → retarget
+      checklist** (How URLs, `whats-new`, backlog prose); `develop` → `main` when beta-ready
 
 ---
 
@@ -399,6 +423,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 
 | Date | Note |
 |------|------|
+| 2026-08-07 | Branch plan: cutover **retarget** checklist (`mgg-develop` → `develop` How URLs / whats-new / prose). |
 | 2026-07-20 | Created; seeded from index/#54 discussion, expression vs script context, compile/value model, pure-fold plan, branch plan, doc roles. |
 | 2026-07-20 | Doc preference: long-term developer knowledge in code; this file is dump/source for later fold-in. |
 | 2026-07-20 | Session hygiene; wrap-up note for #54 explore-only session. |
