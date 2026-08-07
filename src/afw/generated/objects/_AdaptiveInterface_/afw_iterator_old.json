@@ -1,0 +1,4 @@
+{
+    "name": "afw_iterator_old",
+    "description": "Legacy iterator interface (renamed from afw_iterator during #153).\n      Also used as the opaque cursor token type for array/object get_next_*\n      (pointer-sized slot). Created by afw_value_create_iterator() when\n      non-NULL. Call methods via afw_iterator_old_*() macros. See group\n      afw_value and afw_array. Will be replaced by the new afw_iterator\n      (defined_instance_storage) design."
+}

@@ -9038,9 +9038,9 @@ afw_self_v_afw_flag_t = {
 };
 
 const afw_value_string_t
-afw_self_v_afw_iterator = {
+afw_self_v_afw_iterator_old = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_afw_iterator)
+    AFW_UTF8_LITERAL(AFW_Q_afw_iterator_old)
 };
 
 const afw_value_string_t

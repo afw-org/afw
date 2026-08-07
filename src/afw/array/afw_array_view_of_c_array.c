@@ -96,7 +96,7 @@ afw_array_convert_to_array_of_strings(
     void *internal;
     const afw_utf8_t *s;
     const afw_value_t *value;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* Return original if already array of string. */
     if (afw_array_get_data_type(array, xctx) == afw_data_type_string) {
@@ -290,7 +290,7 @@ impl_afw_array_get_entry_value(
 afw_boolean_t
 impl_afw_array_get_next_internal(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t *xctx)
@@ -299,14 +299,14 @@ impl_afw_array_get_next_internal(
 
     /* If iterator is NULL, point to first value in array. */
     if (!*iterator) {
-        *iterator = (const afw_iterator_t *)self->internal;
+        *iterator = (const afw_iterator_old_t *)self->internal;
     }
 
     /* Determine size of entry. */
     size = (self->indirect) ? sizeof(void *) : self->data_type->c_type_size;
 
     /* If past end of values, result is NULL. */
-    if (*iterator >= (const afw_iterator_t *)(
+    if (*iterator >= (const afw_iterator_old_t *)(
         ((const afw_octet_t *)self->internal) + (size * self->count)))
     {
         if (data_type) {
@@ -327,7 +327,7 @@ impl_afw_array_get_next_internal(
         else {
             *internal = (const void *)*iterator;
         }
-        *iterator = (const afw_iterator_t *)
+        *iterator = (const afw_iterator_old_t *)
             (((afw_octet_t *)(*iterator)) + size);
     }
 
@@ -342,7 +342,7 @@ impl_afw_array_get_next_internal(
 const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
@@ -358,14 +358,14 @@ impl_afw_array_get_next_value(
 
     /* If iterator is NULL, point to first value in array. */
     if (!*iterator) {
-        *iterator = (const afw_iterator_t *)self->internal;
+        *iterator = (const afw_iterator_old_t *)self->internal;
     }
 
     /* Determine size of entry. */
     size = (self->indirect) ? sizeof(void *) : self->data_type->c_type_size;
 
     /* If past end of values, result is NULL. */
-    if (*iterator >= (const afw_iterator_t *)(
+    if (*iterator >= (const afw_iterator_old_t *)(
         ((const afw_octet_t *)self->internal) + (size * self->count)))
     {
         result = NULL;
@@ -378,7 +378,7 @@ impl_afw_array_get_next_value(
             (self->indirect) ? *(void **)*iterator: (void *)*iterator,
             self->data_type,
             p, xctx);
-        *iterator = (const afw_iterator_t *)
+        *iterator = (const afw_iterator_old_t *)
             (((afw_octet_t *)(*iterator)) + size);
     }
 

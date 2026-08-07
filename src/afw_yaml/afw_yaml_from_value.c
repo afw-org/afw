@@ -333,7 +333,7 @@ void convert_list_to_yaml(
     from_value_wa_t *wa,
     const afw_array_t *list)
 {
-    const afw_iterator_t *list_iterator;
+    const afw_iterator_old_t *list_iterator;
     const afw_value_t *next;
 
     list_iterator = NULL;
@@ -362,7 +362,7 @@ void convert_object_to_yaml(
     from_value_wa_t *wa,
     const afw_object_t *obj)
 {
-    const afw_iterator_t *property_iterator;
+    const afw_iterator_old_t *property_iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *next;
     const afw_object_t *meta;

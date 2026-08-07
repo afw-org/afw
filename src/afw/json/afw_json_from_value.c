@@ -212,7 +212,7 @@ impl_convert_list_to_json(
     impl_from_value_wa_t *wa,
     const afw_array_t *list)
 {
-    const afw_iterator_t *list_iterator;
+    const afw_iterator_old_t *list_iterator;
     const afw_value_t *next;
 
     /* Put [ and increment indent. */
@@ -245,7 +245,7 @@ impl_convert_object_to_json(
     impl_from_value_wa_t *wa,
     const afw_object_t *obj)
 {
-    const afw_iterator_t *property_iterator;
+    const afw_iterator_old_t *property_iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *next;
     afw_boolean_t starting_comma_needed;

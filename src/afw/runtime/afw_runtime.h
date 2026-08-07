@@ -568,7 +568,7 @@ afw_runtime_object_get_property_meta(
 const afw_value_t *
 afw_runtime_object_get_next_own_property(
     const afw_object_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx);
 
@@ -580,7 +580,7 @@ afw_runtime_object_get_next_own_property(
 const afw_value_t *
 afw_runtime_object_get_next_property_meta(
     const afw_object_t *instance,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

@@ -168,7 +168,7 @@ afw_value_is_fully_evaluated(
     afw_xctx_t *xctx)
 {
     afw_boolean_t result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *v;
 
@@ -403,7 +403,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_one_and_only(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     const afw_value_t *result;
 
@@ -545,7 +545,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
     const afw_value_t *untrusted_qualified_variables,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *object;
     const afw_utf8_t *property_name;
     const afw_object_t *qualifier_object;
@@ -612,7 +612,7 @@ afw_value_convert(
     const afw_data_type_t *v_data_type;
     afw_value_common_t *single;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
     const afw_data_type_t *data_type;
     afw_size_t evaluate_count;
@@ -783,7 +783,7 @@ impl_value_as_array_of_values(
     afw_size_t count;
     const afw_value_t **e;
     const afw_value_t **result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* If value is NULL, n is 0. */
     if (!value) {

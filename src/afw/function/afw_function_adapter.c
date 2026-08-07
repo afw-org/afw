@@ -20,7 +20,7 @@ impl_create_journal_entry(const afw_value_object_t *journal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_object_t *journal_entry;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_utf8_t *property_name;
 

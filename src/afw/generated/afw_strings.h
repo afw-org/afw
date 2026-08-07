@@ -39082,28 +39082,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afw_iterator \
-    "afw_iterator"
+#define AFW_Q_afw_iterator_old \
+    "afw_iterator_old"
 
-/** @brief 'afw_utf8_t' for AFW_Q_afw_iterator */
-#define afw_s_afw_iterator \
-    (&afw_self_v_afw_iterator.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afw_iterator_old */
+#define afw_s_afw_iterator_old \
+    (&afw_self_v_afw_iterator_old.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_afw_iterator */
-#define afw_self_s_afw_iterator \
-    (afw_self_v_afw_iterator.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afw_iterator_old */
+#define afw_self_s_afw_iterator_old \
+    (afw_self_v_afw_iterator_old.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_afw_iterator */
+/** @brief 'afw_value_string_t' for AFW_Q_afw_iterator_old */
 extern const afw_value_string_t \
-    afw_self_v_afw_iterator;
+    afw_self_v_afw_iterator_old;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afw_iterator */
-#define afw_z_afw_iterator \
-    (afw_self_v_afw_iterator.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afw_iterator_old */
+#define afw_z_afw_iterator_old \
+    (afw_self_v_afw_iterator_old.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_afw_iterator */
-#define afw_v_afw_iterator \
-    (&afw_self_v_afw_iterator.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_afw_iterator_old */
+#define afw_v_afw_iterator_old \
+    (&afw_self_v_afw_iterator_old.pub)
 
 
 
@@ -131279,7 +131279,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2142 \
-    "Iterator over elements of a value that supports iteration (e.g. arrays).\n      Created by afw_value_create_iterator() when non-NULL. Call methods via\n      afw_iterator_*() macros. See group afw_value and afw_array."
+    "Legacy iterator interface (renamed from afw_iterator during #153).\n      Also used as the opaque cursor token type for array/object get_next_*\n      (pointer-sized slot). Created by afw_value_create_iterator() when\n      non-NULL. Call methods via afw_iterator_old_*() macros. See group\n      afw_value and afw_array. Will be replaced by the new afw_iterator\n      (defined_instance_storage) design."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2142 */
 #define afw_s_zz__2142 \

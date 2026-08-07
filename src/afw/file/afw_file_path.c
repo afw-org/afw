@@ -160,7 +160,7 @@ afw_file_path_resolve_rootFilePaths(
     afw_xctx_t *xctx)
 {
     const afw_object_t *roots;
-    const afw_iterator_t *iterator = NULL;
+    const afw_iterator_old_t *iterator = NULL;
     const afw_utf8_t *property_name;
     const afw_utf8_t *property_value;
     const afw_utf8_t *best_prefix;

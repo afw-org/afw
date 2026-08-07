@@ -171,7 +171,7 @@ impl_afw_object_get_property (
 const afw_value_t *
 impl_afw_object_get_next_property (
     const afw_object_t * self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {

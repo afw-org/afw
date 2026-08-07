@@ -18,7 +18,7 @@
 AFW_DEFINE(const afw_utf8_t *)
 afw_array_of_utf8_get_next(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     afw_xctx_t *xctx)
 {
     const void *internal;

@@ -639,7 +639,7 @@ impl_log_errors(
     const afw_utf8_t *source_location,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *error;
 
     iterator = NULL;
@@ -668,7 +668,7 @@ afw_object_meta_log_errors(
     const afw_object_t *meta;
     const afw_object_t *property_types;
     const afw_object_t *property_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *property_source_location;
     const afw_object_t *embedded;
@@ -904,7 +904,7 @@ impl_afw_object_get_property(
 
 
 typedef struct {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_boolean_t on_delta;
 } impl_get_next_property_iterator_t;
 
@@ -914,7 +914,7 @@ typedef struct {
 const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {
@@ -923,7 +923,7 @@ impl_afw_object_get_next_property(
     impl_get_next_property_iterator_t *i;
 
     if (!*iterator) {
-        *iterator = (afw_iterator_t *)afw_xctx_calloc_type(
+        *iterator = (afw_iterator_old_t *)afw_xctx_calloc_type(
             impl_get_next_property_iterator_t, xctx);
         if (!self->object_type || !self->object_type->object_type_object)
         {

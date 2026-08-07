@@ -14,6 +14,8 @@ If you maintain **anything that links AFW outside a full in-tree rebuild** — e
 
 In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine. Individual sections below also call this out where the ABI surface changed.
 
+Most work on this line needs **only a recompile** against the new install. One likely exception later is **C code that uses the array/object iterator cursor style** (`get_next_*` / related): a planned iterator redesign may require **source** edits, not just a rebuild. **Might:** ship a **temporary** one-off convert script (not an `afwdev` command) that you can run on an external tree, review the diff, and commit if it looks right—when that redesign lands. Until then, rebuild + this file remain the usual path.
+
 ---
 
 ## Highlights

@@ -253,7 +253,7 @@ impl_make_value(
     const afw_pool_t *p;
     const afw_array_t *list;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_object_view_internal_object_self_t *embedded_object;
 
     view = self->view;
@@ -403,7 +403,7 @@ impl_object_type_related_object_option_processing(
 
     const afw_utf8_t *object_type_id;
     const afw_object_type_t *object_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_utf8_t *property_name;
     const afw_utf8_t *s;
@@ -605,7 +605,7 @@ impl_additional_object_option_processing(
     afw_object_view_property_t *prop;
     const afw_value_array_t *parent_paths;
     afw_value_array_t *resolved_parent_paths;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /*NOTE
      *
@@ -738,7 +738,7 @@ impl_resolve_parents(
     const afw_object_t *origin;
     afw_object_view_internal_object_self_t * *parent;
     const afw_utf8_t *path;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_array_t *parent_paths;
     afw_size_t count;
 
@@ -933,7 +933,7 @@ impl_add_origin_properties(
 {
     const afw_value_t *value;
     const afw_utf8_t *name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* Make array of properties. */
     for (iterator = NULL;;) {
@@ -1249,7 +1249,7 @@ impl_afw_object_get_property(
 const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
@@ -1263,7 +1263,7 @@ impl_afw_object_get_next_property(
     else {
         prop = ((afw_object_view_property_t *)*iterator)->next_property;
     }
-    *iterator = (afw_iterator_t *)prop;
+    *iterator = (afw_iterator_old_t *)prop;
 
     /*
      * If there are no more properties, return NULL for result and property

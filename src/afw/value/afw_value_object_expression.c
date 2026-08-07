@@ -62,7 +62,7 @@ impl_afw_value_optional_evaluate(
     const afw_object_t *from;
     const afw_object_t *to;
     const afw_value_t *v;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
 
     from = ((const afw_value_object_expression_t *)&self->pub)->internal;
@@ -105,7 +105,7 @@ impl_afw_value_produce_compiler_listing(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *pv;
 

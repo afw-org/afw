@@ -604,26 +604,26 @@ typedef struct afw_connection_inf_s
 afw_connection_inf_t;
 
 /**
- * @brief Opaque instance type for interface `afw_iterator`.
+ * @brief Opaque instance type for interface `afw_iterator_old`.
  *
- * Public name is `afw_iterator_t`. Full
- * `struct afw_iterator_s` is in the generated
+ * Public name is `afw_iterator_old_t`. Full
+ * `struct afw_iterator_old_s` is in the generated
  * interface header. Call methods via
- * `afw_iterator_<method>(…)` macros, not by
+ * `afw_iterator_old_<method>(…)` macros, not by
  * assuming a single private layout beyond the published
  * struct (implementations may embed/extend in .c).
  */
-typedef struct afw_iterator_s
-afw_iterator_t;
+typedef struct afw_iterator_old_s
+afw_iterator_old_t;
 
 /**
- * @brief Vtable/inf type for interface `afw_iterator`.
+ * @brief Vtable/inf type for interface `afw_iterator_old`.
  *
- * Public name is `afw_iterator_inf_t`.
+ * Public name is `afw_iterator_old_inf_t`.
  * Instance `inf` points here; call macros use it.
  */
-typedef struct afw_iterator_inf_s
-afw_iterator_inf_t;
+typedef struct afw_iterator_old_inf_s
+afw_iterator_old_inf_t;
 
 /**
  * @brief Opaque instance type for interface `afw_request`.

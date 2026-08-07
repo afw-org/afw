@@ -404,8 +404,8 @@ impl_parse_definition(
     const afw_utf8_t *e;
     const afw_utf8_t *name;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
-    const afw_iterator_t *iterator2;
+    const afw_iterator_old_t *iterator;
+    const afw_iterator_old_t *iterator2;
 
     /* Use metadata p. */
     p = metadata->p;
@@ -754,7 +754,7 @@ impl_properties_to_object_type(
     const afw_value_t *value;
     const afw_array_t *list;
     const afw_utf8_t *s;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_utf8_t req_pn;
 
     req_pn.s = (required) ? "MUST" : "MAY";
@@ -854,7 +854,7 @@ impl_add_parents_and_property_types(
     afw_utf8_t *ids;
     const afw_utf8_t *parent_id;
     const afw_utf8_t *parent_id2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     afw_size_t count;
     afw_size_t count2;

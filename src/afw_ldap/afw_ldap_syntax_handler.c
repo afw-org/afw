@@ -606,7 +606,7 @@ impl_syntax_handler_list_binary_to_ber(
     const afw_array_t *list;
     const afw_memory_t *raw;
     const afw_utf8_t *s;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
 
     if (afw_value_is_array(value)) {
@@ -720,7 +720,7 @@ impl_syntax_handler_list_boolean_to_ber(
     const afw_data_type_t *data_type;
     afw_array_view_of_c_array_self_t wrapper;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
 
     if (afw_value_is_array(value)) {
@@ -805,7 +805,7 @@ impl_syntax_handler_list_generalized_time_to_ber(
     const afw_utf8_t *s;
     const afw_dateTime_t *val;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_size_t count;
 
     /* Process single dataTime. */
@@ -932,7 +932,7 @@ impl_syntax_handler_list_string_to_ber(
     struct berval **result;
     struct berval **bv;
     const afw_utf8_t *s;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     const afw_data_type_t *data_type;
     const void *internal;

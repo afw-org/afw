@@ -182,7 +182,7 @@ impl_list_destructure(
     afw_xctx_t *xctx)
 {
     const afw_compile_assignment_element_t *ae;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *v;
     const afw_array_t *rest;
     afw_boolean_t eol;
@@ -268,7 +268,7 @@ impl_object_destructure(
 {
     const afw_compile_assignment_property_t *ap;
     const afw_object_t *object;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *bound_name;
     const afw_value_t *v;
@@ -595,7 +595,7 @@ impl_evaluate_one_or_more_values(
 {
     const afw_value_t *result;
     const afw_value_t *value;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     result = NULL;
     if (afw_value_is_array(values)) {
@@ -1081,7 +1081,7 @@ afw_function_execute_for_of(
     const afw_value_t *iterable;
     const afw_value_array_t *list;
     const afw_value_string_t *strv;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     afw_compile_internal_assignment_type_t assignment_type;
     afw_size_t offset;
@@ -1601,7 +1601,7 @@ afw_function_execute_switch(
     const afw_value_t * const *default_pair;     
     const afw_value_t *statement;
     const afw_array_t *statement_list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     result = afw_value_undefined;
 

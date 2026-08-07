@@ -3362,7 +3362,7 @@ impl_afw_content_type =
     <description>Pointer to this value array instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer.</description>
       </parameter>
 
@@ -3401,7 +3401,7 @@ impl_afw_content_type =
         </description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>
           Address of iterator pointer.
         </description>
@@ -3448,7 +3448,7 @@ impl_afw_content_type =
     <description>Pointer to this value array instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer.</description>
       </parameter>
 
@@ -3996,7 +3996,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
       </parameter>
 
@@ -4027,7 +4027,7 @@ AFW_DEFINE(const afw_log_t *)
     <description>Pointer to this object instance.</description>
       </parameter>
 
-      <parameter name="iterator" type="const afw_iterator_t * *">
+      <parameter name="iterator" type="const afw_iterator_old_t * *">
     <description>Address of iterator pointer. Set to NULL before call to get first property.</description>
       </parameter>
 
@@ -4758,12 +4758,21 @@ AFW_DEFINE(const afw_request_handler_t *)
   </interface>
 
 
-  <interface name="afw_iterator" id="afww">
+  <!--
+    Temporary rename (issue #153 branch): old first-class iterator interface
+    and opaque get_next_* cursor type, so the new defined-instance
+    afw_iterator can take the name. Callers of array/object get_next_* use
+    afw_iterator_old_t ** as the cursor token until the new design lands.
+  -->
+  <interface name="afw_iterator_old" id="afwwold">
 
     <description>
-      Iterator over elements of a value that supports iteration (e.g. arrays).
-      Created by afw_value_create_iterator() when non-NULL. Call methods via
-      afw_iterator_*() macros. See group afw_value and afw_array.
+      Legacy iterator interface (renamed from afw_iterator during #153).
+      Also used as the opaque cursor token type for array/object get_next_*
+      (pointer-sized slot). Created by afw_value_create_iterator() when
+      non-NULL. Call methods via afw_iterator_old_*() macros. See group
+      afw_value and afw_array. Will be replaced by the new afw_iterator
+      (defined_instance_storage) design.
     </description>
 
     <method name="release">
@@ -4772,8 +4781,8 @@ AFW_DEFINE(const afw_request_handler_t *)
         This method releases the iterator.
       </description>
 
-      <parameter name="instance" type="const afw_iterator_t *">
-    <description>Pointer to this stream instance.</description>
+      <parameter name="instance" type="const afw_iterator_old_t *">
+    <description>Pointer to this iterator instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -4791,8 +4800,8 @@ AFW_DEFINE(const afw_request_handler_t *)
         'done' is set to 'true'.
       </description>
 
-      <parameter name="instance" type="const afw_iterator_t *">
-    <description>Pointer to this stream instance.</description>
+      <parameter name="instance" type="const afw_iterator_old_t *">
+    <description>Pointer to this iterator instance.</description>
       </parameter>
 
       <parameter name="key" type="const afw_value_t **">
@@ -5761,7 +5770,7 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="create_iterator">
 
       <description>
-        This will return an 'afw_iterator' instance or NULL if this value does
+        This will return an 'afw_iterator_old' instance or NULL if this value does
         not support iteration.
       </description>
 
@@ -5783,9 +5792,9 @@ AFW_DEFINE(const afw_request_handler_t *)
         </description>
       </parameter>
 
-      <return type="const afw_iterator_t *">
+      <return type="const afw_iterator_old_t *">
     <description>
-          This is an new instance of afw_iterator.
+          This is an new instance of afw_iterator_old.
       </description>
       </return>
 

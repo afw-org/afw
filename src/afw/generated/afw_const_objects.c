@@ -139063,7 +139063,7 @@ static const afw_runtime_const_object_instance_t
 impl_1356;
 
 /*
- * /afw/_AdaptiveInterface_/afw_iterator
+ * /afw/_AdaptiveInterface_/afw_iterator_old
  */
 
 static const afw_runtime_property_t
@@ -139075,7 +139075,7 @@ impl_1356_property_description = {
 static const afw_runtime_property_t
 impl_1356_property_name = {
     &afw_self_s_name,
-    &afw_self_v_afw_iterator.pub
+    &afw_self_v_afw_iterator_old.pub
 };
 
 static const afw_runtime_property_t *
@@ -139107,7 +139107,7 @@ impl_1356_meta_object__value = {
 
 static const afw_utf8_t
 impl_1356_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveInterface_/afw_iterator");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveInterface_/afw_iterator_old");
 
 static const afw_value_object_t
 impl_1356__value;
@@ -139121,7 +139121,7 @@ impl_1356 = {
         {
             (const afw_object_t *)&impl_1356_meta_object,
             NULL,
-            &afw_self_s_afw_iterator,
+            &afw_self_s_afw_iterator_old,
             &afw_self_s__AdaptiveInterface_,
             &impl_1356_meta_path
         }

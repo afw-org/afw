@@ -66,7 +66,7 @@ impl_afw_value_optional_evaluate(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *tests;
     const afw_object_t *test;
     const afw_value_t *value;
@@ -332,7 +332,7 @@ impl_afw_value_produce_compiler_listing(
     const afw_utf8_t *default_source_type;
     const afw_utf8_t *source_type;
     const afw_utf8_t *source_location;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_compile_type_info_t *info;
     const afw_value_t *compiled_value;
     const afw_utf8_t *test_name;

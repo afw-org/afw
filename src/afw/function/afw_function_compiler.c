@@ -423,7 +423,7 @@ impl_stringify_name_allowed(
     const impl_stringify_ctx_t *ctx,
     const afw_utf8_t *name)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *entry;
     const afw_utf8_t *s;
 
@@ -471,7 +471,7 @@ impl_stringify_prepare_object(
     const afw_object_t *obj)
 {
     const afw_object_t *out;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *next;
     const afw_value_t *child;
@@ -503,7 +503,7 @@ impl_stringify_prepare_array(
     const afw_array_t *list)
 {
     const afw_array_t *out;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *next;
     const afw_value_t *child;
     const afw_utf8_t *index_s;

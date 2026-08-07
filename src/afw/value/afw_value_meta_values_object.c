@@ -25,7 +25,7 @@
 
 
 typedef struct {
-    const afw_iterator_t *inner;
+    const afw_iterator_old_t *inner;
 } impl_meta_values_object_iterator_t;
 
 
@@ -49,7 +49,7 @@ impl_afw_array_get_count(
     AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     afw_size_t count;
 
@@ -120,7 +120,7 @@ impl_afw_array_get_entry_value(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *property_value;
     afw_value_meta_object_self_t *meta_self;
@@ -182,7 +182,7 @@ impl_afw_array_get_entry_value(
 afw_boolean_t
 impl_afw_array_get_next_internal(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_data_type_t **data_type,
     const void **internal,
     afw_xctx_t *xctx)
@@ -212,7 +212,7 @@ impl_afw_array_get_next_internal(
 const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -231,7 +231,7 @@ impl_afw_array_get_next_value(
         state = afw_pool_calloc_type(use_p,
             impl_meta_values_object_iterator_t, xctx);
         state->inner = NULL;
-        *iterator = (const afw_iterator_t *)state;
+        *iterator = (const afw_iterator_old_t *)state;
     }
     else {
         state = (impl_meta_values_object_iterator_t *)*iterator;

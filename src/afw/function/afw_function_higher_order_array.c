@@ -39,7 +39,7 @@ impl_over_array(
 
     afw_size_t functor_argc;
     const afw_value_t * (*functor_argv);
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     impl_call_over_array_cb_e_t e;
 
     /* Initialize param. */
@@ -195,7 +195,7 @@ impl_bag_of_bag(
 {
     const afw_value_array_t *array1, *array2, *arrayx;
     const afw_data_type_t *data_type_1, *data_type_2;
-    const afw_iterator_t *iterator1, *iterator2;
+    const afw_iterator_old_t *iterator1, *iterator2;
     const void *internal1, *internal2;
     void *e1, *e2;
     const afw_value_t * f_argv[3];
@@ -880,7 +880,7 @@ afw_function_execute_reduce(
 {
     const afw_value_array_t *array;
     const afw_value_t *accumulator;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t * f_argv[3];
     const afw_value_t *call;
 
@@ -1024,7 +1024,7 @@ afw_function_execute_sort(
     const afw_value_array_t *array;
     const afw_array_t *result_array;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void **value;
     impl_sort_ctx_t ctx;
 

@@ -56,7 +56,7 @@ afw_function_execute_add_properties(
 {
     const afw_value_object_t *target;
     const afw_value_object_t *source;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
     afw_size_t count;
@@ -548,7 +548,7 @@ afw_function_execute_entries(
     const afw_value_object_t *object;
     const afw_array_t *result_array;
     const afw_array_t *pair;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
     const afw_value_t *name_value;
@@ -612,7 +612,7 @@ afw_function_execute_keys(
 {
     const afw_value_object_t *object;
     const afw_array_t *result_array;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
 
@@ -671,7 +671,7 @@ afw_function_execute_values(
 {
     const afw_value_object_t *object;
     const afw_array_t *result_array;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
 

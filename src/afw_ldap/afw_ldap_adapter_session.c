@@ -307,7 +307,7 @@ impl_afw_adapter_session_add_object(
     apr_array_header_t *mods;
     const afw_value_t *value;
     const afw_utf8_t *property_name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     struct berval **bvals;
     LDAPMod *mod;
     char *dn_z;

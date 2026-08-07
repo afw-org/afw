@@ -22,7 +22,7 @@ impl_is_in_array(
     const afw_array_t *array,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *entry_internal;
     const afw_data_type_t *entry_data_type;
 
@@ -57,7 +57,7 @@ impl_is_subset_array(
     const afw_array_t *array2,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
     const afw_data_type_t *data_type;
 
@@ -82,7 +82,7 @@ impl_add_nondups_to_array(
     const afw_array_t *to,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
 
     for (iterator = NULL;;) {
@@ -142,7 +142,7 @@ afw_function_execute_at_least_one_member_of(
 {
     const afw_value_array_t *array1;
     const afw_value_array_t *array2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
 
@@ -1014,7 +1014,7 @@ afw_function_execute_intersection(
 {
     const afw_value_array_t *array1;
     const afw_value_array_t *array2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
     const afw_array_t *array;
@@ -1690,7 +1690,7 @@ afw_function_execute_one_and_only(
     const afw_value_array_t *array;
     const afw_data_type_t *data_type;
     const void *internal;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     if (afw_array_get_count(array->internal, x->xctx) != 1) {

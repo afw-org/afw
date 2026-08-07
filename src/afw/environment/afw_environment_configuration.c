@@ -67,7 +67,7 @@ afw_environment_configure_with_object_list(
     const afw_utf8_t *source_location,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_object_t *entry;
     const afw_utf8_t *detail_source_location;

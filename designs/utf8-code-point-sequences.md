@@ -3,6 +3,7 @@
 **Issue:** [#153](https://github.com/afw-org/afw/issues/153)  
 **Assignee:** Mike  
 **Status:** design / tracking (2026-08); implement over coming weeks/months.  
+**Branch:** `issue-#153-utf8-code-point-sequences`  
 **Audience:** maintainers.
 
 ## Product statement
@@ -77,10 +78,90 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 | Opt-in formal / evaluate choke point | Hand list of HOFs only, forever |
 | One-char **string** elements | Integer code-point elements (unless separate API later) |
 
+## Iterator / sequence access (design lock-in, 2026-08)
+
+Brainstorm on this branch: polymorphic walk and index for utf8 (and
+later other types) via a light **`afw_iterator`**, not string-only special
+cases forever. Specialized array/object `get_next_*` **opaque cursor**
+paths stay for hot C; the first-class iterator is the polymorphic front
+door.
+
+### Migration: rename step (done on this branch)
+
+The previous first-class interface and cursor type were renamed so the
+**new** design can own the name:
+
+| Old (legacy) | Role until replaced |
+|--------------|---------------------|
+| **`afw_iterator_old`** / **`afw_iterator_old_t`** | Legacy IDL interface + opaque `get_next_*` cursor token |
+| **`afw_iterator_old_*` macros** | `release` / `next` on the legacy interface |
+
+**`afw_iterator`** is reserved for the new `defined_instance_storage` design
+(`get_next` / `get_by_index` / `get_count`, stack initialize, no instance
+release).
+
+### Interface instance model
+
+| Mode | XML (draft) | Lifecycle |
+|------|-------------|-----------|
+| **Created** (default, almost all interfaces) | attribute omitted | create → `const T *`; pool/release as today |
+| **Defined** | `defined_instance_storage="true"` | Caller **defines** full public `afw_*_t` (stack or embed); `afw_*_initialize()`; **no instance release** |
+
+- Name **`defined_instance_storage`** matches C wording (declare vs **define**).
+- Generate may always emit `afw_<interface>_initialize()`; macro Doxygen
+  explains both modes. Document in `src/afw/doc/developer/interfaces.md`
+  when implemented.
+- Capability discovery: **inf / method presence** (like `get_setter`), not
+  a docs flag in the hot path. Optional human-facing flags elsewhere.
+
+Stack-resident iterator: fixed public layout holds `inf` + cursor words;
+caller provides memory; common path needs no alloc/release. Impl may
+spill to a pool only when the fixed cursor is too small; that cleanup is
+impl-managed, not a required caller `release`.
+
+### Agreed method names on `afw_iterator`
+
+| Method | Role |
+|--------|------|
+| **`get_next`** | Sequential advance; optional key + value out-params; done = no more (same idea as current IDL `next`, name aligned with array `get_next_*`) |
+| **`get_by_index`** | Value at dense index *i*; **does not** advance the `get_next` cursor |
+| **`get_count`** | Dense length when indexable; unsupported / N/A when walk-only |
+
+- Prefer these names over bare `next` / `get` (too vague next to object get).
+- **Index is optional:** dense sequences (array, string code points) implement
+  `get_by_index` / `get_count`. Property-style or stream-like walks may be
+  **`get_next` only**.
+- **`s[i]`** and array formals use index/count; for-of uses `get_next`
+  (or keeps specialized fast paths that share utf8 helpers).
+
+### Attach / initialize (draft)
+
+```c
+afw_iterator_t it;
+afw_iterator_initialize(&it);     /* inactive: inf NULL, cursors clear */
+/* attach from value/array/… then: */
+while (!afw_iterator_get_next(&it, &key, &value /*, xctx */)) { ... }
+v = afw_iterator_get_by_index(&it, i /*, xctx */);  /* if supported */
+```
+
+Exact attach API (`afw_value_iterate` vs first `get_next`) TBD at implement.
+
+### Relation to #153 phases
+
+1. Shared **`afw_utf8_*`** helpers (count / offset / one-CP slice).  
+2. **`s[i]`** + tests (may call helpers directly before full iterator land).  
+3. **`defined_instance_storage` + iterator methods** in IDL/generate when
+   ready; string (and array identity) implement them.  
+4. Formals / HOF / fold for-of onto the common path.
+
 ## Related
 
 - [#153](https://github.com/afw-org/afw/issues/153) — tracking issue  
 - [#39](https://github.com/afw-org/afw/issues/39) — dense arrays (closed)  
 - [#22](https://github.com/afw-org/afw/issues/22) — author ES differences  
 - `designs/array-semantics.md`, `designs/conversion-functions.md`  
-- Branch `test262-skipreason-sweep` — for-of / split / triage (may land separately)
+- `src/afw/doc/developer/interfaces.md` — IDL / generate notes (extend when
+  `defined_instance_storage` lands)  
+- Existing array/object cursor `get_next_*` — keep for efficiency  
+- Branch work on for-of string / split code points (landed on `mgg-develop`)  
+

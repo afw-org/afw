@@ -50,7 +50,7 @@ afw_array_impl_get_entry_meta(
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_array_impl_get_next_entry_meta(
     const afw_array_t *instance,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -96,7 +96,7 @@ afw_array_external_impl_get_entry_meta(
 AFW_DECLARE(const afw_value_t *)
 afw_array_external_impl_get_next_entry_meta(
     const afw_array_t *instance,
-    const afw_iterator_t **iterator,
+    const afw_iterator_old_t **iterator,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {

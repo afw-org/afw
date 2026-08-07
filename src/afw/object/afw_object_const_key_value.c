@@ -146,7 +146,7 @@ impl_afw_object_get_property(
 const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
@@ -163,7 +163,7 @@ impl_afw_object_get_next_property(
         if (property_name) {
             *property_name = &e->key;
         }
-        *iterator = (afw_iterator_t *)(e + 1);
+        *iterator = (afw_iterator_old_t *)(e + 1);
     }
     else {
         result = NULL;

@@ -415,7 +415,7 @@ typedef struct {
     AFW_OBJECT_SELF_T *self;
     afw_boolean_t on_wrapped;
     afw_object_internal_name_value_entry_t *local_e;
-    const afw_iterator_t *wrapped_iterator;
+    const afw_iterator_old_t *wrapped_iterator;
 } impl_memory_wrapped_iterator_t;
 
 
@@ -425,7 +425,7 @@ typedef struct {
 const afw_value_t *
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
@@ -446,7 +446,7 @@ impl_afw_object_get_next_property(
 
         for (; e && !e->value; e = e->next);
 
-        *iterator = (afw_iterator_t *)e;
+        *iterator = (afw_iterator_old_t *)e;
 
         if (!e) {
             if (property_name) {
@@ -469,7 +469,7 @@ impl_afw_object_get_next_property(
         wit->on_wrapped = false;
         wit->local_e = self->first_property;
         wit->wrapped_iterator = NULL;
-        *iterator = (const afw_iterator_t *)wit;
+        *iterator = (const afw_iterator_old_t *)wit;
     }
     else {
         wit = (impl_memory_wrapped_iterator_t *)*iterator;

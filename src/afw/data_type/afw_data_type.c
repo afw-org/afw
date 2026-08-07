@@ -983,8 +983,8 @@ impl_afw_data_type_array_compare_internal(
 {
     const afw_array_t *array1 = *(const afw_array_t * const *)value1;
     const afw_array_t *array2 = *(const afw_array_t * const *)value2;
-    const afw_iterator_t *iterator1;
-    const afw_iterator_t *iterator2;
+    const afw_iterator_old_t *iterator1;
+    const afw_iterator_old_t *iterator2;
     const void *internal1;
     const void *internal2;
     const afw_data_type_t *data_type1;
@@ -1157,7 +1157,7 @@ impl_afw_data_type_object_compare_internal(
     const afw_value_t *v2;
     const afw_utf8_t *property_name;
     afw_size_t count1, count2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* Get object 1 & 2 pointer. */
     o1 = *(const afw_object_t **)value1;
@@ -1398,7 +1398,7 @@ impl_afw_data_type_array_clone_internal(
 {
     const afw_array_t *from;
     const afw_array_t *to;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_value_t *cloned_value;
     const afw_data_type_t *data_type;
@@ -1429,7 +1429,7 @@ impl_object_clone_properties_and_meta(
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p = to->p;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_utf8_t *property_name;
     afw_object_meta_t *to_meta;
@@ -1732,7 +1732,7 @@ impl_afw_data_type_array_value_compiler_listing(
     afw_xctx_t *xctx)
 {
     const afw_array_t *array;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *entry;
 
     array = ((const afw_value_array_t *)value)->internal;
@@ -1762,7 +1762,7 @@ afw_data_type_object_value_compiler_listing(
     afw_xctx_t *xctx)
 {
     const afw_object_t *object;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *pv;
     const afw_utf8_t *property_name;
  
@@ -1937,7 +1937,7 @@ impl_afw_data_type_array_write_as_expression(
     afw_xctx_t *xctx)
 {
     const afw_array_t *array;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     afw_size_t i;
     afw_boolean_t all_evaluated;
@@ -2010,7 +2010,7 @@ impl_afw_data_type_object_write_as_expression(
     afw_xctx_t *xctx)
 {
     const afw_object_t *object;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_utf8_t *property_name;
     afw_size_t i;

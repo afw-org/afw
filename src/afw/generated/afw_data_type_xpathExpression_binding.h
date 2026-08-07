@@ -391,7 +391,7 @@ afw_object_get_next_property_as_xpathExpression_source( \
 AFW_DECLARE(const afw_utf8_t *)
 afw_object_get_next_property_as_xpathExpression_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -447,7 +447,7 @@ afw_object_set_property_as_xpathExpression(
 AFW_DECLARE(const afw_utf8_t *)
 afw_array_of_xpathExpression_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 

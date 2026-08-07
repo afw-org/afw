@@ -307,7 +307,7 @@ afw_context_variable_definitions_add(
     afw_boolean_t replace_duplicates,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
 
@@ -333,7 +333,7 @@ afw_context_qualifier_definitions_merge(
     afw_boolean_t replace_duplicates,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
     const afw_object_t *variable_definitions;
@@ -375,7 +375,7 @@ afw_context_variable_definitions_add_based_on_object(
     const afw_object_t *pt;
     const afw_object_t *other_properties;
     const afw_value_t *value;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_pool_t *p = variable_definitions->p;
     const afw_utf8_t *s;
@@ -472,7 +472,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
     const afw_object_t *property_types;
     const afw_object_t *pt;
     const afw_object_t *related_pt;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *data_type_id;
     const afw_data_type_t *data_type = NULL;
@@ -573,7 +573,7 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
     const afw_utf8_t *source_location,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *qualifier_id;
     const afw_utf8_t *detail_source_location;
     const afw_object_t *object;
