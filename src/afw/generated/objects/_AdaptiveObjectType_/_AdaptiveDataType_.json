@@ -90,6 +90,18 @@
             "description": "This data type is source that can be compiled and evaluated with the compile() adaptive function.",
             "label": "Evaluated"
         },
+        "iteratorReturnDataType": {
+            "allowQuery": true,
+            "brief": "Data type of each keyless iterator value when fixed for this type",
+            "dataType": "string",
+            "description": "When set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+            "label": "Iterator Return Data Type",
+            "required": false,
+            "runtime": {
+                "memberName": "iterator_return_data_type",
+                "valueAccessor": "data_type_id"
+            }
+        },
         "jsonImpliesDataType": {
             "allowQuery": true,
             "brief": "Indicates that dataType needs to be available to fully interpret json value",

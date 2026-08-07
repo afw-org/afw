@@ -3,6 +3,7 @@
     "cType": "afw_utf8_t",
     "dataType": "objectId",
     "dataTypeParameterType": "ObjectType",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adapter id and object type id.",
     "directReturn": false,
     "jsonPrimitive": "string",

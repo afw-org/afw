@@ -4,6 +4,7 @@
     "compileType": "json",
     "dataType": "json",
     "dataTypeParameterType": "SourceParameter",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'json' holds the source for a JSON value.",
     "directReturn": false,
     "evaluated": true,

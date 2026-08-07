@@ -49,11 +49,25 @@ if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
  * @param data_type const afw_data_type_t *.
  *
  * Runtime capability is optional_initialize_iterator non-NULL on the inf
- * (wired in afw_data_type.c). Not derived from generate docs.
+ * (wired in afw_data_type.c). Not derived from generate docs or from
+ * iterator_return_data_type (array iterates but has no fixed step type).
  */
 #define afw_data_type_has_iterator(data_type) \
     ((data_type) && (data_type)->inf && \
      (data_type)->inf->optional_initialize_iterator)
+
+
+/**
+ * @brief Fixed data type of each keyless iterator step, or NULL.
+ * @param data_type const afw_data_type_t *.
+ * @return const afw_data_type_t * or NULL.
+ *
+ * Reads data_type->iterator_return_data_type. NULL if data_type is NULL,
+ * the type has no keyless iterator, or step type is not fixed at type level
+ * (e.g. array). See issue #153.
+ */
+#define afw_data_type_iterator_return_data_type(data_type) \
+    ((data_type) ? (data_type)->iterator_return_data_type : NULL)
 
 
 /**

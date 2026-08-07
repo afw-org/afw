@@ -82,6 +82,12 @@
                     "title": "Evaluated",
                     "type": "boolean"
                 },
+                "iteratorReturnDataType": {
+                    "description": "When set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "markdownDescription": "**Iterator Return Data Type**\n\nWhen set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "title": "Iterator Return Data Type",
+                    "type": "string"
+                },
                 "jsonImpliesDataType": {
                     "default": false,
                     "description": "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
@@ -207,6 +213,12 @@
                     "markdownDescription": "**Evaluated**\n\nThis data type is source that can be compiled and evaluated with the compile() adaptive function.",
                     "title": "Evaluated",
                     "type": "boolean"
+                },
+                "iteratorReturnDataType": {
+                    "description": "When set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "markdownDescription": "**Iterator Return Data Type**\n\nWhen set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "title": "Iterator Return Data Type",
+                    "type": "string"
                 },
                 "jsonImpliesDataType": {
                     "default": false,
@@ -335,6 +347,12 @@
             "markdownDescription": "**Evaluated**\n\nThis data type is source that can be compiled and evaluated with the compile() adaptive function.",
             "title": "Evaluated",
             "type": "boolean"
+        },
+        "iteratorReturnDataType": {
+            "description": "When set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+            "markdownDescription": "**Iterator Return Data Type**\n\nWhen set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+            "title": "Iterator Return Data Type",
+            "type": "string"
         },
         "jsonImpliesDataType": {
             "default": false,

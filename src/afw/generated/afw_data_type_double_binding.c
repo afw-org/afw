@@ -194,7 +194,8 @@ afw_data_type_double_direct = {
     true,
     true,
     true,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of double. */

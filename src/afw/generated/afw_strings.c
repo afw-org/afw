@@ -15410,6 +15410,18 @@ afw_self_v_is_yearMonthDuration = {
 };
 
 const afw_value_string_t
+afw_self_v_iteratorReturnDataType = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_iteratorReturnDataType)
+};
+
+const afw_value_string_t
+afw_self_v_iterator_return_data_type = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_iterator_return_data_type)
+};
+
+const afw_value_string_t
 afw_self_v_join = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_join)
@@ -30698,6 +30710,12 @@ afw_self_v_zz__2198 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2199 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2199)
+};
+
+const afw_value_string_t
 afw_self_v_zz__22 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__22)
@@ -30707,6 +30725,12 @@ const afw_value_string_t
 afw_self_v_zz__220 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__220)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2200 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2200)
 };
 
 const afw_value_string_t
@@ -41117,6 +41141,12 @@ const afw_value_string_t
 afw_self_v_zz__Is_not_a_number_NaN_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Is_not_a_number_NaN_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Iterator_Return_Data_Type = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Iterator_Return_Data_Type)
 };
 
 const afw_value_string_t

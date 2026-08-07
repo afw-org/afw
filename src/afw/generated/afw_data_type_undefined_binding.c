@@ -141,7 +141,8 @@ afw_data_type_undefined_direct = {
     true,
     false,
     true,
-    true
+    true,
+    NULL
 };
 
 /* Data type struct for undefined. */

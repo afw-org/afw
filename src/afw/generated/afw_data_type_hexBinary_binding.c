@@ -223,7 +223,8 @@ afw_data_type_hexBinary_direct = {
     false,
     true,
     true,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of hexBinary. */

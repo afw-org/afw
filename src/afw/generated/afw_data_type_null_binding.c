@@ -194,7 +194,8 @@ afw_data_type_null_direct = {
     true,
     false,
     true,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of null. */

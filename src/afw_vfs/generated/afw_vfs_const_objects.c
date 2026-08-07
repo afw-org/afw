@@ -130,7 +130,7 @@ impl_4_property_dataType = {
 static const afw_runtime_property_t
 impl_4_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2559.pub
+    &afw_vfs_self_v_zz__2561.pub
 };
 
 static const afw_runtime_property_t
@@ -324,7 +324,7 @@ impl_6_property_dataType = {
 static const afw_runtime_property_t
 impl_6_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2560.pub
+    &afw_vfs_self_v_zz__2562.pub
 };
 
 static const afw_runtime_property_t
@@ -421,7 +421,7 @@ impl_7_property_dataType = {
 static const afw_runtime_property_t
 impl_7_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2561.pub
+    &afw_vfs_self_v_zz__2563.pub
 };
 
 static const afw_runtime_property_t
@@ -676,7 +676,7 @@ impl_1_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_1_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2562.pub
+    &afw_vfs_self_v_zz__2564.pub
 };
 
 static const afw_runtime_property_t
@@ -807,7 +807,7 @@ impl_10_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_10_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2563.pub
+    &afw_vfs_self_v_zz__2565.pub
 };
 
 static const afw_runtime_property_t
@@ -904,7 +904,7 @@ impl_11_property_defaultValue = {
 static const afw_runtime_property_t
 impl_11_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2564.pub
+    &afw_vfs_self_v_zz__2566.pub
 };
 
 static const afw_runtime_property_t
@@ -1014,7 +1014,7 @@ impl_12_property_dataTypeParameter = {
 static const afw_runtime_property_t
 impl_12_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2565.pub
+    &afw_vfs_self_v_zz__2567.pub
 };
 
 static const afw_runtime_property_t
@@ -1259,7 +1259,7 @@ impl_8_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2566.pub
+    &afw_vfs_self_v_zz__2568.pub
 };
 
 static const afw_runtime_property_t
@@ -1368,7 +1368,7 @@ impl_15_property_defaultValue = {
 static const afw_runtime_property_t
 impl_15_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2567.pub
+    &afw_vfs_self_v_zz__2569.pub
 };
 
 static const afw_runtime_property_t
@@ -1477,7 +1477,7 @@ impl_16_property_dataType = {
 static const afw_runtime_property_t
 impl_16_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2568.pub
+    &afw_vfs_self_v_zz__2570.pub
 };
 
 static const afw_runtime_property_t
@@ -1866,7 +1866,7 @@ impl_20_property_dataType = {
 static const afw_runtime_property_t
 impl_20_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2569.pub
+    &afw_vfs_self_v_zz__2571.pub
 };
 
 static const afw_runtime_property_t

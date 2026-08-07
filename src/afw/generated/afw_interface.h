@@ -2884,6 +2884,23 @@ struct afw_data_type_s {
      * value but can be used to specify what data types a value can be.
      */
     afw_boolean_t special;
+
+    /**
+     * Fixed data type of each value from a keyless afw_iterator for values
+     * of this type (get_next / get_by_index), or NULL if this type has no
+     * iterator or the step type is not fixed at the data type level.
+     * 
+     * Distinct from optional_initialize_iterator: that method being non-NULL
+     * means iteration is supported; this pointer names the step type when
+     * every instance yields the same type (e.g. utf8-backed types yield
+     * string code-point values). Array supports iteration but leaves this
+     * NULL because element type is per array instance.
+     * 
+     * Generate property iteratorReturnDataType (data type id string) fills
+     * this as a pointer to the static afw_data_type_*_direct instance.
+     * See issue #153.
+     */
+    const afw_data_type_t * iterator_return_data_type;
 };
 
 /** @brief String name of interface `afw_data_type` (`AFW_DATA_TYPE_INTERFACE_NAME`). */

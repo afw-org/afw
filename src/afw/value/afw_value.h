@@ -822,6 +822,66 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
 
 
 /**
+ * @brief True if A_VALUE is evaluated and its data type supports keyless
+ *        afw_iterator (#153).
+ * @param A_VALUE value to test.
+ *
+ * Uses inf->is_evaluated_of_data_type (cast-safe face) and
+ * optional_initialize_iterator on that data type. Not a produce-type probe.
+ * Soft only — does not throw.
+ */
+#define afw_value_has_iterator(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf->is_evaluated_of_data_type && \
+    (A_VALUE)->inf->is_evaluated_of_data_type->inf && \
+    (A_VALUE)->inf->is_evaluated_of_data_type->inf->optional_initialize_iterator \
+)
+
+
+/**
+ * @brief Fixed iterator step data type for A_VALUE's produce type, or NULL.
+ * @param A_VALUE value (evaluated or not).
+ * @return const afw_data_type_t * or NULL.
+ *
+ * Quick path only: inf->data_type->iterator_return_data_type. Does not call
+ * get_data_type(). NULL if produce type is unknown on the inf, or the type
+ * has no fixed iterator step type. See issue #153.
+ */
+#define afw_value_iterator_return_data_type(A_VALUE) \
+( \
+    ((A_VALUE) && (A_VALUE)->inf->data_type) \
+    ? (A_VALUE)->inf->data_type->iterator_return_data_type \
+    : NULL \
+)
+
+
+/**
+ * @brief Initialize a keyless afw_iterator for an evaluated value (#153).
+ * @param A_VALUE evaluated value with a data type that supports iterator.
+ * @param iterator caller-defined afw_iterator_t storage (opaque; host fills).
+ * @param xctx of caller.
+ *
+ * Requires finished evaluated layout (is_evaluated_of_data_type). Throws if
+ * the value is missing, not evaluated, or its type has no iterator. Soft
+ * probe: afw_value_has_iterator() first.
+ */
+#define afw_value_initialize_iterator(A_VALUE, iterator, xctx) \
+do { \
+    const afw_data_type_t *_afw_it_dt = \
+        (A_VALUE) ? (A_VALUE)->inf->is_evaluated_of_data_type : NULL; \
+    if (!_afw_it_dt || !_afw_it_dt->inf || \
+        !_afw_it_dt->inf->optional_initialize_iterator) \
+    { \
+        AFW_THROW_ERROR_Z(general, \
+            "Value does not support iterator", (xctx)); \
+    } \
+    _afw_it_dt->inf->optional_initialize_iterator( \
+        _afw_it_dt, AFW_VALUE_INTERNAL(A_VALUE), (iterator), (xctx)); \
+} while (0)
+
+
+/**
  * @brief Get quick data type id string, or "unknown".
  * @param A_VALUE value (may be NULL).
  * @return pointer to data_type_id utf8, or afw_s_unknown.

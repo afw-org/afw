@@ -223,7 +223,8 @@ afw_data_type_anyURI_direct = {
     false,
     true,
     true,
-    false
+    false,
+    &afw_data_type_string_direct
 };
 
 /* Value for empty array of anyURI. */

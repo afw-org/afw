@@ -194,7 +194,8 @@ afw_data_type_object_direct = {
     true,
     false,
     false,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of object. */

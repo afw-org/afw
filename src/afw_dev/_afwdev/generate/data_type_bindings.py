@@ -1026,9 +1026,16 @@ def write_c_section(fd, prefix, obj):
 
     # special
     if obj.get('special', False) == True:
-        fd.write('    true\n')
+        fd.write('    true,\n')
     else:
-        fd.write('    false\n')
+        fd.write('    false,\n')
+
+    # iterator_return_data_type (const afw_data_type_t *; generate id or NULL)
+    irt = obj.get('iteratorReturnDataType')
+    if irt:
+        fd.write('    &afw_data_type_' + irt + '_direct\n')
+    else:
+        fd.write('    NULL\n')
 
     fd.write('};\n')
 

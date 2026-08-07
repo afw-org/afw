@@ -178,8 +178,28 @@ n = afw_iterator_get_count(&it, xctx);
 - Wired in **`afw_data_type.c`**: **array** → `afw_array_initialize_iterator`;
   all **`afw_utf8_t`** types → shared code-point iterator yielding **managed
   string** elements; others NULL.
-- Docs-only generate field **`iterationDescription`** (not machine-read)
-  still optional for later.
+
+### `iteratorReturnDataType` + value façade (implemented on branch)
+
+- Generate property **`iteratorReturnDataType`** (camelCase; data type id string)
+  → C field **`iterator_return_data_type`** (`const afw_data_type_t *` or NULL)
+  on the static data type instance.
+- **utf8 family** → `string`; **array** → NULL (iterates; element type per
+  instance); others NULL.
+- Capability (method non-NULL) and fixed step type (pointer) are **separate**.
+- Data type macros: `afw_data_type_has_iterator`,
+  `afw_data_type_initialize_iterator`,
+  `afw_data_type_iterator_return_data_type`.
+- Value macros (public API in `afw_value.h`; no open-code inf walks):
+  - **`afw_value_has_iterator`** / **`afw_value_initialize_iterator`** —
+    evaluated face (`is_evaluated_of_data_type`).
+  - **`afw_value_iterator_return_data_type`** — quick produce type
+    (`inf->data_type` → field); no `get_data_type()` call.
+- Adaptive runtime property uses value accessor **`data_type_id`** (pointer →
+  type id string).
+- **Later on this branch:** produce-type coverage audit (built-in calls and
+  other value kinds set `inf->data_type` when known); optional rewiring of
+  for-of / formals / `s[i]`.
 
 ## Related
 

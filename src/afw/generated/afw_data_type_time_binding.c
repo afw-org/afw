@@ -194,7 +194,8 @@ afw_data_type_time_direct = {
     false,
     true,
     true,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of time. */

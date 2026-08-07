@@ -194,7 +194,8 @@ afw_data_type_integer_direct = {
     true,
     true,
     true,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of integer. */

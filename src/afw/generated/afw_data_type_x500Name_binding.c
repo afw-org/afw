@@ -223,7 +223,8 @@ afw_data_type_x500Name_direct = {
     false,
     false,
     true,
-    false
+    false,
+    &afw_data_type_string_direct
 };
 
 /* Value for empty array of x500Name. */
