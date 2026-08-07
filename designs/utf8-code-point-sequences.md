@@ -2,8 +2,7 @@
 
 **Issue:** [#153](https://github.com/afw-org/afw/issues/153)  
 **Assignee:** Mike  
-**Status:** design / tracking (2026-08); implement over coming weeks/months.  
-**Branch:** `issue-#153-utf8-code-point-sequences`  
+**Status:** **beta language story landed** on branch `issue-#153-utf8-code-point-sequences` (2026-08); merge to `mgg-develop` via PR.  
 **Audience:** maintainers.
 
 ## Product statement
