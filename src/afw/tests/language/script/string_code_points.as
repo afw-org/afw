@@ -268,7 +268,30 @@ const s = "\u20ac" + "z";
 assert(index_of(s, "z") === 1);
 assert(index_of(s, "\u20ac") === 0);
 return 0;
+
 //?
+//? test: replace-code-point-boundaries
+//? description: replace finds match at CP boundaries not mid-sequence
+//? expect: 0
+//? source: ...
+
+/* Replace euro (one CP) with X; rest is z */
+const s = replace("\u20ac" + "z", "\u20ac", "X");
+assert(s === "Xz");
+assert(replace("a\u20ac" + "b", "\u20ac", "") === "ab");
+return 0;
+
+//?
+//? test: split-separator-code-point
+//? description: split on separator only at CP boundaries
+//? expect: 0
+//? source: ...
+
+const parts = split("a\u20ac" + "b", "\u20ac");
+assert(length(parts) === 2);
+assert(parts[0] === "a");
+assert(parts[1] === "b");
+return 0;//?
 //? test: Deferred-produce-type-script-call-return
 //? description: script call produce type for typed return (compile soft probes)
 //? skip: true

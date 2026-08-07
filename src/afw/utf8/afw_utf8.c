@@ -592,8 +592,10 @@ AFW_DEFINE(afw_boolean_t)
 afw_utf8_contains(
     const afw_utf8_t *s1, const afw_utf8_t *s2)
 {
-    const afw_utf8_octet_t *c;
-    afw_size_t len;
+    UChar32 cp;
+    int32_t i;
+    int32_t length;
+    int32_t prev;
 
     if (!s1) {
         return false;
@@ -603,11 +605,23 @@ afw_utf8_contains(
         return true;
     }
 
-    for (c = s1->s, len = s1->len;
-        s2->len <= len; c++, len--)
-    {
-        if (memcmp(c, s2->s, s2->len) == 0) {
+    /*
+     * Strings are assumed valid UTF-8. Step by code point so search does not
+     * start mid multi-byte sequence (#153). No xctx on this API — use ICU
+     * U8_NEXT (same as afw_utf8_next_code_point body).
+     */
+    if (s1->len > (afw_size_t)INT32_MAX || s2->len > (afw_size_t)INT32_MAX) {
+        return false;
+    }
+    length = (int32_t)s1->len;
+    for (i = 0; s2->len <= (afw_size_t)(length - i); ) {
+        if (memcmp(s1->s + i, s2->s, s2->len) == 0) {
             return true;
+        }
+        prev = i;
+        U8_NEXT((const uint8_t *)s1->s, i, length, cp);
+        if (cp < 0 || i <= prev) {
+            break;
         }
     }
 

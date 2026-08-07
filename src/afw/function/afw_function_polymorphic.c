@@ -1971,20 +1971,29 @@ afw_function_execute_replace(
     if (remaining.len == 0) {
         return afw_v_a_empty_string;
     }
-    for (count = 0; count < limit && remaining.len > match->internal.len; )
+    /*
+     * Advance search by code point only (#153) so matches are not attempted
+     * mid multi-byte sequence.
+     */
+    for (count = 0; count < limit && remaining.len >= match->internal.len; )
     {
-        for (;
-            remaining.len >= match->internal.len;
-            remaining.s++, remaining.len--)
+        if (memcmp(remaining.s, match->internal.s, match->internal.len) == 0)
         {
-            if (memcmp(remaining.s, match->internal.s, match->internal.len)
-                == 0)
+            remaining.s += match->internal.len;
+            remaining.len -= match->internal.len;
+            count++;
+        }
+        else {
+            afw_size_t cp_len;
+
+            cp_len = 0;
+            if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                remaining.len, x->xctx) < 0)
             {
-                remaining.s += match->internal.len;
-                remaining.len -= match->internal.len;
-                count++;
                 break;
             }
+            remaining.s += cp_len;
+            remaining.len -= cp_len;
         }
     }
 
@@ -2002,10 +2011,12 @@ afw_function_execute_replace(
     result->internal.len = len;
     result->internal.s = s;
 
-    /* Do replaces and return result. */
+    /* Do replaces and return result (same CP-step search). */
     for (; count > 0; count--) {
         for (;;) {
-            if (memcmp(remaining.s, match->internal.s, match->internal.len) == 0)
+            if (remaining.len >= match->internal.len &&
+                memcmp(remaining.s, match->internal.s, match->internal.len)
+                    == 0)
             {
                 memcpy(s, replacement->internal.s, replacement->internal.len);
                 s += replacement->internal.len;
@@ -2014,10 +2025,21 @@ afw_function_execute_replace(
                 break;
             }
             else {
-                *s++ = *remaining.s++;
-                remaining.len--;
+                afw_size_t cp_len;
+
+                cp_len = 0;
+                if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                    remaining.len, x->xctx) < 0)
+                {
+                    AFW_THROW_ERROR_Z(general,
+                        "Invalid UTF-8 in replace", x->xctx);
+                }
+                memcpy(s, remaining.s, cp_len);
+                s += cp_len;
+                remaining.s += cp_len;
+                remaining.len -= cp_len;
             }
-        }            
+        }
     }
     if (remaining.len > 0) {
         memcpy(s, remaining.s, remaining.len);
@@ -2173,11 +2195,11 @@ afw_function_execute_split(
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
     if (separator) {
+        /* Find separator only at code-point boundaries (#153). */
         for (count = 0; count < limit && remaining.len > 0; count++) {
-            for (split.s = remaining.s, split.len = remaining.len;
-                ;
-                remaining.s++, remaining.len--)
-            {
+            split.s = remaining.s;
+            split.len = remaining.len;
+            for (;;) {
                 if (remaining.len < separator->len) {
                     remaining.len = 0;
                     break;
@@ -2188,7 +2210,20 @@ afw_function_execute_split(
                     remaining.len -= separator->len;
                     break;
                 }
-            }            
+                {
+                    afw_size_t cp_len;
+
+                    cp_len = 0;
+                    if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                        remaining.len, x->xctx) < 0)
+                    {
+                        AFW_THROW_ERROR_Z(general,
+                            "Invalid UTF-8 in split", x->xctx);
+                    }
+                    remaining.s += cp_len;
+                    remaining.len -= cp_len;
+                }
+            }
             afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }

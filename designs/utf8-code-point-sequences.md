@@ -47,9 +47,9 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 | `length` / `substring` / `index_of` / `last_index_of` | Code-point index (step with `afw_utf8_next_code_point`) |
 | empty-separator `split` | Code points |
 | for-of / `s[i]` / iterator | Code points |
-| **`includes`** (+ optional position) | **Fixed on this branch** — was byte start / `c++` step; now CP index + CP step |
+| **`includes`** (+ optional position) | **Fixed** — CP index + CP step |
 | `starts_with` / `ends_with` | Full-string byte compare (OK for complete valid UTF-8 strings) |
-| **`replace` / search loops** that `s++` by octet | Residual: can theoretically match mid-sequence; step-by-CP preferred later (A4 helpers) |
+| **`replace`**, **split** (non-empty separator), **`afw_utf8_contains`** | **Fixed** — search advances by code point (still `memcmp` of full needle) |
 | XACML bag formals | **Not** code-point expand (bag-of-one scalar); see `as_array_sequence` notes |
 
 ## Goals
