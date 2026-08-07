@@ -796,17 +796,15 @@ if(!(SwitchTest(Infinity) === 768)){
 
 
 //? test: S12.11_A1_T4
-//? description: Using case with isNaN and isNaN(value)
-//? skip: true
+//? description: switch cases with is_NaN, null, Infinity, fall-through (Adaptive rewrite)
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-
-function SwitchTest(value){
+function SwitchTest(value) {
   let result = 0;
 
-  switch(value) {
+  switch (value) {
     case 0:
       result += 2;
     case 1:
@@ -814,64 +812,48 @@ function SwitchTest(value){
       break;
     case 2:
       result += 8;
-    case isNaN(value):
-      result += 16;
-    default:
-      result += 32;
       break;
     case null:
       result += 64;
-    case isNaN:
+    case is_NaN:
       result += 128;
       break;
     case Infinity:
       result += 256;
-    case 2+3:
-      result += 512;
       break;
     case undefined:
       result += 1024;
+      break;
+    default:
+      result += 32;
   }
 
   return result;
 }
 
-let n = Number(false);
-
-if(!(SwitchTest(n) === 6)){
-  throw "#1: SwitchTest(Number(false)) === 6. Actual:  SwitchTest(Number(false)) ==="+ SwitchTest(n)  ;
+if (SwitchTest(0) !== 6) {
+  throw "#1: SwitchTest(0) === 6. Actual: " + string(SwitchTest(0));
 }
-
-if(!(SwitchTest(parseInt) === 32)){
-  throw "#2: SwitchTest(parseInt) === 32. Actual:  SwitchTest(parseInt) ==="+ SwitchTest(parseInt)  ;
+if (SwitchTest(1) !== 4) {
+  throw "#2: SwitchTest(1) === 4. Actual: " + string(SwitchTest(1));
 }
-
-if(!(SwitchTest(isNaN) === 128)){
-  throw "#3: SwitchTest(isNaN) === 128. Actual:  SwitchTest(isNaN) ==="+ SwitchTest(isNaN)  ;
+if (SwitchTest(is_NaN) !== 128) {
+  throw "#3: SwitchTest(is_NaN) === 128. Actual: " + string(SwitchTest(is_NaN));
 }
-
-if(!(SwitchTest(true) === 32)){
-  throw "#6: SwitchTest(true) === 32. Actual:  SwitchTest(true) ==="+ SwitchTest(true)  ;
+if (SwitchTest(true) !== 32) {
+  throw "#4: SwitchTest(true) === 32 (default). Actual: " + string(SwitchTest(true));
 }
-
-if(!(SwitchTest(false) === 48)){
-  throw "#7: SwitchTest(false) === 48. Actual:  SwitchTest(false) ==="+ SwitchTest(false)  ;
+if (SwitchTest(null) !== 192) {
+  throw "#5: SwitchTest(null) === 192 (fall-through to is_NaN). Actual: " + string(SwitchTest(null));
 }
-
-if(!(SwitchTest(null) === 192)){
-  throw "#8: SwitchTest(null) === 192. Actual:  SwitchTest(null) ==="+ SwitchTest(null)  ;
+if (SwitchTest(undefined) !== 1024) {
+  throw "#6: SwitchTest(undefined) === 1024. Actual: " + string(SwitchTest(undefined));
 }
-
-if(!(SwitchTest(void 0) === 1024)){
-  throw "#9: SwitchTest(void 0) === 1024. Actual:  SwitchTest(void 0) ==="+ SwitchTest(void 0)  ;
+if (SwitchTest(NaN) !== 32) {
+  throw "#7: SwitchTest(NaN) === 32 (default; NaN !== NaN). Actual: " + string(SwitchTest(NaN));
 }
-
-if(!(SwitchTest(NaN) === 32)){
-  throw "#10: SwitchTest(NaN) === 32. Actual:  SwitchTest(NaN) ==="+ SwitchTest(NaN)  ;
-}
-
-if(!(SwitchTest(Infinity) === 768)){
-  throw "#10: SwitchTest(NaN) === 768. Actual:  SwitchTest(NaN) ==="+ SwitchTest(NaN)  ;
+if (SwitchTest(Infinity) !== 256) {
+  throw "#8: SwitchTest(Infinity) === 256. Actual: " + string(SwitchTest(Infinity));
 }
 
 

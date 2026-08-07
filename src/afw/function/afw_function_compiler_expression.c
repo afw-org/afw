@@ -134,24 +134,30 @@ afw_function_execute_optional_chaining(
  * ```
  *   function void_operator(
  *       value: any
- *   ): any;
+ *   ): undefined;
  * ```
  *
  * Parameters:
  *
- *   value - (any) This is the value to evaluate.
+ *   value - (any) This is the value to evaluate (including undefined).
+ *       Evaluated for side effects only.
  *
  * Returns:
  *
- *   (any) This always returns undefined.
+ *   (undefined) This always returns undefined.
  */
 const afw_value_t *
 afw_function_execute_void_operator(
     afw_function_execute_t *x)
 {
-    AFW_COMPILER_ANNOTATION_UNUSED const afw_value_t *result;
+    const afw_value_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(result, 1);
+    /*
+     * Evaluate operand for side effects. Operand may be undefined
+     * (void undefined === undefined in ES and Adaptive).
+     */
+    AFW_FUNCTION_EVALUATE_PARAMETER(result, 1);
+    (void)result;
 
-    return NULL;
+    return afw_value_undefined;
 }

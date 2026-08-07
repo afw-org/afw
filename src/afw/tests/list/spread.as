@@ -69,13 +69,13 @@ return 0;
 //? source: ...
 
 const l1 = [1, 2, 3];
-const l2 = [];
+let l2 = [];
 
-// causes infinite loop
 for (const i of l1) {
     l2 = [...l2, i];
 }
 
+assert(eq(l2, [1, 2, 3]));
 return 0;
 
 //? test: spread-for-of-error

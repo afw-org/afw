@@ -19,6 +19,7 @@
     ],
     "polymorphic": true,
     "polymorphicDataTypes": [
+        "double",
         "integer"
     ],
     "returns": {

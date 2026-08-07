@@ -118,6 +118,9 @@ x <= 1;
 //? description: Checking that operands of a "<=" evaluate left-to-right
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / boxed primitives /
+assert.throws
 //? source: ...
 #!/usr/bin/env afw
 

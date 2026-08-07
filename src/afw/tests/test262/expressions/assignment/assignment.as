@@ -69,14 +69,15 @@ if (x !== 1) {
 
 
 //? test: 11.13.1_A4_T2
-//? description: Syntax check if "x = x" throws ReferenceError
-//? expect: error
-//? skip: true
+//? description: let x = x self-init (ES TDZ ReferenceError in some modes)
+//? differences: Adaptive has no TDZ; let x = x yields undefined
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-// This seems to work when perhaps it shouldn't?
 let x = x;
+assert(x === undefined);
+return 0;
 
 
 //? test: S8.12.5_A2
@@ -144,7 +145,10 @@ if (x !== true) {
 
 //? test: member-expr-ident-name-break-escaped
 //? description: break is a valid identifier name, using escape (MemberExpression IdentifierName)
-//? skip: true 
+//? skip: true
+//? skipReason: ...
+FIXME: escaped reserved words as property names (break spelled with
+unicode escape) not decided
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -227,6 +231,9 @@ assert(x === 1);
 //? description: Assignment Operator evaluates the value prior validating a MemberExpression's reference (null)
 //? expect: error
 //? skip: true
+//? skipReason: ...
+Harness: Adaptive assignment statement cannot appear in expression
+position as this ES test requires
 //? source: ...
 #!/usr/bin/env afw
 

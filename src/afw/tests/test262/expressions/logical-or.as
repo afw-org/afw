@@ -118,6 +118,7 @@ if ((true || x) !== true) {
 //? description: Checking with "throw"
 //? expect: undefined
 //? skip: true
+//? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
 #!/usr/bin/env afw
 

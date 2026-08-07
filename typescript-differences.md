@@ -59,7 +59,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 
 - **`let` / `const`** (no `var`). Semicolons **required**. Bare expressions are not statements.
 - **`if` / `while` / `do` / `for` / `for-of` / `switch` / `try` / `throw` / `return` / `break` / `continue`**.
-- **`for-of`** over arrays. Objects: walk **`keys` / `values` / `entries`** (no `for-in`).
+- **`for-of`** over **arrays** (by element) and **strings** (by Unicode **code point** / UTF-8 character). Objects: walk **`keys` / `values` / `entries`** (no `for-in`).
 - Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as` — **25** pass; **11** skips are escape/lifetime under **#2**, not “no closures”). Issue **#35** left open for that bar. Handbook Features text that still says “no closures” is **stale** (Should fix P2).
 
 ### Nullish and short-circuit forms
@@ -162,7 +162,7 @@ Leaves are Adaptive **data types** (`integer`, `string`, …), not TS `number` o
 |------|----------|--------|
 | Features: “no closures” | P2 | Runtime supports closures; update handbook Features when doing a docs pass. |
 | Features / Types | Ongoing | Keep Adaptive-first; deep ES essays belong in Jeremy’s #22 doc or here as maintainer notes. |
-| `test262/` skips | Long-burn | Convert when Adaptive behavior is decided; permanent non-support → [Will not do](#explicitly-will-not-do) or Jeremy’s doc—not silent forever skips. |
+| `test262/` skips | Long-burn | Convert when Adaptive behavior is decided; permanent non-support → [Will not do](#explicitly-will-not-do) or Jeremy’s doc—not silent forever skips. Case-level done log since `mgg-develop` fork: [`src/afw/tests/test262/changes.md`](src/afw/tests/test262/changes.md). |
 
 ### Types residuals (alignment, not full TS)
 
@@ -215,7 +215,9 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | Topic | Adaptive choice |
 |-------|-----------------|
 | **`===` / `!==` on objects and arrays** | **Structural** (deep) equality, not reference identity |
-| **Uninitialized `let`** | Readable as **undefined** (no TDZ) |
+| **Uninitialized `let`** | Readable as **undefined** (no TDZ); self-init `let x = x` is allowed |
+| **`const` reassignment** | **Rejected** (`Cannot assign to const variable "…"` / `read_only`); for-of **rebinds** const head each iteration without treating that as user assign |
+| **Assignment is a statement, not an expression** | **By design — not planned.** ES allows values like `(x = 1) > x` and side-effect order probes built on assignment-as-expression. Adaptive keeps **`x = …` / `x ??= …` / etc. as statements** (and related statement forms). You cannot nest assignment inside a larger expression. Order-of-evaluation tests use throw/`safe_evaluate` side effects instead. Do not treat “support `(x = 1)` in expressions” as a compatibility gap to close. |
 | **`throw` / `catch`** | String message + optional data; fixed catch object shape |
 | **Type checking** | **Opt-in** (not always-on `tsc`) |
 | **Outside names** | **Qualifiers**, not globals |
@@ -223,8 +225,15 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | **Script types vs OT** | Script `interface` ≠ adapter object type catalog |
 | **Array element types** | **`T[]` only** — not `Array<T>`. TS treats both as the same; Adaptive keeps a single spelling (matches typical app/client `string[]` style and avoids a second path into generics) |
 | **`null` vs `undefined`** | Both nullish; Adaptive `null` is a typed singleton; C APIs may use NULL for undefined—script authors should think in nullish + exists/get rules above |
+| **String encoding** | Adaptive is **100% UTF-8** end-to-end. **`afw_utf8_t` values are always valid NFC UTF-8** (invalid UTF-8 must not appear as a string value—that’s a serious bug). ECMAScript engines typically expose a **UTF-16 code unit** model (one logical character may be two 16-bit units / a surrogate pair). Adaptive **length**, **substring**, **index_of**, **for-of** (strings), and empty-separator **split** walk **Unicode code points** in that UTF-8, not UTF-16 code units and not “raw octet indexes” for character steps. |
+| **`\u` / `\u{…}` / `\xHH` / `\0` / identity / line-continuation escapes** | Script string escapes support **`\u`**, **`\u{…}`**, **`\xHH`**, **`\0`** (null, not followed by a digit), classic singles (`\n`, …), **identity NonEscapeSequence** (`\A` → `A`), and **LineContinuation** (`\` + LF/CR/LS/PS contributes no characters). Digits **`1–9`** after `\` are still invalid (no legacy octal). The **runtime value** is still UTF-8, not a UTF-16 buffer. |
+| **Leading/trailing-dot numeric literals** | Same family as ES **DecimalLiteral**: `.5`, `.1e1`, `1.`, `1.e10` are valid (in addition to `0.5` / `1.5e1`). Integers without `.`/`e` stay `integer`; forms with fraction or exponent are `double`. |
+| **Substring search (`replace`, non-empty `split` sep, …)** | May scan UTF-8 **octet-by-octet** to find a well-formed needle via `memcmp`—valid for well-formed UTF-8 (false mid-sequence starts won’t match a multi-byte needle). That is search, not “character length = octets.” |
+| **Utf8 sequence plan** | Index + array consumers for all utf8-backed types (not retype to `array`): **[#153](https://github.com/afw-org/afw/issues/153)** / [`designs/utf8-code-point-sequences.md`](designs/utf8-code-point-sequences.md) |
 | **Closure lifetime** | Supported; long-running hosts still care about pools / **#2** |
 | **Default `{}` / `[]` literals** | May be shared when used as script defaults—by-design hazard unless we later change compile policy |
+
+Strings stay **immutable** (no `s[i] = …`). Character access is via functions (`substring`, …) or **for-of**, not bracket mutation.
 
 ---
 

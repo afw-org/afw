@@ -202,27 +202,17 @@ verifyConfigurable(gen, 'name');
 
 //? test: function-local-use-before-initialization-in-declaration-statement
 //? description:...
-    let: function local use before initialization in declaration statement.
-    (TDZ, Temporal Dead Zone)
-//? expect: error
-//? skip: true
+    let: function local use of name in its own initializer
+//? differences: Adaptive has no TDZ; let x = x binds x to undefined (ES would ReferenceError)
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme this produces some strange errors
-// when fixed, the expect should be specific about 'x' not being declared
-/*
- --- Error ---
-      error type:  general
-      error type #: 3
-      error source: afw_json_from_value.c:348
-      message:     Unevaluated value encountered producing json (closure_binding )
-*/
-function() {
-  (function() {
-    let x = x + 1;
-  }());
-}
+(function () {
+  let x = x;
+  assert(x === undefined);
+})();
+return 0;
 
 //? test: function-local-use-before-initialization-in-prior-statement
 //? description:...

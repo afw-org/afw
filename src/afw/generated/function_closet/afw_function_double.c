@@ -290,6 +290,47 @@ afw_function_execute_is_finite(
 
 
 /*
+ * Adaptive function: mod<double>
+ *
+ * afw_function_execute_mod_double
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Divide double dividend by double divisor and return the double remainder.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function mod<double>(
+ *       dividend: double,
+ *       divisor: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   dividend - (double)
+ *
+ *   divisor - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ */
+const afw_value_t *
+afw_function_execute_mod_double(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: multiply<double>
  *
  * afw_function_execute_multiply_double

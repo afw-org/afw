@@ -6161,16 +6161,17 @@ afw_function_definition_void_operator;
  * ```
  *   function void_operator(
  *       value: any
- *   ): any;
+ *   ): undefined;
  * ```
  *
  * Parameters:
  *
- *   value - (any) This is the value to evaluate.
+ *   value - (any) This is the value to evaluate (including undefined).
+ *       Evaluated for side effects only.
  *
  * Returns:
  *
- *   (any) This always returns undefined.
+ *   (undefined) This always returns undefined.
  */
 const afw_value_t *
 afw_function_execute_void_operator(
@@ -11672,6 +11673,42 @@ afw_function_definition_min_double;
  *
  * __________
  */
+
+/** @brief Function definition mod<double> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_mod_double;
+
+/**
+ * @brief Adaptive Function `mod<double>`
+ * @param x function execute parameter.
+ *
+ * Divide double dividend by double divisor and return the double remainder.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function mod<double>(
+ *       dividend: double,
+ *       divisor: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   dividend - (double)
+ *
+ *   divisor - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ */
+const afw_value_t *
+afw_function_execute_mod_double(
+    afw_function_execute_t *x);
 
 /** @brief Function definition multiply<double> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
@@ -22125,7 +22162,7 @@ afw_function_definition_mod;
  *
  * Supported `<dataType>`:
  *
- *   integer.
+ *   double, integer.
  *
  * Declaration:
  *
@@ -32578,13 +32615,13 @@ afw_function_definition_yearMonthDuration;
     XX(ceil)                                                                   \
     XX(divide)                                                                 \
     XX(floor)                                                                  \
+    XX(mod)                                                                    \
     XX(multiply)                                                               \
     XX(negative)                                                               \
     XX(pow)                                                                    \
     XX(round)                                                                  \
     XX(subtract)                                                               \
     XX(to_integer)                                                             \
-    XX(mod)                                                                    \
     XX(to_double)                                                              \
     XX(compile)                                                                \
     XX(entries)                                                                \

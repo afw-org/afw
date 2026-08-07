@@ -97,6 +97,9 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is −∞ and exponent > 0 and exponent is not an odd integer, the result is +∞.
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
+Math/signed-zero rewrite or product decision
 //? source: ...
 
 
@@ -140,6 +143,9 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is −∞ and exponent < 0 and exponent is not an odd integer, the result is +0.
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
+Math/signed-zero rewrite or product decision
 //? source: ...
 
 
@@ -254,6 +260,9 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:If base is −0 and exponent > 0 and exponent is not an odd integer, the result is +0.
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
+Math/signed-zero rewrite or product decision
 //? source: ...
 
 
@@ -299,6 +308,9 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base is −0 and exponent < 0 and exponent is not an odd integer, the result is +∞.
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
+Math/signed-zero rewrite or product decision
 //? source: ...
 
 
@@ -323,6 +335,9 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? description:If base < 0 and base is finite and exponent is finite and exponent is not an integer, the result is NaN.
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
+Math/signed-zero rewrite or product decision
 //? source: ...
 
 
@@ -547,6 +562,9 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? description:Exponentiation Operator expression order of evaluation
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / assert.throws /
+evaluation-order probes
 //? source: ...
 
 
@@ -668,6 +686,9 @@ assert(1.0**INT32_MIN === 1.0,
 //? description:Type coercion order of operations for exponentiation operator
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+Harness: half-converted; still uses ES valueOf / assert.throws /
+evaluation-order probes
 //? source: ...
 
 

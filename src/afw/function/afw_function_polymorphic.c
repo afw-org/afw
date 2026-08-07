@@ -2165,11 +2165,26 @@ afw_function_execute_split(
     }
 
     else {
+        /*
+         * Empty / omitted separator: one entry per Unicode code point.
+         * afw_utf8_t is always valid UTF-8; never split mid-sequence by octet.
+         */
         for (count = 0; count < limit && remaining.len > 0; count++) {
+            afw_size_t offset;
+
+            offset = 0;
+            if (afw_utf8_next_code_point(remaining.s, &offset,
+                remaining.len, x->xctx) < 0)
+            {
+                AFW_THROW_ERROR_Z(general,
+                    "Invalid UTF-8 in split (should be unreachable for "
+                    "afw_utf8_t)",
+                    x->xctx);
+            }
             split.s = remaining.s;
-            split.len = 1;
-            remaining.s++;
-            remaining.len--;
+            split.len = offset;
+            remaining.s += offset;
+            remaining.len -= offset;
             afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }

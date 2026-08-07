@@ -24,21 +24,13 @@
 
 //? test: block-local-use-before-initialization-in-declaration-statement
 //? description:...
-    const: block local use before initialization in declaration statement.
-    (TDZ, Temporal Dead Zone)
-//? expect: undefined
-//? skip: true
+    const: block local use of name in its own initializer.
+//? differences: Adaptive has no TDZ; RHS sees the new binding as undefined, so x + 1 errors on add — not ES ReferenceError
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme this gives an error of:
-//     Unevaluated value encountered producing json (closure_binding )
-// when fixed, the expect should be an error due to 'x' not declared
-function() {
-  {
-    const x = x + 1;
-  }
-}
+const x = x + 1;
 
 
 //? test: block-local-use-before-initialization-in-prior-statement
@@ -60,6 +52,9 @@ function() {
 //? description: Returns an empty completion
 //? expect: undefined
 //? skip: true
+//? skipReason: ...
+FIXME: const/let declaration completion value should be undefined
+(eval(script(...)) probe)
 //? source: ...
 #!/usr/bin/env afw
 

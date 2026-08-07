@@ -47,18 +47,12 @@ let = "irrelevant initializer";
 
 
 //? test: const-invalid-assignment-next-expression-for
-//? description:...
-    const: invalid assignment in next expression
-//? expect: undefined
-//? skip: true
+//? description: const: invalid assignment in for update expression
+//? expect: error:Cannot assign to const variable "i"
 //? source: ...
 #!/usr/bin/env afw
 
-// this throws the JSON closure message
-// when fixed, the expect should be an error because i++ on const
-function() {
-  for (const i = 0; i < 1; i++) {}
-}
+for (const i = 0; i < 1; i = i + 1) {}
 
 
 //? test: const-invalid-assignment-statement-body-for-in
@@ -75,16 +69,13 @@ function() {
 
 
 //? test: const-invalid-assignment-statement-body-for-of
-//? description:...
-    const: invalid assignment in Statement body
-//? expect: error
-//? skip: true
+//? description: const: invalid assignment in for-of body
+//? expect: error:Cannot assign to const variable "x"
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme this produces a JSON closure error
-function() {
-  for (const x of [1, 2, 3]) { x++; }
+for (const x of [1, 2, 3]) {
+  x = x + 1;
 }
 
 

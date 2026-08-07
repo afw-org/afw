@@ -52,7 +52,7 @@ agree:
 | **`Deferred:`** | Later, not current priority |
 | **`Harness:`** | Runner/adaptation limit (rare) |
 
-Examples: `Incompatible: ES generators / function*`; `FIXME: for-of member LHS (x.y)`; `Deferred: deep TCO`. Full notes: `src/afw/tests/test262/README.md`.
+Examples: `Incompatible: ES generators / function*`; `FIXME: for-of member LHS (x.y)`; `Deferred: deep TCO`. Long `skipReason` (or any key): use `//? skipReason: ...` then body lines until the next `//?` for ~80-column editing. Full notes: `src/afw/tests/test262/README.md`.
 
 Typical case skeleton:
 

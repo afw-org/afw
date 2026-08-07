@@ -675,6 +675,37 @@ def min_double(session, values):
 
     return response['actions'][0]['result']
 
+def mod_double(session, dividend, divisor):
+    """
+    Remainder of dividing numbers
+
+    Divide double dividend by double divisor and return the double remainder.
+
+    Args:
+        dividend (float):
+
+        divisor (float):
+
+    Returns:
+        float:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "mod<double>",
+        "dividend": dividend,
+        "divisor": divisor
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def multiply_double(session, values):
     """
     Multiply numbers
