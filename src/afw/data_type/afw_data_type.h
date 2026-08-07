@@ -45,6 +45,42 @@ if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
 
 
 /**
+ * @brief True if this data type supports keyless afw_iterator (#153).
+ * @param data_type const afw_data_type_t *.
+ *
+ * Runtime capability is optional_initialize_iterator non-NULL on the inf
+ * (wired in afw_data_type.c). Not derived from generate docs.
+ */
+#define afw_data_type_has_iterator(data_type) \
+    ((data_type) && (data_type)->inf && \
+     (data_type)->inf->optional_initialize_iterator)
+
+
+/**
+ * @brief Initialize a keyless afw_iterator for a value of this data type.
+ * @param data_type const afw_data_type_t *.
+ * @param internal pointer to the value's cType internal.
+ * @param iterator caller-defined afw_iterator_t storage (opaque; host fills).
+ * @param xctx of caller.
+ *
+ * Calls optional_initialize_iterator if present; otherwise throws.
+ * Soft probe: use afw_data_type_has_iterator() first, or test the optional
+ * method pointer.
+ */
+#define afw_data_type_initialize_iterator(data_type, internal, iterator, xctx) \
+do { \
+    if (!(data_type) || !(data_type)->inf || \
+        !(data_type)->inf->optional_initialize_iterator) \
+    { \
+        AFW_THROW_ERROR_Z(general, \
+            "Data type does not support iterator", (xctx)); \
+    } \
+    (data_type)->inf->optional_initialize_iterator( \
+        (data_type), (internal), (iterator), (xctx)); \
+} while (0)
+
+
+/**
  * @brief Clone an object to a managed object.
  * @param object to clone.
  * @param p used for cloned object.

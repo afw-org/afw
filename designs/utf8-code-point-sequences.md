@@ -170,6 +170,17 @@ n = afw_iterator_get_count(&it, xctx);
    ready; string (and array identity) implement them.  
 4. Formals / HOF / fold for-of onto the common path.
 
+### `afw_data_type` optional_initialize_iterator (implemented on branch)
+
+- Inf method **`optional_initialize_iterator`** (NULL if type has no sequence).
+- Macro **`afw_data_type_initialize_iterator`** → throws if optional is NULL.
+- Macro **`afw_data_type_has_iterator`** → optional method non-NULL.
+- Wired in **`afw_data_type.c`**: **array** → `afw_array_initialize_iterator`;
+  all **`afw_utf8_t`** types → shared code-point iterator yielding **managed
+  string** elements; others NULL.
+- Docs-only generate field **`iterationDescription`** (not machine-read)
+  still optional for later.
+
 ## Related
 
 - [#153](https://github.com/afw-org/afw/issues/153) — tracking issue  

@@ -2135,11 +2135,164 @@ impl_afw_data_type_evaluate_write_as_expression(
 
 
 
+/* ---- Keyless afw_iterator over utf8 (code points as managed string) -------*/
+
+#define AFW_IMPLEMENTATION_ID "afw_utf8_as_iterator"
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_utf8_as_iterator_inf
+#define AFW_ITERATOR_SELF_T afw_iterator_t
+#include "afw_iterator_impl_declares.h"
+
+/*
+ * Implementation of method get_next for utf8 code-point iterator.
+ * Returns managed string of one code point, or NULL when done.
+ */
+const afw_value_t *
+impl_afw_iterator_get_next(
+    AFW_ITERATOR_SELF_T *self,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *s;
+    afw_size_t start;
+    afw_size_t end;
+    afw_code_point_t cp;
+    afw_utf8_t one;
+
+    AFW_ASSERT(self);
+    AFW_ASSERT(self->impl);
+    (void)p; /* managed string uses xctx->p */
+
+    s = (const afw_utf8_t *)self->impl;
+    start = self->offset;
+    if (start >= s->len) {
+        return NULL;
+    }
+    end = start;
+    cp = afw_utf8_next_code_point(s->s, &end, s->len, xctx);
+    if (cp < 0) {
+        AFW_THROW_ERROR_Z(general, "Invalid UTF-8 in iterator", xctx);
+    }
+    one.s = s->s + start;
+    one.len = end - start;
+    self->offset = end;
+    return afw_value_create_managed_string(&one, xctx);
+}
+
+/*
+ * Implementation of method get_by_index for utf8 code-point iterator.
+ */
+const afw_value_t *
+impl_afw_iterator_get_by_index(
+    AFW_ITERATOR_SELF_T *self,
+    afw_integer_t index,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *s;
+    afw_size_t offset;
+    afw_size_t start;
+    afw_size_t i;
+    afw_size_t target;
+    afw_code_point_t cp;
+    afw_utf8_t one;
+
+    AFW_ASSERT(self);
+    AFW_ASSERT(self->impl);
+    (void)p;
+
+    if (index < 0) {
+        return NULL;
+    }
+    target = (afw_size_t)index;
+    s = (const afw_utf8_t *)self->impl;
+    offset = 0;
+    for (i = 0; i < target; i++) {
+        if (afw_utf8_next_code_point(s->s, &offset, s->len, xctx) < 0) {
+            return NULL;
+        }
+    }
+    start = offset;
+    cp = afw_utf8_next_code_point(s->s, &offset, s->len, xctx);
+    if (cp < 0) {
+        return NULL;
+    }
+    one.s = s->s + start;
+    one.len = offset - start;
+    return afw_value_create_managed_string(&one, xctx);
+}
+
+/*
+ * Implementation of method get_count for utf8 code-point iterator.
+ */
+afw_size_t
+impl_afw_iterator_get_count(
+    AFW_ITERATOR_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_t *s;
+    afw_size_t offset;
+    afw_size_t count;
+
+    AFW_ASSERT(self);
+    AFW_ASSERT(self->impl);
+
+    s = (const afw_utf8_t *)self->impl;
+    for (count = 0, offset = 0;
+        afw_utf8_next_code_point(s->s, &offset, s->len, xctx) >= 0;
+        count++)
+    {
+        ;
+    }
+    return count;
+}
+
+/* data_type optional_initialize_iterator: utf8-backed cType afw_utf8_t */
+static void
+impl_afw_data_type_utf8_optional_initialize_iterator(
+    const afw_data_type_t *instance,
+    const void *internal,
+    const afw_iterator_t *iterator,
+    afw_xctx_t *xctx)
+{
+    afw_iterator_t *it;
+
+    AFW_ASSERT(internal);
+    AFW_ASSERT(iterator);
+    (void)instance;
+    (void)xctx;
+
+    it = (afw_iterator_t *)iterator;
+    it->inf = &impl_afw_utf8_as_iterator_inf;
+    it->impl = (void *)internal;
+    it->offset = 0;
+    it->reserved = 0;
+}
+
+/* data_type optional_initialize_iterator: array (const afw_array_t *) */
+static void
+impl_afw_data_type_array_optional_initialize_iterator(
+    const afw_data_type_t *instance,
+    const void *internal,
+    const afw_iterator_t *iterator,
+    afw_xctx_t *xctx)
+{
+    const afw_array_t *array;
+
+    AFW_ASSERT(internal);
+    AFW_ASSERT(iterator);
+    (void)instance;
+
+    array = *(const afw_array_t * const *)internal;
+    afw_array_initialize_iterator(array, iterator, xctx);
+}
+
+
 /* ---- Interface definitions ------------------------------------------------*/
 
+/* _iter is full expression: function pointer or NULL */
 #define IMPL_DATA_TYPE_INF(                                                 \
     _id, _to_utf8, _to_internal, _compare, _conv, _clone,                   \
-    _compiler_listing, _expression)                                         \
+    _compiler_listing, _expression, _iter)                                  \
                                                                             \
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_inf_t)                         \
 afw_data_type_ ## _id ## _inf = {                                           \
@@ -2154,7 +2307,8 @@ afw_data_type_ ## _id ## _inf = {                                           \
     impl_afw_data_type_ ## _conv ## _convert_internal,                      \
     impl_afw_data_type_ ## _clone ## _clone_internal,                       \
     impl_afw_data_type_ ## _compiler_listing ## _value_compiler_listing,    \
-    impl_afw_data_type_ ## _expression ## _write_as_expression              \
+    impl_afw_data_type_ ## _expression ## _write_as_expression,             \
+    _iter                                                                   \
 };                                                                          \
 
 
@@ -2166,7 +2320,8 @@ IMPL_DATA_TYPE_INF(
     evaluate,             /* conversion        */
     evaluate,             /* clone             */
     evaluate,             /* compiler listing  */
-    evaluate)             /* as expression     */
+    evaluate,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     anyURI,               /* data type id      */
@@ -2176,7 +2331,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     array,                /* data type id      */
@@ -2186,7 +2342,8 @@ IMPL_DATA_TYPE_INF(
     from_pointer,         /* conversion        */
     array,                /* clone             */
     array,                /* compiler listing  */
-    array)                /* as expression     */
+    array,             /* as expression     */
+    impl_afw_data_type_array_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     base64Binary,         /* data type id      */
@@ -2196,7 +2353,8 @@ IMPL_DATA_TYPE_INF(
     from_raw,             /* conversion        */
     raw,                  /* clone             */
     typed_to_string,      /* compiler listing  */
-    typed_to_string)      /* as expression     */
+    typed_to_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     boolean,              /* data type id      */
@@ -2206,7 +2364,8 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     direct,               /* clone             */
     boolean,              /* compiler listing  */
-    boolean)              /* as expression     */
+    boolean,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     date,                 /* data type id      */
@@ -2216,7 +2375,8 @@ IMPL_DATA_TYPE_INF(
     from_date,            /* conversion        */
     direct,               /* clone             */
     typed_to_string,      /* compiler listing  */
-    typed_to_string)      /* as expression     */
+    typed_to_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     dateTime,             /* data type id      */
@@ -2226,7 +2386,8 @@ IMPL_DATA_TYPE_INF(
     from_dateTime,        /* conversion        */
     direct,               /* clone             */
     typed_to_string,      /* compiler listing  */
-    typed_to_string)      /* as expression     */
+    typed_to_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     dayTimeDuration,      /* data type id      */
@@ -2236,7 +2397,8 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     direct,               /* clone             */
     typed_to_string,      /* compiler listing  */
-    typed_to_string)      /* as expression     */
+    typed_to_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     dnsName,              /* data type id      */
@@ -2246,7 +2408,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     double,               /* data type id      */
@@ -2256,7 +2419,8 @@ IMPL_DATA_TYPE_INF(
     from_double,          /* conversion        */
     direct,               /* clone             */
     double,               /* compiler listing  */
-    double)               /* as expression     */
+    double,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     function,             /* data type id      */
@@ -2266,7 +2430,8 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     function,             /* clone             */
     function,             /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     hexBinary,            /* data type id      */
@@ -2276,7 +2441,8 @@ IMPL_DATA_TYPE_INF(
     from_raw,             /* conversion        */
     raw,                  /* clone             */
     typed_to_string,      /* compiler listing  */
-    typed_to_string)      /* as expression     */
+    typed_to_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     ia5String,            /* data type id      */
@@ -2286,7 +2452,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     integer,              /* data type id      */
@@ -2296,7 +2463,8 @@ IMPL_DATA_TYPE_INF(
     from_integer,         /* conversion        */
     direct,               /* clone             */
     integer,              /* compiler listing  */
-    integer)              /* as expression     */
+    integer,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     ipAddress,            /* data type id      */
@@ -2306,7 +2474,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     json,                 /* data type id      */
@@ -2316,7 +2485,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     null,                 /* data type id      */
@@ -2326,7 +2496,8 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     direct,               /* clone             */
     null,                 /* compiler listing  */
-    null)                 /* as expression     */
+    null,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     object,               /* data type id      */
@@ -2336,7 +2507,8 @@ IMPL_DATA_TYPE_INF(
     from_pointer,         /* conversion        */
     object,               /* clone             */
     object,               /* compiler listing  */
-    object)               /* as expression     */
+    object,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     objectId,             /* data type id      */
@@ -2346,7 +2518,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     objectPath,           /* data type id      */
@@ -2356,7 +2529,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 /** @fixme Should password be raw or encoded?  This will not do. */
 IMPL_DATA_TYPE_INF(
@@ -2367,7 +2541,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     regexp,               /* data type id      */
@@ -2377,7 +2552,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     relaxed_json,         /* data type id      */
@@ -2387,7 +2563,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     rfc822Name,           /* data type id      */
@@ -2397,7 +2574,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     script,               /* data type id      */
@@ -2407,7 +2585,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     string,               /* data type id      */
@@ -2417,7 +2596,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    string)               /* as expression     */
+    string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     template,             /* data type id      */
@@ -2427,7 +2607,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     time,                 /* data type id      */
@@ -2437,7 +2618,8 @@ IMPL_DATA_TYPE_INF(
     from_time,            /* conversion        */
     direct,               /* clone             */
     typed_to_string,      /* compiler listing  */
-    typed_to_string)      /* as expression     */
+    typed_to_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     undefined,            /* data type id      */
@@ -2447,7 +2629,8 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     direct,               /* clone             */
     undefined,            /* compiler listing  */
-    undefined)            /* as expression     */
+    undefined,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     unevaluated,          /* data type id      */
@@ -2457,7 +2640,8 @@ IMPL_DATA_TYPE_INF(
     evaluate,             /* conversion        */
     evaluate,             /* clone             */
     evaluate,             /* compiler listing  */
-    evaluate)             /* as expression     */
+    evaluate,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 /** @fixme make appropriate changes. */
 IMPL_DATA_TYPE_INF(
@@ -2468,7 +2652,8 @@ IMPL_DATA_TYPE_INF(
     evaluate,             /* conversion        */
     evaluate,             /* clone             */
     evaluate,             /* compiler listing  */
-    evaluate)             /* as expression     */
+    evaluate,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 /** @fixme make appropriate changes. */
 IMPL_DATA_TYPE_INF(
@@ -2479,7 +2664,8 @@ IMPL_DATA_TYPE_INF(
     evaluate,             /* conversion        */
     evaluate,             /* clone             */
     evaluate,             /* compiler listing  */
-    evaluate)             /* as expression     */
+    evaluate,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     x500Name,             /* data type id      */
@@ -2489,7 +2675,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     xpathExpression,      /* data type id      */
@@ -2499,7 +2686,8 @@ IMPL_DATA_TYPE_INF(
     from_utf8,            /* conversion        */
     utf8,                 /* clone             */
     utf8,                 /* compiler listing  */
-    typed_string)         /* as expression     */
+    typed_string,             /* as expression     */
+    impl_afw_data_type_utf8_optional_initialize_iterator)  /* optional_initialize_iterator */
 
 IMPL_DATA_TYPE_INF(
     yearMonthDuration,    /* data type id      */
@@ -2509,4 +2697,5 @@ IMPL_DATA_TYPE_INF(
     standard,             /* conversion        */
     direct,               /* clone             */
     typed_to_string,      /* compiler listing  */
-    typed_to_string)      /* as expression     */
+    typed_to_string,             /* as expression     */
+    NULL)  /* optional_initialize_iterator */

@@ -2676,6 +2676,55 @@ impl_afw_content_type =
 
     </method>
 
+
+    <method name="optional_initialize_iterator">
+
+      <description>
+        Optional: initialize a caller-defined keyless afw_iterator for a
+        value of this data type. NULL on the inf means this type does not
+        support sequence iteration via afw_iterator.
+
+        When present, fills iterator (inf and cursor) for walking the
+        value's internal representation. Caller provides iterator storage
+        (typically on the stack). Do not release the iterator instance.
+
+        Prefer the convenience macro afw_data_type_initialize_iterator(),
+        which throws if this method is NULL. Check
+        instance-&gt;inf-&gt;optional_initialize_iterator non-NULL for a soft
+        probe.
+
+        Implementations live in afw_data_type.c (shared array / utf8 code
+        point paths). Elements of utf8-backed types are managed string
+        values (one code point each), not the parent data type.
+      </description>
+
+      <parameter name="instance" type="const afw_data_type_t *">
+        <description>Pointer to this data type instance.</description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>
+          Pointer to the value's cType internal (e.g. afw_utf8_t * for
+          string, const afw_array_t ** for array).
+        </description>
+      </parameter>
+
+      <parameter name="iterator" type="const afw_iterator_t *">
+        <description>
+          Address of caller-defined afw_iterator_t storage to initialize.
+          Typed const so callers treat it as opaque; the implementation
+          fills inf and cursor.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
   </interface>
 
 

@@ -2950,6 +2950,14 @@ typedef void
     const void * from_internal,
     afw_xctx_t * xctx);
 
+/** @sa afw_data_type_optional_initialize_iterator() */
+typedef void
+(*afw_data_type_optional_initialize_iterator_t)(
+    const afw_data_type_t * instance,
+    const void * internal,
+    const afw_iterator_t * iterator,
+    afw_xctx_t * xctx);
+
 /**
  * @brief Method table (inf) for interface `afw_data_type`.
  *
@@ -2965,6 +2973,7 @@ struct afw_data_type_inf_s {
     afw_data_type_clone_internal_t clone_internal;
     afw_data_type_value_compiler_listing_t value_compiler_listing;
     afw_data_type_write_as_expression_t write_as_expression;
+    afw_data_type_optional_initialize_iterator_t optional_initialize_iterator;
 };
 
 /**
@@ -3155,6 +3164,49 @@ struct afw_data_type_inf_s {
     (instance), \
     (writer), \
     (from_internal), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `optional_initialize_iterator` of interface
+ * `afw_data_type`.
+ *
+ * Optional: initialize a caller-defined keyless afw_iterator for a
+ * value of this data type. NULL on the inf means this type does not
+ * support sequence iteration via afw_iterator.
+ * 
+ * When present, fills iterator (inf and cursor) for walking the
+ * value's internal representation. Caller provides iterator storage
+ * (typically on the stack). Do not release the iterator instance.
+ * 
+ * Prefer the convenience macro afw_data_type_initialize_iterator(),
+ * which throws if this method is NULL. Check
+ * instance->inf->optional_initialize_iterator non-NULL for a soft
+ * probe.
+ * 
+ * Implementations live in afw_data_type.c (shared array / utf8 code
+ * point paths). Elements of utf8-backed types are managed string
+ * values (one code point each), not the parent data type.
+ * @param instance Pointer to this data type instance.
+ * @param internal Pointer to the value's cType internal (e.g. afw_utf8_t * for
+ * string, const afw_array_t ** for array).
+ * @param iterator Address of caller-defined afw_iterator_t storage to
+ * initialize. Typed const so callers treat it as opaque; the implementation
+ * fills inf and cursor.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_data_type_t
+ * @see @ref afw_data_type_s "afw_data_type_t"
+ */
+#define afw_data_type_optional_initialize_iterator( \
+    instance, \
+    internal, \
+    iterator, \
+    xctx \
+) \
+(instance)->inf->optional_initialize_iterator( \
+    (instance), \
+    (internal), \
+    (iterator), \
     (xctx) \
 )
 
