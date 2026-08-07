@@ -1002,7 +1002,8 @@ export function afwRegexpMatch(client : any, value : any, regexp : string) : any
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {} A `<dataType>` value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRegexpReplace(client : any, value : any, regexp : string, replacement : string, limit? : number) : any {
 
@@ -1026,7 +1027,8 @@ export function afwRegexpReplace(client : any, value : any, regexp : string, rep
  * 
  * @param {integer} times - The number of times to repeat the value.
  * 
- * @returns {} The repeated `<dataType>` value.
+ * @returns {string} Repeated text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRepeat(client : any, value : any, times : number) : any {
 
@@ -1051,7 +1053,8 @@ export function afwRepeat(client : any, value : any, times : number) : any {
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {} A `<dataType>` value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwReplace(client : any, value : any, match : string, replacement : string, limit? : number) : any {
 
@@ -1180,10 +1183,10 @@ export function afwSubset(client : any, array1 : any[], array2 : any[]) : any {
 }
 
 /**
- * Returns the `<dataType>` substring of value beginning at zero-based
- * position integer startIndex and ending at the position before integer
- * endIndex. Specify -1 or omitting endIndex to return up to end of
- * `<dataType>`.
+ * Returns the string substring of value beginning at zero-based position
+ * integer startIndex and ending at the position before integer endIndex.
+ * Specify -1 or omit endIndex to return through the end of value. The result
+ * is always string (a slice of anyURI is not an anyURI).
  * 
  * @param {} string -
  * 
@@ -1191,7 +1194,8 @@ export function afwSubset(client : any, array1 : any[], array2 : any[]) : any {
  * 
  * @param {integer} endIndex -
  * 
- * @returns {}
+ * @returns {string} Substring as string (not re-typed as the input data
+ *     type).
  */
 export function afwSubstring(client : any, string : any, startIndex : number, endIndex? : number) : any {
 

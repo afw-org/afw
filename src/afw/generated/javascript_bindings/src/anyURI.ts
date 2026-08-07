@@ -517,7 +517,8 @@ export function afwRegexpMatchAnyURI(client : any, value : any, regexp : string)
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {anyURI} A anyURI value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRegexpReplaceAnyURI(client : any, value : any, regexp : string, replacement : string, limit? : number) : any {
 
@@ -541,7 +542,8 @@ export function afwRegexpReplaceAnyURI(client : any, value : any, regexp : strin
  * 
  * @param {integer} times - The number of times to repeat the value.
  * 
- * @returns {anyURI} The repeated anyURI value.
+ * @returns {string} Repeated text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRepeatAnyURI(client : any, value : any, times : number) : any {
 
@@ -566,7 +568,8 @@ export function afwRepeatAnyURI(client : any, value : any, times : number) : any
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {anyURI} A anyURI value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwReplaceAnyURI(client : any, value : any, match : string, replacement : string, limit? : number) : any {
 
@@ -677,9 +680,10 @@ export function afwSubsetAnyURI(client : any, array1 : any[], array2 : any[]) : 
 }
 
 /**
- * Returns the anyURI substring of value beginning at zero-based position
+ * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of anyURI.
+ * Specify -1 or omit endIndex to return through the end of value. The result
+ * is always string (a slice of anyURI is not an anyURI).
  * 
  * @param {anyURI} string -
  * 
@@ -687,7 +691,8 @@ export function afwSubsetAnyURI(client : any, array1 : any[], array2 : any[]) : 
  * 
  * @param {integer} endIndex -
  * 
- * @returns {anyURI}
+ * @returns {string} Substring as string (not re-typed as the input data
+ *     type).
  */
 export function afwSubstringAnyURI(client : any, string : any, startIndex : number, endIndex? : number) : any {
 

@@ -30698,12 +30698,6 @@ afw_self_v_zz__2198 = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__2199 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__2199)
-};
-
-const afw_value_string_t
 afw_self_v_zz__22 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__22)
@@ -35990,21 +35984,9 @@ afw_self_v_zz__A__dataType__value_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__A__dataType__value_with_the_matched_string_s__replaced_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__A__dataType__value_with_the_matched_string_s__replaced_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__A_anyURI_value_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__A_anyURI_value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__A_anyURI_value_with_the_matched_string_s__replaced_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__A_anyURI_value_with_the_matched_string_s__replaced_)
 };
 
 const afw_value_string_t
@@ -36305,12 +36287,6 @@ const afw_value_string_t
 afw_self_v_zz__A_string_value_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__A_string_value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__A_string_value_with_the_matched_string_s__replaced_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__A_string_value_with_the_matched_string_s__replaced_)
 };
 
 const afw_value_string_t
@@ -43748,6 +43724,12 @@ afw_self_v_zz__Result_of_comparison_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Result_text_as_string__not_re_typed_as_the_input_data_type__ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Result_text_as_string__not_re_typed_as_the_input_data_type__)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Resulting_journal_entry_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Resulting_journal_entry_)
@@ -44555,6 +44537,12 @@ const afw_value_string_t
 afw_self_v_zz__Substitution_occurred_from_current_path_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Substitution_occurred_from_current_path_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Substring_as_string__not_re_typed_as_the_input_data_type__ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Substring_as_string__not_re_typed_as_the_input_data_type__)
 };
 
 const afw_value_string_t
@@ -45923,24 +45911,6 @@ const afw_value_string_t
 afw_self_v_zz__The_removed_value__or_undefined_if_the_array_was_empty_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_removed_value__or_undefined_if_the_array_was_empty_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__The_repeated__dataType__value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_repeated__dataType__value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__The_repeated_anyURI_value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_repeated_anyURI_value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__The_repeated_string_value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_repeated_string_value_)
 };
 
 const afw_value_string_t
@@ -48158,9 +48128,9 @@ afw_self_v_zz____dataType___value__dataType__subString__string___boolean = {
 };
 
 const afw_value_string_t
-afw_self_v_zz____dataType___value__dataType__times__integer___dataType = {
+afw_self_v_zz____dataType___value__dataType__times__integer___string = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz____dataType___value__dataType__times__integer___dataType)
+    AFW_UTF8_LITERAL(AFW_Q_zz____dataType___value__dataType__times__integer___string)
 };
 
 const afw_value_string_t
@@ -54104,9 +54074,9 @@ afw_self_v_zz___value__anyURI__subString__string___boolean = {
 };
 
 const afw_value_string_t
-afw_self_v_zz___value__anyURI__times__integer___anyURI = {
+afw_self_v_zz___value__anyURI__times__integer___string = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___value__anyURI__times__integer___anyURI)
+    AFW_UTF8_LITERAL(AFW_Q_zz___value__anyURI__times__integer___string)
 };
 
 const afw_value_string_t

@@ -1044,7 +1044,7 @@ def regexp_replace_string(session, value, regexp, replacement, limit=None):
         Specify -1 to replace all occurrences.
 
     Returns:
-        str: A string value with the matched string(s) replaced.
+        str: Result text as string (not re-typed as the input data type).
     """
 
     request = session.Request()
@@ -1079,7 +1079,7 @@ def repeat_string(session, value, times):
         times (int): The number of times to repeat the value.
 
     Returns:
-        str: The repeated string value.
+        str: Repeated text as string (not re-typed as the input data type).
     """
 
     request = session.Request()
@@ -1115,7 +1115,7 @@ def replace_string(session, value, match, replacement, limit=None):
         Specify -1 to replace all occurrences.
 
     Returns:
-        str: A string value with the matched string(s) replaced.
+        str: Result text as string (not re-typed as the input data type).
     """
 
     request = session.Request()
@@ -1312,7 +1312,8 @@ def substring_string(session, string, startIndex, endIndex=None):
 
     Returns the string substring of value beginning at zero-based position
     integer startIndex and ending at the position before integer endIndex.
-    Specify -1 or omitting endIndex to return up to end of string.
+    Specify -1 or omit endIndex to return through the end of value. The result
+    is always string (a slice of anyURI is not an anyURI).
 
     Args:
         string (str):
@@ -1322,7 +1323,7 @@ def substring_string(session, string, startIndex, endIndex=None):
         endIndex (int):
 
     Returns:
-        str:
+        str: Substring as string (not re-typed as the input data type).
     """
 
     request = session.Request()

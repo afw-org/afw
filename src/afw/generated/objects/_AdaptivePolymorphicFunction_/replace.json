@@ -36,7 +36,7 @@
     ],
     "polymorphicExecuteFunction": "afw_function_execute_replace",
     "returns": {
-        "description": "A <dataType> value with the matched string(s) replaced.",
-        "polymorphicDataType": true
+        "dataType": "string",
+        "description": "Result text as string (not re-typed as the input data type)."
     }
 }

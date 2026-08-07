@@ -692,7 +692,8 @@ export function afwRegexpMatchString(client : any, value : string, regexp : stri
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {string} A string value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRegexpReplaceString(client : any, value : string, regexp : string, replacement : string, limit? : number) : any {
 
@@ -716,7 +717,8 @@ export function afwRegexpReplaceString(client : any, value : string, regexp : st
  * 
  * @param {integer} times - The number of times to repeat the value.
  * 
- * @returns {string} The repeated string value.
+ * @returns {string} Repeated text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRepeatString(client : any, value : string, times : number) : any {
 
@@ -741,7 +743,8 @@ export function afwRepeatString(client : any, value : string, times : number) : 
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {string} A string value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwReplaceString(client : any, value : string, match : string, replacement : string, limit? : number) : any {
 
@@ -875,7 +878,8 @@ export function afwSubsetString(client : any, array1 : any[], array2 : any[]) : 
 /**
  * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of string.
+ * Specify -1 or omit endIndex to return through the end of value. The result
+ * is always string (a slice of anyURI is not an anyURI).
  * 
  * @param {string} string -
  * 
@@ -883,7 +887,8 @@ export function afwSubsetString(client : any, array1 : any[], array2 : any[]) : 
  * 
  * @param {integer} endIndex -
  * 
- * @returns {string}
+ * @returns {string} Substring as string (not re-typed as the input data
+ *     type).
  */
 export function afwSubstringString(client : any, string : string, startIndex : number, endIndex? : number) : any {
 

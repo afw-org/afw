@@ -22,7 +22,7 @@
     "pure": true,
     "returns": {
         "dataType": "string",
-        "description": "The repeated string value."
+        "description": "Repeated text as string (not re-typed as the input data type)."
     },
     "useExecuteFunction": "afw_function_execute_repeat"
 }
