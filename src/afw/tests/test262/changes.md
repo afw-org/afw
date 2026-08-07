@@ -10,9 +10,11 @@ behavior in this suite.
 stacked work such as **`test262-skipreason-sweep`**) **since `mgg-develop`
 branched from `develop`** — merge-base **`f945f97c`** (mid‑July 2026), same
 horizon as root [`whats-new.md`](../../../whats-new.md). Includes issue
-**#55**, **#140**, **#39** elision, suite metadata, and the skipReason
-convert sweep. Not the original full test262 import years ago, and not
-every harness-only line noise.
+**[#55](https://github.com/afw-org/afw/issues/55)**,
+**[#140](https://github.com/afw-org/afw/issues/140)**,
+**[#39](https://github.com/afw-org/afw/issues/39)** elision, suite metadata,
+and the skipReason convert sweep. Not the original full test262 import years
+ago, and not every harness-only line noise.
 
 **Not this file:**
 
@@ -32,7 +34,10 @@ a row per bulk `skipReason:` label — one **meta** row covers taxonomy passes.
 Do not paste diffs; git remains the record of *when*. When adding or changing
 an Index row, link **How** to
 `https://github.com/afw-org/afw/commits/mgg-develop/<path>` for the primary
-associated file (see Index intro).
+associated file (see Index intro). Link real GitHub **issues** to
+`/issues/N` and **PRs** to `/pull/N` (do not link harness text like
+`error:#1:`).
+
 ---
 
 ## Ledger (How)
@@ -62,8 +67,9 @@ Linked **How** values open the GitHub commit list for the **primary** associated
 file on **`mgg-develop`** (basename path under this suite, or the design pad
 for meta-only rows). Multi-file clusters use one main file; pure bulk taxonomy
 with no single path stays plain `meta`. The Ledger table above stays unlinked.
+Tracker **`#nnn`** references link to GitHub issues or PRs.
 
-Rough time order: **#55 → #140 → #39 / docs → skipReason sweep → converts.**
+Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](https://github.com/afw-org/afw/issues/140) → [#39](https://github.com/afw-org/afw/issues/39) / docs → skipReason sweep → converts.**
 
 ### Meta / suite docs
 
@@ -74,16 +80,16 @@ Rough time order: **#55 → #140 → #39 / docs → skipReason sweep → convert
 | [First-pass skipReason labels](#first-pass-skipreason-labels) | meta | Every skip got a prefix |
 | [FIXME triage note](#fixme-triage-note) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/FIXME-triage.md) | [`FIXME-triage.md`](FIXME-triage.md) shortlist |
 
-### Object / array helpers (#55) and dense arrays (#39)
+### Object / array helpers ([#55](https://github.com/afw-org/afw/issues/55)) and dense arrays ([#39](https://github.com/afw-org/afw/issues/39))
 
 | Case | How | Brief |
 |------|-----|--------|
 | [for-of push/pop mutation](#for-of-array-helpers-issue-55) | [→run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | `push`/`pop` not `Array.prototype` |
 | [for-of dense array lineage](#for-of-array-helpers-issue-55) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | No holes; no `.entries`/Symbol |
 | [object keys/values/entries for-of](#for-of-array-helpers-issue-55) | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Adaptive `keys`/`values`/`entries` |
-| [array elision for-of (#39)](#array-elision-for-of-issue-39) | [→impl / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Elision → dense undefined, visited |
+| [array elision for-of](#array-elision-for-of-issue-39) ([#39](https://github.com/afw-org/afw/issues/39)) | [→impl / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Elision → dense undefined, visited |
 
-### Patterns / params / catch (#140)
+### Patterns / params / catch ([#140](https://github.com/afw-org/afw/issues/140))
 
 | Case | How | Brief |
 |------|-----|--------|
@@ -117,10 +123,10 @@ Rough time order: **#55 → #140 → #39 / docs → skipReason sweep → convert
 | [for-of `string-bmp` / `string-astral`](#for-of-string-code-points) | [→impl / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | C: UTF-8 code points; not UTF-16 units |
 | for-of `head-const-bound-names-fordecl-tdz` | [→fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | No general TDZ (language-wide) |
 | for-of `let-array-with-newline` | [→fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | ASI / let vs `[` after empty for-of |
-| [for-of const + closures](#for-of-const-and-closures) | [→fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | #35 / #2 capture; expect desired 0 |
+| [for-of const + closures](#for-of-const-and-closures) | [→fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | [#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2) capture; expect desired 0 |
 | [const reassignment](#const-reassignment) | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/const/const.as) | C: clear `read_only` / reject assign |
 | [no temporal dead zone self-init](#no-temporal-dead-zone) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/let/let.as) | `let x = x` → undefined (Adaptive) |
-| for-of destructure head / body decls | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Converted with #39 pass (Adaptive OK) |
+| for-of destructure head / body decls | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Converted with [#39](https://github.com/afw-org/afw/issues/39) pass (Adaptive OK) |
 
 ### `??` / operators / switch / assignment-as-expression
 
@@ -143,7 +149,7 @@ Rough time order: **#55 → #140 → #39 / docs → skipReason sweep → convert
 | Case | How | Brief |
 |------|-----|--------|
 | empty-separator `split` | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | C: split by code points (with for-of) |
-| #153 utf8 sequences pad | [meta](https://github.com/afw-org/afw/commits/mgg-develop/designs/utf8-code-point-sequences.md) | Design only; not test convert |
+| [#153](https://github.com/afw-org/afw/issues/153) utf8 sequences pad | [meta](https://github.com/afw-org/afw/commits/mgg-develop/designs/utf8-code-point-sequences.md) | Design only; not test convert |
 
 ---
 
@@ -187,9 +193,9 @@ rows here for the cases that actually changed.
 
 ---
 
-## for-of array helpers (issue #55)
+## for-of array helpers (issue [#55](https://github.com/afw-org/afw/issues/55))
 
-**Commit lineage:** PR **#134** / `1e295420` (on `mgg-develop`).
+**Commit lineage:** PR **[#134](https://github.com/afw-org/afw/pull/134)** / `1e295420` (on `mgg-develop`).
 
 **Cases (for-of.as and related):** mutation during traversal
 (`array-contract*`, `array-expand*`), dense `array` / iterator-lineage names
@@ -203,16 +209,18 @@ rows here for the cases that actually changed.
 | Sparse holes in fixture | **Dense** arrays only |
 
 Product helpers also documented in [`whats-new.md`](../../../whats-new.md)
-(#55). Out-of-tree commands/extensions that link libafw need rebuild when
-those land.
+([#55](https://github.com/afw-org/afw/issues/55)). Out-of-tree
+commands/extensions that link libafw need rebuild when those land.
 
 [↑ Index](#index)
 
 ---
 
-## array elision for-of (issue #39)
+## array elision for-of (issue [#39](https://github.com/afw-org/afw/issues/39))
 
-**Commit:** `62718b2e` (with dense array semantics from PR **#152** / #39).
+**Commit:** `62718b2e` (with dense array semantics from PR
+**[#152](https://github.com/afw-org/afw/pull/152)** /
+[#39](https://github.com/afw-org/afw/issues/39)).
 
 Literal **elision** is dense **undefined** (visited by for-of), not an ES
 hole. Updated array fixtures and added **`array-elision-only`**. Same pass
@@ -224,9 +232,9 @@ fixed in the sweep).
 
 ---
 
-## function param defaults (issue #140)
+## function param defaults (issue [#140](https://github.com/afw-org/afw/issues/140))
 
-**Commit lineage:** PR **#141** / `f2bad1af`.
+**Commit lineage:** PR **[#141](https://github.com/afw-org/afw/pull/141)** / `f2bad1af`.
 
 **Cases:** `expressions/function.as` — `dflt-params-abrupt`,
 `dflt-params-ref-prior` (runs: prior params visible in default Expression),
@@ -244,7 +252,7 @@ got expect message tweaks; some half-converted catch Pattern probes remain
 ## coalesce abrupt short-circuit
 
 **Case:** `expressions/coalesce.as` — `abrupt-is-a-short-circuit` (and related
-from the #39-era convert pass).
+from the [#39](https://github.com/afw-org/afw/issues/39)-era convert pass).
 
 **→run:** ES `assert.throws` rewritten to Adaptive **try/throw** + assert on
 message; `??` short-circuits so later poisons do not run.
@@ -325,7 +333,8 @@ Fixed false-green `expect:error` on `A2.1_*` after implement.
 ## for-of non-iterable and member LHS
 
 **Non-iterable heads (→run):** for-of over `{}` / boolean / number / null —
-hard `expect: error:…array or string` (earlier FIXME skips from #39 pass).
+hard `expect: error:…array or string` (earlier FIXME skips from
+[#39](https://github.com/afw-org/afw/issues/39) pass).
 
 **Member LHS (→impl):** `head-lhs-member` — C `impl_assign` accepts
 `reference_by_key` so `for (x.y of …)` works.
@@ -340,7 +349,8 @@ hard `expect: error:…array or string` (earlier FIXME skips from #39 pass).
 
 **C:** for-of on string walks **Unicode code points** in UTF-8 (not ES
 UTF-16 code units). Empty-separator **split** aligned to code points.
-`differences` on astral/BMP cases. Design pad / **#153** for later
+`differences` on astral/BMP cases. Design pad /
+**[#153](https://github.com/afw-org/afw/issues/153)** for later
 index/array-face work — not required for these tests.
 
 [↑ Index](#index)
@@ -351,7 +361,9 @@ index/array-face work — not required for these tests.
 
 **Case:** `head-const-fresh-binding-per-iteration`.
 
-Still **→fixme** with **#35 / #2**. Desired expect kept honest (e.g. `0`);
+Still **→fixme** with
+**[#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2)**.
+Desired expect kept honest (e.g. `0`);
 do not leave a green test that only asserts today’s broken capture, and do
 not use `expect: error` as a permanent stand-in for “closures wrong.”
 
