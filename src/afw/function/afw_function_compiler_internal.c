@@ -569,6 +569,12 @@ impl_assign_value(
                 value, xctx);
         }
 
+        else if (afw_value_has_iterator(aggregate_value)) {
+            /* Utf8 code-point sequences are immutable (#153). */
+            AFW_THROW_ERROR_Z(general,
+                "Cannot assign into a utf8 code-point sequence", xctx);
+        }
+
         else {
             AFW_THROW_ERROR_Z(general, "Invalid assignment target", xctx);
         }
@@ -1079,23 +1085,19 @@ afw_function_execute_for_of(
     const afw_pool_t *p = x->p;
     const afw_value_t *result;
     const afw_value_t *iterable;
-    const afw_value_array_t *list;
-    const afw_value_string_t *strv;
-    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     afw_compile_internal_assignment_type_t assignment_type;
-    afw_size_t offset;
-    afw_code_point_t cp;
-    afw_utf8_t one;
-    afw_size_t start;
-    afw_size_t n;
+    afw_iterator_t iterator;
 
     result = afw_value_undefined;
     AFW_TRY{
 
         AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(3);
 
-        /* Evaluate head without forcing array (string for-of is special). */
+        /*
+         * Evaluate head without forcing array. Keyless afw_iterator covers
+         * array and utf8-backed types (code points as managed strings) — #153.
+         */
         iterable = afw_function_evaluate_required_parameter(x, 2, NULL);
 
         assignment_type = afw_compile_assignment_type_use_assignment_targets;
@@ -1120,63 +1122,24 @@ afw_function_execute_for_of(
                 }
             }
 
-        if (afw_value_is_string(iterable)) {
-            strv = (const afw_value_string_t *)iterable;
-            for (offset = 0; offset < strv->internal.len; ) {
-                start = offset;
-                cp = afw_utf8_next_code_point(strv->internal.s, &offset,
-                    strv->internal.len, xctx);
-                if (cp < 0) {
-                    AFW_THROW_ERROR_Z(general,
-                        "Invalid UTF-8 in for-of string", xctx);
-                }
-                /* One-character string for this code point (UTF-8 bytes). */
-                n = offset - start;
-                if (n == 0 || n > 4) {
-                    AFW_THROW_ERROR_Z(general,
-                        "Invalid UTF-8 code point length in for-of string",
-                        xctx);
-                }
-                one.s = strv->internal.s + start;
-                one.len = n;
-                value = afw_value_create_unmanaged_string(&one, p, xctx);
-
-                impl_assign(x->argv[1], value, assignment_type, p, xctx);
-                if (!const_for_of_head) {
-                    assignment_type =
-                        afw_compile_assignment_type_assign_only;
-                }
-                result = afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx);
-                if (afw_xctx_statement_flow_is_leave(xctx)) {
-                    break;
-                }
-            }
-        }
-        else if (afw_value_is_array(iterable)) {
-            list = (const afw_value_array_t *)iterable;
-            for (iterator = NULL;;) {
-                value = afw_array_get_next_value(
-                    list->internal, &iterator, p, xctx);
-                if (!value) {
-                    break;
-                }
-                impl_assign(x->argv[1], value, assignment_type, p, xctx);
-                if (!const_for_of_head) {
-                    assignment_type =
-                        afw_compile_assignment_type_assign_only;
-                }
-                result = afw_value_block_evaluate_statement(
-                    x, x->argv[3], p, xctx);
-                if (afw_xctx_statement_flow_is_leave(xctx)) {
-                    break;
-                }
-            }
-        }
-        else {
+        if (!afw_value_has_iterator(iterable)) {
             AFW_THROW_ERROR_Z(general,
-                "for-of head must be an array or string",
+                "for-of head must be an array or utf8 code-point sequence",
                 xctx);
+        }
+
+        afw_value_initialize_iterator(iterable, &iterator, xctx);
+        while ((value = afw_iterator_get_next(&iterator, p, xctx)) != NULL) {
+            impl_assign(x->argv[1], value, assignment_type, p, xctx);
+            if (!const_for_of_head) {
+                assignment_type =
+                    afw_compile_assignment_type_assign_only;
+            }
+            result = afw_value_block_evaluate_statement(
+                x, x->argv[3], p, xctx);
+            if (afw_xctx_statement_flow_is_leave(xctx)) {
+                break;
+            }
         }
         } /* const_for_of_head scope */
     }

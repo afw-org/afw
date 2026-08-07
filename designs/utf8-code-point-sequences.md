@@ -32,9 +32,9 @@ See also `typescript-differences.md` (motivated differences).
 | Piece | Notes |
 |-------|--------|
 | `length` / `substring` / `index_of` family | Code-point oriented |
-| for-of over strings | Walk code points (branch work on `test262-skipreason-sweep`) |
+| for-of over strings | Keyless `afw_iterator` (utf8 + array) via `for_of` (#153) |
 | empty-separator `split` | Must be code points (octet step is a bug) |
-| `s[i]` on strings | **Not** yet |
+| `s[i]` on strings | Keyless `afw_iterator` `get_by_index` in `reference_by_key` (#153) |
 | HOFs / array formals with string | **Not** yet (need face or shared sequence) |
 | Immutable array face over utf8 | **Not** yet |
 
@@ -197,10 +197,13 @@ n = afw_iterator_get_count(&it, xctx);
     (`inf->data_type` → field); no `get_data_type()` call.
 - Adaptive runtime property uses value accessor **`data_type_id`** (pointer →
   type id string).
-- **Deferred (not this branch’s first priority):** produce-type percolation /
-  compile-time optimize — see `designs/compile-optimize-notes.md` and
+- **Consumers (this branch):** `for_of` and `reference_by_key` (`s[i]`) use
+  `afw_value_has_iterator` / `initialize_iterator` / `get_next` /
+  `get_by_index`. Tests: `language/script/string_code_points.as`.
+- **Deferred:** produce-type percolation / compile-time optimize —
+  `designs/compile-optimize-notes.md` and
   [comment on #28](https://github.com/afw-org/afw/issues/28#issuecomment-5222169246).
-  Optional later: rewire for-of / formals / `s[i]` onto iterators.
+  HOF / array-formal accept of utf8 sequences still later.
 
 ## Related
 
