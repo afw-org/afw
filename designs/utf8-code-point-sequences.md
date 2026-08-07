@@ -207,7 +207,8 @@ n = afw_iterator_get_count(&it, xctx);
 - **Deferred:** produce-type percolation / compile-time optimize —
   `designs/compile-optimize-notes.md` and
   [comment on #28](https://github.com/afw-org/afw/issues/28#issuecomment-5222169246).
-  Script function formals (A2) still separate.
+  Script function formals use the same choke in
+  `afw_function_script_evaluate_parameter_with_type` (array / T[] / tuple).
 
 ## Related
 

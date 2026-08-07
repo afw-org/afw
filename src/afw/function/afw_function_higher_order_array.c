@@ -59,14 +59,14 @@ impl_over_array(
         functor_argc, functor_argv, false, e.p, e.xctx);
 
     /*
-     * Evaluate argv[n+1] to the new argv[n]. Replace first typed array with
-     * pointer to an allocated value of the same data type. Utf8 sequences
-     * materialize via afw_value_as_array_sequence (#153).
+     * Evaluate argv[n+1] to the new argv[n]. Prefer a real array as the
+     * walked sequence; only then fall back to materializing the first
+     * keyless-iterator value (utf8 code points) via as_array_sequence
+     * (#153). Do not materialize every string arg — filter/find/any_of
+     * pass scalar string thresholds next to the bag.
      */
     for (e.n = 1; e.n <= functor_argc; e.n++) {
         functor_argv[e.n] = afw_value_evaluate(x->argv[e.n + 1], e.p, e.xctx);
-        functor_argv[e.n] = afw_value_as_array_sequence(
-            functor_argv[e.n], e.p, e.xctx);
         if (!e.entry_arg_ptr && afw_value_is_array(functor_argv[e.n])) {
             e.entry_arg_ptr = &functor_argv[e.n];
             e.array = ((const afw_value_array_t *)*e.entry_arg_ptr)->internal;
@@ -78,8 +78,30 @@ impl_over_array(
             }
         }
     }
+    if (!e.entry_arg_ptr) {
+        for (e.n = 1; e.n <= functor_argc; e.n++) {
+            if (afw_value_has_iterator(functor_argv[e.n])) {
+                functor_argv[e.n] = afw_value_as_array_sequence(
+                    functor_argv[e.n], e.p, e.xctx);
+                if (afw_value_is_array(functor_argv[e.n])) {
+                    e.entry_arg_ptr = &functor_argv[e.n];
+                    e.array =
+                        ((const afw_value_array_t *)*e.entry_arg_ptr)->
+                            internal;
+                    *e.entry_arg_ptr = NULL;
+                    e.data_type = afw_array_get_data_type(e.array, e.xctx);
+                    if (e.data_type) {
+                        *e.entry_arg_ptr = (const afw_value_t *)
+                            afw_value_common_allocate(
+                                e.data_type, e.p, e.xctx);
+                    }
+                    break;
+                }
+            }
+        }
+    }
 
-    /* There must be a typed array in parameter array. */
+    /* There must be a typed array (or materializable sequence) arg. */
     if (!e.entry_arg_ptr) {
         AFW_THROW_ERROR_Z(arg_error, "Missing typed array arg", e.xctx);
     }

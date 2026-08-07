@@ -214,6 +214,36 @@ assert(length(out) === 0);
 return 0;
 
 //?
+//? test: script-formal-array-string
+//? description: script param typed array accepts utf8 code-point sequence
+//? expect: 0
+//? source: ...
+
+const join_cps = function (parts: array) {
+    let s = "";
+    for (let c of parts) {
+        s = s + c;
+    }
+    return s;
+};
+assert(join_cps("ab") === "ab");
+assert(join_cps("\u20ac" + "z") === "\u20ac" + "z");
+return 0;
+
+//?
+//? test: script-formal-string-array-annotation
+//? description: script param string[] accepts string sequence
+//? expect: 0
+//? source: ...
+
+const first = function (parts: string[]) {
+    return parts[0];
+};
+assert(first("xy") === "x");
+assert(first("\u20ac" + "a") === "\u20ac");
+return 0;
+
+//?
 //? test: Deferred-produce-type-script-call-return
 //? description: script call produce type for typed return (compile soft probes)
 //? skip: true

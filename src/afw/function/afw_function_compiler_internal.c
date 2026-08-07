@@ -44,11 +44,35 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
+/* Formal expects array of values: leaf array, T[], or tuple (#153). */
+static afw_boolean_t
+impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
+{
+    if (!type) {
+        return false;
+    }
+    if (type->kind == afw_value_type_kind_data_type &&
+        type->data_type == afw_data_type_array)
+    {
+        return true;
+    }
+    if (type->kind == afw_value_type_kind_array ||
+        type->kind == afw_value_type_kind_tuple)
+    {
+        return true;
+    }
+    return false;
+}
+
+
 /*
  * Evaluate a script-function formal (call_script_function only).
  *
  * When runtime typeCheck is on for contextual's unit: strict assignability.
  * Otherwise: leaf data_type convert (legacy). Not used by Adaptive built-ins.
+ *
+ * Array-shaped formals accept utf8 code-point sequences via
+ * afw_value_as_array_sequence (#153), same language rule as built-ins.
  */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_function_script_evaluate_parameter_with_type(
@@ -61,12 +85,14 @@ afw_function_script_evaluate_parameter_with_type(
 {
     const afw_value_t *result;
     const afw_data_type_t *want_dt;
+    afw_boolean_t wants_array_sequence;
 
     /* Leaf convert only; composites use type_check when enabled. */
     want_dt = NULL;
     if (type && type->kind == afw_value_type_kind_data_type) {
         want_dt = type->data_type;
     }
+    wants_array_sequence = impl_script_formal_expects_array_sequence(type);
 
     if (type) {
         afw_value_type_check_call_arg_object_literal(type, value,
@@ -86,6 +112,11 @@ afw_function_script_evaluate_parameter_with_type(
 
     afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
     result = afw_value_evaluate(value, p, xctx);
+
+    /* #153: materialize utf8 sequences before check/convert. */
+    if (wants_array_sequence) {
+        result = afw_value_as_array_sequence(result, p, xctx);
+    }
 
     if (AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx)) {
         afw_value_type_check_assignable(type, result, "parameter",

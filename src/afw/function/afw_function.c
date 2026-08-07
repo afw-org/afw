@@ -308,13 +308,13 @@ afw_function_evaluate_parameter(
     }
 
     /*
-     * Array formal or requested array type: materialize keyless-iterator
-     * sequences (utf8 code points) as a temporary array (#153). Arrays
-     * pass through unchanged.
+     * Caller requested array (EVALUATE_* … array): materialize keyless-
+     * iterator sequences (utf8 code points) as a temporary array (#153).
+     * Do not key off parameter->data_type alone — polymorphic bag rest
+     * formals are typed array in metadata but take scalar bag members
+     * (XACML bag-of-one), not code-point sequences.
      */
-    if (data_type == afw_data_type_array ||
-        parameter->data_type == afw_data_type_array)
-    {
+    if (data_type == afw_data_type_array) {
         result = afw_value_as_array_sequence(result, x->p, xctx);
     }
 
