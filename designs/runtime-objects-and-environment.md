@@ -543,3 +543,150 @@ Adapter types normalize **object stores** behind one object API (provisioning). 
 2. Use **composite** OT views when listing “all properties” of a type; use **maps + accessor C** for lifetime.  
 3. P0 adapter/auth anchors with stop-start probes.  
 4. Surgical lock+copy only where unsafe; document intentional live/refcount contracts where correct.
+
+---
+
+## 14. Runtime value-accessor inventory (working — 2026-08-08)
+
+**Status:** analysis + live probes; **no code changes committed.**  
+**Method:** OT generate `runtime` props + `src/afw/generated/afw_runtime_object_maps.c` + `afw_runtime_value_accessor.c`.  
+**Raw dump:** regenerate with a small Python walk of `_AdaptiveObjectType_/*.json` (agent used `/tmp/runtime_accessor_inventory.json`).
+
+### 14.1 Core named accessors — copy vs point
+
+| Accessor | Lock? | Semantics (get result) | Class | Notes |
+|----------|-------|------------------------|-------|--------|
+| **default** | no | `afw_value_common_create`: memcpy of data-type internal size into value on `p` | **S** for scalars; **L** for pointer cTypes | `afw_utf8_t` copies struct only — **bytes still at `s`**. Object/array cTypes copy the **pointer**. |
+| **indirect** | no | deref once → default | same as default on pointee | NULL → NULL |
+| **value** | no | returns `*(const afw_value_t **)` as-is | **P/E** if value permanent; else **L** | Used heavily on function defs (permanent) |
+| **size** / **octet** / **uint32** | no* | integer snapshot on `p` | **S** | Widening numeric; *octet path may share nearby lock macros—treat as snapshot |
+| **compile_type** | no | permanent name string for enum | **P** | |
+| **data_type_id** | no | string of `data_type->data_type_id` on `p` (utf8 struct points at permanent id) | **P** | iteratorReturnDataType path |
+| **service_startup** / **service_status** | no | memcpy enum → permanent utf8 name string | **S** (enum) + **P** (name) | |
+| **stopping_adapter_instances** | **yes** `adapter_id_anchor_lock` | count + copy refcounts into array on `p` | **S** | **Reference implementation for #149** |
+| **stopping_authorization_handler_instances** | **yes** rw lock | same pattern | **S** | |
+| **adapter_metrics** | no | unmanaged object value wrapping `adapter->impl->metrics_object` | **R/L** | Pointer into instance; OK while instance refcount holds; dangling after destroy |
+| **adapter_additional_metrics** | no | may call adapter for extra metrics object on `p` | **R** / varies | |
+| **applicable_flags** | no | builds array of flag id values on `p` | **S** (array); flag ids **P** | |
+| **null_terminated_array_of_*** | no | builds array view/wrappers on `p` | often **S** shell + **P** element ptrs | Function metadata tables (permanent) |
+| **ensure_afw_components_extension_loaded** | no | side-effect load + true | n/a | Not a data lifetime issue |
+
+**Classes:** **P** permanent · **E** env-stable · **S** snapshot on get · **L** live pointer · **R** refcount-coupled instance.
+
+### 14.2 Usage frequency (core OT generate, approximate)
+
+| Accessor | # properties (approx) |
+|----------|----------------------|
+| indirect | 42 |
+| value | 34 |
+| default (explicit or implicit memberName) | 30+ |
+| size / null_terminated_* / specialized | few each |
+| stopping_* / adapter_metrics / adapter_additional_metrics | 1 each |
+
+Plus **18** `onGetValueCFunctionName` model `current::` callbacks (xctx model state — separate from env catalog lifetime).
+
+### 14.3 P0: `_AdaptiveAdapter_` (`afw_adapter_id_anchor_t`)
+
+| Property | Accessor | Class | Assessment |
+|----------|----------|-------|------------|
+| adapterId | indirect | **E** | id in env/anchor; stable for process life of id registration |
+| serviceId | indirect | **E** | same |
+| referenceCount | default (integer) | **L** | unlocked read; can race with get_reference/release — torn/stale integer, not usually a dangling pointer |
+| properties | default (object *) | **R/L** | copies **pointer** to properties object into value; object lives with adapter/conf lifetime; **NULL when fully stopped** |
+| metrics | adapter_metrics | **R/L** | pointer to metrics runtime object on instance; **NULL when no active adapter** |
+| stopping | stopping_adapter_instances | **S** | lock+copy; empty/absent when no draining instances |
+
+**Live probes (full AFWDev afwfcgi, 2026-08-08):**
+
+- `service_restart(adapter-files)`: immediate get shows healthy active, `stopping` null (no concurrent holder → drain finished before get).
+- `service_stop(adapter-vfs)` then get: **success**, `referenceCount: 0`, **`metrics: null`**, `stopping` null (fully stopped, not mid-drain). `service_start` restores ref=1.
+- Concurrent mid-drain `stopping[]` non-empty needs a **second request** holding adapter ref/session across stop (single-request eval never sees the chain).
+- Single `_AdaptiveAdapter_/files` with metaFull+normalize+objectTypes: **success** (~20 KiB); rich options fail on permanent NULL-pool trees (EnvironmentRegistry `current`), not all runtime objects.
+
+**Auth handler** mirror: same pattern on `_AdaptiveAuthorizationHandler_` + stopping_* accessor.
+
+### 14.4 Safer / lower priority (sample)
+
+| Area | Why lower |
+|------|-----------|
+| `_AdaptiveFunction_`, `_AdaptiveDataType_`, most **value**/indirect on generate defs | Permanent / never unloaded in normal hosts |
+| Const OT / collection graphs | Static const |
+| Flag id strings, data_type_id | Permanent |
+| Model onGet current::* | Request/xctx scoped model state, not env stop/start |
+
+| Area | Why later |
+|------|-----------|
+| `_AdaptiveService_` | **runtime_custom** path (no map typedef); status can change; inventory custom get separately |
+| `_AdaptiveLog_` | service-coupled; stoppable |
+| Extension-loaded maps | After core P0 |
+
+### 14.5 Candidate fixes (not implemented this session)
+
+1. **referenceCount (adapter + auth):** read under the same anchor lock (or document as best-effort unlocked sample).  
+2. **metrics / properties:** either (a) document **R**: only valid while active or while you hold a session ref on that instance; or (b) snapshot needed fields under lock into request pool when returning from runtime get. Prefer (a) if product accepts; (b) if dangling after destroy is proven.  
+3. **Keep** stopping_* as the gold standard; extend pattern only where inventory proves need.  
+4. Optional: hold session + stop to **test** non-empty `stopping` array and metrics identity across restart.
+
+### 14.6 Inventory methodology notes
+
+- Props without a `runtime` key but on an OT with top-level `runtime` still get map entries (**default** accessor, memberName = property name) — e.g. `_AdaptiveAdapter_.properties`.  
+- Do **not** use generate/ alone for full OT property sets (use composite views for documentation completeness).  
+- Prefer live **OT get** or instance get with options (`metaFull`, `objectTypes`, …) for property meta including `runtime.valueAccessor`.  
+- For **lifetime**, the **generated map + accessor** is authoritative.
+
+### 14.7 Bug: rich objectOptions on EnvironmentRegistry/`current` (2026-08-08)
+
+**Symptom:** `get_object(afw, _AdaptiveEnvironmentRegistry_, current, options: …)` with certain option sets fails; afwfcgi stays up.
+
+| Options | Error |
+|---------|--------|
+| bare / `metaFull` alone / identity flags | **success** (~1.3–1.4 MiB) |
+| `metaFull` + `normalize` + path/ids | **`Object must have a pool`** |
+| `metaFull` + `objectTypes` + … | **`Object must have a pool`** |
+| kitchen sink incl. `composite` + `inheritedFrom` + defaults | **`Object immutable`** |
+
+**Root cause (backtrace):**
+
+1. `afw_object_view_create` → `impl_additional_object_option_processing` / normalize path.  
+2. Tries to annotate meta (`impl_meta_set_property_type_property`, or on catch `afw_object_meta_add_property_error` → `afw_object_set_property_as_array`).  
+3. **`EnvironmentRegistry/current` is a static const object with `p == NULL`** (`afw_environment_registry_object.c`: `impl_current_object.p = NULL`). Nested values include other permanent/immutable runtime/const objects.  
+4. `afw_object_set_property_as_array` / `afw_object_set_property` require a **pool** and/or **mutable** meta — permanent objects throw.
+
+**Why it may feel new:** #2-era tightening of managed/unmanaged create paths and stricter “must have a pool” checks on `set_property_as_*` (generated data-type bindings) make meta mutation fail loudly; older code may have been laxer or admin may have stopped passing these options on the big get.
+
+**Product note:** Jeremy’s app loads `current` with **`modelOptions.adaptiveObject: false` and no objectOptions** — so UI avoids this. Object viewer uses rich options on **individual** objects (composite/normalize/…), which often have pooled views. Fixing meta annotation for permanent objects would still be correct for API completeness.
+
+**Fix direction (not implemented yet):** ensure option processing only mutates **view-owned pooled meta** (never the underlying permanent object’s meta); when recording property errors, use `view->p` / meta objects created in the view pool; skip or soft-fail meta mutation for `!object->p` / immutable bases. Related to #149 only insofar as views + immutable runtime bases interact.
+
+**Tests to add when fixing:** get `current` with normalize+metaFull+path; with composite+inheritedFrom; expect success (or documented subset of options), not throw.
+
+### 14.8 Decade-old problem: `object->p` for “stuff that dies with the object”
+
+**Intent of `object->p`:** many APIs allocate ephemeral/meta/string clones into the **object’s pool** so they go away when that pool is released (memory objects, request-scoped objects). Right default for **pooled** objects.
+
+**Const / permanent objects:** `p == NULL` by design (static in the DSO). Nothing to free when “the object goes away.” Call sites that still do `create_*(…, instance->p)` or `set_property_as_*(instance, …)` either throw (**Object must have a pool** after #2-era checks), hit **Object immutable**, or used to hide behind a fallback.
+
+**Past experiment (Mike):** helper along the lines of “use `object->p` if non-NULL else `xctx->p`.” Unblocks const objects but **hides lifetime bugs** (request-pool alloc while assuming object lifetime). May have been **removed on purpose** to surface call sites that need real policy — which is what we’re seeing again on EnvironmentRegistry + options.
+
+**Existing partial guards:**
+
+- `IMPL_ASSERT_META_MUTABLE` in `afw_object_meta.c`: cannot set meta on const (`!instance->p`).
+- `afw_object_meta_get_property_type`: early `return NULL` if `!meta_object && !p` — comment: *“This is here for const objects for now.”*
+- View create uses its **own subpool** (`view->p`) for the view shell, but option processing still walks **nested** permanent objects and tries to write **their** meta using **their** `p`.
+
+**Ways to deal (no one-size; scratch later):**
+
+| Approach | Pros | Cons |
+|----------|------|------|
+| **A. Explicit `p` on every API** | Clear ownership | Wide API churn |
+| **B. View-only mutation** | Options never write base meta | All meta writes must go through view helpers |
+| **C. Lazy meta clone into view/request pool** when base is const | Const stays pure; options work | Cost; meta object identity |
+| **D. Soft no-op** when `!p` / immutable | No crash | Silent incomplete meta |
+| **E. Scoped “option processing pool” on xctx** for one get tree | One allocation arena | Easy to misuse / leak across requests |
+| **F. Global `object->p ?: xctx->p`** | Simple | Masks bugs (why abandoned) |
+
+**Likely for EnvironmentRegistry + options:** **B+C** — option processing is a **view** job; permanent shell never grows a pool. Broader meta.c uses of `instance->p` need inventory: skip for const, or allocate in **caller/view** pool.
+
+**Adjacent to #149 / #2:** same theme as accessor copy-vs-point — **where does this value live**, when the producer is permanent vs request-scoped.
+
+**Object wrappers / faces (#17 and views):** a pooled **wrapper** over a permanent/const base is a natural place to hang request- or view-scoped meta and option side-effects without giving the base a fake pool. `afw_object_view` already aims at “reshape without always cloning the store”; mutable faces hang mutation off the face. Either (or both) may be part of solving const-`p` meta writes — keep in mind when designing B/C above, and when #17 face lifetime meets #2/#149.
