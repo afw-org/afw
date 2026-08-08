@@ -1,5 +1,7 @@
 # =============================================================================
-# advanced-test: multi-eval process lifetime (issue #157; feeds #149 / #2)
+# *** Experimental *** advanced-test (issue #157) — may change; see
+# designs/afwdev-advanced-test.md
+# multi-eval process lifetime (feeds #149 / #2)
 # =============================================================================
 # What this shows:
 #   - Many sequential evals on ONE afwfcgi (not N CLI processes)

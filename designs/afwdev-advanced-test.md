@@ -1,10 +1,27 @@
 # afwdev advanced tests (marker leaves)
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**Status:** **v1 implemented** on branch `feature-afwfcgi-scenario-tests` (off `mgg-develop`); smoke leaf green; no PR until discussed.  
+**Status:** **\*\*\* Experimental \*\*\*** — implemented and usable for comment; **not** a frozen green contract.  
 **GitHub issue:** [#157](https://github.com/afw-org/afw/issues/157).  
+**Branch:** `feature-afwfcgi-scenario-tests` (off `mgg-develop`).  
 **Related:** [#2 Memory management](https://github.com/afw-org/afw/issues/2) ([`memory-management.md`](memory-management.md)), [#149 Runtime catalog lifetime](https://github.com/afw-org/afw/issues/149) ([`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md)).  
 **Depends on:** installed `afwfcgi` / `afw` via `./afwdev build … --install` (e.g. `--cdev` / `--fulldev`).
+
+---
+
+## \*\*\* Experimental \*\*\*
+
+This feature is **out for comment and real use**, not a promise of long-term stability of names, schema, or behavior.
+
+| Expect | Do not expect (yet) |
+|--------|---------------------|
+| Useful hermetic multi-request / `afwfcgi` regression leaves today | Marker name, YAML fields, or runner semantics frozen forever |
+| Many early decisions to **stick** (leaf discovery, `host`, FCGI client default, env-mode split) | No breaking tweaks over the next few months |
+| Growth driven by **#149**, **#2**, and whoever tries it | “Green” handbook-grade API and support story |
+
+**Feedback welcome** on issue **#157** and PRs. If you invest in many leaves, prefer the *ideas* (hermetic server, multi-step, fixture dir) over coupling to every field name—we may reshape surfaces as we learn.
+
+When the shape settles, drop the experimental banner and promote invariants into afwdev help / developer notes.
 
 ---
 

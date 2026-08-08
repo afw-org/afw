@@ -56,6 +56,24 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
 | [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (**recompile** out-of-tree; rename legacy cursor to **`afw_iterator_old`**) |
+| [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **\*\*\* Experimental \*\*\***: hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
+
+---
+
+## \*\*\* Experimental \*\*\* afwdev advanced-test (issue #157)
+
+**Status: experimental** — ship for **comment and use**, not a frozen green contract. Marker names, schema, and runner behavior may change over the next months as maintainers exercise multi-request / process-lifetime tests (including work toward **#149** and **#2**). Many early design choices are expected to stick; treat the *capability* (hermetic server + multi-step fixtures) as durable, not every field name.
+
+| | |
+|--|--|
+| **What** | Under `src/*/tests/`, a directory with **`advanced-test.yaml`** or **`advanced-test.json`** is one **leaf** test: harness starts installed **`afwfcgi`**, drives it with a FastCGI client, runs ordered **`eval` / `script`** steps, tears down. |
+| **When it runs** | Normal **`afwdev test` / `afwdev test -j`** (default `--env-mode afw`). Requires **PyYAML** and **`afwfcgi` on PATH** (build with install). |
+| **Examples** | `src/afw/tests/advanced/` (smoke, multi-request file adapter, multi-eval lifetime, JSON marker sample). |
+| **Design / feedback** | [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md), GitHub **[#157](https://github.com/afw-org/afw/issues/157)**. |
+
+Not a replacement for ordinary `.as` test scripts. Live `--env-mode afwfcgi` still means “shared stack”; advanced leaves stay **hermetic** under default mode.
+
+**[↑ Highlights](#highlights)**
 
 ---
 

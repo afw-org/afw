@@ -1,4 +1,6 @@
-# Hermetic afwfcgi smoke — designs/afwdev-advanced-test.md / issue #157
+# *** Experimental *** advanced-test (issue #157) — may change; see
+# designs/afwdev-advanced-test.md
+# Hermetic afwfcgi smoke
 host: afwfcgi
 description: Spawn afwfcgi and eval a trivial script via FCGI client
 

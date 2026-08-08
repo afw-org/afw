@@ -1,5 +1,7 @@
 # =============================================================================
-# advanced-test: multi-request file adapter (issue #157)
+# *** Experimental *** advanced-test (issue #157) — may change; see
+# designs/afwdev-advanced-test.md
+# multi-request file adapter
 # =============================================================================
 # What this shows that a one-shot `afw` CLI .as cannot (easily):
 #   - One long-lived afwfcgi process for the whole leaf

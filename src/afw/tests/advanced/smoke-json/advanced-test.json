@@ -1,6 +1,6 @@
 {
   "host": "afwfcgi",
-  "description": "JSON marker form of advanced-test (same schema as .yaml); hermetic afwfcgi + FCGI eval smoke",
+  "description": "*** Experimental *** JSON marker form of advanced-test (#157); same schema as .yaml \u2014 may change",
   "afwfcgi": {
     "threads": 1
   },
