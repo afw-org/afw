@@ -484,3 +484,62 @@ High signal for #149 (adjust as inventory proceeds):
 4. PR to `mgg-develop` with clear **phase N** scope—no “fix catalogs” mega-PR.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.
+
+---
+
+## 13. Session addenda (2026-08) — hooks that affect inventory
+
+### 13.1 Runtime objects need not be registered
+
+`afw_runtime_object_create_indirect` (and friends) can build a mapped shell **without** `afw_runtime_env_set_object`. Registry publish is how most catalog instances become `/afw/…` discoverable; it is not the definition of “runtime object.”
+
+Callers only hold `const afw_object_t *` and use the **object inf**. They do not know const vs mapped runtime vs memory vs face vs env-vars impl. Content types only serialize values.
+
+### 13.2 Const generate objects
+
+`const_objects` emit static graphs in the DSO. Retrieve/get walks the compiled property table and encodes via content type (usually JSON; progressive **application/x-afw** frames for stream retrieves). No live struct; class **A** for #149.
+
+### 13.3 Object type inheritance — do not scrape generate/ alone
+
+Many OT JSON files store **deltas**. Inheritance is declared with **`parentPaths`** (often `propertyTypes._meta_.parentPaths`, e.g. conf subtypes → parent conf OT).
+
+**Effective** property set requires resolution:
+
+- Live: `get_object(…, options: { composite: true, … })`
+- Code: `afw_object_view_create` after adapter fetch (`afw_adapter_internal_process_object_from_adapter`)
+
+Example: `_AdaptiveConf_adapter_file` ~7 local propertyTypes raw; **~16** with `composite`. Meta-schema: `/afw/_AdaptiveObjectType_/_AdaptiveObjectType_`. Option vocabulary: `_AdaptiveObjectOptions_`.
+
+Views reshape presentation; **#149 still reasons about the base object + accessors** (views do not always deep-copy property values).
+
+### 13.4 Adapter active / stopping / refcount (P0 for accessors)
+
+`afw_adapter_id_anchor_t` (lock: `adapter_id_anchor_lock`):
+
+- **Active** instance accepts new `get_reference` traffic.
+- On replace/stop: old anchor copy chained on **`stopping`**; new active installed; old drains until **reference_count → 0** then destroy.
+- Runtime OT `_AdaptiveAdapter_` maps the anchor. Accessor **`stopping_adapter_instances`** already **locks + copies** refcounts into the request pool. **`metrics` / `properties` / `referenceCount`** are higher risk (live / unlocked). Parallel pattern for authorization handlers.
+
+Service control for probes: `service_get` / `service_start` / `service_stop` / `service_restart`. Prefer **files / vfs / lmdb** (etc.). Do **not** stop permanent **adapter-afw** / **adapter-conf** (can strand the host).
+
+### 13.5 Progressive retrieve (`application/x-afw`)
+
+`retrieve_objects_to_response` requires response content type **application/x-afw**. Body frames:
+
+```text
+<sequence> <size> <streamId> [info]\n
+<size bytes of payload>
+```
+
+Client: `AfwStreams` (JS). Server flush uses `FCGX_FFlush`; HTTP chunked/nginx/JS may still delay end-to-end delivery—custom framing is the reliable semantic unit (related to #127 free-as-you-go, not a substitute for #149 accessor study).
+
+### 13.6 Product framing (adapters)
+
+Adapter types normalize **object stores** behind one object API (provisioning). Model adapter maps logical ↔ physical. Long-running scripts act as **peers** on that model. The `afw` runtime adapter is one type among many: process registries as objects.
+
+### 13.7 Inventory plan reminder
+
+1. Classify mapped properties by accessor semantics (prefer fixing **named accessors** once).  
+2. Use **composite** OT views when listing “all properties” of a type; use **maps + accessor C** for lifetime.  
+3. P0 adapter/auth anchors with stop-start probes.  
+4. Surgical lock+copy only where unsafe; document intentional live/refcount contracts where correct.
