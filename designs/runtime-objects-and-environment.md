@@ -150,7 +150,9 @@ Registered in `afw_runtime_register_core_value_accessors` (`runtime/afw_runtime_
 | **`applicable_flags`** | Builds list from flag state |
 | **`ensure_afw_components_extension_loaded`** | Side-effecting get (lazy extension load) |
 
-Discover/filter: `retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_")` and query on `copiesUnderLock` / `returnsLiveReference` / `key` / text fields.
+Discover/filter: `retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_", {}, undefined, undefined, 0)` (`maxObjects` **0** = unlimited) and query on `copiesUnderLock` / `returnsLiveReference` / `key` / text fields.
+
+**Consumable snapshot for assistants/maintainers:** [`runtime-value-accessors.md`](runtime-value-accessors.md) (tables + full descriptions; refresh command at top of that file).
 
 ---
 
