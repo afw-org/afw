@@ -295,9 +295,9 @@ Implementation: one shared dict builder `default_fcgi_params(path, method, body,
 
 | Doc | Role |
 |-----|------|
-| **This pad** | Design + decisions |
-| **Smoke leaf** | Living example |
-| **afwdev help / short developer note** | How to add a leaf (after or with implementation) |
+| **This pad** | Design + decisions (experimental) |
+| **Smoke / showcase leaves** | Living examples under `src/afw/tests/advanced/` |
+| **`src/afw/doc/developer/writing-tests.md`** | Builder-facing how-to (test_script first; advanced-test section experimental) |
 | **`designs/README.md`** | Index entry |
 
 ---

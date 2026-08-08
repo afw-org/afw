@@ -69,6 +69,7 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | **What** | Under `src/*/tests/`, a directory with **`advanced-test.yaml`** or **`advanced-test.json`** is one **leaf** test: harness starts installed **`afwfcgi`**, drives it with a FastCGI client, runs ordered **`eval` / `script`** steps, tears down. |
 | **When it runs** | Normal **`afwdev test` / `afwdev test -j`** (default `--env-mode afw`). Requires **PyYAML** and **`afwfcgi` on PATH** (build with install). |
 | **Examples** | `src/afw/tests/advanced/` (smoke, multi-request file adapter, multi-eval lifetime, JSON marker sample). |
+| **How to write tests** | Builder page [`src/afw/doc/developer/writing-tests.md`](src/afw/doc/developer/writing-tests.md) (Doxygen related page **Writing tests** after docs build). |
 | **Design / feedback** | [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md), GitHub **[#157](https://github.com/afw-org/afw/issues/157)**. |
 
 Not a replacement for ordinary `.as` test scripts. Live `--env-mode afwfcgi` still means “shared stack”; advanced leaves stay **hermetic** under default mode.
