@@ -3,5 +3,6 @@ inflection
 jsonschema
 lxml
 marko
+PyYAML
 requests
 watchdog

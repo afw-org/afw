@@ -1,0 +1,17 @@
+# Hermetic afwfcgi smoke — designs/afwdev-advanced-test.md / issue #157
+host: afwfcgi
+description: Spawn afwfcgi and eval a trivial script via FCGI client
+
+afwfcgi:
+  threads: 1
+
+timeout_s: 60
+
+steps:
+  - name: return true
+    eval: |
+      return true;
+
+  - name: script file test_script
+    script: step_two.as
+
