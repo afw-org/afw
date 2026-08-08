@@ -9,7 +9,7 @@ Living design / discussion notes for long-running AFW process memory: pools, val
 
 **End goal of the discussion:** a coherent **AFW memory-management story** — useful for implementing **#2** now, and as durable context for **humans and assistants** on later work (not only this issue). Prefer clear narrative and invariants over a pile of undigested archaeology.
 
-**Related (not the same work as #17 faces):** GitHub **[#149](https://github.com/afw-org/afw/issues/149)** — runtime / `afw` adapter catalog lifetime (live object maps vs full `EnvironmentRegistry` materialize cost). Notes: [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md).
+**Related (not the same work as #17 faces):** GitHub **[#149](https://github.com/afw-org/afw/issues/149)** — runtime env metadata / registry views (accessor correctness, per-type lifetime). Architecture: [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md); discovery: [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md).
 
 ### Adaptive values are a big deal
 

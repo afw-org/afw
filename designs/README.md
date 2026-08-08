@@ -20,7 +20,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | File | Theme |
 |------|--------|
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
-| [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) | **#149** (child of **#2**) — `afw` runtime catalogs, live maps vs `EnvironmentRegistry` materialize cost |
+| [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149** architecture — generate maps, OT `runtime` props, accessors, env registration, classification checklist |
+| [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) | **#149** discovery notes — live maps vs `EnvironmentRegistry` materialize cost (see architecture pad for map) |
 | [`secrets-and-afw-crypto.md`](secrets-and-afw-crypto.md) | **#74** / `afw_crypto` design |
 | [`issue-18-decompile-status.md`](issue-18-decompile-status.md) | **#18** decompile/recompile (stringify issue closed; pad still useful) |
 | [`issue-38-expression-property-names.md`](issue-38-expression-property-names.md) | **#38** — `[expr]: value` (issue closed) |
