@@ -1,0 +1,70 @@
+# =============================================================================
+# advanced-test: multi-eval process lifetime (issue #157; feeds #149 / #2)
+# =============================================================================
+# What this shows:
+#   - Many sequential evals on ONE afwfcgi (not N CLI processes)
+#   - Same process registry / runtime catalog can be read on every request
+#   - A simple "warmup then N requests" pattern useful for lifetime work
+#
+# This is intentionally light (no custom adapters). Use it as a template for
+# #149 catalog scenarios and #2 stress loops once those land.
+#
+# Run:
+#   ./afwdev test --test-pattern multi-eval-lifetime --show-all
+# =============================================================================
+
+host: afwfcgi
+
+description: >
+  Multi-eval on one afwfcgi: repeated registry/catalog reads stay healthy
+
+afwfcgi:
+  threads: 1
+
+timeout_s: 120
+
+steps:
+  # First request: touch the live afw adapter catalog (runtime object types)
+  - name: first catalog retrieve
+    eval: |
+      // maxObjects is the 6th arg (see #49); 0 = unlimited catalog retrieve
+      const types = retrieve_objects(
+          "afw", "_AdaptiveObjectType_",
+          undefined, undefined, undefined, 0);
+      assert(length(types) > 0, "expected at least one object type");
+      return length(types);
+
+  # Second request: same process — count should still be positive (and stable
+  # enough for a smoke assert; exact count may vary with extensions).
+  - name: second catalog retrieve
+    eval: |
+      const types = retrieve_objects(
+          "afw", "_AdaptiveObjectType_",
+          undefined, undefined, undefined, 0);
+      assert(length(types) > 0);
+      return length(types);
+
+  # Burst of cheap evals: still one server, many request xctx create/release
+  # cycles (template for #2 memory loops — not a soak yet).
+  - name: eval burst 1
+    eval: |
+      let i: integer = 0;
+      let sum: integer = 0;
+      for (i = 0; i < 50; i = i + 1)
+          sum = sum + i;
+      assert(sum == 1225);
+      return sum;
+
+  - name: eval burst 2
+    eval: |
+      // Second burst after prior request fully finished
+      let i: integer = 0;
+      let sum: integer = 0;
+      for (i = 0; i < 50; i = i + 1)
+          sum = sum + i;
+      assert(sum == 1225);
+      return sum;
+
+  # Optional hybrid: test_script syntax over FCGI (shebang kept by harness)
+  - name: test_script sanity
+    script: step_registry_sane.as
