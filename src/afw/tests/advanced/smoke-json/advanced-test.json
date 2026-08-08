@@ -1,0 +1,18 @@
+{
+  "host": "afwfcgi",
+  "description": "JSON marker form of advanced-test (same schema as .yaml); hermetic afwfcgi + FCGI eval smoke",
+  "afwfcgi": {
+    "threads": 1
+  },
+  "timeout_s": 60,
+  "steps": [
+    {
+      "name": "return true",
+      "eval": "return true;\n"
+    },
+    {
+      "name": "simple arithmetic",
+      "eval": "assert((1 + 2) == 3);\nreturn 3;\n"
+    }
+  ]
+}
