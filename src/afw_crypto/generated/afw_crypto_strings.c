@@ -710,42 +710,6 @@ afw_crypto_self_v_zz__16_octet_authentication_tag_ = {
 };
 
 const afw_value_string_t
-afw_crypto_self_v_zz__2459 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2459)
-};
-
-const afw_value_string_t
-afw_crypto_self_v_zz__2460 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2460)
-};
-
-const afw_value_string_t
-afw_crypto_self_v_zz__2461 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2461)
-};
-
-const afw_value_string_t
-afw_crypto_self_v_zz__2462 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2462)
-};
-
-const afw_value_string_t
-afw_crypto_self_v_zz__2463 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2463)
-};
-
-const afw_value_string_t
-afw_crypto_self_v_zz__2464 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2464)
-};
-
-const afw_value_string_t
 afw_crypto_self_v_zz__2465 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2465)
@@ -953,6 +917,42 @@ const afw_value_string_t
 afw_crypto_self_v_zz__2499 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2499)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2500 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2500)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2501 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2501)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2502 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2502)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2503 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2503)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2504 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2504)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2505 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2505)
 };
 
 const afw_value_string_t

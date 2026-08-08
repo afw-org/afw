@@ -4180,21 +4180,61 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveRuntimeValueAccessor_[] = {
     {
-        &afw_self_s_key,
-        offsetof(afw_environment_default_register_additional_t, key),
+        &afw_self_s_brief,
+        offsetof(afw_runtime_value_accessor_info_t, brief),
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         &afw_self_s_indirect,
         afw_runtime_value_accessor_indirect
+    },
+    {
+        &afw_self_s_copiesUnderLock,
+        offsetof(afw_runtime_value_accessor_info_t, copies_under_lock),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
+    },
+    {
+        &afw_self_s_description,
+        offsetof(afw_runtime_value_accessor_info_t, description),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL("text/plain"),
+        NULL,
+        &afw_self_s_indirect,
+        afw_runtime_value_accessor_indirect
+    },
+    {
+        &afw_self_s_key,
+        offsetof(afw_runtime_value_accessor_info_t, key),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_indirect,
+        afw_runtime_value_accessor_indirect
+    },
+    {
+        &afw_self_s_returnsLiveReference,
+        offsetof(afw_runtime_value_accessor_info_t, returns_live_reference),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
     }
 };
 
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveRuntimeValueAccessor_ = {
     &afw_self_s__AdaptiveRuntimeValueAccessor_,
-    1,
+    5,
     &impl_properties__AdaptiveRuntimeValueAccessor_[0]
 };
 

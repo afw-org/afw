@@ -20,12 +20,55 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_runtime_value_accessor.h
- * @brief Runtime object map value accessor callbacks.
+ * @brief Runtime object map value accessor callbacks and registration info.
  *
- * These are internal functions used by AFW core.  Access to
- * accessors external to core should use the
- * afw_environment_get_runtime_value_accessor() function.
+ * Each accessor implementation should have a co-located
+ * afw_runtime_value_accessor_info_t describing key, brief, description, and
+ * lifetime contracts. Register that struct with
+ * afw_environment_register_runtime_value_accessor().
+ *
+ * Adaptive catalog: `/afw/_AdaptiveRuntimeValueAccessor_/<key>`.
+ * C call path: afw_environment_get_runtime_value_accessor().
  */
+
+/**
+ * @brief Registered runtime value accessor (env registry value).
+ *
+ * Map typedef for `_AdaptiveRuntimeValueAccessor_`. Place instances next to
+ * the accessor function they describe so contracts stay with the code.
+ *
+ * The C function pointer is not exposed as an Adaptive property.
+ */
+struct afw_runtime_value_accessor_info_s {
+
+    /** @brief Registry key / objectId (propertyTypes.runtime.valueAccessor). */
+    const afw_utf8_t *key;
+
+    /** @brief Accessor function. */
+    afw_runtime_value_accessor_t function;
+
+    /** @brief Short description for lists and query. */
+    const afw_utf8_t *brief;
+
+    /** @brief Longer description including internal shape and lifetime. */
+    const afw_utf8_t *description;
+
+    /**
+     * @brief True if the accessor locks (or equivalent) and copies into p.
+     *
+     * Result is then stable for the caller after return.
+     */
+    afw_boolean_t copies_under_lock;
+
+    /**
+     * @brief True if the Adaptive value may alias live runtime/env state.
+     *
+     * State may change or be released while the value is still held unless
+     * copies_under_lock also applies.
+     */
+    afw_boolean_t returns_live_reference;
+};
+
 
 /**
  * @brief Register core runtime value accessors.

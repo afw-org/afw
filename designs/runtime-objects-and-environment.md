@@ -133,7 +133,9 @@ Property `stopping` uses `valueAccessor: "stopping_adapter_instances"` (lock + c
 
 ### 3.3 Common value accessors (core)
 
-Registered in `afw_runtime_register_core_value_accessors` (`runtime/afw_runtime_value_accessor.c`). Names used from OT JSON include:
+Registered in `afw_runtime_register_core_value_accessors` (`runtime/afw_runtime_value_accessor.c`).
+
+**Registration model:** each accessor has a co-located `afw_runtime_value_accessor_info_t` (key, function, brief, description, `copies_under_lock`, `returns_live_reference`) next to the C function. Register **that struct** via `afw_environment_register_runtime_value_accessor(info, xctx)`. Registry value is the info; C gets the function with `afw_environment_get_runtime_value_accessor(name)`. Adaptive catalog is `/afw/_AdaptiveRuntimeValueAccessor_/<key>` (`register_default` maps the info struct). Extensions use the same register API.
 
 | Accessor | Behavior sketch |
 |----------|-----------------|
@@ -148,7 +150,7 @@ Registered in `afw_runtime_register_core_value_accessors` (`runtime/afw_runtime_
 | **`applicable_flags`** | Builds list from flag state |
 | **`ensure_afw_components_extension_loaded`** | Side-effecting get (lazy extension load) |
 
-Extensions may register additional accessors via `afw_environment_register_runtime_value_accessor`.
+Discover/filter: `retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_")` and query on `copiesUnderLock` / `returnsLiveReference` / `key` / text fields.
 
 ---
 
@@ -227,8 +229,8 @@ When something is registered into the env, `register_additional` often **also** 
 
 | Callback (in `afw_environment.c`) | Behavior |
 |-----------------------------------|----------|
-| **`impl_internal_additional_register_default`** | `afw_runtime_env_create_and_set_indirect_object(object_type_id, key, value)` — value is the registered C pointer (adapter anchor, lock, …) |
-| **`impl_internal_additional_register_key_only`** | Alloc tiny struct holding key pointer; create indirect object (singletons, content types, value accessors as listable keys, …) under lock |
+| **`impl_internal_additional_register_default`** | `afw_runtime_env_create_and_set_indirect_object(object_type_id, key, value)` — value is the registered C pointer (adapter anchor, lock, **value accessor info**, …) |
+| **`impl_internal_additional_register_key_only`** | Alloc tiny struct holding key pointer; create indirect object (singletons, content types, value_inf, …) under lock |
 | **`impl_internal_additional_register_object`** | `afw_runtime_env_set_object` — value **is** an Adaptive object (e.g. context types) |
 | **NULL** (e.g. function, data_type, flag) | Handled specially inside `register_function` / data type paths: set prebuilt `function->object` / `data_type->object` |
 

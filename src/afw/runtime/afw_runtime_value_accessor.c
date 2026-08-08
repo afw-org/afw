@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Implementation of afw_adapter_factory interface for afw_runtime
+ * Adaptive Framework Runtime Value Accessors
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,145 +8,93 @@
 
 /**
  * @file afw_runtime_value_accessor.c
- * @brief Implementation of afw_adapter_factory interface for afw_runtime.
+ * @brief Runtime object map value accessor implementations and registration.
+ *
+ * Each accessor has a co-located afw_runtime_value_accessor_info_t (key,
+ * brief, description, lifetime flags) registered into the environment.
  */
 
 #include "afw_internal.h"
 #include "afw_runtime_value_accessor.h"
 
 
-/* Register core runtime value accessors. */
-void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx)
+/* --------------------------------------------------------------------------
+ * Environment register / get (registry value is the info struct)
+ * ------------------------------------------------------------------------- */
+
+AFW_DEFINE(void)
+afw_environment_register_runtime_value_accessor(
+    const afw_runtime_value_accessor_info_t *info,
+    afw_xctx_t *xctx)
 {
-    afw_environment_register_runtime_value_accessor(
-        afw_s_default,
-        afw_runtime_value_accessor_default,
-        xctx
-    );
+    if (!info || !info->key || !info->function) {
+        AFW_THROW_ERROR_Z(general,
+            "runtime value accessor info requires key and function",
+            xctx);
+    }
 
-    afw_environment_register_runtime_value_accessor(
-        afw_s_compile_type,
-        afw_runtime_value_accessor_compile_type,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_data_type_id,
-        afw_runtime_value_accessor_data_type_id,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_indirect,
-        afw_runtime_value_accessor_indirect,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_octet,
-        afw_runtime_value_accessor_octet,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_stopping_adapter_instances,
-        afw_runtime_value_accessor_stopping_adapter_instances,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_applicable_flags,
-        afw_runtime_value_accessor_applicable_flags,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_stopping_authorization_handler_instances,
-        afw_runtime_value_accessor_stopping_authorization_handler_instances,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_adapter_metrics,
-        afw_runtime_value_accessor_adapter_metrics,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_null_terminated_array_of_internal,
-        afw_runtime_value_accessor_null_terminated_array_of_internal,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_null_terminated_array_of_objects,
-        afw_runtime_value_accessor_null_terminated_array_of_objects,
-        xctx
-    );
-    
-    afw_environment_register_runtime_value_accessor(
-        afw_s_null_terminated_array_of_utf8_z_key_value_pair_objects,
-        afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_objects,
-        xctx
-    );
-    
-    afw_environment_register_runtime_value_accessor(
-        afw_s_null_terminated_array_of_pointers,
-        afw_runtime_value_accessor_null_terminated_array_of_pointers,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_null_terminated_array_of_values,
-        afw_runtime_value_accessor_null_terminated_array_of_values,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_size,
-        afw_runtime_value_accessor_size,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_service_startup,
-        afw_runtime_value_accessor_service_startup,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_service_status,
-        afw_runtime_value_accessor_service_status,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_uint32,
-        afw_runtime_value_accessor_uint32,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_adapter_additional_metrics,
-        afw_runtime_value_accessor_adapter_additional_metrics,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_afw_components_extension_loaded,
-        afw_runtime_value_accessor_ensure_afw_components_extension_loaded,
-        xctx
-    );
-
-    afw_environment_register_runtime_value_accessor(
-        afw_s_value,
-        afw_runtime_value_accessor_value,
-        xctx
-    );
+    afw_environment_registry_register(
+        afw_environemnt_registry_type_runtime_value_accessor,
+        info->key,
+        info,
+        xctx);
 }
 
 
-/* Runtime value accessor for default internal. */
+AFW_DEFINE(const afw_runtime_value_accessor_info_t *)
+afw_environment_get_runtime_value_accessor_info(
+    const afw_utf8_t *accessor_name,
+    afw_xctx_t *xctx)
+{
+    return (const afw_runtime_value_accessor_info_t *)
+        afw_environment_registry_get(
+            afw_environemnt_registry_type_runtime_value_accessor,
+            accessor_name,
+            xctx);
+}
+
+
+AFW_DEFINE(afw_runtime_value_accessor_t)
+afw_environment_get_runtime_value_accessor(
+    const afw_utf8_t *accessor_name,
+    afw_xctx_t *xctx)
+{
+    const afw_runtime_value_accessor_info_t *info;
+
+    info = afw_environment_get_runtime_value_accessor_info(accessor_name, xctx);
+    return info ? info->function : NULL;
+}
+
+
+/* --------------------------------------------------------------------------
+ * Core accessors: info struct then function (contracts next to the code)
+ * ------------------------------------------------------------------------- */
+
+/* --- default ------------------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_default =
+    AFW_UTF8_LITERAL("Map a struct member as its Adaptive data type");
+
+static const afw_utf8_t
+impl_description_default =
+    AFW_UTF8_LITERAL(
+        "Default accessor. internal points at the member storage for "
+        "prop->data_type. Builds an Adaptive value via afw_value_common_create. "
+        "Returns NULL for NULL pointer cTypes and zero-length afw_utf8_t / "
+        "afw_memory_t. The value may alias the live member storage "
+        "(returnsLiveReference).");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_default = {
+    .key = afw_s_default,
+    .function = afw_runtime_value_accessor_default,
+    .brief = &impl_brief_default,
+    .description = &impl_description_default,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_default(
     const afw_runtime_object_map_property_t * prop,
@@ -191,8 +139,28 @@ afw_runtime_value_accessor_default(
 }
 
 
+/* --- compile_type -------------------------------------------------------- */
 
-/* Runtime value accessor 'compile_type'. */
+static const afw_utf8_t
+impl_brief_compile_type =
+    AFW_UTF8_LITERAL("Map afw_compile_type_t to its name string");
+
+static const afw_utf8_t
+impl_description_compile_type =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to afw_compile_type_t (stored as afw_octet_t). "
+        "Returns the permanent name string value for that compile type.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_compile_type = {
+    .key = afw_s_compile_type,
+    .function = afw_runtime_value_accessor_compile_type,
+    .brief = &impl_brief_compile_type,
+    .description = &impl_description_compile_type,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_compile_type(
     const afw_runtime_object_map_property_t * prop,
@@ -203,11 +171,32 @@ afw_runtime_value_accessor_compile_type(
 
     compile_type = (afw_compile_type_t)(*((afw_octet_t *)internal));
     result = afw_compile_type_get_info(compile_type, xctx)->name_value;
-    return result;   
+    return result;
 }
 
 
-/* Runtime value accessor 'data_type_id' for const afw_data_type_t *. */
+/* --- data_type_id -------------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_data_type_id =
+    AFW_UTF8_LITERAL("Map const afw_data_type_t * to dataType id string");
+
+static const afw_utf8_t
+impl_description_data_type_id =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to const afw_data_type_t *. Returns a string "
+        "value of data_type->data_type_id, or NULL if the pointer is NULL.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_data_type_id = {
+    .key = afw_s_data_type_id,
+    .function = afw_runtime_value_accessor_data_type_id,
+    .brief = &impl_brief_data_type_id,
+    .description = &impl_description_data_type_id,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_data_type_id(
     const afw_runtime_object_map_property_t * prop,
@@ -227,8 +216,30 @@ afw_runtime_value_accessor_data_type_id(
     return afw_value_create_unmanaged_string(&data_type->data_type_id, p, xctx);
 }
 
- 
-/* Runtime value accessor for indirect internal. */
+
+/* --- indirect ------------------------------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_indirect =
+    AFW_UTF8_LITERAL("Like default, but member is a pointer to the value");
+
+static const afw_utf8_t
+impl_description_indirect =
+    AFW_UTF8_LITERAL(
+        "Like default, but internal points to a pointer to the storage used "
+        "as the Adaptive value internal (e.g. afw_utf8_t ** instead of "
+        "afw_utf8_t *). Result may alias that live storage.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_indirect = {
+    .key = afw_s_indirect,
+    .function = afw_runtime_value_accessor_indirect,
+    .brief = &impl_brief_indirect,
+    .description = &impl_description_indirect,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_indirect(
     const afw_runtime_object_map_property_t * prop,
@@ -241,8 +252,28 @@ afw_runtime_value_accessor_indirect(
 }
 
 
+/* --- octet --------------------------------------------------------------- */
 
-/* Runtime value accessor for afw_octet_t as afw_integer_t. */
+static const afw_utf8_t
+impl_brief_octet =
+    AFW_UTF8_LITERAL("Map afw_octet_t member as integer");
+
+static const afw_utf8_t
+impl_description_octet =
+    AFW_UTF8_LITERAL(
+        "internal points to an afw_octet_t. Returns an integer value in the "
+        "caller pool (scalar copy).");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_octet = {
+    .key = afw_s_octet,
+    .function = afw_runtime_value_accessor_octet,
+    .brief = &impl_brief_octet,
+    .description = &impl_description_octet,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_octet(
     const afw_runtime_object_map_property_t * prop,
@@ -255,7 +286,30 @@ afw_runtime_value_accessor_octet(
 }
 
 
-/* Runtime value accessor for stopping adapter instances. */
+/* --- stopping_adapter_instances ------------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_stopping_adapter_instances =
+    AFW_UTF8_LITERAL("Snapshot stopping adapter instance reference counts");
+
+static const afw_utf8_t
+impl_description_stopping_adapter_instances =
+    AFW_UTF8_LITERAL(
+        "internal is adapter_id (afw_utf8_t **). Under adapter_id_anchor_lock, "
+        "walks the stopping chain and copies each stopping instance's "
+        "reference_count into an integer array allocated in p. Safe snapshot; "
+        "does not return pointers into anchors.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_stopping_adapter_instances = {
+    .key = afw_s_stopping_adapter_instances,
+    .function = afw_runtime_value_accessor_stopping_adapter_instances,
+    .brief = &impl_brief_stopping_adapter_instances,
+    .description = &impl_description_stopping_adapter_instances,
+    .copies_under_lock = true,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_stopping_adapter_instances(
     const afw_runtime_object_map_property_t * prop,
@@ -312,8 +366,31 @@ afw_runtime_value_accessor_stopping_adapter_instances(
 }
 
 
+/* --- stopping_authorization_handler_instances ---------------------------- */
 
-/* Runtime value accessor for stopping authorization handler instances. */
+static const afw_utf8_t
+impl_brief_stopping_authorization_handler_instances =
+    AFW_UTF8_LITERAL(
+        "Snapshot stopping authorization handler instance reference counts");
+
+static const afw_utf8_t
+impl_description_stopping_authorization_handler_instances =
+    AFW_UTF8_LITERAL(
+        "internal is authorization_handler_id (afw_utf8_t **). Under the "
+        "authorization handler id rw lock (write), walks the stopping chain "
+        "and copies reference counts into an integer array in p.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_stopping_authorization_handler_instances = {
+    .key = afw_s_stopping_authorization_handler_instances,
+    .function =
+        afw_runtime_value_accessor_stopping_authorization_handler_instances,
+    .brief = &impl_brief_stopping_authorization_handler_instances,
+    .description = &impl_description_stopping_authorization_handler_instances,
+    .copies_under_lock = true,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_stopping_authorization_handler_instances(
     const afw_runtime_object_map_property_t * prop,
@@ -372,8 +449,28 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
 }
 
 
+/* --- service_startup ----------------------------------------------------- */
 
-/* Runtime value accessor for afw_service_startup_t. */
+static const afw_utf8_t
+impl_brief_service_startup =
+    AFW_UTF8_LITERAL("Map afw_service_startup_t to status string");
+
+static const afw_utf8_t
+impl_description_service_startup =
+    AFW_UTF8_LITERAL(
+        "internal points to afw_service_startup_t. Copies the enum and returns "
+        "the corresponding permanent/utf8 name as a string value in p.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_service_startup = {
+    .key = afw_s_service_startup,
+    .function = afw_runtime_value_accessor_service_startup,
+    .brief = &impl_brief_service_startup,
+    .description = &impl_description_service_startup,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_service_startup(
     const afw_runtime_object_map_property_t * prop,
@@ -388,7 +485,28 @@ afw_runtime_value_accessor_service_startup(
 }
 
 
-/* Runtime value accessor for afw_service_status_t. */
+/* --- service_status ------------------------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_service_status =
+    AFW_UTF8_LITERAL("Map afw_service_status_t to status string");
+
+static const afw_utf8_t
+impl_description_service_status =
+    AFW_UTF8_LITERAL(
+        "internal points to afw_service_status_t. Copies the enum and returns "
+        "the corresponding name as a string value in p.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_service_status = {
+    .key = afw_s_service_status,
+    .function = afw_runtime_value_accessor_service_status,
+    .brief = &impl_brief_service_status,
+    .description = &impl_description_service_status,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_service_status(
     const afw_runtime_object_map_property_t * prop,
@@ -403,7 +521,28 @@ afw_runtime_value_accessor_service_status(
 }
 
 
-/* Runtime value accessor for afw_size_t as afw_integer_t. */
+/* --- size ---------------------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_size =
+    AFW_UTF8_LITERAL("Map afw_size_t member as integer");
+
+static const afw_utf8_t
+impl_description_size =
+    AFW_UTF8_LITERAL(
+        "internal points to an afw_size_t. Returns an integer value in the "
+        "caller pool (scalar copy).");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_size = {
+    .key = afw_s_size,
+    .function = afw_runtime_value_accessor_size,
+    .brief = &impl_brief_size,
+    .description = &impl_description_size,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_size(
     const afw_runtime_object_map_property_t * prop,
@@ -416,7 +555,28 @@ afw_runtime_value_accessor_size(
 }
 
 
-/* Runtime value accessor for afw_uint32_t as afw_integer_t. */
+/* --- uint32 -------------------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_uint32 =
+    AFW_UTF8_LITERAL("Map afw_uint32_t member as integer");
+
+static const afw_utf8_t
+impl_description_uint32 =
+    AFW_UTF8_LITERAL(
+        "internal points to an afw_uint32_t. Returns an integer value in the "
+        "caller pool (scalar copy).");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_uint32 = {
+    .key = afw_s_uint32,
+    .function = afw_runtime_value_accessor_uint32,
+    .brief = &impl_brief_uint32,
+    .description = &impl_description_uint32,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_uint32(
     const afw_runtime_object_map_property_t * prop,
@@ -429,14 +589,37 @@ afw_runtime_value_accessor_uint32(
 }
 
 
-/* Runtime value accessor for /afw/_AdaptiveAdapterMetrics_/<adapterId>. */
+/* --- adapter_metrics ----------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_adapter_metrics =
+    AFW_UTF8_LITERAL("Return live adapter metrics object");
+
+static const afw_utf8_t
+impl_description_adapter_metrics =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to const afw_adapter_t *. Returns an object "
+        "value wrapping adapter->impl->metrics_object without copying. The "
+        "object is live environment state (returnsLiveReference); not a "
+        "snapshot under lock.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_adapter_metrics = {
+    .key = afw_s_adapter_metrics,
+    .function = afw_runtime_value_accessor_adapter_metrics,
+    .brief = &impl_brief_adapter_metrics,
+    .description = &impl_description_adapter_metrics,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_adapter_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_adapter_t *adapter = *(const afw_adapter_t * const *)internal;
-   
+
     return (adapter)
         ? afw_value_create_unmanaged_object(
             adapter->impl->metrics_object, p, xctx)
@@ -444,8 +627,30 @@ afw_runtime_value_accessor_adapter_metrics(
 }
 
 
+/* --- applicable_flags ---------------------------------------------------- */
 
-/* Runtime value accessor to produce triggeredBy for a flag. */
+static const afw_utf8_t
+impl_brief_applicable_flags =
+    AFW_UTF8_LITERAL("Build array of applicable flag ids for a flag");
+
+static const afw_utf8_t
+impl_description_applicable_flags =
+    AFW_UTF8_LITERAL(
+        "internal points at an afw_flag_t (typically offset of flag_id at "
+        "start of struct). Builds a new array in p of flag id values for "
+        "each applicable flag bit. Array contents are permanent flag id "
+        "strings; the array itself is allocated in p.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_applicable_flags = {
+    .key = afw_s_applicable_flags,
+    .function = afw_runtime_value_accessor_applicable_flags,
+    .brief = &impl_brief_applicable_flags,
+    .description = &impl_description_applicable_flags,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_applicable_flags(
     const afw_runtime_object_map_property_t * prop,
@@ -468,8 +673,29 @@ afw_runtime_value_accessor_applicable_flags(
 }
 
 
+/* --- null_terminated_array_of_internal ----------------------------------- */
 
-/* Runtime value accessor for NULL terminated array of pointers. */
+static const afw_utf8_t
+impl_brief_null_terminated_array_of_internal =
+    AFW_UTF8_LITERAL("Map NULL-terminated array of value internals");
+
+static const afw_utf8_t
+impl_description_null_terminated_array_of_internal =
+    AFW_UTF8_LITERAL(
+        "internal points to a pointer to a NULL-terminated C array of "
+        "internals of the array dataTypeParameter type. Builds a view then "
+        "clones into p. dataType must be array.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_null_terminated_array_of_internal = {
+    .key = afw_s_null_terminated_array_of_internal,
+    .function = afw_runtime_value_accessor_null_terminated_array_of_internal,
+    .brief = &impl_brief_null_terminated_array_of_internal,
+    .description = &impl_description_null_terminated_array_of_internal,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_null_terminated_array_of_internal(
     const afw_runtime_object_map_property_t * prop,
@@ -506,7 +732,29 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
 }
 
 
-/* Runtime value accessor for NULL terminated list of objects. */
+/* --- null_terminated_array_of_objects ------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_null_terminated_array_of_objects =
+    AFW_UTF8_LITERAL("Map NULL-terminated array of object pointers");
+
+static const afw_utf8_t
+impl_description_null_terminated_array_of_objects =
+    AFW_UTF8_LITERAL(
+        "internal points to const afw_object_t * const * (NULL-terminated). "
+        "Returns an array value of those objects. Object identities are live "
+        "references.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_null_terminated_array_of_objects = {
+    .key = afw_s_null_terminated_array_of_objects,
+    .function = afw_runtime_value_accessor_null_terminated_array_of_objects,
+    .brief = &impl_brief_null_terminated_array_of_objects,
+    .description = &impl_description_null_terminated_array_of_objects,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_null_terminated_array_of_objects(
     const afw_runtime_object_map_property_t * prop,
@@ -523,10 +771,32 @@ afw_runtime_value_accessor_null_terminated_array_of_objects(
 }
 
 
-/*
- * Runtime value accessor for NULL terminated list of utf8_z key/value pair
- * objects.
- */
+/* --- null_terminated_array_of_utf8_z_key_value_pair_objects -------------- */
+
+static const afw_utf8_t
+impl_brief_null_terminated_array_of_utf8_z_key_value_pair_objects =
+    AFW_UTF8_LITERAL(
+        "Map NULL-terminated utf8_z key/value pair tables to objects");
+
+static const afw_utf8_t
+impl_description_null_terminated_array_of_utf8_z_key_value_pair_objects =
+    AFW_UTF8_LITERAL(
+        "internal points to const afw_utf8_z_t *[] groups of key/value pairs "
+        "(each object ends with NULL; list ends with extra NULL). Builds new "
+        "objects and an array in p.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_null_terminated_array_of_utf8_z_key_value_pair_objects = {
+    .key = afw_s_null_terminated_array_of_utf8_z_key_value_pair_objects,
+    .function =
+        afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_objects,
+    .brief = &impl_brief_null_terminated_array_of_utf8_z_key_value_pair_objects,
+    .description =
+        &impl_description_null_terminated_array_of_utf8_z_key_value_pair_objects,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_objects(
     const afw_runtime_object_map_property_t * prop,
@@ -567,7 +837,29 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
 }
 
 
-/* Runtime value accessor for NULL terminated array of pointers. */
+/* --- null_terminated_array_of_pointers ----------------------------------- */
+
+static const afw_utf8_t
+impl_brief_null_terminated_array_of_pointers =
+    AFW_UTF8_LITERAL("Map NULL-terminated array of pointers to values");
+
+static const afw_utf8_t
+impl_description_null_terminated_array_of_pointers =
+    AFW_UTF8_LITERAL(
+        "internal points to a pointer to a NULL-terminated array of pointers "
+        "to internals of the array dataTypeParameter type. Builds a view then "
+        "clones into p.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_null_terminated_array_of_pointers = {
+    .key = afw_s_null_terminated_array_of_pointers,
+    .function = afw_runtime_value_accessor_null_terminated_array_of_pointers,
+    .brief = &impl_brief_null_terminated_array_of_pointers,
+    .description = &impl_description_null_terminated_array_of_pointers,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_null_terminated_array_of_pointers(
     const afw_runtime_object_map_property_t * prop,
@@ -604,8 +896,28 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
 }
 
 
+/* --- null_terminated_array_of_values ------------------------------------- */
 
-/* Runtime value accessor for NULL terminated array of values. */
+static const afw_utf8_t
+impl_brief_null_terminated_array_of_values =
+    AFW_UTF8_LITERAL("Map NULL-terminated array of afw_value_t *");
+
+static const afw_utf8_t
+impl_description_null_terminated_array_of_values =
+    AFW_UTF8_LITERAL(
+        "internal points to a NULL-terminated array of const afw_value_t *. "
+        "Returns an array value of those values (live value pointers).");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_null_terminated_array_of_values = {
+    .key = afw_s_null_terminated_array_of_values,
+    .function = afw_runtime_value_accessor_null_terminated_array_of_values,
+    .brief = &impl_brief_null_terminated_array_of_values,
+    .description = &impl_description_null_terminated_array_of_values,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_null_terminated_array_of_values(
     const afw_runtime_object_map_property_t * prop,
@@ -620,7 +932,29 @@ afw_runtime_value_accessor_null_terminated_array_of_values(
 }
 
 
-/* Runtime value accessor to call afw_adapter_get_additional_metrics(). */
+/* --- adapter_additional_metrics ------------------------------------------ */
+
+static const afw_utf8_t
+impl_brief_adapter_additional_metrics =
+    AFW_UTF8_LITERAL("Call adapter get_additional_metrics()");
+
+static const afw_utf8_t
+impl_description_adapter_additional_metrics =
+    AFW_UTF8_LITERAL(
+        "internal points at afw_adapter_impl_t. Calls "
+        "afw_adapter_get_additional_metrics() with the adapter. Returned "
+        "object lifetime follows that API (typically allocated in p).");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_adapter_additional_metrics = {
+    .key = afw_s_adapter_additional_metrics,
+    .function = afw_runtime_value_accessor_adapter_additional_metrics,
+    .brief = &impl_brief_adapter_additional_metrics,
+    .description = &impl_description_adapter_additional_metrics,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_adapter_additional_metrics(
     const afw_runtime_object_map_property_t * prop,
@@ -630,11 +964,35 @@ afw_runtime_value_accessor_adapter_additional_metrics(
     const afw_object_t *obj;
 
     obj = afw_adapter_get_additional_metrics(impl->adapter, p, xctx);
-   
+
     return (obj)
         ? afw_value_create_unmanaged_object(obj, p, xctx)
         : NULL;
 }
+
+
+/* --- afw_components_extension_loaded (ensure load) ----------------------- */
+
+static const afw_utf8_t
+impl_brief_afw_components_extension_loaded =
+    AFW_UTF8_LITERAL("Ensure afw_components extension is loaded");
+
+static const afw_utf8_t
+impl_description_afw_components_extension_loaded =
+    AFW_UTF8_LITERAL(
+        "Side-effect accessor: loads the afw_components extension if needed "
+        "and returns boolean true. Key is afw_components_extension_loaded.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_afw_components_extension_loaded = {
+    .key = afw_s_afw_components_extension_loaded,
+    .function =
+        afw_runtime_value_accessor_ensure_afw_components_extension_loaded,
+    .brief = &impl_brief_afw_components_extension_loaded,
+    .description = &impl_description_afw_components_extension_loaded,
+    .copies_under_lock = false,
+    .returns_live_reference = false
+};
 
 const afw_value_t *
 afw_runtime_value_accessor_ensure_afw_components_extension_loaded(
@@ -642,17 +1000,80 @@ afw_runtime_value_accessor_ensure_afw_components_extension_loaded(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_environment_load_extension(afw_s_afw_components, NULL, NULL, xctx);
-    
+
     return afw_boolean_v_true;
 }
 
 
+/* --- value --------------------------------------------------------------- */
 
-/* Runtime value accessor for an afw_value_t. */
+static const afw_utf8_t
+impl_brief_value =
+    AFW_UTF8_LITERAL("Return afw_value_t * member as-is");
+
+static const afw_utf8_t
+impl_description_value =
+    AFW_UTF8_LITERAL(
+        "internal points to an afw_value_t *. Returns that value pointer "
+        "without cloning (returnsLiveReference). Lifetime is that of the "
+        "stored value.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_value = {
+    .key = afw_s_value,
+    .function = afw_runtime_value_accessor_value,
+    .brief = &impl_brief_value,
+    .description = &impl_description_value,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
 const afw_value_t *
 afw_runtime_value_accessor_value(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return *(const afw_value_t **)internal;
+}
+
+
+/* --------------------------------------------------------------------------
+ * Register all core accessors
+ * ------------------------------------------------------------------------- */
+
+static const afw_runtime_value_accessor_info_t * const
+impl_core_value_accessor_infos[] = {
+    &impl_info_default,
+    &impl_info_compile_type,
+    &impl_info_data_type_id,
+    &impl_info_indirect,
+    &impl_info_octet,
+    &impl_info_stopping_adapter_instances,
+    &impl_info_applicable_flags,
+    &impl_info_stopping_authorization_handler_instances,
+    &impl_info_adapter_metrics,
+    &impl_info_null_terminated_array_of_internal,
+    &impl_info_null_terminated_array_of_objects,
+    &impl_info_null_terminated_array_of_utf8_z_key_value_pair_objects,
+    &impl_info_null_terminated_array_of_pointers,
+    &impl_info_null_terminated_array_of_values,
+    &impl_info_size,
+    &impl_info_service_startup,
+    &impl_info_service_status,
+    &impl_info_uint32,
+    &impl_info_adapter_additional_metrics,
+    &impl_info_afw_components_extension_loaded,
+    &impl_info_value,
+    NULL
+};
+
+
+/* Register core runtime value accessors. */
+void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx)
+{
+    const afw_runtime_value_accessor_info_t * const *infop;
+
+    for (infop = impl_core_value_accessor_infos; *infop; infop++) {
+        afw_environment_register_runtime_value_accessor(*infop, xctx);
+    }
 }
