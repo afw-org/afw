@@ -37,7 +37,7 @@ editing the tables below. Property meaning:
 | `returnsLiveReference` | Adaptive value may alias live env/instance state |
 
 **Snapshot date:** 2026-08-08  
-**Core entry count:** 21
+**Core entry count:** 23
 
 ## Summary table
 
@@ -45,8 +45,10 @@ editing the tables below. Property meaning:
 |-----|-------|-----------------|----------------------|
 | `adapter_additional_metrics` | Call adapter get_additional_metrics() | no | no |
 | `adapter_metrics` | Return live adapter metrics object | no | yes |
+| `adapter_reference_count` | Snapshot adapter anchor reference_count under lock | yes | no |
 | `afw_components_extension_loaded` | Ensure afw_components extension is loaded | no | no |
 | `applicable_flags` | Build array of applicable flag ids for a flag | no | no |
+| `authorization_handler_reference_count` | Snapshot authorization handler anchor reference_count under lock | yes | no |
 | `compile_type` | Map afw_compile_type_t to its name string | no | no |
 | `data_type_id` | Map const afw_data_type_t * to dataType id string | no | no |
 | `default` | Map a struct member as its Adaptive data type | no | yes |
@@ -67,7 +69,7 @@ editing the tables below. Property meaning:
 
 ### By lifetime class (quick filter)
 
-- **copiesUnderLock:** `stopping_adapter_instances`, `stopping_authorization_handler_instances`
+- **copiesUnderLock:** `adapter_reference_count`, `authorization_handler_reference_count`, `stopping_adapter_instances`, `stopping_authorization_handler_instances`
 - **returnsLiveReference:** `adapter_metrics`, `default`, `indirect`, `null_terminated_array_of_objects`, `null_terminated_array_of_values`, `value`
 - **Neither (typically scalar/copy into `p`):** `adapter_additional_metrics`, `afw_components_extension_loaded`, `applicable_flags`, `compile_type`, `data_type_id`, `null_terminated_array_of_internal`, `null_terminated_array_of_pointers`, `null_terminated_array_of_utf8_z_key_value_pair_objects`, `octet`, `service_startup`, `service_status`, `size`, `uint32`
 
@@ -87,6 +89,13 @@ editing the tables below. Property meaning:
 - **returnsLiveReference:** `true`
 - **Description:** internal is a pointer to const afw_adapter_t *. Returns an object value wrapping adapter->impl->metrics_object without copying. The object is live environment state (returnsLiveReference); not a snapshot under lock.
 
+### `adapter_reference_count`
+
+- **Brief:** Snapshot adapter anchor reference_count under lock
+- **copiesUnderLock:** `true`
+- **returnsLiveReference:** `false`
+- **Description:** internal points to afw_integer_t reference_count on an afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, copies the integer into a value in p. Mutators of the anchor use the same lock.
+
 ### `afw_components_extension_loaded`
 
 - **Brief:** Ensure afw_components extension is loaded
@@ -100,6 +109,13 @@ editing the tables below. Property meaning:
 - **copiesUnderLock:** `false`
 - **returnsLiveReference:** `false`
 - **Description:** internal points at an afw_flag_t (typically offset of flag_id at start of struct). Builds a new array in p of flag id values for each applicable flag bit. Array contents are permanent flag id strings; the array itself is allocated in p.
+
+### `authorization_handler_reference_count`
+
+- **Brief:** Snapshot authorization handler anchor reference_count under lock
+- **copiesUnderLock:** `true`
+- **returnsLiveReference:** `false`
+- **Description:** internal points to afw_integer_t reference_count on an afw_authorization_handler_id_anchor_t. Under authorization_handler_id_anchor_rw_lock (read), copies the integer into a value in p.
 
 ### `compile_type`
 

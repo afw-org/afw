@@ -481,6 +481,8 @@ a_service_type_authorizationHandler_title=Service type for authorizationHandler.
 a_service_type_log_title=Service type for logs.
 stopping_adapter_instances
 stopping_authorization_handler_instances
+adapter_reference_count
+authorization_handler_reference_count
 Configuration
 
 a_application_json=application/json

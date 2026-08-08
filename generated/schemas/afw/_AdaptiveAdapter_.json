@@ -3,8 +3,8 @@
     "$defs": {
         "_AdaptiveAdapterMetrics_": {
             "additionalProperties": false,
-            "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
-            "markdownDescription": "An adapter may provide metrics to describe the current state of this adapter instance.",
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+            "markdownDescription": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -152,20 +152,20 @@
                             "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
                         }
                     ],
-                    "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
-                    "markdownDescription": "**Metrics**\n\nAn adapter may provide metrics to describe the current state of this adapter instance.",
+                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
                     "title": "Metrics",
                     "type": "object"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "referenceCount": {
-                    "description": "The reference count is the total number of references that are currently being used for this adapter.",
-                    "markdownDescription": "**Reference Count**\n\nThe reference count is the total number of references that are currently being used for this adapter.",
+                    "description": "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
                     "title": "Reference Count",
                     "type": "integer"
                 },
@@ -176,14 +176,14 @@
                     "type": "string"
                 },
                 "stopping": {
-                    "description": "Reference counts of stopping instances.",
+                    "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                     "items": {
-                        "description": "Reference counts of stopping instances.",
-                        "markdownDescription": "Reference counts of stopping instances.",
+                        "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                         "title": "Reference counts of stopping instances",
                         "type": "integer"
                     },
-                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances.",
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                     "title": "Stopping Instances",
                     "type": "array"
                 }
@@ -205,20 +205,20 @@
                             "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
                         }
                     ],
-                    "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
-                    "markdownDescription": "**Metrics**\n\nAn adapter may provide metrics to describe the current state of this adapter instance.",
+                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
                     "title": "Metrics",
                     "type": "object"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "referenceCount": {
-                    "description": "The reference count is the total number of references that are currently being used for this adapter.",
-                    "markdownDescription": "**Reference Count**\n\nThe reference count is the total number of references that are currently being used for this adapter.",
+                    "description": "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
                     "title": "Reference Count",
                     "type": "integer"
                 },
@@ -229,14 +229,14 @@
                     "type": "string"
                 },
                 "stopping": {
-                    "description": "Reference counts of stopping instances.",
+                    "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                     "items": {
-                        "description": "Reference counts of stopping instances.",
-                        "markdownDescription": "Reference counts of stopping instances.",
+                        "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                         "title": "Reference counts of stopping instances",
                         "type": "integer"
                     },
-                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances.",
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                     "title": "Stopping Instances",
                     "type": "array"
                 }
@@ -268,20 +268,20 @@
                     "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
                 }
             ],
-            "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
-            "markdownDescription": "**Metrics**\n\nAn adapter may provide metrics to describe the current state of this adapter instance.",
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+            "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
             "title": "Metrics",
             "type": "object"
         },
         "properties": {
-            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-            "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+            "description": "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
+            "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
             "title": "Properties",
             "type": "object"
         },
         "referenceCount": {
-            "description": "The reference count is the total number of references that are currently being used for this adapter.",
-            "markdownDescription": "**Reference Count**\n\nThe reference count is the total number of references that are currently being used for this adapter.",
+            "description": "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+            "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
             "title": "Reference Count",
             "type": "integer"
         },
@@ -292,14 +292,14 @@
             "type": "string"
         },
         "stopping": {
-            "description": "Reference counts of stopping instances.",
+            "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
             "items": {
-                "description": "Reference counts of stopping instances.",
-                "markdownDescription": "Reference counts of stopping instances.",
+                "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                "markdownDescription": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                 "title": "Reference counts of stopping instances",
                 "type": "integer"
             },
-            "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances.",
+            "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
             "title": "Stopping Instances",
             "type": "array"
         }

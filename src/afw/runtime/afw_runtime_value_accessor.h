@@ -191,6 +191,32 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
+ * @brief Snapshot adapter anchor reference_count under adapter_id_anchor_lock.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to afw_integer_t reference_count on anchor.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return integer value copied under lock.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_adapter_reference_count(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Snapshot authorization handler anchor reference_count under rw lock.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to afw_integer_t reference_count on anchor.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return integer value copied under read lock.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_authorization_handler_reference_count(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
  * @brief Runtime value accessor for NULL terminated list of internal.
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is const afw_object_t * const * with last entry NULL.

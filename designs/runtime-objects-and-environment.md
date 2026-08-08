@@ -522,7 +522,7 @@ Views reshape presentation; **#149 still reasons about the base object + accesso
 
 - **Active** instance accepts new `get_reference` traffic.
 - On replace/stop: old anchor copy chained on **`stopping`**; new active installed; old drains until **reference_count → 0** then destroy.
-- Runtime OT `_AdaptiveAdapter_` maps the anchor. Accessor **`stopping_adapter_instances`** already **locks + copies** refcounts into the request pool. **`metrics` / `properties` / `referenceCount`** are higher risk (live / unlocked). Parallel pattern for authorization handlers.
+- Runtime OT `_AdaptiveAdapter_` maps the anchor. Accessors **`stopping_adapter_instances`** and **`adapter_reference_count`** **lock + copy** into the request pool. **`metrics` / `properties`** remain **live while active** (documented on the OT; product choice — not full-clone on get). Parallel pattern for authorization handlers (`authorization_handler_reference_count`, stopping_*).
 
 Service control for probes: `service_get` / `service_start` / `service_stop` / `service_restart`. Prefer **files / vfs / lmdb** (etc.). Do **not** stop permanent **adapter-afw** / **adapter-conf** (can strand the host).
 
@@ -595,7 +595,7 @@ Plus **18** `onGetValueCFunctionName` model `current::` callbacks (xctx model st
 |----------|----------|-------|------------|
 | adapterId | indirect | **E** | id in env/anchor; stable for process life of id registration |
 | serviceId | indirect | **E** | same |
-| referenceCount | default (integer) | **L** | unlocked read; can race with get_reference/release — torn/stale integer, not usually a dangling pointer |
+| referenceCount | **adapter_reference_count** | **P (snapshot)** | lock + copy integer under `adapter_id_anchor_lock` |
 | properties | default (object *) | **R/L** | copies **pointer** to properties object into value; object lives with adapter/conf lifetime; **NULL when fully stopped** |
 | metrics | adapter_metrics | **R/L** | pointer to metrics runtime object on instance; **NULL when no active adapter** |
 | stopping | stopping_adapter_instances | **S** | lock+copy; empty/absent when no draining instances |
@@ -626,7 +626,7 @@ Plus **18** `onGetValueCFunctionName` model `current::` callbacks (xctx model st
 
 ### 14.5 Candidate fixes (not implemented this session)
 
-1. **referenceCount (adapter + auth):** read under the same anchor lock (or document as best-effort unlocked sample).  
+1. **referenceCount (adapter + auth):** done — `adapter_reference_count` / `authorization_handler_reference_count` (lock + copy). Metrics/properties remain live-while-active + OT prose.  
 2. **metrics / properties:** either (a) document **R**: only valid while active or while you hold a session ref on that instance; or (b) snapshot needed fields under lock into request pool when returning from runtime get. Prefer (a) if product accepts; (b) if dangling after destroy is proven.  
 3. **Keep** stopping_* as the gold standard; extend pattern only where inventory proves need.  
 4. Optional: hold session + stop to **test** non-empty `stopping` array and metrics identity across restart.

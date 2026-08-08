@@ -449,6 +449,99 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
 }
 
 
+/* --- adapter_reference_count --------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_adapter_reference_count =
+    AFW_UTF8_LITERAL("Snapshot adapter anchor reference_count under lock");
+
+static const afw_utf8_t
+impl_description_adapter_reference_count =
+    AFW_UTF8_LITERAL(
+        "internal points to afw_integer_t reference_count on an "
+        "afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, copies the "
+        "integer into a value in p. Mutators of the anchor use the same lock.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_adapter_reference_count = {
+    .key = afw_s_adapter_reference_count,
+    .function = afw_runtime_value_accessor_adapter_reference_count,
+    .brief = &impl_brief_adapter_reference_count,
+    .description = &impl_description_adapter_reference_count,
+    .copies_under_lock = true,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_adapter_reference_count(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_integer_t integer;
+
+    (void)prop;
+
+    if (!internal) {
+        return NULL;
+    }
+
+    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+        integer = *(const afw_integer_t *)internal;
+    }
+    AFW_LOCK_END;
+
+    return afw_value_create_unmanaged_integer(integer, p, xctx);
+}
+
+
+/* --- authorization_handler_reference_count ------------------------------- */
+
+static const afw_utf8_t
+impl_brief_authorization_handler_reference_count =
+    AFW_UTF8_LITERAL(
+        "Snapshot authorization handler anchor reference_count under lock");
+
+static const afw_utf8_t
+impl_description_authorization_handler_reference_count =
+    AFW_UTF8_LITERAL(
+        "internal points to afw_integer_t reference_count on an "
+        "afw_authorization_handler_id_anchor_t. Under "
+        "authorization_handler_id_anchor_rw_lock (read), copies the integer "
+        "into a value in p.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_authorization_handler_reference_count = {
+    .key = afw_s_authorization_handler_reference_count,
+    .function =
+        afw_runtime_value_accessor_authorization_handler_reference_count,
+    .brief = &impl_brief_authorization_handler_reference_count,
+    .description = &impl_description_authorization_handler_reference_count,
+    .copies_under_lock = true,
+    .returns_live_reference = false
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_authorization_handler_reference_count(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_integer_t integer;
+
+    (void)prop;
+
+    if (!internal) {
+        return NULL;
+    }
+
+    AFW_LOCK_READ_BEGIN(xctx->env->authorization_handler_id_anchor_rw_lock) {
+        integer = *(const afw_integer_t *)internal;
+    }
+    AFW_LOCK_READ_END;
+
+    return afw_value_create_unmanaged_integer(integer, p, xctx);
+}
+
+
 /* --- service_startup ----------------------------------------------------- */
 
 static const afw_utf8_t
@@ -1051,6 +1144,8 @@ impl_core_value_accessor_infos[] = {
     &impl_info_stopping_adapter_instances,
     &impl_info_applicable_flags,
     &impl_info_stopping_authorization_handler_instances,
+    &impl_info_adapter_reference_count,
+    &impl_info_authorization_handler_reference_count,
     &impl_info_adapter_metrics,
     &impl_info_null_terminated_array_of_internal,
     &impl_info_null_terminated_array_of_objects,

@@ -251,8 +251,8 @@ impl_properties__AdaptiveAdapter_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_adapter_reference_count,
+        afw_runtime_value_accessor_adapter_reference_count
     },
     {
         &afw_self_s_serviceId,
@@ -464,8 +464,8 @@ impl_properties__AdaptiveAuthorizationHandler_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_authorization_handler_reference_count,
+        afw_runtime_value_accessor_authorization_handler_reference_count
     },
     {
         &afw_self_s_serviceId,

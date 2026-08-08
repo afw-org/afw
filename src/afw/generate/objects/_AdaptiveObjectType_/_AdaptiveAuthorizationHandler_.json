@@ -31,17 +31,18 @@
             "allowQuery": false,
             "brief": "Properties associated with this handler",
             "dataType": "object",
-            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+            "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
             "label": "Properties"
         },
         "referenceCount": {
             "allowQuery": true,
             "brief": "Authorization handler's reference count",
             "dataType": "integer",
-            "description": "Authorization handler's reference count.",
+            "description": "Active instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
             "label": "Reference Count",
             "runtime": {
-                "memberName": "reference_count"
+                "memberName": "reference_count",
+                "valueAccessor": "authorization_handler_reference_count"
             }
         },
         "serviceId": {
@@ -60,7 +61,7 @@
             "brief": "Reference count of stopping instances",
             "dataType": "array",
             "dataTypeParameter": "integer",
-            "description": "Reference count of stopping instances.",
+            "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
             "label": "Stopping Instances",
             "runtime": {
                 "memberName": "authorization_handler_id",
