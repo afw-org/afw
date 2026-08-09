@@ -97,7 +97,7 @@ Update this section if the plan changes.
   - Tests: always-on `tests/advanced/catalog-value-accessors/`; opt-in `tests_special/` lifecycle + blast corpus.
 - **afwdev follow-ons** on same PR (after **#159** advanced-test/blast): `--tests-path`/`-T`, `--output`/`--output-format`, recipe polish, **#61** structured exceptions (closed).
 - **#13** stress: comment to Jeremy (blast ≠ his `--rounds`/`--continuous` on `test`); left open.
-- **Active branch:** `issue-#149-catalog-phase2` off `mgg-develop` for phase 2 (more accessors only if proven; EnvironmentRegistry/`current` + rich objectOptions pool bug).
+- **Active branch:** `issue-#149-catalog-phase2` — phase 2 **EnvironmentRegistry/`current` objectOptions pool fix** landed (meta propertyTypes materialize on view pool); remaining: more accessors only if proven; metrics R vs snapshot.
 
 ### Session wrap-up — 2026-08-06 (#17 merged)
 

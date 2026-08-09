@@ -264,7 +264,12 @@ afw_object_meta_get_path(
 
 /*
  * Get the property type object for an object's property from the meta
- * of an object, creating it if needed
+ * of an object, creating it if needed.
+ *
+ * With metaFull, meta get can surface propertyTypes from a permanent object
+ * type graph (p == NULL). Option/normalize processing must only mutate
+ * instance-owned meta on instance->p (views always have a pool). Materialize
+ * clones when the resolved bag or entry is permanent.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_object_meta_get_property_type(
@@ -276,8 +281,17 @@ afw_object_meta_get_property_type(
     const afw_object_t *property_types;
     const afw_object_t *property_type;
 
-    /* This is here for const objects for now. */
+    /* Const objects with no meta and no pool: cannot build mutable types. */
     if (!instance->meta.meta_object && !instance->p) {
+        return NULL;
+    }
+
+    /*
+     * Need a pool to own materializations. Permanent shells (p == NULL)
+     * cannot host option-driven propertyTypes writes — callers should be
+     * views or other pooled wrappers.
+     */
+    if (!instance->p) {
         return NULL;
     }
 
@@ -291,6 +305,15 @@ afw_object_meta_get_property_type(
             meta, afw_s_propertyTypes, xctx);
         ((afw_object_t *)property_types)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyTypes_;
+    }
+    else if (!property_types->p) {
+        /* Permanent OT propertyTypes — clone onto instance pool / delta. */
+        property_types = afw_object_create_clone(
+            property_types, instance->p, xctx);
+        ((afw_object_t *)property_types)->meta.object_type_uri =
+            afw_s__AdaptiveMetaPropertyTypes_;
+        afw_object_set_property_as_object(meta,
+            afw_s_propertyTypes, property_types, xctx);
     }
 
     property_type = afw_object_old_get_property_as_object(property_types,
@@ -311,6 +334,18 @@ afw_object_meta_get_property_type(
         }
         ((afw_object_t *)property_type)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyType_;
+    }
+    else if (!property_type->p) {
+        /*
+         * Bag was cloned but entries can still be permanent (shallow
+         * nested object values). Replace with a pooled clone.
+         */
+        property_type = afw_object_create_clone(property_type,
+            instance->p, xctx);
+        ((afw_object_t *)property_type)->meta.object_type_uri =
+            afw_s__AdaptiveMetaPropertyType_;
+        afw_object_set_property_as_object(property_types,
+            property_name, property_type, xctx);
     }
 
     return property_type;
@@ -766,9 +801,22 @@ afw_object_meta_add_property_error(
     const afw_object_t *property_type;
     const afw_value_t *value;
     const afw_array_t *errors;
- 
+
+    /*
+     * Cannot record property errors on permanent objects (no pool) or when
+     * property type materialization fails. Soft no-op so option processing
+     * does not replace the original failure with "Object must have a pool".
+     */
+    if (!instance->p) {
+        return;
+    }
+
     property_type = afw_object_meta_get_property_type(instance,
         property_name, xctx);
+    if (!property_type || !property_type->p) {
+        return;
+    }
+
     errors = afw_object_old_get_property_as_array(property_type,
         afw_s_errors, xctx);
     if (!errors) {

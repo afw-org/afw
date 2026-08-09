@@ -498,7 +498,8 @@ High signal for #149 (adjust as inventory proceeds):
 2. ~~Inventory risk types with §10 checklist~~ (core named accessors + P0 adapter/auth — §14).  
 3. ~~Surgical P0: lock+copy `referenceCount` (adapter + auth); first-class `_AdaptiveRuntimeValueAccessor_` registry.~~  
 4. ~~Phase 1 PR to `mgg-develop`~~ — [PR #160](https://github.com/afw-org/afw/pull/160) merged 2026-08-09 (`32ff0706`).  
-5. **Phase 2+ (open on `issue-#149-catalog-phase2`):** more lock/copy only where inventory proves need; EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7); optional metrics snapshot vs document-R; services/logs; issue comments as slices land.
+5. ~~EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7).~~ **fixed** on `issue-#149-catalog-phase2`.  
+6. **Still open:** more lock/copy only where inventory proves need; optional metrics snapshot vs document-R; services/logs; issue comments as slices land.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.
 
@@ -651,31 +652,30 @@ Plus **18** `onGetValueCFunctionName` model `current::` callbacks (xctx model st
 - Prefer live **OT get** or instance get with options (`metaFull`, `objectTypes`, …) for property meta including `runtime.valueAccessor`.  
 - For **lifetime**, the **generated map + accessor** is authoritative.
 
-### 14.7 Bug: rich objectOptions on EnvironmentRegistry/`current` (2026-08-08)
+### 14.7 Bug: rich objectOptions on EnvironmentRegistry/`current` (2026-08-08) — **fixed phase 2**
 
-**Symptom:** `get_object(afw, _AdaptiveEnvironmentRegistry_, current, options: …)` with certain option sets fails; afwfcgi stays up.
+**Symptom (before fix):** `get_object(afw, _AdaptiveEnvironmentRegistry_, current, options: …)` with certain option sets failed; afwfcgi stayed up.
 
-| Options | Error |
-|---------|--------|
-| bare / `metaFull` alone / identity flags | **success** (~1.3–1.4 MiB) |
-| `metaFull` + `normalize` + path/ids | **`Object must have a pool`** |
-| `metaFull` + `objectTypes` + … | **`Object must have a pool`** |
-| kitchen sink incl. `composite` + `inheritedFrom` + defaults | **`Object immutable`** |
+| Options | Before | After (phase 2) |
+|---------|--------|-----------------|
+| bare / `metaFull` alone / identity flags | success | success |
+| `metaFull` + `normalize` (+ path/ids) | **`Object must have a pool`** | **success** |
+| `metaFull` + `objectTypes` | fail (same class) | **success** |
+| `composite` + `inheritedFrom` + metaFull + normalize | mixed | **success** (smoke) |
 
-**Root cause (backtrace):**
+**Root cause:**
 
-1. `afw_object_view_create` → `impl_additional_object_option_processing` / normalize path.  
-2. Tries to annotate meta (`impl_meta_set_property_type_property`, or on catch `afw_object_meta_add_property_error` → `afw_object_set_property_as_array`).  
-3. **`EnvironmentRegistry/current` is a static const object with `p == NULL`** (`afw_environment_registry_object.c`: `impl_current_object.p = NULL`). Nested values include other permanent/immutable runtime/const objects.  
-4. `afw_object_set_property_as_array` / `afw_object_set_property` require a **pool** and/or **mutable** meta — permanent objects throw.
+1. View create runs `impl_additional_object_option_processing` / normalize.  
+2. With **`metaFull`**, `afw_object_meta_set_object_type` attaches the OT; meta `get_property` then falls through to the **permanent** `object_type_object` for `propertyTypes`.  
+3. `afw_object_meta_get_property_type` returned those OT property type objects with **`p == NULL`**.  
+4. Normalize tried to set / record errors on them → `afw_object_set_property_as_*` → **Object must have a pool**.  
+5. Catch path `afw_object_meta_add_property_error` masked the first error with the same pool throw.
 
-**Why it may feel new:** #2-era tightening of managed/unmanaged create paths and stricter “must have a pool” checks on `set_property_as_*` (generated data-type bindings) make meta mutation fail loudly; older code may have been laxer or admin may have stopped passing these options on the big get.
+**Fix (landed):** `afw_object_meta_get_property_type` materializes **pooled clones** of permanent `propertyTypes` / property-type entries onto `instance->p` (view pool); refuses when `!instance->p`. `add_property_error` soft no-ops if it still cannot get a mutable property type (do not replace the original error with pool noise).
 
-**Product note:** Jeremy’s app loads `current` with **`modelOptions.adaptiveObject: false` and no objectOptions** — so UI avoids this. Object viewer uses rich options on **individual** objects (composite/normalize/…), which often have pooled views. Fixing meta annotation for permanent objects would still be correct for API completeness.
+**Product note:** Jeremy’s app loads `current` without objectOptions; object viewer uses rich options on individual objects. Fix still needed for API completeness and any client that passes metaFull+normalize on permanent shells via views.
 
-**Fix direction (not implemented yet):** ensure option processing only mutates **view-owned pooled meta** (never the underlying permanent object’s meta); when recording property errors, use `view->p` / meta objects created in the view pool; skip or soft-fail meta mutation for `!object->p` / immutable bases. Related to #149 only insofar as views + immutable runtime bases interact.
-
-**Tests to add when fixing:** get `current` with normalize+metaFull+path; with composite+inheritedFrom; expect success (or documented subset of options), not throw.
+**Regression:** `src/afw/tests/objects/object_options.as` — `envreg current metaFull normalize` / `objectTypes`.
 
 ### 14.8 Decade-old problem: `object->p` for “stuff that dies with the object”
 
