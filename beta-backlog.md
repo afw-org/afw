@@ -91,14 +91,12 @@ Update this section if the plan changes.
 
 ### Session wrap-up — 2026-08-09 (#149 phase 1 + afwdev harness)
 
-- **#149 phase 1** merged to **`mgg-develop`** via [PR #160](https://github.com/afw-org/afw/pull/160) (`32ff0706`). Issue comment has ship notes. **Does not close #149.**
-  - Architecture: [`designs/runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md), snapshot [`runtime-value-accessors.md`](designs/runtime-value-accessors.md), discovery [`runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md).
-  - Product C: first-class `_AdaptiveRuntimeValueAccessor_` registry objects; lock+copy **`referenceCount`** for adapter + auth handler; metrics/properties stay live-while-active (documented).
-  - Tests: always-on `tests/advanced/catalog-value-accessors/`; opt-in `tests_special/` lifecycle + blast corpus.
-- **afwdev follow-ons** on same PR (after **#159** advanced-test/blast): `--tests-path`/`-T`, `--output`/`--output-format`, recipe polish, **#61** structured exceptions (closed).
-- **#13** stress: comment to Jeremy (blast ≠ his `--rounds`/`--continuous` on `test`); left open.
-- **Phase 2** merged [PR #161](https://github.com/afw-org/afw/pull/161) (`ae50a2ab`) — EnvironmentRegistry/`current` rich objectOptions pool fix.
-- **Phase 3** on `issue-#149-catalog-phase3` — lock-safe live `adapter_metrics` / new `adapter_properties`; document-R (no deep metrics snapshot). Close **#149** when PR lands; residuals under **#2**.
+- **#149 closed** (2026-08-09): phases 1–3 via PRs [#160](https://github.com/afw-org/afw/pull/160), [#161](https://github.com/afw-org/afw/pull/161), [#162](https://github.com/afw-org/afw/pull/162) (`ad78aa62`).
+  - Architecture pads; `_AdaptiveRuntimeValueAccessor_` registry; lock+copy **referenceCount**; objectOptions pool fix on permanent shells; lock-safe live **metrics/properties**.
+  - Tests: `catalog-value-accessors`, `tests_special` lifecycle + blast; object_options envreg cases.
+  - Residuals (full-registry materialize size, long-running pool pressure) under **#2**.
+- **afwdev follow-ons** (with #160 / after **#159**): `--tests-path`/`-T`, `--output`/`--output-format`, **#61** exceptions (closed).
+- **#13** stress: comment to Jeremy; left open.
 
 ### Session wrap-up — 2026-08-06 (#17 merged)
 
