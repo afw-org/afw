@@ -1,7 +1,7 @@
 #!/usr/bin/env -S afw --syntax test_script
 //?
 //? testScript: adapter_afw_get.as
-//? customPurpose: blast_corpus — adapter anchor (#149)
+//? customPurpose: tests_special — adapter anchor (#149)
 //? description: Get runtime adapter afw and check referenceCount
 //? sourceType: script
 //?

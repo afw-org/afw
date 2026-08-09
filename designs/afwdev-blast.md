@@ -31,8 +31,8 @@ afwdev blast -d 10m -p afw --test-pattern 'file_adapter/|rql/'
 
 # Private / out-of-suite corpus (NOT discovered by afwdev test -j)
 # Repeatable; exclusive — replaces package src/*/tests discovery
-afwdev blast -T src/afw/blast_corpus/catalog -d 15s -c 4 -m 40
-afwdev blast -T /path/to/more -T src/afw/blast_corpus/catalog -f my.conf -m 100
+afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 40
+afwdev blast -T /path/to/more -T src/afw/tests_special/catalog -f my.conf -m 100
 ```
 
 ### `--tests-path` / `-T` (experimental)
@@ -41,9 +41,9 @@ afwdev blast -T /path/to/more -T src/afw/blast_corpus/catalog -f my.conf -m 100
 |--|--|
 | **When omitted** | Corpus = package `src/*/tests` (plus `-p` / `--test-pattern` / `--tags`; fixture skip by default) |
 | **When set** | Corpus = only those directory trees (recursive `*.as`, skip `_` names); package discovery ignored |
-| **test -j** | Never scans `--tests-path` roots; put load scripts outside `tests/` (e.g. `src/afw/blast_corpus/`) |
+| **test -j** | Never scans `--tests-path` roots; put load scripts outside `tests/` (e.g. `src/afw/tests_special/`) |
 
-Example private tree: `src/afw/blast_corpus/catalog/` (#149 value-accessor / adapter smoke scripts).
+Example private tree: `src/afw/tests_special/catalog/` (#149 value-accessor / adapter smoke scripts).
 
 ### Defaults (plain `afwdev blast`)
 

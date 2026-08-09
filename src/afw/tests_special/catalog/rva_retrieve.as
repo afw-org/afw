@@ -1,7 +1,7 @@
 #!/usr/bin/env -S afw --syntax test_script
 //?
 //? testScript: rva_retrieve.as
-//? customPurpose: blast_corpus — value accessor catalog (#149)
+//? customPurpose: tests_special — value accessor catalog (#149)
 //? description: Retrieve all runtime value accessor objects (maxObjects 0)
 //? sourceType: script
 //?

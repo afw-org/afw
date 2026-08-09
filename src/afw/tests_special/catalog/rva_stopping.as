@@ -1,7 +1,7 @@
 #!/usr/bin/env -S afw --syntax test_script
 //?
 //? testScript: rva_stopping.as
-//? customPurpose: blast_corpus — value accessor catalog (#149)
+//? customPurpose: tests_special — value accessor catalog (#149)
 //? description: Get lock-copy stopping accessor catalog entry
 //? sourceType: script
 //?
