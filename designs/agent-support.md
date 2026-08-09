@@ -72,6 +72,8 @@ Add one-liners here when a durable fact is not worth a full playbook yet.
 | Host contracts | `afwfcgi` wakes workers + unlinks Unix path; `afw` sets `terminating` only | #158 section in project memory / rules |
 | Env discovery | Everything registered can be read as runtime objects on `adapterId=afw` | runtime-objects pad |
 | Beta | Quality campaign, not partnership end date | `AGENTS.md` mission |
+| Philosophy / taste | Metadata truth, values+pools, small patterned pieces, immutability first | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) |
+| Mantras | “Get it right at most once,” maps over tickets, plain language, thin verticals, … | [`mantras-and-working-style.md`](mantras-and-working-style.md) |
 
 ## Out of scope for this pad
 

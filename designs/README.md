@@ -19,6 +19,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 
 | File | Theme |
 |------|--------|
+| [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Maintainer framing — design philosophy, core value/pool/compile model, product taste; **not** always-on rules |
+| [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |

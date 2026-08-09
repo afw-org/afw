@@ -4,7 +4,7 @@ Long-form context for humans and AI assistants. **Always-on** rules live in [`.c
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
-Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md). Support playbooks / concept stubs: [`designs/agent-support.md`](designs/agent-support.md).
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md). Support playbooks / concept stubs: [`designs/agent-support.md`](designs/agent-support.md). Design philosophy / core model: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras / working style: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference when asked — not always-on).
 
 ## Mission
 
@@ -21,7 +21,7 @@ Prefer **git** for durable shared truth. Session memory is a sticky index + pref
 | Code + tests | Ground truth; re-verify live when teaching or debugging |
 | [`.cursor/rules/*.mdc`](.cursor/rules/) | How to *work* in each area (always-on + area rules) |
 | This file (`AGENTS.md`) | System map and agent mission |
-| [`designs/`](designs/README.md) | Why, history, open questions; support playbook stubs |
+| [`designs/`](designs/README.md) | Why, history, open questions; support playbook stubs; philosophy/core model framing |
 | [`whats-new.md`](whats-new.md) | User/operator-facing notes on `mgg-develop` |
 | Handbook / Doxygen | Authors and builders (`src/afw/doc/`, `build/docs/`) |
 | Project memory (Grok workspace `MEMORY.md`) | Sticky prefs + resume; **maps over ticket status** |
