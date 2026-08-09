@@ -17,4 +17,15 @@
         Additionally, the Reference material will be helpful in referring back to, for more 
         detailed, technical documentation. In particular, the Doxygen reference for C.
     </paragraph>
+    <paragraph>
+        If you work in the Adaptive Framework Git repository, the source tree also holds 
+        maintainer-oriented maps that are not the main handbook narrative. Start at the 
+        package-root file <literal>AGENTS.md</literal> for a system map and build/test 
+        orientation. That file also sketches an optional pattern for working a development or 
+        support issue with an AI partner (open with what the partner thinks, discuss, then 
+        implement). Deeper design notes, topic indexes, and optional support material live 
+        under the <literal>designs/</literal> directory. Those notes help people who develop 
+        and support the framework day to day; they do not replace this guide, the Architecture 
+        Guide, or the tests.
+    </paragraph>
 </doc>

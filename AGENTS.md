@@ -1,14 +1,52 @@
 # AGENTS.md — Adaptive Framework (AFW)
 
-Long-form context for humans and AI assistants. **Always-on** rules live in [`.cursor/rules/afw-project.mdc`](.cursor/rules/afw-project.mdc). Mention **`@AGENTS.md`** in chat when you need this map.
+Long-form context for humans and AI assistants. **Always-on** rules live in [`.cursor/rules/afw-project.mdc`](.cursor/rules/afw-project.mdc). Mention **`@AGENTS.md`** in chat when you need this map. Claude Code users: thin stub [`CLAUDE.md`](CLAUDE.md) points here (do not fork a second handbook there).
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
-Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md).
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md). **Optional team lessons** (AI partnering): [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). **Topic atlas** (where is X?): [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md). Support playbooks: [`designs/agent-support.md`](designs/agent-support.md). Philosophy: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference — not always-on).
 
 ## Mission
 
 AFW is **metadata-driven**: define object types, functions, data types, and C **interfaces** once, then generate headers, bindings, registration, and docs. The **runtime is C**; **afwdev** is Python.
+
+**Agent role:** act as an **ongoing support and development partner** — accurate mental models, careful implementation, live debugging, and knowledge that survives sessions. **Beta** is a quality bar and current campaign (stabilize, ship, fewer landmines), not an end date for the partnership. Product direction and hard “should we?” choices are grown by **consensus** among maintainers and collaborators — surface options and tradeoffs; do not treat any one voice as decree.
+
+## Knowledge map (where truth lives)
+
+Prefer **git** for durable shared truth. Session memory is a sticky index + preferences + thin resume — not a second handbook.
+
+| Layer | Role |
+|-------|------|
+| Code + tests | Ground truth; re-verify live when teaching or debugging |
+| [`.cursor/rules/*.mdc`](.cursor/rules/) | How to *work* in each area (always-on + area rules) |
+| This file (`AGENTS.md`) | System map and agent mission |
+| [`designs/`](designs/README.md) | Why, history, open questions; **knowledge atlas**, playbooks, philosophy/mantras |
+| [`whats-new.md`](whats-new.md) | User/operator-facing notes on `mgg-develop` |
+| Handbook / Doxygen | Authors and builders (`src/afw/doc/`, `build/docs/`) |
+| Project memory (Grok workspace `MEMORY.md`) | Sticky prefs + resume; **maps over ticket status** |
+
+## How we learn
+
+1. **Consensus first:** open with “what do you think?”, discuss, allow pushback, guide with why and live probes — either side can be wrong; shared understanding beats winning. Same spirit as long-standing human partner work. Detail: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (*How consensus is grown*).
+2. Issue and PR work builds deep knowledge; **promote maps** (concept cards, symptom→layer→probe→code entry) into git after deep threads — issue ids as pointers only.
+3. After a deep session, capture when useful: mental model change, wrong path never to take, live probe, optional user-facing sentence. **Ah-ha → map** (the env/runtime loop is the model case).
+4. **Live verify** when teaching or support-debugging (`afw` / `afwfcgi`, runtime objects on `adapterId=afw`, etc.).
+5. **Widen goals, not volume** — no dumping every PR status into long memory or long pads.
+6. Two tempos: thin session resume vs durable AFW models in rules / designs / this map.
+
+## Possible pattern: work an issue with an AI partner
+
+**Optional** — one way that has worked well for development and support. Not required; not tied to one product. Models and harnesses differ; the pattern is what transfers.
+
+1. Open your usual harness on this repo (so it can see the tree, and ideally this file).  
+2. Start with something like: **“What do you think about issue #N?”** (or paste the issue text / a short symptom). Do **not** lead with “implement a fix” unless you already share the plan.  
+3. Discuss: keep asking what the partner thinks; push back; guide with **why** when you disagree.  
+4. When chat is stuck, **close the loop live** (`afw`, `afwfcgi`, runtime objects on `adapterId=afw`, the code the partner named).  
+5. Agree the next step, then implement; prefer small verticals and tests.  
+6. After a real click, leave a **thin map** in git if it will help the next person (atlas row, playbook note, or short pad) — issue ids as pointers only.
+
+Deeper optional read: [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). Support-shaped maps: [`designs/agent-support.md`](designs/agent-support.md), [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md).
 
 ## Main components
 

@@ -19,6 +19,10 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 
 | File | Theme |
 |------|--------|
+| [`ai-partner-lessons.md`](ai-partner-lessons.md) | **Optional** team lessons — pairing with an AI partner on issues/support (follow or not) |
+| [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps (first-pass harvest); start here for “where is X?” |
+| [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Maintainer framing — design philosophy, core value/pool/compile model, product taste; **not** always-on rules |
+| [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
@@ -40,7 +44,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`utf8-code-point-sequences.md`](utf8-code-point-sequences.md) | **#153** — utf8-backed values as immutable code-point sequences (index, for-of, array consumers) |
 | [`afwdev-advanced-test.md`](afwdev-advanced-test.md) | **#157** — **experimental** advanced-test leaves; hermetic `afwfcgi` + FCGI client; used for multi-request catalog / lifecycle |
 | [`afwdev-blast.md`](afwdev-blast.md) | **experimental** `afwdev blast` — load thrash (not `test -j`); related **#13** still open for Jeremy’s rounds/continuous knobs |
-| (no pad) | **#158** graceful process stop — landed on branch `issue-158-afwfcgi-graceful-shutdown`; user note in `whats-new.md` |
+| [`agent-support.md`](agent-support.md) | Ongoing support/dev partner — playbook stubs, capture checklist; hub is `AGENTS.md` |
+| (no pad) | **#158** graceful process stop — landed (PR #165); user note in `whats-new.md` |
 
 ## Conventions
 
