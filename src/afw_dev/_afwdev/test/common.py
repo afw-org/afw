@@ -596,6 +596,10 @@ def get_rel_error_source_location_nav(test, testCase):
     error = testCase.get('error', None)
 
     if error:
+        # advanced-test and some runners may pass a plain string
+        if not isinstance(error, dict):
+            return None
+
         lineNumber = error.get("parserLineNumber")
         columnNumber = error.get("parserColumnNumber")
         offset = error.get("offset")
@@ -634,6 +638,15 @@ def print_test_failure(test, testCase):
     error = testCase.get("error")
 
     if error:
+        # Plain string (legacy / defensive) — no Adaptive error object shape
+        if isinstance(error, str):
+            msg.error("    " + error + "\n")
+            return
+
+        if not isinstance(error, dict):
+            msg.error("    " + str(error) + "\n")
+            return
+
         message = error.get("message")
         if message:
             msg.error("    " + message + "\n")        
@@ -749,11 +762,20 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
                 # failed test
                 msg.error("    \u2717", end="")
                 msg.highlighted_info(" {}".format(tc_test))
+                # One-line reason always (advanced-test leaves put detail here)
+                err = testCase.get("error")
+                if isinstance(err, str) and err:
+                    msg.error("      {}".format(err))
+                elif isinstance(err, dict) and err.get("message"):
+                    msg.error("      {}".format(err.get("message")))
+                elif (tc_description and tc_description != tc_test and
+                        not (isinstance(err, dict) and err.get("message"))):
+                    msg.error("      {}".format(tc_description))
                 if (msg.is_verbose_mode()):
                     print("\033[2m      {}\033[0m\n".format(tc_description))                
                 msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))
                 
-                # print test errors, if in verbose mode
+                # Full source navigation, if in verbose mode
                 if msg.is_verbose_mode():
                     print_test_failure(test, testCase)
 

@@ -264,14 +264,21 @@ def _pass_response(description):
 
 
 def _fail_response(description, detail):
+    # error must be a dict: print_test_failure / nav helpers call .get()
+    # (string error caused "'str' object has no attribute 'get'" under --debug)
+    detail_s = detail if isinstance(detail, str) else str(detail)
     return {
         "description": description or "advanced-test",
+        "error": detail_s,
         "tests": [
             {
                 "test": description or "advanced-test",
-                "description": detail,
+                "description": detail_s,
                 "passed": False,
-                "error": detail,
+                "error": {
+                    "id": "advanced-test",
+                    "message": detail_s,
+                },
             }
         ],
     }

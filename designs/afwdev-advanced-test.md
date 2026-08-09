@@ -437,5 +437,6 @@ Dispatch should treat marker paths **before** env-mode module selection (same pa
 - [x] GitHub issue [#157](https://github.com/afw-org/afw/issues/157)  
 - [x] Implement vertical + smoke leaf (`src/afw/tests/advanced/smoke/`)  
 - [x] Valgrind-on-afwfcgi (spawn hook + works under `--env-mode valgrind`)  
-- [ ] Merge → rebase #149 → catalog scenarios  
+- [x] Merge → rebase #149 → catalog scenarios (`tests/advanced/catalog-value-accessors`, `tests_special/`)
+- [x] Failure reporting: advanced-test `error` is Adaptive-shaped dict (`message`); console always prints one-line reason; full nav stays `--verbose` / `--debug`  
 - [ ] #2 stress + observe extensions  
