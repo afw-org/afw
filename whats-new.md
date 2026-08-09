@@ -59,6 +59,7 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **\*\*\* Experimental \*\*\***: hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
 | [**afwdev blast**](#experimental-afwdev-blast) | **\*\*\* Experimental \*\*\***: on-demand random suite firehose at afwfcgi — not part of `test -j` |
 | [**afwdev test/blast recipe flags**](#afwdev-testblast-recipe-flags) | **\*\*\* Experimental \*\*\***: `--tests-path`/`-T`, `--output` / `--output-format` for machine summaries |
+| [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149-phase-1) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
 
 ---
@@ -93,7 +94,23 @@ afwdev blast -d 30m             # short aliases; -c/-n override auto
 afwdev blast -f path/to/afw.conf -m 500   # managed spawn (-n defaults to CPUs)
 ```
 
-Defaults favor docker/dev + classic load (threads≈CPUs, in-flight≈2×CPUs). Fixture-heavy tests skipped unless `--include-fixtures`. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Signals: [#158](https://github.com/afw-org/afw/issues/158).
+Defaults favor docker/dev + classic load (threads≈CPUs, in-flight≈2×CPUs). Fixture-heavy tests skipped unless `--include-fixtures`. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Managed teardown uses SIGTERM; **`afwfcgi` graceful stop** is [#158](https://github.com/afw-org/afw/issues/158) (see below).
+
+**[↑ Highlights](#highlights)**
+
+---
+
+## Graceful process stop (SIGTERM/SIGINT, issue #158)
+
+Operators and tooling can stop long-lived hosts without relying on SIGKILL under normal load.
+
+| Host | Behavior |
+|------|----------|
+| **`afwfcgi`** | **SIGTERM** / **SIGINT**: set environment **`terminating`**, stop accepting FastCGI requests, wake request threads, join, close listen fd, **unlink Unix** `-p` path (not TCP `:<port>`). Brief note in `afwfcgi --help`. |
+| **`afw`** (one-shot, interactive, **`--local`**) | Same signals set **`terminating` only** (no accept-loop wake). |
+| **In-flight Adaptive work** | Long I/O / retrieve paths may throw error **`terminating`** → HTTP **503** (“Server Terminating”) via **`AFW_XCTX_THROW_IF_TERMINATING`**. |
+
+Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent still may SIGKILL after a grace period (systemd/Docker/`stop_afwfcgi`). No configurable drain timer; no SIGHUP reload.
 
 **[↑ Highlights](#highlights)**
 

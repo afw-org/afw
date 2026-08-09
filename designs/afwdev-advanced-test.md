@@ -55,7 +55,7 @@ When the shape settles, drop the experimental banner and promote invariants into
 - This work was **intentionally split** from the **#149 runtime catalog** Grok session so that branch’s context (live afwfcgi poking, env/registry mental model) stayed unpolluted.
 - **#149 session** owns product/reliability for catalogs/accessors; **this branch** owns experimental **afwdev test advanced-test** + **`afwdev blast`**.
 - After PR merges: on `issue-#149-runtime-catalog-lifetime`, rebase onto updated `mgg-develop`, then add **purpose-built advanced-test leaves** for multi-request catalog behavior; use **`afwdev blast`** for load/crash hunts (not as the #149 correctness suite).
-- On-demand load design pad: [`afwdev-blast.md`](afwdev-blast.md). afwfcgi SIGTERM: **#158**.
+- On-demand load design pad: [`afwdev-blast.md`](afwdev-blast.md). afwfcgi SIGTERM/SIGINT graceful stop: **#158** (done).
 
 ---
 

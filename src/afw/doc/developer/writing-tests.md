@@ -215,7 +215,8 @@ Same discovery filters as `test` (`--srcdir-pattern`, `--test-pattern`,
 `afw.conf`) so failures usually mean a real problem; use
 `--include-fixtures` to blast adapter/env tests too. Continues on Adaptive
 failures; stops if the server dies. Design: `designs/afwdev-blast.md`.
-afwfcgi signal shutdown: issue **#158**.
+afwfcgi SIGTERM/SIGINT graceful stop: issue **#158** (done; hermetic
+check under `tests/advanced/afwfcgi_signal_shutdown/`).
 
 ## Practical tips
 

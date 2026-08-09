@@ -127,4 +127,4 @@ Optional: personal shortcuts via **`afwdev task`** (`tasks` in afwdev-settings.j
 - Reuse: test discovery/tags, advanced FCGI client + afwfcgi host spawn
 - Errors: `_afwdev.common.errors` (issue **#61**) where applicable
 
-afwfcgi graceful SIGTERM: track **#158**.
+afwfcgi graceful SIGTERM/SIGINT: **#158** (landed on `issue-158-afwfcgi-graceful-shutdown` / `mgg-develop` when merged).
