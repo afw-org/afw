@@ -21,9 +21,12 @@ import requests
 
 from _afwdev.common import msg, package
 from _afwdev.test.common import (
+    clip_detail,
     find_test_groups,
     load_test_group_config,
+    normalize_tests_paths,
     test_group_matches_tags,
+    write_results_summary,
 )
 
 
@@ -98,25 +101,42 @@ def run(options):
     timeout_s = float(options.get("request_timeout") or 30.0)
     progress_every_s = float(options.get("progress_every") or 2.0)
 
-    srcdirs = _collect_srcdirs(options)
     attach = bool(url)
-    # Default: skip fixture-heavy groups so fail≈0 unless something is wrong
+    tests_paths = normalize_tests_paths(options.get("tests_path"))
     include_fixtures = bool(options.get("include_fixtures"))
-    corpus, skipped_fixture = _collect_corpus(
-        options, srcdirs, skip_fixtures=not include_fixtures)
+
+    if tests_paths:
+        # Explicit roots only — not package tests/, not default test -j
+        corpus, skipped_fixture = _collect_corpus_from_tests_paths(
+            options, tests_paths)
+        corpus_mode = "tests-path"
+    else:
+        srcdirs = _collect_srcdirs(options)
+        # Default: skip fixture-heavy groups so fail≈0 unless something is wrong
+        corpus, skipped_fixture = _collect_corpus(
+            options, srcdirs, skip_fixtures=not include_fixtures)
+        corpus_mode = "package-tests"
+
     if not corpus:
+        if tests_paths:
+            msg.error_exit(
+                "No .as tests under --tests-path "
+                "(check paths and --test-pattern): " +
+                ", ".join(tests_paths))
         msg.error_exit(
             "No .as tests in blast corpus "
             "(check --srcdir-pattern / --test-pattern / --tags; "
-            "fixture groups skipped by default — see --include-fixtures)")
+            "fixture groups skipped by default — see --include-fixtures; "
+            "or use --tests-path/-T for private corpora)")
 
     msg.highlighted_info(
         "*** Experimental *** afwdev blast — not part of test -j")
     dur_show = duration_raw if duration_s is not None else "-"
     msg.highlighted_info(
-        "corpus={}  skipped_fixture={}  mode={}  concurrency={} (cpus={})  "
-        "duration={}  max_requests={}".format(
+        "corpus={}  mode={}  skipped_fixture={}  target={}  "
+        "concurrency={} (cpus={})  duration={}  max_requests={}".format(
             len(corpus),
+            corpus_mode,
             skipped_fixture,
             "attach " + url if attach else "managed conf=" + conf,
             concurrency,
@@ -124,11 +144,14 @@ def run(options):
             dur_show if duration_s is not None else "-",
             max_requests if max_requests is not None else "-",
         ))
+    if tests_paths:
+        msg.highlighted_info(
+            "tests-path: " + ", ".join(tests_paths))
     if attach:
         msg.highlighted_info(
             "attach: ensure afwfcgi is up behind that URL "
             "(nginx often already running in dev containers)")
-    if not include_fixtures and skipped_fixture:
+    if not tests_paths and not include_fixtures and skipped_fixture:
         msg.highlighted_info(
             "skipping groups with Environment= / afw.conf "
             "(use --include-fixtures to blast those too)")
@@ -263,33 +286,71 @@ def run(options):
 
         _print_progress(stats, t0, final=True)
         elapsed = time.time() - t0
-        msg.highlighted_info("")
-        msg.highlighted_info(
-            "blast done in {:.1f}s  ok={}  fail={}  timeout={}  err={}  "
-            "total={}  latency_ms avg={:.0f} max={:.0f}".format(
-                elapsed,
-                stats.ok,
-                stats.fail,
-                stats.timeout,
-                stats.err,
-                stats.total,
-                stats.avg_latency_ms(),
-                stats.max_latency_ms,
-            ))
-        if stats.timeout and not stats.fail and not stats.err:
+        summary_to_stdout = (options.get("output") == "-")
+
+        if not summary_to_stdout:
+            msg.highlighted_info("")
             msg.highlighted_info(
-                "note: only client timeouts (no expect fails) — often load/"
-                "queue; try lower -c or higher --request-timeout")
-        if stats.recent_fails:
-            msg.error("Recent problems:")
-            for kind, path, detail in stats.recent_fails[-10:]:
-                msg.error("  [{}] {}  {}".format(
-                    kind,
-                    os.path.relpath(path) if os.path.exists(path) else path,
-                    detail[:120]))
+                "blast done in {:.1f}s  ok={}  fail={}  timeout={}  err={}  "
+                "total={}  latency_ms avg={:.0f} max={:.0f}".format(
+                    elapsed,
+                    stats.ok,
+                    stats.fail,
+                    stats.timeout,
+                    stats.err,
+                    stats.total,
+                    stats.avg_latency_ms(),
+                    stats.max_latency_ms,
+                ))
+            if stats.timeout and not stats.fail and not stats.err:
+                msg.highlighted_info(
+                    "note: only client timeouts (no expect fails) — often load/"
+                    "queue; try lower -c or higher --request-timeout")
+            if stats.recent_fails:
+                msg.error("Recent problems:")
+                for kind, path, detail in stats.recent_fails[-10:]:
+                    msg.error("  [{}] {}  {}".format(
+                        kind,
+                        os.path.relpath(path) if os.path.exists(path) else path,
+                        clip_detail(detail, 120)))
+            if stats.server_dead:
+                msg.error(
+                    "Server died or became unreachable during blast. "
+                    "If libs were just installed, restart afwfcgi "
+                    "(or use blast -f conf for managed spawn).")
+
+        failures = []
+        for kind, path, detail in (stats.recent_fails or []):
+            failures.append({
+                "kind": kind,
+                "path": (
+                    os.path.relpath(path) if os.path.exists(path) else path),
+                "detail": clip_detail(detail),
+            })
+
+        write_results_summary(options, {
+            "tool": "blast",
+            "time_seconds": round(elapsed, 3),
+            "requests": {
+                "ok": stats.ok,
+                "fail": stats.fail,
+                "timeout": stats.timeout,
+                "err": stats.err,
+                "total": stats.total,
+            },
+            "latency_ms": {
+                "avg": round(stats.avg_latency_ms(), 1),
+                "max": round(stats.max_latency_ms, 1),
+            },
+            "server_dead": bool(stats.server_dead),
+            "failures": failures,
+        }, tool_label="blast")
 
         if stats.server_dead:
-            msg.error("Server died or became unreachable during blast.")
+            if summary_to_stdout:
+                msg.error(
+                    "Server died or became unreachable during blast. "
+                    "Restart afwfcgi after install if needed.")
             sys.exit(2)
         if stats.fail or stats.err or stats.timeout:
             sys.exit(1)
@@ -334,13 +395,20 @@ class _HttpTransport(object):
                 timeout=self._timeout,
             )
         except requests.exceptions.ConnectionError as e:
-            raise _ServerDead("connection failed: " + str(e)) from e
+            raise _ServerDead(
+                "connection failed: " + str(e) +
+                " (is afwfcgi up behind the URL? restart after "
+                "./afwdev build --install if libs changed)"
+            ) from e
         except requests.exceptions.Timeout as e:
             raise _Timeout("request timeout: " + str(e)) from e
 
         if r.status_code >= 500:
             raise _ServerDead(
-                "HTTP {} from server".format(r.status_code))
+                "HTTP {} from server".format(r.status_code) +
+                " (server error — check afwfcgi logs; restart after install "
+                "if catalog/runtime looks stale)"
+            )
 
         try:
             body = r.json()
@@ -571,6 +639,41 @@ def _collect_srcdirs(options):
         manual_tests = srcdir_path + "tests"
         srcdirs.append((srcdir, srcdir_path, None, manual_tests))
     return srcdirs
+
+
+def _collect_corpus_from_tests_paths(options, tests_paths):
+    """
+    Build corpus from explicit directory roots (--tests-path).
+
+    Recursively finds *.as (not _*). Applies --test-pattern when set.
+    Does not use package srcdir discovery or fixture skip (roots are intentional).
+    """
+    from _afwdev.test.common import _test_pattern_matches
+
+    pattern = options.get("test_pattern") or ".*"
+    corpus = []
+    seen = set()
+    for root in tests_paths:
+        for dirpath, _dirnames, filenames in os.walk(root):
+            # skip hidden / underscore dir segments
+            parts = os.path.relpath(dirpath, root).split(os.sep)
+            if any(p.startswith("_") or p.startswith(".") for p in parts
+                   if p not in (".", "")):
+                continue
+            for name in filenames:
+                if not name.endswith(".as") or name.startswith("_"):
+                    continue
+                path = os.path.join(dirpath, name)
+                ap = os.path.abspath(path)
+                if ap in seen:
+                    continue
+                if not _test_pattern_matches(pattern, ap) and \
+                        not _test_pattern_matches(pattern, name):
+                    continue
+                seen.add(ap)
+                corpus.append(ap)
+    corpus.sort()
+    return corpus, 0
 
 
 def _group_needs_fixture(root, config):

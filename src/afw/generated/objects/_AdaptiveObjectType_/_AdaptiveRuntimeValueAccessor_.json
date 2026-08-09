@@ -6,17 +6,58 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "A registry type runtime_value_accessor entry.",
+    "description": "A registered runtime value accessor. Core and extensions register these for mapped runtime object properties (see propertyTypes.runtime.valueAccessor). Retrieve and query this object type to discover accessors and their lifetime contracts before reusing or adding one.",
     "objectType": "_AdaptiveRuntimeValueAccessor_",
     "propertyTypes": {
+        "brief": {
+            "allowQuery": true,
+            "brief": "Short description of this accessor",
+            "dataType": "string",
+            "description": "Short description of this accessor suitable for lists and completion.",
+            "label": "Brief",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
+        "copiesUnderLock": {
+            "allowQuery": true,
+            "brief": "Result is copied under a lock",
+            "dataType": "boolean",
+            "description": "When true, the accessor takes a lock (or equivalent) and copies data into the caller's pool so the result is stable after the call. Prefer this style for mutable env state shared across threads.",
+            "label": "Copies Under Lock",
+            "runtime": {
+                "memberName": "copies_under_lock"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of this accessor",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "Description of what this accessor does, including expected internal shape, locking, and whether the Adaptive value aliases live state.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        },
         "key": {
             "allowQuery": true,
-            "brief": "Key of entry",
+            "brief": "Registry key / valueAccessor name",
             "dataType": "string",
-            "description": "Key of entry.",
+            "description": "Key of this entry in registry type runtime_value_accessor. Use this string as propertyTypes.runtime.valueAccessor on mapped object types.",
             "label": "Key",
             "runtime": {
                 "valueAccessor": "indirect"
+            }
+        },
+        "returnsLiveReference": {
+            "allowQuery": true,
+            "brief": "Result may alias live runtime state",
+            "dataType": "boolean",
+            "description": "When true, the returned Adaptive value may point into live environment or instance state that can change or be released while the value is still held. Callers must not assume a snapshot unless copiesUnderLock is also true.",
+            "label": "Returns Live Reference",
+            "runtime": {
+                "memberName": "returns_live_reference"
             }
         }
     },
@@ -26,6 +67,6 @@
             "indirectObjectId": true,
             "objectId": "key"
         },
-        "typedef": "afw_environment_default_register_additional_t"
+        "typedef": "afw_runtime_value_accessor_info_t"
     }
 }

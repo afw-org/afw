@@ -26,9 +26,27 @@ afwdev blast -d 1h -c 16         # override concurrency
 # Managed — spawn installed afwfcgi from conf (-f like afw)
 afwdev blast -f path/to/afw.conf -m 500
 
-# Focus corpus (same filters as test)
+# Focus package suite corpus (same filters as test)
 afwdev blast -d 10m -p afw --test-pattern 'file_adapter/|rql/'
+
+# Private / out-of-suite corpus (NOT discovered by default test -j)
+# Repeatable; exclusive — replaces package src/*/tests discovery
+afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 40
+afwdev blast -T /path/to/more -T src/afw/tests_special/catalog -f my.conf -m 100
+
+# Same -T on afwdev test for opt-in correctness (advanced-test, .as, …)
+afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
 ```
+
+### `--tests-path` / `-T` (experimental; **test** and **blast**)
+
+| | |
+|--|--|
+| **When omitted** | Package `src/*/tests` (blast: + fixture skip by default; test: normal `-j` gate) |
+| **When set** | Only those directory trees (exclusive); package `tests/` ignored |
+| **Default `-j`** | Never scans these roots — use `src/afw/tests_special/` for opt-in |
+
+Examples: `src/afw/tests_special/catalog/` (blast), `src/afw/tests_special/adapter-lifecycle/` (test advanced-test).
 
 ### Defaults (plain `afwdev blast`)
 
@@ -41,7 +59,24 @@ afwdev blast -d 10m -p afw --test-pattern 'file_adapter/|rql/'
 | Corpus filters | same as `test`; **skip fixture groups** by default |
 | Fixtures | skip `Environment=` / `afw.conf` unless `--include-fixtures` |
 
-### Load diagnosis (later — avoid wheel-spinning)
+### Machine summary (`--output` / `--output-format`)
+
+Same idea as `afwdev test` (opt-in; human console stays default):
+
+```bash
+afwdev blast -T src/afw/tests_special/catalog -m 40 --output /tmp/blast.json
+afwdev blast -T src/afw/tests_special/catalog -m 20 --output - --output-format json-compact
+```
+
+| `--output-format` | Meaning |
+|-------------------|---------|
+| `json` (default) | Indented JSON: `requests` (ok/fail/timeout/err/total), `latency_ms`, `failures[]`, `server_dead` |
+| `json-compact` | Single-line JSON |
+| `text` | Simple totals + failure lines |
+
+When `--output` is `-`, final human “blast done …” block is suppressed so stdout is clean for the summary.
+
+### Load diagnosis
 
 Distinguish **too fast / overloaded** vs **real product failure**:
 
@@ -49,11 +84,10 @@ Distinguish **too fast / overloaded** vs **real product failure**:
 |--------|----------|
 | Timeouts rise with `-c`, vanish at low `-c` | Capacity / client timeout, not wrong expects |
 | test_script fails at low `-c` too | Functional bug (suite usually already caught) |
-| `err` / process death | Hard server bug |
-| Latency p50/p99 climb over a long run | Queueing, leak, or progressive slowdown (#2 interest) |
-| afwfcgi accept/active/in-flight gauges | Server-side overload vs client impatience |
+| `err` / process death | Hard server bug; after install, **restart afwfcgi** (stale libs) |
+| Latency climb over a long run | Queueing, leak, or progressive slowdown (#2 interest) |
 
-Possible additions (not required for first PR): separate **timeout** vs **expect** counters; optional latency histogram on progress line; blast `--fail-log path`; Adaptive/runtime **request metrics** on afwfcgi for in-flight and queue depth.
+Still optional later: latency histogram on progress line; Adaptive/runtime request metrics on afwfcgi.
 
 ### Short aliases
 
@@ -65,9 +99,10 @@ Possible additions (not required for first PR): separate **timeout** vs **expect
 | `--max-requests` | `-m` |
 | `--concurrency` | `-c` |
 | `--threads` | `-n` |
-| `--srcdir-pattern` | `-p` (shared with other subcommands) |
+| `--tests-path` | `-T` |
+| `--srcdir-pattern` | `-p` (package corpus only) |
 
-Optional: personal shortcuts via **`afwdev task`** (`tasks` in afwdev-settings.json) if you want named recipes beyond defaults.
+Optional: personal shortcuts via **`afwdev task`** (`tasks` in afwdev-settings.json). Full agent recipe: [`afwdev-test-recipe.md`](afwdev-test-recipe.md).
 
 ## Behavior
 
@@ -81,12 +116,15 @@ Optional: personal shortcuts via **`afwdev task`** (`tasks` in afwdev-settings.j
 - Server dead / unreachable: **stop**; exit 2
 - Any fails at end: exit 1
 - Console progress lines + recent failures summary; reports `skipped_fixture=N`
+- Optional `--output` summary (see above)
 - Ctrl+C: stop sending; managed mode tears down spawn; attach does **not** kill your afwfcgi
+- Attach connection/5xx messages hint restart after install when server looks dead
 
 ## Implementation
 
-- CLI: `cli/info.py` `_info_blast`, handler `subcommand_blast`, registry
-- Logic: `_afwdev/blast/blast.py`
+- CLI: `cli/info.py` blast args, handler `subcommand_blast`, registry
+- Logic: `_afwdev/blast/blast.py` (summary via shared `write_results_summary`)
 - Reuse: test discovery/tags, advanced FCGI client + afwfcgi host spawn
+- Errors: `_afwdev.common.errors` (issue **#61**) where applicable
 
 afwfcgi graceful SIGTERM: track **#158**.

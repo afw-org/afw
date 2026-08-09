@@ -11,6 +11,8 @@ import datetime
 import socket
 import struct
 
+from _afwdev.common.errors import AfwdevProcessError
+
 # FastCGI constants
 FCGI_VERSION = 1
 FCGI_BEGIN_REQUEST = 1
@@ -180,7 +182,7 @@ def _parse_cgi_response(stdout_bytes):
     return status_code, headers, body
 
 
-class FcgiClientError(Exception):
+class FcgiClientError(AfwdevProcessError):
     """Transport or protocol error talking to afwfcgi."""
 
 

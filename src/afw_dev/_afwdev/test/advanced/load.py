@@ -4,6 +4,7 @@
 import os
 
 from _afwdev.common import nfc
+from _afwdev.common.errors import AfwdevRunnerError
 
 try:
     import yaml
@@ -11,7 +12,7 @@ except ImportError:  # pragma: no cover
     yaml = None
 
 
-class AdvancedTestLoadError(Exception):
+class AdvancedTestLoadError(AfwdevRunnerError):
     """Invalid or unreadable advanced-test marker."""
 
 

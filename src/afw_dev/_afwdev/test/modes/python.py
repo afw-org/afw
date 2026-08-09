@@ -15,6 +15,7 @@ import importlib
 from contextlib import redirect_stdout, redirect_stderr
 
 from _afwdev.common import msg
+from _afwdev.common.errors import wrap_exception
 
 ##
 # @brief Runs the tests under the python interpreter.
@@ -71,8 +72,8 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
         
     except Exception as e:
         if stdout:
-            debug += stdout
-        error = e
+            debug = (debug or "") + stdout
+        error = wrap_exception(e)
 
     finally:
         try:

@@ -89,12 +89,22 @@ Update this section if the plan changes.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
 - **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev` (implies `-j`). Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev`** (`--all --generate --clean --install --scan` + `-j`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
 
+### Session wrap-up — 2026-08-09 (#149 phase 1 + afwdev harness)
+
+- **#149 phase 1** on branch `issue-#149-runtime-catalog-lifetime` → PR to `mgg-develop` (see issue for ship notes). **Does not close #149.**
+  - Architecture: [`designs/runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md), snapshot [`runtime-value-accessors.md`](designs/runtime-value-accessors.md), discovery [`runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md).
+  - Product C: first-class `_AdaptiveRuntimeValueAccessor_` registry objects; lock+copy **`referenceCount`** for adapter + auth handler; metrics/properties stay live-while-active (documented).
+  - Tests: always-on `tests/advanced/catalog-value-accessors/`; opt-in `tests_special/` lifecycle + blast corpus.
+- **afwdev follow-ons** on same branch (after PR **#159** advanced-test/blast): `--tests-path`/`-T`, `--output`/`--output-format`, recipe polish, **#61** structured exceptions (closed).
+- **#13** stress: comment to Jeremy (blast ≠ his `--rounds`/`--continuous` on `test`); left open.
+- **Next:** new branch off `mgg-develop` for #149 phase 2 (more accessors only if proven; EnvironmentRegistry/`current` + rich objectOptions pool bug; issue comments as work lands).
+
 ### Session wrap-up — 2026-08-06 (#17 merged)
 
 - **#17** merged to **`mgg-develop`** via [PR #150](https://github.com/afw-org/afw/pull/150) (`dd318e4f`). Issue renamed/closed; whats-new + pads updated for landed status.
-- **#149** (child of **#2**) remains open for runtime/`afw` catalog lifetime — `designs/runtime-catalog-lifetime.md`. Not started.
+- **#149** (child of **#2**) opened for runtime/`afw` catalog lifetime — later phase 1 landed 2026-08-09 (see wrap-up above).
 - Optional residuals O1–O4 done as docs/audit only before merge.
-- **Next session:** not #17 feature work; pick other beta items or #149 later.
+- **Next session (historical):** not #17 feature work; pick other beta items or #149 later.
 
 ### Session notes — 2026-08-06 (object multi-impl cleanup)
 
@@ -284,7 +294,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 **Status:** pointer / **beta-relevant**
 
 - Umbrella **#2** (memory). Working design pad: [`designs/memory-management.md`](designs/memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
-- **#149** (child of **#2**) — runtime / `afw` adapter **catalog lifetime** (live maps vs `EnvironmentRegistry` materialize / admin catalogs). Pad: [`designs/runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md). Open; not started.
+- **#149** (child of **#2**) — runtime / `afw` adapter **catalog lifetime** (live maps vs `EnvironmentRegistry` materialize / admin catalogs). **Phase 1 landed** (architecture + accessor registry + lock-copy `referenceCount` + multi-request tests); issue **still open** for further surgical accessors / const-options. Pads: [`runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md), [`runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md), [`runtime-value-accessors.md`](designs/runtime-value-accessors.md).
 - **#17 mutable object faces** — **done** on `mgg-develop` (PR **#150**, 2026-08-06). Literals + emit, no object/array clone-on-bind, nested hard edge, adapter get/retrieve/callback, #110 defaults, journal get/consumer/advance, YAML hygiene. Pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md). User: **`whats-new.md`**.
 - **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats-new.md`.
   - Another reason **memory management / managed release / long-running escape** needs to be solid **before calling the tree beta**: scripts that snapshot often (or hold results) will stress pools and lifetimes harder than `qualifier::name` get.

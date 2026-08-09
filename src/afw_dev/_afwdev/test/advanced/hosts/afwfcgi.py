@@ -11,9 +11,10 @@ import subprocess
 import time
 
 from _afwdev.common import msg, resources
+from _afwdev.common.errors import AfwdevProcessError
 
 
-class AfwfcgiHostError(Exception):
+class AfwfcgiHostError(AfwdevProcessError):
     """Failed to start or manage afwfcgi."""
 
 

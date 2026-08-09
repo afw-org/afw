@@ -605,6 +605,15 @@ typedef struct afw_runtime_object_map_property_s
 afw_runtime_object_map_property_t;
 
 /**
+ * @brief Opaque `afw_runtime_value_accessor_info_t`.
+ *
+ * See afw_runtime_value_accessor.h for struct and more information.
+ * Registered as environment registry type runtime_value_accessor.
+ */
+typedef struct afw_runtime_value_accessor_info_s
+afw_runtime_value_accessor_info_t;
+
+/**
  * @brief Opaque `afw_runtime_object_indirect_t`.
  *
  * See afw_runtime.h for struct and more information.

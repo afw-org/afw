@@ -915,8 +915,22 @@ _info_test_output = {
     "default": "stdout",
     "noprompt": True,
     "help":
-        "Where to write a JSON results summary. Use 'stdout' (default) for "
-        "console only, or a file path."
+        "Where to write a results summary after the run. "
+        "Default 'stdout' means do not write a summary file (human "
+        "console only). Use a file path, or '-' to write the summary "
+        "to stdout (useful with --output-format json for agents/CI)."
+}
+
+_info_test_output_format = {
+    "optionName": "output_format",
+    "arg": "--output-format",
+    "action": "store",
+    "default": "json",
+    "noprompt": True,
+    "help":
+        "Format of --output summary when writing a file or '-'. "
+        "json (default, indented), json-compact, or text. "
+        "Does not change default human console reporting."
 }
 
 _info_test_pattern = {
@@ -936,10 +950,29 @@ _info_test_js = {
     "help": "Run Javascript and Web App tests."
 }
 
+# Shared by test and blast: opt-in trees outside package src/*/tests
+_info_tests_path = {
+    "optionName": "tests_path",
+    "arg": "--tests-path",
+    "short": "-T",
+    "action": "append",
+    "noprompt": True,
+    "help":
+        "Directory of tests to use (repeatable). When any --tests-path is "
+        "given, only those trees are searched (not package src/*/tests). "
+        "Default test -j never scans these roots — put opt-in/regression "
+        "experiments under e.g. src/afw/tests_special/. Same flag on "
+        "afwdev blast for load thrash."
+}
+
 _info_test = {
     "subcommand": "test",
     "help": "Run tests",
-    "description": "Run tests for one more more source directories.",
+    "description":
+        "Run tests for one or more source directories. Default discovery is "
+        "package src/*/tests (regression gate for test -j). Optional "
+        "repeatable --tests-path/-T runs only those directory trees "
+        "(e.g. tests_special/) and does not use package tests/.",
     "thing": "test",
     "args": [        
         _info_test_bail,
@@ -948,10 +981,12 @@ _info_test = {
         _info_test_errors,
         _info_test_show_all,
         _info_srcdir_pattern, 
+        _info_tests_path,
         _info_test_watch,
         _info_test_jobs,
         _info_test_env_mode,
         _info_test_output,
+        _info_test_output_format,
         _info_test_pattern,
         _info_test_js,
         _info_tmpdir
@@ -1042,7 +1077,20 @@ _info_blast_include_fixtures = {
     "help":
         "Include tests that need private afw.conf, tests/environments "
         "(config.py Environment), or nearby conf. Default is to skip "
-        "those so fail counts stay near zero unless something is wrong."
+        "those so fail counts stay near zero unless something is wrong. "
+        "Ignored when --tests-path is set (those roots are taken as-is)."
+}
+
+_info_blast_output = {
+    "optionName": "output",
+    "arg": "--output",
+    "action": "store",
+    "default": "stdout",
+    "noprompt": True,
+    "help":
+        "Where to write a results summary after the run. Default 'stdout' "
+        "means no summary file. Use a path or '-' (stdout) with "
+        "--output-format. Same idea as afwdev test --output."
 }
 
 _info_blast = {
@@ -1055,10 +1103,12 @@ _info_blast = {
         "attach to http://localhost:8080/afw for 5m with concurrency "
         "2×CPUs (and managed afwfcgi -n = CPUs) — plain 'afwdev blast' often "
         "suffices when nginx+afwfcgi are up. Override with -u/-f/-d/-c/-n. "
-        "By default skips fixture-heavy groups (Environment= / afw.conf) "
-        "so failures usually mean a real problem; "
-        "--include-fixtures to load them too. "
-        "Filters: --srcdir-pattern, --test-pattern, --tags. "
+        "Corpus: package src/*/tests by default (--srcdir-pattern / "
+        "--test-pattern / --tags), or only trees given with "
+        "repeatable --tests-path/-T (exclusive; same flag as afwdev test). "
+        "Fixture groups (Environment= / afw.conf) are skipped by default "
+        "unless --include-fixtures (N/A with --tests-path). "
+        "Optional --output / --output-format for a machine summary. "
         "Continues on Adaptive failures; stops if the server dies. "
         "See designs/afwdev-blast.md.",
     "thing": "blast",
@@ -1071,6 +1121,9 @@ _info_blast = {
         _info_blast_threads,
         _info_blast_request_timeout,
         _info_blast_include_fixtures,
+        _info_tests_path,
+        _info_blast_output,
+        _info_test_output_format,
         _info_srcdir_pattern,
         _info_test_pattern,
         _info_test_tags,
@@ -1142,13 +1195,14 @@ be used.
 }
 
 
-# List of all subcommand infos in order displayed in --help
+# All subcommand infos (order here does not matter; --help sorts by name)
 _subcommand_infos = [
     _info_add_adapter_type,
     _info_add_content_type,
     _info_add_core_interface,
     _info_add_log_type,
     _info_afwdev_parser_info,
+    _info_blast,
     _info_build,
     _info_ebnf,
     _info_for,
@@ -1159,8 +1213,7 @@ _subcommand_infos = [
     _info_settings,
     _info_task,
     _info_test,
-    _info_blast,
-    _info_validate
+    _info_validate,
 ]
 
 #
@@ -1169,6 +1222,7 @@ _subcommand_infos = [
 afwdev_info = {
     "overall": _afwdev_overall_info,
     "args_for_all_commands" : _args_for_all_commands_infos,
-    "subcommands": _subcommand_infos
+    "subcommands": sorted(
+        _subcommand_infos, key=lambda i: i.get("subcommand") or ""),
 }
 

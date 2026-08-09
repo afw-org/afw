@@ -3596,6 +3596,12 @@ afw_self_v_adapter_objectCallback_signature = {
 };
 
 const afw_value_string_t
+afw_self_v_adapter_reference_count = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_adapter_reference_count)
+};
+
+const afw_value_string_t
 afw_self_v_adapter_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_type)
@@ -9308,6 +9314,12 @@ afw_self_v_afw_runtime = {
 };
 
 const afw_value_string_t
+afw_self_v_afw_runtime_value_accessor_info_t = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afw_runtime_value_accessor_info_t)
+};
+
+const afw_value_string_t
 afw_self_v_afw_server = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_server)
@@ -10115,6 +10127,12 @@ const afw_value_string_t
 afw_self_v_authorization_handler_id_anchor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_handler_id_anchor)
+};
+
+const afw_value_string_t
+afw_self_v_authorization_handler_reference_count = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_authorization_handler_reference_count)
 };
 
 const afw_value_string_t
@@ -11429,6 +11447,18 @@ const afw_value_string_t
 afw_self_v_convert_query_string_to_AdaptiveQueryCriteria = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_convert_query_string_to_AdaptiveQueryCriteria)
+};
+
+const afw_value_string_t
+afw_self_v_copiesUnderLock = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_copiesUnderLock)
+};
+
+const afw_value_string_t
+afw_self_v_copies_under_lock = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_copies_under_lock)
 };
 
 const afw_value_string_t
@@ -19883,6 +19913,18 @@ const afw_value_string_t
 afw_self_v_returns = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_returns)
+};
+
+const afw_value_string_t
+afw_self_v_returnsLiveReference = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_returnsLiveReference)
+};
+
+const afw_value_string_t
+afw_self_v_returns_live_reference = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_returns_live_reference)
 };
 
 const afw_value_string_t
@@ -30734,9 +30776,75 @@ afw_self_v_zz__2200 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2201 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2201)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2202 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2202)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2203 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2203)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2204 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2204)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2205 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2205)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2206 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2206)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2207 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2207)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2208 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2208)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2209 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2209)
+};
+
+const afw_value_string_t
 afw_self_v_zz__221 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__221)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2210 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2210)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2211 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2211)
 };
 
 const afw_value_string_t
@@ -36272,12 +36380,6 @@ afw_self_v_zz__A_registry_type_runtime_object_map_inf_entry_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__A_registry_type_runtime_value_accessor_entry_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__A_registry_type_runtime_value_accessor_entry_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__A_registry_type_singleton_entry_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__A_registry_type_singleton_entry_)
@@ -37067,12 +37169,6 @@ const afw_value_string_t
 afw_self_v_zz__Authorization_handler_s_reference_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Authorization_handler_s_reference_count)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Authorization_handler_s_reference_count_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Authorization_handler_s_reference_count_)
 };
 
 const afw_value_string_t
@@ -38648,6 +38744,12 @@ afw_self_v_zz__Converts_value_to_string = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Copies_Under_Lock = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Copies_Under_Lock)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Copyright__c__2010_2024_Clemson_University = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Copyright__c__2010_2024_Clemson_University)
@@ -39437,6 +39539,12 @@ const afw_value_string_t
 afw_self_v_zz__Description_of_the_object_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Description_of_the_object_type)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Description_of_this_accessor = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Description_of_this_accessor)
 };
 
 const afw_value_string_t
@@ -43472,27 +43580,21 @@ afw_self_v_zz__Reference_count_of_stopping_instances = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Reference_count_of_stopping_instances_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Reference_count_of_stopping_instances_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Reference_counts_of_stopping_instances = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Reference_counts_of_stopping_instances)
 };
 
 const afw_value_string_t
-afw_self_v_zz__Reference_counts_of_stopping_instances_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Reference_counts_of_stopping_instances_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Registry_Type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Registry_Type)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Registry_key___valueAccessor_name = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Registry_key___valueAccessor_name)
 };
 
 const afw_value_string_t
@@ -43736,6 +43838,18 @@ afw_self_v_zz__Result_Data_Type = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Result_is_copied_under_a_lock = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Result_is_copied_under_a_lock)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Result_may_alias_live_runtime_state = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Result_may_alias_live_runtime_state)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Result_of_action = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Result_of_action)
@@ -43883,6 +43997,12 @@ const afw_value_string_t
 afw_self_v_zz__Return_true_if_value1_should_be_ordered_before_value2_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Return_true_if_value1_should_be_ordered_before_value2_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Returns_Live_Reference = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Returns_Live_Reference)
 };
 
 const afw_value_string_t
@@ -44243,6 +44363,12 @@ const afw_value_string_t
 afw_self_v_zz__Sets_the_role_the_Web_server_expects_the_application_to_play = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Sets_the_role_the_Web_server_expects_the_application_to_play)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Short_description_of_this_accessor = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Short_description_of_this_accessor)
 };
 
 const afw_value_string_t

@@ -26,14 +26,14 @@
                     "type": "integer"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "referenceCount": {
-                    "description": "Authorization handler's reference count.",
-                    "markdownDescription": "**Reference Count**\n\nAuthorization handler's reference count.",
+                    "description": "Active instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
                     "title": "Reference Count",
                     "type": "integer"
                 },
@@ -44,14 +44,14 @@
                     "type": "string"
                 },
                 "stopping": {
-                    "description": "Reference count of stopping instances.",
+                    "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                     "items": {
-                        "description": "Reference count of stopping instances.",
-                        "markdownDescription": "Reference count of stopping instances.",
+                        "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                         "title": "Reference count of stopping instances",
                         "type": "integer"
                     },
-                    "markdownDescription": "**Stopping Instances**\n\nReference count of stopping instances.",
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                     "title": "Stopping Instances",
                     "type": "array"
                 }
@@ -74,14 +74,14 @@
                     "type": "integer"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "referenceCount": {
-                    "description": "Authorization handler's reference count.",
-                    "markdownDescription": "**Reference Count**\n\nAuthorization handler's reference count.",
+                    "description": "Active instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
                     "title": "Reference Count",
                     "type": "integer"
                 },
@@ -92,14 +92,14 @@
                     "type": "string"
                 },
                 "stopping": {
-                    "description": "Reference count of stopping instances.",
+                    "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                     "items": {
-                        "description": "Reference count of stopping instances.",
-                        "markdownDescription": "Reference count of stopping instances.",
+                        "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                         "title": "Reference count of stopping instances",
                         "type": "integer"
                     },
-                    "markdownDescription": "**Stopping Instances**\n\nReference count of stopping instances.",
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                     "title": "Stopping Instances",
                     "type": "array"
                 }
@@ -132,14 +132,14 @@
             "type": "integer"
         },
         "properties": {
-            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-            "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+            "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+            "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
             "title": "Properties",
             "type": "object"
         },
         "referenceCount": {
-            "description": "Authorization handler's reference count.",
-            "markdownDescription": "**Reference Count**\n\nAuthorization handler's reference count.",
+            "description": "Active instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+            "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
             "title": "Reference Count",
             "type": "integer"
         },
@@ -150,14 +150,14 @@
             "type": "string"
         },
         "stopping": {
-            "description": "Reference count of stopping instances.",
+            "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
             "items": {
-                "description": "Reference count of stopping instances.",
-                "markdownDescription": "Reference count of stopping instances.",
+                "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                "markdownDescription": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                 "title": "Reference count of stopping instances",
                 "type": "integer"
             },
-            "markdownDescription": "**Stopping Instances**\n\nReference count of stopping instances.",
+            "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
             "title": "Stopping Instances",
             "type": "array"
         }

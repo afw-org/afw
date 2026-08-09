@@ -33,7 +33,8 @@ from _afwdev.common import msg, nfc, package
 from _afwdev.test import watch, runner, js
 from _afwdev.test.common import (
     find_test_groups, load_test_group_config, test_group_matches_tags,
-    print_failure_digest)
+    print_failure_digest, normalize_tests_paths, write_results_summary,
+    clip_detail)
 
 
 ##
@@ -54,18 +55,6 @@ def _list_tests(options, srcdirs):
                 count += 1
     msg.highlighted_info(str(count) + ' test(s) listed')
     sys.exit(0)
-
-
-##
-# @brief Optionally write a JSON results summary to --output
-#
-def _write_output_summary(options, summary):
-    output = options.get('output') or 'stdout'
-    if output == 'stdout':
-        return
-    with nfc.open(output, 'w') as fd:
-        nfc.json_dump(summary, fd, indent=2, sort_keys=True)
-    msg.highlighted_info('Wrote test summary to ' + output)
 
 
 ## 
@@ -100,28 +89,52 @@ def run(options):
     srcdirs_skipped = 0   
 
     srcdirs = []
-    for srcdir in package.get_afw_package(options)['srcdirs']:
-        total_srcdirs += 1
+    tests_paths = normalize_tests_paths(options.get('tests_path'))
 
-        if not fnmatch.fnmatch(srcdir, options['srcdir_pattern']):
-            srcdirs_skipped += 1
-            srcdirs_passed += 1
-            continue
-        
-        package.set_options_from_existing_package_srcdir(
-            options, srcdir, set_all=True)   
-
-        objects_dir = options['srcdir_path'] + 'generate/objects/'
-        manual_tests = options['srcdir_path'] + 'tests'
-
-        srcdirs.append(
-            (
-                srcdir, 
-                options['srcdir_path'], 
-                objects_dir, 
-                manual_tests
+    if tests_paths:
+        # Opt-in roots only (e.g. tests_special/) — exclusive, not package tests/
+        for ap in tests_paths:
+            try:
+                label = os.path.relpath(ap)
+            except ValueError:
+                label = ap
+            # srcdirPath used for environments / python path; root is the tree
+            srcdir_path = ap if ap.endswith(os.sep) else ap + os.sep
+            srcdirs.append(
+                (
+                    label,
+                    srcdir_path,
+                    None,
+                    ap,
+                )
             )
-        )
+        total_srcdirs = len(srcdirs)
+        if options.get('output') != '-':
+            msg.highlighted_info(
+                "Using --tests-path (exclusive): " + ", ".join(tests_paths))
+    else:
+        for srcdir in package.get_afw_package(options)['srcdirs']:
+            total_srcdirs += 1
+
+            if not fnmatch.fnmatch(srcdir, options['srcdir_pattern']):
+                srcdirs_skipped += 1
+                srcdirs_passed += 1
+                continue
+
+            package.set_options_from_existing_package_srcdir(
+                options, srcdir, set_all=True)
+
+            objects_dir = options['srcdir_path'] + 'generate/objects/'
+            manual_tests = options['srcdir_path'] + 'tests'
+
+            srcdirs.append(
+                (
+                    srcdir,
+                    options['srcdir_path'],
+                    objects_dir,
+                    manual_tests
+                )
+            )
 
     if options.get('list'):
         _list_tests(options, srcdirs)
@@ -155,39 +168,43 @@ def run(options):
         srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)
         elapsed = round(end - start, 2)
 
-        # Print summary
-        msg.highlighted_info("")
-        msg.highlighted_info("Source Dirs:   ", end="")
-        if srcdirs_failed > 0:
-            msg.error("{} failed".format(srcdirs_failed), end="")
-            msg.highlighted_info(", ", end="")
-        if srcdirs_skipped > 0:
-            msg.warn("{} skipped".format(srcdirs_skipped), end="")
-            msg.highlighted_info(", ", end="")
-        if srcdirs_passed > 0:
-            msg.success("{} passed".format(srcdirs_passed), end="")
-            msg.highlighted_info(", ", end="")    
+        # When --output is '-', keep stdout clean for the machine summary
+        summary_to_stdout = (options.get('output') == '-')
 
-        msg.highlighted_info("{} total".format(total_srcdirs))
+        if not summary_to_stdout:
+            # Print human summary
+            msg.highlighted_info("")
+            msg.highlighted_info("Source Dirs:   ", end="")
+            if srcdirs_failed > 0:
+                msg.error("{} failed".format(srcdirs_failed), end="")
+                msg.highlighted_info(", ", end="")
+            if srcdirs_skipped > 0:
+                msg.warn("{} skipped".format(srcdirs_skipped), end="")
+                msg.highlighted_info(", ", end="")
+            if srcdirs_passed > 0:
+                msg.success("{} passed".format(srcdirs_passed), end="")
+                msg.highlighted_info(", ", end="")
 
-        msg.highlighted_info("Tests:         ", end="")
-        if total_failed > 0:
-            msg.error("{} failed".format(total_failed), end="")
-            msg.highlighted_info(", ", end="")
-        if total_skipped > 0:
-            msg.warn("{} skipped".format(total_skipped), end="")
-            msg.highlighted_info(", ", end="")
-        if total_passed > 0:
-            msg.success("{} passed".format(total_passed), end="")
-            msg.highlighted_info(", ", end="")    
-                
-        msg.highlighted_info("{} total".format(total_tests))
-        msg.highlighted_info("Time:          {}s".format(elapsed))
+            msg.highlighted_info("{} total".format(total_srcdirs))
 
-        # Console-only digest so parallel -j runs still end with greppable paths
-        print_failure_digest(failures)
+            msg.highlighted_info("Tests:         ", end="")
+            if total_failed > 0:
+                msg.error("{} failed".format(total_failed), end="")
+                msg.highlighted_info(", ", end="")
+            if total_skipped > 0:
+                msg.warn("{} skipped".format(total_skipped), end="")
+                msg.highlighted_info(", ", end="")
+            if total_passed > 0:
+                msg.success("{} passed".format(total_passed), end="")
+                msg.highlighted_info(", ", end="")
 
-        _write_output_summary(options, {
+            msg.highlighted_info("{} total".format(total_tests))
+            msg.highlighted_info("Time:          {}s".format(elapsed))
+
+            # Console-only digest so parallel -j runs still end with greppable paths
+            print_failure_digest(failures)
+
+        write_results_summary(options, {
             'srcdirs': {
                 'passed': srcdirs_passed,
                 'failed': srcdirs_failed,
@@ -209,7 +226,17 @@ def run(options):
                 }
                 for srcdir, stats in results.items()
             },
-        })
+            # Paths + clipped details for agents/CI
+            'failures': [
+                {
+                    'test': f.get('test'),
+                    'detail': clip_detail(f.get('detail')),
+                    'group': f.get('group'),
+                    'srcdir': f.get('srcdir'),
+                }
+                for f in (failures or [])
+            ],
+        }, tool_label='test')
 
         if total_failed > 0:
             sys.exit(1)

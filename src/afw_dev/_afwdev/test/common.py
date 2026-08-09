@@ -24,6 +24,7 @@ import re
 from os.path import exists
 
 from _afwdev.common import msg, nfc
+from _afwdev.common.errors import error_message, error_to_dict
 
 
 ##
@@ -56,6 +57,117 @@ def test_path_for_display(test, base=None):
         return os.path.relpath(test, base)
     except ValueError:
         return test
+
+
+##
+# @brief Normalize --tests-path (-T) option values
+# @param raw None, str, or list of paths from CLI
+# @return list of absolute existing directory paths (may be empty)
+# @details Shared by afwdev test and afwdev blast. When non-empty, callers
+#          use only these roots instead of package src/*/tests discovery.
+#
+def normalize_tests_paths(raw):
+    if not raw:
+        return []
+    if isinstance(raw, str):
+        raw = [raw]
+    paths = []
+    for p in raw:
+        if p is None or p == "":
+            continue
+        ap = os.path.abspath(os.path.expanduser(str(p)))
+        if not os.path.isdir(ap):
+            msg.error_exit(
+                "afwdev --tests-path is not a directory: " + ap)
+        paths.append(ap)
+    return paths
+
+
+##
+# @brief Truncate a one-line detail for digests / JSON summaries
+#
+def clip_detail(text, max_len=400):
+    if text is None:
+        return ""
+    s = str(text).replace("\n", " ").strip()
+    if len(s) <= max_len:
+        return s
+    if max_len < 4:
+        return s[:max_len]
+    return s[: max_len - 3] + "..."
+
+
+##
+# @brief Write test/blast style results summary for --output / --output-format
+# @param options Must include output / output_format (optional)
+# @param summary dict to serialize
+# @param tool_label Short name for the "Wrote …" message (e.g. test, blast)
+#
+def write_results_summary(options, summary, tool_label="test"):
+    import sys
+
+    output = options.get("output") or "stdout"
+    # Compat: literal "stdout" = do not write a summary artifact
+    if output == "stdout":
+        return
+
+    fmt = (options.get("output_format") or "json").strip().lower()
+    if fmt in ("json-min", "compact"):
+        fmt = "json-compact"
+
+    close_fd = False
+    if output == "-":
+        fd = sys.stdout
+    else:
+        fd = nfc.open(output, "w")
+        close_fd = True
+
+    try:
+        if fmt == "json":
+            nfc.json_dump(summary, fd, indent=2, sort_keys=True)
+            fd.write("\n")
+        elif fmt == "json-compact":
+            nfc.json_dump(
+                summary, fd, sort_keys=True, separators=(",", ":"))
+            fd.write("\n")
+        elif fmt == "text":
+            # Generic: prefer tests/ then blast-style ok/fail counts
+            t = summary.get("tests") or summary.get("requests") or {}
+            if "passed" in t or "failed" in t:
+                fd.write(
+                    "passed={p} failed={f} skipped={s} total={n}\n"
+                    "time_seconds={sec}\n".format(
+                        p=t.get("passed", t.get("ok", 0)),
+                        f=t.get("failed", t.get("fail", 0)),
+                        s=t.get("skipped", t.get("timeout", 0)),
+                        n=t.get("total", 0),
+                        sec=summary.get("time_seconds", 0),
+                    ))
+            else:
+                fd.write(nfc.json_dumps(summary, indent=2) + "\n")
+            fails = summary.get("failures") or []
+            if fails:
+                fd.write("failures ({n}):\n".format(n=len(fails)))
+                for item in fails:
+                    fd.write(
+                        "  {path}  {detail}\n".format(
+                            path=item.get("test") or item.get("path") or "?",
+                            detail=item.get("detail") or "",
+                        ))
+            else:
+                fd.write("failures: none\n")
+        else:
+            msg.error_exit(
+                "Unknown --output-format {!r} "
+                "(use json, json-compact, or text)".format(fmt))
+    finally:
+        if close_fd:
+            fd.close()
+
+    if output != "-":
+        msg.highlighted_info(
+            "Wrote {tool} summary ({fmt}) to {path}".format(
+                tool=tool_label, fmt=fmt, path=output))
 
 
 ##
@@ -569,7 +681,7 @@ def get_rel_source_location_nav(test, testCase):
 def get_rel_error_source_location_nav(test, testCase):
 
     tc_sourceLineNumberInTestScript = testCase.get('sourceLineNumberInTestScript', 0)
-    error = testCase.get('error', None)
+    error = error_to_dict(testCase.get('error', None))
 
     if error:
         lineNumber = error.get("parserLineNumber")
@@ -607,7 +719,8 @@ def print_test_failure(test, testCase):
     sourceLocation = testCase.get("sourceLocation")
     sourceLocationNav = get_rel_source_location_nav(test, testCase)
     sourceErrorLocationNav = get_rel_error_source_location_nav(test, testCase)
-    error = testCase.get("error")
+    # Normalize to Adaptive-shaped dict (issue #61 helpers)
+    error = error_to_dict(testCase.get("error"))
 
     if error:
         message = error.get("message")
@@ -725,11 +838,17 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
                 # failed test
                 msg.error("    \u2717", end="")
                 msg.highlighted_info(" {}".format(tc_test))
+                # One-line reason always (structured error.message when present)
+                reason = error_message(testCase.get("error"))
+                if reason:
+                    msg.error("      {}".format(reason))
+                elif tc_description and tc_description != tc_test:
+                    msg.error("      {}".format(tc_description))
                 if (msg.is_verbose_mode()):
                     print("\033[2m      {}\033[0m\n".format(tc_description))                
                 msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))
                 
-                # print test errors, if in verbose mode
+                # Full source navigation, if in verbose mode
                 if msg.is_verbose_mode():
                     print_test_failure(test, testCase)
 

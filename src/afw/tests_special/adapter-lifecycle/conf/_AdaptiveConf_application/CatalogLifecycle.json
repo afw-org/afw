@@ -1,0 +1,5 @@
+{
+    "title": "CatalogLifecycle",
+    "description": "Minimal application for #149 adapter lifecycle advanced-test.",
+    "defaultAdapterId": "lifecycle"
+}

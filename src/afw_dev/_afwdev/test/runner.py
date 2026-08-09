@@ -20,11 +20,17 @@ import multiprocessing
 from functools import partial
 
 from _afwdev.common import msg, nfc
+from _afwdev.common.errors import (
+    AfwdevError,
+    AfwdevRunnerError,
+    error_message,
+    error_to_dict,
+)
 from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
     before_each, after_all, after_each, test_group_matches_tags, \
-    test_path_for_display
+    test_path_for_display, clip_detail
 
 
 ##
@@ -32,26 +38,34 @@ from _afwdev.test.common import \
 #
 def _failure_detail(error, response, numFailures):
     if error is not None:
-        detail = error
-        try:
-            detail = nfc.json_loads(error).get('message') or error
-        except Exception:
-            detail = error
-        return str(detail)
+        return error_message(error) or str(error)
     if response is not None and response.get('tests'):
-        names = []
+        bits = []
         for tc in response.get('tests') or []:
             if tc.get('skip'):
                 continue
             if tc.get('passed', False) is False:
-                names.append(tc.get('test') or '?')
-        if names:
-            shown = names[:3]
-            extra = len(names) - len(shown)
-            text = ", ".join(shown)
+                err = tc.get('error')
+                msg_line = error_message(err)
+                if msg_line:
+                    bits.append(msg_line)
+                elif tc.get('description') and tc.get('description') != tc.get(
+                        'test'):
+                    bits.append(tc.get('description'))
+                else:
+                    bits.append(tc.get('test') or '?')
+        if bits:
+            shown = bits[:3]
+            extra = len(bits) - len(shown)
+            text = "; ".join(shown)
             if extra > 0:
-                text += ", +{} more".format(extra)
+                text += "; +{} more".format(extra)
             return text
+    if response is not None:
+        top = response.get('error')
+        msg_line = error_message(top)
+        if msg_line:
+            return msg_line
     if numFailures:
         return "{} failed".format(numFailures)
     return "failed"
@@ -147,17 +161,16 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             test_display = test_path_for_display(test, pwd)
             duration_ms = round((end - start) * 1000)
 
-            if msg.is_debug_mode() and (debug or error):
+            # Quiet human chatter when summary is the sole stdout artifact
+            quiet_console = (options.get('output') == '-')
+
+            if not quiet_console and msg.is_debug_mode() and (debug or error):
                 msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms)) 
 
-            if error is not None:
+            if error is not None and not quiet_console:
                 # Process death / runner exception: always show path + message.
                 # (Assertion failures use print_test_response below.)
-                err_str = error
-                try:
-                    err_str = nfc.json_loads(error).get('message') or error
-                except Exception:
-                    err_str = error
+                err_str = error_message(error) or str(error)
                 msg.error("\n    \u2717 {}\n".format(err_str))
                 msg.error("      test:  {}\n".format(test_display))
                 msg.error("      group: {}\n".format(
@@ -166,7 +179,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                     msg.error("      cwd:   {}\n".format(
                         testEnvironment['work_dir']))
 
-            if msg.is_debug_mode() and debug:
+            if not quiet_console and msg.is_debug_mode() and debug:
                 msg.debug(debug)
 
             after_each(root, testGroupConfig, testEnvironment)
@@ -174,7 +187,8 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             if hasFailures:
                 failures.append({
                     'test': test_display,
-                    'detail': _failure_detail(error, response, numFailures),
+                    'detail': clip_detail(
+                        _failure_detail(error, response, numFailures)),
                     'srcdir': srcdir,
                     'group': test_path_for_display(root, pwd),
                 })
@@ -182,6 +196,9 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             # Default is errors-only; --show-all prints successful tests too
             errors_only = options.get('errors', True) and not options.get('show_all')
             if errors_only and not hasFailures:
+                continue
+
+            if quiet_console:
                 continue
 
             # Path for assertion failures / --show-all (process errors already
@@ -201,7 +218,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                 # still make sure to cleanup by running after_all
                 after_all(root, testGroupConfig, testEnvironment)  
 
-                raise Exception("Bailing due to test failure")
+                raise AfwdevRunnerError("Bailing due to test failure")
                     
             msg.highlighted_info("")
 
@@ -235,7 +252,9 @@ def allocate_working_directory(options):
 
     # if folder already exists, remove it first
     if os.path.exists(working_directory):
-        msg.highlighted_info("Removing previous working directory: " + working_directory)        
+        if options.get('output') != '-':
+            msg.highlighted_info(
+                "Removing previous working directory: " + working_directory)
         shutil.rmtree(working_directory)
     
     # create folder
@@ -325,7 +344,7 @@ def run(options, srcdirs):
         try:
             for res in pool_results:
                 if not res:
-                    raise Exception("Test group returned no results")
+                    raise AfwdevRunnerError("Test group returned no results")
                 else:
                     # append to results
                     results.append(res)

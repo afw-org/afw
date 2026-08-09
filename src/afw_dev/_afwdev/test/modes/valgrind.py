@@ -16,6 +16,7 @@ import os
 import subprocess
 
 from _afwdev.common import msg, nfc, resources
+from _afwdev.common.errors import AfwdevProcessError, wrap_exception
 from _afwdev.test.common import format_abnormal_process_exit
 
 ##
@@ -79,7 +80,10 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
             return None, None, None
 
         if p.returncode < 0:
-            raise Exception(format_abnormal_process_exit(p.returncode))
+            raise AfwdevProcessError(
+                format_abnormal_process_exit(p.returncode),
+                returncode=p.returncode,
+            )
 
         stderr = p.stderr.decode("utf-8")
         stdout = p.stdout.decode("utf-8")              
@@ -91,11 +95,10 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     except Exception as e:                
         if stdout:            
             msg.debug(stdout)       
-        error = e     
+        error = wrap_exception(e)
 
-    # if the stderr stream reports valgrind errors, then wrap them in an Exception
+    # if the stderr stream reports valgrind errors, then wrap them
     if stderr != None and stderr.find("<error>") > -1:
-        # we have a valgrind error
-        error = Exception("Valgrind Error(s) detected.")   
+        error = AfwdevProcessError("Valgrind Error(s) detected.")
 
     return response, error, stderr

@@ -58,6 +58,8 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (**recompile** out-of-tree; rename legacy cursor to **`afw_iterator_old`**) |
 | [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **\*\*\* Experimental \*\*\***: hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
 | [**afwdev blast**](#experimental-afwdev-blast) | **\*\*\* Experimental \*\*\***: on-demand random suite firehose at afwfcgi — not part of `test -j` |
+| [**afwdev test/blast recipe flags**](#afwdev-testblast-recipe-flags) | **\*\*\* Experimental \*\*\***: `--tests-path`/`-T`, `--output` / `--output-format` for machine summaries |
+| [**Runtime catalog / accessors (#149 phase 1)**](#runtime-catalog-accessors-issue-149-phase-1) | Lock+copy adapter/auth **`referenceCount`**; first-class **`_AdaptiveRuntimeValueAccessor_`** registry objects — more #149 work still open |
 
 ---
 
@@ -92,6 +94,37 @@ afwdev blast -f path/to/afw.conf -m 500   # managed spawn (-n defaults to CPUs)
 ```
 
 Defaults favor docker/dev + classic load (threads≈CPUs, in-flight≈2×CPUs). Fixture-heavy tests skipped unless `--include-fixtures`. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Signals: [#158](https://github.com/afw-org/afw/issues/158).
+
+**[↑ Highlights](#highlights)**
+
+---
+
+## afwdev test/blast recipe flags
+
+**Status: experimental** (same family as advanced-test / blast).
+
+| Flag | Who | Role |
+|------|-----|------|
+| **`-T` / `--tests-path`** | `afwdev test` and `afwdev blast` | Exclusive opt-in trees (e.g. `src/afw/tests_special/…`); default `test -j` never scans those roots |
+| **`--output` / `--output-format`** | both | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` |
+
+Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
+
+**[↑ Highlights](#highlights)**
+
+---
+
+## Runtime catalog / accessors (issue #149 phase 1)
+
+Child of **#2** memory work. **Phase 1 only** — issue **#149** stays open.
+
+| | |
+|--|--|
+| **`referenceCount` on catalog adapter / auth handler objects** | Snapshot under the existing anchor lock (no longer a racy live integer read on get) |
+| **`_AdaptiveRuntimeValueAccessor_`** | First-class registry objects describing each named runtime value accessor (including whether it copies under lock / returns a live reference) |
+| **Still open** | Further per-type accessor safety, full-registry materialize cost, rich options on permanent shells — see issue and [`designs/runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md) |
+
+If you hold Adaptive values from `/afw/…` adapter/auth objects across **service stop**, treat **metrics** / **properties** as valid only while the instance is active (or you hold a session ref); **`referenceCount`** is a safe integer snapshot.
 
 **[↑ Highlights](#highlights)**
 
