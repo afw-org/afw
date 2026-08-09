@@ -48,9 +48,9 @@ static void print_usage(void)
         "[-t content-type] [--help] [--version]\n"
         "\n"
         "Signals: SIGTERM and SIGINT set the environment terminating flag,\n"
-        "stop accepting new FastCGI requests (FCGX_ShutdownPending), wake\n"
-        "request threads, and exit after they finish the current request\n"
-        "if any (no in-process drain timer; the parent may still SIGKILL).\n");
+        "stop accepting new FastCGI requests, wake request threads, and\n"
+        "exit after they finish the current request if any (no in-process\n"
+        "drain timer; the parent may still SIGKILL).\n");
 }
 
 
