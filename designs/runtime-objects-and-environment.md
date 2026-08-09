@@ -154,6 +154,13 @@ Discover/filter: `retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_", {}, 
 
 **Consumable snapshot for assistants/maintainers:** [`runtime-value-accessors.md`](runtime-value-accessors.md) (tables + full descriptions; refresh command at top of that file).
 
+**Automated checks:**
+
+| Kind | Location | Run |
+|------|----------|-----|
+| Multi-request correctness (hermetic afwfcgi) | `src/afw/tests/advanced/catalog-value-accessors/` | `afwdev test --test-pattern catalog-value-accessors` |
+| Load thrash (not in `-j`) | `src/afw/tests_special/catalog/` | `afwdev blast -T src/afw/tests_special/catalog -d 15s -m 50` |
+
 ---
 
 ## 4. Runtime object maps and create instance

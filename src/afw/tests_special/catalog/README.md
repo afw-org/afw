@@ -11,4 +11,11 @@ afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 50
 # afwdev blast -f /path/to/afw.conf -T src/afw/tests_special/catalog -m 100
 ```
 
-See `designs/afwdev-blast.md` and #149 catalog work.
+Related **correctness** (ordered multi-request, hermetic afwfcgi) lives under
+`src/afw/tests/advanced/catalog-value-accessors/` and runs with:
+
+```bash
+afwdev test --test-pattern catalog-value-accessors --show-all
+```
+
+See `designs/afwdev-blast.md`, `designs/afwdev-advanced-test.md`, and #149.
