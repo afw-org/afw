@@ -1007,6 +1007,9 @@ impl_afw_adapter_session_retrieve_objects(
         AFW_UTF8_FMT_Q,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
 
+    /* Do not start a large retrieve if the server is shutting down. */
+    AFW_XCTX_THROW_IF_TERMINATING(xctx);
+
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->retrieve_objects_count);
 
@@ -1033,6 +1036,7 @@ impl_afw_adapter_session_retrieve_objects(
             hi;
             hi = apr_hash_next(hi))
         {
+            AFW_XCTX_THROW_IF_TERMINATING(xctx);
             apr_hash_this(hi,
                 (const void **)& object_id.s, (apr_ssize_t *)& object_id.len,
                 (void **)& e);
@@ -1142,6 +1146,9 @@ impl_afw_adapter_session_get_object(
         "begin get_object "
         AFW_UTF8_FMT_Q,
         AFW_UTF8_FMT_ARG(ctx.resource_id));
+
+    /* Do not start get if the server is shutting down. */
+    AFW_XCTX_THROW_IF_TERMINATING(xctx);
 
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->get_object_count);

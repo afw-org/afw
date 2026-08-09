@@ -85,6 +85,7 @@ impl_afw_stream_fd_write_cb(
     ptr = (const afw_octet_t *)buffer;
     remaining = size;
     while (remaining > 0) {
+        AFW_XCTX_THROW_IF_TERMINATING(xctx);
         n = fwrite(ptr, 1, remaining, self->fd);
         if (n == 0) {
             err = errno;

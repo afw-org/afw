@@ -102,6 +102,23 @@ afw_xctx_environment_is_terminating(afw_xctx_t *xctx)
 
 
 /**
+ * @brief If the environment is terminating, throw terminating (HTTP 503).
+ * @param xctx of caller.
+ *
+ * Use at object / work-unit boundaries in long I/O loops so in-flight work
+ * stops starting more work during graceful shutdown. Requires AFW throw
+ * macros (e.g. via afw_error.h / afw_minimal.h).
+ */
+#define AFW_XCTX_THROW_IF_TERMINATING(xctx) \
+    do { \
+        if (afw_xctx_environment_is_terminating(xctx)) { \
+            AFW_THROW_ERROR_Z(terminating, \
+                "Server is terminating", (xctx)); \
+        } \
+    } while (0)
+
+
+/**
  * @brief Macro to allocate cleared memory in xctx's lifetime pool.
  * @param size of memory to allocate.
  * @param xctx of caller.

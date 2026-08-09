@@ -906,6 +906,9 @@ typedef struct afw_object_meta_s {
  *
  * client_closed            - Client closed connection.
  *
+ * terminating              - Server is terminating; stop starting more work
+ *                           (e.g. mid retrieve at an object boundary).
+ *
  *
  * Map has id, error_allow_in_response, http_response_code, and description.
  * 
@@ -947,6 +950,7 @@ typedef struct afw_object_meta_s {
     XX(evaluate,               true,  400, "Evaluation error"                  )\
     XX(undefined,              true,  400, "Undefined value"                   )\
     XX(code,                   true,  500, "Clearly an internal coding error"  )\
+    XX(terminating,            true,  503, "Server Terminating"                )\
 
 /** Adaptive Framework error codes enum. */
 typedef enum afw_error_code_e {

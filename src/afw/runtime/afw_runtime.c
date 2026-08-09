@@ -743,6 +743,7 @@ impl_afw_adapter_session_retrieve_objects(
     /* Call callback with all applicable set runtime objects. */
     apr_p = afw_pool_get_apr_pool(p);
     for (c = xctx; c; c = c->parent) {
+        AFW_XCTX_THROW_IF_TERMINATING(xctx);
         if (c->runtime_objects && c->runtime_objects->types_ht) {
             ht = apr_hash_get(c->runtime_objects->types_ht,
                 object_type_id->s, object_type_id->len);
@@ -750,6 +751,7 @@ impl_afw_adapter_session_retrieve_objects(
                 for (hi = apr_hash_first(apr_p, ht); hi;
                     hi = apr_hash_next(hi))
                 {
+                    AFW_XCTX_THROW_IF_TERMINATING(xctx);
                     apr_hash_this(hi, NULL, NULL, (void **)&entry);
                     obj = impl_entry_to_object(entry, xctx);
                     if (afw_query_criteria_test_object(obj,
