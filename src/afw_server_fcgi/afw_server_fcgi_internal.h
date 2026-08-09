@@ -51,6 +51,12 @@ struct afw_server_fcgi_internal_s {
 
     /* Socket */
     int sock;
+
+    /*
+     * Listen path from -p / FCGX_OpenSocket. Non-NULL when a Unix domain path
+     * should be unlinked on clean exit (not used for TCP ":port").
+     */
+    const char *unix_socket_path_z;
  
     /* threads. */
     afw_server_fcgi_internal_server_thread_t *threads;

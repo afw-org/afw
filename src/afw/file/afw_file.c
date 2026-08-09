@@ -505,6 +505,9 @@ impl_afw_adapter_session_retrieve_objects(
     /* Process each JSON object in directory. */
     while (1) {
 
+        /* Stop starting more I/O if the server is shutting down. */
+        AFW_XCTX_THROW_IF_TERMINATING(xctx);
+
         /* Read next directory entry until there are no more.*/
         rv = apr_dir_read(&finfo, APR_FINFO_SIZE + APR_FINFO_NAME, dir);
         if (rv == APR_ENOENT ||

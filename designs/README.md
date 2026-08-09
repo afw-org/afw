@@ -40,6 +40,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`utf8-code-point-sequences.md`](utf8-code-point-sequences.md) | **#153** — utf8-backed values as immutable code-point sequences (index, for-of, array consumers) |
 | [`afwdev-advanced-test.md`](afwdev-advanced-test.md) | **#157** — **experimental** advanced-test leaves; hermetic `afwfcgi` + FCGI client; used for multi-request catalog / lifecycle |
 | [`afwdev-blast.md`](afwdev-blast.md) | **experimental** `afwdev blast` — load thrash (not `test -j`); related **#13** still open for Jeremy’s rounds/continuous knobs |
+| (no pad) | **#158** graceful process stop — landed on branch `issue-158-afwfcgi-graceful-shutdown`; user note in `whats-new.md` |
 
 ## Conventions
 
