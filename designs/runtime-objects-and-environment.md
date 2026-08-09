@@ -497,8 +497,8 @@ High signal for #149 (adjust as inventory proceeds):
 1. ~~Deep dive / architecture MD (this file).~~  
 2. ~~Inventory risk types with §10 checklist~~ (core named accessors + P0 adapter/auth — §14).  
 3. ~~Surgical P0: lock+copy `referenceCount` (adapter + auth); first-class `_AdaptiveRuntimeValueAccessor_` registry.~~  
-4. ~~Phase 1 PR to `mgg-develop`~~ (architecture + P0 + multi-request tests + harness follow-ons).  
-5. **Phase 2+ (open):** more lock/copy only where inventory proves need; EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7); optional metrics snapshot vs document-R; services/logs; issue comments as slices land.
+4. ~~Phase 1 PR to `mgg-develop`~~ — [PR #160](https://github.com/afw-org/afw/pull/160) merged 2026-08-09 (`32ff0706`).  
+5. **Phase 2+ (open on `issue-#149-catalog-phase2`):** more lock/copy only where inventory proves need; EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7); optional metrics snapshot vs document-R; services/logs; issue comments as slices land.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.
 
