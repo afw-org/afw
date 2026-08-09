@@ -50,6 +50,13 @@ When the shape settles, drop the experimental banner and promote invariants into
 
 **Branch policy:** implement harness on `feature-afwfcgi-scenario-tests` → merge to `mgg-develop` → **rebase** `issue-#149-runtime-catalog-lifetime` and add catalog scenarios there (no afwdev runner work on #149).
 
+### Handoff / sibling sessions (2026-08)
+
+- This work was **intentionally split** from the **#149 runtime catalog** Grok session so that branch’s context (live afwfcgi poking, env/registry mental model) stayed unpolluted.
+- **#149 session** owns product/reliability for catalogs/accessors; **this branch** owns experimental **afwdev test advanced-test** + **`afwdev blast`**.
+- After PR merges: on `issue-#149-runtime-catalog-lifetime`, rebase onto updated `mgg-develop`, then add **purpose-built advanced-test leaves** for multi-request catalog behavior; use **`afwdev blast`** for load/crash hunts (not as the #149 correctness suite).
+- On-demand load design pad: [`afwdev-blast.md`](afwdev-blast.md). afwfcgi SIGTERM: **#158**.
+
 ---
 
 ## Jeremy’s model (do not break)

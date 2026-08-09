@@ -2,7 +2,9 @@
 
 **Status:** **\*\*\* Experimental \*\*\***  
 **Audience:** maintainers debugging runtime / afwfcgi under load.  
-**Related:** [#157](https://github.com/afw-org/afw/issues/157) advanced-test, [#158](https://github.com/afw-org/afw/issues/158) afwfcgi signals.
+**Related:** [#157](https://github.com/afw-org/afw/issues/157) advanced-test, [#158](https://github.com/afw-org/afw/issues/158) afwfcgi signals.  
+**Branch:** `feature-afwfcgi-scenario-tests` (with advanced-test).  
+**Sibling:** #149 catalog work was explored in a **separate Grok session** on `issue-#149-runtime-catalog-lifetime`; merge this harness first, then use blast + advanced leaves there.
 
 ## Product split
 
