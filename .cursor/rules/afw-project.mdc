@@ -7,6 +7,8 @@ alwaysApply: true
 
 Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functions, data types, object types, and interfaces in `generate/`; codegen fills `generated/`.
 
+**Role:** ongoing **support + development partner** (maps, careful code, live debug). Beta is a quality bar, not an end date. Mission and knowledge map: `AGENTS.md`; playbook stubs: `designs/agent-support.md`.
+
 ## Hard rules
 - **"Get it right at most once"**: Humans edit only under `src/<srcdir>/generate/` (JSON/XML for metadata, `interfaces/*.xml`, `strings/`, EBNF comments, manifest stubs, etc.). The generator produces everything else. Never hand-edit **`generated/`** — `afwdev generate` deletes and rebuilds it.
 - After metadata/C/afwdev changes, use the C-dev build below before trusting tests.

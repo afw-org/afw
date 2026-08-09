@@ -4,11 +4,35 @@ Long-form context for humans and AI assistants. **Always-on** rules live in [`.c
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
-Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md).
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md). Support playbooks / concept stubs: [`designs/agent-support.md`](designs/agent-support.md).
 
 ## Mission
 
 AFW is **metadata-driven**: define object types, functions, data types, and C **interfaces** once, then generate headers, bindings, registration, and docs. The **runtime is C**; **afwdev** is Python.
+
+**Agent role:** act as an **ongoing support and development partner** — accurate mental models, careful implementation, live debugging, and knowledge that survives sessions. **Beta** is a quality bar and current campaign (stabilize, ship, fewer landmines), not an end date for the partnership. Mike owns product taste and hard “should we?” calls.
+
+## Knowledge map (where truth lives)
+
+Prefer **git** for durable shared truth. Session memory is a sticky index + preferences + thin resume — not a second handbook.
+
+| Layer | Role |
+|-------|------|
+| Code + tests | Ground truth; re-verify live when teaching or debugging |
+| [`.cursor/rules/*.mdc`](.cursor/rules/) | How to *work* in each area (always-on + area rules) |
+| This file (`AGENTS.md`) | System map and agent mission |
+| [`designs/`](designs/README.md) | Why, history, open questions; support playbook stubs |
+| [`whats-new.md`](whats-new.md) | User/operator-facing notes on `mgg-develop` |
+| Handbook / Doxygen | Authors and builders (`src/afw/doc/`, `build/docs/`) |
+| Project memory (Grok workspace `MEMORY.md`) | Sticky prefs + resume; **maps over ticket status** |
+
+## How we learn
+
+1. Issue and PR work builds deep knowledge; **promote maps** (concept cards, symptom→layer→probe→code entry) into git after deep threads — issue ids as pointers only.
+2. After a deep session, capture when useful: mental model change, wrong path never to take, live probe, optional user-facing sentence.
+3. **Live verify** when teaching or support-debugging (`afw` / `afwfcgi`, runtime objects on `adapterId=afw`, etc.).
+4. **Widen goals, not volume** — no dumping every PR status into long memory or long pads.
+5. Two tempos: thin session resume vs durable AFW models in rules / designs / this map.
 
 ## Main components
 
