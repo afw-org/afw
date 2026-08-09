@@ -159,7 +159,10 @@ Discover/filter: `retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_", {}, 
 | Kind | Location | Run |
 |------|----------|-----|
 | Multi-request correctness (hermetic afwfcgi) | `src/afw/tests/advanced/catalog-value-accessors/` | `afwdev test --test-pattern catalog-value-accessors` |
+| Stop/start disposable adapter vs catalog | `src/afw/tests/advanced/catalog-adapter-lifecycle/` | `afwdev test --test-pattern catalog-adapter-lifecycle` |
 | Load thrash (not in `-j`) | `src/afw/tests_special/catalog/` | `afwdev blast -T src/afw/tests_special/catalog -d 15s -m 50` |
+
+**Lifecycle note:** `service_start` after `service_stop` requires env **`conf_adapter`** plus `_AdaptiveServiceConf_/<serviceId>` (and usually application `confAdapterId`). Conf-array-only afw.conf can stop a boot-started adapter but cannot restart it.
 
 ---
 
