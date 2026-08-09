@@ -1,7 +1,7 @@
 # Runtime / `afw` adapter catalog lifetime
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**Status:** discovery notes only — **not** blocking issue #17 (mutable faces).  
+**Status:** discovery notes (phase 1 product work is on the architecture pad + branch). **Not** blocking #17 (mutable faces; closed).  
 **Architecture (preferred map):** [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) — generate → maps → accessors → env registration → #149 checklist.  
 **Value accessor catalog snapshot:** [`runtime-value-accessors.md`](runtime-value-accessors.md) (from live `afw -x` retrieve).  
 **Parent / umbrella:** GitHub **[#2 Memory management](https://github.com/afw-org/afw/issues/2)** and [`memory-management.md`](memory-management.md).  

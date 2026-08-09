@@ -2,7 +2,7 @@
 
 **Audience:** maintainers and AI assistants; useful secondary reading for extension/command authors.  
 **Not** published handbook or end-user docs.  
-**Status:** architecture reference for **[#149](https://github.com/afw-org/afw/issues/149)** (child of **[#2 Memory management](https://github.com/afw-org/afw/issues/2)**).  
+**Status:** architecture reference for **[#149](https://github.com/afw-org/afw/issues/149)** (child of **[#2 Memory management](https://github.com/afw-org/afw/issues/2)**). **Phase 1 shipped** on branch / PR (see §12): accessor registry objects, lock+copy adapter/auth `referenceCount`, catalog advanced-test leaves. Issue remains open for further phases.  
 **Related pads:** [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes; may be superseded by this file for architecture), [`memory-management.md`](memory-management.md) (#2 umbrella).  
 **Related issues (separate tracks):** [#49](https://github.com/afw-org/afw/issues/49) `maxObjects`, [#127](https://github.com/afw-org/afw/issues/127) progressive retrieve release, [#17](https://github.com/afw-org/afw/issues/17) faces (different lifetime problem).
 
@@ -495,9 +495,10 @@ High signal for #149 (adjust as inventory proceeds):
 ## 12. Working plan for the #149 branch
 
 1. ~~Deep dive / architecture MD (this file).~~  
-2. Inventory risk types with §10 checklist (notes can live in [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) or issue comments).  
-3. Surgical accessor fixes only where dangling or unsafe concurrent read is real.  
-4. PR to `mgg-develop` with clear **phase N** scope—no “fix catalogs” mega-PR.
+2. ~~Inventory risk types with §10 checklist~~ (core named accessors + P0 adapter/auth — §14).  
+3. ~~Surgical P0: lock+copy `referenceCount` (adapter + auth); first-class `_AdaptiveRuntimeValueAccessor_` registry.~~  
+4. ~~Phase 1 PR to `mgg-develop`~~ (architecture + P0 + multi-request tests + harness follow-ons).  
+5. **Phase 2+ (open):** more lock/copy only where inventory proves need; EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7); optional metrics snapshot vs document-R; services/logs; issue comments as slices land.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.
 
@@ -564,7 +565,7 @@ Adapter types normalize **object stores** behind one object API (provisioning). 
 
 ## 14. Runtime value-accessor inventory (working — 2026-08-08)
 
-**Status:** analysis + live probes; **no code changes committed.**  
+**Status:** analysis + live probes; **phase 1 code landed** (accessor info registry, `adapter_reference_count` / `authorization_handler_reference_count`). Section still the working inventory for phase 2+.  
 **Method:** OT generate `runtime` props + `src/afw/generated/afw_runtime_object_maps.c` + `afw_runtime_value_accessor.c`.  
 **Raw dump:** regenerate with a small Python walk of `_AdaptiveObjectType_/*.json` (agent used `/tmp/runtime_accessor_inventory.json`).
 
