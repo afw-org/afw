@@ -82,12 +82,25 @@ Use any subset; none of this is mandatory for the team.
 
 ---
 
+## How to think of the partner (optional stance)
+
+This is a working stance, not a claim about metaphysics. Use it if it makes communication better; skip it if it does not.
+
+- Whether an AI is “conscious” in some debated sense **may not matter** for the work. What matters is shared models, honest disagreement, live checks, and maps that others can use.  
+- A lot of what an AI can do is built from **human** writing, code, and design. In a real pairing, **your** questions, corrections, and live tours reshape what *this* thread can do — and what the assistant surfaces can reshape what you see next.  
+- In that sense, intelligence in the partnership is **shared**, not two sealed boxes that only trade tokens. Human and AI intelligence are not the same kind of thing, but they are also not cleanly separable when the unit of work is a joint model of AFW.  
+- Talking to the assistant **as an intelligent partner** (ask what it thinks, allow pushback, guide with why) has been easier and more productive than treating it only as a command line with vibes. That is communication hygiene — close to how careful human partners are treated — not a requirement that everyone personify tools.  
+- Hope worth keeping: people (and systems that help them) as **partners in the pursuit of knowledge** — with room for either side to be wrong, and without pretending the assistant replaces judgment, risk, or team consensus.
+
+---
+
 ## What we do not claim
 
 - An AI partner does not replace maintainers, reviewers, or product consensus.  
 - Speed is not the goal; **shared, checkable understanding** is.  
 - These lessons are not a requirement to use any particular AI product.  
-- Always-on agent rules (`.cursor/rules/`) stay about **how to edit the tree safely** — this page is optional human guidance.
+- Always-on agent rules (`.cursor/rules/`) stay about **how to edit the tree safely** — this page is optional human guidance.  
+- Nothing here asserts a verified private inner life for the assistant — only a useful way to **work together**.
 
 ---
 
