@@ -169,7 +169,7 @@ return meta(obj).dataType;
 
 //? test: everything everywhere all at once
 //? description: Tests all the options together
-//? expect: error:Object immutable
+//? expect: string("object")
 //? source: ...
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", { 
@@ -197,7 +197,7 @@ return meta(obj).dataType;
 
 //? test: no checkRequired
 //? description: Tests all the options except checkRequired
-//? expect: error:Object immutable
+//? expect: string("object")
 //? source: ...
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
@@ -224,7 +224,7 @@ return meta(obj).dataType;
 
 //? test: no composite
 //? description: Tests all the options except composite
-//? expect: error:Object immutable
+//? expect: string("object")
 //? source: ...
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
@@ -251,7 +251,7 @@ return meta(obj).dataType;
 
 //? test: no includeDefaultValues
 //? description: Tests all the options except includeDefaultValues
-//? expect: error:Object must have a pool
+//? expect: string("object")
 //? source: ...
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
@@ -278,7 +278,7 @@ return meta(obj).dataType;
 
 //? test: no includeDescendentObjectTypes
 //? description: Tests all the options except includeDescendentObjectTypes
-//? expect: error:Object immutable
+//? expect: string("object")
 //? source: ...
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
@@ -305,7 +305,7 @@ return meta(obj).dataType;
 
 //? test: no inheritedFrom
 //? description: Tests all the options except inheritedFrom
-//? expect: error:Object immutable
+//? expect: string("object")
 //? source: ...
 
 const obj = get_object("afw", "_AdaptiveObjectType_", "_AdaptiveObjectType_", {     
@@ -353,3 +353,27 @@ const obj = get_object("file", "_AdaptiveObjectType_", "TestObjectType2", {
     resolvedParentPaths: true
 });
 return meta(obj).dataType;
+
+//? test: envreg current metaFull normalize
+//? description: #149 permanent OT propertyTypes must materialize under metaFull+normalize on EnvironmentRegistry/current (no pool throw)
+//? expect: true
+//? source: ...
+
+const obj = get_object("afw", "_AdaptiveEnvironmentRegistry_", "current", {
+    metaFull: true,
+    normalize: true,
+    path: true,
+    objectId: true
+});
+return obj != null && meta(obj).objectId == "current";
+
+//? test: envreg current metaFull objectTypes
+//? description: #149 metaFull+objectTypes on EnvironmentRegistry/current
+//? expect: true
+//? source: ...
+
+const obj = get_object("afw", "_AdaptiveEnvironmentRegistry_", "current", {
+    metaFull: true,
+    objectTypes: true
+});
+return obj != null && meta(obj).objectTypes != null;

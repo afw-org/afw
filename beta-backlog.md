@@ -91,13 +91,13 @@ Update this section if the plan changes.
 
 ### Session wrap-up — 2026-08-09 (#149 phase 1 + afwdev harness)
 
-- **#149 phase 1** on branch `issue-#149-runtime-catalog-lifetime` → PR to `mgg-develop` (see issue for ship notes). **Does not close #149.**
+- **#149 phase 1** merged to **`mgg-develop`** via [PR #160](https://github.com/afw-org/afw/pull/160) (`32ff0706`). Issue comment has ship notes. **Does not close #149.**
   - Architecture: [`designs/runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md), snapshot [`runtime-value-accessors.md`](designs/runtime-value-accessors.md), discovery [`runtime-catalog-lifetime.md`](designs/runtime-catalog-lifetime.md).
   - Product C: first-class `_AdaptiveRuntimeValueAccessor_` registry objects; lock+copy **`referenceCount`** for adapter + auth handler; metrics/properties stay live-while-active (documented).
   - Tests: always-on `tests/advanced/catalog-value-accessors/`; opt-in `tests_special/` lifecycle + blast corpus.
-- **afwdev follow-ons** on same branch (after PR **#159** advanced-test/blast): `--tests-path`/`-T`, `--output`/`--output-format`, recipe polish, **#61** structured exceptions (closed).
+- **afwdev follow-ons** on same PR (after **#159** advanced-test/blast): `--tests-path`/`-T`, `--output`/`--output-format`, recipe polish, **#61** structured exceptions (closed).
 - **#13** stress: comment to Jeremy (blast ≠ his `--rounds`/`--continuous` on `test`); left open.
-- **Next:** new branch off `mgg-develop` for #149 phase 2 (more accessors only if proven; EnvironmentRegistry/`current` + rich objectOptions pool bug; issue comments as work lands).
+- **Active branch:** `issue-#149-catalog-phase2` — phase 2 **EnvironmentRegistry/`current` objectOptions pool fix** landed (meta propertyTypes materialize on view pool); remaining: more accessors only if proven; metrics R vs snapshot.
 
 ### Session wrap-up — 2026-08-06 (#17 merged)
 
