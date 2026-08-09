@@ -15500,6 +15500,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_adapter_properties \
+    "adapter_properties"
+
+/** @brief 'afw_utf8_t' for AFW_Q_adapter_properties */
+#define afw_s_adapter_properties \
+    (&afw_self_v_adapter_properties.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_adapter_properties */
+#define afw_self_s_adapter_properties \
+    (afw_self_v_adapter_properties.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_adapter_properties */
+extern const afw_value_string_t \
+    afw_self_v_adapter_properties;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_adapter_properties */
+#define afw_z_adapter_properties \
+    (afw_self_v_adapter_properties.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_adapter_properties */
+#define afw_v_adapter_properties \
+    (&afw_self_v_adapter_properties.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_adapter_reference_count \
     "adapter_reference_count"
 
@@ -117655,7 +117681,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1661 \
-    "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace."
+    "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1661 */
 #define afw_s_zz__1661 \
@@ -117681,7 +117707,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1662 \
-    "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get."
+    "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1662 */
 #define afw_s_zz__1662 \

@@ -55,6 +55,10 @@ steps:
       // Live metrics pointer: null when no active adapter
       assert(a.metrics === null || a.metrics === undefined,
           "metrics should be absent when stopped");
+      // properties may be null/absent after stop (anchor field cleared or empty)
+      // re-get still safe under lock (adapter_properties)
+      const a2 = get_object("afw", "_AdaptiveAdapter_", "lifecycle");
+      assert(a2.referenceCount === 0);
       return a.referenceCount;
 
   - name: stopped adapter cannot get_object

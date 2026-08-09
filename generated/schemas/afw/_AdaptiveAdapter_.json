@@ -3,8 +3,8 @@
     "$defs": {
         "_AdaptiveAdapterMetrics_": {
             "additionalProperties": false,
-            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
-            "markdownDescription": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+            "markdownDescription": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -152,14 +152,14 @@
                             "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
                         }
                     ],
-                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
-                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
                     "title": "Metrics",
                     "type": "object"
                 },
                 "properties": {
-                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
-                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
+                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
                     "title": "Properties",
                     "type": "object"
                 },
@@ -205,14 +205,14 @@
                             "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
                         }
                     ],
-                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
-                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
                     "title": "Metrics",
                     "type": "object"
                 },
                 "properties": {
-                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
-                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
+                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
                     "title": "Properties",
                     "type": "object"
                 },
@@ -268,14 +268,14 @@
                     "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
                 }
             ],
-            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
-            "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+            "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
             "title": "Metrics",
             "type": "object"
         },
         "properties": {
-            "description": "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
-            "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
+            "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+            "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
             "title": "Properties",
             "type": "object"
         },

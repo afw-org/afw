@@ -97,7 +97,8 @@ Update this section if the plan changes.
   - Tests: always-on `tests/advanced/catalog-value-accessors/`; opt-in `tests_special/` lifecycle + blast corpus.
 - **afwdev follow-ons** on same PR (after **#159** advanced-test/blast): `--tests-path`/`-T`, `--output`/`--output-format`, recipe polish, **#61** structured exceptions (closed).
 - **#13** stress: comment to Jeremy (blast ≠ his `--rounds`/`--continuous` on `test`); left open.
-- **Active branch:** `issue-#149-catalog-phase2` — phase 2 **EnvironmentRegistry/`current` objectOptions pool fix** landed (meta propertyTypes materialize on view pool); remaining: more accessors only if proven; metrics R vs snapshot.
+- **Phase 2** merged [PR #161](https://github.com/afw-org/afw/pull/161) (`ae50a2ab`) — EnvironmentRegistry/`current` rich objectOptions pool fix.
+- **Phase 3** on `issue-#149-catalog-phase3` — lock-safe live `adapter_metrics` / new `adapter_properties`; document-R (no deep metrics snapshot). Close **#149** when PR lands; residuals under **#2**.
 
 ### Session wrap-up — 2026-08-06 (#17 merged)
 

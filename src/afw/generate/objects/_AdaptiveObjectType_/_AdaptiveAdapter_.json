@@ -25,7 +25,7 @@
             "brief": "Adapter metrics",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveAdapterMetrics_",
-            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Not a snapshot: counters and nested state may change while held, and the object is only valid while the adapter remains active. Prefer reading counts for display/debug, not for long-lived caching across stop/replace.",
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
             "label": "Metrics",
             "runtime": {
                 "memberName": "adapter",
@@ -35,8 +35,12 @@
         "properties": {
             "brief": "Properties associated with adapter",
             "dataType": "object",
-            "description": "Live object with selected conf properties plus runtime properties for this adapter instance. Valid while the adapter remains active; not deep-copied on get.",
-            "label": "Properties"
+            "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+            "label": "Properties",
+            "runtime": {
+                "memberName": "properties",
+                "valueAccessor": "adapter_properties"
+            }
         },
         "referenceCount": {
             "allowQuery": true,

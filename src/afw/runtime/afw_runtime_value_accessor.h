@@ -376,20 +376,31 @@ afw_runtime_value_accessor_uint32(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Runtime value accessor for `/afw/_AdaptiveAdapterMetrics_/<adapterId>`.
+ * @brief Live adapter metrics object (active adapter pointer under lock).
  * @param prop is associated afw_runtime_object_map_property_t.
- * @param internal is pointer const afw_utf8_t *adapter_id.
+ * @param internal is pointer to const afw_adapter_t * on adapter id anchor.
  * @param p is pool to use.
  * @param xctx of caller.
- * @return afw_value_t representing value.
+ * @return object value wrapping metrics_object, or NULL if no active adapter.
  *
- * The data_type in prop must be object.
- *
- * Parameter internal is mapped afw_utf8_t *adapter_id. The value will be the
- * result of getting the runtime `/afw/_AdaptiveAdapterMetrics_/<adapterId>`.
+ * Loads the adapter pointer under adapter_id_anchor_lock. Result is still a
+ * live reference (not a deep snapshot of counters).
  */
 const afw_value_t *
 afw_runtime_value_accessor_adapter_metrics(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Live adapter anchor properties object (pointer under lock).
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to const afw_object_t * properties on anchor.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return object value wrapping properties, or NULL.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_adapter_properties(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 

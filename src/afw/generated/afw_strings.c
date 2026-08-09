@@ -3596,6 +3596,12 @@ afw_self_v_adapter_objectCallback_signature = {
 };
 
 const afw_value_string_t
+afw_self_v_adapter_properties = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_adapter_properties)
+};
+
+const afw_value_string_t
 afw_self_v_adapter_reference_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_reference_count)
