@@ -1042,7 +1042,21 @@ _info_blast_include_fixtures = {
     "help":
         "Include tests that need private afw.conf, tests/environments "
         "(config.py Environment), or nearby conf. Default is to skip "
-        "those so fail counts stay near zero unless something is wrong."
+        "those so fail counts stay near zero unless something is wrong. "
+        "Ignored when --tests-path is set (those roots are taken as-is)."
+}
+
+_info_blast_tests_path = {
+    "optionName": "tests_path",
+    "arg": "--tests-path",
+    "short": "-T",
+    "action": "append",
+    "noprompt": True,
+    "help":
+        "Directory of .as scripts for the blast corpus (repeatable). "
+        "When any --tests-path is given, only those trees are used "
+        "(not package src/*/tests). Scripts are not discovered by "
+        "'afwdev test -j'. Use for private/load corpora (e.g. #149)."
 }
 
 _info_blast = {
@@ -1055,10 +1069,11 @@ _info_blast = {
         "attach to http://localhost:8080/afw for 5m with concurrency "
         "2×CPUs (and managed afwfcgi -n = CPUs) — plain 'afwdev blast' often "
         "suffices when nginx+afwfcgi are up. Override with -u/-f/-d/-c/-n. "
-        "By default skips fixture-heavy groups (Environment= / afw.conf) "
-        "so failures usually mean a real problem; "
-        "--include-fixtures to load them too. "
-        "Filters: --srcdir-pattern, --test-pattern, --tags. "
+        "Corpus: package src/*/tests by default (--srcdir-pattern / "
+        "--test-pattern / --tags), or only trees given with "
+        "repeatable --tests-path/-T (exclusive). Fixture groups "
+        "(Environment= / afw.conf) are skipped by default unless "
+        "--include-fixtures (N/A with --tests-path). "
         "Continues on Adaptive failures; stops if the server dies. "
         "See designs/afwdev-blast.md.",
     "thing": "blast",
@@ -1071,6 +1086,7 @@ _info_blast = {
         _info_blast_threads,
         _info_blast_request_timeout,
         _info_blast_include_fixtures,
+        _info_blast_tests_path,
         _info_srcdir_pattern,
         _info_test_pattern,
         _info_test_tags,

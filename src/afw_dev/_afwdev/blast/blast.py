@@ -98,25 +98,42 @@ def run(options):
     timeout_s = float(options.get("request_timeout") or 30.0)
     progress_every_s = float(options.get("progress_every") or 2.0)
 
-    srcdirs = _collect_srcdirs(options)
     attach = bool(url)
-    # Default: skip fixture-heavy groups so fail≈0 unless something is wrong
+    tests_paths = _normalize_tests_paths(options.get("tests_path"))
     include_fixtures = bool(options.get("include_fixtures"))
-    corpus, skipped_fixture = _collect_corpus(
-        options, srcdirs, skip_fixtures=not include_fixtures)
+
+    if tests_paths:
+        # Explicit roots only — not package tests/, not test -j discovery
+        corpus, skipped_fixture = _collect_corpus_from_tests_paths(
+            options, tests_paths)
+        corpus_mode = "tests-path"
+    else:
+        srcdirs = _collect_srcdirs(options)
+        # Default: skip fixture-heavy groups so fail≈0 unless something is wrong
+        corpus, skipped_fixture = _collect_corpus(
+            options, srcdirs, skip_fixtures=not include_fixtures)
+        corpus_mode = "package-tests"
+
     if not corpus:
+        if tests_paths:
+            msg.error_exit(
+                "No .as tests under --tests-path "
+                "(check paths and --test-pattern): " +
+                ", ".join(tests_paths))
         msg.error_exit(
             "No .as tests in blast corpus "
             "(check --srcdir-pattern / --test-pattern / --tags; "
-            "fixture groups skipped by default — see --include-fixtures)")
+            "fixture groups skipped by default — see --include-fixtures; "
+            "or use --tests-path/-T for private corpora)")
 
     msg.highlighted_info(
         "*** Experimental *** afwdev blast — not part of test -j")
     dur_show = duration_raw if duration_s is not None else "-"
     msg.highlighted_info(
-        "corpus={}  skipped_fixture={}  mode={}  concurrency={} (cpus={})  "
-        "duration={}  max_requests={}".format(
+        "corpus={}  mode={}  skipped_fixture={}  target={}  "
+        "concurrency={} (cpus={})  duration={}  max_requests={}".format(
             len(corpus),
+            corpus_mode,
             skipped_fixture,
             "attach " + url if attach else "managed conf=" + conf,
             concurrency,
@@ -124,11 +141,14 @@ def run(options):
             dur_show if duration_s is not None else "-",
             max_requests if max_requests is not None else "-",
         ))
+    if tests_paths:
+        msg.highlighted_info(
+            "tests-path: " + ", ".join(tests_paths))
     if attach:
         msg.highlighted_info(
             "attach: ensure afwfcgi is up behind that URL "
             "(nginx often already running in dev containers)")
-    if not include_fixtures and skipped_fixture:
+    if not tests_paths and not include_fixtures and skipped_fixture:
         msg.highlighted_info(
             "skipping groups with Environment= / afw.conf "
             "(use --include-fixtures to blast those too)")
@@ -558,6 +578,24 @@ def _parse_duration(text):
                 text))
 
 
+def _normalize_tests_paths(raw):
+    """Return list of absolute existing directories from --tests-path (or [])."""
+    if not raw:
+        return []
+    if isinstance(raw, str):
+        raw = [raw]
+    paths = []
+    for p in raw:
+        if p is None or p == "":
+            continue
+        ap = os.path.abspath(os.path.expanduser(str(p)))
+        if not os.path.isdir(ap):
+            msg.error_exit(
+                "afwdev blast --tests-path is not a directory: " + ap)
+        paths.append(ap)
+    return paths
+
+
 def _collect_srcdirs(options):
     pattern = options.get("srcdir_pattern") or "*"
     pattern = pattern.replace("\\", "")
@@ -571,6 +609,41 @@ def _collect_srcdirs(options):
         manual_tests = srcdir_path + "tests"
         srcdirs.append((srcdir, srcdir_path, None, manual_tests))
     return srcdirs
+
+
+def _collect_corpus_from_tests_paths(options, tests_paths):
+    """
+    Build corpus from explicit directory roots (--tests-path).
+
+    Recursively finds *.as (not _*). Applies --test-pattern when set.
+    Does not use package srcdir discovery or fixture skip (roots are intentional).
+    """
+    from _afwdev.test.common import _test_pattern_matches
+
+    pattern = options.get("test_pattern") or ".*"
+    corpus = []
+    seen = set()
+    for root in tests_paths:
+        for dirpath, _dirnames, filenames in os.walk(root):
+            # skip hidden / underscore dir segments
+            parts = os.path.relpath(dirpath, root).split(os.sep)
+            if any(p.startswith("_") or p.startswith(".") for p in parts
+                   if p not in (".", "")):
+                continue
+            for name in filenames:
+                if not name.endswith(".as") or name.startswith("_"):
+                    continue
+                path = os.path.join(dirpath, name)
+                ap = os.path.abspath(path)
+                if ap in seen:
+                    continue
+                if not _test_pattern_matches(pattern, ap) and \
+                        not _test_pattern_matches(pattern, name):
+                    continue
+                seen.add(ap)
+                corpus.append(ap)
+    corpus.sort()
+    return corpus, 0
 
 
 def _group_needs_fixture(root, config):
