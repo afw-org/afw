@@ -21,7 +21,20 @@ afwdev test -T src/afw/tests_special --list
 afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 50
 ```
 
-Structured machine results already use **`afwdev test --output path.json`** (console text stays human-default; do not change that silently).
+**Machine-readable results** (human console stays default):
+
+```bash
+# File (default --output-format json, includes failures[])
+afwdev test -T src/afw/tests_special/adapter-lifecycle --output /tmp/out.json
+
+# JSON only to stdout (still may print human lines first; parse the file form
+# for quiet CI, or use --output - and extract the JSON object)
+afwdev test --test-pattern catalog-value-accessors --output - --output-format json
+
+# Compact / text
+afwdev test -j --output /tmp/out.json --output-format json-compact
+afwdev test -T src/afw/tests_special/adapter-lifecycle --output /tmp/out.txt --output-format text
+```
 
 | Subdir | Purpose |
 |--------|---------|

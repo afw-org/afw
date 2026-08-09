@@ -915,8 +915,22 @@ _info_test_output = {
     "default": "stdout",
     "noprompt": True,
     "help":
-        "Where to write a JSON results summary. Use 'stdout' (default) for "
-        "console only, or a file path."
+        "Where to write a results summary after the run. "
+        "Default 'stdout' means do not write a summary file (human "
+        "console only). Use a file path, or '-' to write the summary "
+        "to stdout (useful with --output-format json for agents/CI)."
+}
+
+_info_test_output_format = {
+    "optionName": "output_format",
+    "arg": "--output-format",
+    "action": "store",
+    "default": "json",
+    "noprompt": True,
+    "help":
+        "Format of --output summary when writing a file or '-'. "
+        "json (default, indented), json-compact, or text. "
+        "Does not change default human console reporting."
 }
 
 _info_test_pattern = {
@@ -972,6 +986,7 @@ _info_test = {
         _info_test_jobs,
         _info_test_env_mode,
         _info_test_output,
+        _info_test_output_format,
         _info_test_pattern,
         _info_test_js,
         _info_tmpdir

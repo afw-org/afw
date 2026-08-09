@@ -57,15 +57,72 @@ def _list_tests(options, srcdirs):
 
 
 ##
-# @brief Optionally write a JSON results summary to --output
+# @brief Optionally write a results summary to --output
+# @details Default output 'stdout' means no summary file (human console only).
+#          Use a path or '-' with --output-format json|json-compact|text.
+#          Human console reporting is unchanged unless callers also use -q.
 #
 def _write_output_summary(options, summary):
+    import sys
+
     output = options.get('output') or 'stdout'
+    # Compat: literal "stdout" = do not write a summary artifact
     if output == 'stdout':
         return
-    with nfc.open(output, 'w') as fd:
-        nfc.json_dump(summary, fd, indent=2, sort_keys=True)
-    msg.highlighted_info('Wrote test summary to ' + output)
+
+    fmt = (options.get('output_format') or 'json').strip().lower()
+    if fmt in ('json-min', 'compact'):
+        fmt = 'json-compact'
+
+    close_fd = False
+    if output == '-':
+        fd = sys.stdout
+    else:
+        fd = nfc.open(output, 'w')
+        close_fd = True
+
+    try:
+        if fmt == 'json':
+            nfc.json_dump(summary, fd, indent=2, sort_keys=True)
+            fd.write('\n')
+        elif fmt == 'json-compact':
+            nfc.json_dump(
+                summary, fd, sort_keys=True, separators=(',', ':'))
+            fd.write('\n')
+        elif fmt == 'text':
+            t = summary.get('tests') or {}
+            fd.write(
+                "tests: passed={p} failed={f} skipped={s} total={n}\n"
+                "time_seconds={sec}\n".format(
+                    p=t.get('passed', 0),
+                    f=t.get('failed', 0),
+                    s=t.get('skipped', 0),
+                    n=t.get('total', 0),
+                    sec=summary.get('time_seconds', 0),
+                ))
+            fails = summary.get('failures') or []
+            if fails:
+                fd.write("failures ({n}):\n".format(n=len(fails)))
+                for item in fails:
+                    fd.write(
+                        "  {path}  {detail}\n".format(
+                            path=item.get('test') or '?',
+                            detail=item.get('detail') or '',
+                        ))
+            else:
+                fd.write("failures: none\n")
+        else:
+            msg.error_exit(
+                "Unknown --output-format {!r} "
+                "(use json, json-compact, or text)".format(fmt))
+    finally:
+        if close_fd:
+            fd.close()
+
+    if output != '-':
+        msg.highlighted_info(
+            'Wrote test summary ({fmt}) to {path}'.format(
+                fmt=fmt, path=output))
 
 
 ## 
@@ -232,6 +289,16 @@ def run(options):
                 }
                 for srcdir, stats in results.items()
             },
+            # Paths + one-line details for agents/CI (console digest separate)
+            'failures': [
+                {
+                    'test': f.get('test'),
+                    'detail': f.get('detail'),
+                    'group': f.get('group'),
+                    'srcdir': f.get('srcdir'),
+                }
+                for f in (failures or [])
+            ],
         })
 
         if total_failed > 0:

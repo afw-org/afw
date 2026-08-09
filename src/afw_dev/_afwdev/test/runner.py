@@ -39,19 +39,36 @@ def _failure_detail(error, response, numFailures):
             detail = error
         return str(detail)
     if response is not None and response.get('tests'):
-        names = []
+        bits = []
         for tc in response.get('tests') or []:
             if tc.get('skip'):
                 continue
             if tc.get('passed', False) is False:
-                names.append(tc.get('test') or '?')
-        if names:
-            shown = names[:3]
-            extra = len(names) - len(shown)
-            text = ", ".join(shown)
+                # Prefer Adaptive error.message / string error over bare name
+                err = tc.get('error')
+                if isinstance(err, dict) and err.get('message'):
+                    bits.append(err.get('message'))
+                elif isinstance(err, str) and err:
+                    bits.append(err)
+                elif tc.get('description') and tc.get('description') != tc.get(
+                        'test'):
+                    bits.append(tc.get('description'))
+                else:
+                    bits.append(tc.get('test') or '?')
+        if bits:
+            shown = bits[:3]
+            extra = len(bits) - len(shown)
+            text = "; ".join(shown)
             if extra > 0:
-                text += ", +{} more".format(extra)
+                text += "; +{} more".format(extra)
             return text
+    # Top-level response.error (advanced-test may set this)
+    if response is not None:
+        top = response.get('error')
+        if isinstance(top, dict) and top.get('message'):
+            return top.get('message')
+        if isinstance(top, str) and top:
+            return top
     if numFailures:
         return "{} failed".format(numFailures)
     return "failed"
