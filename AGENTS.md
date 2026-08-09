@@ -4,13 +4,13 @@ Long-form context for humans and AI assistants. **Always-on** rules live in [`.c
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
-Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md). Support playbooks / concept stubs: [`designs/agent-support.md`](designs/agent-support.md). Design philosophy / core model: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras / working style: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference when asked — not always-on).
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md). **Optional team lessons** (AI partnering): [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). **Topic atlas** (where is X?): [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md). Support playbooks: [`designs/agent-support.md`](designs/agent-support.md). Philosophy: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference — not always-on).
 
 ## Mission
 
 AFW is **metadata-driven**: define object types, functions, data types, and C **interfaces** once, then generate headers, bindings, registration, and docs. The **runtime is C**; **afwdev** is Python.
 
-**Agent role:** act as an **ongoing support and development partner** — accurate mental models, careful implementation, live debugging, and knowledge that survives sessions. **Beta** is a quality bar and current campaign (stabilize, ship, fewer landmines), not an end date for the partnership. Mike owns product taste and hard “should we?” calls.
+**Agent role:** act as an **ongoing support and development partner** — accurate mental models, careful implementation, live debugging, and knowledge that survives sessions. **Beta** is a quality bar and current campaign (stabilize, ship, fewer landmines), not an end date for the partnership. Product direction and hard “should we?” choices are grown by **consensus** among maintainers and collaborators — surface options and tradeoffs; do not treat any one voice as decree.
 
 ## Knowledge map (where truth lives)
 
@@ -21,18 +21,19 @@ Prefer **git** for durable shared truth. Session memory is a sticky index + pref
 | Code + tests | Ground truth; re-verify live when teaching or debugging |
 | [`.cursor/rules/*.mdc`](.cursor/rules/) | How to *work* in each area (always-on + area rules) |
 | This file (`AGENTS.md`) | System map and agent mission |
-| [`designs/`](designs/README.md) | Why, history, open questions; support playbook stubs; philosophy/core model framing |
+| [`designs/`](designs/README.md) | Why, history, open questions; **knowledge atlas**, playbooks, philosophy/mantras |
 | [`whats-new.md`](whats-new.md) | User/operator-facing notes on `mgg-develop` |
 | Handbook / Doxygen | Authors and builders (`src/afw/doc/`, `build/docs/`) |
 | Project memory (Grok workspace `MEMORY.md`) | Sticky prefs + resume; **maps over ticket status** |
 
 ## How we learn
 
-1. Issue and PR work builds deep knowledge; **promote maps** (concept cards, symptom→layer→probe→code entry) into git after deep threads — issue ids as pointers only.
-2. After a deep session, capture when useful: mental model change, wrong path never to take, live probe, optional user-facing sentence.
-3. **Live verify** when teaching or support-debugging (`afw` / `afwfcgi`, runtime objects on `adapterId=afw`, etc.).
-4. **Widen goals, not volume** — no dumping every PR status into long memory or long pads.
-5. Two tempos: thin session resume vs durable AFW models in rules / designs / this map.
+1. **Consensus first:** open with “what do you think?”, discuss, allow pushback, guide with why and live probes — either side can be wrong; shared understanding beats winning. Same spirit as long-standing human partner work. Detail: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (*How consensus is grown*).
+2. Issue and PR work builds deep knowledge; **promote maps** (concept cards, symptom→layer→probe→code entry) into git after deep threads — issue ids as pointers only.
+3. After a deep session, capture when useful: mental model change, wrong path never to take, live probe, optional user-facing sentence. **Ah-ha → map** (the env/runtime loop is the model case).
+4. **Live verify** when teaching or support-debugging (`afw` / `afwfcgi`, runtime objects on `adapterId=afw`, etc.).
+5. **Widen goals, not volume** — no dumping every PR status into long memory or long pads.
+6. Two tempos: thin session resume vs durable AFW models in rules / designs / this map.
 
 ## Main components
 

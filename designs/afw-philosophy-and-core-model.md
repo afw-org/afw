@@ -18,7 +18,7 @@ AFW is large enough that grepping alone does not recover **design method** or **
 - support and development work stay aligned with the same invariants;
 - knowledge is less dependent on any single working session — or any single person.
 
-Mike’s product taste and hard “should we?” calls still own direction. This document is context, not a constitution.
+Direction is grown by **consensus** among the people building AFW — not one person’s decree and not this pad. Framing here is context for discussion, not a constitution.
 
 ---
 
