@@ -53,6 +53,7 @@ PATH afterward for `test`, `validate`, and similar.
 | **Python** (`.py` with `run()`) | Need host process control, raw env octets, bindings that are awkward in script. |
 | **`commands_*.txt`** | Drive shell-ish command sequences (special runner). |
 | **Advanced-test leaf** | Multi-request / long-lived **`afwfcgi`** process with leaf conf. **Experimental** — see below. |
+| **`afwdev blast`** | On-demand **random** suite firehose at afwfcgi for a period. **Not** part of `test -j`. See below. |
 
 Prefer a **test_script** unless you need process lifetime, a private server, or
 host-only APIs.
@@ -192,6 +193,26 @@ steps:
 
 Examples: `src/afw/tests/advanced/` (smoke, multi-request file adapter,
 multi-eval lifetime, JSON marker sample).
+
+## \*\*\* Experimental \*\*\* afwdev blast
+
+**Not part of the normal gate.** On-demand load: randomly eval suite
+`.as` sources against afwfcgi for a duration or request count.
+
+```bash
+# Typical docker/dev (defaults: url :8080/afw, 5m, concurrency=CPUs)
+afwdev blast
+
+# Longer / more parallel / adapter-focused
+afwdev blast -d 30m -c 16 --test-pattern 'file_adapter/|model_adapter/|rql/'
+
+# Harness-owned afwfcgi
+afwdev blast -f /path/to/afw.conf -m 200
+```
+
+Same discovery filters as `test` (`--srcdir-pattern`, `--test-pattern`,
+`--tags`). Continues on Adaptive failures; stops if the server dies.
+Design: `designs/afwdev-blast.md`. afwfcgi signal shutdown: issue **#158**.
 
 ## Practical tips
 

@@ -57,6 +57,7 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
 | [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (**recompile** out-of-tree; rename legacy cursor to **`afw_iterator_old`**) |
 | [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **\*\*\* Experimental \*\*\***: hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
+| [**afwdev blast**](#experimental-afwdev-blast) | **\*\*\* Experimental \*\*\***: on-demand random suite firehose at afwfcgi — not part of `test -j` |
 
 ---
 
@@ -73,6 +74,24 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | **Design / feedback** | [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md), GitHub **[#157](https://github.com/afw-org/afw/issues/157)**. |
 
 Not a replacement for ordinary `.as` test scripts. Live `--env-mode afwfcgi` still means “shared stack”; advanced leaves stay **hermetic** under default mode.
+
+**[↑ Highlights](#highlights)**
+
+---
+
+## \*\*\* Experimental \*\*\* afwdev blast
+
+**Status: experimental** — on-demand only; **not** part of `afwdev test -j`.
+
+Randomly sends suite Adaptive `test_script` sources at **afwfcgi** for a duration and/or request count (language gate stays Jeremy’s `test`).
+
+```bash
+afwdev blast                    # defaults: :8080/afw, 5m, concurrency=CPUs
+afwdev blast -d 30m -c 16       # short aliases
+afwdev blast -f path/to/afw.conf -m 500   # managed spawn
+```
+
+Defaults favor a typical docker/dev stack (nginx + afwfcgi). Filters match `test`: `-p` / `--srcdir-pattern`, `--test-pattern`, `--tags`. Continues on Adaptive failures; stops if the server dies. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Graceful afwfcgi signals: [#158](https://github.com/afw-org/afw/issues/158).
 
 **[↑ Highlights](#highlights)**
 
