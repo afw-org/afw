@@ -211,8 +211,11 @@ afwdev blast -f /path/to/afw.conf -m 200
 ```
 
 Same discovery filters as `test` (`--srcdir-pattern`, `--test-pattern`,
-`--tags`). Continues on Adaptive failures; stops if the server dies.
-Design: `designs/afwdev-blast.md`. afwfcgi signal shutdown: issue **#158**.
+`--tags`). By default **skips fixture-heavy groups** (`Environment=` /
+`afw.conf`) so failures usually mean a real problem; use
+`--include-fixtures` to blast adapter/env tests too. Continues on Adaptive
+failures; stops if the server dies. Design: `designs/afwdev-blast.md`.
+afwfcgi signal shutdown: issue **#158**.
 
 ## Practical tips
 

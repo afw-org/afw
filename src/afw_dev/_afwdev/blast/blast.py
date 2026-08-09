@@ -76,12 +76,13 @@ def run(options):
             "(default 5m) and/or --max-requests/-m")
 
     cpus = _cpu_count()
+    # Historical gobench-style load: threads ≈ CPUs, in-flight ≈ 2×CPUs
     try:
         concurrency = int(options.get("concurrency") or 0)
     except (TypeError, ValueError):
         msg.error_exit("--concurrency must be an integer")
     if concurrency <= 0:
-        concurrency = cpus
+        concurrency = max(1, 2 * cpus)
     if concurrency < 1:
         msg.error_exit("--concurrency must be >= 1")
 
@@ -99,20 +100,24 @@ def run(options):
 
     srcdirs = _collect_srcdirs(options)
     attach = bool(url)
-    corpus = _collect_corpus(options, srcdirs, skip_conf=attach)
+    # Default: skip fixture-heavy groups so fail≈0 unless something is wrong
+    include_fixtures = bool(options.get("include_fixtures"))
+    corpus, skipped_fixture = _collect_corpus(
+        options, srcdirs, skip_fixtures=not include_fixtures)
     if not corpus:
         msg.error_exit(
             "No .as tests in blast corpus "
             "(check --srcdir-pattern / --test-pattern / --tags; "
-            "attach mode skips tests next to afw.conf)")
+            "fixture groups skipped by default — see --include-fixtures)")
 
     msg.highlighted_info(
         "*** Experimental *** afwdev blast — not part of test -j")
     dur_show = duration_raw if duration_s is not None else "-"
     msg.highlighted_info(
-        "corpus={}  mode={}  concurrency={} (cpus={})  "
+        "corpus={}  skipped_fixture={}  mode={}  concurrency={} (cpus={})  "
         "duration={}  max_requests={}".format(
             len(corpus),
+            skipped_fixture,
             "attach " + url if attach else "managed conf=" + conf,
             concurrency,
             cpus,
@@ -123,6 +128,10 @@ def run(options):
         msg.highlighted_info(
             "attach: ensure afwfcgi is up behind that URL "
             "(nginx often already running in dev containers)")
+    if not include_fixtures and skipped_fixture:
+        msg.highlighted_info(
+            "skipping groups with Environment= / afw.conf "
+            "(use --include-fixtures to blast those too)")
 
     handle = None
     socket_path = None
@@ -195,13 +204,16 @@ def run(options):
                 stats.record_fail(path, "read: " + str(e))
                 return
 
+            t_req = time.time()
             try:
                 transport.send(source)
-                stats.record_ok(path)
+                stats.record_ok(path, (time.time() - t_req) * 1000.0)
             except _ServerDead as e:
                 stats.record_err(path, str(e))
                 stop.set()
                 stats.server_dead = True
+            except _Timeout as e:
+                stats.record_timeout(path, str(e))
             except Exception as e:
                 stats.record_fail(path, str(e))
 
@@ -253,19 +265,33 @@ def run(options):
         elapsed = time.time() - t0
         msg.highlighted_info("")
         msg.highlighted_info(
-            "blast done in {:.1f}s  ok={}  fail={}  err={}  total={}".format(
-                elapsed, stats.ok, stats.fail, stats.err, stats.total))
+            "blast done in {:.1f}s  ok={}  fail={}  timeout={}  err={}  "
+            "total={}  latency_ms avg={:.0f} max={:.0f}".format(
+                elapsed,
+                stats.ok,
+                stats.fail,
+                stats.timeout,
+                stats.err,
+                stats.total,
+                stats.avg_latency_ms(),
+                stats.max_latency_ms,
+            ))
+        if stats.timeout and not stats.fail and not stats.err:
+            msg.highlighted_info(
+                "note: only client timeouts (no expect fails) — often load/"
+                "queue; try lower -c or higher --request-timeout")
         if stats.recent_fails:
-            msg.error("Recent failures:")
-            for path, detail in stats.recent_fails[-10:]:
-                msg.error("  {}  {}".format(
+            msg.error("Recent problems:")
+            for kind, path, detail in stats.recent_fails[-10:]:
+                msg.error("  [{}] {}  {}".format(
+                    kind,
                     os.path.relpath(path) if os.path.exists(path) else path,
                     detail[:120]))
 
         if stats.server_dead:
             msg.error("Server died or became unreachable during blast.")
             sys.exit(2)
-        if stats.fail or stats.err:
+        if stats.fail or stats.err or stats.timeout:
             sys.exit(1)
         sys.exit(0)
 
@@ -281,6 +307,11 @@ def run(options):
 
 
 class _ServerDead(Exception):
+    pass
+
+
+class _Timeout(Exception):
+    """Client-side request timeout (load/queue), not an Adaptive expect fail."""
     pass
 
 
@@ -305,7 +336,7 @@ class _HttpTransport(object):
         except requests.exceptions.ConnectionError as e:
             raise _ServerDead("connection failed: " + str(e)) from e
         except requests.exceptions.Timeout as e:
-            raise RuntimeError("request timeout: " + str(e)) from e
+            raise _Timeout("request timeout: " + str(e)) from e
 
         if r.status_code >= 500:
             raise _ServerDead(
@@ -360,10 +391,10 @@ class _FcgiTransport(object):
             )
         except FcgiClientError as e:
             err = str(e).lower()
-            if "connect" in err or "closed" in err or "timeout" in err:
-                # distinguish hard death vs slow: connection refused = dead
-                if "connect" in err or "closed" in err:
-                    raise _ServerDead(str(e)) from e
+            if "timeout" in err:
+                raise _Timeout(str(e)) from e
+            if "connect" in err or "closed" in err:
+                raise _ServerDead(str(e)) from e
             raise RuntimeError(str(e)) from e
 
         body_text = (result.get("body") or b"").decode(
@@ -406,25 +437,43 @@ class _Stats(object):
     def __init__(self):
         self._lock = threading.Lock()
         self.ok = 0
-        self.fail = 0
-        self.err = 0
+        self.fail = 0          # Adaptive expect / action errors
+        self.timeout = 0       # client read/connect timeout (load)
+        self.err = 0           # server dead / 5xx class
         self.total = 0
         self.last_path = ""
-        self.recent_fails = []
+        self.recent_fails = []  # (kind, path, detail)
         self.server_dead = False
+        self.latency_sum_ms = 0.0
+        self.latency_n = 0
+        self.max_latency_ms = 0.0
 
-    def record_ok(self, path):
+    def record_ok(self, path, latency_ms=0.0):
         with self._lock:
             self.ok += 1
             self.total += 1
             self.last_path = path
+            if latency_ms > 0:
+                self.latency_sum_ms += latency_ms
+                self.latency_n += 1
+                if latency_ms > self.max_latency_ms:
+                    self.max_latency_ms = latency_ms
 
     def record_fail(self, path, detail):
         with self._lock:
             self.fail += 1
             self.total += 1
             self.last_path = path
-            self.recent_fails.append((path, detail))
+            self.recent_fails.append(("fail", path, detail))
+            if len(self.recent_fails) > 50:
+                self.recent_fails = self.recent_fails[-50:]
+
+    def record_timeout(self, path, detail):
+        with self._lock:
+            self.timeout += 1
+            self.total += 1
+            self.last_path = path
+            self.recent_fails.append(("timeout", path, detail))
             if len(self.recent_fails) > 50:
                 self.recent_fails = self.recent_fails[-50:]
 
@@ -433,7 +482,12 @@ class _Stats(object):
             self.err += 1
             self.total += 1
             self.last_path = path
-            self.recent_fails.append((path, detail))
+            self.recent_fails.append(("err", path, detail))
+
+    def avg_latency_ms(self):
+        if self.latency_n < 1:
+            return 0.0
+        return self.latency_sum_ms / float(self.latency_n)
 
 
 def _print_progress(stats, t0, final=False):
@@ -446,21 +500,24 @@ def _print_progress(stats, t0, final=False):
         except ValueError:
             pass
     line = (
-        "blast  {elapsed}  req={total}  ok={ok}  fail={fail}  err={err}  "
-        "rps≈{rps:.1f}  last={last}"
+        "blast  {elapsed}  req={total}  ok={ok}  fail={fail}  "
+        "timeout={timeout}  err={err}  rps≈{rps:.1f}  "
+        "lat_ms≈{lat:.0f}/{mx:.0f}  last={last}"
     ).format(
         elapsed=_fmt_hms(elapsed),
         total=stats.total,
         ok=stats.ok,
         fail=stats.fail,
+        timeout=stats.timeout,
         err=stats.err,
         rps=rps,
+        lat=stats.avg_latency_ms(),
+        mx=stats.max_latency_ms,
         last=last or "-",
     )
     if final:
         msg.highlighted_info(line)
     else:
-        # single updating-friendly line
         print(line, flush=True)
 
 
@@ -516,8 +573,44 @@ def _collect_srcdirs(options):
     return srcdirs
 
 
-def _collect_corpus(options, srcdirs, skip_conf=True):
+def _group_needs_fixture(root, config):
+    """
+    True if this test group needs a private conf, shared environment, or
+    work-dir setup that a bare live /afw (or single --conf) does not provide.
+
+    Matches Jeremy's live afwfcgi mode spirit: skip custom stacks; default
+    blast should fail only when something is actually wrong.
+    """
+    if config and config.get("environment"):
+        return True, "Environment=" + str(config.get("environment"))
+    if os.path.isfile(os.path.join(root, "afw.conf")):
+        return True, "group afw.conf"
+    return False, None
+
+
+def _path_has_afw_conf_nearby(path, stop_dir_name="tests"):
+    """Walk parents of the test file for afw.conf (subdir tests under a conf)."""
+    d = os.path.dirname(os.path.abspath(path))
+    for _ in range(12):
+        if os.path.isfile(os.path.join(d, "afw.conf")):
+            return True
+        base = os.path.basename(d)
+        if base == stop_dir_name or d == os.path.dirname(d):
+            break
+        d = os.path.dirname(d)
+    return False
+
+
+def _collect_corpus(options, srcdirs, skip_fixtures=True):
+    """
+    Build list of .as paths for blasting.
+
+    When skip_fixtures (default): omit groups with config.py Environment,
+    group-level afw.conf, or afw.conf next to / above the script. Those need
+    afwdev test work dirs / environments, not a random eval on /afw.
+    """
     corpus = []
+    skipped_fixture = 0
     for srcdir, srcdir_path, _, manual_tests in srcdirs:
         if not os.path.isdir(manual_tests):
             continue
@@ -526,17 +619,27 @@ def _collect_corpus(options, srcdirs, skip_conf=True):
             config = load_test_group_config(root)
             if not test_group_matches_tags(options, config):
                 continue
+
+            if skip_fixtures:
+                needs, reason = _group_needs_fixture(root, config)
+                if needs:
+                    n_as = sum(1 for p in tests if p.endswith(".as"))
+                    skipped_fixture += n_as
+                    msg.debug(
+                        "blast skip group ({}) {}: {} script(s)".format(
+                            reason, root, n_as))
+                    continue
+
             for path in tests:
                 if not path.endswith(".as"):
                     continue
                 base = os.path.basename(path)
                 if base.startswith("_"):
                     continue
-                if skip_conf:
-                    conf = os.path.join(os.path.dirname(path), "afw.conf")
-                    if os.path.isfile(conf):
-                        msg.debug(
-                            "blast skip (local afw.conf): " + path)
-                        continue
+                if skip_fixtures and _path_has_afw_conf_nearby(path):
+                    skipped_fixture += 1
+                    msg.debug(
+                        "blast skip (afw.conf nearby): " + path)
+                    continue
                 corpus.append(path)
-    return corpus
+    return corpus, skipped_fixture

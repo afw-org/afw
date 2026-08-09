@@ -1009,8 +1009,8 @@ _info_blast_concurrency = {
     "default": "0",
     "noprompt": True,
     "help":
-        "In-flight requests at once. Default 0 = number of CPUs "
-        "(at least 1)."
+        "In-flight requests at once. Default 0 = 2×CPU count "
+        "(classic gobench-style load)."
 }
 
 _info_blast_threads = {
@@ -1021,8 +1021,8 @@ _info_blast_threads = {
     "default": "0",
     "noprompt": True,
     "help":
-        "afwfcgi -n when using --conf. Default 0 = number of CPUs. "
-        "Ignored for --url attach."
+        "afwfcgi -n when using --conf. Default 0 = CPU count. "
+        "Ignored for --url attach (use afwfcgi -n when you start it)."
 }
 
 _info_blast_request_timeout = {
@@ -1033,6 +1033,18 @@ _info_blast_request_timeout = {
     "help": "Per-request timeout in seconds (default 30)."
 }
 
+_info_blast_include_fixtures = {
+    "optionName": "include_fixtures",
+    "arg": "--include-fixtures",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Include tests that need private afw.conf, tests/environments "
+        "(config.py Environment), or nearby conf. Default is to skip "
+        "those so fail counts stay near zero unless something is wrong."
+}
+
 _info_blast = {
     "subcommand": "blast",
     "help": "On-demand load blast at afwfcgi (experimental)",
@@ -1041,8 +1053,11 @@ _info_blast = {
         "sources at afwfcgi for a period of time. Not part of "
         "'afwdev test -j'. Defaults target a typical docker/dev stack: "
         "attach to http://localhost:8080/afw for 5m with concurrency "
-        "(and managed -n) at CPU count — so plain 'afwdev blast' often "
+        "2×CPUs (and managed afwfcgi -n = CPUs) — plain 'afwdev blast' often "
         "suffices when nginx+afwfcgi are up. Override with -u/-f/-d/-c/-n. "
+        "By default skips fixture-heavy groups (Environment= / afw.conf) "
+        "so failures usually mean a real problem; "
+        "--include-fixtures to load them too. "
         "Filters: --srcdir-pattern, --test-pattern, --tags. "
         "Continues on Adaptive failures; stops if the server dies. "
         "See designs/afwdev-blast.md.",
@@ -1055,6 +1070,7 @@ _info_blast = {
         _info_blast_concurrency,
         _info_blast_threads,
         _info_blast_request_timeout,
+        _info_blast_include_fixtures,
         _info_srcdir_pattern,
         _info_test_pattern,
         _info_test_tags,

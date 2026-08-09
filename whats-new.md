@@ -86,12 +86,12 @@ Not a replacement for ordinary `.as` test scripts. Live `--env-mode afwfcgi` sti
 Randomly sends suite Adaptive `test_script` sources at **afwfcgi** for a duration and/or request count (language gate stays Jeremy’s `test`).
 
 ```bash
-afwdev blast                    # defaults: :8080/afw, 5m, concurrency=CPUs
-afwdev blast -d 30m -c 16       # short aliases
-afwdev blast -f path/to/afw.conf -m 500   # managed spawn
+afwdev blast                    # :8080/afw, 5m, concurrency=2×CPUs
+afwdev blast -d 30m             # short aliases; -c/-n override auto
+afwdev blast -f path/to/afw.conf -m 500   # managed spawn (-n defaults to CPUs)
 ```
 
-Defaults favor a typical docker/dev stack (nginx + afwfcgi). Filters match `test`: `-p` / `--srcdir-pattern`, `--test-pattern`, `--tags`. Continues on Adaptive failures; stops if the server dies. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Graceful afwfcgi signals: [#158](https://github.com/afw-org/afw/issues/158).
+Defaults favor docker/dev + classic load (threads≈CPUs, in-flight≈2×CPUs). Fixture-heavy tests skipped unless `--include-fixtures`. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Signals: [#158](https://github.com/afw-org/afw/issues/158).
 
 **[↑ Highlights](#highlights)**
 
