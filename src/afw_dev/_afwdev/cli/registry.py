@@ -42,6 +42,7 @@ SUBCOMMAND_HANDLERS = {
     'settings': misc_handlers.subcommand_settings,
     'task': misc_handlers.subcommand_task,
     'test': test_validate_handlers.subcommand_test,
+    'blast': test_validate_handlers.subcommand_blast,
     'validate': test_validate_handlers.subcommand_validate,
 }
 

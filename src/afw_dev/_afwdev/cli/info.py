@@ -958,6 +958,125 @@ _info_test = {
     ]
 }
 
+# subcommand blast (experimental on-demand afwfcgi firehose)
+
+_info_blast_url = {
+    "optionName": "url",
+    "arg": "--url",
+    "short": "-u",
+    "noprompt": True,
+    "help":
+        "Attach mode: base URL of live AFW HTTP front door. "
+        "Default when --conf is omitted: http://localhost:8080/afw "
+        "(docker/dev nginx). Mutually exclusive with --conf."
+}
+
+_info_blast_conf = {
+    "optionName": "conf",
+    "arg": "--conf",
+    "short": "-f",
+    "noprompt": True,
+    "help":
+        "Managed mode: path to afw.conf; spawn installed afwfcgi "
+        "(-f like afw/afwfcgi). Mutually exclusive with --url."
+}
+
+_info_blast_duration = {
+    "optionName": "duration",
+    "arg": "--duration",
+    "short": "-d",
+    "default": "5m",
+    "noprompt": True,
+    "help":
+        "How long to blast (30s, 5m, 1h, or seconds). Default 5m. "
+        "Use 0 with --max-requests only to disable the time limit."
+}
+
+_info_blast_max_requests = {
+    "optionName": "max_requests",
+    "arg": "--max-requests",
+    "short": "-m",
+    "int": True,
+    "noprompt": True,
+    "help": "Stop after approximately this many requests (optional)."
+}
+
+_info_blast_concurrency = {
+    "optionName": "concurrency",
+    "arg": "--concurrency",
+    "short": "-c",
+    "int": True,
+    "default": "0",
+    "noprompt": True,
+    "help":
+        "In-flight requests at once. Default 0 = 2×CPU count "
+        "(classic gobench-style load)."
+}
+
+_info_blast_threads = {
+    "optionName": "threads",
+    "arg": "--threads",
+    "short": "-n",
+    "int": True,
+    "default": "0",
+    "noprompt": True,
+    "help":
+        "afwfcgi -n when using --conf. Default 0 = CPU count. "
+        "Ignored for --url attach (use afwfcgi -n when you start it)."
+}
+
+_info_blast_request_timeout = {
+    "optionName": "request_timeout",
+    "arg": "--request-timeout",
+    "default": "30",
+    "noprompt": True,
+    "help": "Per-request timeout in seconds (default 30)."
+}
+
+_info_blast_include_fixtures = {
+    "optionName": "include_fixtures",
+    "arg": "--include-fixtures",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Include tests that need private afw.conf, tests/environments "
+        "(config.py Environment), or nearby conf. Default is to skip "
+        "those so fail counts stay near zero unless something is wrong."
+}
+
+_info_blast = {
+    "subcommand": "blast",
+    "help": "On-demand load blast at afwfcgi (experimental)",
+    "description":
+        "*** Experimental *** Fire randomly chosen Adaptive test_script "
+        "sources at afwfcgi for a period of time. Not part of "
+        "'afwdev test -j'. Defaults target a typical docker/dev stack: "
+        "attach to http://localhost:8080/afw for 5m with concurrency "
+        "2×CPUs (and managed afwfcgi -n = CPUs) — plain 'afwdev blast' often "
+        "suffices when nginx+afwfcgi are up. Override with -u/-f/-d/-c/-n. "
+        "By default skips fixture-heavy groups (Environment= / afw.conf) "
+        "so failures usually mean a real problem; "
+        "--include-fixtures to load them too. "
+        "Filters: --srcdir-pattern, --test-pattern, --tags. "
+        "Continues on Adaptive failures; stops if the server dies. "
+        "See designs/afwdev-blast.md.",
+    "thing": "blast",
+    "args": [
+        _info_blast_url,
+        _info_blast_conf,
+        _info_blast_duration,
+        _info_blast_max_requests,
+        _info_blast_concurrency,
+        _info_blast_threads,
+        _info_blast_request_timeout,
+        _info_blast_include_fixtures,
+        _info_srcdir_pattern,
+        _info_test_pattern,
+        _info_test_tags,
+    ]
+}
+
 
 
 _info_pattern = {
@@ -1040,6 +1159,7 @@ _subcommand_infos = [
     _info_settings,
     _info_task,
     _info_test,
+    _info_blast,
     _info_validate
 ]
 

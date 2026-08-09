@@ -58,6 +58,7 @@ impls from `add-adapter-type` skeletons.
 ## Related
 
 - @ref afw_dev_implementing  
+- @ref afw_dev_writing_tests  
 - @ref afw_included_extensions  
 - Extension layout notes in `.cursor/rules/afw-extensions.mdc`  
 - Public map header: `src/afw_curl/afw_curl.h`  

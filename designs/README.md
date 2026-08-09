@@ -35,6 +35,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`array-semantics.md`](array-semantics.md) | **#39** — dense arrays, elision, create_array, out-of-range bracket get |
 | [`conversion-functions.md`](conversion-functions.md) | Type-named converts vs constructors; no null()/function() convert |
 | [`utf8-code-point-sequences.md`](utf8-code-point-sequences.md) | **#153** — utf8-backed values as immutable code-point sequences (index, for-of, array consumers) |
+| [`afwdev-advanced-test.md`](afwdev-advanced-test.md) | **#157** — **experimental** afwdev `advanced-test` leaves; hermetic `afwfcgi` + FCGI client; feeds **#149** / **#2** |
+| [`afwdev-blast.md`](afwdev-blast.md) | **experimental** `afwdev blast` — on-demand random suite firehose at afwfcgi (not `test -j`) |
 
 ## Conventions
 
