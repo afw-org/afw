@@ -20,10 +20,10 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | File | Theme |
 |------|--------|
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
-| [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149** architecture — generate maps, OT `runtime` props, accessors, env registration, classification checklist |
-| [`runtime-value-accessors.md`](runtime-value-accessors.md) | **#149** live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
-| [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Agent/maintainer recipes: `test -j`, `-T`, blast, `--output` / `--output-format` |
-| [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) | **#149** discovery notes — live maps vs `EnvironmentRegistry` materialize cost (see architecture pad for map) |
+| [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
+| [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
+| [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Agent/maintainer recipes: `test -j`, `-T` / `tests_special`, blast, `--output` / `--output-format` |
+| [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) | **#149** discovery notes — live maps vs materialize cost (architecture pad is preferred map) |
 | [`secrets-and-afw-crypto.md`](secrets-and-afw-crypto.md) | **#74** / `afw_crypto` design |
 | [`issue-18-decompile-status.md`](issue-18-decompile-status.md) | **#18** decompile/recompile (stringify issue closed; pad still useful) |
 | [`issue-38-expression-property-names.md`](issue-38-expression-property-names.md) | **#38** — `[expr]: value` (issue closed) |
@@ -38,8 +38,8 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`array-semantics.md`](array-semantics.md) | **#39** — dense arrays, elision, create_array, out-of-range bracket get |
 | [`conversion-functions.md`](conversion-functions.md) | Type-named converts vs constructors; no null()/function() convert |
 | [`utf8-code-point-sequences.md`](utf8-code-point-sequences.md) | **#153** — utf8-backed values as immutable code-point sequences (index, for-of, array consumers) |
-| [`afwdev-advanced-test.md`](afwdev-advanced-test.md) | **#157** — **experimental** afwdev `advanced-test` leaves; hermetic `afwfcgi` + FCGI client; feeds **#149** / **#2** |
-| [`afwdev-blast.md`](afwdev-blast.md) | **experimental** `afwdev blast` — on-demand random suite firehose at afwfcgi (not `test -j`) |
+| [`afwdev-advanced-test.md`](afwdev-advanced-test.md) | **#157** — **experimental** advanced-test leaves; hermetic `afwfcgi` + FCGI client; used for multi-request catalog / lifecycle |
+| [`afwdev-blast.md`](afwdev-blast.md) | **experimental** `afwdev blast` — load thrash (not `test -j`); related **#13** still open for Jeremy’s rounds/continuous knobs |
 
 ## Conventions
 
