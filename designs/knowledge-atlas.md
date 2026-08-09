@@ -48,7 +48,7 @@
 | [10. Adaptive Script authoring](#10-adaptive-script-authoring) | Ongoing | adaptive-script + script-errors |
 | [11. afwdev: build / generate / test](#11-afwdev-build--generate--test) | Gate solid; lab experimental | test recipe + tests rule |
 | [12. Extensions (shipped base)](#12-extensions-shipped-base) | Thin map | extensions rule |
-| [13. Docs surfaces](#13-docs-surfaces) | Split known | AGENTS docs + interfaces-doxygen |
+| [13. Docs surfaces](#13-docs-surfaces) | Split known | AGENTS docs + interfaces-doxygen; overview points at maps |
 | [14. Security / crypto](#14-security--crypto) | Design-heavy | secrets pad |
 | [15. Language surface residuals](#15-language-surface-residuals) | Mixed closed/open | issue pads |
 
@@ -270,10 +270,11 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Handbook ≠ Doxygen ≠ EBNF railroad chrome; Jeremy handbook voice |
+| **Settled map** | Handbook ≠ Doxygen ≠ EBNF railroad chrome; Jeremy handbook voice; short signposts to repo maps for builders |
 | **Day rules** | `afw-interfaces-doxygen`, `afw-project` prose; AGENTS Documentation section |
 | **Deep pad** | `src/afw/doc/developer/doxygen-skin.md` etc. |
 | **Probe** | `./afwdev build --docs --clean -j` when docs must refresh |
+| **Signposts to maintainer maps** | `src/afw/doc/developer/overview.md` (table); handbook `guide/developer/introduction.xml` (short paragraph) → `AGENTS.md`, `designs/` |
 | **Open** | Thin developer MD under `src/afw/doc/developer/` |
 | **Gap** | Workspace MEMORY has chrome details — keep sticky in MEMORY prefs; not required in atlas body |
 

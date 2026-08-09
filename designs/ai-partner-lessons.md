@@ -106,8 +106,13 @@ This is a working stance, not a claim about metaphysics. Use it if it makes comm
 
 ## If you try it
 
-1. Pick a real issue.  
-2. Ask the partner what they think.  
+A short copy of this pattern also lives **out in the open** in package-root
+[`AGENTS.md`](../AGENTS.md) (*Possible pattern: work an issue with an AI partner*)
+so people need not open `designs/` first. Claude Code loads [`CLAUDE.md`](../CLAUDE.md),
+which is a thin redirect to `AGENTS.md` (no second handbook).
+
+1. Open your harness on this repo.  
+2. Ask something like: **“What do you think about issue #N?”**  
 3. Discuss; push back; show live AFW when stuck.  
 4. Implement only when you share the next step.  
 5. After a real click, add or update a short map in `designs/` (or the atlas / playbook).  
