@@ -67,7 +67,8 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     except Exception as e:
         msg.debug(str(e))
-        error = e
+        from _afwdev.common.errors import wrap_exception
+        error = wrap_exception(e)
 
     finally:
         os.chdir(pwd)

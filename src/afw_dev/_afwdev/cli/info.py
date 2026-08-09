@@ -1195,13 +1195,14 @@ be used.
 }
 
 
-# List of all subcommand infos in order displayed in --help
+# All subcommand infos (order here does not matter; --help sorts by name)
 _subcommand_infos = [
     _info_add_adapter_type,
     _info_add_content_type,
     _info_add_core_interface,
     _info_add_log_type,
     _info_afwdev_parser_info,
+    _info_blast,
     _info_build,
     _info_ebnf,
     _info_for,
@@ -1212,8 +1213,7 @@ _subcommand_infos = [
     _info_settings,
     _info_task,
     _info_test,
-    _info_blast,
-    _info_validate
+    _info_validate,
 ]
 
 #
@@ -1222,6 +1222,7 @@ _subcommand_infos = [
 afwdev_info = {
     "overall": _afwdev_overall_info,
     "args_for_all_commands" : _args_for_all_commands_infos,
-    "subcommands": _subcommand_infos
+    "subcommands": sorted(
+        _subcommand_infos, key=lambda i: i.get("subcommand") or ""),
 }
 

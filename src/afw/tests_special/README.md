@@ -27,13 +27,13 @@ afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 50
 # File (default --output-format json, includes failures[])
 afwdev test -T src/afw/tests_special/adapter-lifecycle --output /tmp/out.json
 
-# JSON only to stdout (still may print human lines first; parse the file form
-# for quiet CI, or use --output - and extract the JSON object)
+# Pure JSON on stdout (human progress suppressed when --output is '-')
 afwdev test --test-pattern catalog-value-accessors --output - --output-format json
 
-# Compact / text
+# Compact / text / blast
 afwdev test -j --output /tmp/out.json --output-format json-compact
 afwdev test -T src/afw/tests_special/adapter-lifecycle --output /tmp/out.txt --output-format text
+afwdev blast -T src/afw/tests_special/catalog -m 40 --output /tmp/blast.json
 ```
 
 | Subdir | Purpose |

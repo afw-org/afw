@@ -438,5 +438,10 @@ Dispatch should treat marker paths **before** env-mode module selection (same pa
 - [x] Implement vertical + smoke leaf (`src/afw/tests/advanced/smoke/`)  
 - [x] Valgrind-on-afwfcgi (spawn hook + works under `--env-mode valgrind`)  
 - [x] Merge → rebase #149 → catalog scenarios (`tests/advanced/catalog-value-accessors`, `tests_special/`)
-- [x] Failure reporting: advanced-test `error` is Adaptive-shaped dict (`message`); console always prints one-line reason; full nav stays `--verbose` / `--debug`  
+- [x] Failure reporting: Adaptive-shaped `error` dict; one-line console reason; full nav `--verbose`/`--debug`
+- [x] `stepTimings` on leaf response (`[{name, ms, passed}, …]`) for debug / future summaries
+- [x] Exceptions: host/load/FCGI inherit `_afwdev.common.errors` (**#61**); digests use `error_message` / `to_error_dict`
+- [x] Opt-in trees: `afwdev test -T src/afw/tests_special/…` (lifecycle leaf); always-on catalog leaf under `tests/advanced/`
+
+Agent recipe: [`afwdev-test-recipe.md`](afwdev-test-recipe.md).  
 - [ ] #2 stress + observe extensions  

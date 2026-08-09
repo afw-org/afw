@@ -58,3 +58,4 @@ Then: `afwdev task check-149`
 
 - After `./afwdev build --install` / `--cdev`, **restart afwfcgi** if attach blast/tests talk to a long-lived process (stale libs).
 - `service_start` after stop needs conf adapter + `_AdaptiveServiceConf_` (see lifecycle leaf).
+- Structured Python errors: `_afwdev.common.errors` (`AfwAdaptiveError`, `AfwdevProcessError`, `AfwdevRunnerError`) — issue **#61**; Adaptive error objects ride on `exc.object` / `to_error_dict()`.

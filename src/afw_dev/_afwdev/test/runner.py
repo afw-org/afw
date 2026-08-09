@@ -20,6 +20,12 @@ import multiprocessing
 from functools import partial
 
 from _afwdev.common import msg, nfc
+from _afwdev.common.errors import (
+    AfwdevError,
+    AfwdevRunnerError,
+    error_message,
+    error_to_dict,
+)
 from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
@@ -32,24 +38,17 @@ from _afwdev.test.common import \
 #
 def _failure_detail(error, response, numFailures):
     if error is not None:
-        detail = error
-        try:
-            detail = nfc.json_loads(error).get('message') or error
-        except Exception:
-            detail = error
-        return str(detail)
+        return error_message(error) or str(error)
     if response is not None and response.get('tests'):
         bits = []
         for tc in response.get('tests') or []:
             if tc.get('skip'):
                 continue
             if tc.get('passed', False) is False:
-                # Prefer Adaptive error.message / string error over bare name
                 err = tc.get('error')
-                if isinstance(err, dict) and err.get('message'):
-                    bits.append(err.get('message'))
-                elif isinstance(err, str) and err:
-                    bits.append(err)
+                msg_line = error_message(err)
+                if msg_line:
+                    bits.append(msg_line)
                 elif tc.get('description') and tc.get('description') != tc.get(
                         'test'):
                     bits.append(tc.get('description'))
@@ -62,13 +61,11 @@ def _failure_detail(error, response, numFailures):
             if extra > 0:
                 text += "; +{} more".format(extra)
             return text
-    # Top-level response.error (advanced-test may set this)
     if response is not None:
         top = response.get('error')
-        if isinstance(top, dict) and top.get('message'):
-            return top.get('message')
-        if isinstance(top, str) and top:
-            return top
+        msg_line = error_message(top)
+        if msg_line:
+            return msg_line
     if numFailures:
         return "{} failed".format(numFailures)
     return "failed"
@@ -173,11 +170,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             if error is not None and not quiet_console:
                 # Process death / runner exception: always show path + message.
                 # (Assertion failures use print_test_response below.)
-                err_str = error
-                try:
-                    err_str = nfc.json_loads(error).get('message') or error
-                except Exception:
-                    err_str = error
+                err_str = error_message(error) or str(error)
                 msg.error("\n    \u2717 {}\n".format(err_str))
                 msg.error("      test:  {}\n".format(test_display))
                 msg.error("      group: {}\n".format(
@@ -225,7 +218,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                 # still make sure to cleanup by running after_all
                 after_all(root, testGroupConfig, testEnvironment)  
 
-                raise Exception("Bailing due to test failure")
+                raise AfwdevRunnerError("Bailing due to test failure")
                     
             msg.highlighted_info("")
 
@@ -351,7 +344,7 @@ def run(options, srcdirs):
         try:
             for res in pool_results:
                 if not res:
-                    raise Exception("Test group returned no results")
+                    raise AfwdevRunnerError("Test group returned no results")
                 else:
                     # append to results
                     results.append(res)

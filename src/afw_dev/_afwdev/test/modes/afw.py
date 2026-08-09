@@ -13,6 +13,12 @@ import os
 import subprocess
 
 from _afwdev.common import msg, nfc
+from _afwdev.common.errors import (
+    AfwAdaptiveError,
+    AfwdevProcessError,
+    adaptive_error_from_response,
+    wrap_exception,
+)
 from _afwdev.test.common import format_abnormal_process_exit
 
 ##
@@ -64,15 +70,31 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
         stdout = p.stdout.decode("utf-8")         
 
         if p.returncode < 0:
-            return None, format_abnormal_process_exit(p.returncode), debug
-        
+            return None, AfwdevProcessError(
+                format_abnormal_process_exit(p.returncode),
+                returncode=p.returncode,
+            ), debug
+
         if syntax == "test_script":
             # parse the output of the test script
-            response = nfc.json_loads(stdout)        
-    
-    except Exception as e:        
+            response = nfc.json_loads(stdout)
+        elif p.returncode != 0:
+            # Non-test_script: shell may exit 1 for non-integer returns
+            # (e.g. return_const_object.as). Only treat as failure when
+            # stdout is a structured Adaptive error payload (issue #61).
+            try:
+                body = nfc.json_loads(stdout) if stdout else None
+            except Exception:
+                body = None
+            if body is not None:
+                adapt = adaptive_error_from_response(body)
+                if adapt is not None:
+                    return None, adapt, debug
+            # Otherwise leave response/error None → skipped (historical)
+
+    except Exception as e:
         if stdout:
-            debug += stdout
-        error = e        
+            debug = (debug or "") + stdout
+        error = wrap_exception(e)
 
     return response, error, debug

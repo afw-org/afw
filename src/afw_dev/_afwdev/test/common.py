@@ -24,6 +24,7 @@ import re
 from os.path import exists
 
 from _afwdev.common import msg, nfc
+from _afwdev.common.errors import error_message, error_to_dict
 
 
 ##
@@ -680,13 +681,9 @@ def get_rel_source_location_nav(test, testCase):
 def get_rel_error_source_location_nav(test, testCase):
 
     tc_sourceLineNumberInTestScript = testCase.get('sourceLineNumberInTestScript', 0)
-    error = testCase.get('error', None)
+    error = error_to_dict(testCase.get('error', None))
 
     if error:
-        # advanced-test and some runners may pass a plain string
-        if not isinstance(error, dict):
-            return None
-
         lineNumber = error.get("parserLineNumber")
         columnNumber = error.get("parserColumnNumber")
         offset = error.get("offset")
@@ -722,18 +719,10 @@ def print_test_failure(test, testCase):
     sourceLocation = testCase.get("sourceLocation")
     sourceLocationNav = get_rel_source_location_nav(test, testCase)
     sourceErrorLocationNav = get_rel_error_source_location_nav(test, testCase)
-    error = testCase.get("error")
+    # Normalize to Adaptive-shaped dict (issue #61 helpers)
+    error = error_to_dict(testCase.get("error"))
 
     if error:
-        # Plain string (legacy / defensive) — no Adaptive error object shape
-        if isinstance(error, str):
-            msg.error("    " + error + "\n")
-            return
-
-        if not isinstance(error, dict):
-            msg.error("    " + str(error) + "\n")
-            return
-
         message = error.get("message")
         if message:
             msg.error("    " + message + "\n")        
@@ -849,14 +838,11 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
                 # failed test
                 msg.error("    \u2717", end="")
                 msg.highlighted_info(" {}".format(tc_test))
-                # One-line reason always (advanced-test leaves put detail here)
-                err = testCase.get("error")
-                if isinstance(err, str) and err:
-                    msg.error("      {}".format(err))
-                elif isinstance(err, dict) and err.get("message"):
-                    msg.error("      {}".format(err.get("message")))
-                elif (tc_description and tc_description != tc_test and
-                        not (isinstance(err, dict) and err.get("message"))):
+                # One-line reason always (structured error.message when present)
+                reason = error_message(testCase.get("error"))
+                if reason:
+                    msg.error("      {}".format(reason))
+                elif tc_description and tc_description != tc_test:
                     msg.error("      {}".format(tc_description))
                 if (msg.is_verbose_mode()):
                     print("\033[2m      {}\033[0m\n".format(tc_description))                

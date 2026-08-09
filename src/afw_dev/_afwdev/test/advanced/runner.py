@@ -11,6 +11,16 @@ import os
 import time
 
 from _afwdev.common import msg, nfc
+from _afwdev.common.errors import (
+    AfwAdaptiveError,
+    AfwdevError,
+    AfwdevProcessError,
+    AfwdevRunnerError,
+    adaptive_error_from_response,
+    error_message,
+    error_to_dict,
+    wrap_exception,
+)
 from _afwdev.test.advanced.load import (
     AdvancedTestLoadError,
     load_advanced_test_document,
@@ -46,7 +56,7 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
         doc = load_advanced_test_document(marker_path)
     except AdvancedTestLoadError as e:
         # Assertion-style fail (no separate error) so counts stay 1:1
-        return _fail_response(str(marker_path), str(e)), None, None
+        return _fail_response(str(marker_path), e), None, None
 
     work_dir = None
     if testEnvironment and testEnvironment.get("work_dir"):
@@ -56,7 +66,8 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
 
     conf_path = os.path.join(work_dir, "afw.conf")
     if not os.path.isfile(conf_path):
-        err = "advanced-test requires afw.conf in leaf/work dir: " + work_dir
+        err = AfwdevRunnerError(
+            "advanced-test requires afw.conf in leaf/work dir: " + work_dir)
         return _fail_response("advanced-test", err), None, None
 
     description = doc.get("description") or os.path.basename(work_dir)
@@ -80,8 +91,9 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
         step_timings = []
         for step in steps:
             if time.time() - t0 > timeout_s:
-                err = "advanced-test timed out after {}s (step {!r})".format(
-                    timeout_s, step.get("name"))
+                err = AfwdevRunnerError(
+                    "advanced-test timed out after {}s (step {!r})".format(
+                        timeout_s, step.get("name")))
                 return (
                     _fail_response(description, err, step_timings),
                     None,
@@ -115,17 +127,31 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
                     "ms": step_ms,
                     "passed": False,
                 })
-                err = "step {!r} failed: {}".format(step_name, e)
-                debug_parts.append(err)
+                wrapped = wrap_exception(e, default_cls=AfwAdaptiveError)
+                if not isinstance(wrapped, AfwdevError):
+                    wrapped = AfwAdaptiveError(
+                        "step {!r} failed: {}".format(
+                            step_name, error_message(e)),
+                        cause=e)
+                else:
+                    # Prefix step name for digests while keeping Adaptive object
+                    wrapped = type(wrapped)(
+                        "step {!r} failed: {}".format(
+                            step_name, error_message(wrapped)),
+                        object=getattr(wrapped, "object", None),
+                        cause=e,
+                    )
+                debug_parts.append(error_message(wrapped))
                 return (
-                    _fail_response(description, err, step_timings),
+                    _fail_response(description, wrapped, step_timings),
                     None,
                     _debug_blob(debug_parts, handle),
                 )
 
         if under_valgrind and afwfcgi_host.valgrind_errors_in_log(
                 handle.get("log_path")):
-            err = "Valgrind error(s) detected in afwfcgi stderr"
+            err = AfwdevProcessError(
+                "Valgrind error(s) detected in afwfcgi stderr")
             return (
                 _fail_response(description, err, step_timings),
                 None,
@@ -141,14 +167,15 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
     except afwfcgi_host.AfwfcgiHostError as e:
         # Host spawn failures: surface as error for digest path identity
         return (
-            _fail_response(description, str(e), None),
-            str(e),
+            _fail_response(description, e, None),
+            e,
             _debug_blob(debug_parts, handle),
         )
     except Exception as e:
+        wrapped = wrap_exception(e)
         return (
-            _fail_response(description, str(e), None),
-            str(e),
+            _fail_response(description, wrapped, None),
+            wrapped,
             _debug_blob(debug_parts, handle),
         )
     finally:
@@ -162,7 +189,7 @@ def _run_step(step, work_dir, socket_path, timeout, debug_parts):
         script_rel = step["script"]
         script_path = os.path.join(work_dir, script_rel)
         if not os.path.isfile(script_path):
-            raise RuntimeError("script not found: " + script_path)
+            raise AfwdevRunnerError("script not found: " + script_path)
         with nfc.open(script_path, "r") as fd:
             source = fd.read()
 
@@ -195,8 +222,8 @@ def _run_step(step, work_dir, socket_path, timeout, debug_parts):
             body=body,
             timeout=timeout,
         )
-    except FcgiClientError as e:
-        raise RuntimeError(str(e)) from e
+    except FcgiClientError:
+        raise
 
     debug_parts.append(
         "step {!r} status={} body_len={}".format(
@@ -214,32 +241,32 @@ def _run_step(step, work_dir, socket_path, timeout, debug_parts):
     try:
         response = nfc.json_loads(body_text) if body_text.strip() else {}
     except Exception as e:
-        raise RuntimeError(
+        raise AfwdevRunnerError(
             "non-JSON response from afwfcgi (HTTP-ish status {}): {}".format(
-                result.get("status_code"), body_text[:500])) from e
+                result.get("status_code"), body_text[:500]),
+            cause=e,
+        ) from e
+
+    adapt = adaptive_error_from_response(response)
+    if adapt is not None:
+        raise adapt
 
     status = response.get("status")
     if status and status != "success":
-        raise RuntimeError(
-            "perform status {!r}: {}".format(
-                status, body_text[:1500]))
-
-    if response.get("status") == "error":
-        raise RuntimeError(
-            "action error: {}".format(
-                nfc.json_dumps(response.get("error") or response)[:1500]))
+        raise AfwAdaptiveError(
+            "perform status {!r}: {}".format(status, body_text[:1500]),
+            object={"message": body_text[:1500], "status": status},
+        )
 
     actions = response.get("actions")
     if "result" in response and isinstance(response["result"], dict):
         inner = response["result"]
-        if inner.get("status") == "error":
-            raise RuntimeError(
-                "action error: {}".format(
-                    nfc.json_dumps(inner.get("error") or inner)[:1500]))
+        adapt_inner = adaptive_error_from_response(inner)
+        if adapt_inner is not None:
+            raise adapt_inner
         if inner.get("actions") is not None:
             actions = inner.get("actions")
 
-    # Collect test_script result objects from action results
     def _fail_if_test_script_failures(obj):
         if not isinstance(obj, dict) or "tests" not in obj:
             return
@@ -247,20 +274,37 @@ def _run_step(step, work_dir, socket_path, timeout, debug_parts):
             if tc.get("skip"):
                 continue
             if tc.get("passed", False) is False:
-                raise RuntimeError(
+                err_obj = tc.get("error")
+                if isinstance(err_obj, dict):
+                    raise AfwAdaptiveError(
+                        err_obj.get("message") or
+                        "test_script failure: {}".format(
+                            tc.get("test") or tc.get("description") or tc),
+                        object=err_obj,
+                    )
+                raise AfwAdaptiveError(
                     "test_script failure: {}".format(
-                        tc.get("test") or tc.get("description") or tc))
+                        tc.get("test") or tc.get("description") or tc),
+                    object=error_to_dict(err_obj) if err_obj else None,
+                )
 
     if actions:
         for act in actions:
             if not isinstance(act, dict):
                 continue
             if act.get("status") == "error":
-                raise RuntimeError(
+                err_obj = act.get("error")
+                if isinstance(err_obj, dict):
+                    raise AfwAdaptiveError(
+                        err_obj.get("message") or "action error",
+                        object=err_obj,
+                    )
+                raise AfwAdaptiveError(
                     "action error: {}".format(
-                        nfc.json_dumps(act.get("error") or act)[:1500]))
+                        nfc.json_dumps(act)[:1500]),
+                    object=error_to_dict(err_obj) if err_obj else None,
+                )
             ar = act.get("result")
-            # Always inspect for tests[] (eval of test_script source)
             _fail_if_test_script_failures(ar)
             if syntax == "test_script" and ar is not None:
                 _fail_if_test_script_failures(ar)
@@ -284,21 +328,21 @@ def _pass_response(description, step_timings=None):
 
 
 def _fail_response(description, detail, step_timings=None):
-    # error must be a dict: print_test_failure / nav helpers call .get()
-    # (string error caused "'str' object has no attribute 'get'" under --debug)
-    detail_s = detail if isinstance(detail, str) else str(detail)
+    """
+    Build a test_script-shaped failure response.
+    ``detail`` may be AfwdevError, Exception, or str.
+    """
+    err_dict = error_to_dict(detail)
+    detail_s = error_message(detail) or "advanced-test failure"
     body = {
         "description": description or "advanced-test",
-        "error": detail_s,
+        "error": err_dict,
         "tests": [
             {
                 "test": description or "advanced-test",
                 "description": detail_s,
                 "passed": False,
-                "error": {
-                    "id": "advanced-test",
-                    "message": detail_s,
-                },
+                "error": err_dict,
             }
         ],
     }
