@@ -33,7 +33,8 @@ from _afwdev.common import msg, nfc, package
 from _afwdev.test import watch, runner, js
 from _afwdev.test.common import (
     find_test_groups, load_test_group_config, test_group_matches_tags,
-    print_failure_digest, normalize_tests_paths)
+    print_failure_digest, normalize_tests_paths, write_results_summary,
+    clip_detail)
 
 
 ##
@@ -54,75 +55,6 @@ def _list_tests(options, srcdirs):
                 count += 1
     msg.highlighted_info(str(count) + ' test(s) listed')
     sys.exit(0)
-
-
-##
-# @brief Optionally write a results summary to --output
-# @details Default output 'stdout' means no summary file (human console only).
-#          Use a path or '-' with --output-format json|json-compact|text.
-#          Human console reporting is unchanged unless callers also use -q.
-#
-def _write_output_summary(options, summary):
-    import sys
-
-    output = options.get('output') or 'stdout'
-    # Compat: literal "stdout" = do not write a summary artifact
-    if output == 'stdout':
-        return
-
-    fmt = (options.get('output_format') or 'json').strip().lower()
-    if fmt in ('json-min', 'compact'):
-        fmt = 'json-compact'
-
-    close_fd = False
-    if output == '-':
-        fd = sys.stdout
-    else:
-        fd = nfc.open(output, 'w')
-        close_fd = True
-
-    try:
-        if fmt == 'json':
-            nfc.json_dump(summary, fd, indent=2, sort_keys=True)
-            fd.write('\n')
-        elif fmt == 'json-compact':
-            nfc.json_dump(
-                summary, fd, sort_keys=True, separators=(',', ':'))
-            fd.write('\n')
-        elif fmt == 'text':
-            t = summary.get('tests') or {}
-            fd.write(
-                "tests: passed={p} failed={f} skipped={s} total={n}\n"
-                "time_seconds={sec}\n".format(
-                    p=t.get('passed', 0),
-                    f=t.get('failed', 0),
-                    s=t.get('skipped', 0),
-                    n=t.get('total', 0),
-                    sec=summary.get('time_seconds', 0),
-                ))
-            fails = summary.get('failures') or []
-            if fails:
-                fd.write("failures ({n}):\n".format(n=len(fails)))
-                for item in fails:
-                    fd.write(
-                        "  {path}  {detail}\n".format(
-                            path=item.get('test') or '?',
-                            detail=item.get('detail') or '',
-                        ))
-            else:
-                fd.write("failures: none\n")
-        else:
-            msg.error_exit(
-                "Unknown --output-format {!r} "
-                "(use json, json-compact, or text)".format(fmt))
-    finally:
-        if close_fd:
-            fd.close()
-
-    if output != '-':
-        msg.highlighted_info(
-            'Wrote test summary ({fmt}) to {path}'.format(
-                fmt=fmt, path=output))
 
 
 ## 
@@ -177,8 +109,9 @@ def run(options):
                 )
             )
         total_srcdirs = len(srcdirs)
-        msg.highlighted_info(
-            "Using --tests-path (exclusive): " + ", ".join(tests_paths))
+        if options.get('output') != '-':
+            msg.highlighted_info(
+                "Using --tests-path (exclusive): " + ", ".join(tests_paths))
     else:
         for srcdir in package.get_afw_package(options)['srcdirs']:
             total_srcdirs += 1
@@ -235,39 +168,43 @@ def run(options):
         srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)
         elapsed = round(end - start, 2)
 
-        # Print summary
-        msg.highlighted_info("")
-        msg.highlighted_info("Source Dirs:   ", end="")
-        if srcdirs_failed > 0:
-            msg.error("{} failed".format(srcdirs_failed), end="")
-            msg.highlighted_info(", ", end="")
-        if srcdirs_skipped > 0:
-            msg.warn("{} skipped".format(srcdirs_skipped), end="")
-            msg.highlighted_info(", ", end="")
-        if srcdirs_passed > 0:
-            msg.success("{} passed".format(srcdirs_passed), end="")
-            msg.highlighted_info(", ", end="")    
+        # When --output is '-', keep stdout clean for the machine summary
+        summary_to_stdout = (options.get('output') == '-')
 
-        msg.highlighted_info("{} total".format(total_srcdirs))
+        if not summary_to_stdout:
+            # Print human summary
+            msg.highlighted_info("")
+            msg.highlighted_info("Source Dirs:   ", end="")
+            if srcdirs_failed > 0:
+                msg.error("{} failed".format(srcdirs_failed), end="")
+                msg.highlighted_info(", ", end="")
+            if srcdirs_skipped > 0:
+                msg.warn("{} skipped".format(srcdirs_skipped), end="")
+                msg.highlighted_info(", ", end="")
+            if srcdirs_passed > 0:
+                msg.success("{} passed".format(srcdirs_passed), end="")
+                msg.highlighted_info(", ", end="")
 
-        msg.highlighted_info("Tests:         ", end="")
-        if total_failed > 0:
-            msg.error("{} failed".format(total_failed), end="")
-            msg.highlighted_info(", ", end="")
-        if total_skipped > 0:
-            msg.warn("{} skipped".format(total_skipped), end="")
-            msg.highlighted_info(", ", end="")
-        if total_passed > 0:
-            msg.success("{} passed".format(total_passed), end="")
-            msg.highlighted_info(", ", end="")    
-                
-        msg.highlighted_info("{} total".format(total_tests))
-        msg.highlighted_info("Time:          {}s".format(elapsed))
+            msg.highlighted_info("{} total".format(total_srcdirs))
 
-        # Console-only digest so parallel -j runs still end with greppable paths
-        print_failure_digest(failures)
+            msg.highlighted_info("Tests:         ", end="")
+            if total_failed > 0:
+                msg.error("{} failed".format(total_failed), end="")
+                msg.highlighted_info(", ", end="")
+            if total_skipped > 0:
+                msg.warn("{} skipped".format(total_skipped), end="")
+                msg.highlighted_info(", ", end="")
+            if total_passed > 0:
+                msg.success("{} passed".format(total_passed), end="")
+                msg.highlighted_info(", ", end="")
 
-        _write_output_summary(options, {
+            msg.highlighted_info("{} total".format(total_tests))
+            msg.highlighted_info("Time:          {}s".format(elapsed))
+
+            # Console-only digest so parallel -j runs still end with greppable paths
+            print_failure_digest(failures)
+
+        write_results_summary(options, {
             'srcdirs': {
                 'passed': srcdirs_passed,
                 'failed': srcdirs_failed,
@@ -289,17 +226,17 @@ def run(options):
                 }
                 for srcdir, stats in results.items()
             },
-            # Paths + one-line details for agents/CI (console digest separate)
+            # Paths + clipped details for agents/CI
             'failures': [
                 {
                     'test': f.get('test'),
-                    'detail': f.get('detail'),
+                    'detail': clip_detail(f.get('detail')),
                     'group': f.get('group'),
                     'srcdir': f.get('srcdir'),
                 }
                 for f in (failures or [])
             ],
-        })
+        }, tool_label='test')
 
         if total_failed > 0:
             sys.exit(1)

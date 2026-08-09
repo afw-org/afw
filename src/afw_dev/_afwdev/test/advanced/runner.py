@@ -77,12 +77,13 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
         debug_parts.append("started: " + " ".join(handle["argv"]))
         debug_parts.append("socket: " + handle["socket_path"])
 
+        step_timings = []
         for step in steps:
             if time.time() - t0 > timeout_s:
                 err = "advanced-test timed out after {}s (step {!r})".format(
                     timeout_s, step.get("name"))
                 return (
-                    _fail_response(description, err),
+                    _fail_response(description, err, step_timings),
                     None,
                     _debug_blob(debug_parts, handle),
                 )
@@ -90,6 +91,7 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
             step_name = step["name"]
             msg.debug("advanced-test step: " + step_name)
             remaining = max(1.0, timeout_s - (time.time() - t0))
+            step_t0 = time.time()
             try:
                 _run_step(
                     step,
@@ -98,11 +100,25 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
                     timeout=remaining,
                     debug_parts=debug_parts,
                 )
+                step_ms = round((time.time() - step_t0) * 1000)
+                step_timings.append({
+                    "name": step_name,
+                    "ms": step_ms,
+                    "passed": True,
+                })
+                debug_parts.append(
+                    "step {!r} ok ({}ms)".format(step_name, step_ms))
             except Exception as e:
+                step_ms = round((time.time() - step_t0) * 1000)
+                step_timings.append({
+                    "name": step_name,
+                    "ms": step_ms,
+                    "passed": False,
+                })
                 err = "step {!r} failed: {}".format(step_name, e)
                 debug_parts.append(err)
                 return (
-                    _fail_response(description, err),
+                    _fail_response(description, err, step_timings),
                     None,
                     _debug_blob(debug_parts, handle),
                 )
@@ -111,13 +127,13 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
                 handle.get("log_path")):
             err = "Valgrind error(s) detected in afwfcgi stderr"
             return (
-                _fail_response(description, err),
+                _fail_response(description, err, step_timings),
                 None,
                 _debug_blob(debug_parts, handle),
             )
 
         return (
-            _pass_response(description),
+            _pass_response(description, step_timings),
             None,
             _debug_blob(debug_parts, handle),
         )
@@ -125,13 +141,13 @@ def run_advanced_test(marker_path, options, testEnvironment=None,
     except afwfcgi_host.AfwfcgiHostError as e:
         # Host spawn failures: surface as error for digest path identity
         return (
-            _fail_response(description, str(e)),
+            _fail_response(description, str(e), None),
             str(e),
             _debug_blob(debug_parts, handle),
         )
     except Exception as e:
         return (
-            _fail_response(description, str(e)),
+            _fail_response(description, str(e), None),
             str(e),
             _debug_blob(debug_parts, handle),
         )
@@ -250,8 +266,8 @@ def _run_step(step, work_dir, socket_path, timeout, debug_parts):
                 _fail_if_test_script_failures(ar)
 
 
-def _pass_response(description):
-    return {
+def _pass_response(description, step_timings=None):
+    body = {
         "description": description,
         "tests": [
             {
@@ -261,13 +277,17 @@ def _pass_response(description):
             }
         ],
     }
+    if step_timings:
+        body["stepTimings"] = step_timings
+        body["tests"][0]["stepTimings"] = step_timings
+    return body
 
 
-def _fail_response(description, detail):
+def _fail_response(description, detail, step_timings=None):
     # error must be a dict: print_test_failure / nav helpers call .get()
     # (string error caused "'str' object has no attribute 'get'" under --debug)
     detail_s = detail if isinstance(detail, str) else str(detail)
-    return {
+    body = {
         "description": description or "advanced-test",
         "error": detail_s,
         "tests": [
@@ -282,6 +302,10 @@ def _fail_response(description, detail):
             }
         ],
     }
+    if step_timings:
+        body["stepTimings"] = step_timings
+        body["tests"][0]["stepTimings"] = step_timings
+    return body
 
 
 def _debug_blob(debug_parts, handle):

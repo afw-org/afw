@@ -24,7 +24,7 @@ from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
     before_each, after_all, after_each, test_group_matches_tags, \
-    test_path_for_display
+    test_path_for_display, clip_detail
 
 
 ##
@@ -164,10 +164,13 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             test_display = test_path_for_display(test, pwd)
             duration_ms = round((end - start) * 1000)
 
-            if msg.is_debug_mode() and (debug or error):
+            # Quiet human chatter when summary is the sole stdout artifact
+            quiet_console = (options.get('output') == '-')
+
+            if not quiet_console and msg.is_debug_mode() and (debug or error):
                 msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms)) 
 
-            if error is not None:
+            if error is not None and not quiet_console:
                 # Process death / runner exception: always show path + message.
                 # (Assertion failures use print_test_response below.)
                 err_str = error
@@ -183,7 +186,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                     msg.error("      cwd:   {}\n".format(
                         testEnvironment['work_dir']))
 
-            if msg.is_debug_mode() and debug:
+            if not quiet_console and msg.is_debug_mode() and debug:
                 msg.debug(debug)
 
             after_each(root, testGroupConfig, testEnvironment)
@@ -191,7 +194,8 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             if hasFailures:
                 failures.append({
                     'test': test_display,
-                    'detail': _failure_detail(error, response, numFailures),
+                    'detail': clip_detail(
+                        _failure_detail(error, response, numFailures)),
                     'srcdir': srcdir,
                     'group': test_path_for_display(root, pwd),
                 })
@@ -199,6 +203,9 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             # Default is errors-only; --show-all prints successful tests too
             errors_only = options.get('errors', True) and not options.get('show_all')
             if errors_only and not hasFailures:
+                continue
+
+            if quiet_console:
                 continue
 
             # Path for assertion failures / --show-all (process errors already
@@ -252,7 +259,9 @@ def allocate_working_directory(options):
 
     # if folder already exists, remove it first
     if os.path.exists(working_directory):
-        msg.highlighted_info("Removing previous working directory: " + working_directory)        
+        if options.get('output') != '-':
+            msg.highlighted_info(
+                "Removing previous working directory: " + working_directory)
         shutil.rmtree(working_directory)
     
     # create folder

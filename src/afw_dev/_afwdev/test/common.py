@@ -83,6 +83,93 @@ def normalize_tests_paths(raw):
 
 
 ##
+# @brief Truncate a one-line detail for digests / JSON summaries
+#
+def clip_detail(text, max_len=400):
+    if text is None:
+        return ""
+    s = str(text).replace("\n", " ").strip()
+    if len(s) <= max_len:
+        return s
+    if max_len < 4:
+        return s[:max_len]
+    return s[: max_len - 3] + "..."
+
+
+##
+# @brief Write test/blast style results summary for --output / --output-format
+# @param options Must include output / output_format (optional)
+# @param summary dict to serialize
+# @param tool_label Short name for the "Wrote …" message (e.g. test, blast)
+#
+def write_results_summary(options, summary, tool_label="test"):
+    import sys
+
+    output = options.get("output") or "stdout"
+    # Compat: literal "stdout" = do not write a summary artifact
+    if output == "stdout":
+        return
+
+    fmt = (options.get("output_format") or "json").strip().lower()
+    if fmt in ("json-min", "compact"):
+        fmt = "json-compact"
+
+    close_fd = False
+    if output == "-":
+        fd = sys.stdout
+    else:
+        fd = nfc.open(output, "w")
+        close_fd = True
+
+    try:
+        if fmt == "json":
+            nfc.json_dump(summary, fd, indent=2, sort_keys=True)
+            fd.write("\n")
+        elif fmt == "json-compact":
+            nfc.json_dump(
+                summary, fd, sort_keys=True, separators=(",", ":"))
+            fd.write("\n")
+        elif fmt == "text":
+            # Generic: prefer tests/ then blast-style ok/fail counts
+            t = summary.get("tests") or summary.get("requests") or {}
+            if "passed" in t or "failed" in t:
+                fd.write(
+                    "passed={p} failed={f} skipped={s} total={n}\n"
+                    "time_seconds={sec}\n".format(
+                        p=t.get("passed", t.get("ok", 0)),
+                        f=t.get("failed", t.get("fail", 0)),
+                        s=t.get("skipped", t.get("timeout", 0)),
+                        n=t.get("total", 0),
+                        sec=summary.get("time_seconds", 0),
+                    ))
+            else:
+                fd.write(nfc.json_dumps(summary, indent=2) + "\n")
+            fails = summary.get("failures") or []
+            if fails:
+                fd.write("failures ({n}):\n".format(n=len(fails)))
+                for item in fails:
+                    fd.write(
+                        "  {path}  {detail}\n".format(
+                            path=item.get("test") or item.get("path") or "?",
+                            detail=item.get("detail") or "",
+                        ))
+            else:
+                fd.write("failures: none\n")
+        else:
+            msg.error_exit(
+                "Unknown --output-format {!r} "
+                "(use json, json-compact, or text)".format(fmt))
+    finally:
+        if close_fd:
+            fd.close()
+
+    if output != "-":
+        msg.highlighted_info(
+            "Wrote {tool} summary ({fmt}) to {path}".format(
+                tool=tool_label, fmt=fmt, path=output))
+
+
+##
 # @brief Print a short end-of-run list of failing tests
 # @param failures List of dicts with at least 'test' and optional 'detail'
 # @details Console-only helper so parallel runs still end with a greppable

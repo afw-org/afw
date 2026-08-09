@@ -21,10 +21,12 @@ import requests
 
 from _afwdev.common import msg, package
 from _afwdev.test.common import (
+    clip_detail,
     find_test_groups,
     load_test_group_config,
     normalize_tests_paths,
     test_group_matches_tags,
+    write_results_summary,
 )
 
 
@@ -284,33 +286,71 @@ def run(options):
 
         _print_progress(stats, t0, final=True)
         elapsed = time.time() - t0
-        msg.highlighted_info("")
-        msg.highlighted_info(
-            "blast done in {:.1f}s  ok={}  fail={}  timeout={}  err={}  "
-            "total={}  latency_ms avg={:.0f} max={:.0f}".format(
-                elapsed,
-                stats.ok,
-                stats.fail,
-                stats.timeout,
-                stats.err,
-                stats.total,
-                stats.avg_latency_ms(),
-                stats.max_latency_ms,
-            ))
-        if stats.timeout and not stats.fail and not stats.err:
+        summary_to_stdout = (options.get("output") == "-")
+
+        if not summary_to_stdout:
+            msg.highlighted_info("")
             msg.highlighted_info(
-                "note: only client timeouts (no expect fails) — often load/"
-                "queue; try lower -c or higher --request-timeout")
-        if stats.recent_fails:
-            msg.error("Recent problems:")
-            for kind, path, detail in stats.recent_fails[-10:]:
-                msg.error("  [{}] {}  {}".format(
-                    kind,
-                    os.path.relpath(path) if os.path.exists(path) else path,
-                    detail[:120]))
+                "blast done in {:.1f}s  ok={}  fail={}  timeout={}  err={}  "
+                "total={}  latency_ms avg={:.0f} max={:.0f}".format(
+                    elapsed,
+                    stats.ok,
+                    stats.fail,
+                    stats.timeout,
+                    stats.err,
+                    stats.total,
+                    stats.avg_latency_ms(),
+                    stats.max_latency_ms,
+                ))
+            if stats.timeout and not stats.fail and not stats.err:
+                msg.highlighted_info(
+                    "note: only client timeouts (no expect fails) — often load/"
+                    "queue; try lower -c or higher --request-timeout")
+            if stats.recent_fails:
+                msg.error("Recent problems:")
+                for kind, path, detail in stats.recent_fails[-10:]:
+                    msg.error("  [{}] {}  {}".format(
+                        kind,
+                        os.path.relpath(path) if os.path.exists(path) else path,
+                        clip_detail(detail, 120)))
+            if stats.server_dead:
+                msg.error(
+                    "Server died or became unreachable during blast. "
+                    "If libs were just installed, restart afwfcgi "
+                    "(or use blast -f conf for managed spawn).")
+
+        failures = []
+        for kind, path, detail in (stats.recent_fails or []):
+            failures.append({
+                "kind": kind,
+                "path": (
+                    os.path.relpath(path) if os.path.exists(path) else path),
+                "detail": clip_detail(detail),
+            })
+
+        write_results_summary(options, {
+            "tool": "blast",
+            "time_seconds": round(elapsed, 3),
+            "requests": {
+                "ok": stats.ok,
+                "fail": stats.fail,
+                "timeout": stats.timeout,
+                "err": stats.err,
+                "total": stats.total,
+            },
+            "latency_ms": {
+                "avg": round(stats.avg_latency_ms(), 1),
+                "max": round(stats.max_latency_ms, 1),
+            },
+            "server_dead": bool(stats.server_dead),
+            "failures": failures,
+        }, tool_label="blast")
 
         if stats.server_dead:
-            msg.error("Server died or became unreachable during blast.")
+            if summary_to_stdout:
+                msg.error(
+                    "Server died or became unreachable during blast. "
+                    "Restart afwfcgi after install if needed.")
             sys.exit(2)
         if stats.fail or stats.err or stats.timeout:
             sys.exit(1)
@@ -355,13 +395,20 @@ class _HttpTransport(object):
                 timeout=self._timeout,
             )
         except requests.exceptions.ConnectionError as e:
-            raise _ServerDead("connection failed: " + str(e)) from e
+            raise _ServerDead(
+                "connection failed: " + str(e) +
+                " (is afwfcgi up behind the URL? restart after "
+                "./afwdev build --install if libs changed)"
+            ) from e
         except requests.exceptions.Timeout as e:
             raise _Timeout("request timeout: " + str(e)) from e
 
         if r.status_code >= 500:
             raise _ServerDead(
-                "HTTP {} from server".format(r.status_code))
+                "HTTP {} from server".format(r.status_code) +
+                " (server error — check afwfcgi logs; restart after install "
+                "if catalog/runtime looks stale)"
+            )
 
         try:
             body = r.json()

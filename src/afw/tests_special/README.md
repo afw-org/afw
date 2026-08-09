@@ -41,4 +41,5 @@ afwdev test -T src/afw/tests_special/adapter-lifecycle --output /tmp/out.txt --o
 | `catalog/` | Blast corpus: value-accessor / adapter smoke scripts |
 | `adapter-lifecycle/` | advanced-test: stop/start disposable file adapter vs catalog |
 
-See `designs/afwdev-blast.md` and `designs/afwdev-advanced-test.md`.
+Full recipe: [`designs/afwdev-test-recipe.md`](../../../designs/afwdev-test-recipe.md).  
+Also: `designs/afwdev-blast.md`, `designs/afwdev-advanced-test.md`.

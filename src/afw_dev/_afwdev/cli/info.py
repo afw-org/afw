@@ -1081,6 +1081,18 @@ _info_blast_include_fixtures = {
         "Ignored when --tests-path is set (those roots are taken as-is)."
 }
 
+_info_blast_output = {
+    "optionName": "output",
+    "arg": "--output",
+    "action": "store",
+    "default": "stdout",
+    "noprompt": True,
+    "help":
+        "Where to write a results summary after the run. Default 'stdout' "
+        "means no summary file. Use a path or '-' (stdout) with "
+        "--output-format. Same idea as afwdev test --output."
+}
+
 _info_blast = {
     "subcommand": "blast",
     "help": "On-demand load blast at afwfcgi (experimental)",
@@ -1096,6 +1108,7 @@ _info_blast = {
         "repeatable --tests-path/-T (exclusive; same flag as afwdev test). "
         "Fixture groups (Environment= / afw.conf) are skipped by default "
         "unless --include-fixtures (N/A with --tests-path). "
+        "Optional --output / --output-format for a machine summary. "
         "Continues on Adaptive failures; stops if the server dies. "
         "See designs/afwdev-blast.md.",
     "thing": "blast",
@@ -1109,6 +1122,8 @@ _info_blast = {
         _info_blast_request_timeout,
         _info_blast_include_fixtures,
         _info_tests_path,
+        _info_blast_output,
+        _info_test_output_format,
         _info_srcdir_pattern,
         _info_test_pattern,
         _info_test_tags,
