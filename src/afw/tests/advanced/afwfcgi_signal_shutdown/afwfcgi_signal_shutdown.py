@@ -197,6 +197,7 @@ def _run_signal_case(sig, sig_name, threads=2, grace_s=5.0):
     try:
         handle = _spawn_afwfcgi(work, threads=threads)
         _wait_socket(handle)
+        socket_path = handle["socket_path"]
         result = _signal_and_wait(handle, sig, grace_s=grace_s)
         if result["used_sigkill"] or not result["exited"]:
             return False, (
@@ -209,7 +210,12 @@ def _run_signal_case(sig, sig_name, threads=2, grace_s=5.0):
                     _log_tail(handle),
                 )
             )
-        # Success: process gone without SIGKILL. Exit code is typically 0.
+        # Unix listen path should be unlinked on clean exit (#158).
+        if os.path.exists(socket_path):
+            return False, (
+                "{}: process exited but Unix socket path still exists: "
+                "{!r}".format(sig_name, socket_path)
+            )
         return True, None
     except Exception as e:
         return False, str(e)

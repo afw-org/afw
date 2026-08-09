@@ -12,11 +12,14 @@ Thin **libafw host** executable (`produces: afw`). Compiles/evaluates Adaptive s
 
 ```text
 AFW_ENVIRONMENT_CREATE          → full core registries
+SIGTERM/SIGINT → set env->terminating only (issue #158; no accept wake)
 afw_command_generated_register  → version info + strings only (minimal generate/)
 optional -e  → afw_environment_load_extension
 optional -f  → configure_with_object_list (content type -t, default json)
 then one execution path (below)
 ```
+
+**Signals:** thin flag only for one-shot, interactive, and `--local`. Long I/O may hit `AFW_XCTX_THROW_IF_TERMINATING` (HTTP 503 `terminating`). Unlike `afwfcgi`, no thread wake / socket unlink story here.
 
 Includes **`afw.h`** (consumer pattern), never `afw_internal.h`. See `afw-environment` for registry semantics.
 

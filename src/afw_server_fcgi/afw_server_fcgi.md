@@ -12,6 +12,8 @@ Adaptive Frame FastCGI Support (`afwfcgi` command).
   with SIGUSR1) so a blocking FastCGI `accept` returns (with
   `FCGI_FAIL_ACCEPT_ON_INTR`). Threads finish the current request if any,
   leave the accept loop, main joins them and exits.
+* After join, the listen fd is closed; if `-p` was a **Unix domain path**
+  (not TCP `:<port>`), that path is **unlinked**.
 * No in-process drain timer; the parent (systemd, Docker, afwdev, etc.)
   may still SIGKILL if needed.
 

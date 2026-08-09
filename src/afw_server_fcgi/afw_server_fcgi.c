@@ -23,6 +23,7 @@
 #include <apr_portable.h>
 #include <signal.h>
 #include <pthread.h>
+#include <unistd.h>
 
 /* Declares and rti/inf defines for interface afw_server */
 #define AFW_IMPLEMENTATION_ID "fcgi"
@@ -166,6 +167,15 @@ afw_server_fcgi_internal_create(const char *path,
     if (self->sock < 0) {
         AFW_THROW_ERROR_Z(general,
             "FCGX_OpenSocket() error", xctx);
+    }
+
+    /*
+     * Remember Unix listen path for unlink after run(). TCP paths are
+     * ":<port>" (or empty default); libfcgi treats those as inet.
+     */
+    if (path && path[0] != '\0' && path[0] != ':') {
+        self->unix_socket_path_z = apr_pstrdup(
+            afw_pool_get_apr_pool(xctx->p), path);
     }
 
     /* Make sure this is not a CGI.
@@ -418,6 +428,16 @@ impl_afw_server_run(
     }
 
     impl_server = NULL;
+
+    /* Close listen fd and remove Unix socket file we created. */
+    if (server->sock >= 0) {
+        (void)close(server->sock);
+        server->sock = -1;
+    }
+    if (server->unix_socket_path_z) {
+        (void)unlink(server->unix_socket_path_z);
+        server->unix_socket_path_z = NULL;
+    }
 
     /* Run is finished. */
 }

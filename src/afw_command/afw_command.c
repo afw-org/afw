@@ -11,6 +11,7 @@
 #include "afw_command_local_server.h"
 #include <apr_file_io.h>
 #include <apr_getopt.h>
+#include <apr_signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,6 +38,34 @@
 /* Default number of history entries kept for interactive sessions. */
 #define AFW_COMMAND_HISTORY_SIZE 500
 #endif
+
+/*
+ * Base xctx for SIGTERM/SIGINT. Handler only sets env->terminating so
+ * long I/O / retrieve paths can AFW_XCTX_THROW_IF_TERMINATING. No accept
+ * wake (unlike afwfcgi); one-shot, interactive, and --local stay simple.
+ */
+static afw_xctx_t *impl_signal_xctx;
+
+static void
+impl_handle_terminating_signal(int signum)
+{
+    afw_environment_t *env;
+
+    (void)signum;
+    if (impl_signal_xctx && impl_signal_xctx->env) {
+        env = (afw_environment_t *)impl_signal_xctx->env;
+        env->terminating = true;
+    }
+}
+
+static void
+impl_install_terminating_signal_handlers(afw_xctx_t *xctx)
+{
+    impl_signal_xctx = xctx;
+    apr_signal(SIGTERM, impl_handle_terminating_signal);
+    apr_signal(SIGINT, impl_handle_terminating_signal);
+}
+
 
 static void
 impl_print_result(afw_command_self_t *self, const char *format, ...);
@@ -917,6 +946,12 @@ main(int argc, const char * const *argv) {
         afw_error_print(stderr, create_error);
         return EXIT_FAILURE;
     }
+
+    /*
+     * SIGTERM/SIGINT: set env->terminating only (one-shot, interactive, and
+     * --local). Cooperative I/O uses AFW_XCTX_THROW_IF_TERMINATING.
+     */
+    impl_install_terminating_signal_handlers(xctx);
 
     /* stdout except for result goes to stderr.*/
     afw_environment_set_stdout_fd(stderr, xctx);

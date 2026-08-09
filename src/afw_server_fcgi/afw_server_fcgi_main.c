@@ -49,8 +49,9 @@ static void print_usage(void)
         "\n"
         "Signals: SIGTERM and SIGINT set the environment terminating flag,\n"
         "stop accepting new FastCGI requests, wake request threads, and\n"
-        "exit after they finish the current request if any (no in-process\n"
-        "drain timer; the parent may still SIGKILL).\n");
+        "exit after they finish the current request if any. Unix listen\n"
+        "socket paths are removed on clean exit (no in-process drain\n"
+        "timer; the parent may still SIGKILL).\n");
 }
 
 
