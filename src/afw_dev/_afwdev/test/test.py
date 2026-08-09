@@ -33,7 +33,7 @@ from _afwdev.common import msg, nfc, package
 from _afwdev.test import watch, runner, js
 from _afwdev.test.common import (
     find_test_groups, load_test_group_config, test_group_matches_tags,
-    print_failure_digest)
+    print_failure_digest, normalize_tests_paths)
 
 
 ##
@@ -100,28 +100,51 @@ def run(options):
     srcdirs_skipped = 0   
 
     srcdirs = []
-    for srcdir in package.get_afw_package(options)['srcdirs']:
-        total_srcdirs += 1
+    tests_paths = normalize_tests_paths(options.get('tests_path'))
 
-        if not fnmatch.fnmatch(srcdir, options['srcdir_pattern']):
-            srcdirs_skipped += 1
-            srcdirs_passed += 1
-            continue
-        
-        package.set_options_from_existing_package_srcdir(
-            options, srcdir, set_all=True)   
-
-        objects_dir = options['srcdir_path'] + 'generate/objects/'
-        manual_tests = options['srcdir_path'] + 'tests'
-
-        srcdirs.append(
-            (
-                srcdir, 
-                options['srcdir_path'], 
-                objects_dir, 
-                manual_tests
+    if tests_paths:
+        # Opt-in roots only (e.g. tests_special/) — exclusive, not package tests/
+        for ap in tests_paths:
+            try:
+                label = os.path.relpath(ap)
+            except ValueError:
+                label = ap
+            # srcdirPath used for environments / python path; root is the tree
+            srcdir_path = ap if ap.endswith(os.sep) else ap + os.sep
+            srcdirs.append(
+                (
+                    label,
+                    srcdir_path,
+                    None,
+                    ap,
+                )
             )
-        )
+        total_srcdirs = len(srcdirs)
+        msg.highlighted_info(
+            "Using --tests-path (exclusive): " + ", ".join(tests_paths))
+    else:
+        for srcdir in package.get_afw_package(options)['srcdirs']:
+            total_srcdirs += 1
+
+            if not fnmatch.fnmatch(srcdir, options['srcdir_pattern']):
+                srcdirs_skipped += 1
+                srcdirs_passed += 1
+                continue
+
+            package.set_options_from_existing_package_srcdir(
+                options, srcdir, set_all=True)
+
+            objects_dir = options['srcdir_path'] + 'generate/objects/'
+            manual_tests = options['srcdir_path'] + 'tests'
+
+            srcdirs.append(
+                (
+                    srcdir,
+                    options['srcdir_path'],
+                    objects_dir,
+                    manual_tests
+                )
+            )
 
     if options.get('list'):
         _list_tests(options, srcdirs)

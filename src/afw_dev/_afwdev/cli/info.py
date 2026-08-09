@@ -936,10 +936,29 @@ _info_test_js = {
     "help": "Run Javascript and Web App tests."
 }
 
+# Shared by test and blast: opt-in trees outside package src/*/tests
+_info_tests_path = {
+    "optionName": "tests_path",
+    "arg": "--tests-path",
+    "short": "-T",
+    "action": "append",
+    "noprompt": True,
+    "help":
+        "Directory of tests to use (repeatable). When any --tests-path is "
+        "given, only those trees are searched (not package src/*/tests). "
+        "Default test -j never scans these roots — put opt-in/regression "
+        "experiments under e.g. src/afw/tests_special/. Same flag on "
+        "afwdev blast for load thrash."
+}
+
 _info_test = {
     "subcommand": "test",
     "help": "Run tests",
-    "description": "Run tests for one more more source directories.",
+    "description":
+        "Run tests for one or more source directories. Default discovery is "
+        "package src/*/tests (regression gate for test -j). Optional "
+        "repeatable --tests-path/-T runs only those directory trees "
+        "(e.g. tests_special/) and does not use package tests/.",
     "thing": "test",
     "args": [        
         _info_test_bail,
@@ -948,6 +967,7 @@ _info_test = {
         _info_test_errors,
         _info_test_show_all,
         _info_srcdir_pattern, 
+        _info_tests_path,
         _info_test_watch,
         _info_test_jobs,
         _info_test_env_mode,
@@ -1046,19 +1066,6 @@ _info_blast_include_fixtures = {
         "Ignored when --tests-path is set (those roots are taken as-is)."
 }
 
-_info_blast_tests_path = {
-    "optionName": "tests_path",
-    "arg": "--tests-path",
-    "short": "-T",
-    "action": "append",
-    "noprompt": True,
-    "help":
-        "Directory of .as scripts for the blast corpus (repeatable). "
-        "When any --tests-path is given, only those trees are used "
-        "(not package src/*/tests). Scripts are not discovered by "
-        "'afwdev test -j'. Use for private/load corpora (e.g. #149)."
-}
-
 _info_blast = {
     "subcommand": "blast",
     "help": "On-demand load blast at afwfcgi (experimental)",
@@ -1071,9 +1078,9 @@ _info_blast = {
         "suffices when nginx+afwfcgi are up. Override with -u/-f/-d/-c/-n. "
         "Corpus: package src/*/tests by default (--srcdir-pattern / "
         "--test-pattern / --tags), or only trees given with "
-        "repeatable --tests-path/-T (exclusive). Fixture groups "
-        "(Environment= / afw.conf) are skipped by default unless "
-        "--include-fixtures (N/A with --tests-path). "
+        "repeatable --tests-path/-T (exclusive; same flag as afwdev test). "
+        "Fixture groups (Environment= / afw.conf) are skipped by default "
+        "unless --include-fixtures (N/A with --tests-path). "
         "Continues on Adaptive failures; stops if the server dies. "
         "See designs/afwdev-blast.md.",
     "thing": "blast",
@@ -1086,7 +1093,7 @@ _info_blast = {
         _info_blast_threads,
         _info_blast_request_timeout,
         _info_blast_include_fixtures,
-        _info_blast_tests_path,
+        _info_tests_path,
         _info_srcdir_pattern,
         _info_test_pattern,
         _info_test_tags,

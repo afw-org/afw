@@ -11,11 +11,13 @@ afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 50
 # afwdev blast -f /path/to/afw.conf -T src/afw/tests_special/catalog -m 100
 ```
 
-Related **correctness** (ordered multi-request, hermetic afwfcgi) lives under
-`src/afw/tests/advanced/catalog-value-accessors/` and runs with:
+Related **always-on regression** (catalog contracts) lives under
+`src/afw/tests/advanced/catalog-value-accessors/` (`afwdev test -j`).
+
+**Opt-in lifecycle** advanced-test:
 
 ```bash
-afwdev test --test-pattern catalog-value-accessors --show-all
+afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
 ```
 
-See `designs/afwdev-blast.md`, `designs/afwdev-advanced-test.md`, and #149.
+See `src/afw/tests_special/README.md`, `designs/afwdev-blast.md`, #149.

@@ -23,6 +23,7 @@ from _afwdev.common import msg, package
 from _afwdev.test.common import (
     find_test_groups,
     load_test_group_config,
+    normalize_tests_paths,
     test_group_matches_tags,
 )
 
@@ -99,11 +100,11 @@ def run(options):
     progress_every_s = float(options.get("progress_every") or 2.0)
 
     attach = bool(url)
-    tests_paths = _normalize_tests_paths(options.get("tests_path"))
+    tests_paths = normalize_tests_paths(options.get("tests_path"))
     include_fixtures = bool(options.get("include_fixtures"))
 
     if tests_paths:
-        # Explicit roots only — not package tests/, not test -j discovery
+        # Explicit roots only — not package tests/, not default test -j
         corpus, skipped_fixture = _collect_corpus_from_tests_paths(
             options, tests_paths)
         corpus_mode = "tests-path"
@@ -576,24 +577,6 @@ def _parse_duration(text):
         msg.error_exit(
             "Invalid --duration {!r} (use 30s, 5m, 1h, or seconds)".format(
                 text))
-
-
-def _normalize_tests_paths(raw):
-    """Return list of absolute existing directories from --tests-path (or [])."""
-    if not raw:
-        return []
-    if isinstance(raw, str):
-        raw = [raw]
-    paths = []
-    for p in raw:
-        if p is None or p == "":
-            continue
-        ap = os.path.abspath(os.path.expanduser(str(p)))
-        if not os.path.isdir(ap):
-            msg.error_exit(
-                "afwdev blast --tests-path is not a directory: " + ap)
-        paths.append(ap)
-    return paths
 
 
 def _collect_srcdirs(options):

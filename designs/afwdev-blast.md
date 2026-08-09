@@ -29,21 +29,24 @@ afwdev blast -f path/to/afw.conf -m 500
 # Focus package suite corpus (same filters as test)
 afwdev blast -d 10m -p afw --test-pattern 'file_adapter/|rql/'
 
-# Private / out-of-suite corpus (NOT discovered by afwdev test -j)
+# Private / out-of-suite corpus (NOT discovered by default test -j)
 # Repeatable; exclusive — replaces package src/*/tests discovery
 afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 40
 afwdev blast -T /path/to/more -T src/afw/tests_special/catalog -f my.conf -m 100
+
+# Same -T on afwdev test for opt-in correctness (advanced-test, .as, …)
+afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
 ```
 
-### `--tests-path` / `-T` (experimental)
+### `--tests-path` / `-T` (experimental; **test** and **blast**)
 
 | | |
 |--|--|
-| **When omitted** | Corpus = package `src/*/tests` (plus `-p` / `--test-pattern` / `--tags`; fixture skip by default) |
-| **When set** | Corpus = only those directory trees (recursive `*.as`, skip `_` names); package discovery ignored |
-| **test -j** | Never scans `--tests-path` roots; put load scripts outside `tests/` (e.g. `src/afw/tests_special/`) |
+| **When omitted** | Package `src/*/tests` (blast: + fixture skip by default; test: normal `-j` gate) |
+| **When set** | Only those directory trees (exclusive); package `tests/` ignored |
+| **Default `-j`** | Never scans these roots — use `src/afw/tests_special/` for opt-in |
 
-Example private tree: `src/afw/tests_special/catalog/` (#149 value-accessor / adapter smoke scripts).
+Examples: `src/afw/tests_special/catalog/` (blast), `src/afw/tests_special/adapter-lifecycle/` (test advanced-test).
 
 ### Defaults (plain `afwdev blast`)
 

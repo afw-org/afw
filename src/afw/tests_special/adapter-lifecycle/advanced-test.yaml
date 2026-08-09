@@ -6,8 +6,8 @@
 # Disposable adapterId=lifecycle (service adapter-lifecycle). Never stops
 # the permanent afw adapter. Multi-request on one afwfcgi process.
 #
-# Run:
-#   ./afwdev test --test-pattern catalog-adapter-lifecycle --show-all
+# Run (opt-in; not in default test -j):
+#   afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
 # =============================================================================
 
 host: afwfcgi

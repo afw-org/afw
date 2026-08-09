@@ -59,6 +59,30 @@ def test_path_for_display(test, base=None):
 
 
 ##
+# @brief Normalize --tests-path (-T) option values
+# @param raw None, str, or list of paths from CLI
+# @return list of absolute existing directory paths (may be empty)
+# @details Shared by afwdev test and afwdev blast. When non-empty, callers
+#          use only these roots instead of package src/*/tests discovery.
+#
+def normalize_tests_paths(raw):
+    if not raw:
+        return []
+    if isinstance(raw, str):
+        raw = [raw]
+    paths = []
+    for p in raw:
+        if p is None or p == "":
+            continue
+        ap = os.path.abspath(os.path.expanduser(str(p)))
+        if not os.path.isdir(ap):
+            msg.error_exit(
+                "afwdev --tests-path is not a directory: " + ap)
+        paths.append(ap)
+    return paths
+
+
+##
 # @brief Print a short end-of-run list of failing tests
 # @param failures List of dicts with at least 'test' and optional 'detail'
 # @details Console-only helper so parallel runs still end with a greppable
