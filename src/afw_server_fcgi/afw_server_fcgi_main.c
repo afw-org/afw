@@ -44,8 +44,13 @@ typedef struct self_args_s {
 static void print_usage(void)
 {
     fprintf(stderr,
-        "Usage: afw_server_fcgi_main [-f filename] [-p path] [-n threads] [-e extension] "
-        "[-t content-type] [--help] [--version]\n");
+        "Usage: afwfcgi [-f filename] [-p path] [-n threads] [-e extension] "
+        "[-t content-type] [--help] [--version]\n"
+        "\n"
+        "Signals: SIGTERM and SIGINT set the environment terminating flag,\n"
+        "stop accepting new FastCGI requests (FCGX_ShutdownPending), wake\n"
+        "request threads, and exit after they finish the current request\n"
+        "if any (no in-process drain timer; the parent may still SIGKILL).\n");
 }
 
 

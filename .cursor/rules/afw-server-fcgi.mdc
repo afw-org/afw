@@ -85,7 +85,8 @@ No interfaces/manifest/functions in this `generate/` — capabilities come from 
 
 ## Known incompletes / drift
 
-- `impl_afw_server_release` stub; SIGTERM/`FCGX_ShutdownPending` path commented out.
+- `impl_afw_server_release` stub.
+- SIGTERM/SIGINT: after request threads exist in `run`, set `env->terminating` + `FCGX_ShutdownPending()` + `pthread_kill(SIGUSR1)` each APR request thread so accept gets EINTR under `FCGI_FAIL_ACCEPT_ON_INTR` (issue **#158**). No listen-fd close; no in-process drain timer; cooperative mid-request polls later.
 - Admin docs may mention `-d`; CLI does not.
 - No srcdir FCGI `.as` tests; exercise request/env rules via `afw --local` (`local_test_3`) and process-env suites. `afwdev test --env-mode afwfcgi` needs nginx+`afwfcgi` (often `:8080`).
 
