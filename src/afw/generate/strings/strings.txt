@@ -319,6 +319,7 @@ size
 uint32
 metrics
 adapter_metrics
+adapter_properties
 null_terminated_array_of_internal
 null_terminated_array_of_objects
 null_terminated_array_of_utf8_z_key_value_pair_objects

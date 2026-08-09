@@ -686,15 +686,21 @@ afw_runtime_value_accessor_uint32(
 
 static const afw_utf8_t
 impl_brief_adapter_metrics =
-    AFW_UTF8_LITERAL("Return live adapter metrics object");
+    AFW_UTF8_LITERAL(
+        "Live adapter metrics object (pointer loaded under anchor lock)");
 
 static const afw_utf8_t
 impl_description_adapter_metrics =
     AFW_UTF8_LITERAL(
-        "internal is a pointer to const afw_adapter_t *. Returns an object "
-        "value wrapping adapter->impl->metrics_object without copying. The "
-        "object is live environment state (returnsLiveReference); not a "
-        "snapshot under lock.");
+        "internal is a pointer to const afw_adapter_t * on an "
+        "afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, loads the "
+        "active adapter and returns an object value wrapping "
+        "adapter->impl->metrics_object without deep-copying metrics. NULL when "
+        "no active adapter. The metrics object is live environment state "
+        "(returnsLiveReference): counters may change while held and the "
+        "object is only valid while the adapter remains active (or while you "
+        "hold a session reference that keeps the instance alive). Do not "
+        "cache across service stop/replace.");
 
 static const afw_runtime_value_accessor_info_t
 impl_info_adapter_metrics = {
@@ -711,11 +717,78 @@ afw_runtime_value_accessor_adapter_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adapter_t *adapter = *(const afw_adapter_t * const *)internal;
+    const afw_adapter_t *adapter;
+    const afw_object_t *metrics_object;
 
-    return (adapter)
-        ? afw_value_create_unmanaged_object(
-            adapter->impl->metrics_object, p, xctx)
+    (void)prop;
+
+    if (!internal) {
+        return NULL;
+    }
+
+    metrics_object = NULL;
+    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+        adapter = *(const afw_adapter_t * const *)internal;
+        if (adapter && adapter->impl) {
+            metrics_object = adapter->impl->metrics_object;
+        }
+    }
+    AFW_LOCK_END;
+
+    return (metrics_object)
+        ? afw_value_create_unmanaged_object(metrics_object, p, xctx)
+        : NULL;
+}
+
+
+/* --- adapter_properties -------------------------------------------------- */
+
+static const afw_utf8_t
+impl_brief_adapter_properties =
+    AFW_UTF8_LITERAL(
+        "Live adapter anchor properties object (pointer under lock)");
+
+static const afw_utf8_t
+impl_description_adapter_properties =
+    AFW_UTF8_LITERAL(
+        "internal is a pointer to const afw_object_t * properties on an "
+        "afw_adapter_id_anchor_t. Under adapter_id_anchor_lock, loads the "
+        "properties pointer and returns an object value wrapping it without "
+        "deep copy. NULL when no properties. Live environment state "
+        "(returnsLiveReference): valid while the adapter registration / "
+        "conf properties remain; typically cleared or replaced on stop.");
+
+static const afw_runtime_value_accessor_info_t
+impl_info_adapter_properties = {
+    .key = afw_s_adapter_properties,
+    .function = afw_runtime_value_accessor_adapter_properties,
+    .brief = &impl_brief_adapter_properties,
+    .description = &impl_description_adapter_properties,
+    .copies_under_lock = false,
+    .returns_live_reference = true
+};
+
+const afw_value_t *
+afw_runtime_value_accessor_adapter_properties(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    const afw_object_t *properties;
+
+    (void)prop;
+
+    if (!internal) {
+        return NULL;
+    }
+
+    properties = NULL;
+    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
+        properties = *(const afw_object_t * const *)internal;
+    }
+    AFW_LOCK_END;
+
+    return (properties)
+        ? afw_value_create_unmanaged_object(properties, p, xctx)
         : NULL;
 }
 
@@ -1147,6 +1220,7 @@ impl_core_value_accessor_infos[] = {
     &impl_info_adapter_reference_count,
     &impl_info_authorization_handler_reference_count,
     &impl_info_adapter_metrics,
+    &impl_info_adapter_properties,
     &impl_info_null_terminated_array_of_internal,
     &impl_info_null_terminated_array_of_objects,
     &impl_info_null_terminated_array_of_utf8_z_key_value_pair_objects,

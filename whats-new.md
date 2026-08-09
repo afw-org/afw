@@ -59,7 +59,7 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **\*\*\* Experimental \*\*\***: hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
 | [**afwdev blast**](#experimental-afwdev-blast) | **\*\*\* Experimental \*\*\***: on-demand random suite firehose at afwfcgi — not part of `test -j` |
 | [**afwdev test/blast recipe flags**](#afwdev-testblast-recipe-flags) | **\*\*\* Experimental \*\*\***: `--tests-path`/`-T`, `--output` / `--output-format` for machine summaries |
-| [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149-phase-1) | Phase 1: lock+copy adapter/auth **`referenceCount`**; accessor registry. Phase 2: rich **objectOptions** on permanent shells (e.g. EnvironmentRegistry/`current` + metaFull+normalize) no longer throw “must have a pool” |
+| [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149-phase-1) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
 
 ---
 
@@ -116,16 +116,16 @@ Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
 ## Runtime catalog / accessors (issue #149)
 
-Child of **#2** memory work. Issue **#149** stays open for further accessor work.
+Child of **#2** memory work. Focused accessor / catalog lifetime slice (see GitHub **#149**).
 
 | | |
 |--|--|
-| **`referenceCount` on catalog adapter / auth handler objects** (phase 1) | Snapshot under the existing anchor lock (no longer a racy live integer read on get) |
-| **`_AdaptiveRuntimeValueAccessor_`** (phase 1) | First-class registry objects describing each named runtime value accessor (including whether it copies under lock / returns a live reference) |
-| **Rich objectOptions on permanent / const shells** (phase 2) | `get_object` with **metaFull+normalize** (and similar) on large permanent views such as **`/afw/_AdaptiveEnvironmentRegistry_/current`** no longer fails with **Object must have a pool**. Option processing materializes mutable propertyTypes onto the **view pool** instead of writing permanent OT meta. |
-| **Still open** | Further per-type accessor safety, full-registry materialize cost — see issue and [`designs/runtime-objects-and-environment.md`](designs/runtime-objects-and-environment.md) |
+| **`referenceCount` on catalog adapter / auth handler objects** | Snapshot under the existing anchor lock |
+| **`_AdaptiveRuntimeValueAccessor_`** | First-class registry objects (lock-copy / live-reference contracts) |
+| **Rich objectOptions on permanent / const shells** | `metaFull+normalize` (etc.) on **`EnvironmentRegistry/current`** no longer throws **Object must have a pool** (mutable propertyTypes on the view pool) |
+| **`metrics` / `properties` on `_AdaptiveAdapter_`** | Live-while-active: pointer loaded under **adapter_id_anchor_lock** (`adapter_metrics` / `adapter_properties`); not a deep snapshot of counters or conf |
 
-If you hold Adaptive values from `/afw/…` adapter/auth objects across **service stop**, treat **metrics** / **properties** as valid only while the instance is active (or you hold a session ref); **`referenceCount`** is a safe integer snapshot.
+If you hold Adaptive values from `/afw/…` adapter objects across **service stop**, treat **metrics** / **properties** as valid only while the instance is active (or you hold a session ref); **`referenceCount`** is a safe integer snapshot. Full-registry materialize size and long-running pool pressure remain under **#2**.
 
 **[↑ Highlights](#highlights)**
 

@@ -2,7 +2,7 @@
 
 **Audience:** maintainers and AI assistants; useful secondary reading for extension/command authors.  
 **Not** published handbook or end-user docs.  
-**Status:** architecture reference for **[#149](https://github.com/afw-org/afw/issues/149)** (child of **[#2 Memory management](https://github.com/afw-org/afw/issues/2)**). **Phase 1 shipped** on branch / PR (see §12): accessor registry objects, lock+copy adapter/auth `referenceCount`, catalog advanced-test leaves. Issue remains open for further phases.  
+**Status:** architecture reference for **[#149](https://github.com/afw-org/afw/issues/149)** (child of **[#2 Memory management](https://github.com/afw-org/afw/issues/2)**). Phases 1–3 shipped (accessor registry, lock+copy `referenceCount`, objectOptions pool fix, lock-safe live metrics/properties). Pad remains the map for #2-adjacent follow-on.  
 **Related pads:** [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes; may be superseded by this file for architecture), [`memory-management.md`](memory-management.md) (#2 umbrella).  
 **Related issues (separate tracks):** [#49](https://github.com/afw-org/afw/issues/49) `maxObjects`, [#127](https://github.com/afw-org/afw/issues/127) progressive retrieve release, [#17](https://github.com/afw-org/afw/issues/17) faces (different lifetime problem).
 
@@ -498,8 +498,9 @@ High signal for #149 (adjust as inventory proceeds):
 2. ~~Inventory risk types with §10 checklist~~ (core named accessors + P0 adapter/auth — §14).  
 3. ~~Surgical P0: lock+copy `referenceCount` (adapter + auth); first-class `_AdaptiveRuntimeValueAccessor_` registry.~~  
 4. ~~Phase 1 PR to `mgg-develop`~~ — [PR #160](https://github.com/afw-org/afw/pull/160) merged 2026-08-09 (`32ff0706`).  
-5. ~~EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7).~~ **fixed** on `issue-#149-catalog-phase2`.  
-6. **Still open:** more lock/copy only where inventory proves need; optional metrics snapshot vs document-R; services/logs; issue comments as slices land.
+5. ~~EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7).~~ **fixed** PR **#161**.  
+6. ~~metrics / properties: document-R + lock-safe pointer load~~ — `adapter_metrics` loads under lock; new `adapter_properties`; OT prose. **No** deep metrics snapshot (product accepts live-while-active).  
+7. **Out of #149 / under #2 if needed:** services/logs custom paths; deeper escape/leak work.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.
 
@@ -638,12 +639,12 @@ Plus **18** `onGetValueCFunctionName` model `current::` callbacks (xctx model st
 | `_AdaptiveLog_` | service-coupled; stoppable |
 | Extension-loaded maps | After core P0 |
 
-### 14.5 Candidate fixes (not implemented this session)
+### 14.5 Candidate fixes
 
-1. **referenceCount (adapter + auth):** done — `adapter_reference_count` / `authorization_handler_reference_count` (lock + copy). Metrics/properties remain live-while-active + OT prose.  
-2. **metrics / properties:** either (a) document **R**: only valid while active or while you hold a session ref on that instance; or (b) snapshot needed fields under lock into request pool when returning from runtime get. Prefer (a) if product accepts; (b) if dangling after destroy is proven.  
-3. **Keep** stopping_* as the gold standard; extend pattern only where inventory proves need.  
-4. Optional: hold session + stop to **test** non-empty `stopping` array and metrics identity across restart.
+1. **referenceCount (adapter + auth):** done — lock + copy.  
+2. **metrics / properties:** chose **(a) document-R + lock-safe pointer load** — not deep snapshot. `adapter_metrics` loads active adapter under `adapter_id_anchor_lock`; `adapter_properties` loads properties under the same lock; both `returnsLiveReference`.  
+3. **Keep** stopping_* as the gold standard for true multi-instance drain snapshots.  
+4. Optional later (not #149 close-out): mid-drain `stopping[]` test with concurrent session holder.
 
 ### 14.6 Inventory methodology notes
 

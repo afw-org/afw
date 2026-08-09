@@ -241,8 +241,8 @@ impl_properties__AdaptiveAdapter_[] = {
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_adapter_properties,
+        afw_runtime_value_accessor_adapter_properties
     },
     {
         &afw_self_s_referenceCount,
