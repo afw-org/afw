@@ -21,7 +21,7 @@ Most work on this line needs **only a recompile** against the new install. **C c
 ## Highlights
 
 Each **Area** links to the detail section below (when there is one). Detail
-sections end with **[↑ Highlights](#highlights)** to return here.
+sections end with [↑ Highlights](#highlights) to return here.
 
 | Area | What changed |
 |------|----------------|
@@ -56,15 +56,15 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 | [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
 | [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (**recompile** out-of-tree; rename legacy cursor to **`afw_iterator_old`**) |
-| [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **\*\*\* Experimental \*\*\***: hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
-| [**afwdev blast**](#experimental-afwdev-blast) | **\*\*\* Experimental \*\*\***: on-demand random suite firehose at afwfcgi — not part of `test -j` |
-| [**afwdev test/blast recipe flags**](#afwdev-testblast-recipe-flags) | **\*\*\* Experimental \*\*\***: `--tests-path`/`-T`, `--output` / `--output-format` for machine summaries |
+| [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **Experimental:** hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
+| [**afwdev blast**](#experimental-afwdev-blast) | **Experimental:** on-demand random suite firehose at afwfcgi — not part of `test -j` |
+| [**afwdev test/blast recipe flags**](#afwdev-testblast-recipe-flags) | **Experimental:** `--tests-path`/`-T`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
-| [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149-phase-1) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
+| [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
 
 ---
 
-## \*\*\* Experimental \*\*\* afwdev advanced-test (issue #157)
+## Experimental afwdev advanced-test (issue #157)
 
 **Status: experimental** — ship for **comment and use**, not a frozen green contract. Marker names, schema, and runner behavior may change over the next months as maintainers exercise multi-request / process-lifetime tests (including work toward **#149** and **#2**). Many early design choices are expected to stick; treat the *capability* (hermetic server + multi-step fixtures) as durable, not every field name.
 
@@ -78,11 +78,11 @@ sections end with **[↑ Highlights](#highlights)** to return here.
 
 Not a replacement for ordinary `.as` test scripts. Live `--env-mode afwfcgi` still means “shared stack”; advanced leaves stay **hermetic** under default mode.
 
-**[↑ Highlights](#highlights)**
+[↑ Highlights](#highlights)
 
 ---
 
-## \*\*\* Experimental \*\*\* afwdev blast
+## Experimental afwdev blast
 
 **Status: experimental** — on-demand only; **not** part of `afwdev test -j`.
 
@@ -96,7 +96,7 @@ afwdev blast -f path/to/afw.conf -m 500   # managed spawn (-n defaults to CPUs)
 
 Defaults favor docker/dev + classic load (threads≈CPUs, in-flight≈2×CPUs). Fixture-heavy tests skipped unless `--include-fixtures`. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Managed teardown uses SIGTERM; **`afwfcgi` graceful stop** is [#158](https://github.com/afw-org/afw/issues/158) (see below).
 
-**[↑ Highlights](#highlights)**
+[↑ Highlights](#highlights)
 
 ---
 
@@ -112,7 +112,7 @@ Operators and tooling can stop long-lived hosts without relying on SIGKILL under
 
 Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent still may SIGKILL after a grace period (systemd/Docker/`stop_afwfcgi`). No configurable drain timer; no SIGHUP reload.
 
-**[↑ Highlights](#highlights)**
+[↑ Highlights](#highlights)
 
 ---
 
@@ -127,7 +127,7 @@ Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent 
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
-**[↑ Highlights](#highlights)**
+[↑ Highlights](#highlights)
 
 ---
 
@@ -144,7 +144,7 @@ Child of **#2** memory work. Focused accessor / catalog lifetime slice (see GitH
 
 If you hold Adaptive values from `/afw/…` adapter objects across **service stop**, treat **metrics** / **properties** as valid only while the instance is active (or you hold a session ref); **`referenceCount`** is a safe integer snapshot. Full-registry materialize size and long-running pool pressure remain under **#2**.
 
-**[↑ Highlights](#highlights)**
+[↑ Highlights](#highlights)
 
 ---
 
@@ -167,9 +167,9 @@ Storage remains **valid NFC UTF-8**. The value’s **data type stays** `string` 
 
 Residuals (not required for this language story): lazy array **face** over utf8; shared `afw_utf8_*` index helpers; produce-type percolation on call IR (see `designs/compile-optimize-notes.md` / #28).
 
----
-
 [↑ Highlights](#highlights)
+
+---
 
 ## Array semantics (issue #39)
 
@@ -185,6 +185,8 @@ Adaptive **`array`** is a **dense** ordered sequence of values (not an object, n
 | **`for-of` / list HOFs** | Visit every index, including undefined slots (no ES “skip holes”). |
 
 Not supported (by design): `for-in`, `in`, `delete`, sparse present/missing indexes. See maintainer pad [`designs/array-semantics.md`](designs/array-semantics.md). Tests: `src/afw/tests/language/script/array_semantics.as`.
+
+[↑ Highlights](#highlights)
 
 ---
 
@@ -205,9 +207,9 @@ Many Adaptive **data types** have a same-named **conversion function** `T(value)
 
 Maintainer pad: [`designs/conversion-functions.md`](designs/conversion-functions.md).
 
----
-
 [↑ Highlights](#highlights)
+
+---
 
 ## Mutable object faces (issue #17)
 
@@ -215,25 +217,25 @@ Maintainer pad: [`designs/conversion-functions.md`](designs/conversion-functions
 
 ### What problem this is about
 
-Adaptive Script often hands you an **object** or **array** that is really a **shared instance** or a **non-bag impl** under the hood:
+Adaptive Script often hands you an **object** or **array** that is really a **shared instance** or a **view / non-memory implementation** under the hood:
 
-- The same **object or array literal** in a function or loop can be **one bag** reused across evaluations, so mutating it “sticks” the next time.
+- The same **object or array literal** in a function or loop can be **one shared instance** reused across evaluations, so mutating it “sticks” the next time.
 - **Binding** used to **clone** as a safety net; that clone-on-bind is **gone** for objects **and** arrays — isolation comes from **faces** on literals, defaults, and script-facing returns.
 - **Defaults** on helpers such as `property_get` / `variable_get` (issue **#110**) get a **mutable face** (not a deep clone of the whole graph).
 - **Adapter get/retrieve** may return a **view** or other low-cost implementation. ECMAScript authors often expect “I got an object → I can set properties” and used to wrap in **`clone()`** by hand.
 
 Product goal:
 
-> When you work with an object (or array) in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time bag, or the shared base the platform still owns — and without needing `clone()` just to set a property.
+> When you work with an object (or array) in script, you should usually get a **mutable face that is safe for you to change**, without poisoning the next evaluation, the compile-time shared instance, or the shared base the platform still owns — and without needing `clone()` just to set a property.
 
-Under the hood a face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays get **fresh faces** so typed `map` / index paths do not share nested bags). Authors do not need a wrap API for the happy path.
+Under the hood a face is a **memory wrapper** (local sets; get falls through or materializes entries; nested objects/arrays get **fresh faces** so typed `map` / index paths do not share nested instances). Authors do not need a wrap API for the happy path.
 
 ### Where you can drop manual `clone()`
 
 | Path | Notes |
 |------|--------|
 | **Object / array literals** (const/let, returns, multi-call) | Platform isolates shared compile-time bags |
-| **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` keeps the entity/view for `reconcile_object` — use `clone()` if you also want a free-form mutable bag. |
+| **`get_object` / `get_object_with_uri`** | Mutable face over the adapter object (including views). **Exception:** `{ reconcilable: true }` keeps the entity/view for `reconcile_object` — use `clone()` if you also want a free-form mutable object. |
 | **`retrieve_objects` / `retrieve_objects_with_uri`** | Each object in the result array is a face |
 | **`retrieve_objects_to_callback` / `_with_uri_to_callback`** | Object passed to the callback is a face |
 | **`property_get` / `variable_get` object or array defaults** | Missing/unbound default is a **face** |
@@ -246,11 +248,11 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 | Tool | Meaning |
 |------|---------|
 | **Face (platform)** | Mutable local layer; base not poisoned; **not** a deep copy and **not** store write-through |
-| **`clone()`** | Explicit **deep** independent copy of a graph (or when you still need a free bag over reconcilable/entity paths) |
+| **`clone()`** | Explicit **deep** independent copy of a graph (or when you still need a free-form object over reconcilable/entity paths) |
 | **`freeze`** | Explicit **immutability** of a value graph (or as documented for that API) |
 | **`const`** | **Binding-level** only — the name cannot be reassigned; nested properties may still be mutable unless frozen |
 
-**Still use `clone()` when:** you want a true deep independent copy; you need a free-form bag while keeping reconcilable identity separate; or you need a full snapshot for other reasons.
+**Still use `clone()` when:** you want a true deep independent copy; you need a free-form mutable object while keeping reconcilable identity separate; or you need a full snapshot for other reasons.
 
 ### What this is *not*
 
@@ -265,9 +267,9 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 - Drop redundant `clone()` around **get_object / retrieve / callback / journal get** and literal isolation paths once you confirm behavior on this tree.
 - Out-of-tree commands/extensions: rebuild if they link object/array face APIs; pure script authors follow this section.
 
----
-
 [↑ Highlights](#highlights)
+
+---
 
 ## Function reference prototypes (#28 spelling)
 
@@ -293,9 +295,10 @@ function retrieve_objects (
 
 This is generate/docs presentation only; Adaptive function call semantics are unchanged. Rebuild/reinstall AFW so runtime strings and admin pick up the new prototypes.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## UTF-8 in JSON results and Python local mode
 
 ### JSON / `stringify` / Fiddle
@@ -316,9 +319,10 @@ The Adaptive Framework local protocol length-prefixes chunks by **UTF-8 octet co
 
 **Fixed:** binary FIFO/stdin, exact octet reads, and correct framing. Rebuild/reinstall is not required for libafw ABI; update the **`afw` Python package** (`src/afw_client/python`) if you use `Session("local")` out of tree.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Function parameter and catch Patterns (issue #140)
 
 **Issue #140** — PRs **#141** (params + catch Patterns) and **#142** (call-site spread, Pattern keys, catch decompile, type syntax) on `mgg-develop`.
@@ -341,9 +345,10 @@ assert(sum3(...[1, 2, 3]) === 6);
 
 Not included: arrow functions, ES `arguments` object (use formal `...rest`). Language Reference: Function statement; Features — Exception Handling, Functions and parameters.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## `variable_exists`: bound vs undefined (issue #131)
 
 **Issue #131** on `mgg-develop` (branch `issue-#131-variable-exists`).
@@ -369,9 +374,10 @@ assert(variable_get("missing", "D") === "D");
 
 Maintainer notes: root `typescript-differences.md` (bound vs value).
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Object and array helpers (issue #55)
 
 **Issue #55** — **closed** 2026-08-04 (landed via PR **#134** on `mgg-develop`).
@@ -427,9 +433,10 @@ Language Reference: **Objects and Arrays**
 Language index. Function Reference pages for each function are generated from
 metadata when docs are built.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Expression property names in object values (issue #38)
 
 **Issue #38** — **closed** 2026-08-04 (landed via PR **#139** on `mgg-develop`).
@@ -458,9 +465,10 @@ assert(row["col 2"] === 42);
 
 Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Value lifetime / memory management (issue #2) — alpha/beta
 
 **Issue #2** — work in progress on `mgg-develop` via branch `issue-#2` (partial land; design continues).
@@ -469,7 +477,7 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 
 ### What landed so far (high level)
 
-- Prefer **shared permanent Adaptive values** (generate bag / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
+- Prefer **shared permanent Adaptive values** (generated constants / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
 - **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf.
 - **Managed object values**: container-aware `optional_release` / `clone_or_reference` paths that do **not** free an embedded dual-face header; `create_managed_object` requires a non-null object and takes a container hold.
 - **`afw_pool_release`**: returns the pool if still referenced, or **NULL** if that call destroyed the pool (C API; ignore return if you do not care). Used so managed **object faces** can hold one reference on the wrapped base and drop it only when the face pool is destroyed. Unmanaged faces still borrow. Array faces remain pool-owned for now.
@@ -494,9 +502,10 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 - Scope teardown walking each variable with value release (today: scope subpool bulk free).
 - Full target model: `clone_or_reference` never returns unmanaged; managed wrappers for unmanaged containers; property promote-on-get; etc.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## C API docs and full package builds (issue #1)
 
 **Issue #1** / PR **#132** (merged to `mgg-develop`)
@@ -527,9 +536,10 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 - Short developer reading path: `src/afw/doc/developer/` (also linked from the Doxygen mainpage).
 - Extension srcdirs stay self-contained relative to libafw core; their Doxygen groups live in the extension public headers.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Adapter index filter/value `current::` (issue #54) — partial
 
 **Issue #54** / PR **#130** (core eval context; LMDB create path still has known issues)
@@ -547,9 +557,10 @@ Bare ambient **`object`** (old unqualified scope push) is **not** set. Prefer `c
 
 **Not fully productized yet:** LMDB `index_create` persistence / retroactive scan still has pre-existing txn issues; automated index smoke remains skipped until that is fixed (see #57). Everyday LMDB CRUD does not require indexes.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## List active qualified variables (issue #9)
 
 **Issue #9** / PR **#129**. (Multi-frame **`::` get** alignment is separate — see subsection below and issue **#15** / PR **#135**.)
@@ -588,9 +599,10 @@ Landed with conf/process ambient work (**#15** / PR **#135**), not as part of th
 
 Older builds stopped **`qualifier::name` get** after the **first matching qualifier frame**, even when that frame did not define the name. Stacked `current::` (log write, model, `evaluate(..., additionalUntrustedQualifiedVariables)`, …) could hide older bindings such as `current::mode`. Get now matches snapshot semantics: walk newest → older and take the first frame that **defines** the name. Present undefined must use **`afw_value_undefined`**, not C `NULL` (C `NULL` means “not on this frame”).
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Materializing retrieve: `maxObjects` (issue #49)
 
 **Issue #49** (partial)
@@ -644,9 +656,10 @@ Core metadata catalogs (object types, etc.) are larger than 100. Materializing r
 
 Rebuild/install the admin app (or full JS install) and hard-refresh the browser. Progressive `retrieve_objects_to_response` (already used by the Objects browser) remains the better pattern for large **instance** data; that client story is still open under #49.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Adapter get/retrieve authorization (issue #90)
 
 **Issue #90**
@@ -663,9 +676,10 @@ Session delivery was fixed so intermediate handling (e.g. `_AdaptiveServiceConf_
 
 Retrieve collection resource ids use a trailing slash (e.g. `/adapterId/ObjectType/`); get uses the full object path.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Compile-time template substitutions (issue #97)
 
 **Issue #97** (feature largely landed earlier as PR **#100**; completed on this branch)
@@ -696,9 +710,10 @@ This now works in **backtick template strings** the same way as in raw templates
 
 Language reference **Templates and Expressions** and a short note under **Qualified Variables** describe the two forms, isolation, conf lifecycle, and escapes. Full Syntax EBNF / railroad diagrams refresh on a docs build.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Process environment variables (issue #71)
 
 `retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` now returns a **single** `current` object (process environment), not two identical ones. The `environment::` qualifier is unchanged.
@@ -707,9 +722,10 @@ Property **values** from the host environment are Adaptive **string** when the b
 
 Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `request::` (separate from process env).
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Process ambient: `environment::` and `process::` (issues #71 / #74)
 
 Process environment variables and invocation info are created at **environment create** (not per host) and pushed on **every** xctx via `afw_application_internal_push_qualifiers` (called from xctx finishup):
@@ -748,9 +764,10 @@ Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Con
 
 Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`, optional `custom::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta).
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Crypto extension `afw_crypto` (issue #74 partial)
 
 Optional loadable extension **`afw_crypto`** (`libafwcrypto`, OpenSSL **libcrypto**) adds Adaptive functions for “hide values in plain sight” composition with streams, files, and process env. Load with conf `"extensions": ["afw_crypto"]`.
@@ -793,9 +810,10 @@ Use **`decode_to_string(binary)`** for UTF-8 passwords (not `string(binary)`, wh
 
 Regression coverage: `src/afw_crypto/tests/crypto/crypto_bind_parameters_template.as`, `crypto_seal_unseal.as`.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## `stringify`, `decompile`, compiler listing, and binary text
 
 **Issue #18** (stringify second parameter / replacer) — **closed** 2026-08-04 (PR **#137**; re-verified). Broader decompile/listing work remains documented here for users.
@@ -827,9 +845,10 @@ These are easy to confuse; they do different jobs:
 
 Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelity.as`, `pragma.as`, `listing.as`.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Adaptive Script types (issue #28)
 
 **Type syntax** uses **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …) plus simple structured types. Examples: `integer[]`, `string[]`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs). Array element types use postfix **`T[]` only** (not TypeScript `Array<T>`).
@@ -859,9 +878,10 @@ When checking is on, assignment and script function parameters are checked for l
 
 Handbook: Language Reference **Types** (flags and `#compile` options), **Language Features** Pragma (short `#compile` example), **Lexical** reserved names. Tests: `type_syntax.as`, `type_check_flags.as`, `type_check.as`, `type_check_multi_unit.as`.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Conf path templates (issue #15)
 
 **Issue #15 closed** (2026-08-04) after PR **#135** on `mgg-develop`. Path-like conf properties use **`template`** (not hybrid) by design. No further conf host-path residuals planned at this time; curl `caInfo`/`caPath` remain plain runtime options.
@@ -894,9 +914,10 @@ Examples:
 
 `environment::` and `process::` are available from environment create on all hosts (including conf-time templates), because they are installed on the base xctx before conf is applied.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## File streams (`open_file` and friends)
 
 **Issue #103 / PR #120**
@@ -942,9 +963,10 @@ close(sn2);
 
 Modes cover text and binary (`r`, `w`, `a`, `r+`, … and `rb`, `wb`, …). `open_file` requires execute access.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## VFS adapter (`afw_vfs`)
 
 **Issue #79** (empty-file read and related hardening on the issue branch)
@@ -1010,9 +1032,10 @@ paths as objectIds without additional controls.
 Handbook: administrative guide **Adapters → VFS**. Tests:
 `src/afw_vfs/tests/vfs_test.as`, `vfs_multimap.as`, `vfs_phase4.as`.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Pure-script model adapters
 
 **Issue #109 / PR #119**
@@ -1028,9 +1051,10 @@ In scripts, `current::mappedAdapterId` is nullish when unset (it does not throw)
 
 `modelId` and `modelLocationAdapterId` remain required for both hybrid and pure-script models.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Interactive `afw`: line editing and history
 
 **Issue #30 / PR #117**
@@ -1050,9 +1074,10 @@ sudo apt-get install libedit-dev
 
 Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/building_on_linux.md` (and the macOS build notes).
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## `afw --allow` and YAML value output (issue #14)
 
 **Issue #14** — **closed** 2026-08-04 (feature long on tree; regression suite on `mgg-develop`; re-verified 22 yaml tests)
@@ -1124,9 +1149,10 @@ afwdev test -p afw_yaml --tags yaml
 
 Handbook `usage.xml` may still omit `-a` until a docs pass; live **`afw -h`** lists it.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## JSON Schema for Adaptive object types
 
 **Issue #3 / PR #116**
@@ -1140,9 +1166,10 @@ Package-generated schemas under `generated/schemas/afw/` are improved for **edit
 
 If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-backed validation), regenerate so your tree picks up the new schemas (`./afwdev build --cdev` or your usual generate path). Do not hand-edit `generated/schemas/`.
 
+[↑ Highlights](#highlights)
+
 ---
 
-[↑ Highlights](#highlights)
 ## Reliability notes
 
 ### Default values from `property_get` / `variable_get`
@@ -1181,6 +1208,15 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
     if you relied on broken `\ufffffff0…` escapes from old `stringify`, update
     callers. Out-of-tree **Python** `Session("local")` needs the updated client
     for large or UTF-8-heavy local responses.
+11. **Out-of-tree C/commands/extensions:** rebuild against this install after **#55**
+    (array setter), **#2** / faces, and **#153** (legacy cursor → **`afw_iterator_old`**;
+    new keyless **`afw_iterator`** is a different type). See the top rebuild callout.
+12. **Type-named converts:** stop calling **`null()`** / **`function()`** converts (removed);
+    use the null literal and function values. Prefer **`create_array(n)`** over the old
+    **`empty_array`** name. Old Type spellings **`(array of …)`** / **`(object "OT")`**
+    are a hard cut under **#28**.
+13. **`variable_exists`:** true when the name is **bound**, including value **undefined**;
+    **`variable_get` default** applies only when **not bound** (not when the value is undefined).
 
 ---
 
@@ -1217,12 +1253,20 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Adaptive Script types | #28 (open; core shipped) | issue-#28 / #145 line on `mgg-develop` |
 | Mutable object faces (shared instances) | #17 (closed) | PR **#150** → `mgg-develop` (this file + `designs/issue-17-mutable-object-faces.md`) |
 | UTF-8 code-point sequences (`s[i]`, for-of, formals) | #153 | issue-#153 branch → `mgg-develop` (this file + `designs/utf8-code-point-sequences.md`) |
+| Array semantics (dense arrays, elision, `create_array`) | #39 | on `mgg-develop` |
+| Conversion functions (type-named; no `null()` / `function()`) | — | on `mgg-develop` (see `designs/conversion-functions.md`) |
+| Runtime catalog / accessors | #149 (under #2) | on `mgg-develop` |
+| afwdev advanced-test (experimental hermetic `afwfcgi` leaves) | #157 | on `mgg-develop` |
+| afwdev blast (experimental load firehose) | — | on `mgg-develop` (`designs/afwdev-blast.md`) |
+| afwdev test/blast recipe flags (`-T`, `--output`) | — | on `mgg-develop` (`designs/afwdev-test-recipe.md`) |
+| Graceful process stop (SIGTERM/SIGINT) | #158 (closed) | PR **#165** → `mgg-develop` |
+| Function reference prototypes (#28 Type spelling) | #28 | generate/docs on `mgg-develop` |
 
 ---
 
 ## How this was produced
 
-Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**–**#142**, and follow-up fixes on `mgg-develop`). For full commit history, see those PRs on the repository hosting Adaptive Framework.
+Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**–**#142**, **#145**–**#146**, **#150**, **#165**, and follow-up fixes on `mgg-develop`). For full commit history, see those PRs on the repository hosting Adaptive Framework.
 
 ### Maintaining the Highlights table (for agents)
 

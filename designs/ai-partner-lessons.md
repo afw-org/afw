@@ -106,15 +106,53 @@ This is a working stance, not a claim about metaphysics. Use it if it makes comm
 
 ## If you try it
 
-A short copy of this pattern also lives **out in the open** in package-root
-[`AGENTS.md`](../AGENTS.md) (*Possible pattern: work an issue with an AI partner*)
-so people need not open `designs/` first. Claude Code loads [`CLAUDE.md`](../CLAUDE.md),
-which is a thin redirect to `AGENTS.md` (no second handbook).
+A short copy of the open-with-discussion pattern also lives **out in the open** in
+package-root [`AGENTS.md`](../AGENTS.md) (*Possible pattern: work an issue with an
+AI partner*) so people need not open `designs/` first. Claude Code loads
+[`CLAUDE.md`](../CLAUDE.md), which is a thin redirect to `AGENTS.md` (no second
+handbook).
 
-1. Open your harness on this repo.  
-2. Ask something like: **“What do you think about issue #N?”**  
-3. Discuss; push back; show live AFW when stuck.  
-4. Implement only when you share the next step.  
-5. After a real click, add or update a short map in `designs/` (or the atlas / playbook).  
+### One realistic session shape (issue work)
 
-Refine this page when another lesson sticks. Skip anything that does not fit how you work.
+Not a script — just enough structure that a first pairing does not jump straight
+to “implement everything on `mgg-develop`.”
+
+1. **Open the harness on this repo** (so the partner can see the tree and
+   ideally `AGENTS.md`).  
+2. **Start with the issue, not the patch.** Ask something like:  
+   **“What do you think about issue #N?”**  
+   (or paste the issue text / a short symptom). Do **not** lead with “implement
+   a fix” unless you already share the plan.  
+3. **Discuss.** Keep asking what the partner thinks; push back; guide with
+   **why** when you disagree. When chat is stuck, **close the loop live**
+   (`afw`, `afwfcgi`, runtime objects on `adapterId=afw`, the code they named).  
+4. **If you decide to work it** — say so explicitly, then give a light branch
+   home, e.g.:  
+   **“Let’s work this. Make a feature branch off `mgg-develop` for #N.”**  
+   (Name it however you like; `issue-#N-…` is fine.) Stay on that branch until
+   you intentionally merge or open a PR.  
+5. **Implement in small steps you both own.** Agree the next thin vertical
+   (often: metadata or C touch → `./afwdev build --cdev` → narrow
+   `afwdev test` → note residuals). You steer product/scope; the partner drafts
+   and explores; either of you can stop and re-discuss mid-flight.  
+6. **Commit and push when *you* want a checkpoint** — not as a silent default
+   after every file edit. Useful prompts:  
+   - “Commit what we have with a clear message.”  
+   - “Push the branch.”  
+   Holding commits until asked has worked well here unless you agree otherwise
+   for a stretch (see *Practical defaults* above).  
+7. **When the vertical is ready for review:**  
+   **“Open a PR against `mgg-develop`”** (or your target branch). Review the
+   diff yourself; treat the partner’s draft description as a starting point.  
+8. **After a real click** (shipped behavior or a durable mental model), add or
+   update a **short map** in `designs/` (atlas row, playbook note, or thin pad)
+   if the next person would care — issue ids as pointers only. User-facing
+   change → [`whats-new.md`](../whats-new.md) when it belongs there.
+
+Support-shaped sessions (no issue number yet) can stop at steps 1–3: symptom →
+layer → live probe → optional map. Issue work adds the branch / checkpoint / PR
+loop so the work stays reviewable and does not sprawl on a long-lived develop
+line without an intentional home.
+
+Refine this page when another lesson sticks. Skip anything that does not fit how
+you work.

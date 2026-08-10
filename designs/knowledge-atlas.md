@@ -50,7 +50,7 @@
 | [12. Extensions (shipped base)](#12-extensions-shipped-base) | Thin map | extensions rule |
 | [13. Docs surfaces](#13-docs-surfaces) | Split known | AGENTS docs + interfaces-doxygen; overview points at maps |
 | [14. Security / crypto](#14-security--crypto) | Design-heavy | secrets pad |
-| [15. Language surface residuals](#15-language-surface-residuals) | Mixed closed/open | issue pads |
+| [15. Language surface residuals](#15-language-surface-residuals-pointers-only) | Mixed closed/open | issue pads |
 
 ---
 
