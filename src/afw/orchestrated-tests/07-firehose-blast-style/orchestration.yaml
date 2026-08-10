@@ -31,7 +31,7 @@ tests:
     sourceType: script
     source: <<< tests/catalog_touch.as
 
-  - name: true
+  - name: "true"
     sourceType: script
     source: |
       return true;
@@ -46,7 +46,7 @@ schedule:
   - firehose:
       duration_s: 30
       concurrency: 4
-      fromTests: [cheap-loop, catalog-touch, true, arithmetic]
+      fromTests: [cheap-loop, catalog-touch, "true", arithmetic]
       # seed: 42                 # reproducible RNG (later)
       # policy: random           # or roundRobin
       # stopOnError: false       # blast-style: keep going, report error rate

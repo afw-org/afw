@@ -52,8 +52,7 @@ PATH afterward for `test`, `validate`, and similar.
 | **Adaptive test script** (`.as`, `--syntax test_script`) | Default. Language, functions, adapters under optional `afw.conf`. |
 | **Python** (`.py` with `run()`) | Need host process control, raw env octets, bindings that are awkward in script. |
 | **`commands_*.txt`** | Drive shell-ish command sequences (special runner). |
-| **Advanced-test leaf** | Multi-request / long-lived **`afwfcgi`** process with leaf conf. **Experimental** — see below. |
-| **`afwdev blast`** | On-demand **random** suite firehose at afwfcgi for a period. **Not** part of `test -j`. See below. |
+| **Orchestrated-test leaf** | Multi-request / long-lived **`afwfcgi`** with **`orchestration.yaml`**. See below. |
 
 Prefer a **test_script** unless you need process lifetime, a private server, or
 host-only APIs.

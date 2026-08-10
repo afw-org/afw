@@ -1,19 +1,16 @@
 # Orchestrated tests (sketch — runner not wired here yet)
 
-**Status:** design sketch + scenario leaves. **Not** discovered by default
-`afwdev test -j` (tree is outside `src/*/tests/`).  
-**Live experimental runner:** still `src/afw/tests/advanced/` +
-`advanced-test.yaml` / `.json` — **keep using and supporting that** until
-migration.  
-**Intent:** product name **orchestrated tests**; control file
-**`orchestration.yaml` / `.json`**.
+**Status:** **Runner implemented** (`_afwdev/test/orchestrated/`). Marker
+**`orchestration.yaml` / `.json`**. Gate leaves also under
+`src/afw/tests/advanced/` (migrated from advanced-test). This tree is
+**outside** default `src/*/tests` discovery — use
+`afwdev test -T src/afw/orchestrated-tests/...` for sketches and firehose.
 
-**Branch / campaign goal (mgg-develop):** grow this until it can **replace
-`afwdev blast`** (firehose schedule + non-gate discovery roots). Eliminate the
-separate blast subcommand when parity is good enough. Work lands on
-**`mgg-develop`** first for heavy exercise and review; not the normal
-feature→develop cadence until a deliberate big merge. See package
-[`beta-backlog.md`](../../../beta-backlog.md) (branch plan).
+**Retired:** `advanced-test.yaml` marker and **`afwdev blast`** subcommand
+(use `schedule.firehose` on an orchestrated leaf instead).
+
+**Branch / campaign:** feature work on **`mgg-develop`** for heavy review
+before a big merge to **`develop`**. See [`beta-backlog.md`](../../../beta-backlog.md).
 
 ## Feed defaults (yes — helpful)
 

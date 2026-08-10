@@ -1,7 +1,7 @@
 #!/usr/bin/env -S afw --syntax test_script
 //?
 //? testScript: step_catalog_sane.as
-//? customPurpose: advanced-test #149 catalog leaf
+//? customPurpose: orchestrated-test sketch #149 catalog leaf
 //? description: Hybrid test_script step after multi-request catalog evals
 //? sourceType: script
 //?

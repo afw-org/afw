@@ -16,7 +16,7 @@ feed:
   accept: application/json
 
 tests:
-  - name: true
+  - name: "true"
     sourceType: script
     source: |
       return true;
@@ -29,6 +29,6 @@ schedule:
   - firehose:
       maxRequests: 100
       concurrency: 8
-      fromTests: [true, loop]
+      fromTests: ["true", loop]
       # duration_s omitted — run until maxRequests
       stopOnError: false

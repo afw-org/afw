@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Discovery helpers for advanced-test marker leaves."""
+"""Discovery helpers for orchestrated-test marker leaves."""
 
 import os
 
-MARKER_STEM = "advanced-test"
+MARKER_STEM = "orchestration"
 MARKER_YAML = MARKER_STEM + ".yaml"
 MARKER_JSON = MARKER_STEM + ".json"
 
 
-def find_advanced_marker(directory):
+def find_orchestration_marker(directory):
     """
-    If directory is an advanced-test leaf, return absolute path to the marker.
+    If directory is an orchestrated-test leaf, return absolute path to the marker.
 
     Both .yaml and .json present → ValueError (ambiguous).
     """
@@ -20,7 +20,8 @@ def find_advanced_marker(directory):
     has_json = os.path.isfile(json_path)
     if has_yaml and has_json:
         raise ValueError(
-            "Ambiguous advanced-test leaf (both .yaml and .json): " + directory)
+            "Ambiguous orchestrated-test leaf (both .yaml and .json): "
+            + directory)
     if has_yaml:
         return yaml_path
     if has_json:
@@ -28,8 +29,8 @@ def find_advanced_marker(directory):
     return None
 
 
-def is_advanced_marker_path(path):
-    """True if path is advanced-test.yaml or advanced-test.json."""
+def is_orchestration_marker_path(path):
+    """True if path is orchestration.yaml or orchestration.json."""
     if not path:
         return False
     base = os.path.basename(path)
