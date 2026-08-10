@@ -89,6 +89,14 @@ Update this section if the plan changes.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
 - **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev` (implies `-j`). Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev`** (`--all --generate --clean --install --scan` + `-j`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
 
+### Session wrap-up — 2026-08-10 (docs polish / partner try-it)
+
+- **`whats-new.md`:** Highlights anchors/back-links polished; #149 slug; migration bullets; experimental heading clean-up.
+- **`open-issues-status.md`:** refreshed from live GitHub (**42** open; closed #17/#39/#50/#61/#89/#149/#153/#158 removed from open table; **#157** noted).
+- **Partner docs:** `designs/ai-partner-lessons.md` *If you try it* expanded (issue → discuss → feature branch → checkpoints → PR); `AGENTS.md` short mirror; atlas §15 TOC link fixed.
+- **Handbook:** Features **Closure** no longer claims Adaptive has no closures (aligned with `closures.as` / #35 residual under **#2**).
+- Pointer: open-issue snapshot is **`open-issues-status.md`** (not `open-issues.md`).
+
 ### Session wrap-up — 2026-08-09 (#149 phase 1 + afwdev harness)
 
 - **#149 closed** (2026-08-09): phases 1–3 via PRs [#160](https://github.com/afw-org/afw/pull/160), [#161](https://github.com/afw-org/afw/pull/161), [#162](https://github.com/afw-org/afw/pull/162) (`ad78aa62`).
@@ -324,14 +332,16 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 - **ECMAScript / TypeScript:** Adaptive Script is **not** ES/TS and must differ where the problem set requires it; **avoid unmotivated differences**. Maintainer/beta decision notes: root [`typescript-differences.md`](typescript-differences.md) (Should fix / Will not do; **not** Jeremy’s polished differences doc — see **#22** for that). test262-derived tests help ES programmers — not to make AFW into ES.
 - **Docs rule:** Core user/reference docs should **not** need to say “ECMAScript” or “XACML” except (1) Jeremy’s differences doc / language-compare material, (2) future **XACML extension** docs. Describe Adaptive on its own terms. Maintainer dumps (this file, `designs/`) may still mention heritage.
 
-#### #55 ask vs already present
+#### #55 ask vs landed (historical planning table)
 
-| Jeremy (JS-ish) | Adaptive today / direction |
-|-----------------|----------------------------|
-| `every` / `some` | Have `all_of` / `any_of` (XACML-shaped, multi-array). **Open to adding `every`/`some`** as ES-facing names (thin over same HOF machinery) for docs/tests — keep `all_of*` as first-class. |
-| `push` / bulk append | C `push_value`; script still `add_entries` / spread until wrappers |
-| `keys` / `values` / `entries` / `freeze` | **Missing** at script layer (freeze = expose immutability) |
-| `at` / stack ops / `splice` | C ready; script `at`/`pop`/`shift`/… not started; splice deferred |
+**Shipped** on `mgg-develop` (PR **#134**). Do not treat the pre-land rows below as open work:
+
+| Jeremy (JS-ish) | Landed direction |
+|-----------------|------------------|
+| `every` / `some` | Thin names over HOF machinery; keep `all_of` / `any_of` as first-class |
+| `push` / bulk append | Script `push` + C `push_value` |
+| `keys` / `values` / `entries` / `freeze` | Script helpers (object/array) |
+| `at` / stack ops / `splice` | Script `at` / `pop` / `shift` / `unshift` / `splice` |
 
 #### Array as vector / deque (C) — done on branch
 
@@ -424,6 +434,11 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 
 | When | Item |
 |------|------|
+| 2026-08-10 | Docs polish: `whats-new` links; `open-issues-status` refresh (42 open); partner try-it guidance; Features **Closure** handbook truth. |
+| 2026-08-09 | **#149** runtime catalog lifetime — PRs #160–#162. **#158** graceful stop — PR #165. **#61** afwdev exceptions. |
+| 2026-08-07 | **#153** UTF-8 code-point sequences. **#50** / **#89** language bugs. |
+| 2026-08-06 | **#17** mutable faces — PR #150. **#39** array semantics — PR #152. |
+| 2026-08-04 | Process-close: **#14**, **#15**, **#18**, **#38**, **#55**; earlier **#9**, **#90**, **#109**, **#131**, **#140**. |
 | 2026-07 | **#103** file streams — PR #120 (+ #121 tests assets); closed, Jeremy notified. Details in session wrap-up above; `whats-new.md` File streams. |
 
 ---
@@ -432,6 +447,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 
 | Date | Note |
 |------|------|
+| 2026-08-10 | Session wrap-up: whats-new / open-issues-status / partner try-it / Features Closure; Done archive rows for Aug closes; #55 ask table marked historical. |
 | 2026-08-07 | Branch plan: cutover **retarget** checklist (`mgg-develop` → `develop` How URLs / whats-new / prose). |
 | 2026-07-20 | Created; seeded from index/#54 discussion, expression vs script context, compile/value model, pure-fold plan, branch plan, doc roles. |
 | 2026-07-20 | Doc preference: long-term developer knowledge in code; this file is dump/source for later fold-in. |

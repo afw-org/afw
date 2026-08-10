@@ -60,7 +60,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 - **`let` / `const`** (no `var`). Semicolons **required**. Bare expressions are not statements.
 - **`if` / `while` / `do` / `for` / `for-of` / `switch` / `try` / `throw` / `return` / `break` / `continue`**.
 - **`for-of`** over **arrays** (by element) and **strings** (by Unicode **code point** / UTF-8 character). Objects: walk **`keys` / `values` / `entries`** (no `for-in`).
-- Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as` — **25** pass; **11** skips are escape/lifetime under **#2**, not “no closures”). Issue **#35** left open for that bar. Handbook Features text that still says “no closures” is **stale** (Should fix P2).
+- Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as` — **25** pass; **11** skips are escape/lifetime under **#2**, not “no closures”). Issue **#35** left open for that residual bar. Handbook Features **Closure** section updated (no longer claims “no closures”).
 
 ### Nullish and short-circuit forms
 
@@ -160,8 +160,7 @@ Leaves are Adaptive **data types** (`integer`, `string`, …), not TS `number` o
 
 | Item | Priority | Notes |
 |------|----------|--------|
-| Features: “no closures” | P2 | Runtime supports closures; update handbook Features when doing a docs pass. |
-| Features / Types | Ongoing | Keep Adaptive-first; deep ES essays belong in Jeremy’s #22 doc or here as maintainer notes. |
+| Features / Types | Ongoing | Keep Adaptive-first; deep ES essays belong in Jeremy’s #22 doc or here as maintainer notes. Features **Closure** handbook text corrected 2026-08-10. |
 | `test262/` skips | Long-burn | Convert when Adaptive behavior is decided; permanent non-support → [Will not do](#explicitly-will-not-do) or Jeremy’s doc—not silent forever skips. Case-level done log since `mgg-develop` fork: [`src/afw/tests/test262/changes.md`](src/afw/tests/test262/changes.md). |
 
 ### Types residuals (alignment, not full TS)

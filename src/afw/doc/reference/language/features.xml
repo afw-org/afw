@@ -43,25 +43,31 @@
     </paragraph>
     <header>Closure</header>
     <paragraph>
-        ECMAScript has a feature called closure, which allows a function to
-        access variables that are defined outside of its scope, and retain 
-        the values that were bound to those variables at the time of its 
-        scope creation.
+        Adaptive Script supports closures. A nested function can access
+        variables from an enclosing scope and keep those bindings after the
+        outer scope has finished, so later calls still see the values that
+        were in force when the function was created.
     </paragraph>
     <paragraph>
-        At this time, Adaptive Script does not provide closure features.
+        Nested <literal>function</literal> declarations and function values
+        returned from other functions both capture enclosing
+        <literal>let</literal> / <literal>const</literal> bindings (and
+        parameters). This is the same idea as an ECMAScript closure for
+        ordinary lexical variables—not a full copy of every host lifetime
+        edge case around long-running servers.
     </paragraph>
-    <code><![CDATA[let x = 1;
-let foo;
-{
-    let x = 2;
-    foo = function() {
-        return x;
-    }
+    <code><![CDATA[function make(n) {
+    let v = n;
+    return function() {
+        return v;
+    };
 }
 
-// in ECMAScript, foo() will return 2, but in Adaptive Script, it will return 1
-foo();]]></code>
+const a = make(10);
+const b = make(20);
+// a() is 10 and b() is 20 — each function keeps its own closed-over binding
+a();
+b();]]></code>
     <header>Statements</header>
     <paragraph>
         There are two import differences between Adaptive Script and ECMAScript 
