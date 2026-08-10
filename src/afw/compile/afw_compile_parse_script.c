@@ -2209,12 +2209,11 @@ impl_test_script_get_next_key_value(
                     }
 
                     /*
-                     * If not "...", string is rest of line with trailing
-                     * AFW Whitespace trimmed (Unicode; same idea as
-                     * afw_compile_skip_ws / Whitespace production — not only
-                     * ASCII space). Leading spaces after ':' are already
-                     * skipped when locating start. Use "..." or a future
-                     * <<< form when exact edge whitespace matters.
+                     * Same-line //? key: value — rest of line after ':' with
+                     * leading/trailing whitespace trimmed (Unicode Whitespace,
+                     * not only ASCII space). Authors should not need to hex-edit
+                     * trailing spaces. Multi-line "..." form is separate (keeps
+                     * interior newlines; see writing-tests.md).
                      */
                     else {
                         afw_size_t value_len;

@@ -91,15 +91,23 @@ Notes:
   `afw --syntax test_script`).  
 - Metadata lines start with **`//?`**. Keys such as `test`, `description`,
   `expect`, `source`, `skip` are the common ones.  
-- After `//? source: ...`, the body runs until the next `//?` block or EOF.  
-- The runner compares the evaluation result to **`expect`** (Adaptive value
-  syntax). Failures are reported per `test:` case.  
+- **Same-line values** (`//? expect: 0`, `//? description: short title`):
+  leading and trailing **whitespace is trimmed**, so you do not need to
+  fuss over spaces or tabs after the value.  
+- **Multi-line values** use `//? key: ...` then the text on the following
+  lines until the next `//?` (or end of file). That form keeps the text
+  more literally (including newlines inside the block). A blank line before
+  the next `//?` is the usual way to keep a final newline on the last
+  content line.  
+- After `//? source: ...`, the body is the multi-line form above.  
+- **`expect:`** is Adaptive source for the **return value** you want (for
+  example `0`, `true`, `"ok"`, `anyURI("…")`), not free text. The runner
+  compiles and evaluates it, then compares to the case result. Use
+  `error` or `error:…message…` when the case should fail.  
+- Failures are reported per `test:` case.  
 - Study working files under `src/afw/tests/` (for example
-  `src/afw/tests/language/script/try.as`).
-
-Exact line grammar for test scripts lives in the compiler
-(`afw_compile_parse_script.c` EBNF comments). Prefer copying a nearby test
-over inventing a new metadata dialect.
+  `src/afw/tests/language/script/try.as`). Prefer copying a nearby test
+  over inventing a new metadata dialect.
 
 ### Conf and fixtures
 
