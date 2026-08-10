@@ -94,10 +94,17 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
         const afw_object_t *face;
 
         p = (object->p) ? object->p : ctx->p;
-        /** @fixme Need corresponding releases. See issue #127. */
         /*
-         * Face for script (materialized array or user callback). Stream /
-         * response CBs do not use this helper.
+         * Script hold paths (not progressive write). Issue #127:
+         * to_response / to_stream / HTTP list writer release after encode.
+         * Here the script may retain the object (array or callback), so we
+         * cannot release after the face hand-off without a get_reference /
+         * optional_release story that matches face lifetime (#17 / #2).
+         *
+         * Materialize: get_reference so the array keeps the adapter object
+         * alive while the result array lives (unmanaged object values do not
+         * release on array free). Callback: face only — no release yet if
+         * the script binds the argument; residual under #127 / #2.
          */
         face = impl_script_face_object(object, ctx->p, xctx);
         if (ctx->array) {
@@ -163,6 +170,21 @@ impl_retrieve_to_response_cb(
     abort = false;
 
     if (object) {
+        /*
+         * Progressive write path (issue #127): encode then release.
+         *
+         * Ownership: afw_adapter_retrieve_objects / adapter session hand the
+         * object (or view) to this CB; file adapter and
+         * afw_adapter_retrieve.c document that the CB releases. Encode is
+         * synchronous — after write_value + flush, nothing retains object.
+         * Intermediate { intermediate, result } only holds an unmanaged
+         * pointer through encode; do not keep that shell after release.
+         *
+         * Aligns with impl_retrieve_to_stream_cb. Release was long commented
+         * out as a workaround; re-enabled once write-complete ownership was
+         * confirmed. Script materialize / to_callback paths differ (faces /
+         * array hold) — see impl_retrieve_cb.
+         */
         p = (object->p) ? object->p : ctx->p;
         response_object = afw_object_create_unmanaged(p, xctx);
         afw_object_set_property_as_boolean(response_object,
@@ -177,7 +199,7 @@ impl_retrieve_to_response_cb(
             (void *)response_stream, response_stream->write_cb,
             p, xctx);
         afw_stream_flush(response_stream, xctx);
-        //afw_object_release(object, xctx);
+        afw_object_release(object, xctx);
     }
 
     return abort;
@@ -205,6 +227,10 @@ impl_retrieve_to_stream_cb(const afw_object_t *object, void *context,
 
     abort = false;
     if (object) {
+        /*
+         * Progressive write path (issue #127): same ownership as
+         * impl_retrieve_to_response_cb — CB releases after synchronous encode.
+         */
         p = (object->p) ? object->p : ctx->p;
         object_value = afw_value_create_unmanaged_object(object, p, xctx);
         afw_content_type_write_value(ctx->response_content_type,
