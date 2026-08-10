@@ -99,15 +99,24 @@ Notes:
   more literally (including newlines inside the block). A blank line before
   the next `//?` is the usual way to keep a final newline on the last
   content line.  
-- After `//? source: ...`, the body is the multi-line form above.  
+- **File values** use `//? key: <<< relative/path` (path relative to the
+  directory of the `.as` file). The file contents become the key’s value
+  **exactly** (no trim). Paths must be relative (no `..` segments). Useful
+  for long expects or sources. A value that **starts with** `<<<` is always
+  this form — do not begin free-text descriptions with those characters.  
+- After `//? source: ...` or `//? source: <<< …`, the body is the multi-line
+  or file form above.  
 - **`expect:`** is Adaptive source for the **return value** you want (for
   example `0`, `true`, `"ok"`, `anyURI("…")`), not free text. The runner
   compiles and evaluates it, then compares to the case result. Use
-  `error` or `error:…message…` when the case should fail.  
+  `error` or `error:…message…` when the case should fail. A `<<<` file for
+  `expect` must contain that Adaptive source (for example `"hello"` with
+  quotes if you want a string return value).  
 - Failures are reported per `test:` case.  
 - Study working files under `src/afw/tests/` (for example
-  `src/afw/tests/language/script/try.as`). Prefer copying a nearby test
-  over inventing a new metadata dialect.
+  `src/afw/tests/language/script/try.as` and
+  `src/afw/tests/compiler/test_script_file_value/`). Prefer copying a nearby
+  test over inventing a new metadata dialect.
 
 ### Conf and fixtures
 
