@@ -70,18 +70,36 @@ Short form first; “means in practice” second. Several of these are already e
 | **Plain language** | Prefer clear words over casual acronyms when a short phrase is enough (“out of range,” not “OOB”; “compiled form,” not “IR”). Product and code names stay. Handbook: Jeremy’s plain Adaptive voice. |
 | **Fix the layer, not the symptom twice** | Prefer one map/accessor/helper fix over scattered caller patches (classic in runtime catalog and utf8 index work). |
 | **Complete thin verticals** | Prefer a full thin path that works (discover → run → teardown, or generate → implement → test) over half of five grand designs. |
-| **Gate vs lab** | Language/package **gate** (`afwdev test -j`) is not the same job as **lab** load, soak, or experimental hosts (blast, advanced-test). Don’t redefine the gate as soak. |
+| **Gate vs lab** | Language/package **gate** (`afwdev test -j`) is not the same job as **lab** load, soak, or experimental hosts (blast, advanced / orchestrated tests). Don’t redefine the gate as soak. |
 | **Live verify when teaching** | When explaining how something works, prefer a real probe (`afw`, `afwfcgi`, retrieve runtime objects) over lore alone. |
 | **Maps over tickets** | Durable notes: concept, contract, failure mode, probe. Issue numbers are **pointers**, not the title of the knowledge. |
 | **Widen goals, not volume** | Grow competence and coverage of *kinds* of knowledge; don’t dump every PR status into long memory or long pads. |
 | **Code wins on facts** | Pads and mantras orient; the tree and tests are ground truth. When notes drift, fix the notes. |
+
+### Design method (sketch, then trim)
+
+Career-long patterns Mike uses for language / API / harness design (made explicit 2026-08 while shaping orchestrated tests — the same things teammates have heard for years, written down **once** so partners and docs can reuse them):
+
+| Mantra | Means in practice |
+|--------|-------------------|
+| **Sketch the syntax you probably want** | Write the *ultimate* shape of the file/API/language first (full-ish: fields you think you’ll need, not only today’s minimum). Get the *feel* right on paper. |
+| **Pretend we already have it** | Before implementing, **throw real scenarios at that sketch**. Act as if the thing exists: would this orchestration file (or API) actually do the jobs we care about? If a scenario is awkward or impossible, fix the sketch—not the first half-built runner. |
+| **Trim back on the way in** | First implementation is a **subset** of the sketch that still aims at the north star. Cut scope for v1; keep reserved ideas in the design pad so the schema is not painted into a corner. |
+| **Does something else already do this?** | Before building, name the alternatives (in-tree tools, other languages, industry defaults). If they already solve the problem well for *our* users, prefer them—or a thin glue layer—not a parallel product. |
+| **Does this make reliable good work easier?** | The new thing earns its keep only if **developers (or operators) can more reliably do good work** with it than with the alternatives—not because it is clever, novel, or “ours.” Harder, more fragile, or two ways to do the same job is a fail. |
+
+**Classic AFW example (same test):** Adaptive Script vs “just use ECMAScript.” People who use Adaptive for the problems AFW targets find it **easier to get right**; compile-once / eval-when-needed on `afwfcgi` also makes it **fast**. That is the bar for new surface area (orchestrated tests vs only test_scripts + blast + hand scripts; etc.): purpose-built when it wins on **ease of correct use** (and fit to the runtime), not when it merely exists.
+
+Pairs with **complete thin verticals** and **get it right at most once**: the first cut should still be a *working* thin path; the *decision criteria* and mantras live in **one** place (this pad / rules), not re-argued from scratch every session.
+
+Assistants: when Mike is in this mode, prefer **full sketch + scenario stress-test in prose** and an honest **alternatives / ease-of-correct-use** check over jumping to a minimal schema that only fits today’s one leaf. Implementation starts when he says to trim and build.
 
 ### Partnership habits (how we work together)
 
 | Habit | Means in practice |
 |-------|-------------------|
 | **Ask what you think first** | Open issues with the partner’s read; keep inviting it during the discussion (see *How consensus is grown* above). |
-| **Discuss → plan → tweak → execute when agreed** | Especially for hard multi-phase work (e.g. memory **#2**). Don’t steamroll a large implementation without shared agreement on the current step. |
+| **Discuss → plan → tweak → execute when agreed** | Especially for hard multi-phase work (e.g. memory **#2**). Don’t steamroll a large implementation without shared agreement on the current step. For new syntax/harness shape, use *Design method* above. |
 | **Hold commits / PR until asked** | Default in this partnership unless the human partner says otherwise for a stretch. |
 | **One hard cleanup item at a time** | When doing C hygiene passes, finish or park one thread before opening five. |
 | **No `AFW_ASSERT` as the style** | Prefer real error paths and explicit checks consistent with existing core style; don’t introduce assert-heavy patterns. |
@@ -103,6 +121,8 @@ Useful when someone (or an assistant) is about to “help” the wrong way:
 - Rewriting handbook voice into issue-tracker or design-pad voice.
 - Optimizing chat **memory volume** instead of **maps** that live in git.
 - Assuming beta ship date = end of partnership or end of learning the system.
+- Building a parallel tool/language/harness **without** checking alternatives and **ease of reliable good work** (see *Design method*).
+- Keeping two experimental ways to do the same maintainer job forever (e.g. advanced-test *and* blast *and* orchestrated tests) without a consolidation path.
 
 ---
 

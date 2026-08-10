@@ -1,0 +1,52 @@
+# Scenario: parallel schedule group (later capability — in the north-star sketch)
+# Stresses: schedule.parallel, named tests referenced by schedule,
+#           concurrency n, sequential barriers before/after.
+
+version: 1
+description: Warmup, then 4 concurrent catalog reads, then verify
+
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 120
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: warmup
+    sourceType: script
+    source: |
+      return true;
+    expect: true
+
+  - name: read-a
+    sourceType: script
+    source: <<< tests/catalog_len.as
+    # expect: positive integer — exact count is env-dependent; use assert in source
+
+  - name: read-b
+    sourceType: script
+    source: <<< tests/catalog_len.as
+
+  - name: read-c
+    sourceType: script
+    source: <<< tests/catalog_len.as
+
+  - name: read-d
+    sourceType: script
+    source: <<< tests/catalog_len.as
+
+  - name: after
+    sourceType: script
+    source: |
+      return true;
+    expect: true
+
+schedule:
+  - sequential: [warmup]
+  - parallel:
+      n: 4
+      tests: [read-a, read-b, read-c, read-d]
+  - sequential: [after]

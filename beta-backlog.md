@@ -34,9 +34,11 @@ feature branches  →  mgg-develop  →  (user testing) develop  →  main
 
 - Volume of change from Grok Build / Cursor would overwhelm the usual `develop` cadence, so **`mgg-develop`** was cut off `develop` as a long-lived staging line.
 - Feature branches (e.g. `issue-#1`) are cut **off `mgg-develop`**, in chunks.
+- Day-to-day on this line: Mike + AI partner open/land PRs into **`mgg-develop`**; not the full team’s normal develop cadence until a **big, reviewed merge**. Jeremy is looped in; `develop` may still get occasional unrelated fixes.
 - User-facing “what’s new” while on this line: **`whats-new.md`**.
 - After this large pass: **major user testing**, then merge **`mgg-develop` → `develop`**. Then **`develop` is again the main develop branch**.
 - Over weeks/months, most work should return to feature branches off `develop` (mgg-develop is not the permanent forever trunk).
+- Related harness direction on this campaign: **orchestrated tests** may **replace `afwdev blast`** (see `src/afw/orchestrated-tests/`, `designs/afwdev-blast.md`).
 
 ### When merging `mgg-develop` → `develop` (retarget)
 

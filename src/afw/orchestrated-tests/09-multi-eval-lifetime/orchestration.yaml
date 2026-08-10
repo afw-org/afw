@@ -1,0 +1,38 @@
+# Port of src/afw/tests/advanced/multi-eval-lifetime
+# Stresses: many sequential FCGI evals; catalog reads; test_script hybrid step.
+
+version: 1
+description: >
+  Multi-eval on one afwfcgi: repeated registry/catalog reads stay healthy
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 120
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: first-catalog-retrieve
+    sourceType: script
+    source: <<< tests/catalog_retrieve.as
+
+  - name: second-catalog-retrieve
+    sourceType: script
+    source: <<< tests/catalog_retrieve.as
+
+  - name: eval-burst-1
+    sourceType: script
+    source: <<< tests/cheap_burst.as
+    expect: 1225
+
+  - name: eval-burst-2
+    sourceType: script
+    source: <<< tests/cheap_burst.as
+    expect: 1225
+
+  - name: test-script-sanity
+    sourceType: test_script
+    source: <<< tests/step_registry_sane.as

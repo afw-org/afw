@@ -1,0 +1,8 @@
+# PLACEHOLDER golden — not a real x-afw capture.
+# When the runner exists: record one real response body once, commit exact octets.
+# Frames roughly look like:
+#   <seq> <size> response_body\n
+#   {"intermediate":true,"result":{...}}
+#   ...
+#   <seq> 0 end\n
+PLACEHOLDER_RECORD_ME

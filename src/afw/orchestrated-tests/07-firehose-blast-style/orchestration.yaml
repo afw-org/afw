@@ -1,0 +1,52 @@
+# Blast replacement sketch A — timed random firehose
+#
+# Today:  afwdev blast -d 30s -c 4 ...
+# Future: afwdev test --tests-path src/afw/orchestrated-tests/07-firehose-blast-style
+#
+# NOT for default afwdev test -j. Document feed is JSON action; pool mixes
+# cheap scripts. See also 07b (catalog pool) and 11 (mixed Accept).
+
+version: 1
+description: >
+  Firehose — random draws from a test pool for a duration
+  (replaces plain afwdev blast timed mode)
+
+host: afwfcgi
+afwfcgi:
+  threads: 4
+# Leaf wall clock should cover duration + teardown
+timeout_s: 120
+
+feed:
+  kind: action
+  accept: application/json
+
+# Named pool — schedule.firehose picks randomly (or round-robin later)
+tests:
+  - name: cheap-loop
+    sourceType: script
+    source: <<< tests/cheap_loop.as
+
+  - name: catalog-touch
+    sourceType: script
+    source: <<< tests/catalog_touch.as
+
+  - name: true
+    sourceType: script
+    source: |
+      return true;
+
+  - name: arithmetic
+    sourceType: script
+    source: |
+      assert((1 + 2) == 3);
+      return 3;
+
+schedule:
+  - firehose:
+      duration_s: 30
+      concurrency: 4
+      fromTests: [cheap-loop, catalog-touch, true, arithmetic]
+      # seed: 42                 # reproducible RNG (later)
+      # policy: random           # or roundRobin
+      # stopOnError: false       # blast-style: keep going, report error rate
