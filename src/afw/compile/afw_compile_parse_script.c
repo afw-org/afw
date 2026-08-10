@@ -2209,13 +2209,43 @@ impl_test_script_get_next_key_value(
                     }
 
                     /*
-                     * If not "..." string is rest of line except for training
-                     * whitespace.
+                     * If not "...", string is rest of line with trailing
+                     * AFW Whitespace trimmed (Unicode; same idea as
+                     * afw_compile_skip_ws / Whitespace production — not only
+                     * ASCII space). Leading spaces after ':' are already
+                     * skipped when locating start. Use "..." or a future
+                     * <<< form when exact edge whitespace matters.
                      */
                     else {
-                        *string_offset = start - parser->full_source->s;
-                        for (c = end - 1; c > start && *c == ' '; c--);
-                        *string_length = c - start + 1;
+                        afw_size_t value_len;
+                        afw_size_t offset;
+                        afw_size_t end_trim;
+                        afw_code_point_t cp;
+
+                        *string_offset = (afw_size_t)(start -
+                            parser->full_source->s);
+                        value_len = (afw_size_t)(end - start);
+                        offset = 0;
+                        end_trim = 0;
+                        while (offset < value_len) {
+                            cp = afw_utf8_next_code_point(start, &offset,
+                                value_len, parser->xctx);
+                            if (cp < 0) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Invalid utf-8 in test script key value");
+                            }
+                            /*
+                             * Whitespace production (Zs, tab, VT, FF, ZWNBSP).
+                             * Also drop EOL code points if present on the line
+                             * (e.g. stray CR).
+                             */
+                            if (!afw_compile_code_point_is_Whitespace(cp) &&
+                                !afw_compile_code_point_is_EOL(cp))
+                            {
+                                end_trim = offset;
+                            }
+                        }
+                        *string_length = end_trim;
                         *string = afw_utf8_create_copy(start, *string_length,
                             parser->p, parser->xctx);
                         c = end;
