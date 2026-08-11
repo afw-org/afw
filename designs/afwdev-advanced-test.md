@@ -7,7 +7,7 @@
 **Related:** [#2 Memory management](https://github.com/afw-org/afw/issues/2) ([`memory-management.md`](memory-management.md)), [#149 Runtime catalog lifetime](https://github.com/afw-org/afw/issues/149) ([`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md)).  
 **Depends on:** installed `afwfcgi` / `afw` via `./afwdev build … --install` (e.g. `--cdev` / `--fulldev`).
 
-**Rename / rethink (2026-08):** Product direction is shifting toward **orchestrated tests** with an **`orchestration.yaml` / `.json`** control file (host + **feed** + include list + schedule), not “advanced” as a second Adaptive dialect. **North-star schema + pretend scenario leaves** (not wired to the runner): [`src/afw/orchestrated-tests/`](../src/afw/orchestrated-tests/). Live runner still uses `advanced-test.yaml` until migration.
+**Rename / rethink (2026-08):** Product direction is shifting toward **orchestrated tests** with an **`orchestration.yaml` / `.json`** control file (host + **feed** + include list + schedule), not “advanced” as a second Adaptive dialect. **North-star schema + pretend scenario leaves** (not wired to the runner): [`src/afw/tests-extra/`](../src/afw/tests-extra/). Live runner still uses `advanced-test.yaml` until migration.
 
 ---
 

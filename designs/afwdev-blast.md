@@ -9,7 +9,7 @@
 **Direction (mgg-develop, 2026-08):** Prefer **orchestrated tests**
 (`orchestration.yaml` + `schedule.firehose`, non-gate discovery roots) over a
 permanent separate **`afwdev blast`** subcommand. Sketch leaves and schema:
-[`src/afw/orchestrated-tests/`](../src/afw/orchestrated-tests/) (07 / 07b / 07c).
+[`src/afw/tests-extra/`](../src/afw/tests-extra/) (07 / 07b / 07c).
 **Goal:** eliminate `blast` when parity is good enough; until then blast remains
 usable. Campaign work stays on **`mgg-develop`** for heavy test/review before a
 deliberate merge to **`develop`** (not normal one-PR-at-a-time into develop).

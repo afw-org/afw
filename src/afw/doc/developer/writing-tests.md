@@ -125,7 +125,7 @@ Notes:
 ### Orchestrated leaves (`orchestration.yaml`)
 
 Hermetic multi-request / firehose / REST work lives in leaves with
-`orchestration.yaml` (see `src/afw/orchestrated-tests/README.md` and gate
+`orchestration.yaml` (see `src/afw/tests-extra/README.md` and gate
 examples under `src/afw/tests/advanced/`). Same vocabulary where it applies:
 `expect`, `expect-stdout`, `expect-stderr`, plus `expectResponse` /
 `expectStatus` for wire bodies.
@@ -179,27 +179,31 @@ See existing `config.py` files under `src/afw/tests/` for patterns.
 File type still wins for some paths: `.py` → Python runner;
 `commands_*.txt` → commands runner.
 
-## Orchestrated tests
+## Orchestrated tests and `tests-extra`
 
-Use an **orchestrated-test** leaf when you need a long-lived **`afwfcgi`**,
-leaf-local conf, multi-request process checks, optional **REST** feeds,
-**Accept** overrides (e.g. `application/x-afw`), or a **firehose** schedule
-(replaces the retired **`afwdev blast`** subcommand).
+Use an **orchestrated** leaf (`orchestration.yaml`) when you need a long-lived
+**`afwfcgi`**, leaf-local conf, multi-request checks, **REST** feeds, **Accept**
+overrides (e.g. `application/x-afw`), or a **firehose** schedule (replaces the
+retired **`afwdev blast`** subcommand).
 
-Schema and extra scenario sketches: `src/afw/orchestrated-tests/` (also
-`afwdev test -T src/afw/orchestrated-tests/...`). Gate examples:
+| Where | When |
+|-------|------|
+| `src/afw/tests/…` | Default **gate** (`afwdev test -j`) — keep leaves short |
+| `src/afw/tests-extra/…` | **Opt-in extras** next to `tests/` — soaks, progressive, firehose, sketches (`-T` only) |
+| `src/afw/tests_special/…` | Older opt-in root; still works with `-T` |
+
+Schema and extra scenarios: `src/afw/tests-extra/README.md`. Gate smokes:
 `src/afw/tests/advanced/`.
 
 ### Shape
 
 ```text
-src/<srcdir>/tests/…/my_leaf/
-  orchestration.yaml          # or orchestration.json (not both)
+src/afw/tests-extra/<leaf>/     # or tests/<group>/ for gate leaves
+  orchestration.yaml            # or orchestration.json (not both)
   afw.conf
-  objects/                    # optional fixtures
-  tests/ or *.as              # payloads (sourcePath / <<<)
+  objects/                      # optional fixtures
+  tests/ or *.as                # payloads (sourcePath / <<<)
 ```
-
 ```yaml
 version: 1
 host: afwfcgi
@@ -243,7 +247,7 @@ tests:
    `tests/generated/` are generated; prefer hand tests under clear group
    names for new product behavior.  
 6. **Load / soak** — orchestrated leaves with firehose under
-   `src/afw/orchestrated-tests/` or `-T` roots; do not put heavy firehose in
+   `src/afw/tests-extra/` or `-T` roots; do not put heavy firehose in
    the default `tests/` gate.
 
 ## Related
@@ -251,6 +255,6 @@ tests:
 - @ref afw_dev_overview — builder docs map  
 - @ref afw_dev_extending — extension sketch (includes `afwdev test -j`)  
 - @ref afw_dev_compiler_ebnf — compiler EBNF harvest (not test authoring)  
-- Maintainer: `src/afw/orchestrated-tests/SCHEMA.md`  
+- Maintainer: `src/afw/tests-extra/SCHEMA.md`  
 - Issue [#157](https://github.com/afw-org/afw/issues/157)  
 - CLI help: `afw --help` (`-s test_script`), `afwdev test --help`  

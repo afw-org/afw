@@ -960,9 +960,9 @@ _info_tests_path = {
     "help":
         "Directory of tests to use (repeatable). When any --tests-path is "
         "given, only those trees are searched (not package src/*/tests). "
-        "Default test -j never scans these roots — put opt-in/regression "
-        "experiments under e.g. src/afw/tests_special/ or "
-        "src/afw/orchestrated-tests/ for load-style orchestrated leaves."
+        "Default test -j never scans these roots — put extras under "
+        "src/afw/tests-extra/ (preferred) or src/afw/tests_special/ "
+        "(legacy opt-in)."
 }
 
 _info_test_capture_goldens = {
@@ -985,7 +985,7 @@ _info_test = {
         "Run tests for one or more source directories. Default discovery is "
         "package src/*/tests (regression gate for test -j). Optional "
         "repeatable --tests-path/-T runs only those directory trees "
-        "(e.g. tests_special/) and does not use package tests/.",
+        "(e.g. src/afw/tests-extra/) and does not use package tests/.",
     "thing": "test",
     "args": [        
         _info_test_bail,

@@ -244,9 +244,9 @@ Summary in `stepTimings[].firehose`: total, ok, fail, failRate, rps, policy.
 
 | Root | When |
 |------|------|
-| `src/*/tests/**/orchestration.yaml` | Day-to-day gate candidates (after rename from advanced-test) |
-| `src/afw/orchestrated-tests/**` (this tree) | Sketch + heavier / design scenarios; **`--tests-path`** or explicit opt-in |
-| Other trees | Load/soak/blast-like; never default `test -j` |
+| `src/*/tests/**/orchestration.yaml` | Day-to-day **gate** candidates (default `afwdev test -j`) |
+| `src/afw/tests-extra/**` (this tree) | **Opt-in** extras next to `tests/` — firehose, progressive, sketches; **`--tests-path` / `-T` only** |
+| `src/*/tests_special/**` | Older opt-in root (same `-T` rules); prefer `tests-extra` for new leaves |
 
 One engine; intensity = **where the leaf lives** + schedule, not a second subcommand forever.
 

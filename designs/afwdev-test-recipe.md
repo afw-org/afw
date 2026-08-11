@@ -8,7 +8,8 @@
 | Path | Role |
 |------|------|
 | `src/*/tests/` | Always-on **regression** — `afwdev test -j` |
-| `src/*/tests_special/` | **Opt-in** only — `-T` / `--tests-path` |
+| `src/*/tests-extra/` | **Opt-in** only — `-T` / `--tests-path` (preferred for new extras) |
+| `src/*/tests_special/` | **Opt-in** only — `-T` / `--tests-path` (legacy name; still valid) |
 
 ## Commands
 

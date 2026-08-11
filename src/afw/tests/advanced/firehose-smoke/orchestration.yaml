@@ -1,5 +1,5 @@
 # Short firehose smoke for default test -j (blast parity basics).
-# Heavy soak leaves stay under src/afw/orchestrated-tests/07*.
+# Heavy soak leaves stay under src/afw/tests-extra/07*.
 version: 1
 description: Firehose smoke — roundRobin, seed, maxRequests, maxFail
 host: afwfcgi

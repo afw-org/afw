@@ -1,7 +1,7 @@
 # Blast replacement sketch A — timed random firehose
 #
 # Today:  afwdev blast -d 30s -c 4 ...
-# Future: afwdev test --tests-path src/afw/orchestrated-tests/07-firehose-blast-style
+# Future: afwdev test --tests-path src/afw/tests-extra/07-firehose-blast-style
 #
 # NOT for default afwdev test -j. Document feed is JSON action; pool mixes
 # cheap scripts. See also 07b (catalog pool) and 11 (mixed Accept).
