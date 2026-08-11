@@ -2086,6 +2086,158 @@ afw_compile_parse_Script(
 }
 
 
+/*
+ * Load //? key: <<< rel_path — exact file bytes as the key value string.
+ * Path is relative to the directory of the test script being compiled
+ * (source_location). No trim of file contents. Rejects empty path, ".."
+ * segments, and absolute paths for v1.
+ */
+static const afw_utf8_t *
+impl_test_script_load_file_value(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *rel_path)
+{
+    const afw_utf8_t *source_location;
+    const afw_utf8_t *abs_path;
+    const afw_utf8_z_t *rel_z;
+    const afw_utf8_z_t *base_z;
+    const afw_utf8_z_t *slash;
+    const afw_utf8_z_t *seg;
+    afw_utf8_z_t *joined_z;
+    afw_size_t base_dir_len;
+    afw_size_t i;
+    apr_status_t rv;
+    apr_finfo_t finfo;
+    FILE *in;
+    afw_byte_t *buff;
+    const afw_utf8_t *result;
+
+    if (!rel_path || rel_path->len == 0) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'<<<' requires a non-empty path after the marker");
+    }
+
+    rel_z = afw_utf8_to_utf8_z(rel_path, parser->p, parser->xctx);
+
+    /* Absolute path not allowed in v1. */
+    if (rel_z[0] == '/' || rel_z[0] == '\\' ||
+        (rel_path->len >= 2 && rel_z[1] == ':'))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'<<<' path must be relative to the test script directory");
+    }
+
+    /* Reject ".." path segments (and empty segments from //). */
+    for (seg = rel_z; *seg; ) {
+        const afw_utf8_z_t *next;
+        afw_size_t seglen;
+
+        for (next = seg; *next && *next != '/' && *next != '\\'; next++);
+        seglen = (afw_size_t)(next - seg);
+        if (seglen == 0) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "'<<<' path must not contain empty segments");
+        }
+        if (seglen == 2 && seg[0] == '.' && seg[1] == '.') {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "'<<<' path must not contain '..' segments");
+        }
+        if (*next == '\0') {
+            break;
+        }
+        seg = next + 1;
+    }
+
+    source_location = parser->contextual.source_location;
+    if (!source_location || source_location->len == 0) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'<<<' requires compiling a test script from a file path "
+            "(source location unavailable)");
+    }
+
+    base_z = afw_utf8_to_utf8_z(source_location, parser->p, parser->xctx);
+    slash = NULL;
+    for (i = 0; base_z[i]; i++) {
+        if (base_z[i] == '/' || base_z[i] == '\\') {
+            slash = base_z + i;
+        }
+    }
+    if (!slash) {
+        /* Source location is a bare filename — resolve relative to cwd. */
+        base_dir_len = 0;
+    }
+    else {
+        base_dir_len = (afw_size_t)(slash - base_z);
+    }
+
+    if (base_dir_len == 0) {
+        abs_path = afw_utf8_create_copy(rel_path->s, rel_path->len,
+            parser->p, parser->xctx);
+    }
+    else {
+        joined_z = afw_pool_malloc(parser->p,
+            base_dir_len + 1 + rel_path->len + 1, parser->xctx);
+        memcpy(joined_z, base_z, base_dir_len);
+        joined_z[base_dir_len] = '/';
+        memcpy(joined_z + base_dir_len + 1, rel_z, rel_path->len);
+        joined_z[base_dir_len + 1 + rel_path->len] = 0;
+        abs_path = afw_utf8_create(joined_z,
+            base_dir_len + 1 + rel_path->len, parser->p, parser->xctx);
+    }
+
+    {
+        const afw_utf8_z_t *abs_z =
+            afw_utf8_to_utf8_z(abs_path, parser->p, parser->xctx);
+
+        rv = apr_stat(&finfo, abs_z, APR_FINFO_SIZE,
+            afw_pool_get_apr_pool(parser->p));
+        if (rv != APR_SUCCESS) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Failed to open '<<<' file " AFW_UTF8_FMT_Q
+                " (relative path " AFW_UTF8_FMT_Q ")",
+                AFW_UTF8_FMT_ARG(abs_path),
+                AFW_UTF8_FMT_ARG(rel_path));
+        }
+
+        /* Empty file is a valid empty string value. */
+        if (finfo.size == 0) {
+            return afw_utf8_create_copy((const afw_utf8_octet_t *)"", 0,
+                parser->p, parser->xctx);
+        }
+
+        in = fopen(abs_z, "rb");
+        if (!in) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Failed to open '<<<' file " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(abs_path));
+        }
+
+        buff = afw_pool_malloc(parser->p, (afw_size_t)finfo.size,
+            parser->xctx);
+        if (fread(buff, 1, (size_t)finfo.size, in) != (size_t)finfo.size) {
+            fclose(in);
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Failed to read '<<<' file " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(abs_path));
+        }
+        fclose(in);
+
+        if (!afw_utf8_is_valid((const afw_utf8_octet_t *)buff,
+            (afw_size_t)finfo.size, parser->xctx))
+        {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "'<<<' file " AFW_UTF8_FMT_Q " is not valid UTF-8",
+                AFW_UTF8_FMT_ARG(abs_path));
+        }
+
+        result = afw_utf8_create_copy((const afw_utf8_octet_t *)buff,
+            (afw_size_t)finfo.size, parser->p, parser->xctx);
+    }
+
+    return result;
+}
+
+
 static void
 impl_test_script_get_next_key_value(
     afw_compile_parser_t *parser,
@@ -2209,13 +2361,112 @@ impl_test_script_get_next_key_value(
                     }
 
                     /*
-                     * If not "..." string is rest of line except for training
-                     * whitespace.
+                     * If "<<< path", value is exact contents of the file
+                     * (relative to the test script directory). See
+                     * writing-tests.md. File is not whitespace-trimmed.
+                     */
+                    else if (afw_utf8_starts_with_z(&remaining, "<<<")) {
+                        afw_size_t value_len;
+                        afw_size_t offset;
+                        afw_size_t end_trim;
+                        afw_size_t path_start;
+                        afw_code_point_t cp;
+                        const afw_utf8_t *path;
+                        const afw_utf8_t *file_value;
+
+                        *string_offset = (afw_size_t)(start -
+                            parser->full_source->s);
+                        value_len = (afw_size_t)(end - start);
+
+                        /* Skip "<<<" then leading whitespace on path. */
+                        path_start = 3;
+                        while (path_start < value_len) {
+                            afw_size_t save = path_start;
+                            cp = afw_utf8_next_code_point(start, &path_start,
+                                value_len, parser->xctx);
+                            if (cp < 0) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Invalid utf-8 in '<<<' path");
+                            }
+                            if (!afw_compile_code_point_is_Whitespace(cp) &&
+                                !afw_compile_code_point_is_EOL(cp))
+                            {
+                                path_start = save;
+                                break;
+                            }
+                        }
+                        if (path_start >= value_len) {
+                            AFW_COMPILE_THROW_ERROR_Z(
+                                "'<<<' requires a path after the marker");
+                        }
+
+                        /* Trim trailing whitespace on the path. */
+                        offset = path_start;
+                        end_trim = path_start;
+                        while (offset < value_len) {
+                            cp = afw_utf8_next_code_point(start, &offset,
+                                value_len, parser->xctx);
+                            if (cp < 0) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Invalid utf-8 in '<<<' path");
+                            }
+                            if (!afw_compile_code_point_is_Whitespace(cp) &&
+                                !afw_compile_code_point_is_EOL(cp))
+                            {
+                                end_trim = offset;
+                            }
+                        }
+                        if (end_trim <= path_start) {
+                            AFW_COMPILE_THROW_ERROR_Z(
+                                "'<<<' requires a path after the marker");
+                        }
+
+                        path = afw_utf8_create_copy(start + path_start,
+                            end_trim - path_start, parser->p, parser->xctx);
+                        file_value = impl_test_script_load_file_value(
+                            parser, path);
+                        *string = file_value;
+                        *string_length = file_value->len;
+                        c = end;
+                    }
+
+                    /*
+                     * Same-line //? key: value — rest of line after ':' with
+                     * leading/trailing whitespace trimmed (Unicode Whitespace,
+                     * not only ASCII space). Authors should not need to hex-edit
+                     * trailing spaces. Multi-line "..." form is separate (keeps
+                     * interior newlines; see writing-tests.md).
                      */
                     else {
-                        *string_offset = start - parser->full_source->s;
-                        for (c = end - 1; c > start && *c == ' '; c--);
-                        *string_length = c - start + 1;
+                        afw_size_t value_len;
+                        afw_size_t offset;
+                        afw_size_t end_trim;
+                        afw_code_point_t cp;
+
+                        *string_offset = (afw_size_t)(start -
+                            parser->full_source->s);
+                        value_len = (afw_size_t)(end - start);
+                        offset = 0;
+                        end_trim = 0;
+                        while (offset < value_len) {
+                            cp = afw_utf8_next_code_point(start, &offset,
+                                value_len, parser->xctx);
+                            if (cp < 0) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Invalid utf-8 in test script key value");
+                            }
+                            /*
+                             * Whitespace production (Zs, tab, VT, FF, ZWNBSP).
+                             * Also drop EOL code points if present on the line
+                             * (e.g. stray CR).
+                             */
+                            if (!afw_compile_code_point_is_Whitespace(cp) &&
+                                !afw_compile_code_point_is_EOL(cp))
+                            {
+                                end_trim = offset;
+                            }
+                        }
+                        *string_length = end_trim;
                         *string = afw_utf8_create_copy(start, *string_length,
                             parser->p, parser->xctx);
                         c = end;
@@ -2309,6 +2560,12 @@ impl_test_script_get_next_key_value(
  *        ( 'error' '\n' ) |
  *        ( 'result' TestScriptValue )
  *    )
+ *
+ *# Optional side-channel text expects (string equality on captured utf-8;
+ *# not Adaptive-eval). Hyphen keys only — ':' is the //? key/value separator.
+ *# Value forms match other keys (same-line trim, "..." multi-line, <<< file).
+ * TestExpectStdout ::= TestScriptLineStart 'expect-stdout:' TestScriptValue
+ * TestExpectStderr ::= TestScriptLineStart 'expect-stderr:' TestScriptValue
  *
  *# Skip when the case is not ready to run (or permanently out of scope).
  * TestSkip ::= TestScriptLineStart 'skip:' ( 'true' | 'false' ) '\n'

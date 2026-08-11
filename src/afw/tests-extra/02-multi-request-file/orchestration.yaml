@@ -1,0 +1,37 @@
+# Port of src/afw/tests/advanced/multi-request-file (advanced-test.yaml still live)
+# Stresses: multi-request one process; file fixtures; feed defaults; test_script cleanup.
+
+version: 1
+description: >
+  Multi-request: add via file adapter in request 1, get/modify in later
+  requests on the same afwfcgi process
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: add-demo
+    sourceType: script
+    source: <<< tests/add_demo.as
+    expect: true
+
+  - name: get-demo
+    sourceType: script
+    source: <<< tests/get_demo.as
+    expect: "from-request-1"
+
+  - name: replace-and-get
+    sourceType: script
+    source: <<< tests/replace_demo.as
+    expect: 3
+
+  - name: cleanup
+    description: Same role as advanced step_cleanup.as (test_script over FCGI)
+    sourceType: test_script
+    source: <<< tests/step_cleanup.as

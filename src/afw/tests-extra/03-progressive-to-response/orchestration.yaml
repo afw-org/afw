@@ -1,0 +1,43 @@
+# Scenario: progressive retrieve_objects_to_response (#127 wire proof)
+# Stresses: Accept application/x-afw, demuxed expect-response payloads,
+#           optional expect-raw-response full wire.
+
+version: 1
+description: Progressive to_response with Accept application/x-afw and body golden
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: seed
+    sourceType: script
+    source: <<< tests/seed.as
+    expect: true
+
+  - name: progressive
+    description: to_response needs Accept application/x-afw on the request
+    feed:
+      kind: action
+      accept: application/x-afw
+    sourceType: script
+    source: <<< tests/to_response.as
+    # Demuxed streamId "response" payloads only (no frame headers)
+    expect-response: <<< goldens/three_intermediates.payload.bin
+    # Full wire (optional protocol check):
+    # expect-raw-response: <<< goldens/three_intermediates.xafw
+
+  - name: still-healthy
+    sourceType: script
+    source: <<< tests/count.as
+    expect: 3
+
+  - name: cleanup
+    sourceType: script
+    source: <<< tests/cleanup.as
+    expect: true

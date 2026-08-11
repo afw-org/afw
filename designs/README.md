@@ -26,7 +26,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |
 | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) | **#149 closed** (PRs #160–#162) — architecture map: generate maps, OT `runtime`, accessors, env registration, checklist; keep for **#2** follow-on |
 | [`runtime-value-accessors.md`](runtime-value-accessors.md) | Live catalog snapshot of `_AdaptiveRuntimeValueAccessor_` (refresh via `afw -x` retrieve) |
-| [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Agent/maintainer recipes: `test -j`, `-T` / `tests_special`, blast, `--output` / `--output-format` |
+| [`afwdev-test-recipe.md`](afwdev-test-recipe.md) | Agent/maintainer recipes: `test -j`, `-T` / `tests-extra`, blast, `--output` / `--output-format` |
 | [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) | **#149** discovery notes — live maps vs materialize cost (architecture pad is preferred map) |
 | [`secrets-and-afw-crypto.md`](secrets-and-afw-crypto.md) | **#74** / `afw_crypto` design |
 | [`issue-18-decompile-status.md`](issue-18-decompile-status.md) | **#18** decompile/recompile (stringify issue closed; pad still useful) |

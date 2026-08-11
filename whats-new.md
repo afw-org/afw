@@ -122,7 +122,7 @@ Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent 
 
 | Flag | Who | Role |
 |------|-----|------|
-| **`-T` / `--tests-path`** | `afwdev test` and `afwdev blast` | Exclusive opt-in trees (e.g. `src/afw/tests_special/…`); default `test -j` never scans those roots |
+| **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
 | **`--output` / `--output-format`** | both | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` |
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).

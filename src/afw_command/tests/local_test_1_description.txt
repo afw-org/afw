@@ -1,1 +1,0 @@
-This tests afw --local switching between all of the different directives.

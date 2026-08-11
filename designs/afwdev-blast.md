@@ -6,12 +6,19 @@
 **Branch:** `feature-afwfcgi-scenario-tests` (with advanced-test).  
 **Sibling:** #149 catalog work was explored in a **separate Grok session** on `issue-#149-runtime-catalog-lifetime`; merge this harness first, then use blast + advanced leaves there.
 
+**Direction (mgg-develop, 2026-08):** **`afwdev blast` is retired.** Prefer
+**orchestrated tests** (`orchestration.yaml` + `schedule.firehose`) under
+[`src/afw/tests-extra/`](../src/afw/tests-extra/) (07 / 07b / 07c, etc.).
+Run opt-in soaks with `afwdev test -T src/afw/tests-extra/…`. Campaign work
+stays on **`mgg-develop`** for heavy test/review before a deliberate merge to
+**`develop`**.
+
 ## Product split
 
 | Command | Job | Default `-j` gate? |
 |---------|-----|--------------------|
 | **`afwdev test`** | Jeremy language/package suite + tiny advanced-test multi-request | **Yes** |
-| **`afwdev blast`** | On-demand random suite firehose at **afwfcgi** | **No** |
+| **`afwdev blast`** | On-demand random suite firehose at **afwfcgi** | **No** (to be absorbed by orchestrated test schedule) |
 
 ## Usage
 
@@ -31,11 +38,11 @@ afwdev blast -d 10m -p afw --test-pattern 'file_adapter/|rql/'
 
 # Private / out-of-suite corpus (NOT discovered by default test -j)
 # Repeatable; exclusive — replaces package src/*/tests discovery
-afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 40
-afwdev blast -T /path/to/more -T src/afw/tests_special/catalog -f my.conf -m 100
+afwdev blast -T src/afw/tests-extra/07b-firehose-catalog-pool -d 15s -c 4 -m 40
+afwdev blast -T /path/to/more -T src/afw/tests-extra/07b-firehose-catalog-pool -f my.conf -m 100
 
 # Same -T on afwdev test for opt-in correctness (advanced-test, .as, …)
-afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
+afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
 ```
 
 ### `--tests-path` / `-T` (experimental; **test** and **blast**)
@@ -44,9 +51,9 @@ afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
 |--|--|
 | **When omitted** | Package `src/*/tests` (blast: + fixture skip by default; test: normal `-j` gate) |
 | **When set** | Only those directory trees (exclusive); package `tests/` ignored |
-| **Default `-j`** | Never scans these roots — use `src/afw/tests_special/` for opt-in |
+| **Default `-j`** | Never scans these roots — use `src/afw/tests-extra/` for opt-in |
 
-Examples: `src/afw/tests_special/catalog/` (blast), `src/afw/tests_special/adapter-lifecycle/` (test advanced-test).
+Examples: `src/afw/tests-extra/07b-firehose-catalog-pool/` (blast), `src/afw/tests-extra/adapter-lifecycle/` (test advanced-test).
 
 ### Defaults (plain `afwdev blast`)
 
@@ -64,8 +71,8 @@ Examples: `src/afw/tests_special/catalog/` (blast), `src/afw/tests_special/adapt
 Same idea as `afwdev test` (opt-in; human console stays default):
 
 ```bash
-afwdev blast -T src/afw/tests_special/catalog -m 40 --output /tmp/blast.json
-afwdev blast -T src/afw/tests_special/catalog -m 20 --output - --output-format json-compact
+afwdev blast -T src/afw/tests-extra/07b-firehose-catalog-pool -m 40 --output /tmp/blast.json
+afwdev blast -T src/afw/tests-extra/07b-firehose-catalog-pool -m 20 --output - --output-format json-compact
 ```
 
 | `--output-format` | Meaning |

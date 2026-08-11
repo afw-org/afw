@@ -256,9 +256,9 @@ def after_all(root, testGroupConfig, testEnvironment):
 def is_test_file(file):    
     skip = [        
         "config.py",
-        # advanced-test markers are discovered as leaf units, not as scripts
-        "advanced-test.yaml",
-        "advanced-test.json",
+        # orchestrated-test markers are discovered as leaf units, not as scripts
+        "orchestration.yaml",
+        "orchestration.json",
     ]
 
     if (file.endswith(".as") or
@@ -456,10 +456,11 @@ def find_test_groups(options, srcdir, tests_dir):
         # exclude subdirectory environments and any directories that start with an underscore
         dirs[:] = [d for d in dirs if d != 'environments' and not d.startswith('_')]
 
-        # advanced-test leaf: marker directory is one test; do not walk children
+        # orchestrated-test leaf: marker directory is one test; do not walk children
         try:
-            from _afwdev.test.advanced.discovery import find_advanced_marker
-            marker = find_advanced_marker(root)
+            from _afwdev.test.orchestrated.discovery import (
+                find_orchestration_marker)
+            marker = find_orchestration_marker(root)
         except ValueError as e:
             msg.error(str(e))
             dirs[:] = []
@@ -474,7 +475,7 @@ def find_test_groups(options, srcdir, tests_dir):
             if pattern and pattern != ".*" and \
                     not _test_pattern_matches(pattern, marker):
                 msg.debug(
-                    "Skipping advanced-test (does not match pattern): " +
+                    "Skipping orchestrated-test (does not match pattern): " +
                     marker)
                 continue
             testGroups.append((srcdir, root, [marker]))
@@ -496,18 +497,19 @@ def find_test_groups(options, srcdir, tests_dir):
 # response, any errors, and the stderr output.
 def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
-    # advanced-test.yaml|json — harness runner (env-mode modulates attach)
+    # orchestration.yaml|json — harness runner (env-mode modulates attach)
     try:
-        from _afwdev.test.advanced.discovery import is_advanced_marker_path
-        from _afwdev.test.advanced.runner import run_advanced_test
-        if is_advanced_marker_path(test):
-            return run_advanced_test(
+        from _afwdev.test.orchestrated.discovery import (
+            is_orchestration_marker_path)
+        from _afwdev.test.orchestrated.runner import run_orchestrated_test
+        if is_orchestration_marker_path(test):
+            return run_orchestrated_test(
                 test, options, testEnvironment, testGroupConfig)
     except ImportError as e:
         if test and (
-                test.endswith("advanced-test.yaml") or
-                test.endswith("advanced-test.json")):
-            msg.error("Unable to load advanced-test runner: " + str(e))
+                test.endswith("orchestration.yaml") or
+                test.endswith("orchestration.json")):
+            msg.error("Unable to load orchestrated-test runner: " + str(e))
             return (None, str(e), None)
 
     # look at the test file extension to determine how to run it
@@ -722,6 +724,19 @@ def print_test_failure(test, testCase):
     # Normalize to Adaptive-shaped dict (issue #61 helpers)
     error = error_to_dict(testCase.get("error"))
 
+    def _print_stream_expects():
+        # Side-channel expects (expect-stdout / expect-stderr) — literal text
+        if testCase.get("expect-stdout") is not None:
+            msg.error("    Expected stdout: " +
+                      nfc.json_dumps(testCase.get("expect-stdout")))
+            msg.error("    Actual stdout:   " +
+                      nfc.json_dumps(testCase.get("stdout")) + "\n")
+        if testCase.get("expect-stderr") is not None:
+            msg.error("    Expected stderr: " +
+                      nfc.json_dumps(testCase.get("expect-stderr")))
+            msg.error("    Actual stderr:   " +
+                      nfc.json_dumps(testCase.get("stderr")) + "\n")
+
     if error:
         message = error.get("message")
         if message:
@@ -766,7 +781,8 @@ def print_test_failure(test, testCase):
                 format_source_code(testCase.get("source"), "Test Failed at: {}".format(sourceLocationNav))
             elif errorSourceLocation is not None:
                 msg.error("Test Failed at: {}".format(sourceLocationNav) + " (id=" + error.get("id") + ")")
-                
+
+        _print_stream_expects()
 
     else:
         # if there was no error object, look for expect/result and dump the source
@@ -779,7 +795,9 @@ def print_test_failure(test, testCase):
             if (testCase.get("result") != None):
                 msg.error("    Result:   " + nfc.json_dumps(testCase.get("result")) + "\n")    
             else:
-                msg.error("    Result:   undefined\n") 
+                msg.error("    Result:   undefined\n")
+
+        _print_stream_expects()
 
         format_source_code(testCase.get("source"), "Test Failed at {}".format(sourceLocationNav))
 

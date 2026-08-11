@@ -34,9 +34,11 @@ feature branches  →  mgg-develop  →  (user testing) develop  →  main
 
 - Volume of change from Grok Build / Cursor would overwhelm the usual `develop` cadence, so **`mgg-develop`** was cut off `develop` as a long-lived staging line.
 - Feature branches (e.g. `issue-#1`) are cut **off `mgg-develop`**, in chunks.
+- Day-to-day on this line: Mike + AI partner open/land PRs into **`mgg-develop`**; not the full team’s normal develop cadence until a **big, reviewed merge**. Jeremy is looped in; `develop` may still get occasional unrelated fixes.
 - User-facing “what’s new” while on this line: **`whats-new.md`**.
 - After this large pass: **major user testing**, then merge **`mgg-develop` → `develop`**. Then **`develop` is again the main develop branch**.
 - Over weeks/months, most work should return to feature branches off `develop` (mgg-develop is not the permanent forever trunk).
+- Related harness direction on this campaign: **orchestrated tests** may **replace `afwdev blast`** (see `src/afw/tests-extra/`, `designs/afwdev-blast.md`).
 
 ### When merging `mgg-develop` → `develop` (retarget)
 
@@ -101,7 +103,7 @@ Update this section if the plan changes.
 
 - **#149 closed** (2026-08-09): phases 1–3 via PRs [#160](https://github.com/afw-org/afw/pull/160), [#161](https://github.com/afw-org/afw/pull/161), [#162](https://github.com/afw-org/afw/pull/162) (`ad78aa62`).
   - Architecture pads; `_AdaptiveRuntimeValueAccessor_` registry; lock+copy **referenceCount**; objectOptions pool fix on permanent shells; lock-safe live **metrics/properties**.
-  - Tests: `catalog-value-accessors`, `tests_special` lifecycle + blast; object_options envreg cases.
+  - Tests: `catalog-value-accessors`, `tests-extra` lifecycle + blast; object_options envreg cases.
   - Residuals (full-registry materialize size, long-running pool pressure) under **#2**.
 - **afwdev follow-ons** (with #160 / after **#159**): `--tests-path`/`-T`, `--output`/`--output-format`, **#61** exceptions (closed).
 - **#13** stress: comment to Jeremy; left open.

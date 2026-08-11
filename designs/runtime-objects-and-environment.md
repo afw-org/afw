@@ -159,10 +159,10 @@ Discover/filter: `retrieve_objects("afw", "_AdaptiveRuntimeValueAccessor_", {}, 
 | Kind | Location | Run |
 |------|----------|-----|
 | Multi-request catalog contracts (regression / `-j`) | `src/afw/tests/advanced/catalog-value-accessors/` | `afwdev test --test-pattern catalog-value-accessors` |
-| Stop/start disposable adapter (opt-in) | `src/afw/tests_special/adapter-lifecycle/` | `afwdev test -T src/afw/tests_special/adapter-lifecycle` |
-| Load thrash (opt-in) | `src/afw/tests_special/catalog/` | `afwdev blast -T src/afw/tests_special/catalog -d 15s -m 50` |
+| Stop/start disposable adapter (opt-in) | `src/afw/tests-extra/adapter-lifecycle/` | `afwdev test -T src/afw/tests-extra/adapter-lifecycle` |
+| Load thrash (opt-in) | `src/afw/tests-extra/07b-firehose-catalog-pool/` | `afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool` |
 
-**`tests/` vs `tests_special/`:** default `afwdev test -j` only discovers package `src/*/tests` (regression gate). Opt-in trees use **`--tests-path` / `-T`** on **test** and **blast** (exclusive).
+**`tests/` vs `tests-extra/`:** default `afwdev test -j` only discovers package `src/*/tests` (regression gate). Opt-in trees use **`--tests-path` / `-T`** on **test** (exclusive).
 
 **Lifecycle note:** `service_start` after `service_stop` requires env **`conf_adapter`** plus `_AdaptiveServiceConf_/<serviceId>` (and usually application `confAdapterId`). Conf-array-only afw.conf can stop a boot-started adapter but cannot restart it.
 

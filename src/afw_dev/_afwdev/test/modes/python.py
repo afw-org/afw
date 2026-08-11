@@ -12,6 +12,7 @@
 import os
 import json
 import importlib
+import threading
 from contextlib import redirect_stdout, redirect_stderr
 
 from _afwdev.common import msg
@@ -43,8 +44,32 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     try:   
         msg.debug("Running python test: %s" % test)
+        # Drain stdout/stderr pipes in a background thread so child processes
+        # spawned by tests (e.g. Session("local") → afw with stdout=sys.stdout)
+        # cannot fill the OS pipe buffer and deadlock while run() holds the
+        # writer ends. Reading only after run() returns is a classic hang.
+        drain_buf_out = []
+        drain_buf_err = []
+
+        def _drain(fd, buf):
+            try:
+                while True:
+                    chunk = fd.read(65536)
+                    if not chunk:
+                        break
+                    buf.append(chunk)
+            except Exception:
+                pass
+
         with redirect_stdout(stdout_w):
             with redirect_stderr(stderr_w):
+                t_out = threading.Thread(
+                    target=_drain, args=(stdout_r, drain_buf_out), daemon=True)
+                t_err = threading.Thread(
+                    target=_drain, args=(stderr_r, drain_buf_err), daemon=True)
+                t_out.start()
+                t_err.start()
+
                 test_module = importlib.machinery.SourceFileLoader("test", test).load_module()                                                              
                 if hasattr(test_module, 'run'): 
                     # uncomment these, if we want to pass along the same data to the actual python test module                   
@@ -63,9 +88,12 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 stdout_w_closed = True
                 stderr_w.close()    
                 stderr_w_closed = True
-                
-                debug = stderr_r.read()  
-                stdout = stdout_r.read()
+
+                t_out.join(timeout=5.0)
+                t_err.join(timeout=5.0)
+
+                stdout = "".join(drain_buf_out)
+                debug = "".join(drain_buf_err)
 
                 if not hasattr(test_module, 'run'):                                        
                     response = json.loads(stdout)        

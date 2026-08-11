@@ -8,7 +8,7 @@
 | Path | Role |
 |------|------|
 | `src/*/tests/` | Always-on **regression** — `afwdev test -j` |
-| `src/*/tests_special/` | **Opt-in** only — `-T` / `--tests-path` |
+| `src/*/tests-extra/` | **Opt-in** only — `-T` / `--tests-path` |
 
 ## Commands
 
@@ -19,11 +19,11 @@ afwdev test -j
 # 2) Narrow product regression (example #149 catalog contracts)
 afwdev test --test-pattern catalog-value-accessors --show-all
 
-# 3) Opt-in special (lifecycle, etc.)
-afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
+# 3) Opt-in lifecycle / multi-request
+afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
 
-# 4) Optional load thrash (not correctness)
-afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 40
+# 4) Optional load thrash (firehose leaf; not the default gate)
+afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
 ```
 
 ### Machine-readable summary (opt-in)
@@ -35,9 +35,6 @@ afwdev test -j --output /tmp/out.json
 
 # Pure JSON on stdout (human progress suppressed when --output is '-')
 afwdev test --test-pattern catalog-value-accessors --output - --output-format json
-
-# blast summary
-afwdev blast -T src/afw/tests_special/catalog -m 20 --output /tmp/blast.json
 ```
 
 Formats: `--output-format json` (default) | `json-compact` | `text`.
@@ -47,7 +44,7 @@ Formats: `--output-format json` (default) | `json-compact` | `text`.
 ```json
 {
   "tasks": {
-    "check-149": "afwdev test --test-pattern catalog-value-accessors && afwdev test -T src/afw/tests_special/adapter-lifecycle && afwdev blast -T src/afw/tests_special/catalog -d 10s -m 30"
+    "check-149": "afwdev test --test-pattern catalog-value-accessors && afwdev test -T src/afw/tests-extra/adapter-lifecycle && afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool"
   }
 }
 ```
@@ -56,6 +53,7 @@ Then: `afwdev task check-149`
 
 ## Notes
 
-- After `./afwdev build --install` / `--cdev`, **restart afwfcgi** if attach blast/tests talk to a long-lived process (stale libs).
+- After `./afwdev build --install` / `--cdev`, **restart afwfcgi** if attach tests talk to a long-lived process (stale libs).  
+- **`afwdev blast` is retired** — use `schedule.firehose` leaves under `tests-extra/`.
 - `service_start` after stop needs conf adapter + `_AdaptiveServiceConf_` (see lifecycle leaf).
 - Structured Python errors: `_afwdev.common.errors` (`AfwAdaptiveError`, `AfwdevProcessError`, `AfwdevRunnerError`) — issue **#61**; Adaptive error objects ride on `exc.object` / `to_error_dict()`.

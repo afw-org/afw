@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "description": "JSON form of orchestration marker; same schema as .yaml",
+  "host": "afwfcgi",
+  "afwfcgi": { "threads": 1 },
+  "timeout_s": 60,
+  "feed": { "kind": "action", "accept": "application/json" },
+  "tests": [
+    { "name": "return true", "sourceType": "script", "source": "return true;\n" },
+    { "name": "simple arithmetic", "sourceType": "script", "source": "assert((1 + 2) == 3);\nreturn 3;\n", "expect": 3 }
+  ]
+}

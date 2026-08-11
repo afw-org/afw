@@ -52,8 +52,7 @@ PATH afterward for `test`, `validate`, and similar.
 | **Adaptive test script** (`.as`, `--syntax test_script`) | Default. Language, functions, adapters under optional `afw.conf`. |
 | **Python** (`.py` with `run()`) | Need host process control, raw env octets, bindings that are awkward in script. |
 | **`commands_*.txt`** | Drive shell-ish command sequences (special runner). |
-| **Advanced-test leaf** | Multi-request / long-lived **`afwfcgi`** process with leaf conf. **Experimental** — see below. |
-| **`afwdev blast`** | On-demand **random** suite firehose at afwfcgi for a period. **Not** part of `test -j`. See below. |
+| **Orchestrated-test leaf** | Multi-request / long-lived **`afwfcgi`** with **`orchestration.yaml`**. See below. |
 
 Prefer a **test_script** unless you need process lifetime, a private server, or
 host-only APIs.
@@ -91,15 +90,59 @@ Notes:
   `afw --syntax test_script`).  
 - Metadata lines start with **`//?`**. Keys such as `test`, `description`,
   `expect`, `source`, `skip` are the common ones.  
-- After `//? source: ...`, the body runs until the next `//?` block or EOF.  
-- The runner compares the evaluation result to **`expect`** (Adaptive value
-  syntax). Failures are reported per `test:` case.  
-- Study working files under `src/afw/tests/` (for example
-  `src/afw/tests/language/script/try.as`).
+- **Same-line values** (`//? expect: 0`, `//? description: short title`):
+  leading and trailing **whitespace is trimmed**, so you do not need to
+  fuss over spaces or tabs after the value.  
+- **Multi-line values** use `//? key: ...` then the text on the following
+  lines until the next `//?` (or end of file). That form keeps the text
+  more literally (including newlines inside the block). A blank line before
+  the next `//?` is the usual way to keep a final newline on the last
+  content line.  
+- **File values** use `//? key: <<< relative/path` (path relative to the
+  directory of the `.as` file). The file contents become the key’s value
+  **exactly** (no trim). Paths must be relative (no `..` segments). Useful
+  for long expects or sources. A value that **starts with** `<<<` is always
+  this form — do not begin free-text descriptions with those characters.  
+- After `//? source: ...` or `//? source: <<< …`, the body is the multi-line
+  or file form above.  
+- **`expect:`** is Adaptive source for the **return value** you want (for
+  example `0`, `true`, `"ok"`, `anyURI("…")`), not free text. The runner
+  compiles and evaluates it, then compares to the case result. Use
+  `error` or `error:…message…` when the case should fail. A `<<<` file for
+  `expect` must contain that Adaptive source (for example `"hello"` with
+  quotes if you want a string return value).  
+- **`expect-stdout:`** / **`expect-stderr:`** (optional) assert the **text**
+  written to the Adaptive `stdout` / `stderr` streams during the case
+  (`print` / `println` / stream writes). Values are **literal strings**, not
+  Adaptive source — same forms as other keys (same-line trim, `...`, `<<<`).
+  Comparison is exact utf-8. Use a hyphen in the key (`expect-stdout`), never
+  a colon inside the name (`expect:stdout` is wrong: `:` separates key from
+  value). When present, the harness captures into an in-memory buffer so
+  output does not pollute the `afw` process result channel. Omit the key to
+  ignore that stream.  
+- Failures are reported per `test:` case.
 
-Exact line grammar for test scripts lives in the compiler
-(`afw_compile_parse_script.c` EBNF comments). Prefer copying a nearby test
-over inventing a new metadata dialect.
+### Orchestrated leaves (`orchestration.yaml`)
+
+Hermetic multi-request / firehose / REST work lives in leaves with
+`orchestration.yaml` (see `src/afw/tests-extra/README.md` and gate
+examples under `src/afw/tests/advanced/`). Same vocabulary where it applies:
+`expect`, `expect-stdout`, `expect-stderr`, plus `expectResponse` /
+`expectStatus` for wire bodies.
+
+**Recording `expectResponse` goldens:**
+
+```bash
+afwdev test --capture-goldens -T path/to/leaf
+# or: AFWDEV_CAPTURE_GOLDENS=1 afwdev test -T path/to/leaf
+```
+
+Writes actual response bytes to each `expectResponse: <<< rel/path`, then
+re-run without capture for the gate.  
+- Study working files under `src/afw/tests/` (for example
+  `src/afw/tests/language/script/try.as` and
+  `src/afw/tests/compiler/test_script_file_value/`). Prefer copying a nearby
+  test over inventing a new metadata dialect.
 
 ### Conf and fixtures
 
@@ -126,116 +169,91 @@ See existing `config.py` files under `src/afw/tests/` for patterns.
 
 | Mode | Typical use |
 |------|-------------|
-| **`afw`** (default) | Subprocess **`afw`** for `.as`; hermetic **advanced-test** leaves (spawn `afwfcgi`). |
-| **`valgrind`** | `.as` under valgrind; advanced leaves wrap **`afwfcgi`** when supported. |
+| **`afw`** (default) | Subprocess **`afw`** for `.as`; hermetic **orchestrated-test** leaves (spawn `afwfcgi`). |
+| **`valgrind`** | `.as` under valgrind; orchestrated leaves wrap **`afwfcgi`** when supported. |
 | **`afwfcgi`** | Replays compatible `.as` against a **live** stack (default URL
   `http://localhost:8080/afw`). Skips tests with a private `afw.conf`.
-  Advanced leaves are skipped (hermetic conf does not apply to the live process). |
+  Orchestrated leaves are skipped (hermetic conf does not apply to the live process). |
 | **`actions`** | Local Python `Session` + `eval_script` for `.as`. |
 
 File type still wins for some paths: `.py` → Python runner;
 `commands_*.txt` → commands runner.
 
-## \*\*\* Experimental \*\*\* advanced-test leaves
+## Orchestrated tests and `tests-extra`
 
-**Status: experimental.** Marker names, schema, and runner details may change.
-Many early choices (leaf discovery, hermetic `afwfcgi`, FCGI client) are
-expected to stay in spirit. Feedback: GitHub issue **#157** and
-`designs/afwdev-advanced-test.md`.
+Use an **orchestrated** leaf (`orchestration.yaml`) when you need a long-lived
+**`afwfcgi`**, leaf-local conf, multi-request checks, **REST** feeds, **Accept**
+overrides (e.g. `application/x-afw`), or a **firehose** schedule (replaces the
+retired **`afwdev blast`** subcommand).
 
-Use an advanced-test leaf when you need:
+| Where | When |
+|-------|------|
+| `src/afw/tests/…` | Default **gate** (`afwdev test -j`) — keep leaves short |
+| `src/afw/tests-extra/…` | **Opt-in extras** next to `tests/` — soaks, progressive, firehose, sketches (`-T` only) |
 
-- One long-lived **`afwfcgi`** for several requests  
-- Leaf-local conf / objects that must not depend on a pre-started stack  
-- Multi-step process-lifetime checks (catalog, adapters, later stress for #2)
+Schema and extra scenarios: `src/afw/tests-extra/README.md`. Gate smokes:
+`src/afw/tests/advanced/`.
 
 ### Shape
 
 ```text
-src/<srcdir>/tests/…/my_leaf/     # any depth under tests/
-  advanced-test.yaml              # or advanced-test.json (not both)
-  afw.conf                        # required for host afwfcgi
-  objects/                        # optional
-  step_something.as               # optional; referenced from steps
+src/afw/tests-extra/<leaf>/     # or tests/<group>/ for gate leaves
+  orchestration.yaml            # or orchestration.json (not both)
+  afw.conf
+  objects/                      # optional fixtures
+  tests/ or *.as                # payloads (sourcePath / <<<)
 ```
-
-The directory with the marker is a **leaf**: one test unit; children are
-assets only (not nested tests).
-
-Minimal YAML:
-
 ```yaml
-# Experimental — see designs/afwdev-advanced-test.md
+version: 1
 host: afwfcgi
-description: Short summary for listing / failures
-
+description: Short summary
 afwfcgi:
   threads: 1
-
 timeout_s: 60
-
-steps:
-  - name: first request
-    eval: |
+feed:                         # defaults for every test
+  kind: action
+  accept: application/json
+tests:
+  - name: first
+    sourceType: script
+    source: |
       return true;
-
-  - name: script file
-    script: step_two.as
+    expect: true
+  - name: progressive
+    feed:
+      accept: application/x-afw   # override default Accept only
+    sourceType: script
+    sourcePath: tests/to_response.as
+# optional schedule: sequential | parallel | firehose | repeat
 ```
 
-- **`host`** — v1 supports **`afwfcgi`** only.  
-- **`eval`** — inline Adaptive Script (one FCGI perform / request).  
-- **`script`** — path relative to the leaf; keep a `test_script` shebang if you
-  want per-case `expect` checking.  
-- One leaf → one pass/fail (fail-fast on first bad step).  
-- Requires **PyYAML** (see package `python-requirements.txt`) and **`afwfcgi`**
-  on PATH from an install build.
-
-Examples: `src/afw/tests/advanced/` (smoke, multi-request file adapter,
-multi-eval lifetime, JSON marker sample).
-
-## \*\*\* Experimental \*\*\* afwdev blast
-
-**Not part of the normal gate.** On-demand load: randomly eval suite
-`.as` sources against afwfcgi for a duration or request count.
-
-```bash
-# Typical docker/dev (defaults: url :8080/afw, 5m, concurrency=CPUs)
-afwdev blast
-
-# Longer / more parallel / adapter-focused
-afwdev blast -d 30m -c 16 --test-pattern 'file_adapter/|model_adapter/|rql/'
-
-# Harness-owned afwfcgi
-afwdev blast -f /path/to/afw.conf -m 200
-```
-
-Same discovery filters as `test` (`--srcdir-pattern`, `--test-pattern`,
-`--tags`). By default **skips fixture-heavy groups** (`Environment=` /
-`afw.conf`) so failures usually mean a real problem; use
-`--include-fixtures` to blast adapter/env tests too. Continues on Adaptive
-failures; stops if the server dies. Design: `designs/afwdev-blast.md`.
-afwfcgi SIGTERM/SIGINT graceful stop: issue **#158** (done; hermetic
-check under `tests/advanced/afwfcgi_signal_shutdown/`).
+- **`feed`** at document level = defaults; per-test **`feed`** overrides fields.  
+- **`sourceType` + `source` / `sourcePath` / `<<< path`** — same idea as test_script evaluate.  
+- **`expect`** — optional JSON-ish compare of action result; test_script payloads use inner `passed`.  
+- **`schedule.firehose`** — duration / concurrency / maxRequests / fromTests (load).  
+- Requires **PyYAML** and **`afwfcgi`** on PATH from an install build.
 
 ## Practical tips
 
 1. **Start from a neighbor** — copy a test in the same area and edit.  
 2. **Name for `--test-pattern`** — patterns match file path / basename / leaf
-   directory name (advanced markers).  
+   directory name (orchestration markers).  
 3. **Keep groups small** — shared conf is fine; do not hide unrelated suites
    in one directory if you want fine-grained parallel runs.  
 4. **Default gate** — `afwdev test -j` after meaningful changes; valgrind mode
    is slower and optional for day-to-day.  
 5. **Generated tests** — many function/datatype scripts under
    `tests/generated/` are generated; prefer hand tests under clear group
-   names for new product behavior.
+   names for new product behavior.  
+6. **Load / soak** — orchestrated leaves with firehose under
+   `src/afw/tests-extra/` or `-T` roots; do not put heavy firehose in
+   the default `tests/` gate.
 
 ## Related
 
 - @ref afw_dev_overview — builder docs map  
 - @ref afw_dev_extending — extension sketch (includes `afwdev test -j`)  
 - @ref afw_dev_compiler_ebnf — compiler EBNF harvest (not test authoring)  
-- Maintainer design: `designs/afwdev-advanced-test.md` (experimental)  
+- Maintainer: `src/afw/tests-extra/SCHEMA.md`  
 - Issue [#157](https://github.com/afw-org/afw/issues/157)  
 - CLI help: `afw --help` (`-s test_script`), `afwdev test --help`  

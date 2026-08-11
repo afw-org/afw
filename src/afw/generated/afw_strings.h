@@ -10378,6 +10378,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_a_expect_stderr_mismatch \
+    "expect-stderr mismatch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_expect_stderr_mismatch */
+#define afw_s_a_expect_stderr_mismatch \
+    (&afw_self_v_a_expect_stderr_mismatch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_expect_stderr_mismatch */
+#define afw_self_s_a_expect_stderr_mismatch \
+    (afw_self_v_a_expect_stderr_mismatch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_expect_stderr_mismatch */
+extern const afw_value_string_t \
+    afw_self_v_a_expect_stderr_mismatch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_expect_stderr_mismatch */
+#define afw_z_a_expect_stderr_mismatch \
+    (afw_self_v_a_expect_stderr_mismatch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_expect_stderr_mismatch */
+#define afw_v_a_expect_stderr_mismatch \
+    (&afw_self_v_a_expect_stderr_mismatch.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_expect_stdout_mismatch \
+    "expect-stdout mismatch"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_expect_stdout_mismatch */
+#define afw_s_a_expect_stdout_mismatch \
+    (&afw_self_v_a_expect_stdout_mismatch.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_expect_stdout_mismatch */
+#define afw_self_s_a_expect_stdout_mismatch \
+    (afw_self_v_a_expect_stdout_mismatch.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_expect_stdout_mismatch */
+extern const afw_value_string_t \
+    afw_self_v_a_expect_stdout_mismatch;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_expect_stdout_mismatch */
+#define afw_z_a_expect_stdout_mismatch \
+    (afw_self_v_a_expect_stdout_mismatch.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_expect_stdout_mismatch */
+#define afw_v_a_expect_stdout_mismatch \
+    (&afw_self_v_a_expect_stdout_mismatch.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_a_extension_description \
     "This configuration type adds additional functionality this Adaptive Framework environment."
 
@@ -56264,6 +56316,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_expectUTF8OctetOffsetInTestScript */
 #define afw_v_expectUTF8OctetOffsetInTestScript \
     (&afw_self_v_expectUTF8OctetOffsetInTestScript.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_expect_stderr \
+    "expect-stderr"
+
+/** @brief 'afw_utf8_t' for AFW_Q_expect_stderr */
+#define afw_s_expect_stderr \
+    (&afw_self_v_expect_stderr.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_expect_stderr */
+#define afw_self_s_expect_stderr \
+    (afw_self_v_expect_stderr.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_expect_stderr */
+extern const afw_value_string_t \
+    afw_self_v_expect_stderr;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_expect_stderr */
+#define afw_z_expect_stderr \
+    (afw_self_v_expect_stderr.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_expect_stderr */
+#define afw_v_expect_stderr \
+    (&afw_self_v_expect_stderr.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_expect_stdout \
+    "expect-stdout"
+
+/** @brief 'afw_utf8_t' for AFW_Q_expect_stdout */
+#define afw_s_expect_stdout \
+    (&afw_self_v_expect_stdout.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_expect_stdout */
+#define afw_self_s_expect_stdout \
+    (afw_self_v_expect_stdout.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_expect_stdout */
+extern const afw_value_string_t \
+    afw_self_v_expect_stdout;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_expect_stdout */
+#define afw_z_expect_stdout \
+    (afw_self_v_expect_stdout.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_expect_stdout */
+#define afw_v_expect_stdout \
+    (&afw_self_v_expect_stdout.pub)
 
 
 

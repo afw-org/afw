@@ -358,6 +358,11 @@ a_evaluate_expect_error=Evaluate expect error
 a_compile_source_error=Compile source error
 a_evaluate_source_error=Evaluate source error
 a_other_error=Other error
+a_expect_stdout_mismatch=expect-stdout mismatch
+a_expect_stderr_mismatch=expect-stderr mismatch
+# //? test_script side-channel expects (hyphen; not Adaptive-eval)
+expect_stdout=expect-stdout
+expect_stderr=expect-stderr
 a_slash_afw=/afw
 a_anonymous_function_id=**anonymous**
 

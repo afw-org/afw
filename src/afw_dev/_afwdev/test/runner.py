@@ -358,9 +358,26 @@ def run(options, srcdirs):
             terminate = True
 
         if terminate:
-            pool.terminate()
-            pool.join()
-
+            # Aggressive shutdown: after Ctrl-C, workers can be stuck in
+            # waitpid (e.g. Session("local").close) or already zombie; plain
+            # pool.join() has been observed to hang indefinitely.
+            try:
+                pool.terminate()
+            except Exception:
+                pass
+            try:
+                for p in getattr(pool, "_pool", []) or []:
+                    if p.is_alive():
+                        try:
+                            p.kill()
+                        except Exception:
+                            pass
+            except Exception:
+                pass
+            try:
+                pool.join()
+            except Exception:
+                pass
             sys.exit(1)
 
         pool.join()

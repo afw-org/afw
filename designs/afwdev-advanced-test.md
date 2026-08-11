@@ -7,6 +7,8 @@
 **Related:** [#2 Memory management](https://github.com/afw-org/afw/issues/2) ([`memory-management.md`](memory-management.md)), [#149 Runtime catalog lifetime](https://github.com/afw-org/afw/issues/149) ([`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md)).  
 **Depends on:** installed `afwfcgi` / `afw` via `./afwdev build … --install` (e.g. `--cdev` / `--fulldev`).
 
+**Rename / rethink (2026-08):** Product direction is shifting toward **orchestrated tests** with an **`orchestration.yaml` / `.json`** control file (host + **feed** + include list + schedule), not “advanced” as a second Adaptive dialect. **North-star schema + pretend scenario leaves** (not wired to the runner): [`src/afw/tests-extra/`](../src/afw/tests-extra/). Live runner still uses `advanced-test.yaml` until migration.
+
 ---
 
 ## \*\*\* Experimental \*\*\*
@@ -437,11 +439,11 @@ Dispatch should treat marker paths **before** env-mode module selection (same pa
 - [x] GitHub issue [#157](https://github.com/afw-org/afw/issues/157)  
 - [x] Implement vertical + smoke leaf (`src/afw/tests/advanced/smoke/`)  
 - [x] Valgrind-on-afwfcgi (spawn hook + works under `--env-mode valgrind`)  
-- [x] Merge → rebase #149 → catalog scenarios (`tests/advanced/catalog-value-accessors`, `tests_special/`)
+- [x] Merge → rebase #149 → catalog scenarios (`tests/advanced/catalog-value-accessors`, `tests-extra/`)
 - [x] Failure reporting: Adaptive-shaped `error` dict; one-line console reason; full nav `--verbose`/`--debug`
 - [x] `stepTimings` on leaf response (`[{name, ms, passed}, …]`) for debug / future summaries
 - [x] Exceptions: host/load/FCGI inherit `_afwdev.common.errors` (**#61**); digests use `error_message` / `to_error_dict`
-- [x] Opt-in trees: `afwdev test -T src/afw/tests_special/…` (lifecycle leaf); always-on catalog leaf under `tests/advanced/`
+- [x] Opt-in trees: `afwdev test -T src/afw/tests-extra/…` (lifecycle leaf); always-on catalog leaf under `tests/advanced/`
 
 Agent recipe: [`afwdev-test-recipe.md`](afwdev-test-recipe.md).  
 - [ ] #2 stress + observe extensions  

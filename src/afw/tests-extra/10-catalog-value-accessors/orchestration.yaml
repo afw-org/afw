@@ -1,0 +1,41 @@
+# Port of src/afw/tests/advanced/catalog-value-accessors (#149)
+# Stresses: multi-request catalog contracts; feed defaults; test_script hybrid.
+
+version: 1
+description: >
+  Multi-request #149: value accessor catalog and adapter afw anchor
+  across sequential FCGI evals on one afwfcgi
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: retrieve-value-accessor-catalog
+    sourceType: script
+    source: <<< tests/retrieve_accessors.as
+
+  - name: get-stopping-adapter-instances
+    sourceType: script
+    source: <<< tests/get_stopping.as
+
+  - name: get-adapter-reference-count-entry
+    sourceType: script
+    source: <<< tests/get_adapter_rc_entry.as
+
+  - name: adapter-afw-referenceCount
+    sourceType: script
+    source: <<< tests/adapter_afw_rc.as
+
+  - name: second-request-re-read
+    sourceType: script
+    source: <<< tests/second_catalog_read.as
+
+  - name: test-script-hybrid
+    sourceType: test_script
+    source: <<< tests/step_catalog_sane.as

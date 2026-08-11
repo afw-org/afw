@@ -1,0 +1,53 @@
+version: 1
+description: >
+  Multi-request: add via file adapter in request 1, get/modify in later
+  requests on the same afwfcgi process
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 90
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: add Demo object
+    sourceType: script
+    source: |
+      add_object(
+          "file",
+          "Demo",
+          {
+              "msg": "from-request-1",
+              "n": 1
+          },
+          "alpha"
+      );
+      return true;
+  - name: get object from prior request
+    sourceType: script
+    source: |
+      const o = get_object("file", "Demo", "alpha");
+      assert(o.msg == "from-request-1", "msg not persisted across requests");
+      assert(o.n == 1, "n not persisted across requests");
+      return o.msg;
+    expect: "from-request-1"
+  - name: replace and re-get
+    sourceType: script
+    source: |
+      replace_object(
+          "file",
+          "Demo",
+          "alpha",
+          {
+              "msg": "from-request-3",
+              "n": 3
+          }
+      );
+      const o = get_object("file", "Demo", "alpha");
+      assert(o.msg == "from-request-3");
+      assert(o.n == 3);
+      return o.n;
+    expect: 3
+  - name: cleanup via test_script file
+    sourceType: test_script
+    sourcePath: step_cleanup.as

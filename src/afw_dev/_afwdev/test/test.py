@@ -92,7 +92,7 @@ def run(options):
     tests_paths = normalize_tests_paths(options.get('tests_path'))
 
     if tests_paths:
-        # Opt-in roots only (e.g. tests_special/) — exclusive, not package tests/
+        # Opt-in roots only (e.g. tests-extra/) — exclusive, not package tests/
         for ap in tests_paths:
             try:
                 label = os.path.relpath(ap)

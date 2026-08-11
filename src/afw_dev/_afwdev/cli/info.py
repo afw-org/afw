@@ -960,9 +960,21 @@ _info_tests_path = {
     "help":
         "Directory of tests to use (repeatable). When any --tests-path is "
         "given, only those trees are searched (not package src/*/tests). "
-        "Default test -j never scans these roots — put opt-in/regression "
-        "experiments under e.g. src/afw/tests_special/. Same flag on "
-        "afwdev blast for load thrash."
+        "Default test -j never scans these roots — put extras under "
+        "src/afw/tests-extra/ (firehose, progressive, lab leaves)."
+}
+
+_info_test_capture_goldens = {
+    "optionName": "capture_goldens",
+    "arg": "--capture-goldens",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Orchestrated tests: write actual HTTP response bodies to "
+        "expectResponse <<< paths (create/update goldens) and treat those "
+        "compares as pass. Also set AFWDEV_CAPTURE_GOLDENS=1. Review diffs "
+        "before committing. Does not affect ordinary test_script //? expects."
 }
 
 _info_test = {
@@ -972,7 +984,7 @@ _info_test = {
         "Run tests for one or more source directories. Default discovery is "
         "package src/*/tests (regression gate for test -j). Optional "
         "repeatable --tests-path/-T runs only those directory trees "
-        "(e.g. tests_special/) and does not use package tests/.",
+        "(e.g. src/afw/tests-extra/) and does not use package tests/.",
     "thing": "test",
     "args": [        
         _info_test_bail,
@@ -982,6 +994,7 @@ _info_test = {
         _info_test_show_all,
         _info_srcdir_pattern, 
         _info_tests_path,
+        _info_test_capture_goldens,
         _info_test_watch,
         _info_test_jobs,
         _info_test_env_mode,
@@ -992,145 +1005,6 @@ _info_test = {
         _info_tmpdir
     ]
 }
-
-# subcommand blast (experimental on-demand afwfcgi firehose)
-
-_info_blast_url = {
-    "optionName": "url",
-    "arg": "--url",
-    "short": "-u",
-    "noprompt": True,
-    "help":
-        "Attach mode: base URL of live AFW HTTP front door. "
-        "Default when --conf is omitted: http://localhost:8080/afw "
-        "(docker/dev nginx). Mutually exclusive with --conf."
-}
-
-_info_blast_conf = {
-    "optionName": "conf",
-    "arg": "--conf",
-    "short": "-f",
-    "noprompt": True,
-    "help":
-        "Managed mode: path to afw.conf; spawn installed afwfcgi "
-        "(-f like afw/afwfcgi). Mutually exclusive with --url."
-}
-
-_info_blast_duration = {
-    "optionName": "duration",
-    "arg": "--duration",
-    "short": "-d",
-    "default": "5m",
-    "noprompt": True,
-    "help":
-        "How long to blast (30s, 5m, 1h, or seconds). Default 5m. "
-        "Use 0 with --max-requests only to disable the time limit."
-}
-
-_info_blast_max_requests = {
-    "optionName": "max_requests",
-    "arg": "--max-requests",
-    "short": "-m",
-    "int": True,
-    "noprompt": True,
-    "help": "Stop after approximately this many requests (optional)."
-}
-
-_info_blast_concurrency = {
-    "optionName": "concurrency",
-    "arg": "--concurrency",
-    "short": "-c",
-    "int": True,
-    "default": "0",
-    "noprompt": True,
-    "help":
-        "In-flight requests at once. Default 0 = 2×CPU count "
-        "(classic gobench-style load)."
-}
-
-_info_blast_threads = {
-    "optionName": "threads",
-    "arg": "--threads",
-    "short": "-n",
-    "int": True,
-    "default": "0",
-    "noprompt": True,
-    "help":
-        "afwfcgi -n when using --conf. Default 0 = CPU count. "
-        "Ignored for --url attach (use afwfcgi -n when you start it)."
-}
-
-_info_blast_request_timeout = {
-    "optionName": "request_timeout",
-    "arg": "--request-timeout",
-    "default": "30",
-    "noprompt": True,
-    "help": "Per-request timeout in seconds (default 30)."
-}
-
-_info_blast_include_fixtures = {
-    "optionName": "include_fixtures",
-    "arg": "--include-fixtures",
-    "action": "store_true",
-    "default": False,
-    "noprompt": True,
-    "help":
-        "Include tests that need private afw.conf, tests/environments "
-        "(config.py Environment), or nearby conf. Default is to skip "
-        "those so fail counts stay near zero unless something is wrong. "
-        "Ignored when --tests-path is set (those roots are taken as-is)."
-}
-
-_info_blast_output = {
-    "optionName": "output",
-    "arg": "--output",
-    "action": "store",
-    "default": "stdout",
-    "noprompt": True,
-    "help":
-        "Where to write a results summary after the run. Default 'stdout' "
-        "means no summary file. Use a path or '-' (stdout) with "
-        "--output-format. Same idea as afwdev test --output."
-}
-
-_info_blast = {
-    "subcommand": "blast",
-    "help": "On-demand load blast at afwfcgi (experimental)",
-    "description":
-        "*** Experimental *** Fire randomly chosen Adaptive test_script "
-        "sources at afwfcgi for a period of time. Not part of "
-        "'afwdev test -j'. Defaults target a typical docker/dev stack: "
-        "attach to http://localhost:8080/afw for 5m with concurrency "
-        "2×CPUs (and managed afwfcgi -n = CPUs) — plain 'afwdev blast' often "
-        "suffices when nginx+afwfcgi are up. Override with -u/-f/-d/-c/-n. "
-        "Corpus: package src/*/tests by default (--srcdir-pattern / "
-        "--test-pattern / --tags), or only trees given with "
-        "repeatable --tests-path/-T (exclusive; same flag as afwdev test). "
-        "Fixture groups (Environment= / afw.conf) are skipped by default "
-        "unless --include-fixtures (N/A with --tests-path). "
-        "Optional --output / --output-format for a machine summary. "
-        "Continues on Adaptive failures; stops if the server dies. "
-        "See designs/afwdev-blast.md.",
-    "thing": "blast",
-    "args": [
-        _info_blast_url,
-        _info_blast_conf,
-        _info_blast_duration,
-        _info_blast_max_requests,
-        _info_blast_concurrency,
-        _info_blast_threads,
-        _info_blast_request_timeout,
-        _info_blast_include_fixtures,
-        _info_tests_path,
-        _info_blast_output,
-        _info_test_output_format,
-        _info_srcdir_pattern,
-        _info_test_pattern,
-        _info_test_tags,
-    ]
-}
-
-
 
 _info_pattern = {
     "optionName": "pattern",
@@ -1202,7 +1076,6 @@ _subcommand_infos = [
     _info_add_core_interface,
     _info_add_log_type,
     _info_afwdev_parser_info,
-    _info_blast,
     _info_build,
     _info_ebnf,
     _info_for,

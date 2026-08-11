@@ -104,7 +104,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 | Field | Notes |
 |-------|--------|
 | Symptom | Confused about `-j` vs `-T` vs blast; load thrash treated as language gate; stale afwfcgi after rebuild |
-| Layer | `afwdev test` discovery vs `tests_special` vs `afwdev blast` vs advanced-test leaves |
+| Layer | `afwdev test` discovery vs `tests-extra` vs `afwdev blast` vs advanced-test leaves |
 | Probe | Commands in recipe pad; after `--cdev`/`--install`, restart long-lived afwfcgi before attach |
 | Entry | `afwdev-test-recipe.md`, `afwdev-advanced-test.md`, `afwdev-blast.md`, `afw-tests`; atlas §11 |
 | Status | **Filled (first pass)** |

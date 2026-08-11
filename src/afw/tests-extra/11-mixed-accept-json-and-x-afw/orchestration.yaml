@@ -1,0 +1,68 @@
+# Mixed responses: default JSON Accept + per-test override to application/x-afw
+#
+# Stresses: document feed defaults, per-test feed.accept override,
+#           progressive path + ordinary eval in one leaf (sequential then optional firehose).
+
+version: 1
+description: >
+  Mix ordinary action/JSON steps with application/x-afw progressive retrieve
+
+host: afwfcgi
+afwfcgi:
+  threads: 2
+timeout_s: 120
+
+# Default for most tests
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: seed
+    sourceType: script
+    source: <<< tests/seed.as
+    expect: true
+
+  - name: ordinary-count
+    description: Uses document feed (JSON Accept)
+    sourceType: script
+    source: <<< tests/count.as
+    expect: 3
+
+  - name: progressive-x-afw
+    description: Overrides only Accept — still kind action
+    feed:
+      accept: application/x-afw
+    sourceType: script
+    source: <<< tests/to_response.as
+    # expect: true optional if void/undefined ok
+    # expectResponse: <<< goldens/body.xafw   # when recorded
+
+  - name: ordinary-after
+    description: Back to default JSON Accept (no feed override)
+    sourceType: script
+    source: <<< tests/count.as
+    expect: 3
+
+  - name: cleanup
+    sourceType: script
+    source: <<< tests/cleanup.as
+    expect: true
+
+  # Optional load mix: firehose could draw from ordinary-count + progressive
+  # (commented — sequential is enough for mixed-Accept correctness)
+  # - name: load-count
+  #   sourceType: script
+  #   source: <<< tests/count.as
+  # - name: load-progressive
+  #   feed:
+  #     accept: application/x-afw
+  #   sourceType: script
+  #   source: <<< tests/to_response.as
+  # schedule:
+  #   - sequential: [seed]
+  #   - firehose:
+  #       duration_s: 10
+  #       concurrency: 2
+  #       fromTests: [load-count, load-progressive]
+  #   - sequential: [cleanup]

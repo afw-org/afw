@@ -58,6 +58,91 @@ afw_value_call_test_script_create(
 
 
 /*
+ * Install a utf-8 capture stream on a standard stream slot so print/write to
+ * that streamId does not touch process FDs (and thus does not pollute the afw
+ * CLI result channel). Caller must release after harvesting.
+ */
+static void
+impl_test_script_install_utf8_capture(
+    afw_stream_number_t n,
+    const afw_utf8_t *streamId,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_stream_t *stream;
+
+    if (xctx->stream_anchor &&
+        n < xctx->stream_anchor->maximum_number_of_streams &&
+        xctx->stream_anchor->streams[n])
+    {
+        afw_stream_release(xctx->stream_anchor->streams[n], xctx);
+        *(const afw_stream_t **)&xctx->stream_anchor->streams[n] = NULL;
+    }
+
+    stream = afw_utf8_stream_create(streamId, p, xctx);
+    *(const afw_stream_t **)&xctx->stream_anchor->streams[n] = stream;
+}
+
+
+
+/*
+ * Harvest captured utf-8 for a standard stream, store actual under streamId
+ * (stdout/stderr), release the slot, and fail the case if expect does not
+ * match. expect NULL means do not assert (caller still may have left a
+ * previous FD stream; we only harvest when expect is set).
+ */
+static void
+impl_test_script_check_stream_expect(
+    const afw_object_t *test,
+    afw_stream_number_t n,
+    const afw_utf8_t *streamId,
+    const afw_utf8_t *expect,
+    const afw_utf8_t *mismatch_reason,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t actual;
+    const afw_utf8_t *actual_owned;
+
+    if (!expect) {
+        return;
+    }
+
+    actual.s = NULL;
+    actual.len = 0;
+    if (xctx->stream_anchor &&
+        n < xctx->stream_anchor->maximum_number_of_streams &&
+        xctx->stream_anchor->streams[n])
+    {
+        afw_utf8_stream_get_current_cached_string(
+            xctx->stream_anchor->streams[n], &actual, xctx);
+        /* Clone before release — capture buffer lives in the stream pool. */
+        actual_owned = afw_utf8_clone(&actual, p, xctx);
+        afw_stream_release(xctx->stream_anchor->streams[n], xctx);
+        *(const afw_stream_t **)&xctx->stream_anchor->streams[n] = NULL;
+    }
+    else {
+        actual_owned = afw_utf8_create_copy(
+            (const afw_utf8_octet_t *)"", 0, p, xctx);
+    }
+
+    /* Actual capture for harness / failure display. */
+    afw_object_set_property_as_string(test, streamId, actual_owned, xctx);
+
+    if (!afw_utf8_equal(actual_owned, expect)) {
+        afw_object_set_property(test, afw_s_passed,
+            afw_boolean_v_false, xctx);
+        /* Keep compile/eval errorReason if already set. */
+        if (!afw_object_has_property(test, afw_s_errorReason, xctx)) {
+            afw_object_set_property_as_string(test,
+                afw_s_errorReason, mismatch_reason, xctx);
+        }
+    }
+}
+
+
+
+/*
  * Implementation of method optional_evaluate for interface afw_value.
  */
 const afw_value_t *
@@ -74,6 +159,8 @@ impl_afw_value_optional_evaluate(
     const afw_utf8_t *source_type;
     const afw_utf8_t *source;
     const afw_utf8_t *expect;
+    const afw_utf8_t *expect_stdout;
+    const afw_utf8_t *expect_stderr;
     const afw_value_t *expected_value;
     const afw_value_t *compiled_value;
     const afw_value_t *evaluated_value;
@@ -124,6 +211,16 @@ impl_afw_value_optional_evaluate(
             AFW_THROW_ERROR_Z(general, "expect required", xctx);
         }
 
+        /*
+         * Optional side-channel expects (string equality on captured utf-8).
+         * Keys are "expect-stdout" / "expect-stderr" (hyphen; not Adaptive).
+         * Absent key → do not assert that stream.
+         */
+        expect_stdout = afw_object_old_get_property_as_string(test,
+            afw_s_expect_stdout, xctx);
+        expect_stderr = afw_object_old_get_property_as_string(test,
+            afw_s_expect_stderr, xctx);
+
         expectUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_expectUTF8OctetLengthInTestScript, &found, xctx);
         if (!found) {
@@ -162,6 +259,20 @@ impl_afw_value_optional_evaluate(
             AFW_THROW_ERROR_FZ(general, xctx,
                 "source_type=" AFW_UTF8_FMT_Q " is invalid",
                 AFW_UTF8_FMT_ARG(source_type));
+        }
+
+        /*
+         * Per-case capture: replace standard stdout/stderr with utf-8 buffers
+         * when those expects are present so print/println do not hit process
+         * FDs (afw CLI keeps Adaptive stdout on stderr for result JSON).
+         */
+        if (expect_stdout) {
+            impl_test_script_install_utf8_capture(
+                afw_stream_number_stdout, afw_s_stdout, p, xctx);
+        }
+        if (expect_stderr) {
+            impl_test_script_install_utf8_capture(
+                afw_stream_number_stderr, afw_s_stderr, p, xctx);
         }
 
         AFW_TRY{
@@ -295,6 +406,14 @@ impl_afw_value_optional_evaluate(
         }
 
         AFW_ENDTRY;
+
+        /* Side-channel expects after return/error check; always release. */
+        impl_test_script_check_stream_expect(test,
+            afw_stream_number_stdout, afw_s_stdout,
+            expect_stdout, afw_s_a_expect_stdout_mismatch, p, xctx);
+        impl_test_script_check_stream_expect(test,
+            afw_stream_number_stderr, afw_s_stderr,
+            expect_stderr, afw_s_a_expect_stderr_mismatch, p, xctx);
     }
 
     return afw_value_create_unmanaged_object(

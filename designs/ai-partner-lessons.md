@@ -135,6 +135,14 @@ to “implement everything on `mgg-develop`.”
    (often: metadata or C touch → `./afwdev build --cdev` → narrow
    `afwdev test` → note residuals). You steer product/scope; the partner drafts
    and explores; either of you can stop and re-discuss mid-flight.  
+   For **new syntax / harness shape**, Mike often uses career-long patterns
+   recorded in [`mantras-and-working-style.md`](mantras-and-working-style.md)
+   (*Design method*): **sketch the syntax you probably want** → **pretend we
+   already have it** and throw real scenarios at the sketch → also ask
+   **does something else already do this?** and **does this make reliable good
+   work easier?** (same bar as Adaptive Script vs plain ECMAScript) → **trim
+   back** for the first implementation. Do not skip the scenario or
+   alternatives pass.  
 6. **Commit and push when *you* want a checkpoint** — not as a silent default
    after every file edit. Useful prompts:  
    - “Commit what we have with a clear message.”  
