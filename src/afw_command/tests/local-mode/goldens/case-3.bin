@@ -1,0 +1,17 @@
+24
+afw 0.0.0
+
+Local mode.
+0
+58
+{"result":1,"resultDataType":"integer","status":"success"}0
+64
+{"result":"string","resultDataType":"string","status":"success"}0
+61
+{"result":true,"resultDataType":"boolean","status":"success"}0
+71
+{"result":"LocalTestUser","resultDataType":"string","status":"success"}0
+61
+{"result":"yes","resultDataType":"string","status":"success"}0
+58
+{"result":1,"resultDataType":"integer","status":"success"}0

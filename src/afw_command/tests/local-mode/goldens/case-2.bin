@@ -1,0 +1,13 @@
+24
+afw 0.0.0
+
+Local mode.
+0
+15
+1 188 response
+188
+{"result":{"REQUEST_METHOD":"POST","REQUEST_URI":"/afw","CONTENT_TYPE":"application/json","CONTENT_LENGTH":"110","ACCEPT":"application/x-afw"},"resultDataType":"object","status":"success"}1
+27
+ 0 end
+0
+0
