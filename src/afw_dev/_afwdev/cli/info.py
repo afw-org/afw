@@ -965,6 +965,19 @@ _info_tests_path = {
         "src/afw/orchestrated-tests/ for load-style orchestrated leaves."
 }
 
+_info_test_capture_goldens = {
+    "optionName": "capture_goldens",
+    "arg": "--capture-goldens",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Orchestrated tests: write actual HTTP response bodies to "
+        "expectResponse <<< paths (create/update goldens) and treat those "
+        "compares as pass. Also set AFWDEV_CAPTURE_GOLDENS=1. Review diffs "
+        "before committing. Does not affect ordinary test_script //? expects."
+}
+
 _info_test = {
     "subcommand": "test",
     "help": "Run tests",
@@ -982,6 +995,7 @@ _info_test = {
         _info_test_show_all,
         _info_srcdir_pattern, 
         _info_tests_path,
+        _info_test_capture_goldens,
         _info_test_watch,
         _info_test_jobs,
         _info_test_env_mode,

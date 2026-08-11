@@ -120,7 +120,25 @@ Notes:
   value). When present, the harness captures into an in-memory buffer so
   output does not pollute the `afw` process result channel. Omit the key to
   ignore that stream.  
-- Failures are reported per `test:` case.  
+- Failures are reported per `test:` case.
+
+### Orchestrated leaves (`orchestration.yaml`)
+
+Hermetic multi-request / firehose / REST work lives in leaves with
+`orchestration.yaml` (see `src/afw/orchestrated-tests/README.md` and gate
+examples under `src/afw/tests/advanced/`). Same vocabulary where it applies:
+`expect`, `expect-stdout`, `expect-stderr`, plus `expectResponse` /
+`expectStatus` for wire bodies.
+
+**Recording `expectResponse` goldens:**
+
+```bash
+afwdev test --capture-goldens -T path/to/leaf
+# or: AFWDEV_CAPTURE_GOLDENS=1 afwdev test -T path/to/leaf
+```
+
+Writes actual response bytes to each `expectResponse: <<< rel/path`, then
+re-run without capture for the gate.  
 - Study working files under `src/afw/tests/` (for example
   `src/afw/tests/language/script/try.as` and
   `src/afw/tests/compiler/test_script_file_value/`). Prefer copying a nearby

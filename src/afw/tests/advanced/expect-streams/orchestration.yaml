@@ -1,0 +1,51 @@
+# Leaf-level expect-stdout / expect-stderr (response:stdout flags on the action).
+version: 1
+description: Orchestrated side-channel stream expects
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: print-stdout
+    sourceType: script
+    source: |
+      print("leaf-ok");
+      return 0;
+    expect: 0
+    expect-stdout: leaf-ok
+
+  - name: println-stdout
+    sourceType: script
+    source: |
+      println("line");
+      return 0;
+    expect: 0
+    expect-stdout: "line\n"
+
+  - name: stderr-write
+    sourceType: script
+    source: |
+      write(stream("stderr"), "err-leaf");
+      return 0;
+    expect: 0
+    expect-stderr: err-leaf
+
+  - name: both-streams
+    sourceType: script
+    source: |
+      print("out");
+      write(stream("stderr"), "err");
+      return 0;
+    expect: 0
+    expect-stdout: out
+    expect-stderr: err
+
+  - name: empty-stdout
+    sourceType: script
+    source: |
+      return 1;
+    expect: 1
+    expect-stdout: ""

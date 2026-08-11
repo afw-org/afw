@@ -1,8 +1,8 @@
 # Orchestration file schema (north star sketch)
 
-**Audience:** maintainers designing orchestrated tests. **Not implemented.**  
-**Marker (proposed):** `orchestration.yaml` or `orchestration.json` in a leaf directory.  
-**Ambiguous both present:** error (same as experimental advanced-test).
+**Audience:** maintainers authoring orchestrated tests.  
+**Marker:** `orchestration.yaml` or `orchestration.json` in a leaf directory.  
+**Ambiguous both present:** error.
 
 This is the **full-ish** shape we want to aim at. First implementation should **trim**, not invent a different dialect.
 
@@ -147,12 +147,22 @@ No Adaptive function; judges HTTP-ish status + body.
 | Field | Meaning |
 |-------|---------|
 | `expect` | Same *idea* as test_script `expect`: Adaptive source for expected **return value**, or `error` / `error:…` / `undefined`. Applied when the feed returns an Adaptive evaluation result (action eval path). |
-| `expect-stdout` / `expect-stderr` | Same *idea* as test_script: **literal** utf-8 text for Adaptive `stdout` / `stderr` side channels (not Adaptive-eval). Hyphen keys only. Implemented for `test_script` cases inside the runtime; orchestrated leaf-level capture of host process streams is a later step. |
-| `expectResponse` | Raw expected **response body** (string or `<<< file`). Exact match after optional decode. For REST and progressive frames. |
+| `expect-stdout` / `expect-stderr` | **Literal** utf-8 for Adaptive `stdout` / `stderr` (not Adaptive-eval). Hyphen keys. Leaf-level: runner sets `response:stdout` / `response:stderr` on the action and compares response properties. Embedded `//?` form is checked inside `test_script` runtime. |
+| `expectResponse` | Raw expected **response body** (string or `<<< file`, **exact bytes**). For REST and progressive/x-afw frames. |
 | `expectStatus` | HTTP-ish status code (REST); default 2xx success if omitted |
 | `decode` | later: e.g. `x-afw-payloads` before comparing `expectResponse` |
 
-For `sourceType: test_script`, prefer judging via embedded case `passed` flags in the result object (like today’s advanced-test), optionally plus outer `expect`. Embedded `//? expect-stdout` / `expect-stderr` on cases are checked by the test_script runtime.
+### Golden capture (`expectResponse` + `<<<`)
+
+1. Author `expectResponse: <<< goldens/name.bin` (path relative to the leaf).  
+2. Run once with capture:  
+   `afwdev test --capture-goldens -T path/to/leaf`  
+   (or `AFWDEV_CAPTURE_GOLDENS=1`). Writes the actual response body to that path.  
+3. Review the file, commit it, re-run **without** capture for exact-byte gate.  
+
+Missing golden without capture → clear error with the same capture command hint.
+
+For `sourceType: test_script`, prefer judging via embedded case `passed` flags in the result object, optionally plus outer `expect` / stream expects.
 
 ### Per-item feed override
 
@@ -193,9 +203,10 @@ schedule:
   - sequential: [verify]
 ```
 
-### Rate / soak / firehose (**later** — blast replacement)
+### Rate / soak / firehose (blast replacement)
 
-See leaves `07`, `07b`, `07c` under this directory for full pretend examples.
+See leaves `07`, `07b`, `07c` under this directory for longer soaks (opt-in via
+`-T`). Gate smoke: `src/afw/tests/advanced/firehose-smoke/`.
 
 ```yaml
 schedule:
@@ -203,10 +214,11 @@ schedule:
       duration_s: 60            # and/or maxRequests
       concurrency: 8
       fromTests: [a, b, c]      # names from tests[]
-      # includeGlob: "tests/random/*.as"   # later alternative
       stopOnError: false        # blast-like: keep going, tally errors
-      # seed: 42
-      # policy: random | roundRobin
+      seed: 42                  # RNG for policy: random
+      policy: random            # or roundRobin
+      maxFail: 0                # optional absolute fail budget
+      maxFailRate: 0.05         # optional fail fraction budget (0..1)
 ```
 
 ```yaml
@@ -216,9 +228,15 @@ schedule:
       tests: [catalog-read]
 ```
 
-Orchestrator owns timing and client pool; payloads stay in `tests` or globs.
-Pass criteria for firehose may be “completed duration with error rate &lt; X /
-no process crash,” not only every request green — still open.
+**Pass criteria (implemented):**
+
+| Setting | Behavior |
+|---------|----------|
+| `maxFail` | Fail leaf if fail count &gt; maxFail |
+| `maxFailRate` | Fail leaf if fail/total &gt; rate |
+| neither | Blast-like: pass if any request succeeded (hard-fail only if *all* failed); `stopOnError: true` aborts on first error |
+
+Summary in `stepTimings[].firehose`: total, ok, fail, failRate, rps, policy.
 
 ---
 

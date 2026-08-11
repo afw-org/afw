@@ -187,6 +187,83 @@ def merge_feed(document_feed, test_feed):
     return out
 
 
+def parse_triple_lt_path(value):
+    """
+    If value is a string of the form '<<< rel/path' (optional whitespace),
+    return the relative path string. Otherwise return None.
+    """
+    if not isinstance(value, str):
+        return None
+    stripped = value.lstrip()
+    if not stripped.startswith("<<<"):
+        return None
+    rel = stripped[3:].strip()
+    if "\n" in rel:
+        rel = rel.split("\n", 1)[0].strip()
+    return rel or None
+
+
+def _validate_rel_path(rel, item_name, what):
+    if not rel:
+        raise AfwdevRunnerError(
+            "test {!r}: {!r} '<<<' requires a path".format(item_name, what))
+    if rel.startswith("/") or rel.startswith("\\") or (
+            len(rel) >= 2 and rel[1] == ":"):
+        raise AfwdevRunnerError(
+            "test {!r}: {!r} '<<<' path must be relative".format(
+                item_name, what))
+    parts = rel.replace("\\", "/").split("/")
+    if ".." in parts or any(p == "" for p in parts):
+        raise AfwdevRunnerError(
+            "test {!r}: invalid {!r} '<<<' path {!r}".format(
+                item_name, what, rel))
+    return rel
+
+
+def resolve_file_bytes(value, work_dir, item_name=None, what="value",
+                       missing_ok=False):
+    """
+    Resolve a string value that may be '<<< rel/path' to raw bytes.
+
+    Inline (non-<<<) strings are UTF-8 encoded. Returns (bytes|None, rel_path|None)
+    where rel_path is set only for the <<< form (for golden capture).
+    """
+    name = item_name or "?"
+    rel = parse_triple_lt_path(value)
+    if rel is not None:
+        rel = _validate_rel_path(rel, name, what)
+        path = os.path.join(work_dir, rel)
+        if not os.path.isfile(path):
+            if missing_ok:
+                return None, rel
+            raise AfwdevRunnerError(
+                "test {!r}: {!r} '<<<' file not found: {} "
+                "(create it with: afwdev test --capture-goldens -T <leaf>)"
+                .format(name, what, path))
+        with nfc.open(path, "rb") as fd:
+            return fd.read(), rel
+    if value is None:
+        return None, None
+    if isinstance(value, bytes):
+        return value, None
+    if isinstance(value, str):
+        return value.encode("utf-8"), None
+    raise AfwdevRunnerError(
+        "test {!r}: {!r} must be a string or bytes".format(name, what))
+
+
+def resolve_file_text(value, work_dir, item_name=None, what="value",
+                      missing_ok=False):
+    """Like resolve_file_bytes but returns unicode text (UTF-8 for files)."""
+    data, rel = resolve_file_bytes(
+        value, work_dir, item_name=item_name, what=what, missing_ok=missing_ok)
+    if data is None:
+        return None, rel
+    if isinstance(data, bytes):
+        return data.decode("utf-8"), rel
+    return data, rel
+
+
 def resolve_source_text(item, work_dir):
     """
     Return source string for a test item.
@@ -207,34 +284,9 @@ def resolve_source_text(item, work_dir):
         raise AfwdevRunnerError(
             "test {!r} has no source".format(item.get("name")))
 
-    stripped = src.lstrip()
-    if stripped.startswith("<<<"):
-        rel = stripped[3:].strip()
-        # drop trailing comment-like noise? take first line only as path
-        if "\n" in rel:
-            rel = rel.split("\n", 1)[0].strip()
-        if not rel:
-            raise AfwdevRunnerError(
-                "test {!r}: '<<<' requires a path".format(item.get("name")))
-        if rel.startswith("/") or rel.startswith("\\") or (
-                len(rel) >= 2 and rel[1] == ":"):
-            raise AfwdevRunnerError(
-                "test {!r}: '<<<' path must be relative".format(
-                    item.get("name")))
-        parts = rel.replace("\\", "/").split("/")
-        if ".." in parts or any(p == "" for p in parts):
-            raise AfwdevRunnerError(
-                "test {!r}: invalid '<<<' path {!r}".format(
-                    item.get("name"), rel))
-        path = os.path.join(work_dir, rel)
-        if not os.path.isfile(path):
-            raise AfwdevRunnerError(
-                "test {!r}: '<<<' file not found: {}".format(
-                    item.get("name"), path))
-        with nfc.open(path, "r") as fd:
-            return fd.read()
-
-    return src
+    text, _rel = resolve_file_text(
+        src, work_dir, item_name=item.get("name"), what="source")
+    return text
 
 
 def eval_function_for_source_type(source_type, feed):

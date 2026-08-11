@@ -26,18 +26,28 @@ from _afwdev.test.orchestrated.load import (
     eval_function_for_source_type,
     load_orchestration_document,
     merge_feed,
+    parse_triple_lt_path,
+    resolve_file_bytes,
+    resolve_file_text,
     resolve_source_text,
 )
-from _afwdev.test.orchestrated.fcgi_client import FcgiClientError, fcgi_request
+from _afwdev.test.orchestrated.fcgi_client import fcgi_request
 from _afwdev.test.orchestrated.hosts import afwfcgi as afwfcgi_host
+
+
+def _capture_goldens_enabled(options):
+    if options and options.get("capture_goldens"):
+        return True
+    env = os.environ.get("AFWDEV_CAPTURE_GOLDENS", "").strip().lower()
+    return env in ("1", "true", "yes", "on")
 
 
 def run_orchestrated_test(marker_path, options, testEnvironment=None,
                           testGroupConfig=None):
     """Entry point from common.run_test for orchestration markers."""
     mode = (options or {}).get("mode") or "afw"
+    options = options or {}
     debug_parts = []
-
     if mode == "actions":
         msg.debug("Skipping orchestrated-test under --env-mode actions: " +
                   marker_path)
@@ -75,6 +85,9 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
     threads = int(doc.get("afwfcgi", {}).get("threads") or 1)
     tests_by_name = {t["name"]: t for t in doc["tests"]}
     doc_feed = doc.get("feed") or {}
+    # Source leaf (marker directory) — goldens write here, not only the
+    # hermetic work_dir copy under /tmp.
+    source_leaf = os.path.dirname(os.path.abspath(marker_path))
 
     handle = None
     t0 = time.time()
@@ -135,9 +148,9 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                     if item.get("skip"):
                         continue
                     _run_named_test(
-                        item, work_dir, handle["socket_path"], remaining,
-                        doc_feed, debug_parts, step_timings, description,
-                        fail_fast=True)
+                        item, work_dir, source_leaf, handle["socket_path"],
+                        remaining, doc_feed, debug_parts, step_timings,
+                        description, options, fail_fast=True)
 
             elif kind == "parallel":
                 if not isinstance(body, dict):
@@ -154,17 +167,17 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                     if not item.get("skip"):
                         items.append(item)
                 _run_parallel(
-                    items, n, work_dir, handle["socket_path"], remaining,
-                    doc_feed, debug_parts, step_timings)
+                    items, n, work_dir, source_leaf, handle["socket_path"],
+                    remaining, doc_feed, debug_parts, step_timings, options)
 
             elif kind == "firehose":
                 if not isinstance(body, dict):
                     raise AfwdevRunnerError(
                         "schedule firehose body must be a mapping")
                 _run_firehose(
-                    body, tests_by_name, work_dir, handle["socket_path"],
-                    remaining, doc_feed, debug_parts, step_timings,
-                    description)
+                    body, tests_by_name, work_dir, source_leaf,
+                    handle["socket_path"], remaining, doc_feed, debug_parts,
+                    step_timings, description, options)
 
             elif kind == "repeat":
                 if not isinstance(body, dict):
@@ -182,9 +195,9 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                             raise AfwdevRunnerError(
                                 "orchestrated-test timed out during repeat")
                         _run_named_test(
-                            item, work_dir, handle["socket_path"], rem,
-                            doc_feed, debug_parts, step_timings, description,
-                            fail_fast=True)
+                            item, work_dir, source_leaf, handle["socket_path"],
+                            rem, doc_feed, debug_parts, step_timings,
+                            description, options, fail_fast=True)
 
             else:
                 raise AfwdevRunnerError(
@@ -224,14 +237,15 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
             afwfcgi_host.stop_afwfcgi(handle)
 
 
-def _run_named_test(item, work_dir, socket_path, timeout, doc_feed,
-                    debug_parts, step_timings, description, fail_fast=True):
+def _run_named_test(item, work_dir, source_leaf, socket_path, timeout,
+                    doc_feed, debug_parts, step_timings, description, options,
+                    fail_fast=True):
     name = item["name"]
     msg.debug("orchestrated-test: " + name)
     t0 = time.time()
     try:
-        _run_test_item(item, work_dir, socket_path, timeout, doc_feed,
-                       debug_parts)
+        _run_test_item(item, work_dir, source_leaf, socket_path, timeout,
+                       doc_feed, debug_parts, options)
         ms = round((time.time() - t0) * 1000)
         step_timings.append({"name": name, "ms": ms, "passed": True})
         debug_parts.append("test {!r} ok ({}ms)".format(name, ms))
@@ -256,8 +270,8 @@ def _run_named_test(item, work_dir, socket_path, timeout, doc_feed,
     return None
 
 
-def _run_parallel(items, n, work_dir, socket_path, timeout, doc_feed,
-                  debug_parts, step_timings):
+def _run_parallel(items, n, work_dir, source_leaf, socket_path, timeout,
+                  doc_feed, debug_parts, step_timings, options):
     if not items:
         return
     n = max(1, min(n, len(items)))
@@ -266,12 +280,11 @@ def _run_parallel(items, n, work_dir, socket_path, timeout, doc_feed,
     def one(item):
         t0 = time.time()
         try:
-            _run_test_item(item, work_dir, socket_path, timeout, doc_feed,
-                           debug_parts)
+            _run_test_item(item, work_dir, source_leaf, socket_path, timeout,
+                           doc_feed, debug_parts, options)
             return item["name"], True, round((time.time() - t0) * 1000), None
         except Exception as e:
             return item["name"], False, round((time.time() - t0) * 1000), e
-
     with ThreadPoolExecutor(max_workers=n) as ex:
         futs = [ex.submit(one, it) for it in items]
         for fut in as_completed(futs):
@@ -292,8 +305,9 @@ def _run_parallel(items, n, work_dir, socket_path, timeout, doc_feed,
             cause=err)
 
 
-def _run_firehose(body, tests_by_name, work_dir, socket_path, timeout,
-                  doc_feed, debug_parts, step_timings, description):
+def _run_firehose(body, tests_by_name, work_dir, source_leaf, socket_path,
+                  timeout, doc_feed, debug_parts, step_timings, description,
+                  options):
     names = body.get("fromTests") or []
     pool = []
     for name in names:
@@ -318,17 +332,40 @@ def _run_firehose(body, tests_by_name, work_dir, socket_path, timeout,
     stop_on_error = bool(body.get("stopOnError", False))
     seed = body.get("seed")
     rng = random.Random(seed)
+    policy = (body.get("policy") or "random").strip()
+    if policy not in ("random", "roundRobin"):
+        raise AfwdevRunnerError(
+            "firehose policy must be 'random' or 'roundRobin', got {!r}"
+            .format(policy))
+    max_fail = body.get("maxFail")
+    if max_fail is not None:
+        max_fail = int(max_fail)
+    max_fail_rate = body.get("maxFailRate")
+    if max_fail_rate is not None:
+        max_fail_rate = float(max_fail_rate)
+        if max_fail_rate < 0.0 or max_fail_rate > 1.0:
+            raise AfwdevRunnerError(
+                "firehose maxFailRate must be between 0 and 1")
 
     t_end = time.time() + duration_s if duration_s is not None else None
     t0 = time.time()
     ok = fail = 0
     total = 0
     first_error = None
+    rr_i = 0
+
+    def pick_item():
+        nonlocal rr_i
+        if policy == "roundRobin":
+            item = pool[rr_i % len(pool)]
+            rr_i += 1
+            return item
+        return rng.choice(pool)
 
     def one(item):
         try:
-            _run_test_item(item, work_dir, socket_path, max(5.0, timeout),
-                           doc_feed, debug_parts)
+            _run_test_item(item, work_dir, source_leaf, socket_path,
+                           max(5.0, timeout), doc_feed, debug_parts, options)
             return True, None
         except Exception as e:
             return False, e
@@ -349,7 +386,7 @@ def _run_firehose(body, tests_by_name, work_dir, socket_path, timeout,
                     break
                 if t_end is not None and time.time() >= t_end:
                     break
-                item = rng.choice(pool)
+                item = pick_item()
                 pending.add(ex.submit(one, item))
                 total += 1
 
@@ -390,42 +427,91 @@ def _run_firehose(body, tests_by_name, work_dir, socket_path, timeout,
                 if first_error is None:
                     first_error = err
 
-    elapsed = time.time() - t0
+    elapsed = max(time.time() - t0, 1e-9)
+    rps = total / elapsed
+    fail_rate = (float(fail) / float(total)) if total else 0.0
+    summary = {
+        "total": total,
+        "ok": ok,
+        "fail": fail,
+        "failRate": round(fail_rate, 4),
+        "rps": round(rps, 2),
+        "policy": policy,
+        "concurrency": concurrency,
+    }
+    if seed is not None:
+        summary["seed"] = seed
+
+    # Pass criteria: explicit maxFail / maxFailRate win; else blast-like
+    # (survive with any successes; only hard-fail if every request failed).
+    if total == 0:
+        passed = False
+        reason = "firehose issued 0 requests"
+    elif max_fail is not None:
+        passed = fail <= max_fail
+        reason = (
+            "firehose fail count {} > maxFail {}".format(fail, max_fail)
+            if not passed else None)
+    elif max_fail_rate is not None:
+        passed = fail_rate <= max_fail_rate
+        reason = (
+            "firehose failRate {:.4f} > maxFailRate {:.4f}".format(
+                fail_rate, max_fail_rate)
+            if not passed else None)
+    elif fail == 0:
+        passed = True
+        reason = None
+    elif ok == 0:
+        passed = False
+        reason = "firehose: all {} request(s) failed: {}".format(
+            fail, error_message(first_error))
+    else:
+        # Mixed results, no threshold: blast-style tolerate errors
+        passed = True
+        reason = None
+
     debug_parts.append(
-        "firehose done in {:.1f}s total={} ok={} fail={}".format(
-            elapsed, total, ok, fail))
+        "firehose done in {:.1f}s total={} ok={} fail={} "
+        "failRate={:.2%} rps={:.1f} policy={}".format(
+            elapsed, total, ok, fail, fail_rate, rps, policy))
     step_timings.append({
         "name": "firehose",
         "ms": round(elapsed * 1000),
-        "passed": fail == 0 or not stop_on_error,
-        "firehose": {"total": total, "ok": ok, "fail": fail},
+        "passed": passed,
+        "firehose": summary,
     })
-    # Blast-like: keep going is success if process lived; report fails in debug.
-    # Hard-fail only if every request failed and we had some traffic.
-    if total > 0 and ok == 0 and fail > 0:
+    if not passed:
         raise AfwAdaptiveError(
-            "firehose: all {} request(s) failed: {}".format(
-                fail, error_message(first_error)),
-            cause=first_error)
+            reason or "firehose failed",
+            cause=first_error,
+            object=summary,
+        )
 
 
-def _run_test_item(item, work_dir, socket_path, timeout, doc_feed, debug_parts):
+def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
+                   debug_parts, options=None):
+    options = options or {}
     feed = merge_feed(doc_feed, item.get("feed"))
     kind = feed.get("kind") or "action"
-    # copy so we can expand expectResponse without mutating loaded doc permanently
+    # copy so expansions do not mutate the loaded document
     item = dict(item)
-    if item.get("expectResponse") is not None and isinstance(
-            item["expectResponse"], str):
-        er = item["expectResponse"]
-        if er.lstrip().startswith("<<<"):
-            item["expectResponse"] = resolve_source_text(
-                {"name": item.get("name"), "source": er}, work_dir)
+    name = item.get("name")
+    if not source_leaf:
+        source_leaf = work_dir
+
+    # Expand side-channel expects (literal text / <<< files)
+    for key in ("expect-stdout", "expect-stderr"):
+        if item.get(key) is not None:
+            text, _rel = resolve_file_text(
+                item[key], work_dir, item_name=name, what=key)
+            item[key] = text if text is not None else ""
 
     source = resolve_source_text(item, work_dir)
     source_type = item.get("sourceType") or "script"
 
     if kind == "rest":
-        _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir)
+        _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir,
+                  source_leaf, options)
         return
 
     if kind != "action":
@@ -452,7 +538,19 @@ def _run_test_item(item, work_dir, socket_path, timeout, doc_feed, debug_parts):
     if function == "evaluate":
         action = {"function": "evaluate", "expression": source}
 
+    # Leaf-level stream expects → response:stdout / response:stderr flags so
+    # Adaptive captures utf-8 on the response object (not process FDs).
+    flags = []
+    if item.get("expect-stdout") is not None:
+        flags.append("response:stdout")
+    if item.get("expect-stderr") is not None:
+        flags.append("response:stderr")
+    if flags:
+        action["_flags_"] = list(flags)
+
     body_obj = {"actions": [action]}
+    if flags:
+        body_obj["_flags_"] = list(flags)
     body = nfc.json_dumps(body_obj)
     accept = feed.get("accept") or "application/json"
     param_overrides = {"HTTP_ACCEPT": accept}
@@ -468,7 +566,7 @@ def _run_test_item(item, work_dir, socket_path, timeout, doc_feed, debug_parts):
 
     debug_parts.append(
         "test {!r} status={} body_len={} accept={!r}".format(
-            item.get("name"),
+            name,
             result.get("status_code"),
             len(result.get("body") or b""),
             accept,
@@ -476,7 +574,8 @@ def _run_test_item(item, work_dir, socket_path, timeout, doc_feed, debug_parts):
     )
 
     if accept.strip().lower() == "application/x-afw":
-        _check_x_afw_response(item, result, debug_parts)
+        _check_x_afw_response(
+            item, result, debug_parts, work_dir, source_leaf, options)
         return
 
     body_text = (result.get("body") or b"").decode("utf-8", errors="replace")
@@ -532,8 +631,20 @@ def _run_test_item(item, work_dir, socket_path, timeout, doc_feed, debug_parts):
     if "expect" in item and item.get("expect") is not None:
         _check_expect(item.get("expect"), action_result)
 
+    _check_side_stream_expects(item, response, name)
 
-def _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir=None):
+    if item.get("expectResponse") is not None:
+        # JSON body as bytes for exact golden compare when requested
+        _check_expect_response(
+            item, result.get("body") or b"", work_dir, source_leaf, options,
+            debug_parts)
+
+
+def _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir=None,
+              source_leaf=None, options=None):
+    options = options or {}
+    work_dir = work_dir or "."
+    source_leaf = source_leaf or work_dir
     method = (feed.get("method") or "GET").upper()
     path = feed.get("path") or "/"
     accept = feed.get("accept") or "application/json"
@@ -571,19 +682,13 @@ def _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir=None):
             "REST status {} for {} {}".format(code, method, path))
 
     if item.get("expectResponse") is not None:
-        expected = item["expectResponse"]
-        body_out = result.get("body") or b""
-        if isinstance(expected, str):
-            expected_b = expected.encode("utf-8")
-        else:
-            expected_b = expected
-        if body_out != expected_b:
-            raise AfwdevRunnerError(
-                "expectResponse mismatch (got {} bytes, expected {})".format(
-                    len(body_out), len(expected_b)))
+        _check_expect_response(
+            item, result.get("body") or b"", work_dir, source_leaf, options,
+            debug_parts)
 
 
-def _check_x_afw_response(item, result, debug_parts):
+def _check_x_afw_response(item, result, debug_parts, work_dir, source_leaf,
+                          options):
     body = result.get("body") or b""
     code = int(result.get("status_code") or 200)
     if code >= 400:
@@ -594,20 +699,100 @@ def _check_x_afw_response(item, result, debug_parts):
     if not body and item.get("expectResponse") is None:
         # progressive may still write frames; empty is suspicious
         debug_parts.append("x-afw empty body for {!r}".format(item.get("name")))
-    exp = item.get("expectResponse")
-    if exp is not None:
-        if isinstance(exp, str):
-            exp_b = exp.encode("utf-8")
-        else:
-            exp_b = exp
-        if body != exp_b:
-            raise AfwdevRunnerError(
-                "expectResponse mismatch for {!r}".format(item.get("name")))
+    if item.get("expectResponse") is not None:
+        _check_expect_response(
+            item, body, work_dir, source_leaf, options, debug_parts)
     # Soft success: process returned without HTTP error
     if b"0 end\n" in body or b" intermediate" in body or body:
         return
     # allow empty true return with no intermediate if only void progressive
     return
+
+def _check_side_stream_expects(item, response, name):
+    """Compare leaf expect-stdout / expect-stderr to response properties."""
+    if not isinstance(response, dict):
+        response = {}
+    for key, prop in (("expect-stdout", "stdout"),
+                      ("expect-stderr", "stderr")):
+        if item.get(key) is None:
+            continue
+        expected = item[key]
+        if expected is None:
+            expected = ""
+        actual = response.get(prop)
+        if actual is None:
+            actual = ""
+        if not isinstance(actual, str):
+            actual = str(actual)
+        if actual != expected:
+            raise AfwdevRunnerError(
+                "test {!r}: {} mismatch\n  expected: {!r}\n  actual:   {!r}"
+                .format(name, key, expected, actual))
+
+
+def _write_golden(path, data, debug_parts, name):
+    parent = os.path.dirname(path)
+    if parent and not os.path.isdir(parent):
+        os.makedirs(parent, exist_ok=True)
+    with nfc.open(path, "wb") as fd:
+        fd.write(data)
+    note = "captured golden for {!r} → {} ({} bytes)".format(
+        name, path, len(data))
+    debug_parts.append(note)
+    msg.info(note)
+
+
+def _check_expect_response(item, actual_bytes, work_dir, source_leaf, options,
+                           debug_parts):
+    """
+    Exact-byte compare of expectResponse (inline or <<< file).
+
+    With --capture-goldens / AFWDEV_CAPTURE_GOLDENS=1 and a <<< path, write
+    actual_bytes to the source leaf (and work_dir) and pass (update workflow).
+    """
+    name = item.get("name")
+    raw = item.get("expectResponse")
+    if raw is None:
+        return
+    if not isinstance(actual_bytes, (bytes, bytearray)):
+        actual_bytes = bytes(actual_bytes)
+
+    rel = parse_triple_lt_path(raw)
+    capture = _capture_goldens_enabled(options)
+
+    if rel is not None:
+        if capture:
+            # Prefer writing into the package source leaf so the file is
+            # reviewable/committable; also refresh hermetic work_dir copy.
+            written = set()
+            for base in (source_leaf, work_dir):
+                if not base:
+                    continue
+                path = os.path.abspath(os.path.join(base, rel))
+                if path in written:
+                    continue
+                written.add(path)
+                _write_golden(path, actual_bytes, debug_parts, name)
+            return
+        expected_b, _ = resolve_file_bytes(
+            raw, work_dir, item_name=name, what="expectResponse",
+            missing_ok=False)
+    else:
+        if isinstance(raw, bytes):
+            expected_b = raw
+        else:
+            expected_b = str(raw).encode("utf-8")
+
+    if expected_b != actual_bytes:
+        hint = ""
+        if rel is not None:
+            hint = (
+                " (update with: afwdev test --capture-goldens "
+                "-T <leaf-dir>)")
+        raise AfwdevRunnerError(
+            "test {!r}: expectResponse mismatch "
+            "(got {} bytes, expected {}){}"
+            .format(name, len(actual_bytes), len(expected_b), hint))
 
 
 def _check_expect(expect, action_result):
@@ -643,18 +828,25 @@ def _fail_if_test_script_failures(obj):
         if tc.get("skip"):
             continue
         if tc.get("passed", False) is False:
+            label = tc.get("test") or tc.get("description") or tc
             err_obj = tc.get("error")
             if isinstance(err_obj, dict):
                 raise AfwAdaptiveError(
                     err_obj.get("message") or
-                    "test_script failure: {}".format(
-                        tc.get("test") or tc.get("description") or tc),
+                    "test_script failure: {}".format(label),
                     object=err_obj,
                 )
+            reason = tc.get("errorReason") or "test_script failure"
+            parts = ["{}: {}".format(reason, label)]
+            if tc.get("expect-stdout") is not None:
+                parts.append("expect-stdout={!r} stdout={!r}".format(
+                    tc.get("expect-stdout"), tc.get("stdout")))
+            if tc.get("expect-stderr") is not None:
+                parts.append("expect-stderr={!r} stderr={!r}".format(
+                    tc.get("expect-stderr"), tc.get("stderr")))
             raise AfwAdaptiveError(
-                "test_script failure: {}".format(
-                    tc.get("test") or tc.get("description") or tc),
-                object=error_to_dict(err_obj) if err_obj else None,
+                "; ".join(parts),
+                object=error_to_dict(err_obj) if err_obj else tc,
             )
 
 

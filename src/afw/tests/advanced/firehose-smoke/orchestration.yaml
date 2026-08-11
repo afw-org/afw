@@ -1,0 +1,32 @@
+# Short firehose smoke for default test -j (blast parity basics).
+# Heavy soak leaves stay under src/afw/orchestrated-tests/07*.
+version: 1
+description: Firehose smoke — roundRobin, seed, maxRequests, maxFail
+host: afwfcgi
+afwfcgi:
+  threads: 2
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: "true"
+    sourceType: script
+    source: |
+      return true;
+
+  - name: arithmetic
+    sourceType: script
+    source: |
+      assert((1 + 2) == 3);
+      return 3;
+
+schedule:
+  - firehose:
+      maxRequests: 12
+      concurrency: 2
+      fromTests: ["true", arithmetic]
+      policy: roundRobin
+      seed: 7
+      stopOnError: false
+      maxFail: 0

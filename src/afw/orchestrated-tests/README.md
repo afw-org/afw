@@ -1,16 +1,35 @@
-# Orchestrated tests (sketch — runner not wired here yet)
+# Orchestrated tests
 
 **Status:** **Runner implemented** (`_afwdev/test/orchestrated/`). Marker
-**`orchestration.yaml` / `.json`**. Gate leaves also under
-`src/afw/tests/advanced/` (migrated from advanced-test). This tree is
-**outside** default `src/*/tests` discovery — use
-`afwdev test -T src/afw/orchestrated-tests/...` for sketches and firehose.
+**`orchestration.yaml` / `.json`**. Gate leaves under `src/afw/tests/advanced/`
+(and `tests_special/` when opted in). This tree is **outside** default
+`src/*/tests` discovery — use
+`afwdev test -T src/afw/orchestrated-tests/...` for sketches and long firehose.
 
 **Retired:** `advanced-test.yaml` marker and **`afwdev blast`** subcommand
 (use `schedule.firehose` on an orchestrated leaf instead).
 
 **Branch / campaign:** feature work on **`mgg-develop`** for heavy review
 before a big merge to **`develop`**. See [`beta-backlog.md`](../../../beta-backlog.md).
+
+## Golden capture (`expectResponse`)
+
+For progressive / REST bodies judged with `expectResponse: <<< goldens/…`:
+
+```bash
+# create or refresh goldens from actual response bodies
+afwdev test --capture-goldens -T src/afw/orchestrated-tests/03-progressive-to-response
+# review goldens/*.xafw (or whatever path), commit, then gate without capture:
+afwdev test -T src/afw/orchestrated-tests/03-progressive-to-response
+```
+
+Also: `AFWDEV_CAPTURE_GOLDENS=1`. Does not rewrite `//? expect` in test scripts.
+
+## Leaf stream expects
+
+`expect-stdout` / `expect-stderr` on a work item (hyphen keys) set
+`response:stdout` / `response:stderr` on the action and compare the JSON
+response properties. See gate leaf `src/afw/tests/advanced/expect-streams/`.
 
 ## Feed defaults (yes — helpful)
 
@@ -56,6 +75,8 @@ src/afw/orchestrated-tests/
 | **07-firehose-blast-style** | Blast A: timed random firehose (`blast -d`) |
 | **07b-firehose-catalog-pool** | Blast B: catalog pool (`blast -T catalog -m`) |
 | **07c-firehose-max-requests** | Blast C: maxRequests-only firehose (`blast -m`) |
+| **gate:** `tests/advanced/firehose-smoke` | Short firehose (roundRobin, maxFail) in default `test -j` |
+| **gate:** `tests/advanced/expect-streams` | Leaf `expect-stdout` / `expect-stderr` |
 | **08-action-any-function** | non-eval action shape (**later**) |
 | **09-multi-eval-lifetime** | Port of `tests/advanced/multi-eval-lifetime` |
 | **10-catalog-value-accessors** | Port of `tests/advanced/catalog-value-accessors` |
@@ -71,7 +92,10 @@ src/afw/orchestrated-tests/
 | Default package tests thrash | `fromTests` / later `includeGlob` over a test pool |
 | Stay out of `test -j` | Leaves live under `orchestrated-tests/` (or future load root) |
 
-Firehose success is **not** only per-request pass: sketch assumes `stopOnError: false` and a summary (error rate / crash). That reporting is part of blast parity still to design.
+Firehose pass criteria: optional `maxFail` / `maxFailRate`; else blast-like
+(tolerate mixed errors unless *all* requests fail). Summary includes
+`failRate` and `rps`. Policies: `random` (default) and `roundRobin`; `seed`
+applies to random.
 
 **Not ported as orchestration YAML:** `tests/advanced/afwfcgi_signal_shutdown`
 (Python special-case host test — stays as-is under advanced/).

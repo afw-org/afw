@@ -47,6 +47,7 @@ schedule:
       duration_s: 30
       concurrency: 4
       fromTests: [cheap-loop, catalog-touch, "true", arithmetic]
-      # seed: 42                 # reproducible RNG (later)
-      # policy: random           # or roundRobin
-      # stopOnError: false       # blast-style: keep going, report error rate
+      seed: 42
+      policy: random
+      stopOnError: false
+      # maxFailRate: 0.1         # optional: fail leaf if error fraction exceeds
