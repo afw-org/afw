@@ -41,16 +41,20 @@ So write-only progressive CBs **must** `afw_object_release` after successful wri
 
 ## Tests (core, no app)
 
-- `src/afw/tests/file_adapter/retrieve_objects.as`
+- **Gate** — `src/afw/tests/file_adapter/retrieve_objects.as`
   - `retrieve_objects_to_stream-progressive` — multi-object to_stream (release path already live)
   - `retrieve_objects_to_callback-count` — walk count vs materialize (no CB release yet)
   - `retrieve_objects_to_response-requires-x-afw` — CLI negative (no request / not x-afw)
-- Prefer valgrind on file_adapter retrieve when finishing a PR
+- **Wire proof (opt-in)** — `src/afw/tests-extra/03-progressive-to-response/`
+  - Orchestrated host `afwfcgi`, per-step `Accept: application/x-afw`
+  - Demuxed `expect-response` golden (`goldens/three_intermediates.payload.bin`)
+  - Seed → progressive `to_response` → count still healthy → cleanup
+  - Landed with **PR #167** (orchestrated tests / stream expects / `tests-extra`); not in default `test -j`
+  - Run: `afwdev test -T src/afw/tests-extra/03-progressive-to-response`
+- Prefer valgrind on file_adapter retrieve **and** the progressive leaf when finishing a PR
 
-### Deferred: positive `to_response` under real Accept
-
-Full progressive **wire** proof needs a request with **`Accept: application/x-afw`** and framed-body checks. That belongs with **afwdev advanced-test** improvements (`accept` on steps, `expect` = eval return only, separate expected output/response — discuss separately). Re-add a hermetic leaf after that harness lands; do not block this C slice on it.
+Harness background: PR #167 replaced advanced-test/blast; authors use `expect` for eval return only and `expect-response` / `expect-raw-response` for wire. See `src/afw/tests-extra/README.md` and `SCHEMA.md`.
 
 ## Branch
 
-`issue-127-progressive-retrieve-release` off `mgg-develop`.
+`issue-127-progressive-retrieve-release` rebased onto `mgg-develop` (includes #167).
