@@ -80,10 +80,15 @@ static afw_boolean_t impl_retrieve_cb(const afw_object_t *object,
 
     /* If there is an object, write it. */
     if (object) {
+        /*
+         * Progressive collection GET (issue #127): same CB-release contract
+         * as retrieve_objects_to_stream / to_response — write then release.
+         */
         afw_content_type_object_list_writer_write_object(ctx->writer, object,
             xctx->p, xctx);
         /** @fixme Flush is not really necessary, but might make object available to to client sooner. */
         /*afw_request_flush_response(ctx->request, xctx);*/
+        afw_object_release(object, xctx);
     }
 
     /* If there are not more objects, release writer. */

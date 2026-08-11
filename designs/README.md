@@ -46,6 +46,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`afwdev-blast.md`](afwdev-blast.md) | **Retired** `afwdev blast` → `schedule.firehose` + `-T tests-extra/`; **#13** still open for Jeremy knobs |
 | [`agent-support.md`](agent-support.md) | Ongoing support/dev partner — playbook stubs, capture checklist; hub is `AGENTS.md` |
 | (no pad) | **#158** graceful process stop — landed (PR #165); user note in `whats-new.md` |
+| [`issue-127-progressive-retrieve-release.md`](issue-127-progressive-retrieve-release.md) | **#127** — progressive retrieve write-then-release (to_stream / to_response / HTTP list); script callback residual |
 
 ## Conventions
 
