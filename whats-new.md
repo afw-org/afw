@@ -1238,7 +1238,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Process environment (single `current`, UTF-8/hexBinary) | #71 | #123 |
 | Materializing retrieve `maxObjects` | #49 | #128 (partial; shared with #90) |
 | `checkIndividualObjectReadAccess` wiring / tests | #90 | #128 (shared with #49) |
-| Progressive retrieve object release | #127 (closed) | this branch / PR → `mgg-develop` |
+| Progressive retrieve object release | #127 (closed) | PR **#168** → `mgg-develop` |
 | Long-running memory / OOM | #2 | #133 (partial α/β on `mgg-develop`; more open) |
 | C API Doxygen / builders + `--fulldev` | #1 | #132 |
 | Adapter index `current::` | #54 | #130 (partial; see #57) |

@@ -2,7 +2,7 @@
 
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#127](https://github.com/afw-org/afw/issues/127)  
-**Status:** **shipped** on `mgg-develop` (feature branch `issue-127-progressive-retrieve-release`; wire leaf from PR **#167**).  
+**Status:** **shipped** — PR **#168** → `mgg-develop` (wire leaf from PR **#167**).  
 **Related:** [#49](https://github.com/afw-org/afw/issues/49) maxObjects (materialize only), [#2](https://github.com/afw-org/afw/issues/2) long-running MM, [#17](https://github.com/afw-org/afw/issues/17) faces.
 
 ## Goal
