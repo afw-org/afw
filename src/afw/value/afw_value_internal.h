@@ -1035,6 +1035,15 @@ afw_value_block_evaluate_block(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Register core value infs during environment bootstrap (libafw only).
+ * @param xctx of caller.
+ *
+ * Called from afw_environment_register_core.c. Implemented in afw_value.c.
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_value_register_core_value_infs(afw_xctx_t *xctx);
+
 
 AFW_END_DECLARES
 

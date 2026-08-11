@@ -218,13 +218,8 @@ afw_flag_add_included_by(
     afw_xctx_t *xctx);
 
 
-/**
- * @internal
- * @brief Register early core flags.
- */
-AFW_DECLARE_INTERNAL(void)
-afw_flag_internal_early_register_core(afw_xctx_t *xctx);
-
+/* Early core flag registration: afw_flag_internal_early_register_core in
+ * afw_environment_internal.h (libafw bootstrap only). */
 
 AFW_END_DECLARES
 

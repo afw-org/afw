@@ -90,6 +90,31 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
+/**
+ * @brief Register early core flags (libafw bootstrap only).
+ * @param xctx of caller.
+ *
+ * Implemented in afw_flag.c; called from register_core.
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_flag_internal_early_register_core(afw_xctx_t *xctx);
+
+
+/**
+ * @brief Create nested env lock before pool is fully ready (libafw only).
+ * @param lock_id of lock.
+ * @param p for lock.
+ * @param xctx of caller.
+ *
+ * Implemented in afw_lock.c; called from environment create.
+ */
+AFW_DECLARE(const afw_lock_t *)
+afw_lock_create_environment_nested_lock(
+    const afw_utf8_t *lock_id,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

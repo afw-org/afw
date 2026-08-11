@@ -289,24 +289,7 @@ afw_stream_fd_open_and_create(
 
 
 
-/**
- * @internal
- * @brief Called internal to xctx to create xctx->stream_anchor.
- * @param xctx of caller.
- */
-AFW_DEFINE_INTERNAL(const afw_stream_anchor_t *)
-afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx);
-
-
-
-/**
- * @internal
- * @brief Release all xctx's streams
- * @param xctx of caller.
- */
-AFW_DEFINE_INTERNAL(void)
-afw_stream_internal_release_all_streams(afw_xctx_t *xctx);
-
+/* xctx stream anchor: afw_stream_internal_* in afw_xctx_internal.h */
 
 AFW_END_DECLARES
 

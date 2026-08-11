@@ -2237,15 +2237,8 @@ afw_value_decompile_assignment_pattern(
     afw_xctx_t *xctx);
 
 
-/**
- * @internal
- * @brief  Register core value infs.
- * @param xctx of caller.
- *
- * Called in afw_environment_register_core.c.
- */
-AFW_DECLARE(void)
-afw_value_register_core_value_infs(afw_xctx_t *xctx);
+/* Core value inf registration: afw_value_register_core_value_infs in
+ * afw_value_internal.h (libafw bootstrap only). */
 
 AFW_END_DECLARES
 

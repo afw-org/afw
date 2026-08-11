@@ -66,8 +66,21 @@ afw_internal.h    ← libafw .c only
 - `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` = not external API (no export declspec). Prefer those symbols in `*_internal.h`, not on the `afw.h` surface. If an extension/command legitimately needs a helper, promote to `AFW_DECLARE` and document under impl/public.
 - `afw_runtime_object_maps.h` stays public: extensions reference exported core `afw_runtime_inf_*` symbols.
 
+## Re-homes done (content cleanup)
+
+| Was on public header | Now |
+|----------------------|-----|
+| `afw_stack_internal_set_*` | `afw_xctx_internal.h` |
+| `afw_stream_internal_*` | `afw_xctx_internal.h` |
+| `afw_value_register_core_value_infs` | `afw_value_internal.h` |
+| `afw_flag_internal_early_register_core` | `afw_environment_internal.h` |
+| `afw_lock_create_environment_nested_lock` | `afw_environment_internal.h` |
+
+Still public with `@internal` layouts/comments (later passes): lock struct bodies, adapter id anchor, pool thread create comment, etc.
+
 ## Changelog
 
 | Date | Note |
 |------|------|
 | 2026-08-11 | Initial pad from `feature-afw-polish` brainstorm (layers, install goal, frozen common/minimal). |
+| 2026-08-11 | Install filter; Doxygen/overview/`afw.h` docs; first re-homes (stack/stream/value/flag/lock bootstrap). |
