@@ -1,15 +1,3 @@
-#!/usr/bin/env -S afw --syntax test_script
-//?
-//? testScript: rva_lock_copy_set.as
-//? customPurpose: tests_special — value accessor catalog (#149)
-//? description: Known copiesUnderLock accessors are registered
-//? sourceType: script
-//?
-//? test: lock_copy_keys_present
-//? description: stopping_* and reference_count accessors
-//? expect: 0
-//? source: ...
-
 const keys = [
     "stopping_adapter_instances",
     "stopping_authorization_handler_instances",

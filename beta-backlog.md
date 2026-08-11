@@ -103,7 +103,7 @@ Update this section if the plan changes.
 
 - **#149 closed** (2026-08-09): phases 1–3 via PRs [#160](https://github.com/afw-org/afw/pull/160), [#161](https://github.com/afw-org/afw/pull/161), [#162](https://github.com/afw-org/afw/pull/162) (`ad78aa62`).
   - Architecture pads; `_AdaptiveRuntimeValueAccessor_` registry; lock+copy **referenceCount**; objectOptions pool fix on permanent shells; lock-safe live **metrics/properties**.
-  - Tests: `catalog-value-accessors`, `tests_special` lifecycle + blast; object_options envreg cases.
+  - Tests: `catalog-value-accessors`, `tests-extra` lifecycle + blast; object_options envreg cases.
   - Residuals (full-registry materialize size, long-running pool pressure) under **#2**.
 - **afwdev follow-ons** (with #160 / after **#159**): `--tests-path`/`-T`, `--output`/`--output-format`, **#61** exceptions (closed).
 - **#13** stress: comment to Jeremy; left open.

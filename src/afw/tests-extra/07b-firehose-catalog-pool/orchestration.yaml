@@ -1,14 +1,10 @@
-# Blast replacement sketch B — catalog pool (like blast -T tests_special/catalog)
-#
-# Today:  afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 40
-# Future: leaf under a non-gate root; same engine as other orchestrated tests.
-#
-# Stresses: firehose + maxRequests, fromTests drawn from catalog-ish payloads,
-#           conf is minimal (live afw adapter only — no private fixtures).
+# Catalog/registry firehose pool (ex blast -T catalog / tests_special/catalog).
+# Opt-in: afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
+# Gate catalog contracts: src/afw/tests/advanced/catalog-value-accessors/
 
 version: 1
 description: >
-  Firehose over catalog/registry scripts — blast -T catalog direction
+  Firehose over catalog/registry scripts (value accessors + adapter anchors)
 
 host: afwfcgi
 afwfcgi:
@@ -28,6 +24,10 @@ tests:
     sourceType: script
     source: <<< tests/rva_stopping.as
 
+  - name: rva-lock-copy-set
+    sourceType: script
+    source: <<< tests/rva_lock_copy_set.as
+
   - name: adapter-afw-get
     sourceType: script
     source: <<< tests/adapter_afw_get.as
@@ -44,6 +44,7 @@ schedule:
       fromTests:
         - rva-retrieve
         - rva-stopping
+        - rva-lock-copy-set
         - adapter-afw-get
         - adapter-metrics
       stopOnError: false

@@ -23,7 +23,8 @@ afwdev test --capture-goldens -T src/afw/tests-extra/03-progressive-to-response
 |------|------|
 | `src/afw/tests/` | Default gate (`afwdev test -j`) |
 | `src/afw/tests-extra/` | **This tree** — opt-in extras (orchestration, firehose, …) |
-| `src/afw/tests_special/` | Older opt-in root (still valid with `-T`); prefer `tests-extra` for new leaves |
+
+(`tests_special/` was the previous opt-in root; content lives here now.)
 
 **Orchestration engine:** `_afwdev/test/orchestrated/` — marker
 `orchestration.yaml` / `.json`. Schema: [`SCHEMA.md`](SCHEMA.md).
@@ -89,12 +90,13 @@ src/afw/tests-extra/
 | **05-rest-collection** | REST feed (no source required) |
 | **06-parallel-wave** | schedule.parallel |
 | **07-firehose-blast-style** | Blast A: timed random firehose |
-| **07b-firehose-catalog-pool** | Blast B: catalog pool |
-| **07c-firehose-max-requests** | Blast C: maxRequests-only firehose |
+| **07b-firehose-catalog-pool** | Catalog/registry firehose (ex blast catalog corpus) |
+| **07c-firehose-max-requests** | maxRequests-only firehose |
 | **08-action-any-function** | non-eval action shape |
 | **09-multi-eval-lifetime** | Port of multi-eval-lifetime |
 | **10-catalog-value-accessors** | Port of catalog-value-accessors |
 | **11-mixed-accept-json-and-x-afw** | Document feed + per-test Accept |
+| **adapter-lifecycle** | #149 stop/start disposable adapter (ex tests_special) |
 
 **Gate smokes** (default `test -j`, not this tree):
 

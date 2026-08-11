@@ -1,5 +1,5 @@
-# Migrated from advanced-test.yaml → orchestration.yaml
-# Run: afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
+# Run: afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
+# Opt-in only (not in default test -j). Moved from tests-extra/.
 version: 1
 description: >
   Multi-request #149: stop/start disposable file adapter and check

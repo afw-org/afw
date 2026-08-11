@@ -961,8 +961,7 @@ _info_tests_path = {
         "Directory of tests to use (repeatable). When any --tests-path is "
         "given, only those trees are searched (not package src/*/tests). "
         "Default test -j never scans these roots — put extras under "
-        "src/afw/tests-extra/ (preferred) or src/afw/tests_special/ "
-        "(legacy opt-in)."
+        "src/afw/tests-extra/ (firehose, progressive, lab leaves)."
 }
 
 _info_test_capture_goldens = {

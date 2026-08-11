@@ -190,7 +190,6 @@ retired **`afwdev blast`** subcommand).
 |-------|------|
 | `src/afw/tests/…` | Default **gate** (`afwdev test -j`) — keep leaves short |
 | `src/afw/tests-extra/…` | **Opt-in extras** next to `tests/` — soaks, progressive, firehose, sketches (`-T` only) |
-| `src/afw/tests_special/…` | Older opt-in root; still works with `-T` |
 
 Schema and extra scenarios: `src/afw/tests-extra/README.md`. Gate smokes:
 `src/afw/tests/advanced/`.

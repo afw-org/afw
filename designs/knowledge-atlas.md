@@ -175,7 +175,7 @@
 | **Settled map** | Adapters as normalized object stores; model maps; request handlers; auth; retrieve limits (#49) |
 | **Day rules** | `afw-core-services`, `afw-model-adapter`, `afw-adapter-index` |
 | **Deep pads** | Issue/theme pads as needed; model optional `mappedAdapterId` (#109) in model rule |
-| **Probe** | Adapter CRUD via tests; `service_start/stop/restart/get`; lifecycle leaf under `tests_special` |
+| **Probe** | Adapter CRUD via tests; `service_start/stop/restart/get`; lifecycle leaf under `tests-extra` |
 | **Open** | Index create/txn residuals (#54/#57); more adapter types; retrieve paging vs progressive stream (not the same as #49 limit) |
 | **Gap** | No dedicated “adapter write path” playbook — use core-services + tests |
 
@@ -236,17 +236,17 @@
 | Surface | Job | Default gate? |
 |---------|-----|----------------|
 | `afwdev test -j` | Language/package suite + advanced leaves under `src/*/tests/` | **Yes** |
-| `afwdev test -T path` | Opt-in only (`tests_special/`, etc.) | Opt-in |
+| `afwdev test -T path` | Opt-in only (`tests-extra/`, etc.) | Opt-in |
 | `afwdev test --env-mode afwfcgi` | Conf-free `.as` on live `:8080/afw` | Optional |
-| `afwdev blast` | Load thrash at afwfcgi | **No** |
+| `schedule.firehose` leaves under `tests-extra/` | Load thrash at hermetic afwfcgi | **No** |
 
 ```bash
 ./afwdev build --cdev          # day-to-day C/Python
 ./afwdev build --fulldev       # PR-shaped / docs-aware
 afwdev test -j
 afwdev test --test-pattern catalog-value-accessors --show-all
-afwdev test -T src/afw/tests_special/adapter-lifecycle --show-all
-afwdev blast -T src/afw/tests_special/catalog -d 15s -c 4 -m 40
+afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
+afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
 ```
 
 After install, **restart afwfcgi** if attach tools talk to a long-lived process.
