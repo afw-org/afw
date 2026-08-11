@@ -2,6 +2,7 @@
 
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#127](https://github.com/afw-org/afw/issues/127)  
+**Status:** **shipped** on `mgg-develop` (feature branch `issue-127-progressive-retrieve-release`; wire leaf from PR **#167**).  
 **Related:** [#49](https://github.com/afw-org/afw/issues/49) maxObjects (materialize only), [#2](https://github.com/afw-org/afw/issues/2) long-running MM, [#17](https://github.com/afw-org/afw/issues/17) faces.
 
 ## Goal
@@ -55,6 +56,8 @@ So write-only progressive CBs **must** `afw_object_release` after successful wri
 
 Harness background: PR #167 replaced advanced-test/blast; authors use `expect` for eval return only and `expect-response` / `expect-raw-response` for wire. See `src/afw/tests-extra/README.md` and `SCHEMA.md`.
 
-## Branch
+## Branch / ship
 
-`issue-127-progressive-retrieve-release` rebased onto `mgg-develop` (includes #167).
+- Feature branch: `issue-127-progressive-retrieve-release` (rebased onto `mgg-develop` including #167).
+- User-facing note: `whats-new.md` (progressive retrieve release).
+- Residuals stay on **#2** / **#17** (to_callback faces; elevated RC accounting).

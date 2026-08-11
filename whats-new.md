@@ -30,6 +30,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Qualifier snapshots (#9)**](#list-active-qualified-variables-issue-9) | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
 | [**Multi-frame `::` get**](#multi-frame-get-aligned-with-snapshots) | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with #15 work) |
 | [**Retrieve arrays (#49)**](#materializing-retrieve-maxobjects-issue-49) | Optional **`maxObjects`** on materializing `retrieve_objects` / `…_with_uri` (default **100**, **0** = unlimited; over max → **`payload_too_large`**) |
+| [**Progressive retrieve release (#127)**](#progressive-retrieve-release-issue-127) | Write-only progressive paths **release each object after encode/flush** (`to_response` / `to_stream` / HTTP collection list) so large sets do not hold every adapter object until the request ends |
 | [**Admin / JS client**](#admin-afwclient-after-the-default-of-100) | `AfwModel` sends **`maxObjects: 0`** for full metadata catalogs so admin loads after the #49 default of 100 |
 | [**Adapter auth (#90)**](#adapter-getretrieve-authorization-issue-90) | `checkIndividualObjectReadAccess` wiring fixed + tests (action **`read`** as well as **`query`**) |
 | [**File streams (#103)**](#file-streams-open_file-and-friends) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
@@ -626,7 +627,7 @@ These APIs are for large result sets **without** materializing one array on the 
 - `retrieve_objects_to_stream` / `…_to_stream`
 - `retrieve_objects_to_callback` / `…_to_callback`
 
-They still use the same adapter session underneath; only the **array-building** functions enforce `maxObjects`. (Safe release after progressive write is tracked separately as issue **#127**. Broader long-running memory / OOM handling is issue **#2**.)
+They still use the same adapter session underneath; only the **array-building** functions enforce `maxObjects`. Safe **release after write** on progressive write paths is issue **#127** (next section). Broader long-running memory / OOM handling is issue **#2**.
 
 `maxObjects` is **not** an adapter conf property and **not** RQL/client paging—those remain longer-term #49 work.
 
@@ -640,6 +641,24 @@ Core metadata catalogs (object types, etc.) are larger than 100. Materializing r
 - `retrieveObjects` (default; callers can still pass a positive limit)
 
 Rebuild/install the admin app (or full JS install) and hard-refresh the browser. Progressive `retrieve_objects_to_response` (already used by the Objects browser) remains the better pattern for large **instance** data; that client story is still open under #49.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Progressive retrieve release (issue #127)
+
+**Issue #127** — **closed** when this lands on `mgg-develop`.
+
+Write-only progressive retrieve callbacks **release each object after a successful synchronous encode/flush**, matching the long-standing `to_stream` ownership contract:
+
+- `retrieve_objects_to_response` / `retrieve_objects_with_uri_to_response` (re-enabled release after intermediate write)
+- `retrieve_objects_to_stream` / `…_to_stream` (already released; unchanged contract)
+- HTTP adapter collection GET object-list writer (aligned)
+
+**Script `to_callback`** does **not** release after the callback returns (the script may retain the object face). Materializing `retrieve_objects` still holds references in the result array by design.
+
+No Adaptive API change for callers: do not use an object after a progressive write callback has returned unless you held your own reference. Hermetic wire proof: `afwdev test -T src/afw/tests-extra/03-progressive-to-response` (orchestrated harness from PR **#167**).
 
 [↑ Highlights](#highlights)
 
@@ -1219,7 +1238,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Process environment (single `current`, UTF-8/hexBinary) | #71 | #123 |
 | Materializing retrieve `maxObjects` | #49 | #128 (partial; shared with #90) |
 | `checkIndividualObjectReadAccess` wiring / tests | #90 | #128 (shared with #49) |
-| Progressive retrieve object release | #127 | — (open follow-up) |
+| Progressive retrieve object release | #127 (closed) | this branch / PR → `mgg-develop` |
 | Long-running memory / OOM | #2 | #133 (partial α/β on `mgg-develop`; more open) |
 | C API Doxygen / builders + `--fulldev` | #1 | #132 |
 | Adapter index `current::` | #54 | #130 (partial; see #57) |
