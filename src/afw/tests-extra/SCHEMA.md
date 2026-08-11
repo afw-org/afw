@@ -14,7 +14,7 @@ This is the **full-ish** shape we want to aim at. First implementation should **
 |-------|----------|---------|
 | `version` | no | Schema version integer; default `1` if omitted |
 | `description` | no | One-line summary for `--list` / failure headers |
-| `host` | **yes** | Host family. v1: `afwfcgi`. Later: `afw-local`, … |
+| `host` | **yes** | Host family: `afwfcgi` (FCGI) or `local` / `afw-local` (`afw --local` stdin) |
 | `afwfcgi` | no | Host-specific block (only when `host: afwfcgi`) |
 | `timeout_s` | no | Whole-leaf wall clock (default e.g. 120) |
 | `feed` | no | **Default** feed for tests (overridable per item) |
@@ -245,6 +245,7 @@ Summary in `stepTimings[].firehose`: total, ok, fail, failRate, rps, policy.
 | Root | When |
 |------|------|
 | `src/*/tests/**/orchestration.yaml` | Day-to-day **gate** candidates (default `afwdev test -j`) |
+| `src/afw_command/tests/local-mode/` | Gate: `host: local` (`afw --local` stdin protocol) |
 | `src/afw/tests-extra/**` (this tree) | **Opt-in** extras next to `tests/` — firehose, progressive, sketches; **`--tests-path` / `-T` only** |
 
 One engine; intensity = **where the leaf lives** + schedule, not a second subcommand forever.

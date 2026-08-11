@@ -7,6 +7,7 @@ Returns (response, error, debug) compatible with afwdev test parse_test_run.
 
 import os
 import random
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -33,6 +34,7 @@ from _afwdev.test.orchestrated.load import (
 )
 from _afwdev.test.orchestrated.fcgi_client import fcgi_request
 from _afwdev.test.orchestrated.hosts import afwfcgi as afwfcgi_host
+from _afwdev.test.orchestrated.hosts import local as local_host
 
 
 def _capture_goldens_enabled(options):
@@ -73,11 +75,13 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
     else:
         work_dir = os.path.dirname(marker_path)
 
+    host_kind = doc.get("host") or "afwfcgi"
     conf_path = os.path.join(work_dir, "afw.conf")
-    if not os.path.isfile(conf_path):
+    # afwfcgi needs leaf conf; afw --local has a built-in default conf.
+    if host_kind == "afwfcgi" and not os.path.isfile(conf_path):
         err = AfwdevRunnerError(
-            "orchestrated-test requires afw.conf in leaf/work dir: "
-            + work_dir)
+            "orchestrated-test host afwfcgi requires afw.conf in leaf/work "
+            "dir: " + work_dir)
         return _fail_response("orchestrated-test", err), None, None
 
     description = doc.get("description") or os.path.basename(work_dir)
@@ -92,22 +96,33 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
     handle = None
     t0 = time.time()
     try:
-        handle = afwfcgi_host.start_afwfcgi(
-            work_dir,
-            threads=threads,
-            under_valgrind=under_valgrind,
-            options=options,
-            ready_timeout_s=min(30.0, timeout_s),
-        )
-        debug_parts.append("started: " + " ".join(handle["argv"]))
-        debug_parts.append("socket: " + handle["socket_path"])
+        socket_path = None
+        if host_kind == "afwfcgi":
+            handle = afwfcgi_host.start_afwfcgi(
+                work_dir,
+                threads=threads,
+                under_valgrind=under_valgrind,
+                options=options,
+                ready_timeout_s=min(30.0, timeout_s),
+            )
+            socket_path = handle["socket_path"]
+            debug_parts.append("started: " + " ".join(handle["argv"]))
+            debug_parts.append("socket: " + socket_path)
+        else:
+            debug_parts.append("host: local (afw --local 1 per work item)")
 
         step_timings = []
         schedule = doc.get("schedule")
         if not schedule:
-            schedule = [{"sequential": [
-                t["name"] for t in doc["tests"] if not t.get("skip")
-            ]}]
+            # Include skipped names so counts stay stable; runner no-ops skip.
+            schedule = [{"sequential": [t["name"] for t in doc["tests"]]}]
+
+        ctx = {
+            "host_kind": host_kind,
+            "socket_path": socket_path,
+            "under_valgrind": under_valgrind,
+            "conf_path": conf_path if os.path.isfile(conf_path) else None,
+        }
 
         for phase in schedule:
             if time.time() - t0 > timeout_s:
@@ -146,13 +161,20 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                             _debug_blob(debug_parts, handle),
                         )
                     if item.get("skip"):
+                        step_timings.append({
+                            "name": name, "ms": 0, "passed": True,
+                            "skip": True,
+                        })
                         continue
                     _run_named_test(
-                        item, work_dir, source_leaf, handle["socket_path"],
-                        remaining, doc_feed, debug_parts, step_timings,
-                        description, options, fail_fast=True)
+                        item, work_dir, source_leaf, ctx, remaining,
+                        doc_feed, debug_parts, step_timings, description,
+                        options, fail_fast=True)
 
             elif kind == "parallel":
+                if host_kind == "local":
+                    raise AfwdevRunnerError(
+                        "schedule parallel is not supported for host local")
                 if not isinstance(body, dict):
                     raise AfwdevRunnerError(
                         "schedule parallel body must be a mapping")
@@ -167,17 +189,20 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                     if not item.get("skip"):
                         items.append(item)
                 _run_parallel(
-                    items, n, work_dir, source_leaf, handle["socket_path"],
-                    remaining, doc_feed, debug_parts, step_timings, options)
+                    items, n, work_dir, source_leaf, ctx, remaining,
+                    doc_feed, debug_parts, step_timings, options)
 
             elif kind == "firehose":
+                if host_kind == "local":
+                    raise AfwdevRunnerError(
+                        "schedule firehose is not supported for host local")
                 if not isinstance(body, dict):
                     raise AfwdevRunnerError(
                         "schedule firehose body must be a mapping")
                 _run_firehose(
-                    body, tests_by_name, work_dir, source_leaf,
-                    handle["socket_path"], remaining, doc_feed, debug_parts,
-                    step_timings, description, options)
+                    body, tests_by_name, work_dir, source_leaf, ctx,
+                    remaining, doc_feed, debug_parts, step_timings,
+                    description, options)
 
             elif kind == "repeat":
                 if not isinstance(body, dict):
@@ -195,16 +220,16 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
                             raise AfwdevRunnerError(
                                 "orchestrated-test timed out during repeat")
                         _run_named_test(
-                            item, work_dir, source_leaf, handle["socket_path"],
-                            rem, doc_feed, debug_parts, step_timings,
-                            description, options, fail_fast=True)
+                            item, work_dir, source_leaf, ctx, rem,
+                            doc_feed, debug_parts, step_timings, description,
+                            options, fail_fast=True)
 
             else:
                 raise AfwdevRunnerError(
                     "unknown schedule phase {!r}".format(kind))
 
-        if under_valgrind and afwfcgi_host.valgrind_errors_in_log(
-                handle.get("log_path")):
+        if (host_kind == "afwfcgi" and under_valgrind and handle and
+                afwfcgi_host.valgrind_errors_in_log(handle.get("log_path"))):
             err = AfwdevProcessError(
                 "Valgrind error(s) detected in afwfcgi stderr")
             return (
@@ -225,6 +250,12 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
             e,
             _debug_blob(debug_parts, handle),
         )
+    except local_host.AfwLocalHostError as e:
+        return (
+            _fail_response(description, e, None),
+            e,
+            _debug_blob(debug_parts, handle),
+        )
     except Exception as e:
         wrapped = wrap_exception(e)
         return (
@@ -237,14 +268,14 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
             afwfcgi_host.stop_afwfcgi(handle)
 
 
-def _run_named_test(item, work_dir, source_leaf, socket_path, timeout,
+def _run_named_test(item, work_dir, source_leaf, ctx, timeout,
                     doc_feed, debug_parts, step_timings, description, options,
                     fail_fast=True):
     name = item["name"]
     msg.debug("orchestrated-test: " + name)
     t0 = time.time()
     try:
-        _run_test_item(item, work_dir, source_leaf, socket_path, timeout,
+        _run_test_item(item, work_dir, source_leaf, ctx, timeout,
                        doc_feed, debug_parts, options)
         ms = round((time.time() - t0) * 1000)
         step_timings.append({"name": name, "ms": ms, "passed": True})
@@ -270,7 +301,7 @@ def _run_named_test(item, work_dir, source_leaf, socket_path, timeout,
     return None
 
 
-def _run_parallel(items, n, work_dir, source_leaf, socket_path, timeout,
+def _run_parallel(items, n, work_dir, source_leaf, ctx, timeout,
                   doc_feed, debug_parts, step_timings, options):
     if not items:
         return
@@ -280,7 +311,7 @@ def _run_parallel(items, n, work_dir, source_leaf, socket_path, timeout,
     def one(item):
         t0 = time.time()
         try:
-            _run_test_item(item, work_dir, source_leaf, socket_path, timeout,
+            _run_test_item(item, work_dir, source_leaf, ctx, timeout,
                            doc_feed, debug_parts, options)
             return item["name"], True, round((time.time() - t0) * 1000), None
         except Exception as e:
@@ -305,7 +336,7 @@ def _run_parallel(items, n, work_dir, source_leaf, socket_path, timeout,
             cause=err)
 
 
-def _run_firehose(body, tests_by_name, work_dir, source_leaf, socket_path,
+def _run_firehose(body, tests_by_name, work_dir, source_leaf, ctx,
                   timeout, doc_feed, debug_parts, step_timings, description,
                   options):
     names = body.get("fromTests") or []
@@ -364,7 +395,7 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, socket_path,
 
     def one(item):
         try:
-            _run_test_item(item, work_dir, source_leaf, socket_path,
+            _run_test_item(item, work_dir, source_leaf, ctx,
                            max(5.0, timeout), doc_feed, debug_parts, options)
             return True, None
         except Exception as e:
@@ -488,9 +519,10 @@ def _run_firehose(body, tests_by_name, work_dir, source_leaf, socket_path,
         )
 
 
-def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
+def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
                    debug_parts, options=None):
     options = options or {}
+    ctx = ctx or {}
     feed = merge_feed(doc_feed, item.get("feed"))
     kind = feed.get("kind") or "action"
     # copy so expansions do not mutate the loaded document
@@ -498,6 +530,7 @@ def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
     name = item.get("name")
     if not source_leaf:
         source_leaf = work_dir
+    socket_path = ctx.get("socket_path")
 
     # Expand side-channel expects (literal text / <<< files)
     for key in ("expect-stdout", "expect-stderr"):
@@ -506,6 +539,11 @@ def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
                 item[key], work_dir, item_name=name, what=key)
             item[key] = text if text is not None else ""
 
+    if kind == "local":
+        _run_local(item, work_dir, source_leaf, ctx, timeout, debug_parts,
+                   options)
+        return
+
     if kind == "rest":
         _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir,
                   source_leaf, options)
@@ -513,6 +551,10 @@ def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
 
     if kind != "action":
         raise AfwdevRunnerError("unsupported feed.kind {!r}".format(kind))
+
+    if not socket_path:
+        raise AfwdevRunnerError(
+            "feed.kind action requires host afwfcgi (no socket)")
 
     source = resolve_source_text(item, work_dir)
     source_type = item.get("sourceType") or "script"
@@ -640,6 +682,61 @@ def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
             debug_parts)
 
 
+def _run_local(item, work_dir, source_leaf, ctx, timeout, debug_parts,
+               options):
+    """feed.kind local: raw stdin protocol for afw --local."""
+    name = item.get("name")
+    # Binary stdin body (<<< path or UTF-8 text)
+    if item.get("sourcePath") or (
+            isinstance(item.get("source"), str) and
+            parse_triple_lt_path(item.get("source"))):
+        raw = item.get("source")
+        if item.get("sourcePath"):
+            path = os.path.join(work_dir, item["sourcePath"])
+            if not os.path.isfile(path):
+                raise AfwdevRunnerError(
+                    "test {!r}: sourcePath not found: {}".format(name, path))
+            with nfc.open(path, "rb") as fd:
+                input_bytes = fd.read()
+        else:
+            input_bytes, _ = resolve_file_bytes(
+                raw, work_dir, item_name=name, what="source")
+    else:
+        src = item.get("source")
+        if src is None:
+            raise AfwdevRunnerError(
+                "test {!r}: local feed requires source".format(name))
+        if isinstance(src, bytes):
+            input_bytes = src
+        else:
+            input_bytes = str(src).encode("utf-8")
+
+    stdout = local_host.run_afw_local(
+        input_bytes,
+        work_dir,
+        conf_path=ctx.get("conf_path"),
+        under_valgrind=bool(ctx.get("under_valgrind")),
+        timeout=timeout,
+    )
+    debug_parts.append(
+        "local {!r} stdout_len={}".format(name, len(stdout)))
+
+    # Debug copy in work dir (like historical local_test_*_actual.txt)
+    try:
+        actual_path = os.path.join(
+            work_dir, "local_actual_{}.bin".format(
+                re.sub(r"[^\w.-]+", "_", str(name))))
+        with nfc.open(actual_path, "wb") as fd:
+            fd.write(stdout)
+    except OSError:
+        pass
+
+    if item.get("expectResponse") is not None:
+        _check_expect_response(
+            item, stdout, work_dir, source_leaf, options, debug_parts,
+            normalize=local_host.normalize_local_stdout)
+
+
 def _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir=None,
               source_leaf=None, options=None):
     options = options or {}
@@ -743,12 +840,15 @@ def _write_golden(path, data, debug_parts, name):
 
 
 def _check_expect_response(item, actual_bytes, work_dir, source_leaf, options,
-                           debug_parts):
+                           debug_parts, normalize=None):
     """
     Exact-byte compare of expectResponse (inline or <<< file).
 
     With --capture-goldens / AFWDEV_CAPTURE_GOLDENS=1 and a <<< path, write
     actual_bytes to the source leaf (and work_dir) and pass (update workflow).
+
+    normalize: optional callable(bytes) -> bytes applied to both sides before
+    compare (e.g. afw --local version banner). Capture still writes raw actual.
     """
     name = item.get("name")
     raw = item.get("expectResponse")
@@ -783,7 +883,9 @@ def _check_expect_response(item, actual_bytes, work_dir, source_leaf, options,
         else:
             expected_b = str(raw).encode("utf-8")
 
-    if expected_b != actual_bytes:
+    left = normalize(actual_bytes) if normalize else actual_bytes
+    right = normalize(expected_b) if normalize else expected_b
+    if left != right:
         hint = ""
         if rel is not None:
             hint = (

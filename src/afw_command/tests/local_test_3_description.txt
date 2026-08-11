@@ -1,1 +1,0 @@
-Issue #71: under afw --local, process env retrieve returns one current; environment:: matches get_object HOME; multi-request properties via get_object.

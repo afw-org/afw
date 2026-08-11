@@ -67,10 +67,13 @@ def load_orchestration_document(marker_path):
     if not host:
         raise OrchestrationLoadError(
             "orchestration requires 'host' field: " + marker_path)
-    if host != "afwfcgi":
+    # afwfcgi = FastCGI hermetic server; local / afw-local = afw --local stdin
+    if host not in ("afwfcgi", "local", "afw-local"):
         raise OrchestrationLoadError(
-            "orchestration host {!r} not supported (only 'afwfcgi'): "
-            "{}".format(host, marker_path))
+            "orchestration host {!r} not supported "
+            "(afwfcgi, local, afw-local): {}".format(host, marker_path))
+    if host == "afw-local":
+        raw["host"] = "local"
 
     tests = raw.get("tests")
     if not isinstance(tests, list) or len(tests) == 0:
@@ -104,7 +107,8 @@ def load_orchestration_document(marker_path):
         item_feed = item.get("feed") if isinstance(item.get("feed"), dict) else {}
         doc_feed = raw.get("feed") if isinstance(raw.get("feed"), dict) else {}
         kind = item_feed.get("kind") or doc_feed.get("kind") or "action"
-        is_rest = (kind == "rest")
+        # REST: method/path only. local: needs stdin body (source).
+        needs_source = kind not in ("rest",)
 
         has_source = item.get("source") is not None
         has_path = item.get("sourcePath") is not None
@@ -112,8 +116,7 @@ def load_orchestration_document(marker_path):
             raise OrchestrationLoadError(
                 "tests[{}] ({!r}) must not set both 'source' and 'sourcePath': "
                 "{}".format(i, name, marker_path))
-        # REST work items are method/path only — no eval payload required.
-        if not is_rest and not has_source and not has_path:
+        if needs_source and not has_source and not has_path:
             raise OrchestrationLoadError(
                 "tests[{}] ({!r}) requires 'source' or 'sourcePath' "
                 "(unless feed.kind is rest): {}".format(i, name, marker_path))
@@ -138,7 +141,10 @@ def load_orchestration_document(marker_path):
             raise OrchestrationLoadError(
                 "document 'feed' must be a mapping: " + marker_path)
     else:
-        raw["feed"] = {"kind": "action", "accept": "application/json"}
+        if raw.get("host") == "local":
+            raw["feed"] = {"kind": "local"}
+        else:
+            raw["feed"] = {"kind": "action", "accept": "application/json"}
     if "timeout_s" in raw and raw["timeout_s"] is not None:
         try:
             raw["timeout_s"] = float(raw["timeout_s"])

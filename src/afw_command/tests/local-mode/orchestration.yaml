@@ -1,0 +1,35 @@
+# Converted from local_test.py (afw --local stdin protocol).
+# Run: afwdev test --srcdir-pattern afw_command --test-pattern local-mode
+#
+# host local: one afw --local 1 process per work item; source is raw stdin
+# bytes; expectResponse is raw stdout (banner version-normalized on compare).
+
+version: 1
+description: afw --local protocol (stdin) including application/x-afw
+host: local
+timeout_s: 60
+feed:
+  kind: local
+
+tests:
+  - name: directives-switch
+    description: >
+      Switch between local-mode directives (skipped until ignore ranges for
+      times/UUIDs exist — see goldens/case-1.out and historical
+      local_test_1_ignore.txt note)
+    skip: true
+    source: <<< inputs/case-1.bin
+    expectResponse: <<< goldens/case-1.out
+
+  - name: evaluate-x-afw
+    description: >
+      ++afw-local-mode-evaluate with ACCEPT application/x-afw
+    source: <<< inputs/case-2.bin
+    expectResponse: <<< goldens/case-2.out
+
+  - name: issue-71-env
+    description: >
+      Issue #71 — process env retrieve is one current; environment:: matches
+      get_object HOME; multi-request properties via get_object
+    source: <<< inputs/case-3.bin
+    expectResponse: <<< goldens/case-3.out
