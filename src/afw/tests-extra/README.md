@@ -51,6 +51,21 @@ Also: `AFWDEV_CAPTURE_GOLDENS=1`. Does not rewrite `//? expect` in test scripts.
 `response:stdout` / `response:stderr` on the action and compare the JSON
 response properties. Gate leaf: `src/afw/tests/advanced/expect-streams/`.
 
+With **`Accept: application/x-afw`**, prefer demux keys (see SCHEMA):
+
+| Key | Meaning |
+|-----|---------|
+| `expect-response` | Concatenated **payloads** of streamId `response` (x-afw only) |
+| `expect-raw-response` | Full wire body (all frames). Alias: `expectResponse` |
+| `expect-stdout` / `expect-<streamId>` | Same idea per streamId |
+
+## Host local (`afw --local`)
+
+Same authoring as single-thread FCGI for `feed.kind: action` (`source` /
+`accept` / expects). Gate suite: `src/afw_command/tests/local-mode/`.
+Raw multi-segment stdin: `feed.kind: local`. Optional leaf `afw.conf` →
+`afw -f`. Under `--env-mode valgrind`, the host is wrapped (with timeouts).
+
 ## Feed defaults
 
 Document-level **`feed:`** is a **default** for every work item. Each test may

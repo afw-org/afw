@@ -153,15 +153,50 @@ class Session(object):
         
         if self._url == 'local':
             if self._fifo:
-                # close the named pipe
-                self._fifo.close()
+                # close the named pipe (reader side) so afw sees EOF
+                try:
+                    self._fifo.close()
+                except Exception:
+                    pass
+                self._fifo = None
 
-            # wait for process to exit
+            # Reap the local afw process. Under heavy parallel load (e.g.
+            # afwdev test --env-mode valgrind -j) terminate+wait with no
+            # timeout has been observed to hang the entire test pool.
             if self._localSession:
-                self._localSession.terminate()
-                self._localSession.wait()
+                proc = self._localSession
+                self._localSession = None
+                try:
+                    if proc.stdin:
+                        try:
+                            proc.stdin.close()
+                        except Exception:
+                            pass
+                    if proc.poll() is None:
+                        proc.terminate()
+                        try:
+                            proc.wait(timeout=5.0)
+                        except subprocess.TimeoutExpired:
+                            proc.kill()
+                            try:
+                                proc.wait(timeout=2.0)
+                            except subprocess.TimeoutExpired:
+                                pass
+                except Exception:
+                    try:
+                        if proc.poll() is None:
+                            proc.kill()
+                    except Exception:
+                        pass
 
-            if os.path.exists(self._filename):
-                os.remove(self._filename)
-                os.rmdir(self._tmpdir)
+            if self._filename and os.path.exists(self._filename):
+                try:
+                    os.remove(self._filename)
+                except OSError:
+                    pass
+            if self._tmpdir and os.path.isdir(self._tmpdir):
+                try:
+                    os.rmdir(self._tmpdir)
+                except OSError:
+                    pass
 

@@ -99,12 +99,14 @@ def run_orchestrated_test(marker_path, options, testEnvironment=None,
     try:
         socket_path = None
         if host_kind == "afwfcgi":
+            # Valgrind cold-start is much slower, especially under -j load.
+            ready_cap = 120.0 if under_valgrind else 30.0
             handle = afwfcgi_host.start_afwfcgi(
                 work_dir,
                 threads=threads,
                 under_valgrind=under_valgrind,
                 options=options,
-                ready_timeout_s=min(30.0, timeout_s),
+                ready_timeout_s=min(ready_cap, timeout_s),
             )
             socket_path = handle["socket_path"]
             debug_parts.append("started: " + " ".join(handle["argv"]))
