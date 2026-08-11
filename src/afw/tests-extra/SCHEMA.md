@@ -146,23 +146,17 @@ No Adaptive function; judges HTTP-ish status + body.
 
 | Field | Meaning |
 |-------|---------|
-| `expect` | Same *idea* as test_script `expect`: Adaptive source for expected **return value**, or `error` / `error:…` / `undefined`. Applied when the feed returns an Adaptive evaluation result (action eval path). |
-| `expect-stdout` / `expect-stderr` | **Literal** utf-8 for Adaptive `stdout` / `stderr` (not Adaptive-eval). Hyphen keys. Leaf-level: runner sets `response:stdout` / `response:stderr` on the action and compares response properties. Embedded `//?` form is checked inside `test_script` runtime. |
-| `expectResponse` | Raw expected **response body** (string or `<<< file`, **exact bytes**). For REST and progressive/x-afw frames. |
+| `expect` | Adaptive return value (JSON Accept path; best-effort from x-afw demux). |
+| `expect-<streamId>` | **x-afw:** concatenated **payloads** for that streamId (no frame headers). e.g. `expect-response`, `expect-stdout`. **JSON:** `expect-stdout` / `expect-stderr` use response **properties** (flags). `expect-response` is **x-afw only**. |
+| `expect-raw-<streamId>` | **x-afw:** framed content for that stream only (`header\\npayload` concat). |
+| `expect-raw-response` | Full raw body (all streams + framing). Alias: **`expectResponse`**. On local, compares full stdout (banner-normalized). |
 | `expectStatus` | HTTP-ish status code (REST); default 2xx success if omitted |
-| `decode` | later: e.g. `x-afw-payloads` before comparing `expectResponse` |
 
-### Golden capture (`expectResponse` + `<<<`)
+### Golden capture (`<<<` + `--capture-goldens`)
 
-1. Author `expectResponse: <<< goldens/name.bin` (path relative to the leaf).  
-2. Run once with capture:  
-   `afwdev test --capture-goldens -T path/to/leaf`  
-   (or `AFWDEV_CAPTURE_GOLDENS=1`). Writes the actual response body to that path.  
-3. Review the file, commit it, re-run **without** capture for exact-byte gate.  
+Writes the **form matching the key** (payloads for `expect-response`, full wire for `expect-raw-response`). Path relative to the leaf.
 
-Missing golden without capture → clear error with the same capture command hint.
-
-For `sourceType: test_script`, prefer judging via embedded case `passed` flags in the result object, optionally plus outer `expect` / stream expects.
+For `sourceType: test_script`, prefer judging via embedded case `passed` flags, optionally plus outer stream expects.
 
 ### Per-item feed override
 

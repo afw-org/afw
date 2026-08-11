@@ -35,6 +35,7 @@ from _afwdev.test.orchestrated.load import (
 from _afwdev.test.orchestrated.fcgi_client import fcgi_request
 from _afwdev.test.orchestrated.hosts import afwfcgi as afwfcgi_host
 from _afwdev.test.orchestrated.hosts import local as local_host
+from _afwdev.test.orchestrated import x_afw_demux
 
 
 def _capture_goldens_enabled(options):
@@ -532,12 +533,8 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
         source_leaf = work_dir
     socket_path = ctx.get("socket_path")
 
-    # Expand side-channel expects (literal text / <<< files)
-    for key in ("expect-stdout", "expect-stderr"):
-        if item.get(key) is not None:
-            text, _rel = resolve_file_text(
-                item[key], work_dir, item_name=name, what=key)
-            item[key] = text if text is not None else ""
+    # Expand stream/raw expects (literal text or <<< files → keep as str/bytes later)
+    _expand_stream_expect_values(item, work_dir, name)
 
     if kind == "local":
         # Raw afw --local stdin protocol (escape hatch / multi-directive sessions)
@@ -581,13 +578,9 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
     if function == "evaluate":
         action = {"function": "evaluate", "expression": source}
 
-    # Leaf-level stream expects → response:stdout / response:stderr flags so
-    # Adaptive captures utf-8 on the response object (not process FDs).
-    flags = []
-    if item.get("expect-stdout") is not None:
-        flags.append("response:stdout")
-    if item.get("expect-stderr") is not None:
-        flags.append("response:stderr")
+    accept = feed.get("accept") or "application/json"
+    # Stream expects → response:* flags (JSON properties or x-afw :stream frames)
+    flags = x_afw_demux.flags_for_stream_expects(item, accept)
     if flags:
         action["_flags_"] = list(flags)
 
@@ -595,7 +588,6 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
     if flags:
         body_obj["_flags_"] = list(flags)
     body = nfc.json_dumps(body_obj)
-    accept = feed.get("accept") or "application/json"
     host_kind = ctx.get("host_kind") or "afwfcgi"
 
     if host_kind == "local":
@@ -629,12 +621,18 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
         )
     )
 
-    if accept.strip().lower() == "application/x-afw":
-        _check_x_afw_response(
-            item, result, debug_parts, work_dir, source_leaf, options)
+    body_bytes = result.get("body") or b""
+    if accept.strip().lower() == "application/x-afw" or \
+            "x-afw" in accept.strip().lower():
+        _judge_x_afw_body(
+            item, body_bytes, work_dir, source_leaf, options, debug_parts,
+            name, source_type, syntax, status_code=result.get("status_code"))
         return
 
-    body_text = (result.get("body") or b"").decode("utf-8", errors="replace")
+    # JSON Accept — expect-response is not valid (option B)
+    _reject_xafw_only_expects_on_json(item, name)
+
+    body_text = body_bytes.decode("utf-8", errors="replace")
     try:
         response = nfc.json_loads(body_text) if body_text.strip() else {}
     except Exception as e:
@@ -647,11 +645,8 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
     _judge_action_json_response(
         item, response, body_text, name, source_type, syntax)
 
-    if item.get("expectResponse") is not None:
-        # JSON body as bytes for exact golden compare when requested
-        _check_expect_response(
-            item, result.get("body") or b"", work_dir, source_leaf, options,
-            debug_parts)
+    _judge_raw_full_body_expects(
+        item, body_bytes, work_dir, source_leaf, options, debug_parts)
 
 
 def _judge_action_json_response(item, response, body_text, name, source_type,
@@ -706,12 +701,162 @@ def _judge_action_json_response(item, response, body_text, name, source_type,
     _check_side_stream_expects(item, response, name)
 
 
+def _expand_stream_expect_values(item, work_dir, name):
+    """Resolve <<< for expect-* / expectResponse keys when the file exists."""
+    for key in list(item.keys()):
+        if key == "expect":
+            continue
+        if key != "expectResponse" and not (
+                isinstance(key, str) and key.startswith("expect-")):
+            continue
+        if item[key] is None:
+            continue
+        rel = parse_triple_lt_path(item[key]) if isinstance(item[key], str) else None
+        if rel is None:
+            continue
+        try:
+            text_val, _rel = resolve_file_text(
+                item[key], work_dir, item_name=name, what=key, missing_ok=True)
+            if text_val is not None:
+                item[key] = text_val
+        except Exception:
+            pass
+
+
+def _reject_xafw_only_expects_on_json(item, name):
+    if item.get("expect-response") is not None:
+        raise AfwdevRunnerError(
+            "test {!r}: expect-response is only for Accept application/x-afw "
+            "(demuxed response stream). For JSON use expect / expect-stdout, "
+            "or expect-raw-response for the full body.".format(name))
+
+
+def _expected_to_bytes(expected):
+    if expected is None:
+        return b""
+    if isinstance(expected, (bytes, bytearray)):
+        return bytes(expected)
+    return str(expected).encode("utf-8")
+
+
+def _compare_expect_bytes(name, key, actual, expected, work_dir, source_leaf,
+                          options, debug_parts, normalize=None):
+    if not isinstance(actual, (bytes, bytearray)):
+        actual = _expected_to_bytes(actual)
+    else:
+        actual = bytes(actual)
+
+    rel = parse_triple_lt_path(expected) if isinstance(expected, str) else None
+    capture = _capture_goldens_enabled(options)
+
+    if rel is not None:
+        if capture:
+            written = set()
+            for base in (source_leaf, work_dir):
+                if not base:
+                    continue
+                path = os.path.abspath(os.path.join(base, rel))
+                if path in written:
+                    continue
+                written.add(path)
+                _write_golden(path, actual, debug_parts, name)
+            return
+        expected_b, _ = resolve_file_bytes(
+            expected, work_dir, item_name=name, what=key, missing_ok=False)
+    else:
+        expected_b = _expected_to_bytes(expected)
+
+    left = normalize(actual) if normalize else actual
+    right = normalize(expected_b) if normalize else expected_b
+    if left != right:
+        hint = ""
+        if rel is not None:
+            hint = (
+                " (update with: afwdev test --capture-goldens "
+                "-T <leaf-dir>)")
+        raise AfwdevRunnerError(
+            "test {!r}: {} mismatch (got {} bytes, expected {}){}\n"
+            "  expected: {!r}\n  actual:   {!r}".format(
+                name, key, len(actual), len(expected_b), hint,
+                expected_b[:200], actual[:200]))
+
+
+def _judge_stream_expects(item, full_body, demuxed, work_dir, source_leaf,
+                          options, debug_parts, name, normalize=None):
+    specs = x_afw_demux.collect_stream_expect_specs(item)
+    if not specs:
+        return
+    for spec in specs:
+        actual = x_afw_demux.actual_bytes_for_spec(spec, demuxed, full_body)
+        _compare_expect_bytes(
+            name, spec["key"], actual, spec["expected_spec"],
+            work_dir, source_leaf, options, debug_parts, normalize=normalize)
+
+
+def _judge_x_afw_body(item, body_bytes, work_dir, source_leaf, options,
+                      debug_parts, name, source_type, syntax,
+                      status_code=200, normalize_full=None):
+    code = int(status_code or 200)
+    if code >= 400:
+        raise AfwdevRunnerError(
+            "x-afw response status {}: {}".format(
+                code, (body_bytes or b"")[:400].decode(
+                    "utf-8", errors="replace")))
+
+    body_bytes = bytes(body_bytes or b"")
+    demuxed = x_afw_demux.demux_x_afw(body_bytes)
+    debug_parts.append(
+        "x-afw demux streams={!r} frames={}".format(
+            sorted(demuxed.get("payloads", {}).keys()),
+            len(demuxed.get("frames") or [])))
+
+    if not body_bytes and not x_afw_demux.collect_stream_expect_specs(item):
+        debug_parts.append("x-afw empty body for {!r}".format(name))
+
+    if item.get("expect") is not None:
+        result_val = x_afw_demux.try_action_result_from_demux(demuxed)
+        if isinstance(result_val, dict) and "__error__" in result_val:
+            raise AfwAdaptiveError(
+                "x-afw action error",
+                object=result_val.get("__error__"))
+        if result_val is not None or item.get("expect") in ("undefined", None):
+            _check_expect(item.get("expect"), result_val)
+
+    _judge_stream_expects(
+        item, body_bytes, demuxed, work_dir, source_leaf, options,
+        debug_parts, name, normalize=normalize_full)
+
+    for frame in demuxed.get("frames") or []:
+        if frame.get("streamId") != "response":
+            continue
+        try:
+            import json
+            obj = json.loads(frame["payload"].decode("utf-8"))
+        except Exception:
+            continue
+        if isinstance(obj, dict) and "result" in obj:
+            _fail_if_test_script_failures(obj.get("result"))
+
+
+def _judge_raw_full_body_expects(item, body_bytes, work_dir, source_leaf,
+                                 options, debug_parts, normalize=None):
+    specs = [
+        s for s in x_afw_demux.collect_stream_expect_specs(item)
+        if s["kind"] == "full_raw"
+    ]
+    if not specs:
+        return
+    demuxed = {"raw": body_bytes, "payloads": {}, "raw_frames": {}}
+    for spec in specs:
+        actual = x_afw_demux.actual_bytes_for_spec(spec, demuxed, body_bytes)
+        _compare_expect_bytes(
+            item.get("name"), spec["key"], actual, spec["expected_spec"],
+            work_dir, source_leaf, options, debug_parts, normalize=normalize)
+
+
 def _run_local_action(item, work_dir, source_leaf, ctx, timeout, debug_parts,
                       options, body_obj, accept, source_type, syntax):
-    """
-    host local + feed.kind action: FCGI-like authoring; harness frames
-    ++afw-local-mode-action + perform body + exit.
-    """
+    """host local + feed.kind action: FCGI-like authoring."""
     name = item.get("name")
     accept = (accept or "application/json").strip()
     stdin = local_host.build_action_session_stdin(accept, body_obj)
@@ -727,14 +872,26 @@ def _run_local_action(item, work_dir, source_leaf, ctx, timeout, debug_parts,
             name, accept, len(stdout)))
     _write_local_actual(work_dir, name, stdout)
 
-    if accept.lower() == "application/x-afw":
-        # Treat full local stdout as wire body (banner-normalized compare)
-        if item.get("expectResponse") is not None:
-            _check_expect_response(
-                item, stdout, work_dir, source_leaf, options, debug_parts,
-                normalize=local_host.normalize_local_stdout)
+    if "x-afw" in accept.lower():
+        app_body = x_afw_demux.local_output_app_body(stdout)
+        _judge_x_afw_body(
+            item, app_body, work_dir, source_leaf, options, debug_parts,
+            name, source_type, syntax, status_code=200)
+        full_specs = [
+            s for s in x_afw_demux.collect_stream_expect_specs(item)
+            if s["kind"] == "full_raw"
+        ]
+        if full_specs:
+            d2 = {"raw": stdout, "payloads": {}, "raw_frames": {}}
+            for spec in full_specs:
+                actual = x_afw_demux.actual_bytes_for_spec(spec, d2, stdout)
+                _compare_expect_bytes(
+                    name, spec["key"], actual, spec["expected_spec"],
+                    work_dir, source_leaf, options, debug_parts,
+                    normalize=local_host.normalize_local_stdout)
         return
 
+    _reject_xafw_only_expects_on_json(item, name)
     response = local_host.primary_json_response(stdout)
     if response is None:
         raise AfwdevRunnerError(
@@ -743,11 +900,9 @@ def _run_local_action(item, work_dir, source_leaf, ctx, timeout, debug_parts,
     body_text = nfc.json_dumps(response)
     _judge_action_json_response(
         item, response, body_text, name, source_type, syntax)
-
-    if item.get("expectResponse") is not None:
-        _check_expect_response(
-            item, stdout, work_dir, source_leaf, options, debug_parts,
-            normalize=local_host.normalize_local_stdout)
+    _judge_raw_full_body_expects(
+        item, stdout, work_dir, source_leaf, options, debug_parts,
+        normalize=local_host.normalize_local_stdout)
 
 
 def _write_local_actual(work_dir, name, stdout):
@@ -765,7 +920,6 @@ def _run_local_raw(item, work_dir, source_leaf, ctx, timeout, debug_parts,
                    options):
     """feed.kind local: raw stdin protocol for afw --local."""
     name = item.get("name")
-    # Binary stdin body (<<< path or UTF-8 text)
     if item.get("sourcePath") or (
             isinstance(item.get("source"), str) and
             parse_triple_lt_path(item.get("source"))):
@@ -801,10 +955,37 @@ def _run_local_raw(item, work_dir, source_leaf, ctx, timeout, debug_parts,
         "local-raw {!r} stdout_len={}".format(name, len(stdout)))
     _write_local_actual(work_dir, name, stdout)
 
-    if item.get("expectResponse") is not None:
-        _check_expect_response(
-            item, stdout, work_dir, source_leaf, options, debug_parts,
-            normalize=local_host.normalize_local_stdout)
+    app_body = x_afw_demux.local_output_app_body(stdout)
+    demuxed = x_afw_demux.demux_x_afw(app_body)
+    # Stream/payload expects use reconstructed x-afw body; full-raw uses
+    # complete local stdout (banner + segments) with banner normalize.
+    stream_specs = [
+        s for s in x_afw_demux.collect_stream_expect_specs(item)
+        if s["kind"] != "full_raw"
+    ]
+    full_specs = [
+        s for s in x_afw_demux.collect_stream_expect_specs(item)
+        if s["kind"] == "full_raw"
+    ]
+    if stream_specs and demuxed.get("frames"):
+        for spec in stream_specs:
+            actual = x_afw_demux.actual_bytes_for_spec(
+                spec, demuxed, app_body)
+            _compare_expect_bytes(
+                name, spec["key"], actual, spec["expected_spec"],
+                work_dir, source_leaf, options, debug_parts)
+    elif stream_specs and not demuxed.get("frames"):
+        raise AfwdevRunnerError(
+            "test {!r}: stream expects set but no x-afw frames in local "
+            "stdout".format(name))
+    if full_specs:
+        d2 = {"raw": stdout, "payloads": {}, "raw_frames": {}}
+        for spec in full_specs:
+            actual = x_afw_demux.actual_bytes_for_spec(spec, d2, stdout)
+            _compare_expect_bytes(
+                name, spec["key"], actual, spec["expected_spec"],
+                work_dir, source_leaf, options, debug_parts,
+                normalize=local_host.normalize_local_stdout)
 
 
 def _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir=None,
@@ -848,44 +1029,30 @@ def _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir=None,
         raise AfwdevRunnerError(
             "REST status {} for {} {}".format(code, method, path))
 
-    if item.get("expectResponse") is not None:
-        _check_expect_response(
-            item, result.get("body") or b"", work_dir, source_leaf, options,
-            debug_parts)
+    body_bytes = result.get("body") or b""
+    if "x-afw" in (accept or "").lower():
+        _judge_x_afw_body(
+            item, body_bytes, work_dir, source_leaf, options, debug_parts,
+            item.get("name"), "script", None, status_code=code)
+    else:
+        _judge_raw_full_body_expects(
+            item, body_bytes, work_dir, source_leaf, options, debug_parts)
 
-
-def _check_x_afw_response(item, result, debug_parts, work_dir, source_leaf,
-                          options):
-    body = result.get("body") or b""
-    code = int(result.get("status_code") or 200)
-    if code >= 400:
-        raise AfwdevRunnerError(
-            "x-afw response status {}: {}".format(
-                code, body[:400].decode("utf-8", errors="replace")))
-    # Minimal: non-empty body and optional exact expectResponse
-    if not body and item.get("expectResponse") is None:
-        # progressive may still write frames; empty is suspicious
-        debug_parts.append("x-afw empty body for {!r}".format(item.get("name")))
-    if item.get("expectResponse") is not None:
-        _check_expect_response(
-            item, body, work_dir, source_leaf, options, debug_parts)
-    # Soft success: process returned without HTTP error
-    if b"0 end\n" in body or b" intermediate" in body or body:
-        return
-    # allow empty true return with no intermediate if only void progressive
-    return
 
 def _check_side_stream_expects(item, response, name):
-    """Compare leaf expect-stdout / expect-stderr to response properties."""
+    """JSON path: property-based stream expects."""
     if not isinstance(response, dict):
         response = {}
     for key, prop in (("expect-stdout", "stdout"),
-                      ("expect-stderr", "stderr")):
+                      ("expect-stderr", "stderr"),
+                      ("expect-console", "console")):
         if item.get(key) is None:
             continue
         expected = item[key]
         if expected is None:
             expected = ""
+        if isinstance(expected, (bytes, bytearray)):
+            expected = expected.decode("utf-8", errors="replace")
         actual = response.get(prop)
         if actual is None:
             actual = ""
@@ -907,64 +1074,6 @@ def _write_golden(path, data, debug_parts, name):
         name, path, len(data))
     debug_parts.append(note)
     msg.info(note)
-
-
-def _check_expect_response(item, actual_bytes, work_dir, source_leaf, options,
-                           debug_parts, normalize=None):
-    """
-    Exact-byte compare of expectResponse (inline or <<< file).
-
-    With --capture-goldens / AFWDEV_CAPTURE_GOLDENS=1 and a <<< path, write
-    actual_bytes to the source leaf (and work_dir) and pass (update workflow).
-
-    normalize: optional callable(bytes) -> bytes applied to both sides before
-    compare (e.g. afw --local version banner). Capture still writes raw actual.
-    """
-    name = item.get("name")
-    raw = item.get("expectResponse")
-    if raw is None:
-        return
-    if not isinstance(actual_bytes, (bytes, bytearray)):
-        actual_bytes = bytes(actual_bytes)
-
-    rel = parse_triple_lt_path(raw)
-    capture = _capture_goldens_enabled(options)
-
-    if rel is not None:
-        if capture:
-            # Prefer writing into the package source leaf so the file is
-            # reviewable/committable; also refresh hermetic work_dir copy.
-            written = set()
-            for base in (source_leaf, work_dir):
-                if not base:
-                    continue
-                path = os.path.abspath(os.path.join(base, rel))
-                if path in written:
-                    continue
-                written.add(path)
-                _write_golden(path, actual_bytes, debug_parts, name)
-            return
-        expected_b, _ = resolve_file_bytes(
-            raw, work_dir, item_name=name, what="expectResponse",
-            missing_ok=False)
-    else:
-        if isinstance(raw, bytes):
-            expected_b = raw
-        else:
-            expected_b = str(raw).encode("utf-8")
-
-    left = normalize(actual_bytes) if normalize else actual_bytes
-    right = normalize(expected_b) if normalize else expected_b
-    if left != right:
-        hint = ""
-        if rel is not None:
-            hint = (
-                " (update with: afwdev test --capture-goldens "
-                "-T <leaf-dir>)")
-        raise AfwdevRunnerError(
-            "test {!r}: expectResponse mismatch "
-            "(got {} bytes, expected {}){}"
-            .format(name, len(actual_bytes), len(expected_b), hint))
 
 
 def _check_expect(expect, action_result):

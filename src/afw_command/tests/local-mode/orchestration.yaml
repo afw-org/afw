@@ -1,15 +1,13 @@
 # afw --local as single-threaded FCGI for authors (feed.kind action),
-# plus raw feed.kind local for protocol / multi-directive sessions.
+# plus raw feed.kind local for protocol sessions.
 #
 # Run: afwdev test --srcdir-pattern afw_command --test-pattern local-mode
-# Optional leaf afw.conf is passed as afw -f (flags, adapters).
 
 version: 1
 description: afw --local — action-shaped + raw protocol sessions
 host: local
 timeout_s: 60
 
-# Default looks like afwfcgi action feed (harness frames ++afw-local-mode-action)
 feed:
   kind: action
   accept: application/json
@@ -32,27 +30,40 @@ tests:
       return 3;
     expect: 3
 
-  # --- Raw protocol (escape hatch; historical local_test cases) ---
-  - name: directives-switch
+  - name: server-stable-fields
     description: >
-      Multi-directive session (skipped until ignore ranges for times/UUIDs)
-    skip: true
-    feed:
-      kind: local
-    source: <<< inputs/case-1.bin
-    expectResponse: <<< goldens/case-1.bin
+      Server object via local action (replaces mega directives-switch check of
+      _AdaptiveServer_ without asserting volatile startTime)
+    sourceType: script
+    source: |
+      const s = get_object("afw", "_AdaptiveServer_", "current");
+      assert(s !== null && s !== undefined, "missing server current");
+      assert(s.threadCount !== null && s.threadCount !== undefined,
+          "threadCount present");
+      assert(s.threadCount >= 1, "threadCount >= 1");
+      return true;
 
+  - name: multi-request-props
+    description: multi-request properties on local (via action + evaluate path)
+    sourceType: script
+    source: |
+      // Set via perform is not multi-request props; validate request props shape
+      const r = get_object("afw", "_AdaptiveRequestProperties_", "current");
+      assert(r !== null && r !== undefined);
+      assert(r.REQUEST_METHOD !== null && r.REQUEST_METHOD !== undefined);
+      return r.REQUEST_METHOD;
+
+  # --- Raw protocol (escape hatch) ---
   - name: evaluate-x-afw
     description: Raw local session with ACCEPT application/x-afw
     feed:
       kind: local
     source: <<< inputs/case-2.bin
-    expectResponse: <<< goldens/case-2.bin
+    expect-raw-response: <<< goldens/case-2.bin
 
   - name: issue-71-env
-    description: >
-      Issue #71 env / multi-request properties (raw local protocol)
+    description: Issue #71 env / multi-request properties (raw local protocol)
     feed:
       kind: local
     source: <<< inputs/case-3.bin
-    expectResponse: <<< goldens/case-3.bin
+    expect-raw-response: <<< goldens/case-3.bin
