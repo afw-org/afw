@@ -506,9 +506,6 @@ def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
                 item[key], work_dir, item_name=name, what=key)
             item[key] = text if text is not None else ""
 
-    source = resolve_source_text(item, work_dir)
-    source_type = item.get("sourceType") or "script"
-
     if kind == "rest":
         _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir,
                   source_leaf, options)
@@ -516,6 +513,9 @@ def _run_test_item(item, work_dir, source_leaf, socket_path, timeout, doc_feed,
 
     if kind != "action":
         raise AfwdevRunnerError("unsupported feed.kind {!r}".format(kind))
+
+    source = resolve_source_text(item, work_dir)
+    source_type = item.get("sourceType") or "script"
 
     function = eval_function_for_source_type(source_type, feed)
     # test_script / script with shebang: keep shebang for eval<script>

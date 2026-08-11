@@ -94,16 +94,29 @@ def load_orchestration_document(marker_path):
         if item.get("skip"):
             continue
 
+        if "feed" in item and item["feed"] is not None:
+            if not isinstance(item["feed"], dict):
+                raise OrchestrationLoadError(
+                    "tests[{}] ({!r}) 'feed' must be a mapping: {}".format(
+                        i, name, marker_path))
+
+        # Effective feed kind (document default applied later if missing).
+        item_feed = item.get("feed") if isinstance(item.get("feed"), dict) else {}
+        doc_feed = raw.get("feed") if isinstance(raw.get("feed"), dict) else {}
+        kind = item_feed.get("kind") or doc_feed.get("kind") or "action"
+        is_rest = (kind == "rest")
+
         has_source = item.get("source") is not None
         has_path = item.get("sourcePath") is not None
         if has_source and has_path:
             raise OrchestrationLoadError(
                 "tests[{}] ({!r}) must not set both 'source' and 'sourcePath': "
                 "{}".format(i, name, marker_path))
-        if not has_source and not has_path:
+        # REST work items are method/path only — no eval payload required.
+        if not is_rest and not has_source and not has_path:
             raise OrchestrationLoadError(
-                "tests[{}] ({!r}) requires 'source' or 'sourcePath': {}".format(
-                    i, name, marker_path))
+                "tests[{}] ({!r}) requires 'source' or 'sourcePath' "
+                "(unless feed.kind is rest): {}".format(i, name, marker_path))
         if has_path and not isinstance(item.get("sourcePath"), str):
             raise OrchestrationLoadError(
                 "tests[{}] ({!r}) 'sourcePath' must be a string: {}".format(
@@ -120,19 +133,12 @@ def load_orchestration_document(marker_path):
                     i, name, marker_path))
         item["sourceType"] = st
 
-        if "feed" in item and item["feed"] is not None:
-            if not isinstance(item["feed"], dict):
-                raise OrchestrationLoadError(
-                    "tests[{}] ({!r}) 'feed' must be a mapping: {}".format(
-                        i, name, marker_path))
-
     if "feed" in raw and raw["feed"] is not None:
         if not isinstance(raw["feed"], dict):
             raise OrchestrationLoadError(
                 "document 'feed' must be a mapping: " + marker_path)
     else:
         raw["feed"] = {"kind": "action", "accept": "application/json"}
-
     if "timeout_s" in raw and raw["timeout_s"] is not None:
         try:
             raw["timeout_s"] = float(raw["timeout_s"])
