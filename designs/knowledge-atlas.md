@@ -101,7 +101,7 @@
 | **Settled map** | Values first; permanent / managed / managed_slice / unmanaged; hierarchical pools; short request teardown proven; long-running needs escape discipline |
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory`, `afw-script-eval` |
 | **Deep pad** | [`memory-management.md`](memory-management.md) (**large** — do not rewrite this pass); philosophy pad core model |
-| **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; advanced-test multi-request leaves; never “fix memory” without a metric/story |
+| **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
 | **Open** | Umbrella **#2** — phased partner workflow in memory pad; parent of closed #149 |
 | **Gap** | Thin “support one-pager” for leaks vs the novel-length pad — optional later; playbook points at pad |
 
@@ -128,7 +128,7 @@
 | **Day rules** | `afw-environment`, `afw-environment-variables`, `afw-core-services` (runtime section) |
 | **Deep pads** | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) (architecture), [`runtime-value-accessors.md`](runtime-value-accessors.md) (catalog snapshot), [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes) |
 | **Probe** | `retrieve_objects` / GET `/afw/_Adaptive…_/`; `/afw/_AdaptiveRuntimeValueAccessor_/`; **do not** stop permanent `adapter-afw` / `adapter-conf`; prefer typed retrieve over full `current` materialize |
-| **Open** | Residuals under **#2**; more adapters may need terminating checks; attach lifecycle for advanced-test not fully built |
+| **Open** | Residuals under **#2**; more adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built |
 | **Gap** | MEMORY held a long durable env section — **promoted into playbook** this pass; keep architecture pad as deep map, not MEMORY novel |
 
 **Registry discovery (condensed)**
@@ -224,20 +224,21 @@
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | **Gate** vs **lab** split; advanced-test + blast experimental |
+| **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**) |
 | **Day rules** | `afw-tests`, `afw-afwdev-python`, `afw-afwdev-generate` |
-| **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md), [`afwdev-blast.md`](afwdev-blast.md); developer `writing-tests.md` |
+| **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; developer `writing-tests.md` |
 | **Probe** | See recipe commands below |
-| **Open** | #13 stress knobs on `test` (blast shipped instead); attach mode not fully built; advanced-test may reshape |
+| **Open** | #13 stress knobs/stats on `test` (Jeremy); attach mode not fully built; #157 residuals if any |
 | **Gap** | MEMORY testing split → **in recipe + playbook**; drop duplicating full MEMORY novel after promote |
 
 **Intent split**
 
 | Surface | Job | Default gate? |
 |---------|-----|----------------|
-| `afwdev test -j` | Language/package suite + advanced leaves under `src/*/tests/` | **Yes** |
+| `afwdev test -j` | Language/package suite + short orchestrated leaves under `src/*/tests/` | **Yes** |
 | `afwdev test -T path` | Opt-in only (`tests-extra/`, etc.) | Opt-in |
-| `afwdev test --env-mode afwfcgi` | Conf-free `.as` on live `:8080/afw` | Optional |
+| `afwdev test --env-mode afwfcgi` | Conf-free `.as` on live `:8080/afw` (skips hermetic orchestrated leaves) | Optional |
+| `afwdev test --env-mode valgrind -j` | Memory check; heavy — fewer jobs often faster wall-clock | Optional full verify |
 | `schedule.firehose` leaves under `tests-extra/` | Load thrash at hermetic afwfcgi | **No** |
 
 ```bash
@@ -331,7 +332,7 @@ Items worth future promote/fill — **not** blocking this atlas:
 | Leak / long-run “first 15 minutes” support card | agent-support or thin pointer into memory pad | Medium (#2 active) |
 | Parse/decompile mismatch playbook | agent-support | Low until pain |
 | Adapter write / conf service lifecycle card | agent-support (partially in recipe) | Medium |
-| Attach mode advanced-test | afwdev-advanced-test pad | When building |
+| Attach mode orchestrated leaves | afwdev-advanced-test pad / SCHEMA | When building |
 | More Mike mantras | mantras pad | When shared |
 | MEMORY env/runtime novel fully thinned | Keep pointer; git pads win | Done enough this pass |
 | Per-extension support cards | agent-support or extensions | On demand |

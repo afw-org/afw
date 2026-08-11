@@ -56,45 +56,32 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
 | [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (**recompile** out-of-tree; rename legacy cursor to **`afw_iterator_old`**) |
-| [**afwdev advanced-test (#157)**](#experimental-afwdev-advanced-test-issue-157) | **Experimental:** hermetic `afwfcgi` multi-step tests via `advanced-test.yaml` / `.json` — for comment; may change |
-| [**afwdev blast**](#experimental-afwdev-blast) | **Experimental:** on-demand random suite firehose at afwfcgi — not part of `test -j` |
-| [**afwdev test/blast recipe flags**](#afwdev-testblast-recipe-flags) | **Experimental:** `--tests-path`/`-T`, `--output` / `--output-format` for machine summaries |
+| [**Orchestrated tests (#157)**](#orchestrated-tests-issue-157) | Hermetic multi-step leaves via `orchestration.yaml` (hosts `afwfcgi` / `local`); `//? expect-stdout` / `expect-stderr`; opt-in `tests-extra/` |
+| [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
 
 ---
 
-## Experimental afwdev advanced-test (issue #157)
+## Orchestrated tests (issue #157)
 
-**Status: experimental** — ship for **comment and use**, not a frozen green contract. Marker names, schema, and runner behavior may change over the next months as maintainers exercise multi-request / process-lifetime tests (including work toward **#149** and **#2**). Many early design choices are expected to stick; treat the *capability* (hermetic server + multi-step fixtures) as durable, not every field name.
+Hermetic multi-step / multi-request tests discovered by **`orchestration.yaml`**
+(or `.json`) under `src/*/tests/` (gate) and **`src/*/tests-extra/`** (opt-in).
 
 | | |
 |--|--|
-| **What** | Under `src/*/tests/`, a directory with **`advanced-test.yaml`** or **`advanced-test.json`** is one **leaf** test: harness starts installed **`afwfcgi`**, drives it with a FastCGI client, runs ordered **`eval` / `script`** steps, tears down. |
-| **When it runs** | Normal **`afwdev test` / `afwdev test -j`** (default `--env-mode afw`). Requires **PyYAML** and **`afwfcgi` on PATH** (build with install). |
-| **Examples** | `src/afw/tests/advanced/` (smoke, multi-request file adapter, multi-eval lifetime, JSON marker sample). |
-| **How to write tests** | Builder page [`src/afw/doc/developer/writing-tests.md`](src/afw/doc/developer/writing-tests.md) (Doxygen related page **Writing tests** after docs build). |
-| **Design / feedback** | [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md), GitHub **[#157](https://github.com/afw-org/afw/issues/157)**. |
+| **What** | One **leaf** directory: harness starts **`afwfcgi`** or runs **`afw --local`**, drives feeds (`action` / `rest` / raw local), compares expects (including **x-afw** demux: `expect-response`, `expect-raw-*`). |
+| **When it runs** | Gate leaves: normal **`afwdev test -j`**. Opt-in: **`afwdev test -T src/afw/tests-extra/…`**. Needs **PyYAML** and installed binaries on PATH. |
+| **Gate examples** | `src/afw/tests/advanced/`, `src/afw_command/tests/local-mode/` |
+| **Extras** | Progressive, firehose, REST soaks — `src/afw/tests-extra/` ([README](src/afw/tests-extra/README.md), [SCHEMA](src/afw/tests-extra/SCHEMA.md)) |
+| **Test scripts** | `//? expect-stdout` / `expect-stderr` (and `//? key: <<< path` file values) on Adaptive test scripts |
+| **How to write** | [`src/afw/doc/developer/writing-tests.md`](src/afw/doc/developer/writing-tests.md); pads [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md) (history), [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md) |
+| **PR** | **#167** → `mgg-develop` |
 
-Not a replacement for ordinary `.as` test scripts. Live `--env-mode afwfcgi` still means “shared stack”; advanced leaves stay **hermetic** under default mode.
-
-[↑ Highlights](#highlights)
-
----
-
-## Experimental afwdev blast
-
-**Status: experimental** — on-demand only; **not** part of `afwdev test -j`.
-
-Randomly sends suite Adaptive `test_script` sources at **afwfcgi** for a duration and/or request count (language gate stays Jeremy’s `test`).
-
-```bash
-afwdev blast                    # :8080/afw, 5m, concurrency=2×CPUs
-afwdev blast -d 30m             # short aliases; -c/-n override auto
-afwdev blast -f path/to/afw.conf -m 500   # managed spawn (-n defaults to CPUs)
-```
-
-Defaults favor docker/dev + classic load (threads≈CPUs, in-flight≈2×CPUs). Fixture-heavy tests skipped unless `--include-fixtures`. Design: [`designs/afwdev-blast.md`](designs/afwdev-blast.md). Managed teardown uses SIGTERM; **`afwfcgi` graceful stop** is [#158](https://github.com/afw-org/afw/issues/158) (see below).
+**Retired:** marker name **`advanced-test.yaml`** (migrated to `orchestration.yaml`);
+subcommand **`afwdev blast`** (use `schedule.firehose` leaves under `tests-extra/`).
+Live `--env-mode afwfcgi` still means “shared stack”; orchestrated leaves stay
+**hermetic** under default mode (skipped under live `afwfcgi` env-mode).
 
 [↑ Highlights](#highlights)
 
@@ -116,14 +103,12 @@ Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent 
 
 ---
 
-## afwdev test/blast recipe flags
-
-**Status: experimental** (same family as advanced-test / blast).
+## afwdev test recipe flags
 
 | Flag | Who | Role |
 |------|-----|------|
 | **`-T` / `--tests-path`** | `afwdev test` | Exclusive opt-in trees (e.g. `src/afw/tests-extra/…`); default `test -j` never scans those roots |
-| **`--output` / `--output-format`** | both | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` |
+| **`--output` / `--output-format`** | `afwdev test` | Write a machine summary (`json`, `json-compact`, or `text`) to a path or `-` |
 
 Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
@@ -1256,9 +1241,9 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Array semantics (dense arrays, elision, `create_array`) | #39 | on `mgg-develop` |
 | Conversion functions (type-named; no `null()` / `function()`) | — | on `mgg-develop` (see `designs/conversion-functions.md`) |
 | Runtime catalog / accessors | #149 (under #2) | on `mgg-develop` |
-| afwdev advanced-test (experimental hermetic `afwfcgi` leaves) | #157 | on `mgg-develop` |
-| afwdev blast (experimental load firehose) | — | on `mgg-develop` (`designs/afwdev-blast.md`) |
-| afwdev test/blast recipe flags (`-T`, `--output`) | — | on `mgg-develop` (`designs/afwdev-test-recipe.md`) |
+| Orchestrated tests (`orchestration.yaml`, hosts local/afwfcgi, expect-stdout) | #157 | PR **#167** → `mgg-develop` |
+| `tests-extra/` opt-in + firehose leaves (blast retired) | — | PR **#167** → `mgg-develop` |
+| afwdev test recipe flags (`-T`, `--output`) | — | on `mgg-develop` (`designs/afwdev-test-recipe.md`) |
 | Graceful process stop (SIGTERM/SIGINT) | #158 (closed) | PR **#165** → `mgg-develop` |
 | Function reference prototypes (#28 Type spelling) | #28 | generate/docs on `mgg-develop` |
 
@@ -1266,7 +1251,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 
 ## How this was produced
 
-Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**–**#142**, **#145**–**#146**, **#150**, **#165**, and follow-up fixes on `mgg-develop`). For full commit history, see those PRs on the repository hosting Adaptive Framework.
+Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**–**#142**, **#145**–**#146**, **#150**, **#165**, **#167**, and follow-up fixes on `mgg-develop`). For full commit history, see those PRs on the repository hosting Adaptive Framework.
 
 ### Maintaining the Highlights table (for agents)
 

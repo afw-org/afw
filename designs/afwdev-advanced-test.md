@@ -1,38 +1,36 @@
-# afwdev advanced tests (marker leaves)
+# afwdev orchestrated tests (marker leaves) — history pad
 
 **Audience:** maintainers / assistants. **Not** handbook.  
-**Status:** **\*\*\* Experimental \*\*\*** — implemented and usable for comment; **not** a frozen green contract.  
-**GitHub issue:** [#157](https://github.com/afw-org/afw/issues/157).  
-**Branch:** `feature-afwfcgi-scenario-tests` (off `mgg-develop`).  
-**Related:** [#2 Memory management](https://github.com/afw-org/afw/issues/2) ([`memory-management.md`](memory-management.md)), [#149 Runtime catalog lifetime](https://github.com/afw-org/afw/issues/149) ([`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md)).  
-**Depends on:** installed `afwfcgi` / `afw` via `./afwdev build … --install` (e.g. `--cdev` / `--fulldev`).
+**Status:** **Shipped** on `mgg-develop` (PR **#167**). Authoritative schema/author guide:
+[`src/afw/tests-extra/SCHEMA.md`](../src/afw/tests-extra/SCHEMA.md),
+[`src/afw/tests-extra/README.md`](../src/afw/tests-extra/README.md),
+developer [`writing-tests.md`](../src/afw/doc/developer/writing-tests.md).  
+**GitHub issue:** [#157](https://github.com/afw-org/afw/issues/157) (may stay open for residuals).  
+**Related:** [#2](https://github.com/afw-org/afw/issues/2), [#149](https://github.com/afw-org/afw/issues/149), recipe [`afwdev-test-recipe.md`](afwdev-test-recipe.md).  
+**Depends on:** installed `afwfcgi` / `afw` via `./afwdev build … --install`.
 
-**Rename / rethink (2026-08):** Product direction is shifting toward **orchestrated tests** with an **`orchestration.yaml` / `.json`** control file (host + **feed** + include list + schedule), not “advanced” as a second Adaptive dialect. **North-star schema + pretend scenario leaves** (not wired to the runner): [`src/afw/tests-extra/`](../src/afw/tests-extra/). Live runner still uses `advanced-test.yaml` until migration.
+**Rename (landed):** marker is **`orchestration.yaml` / `.json`** (not
+`advanced-test.*`). Hosts: **`afwfcgi`** (hermetic FastCGI) and **`local`**
+(`afw --local`). Opt-in soaks/firehose: **`src/*/tests-extra/`** via `-T`.
+**`afwdev blast`** retired → `schedule.firehose` leaves.
 
----
-
-## \*\*\* Experimental \*\*\*
-
-This feature is **out for comment and real use**, not a promise of long-term stability of names, schema, or behavior.
-
-| Expect | Do not expect (yet) |
-|--------|---------------------|
-| Useful hermetic multi-request / `afwfcgi` regression leaves today | Marker name, YAML fields, or runner semantics frozen forever |
-| Many early decisions to **stick** (leaf discovery, `host`, FCGI client default, env-mode split) | No breaking tweaks over the next few months |
-| Growth driven by **#149**, **#2**, and whoever tries it | “Green” handbook-grade API and support story |
-
-**Feedback welcome** on issue **#157** and PRs. If you invest in many leaves, prefer the *ideas* (hermetic server, multi-step, fixture dir) over coupling to every field name—we may reshape surfaces as we learn.
-
-When the shape settles, drop the experimental banner and promote invariants into afwdev help / developer notes.
+Below retains design history and product intent; prefer the SCHEMA/README for
+field names and current behavior.
 
 ---
 
 ## Product statement
 
-> **Advanced tests** are multi-file, harness-driven tests discovered by a **marker file** in a **leaf directory**.  
-> Under default `afwdev test -j` (`--env-mode afw`), an `afwfcgi` host leaf **starts the installed `afwfcgi`**, drives it with a harness **FastCGI client**, runs ordered **steps**, then **tears down**.  
-> They exercise **process lifetime, conf, adapters, and multi-request** behavior that one-shot `afw` CLI scripts cannot.  
-> They fit Jeremy’s test model: **env-mode** chooses the *environment*; the **marker** is a new *test kind* (like `.py` / `commands_*.txt`), not merely another way to run `.as` files.
+> **Orchestrated tests** are multi-file, harness-driven tests discovered by a
+> **marker file** in a **leaf directory**.  
+> Under default `afwdev test -j` (`--env-mode afw`), an `afwfcgi` host leaf
+> **starts the installed `afwfcgi`**, drives it with a harness **FastCGI
+> client**, runs scheduled **feeds**, then **tears down**. Host **`local`**
+> runs **`afw --local`** per work item (action-shaped like single-thread FCGI).  
+> They exercise **process lifetime, conf, adapters, multi-request, streams**
+> that one-shot `afw` CLI scripts cannot.  
+> They fit Jeremy’s test model: **env-mode** chooses the *environment*; the
+> **marker** is a new *test kind* (like `.py` / `commands_*.txt`).
 
 ---
 

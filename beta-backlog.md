@@ -38,7 +38,7 @@ feature branches  →  mgg-develop  →  (user testing) develop  →  main
 - User-facing “what’s new” while on this line: **`whats-new.md`**.
 - After this large pass: **major user testing**, then merge **`mgg-develop` → `develop`**. Then **`develop` is again the main develop branch**.
 - Over weeks/months, most work should return to feature branches off `develop` (mgg-develop is not the permanent forever trunk).
-- Related harness direction on this campaign: **orchestrated tests** may **replace `afwdev blast`** (see `src/afw/tests-extra/`, `designs/afwdev-blast.md`).
+- Harness on this campaign: **orchestrated tests** shipped (PR **#167**); **`afwdev blast` retired** → `schedule.firehose` + `src/afw/tests-extra/` (`-T`).
 
 ### When merging `mgg-develop` → `develop` (retarget)
 

@@ -1,24 +1,26 @@
-# afwdev blast (experimental)
+# afwdev blast (retired)
 
-**Status:** **\*\*\* Experimental \*\*\***  
-**Audience:** maintainers debugging runtime / afwfcgi under load.  
-**Related:** [#157](https://github.com/afw-org/afw/issues/157) advanced-test, [#158](https://github.com/afw-org/afw/issues/158) afwfcgi signals.  
-**Branch:** `feature-afwfcgi-scenario-tests` (with advanced-test).  
-**Sibling:** #149 catalog work was explored in a **separate Grok session** on `issue-#149-runtime-catalog-lifetime`; merge this harness first, then use blast + advanced leaves there.
+**Status:** **Retired** (PR **#167** → `mgg-develop`).  
+**Audience:** archaeology / redirect only.  
+**Related:** [#157](https://github.com/afw-org/afw/issues/157) orchestrated tests, [#158](https://github.com/afw-org/afw/issues/158) afwfcgi signals, [#13](https://github.com/afw-org/afw/issues/13) stress knobs (still open for Jeremy’s story).
 
-**Direction (mgg-develop, 2026-08):** **`afwdev blast` is retired.** Prefer
-**orchestrated tests** (`orchestration.yaml` + `schedule.firehose`) under
-[`src/afw/tests-extra/`](../src/afw/tests-extra/) (07 / 07b / 07c, etc.).
-Run opt-in soaks with `afwdev test -T src/afw/tests-extra/…`. Campaign work
-stays on **`mgg-develop`** for heavy test/review before a deliberate merge to
-**`develop`**.
+**Use instead:** orchestrated leaves with **`schedule.firehose`** under
+[`src/afw/tests-extra/`](../src/afw/tests-extra/) (07 / 07b / 07c, etc.):
 
-## Product split
+```bash
+afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
+```
 
-| Command | Job | Default `-j` gate? |
+Schema: [`src/afw/tests-extra/SCHEMA.md`](../src/afw/tests-extra/SCHEMA.md).
+Recipe: [`afwdev-test-recipe.md`](afwdev-test-recipe.md).
+
+## Product split (current)
+
+| Surface | Job | Default `-j` gate? |
 |---------|-----|--------------------|
-| **`afwdev test`** | Jeremy language/package suite + tiny advanced-test multi-request | **Yes** |
-| **`afwdev blast`** | On-demand random suite firehose at **afwfcgi** | **No** (to be absorbed by orchestrated test schedule) |
+| **`afwdev test`** | Language/package suite + short orchestrated leaves under `src/*/tests/` | **Yes** |
+| **`afwdev test -T …/tests-extra/`** | Soaks, firehose, progressive / lab leaves | **No** (opt-in) |
+| **`afwdev blast`** | *(removed)* | — |
 
 ## Usage
 

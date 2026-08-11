@@ -84,7 +84,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 |-------|--------|
 | Symptom | Leak under long run; use-after-free; wrong lifetime; decompile mismatch; scope/closure surprise |
 | Layer | Pools, managed values, `compiled_value`, scope stack, `statement_flow`, value inf policy |
-| Probe | Narrow `.as` + valgrind; advanced-test multi-request when process-scoped; don’t soak via default `test -j` |
+| Probe | Narrow `.as` + valgrind; orchestrated multi-request leaves when process-scoped; don’t soak via default `test -j` |
 | Entry | `afw-value-memory`, `afw-script-eval`, `afw-compile`, `afw-runtime-model`; **#2** / `memory-management.md`; philosophy pad; atlas §3–4 |
 | Status | **Filled (pointer-heavy)** — deep work stays in memory pad |
 
@@ -103,21 +103,23 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 | Field | Notes |
 |-------|--------|
-| Symptom | Confused about `-j` vs `-T` vs blast; load thrash treated as language gate; stale afwfcgi after rebuild |
-| Layer | `afwdev test` discovery vs `tests-extra` vs `afwdev blast` vs advanced-test leaves |
+| Symptom | Confused about `-j` vs `-T` vs firehose; load thrash treated as language gate; stale afwfcgi after rebuild; valgrind `-j` “stuck” |
+| Layer | `afwdev test` discovery vs `tests-extra` vs orchestrated leaves (`orchestration.yaml`) |
 | Probe | Commands in recipe pad; after `--cdev`/`--install`, restart long-lived afwfcgi before attach |
-| Entry | `afwdev-test-recipe.md`, `afwdev-advanced-test.md`, `afwdev-blast.md`, `afw-tests`; atlas §11 |
-| Status | **Filled (first pass)** |
+| Entry | `afwdev-test-recipe.md`, `src/afw/tests-extra/{README,SCHEMA}.md`, `afw-tests`; atlas §11 |
+| Status | **Filled** (PR **#167**) |
 
 | Surface | Job | Gate? |
 |---------|-----|-------|
-| `afwdev test -j` | Language/package suite + advanced leaves under `src/*/tests/` | **Yes** |
-| `afwdev test -T path` | Opt-in trees only | Opt-in |
-| `afwdev blast` | Random load at afwfcgi | **No** |
+| `afwdev test -j` | Language/package suite + short orchestrated leaves under `src/*/tests/` | **Yes** |
+| `afwdev test -T path` | Opt-in trees only (`tests-extra/`, etc.) | Opt-in |
+| `schedule.firehose` leaves | Load thrash (replaces retired `afwdev blast`) | **No** |
 
-**Never:** redefine default `test -j` as soak/load. Suite green ≠ blast green (timeouts under high concurrency are load).
+**Never:** redefine default `test -j` as soak/load. Suite green ≠ firehose green (timeouts under high concurrency are load).
 
-**advanced-test:** leaf marker `advanced-test.yaml`/`json`, hermetic `afwfcgi` + FCGI client; experimental (#157). **blast:** separate subcommand (#13 asked for rounds on test — we shipped sibling blast instead).
+**Orchestrated:** marker `orchestration.yaml`/`json`; hosts **`afwfcgi`** (hermetic) or **`local`** (`afw --local`); x-afw demux expects. **#13** still open for Jeremy’s stress knobs/stats story.
+
+**Valgrind hang lesson:** parallel valgrind can park the pool if one worker blocks forever (e.g. `Session("local").close()` → `wait()`). Harness now times out/kills; if wall time is absurd with idle CPU, check for a stuck worker before assuming “just slow.”
 
 ---
 

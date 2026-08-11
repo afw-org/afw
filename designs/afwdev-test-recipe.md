@@ -1,7 +1,7 @@
-# afwdev test / blast recipe (agents & maintainers)
+# afwdev test recipe (agents & maintainers)
 
 **Audience:** maintainers / assistants.  
-**Related:** [`afwdev-blast.md`](afwdev-blast.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md), #149.
+**Related:** [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired), `src/afw/tests-extra/`, #149, #157.
 
 ## Trees
 
@@ -55,5 +55,7 @@ Then: `afwdev task check-149`
 
 - After `./afwdev build --install` / `--cdev`, **restart afwfcgi** if attach tests talk to a long-lived process (stale libs).  
 - **`afwdev blast` is retired** — use `schedule.firehose` leaves under `tests-extra/`.
+- Full verify: `./afwdev build --fulldev` then `afwdev test --env-mode valgrind -j` then `afwdev test -j`. Valgrind is heavy; if thrashing, try **`-j 4`** (full cores can still finish ~5 min when healthy on a 32-core/30 GiB box).
+- `//? expect-stdout` / `expect-stderr` on Adaptive test scripts; orchestrated leaves use hyphen keys + optional x-afw demux (`expect-response`, `expect-raw-*`).
 - `service_start` after stop needs conf adapter + `_AdaptiveServiceConf_` (see lifecycle leaf).
 - Structured Python errors: `_afwdev.common.errors` (`AfwAdaptiveError`, `AfwdevProcessError`, `AfwdevRunnerError`) — issue **#61**; Adaptive error objects ride on `exc.object` / `to_error_dict()`.
