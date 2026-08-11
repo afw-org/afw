@@ -1,21 +1,28 @@
 # `afw --local` orchestrated leaf
 
-Hermetic tests for the **`afw --local`** stdin protocol (including
-`application/x-afw` frames). Replaces the former `local_test.py` +
-`local_test_*_{input,expect}.txt` harness.
+**Author view:** `host: local` behaves like a **single-threaded FCGI** for
+normal work — same `feed.kind: action`, `accept`, `sourceType` / `source`,
+`expect`, `expect-stdout` as `host: afwfcgi`. The harness encodes
+`++afw-local-mode-action` + perform JSON + `exit` on stdin.
+
+**Escape hatch:** `feed.kind: local` with raw length-framed stdin (historical
+`local_test` sessions, multi-directive scripts).
 
 ```bash
 afwdev test --srcdir-pattern afw_command --test-pattern local-mode
-# refresh goldens after intentional protocol changes:
 afwdev test --capture-goldens --srcdir-pattern afw_command --test-pattern local-mode
 ```
 
-| Case | Role |
-|------|------|
-| `directives-switch` | Skipped — needs ignore ranges for times/UUIDs |
-| `evaluate-x-afw` | Evaluate with Accept x-afw |
-| `issue-71-env` | Environment / multi-request properties |
+Optional **`afw.conf`** in this directory is passed as `afw -f` (default flags,
+adapters, etc.) — same conf story as other hosts.
 
-`host: local` does **not** require `afw.conf` (built-in default conf). Compare
-normalizes the version-dependent local-mode banner so goldens need not track
-package version string length.
+| Case | Mode | Notes |
+|------|------|--------|
+| `hello-print` | action | `expect` + `expect-stdout` |
+| `arithmetic` | action | simple return |
+| `directives-switch` | raw local | skipped (ignore ranges) |
+| `evaluate-x-afw` | raw local | x-afw wire golden |
+| `issue-71-env` | raw local | env / multi-request |
+
+Stdout compare for raw goldens normalizes the version banner so package version
+string length does not force golden churn.

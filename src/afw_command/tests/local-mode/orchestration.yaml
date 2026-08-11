@@ -1,35 +1,58 @@
-# Converted from local_test.py (afw --local stdin protocol).
-# Run: afwdev test --srcdir-pattern afw_command --test-pattern local-mode
+# afw --local as single-threaded FCGI for authors (feed.kind action),
+# plus raw feed.kind local for protocol / multi-directive sessions.
 #
-# host local: one afw --local 1 process per work item; source is raw stdin
-# bytes; expectResponse is raw stdout (banner version-normalized on compare).
+# Run: afwdev test --srcdir-pattern afw_command --test-pattern local-mode
+# Optional leaf afw.conf is passed as afw -f (flags, adapters).
 
 version: 1
-description: afw --local protocol (stdin) including application/x-afw
+description: afw --local — action-shaped + raw protocol sessions
 host: local
 timeout_s: 60
+
+# Default looks like afwfcgi action feed (harness frames ++afw-local-mode-action)
 feed:
-  kind: local
+  kind: action
+  accept: application/json
 
 tests:
+  # --- High-level (same shape as FCGI action) ---
+  - name: hello-print
+    description: print + return under local action; expect and expect-stdout
+    sourceType: script
+    source: |
+      print("Hello World!");
+      return 42;
+    expect: 42
+    expect-stdout: Hello World!
+
+  - name: arithmetic
+    sourceType: script
+    source: |
+      assert((1 + 2) == 3);
+      return 3;
+    expect: 3
+
+  # --- Raw protocol (escape hatch; historical local_test cases) ---
   - name: directives-switch
     description: >
-      Switch between local-mode directives (skipped until ignore ranges for
-      times/UUIDs exist — see goldens/case-1.bin and historical
-      local_test_1_ignore.txt note)
+      Multi-directive session (skipped until ignore ranges for times/UUIDs)
     skip: true
+    feed:
+      kind: local
     source: <<< inputs/case-1.bin
     expectResponse: <<< goldens/case-1.bin
 
   - name: evaluate-x-afw
-    description: >
-      ++afw-local-mode-evaluate with ACCEPT application/x-afw
+    description: Raw local session with ACCEPT application/x-afw
+    feed:
+      kind: local
     source: <<< inputs/case-2.bin
     expectResponse: <<< goldens/case-2.bin
 
   - name: issue-71-env
     description: >
-      Issue #71 — process env retrieve is one current; environment:: matches
-      get_object HOME; multi-request properties via get_object
+      Issue #71 env / multi-request properties (raw local protocol)
+    feed:
+      kind: local
     source: <<< inputs/case-3.bin
     expectResponse: <<< goldens/case-3.bin

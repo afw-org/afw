@@ -14,7 +14,7 @@ This is the **full-ish** shape we want to aim at. First implementation should **
 |-------|----------|---------|
 | `version` | no | Schema version integer; default `1` if omitted |
 | `description` | no | One-line summary for `--list` / failure headers |
-| `host` | **yes** | Host family: `afwfcgi` (FCGI) or `local` / `afw-local` (`afw --local` stdin) |
+| `host` | **yes** | `afwfcgi` or `local` / `afw-local`. Local is single-threaded; **action authoring matches FCGI** (`source`/`accept`/`expect`/`expect-stdout`). Optional leaf `afw.conf` → `afw -f`. Raw multi-segment sessions: `feed.kind: local`. |
 | `afwfcgi` | no | Host-specific block (only when `host: afwfcgi`) |
 | `timeout_s` | no | Whole-leaf wall clock (default e.g. 120) |
 | `feed` | no | **Default** feed for tests (overridable per item) |
@@ -79,7 +79,7 @@ tests:
 
 | Field | Meaning |
 |-------|---------|
-| `kind` | `action` \| `rest` \| later `raw-fcgi` |
+| `kind` | `action` \| `rest` \| `local` (raw `afw --local` stdin; host local only) |
 
 ### `kind: action` (Adaptive `_AdaptiveAction_` / perform)
 

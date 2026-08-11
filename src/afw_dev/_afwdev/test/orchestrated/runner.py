@@ -540,21 +540,22 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
             item[key] = text if text is not None else ""
 
     if kind == "local":
-        _run_local(item, work_dir, source_leaf, ctx, timeout, debug_parts,
-                   options)
+        # Raw afw --local stdin protocol (escape hatch / multi-directive sessions)
+        _run_local_raw(item, work_dir, source_leaf, ctx, timeout, debug_parts,
+                       options)
         return
 
     if kind == "rest":
+        if ctx.get("host_kind") == "local":
+            raise AfwdevRunnerError(
+                "feed.kind rest is not supported for host local "
+                "(use afwfcgi, or feed.kind local with raw protocol)")
         _run_rest(feed, socket_path, timeout, item, debug_parts, work_dir,
                   source_leaf, options)
         return
 
     if kind != "action":
         raise AfwdevRunnerError("unsupported feed.kind {!r}".format(kind))
-
-    if not socket_path:
-        raise AfwdevRunnerError(
-            "feed.kind action requires host afwfcgi (no socket)")
 
     source = resolve_source_text(item, work_dir)
     source_type = item.get("sourceType") or "script"
@@ -570,7 +571,7 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
         except (ValueError, IndexError):
             syntax = None
     if source_type == "test_script" and syntax is None:
-        # Ensure test_script shebang so afwfcgi evaluates as test_script
+        # Ensure test_script shebang so hosts evaluate as test_script
         if not source.lstrip().startswith("#!"):
             source = (
                 "#!/usr/bin/env -S afw --syntax test_script\n" + source)
@@ -595,6 +596,19 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
         body_obj["_flags_"] = list(flags)
     body = nfc.json_dumps(body_obj)
     accept = feed.get("accept") or "application/json"
+    host_kind = ctx.get("host_kind") or "afwfcgi"
+
+    if host_kind == "local":
+        _run_local_action(
+            item, work_dir, source_leaf, ctx, timeout, debug_parts, options,
+            body_obj=body_obj, accept=accept, source_type=source_type,
+            syntax=syntax)
+        return
+
+    if not socket_path:
+        raise AfwdevRunnerError(
+            "feed.kind action requires host afwfcgi (no socket)")
+
     param_overrides = {"HTTP_ACCEPT": accept}
 
     result = fcgi_request(
@@ -630,6 +644,19 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
             cause=e,
         ) from e
 
+    _judge_action_json_response(
+        item, response, body_text, name, source_type, syntax)
+
+    if item.get("expectResponse") is not None:
+        # JSON body as bytes for exact golden compare when requested
+        _check_expect_response(
+            item, result.get("body") or b"", work_dir, source_leaf, options,
+            debug_parts)
+
+
+def _judge_action_json_response(item, response, body_text, name, source_type,
+                                syntax):
+    """Shared expect / expect-stdout judging for JSON action responses."""
     adapt = adaptive_error_from_response(response)
     if adapt is not None:
         raise adapt
@@ -637,8 +664,8 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
     status = response.get("status")
     if status and status != "success":
         raise AfwAdaptiveError(
-            "perform status {!r}: {}".format(status, body_text[:1500]),
-            object={"message": body_text[:1500], "status": status},
+            "perform status {!r}: {}".format(status, (body_text or "")[:1500]),
+            object={"message": (body_text or "")[:1500], "status": status},
         )
 
     actions = response.get("actions")
@@ -669,21 +696,73 @@ def _run_test_item(item, work_dir, source_leaf, ctx, timeout, doc_feed,
             if (source_type == "test_script" or syntax == "test_script") and \
                     action_result is not None:
                 _fail_if_test_script_failures(action_result)
+    elif "result" in response:
+        # Single-function style body
+        action_result = response.get("result")
 
     if "expect" in item and item.get("expect") is not None:
         _check_expect(item.get("expect"), action_result)
 
     _check_side_stream_expects(item, response, name)
 
+
+def _run_local_action(item, work_dir, source_leaf, ctx, timeout, debug_parts,
+                      options, body_obj, accept, source_type, syntax):
+    """
+    host local + feed.kind action: FCGI-like authoring; harness frames
+    ++afw-local-mode-action + perform body + exit.
+    """
+    name = item.get("name")
+    accept = (accept or "application/json").strip()
+    stdin = local_host.build_action_session_stdin(accept, body_obj)
+    stdout = local_host.run_afw_local(
+        stdin,
+        work_dir,
+        conf_path=ctx.get("conf_path"),
+        under_valgrind=bool(ctx.get("under_valgrind")),
+        timeout=timeout,
+    )
+    debug_parts.append(
+        "local-action {!r} accept={!r} stdout_len={}".format(
+            name, accept, len(stdout)))
+    _write_local_actual(work_dir, name, stdout)
+
+    if accept.lower() == "application/x-afw":
+        # Treat full local stdout as wire body (banner-normalized compare)
+        if item.get("expectResponse") is not None:
+            _check_expect_response(
+                item, stdout, work_dir, source_leaf, options, debug_parts,
+                normalize=local_host.normalize_local_stdout)
+        return
+
+    response = local_host.primary_json_response(stdout)
+    if response is None:
+        raise AfwdevRunnerError(
+            "test {!r}: no JSON response parsed from afw --local stdout"
+            .format(name))
+    body_text = nfc.json_dumps(response)
+    _judge_action_json_response(
+        item, response, body_text, name, source_type, syntax)
+
     if item.get("expectResponse") is not None:
-        # JSON body as bytes for exact golden compare when requested
         _check_expect_response(
-            item, result.get("body") or b"", work_dir, source_leaf, options,
-            debug_parts)
+            item, stdout, work_dir, source_leaf, options, debug_parts,
+            normalize=local_host.normalize_local_stdout)
 
 
-def _run_local(item, work_dir, source_leaf, ctx, timeout, debug_parts,
-               options):
+def _write_local_actual(work_dir, name, stdout):
+    try:
+        actual_path = os.path.join(
+            work_dir, "local_actual_{}.bin".format(
+                re.sub(r"[^\w.-]+", "_", str(name))))
+        with nfc.open(actual_path, "wb") as fd:
+            fd.write(stdout)
+    except OSError:
+        pass
+
+
+def _run_local_raw(item, work_dir, source_leaf, ctx, timeout, debug_parts,
+                   options):
     """feed.kind local: raw stdin protocol for afw --local."""
     name = item.get("name")
     # Binary stdin body (<<< path or UTF-8 text)
@@ -719,17 +798,8 @@ def _run_local(item, work_dir, source_leaf, ctx, timeout, debug_parts,
         timeout=timeout,
     )
     debug_parts.append(
-        "local {!r} stdout_len={}".format(name, len(stdout)))
-
-    # Debug copy in work dir (like historical local_test_*_actual.txt)
-    try:
-        actual_path = os.path.join(
-            work_dir, "local_actual_{}.bin".format(
-                re.sub(r"[^\w.-]+", "_", str(name))))
-        with nfc.open(actual_path, "wb") as fd:
-            fd.write(stdout)
-    except OSError:
-        pass
+        "local-raw {!r} stdout_len={}".format(name, len(stdout)))
+    _write_local_actual(work_dir, name, stdout)
 
     if item.get("expectResponse") is not None:
         _check_expect_response(

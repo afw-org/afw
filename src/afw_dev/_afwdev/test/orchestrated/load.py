@@ -141,10 +141,9 @@ def load_orchestration_document(marker_path):
             raise OrchestrationLoadError(
                 "document 'feed' must be a mapping: " + marker_path)
     else:
-        if raw.get("host") == "local":
-            raw["feed"] = {"kind": "local"}
-        else:
-            raw["feed"] = {"kind": "action", "accept": "application/json"}
+        # Both hosts default to FCGI-like action authoring; raw local protocol
+        # is feed.kind: local on host local.
+        raw["feed"] = {"kind": "action", "accept": "application/json"}
     if "timeout_s" in raw and raw["timeout_s"] is not None:
         try:
             raw["timeout_s"] = float(raw["timeout_s"])
