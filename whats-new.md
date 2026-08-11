@@ -45,6 +45,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Templates (#97)**](#compile-time-template-substitutions-issue-97) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
 | [**Adapter index `current::` (#54 partial)**](#adapter-index-filtervalue-current-issue-54-partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev (#1)**](#c-api-docs-and-full-package-builds-issue-1) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
+| [**libafw install headers**](#libafw-public-header-install) | Default install omits core `*_internal.h` / `afw_internal.h`; use `afw.h` only — **rebuild** out-of-tree; remove stale internals from an old prefix if present |
 | [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base — **recompile** out-of-tree commands/extensions |
 | [**`stringify` / `decompile` / listing (#18)**](#stringify-decompile-compiler-listing-and-binary-text) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
@@ -521,6 +522,25 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 - **Call macros** (`afw_<interface>_<method>(…)`) are the documented C API surface; descriptions come from interface XML.
 - Short developer reading path: `src/afw/doc/developer/` (also linked from the Doxygen mainpage).
 - Extension srcdirs stay self-contained relative to libafw core; their Doxygen groups live in the extension public headers.
+
+[↑ Highlights](#highlights)
+
+---
+
+## libafw public header install
+
+**C builders / out-of-tree extensions and commands**
+
+Default **install** of libafw headers is the **supported public surface** (what you need for `#include "afw.h"`, interface call macros, and intentional `*_impl` helpers). Core **`*_internal.h`** and **`afw_internal.h`** are **not** installed by default; they remain in the **source tree** for libafw maintainers.
+
+| Do | Don’t |
+|----|--------|
+| `#include "afw.h"` from your `.c` files | Include `afw_internal.h` or core `*_internal.h` from extensions/commands |
+| Rebuild/reinstall against this AFW after upgrading | Rely on an old install that still has leftover `*internal*.h` files |
+
+**Upgrade note:** CMake install does not delete previously installed files. If an older AFW left `afw_*_internal.h` under your include prefix (e.g. `/usr/local/include/afw/`), remove those leftovers when you upgrade so you do not accidentally keep using them.
+
+In-tree monorepo builds still see full source includes at **build** time. Maintainer notes: [`designs/libafw-headers-and-api-surface.md`](designs/libafw-headers-and-api-surface.md).
 
 [↑ Highlights](#highlights)
 

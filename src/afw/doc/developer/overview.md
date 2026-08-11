@@ -28,10 +28,16 @@ REST-only users. For product overview and language docs, see the published
 
 ## Public vs internal
 
-- **Public (extensions/commands):** `afw.h`, generated interface macros,
-  environment register APIs, documented groups under the public C API.
-- **Internal (libafw only):** `afw_internal.h`, `*_internal` groups — may change
-  without notice.
+| Layer | Include | Audience |
+|-------|---------|----------|
+| **Public call + impl** | `afw.h` (`.c`); `afw_interface.h` / `afw_minimal.h` (headers) | Extensions, commands, apps. Impl helpers (`*_impl.h`) are intentional — most C users implement interfaces. |
+| **Internal** | `afw_internal.h`, `*_internal.h` | **`src/afw/` only.** Not part of the supported install set; explore via git. May change any time. |
+| **Package private** | e.g. `afw_lmdb_internal.h` | That package’s sources only. |
+
+Doxygen: Modules → **C API (public)** vs **C Internal (libafw only)** vs
+**Interface implementation support**. Default build hides members tagged
+`@internal` (`INTERNAL_DOCS = NO`). Details:
+`designs/libafw-headers-and-api-surface.md`.
 
 ## Maintainer maps in the source tree
 

@@ -29,11 +29,31 @@
 
 /**
  * @defgroup afw_c_api_public C API (public)
- * 
- * The public C API intended for use by extensions, commands, and
- * applications built on top of Adaptive Framework.
  *
- * Includes the main interfaces, data types, functions, pools, values, etc.
+ * **Supported** C API for extensions, commands, and applications on libafw.
+ *
+ * ## What to include
+ *
+ * - **`.c` files:** `#include "afw.h"` (convenient umbrella: call API +
+ *   interface impl helpers).
+ * - **Module headers:** `#include "afw_interface.h"` or `afw_minimal.h`
+ *   (header bootstrap — not a second, thinner product API).
+ * - **Do not** use `afw_internal.h` or `*_internal.h` outside `src/afw/`.
+ *
+ * ## Public vs impl vs internal (this tree)
+ *
+ * | Layer | Doxygen | Audience |
+ * |-------|---------|----------|
+ * | **Public call** | Groups under this section | Everyday call macros, pools, values, env, … |
+ * | **Impl support** | @ref afw_c_api_impl | Authors *implementing* interfaces (`*_impl.h`) |
+ * | **Internal** | @ref afw_c_api_internal | **libafw only** — may change any build |
+ *
+ * Members tagged `@internal` are omitted when Doxygen
+ * `INTERNAL_DOCS = NO` (default). Internal *groups* remain listed with
+ * **libafw only** titles so core maintainers can navigate; treat them as
+ * unsupported for out-of-tree code. See
+ * `designs/libafw-headers-and-api-surface.md`.
+ *
  * @{
  */
 
@@ -884,7 +904,9 @@
 /**
  * @defgroup afw_c_api_impl Interface implementation support
  *
- * Helpers and macros for writing implementations of the core interfaces.
+ * **Supported** helpers for *implementing* core interfaces (not everyday
+ * call sites). Still part of the public install surface via `afw.h` /
+ * `*_impl.h` — almost every extension implements at least one interface.
  *
  * Typical path:
  * 1. `afwdev add-adapter-type` / `add-content-type` / `add-core-interface` / …
@@ -892,22 +914,26 @@
  * 3. Fill `impl_<interface>_<method>` from the closet skeleton (`@todo`).
  * 4. Register via manifest / generated register for the srcdir.
  *
- * Closet files under `generated/interface_closet/` are templates for afwdev
- * scaffolding, not production source. See developer markdown under
- * `src/afw/doc/developer/` when present.
+ * Prefer `AFW_DECLARE` helpers documented here over anything in
+ * @ref afw_c_api_internal. Closet files under `generated/interface_closet/`
+ * are templates for afwdev, not production source. See
+ * `src/afw/doc/developer/` (`implementing-interfaces`, `interfaces`).
  */
 
 /** @} */  // end of afw_c_api_public
 
 /**
- * @defgroup afw_c_api_internal C Internal
+ * @defgroup afw_c_api_internal C Internal (libafw only)
  *
- * Internal C APIs that are only for use inside libafw itself
- * (`afw_internal.h` and `*_internal` headers).
+ * **Unsupported** outside libafw. For maintainers working in `src/afw/` only.
  *
- * These may change at any time. Extensions and commands should use
- * `afw.h`, interface call macros, and documented public groups only.
- * Nested `*_internal` groups hang here for navigation.
+ * - Include path: `afw_internal.h` and module `*_internal.h` (not installed
+ *   with the default public header set; always in the git tree).
+ * - Stability: may change between patches and builds.
+ * - Extensions/commands: use `afw.h`, call macros, and @ref afw_c_api_impl.
+ *
+ * Nested `*_internal` groups hang here for Doxygen navigation when reading
+ * full source. Do not treat visibility in HTML as an API promise.
  */
 
 /**

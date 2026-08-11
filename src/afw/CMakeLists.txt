@@ -16,6 +16,13 @@ else()
     list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*/win/.*")
 endif()
 
+# Install supported public API only (afw.h / impl helpers / call surface).
+# Core *_internal.h and afw_internal.h stay in the source tree for libafw
+# development; monorepo builds still use full source include dirs.
+# See designs/libafw-headers-and-api-surface.md.
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*_internal\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*/afw_internal\\.h$")
+
 # -----------------------------------------------------------------------------
 # Include basic afw project and add additional dependencies and customizations.
 # -----------------------------------------------------------------------------

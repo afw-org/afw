@@ -15,9 +15,13 @@
  * @brief Umbrella internal header for libafw implementation files.
  * @ingroup afw_c_api_internal
  *
- * This header includes all of the headers that are used internally by the
- * source of Adaptive Framework Core. This header should not be included by
- * anything outside of libafw as it may change from build to build.
+ * **libafw source under src/afw only** (implementation .c files). Includes
+ * `afw.h` plus core `*_internal.h` and register/generated glue. May change
+ * every build.
+ * Not installed with the default public header set; use the source tree.
+ * Extensions and commands must use `afw.h` only.
+ *
+ * See @ref afw_c_api_internal and `designs/libafw-headers-and-api-surface.md`.
  */
 
 #include "afw.h"

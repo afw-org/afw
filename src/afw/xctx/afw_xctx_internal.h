@@ -62,6 +62,28 @@ afw_xctx_internal_create_thread_xctx(
     const afw_thread_t *thread, afw_xctx_t *xctx);
 
 
+/**
+ * @brief Wire qualifier stack during xctx creation (libafw only).
+ * @param xctx being created.
+ *
+ * Implemented in afw_stack.c; called only from xctx create.
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_stack_internal_set_qualifier_stack(
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Wire evaluation stack during xctx creation (libafw only).
+ * @param xctx being created.
+ *
+ * Implemented in afw_stack.c; called only from xctx create.
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_stack_internal_set_evaluation_stack(
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup
