@@ -107,7 +107,7 @@ afw_lock_create_and_register(
 
 
 /* Environment bootstrap nested lock: afw_lock_create_environment_nested_lock
- * in afw_environment_internal.h (libafw only). */
+ * in afw_lock_internal.h (libafw only). */
 
 /**
  * @brief Obtain lock.

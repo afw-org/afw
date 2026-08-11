@@ -64,6 +64,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     file/afw_file.h
     file/afw_file_internal.h
     flag/afw_flag.h
+    flag/afw_flag_internal.h
     function/afw_function.h
     generated/afw_adapter_factory_impl_declares.h
     generated/afw_adapter_impl_declares.h
@@ -157,6 +158,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     json/afw_json.h
     json/afw_json_internal.h
     lock/afw_lock.h
+    lock/afw_lock_internal.h
     log/afw_log.h
     log/afw_log_deprecated.h
     log/afw_log_deprecated_interface.h
@@ -190,7 +192,9 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     service/afw_service.h
     service/afw_service_internal.h
     stack/afw_stack.h
+    stack/afw_stack_internal.h
     stream/afw_stream.h
+    stream/afw_stream_internal.h
     thread/afw_thread.h
     time/afw_time.h
     trace/afw_trace.h

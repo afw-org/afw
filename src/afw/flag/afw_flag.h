@@ -219,7 +219,7 @@ afw_flag_add_included_by(
 
 
 /* Early core flag registration: afw_flag_internal_early_register_core in
- * afw_environment_internal.h (libafw bootstrap only). */
+ * afw_flag_internal.h (libafw bootstrap only). */
 
 AFW_END_DECLARES
 

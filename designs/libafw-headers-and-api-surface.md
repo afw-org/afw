@@ -66,15 +66,21 @@ afw_internal.h    ← libafw .c only
 - `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` = not external API (no export declspec). Prefer those symbols in `*_internal.h`, not on the `afw.h` surface. If an extension/command legitimately needs a helper, promote to `AFW_DECLARE` and document under impl/public.
 - `afw_runtime_object_maps.h` stays public: extensions reference exported core `afw_runtime_inf_*` symbols.
 
+## Naming / placement convention (internal)
+
+- Prefer **`<module>_internal.h` next to the implementing `.c`** under the same subdirectory (`flag/afw_flag_internal.h` ↔ `flag/afw_flag.c`).
+- Symbol names should keep the **module prefix** (`afw_flag_*`, `afw_stack_*`, …). Avoid parking `afw_flag_*` decls only on `afw_environment_internal.h` unless the body lives in `environment/`.
+- Renaming every historical `*_internal_*` for purity is optional; **header home matching the .c** matters more than perfect names.
+
 ## Re-homes done (content cleanup)
 
-| Was on public header | Now |
-|----------------------|-----|
-| `afw_stack_internal_set_*` | `afw_xctx_internal.h` |
-| `afw_stream_internal_*` | `afw_xctx_internal.h` |
-| `afw_value_register_core_value_infs` | `afw_value_internal.h` |
-| `afw_flag_internal_early_register_core` | `afw_environment_internal.h` |
-| `afw_lock_create_environment_nested_lock` | `afw_environment_internal.h` |
+| Symbol(s) | Public before | Internal home (with .c) |
+|-----------|---------------|-------------------------|
+| `afw_stack_internal_set_*` | `afw_stack.h` | `stack/afw_stack_internal.h` (`afw_stack.c`) |
+| `afw_stream_internal_*` | `afw_stream.h` | `stream/afw_stream_internal.h` (`afw_stream.c`) |
+| `afw_value_register_core_value_infs` | `afw_value.h` | `value/afw_value_internal.h` (`afw_value.c`) |
+| `afw_flag_internal_early_register_core` | `afw_flag.h` | `flag/afw_flag_internal.h` (`afw_flag.c`) |
+| `afw_lock_create_environment_nested_lock` | `afw_lock.h` | `lock/afw_lock_internal.h` (`afw_lock.c`) |
 
 Still public with `@internal` layouts/comments (later passes): lock struct bodies, adapter id anchor, pool thread create comment, etc.
 
@@ -84,3 +90,4 @@ Still public with `@internal` layouts/comments (later passes): lock struct bodie
 |------|------|
 | 2026-08-11 | Initial pad from `feature-afw-polish` brainstorm (layers, install goal, frozen common/minimal). |
 | 2026-08-11 | Install filter; Doxygen/overview/`afw.h` docs; first re-homes (stack/stream/value/flag/lock bootstrap). |
+| 2026-08-11 | Corrected: internal decls live in module `*_internal.h` next to implementing `.c` (not env/xctx umbrellas). |

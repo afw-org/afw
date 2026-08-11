@@ -240,7 +240,7 @@ afw_stack_extend_impl(
     (instance)->top = ((instance)->first) - 1
 
 
-/* xctx create stack wiring: afw_stack_internal_* in afw_xctx_internal.h */
+/* xctx create stack wiring: afw_stack_internal_* in afw_stack_internal.h */
 
 AFW_END_DECLARES
 

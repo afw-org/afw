@@ -289,7 +289,7 @@ afw_stream_fd_open_and_create(
 
 
 
-/* xctx stream anchor: afw_stream_internal_* in afw_xctx_internal.h */
+/* xctx stream anchor: afw_stream_internal_* in afw_stream_internal.h */
 
 AFW_END_DECLARES
 
