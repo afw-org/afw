@@ -724,6 +724,19 @@ def print_test_failure(test, testCase):
     # Normalize to Adaptive-shaped dict (issue #61 helpers)
     error = error_to_dict(testCase.get("error"))
 
+    def _print_stream_expects():
+        # Side-channel expects (expect-stdout / expect-stderr) — literal text
+        if testCase.get("expect-stdout") is not None:
+            msg.error("    Expected stdout: " +
+                      nfc.json_dumps(testCase.get("expect-stdout")))
+            msg.error("    Actual stdout:   " +
+                      nfc.json_dumps(testCase.get("stdout")) + "\n")
+        if testCase.get("expect-stderr") is not None:
+            msg.error("    Expected stderr: " +
+                      nfc.json_dumps(testCase.get("expect-stderr")))
+            msg.error("    Actual stderr:   " +
+                      nfc.json_dumps(testCase.get("stderr")) + "\n")
+
     if error:
         message = error.get("message")
         if message:
@@ -768,7 +781,8 @@ def print_test_failure(test, testCase):
                 format_source_code(testCase.get("source"), "Test Failed at: {}".format(sourceLocationNav))
             elif errorSourceLocation is not None:
                 msg.error("Test Failed at: {}".format(sourceLocationNav) + " (id=" + error.get("id") + ")")
-                
+
+        _print_stream_expects()
 
     else:
         # if there was no error object, look for expect/result and dump the source
@@ -781,7 +795,9 @@ def print_test_failure(test, testCase):
             if (testCase.get("result") != None):
                 msg.error("    Result:   " + nfc.json_dumps(testCase.get("result")) + "\n")    
             else:
-                msg.error("    Result:   undefined\n") 
+                msg.error("    Result:   undefined\n")
+
+        _print_stream_expects()
 
         format_source_code(testCase.get("source"), "Test Failed at {}".format(sourceLocationNav))
 

@@ -2561,6 +2561,12 @@ impl_test_script_get_next_key_value(
  *        ( 'result' TestScriptValue )
  *    )
  *
+ *# Optional side-channel text expects (string equality on captured utf-8;
+ *# not Adaptive-eval). Hyphen keys only — ':' is the //? key/value separator.
+ *# Value forms match other keys (same-line trim, "..." multi-line, <<< file).
+ * TestExpectStdout ::= TestScriptLineStart 'expect-stdout:' TestScriptValue
+ * TestExpectStderr ::= TestScriptLineStart 'expect-stderr:' TestScriptValue
+ *
  *# Skip when the case is not ready to run (or permanently out of scope).
  * TestSkip ::= TestScriptLineStart 'skip:' ( 'true' | 'false' ) '\n'
  *

@@ -2414,6 +2414,18 @@ afw_self_v_a_exclamation = {
 };
 
 const afw_value_string_t
+afw_self_v_a_expect_stderr_mismatch = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_expect_stderr_mismatch)
+};
+
+const afw_value_string_t
+afw_self_v_a_expect_stdout_mismatch = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_a_expect_stdout_mismatch)
+};
+
+const afw_value_string_t
 afw_self_v_a_extension_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_extension_description)
@@ -13001,6 +13013,18 @@ const afw_value_string_t
 afw_self_v_expectUTF8OctetOffsetInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectUTF8OctetOffsetInTestScript)
+};
+
+const afw_value_string_t
+afw_self_v_expect_stderr = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_expect_stderr)
+};
+
+const afw_value_string_t
+afw_self_v_expect_stdout = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_expect_stdout)
 };
 
 const afw_value_string_t

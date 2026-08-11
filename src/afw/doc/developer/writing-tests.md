@@ -111,6 +111,15 @@ Notes:
   `error` or `error:…message…` when the case should fail. A `<<<` file for
   `expect` must contain that Adaptive source (for example `"hello"` with
   quotes if you want a string return value).  
+- **`expect-stdout:`** / **`expect-stderr:`** (optional) assert the **text**
+  written to the Adaptive `stdout` / `stderr` streams during the case
+  (`print` / `println` / stream writes). Values are **literal strings**, not
+  Adaptive source — same forms as other keys (same-line trim, `...`, `<<<`).
+  Comparison is exact utf-8. Use a hyphen in the key (`expect-stdout`), never
+  a colon inside the name (`expect:stdout` is wrong: `:` separates key from
+  value). When present, the harness captures into an in-memory buffer so
+  output does not pollute the `afw` process result channel. Omit the key to
+  ignore that stream.  
 - Failures are reported per `test:` case.  
 - Study working files under `src/afw/tests/` (for example
   `src/afw/tests/language/script/try.as` and

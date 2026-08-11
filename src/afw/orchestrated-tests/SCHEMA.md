@@ -147,11 +147,12 @@ No Adaptive function; judges HTTP-ish status + body.
 | Field | Meaning |
 |-------|---------|
 | `expect` | Same *idea* as test_script `expect`: Adaptive source for expected **return value**, or `error` / `error:…` / `undefined`. Applied when the feed returns an Adaptive evaluation result (action eval path). |
+| `expect-stdout` / `expect-stderr` | Same *idea* as test_script: **literal** utf-8 text for Adaptive `stdout` / `stderr` side channels (not Adaptive-eval). Hyphen keys only. Implemented for `test_script` cases inside the runtime; orchestrated leaf-level capture of host process streams is a later step. |
 | `expectResponse` | Raw expected **response body** (string or `<<< file`). Exact match after optional decode. For REST and progressive frames. |
 | `expectStatus` | HTTP-ish status code (REST); default 2xx success if omitted |
 | `decode` | later: e.g. `x-afw-payloads` before comparing `expectResponse` |
 
-For `sourceType: test_script`, prefer judging via embedded case `passed` flags in the result object (like today’s advanced-test), optionally plus outer `expect`.
+For `sourceType: test_script`, prefer judging via embedded case `passed` flags in the result object (like today’s advanced-test), optionally plus outer `expect`. Embedded `//? expect-stdout` / `expect-stderr` on cases are checked by the test_script runtime.
 
 ### Per-item feed override
 

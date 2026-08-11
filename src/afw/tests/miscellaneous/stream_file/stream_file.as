@@ -518,6 +518,7 @@ close(stream("stdout"));
 //? test: stream-stdout-print
 //? description: print still works
 //? expect: 0
+//? expect-stdout: ok
 //? source: ...
 
 print("ok");
@@ -527,6 +528,9 @@ return 0;
 //? test: stream-stdout-println
 //? description: println still works
 //? expect: 0
+//? expect-stdout: ...
+ok-line
+
 //? source: ...
 
 println("ok-line");
