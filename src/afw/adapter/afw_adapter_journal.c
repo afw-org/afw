@@ -121,7 +121,7 @@ impl_get_journal_interface(const afw_utf8_t *adapter_id,
     return journal;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(method_not_supported, xctx,
         "Adapter " AFW_UTF8_FMT_Q " does not support journal",
         AFW_UTF8_FMT_ARG(adapter_id));
 }

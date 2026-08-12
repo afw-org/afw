@@ -710,18 +710,6 @@ afw_crypto_self_v_zz__16_octet_authentication_tag_ = {
 };
 
 const afw_value_string_t
-afw_crypto_self_v_zz__2464 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2464)
-};
-
-const afw_value_string_t
-afw_crypto_self_v_zz__2465 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2465)
-};
-
-const afw_value_string_t
 afw_crypto_self_v_zz__2466 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2466)
@@ -953,6 +941,18 @@ const afw_value_string_t
 afw_crypto_self_v_zz__2504 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2504)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2505 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2505)
+};
+
+const afw_value_string_t
+afw_crypto_self_v_zz__2506 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CRYPTO_Q_zz__2506)
 };
 
 const afw_value_string_t

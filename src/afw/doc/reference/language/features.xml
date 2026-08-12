@@ -101,6 +101,14 @@ let y = 2;
         Pattern (same destructuring as <literal>let</literal> /
         <literal>const</literal>), for example
         <literal>catch ({ message, data })</literal>.
+        The object also has an <literal>id</literal> (mnemonic such as
+        <literal>throw</literal>, <literal>not_found</literal>, or
+        <literal>denied</literal>) and a numeric
+        <literal>errorCode</literal>. Branch on <literal>id</literal>.
+        If the error is not caught, an HTTP request uses that code's mapped
+        status (for example <literal>not_found</literal> is 404).
+        <literal>general</literal> is the default code when nothing more
+        specific applies.
     </paragraph>
     <code><![CDATA[try {
     throw "Something bad happened" { "code": 123 };

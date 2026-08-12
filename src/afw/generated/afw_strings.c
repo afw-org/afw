@@ -30837,6 +30837,18 @@ afw_self_v_zz__2205 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2206 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2206)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2207 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2207)
+};
+
+const afw_value_string_t
 afw_self_v_zz__221 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__221)
@@ -45741,12 +45753,6 @@ afw_self_v_zz__The_minimum_string_length_for_this_value = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__The_mnemonic_for_the_numeric_error_code__errorCode__ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_mnemonic_for_the_numeric_error_code__errorCode__)
-};
-
-const afw_value_string_t
 afw_self_v_zz__The_modeId_for_this_authorization_mode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_modeId_for_this_authorization_mode)
@@ -45840,12 +45846,6 @@ const afw_value_string_t
 afw_self_v_zz__The_numeric_error_code = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_numeric_error_code)
-};
-
-const afw_value_string_t
-afw_self_v_zz__The_numeric_error_code_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_numeric_error_code_)
 };
 
 const afw_value_string_t

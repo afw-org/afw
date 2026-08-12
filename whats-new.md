@@ -68,6 +68,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
+| [**Error codes (#33)**](#error-codes-trycatch-and-http-issue-33) | Review of `e.id` / HTTP map: **`none` / `general` / `throw` first**; parse errors **400**; missing adapter **404**; wrong HTTP method **405**; journal retrieve **501**. Prefer **`e.id`** over numeric `errorCode` |
 
 ---
 
@@ -106,6 +107,32 @@ Operators and tooling can stop long-lived hosts without relying on SIGKILL under
 | **In-flight Adaptive work** | Long I/O / retrieve paths may throw error **`terminating`** → HTTP **503** (“Server Terminating”) via **`AFW_XCTX_THROW_IF_TERMINATING`**. |
 
 Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent still may SIGKILL after a grace period (systemd/Docker/`stop_afwfcgi`). No configurable drain timer; no SIGHUP reload.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Error codes, try/catch, and HTTP (issue #33)
+
+Error codes are both what a script sees on **`catch (e)`** (`e.id`, `e.errorCode`) and the **HTTP status** of an uncaught error on `afwfcgi`.
+
+**`general`** remains the default. Prefer **`e.id`** (the mnemonic) over numeric **`e.errorCode`** — this beta line reordered the enum (`none`, `general`, `throw` first) so numbers may not match an older build.
+
+| Situation | `e.id` | HTTP if uncaught |
+|-----------|--------|------------------|
+| Script `throw "…"` | `throw` | 400 |
+| `assert(false)` | `assertion_failed` | 400 |
+| Adaptive parse / compile error | `syntax` | **400** (was 500) |
+| Missing adapter, object, or URI | `not_found` | **404** (missing adapter was 500) |
+| HTTP method this resource does not allow | `method_not_allowed` | **405** (was 500) |
+| Unsupported request `Content-Type` | `unsupported_content` | **415** (was 500) |
+| Capability the implementation does not have (e.g. retrieve of journal entries) | `method_not_supported` | **501** (was 500) |
+| Authorization deny | `denied` | 403 |
+| Anything else | `general` | 500 |
+
+Script `throw` still always uses id `throw`. Extra classification still goes in **`e.data`**.
+
+Handbook: Language Reference **Features** (exception handling). Tests: `src/afw/tests/errors/error_codes.as`.
 
 [↑ Highlights](#highlights)
 

@@ -31,8 +31,8 @@ Fill: `afw_error_add_to_object()` / `afw_error_to_object()` in `error/afw_error.
 | Property | Meaning |
 |----------|---------|
 | **`message`** | Human text from `message_z` — **primary** for users and tests |
-| **`id`** | Mnemonic for numeric code (`general`, `not_found`, `throw`, …) |
-| **`errorCode`** | Numeric AFW error code |
+| **`id`** | Mnemonic for the code (`general`, `not_found`, `throw`, …). **Prefer this.** Map: `AFW_ERROR_CODE_MAP` / `designs/issue-33-error-codes.md` |
+| **`errorCode`** | Numeric AFW error code (may change on this beta line) |
 | **`data`** | Optional payload from script `throw "msg" { … }` |
 | **`rv`** | System return value when set (e.g. errno integer) |
 | **`rvSourceId`** | Decoder key (`apr`, `icu`, `errno`, …) |
@@ -64,4 +64,5 @@ Script `try`/`catch` is Adaptive language; C `AFW_TRY` is the runtime exception 
 
 ## Related
 
-`afw-stream` (file I/O throws), `afw-script-eval`, `afw-function`, `afw-c-runtime`.
+`afw-stream` (file I/O throws), `afw-script-eval`, `afw-function`, `afw-c-runtime`.  
+Error-code / HTTP review: `designs/issue-33-error-codes.md` (**#33**).

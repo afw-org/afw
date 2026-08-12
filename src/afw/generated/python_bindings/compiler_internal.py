@@ -487,15 +487,17 @@ def throw(session, message, additional=None):
 
     This throws an error that can be caught by a try/catch block. An error
     object of object type _AdaptiveError_ will be available in the catch
-    block. Its 'id' property will be set to 'throw'. The other properties set
-    based on the parameters specified and where this function is called.
+    block. Its 'id' property will be set to 'throw'. Optional additional
+    information is available as 'data'. The other properties are set based on
+    the parameters specified and where this function is called.
 
     Args:
         message (str): This is the message that will be included in the
         _AdaptiveError_ error object available in the catch block.
 
         additional (object): Optional additional information that will be
-        available as a 'additional' property in the error object.
+        available as the 'data' property of the _AdaptiveError_ object in the
+        catch block.
 
     Returns:
         object:

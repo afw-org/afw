@@ -965,91 +965,102 @@ typedef struct afw_object_meta_s {
 
 
 /** @brief Error code map.
- * IMPORTANT>>> Do not change the order of these entries.  The order must match
- * the order of the error codes in afw_error_code_t as originally released since
- * the internal number will be externally compile in.
+ *
+ * Each row is: id, error_allow_in_response, http_response_code, description.
+ *
+ * id: Token pasted as afw_error_code_<id> and exposed as _AdaptiveError_.id.
+ * error_allow_in_response: If false, HTTP response omits the error object.
+ * http_response_code: Status for an uncaught error on an HTTP request.
+ * description: Phrase after the status number (e.g. "404 Not Found").
+ *
+ * Scripts should branch on id, not numeric errorCode. On this beta line the
+ * numeric order may change when the map is reviewed; prefer id.
+ *
+ * Layout: none / general / throw first, then script/language, then request
+ * HTTP, then host. general is the default when nothing more specific fits.
  *
  * none                     - No error has occurred.
  *
- * general                  - A general error has occurred that does not match
- *                           a more specific error code.
+ * general                  - Default error. Use this unless a more specific
+ *                           code (especially one with a different HTTP
+ *                           status) applies.
  *
- * evaluate                 - A error occurred while evaluating an adaptive
- *                           value.
+ * throw                    - Adaptive Script throw statement.
+ *
+ * assertion_failed         - assert() failed.
+ *
+ * arg_error                - Adaptive function argument error (including
+ *                           things like integer divide by zero).
+ *
+ * cast_error               - Adaptive type cast failed.
+ *
+ * evaluate                 - Error while evaluating an adaptive value.
+ *
+ * undefined                - Required value was undefined.
+ *
+ * syntax                   - Adaptive source parse / compile syntax error.
  *
  * bad_request              - Something about the request was bad.
  *
- * query_to_complex         - The query is too complex for the particular
- *                           adapter and/or index.
+ * query_too_complex        - Query is too complex for this adapter/index.
  *
- * request_syntax           - A error occurred while parsing the request.
+ * request_syntax           - Error parsing the HTTP request body / path.
  *
- * objects_needed           - This error will not occur if the object whose
- *                           URI is in error.additional is available in the
- *                           xctx's cache.  Function
- *                           afw_object_resolve_instance() uses this error
- *                           code when object is NULL and the object with the
- *                           URI passed is not in the cache.
+ * objects_needed           - Needed object is not in the xctx cache.
+ *                           afw_object_resolve_instance() uses this when
+ *                           the object with the URI passed is not cached.
  *
  * authentication_required  - Subject authentication required.
  *
- * denied                   - The caller is not authorized to perform the
- *                           request. See error.additional for more
- *                           information.
+ * denied                   - Caller is not authorized. See error data.
  *
- * read_only                - Something is read only.  See error.additional
- *                           for an indication of what is write protected.
+ * read_only                - Something is write protected. See error data.
  *
- * not_found                - Something was not found.  If "not found" is a
- *                           normal condition that might happen in a function
- *                           or method, returning NULL or using a parameter
- *                           should communicate "not found" instead of
- *                           throwing an error with this error code.  For
- *                           example, function afw_object_get_property() sets
- *                           its "found" parameter to AFW_FALSE and
- *                           afw_object_resolve_instance() return NULL to
- *                           indicate "not found".
+ * not_found                - A named resource was not found. Do not throw
+ *                           this when "missing" is a normal get (property
+ *                           miss → NULL / found=false). Do throw for a
+ *                           named adapter / object / URI the caller asked
+ *                           for.
  *
- * method_not_allowed       - Method is not allowed for this resource.
+ * method_not_allowed       - HTTP method is not allowed for this resource.
  *
- * unsupported_accept       - None of the request's acceptable response
- *                           content types are supported.
+ * unsupported_accept       - None of the Accept types are supported.
  *
- * client_time_out          - Timed out waiting on client.
+ * client_time_out          - Timed out waiting on the client.
  *
- * conflict                 - Conflict such as resourse in use.
+ * conflict                 - Conflict such as resource in use.
  *
- * length_required          - Request requires content length.
- * 
- * unsupported_content_type - The request's content type is not supported.
+ * length_required          - Request requires a content length.
  *
- * memory                   - There is not enough memory available to continue.
+ * payload_too_large        - Request or result exceeds a configured limit.
  *
- * syntax                   - A server side syntax error occurred.
+ * unsupported_content      - Request Content-Type is not supported.
  *
- * method_not_supported     - The implementation of this interface does not
- *                           support this method.
+ * im_a_teapot              - RFC 2324.
  *
- * client_closed            - Client closed connection.
+ * memory                   - Not enough memory to continue.
+ *
+ * code                     - Internal coding error.
+ *
+ * method_not_supported     - This implementation does not support the
+ *                           method or capability.
+ *
+ * client_closed            - Client closed the connection.
  *
  * terminating              - Server is terminating; stop starting more work
  *                           (e.g. mid retrieve at an object boundary).
  *
- *
- * Map has id, error_allow_in_response, http_response_code, and description.
- * 
- * id: Id of error code
- * error_allow_in_response: If an error is thrown with this id, it's allowed
- *     for the HTTP response to include the error object.
- * http_response_code: The HTTP response code to use if this error is thrown.
- * description: A very short description that will be included in after the
- *     http_response_code in the status message.
- *
  */
 #define AFW_ERROR_CODE_MAP(XX)                                                  \
     XX(none,                   true,  200, "OK"                                )\
-    XX(throw,                  true,  400, "Statement throw encountered"       )\
     XX(general,                true,  500, "General Error"                     )\
+    XX(throw,                  true,  400, "Statement throw encountered"       )\
+    XX(assertion_failed,       true,  400, "Assertion failed"                  )\
+    XX(arg_error,              true,  400, "Adaptive Function Arg Error"       )\
+    XX(cast_error,             true,  400, "Adaptive Type Cast Error"          )\
+    XX(evaluate,               true,  400, "Evaluation error"                  )\
+    XX(undefined,              true,  400, "Undefined value"                   )\
+    XX(syntax,                 true,  400, "Syntax Error"                      )\
     XX(bad_request,            true,  400, "Bad Request"                       )\
     XX(query_too_complex,      true,  400, "Query Too Complex"                 )\
     XX(request_syntax,         true,  400, "Request Syntax Error"              )\
@@ -1061,21 +1072,15 @@ typedef struct afw_object_meta_s {
     XX(method_not_allowed,     true,  405, "Method Not Allowed"                )\
     XX(unsupported_accept,     false, 406, "Unsupported Content Type Requested")\
     XX(client_time_out,        true,  408, "Request Timeout"                   )\
-    XX(im_a_teapot,            true,  418, "I'm a Teapot"                      )\
     XX(conflict,               true,  409, "Conflict"                          )\
     XX(length_required,        true,  411, "Content Length Required"           )\
     XX(payload_too_large,      true,  413, "Payload too large"                 )\
     XX(unsupported_content,    true,  415, "Unsupported Content Type"          )\
+    XX(im_a_teapot,            true,  418, "I'm a Teapot"                      )\
     XX(memory,                 true,  500, "Memory Error"                      )\
-    XX(syntax,                 true,  500, "Server Side Syntax Error"          )\
+    XX(code,                   true,  500, "Clearly an internal coding error"  )\
     XX(method_not_supported,   true,  501, "Method Not Supported"              )\
     XX(client_closed,          false, 000, "Client Closed Connection"          )\
-    XX(assertion_failed,       true,  400, "Assertion failed"                  )\
-    XX(cast_error,             true,  400, "Adaptive Type Cast Error"          )\
-    XX(arg_error,              true,  400, "Adaptive Function Arg Error"       )\
-    XX(evaluate,               true,  400, "Evaluation error"                  )\
-    XX(undefined,              true,  400, "Undefined value"                   )\
-    XX(code,                   true,  500, "Clearly an internal coding error"  )\
     XX(terminating,            true,  503, "Server Terminating"                )\
 
 /** Adaptive Framework error codes enum. */

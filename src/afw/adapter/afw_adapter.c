@@ -153,15 +153,17 @@ afw_adapter_get_reference(
 
     instance = impl_get_reference(adapter_id, xctx);
 
-    /* If adapter is not registered, try starting it. */
+    /* If adapter is not registered, try starting it when conf exists. */
     if (!instance) {
-        service_id = afw_utf8_concat(xctx->p, xctx,
-            afw_s_adapter, afw_s_a_dash,
-            adapter_id, NULL);
-        afw_service_start(service_id, false, xctx);
-        instance = impl_get_reference(adapter_id, xctx);
+        if (xctx->env->conf_adapter) {
+            service_id = afw_utf8_concat(xctx->p, xctx,
+                afw_s_adapter, afw_s_a_dash,
+                adapter_id, NULL);
+            afw_service_start(service_id, false, xctx);
+            instance = impl_get_reference(adapter_id, xctx);
+        }
         if (!instance) {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(not_found, xctx,
                 "Adapter " AFW_UTF8_FMT_Q
                 " is not available",
                 AFW_UTF8_FMT_ARG(adapter_id));

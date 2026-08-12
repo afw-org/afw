@@ -44,7 +44,7 @@
         "errorCode": {
             "brief": "The numeric error code",
             "dataType": "integer",
-            "description": "The numeric error code.",
+            "description": "The numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
             "label": "Error Code"
         },
         "errorSource": {
@@ -56,7 +56,7 @@
         "id": {
             "brief": "Error code id",
             "dataType": "string",
-            "description": "The mnemonic for the numeric error code (errorCode).",
+            "description": "The mnemonic for the error code (errorCode). Scripts should branch on this (throw, general, not_found, denied, …). Uncaught errors on an HTTP request use this code's mapped status.",
             "label": "Error Code Id"
         },
         "line": {

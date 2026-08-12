@@ -1691,8 +1691,9 @@ afw_function_execute_switch(
  *
  * This throws an error that can be caught by a try/catch block. An error object
  * of object type _AdaptiveError_ will be available in the catch block. Its 'id'
- * property will be set to 'throw'. The other properties set based on the
- * parameters specified and where this function is called.
+ * property will be set to 'throw'. Optional additional information is available
+ * as 'data'. The other properties are set based on the parameters specified and
+ * where this function is called.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1712,7 +1713,8 @@ afw_function_execute_switch(
  *       _AdaptiveError_ error object available in the catch block.
  *
  *   additional - (optional any) Optional additional information that will be
- *       available as a 'additional' property in the error object.
+ *       available as the 'data' property of the _AdaptiveError_ object in the
+ *       catch block.
  *
  * Returns:
  *

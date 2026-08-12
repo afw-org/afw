@@ -356,14 +356,16 @@ export function afwSwitch(client : any, predicate : any, value1 : any, case_clau
 /**
  * This throws an error that can be caught by a try/catch block. An error
  * object of object type _AdaptiveError_ will be available in the catch block.
- * Its 'id' property will be set to 'throw'. The other properties set based on
- * the parameters specified and where this function is called.
+ * Its 'id' property will be set to 'throw'. Optional additional information
+ * is available as 'data'. The other properties are set based on the
+ * parameters specified and where this function is called.
  * 
  * @param {string} message - This is the message that will be included in the
  *     _AdaptiveError_ error object available in the catch block.
  * 
  * @param {} additional - Optional additional information that will be
- *     available as a 'additional' property in the error object.
+ *     available as the 'data' property of the _AdaptiveError_ object in the
+ *     catch block.
  * 
  * @returns {void}
  */

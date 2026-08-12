@@ -45,8 +45,8 @@
                     "title": "Additional"
                 },
                 "errorCode": {
-                    "description": "The numeric error code.",
-                    "markdownDescription": "**Error Code**\n\nThe numeric error code.",
+                    "description": "The numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
+                    "markdownDescription": "**Error Code**\n\nThe numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
                     "title": "Error Code",
                     "type": "integer"
                 },
@@ -57,8 +57,8 @@
                     "type": "string"
                 },
                 "id": {
-                    "description": "The mnemonic for the numeric error code (errorCode).",
-                    "markdownDescription": "**Error Code Id**\n\nThe mnemonic for the numeric error code (errorCode).",
+                    "description": "The mnemonic for the error code (errorCode). Scripts should branch on this (throw, general, not_found, denied, \u2026). Uncaught errors on an HTTP request use this code's mapped status.",
+                    "markdownDescription": "**Error Code Id**\n\nThe mnemonic for the error code (errorCode). Scripts should branch on this (throw, general, not_found, denied, \u2026). Uncaught errors on an HTTP request use this code's mapped status.",
                     "title": "Error Code Id",
                     "type": "string"
                 },
@@ -178,8 +178,8 @@
                     "title": "Additional"
                 },
                 "errorCode": {
-                    "description": "The numeric error code.",
-                    "markdownDescription": "**Error Code**\n\nThe numeric error code.",
+                    "description": "The numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
+                    "markdownDescription": "**Error Code**\n\nThe numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
                     "title": "Error Code",
                     "type": "integer"
                 },
@@ -190,8 +190,8 @@
                     "type": "string"
                 },
                 "id": {
-                    "description": "The mnemonic for the numeric error code (errorCode).",
-                    "markdownDescription": "**Error Code Id**\n\nThe mnemonic for the numeric error code (errorCode).",
+                    "description": "The mnemonic for the error code (errorCode). Scripts should branch on this (throw, general, not_found, denied, \u2026). Uncaught errors on an HTTP request use this code's mapped status.",
+                    "markdownDescription": "**Error Code Id**\n\nThe mnemonic for the error code (errorCode). Scripts should branch on this (throw, general, not_found, denied, \u2026). Uncaught errors on an HTTP request use this code's mapped status.",
                     "title": "Error Code Id",
                     "type": "string"
                 },

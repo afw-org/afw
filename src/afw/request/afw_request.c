@@ -174,7 +174,7 @@ afw_request_body_to_value(
     content_type = afw_environment_get_content_type(
         &content_type_id, xctx);
     if (!content_type) {
-        AFW_THROW_ERROR_FZ(general, xctx,
+        AFW_THROW_ERROR_FZ(unsupported_content, xctx,
             "Unsupported content-type " AFW_UTF8_FMT_Q ".",
             AFW_UTF8_FMT_ARG(instance->content_type));
     }
