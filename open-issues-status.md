@@ -2,8 +2,8 @@
 
 **Repo:** [afw-org/afw](https://github.com/afw-org/afw)  
 **Branch context:** `mgg-develop` (beta readiness)  
-**Generated / refreshed:** 2026-08-11  
-**Source:** live GitHub open issues (`gh issue list`) + maintainer notes from recent `mgg-develop` work.
+**Generated / refreshed:** 2026-08-12  
+**Source:** live GitHub open issues (`gh issue list --state open`) + maintainer notes from recent `mgg-develop` work.
 
 This is a **working tracker**, not a substitute for issue bodies or PRs. “How it stands” mixes GitHub metadata with known landings on `mgg-develop`; re-verify before closing anything.
 
@@ -19,10 +19,10 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Summary counts
 
-- **Open issues:** 42
+- **Open issues:** 41
 - **Jeremy:** 29 issues (as assignee, including shared)
-- **Mike:** 21 issues (as assignee, including shared)
-- **—:** 4 issues (unassigned)
+- **Mike:** 19 issues (as assignee, including shared)
+- **—:** 5 issues (unassigned)
 
 ## All open issues
 
@@ -41,7 +41,7 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#44](https://github.com/afw-org/afw/issues/44) | Jeremy | Fix "Docs" GitHub Action to auto-deploy GH Pages | This GitHub Action currently does not work. | Docs GH Action / Pages deploy broken. Open workflows bug. | 2023-08-03 |
 | [#45](https://github.com/afw-org/afw/issues/45) | Jeremy | Make GitHub Action steps only run when necessary | This marketplace action could be used to create "if" conditions on file path changes in order to avoid running Action… | Path-filter GH Actions to skip unnecessary jobs. Open workflows enhancement. | 2023-08-03 |
 | [#48](https://github.com/afw-org/afw/issues/48) | Mike, Jeremy | Change data type 'list' to 'array' | Data type 'list' has taken on most of the semantics of an array so it is being renamed to 'array'. | list→array rename largely done; residual string/docs/test “list” references possible. | 2026-07-30 |
-| [#49](https://github.com/afw-org/afw/issues/49) | Mike, Jeremy | Deal with max number of objects returned | Currently, we have hard-coded the maximum number of objects returned by retrieveobjects in order to not blow up the s… | Partial: materializing retrieve maxObjects default 100. Progressive release is #127. | 2026-07-20 |
+| [#49](https://github.com/afw-org/afw/issues/49) | Mike, Jeremy | Deal with max number of objects returned | Currently, we have hard-coded the maximum number of objects returned by retrieveobjects in order to not blow up the s… | Partial: materializing retrieve maxObjects default 100. Progressive write-release is **#127 closed**. | 2026-07-20 |
 | [#53](https://github.com/afw-org/afw/issues/53) | Jeremy | Generate javascript "mock" data | Currently, the Javascript test code heavily uses "mock" data for simulating requests for the UI. These reside in src/… | Generate JS mock data for admin. Open. | 2023-08-17 |
 | [#54](https://github.com/afw-org/afw/issues/54) | Jeremy | Add custom:: variable to replace deprecated variable sets in afw_adaptor_impl_index.c | AFW core no longer supports afwxctxscopedeprecatedvariableset(). Change these to 'current::' variables. | Partial: index filter/value current::. custom:: multi-layer redesign deferred. LMDB index_create residuals → #57. | 2026-08-09 |
 | [#57](https://github.com/afw-org/afw/issues/57) | Jeremy | Create tests for indexes | The LMDB adaptor uses the core index interface, which needs some tests written for it. | Adapter index tests. Open (blocked on create/txn residuals). | 2023-08-19 |
@@ -66,16 +66,16 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#114](https://github.com/afw-org/afw/issues/114) | — | [Fiddle] Closing an inactive tab with unsaved changes targets the active tab instead | To reproduce: | Fiddle: close inactive unsaved tab closes active tab. Unassigned UI bug. | 2026-07-07 |
 | [#125](https://github.com/afw-org/afw/issues/125) | Mike | Review max vs maximum (and related) property naming for consistency | For consistency with almost all other Adaptive property names, maximumNumberOfParameters on AdaptiveFunction should p… | max vs maximum property naming consistency. Parked naming pass. | 2026-07-19 |
 | [#126](https://github.com/afw-org/afw/issues/126) | Mike | Review and harden journal support (meta) | Meta issue for journal work: review, harden, document, and track follow-ups. Use this as the single place to note jou… | Meta: journal support review/harden/docs. Tracker. | 2026-07-19 |
-| [#127](https://github.com/afw-org/afw/issues/127) | Mike | Progressive retrieve should release objects after write (re-enable release) | Progressive retrieve paths (retrieveobjectstoresponse, related stream/callback paths) are intended so each object can… | **Shipped** (release after write on to_response / to_stream / HTTP list; gate + tests-extra progressive leaf). Residual to_callback → #2/#17. | 2026-08-11 |
 | [#138](https://github.com/afw-org/afw/issues/138) | Mike, Jeremy | Meta issue: sideband meta on the wire ("_meta_"), object options, and rich type info for apps | Adaptive objects keep sideband meta (identity, paths, parents, view decorations, edit helpers, optional type-related … | Meta: _meta_ on wire, object options, rich type info. Design pad; dual-assignee. | 2026-08-01 |
-| [#157](https://github.com/afw-org/afw/issues/157) | — | afwdev advanced-test: hermetic afwfcgi scenario leaves | Add advanced tests to afwdev test: marker-file leaf directories (advanced-test.yaml / .json) that spawn the installed… | **Shipped as orchestrated tests** (PR **#167**): `orchestration.yaml`, hosts afwfcgi/local, `tests-extra/`, expect-stdout. Issue may stay open for residuals; schema in `src/afw/tests-extra/SCHEMA.md`. | 2026-08-11 |
+| [#157](https://github.com/afw-org/afw/issues/157) | — | afwdev advanced-test: hermetic afwfcgi scenario leaves | Add advanced tests to afwdev test: marker-file leaf directories (advanced-test.yaml / .json) that spawn the installed… | **Shipped as orchestrated tests** (PR **#167**): `orchestration.yaml`, hosts afwfcgi/local, `tests-extra/`, expect-stdout. Issue may stay open for residuals; schema in `src/afw/tests-extra/SCHEMA.md`. | 2026-08-08 |
+| [#170](https://github.com/afw-org/afw/issues/170) | — | Application-shared Adaptive functions (conf); polymorphic script functions | Provide a way to supply a set of Adaptive functions that all scripts in the application can use, configured with the … | **Open successor of #28.** Conf/application-shared Adaptive functions first; script polymorphic families as part of that story. Unassigned. Living body on GitHub. | 2026-08-12 |
 
 ## Clusters (for planning)
 
 | Cluster | Issues | Notes |
 |---------|--------|-------|
 | Memory / long-running | [#2](https://github.com/afw-org/afw/issues/2), related [#49](https://github.com/afw-org/afw/issues/49) | Value lifetimes; [#127](https://github.com/afw-org/afw/issues/127) progressive write-release **closed**; [#35](https://github.com/afw-org/afw/issues/35) escape skips; [#149](https://github.com/afw-org/afw/issues/149) catalog slice **closed** |
-| Adaptive Script language | [#35](https://github.com/afw-org/afw/issues/35), [#62](https://github.com/afw-org/afw/issues/62), [#101](https://github.com/afw-org/afw/issues/101), [#22](https://github.com/afw-org/afw/issues/22) | **#28 types closed** (PR **#171**); [#39](https://github.com/afw-org/afw/issues/39)/[#153](https://github.com/afw-org/afw/issues/153)/[#17](https://github.com/afw-org/afw/issues/17) **closed**; closures left open for [#2](https://github.com/afw-org/afw/issues/2) |
+| Adaptive Script language | [#35](https://github.com/afw-org/afw/issues/35), [#62](https://github.com/afw-org/afw/issues/62), [#101](https://github.com/afw-org/afw/issues/101), [#22](https://github.com/afw-org/afw/issues/22), [#170](https://github.com/afw-org/afw/issues/170) | **#28 types closed** (PR **#171**); [#170](https://github.com/afw-org/afw/issues/170) app-shared functions + script poly; [#39](https://github.com/afw-org/afw/issues/39)/[#153](https://github.com/afw-org/afw/issues/153)/[#17](https://github.com/afw-org/afw/issues/17) **closed**; closures left open for [#2](https://github.com/afw-org/afw/issues/2) |
 | Built-ins / JSON | [#69](https://github.com/afw-org/afw/issues/69), [#70](https://github.com/afw-org/afw/issues/70) | stringify [#18](https://github.com/afw-org/afw/issues/18) **closed** 2026-08-04 |
 | Adapters / auth / RQL | [#41](https://github.com/afw-org/afw/issues/41), [#54](https://github.com/afw-org/afw/issues/54), [#85](https://github.com/afw-org/afw/issues/85)–[#87](https://github.com/afw-org/afw/issues/87), [#91](https://github.com/afw-org/afw/issues/91), [#102](https://github.com/afw-org/afw/issues/102) | Review and feature work |
 | Retrieve / limits | [#49](https://github.com/afw-org/afw/issues/49) | maxObjects partial; progressive release [#127](https://github.com/afw-org/afw/issues/127) **closed** |
@@ -97,6 +97,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#15](https://github.com/afw-org/afw/issues/15) | Config file path enhancements | **Closed 2026-08-04** — PR #135 conf path templates + ambient |
 | [#17](https://github.com/afw-org/afw/issues/17) | Mutable faces / shared instances (object & array) | **Closed 2026-08-06** — PR #150 faces → mgg-develop |
 | [#18](https://github.com/afw-org/afw/issues/18) | Second parameter of stringify() needs to be implemented | **Closed 2026-08-04** — PR #137 stringify replacer |
+| [#28](https://github.com/afw-org/afw/issues/28) | Compile time type (dataType) checking | **Closed 2026-08-12** — PRs #144/#145 core; wrap-up PR **#171** |
 | [#38](https://github.com/afw-org/afw/issues/38) | Support for computed property names | **Closed 2026-08-04** — PR #139 computed property names |
 | [#39](https://github.com/afw-org/afw/issues/39) | Support holes in list literals | **Closed 2026-08-06** — PR #152 array semantics / dense elision |
 | [#50](https://github.com/afw-org/afw/issues/50) | A return inside a switch doesn't return from a function block | **Closed 2026-08-07** — return inside switch |
@@ -105,6 +106,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#89](https://github.com/afw-org/afw/issues/89) | Passing a function as a parameter from an array seems to generate an error | **Closed 2026-08-07** — function from array as callback |
 | [#90](https://github.com/afw-org/afw/issues/90) | checkIndividualObjectReadAccess configuration parameter for adaptors | checkIndividualObjectReadAccess — closed earlier |
 | [#109](https://github.com/afw-org/afw/issues/109) | Improvements for creating adapters with adaptive scripts | Pure-script model adapters — closed earlier |
+| [#127](https://github.com/afw-org/afw/issues/127) | Progressive retrieve should release objects after write | **Closed 2026-08-11** — release after write (to_response / to_stream / HTTP list) |
 | [#131](https://github.com/afw-org/afw/issues/131) | variable_exists() says a variable doesn't exist if it does but its value is undefined | variable_exists bound vs undefined — PR #146 |
 | [#140](https://github.com/afw-org/afw/issues/140) | Adaptive Script: Pattern destructuring in function parameters (and optional catch) | Param/catch Patterns — closed via #141/#142 |
 | [#149](https://github.com/afw-org/afw/issues/149) | Runtime / afw adapter catalog lifetime (live maps vs materialize cost) | **Closed 2026-08-09** — PRs #160–#162 runtime catalog lifetime (under #2) |
@@ -130,6 +132,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#61](https://github.com/afw-org/afw/issues/61) | afwdev exception subclasses |
 | [#149](https://github.com/afw-org/afw/issues/149) | Runtime catalog lifetime — PRs [#160](https://github.com/afw-org/afw/pull/160)–[#162](https://github.com/afw-org/afw/pull/162) |
 | [#158](https://github.com/afw-org/afw/issues/158) | Graceful process stop — PR [#165](https://github.com/afw-org/afw/pull/165) |
+| [#127](https://github.com/afw-org/afw/issues/127) | Progressive retrieve write-then-release — **closed 2026-08-11** |
 | [#28](https://github.com/afw-org/afw/issues/28) | Compile-time type checking — PRs [#144](https://github.com/afw-org/afw/pull/144)/[#145](https://github.com/afw-org/afw/pull/145) core; wrap-up PR [#171](https://github.com/afw-org/afw/pull/171) (fence, FunctionSignature typeCheck, call-site formals, handbook Types). **Closed 2026-08-12** |
 
 ## How to maintain
