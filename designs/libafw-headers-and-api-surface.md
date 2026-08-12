@@ -60,6 +60,30 @@ afw_internal.h    ← libafw .c only
 - Split `afw.h` into call-only vs impl-only umbrellas.
 - Rewrite `afw_common.h` / thin `afw_minimal.h` for purity.
 - Small-PR discipline while on `mgg-develop` (large coherent branch OK; **PR only when maintainer asks**).
+- Rename payload-level “internal” fields (`afw_value_*_t.internal`, `*_to_internal`) — overloaded English, intentional in context; leave alone.
+
+### Three senses of “internal” (do not conflate)
+
+The word **internal** is overloaded on purpose of history/context. When reading code or deciding install/API:
+
+| Sense | Examples | Public? |
+|-------|----------|---------|
+| **1. Core-private C surface** | `*_internal.h`, `afw_internal.h`, register/bindings glue, env bootstrap helpers | **No** — not on `afw.h`, not installed |
+| **2. C payload / representation** | `afw_value_string_t.internal`, `afw_data_type_*_to_internal`, array `push_internal` | **Yes** when on the supported path — “internal” ≈ native typed payload, not “libafw secret” |
+| **3. Invent-for-generate labels** | `zz__*` string labels in `afw_strings_internal.h` | **No** — stable catalog stays in `afw_strings.h` |
+
+If unsure whether something is sense 1 vs 2, prefer **not promoting** to public install until an extension needs it.
+
+### Campaign status (feature-afw-polish)
+
+**Victory for this branch:** umbrellas, install filter, declare macros, string dual header, generated glue → `*_internal.h`, package-private wording, whats-new “release-ready C API cleanup.” User-facing: `whats-new.md` section *libafw C API cleanup*.
+
+**Explicitly deferred (not this PR):**
+
+- Struct/body exposure on non-generated public headers (separate pass).
+- Optional nits: `afw_object_type_internal_create`, `afw_runtime_get_internal_session`, whether `afw_components.h` belongs on `afw.h`.
+- Stop **generating** package `*_declare_helpers.h` after transition window (still **deprecated**, still generated).
+- Doxygen: default = public C API; Adaptive `execute_*` catalog lives under internal groups — optional later **dev docs** profile (`INTERNAL_DOCS=YES`), not re-public the catalog.
 
 ## Work notes
 
@@ -128,7 +152,7 @@ Still public with `@internal` layouts/comments (later passes): lock struct bodie
 
 Plain C (undecorated). Core: via `afw_internal.h`. Packages: package-private includes. Default install excludes `*_internal.h`.
 
-**Still later (mixed / public generated):** data-type bindings catalog (public), `runtime_object_maps` (public), string dual header (done), struct layout exposure, hand undecorated stragglers.
+**Public generated (keep):** data-type bindings catalog, `runtime_object_maps` (`afw_runtime_inf_*`), public `afw_strings.h`.
 
 ## Changelog
 
@@ -141,3 +165,4 @@ Plain C (undecorated). Core: via `afw_internal.h`. Packages: package-private inc
 | 2026-08-12 | Core string dual header (`strings` / `strings_internal`); decorate public catalogs. |
 | 2026-08-12 | Rename generated register/bindings/const_objects headers to `*_internal.h` (not installed). |
 | 2026-08-12 | Stricter install excludes; `afw_runtime_register_core_value_accessors` → `runtime/afw_runtime_internal.h`; package header briefs package-private; whats-new declare_helpers **deprecated**. |
+| 2026-08-12 | Victory note for branch; three senses of “internal”; deferred structs / declare_helpers removal / optional nits. |
