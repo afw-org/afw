@@ -74,6 +74,7 @@ Code and tests remain ground truth. When a note and the tree disagree, fix the n
 Use any subset; none of this is mandatory for the team.
 
 - **Discuss → plan → execute when agreed** on multi-step hard work (especially memory / long-running lifetime).  
+- **Flexible plan, one step, then re-decide** — living candidate order, not a locked script; after a step, ask **“what do you think we should do next?”** and adapt (see mantras pad *Partnership habits*). Good for issue wrap-ups and residual passes.  
 - **Hold commits and PRs until asked** in a pairing session, unless you agree otherwise for a stretch.  
 - Keep **language tests** (`afwdev test -j`) as the correctness gate; keep **load / soak / experimental hosts** as a separate lab (blast, advanced-test) — do not redefine the gate as soak.  
 - **Never hand-edit `generated/`** — metadata is the single source of truth.  
@@ -135,6 +136,11 @@ to “implement everything on `mgg-develop`.”
    (often: metadata or C touch → `./afwdev build --cdev` → narrow
    `afwdev test` → note residuals). You steer product/scope; the partner drafts
    and explores; either of you can stop and re-discuss mid-flight.  
+   For **wrap-ups / residual passes / exploratory edges**, a cadence that
+   worked well: share a **flexible plan** (candidate steps only), do **one**
+   step, then **“what do you think we should do next?”** and keep or adapt the
+   plan — do not auto-chain the whole epic (mantras: *Flexible plan, one step,
+   then re-decide*).  
    For **new syntax / harness shape**, Mike often uses career-long patterns
    recorded in [`mantras-and-working-style.md`](mantras-and-working-style.md)
    (*Design method*): **sketch the syntax you probably want** → **pretend we

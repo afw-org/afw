@@ -44,7 +44,7 @@ Prefer **git** for durable shared truth. Session memory is a sticky index + pref
 2. Start with something like: **“What do you think about issue #N?”** (or paste the issue text / a short symptom). Do **not** lead with “implement a fix” unless you already share the plan.  
 3. Discuss: keep asking what the partner thinks; push back; guide with **why** when you disagree.  
 4. When chat is stuck, **close the loop live** (`afw`, `afwfcgi`, runtime objects on `adapterId=afw`, the code the partner named).  
-5. If you decide to work it: ask for a **feature branch** off the right base (often `mgg-develop`), then implement in **small verticals** you both agree (build/test as you go).  
+5. If you decide to work it: ask for a **feature branch** off the right base (often `mgg-develop`), then implement in **small verticals** you both agree (build/test as you go). A useful cadence for wrap-ups and exploratory edges: **flexible plan, one step, then re-decide** — share a living candidate order; finish one step; then **“what do you think we should do next?”** and adapt (see [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md)).  
 6. **Commit / push when you ask** for a checkpoint — not as a silent default after every edit (unless you agree otherwise for a stretch).  
 7. When ready: **“Open a PR”** against the target branch; you still own review.  
 8. After a real click, leave a **thin map** in git if it will help the next person (atlas row, playbook note, or short pad) — issue ids as pointers only.
