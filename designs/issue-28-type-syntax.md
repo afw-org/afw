@@ -1,24 +1,23 @@
 # Issue #28 — Type syntax and opt-in checking
 
-**Branch (wrap-up):** `issue-#28-wrap-up` (off `mgg-develop`)  
-**Earlier line:** `issue-#28` + `issue-#28-pragma-cleanup` (PRs **#144**, **#145**)  
-**GitHub #28:** **Still open** — core shipped; this branch aims to **totally close** the issue (gaps + decided-not + packaging). Quality bar: release-grade for the **claimed** Adaptive type surface; beta/RC later = external validation, not a second type epic.
+**Status:** **Closed** 2026-08-12 — PR **[#171](https://github.com/afw-org/afw/pull/171)** merged to `mgg-develop` (wrap-up). Earlier: PRs **#144**, **#145** (core + pragma cleanup).  
+**Branch (historical):** `issue-#28-wrap-up` (deleted after merge).  
+**Quality bar met:** release-grade for the **claimed** Adaptive type surface; firm nos recorded (not soft “not yet”). Beta/RC later = external validation, not a second type epic.  
+**Successors:** conf-shared Adaptive functions + script poly → **[#170](https://github.com/afw-org/afw/issues/170)**; compile-time optimize from known types → `designs/compile-optimize-notes.md`.
 
-## Flexible plan (living candidates — not a locked script)
+## Flexible plan (completed)
 
-Cadence: *Flexible plan, one step, then re-decide* (mantras pad). After each step: **“what do you think we should do next?”**
+Cadence used: *Flexible plan, one step, then re-decide* (mantras pad).
 
 | # | Candidate step | Status |
 |---|----------------|--------|
-| 1 | **Inventory** — claimed surface / fix / decided-not / probe | Done (draft in pad) |
-| 1b | **Gray-zone type syntax** — one by one: support as claimed surface vs **no** (how Adaptive works); TypeScript-author expectation given what Adaptive is/isn’t; record in this pad + `typescript-differences.md` (plain language; definitive product wording, not “not yet”) | **Done** |
-| 1c | **FunctionSignature formals** — (A) documented functor prototypes must be valid Adaptive Script Types; (B) under typeCheck, project FunctionSignature → function Type and compile-check known function arguments (script functions first). Not TypeScript generics. | **Done** |
-| 2 | **Highest-value gap vertical(s)** — G1 typed function-var call sites; G2 pattern notes | **Done** (G1: annotation formals on call; G2: element annotations on bind — not a second full TS Pattern checker) |
-| 3 | **Decided-not + pad/issue hygiene** — firm nos; living issue body; status docs | **Done** (living #28 body; open-issues-status; pad inventory) |
-| 4 | **Close package** — PR → `mgg-develop`; labels; close #28 | Pending (needs your “open PR” / close) |
-| 5 | **Verify** — `type_*` suite; pre-PR fulldev + valgrind as usual | Pending (type_* green on wrap-up; fulldev/valgrind before PR) |
-
-Order may change after any step.
+| 1 | **Inventory** — claimed surface / fix / decided-not / probe | **Done** |
+| 1b | **Gray-zone type syntax** — firm nos; record in this pad + `typescript-differences.md` | **Done** |
+| 1c | **FunctionSignature formals** — project → function Type; typeCheck known function args | **Done** |
+| 2 | **Highest-value gap vertical(s)** — G1 typed call-site formals; G2 pattern notes | **Done** |
+| 3 | **Decided-not + pad/issue hygiene** — firm nos; living issue body; status docs | **Done** |
+| 4 | **Close package** — PR **#171** → `mgg-develop`; close #28 | **Done** 2026-08-12 |
+| 5 | **Verify** — `type_*` suite; fulldev + valgrind green before PR | **Done** |
 
 ### FunctionSignature / polymorphic note (for step 1c)
 
@@ -206,16 +205,15 @@ Reopen only by **explicit** new decision. Author-facing wording lives in root [`
 - Closures lifetime / escape (**#2** / **#35**).
 - Handbook Features prose lag elsewhere (fix only if it **contradicts** Types for #28).
 
-### Inventory outcome (step 1)
+### Inventory outcome (step 1) — historical
 
-- Core product bar is **already shipped**; wrap-up is **finish claimed gaps + record nos + close**.
-- Highest-value code vertical likely **G1** after a live fail-test probe.
-- Hope: **no follow-on issue** if G1 is thin or reclassified to decided-not with a written why.
+- Core product bar was already shipped before wrap-up; wrap-up finished claimed gaps + firm nos + close.
+- G1 (typed call-site formals) shipped in PR **#171**; no follow-on type epic for #28.
 
-## Verify
+## Verify (regression)
 
 ```bash
 ./afwdev build --cdev
 afwdev test -j --srcdir-pattern afw --test-pattern 'type_'
-# pre-PR: ./afwdev build --fulldev ; afwdev test -j --env-mode valgrind
+# pre-release: ./afwdev build --fulldev ; afwdev test -j --env-mode valgrind
 ```
