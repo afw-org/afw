@@ -738,6 +738,37 @@ compile<script>(script(
 return 0;
 
 //?
+//? test: check-call-via-typed-function-var
+//? description: call through const annotated with function Type checks args
+//? expect: error
+//? source: ...
+
+compile<script>(script(
+    "#compile typeCheck;\n" +
+    "const f: (a: integer) => integer = function (a: any): integer {\n" +
+    "    return a;\n" +
+    "};\n" +
+    "return f(\"x\");"
+));
+return 0;
+
+//?
+//? test: check-call-via-typed-function-var-ok
+//? description: matching arg through typed function variable
+//? expect: 0
+//? source: ...
+
+const r: any = evaluate(compile<script>(script(
+    "#compile typeCheck;\n" +
+    "const f: (a: integer) => integer = function (a: any): integer {\n" +
+    "    return a;\n" +
+    "};\n" +
+    "return f(7);"
+)));
+assert(r === 7);
+return 0;
+
+//?
 //? test: check-hof-function-signature-ok
 //? description: filter accepts script predicate matching FunctionSignature
 //? expect: 0

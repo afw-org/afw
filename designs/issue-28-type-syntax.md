@@ -12,18 +12,18 @@ Cadence: *Flexible plan, one step, then re-decide* (mantras pad). After each ste
 |---|----------------|--------|
 | 1 | **Inventory** — claimed surface / fix / decided-not / probe | Done (draft in pad) |
 | 1b | **Gray-zone type syntax** — one by one: support as claimed surface vs **no** (how Adaptive works); TypeScript-author expectation given what Adaptive is/isn’t; record in this pad + `typescript-differences.md` (plain language; definitive product wording, not “not yet”) | **Done** |
-| 1c | **FunctionSignature formals** — (A) documented functor prototypes must be valid Adaptive Script Types; (B) under typeCheck, project FunctionSignature → function Type and compile-check known function arguments (script functions first). Not TypeScript generics. | **Done** (project + const/let initial_value for call-site; tests; poly hub backticks stripped in generate — regenerate to refresh strings) |
-| 2 | **Highest-value gap vertical(s)** — remaining G1/G2/… after 1c as needed | Pending |
-| 3 | **Decided-not + pad/issue hygiene** — remaining nos; fix stale issue body (`Array<T>`, etc.) | Pending (partial with 1b) |
-| 4 | **Close package** — issue body, labels, `open-issues-status`, ready to close #28 | Pending |
-| 5 | **Verify** — `type_*` suite; pre-PR fulldev + valgrind as usual | Pending |
+| 1c | **FunctionSignature formals** — (A) documented functor prototypes must be valid Adaptive Script Types; (B) under typeCheck, project FunctionSignature → function Type and compile-check known function arguments (script functions first). Not TypeScript generics. | **Done** |
+| 2 | **Highest-value gap vertical(s)** — G1 typed function-var call sites; G2 pattern notes | **Done** (G1: annotation formals on call; G2: element annotations on bind — not a second full TS Pattern checker) |
+| 3 | **Decided-not + pad/issue hygiene** — firm nos; living issue body; status docs | **Done** (living #28 body; open-issues-status; pad inventory) |
+| 4 | **Close package** — PR → `mgg-develop`; labels; close #28 | Pending (needs your “open PR” / close) |
+| 5 | **Verify** — `type_*` suite; pre-PR fulldev + valgrind as usual | Pending (type_* green on wrap-up; fulldev/valgrind before PR) |
 
 Order may change after any step.
 
 ### FunctionSignature / polymorphic note (for step 1c)
 
 - Built-in HOF formals: `dataType: function` + `dataTypeParameter` FunctionSignature string (e.g. `(...values: any) => boolean`). Current set **parses** as Types; guard so docs cannot drift.
-- Compile typeCheck v1 projects FunctionSignature as leaf **`function` only** — B upgrades that to full function Type checks when the arg is known.
+- Compile typeCheck projects FunctionSignature strings to full function Types (`afw_compile_type_from_utf8`) and checks known script function args (and typed bindings).
 - **Adaptive polymorphic** is **not** TypeScript generics. Call/name form: `FunctionName ::= Identifier ( '<' DataType '>' )?` (e.g. `add<integer>(…)`). Docs/declarations use placeholder **`function id <dataType>(…)`** (no markdown backticks in Adaptive-shaped prototypes) and Supported `<dataType>` lists; specialized declarations look like `function add<integer>(…)`. Parameter Type spelling may use placeholder name **`dataType`** when `polymorphicDataType` is true. Script **type** grammar does **not** include user `f<T>`; angle brackets on **built-in function names** are data-type specialization, still live in the parser.
 - **Application-shared Adaptive functions + script poly** — **future** GitHub **[#170](https://github.com/afw-org/afw/issues/170)**: conf/application way to supply functions all scripts can use; polymorphic script functions are useful **as part of that**, not alone. Not #28 merge bar. When touching typeCheck specialize, Adaptive formal projection, call create, or function registration, prefer designs that do not hard-code “C definitions only.”
 
@@ -130,7 +130,7 @@ Author-facing thin version: root [`typescript-differences.md`](../typescript-dif
 - **Function types:** script functions/closures — param types (contravariant) and return type (covariant).
 - **Returns:** declared return type vs `return` expression / expression-body (compile) and result value (runtime).
 - **Patterns:** array/object destructure element annotations and symbol types on Pattern leaves.
-- **Call sites:** known named script functions; known Adaptive functions (projected formals / returns).
+- **Call sites:** known named script functions; bindings with a **function Type** annotation or known script function definition; known Adaptive functions (projected formals / returns / FunctionSignature).
 - Error text: composites report missing property, element index, tuple length, or decompiled expected type.
 
 **Pragma:** `#compile` + flag short names (`typeCheck`, `typeCheckCompileOnly`, `noImplicitAny`, `strictNullChecks`, `strict`, `noOptimize`, **`noTypeCheck`**, …). Flags are **process defaults** snapshotted at each compile start into the unit’s policy; `#compile` mutates **only that unit** (including mid-unit “from here on”). **`noTypeCheck`** clears the type-check cluster on unit policy (does not clear `noOptimize`). Retired: bare `#compile off;`, old `#typecheck`. See `designs/pragma-hash-design.md`. Handbook teaches **flags**; pragma is optional for tests and compact scripts.
@@ -159,19 +159,19 @@ Shared map for closing #28. **“Not yet / residual” is not the same as “dec
 | Function types / script returns (compile + runtime under full typeCheck) | `type_check.as` |
 | Pattern leaf annotations (array + object rename cases) | `type_check.as` |
 | Excess on object **literals** (incl. call-site); spreads/vars skip; runtime open | `type_check.as` |
-| Call sites: **named** script functions; **Adaptive** formals/returns/arity (compile, `allow_optimize`) | `type_check.as` + Adaptive pad |
-| Docs: handbook Types, `whats-new`, design pads | present on `mgg-develop` |
+| Call sites: **named** script functions; bindings with function Type or known definition; **Adaptive** formals/returns/arity (compile, `allow_optimize`); HOF FunctionSignature | `type_check.as` + Adaptive pad |
+| Docs: handbook Types, `whats-new`, design pads | present; differences fence on this branch |
 
 ### Fix / probe candidates (this branch — designed surface only)
 
-| ID | Item | Notes | Priority |
-|----|------|--------|----------|
-| **G0** | **FunctionSignature: valid Type + compile check** | Step **1c**. (A) validate FunctionSignature strings parse as Types. (B) project to function Type; typeCheck known functor args (esp. script functions) against built-in HOF formals. See gray-zone discussion + polymorphic note. | High (after 1b) |
-| **G1** | **Call-site formals from a typed function variable** | Pad residual: named / early-bound callees today. Authors write `const f: (a: integer)=>integer = …; f("x")` and may expect a check. **Probe first** (failing test): if thin (function-type on callee symbol), fix; if needs produce-type/optimize, reclassify to decided-not or tiny follow-on — do **not** pull optimize into #28. | High |
-| **G2** | **Pattern annotation coverage vs claim** | Basic array/object pattern tests exist. Probe param Patterns, nested, rest, catch Patterns if type annotations are stored but unchecked. Grow only where syntax stores a type and claim says enforced. | Medium |
-| **G3** | **Contract tests for every claimed rule** | Spot-check pad “What is checked” vs `type_*` names; add missing happy/error pairs only for real holes (not TS completeness). | Medium |
-| **G4** | **Error message consistency** | Composites already mention property/index/expected type in places; fix only confusing/missing cases found while probing G1–G3. | Low (opportunistic) |
-| **G5** | **Stale tracker / pad text** | GitHub issue body still lists `Array<T>`; open-issues “left open for residuals”; pad header until close. Part of step 3. | Hygiene |
+| ID | Item | Status |
+|----|------|--------|
+| **G0** | FunctionSignature valid Type + compile check | **Done** (1c) |
+| **G1** | Call-site formals from typed function variable / annotation | **Done** — `afw_value_type_check_function_type_call` when binding has function Type; definition formals when known; const/let `initial_value` |
+| **G2** | Pattern annotation coverage | **Claimed as:** leaf annotations enforced when the pattern **binds** (destructure / param evaluate). **No** full TypeScript-style Pattern type system or call-site re-check of array shape as a synthetic tuple type for pattern formals. Tests cover array/object pattern leaf cases. |
+| **G3** | Contract tests for claimed rules | **Done enough** for bar (`type_*` 101+); not infinite growth |
+| **G4** | Error message polish | Opportunistic only; not blocking close |
+| **G5** | Stale tracker / pad / issue body | Step **3** |
 
 ### Decided not to (write down; do not implement under #28)
 

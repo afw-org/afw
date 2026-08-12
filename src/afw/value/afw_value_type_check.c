@@ -1582,6 +1582,56 @@ impl_specialize_polymorphic(
 
 
 AFW_DEFINE(void)
+afw_value_type_check_function_type_call(
+    const afw_value_type_t *function_type,
+    afw_size_t argc,
+    const afw_value_t *const *argv,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx)
+{
+    const afw_value_type_function_param_t *param;
+    afw_size_t i;
+
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx)) {
+        return;
+    }
+    if (!function_type ||
+        function_type->kind != afw_value_type_kind_function ||
+        !argv)
+    {
+        return;
+    }
+
+    i = 0;
+    for (param = function_type->function.parameters;
+        param;
+        param = param->next)
+    {
+        if (param->is_rest) {
+            for (; i < argc; i++) {
+                if (argv[i + 1] && param->type) {
+                    afw_value_type_check_compile_assignable(param->type,
+                        argv[i + 1], "parameter", contextual, xctx);
+                }
+            }
+            break;
+        }
+        if (i >= argc) {
+            break;
+        }
+        if (argv[i + 1] && param->type &&
+            !afw_value_type_is_any(param->type))
+        {
+            afw_value_type_check_compile_assignable(param->type,
+                argv[i + 1], "parameter", contextual, xctx);
+        }
+        i++;
+    }
+}
+
+
+
+AFW_DEFINE(void)
 afw_value_type_check_adaptive_function_call(
     const afw_value_function_definition_t *function,
     afw_size_t argc,

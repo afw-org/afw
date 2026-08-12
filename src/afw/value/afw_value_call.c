@@ -100,6 +100,17 @@ afw_value_call_create(
     if (afw_value_is_symbol_reference(argv[0])) {
         const afw_value_symbol_reference_t *ref =
             (const afw_value_symbol_reference_t *)argv[0];
+        /*
+         * Binding annotated with a function Type: call-site formals follow
+         * the annotation (public contract), not only implementation formals
+         * (issue #28 G1).
+         */
+        if (ref->symbol &&
+            ref->symbol->type.kind == afw_value_type_kind_function)
+        {
+            afw_value_type_check_function_type_call(
+                &ref->symbol->type, argc, argv, contextual, xctx);
+        }
         if (afw_value_is_script_function_definition(
             ref->symbol->initial_value))
         {
