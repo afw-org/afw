@@ -5,6 +5,8 @@
 
 **How to use:** consult when orienting on *how to think and partner*, not for every edit. Day-to-day hard constraints stay in always-on rules (`get it right at most once` / no hand-edit `generated/`, plain language, terminology, etc.). When a mantra and live code or an explicit user instruction disagree, **follow the user and the code**.
 
+**Scope — most of these are not AFW-specific.** They are long-standing ways of working and deciding. They apply **ongoing** (including after beta/release), wherever we partner — not a temporary campaign for Adaptive Framework alone. We **store and apply them here** because this repo is where we work on AFW; AFW examples illustrate the habits. A few rows are AFW-shaped (metadata/generate, pools, Adaptive terminology); the rest (process, consensus, maps, decide-while-in-the-work, plain language, …) are general.
+
 **Provenance:** subset of Mike’s long-standing design mantras and working habits as shared in Grok Build / Cursor work (2025–2026) and distilled from earlier AFW design framing. **Incomplete on purpose.** People who have worked with Mike for years know a larger set; add here when another sticky phrase is shared and still useful. Do not invent mantras that were never said.
 
 **Companions:** optional **team-facing** one-pager → [`ai-partner-lessons.md`](ai-partner-lessons.md). Structural “why” → [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md). Topic → sources → probes → [`knowledge-atlas.md`](knowledge-atlas.md).
@@ -74,7 +76,8 @@ Short form first; “means in practice” second. Several of these are already e
 | **Gate vs lab** | Language/package **gate** (`afwdev test -j`) is not the same job as **lab** load, soak, or experimental hosts (blast, advanced / orchestrated tests). Don’t redefine the gate as soak. |
 | **Live verify when teaching** | When explaining how something works, prefer a real probe (`afw`, `afwfcgi`, retrieve runtime objects) over lore alone. |
 | **Maps over tickets** | Durable notes: concept, contract, failure mode, probe. Issue numbers are **pointers**, not the title of the knowledge. |
-| **Record what we decided not to do as carefully as what we decided to do** | Negative decisions are first-class map content. Write them where a new person (or a later session) will look — issue pad, differences table, close comment — with a short *why*. **“Not yet / out of scope for this vertical”** is not the same as **“decided not to.”** Deferred work stays live backlog; a written *no* is a commitment until someone **explicitly** reopens it. Changing your mind is fine; drifting or re-litigating from zero is not. Especially valuable when onboarding or when the same topic comes back months later. |
+| **Record what we decided not to do as carefully as what we decided to do** | Negative decisions are first-class map content. Write them where a new person (or a later session) will look — issue pad, differences table, close comment — with a short *why*. **“Not yet / out of scope for this vertical”** is not the same as **“decided not to.”** Deferred work stays live backlog; a written *no* is a commitment until someone **explicitly** reopens it. Changing your mind is fine; drifting or re-litigating from zero is not. Especially valuable when onboarding or when the same topic comes back months later. Prefer firm **no** / “how it works” for product surface on the path to beta and release — not soft “not yet” that is really an undecided dangling choice. |
+| **Process should make you more efficient and improve the quality of your work** | **Standing rule (not AFW-only, not time-boxed).** Process is a **tool**, not a goal. Use it when it speeds good work or raises quality (clearer decisions, safer merges, better tests, shared maps). **Do not** do process for its own sake — ceremony that only slows progress often **lowers** quality as a side effect (context lost, decisions deferred, thrash). **Qualifier:** do not let process block **rapid development** when that process would **not** produce more efficient or higher-quality work. Examples of process that must not outrank the work: “keep the PR small because that is the standard way,” endless follow-up issues for choices we could decide **now**, or re-litigating settled nos without a new decision. Good process still includes real quality gates (build/test where they help), discuss-then-execute on hard multi-phase work, and honest deferral when information or people are truly missing. |
 | **Widen goals, not volume** | Grow competence and coverage of *kinds* of knowledge; don’t dump every PR status into long memory or long pads. |
 | **Code wins on facts** | Pads and mantras orient; the tree and tests are ground truth. When notes drift, fix the notes. |
 
@@ -103,6 +106,7 @@ Assistants: when Mike is in this mode, prefer **full sketch + scenario stress-te
 | **Ask what you think first** | Open issues with the partner’s read; keep inviting it during the discussion (see *How consensus is grown* above). |
 | **Discuss → plan → tweak → execute when agreed** | Especially for hard multi-phase work (e.g. memory **#2**). Don’t steamroll a large implementation without shared agreement on the current step. For new syntax/harness shape, use *Design method* above. |
 | **Flexible plan, one step, then re-decide** | Prefer a **living candidate order** over a locked multi-step script. Share a flexible plan for orientation; do **one** step (discuss only as much as that step needs); when it feels finished, the human partner asks something like **“what do you think we should do next?”** — then either take the next candidate or **adapt** the plan from what you just learned. Assistants do **not** auto-chain the whole epic after one green light. Fits wrap-ups, residuals, and other issues where the edge is exploratory (classic use: **#28** close-out). Pairs with *Complete thin verticals* and *Discuss → plan → tweak → execute*. |
+| **Decide while we are in the work** | On feature branches and `mgg-develop`, **close product decisions** (yes / no / how it works) while the topic is open. Do not procrastinate choices into dangling “later” without a **real** reason (missing information, other people, blocked probe, truly separate capability). “Keep the branch/PR small because that is the standard way” is **not** a good enough reason — see *Process should make you more efficient…*. A firm written **no** finishes a decision; soft deferral does not. |
 | **Hold commits / PR until asked** | Default in this partnership unless the human partner says otherwise for a stretch. |
 | **One hard cleanup item at a time** | When doing C hygiene passes, finish or park one thread before opening five. |
 | **No `AFW_ASSERT` as the style** | Prefer real error paths and explicit checks consistent with existing core style; don’t introduce assert-heavy patterns. |
@@ -126,6 +130,8 @@ Useful when someone (or an assistant) is about to “help” the wrong way:
 - Assuming beta ship date = end of partnership or end of learning the system.
 - Building a parallel tool/language/harness **without** checking alternatives and **ease of reliable good work** (see *Design method*).
 - Keeping two experimental ways to do the same maintainer job forever (e.g. advanced-test *and* blast *and* orchestrated tests) without a consolidation path.
+- **Process for its own sake** — ceremony that slows work without improving efficiency or quality (see *Process should make you more efficient…*).
+- Leaving **dangling product decisions** “for a follow-up PR” when we could decide now and write the no or the yes.
 
 ---
 
@@ -139,7 +145,7 @@ When another sticky phrase shows up in conversation and still helps:
 2. Optionally one line in [`agent-support.md`](agent-support.md) concept cards if it is support-shaped.  
 3. Do **not** paste the whole list into always-on `.mdc` unless it is a true daily hard rule (most already are, or aren’t).
 
-This pad (and related maps) is also how long-standing **working habits** stay available when Mike is not in the room — useful personality and method for support/development partners, not a biography. Promote sticky *how we decide* and *what we refused*, not chat volume.
+This pad (and related maps) is also how long-standing **working habits** stay available when Mike is not in the room — useful personality and method for support/development partners, not a biography. Most habits here **outlive any one product milestone**. Promote sticky *how we decide* and *what we refused*, not chat volume. Use them on AFW work; they were not invented only for AFW.
 
 ---
 

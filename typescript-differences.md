@@ -99,16 +99,30 @@ TypeScript-like **spelling** where Adaptive supports it; Adaptive **semantics** 
 | Feature | Adaptive |
 |---------|----------|
 | Annotations | `: Type` on bindings, params, returns, Pattern leaves |
-| Arrays / tuples | **`T[]`**, **`[T, U]`** (not `Array<T>` — see [motivated differences](#motivated-differences-not-bugs)) |
+| Arrays / tuples | **`T[]`**, fixed **`[T, U]`** (not `Array<T>` — see [motivated differences](#motivated-differences-not-bugs)). No optional/rest/labeled tuple forms (see [will not do](#explicitly-will-not-do)) |
 | Unions / intersections | `A \| B`, `A & B` |
-| Object shapes / optional props | `{ host: string, port?: integer }` |
+| Object shapes / optional props | **Closed** lists: `{ host: string, port?: integer }` — known names only (optional with `?`). **No** index signatures. Callable fields use a **function Type** after the colon (`run: (a: integer) => integer`), not TypeScript method/call signatures (see [will not do](#explicitly-will-not-do)) |
 | Function **types** | `(a: integer) => integer` |
 | Function **values** | `function (a: integer): integer { … }` |
 | Aliases / interfaces | `type`, `interface` + `extends` |
 | Checking | Off by default; `compile:typeCheck*`, `noImplicitAny`, `strictNullChecks`, `strict`; `#compile` / `noTypeCheck` |
-| Old Adaptive Type spelling | Hard cut: no `(array of T)`, no `(object "OT")` |
+| Old Adaptive Type spelling | Hard cut: no `(array of T)`, no `(object "SomeObjectType")` |
 
-Leaves are Adaptive **data types** (`integer`, `string`, …), not TS `number` or DOM libs.
+Leaves are Adaptive **data types** (`integer`, `string`, …), not TypeScript `number`, DOM libraries, or **literal types** such as `"read"` or `1` (see [will not do](#explicitly-will-not-do)).
+
+#### Compile-time vs runtime (Adaptive values — overall)
+
+TypeScript authors often assume “types mean mostly compile-time.” Adaptive splits the work:
+
+| Job | When it runs | Role |
+|-----|----------------|------|
+| **Script type checking** | Off by default; when on, compile if the type is known, and (unless compile-only) also at run time for assigns / script parameters / returns | Script-local shapes and data types you wrote in the script |
+| **Adaptive function parameters** (built-ins) | Extra checks at **compile** when the function and argument types are known; **run time** still does the usual Adaptive convert and implementation checks | Not a second full type system on every execute |
+| **Adaptive objects** (object types, property meta, write rules such as allow write) | **Run time** (and the admin UI from meta) when the object and its type/meta are available | Catalogs, adapters, and models are dynamic — not fully imported into the script type checker at compile |
+
+So: optional script types for local contracts; Adaptive functions keep runtime behavior with earlier compile help when possible; Adaptive object rules stay meta- and write-path-driven. Longer maintainer note: [`designs/issue-28-type-syntax.md`](designs/issue-28-type-syntax.md).
+
+**Admin / client note (decision hygiene):** the Adaptive JavaScript client models open Adaptive objects with TypeScript index signatures and mostly **data-kind** types (`string`, unions of classes, occasional `enum`). The admin app is largely JavaScript + PropTypes. That host-app style informs “what AFW developers reach for”; it does **not** mean Adaptive Script must grow the same type machinery. Script types stay the small surface in the table above.
 
 ### Host context (not globals)
 
@@ -174,7 +188,7 @@ Leaves are Adaptive **data types** (`integer`, `string`, …), not TS `number` o
 
 ## Explicitly will not do
 
-Hard stops for beta and beyond unless product **explicitly** reopens them. Do not implement “a little JS runtime” under the banner of TypeScript-shaped syntax.
+How Adaptive Script **works** for these items — not a temporary “not yet” list. Changing any of this is a **new product decision** (typically a new issue), not silent drift. Do not implement “a little JS runtime” under the banner of TypeScript-shaped syntax.
 
 ### Platform (hard no)
 
@@ -195,9 +209,15 @@ Hard stops for beta and beyond unless product **explicitly** reopens them. Do no
 | Arrow **functions** as values (`=>`) | Explicit non-goal for now; **`=>` in function types** is supported |
 | `var`, automatic semicolon insertion, expression-as-statement | Semicolons required; statements are statements |
 | `for-in` | Use `keys` / `values` / `entries` + `for-of` |
-| Full advanced TS type system | No merge-bar for generics, `keyof`, conditionals, mapped types, `ReadonlyArray`, etc. |
-| TypeScript **`Array<T>`** type spelling | Use **`T[]` only**; same meaning in TS, one form in Adaptive |
-| JS `typeof` / `instanceof` operator semantics | Keywords may be reserved; not the JS operators |
+| Full advanced TypeScript type system | No merge-bar for generics, `keyof`, conditionals, mapped types, `ReadonlyArray`, etc. |
+| TypeScript **`Array<T>`** type spelling | Use **`T[]` only**; same meaning in TypeScript, one form in Adaptive |
+| **Index signatures** on object types (`{ [key: string]: T }`, numeric keys, or known fields plus an open tail) | Script object types list **known properties** only. Free-form bags: use data types **`object`** or **`any`**, or leave type checking off for that unit. Schemas the framework owns: **Adaptive object types** and adapters — script `interface` is not that catalog. The Adaptive **JavaScript client** may use index signatures when typing open Adaptive objects in the host app; that is a different layer. The index form is not Adaptive Script type syntax. |
+| **Literal types** (`"read"`, `1`, `true` as types; unions like `"a" \| "b"`) | Type leaves are Adaptive **data types** only. There is no TypeScript-style value-level type lattice and no control-flow narrowing for discriminants. Use `string` / `integer` / `boolean` (and ordinary unions of those); check specific values at run time when needed; framework vocabularies often live as **allowed values** on Adaptive property / object types (same spirit as generated UI props that stay `string` with a prose list). |
+| **`readonly` in script types** (properties, tuples, arrays, `ReadonlyArray`-style forms) | Not part of the Adaptive Script type language. Non-writable **Adaptive object** properties use Adaptive object types / property meta (for example **allow write**), enforced on **write paths at run time** and reflected in the admin UI — not a script type modifier. In script, use **`const`** and runtime helpers such as **freeze** for bindings and values. |
+| **Richer tuple types** (optional elements such as `[T, U?]`, rest such as `[T, ...U[]]`, labeled `[x: T, y: U]`) | Adaptive Script has **fixed-length** tuples only: `[T, U, …]` with length and per-position checks. Open-ended sequences use **`T[]`**. Optional structure often fits an object shape better than a variable-length tuple. Rest on **function** parameter types is separate and already exists. |
+| **Method / call / construct signatures in object types** (`{ run(a: integer): boolean }`, `{ (): void }`, `{ new (): T }`) | Object types list **properties** only (`name` / `name?` + `:` + Type). For a callable property write a **function Type**: `run: (a: integer) => boolean` — same idea as built-in function-parameter prototypes in the Function Reference. Adaptive has no class / `new` object model; methods are Adaptive functions (and optional `->` sugar), not prototype members. One form, not TypeScript method shorthand. |
+| **Type assertions, `satisfies`, type predicates, assertion functions** (`x as T`, `satisfies`, `x is T`, `asserts x is T`, non-null `!`) | Not part of Adaptive Script. There is no TypeScript-style assertion or control-flow narrowing lattice. Declare types with `: Type` and use type checking when it is on and types are known. At run time use conditions, Adaptive helpers, and `throw`. |
+| **`typeof` / `instanceof`** (value operators **and** TypeScript **type-query** `typeof`) | Keywords may be **reserved** so mistaken copy-paste fails early (**reserved ≠ implemented**). Adaptive Script does **not** implement the JavaScript `typeof` / `instanceof` operators, and does **not** support TypeScript type queries such as `type T = typeof x` or `: typeof y`. Write types with Adaptive data type names, structural types, and script `type` / `interface` aliases. Host TypeScript/JavaScript may still use value `typeof` in the admin client — different layer. |
 | TDZ (ReferenceError on uninit `let`/`const`) | Adaptive reads uninit as undefined today; changing that is a product decision, not an assumed “fix” |
 
 ### Not “make every name look like JS”
@@ -221,7 +241,7 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | **Type checking** | **Opt-in** (not always-on `tsc`) |
 | **Outside names** | **Qualifiers**, not globals |
 | **Methods** | Adaptive functions + optional `->` sugar, not prototype walk |
-| **Script types vs OT** | Script `interface` ≠ adapter object type catalog |
+| **Script types vs Adaptive object types** | Script `interface` ≠ adapter object type catalog |
 | **Array element types** | **`T[]` only** — not `Array<T>`. TS treats both as the same; Adaptive keeps a single spelling (matches typical app/client `string[]` style and avoids a second path into generics) |
 | **`null` vs `undefined`** | Both nullish; Adaptive `null` is a typed singleton; C APIs may use NULL for undefined—script authors should think in nullish + exists/get rules above |
 | **String encoding** | Adaptive is **100% UTF-8** end-to-end. **`afw_utf8_t` values are always valid NFC UTF-8** (invalid UTF-8 must not appear as a string value—that’s a serious bug). ECMAScript engines typically expose a **UTF-16 code unit** model (one logical character may be two 16-bit units / a surrogate pair). Adaptive **length**, **substring**, **index_of**, **for-of** (strings), and empty-separator **split** walk **Unicode code points** in that UTF-8, not UTF-16 code units and not “raw octet indexes” for character steps. |
