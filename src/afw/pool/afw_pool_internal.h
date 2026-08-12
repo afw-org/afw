@@ -183,7 +183,7 @@ AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_create_base_pool();
 
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,

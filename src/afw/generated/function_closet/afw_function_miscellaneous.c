@@ -20,7 +20,7 @@
  *
  * afw_function_execute_compare_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compare two URIs.
  *
@@ -74,7 +74,7 @@ afw_function_execute_compare_uri(
  *
  * afw_function_execute_debug
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Conditionally, based on the detail parameter, write a value as a string to
  * the debug file descriptor (usually stderr).
@@ -120,7 +120,7 @@ afw_function_execute_debug(
  *
  * afw_function_execute_execution_start_time_local
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return local dateTime when the execution context was created. This will
  * usually be the start of request time.
@@ -156,7 +156,7 @@ afw_function_execute_execution_start_time_local(
  *
  * afw_function_execute_execution_start_time_utc
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return UTC dateTime when the execution context was created. This will usually
  * be the start of request time.
@@ -192,7 +192,7 @@ afw_function_execute_execution_start_time_utc(
  *
  * afw_function_execute_generate_uuid
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Generate a UUID.
  *
@@ -227,7 +227,7 @@ afw_function_execute_generate_uuid(
  *
  * afw_function_execute_is_defined
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if the value is not undefined. Does not check whether a variable
  * name is bound — use variable_exists for that. null is defined.
@@ -266,7 +266,7 @@ afw_function_execute_is_defined(
  *
  * afw_function_execute_is_nullish
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if the value is null or undefined. Does not check whether a
  * variable name is bound — use variable_exists for that.
@@ -305,7 +305,7 @@ afw_function_execute_is_nullish(
  *
  * afw_function_execute_log
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert value to String and log it.
  *
@@ -343,7 +343,7 @@ afw_function_execute_log(
  *
  * afw_function_execute_now_local
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return current local dateTime.
  *
@@ -378,7 +378,7 @@ afw_function_execute_now_local(
  *
  * afw_function_execute_now_utc
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return current UTC dateTime.
  *
@@ -413,7 +413,7 @@ afw_function_execute_now_utc(
  *
  * afw_function_execute_parse_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Parse a URI.
  *
@@ -462,7 +462,7 @@ afw_function_execute_parse_uri(
  *
  * afw_function_execute_perform
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Perform actions right away.
  *
@@ -501,7 +501,7 @@ afw_function_execute_perform(
  *
  * afw_function_execute_trace
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Write a value to a trace log.
  *
@@ -549,7 +549,7 @@ afw_function_execute_trace(
  *
  * afw_function_execute_variable_exists
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if the named variable is bound: a lexical symbol in the current
  * scope chain, or a name defined on a visible qualifier frame. Still true when
@@ -590,7 +590,7 @@ afw_function_execute_variable_exists(
  *
  * afw_function_execute_variable_get
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the value of a bound variable. Optional default applies only when the
  * name is not bound — not when the value is undefined. If unbound and no
@@ -635,7 +635,7 @@ afw_function_execute_variable_get(
  *
  * afw_function_execute_variable_is_not_null
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if the named variable is bound and its value is not Adaptive
  * null. Undefined (including an uninitialized let) counts as not null. False if

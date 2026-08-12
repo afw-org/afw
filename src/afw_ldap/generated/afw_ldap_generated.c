@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_ldap_generated.h"
+#include "afw_ldap_generated_internal.h"
 #include "afw_ldap_version_info.h"
 
 static const afw_utf8_z_t * impl_version_info_z[] = {

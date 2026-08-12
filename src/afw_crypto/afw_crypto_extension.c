@@ -22,7 +22,7 @@
 #define AFW_EXTENSION_SELF_T afw_crypto_extension_self_t
 #include "afw_extension_impl_declares.h"
 
-#include "generated/afw_crypto_generated.h"
+#include "generated/afw_crypto_generated_internal.h"
 
 #define AFW_IMPLEMENTATION_VERSION AFW_CRYPTO_VERSION_STRING
 #include "generated/afw_crypto_version_info.h"

@@ -20,7 +20,7 @@
  *
  * afw_function_execute_compile_xml
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile xml value and return either an unevaluated adaptive value or a string
  * containing the compiler listing.

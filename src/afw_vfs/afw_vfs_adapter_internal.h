@@ -17,7 +17,7 @@
  */
 
 #include "afw_interface.h"
-#include "generated/afw_vfs_generated.h"
+#include "generated/afw_vfs_generated_internal.h"
 
 AFW_BEGIN_DECLARES
 

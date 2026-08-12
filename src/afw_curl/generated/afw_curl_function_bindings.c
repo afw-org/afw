@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_curl_function_bindings.h"
+#include "afw_curl_function_bindings_internal.h"
 #include "afw_curl_runtime_object_maps.h"
 #include "afw_curl_strings.h"
 
@@ -1865,7 +1865,7 @@ impl_function_bindings[] = {
 };
 
 /* Get array of pointers to afw_curl_function bindings. */
-AFW_CURL_DEFINE(const afw_value_function_definition_t **)
+const afw_value_function_definition_t **
 afw_curl_function_bindings_get()
 {
     return &impl_function_bindings[0];

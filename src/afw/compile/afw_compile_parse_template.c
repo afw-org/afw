@@ -29,7 +29,7 @@ impl_compile_time_template_get_cb(
  * CompileTimeSubstitution ::= '#{' Script '}'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -71,7 +71,7 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
  * EvaluationTimeSubstitution ::= '${' Script '}'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_EvaluationTimeSubstitution(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -97,7 +97,7 @@ afw_compile_parse_EvaluationTimeSubstitution(afw_compile_parser_t *parser)
  * Substitution ::= CompileTimeSubstitution | EvaluationTimeSubstitution
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Substitution(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -142,7 +142,7 @@ afw_compile_parse_Substitution(afw_compile_parser_t *parser)
  *    )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Template(afw_compile_parser_t *parser)
 {
     const afw_utf8_t *string;
@@ -250,7 +250,7 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
  * TemplateString ::= '`' + Template + '`'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
 {
     const afw_utf8_t *string;

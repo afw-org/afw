@@ -233,7 +233,7 @@ impl_compile_check_assign_target(
  * AssignmentExpression ::= Expression
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentExpression(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression,
@@ -278,7 +278,7 @@ afw_compile_parse_AssignmentExpression(
  *    ( ( 'let' | 'const' )? AssignmentTarget )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_OptionalDefineTarget(
     afw_compile_parser_t *parser,
     const afw_value_t **define_function,
@@ -328,7 +328,7 @@ afw_compile_parse_OptionalDefineTarget(
  *
  *<<<ebnf*/
 /* Call afw_compile_parse_OptionalDefineTarget() first to get params. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_OptionalDefineAssignment(
     afw_compile_parser_t *parser,
     const afw_value_t *target,
@@ -386,7 +386,7 @@ afw_compile_parse_OptionalDefineAssignment(
  *    )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentOperation(
     afw_compile_parser_t *parser,
     const afw_value_t *target,
@@ -508,7 +508,7 @@ afw_compile_parse_AssignmentOperation(
  * Assignment ::= AssignmentExpression AssignmentOperation
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Assignment(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression)
@@ -538,7 +538,7 @@ afw_compile_parse_Assignment(
  *    ';'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentStatement(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression)
@@ -1669,7 +1669,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    WhileStatement
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Statement(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression)
@@ -1842,7 +1842,7 @@ afw_compile_parse_Statement(
  * StatementList ::= Statement*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_StatementList(
     afw_compile_parser_t *parser,
     afw_compile_parse_StatementList_cb_t *cb,
@@ -2050,7 +2050,7 @@ afw_compile_parse_StatementList(
  * ScriptShebang ::= '#!' UnicodeNonControl* 'afw' UnicodeNonControl* '\n'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Script(
     afw_compile_parser_t *parser,
     afw_boolean_t end_is_close_brace)
@@ -2582,7 +2582,7 @@ impl_test_script_get_next_key_value(
  * TestSource ::= TestScriptLineStart 'source:' TestScriptValue
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_TestScript(
     afw_compile_parser_t *parser)
 {

@@ -15,7 +15,7 @@
 #include "afw.h"
 #include "afw_lmdb.h"
 #include "afw_lmdb_internal.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include "afw_adapter_impl.h"
 #include "lmdb.h"
 

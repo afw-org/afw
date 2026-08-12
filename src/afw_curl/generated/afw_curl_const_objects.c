@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_curl_generated.h"
+#include "afw_curl_generated_internal.h"
 
 
 static const afw_runtime_const_object_instance_t

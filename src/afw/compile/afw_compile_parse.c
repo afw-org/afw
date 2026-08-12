@@ -63,7 +63,7 @@
 
 
 
-AFW_DEFINE_INTERNAL(const afw_compile_value_contextual_t*)
+const afw_compile_value_contextual_t*
 afw_compile_create_contextual(
     afw_compile_parser_t* parser,
     afw_size_t start_offset,
@@ -83,7 +83,7 @@ afw_compile_create_contextual(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+const afw_utf8_t *
 afw_compile_create_source_location_impl(
     afw_compile_parser_t *parser,
     afw_size_t start_offset)
@@ -117,7 +117,7 @@ afw_compile_create_source_location_impl(
 
 
 /* Reference create. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
@@ -167,7 +167,7 @@ afw_compile_parse_reference_create(
 
 
 /* Embellish error. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_parse_embellish_error(
     afw_compile_parser_t *parser,
     afw_error_t *error)
@@ -205,7 +205,7 @@ afw_compile_parse_embellish_error(
 
 
 /* Parse error. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_parse_set_error_z(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *source_z,
@@ -237,7 +237,7 @@ afw_compile_parse_set_error_z(
 
 
 /* Parse error. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_parse_set_error_fz(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *source_z,
@@ -255,7 +255,7 @@ afw_compile_parse_set_error_fz(
 }
 
 
-AFW_DEFINE_INTERNAL(const afw_value_symbol_reference_t *)
+const afw_value_symbol_reference_t *
 afw_compile_parse_variable_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
@@ -310,7 +310,7 @@ afw_compile_parse_variable_reference_create(
 
 
 
-AFW_DEFINE_INTERNAL(afw_value_block_symbol_t *)
+afw_value_block_symbol_t *
 afw_compile_parse_get_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name)
@@ -335,7 +335,7 @@ afw_compile_parse_get_symbol_entry(
 
 
 
-AFW_DEFINE_INTERNAL(afw_value_block_symbol_t *)
+afw_value_block_symbol_t *
 afw_compile_parse_get_local_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name)
@@ -356,7 +356,7 @@ afw_compile_parse_get_local_symbol_entry(
 
 
 
-AFW_DEFINE_INTERNAL(afw_value_block_symbol_t *)
+afw_value_block_symbol_t *
 afw_compile_parse_add_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name)
@@ -388,7 +388,7 @@ afw_compile_parse_add_symbol_entry(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_block_t *)
+const afw_value_block_t *
 afw_compile_parse_link_new_value_block(
     afw_compile_parser_t *parser,
     afw_size_t start_offset)
@@ -409,7 +409,7 @@ afw_compile_parse_link_new_value_block(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_parse_check_symbol(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name,

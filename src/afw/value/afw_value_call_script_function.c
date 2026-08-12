@@ -38,7 +38,7 @@
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,

@@ -28,7 +28,7 @@
  *
  *<<<ebnf*/
 /* Note: Token '[' is already consumed. */
-AFW_DEFINE_INTERNAL(const afw_compile_list_destructure_t *)
+const afw_compile_list_destructure_t *
 afw_compile_parse_AssignmentListDestructureTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -86,7 +86,7 @@ afw_compile_parse_AssignmentListDestructureTarget(
  *    AssignmentBindingTarget ( '=' Expression )?
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(afw_compile_assignment_element_t *)
+afw_compile_assignment_element_t *
 afw_compile_parse_AssignmentElement(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -128,7 +128,7 @@ afw_compile_parse_AssignmentElement(
  *
  *<<<ebnf*/
 /* Note: Token '{' is already consumed. */
-AFW_DEFINE_INTERNAL(const afw_compile_object_destructure_t *)
+const afw_compile_object_destructure_t *
 afw_compile_parse_AssignmentObjectDestructureTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -190,7 +190,7 @@ afw_compile_parse_AssignmentObjectDestructureTarget(
  *    ( '[' Expression ']' ':' AssignmentElement )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(afw_compile_assignment_property_t *)
+afw_compile_assignment_property_t *
 afw_compile_parse_AssignmentProperty(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -288,7 +288,7 @@ afw_compile_parse_AssignmentProperty(
  *    ( VariableName - ReservedWords )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_parse_AssignmentBindingTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type,
@@ -387,7 +387,7 @@ afw_compile_parse_AssignmentBindingTarget(
  * AssignmentTarget ::= AssignmentBindingTarget | Reference
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)

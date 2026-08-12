@@ -20,7 +20,7 @@
  *
  * afw_function_execute_meta
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns an object containing meta information for an adaptive
  * value.
@@ -65,7 +65,7 @@ afw_function_execute_meta(
  *
  * afw_function_execute_metas
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns an array of the result of calling meta() for each value
  * in an array or object adaptive value.

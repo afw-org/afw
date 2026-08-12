@@ -357,20 +357,25 @@ def generate(generated_by, prefix, object_dir_path,
             list += direct.retrieve_objects_direct(path)           
     list.sort(key=sort_use_id_cb)
 
-    filename = prefix + 'const_objects.h'
+    # Register API only; not public. Name matches install *_internal.h filter.
+    filename = prefix + 'const_objects_internal.h'
 
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
 
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Builtin Objects Header', copyright, filename)
+        c.write_h_prologue(
+            fd, generated_by,
+            'Adaptive Framework Builtin Objects Header (internal)', copyright,
+            filename)
         c.write_doxygen_file_section(
             fd, filename,
-            'Generated header for builtin const adaptive objects.')
+            'Internal header for builtin const adaptive object register '
+            '(not public C API).')
         fd.write('\n#include "afw_interface.h"\n')
         fd.write('\n\n/**\n')
-        fd.write(' * @brief Get array of ' + prefix + ' const objects. \n')
+        fd.write(' * @brief Register ' + prefix + ' const objects (package/core init).\n')
         fd.write(' */\n')
         fd.write('void\n')
         fd.write(prefix + 'const_objects_register(afw_xctx_t *xctx);\n')
@@ -385,8 +390,12 @@ def generate(generated_by, prefix, object_dir_path,
             'Generated builtin const adaptive objects.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
-        fd.write('#include "' + prefix + 'generated.h"\n')
+        # Core zz__* string permanents (property values, prose) for const objects.
+        if options.get('core'):
+            fd.write('#include "' + prefix + 'strings_internal.h"\n')
+        fd.write('#include "' + prefix + 'generated_internal.h"\n')
         fd.write('\n')
+
 
         for obj in list:
             obj['_meta_']['_label_'] = new_label()           

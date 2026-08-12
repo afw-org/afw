@@ -8,8 +8,8 @@
 # Metadata source of truth is generate/objects/_AdaptiveDataTypeGenerate_/*.json
 # (fields such as cType, special, directReturn, scalar). This module emits the
 # C APIs and afw_value_inf_t instances used to create and classify evaluated
-# data-type values. Core and extensions include the generated headers and call
-# the create/allocate functions at runtime.
+# data-type values. Generated only for core (libafw); non-core packages must
+# not define _AdaptiveDataTypeGenerate_ (afwdev generate errors if they do).
 #
 # Adaptive values (afw_value_t) have an inf pointer and a typed payload. For
 # each data type this module generates afw_value_<dataType>_t (pub + internal
@@ -663,28 +663,24 @@ def write_h_section(fd, prefix, obj):
         fd.write('    ' + parameter_ctype + 'value,\n')
         fd.write('    afw_xctx_t *xctx);\n')
 
-    # Data type direct extern.
+    # Data type direct (public: extensions use afw_data_type_*_direct in statics).
     fd.write('\n/**\n')
-    fd.write(' * @brief extern for data type ' + id + ' struct.\n')
+    fd.write(' * @brief Public data type ' + id + ' struct instance.\n')
     fd.write(' *\n')
-    fd.write(' * This should only be managed in the linkage unit the extern is\n')
-    fd.write(' * defined in.  Use afw_data_type_' + id + ' when not referencing in\n')
-    fd.write(' * a static.\n')
+    fd.write(' * Prefer afw_data_type_' + id + ' when a pointer is enough and you are not\n')
+    fd.write(' * initializing static data that must reference the struct object.\n')
     fd.write(' */\n')
-    fd.write('AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)\n')
+    fd.write(declare_data + '(afw_data_type_t)\n')
     fd.write('afw_data_type_' + id + '_direct;\n')
 
-    # Data type inf extern.
+    # Data type inf (vtable for the data type instance).
     fd.write('\n/**\n')
-    fd.write(' * @brief extern for data type ' + id + ' inf.\n')
+    fd.write(' * @brief Public data type ' + id + ' inf.\n')
     fd.write(' *\n')
-    fd.write(' * This should only be managed in the linkage unit the extern is\n')
-    fd.write(' * defined in.\n')
-    fd.write(' *\n')
-    fd.write(' * The implementation of the data type must define this.  It is\n')
-    fd.write(' * managed by the generated data type instance.\n')
+    fd.write(' * Defined with the data type implementation; managed by the generated\n')
+    fd.write(' * data type instance.\n')
     fd.write(' */\n')
-    fd.write('AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)\n')
+    fd.write(declare_data + '(afw_data_type_inf_t)\n')
     fd.write('afw_data_type_' + id + '_inf;\n')
 
 
@@ -918,17 +914,17 @@ def write_c_section(fd, prefix, obj):
 
     # Declare for empty array of this data type
     fd.write('\n/* Value for empty array of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
+    fd.write('const afw_array_view_of_c_array_self_t\n')
     fd.write('impl_empty_array_of_' + id + ';\n')
     
     # Declare for empty array value of this data type
     fd.write('\n/* Value for empty array of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)\n')
+    fd.write('const afw_value_array_t\n')
     fd.write('impl_value_empty_array_of_' + id + ';\n')
     
-    # Data type
+    # Data type (public const object)
     fd.write('\n/* Data type ' + id + ' instance. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)\n')
+    fd.write(define_data + '(afw_data_type_t)\n')
     fd.write('afw_data_type_' + id + '_direct = {\n')
     fd.write('    &' + prefix + 'data_type_' + id + '_inf,\n')
 
@@ -1043,7 +1039,7 @@ def write_c_section(fd, prefix, obj):
 
         # Define for empty array of this data type
         fd.write('\n/* Value for empty array of ' + id + '. */\n')
-        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
+        fd.write('const afw_array_view_of_c_array_self_t\n')
         fd.write('impl_empty_array_of_' + id + ' = {\n')
         fd.write('    {\n')
         fd.write('        &afw_array_view_of_c_array_inf,\n')
@@ -1056,7 +1052,7 @@ def write_c_section(fd, prefix, obj):
         
         # Define for empty array of this data type
         fd.write('\n/* Value for empty array of ' + id + '. */\n')
-        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)\n')
+        fd.write('const afw_value_array_t\n')
         fd.write('impl_value_empty_array_of_' + id + ' = {\n')
         fd.write('    {&afw_value_permanent_array_inf},\n')
         fd.write('    (const afw_array_t *)&impl_empty_array_of_' + id + '\n')
@@ -1890,7 +1886,7 @@ def generate_h(prefix, obj, id, generated_by, dir, copyright, filename, options)
         c.write_h_prologue(fd, generated_by, 'Adaptive Data Type ' + id , copyright, filename)
         fd.write('\n#include "afw_minimal.h"\n')
         fd.write('#include "' + prefix + 'data_type_typedefs.h"\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
+        # AFW_DECLARE* macros come from afw_common.h via afw_minimal.h (core only).
         if options['core']:
             fd.write('\n/**\n')
             fd.write(' * @defgroup afw_c_api_data_type_' + id + ' ' + id + '\n')
@@ -1920,7 +1916,6 @@ def generate_typedefs_h(prefix, data_type_array, id, generated_by, dir, copyrigh
             fd, filename,
             'Generated typedefs header for adaptive data type `' + id + '`.')
         fd.write('\n#include "afw_minimal.h"\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
         fd.write('\nAFW_BEGIN_DECLARES\n')
 
         for obj in data_type_array:
@@ -1959,6 +1954,11 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
 
     # Just return if no data types
     if len(data_type_array) == 0: return
+
+    if not options.get('core'):
+        msg.error_exit(
+            'Data type bindings are only supported in core (libafw). '
+            'Non-core packages must not define _AdaptiveDataTypeGenerate_/.')
 
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')

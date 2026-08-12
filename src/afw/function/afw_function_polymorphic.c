@@ -104,7 +104,7 @@ impl_add_nondups_to_array(
  *
  * afw_function_execute_at_least_one_member_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns boolean true if at least one value in `<dataType>` array1 is in
  * `<dataType>` array2.
@@ -168,7 +168,7 @@ afw_function_execute_at_least_one_member_of(
  *
  * afw_function_execute_bag
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Takes any number of `<dataType>` values and returns an array of array.
  *
@@ -228,7 +228,7 @@ afw_function_execute_bag(
  *
  * afw_function_execute_bag_size
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns the integer number of values in array.
  *
@@ -279,7 +279,7 @@ afw_function_execute_bag_size(
  *
  * afw_function_execute_clone
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Deep clone a `<dataType>` value.
  *
@@ -327,7 +327,7 @@ afw_function_execute_clone(
  *
  * afw_function_execute_compile
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile <Type> value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
@@ -383,7 +383,7 @@ afw_function_execute_compile(
  *
  * afw_function_execute_ends_with
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value ends with a `<dataType>` and return the
  * boolean result.
@@ -448,7 +448,7 @@ afw_function_execute_ends_with(
  *
  * afw_function_execute_eq
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
@@ -540,7 +540,7 @@ afw_function_execute_eq(
  *
  * afw_function_execute_eqx
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if for `<dataType>` arg1 is equal to the value and data type of
  * arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
@@ -632,7 +632,7 @@ afw_function_execute_eqx(
  *
  * afw_function_execute_ge
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
  * and return the boolean result.
@@ -710,7 +710,7 @@ afw_function_execute_ge(
  *
  * afw_function_execute_gt
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return the
  * boolean result.
@@ -787,7 +787,7 @@ afw_function_execute_gt(
  *
  * afw_function_execute_includes
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether the `<dataType>` value includes a string and return the
  * boolean result.
@@ -905,7 +905,7 @@ afw_function_execute_includes(
  *
  * afw_function_execute_index_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns the zero-based index into `<dataType>` value of subString. If
  * subString is not found, -1 is returned.
@@ -1006,7 +1006,7 @@ return_result:
  *
  * afw_function_execute_intersection
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns an array of `<dataType>` with the values that are common to both
  * array of `<dataType>` array1 and array2.
@@ -1085,7 +1085,7 @@ afw_function_execute_intersection(
  *
  * afw_function_execute_is_in
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value is in array of `<dataType>` array and
  * returns the boolean result.
@@ -1149,7 +1149,7 @@ afw_function_execute_is_in(
  *
  * afw_function_execute_le
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2 and
  * return the boolean result.
@@ -1226,7 +1226,7 @@ afw_function_execute_le(
  *
  * afw_function_execute_length
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is a polymorphic function where `<dataType>` can be any of the supported
  * data types. Return the integer number of entries in datatype array or
@@ -1293,7 +1293,7 @@ afw_function_execute_length(
  *
  * afw_function_execute_lt
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
  * boolean result.
@@ -1370,7 +1370,7 @@ afw_function_execute_lt(
  *
  * afw_function_execute_max
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the `<dataType>` value that is greater than or equal to the others.
  *
@@ -1431,7 +1431,7 @@ afw_function_execute_max(
  *
  * afw_function_execute_min
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the `<dataType>` value that is less than or equal to the others.
  *
@@ -1492,7 +1492,7 @@ afw_function_execute_min(
  *
  * afw_function_execute_ne
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
@@ -1587,7 +1587,7 @@ afw_function_execute_ne(
  *
  * afw_function_execute_nex
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if for `<dataType>` arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
@@ -1679,7 +1679,7 @@ afw_function_execute_nex(
  *
  * afw_function_execute_one_and_only
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This converts an array of `<dataType>` values that contains one value to a
  * single `<dataType>` value.
@@ -1742,7 +1742,7 @@ afw_function_execute_one_and_only(
  *
  * afw_function_execute_regexp_match
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value matches the regular expression regexp and
  * return the boolean result.
@@ -1819,7 +1819,7 @@ afw_function_execute_regexp_match(
  *
  * afw_function_execute_repeat
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Repeat a `<dataType>` value a specified number of times.
  *
@@ -1893,7 +1893,7 @@ afw_function_execute_repeat(
  *
  * afw_function_execute_replace
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace string(s) in a `<dataType>` value.
  *
@@ -2054,7 +2054,7 @@ afw_function_execute_replace(
  *
  * afw_function_execute_set_equals
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
  * subsets of each other and return the boolean result.
@@ -2118,7 +2118,7 @@ afw_function_execute_set_equals(
  *
  * afw_function_execute_split
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Split `<dataType>` value into an array of strings using a separator.
  *
@@ -2265,7 +2265,7 @@ afw_function_execute_split(
  *
  * afw_function_execute_starts_with
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value starts with a subString and return the
  * boolean result.
@@ -2329,7 +2329,7 @@ afw_function_execute_starts_with(
  *
  * afw_function_execute_subset
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns boolean true if the unique values in `<dataType>` array1 are all in
  * `<dataType>` array2.
@@ -2392,7 +2392,7 @@ afw_function_execute_subset(
  *
  * afw_function_execute_substring
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
@@ -2510,7 +2510,7 @@ afw_function_execute_substring(
  *
  * afw_function_execute_union
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns an array of `<dataType>` contains all of the unique values in two or
  * more array of `<dataType>` values.
@@ -2583,7 +2583,7 @@ afw_function_execute_union(
  *
  * afw_function_execute_last_index_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns the zero-based index into `<dataType>` value of the last occurrence
  * of a subString. If subString is not found, -1 is returned.
@@ -2684,7 +2684,7 @@ return_result:
  *
  * afw_function_execute_regexp_index_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Search `<dataType>` value for a regular expression and return index. If not
  * found, -1 is returned.
@@ -2730,7 +2730,7 @@ afw_function_execute_regexp_index_of(
  *
  * afw_function_execute_regexp_replace
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace matched values for a regular expression in a `<dataType>` value.
  *
@@ -2782,7 +2782,7 @@ afw_function_execute_regexp_replace(
  *
  * afw_function_execute_url_encode
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * URL encode a value or bag of values.
  *
@@ -2833,7 +2833,7 @@ afw_function_execute_url_encode(
  *
  * afw_function_execute_encode_as_base64Binary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Encode a value as a base64Binary. The effect is to create a base64Binary
  * value with an internal value of the value passed.
@@ -2885,7 +2885,7 @@ afw_function_execute_encode_as_base64Binary(
  *
  * afw_function_execute_encode_as_hexBinary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Encode a value as a hexBinary. The effect is to create a hexBinary value with
  * an internal value of the value passed.
@@ -2937,7 +2937,7 @@ afw_function_execute_encode_as_hexBinary(
  *
  * afw_function_execute_is
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether value is dataType `<dataType>` and return the boolean result.
  *
@@ -2993,7 +2993,7 @@ afw_function_execute_is(
  *
  * afw_function_execute_freeze
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Set a `<dataType>` value immutable so further mutation throws. If already
  * immutable, has no effect. Returns the same value.

@@ -13,7 +13,7 @@
  */
 
 #include "afw.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include "afw_lmdb.h"
 #include "afw_lmdb_internal.h"
 #include "afw_lmdb_metadata.h"

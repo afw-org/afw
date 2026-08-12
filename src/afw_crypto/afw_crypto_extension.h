@@ -17,8 +17,6 @@
  */
 
 #include "afw_interface.h"
-#include "generated/afw_crypto_declare_helpers.h"
-
 AFW_BEGIN_DECLARES
 
 /**

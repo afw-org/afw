@@ -20,7 +20,7 @@
  *
  * afw_function_execute_index_create
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Create an index definition.
  *
@@ -162,7 +162,7 @@ afw_function_execute_index_create(
  *
  * afw_function_execute_index_list
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * List property indexes
  *
@@ -218,7 +218,7 @@ afw_function_execute_index_list(
  *
  * afw_function_execute_index_remove
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Remove an index definition.
  *

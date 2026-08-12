@@ -324,7 +324,7 @@ impl_current_variable_actionId = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 impl_context_current_runtime_ctx[] = {
     &impl_current_variable_requestId,
     &impl_current_variable_resourceId,
@@ -334,7 +334,7 @@ impl_context_current_runtime_ctx[] = {
 };
 
 
-AFW_DEFINE_INTERNAL(afw_authorization_control_t *)
+afw_authorization_control_t *
 afw_authorization_internal_set_control(
     const afw_object_t *object,
     afw_xctx_t *xctx)
@@ -1247,7 +1247,7 @@ impl_authorization_conf_type_create_cede_p(
 
 
 /* Internal function called to register core authorization. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_authorization_internal_register_service_and_conf(
     afw_xctx_t *xctx)
 {

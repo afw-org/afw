@@ -205,7 +205,7 @@ impl_afw_authorization_handler_check(
 
 
 /* Internal function called to register type=script authorization handler. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_authorization_internal_register_handler_type_script(
     afw_xctx_t *xctx)
 {

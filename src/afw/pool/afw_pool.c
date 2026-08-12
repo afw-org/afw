@@ -1538,7 +1538,7 @@ afw_pool_free_memory(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,

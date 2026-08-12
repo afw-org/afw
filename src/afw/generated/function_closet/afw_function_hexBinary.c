@@ -20,7 +20,7 @@
  *
  * afw_function_execute_decode_to_string_hexBinary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Decode hexBinary value to string. An error is thrown if decoded value is not
  * valid UTF-8.

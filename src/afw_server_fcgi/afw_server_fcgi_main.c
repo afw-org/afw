@@ -14,7 +14,7 @@
 
 #include "afw.h"
 #include "afw_server_fcgi_internal.h"
-#include "generated/afw_server_fcgi_generated.h"
+#include "generated/afw_server_fcgi_generated_internal.h"
 #include "generated/afw_server_fcgi_version_info.h"
 
 typedef struct self_args_s {

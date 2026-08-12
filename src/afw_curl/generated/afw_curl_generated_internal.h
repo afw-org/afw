@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_curl) Header
+ * Adaptive Framework Register Generated (afw_curl) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,19 +16,18 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_CURL_GENERATED_H__
-#define __AFW_CURL_GENERATED_H__
+#ifndef __AFW_CURL_GENERATED_INTERNAL_H__
+#define __AFW_CURL_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_curl_generated.h
- * @brief Generated register/API header for srcdir `afw_curl`.
+ * @file afw_curl_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_curl` (not public C API).
  */
 
 #include "afw_minimal.h"
-#include "afw_curl_declare_helpers.h"
-#include "afw_curl_const_objects.h"
-#include "afw_curl_function_bindings.h"
+#include "afw_curl_const_objects_internal.h"
+#include "afw_curl_function_bindings_internal.h"
 #include "afw_runtime.h"
 #include "afw_curl_runtime_object_maps.h"
 #include "afw_curl_strings.h"
@@ -38,7 +37,7 @@
  * @brief Generated register for afw_curl. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_CURL_DECLARE_INTERNAL(void)
+extern void
 afw_curl_generated_register(afw_xctx_t *xctx);
 
 
@@ -46,9 +45,9 @@ afw_curl_generated_register(afw_xctx_t *xctx);
  * @brief Register function for error_rv_decoder curl
  * @param xctx of caller.
  */
-AFW_CURL_DECLARE_INTERNAL(void)
+extern void
 afw_curl_error_rv_decoder_curl_register(
     afw_xctx_t *xctx);
 
 
-#endif /* __AFW_CURL_GENERATED_H__ */
+#endif /* __AFW_CURL_GENERATED_INTERNAL_H__ */

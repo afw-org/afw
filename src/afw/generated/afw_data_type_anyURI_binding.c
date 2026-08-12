@@ -192,15 +192,15 @@ impl_data_type_object_anyURI__value = {
 };
 
 /* Value for empty array of anyURI. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_anyURI;
 
 /* Value for empty array of anyURI. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_anyURI;
 
 /* Data type anyURI instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_anyURI_direct = {
     &afw_data_type_anyURI_inf,
     (const afw_object_t *)&impl_data_type_object_anyURI,
@@ -228,7 +228,7 @@ afw_data_type_anyURI_direct = {
 };
 
 /* Value for empty array of anyURI. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_anyURI = {
     {
         &afw_array_view_of_c_array_inf,
@@ -240,7 +240,7 @@ impl_empty_array_of_anyURI = {
 };
 
 /* Value for empty array of anyURI. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_anyURI = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_anyURI

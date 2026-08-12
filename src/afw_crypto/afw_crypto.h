@@ -10,13 +10,13 @@
 
 /**
  * @file afw_crypto.h
- * @brief Public includes for afw_crypto extension.
+ * @brief Package includes for afw_crypto extension (package-private C).
  *
- * Load extension `afw_crypto` and use Adaptive functions in category `crypto`.
+ * Load extension `afw_crypto` and use Adaptive functions in category
+ * `crypto`. Not a second public C API beyond libafw.
  */
 
 #include "afw.h"
-#include "generated/afw_crypto_declare_helpers.h"
-#include "generated/afw_crypto_generated.h"
+#include "generated/afw_crypto_generated_internal.h"
 
 #endif /* __AFW_CRYPTO_H__ */

@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_declare_helpers.h"
 
 AFW_BEGIN_DECLARES
 

@@ -22,7 +22,6 @@
 
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
-#include "afw_declare_helpers.h"
 
 /**
  * @defgroup afw_c_api_data_type_any any
@@ -112,25 +111,21 @@ struct afw_value_any_managed_s {
 };
 
 /**
- * @brief extern for data type any struct.
+ * @brief Public data type any struct instance.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.  Use afw_data_type_any when not referencing in
- * a static.
+ * Prefer afw_data_type_any when a pointer is enough and you are not
+ * initializing static data that must reference the struct object.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DECLARE_CONST_DATA(afw_data_type_t)
 afw_data_type_any_direct;
 
 /**
- * @brief extern for data type any inf.
+ * @brief Public data type any inf.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.
- *
- * The implementation of the data type must define this.  It is
- * managed by the generated data type instance.
+ * Defined with the data type implementation; managed by the generated
+ * data type instance.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
+AFW_DECLARE_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_any_inf;
 
 AFW_END_DECLARES

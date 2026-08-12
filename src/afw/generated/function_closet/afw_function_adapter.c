@@ -20,7 +20,7 @@
  *
  * afw_function_execute_adapter_objectCallback_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is the function signature for the objectCallback parameter in adapter
  * functions. Calling this directly will throw a 'Do not call directly' error.
@@ -65,7 +65,7 @@ afw_function_execute_adapter_objectCallback_signature(
  *
  * afw_function_execute_add_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add an adaptive object to an adapter, specified by the adapterId, with a
  * specified objectType. You may supply an optional objectId, if the underlying
@@ -132,7 +132,7 @@ afw_function_execute_add_object(
  *
  * afw_function_execute_add_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add an adaptive object with a given URI.
  *
@@ -193,7 +193,7 @@ afw_function_execute_add_object_with_uri(
  *
  * afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function converts an _AdaptiveQueryCriteria_ object to a query string.
  *
@@ -259,7 +259,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
  *
  * afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function converts a query string to an _AdaptiveQueryCriteria_ object.
  *
@@ -308,7 +308,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  *
  * afw_function_execute_delete_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete an adaptive object.
  *
@@ -368,7 +368,7 @@ afw_function_execute_delete_object(
  *
  * afw_function_execute_delete_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete an adaptive object with a given URI.
  *
@@ -423,7 +423,7 @@ afw_function_execute_delete_object_with_uri(
  *
  * afw_function_execute_get_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an adaptive object from the adapter, specified by adapterId, objectType
  * and objectId. Optional view options and adapter-specific options may be
@@ -484,7 +484,7 @@ afw_function_execute_get_object(
  *
  * afw_function_execute_get_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an object with a given URI.
  *
@@ -538,7 +538,7 @@ afw_function_execute_get_object_with_uri(
  *
  * afw_function_execute_modify_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Modify an adaptive object.
  *
@@ -624,7 +624,7 @@ afw_function_execute_modify_object(
  *
  * afw_function_execute_modify_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Modify an adaptive object with a given URI.
  *
@@ -706,7 +706,7 @@ afw_function_execute_modify_object_with_uri(
  *
  * afw_function_execute_reconcile_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Reconcile an adaptive object.
  *
@@ -752,7 +752,7 @@ afw_function_execute_reconcile_object(
  *
  * afw_function_execute_replace_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace an adaptive object.
  *
@@ -815,7 +815,7 @@ afw_function_execute_replace_object(
  *
  * afw_function_execute_replace_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace an adaptive object with a given URI.
  *
@@ -873,7 +873,7 @@ afw_function_execute_replace_object_with_uri(
  *
  * afw_function_execute_retrieve_objects
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -954,7 +954,7 @@ afw_function_execute_retrieve_objects(
  *
  * afw_function_execute_retrieve_objects_to_callback
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -1035,7 +1035,7 @@ afw_function_execute_retrieve_objects_to_callback(
  *
  * afw_function_execute_retrieve_objects_to_response
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -1108,7 +1108,7 @@ afw_function_execute_retrieve_objects_to_response(
  *
  * afw_function_execute_retrieve_objects_to_stream
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -1181,7 +1181,7 @@ afw_function_execute_retrieve_objects_to_stream(
  *
  * afw_function_execute_retrieve_objects_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Retrieve adaptive objects with a given URI.
  * 
@@ -1253,7 +1253,7 @@ afw_function_execute_retrieve_objects_with_uri(
  *
  * afw_function_execute_retrieve_objects_with_uri_to_callback
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Retrieve adaptive objects with a given URI.
  * 
@@ -1326,7 +1326,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  *
  * afw_function_execute_retrieve_objects_with_uri_to_response
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects with a given URI.
  * 
@@ -1392,7 +1392,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  *
  * afw_function_execute_retrieve_objects_with_uri_to_stream
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects with a given URI.
  * 
@@ -1458,7 +1458,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  *
  * afw_function_execute_update_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Update an adaptive object.
  *
@@ -1524,7 +1524,7 @@ afw_function_execute_update_object(
  *
  * afw_function_execute_update_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Update an adaptive object with a given URI.
  *

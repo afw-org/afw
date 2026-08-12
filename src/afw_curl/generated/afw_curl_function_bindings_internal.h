@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Core Adaptive Function Bindings
+ * Adaptive Framework Adaptive Function Bindings (internal)
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,25 +16,26 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_CURL_FUNCTION_BINDINGS_H__
-#define __AFW_CURL_FUNCTION_BINDINGS_H__
+#ifndef __AFW_CURL_FUNCTION_BINDINGS_INTERNAL_H__
+#define __AFW_CURL_FUNCTION_BINDINGS_INTERNAL_H__
 
 
 /**
- * @file afw_curl_function_bindings.h
- * @brief Generated adaptive function bindings header for prefix `afw_curl_`.
+ * @file afw_curl_function_bindings_internal.h
+ * @brief Internal generated adaptive function bindings for prefix `afw_curl_` (execute protos / definitions). Not public C API.
  */
 
-#include "afw_curl_declare_helpers.h"
 
 /**
- * @addtogroup afw_c_api_public
+ * @addtogroup afw_c_api_internal
  * @{
  *
  */
 
 /**
- * @addtogroup afw_c_api_functions Adaptive functions
+ * @addtogroup afw_c_api_functions Adaptive functions (internal catalog)
+ *
+ * Core/package generated bindings only — not extension-facing export.
  *
  * @{
  */
@@ -43,7 +44,7 @@
  * @brief Get array of pointers to afw_curl_function bindings.
  * @return pointer to array of function value pointers.
  */
-AFW_CURL_DECLARE(const afw_value_function_definition_t **)
+extern const afw_value_function_definition_t **
 afw_curl_function_bindings_get();
 
 
@@ -457,4 +458,4 @@ afw_curl_function_execute_smtp_send(
 /** @} */
 
 
-#endif /* __AFW_CURL_FUNCTION_BINDINGS_H__ */
+#endif /* __AFW_CURL_FUNCTION_BINDINGS_INTERNAL_H__ */

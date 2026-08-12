@@ -20,7 +20,7 @@
  *
  * afw_function_execute_add_entries
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Append every entry of each source array onto the end of target, in order.
  * target must be mutable. Entries are copied by value reference; nested objects
@@ -83,7 +83,7 @@ afw_function_execute_add_entries(
  *
  * afw_function_execute_array
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Construct a new array from the given values (not a conversion function). Each
  * argument becomes one element, in order. If a value is written as
@@ -242,7 +242,7 @@ afw_function_execute_includes_array(
  *
  * afw_function_execute_create_array
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Create a new mutable array of the given length where every entry is
  * undefined. Useful when you want a known length up front before assigning or
@@ -308,7 +308,7 @@ afw_function_execute_create_array(
  *
  * afw_function_execute_join
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Concatenate the string values of the elements of an array with a separator.
  *
@@ -408,7 +408,7 @@ afw_function_execute_join(
  *
  * afw_function_execute_reverse
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Reverse the order of the elements in an array. If the array is typed, the
  * resulting array will be the same type.
@@ -466,7 +466,7 @@ afw_function_execute_reverse(
  *
  * afw_function_execute_slice
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function extracts a consecutive slice of values from an array.
  *
@@ -567,7 +567,7 @@ afw_function_execute_slice(
  *
  * afw_function_execute_at
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the value at a zero-based index in an array. Negative indexes count
  * from the end (-1 is the last element). If the index is out of range, the
@@ -619,7 +619,7 @@ afw_function_execute_at(
  *
  * afw_function_execute_pop
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Remove the last value from a mutable array and return it. If the array is
  * empty, returns undefined.
@@ -663,7 +663,7 @@ afw_function_execute_pop(
  *
  * afw_function_execute_push
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Append one or more values to the end of a mutable array. Returns the same
  * array after modification. The array must not be immutable (for example after
@@ -716,7 +716,7 @@ afw_function_execute_push(
  *
  * afw_function_execute_shift
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Remove the first value from a mutable array and return it. If the array is
  * empty, returns undefined.
@@ -760,7 +760,7 @@ afw_function_execute_shift(
  *
  * afw_function_execute_splice
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Remove zero or more values starting at an index from a mutable array and
  * optionally insert new values at that index. Returns an array of the removed
@@ -865,7 +865,7 @@ afw_function_execute_splice(
  *
  * afw_function_execute_unshift
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Insert one or more values at the beginning of a mutable array, preserving the
  * relative order of the inserted values. Returns the modified array.

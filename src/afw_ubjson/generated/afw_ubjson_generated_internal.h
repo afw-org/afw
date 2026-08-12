@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_ubjson) Header
+ * Adaptive Framework Register Generated (afw_ubjson) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,17 +16,16 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_UBJSON_GENERATED_H__
-#define __AFW_UBJSON_GENERATED_H__
+#ifndef __AFW_UBJSON_GENERATED_INTERNAL_H__
+#define __AFW_UBJSON_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_ubjson_generated.h
- * @brief Generated register/API header for srcdir `afw_ubjson`.
+ * @file afw_ubjson_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_ubjson` (not public C API).
  */
 
 #include "afw_minimal.h"
-#include "afw_ubjson_declare_helpers.h"
 #include "afw_ubjson_strings.h"
 
 
@@ -34,7 +33,7 @@
  * @brief Generated register for afw_ubjson. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_UBJSON_DECLARE_INTERNAL(void)
+extern void
 afw_ubjson_generated_register(afw_xctx_t *xctx);
 
 
@@ -42,9 +41,9 @@ afw_ubjson_generated_register(afw_xctx_t *xctx);
  * @brief Register function for content_type ubjson
  * @param xctx of caller.
  */
-AFW_UBJSON_DECLARE_INTERNAL(void)
+extern void
 afw_ubjson_content_type_ubjson_register(
     afw_xctx_t *xctx);
 
 
-#endif /* __AFW_UBJSON_GENERATED_H__ */
+#endif /* __AFW_UBJSON_GENERATED_INTERNAL_H__ */

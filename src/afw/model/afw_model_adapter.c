@@ -76,7 +76,7 @@ afw_adapter_factory_model =
 /*
  * Require mappedAdapterId for default map-and-forward (issue #109).
  */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_require_mapped_adapter(
     const afw_model_internal_adapter_self_t *adapter,
     const afw_utf8_z_t *operation,
@@ -341,7 +341,7 @@ impl_adapt_object_from_adapter(
 
 
 /* Convert a property based on object_type and adapt_type. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_convert_property(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -401,7 +401,7 @@ error:
 
 
 /* Convert a property name based on object_type and adapt_type. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_convert_property_name(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -667,7 +667,7 @@ impl_execute_mapBackObject_thunk(
  *
  * Like adaptive function: model_returnObject_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Parameters:
  *     object - (object) This is the object to return.
@@ -754,7 +754,7 @@ impl_execute_returnObject_thunk(
 
 
 /* Convert query criteria based on model. */
-AFW_DEFINE_INTERNAL(const afw_query_criteria_t *)
+const afw_query_criteria_t *
 afw_model_internal_convert_query_criteria(
     const afw_model_object_type_t *model_object_type,
     const afw_query_criteria_t *criteria,
@@ -1348,7 +1348,7 @@ impl_afw_adapter_session_get_object(
  * does further appropriated processing on returned object.  ctx must be
  * initialized before call.
  */
-AFW_DEFINE_INTERNAL(const afw_object_t *)
+const afw_object_t *
 afw_model_internal_create_basic_to_adapter_mapped_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1430,7 +1430,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_add_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1550,7 +1550,7 @@ impl_afw_adapter_session_add_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_modify_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1713,7 +1713,7 @@ impl_afw_adapter_session_modify_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_replace_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1808,7 +1808,7 @@ impl_afw_adapter_session_replace_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_delete_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)

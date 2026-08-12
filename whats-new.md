@@ -6,15 +6,21 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 
 ---
 
-## Rebuild out-of-tree commands and extensions
+## libafw C API: toward a release-ready surface
 
-Several changes on this branch update **libafw** public interfaces and generated bindings (value/memory work, **array setter** reshape for issue **#55**, and related headers).
+This branch includes deliberate **cleanup of the supported libafw C API** — installable headers, declare macros, what is public vs core-internal, and related ABI work — so extension and command authors can depend on a **clearer, more release-ready** surface rather than “every header that happens to sit under `src/afw/`.”
 
-If you maintain **anything that links AFW outside a full in-tree rebuild** — extension **DSOs**, custom **commands**, or other binaries that load `libafw` — **rebuild and reinstall them against this AFW install**. Mixing old DSOs/commands with a new `libafw` (or the reverse) can fail at load time or misbehave at runtime.
+**Who this is for:** people who **build or link C** against libafw (out-of-tree extensions, custom commands, hosts). **Adaptive Script / model / operator** users can skip this section unless a detail section below says otherwise.
 
-In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine. Individual sections below also call this out where the ABI surface changed.
+### One rebuild rule
 
-Most work on this line needs **only a recompile** against the new install. **C code** that used the old first-class **`afw_iterator`** name for the legacy opaque cursor must use **`afw_iterator_old`** after **#153** (new keyless **`afw_iterator`** is a different type). Array/object `get_next_*` call sites that already used the old cursor style need that rename, not a behavior rewrite.
+If you maintain **anything that links AFW outside a full in-tree rebuild** — extension **DSOs**, custom **commands**, or other binaries that load `libafw` — **rebuild and reinstall them against this AFW install**. Mixing old DSOs/commands with a new `libafw` (or the reverse) is **unsupported** and can fail at load time or misbehave at runtime.
+
+In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine.
+
+Most out-of-tree work is **recompile against the new headers and library**. One notable **source rename:** after **#153**, the legacy opaque cursor type is **`afw_iterator_old`** (the name **`afw_iterator`** is the new keyless type). See [UTF-8 code-point sequences](#utf-8-code-point-sequences-issue-153).
+
+**Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface) (install, declare helpers, what is public).
 
 ---
 
@@ -25,7 +31,8 @@ sections end with [↑ Highlights](#highlights) to return here.
 
 | Area | What changed |
 |------|----------------|
-| [**Object / array helpers (#55)**](#object-and-array-helpers-issue-55) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` — **recompile** out-of-tree commands/extensions |
+| [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **deprecated**; **rebuild** out-of-tree C once against this line |
+| [**Object / array helpers (#55)**](#object-and-array-helpers-issue-55) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Expression property names (#38)**](#expression-property-names-in-object-values-issue-38) | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
 | [**Qualifier snapshots (#9)**](#list-active-qualified-variables-issue-9) | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
 | [**Multi-frame `::` get**](#multi-frame-get-aligned-with-snapshots) | Stacked same-name qualifiers: first **defining** frame wins (was “first matching frame only”); aligned with snapshot semantics (landed with #15 work) |
@@ -45,7 +52,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Templates (#97)**](#compile-time-template-substitutions-issue-97) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
 | [**Adapter index `current::` (#54 partial)**](#adapter-index-filtervalue-current-issue-54-partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev (#1)**](#c-api-docs-and-full-package-builds-issue-1) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
-| [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base — **recompile** out-of-tree commands/extensions |
+| [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base |
 | [**`stringify` / `decompile` / listing (#18)**](#stringify-decompile-compiler-listing-and-binary-text) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
 | [**Python `Session("local")`**](#utf-8-in-json-results-and-python-local-mode) | Local FIFO client uses **binary octet** framing so large/UTF-8 responses no longer hang |
@@ -56,7 +63,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Mutable object faces (#17)**](#mutable-object-faces-issue-17) | Literals, no clone-on-bind, adapter get/retrieve/callback, defaults, journal (incl. consumer), nested faces — drop many manual `clone()` calls (**PR #150** → `mgg-develop`) |
 | [**Array semantics (#39)**](#array-semantics-issue-39) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
-| [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (**recompile** out-of-tree; rename legacy cursor to **`afw_iterator_old`**) |
+| [**UTF-8 code-point sequences (#153)**](#utf-8-code-point-sequences-issue-153) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (legacy cursor → **`afw_iterator_old`**) |
 | [**Orchestrated tests (#157)**](#orchestrated-tests-issue-157) | Hermetic multi-step leaves via `orchestration.yaml` (hosts `afwfcgi` / `local`); `//? expect-stdout` / `expect-stderr`; opt-in `tests-extra/` |
 | [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
@@ -149,7 +156,7 @@ Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and
 
 Storage remains **valid NFC UTF-8**. The value’s **data type stays** `string` / `anyURI` / … — it is not retyped to `array`.
 
-**C / extensions:** keyless **`afw_iterator`** + data-type `optional_initialize_iterator`; value helpers `afw_value_has_iterator` / `initialize_iterator` / `as_array_sequence`. Legacy opaque cursor type renamed **`afw_iterator_old`**. **Recompile** out-of-tree commands/extensions. Maintainer pad: [`designs/utf8-code-point-sequences.md`](designs/utf8-code-point-sequences.md). Tests: `src/afw/tests/language/script/string_code_points.as`.
+**C / extensions:** keyless **`afw_iterator`** + data-type `optional_initialize_iterator`; value helpers `afw_value_has_iterator` / `initialize_iterator` / `as_array_sequence`. Legacy opaque cursor type renamed **`afw_iterator_old`** (part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) rebuild line). Maintainer pad: [`designs/utf8-code-point-sequences.md`](designs/utf8-code-point-sequences.md). Tests: `src/afw/tests/language/script/string_code_points.as`.
 
 Residuals (not required for this language story): lazy array **face** over utf8; shared `afw_utf8_*` index helpers; produce-type percolation on call IR (see `designs/compile-optimize-notes.md` / #28).
 
@@ -251,7 +258,7 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 ### Migration / habits
 
 - Drop redundant `clone()` around **get_object / retrieve / callback / journal get** and literal isolation paths once you confirm behavior on this tree.
-- Out-of-tree commands/extensions: rebuild if they link object/array face APIs; pure script authors follow this section.
+- Out-of-tree C that links face APIs: same [C API rebuild rule](#libafw-c-api-toward-a-release-ready-surface). Pure script authors follow this section.
 
 [↑ Highlights](#highlights)
 
@@ -370,9 +377,7 @@ Maintainer notes: root `typescript-differences.md` (bound vs value).
 
 Adaptive Script gains common object/array helpers and stack/queue-style mutators. These are **Adaptive functions** registered in the environment (with optional `value->method(...)` sugar when the function is a data-type method).
 
-### Rebuild / recompile requirement
-
-This work changes the **C `afw_array_setter` interface** (e.g. `add_value` → `push_value`, new `pop_value` / `shift_value`, signed indexes) and adds core function bindings. **Out-of-tree commands and extensions must be recompiled** against the new libafw (see the top callout).
+**C note:** the **`afw_array_setter`** interface was reshaped (e.g. `add_value` → `push_value`, new `pop_value` / `shift_value`, signed indexes). Covered by the single [C API rebuild rule](#libafw-c-api-toward-a-release-ready-surface).
 
 ### Object
 
@@ -469,17 +474,7 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 - **`afw_pool_release`**: returns the pool if still referenced, or **NULL** if that call destroyed the pool (C API; ignore return if you do not care). Used so managed **object faces** can hold one reference on the wrapped base and drop it only when the face pool is destroyed. Unmanaged faces still borrow. Array faces remain pool-owned for now.
 - Living design notes for maintainers: `designs/memory-management.md` (not user docs).
 
-### Rebuild / recompile requirement
-
-Installing a build that includes this work updates **libafw** (and related generated headers/bindings). If you maintain **out-of-tree** or separately built:
-
-- extension **`.so` / DSOs**,
-- custom **commands**,
-- or any binary that **links the AFW shared library**,
-
-you **must rebuild and reinstall those against the new AFW install**. Mixing an older extension/command with a newer `libafw` (or the reverse) can fail at load time or misbehave at runtime.
-
-In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine.
+**C note:** value/pool lifetime work is part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) line — same rebuild rule for out-of-tree linkers.
 
 ### Not done yet (do not rely on)
 
@@ -520,7 +515,54 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 - Builder-oriented tree under `build/docs/doxygen/html/` after a docs or fulldev build (`./afwdev build --docs --clean -j` to force Doxygen refresh).
 - **Call macros** (`afw_<interface>_<method>(…)`) are the documented C API surface; descriptions come from interface XML.
 - Short developer reading path: `src/afw/doc/developer/` (also linked from the Doxygen mainpage).
-- Extension srcdirs stay self-contained relative to libafw core; their Doxygen groups live in the extension public headers.
+- Extension srcdirs stay self-contained relative to libafw core; package headers are package-private (see [C API cleanup](#libafw-c-api-cleanup-release-ready-surface)).
+
+[↑ Highlights](#highlights)
+
+---
+
+## libafw C API cleanup (release-ready surface)
+
+**C builders / out-of-tree extensions and commands** — Adaptive Script-only readers can skip.
+
+Goal: move libafw toward a **release-ready supported C surface** — what you may rely on when writing extensions and commands — and stop treating every generated or historical header as product API. This is intentional cleanup on the path to a clearer 1.x-style boundary, not a one-off install tweak.
+
+**Rebuild:** same [one rebuild rule](#one-rebuild-rule) as at the top of this note.
+
+### What “supported” means
+
+| Use this | Not product API |
+|----------|-----------------|
+| `#include "afw.h"` (call API + intentional `*_impl` helpers) | Core `*_internal.h`, `afw_internal.h` |
+| Generated `*_impl_declares.h` when implementing a core interface | Generated register / bindings / const-object glue (`*_function_bindings_internal.h`, `*_const_objects_internal.h`, `*_generated_internal.h`) |
+| Stable core string catalog (`afw_strings.h`) | Invent-for-C string labels (`afw_strings_internal.h` / `zz__*`) |
+| Core **`AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES`** in **`afw_common.h`** | Package `*_declare_helpers.h` (see below) |
+| | Deprecated leftovers (`afw_declare_helpers.h` if present, `afw_log_deprecated*`, `afw_model_location.h`, `afw_array_template.h`, …) |
+
+**Only libafw has a real public C API.** Base-repo extension and command packages are **package-private** (load the DSO / Adaptive registration). Their headers are for that package tree, not a second install surface.
+
+### Declare macros
+
+- Core export macros live in hand-written **`afw_common.h`** (via `afw.h` / `afw_minimal.h`). Core **no longer generates** `afw_declare_helpers.h`.
+- In-tree core uses **plain C** for former “internal declare” sites.
+- Per-package **`*_declare_helpers.h` is still generated** for a short out-of-tree transition, but is **deprecated**. Base-repo packages do not use them. Prefer ordinary C; they **will be removed** when the transition window closes.
+
+### Also on this rebuild line (ABI / headers)
+
+These landed for product reasons too, but share the **same rebuild** for C consumers:
+
+| Work | C impact (summary) |
+|------|--------------------|
+| [Object / array helpers (#55)](#object-and-array-helpers-issue-55) | `afw_array_setter` reshape |
+| [Value / memory (#2)](#value-lifetime-memory-management-issue-2-alphabeta) | Pool/value lifetime and faces |
+| [UTF-8 code-point sequences (#153)](#utf-8-code-point-sequences-issue-153) | Iterator redesign; legacy cursor → **`afw_iterator_old`** |
+| [Mutable object faces (#17)](#mutable-object-faces-issue-17) | Face/value paths if you link those APIs |
+
+### Upgrade hygiene
+
+CMake install does **not** delete previously installed files. After upgrading, prune stale names under your include prefix (e.g. `/usr/local/include/afw/`) such as `afw_*_internal.h`, old `afw_function_bindings.h` / `afw_const_objects.h` / `afw_generated.h`, and `afw_declare_helpers.h` if present.
+
+In-tree monorepo builds still see full source includes at **build** time. Maintainer notes: [`designs/libafw-headers-and-api-surface.md`](designs/libafw-headers-and-api-surface.md). Related: [C builders / afwdev (#1)](#c-api-docs-and-full-package-builds-issue-1).
 
 [↑ Highlights](#highlights)
 
@@ -1212,9 +1254,9 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
     if you relied on broken `\ufffffff0…` escapes from old `stringify`, update
     callers. Out-of-tree **Python** `Session("local")` needs the updated client
     for large or UTF-8-heavy local responses.
-11. **Out-of-tree C/commands/extensions:** rebuild against this install after **#55**
-    (array setter), **#2** / faces, and **#153** (legacy cursor → **`afw_iterator_old`**;
-    new keyless **`afw_iterator`** is a different type). See the top rebuild callout.
+11. **Out-of-tree C/commands/extensions:** rebuild once against this install ([C API
+    cleanup](#libafw-c-api-toward-a-release-ready-surface)). Note **#153**: legacy
+    cursor → **`afw_iterator_old`** (new keyless **`afw_iterator`** is a different type).
 12. **Type-named converts:** stop calling **`null()`** / **`function()`** converts (removed);
     use the null literal and function values. Prefer **`create_array(n)`** over the old
     **`empty_array`** name. Old Type spellings **`(array of …)`** / **`(object "OT")`**

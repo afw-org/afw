@@ -17,7 +17,7 @@
 
 #include "afw_minimal.h"
 #include "afw_curl.h"
-#include "generated/afw_curl_generated.h"
+#include "generated/afw_curl_generated_internal.h"
 
 #include <apr_buckets.h>
 

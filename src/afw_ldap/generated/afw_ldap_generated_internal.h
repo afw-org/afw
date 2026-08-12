@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_ldap) Header
+ * Adaptive Framework Register Generated (afw_ldap) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,18 +16,17 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_LDAP_GENERATED_H__
-#define __AFW_LDAP_GENERATED_H__
+#ifndef __AFW_LDAP_GENERATED_INTERNAL_H__
+#define __AFW_LDAP_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_ldap_generated.h
- * @brief Generated register/API header for srcdir `afw_ldap`.
+ * @file afw_ldap_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_ldap` (not public C API).
  */
 
 #include "afw_minimal.h"
-#include "afw_ldap_declare_helpers.h"
-#include "afw_ldap_const_objects.h"
+#include "afw_ldap_const_objects_internal.h"
 #include "afw_runtime.h"
 #include "afw_ldap_runtime_object_maps.h"
 #include "afw_ldap_strings.h"
@@ -37,7 +36,7 @@
  * @brief Generated register for afw_ldap. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_LDAP_DECLARE_INTERNAL(void)
+extern void
 afw_ldap_generated_register(afw_xctx_t *xctx);
 
 
@@ -45,7 +44,7 @@ afw_ldap_generated_register(afw_xctx_t *xctx);
  * @brief Register function for adapter_type ldap
  * @param xctx of caller.
  */
-AFW_LDAP_DECLARE_INTERNAL(void)
+extern void
 afw_ldap_adapter_type_ldap_register(
     afw_xctx_t *xctx);
 
@@ -54,9 +53,9 @@ afw_ldap_adapter_type_ldap_register(
  * @brief Register function for error_rv_decoder ldap
  * @param xctx of caller.
  */
-AFW_LDAP_DECLARE_INTERNAL(void)
+extern void
 afw_ldap_error_rv_decoder_ldap_register(
     afw_xctx_t *xctx);
 
 
-#endif /* __AFW_LDAP_GENERATED_H__ */
+#endif /* __AFW_LDAP_GENERATED_INTERNAL_H__ */

@@ -149,70 +149,136 @@ def seed_from_strings_dir(options):
                             'Q', labelPreference=line.strip())
 
 
+def _is_generated_label(name):
+    """True for labels invented for non-C-ident / long values (zz__*).
 
-def generate_h(options, generated_by, prefix, generated_dir_path):
+    Core only: these go in strings_internal.h and are not exported as public
+    libafw ABI. Preferred labels (strings.txt, object keys, ident-like values)
+    stay in the public strings.h.
+    """
+    return name.startswith('zz__')
 
-    declare_data = prefix.upper() + 'DECLARE_CONST_DATA'
 
-    filename = prefix + 'strings.h'
+def _write_string_decl(fd, prefix, dataType, name, value, decorate):
+    """Write one string/const value declaration (macros + extern/self_v)."""
+    use_prefix = prefix
+    if dataType != 'string':
+        use_prefix += dataType + '_'
+
+    fd.write('\n')
+
+    if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
+        q_name = use_prefix.upper() + 'Q_' + name
+        fd.write('\n/** @brief #define for ' + dataType + ' in quotes */\n')
+        fd.write('#define ' + q_name + ' \\\n')
+        line = repr(value)[1:-1].replace('"', '\\"')
+        fd.write('    "' + line + '"\n')
+        fd.write('\n/** @brief \'afw_utf8_t\' for ' + q_name + ' */\n')
+        fd.write('#define ' + use_prefix + 's_' + name +
+                 ' \\\n    (&' + use_prefix + 'self_v_' + name + '.internal)\n')
+        fd.write('\n/** @brief \'afw_utf8_t\' for ' + q_name + ' */\n')
+        fd.write('#define ' + use_prefix + 'self_s_' + name +
+                 ' \\\n    (' + use_prefix + 'self_v_' + name + '.internal)\n')
+        fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' +
+                 q_name + ' */\n')
+        if decorate:
+            fd.write('AFW_DECLARE_CONST_DATA(afw_value_' + dataType + '_t)\n')
+            fd.write(use_prefix + 'self_v_' + name + ';\n')
+        else:
+            fd.write('extern const afw_value_' + dataType + '_t \\\n    ' +
+                     use_prefix + 'self_v_' + name + ';\n')
+        fd.write('\n/** @brief \'afw_utf8_z_t *\' for ' + q_name + ' */\n')
+        fd.write('#define ' + use_prefix + 'z_' + name +
+                 ' \\\n    (' + use_prefix + 'self_v_' + name +
+                 '.internal.s)\n')
+        fd.write('\n/** @brief \'const afw_value_t *\' for ' + q_name + ' */\n')
+        fd.write('#define ' + use_prefix + 'v_' + name +
+                 ' \\\n    (&' + use_prefix + 'self_v_' + name + '.pub)\n')
+    elif supported_dataTypes[dataType] == '':
+        fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' +
+                 value + ' */\n')
+        if decorate:
+            fd.write('AFW_DECLARE_CONST_DATA(afw_value_' + dataType + '_t)\n')
+            fd.write(use_prefix + 'self_v_' + name + ';\n')
+        else:
+            fd.write('extern const afw_value_' + dataType + '_t \\\n    ' +
+                     use_prefix + 'self_v_' + name + ';\n')
+        fd.write('\n/** @brief \'const afw_value_t *\' for ' + dataType +
+                 ' ' + value + ' */\n')
+        fd.write('#define ' + use_prefix + 'v_' + name +
+                 ' \\\n    (&' + use_prefix + 'self_v_' + name + '.pub)\n')
+    else:
+        msg.error_exit(
+            'Unsupported supported_dataTypes[\'' +
+            dataType +
+            '\']: ' + supported_dataTypes[dataType])
+
+    fd.write('\n')
+
+
+def _write_strings_header(
+        options, generated_by, prefix, generated_dir_path, filename,
+        title, brief, names_filter, decorate):
+    """Write one strings header; names_filter(name) selects labels to emit."""
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
-    
+
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Framework (' + prefix + ') Strings Header', copyright, filename)
-        c.write_doxygen_file_section(
-            fd, filename,
-            'Generated string constants header for prefix `' + prefix + '`.')
+        c.write_h_prologue(fd, generated_by, title, copyright, filename)
+        c.write_doxygen_file_section(fd, filename, brief)
 
         fd.write('\n#include "afw_interface.h"\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
 
         for dataType, strings in options['const'].items():
-            use_prefix = prefix
-            if dataType != 'string':
-                use_prefix += dataType + '_'
-
             for name, value in sorted(strings.items()):
-                fd.write('\n')
- 
-                if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
-                    q_name = use_prefix.upper() + 'Q_' + name 
-                    fd.write('\n/** @brief #define for ' + dataType + ' in quotes */\n')
-                    fd.write('#define ' + q_name + ' \\\n')
-                    line = repr(value)[1:-1].replace('"', '\\"')
-                    fd.write('    "' + line + '"\n')
-                    fd.write('\n/** @brief \'afw_utf8_t\' for ' + q_name + ' */\n')
-                    fd.write('#define ' + use_prefix + 's_' + name + ' \\\n    (&' +  use_prefix + 'self_v_' + name + '.internal)\n')
-                    fd.write('\n/** @brief \'afw_utf8_t\' for ' + q_name + ' */\n')
-                    fd.write('#define ' + use_prefix + 'self_s_' + name + ' \\\n    (' +  use_prefix + 'self_v_' + name + '.internal)\n')
-                    fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + q_name + ' */\n')
-                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'self_v_' + name + ';\n')
-                    fd.write('\n/** @brief \'afw_utf8_z_t *\' for ' + q_name + ' */\n')
-                    fd.write('#define ' + use_prefix + 'z_' + name + ' \\\n    (' +  use_prefix + 'self_v_' + name + '.internal.s)\n')              
-                    fd.write('\n/** @brief \'const afw_value_t *\' for ' + q_name + ' */\n')
-                    fd.write('#define ' + use_prefix + 'v_' + name + ' \\\n    (&' +  use_prefix + 'self_v_' + name + '.pub)\n')              
-                elif supported_dataTypes[dataType] == '':
-                    fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + value + ' */\n')
-                    fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'self_v_' + name + ';\n')            
-                    fd.write('\n/** @brief \'const afw_value_t *\' for ' + dataType + ' ' + value + ' */\n')
-                    fd.write('#define ' + use_prefix + 'v_' + name + ' \\\n    (&' +  use_prefix + 'self_v_' + name + '.pub)\n')              
-                else:
-                    msg.error_exit(
-                        'Unsupported supported_dataTypes[\'' +
-                         dataType +
-                         '\']: ' + supported_dataTypes[dataType])
-
-                fd.write('\n')
+                if not names_filter(name):
+                    continue
+                _write_string_decl(
+                    fd, prefix, dataType, name, value, decorate=decorate)
 
         c.write_h_epilogue(fd, filename)
 
+
+def generate_h(options, generated_by, prefix, generated_dir_path):
+
+    # Core: public strings.h (stable labels) + strings_internal.h (zz__*).
+    # Packages: single package-private strings.h (everything, undecorated).
+    core = options.get('core')
+
+    if core:
+        _write_strings_header(
+            options, generated_by, prefix, generated_dir_path,
+            prefix + 'strings.h',
+            'Adaptive Framework (' + prefix + ') Strings Header',
+            'Public generated string constants for prefix `' + prefix +
+            '`. Stable labels only (not zz__* invent-for-C names).',
+            lambda name: not _is_generated_label(name),
+            decorate=True)
+        _write_strings_header(
+            options, generated_by, prefix, generated_dir_path,
+            prefix + 'strings_internal.h',
+            'Adaptive Framework (' + prefix + ') Strings Internal Header',
+            'Internal generated string constants for prefix `' + prefix +
+            '` (zz__* labels). For core generated TUs only; not public API.',
+            _is_generated_label,
+            decorate=False)
+    else:
+        _write_strings_header(
+            options, generated_by, prefix, generated_dir_path,
+            prefix + 'strings.h',
+            'Adaptive Framework (' + prefix + ') Strings Header',
+            'Generated string constants header for prefix `' + prefix + '`.',
+            lambda name: True,
+            decorate=False)
+
+
 def generate_c(options, generated_by, prefix, generated_dir_path):
 
-    define_data = prefix.upper() + 'DEFINE_CONST_DATA'
+    core = options.get('core')
 
     filename = prefix + 'strings.c'
-    
+
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
 
@@ -225,7 +291,9 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
             + prefix + '`.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
-        fd.write('#include "' + prefix + 'strings.h"\n')        
+        fd.write('#include "' + prefix + 'strings.h"\n')
+        if core:
+            fd.write('#include "' + prefix + 'strings_internal.h"\n')
 
         for dataType, strings in options['const'].items():
             use_prefix = prefix
@@ -234,25 +302,41 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
 
             for name, value in sorted(strings.items()):
                 fd.write('\n')
+                # Core public labels export; zz__* stay linkage-internal.
+                export = core and not _is_generated_label(name)
 
                 if supported_dataTypes[dataType] == 'AFW_UTF8_LITERAL':
-                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'self_v_' + name + ' = {\n')
-                    fd.write('    {&afw_value_permanent_' + dataType + '_inf},\n')
+                    if export:
+                        fd.write('AFW_DEFINE_CONST_DATA(afw_value_' +
+                                 dataType + '_t)\n')
+                    else:
+                        fd.write('const afw_value_' + dataType + '_t\n')
+                    fd.write(use_prefix + 'self_v_' + name + ' = {\n')
+                    fd.write('    {&afw_value_permanent_' + dataType +
+                             '_inf},\n')
                     fd.write(
                         '    AFW_UTF8_LITERAL(' +
-                        get_string_label(options, value, 'Q', dataType=dataType, labelPreference=name) +
+                        get_string_label(
+                            options, value, 'Q', dataType=dataType,
+                            labelPreference=name) +
                         ')\n')
                     fd.write('};\n')
                 elif supported_dataTypes[dataType] == '':
-                    fd.write('const afw_value_' + dataType + '_t\n' + use_prefix + 'self_v_' + name + ' = {\n')
-                    fd.write('    {&afw_value_permanent_' + dataType + '_inf},\n')
+                    if export:
+                        fd.write('AFW_DEFINE_CONST_DATA(afw_value_' +
+                                 dataType + '_t)\n')
+                    else:
+                        fd.write('const afw_value_' + dataType + '_t\n')
+                    fd.write(use_prefix + 'self_v_' + name + ' = {\n')
+                    fd.write('    {&afw_value_permanent_' + dataType +
+                             '_inf},\n')
                     fd.write('    ' + value + '\n')
                     fd.write('};\n')
                 else:
                     msg.error_exit(
                         'Unsupported supported_dataTypes[\'' +
-                         dataType +
-                         '\']: ' + supported_dataTypes[dataType])
+                        dataType +
+                        '\']: ' + supported_dataTypes[dataType])
 
 
 def add_object_strings(options, obj):

@@ -47,7 +47,7 @@
     x = &modified_x
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
@@ -91,7 +91,7 @@ afw_value_block_evaluate_block(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_block_evaluate_statement(
     afw_function_execute_t *x,
     const afw_value_t *statement,

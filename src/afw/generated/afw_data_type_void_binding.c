@@ -110,15 +110,15 @@ impl_data_type_object_void__value = {
 };
 
 /* Value for empty array of void. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_void;
 
 /* Value for empty array of void. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_void;
 
 /* Data type void instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_void_direct = {
     &afw_data_type_void_inf,
     (const afw_object_t *)&impl_data_type_object_void,

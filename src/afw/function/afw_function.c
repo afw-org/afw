@@ -30,7 +30,7 @@ afw_function_execute_contextual(const afw_function_execute_t *x)
     return x->self->args.contextual;
 }
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_function_internal_prepare_environment(afw_xctx_t *xctx)
 {
     afw_function_environment_t *e;

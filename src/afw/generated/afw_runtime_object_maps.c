@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_generated.h"
+#include "afw_generated_internal.h"
 #include "afw_internal.h"
 
 

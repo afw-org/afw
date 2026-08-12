@@ -11,7 +11,7 @@
 
 #include "afw_doxygen.h"
 #include "afw_interface.h"
-#include "generated/afw_command_generated.h"
+#include "generated/afw_command_generated_internal.h"
 #include "generated/afw_command_version_info.h"
 
 /**

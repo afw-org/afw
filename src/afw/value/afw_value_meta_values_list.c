@@ -223,7 +223,7 @@ impl_afw_array_get_setter(
 }
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_meta_values_list_for_list_create(
     const afw_value_t *associated_value,
     const afw_pool_t *p,

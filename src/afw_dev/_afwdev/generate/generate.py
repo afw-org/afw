@@ -50,40 +50,46 @@ from _afwdev.common import msg, direct, resources, package, nfc
 
 
 def generated_h(options):
-    declare_internal_function = options['prefix'].upper() + 'DECLARE_INTERNAL'
-    filename = options['prefix'] + 'generated.h'
-    prefix = options['prefix']    
+    # Register glue: plain extern (not exported public API). Core + packages.
+    # Filename *_internal.h so default install excludes it.
+    filename = options['prefix'] + 'generated_internal.h'
+    prefix = options['prefix']
     srcdir = prefix[:-1]
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-        c.write_h_prologue(fd, options['generated_by'], 
-                           'Adaptive Framework Register Generated (' + srcdir + ') Header', copyright, filename)
+        c.write_h_prologue(
+            fd, options['generated_by'],
+            'Adaptive Framework Register Generated (' + srcdir +
+            ') Internal Header', copyright, filename)
         c.write_doxygen_file_section(
             fd, filename,
-            'Generated register/API header for srcdir `' + srcdir + '`.')
+            'Internal generated register header for srcdir `' + srcdir +
+            '` (not public C API).')
 
         fd.write('\n#include "afw_minimal.h"\n')
 
-        fd.write('#include "' + options['prefix'] + 'declare_helpers.h"\n')
+        # declare_helpers.h still generated for out-of-tree convert; not required here.
         if options['const_objects']:
-            fd.write('#include "' + options['prefix'] + 'const_objects.h"\n')
+            fd.write('#include "' + options['prefix'] +
+                     'const_objects_internal.h"\n')
         if options['data_types']:
             fd.write('#include "' + options['prefix'] + 'data_type_bindings.h"\n')
         if options['functions']:
-            fd.write('#include "' + options['prefix'] + 'function_bindings.h"\n')
+            fd.write('#include "' + options['prefix'] +
+                     'function_bindings_internal.h"\n')
         if options['runtime_object_maps']:
             fd.write('#include "afw_runtime.h"\n')
             fd.write('#include "' + options['prefix'] + 'runtime_object_maps.h"\n')
         if options['strings']:
             fd.write('#include "' + options['prefix'] + 'strings.h"\n')
-        
+
         fd.write('\n\n/**\n')
         fd.write(' * @brief Generated register for ' + options['srcdir'] + '. \n')
         fd.write(' * @param xctx of caller.  Should be base xctx.\n')
         fd.write(' */\n')
-        fd.write(declare_internal_function + '(void)\n')
+        fd.write('extern void\n')
         fd.write(options['prefix'] + 'generated_register(afw_xctx_t *xctx);\n')
 
         if options['manifest']:
@@ -98,7 +104,7 @@ def generated_h(options):
                     fd.write(' * @brief Register function for ' + registry_type + ' ' + key + '\n')
                     fd.write(' * @param xctx of caller.\n')
                     fd.write(' */\n')
-                    fd.write(declare_internal_function + '(void)\n')
+                    fd.write('extern void\n')
                     fd.write(options['prefix'] + registry_type +  '_' + key + '_register(\n')
                     fd.write('    afw_xctx_t *xctx);\n')
 
@@ -161,7 +167,7 @@ def generated_c(options):
         fd.write('\n')
 
         fd.write('#include "afw.h"\n')
-        fd.write('#include "' + options['prefix'] + 'generated.h"\n')
+        fd.write('#include "' + options['prefix'] + 'generated_internal.h"\n')
         fd.write('#include "' + options['prefix'] + 'version_info.h"\n')
 
         fd.write('\n')
@@ -690,8 +696,16 @@ def generate(passed_options):
         msg.info('Adding objects/_AdaptiveFunctionGenerate_/ objects for polymorphic functions')
         polymorphic_functions.generate(options)
 
-    # Generate optional data types.
+    # Generate optional data types (core / libafw only).
     if options['data_types']:
+        if not options.get('core'):
+            msg.error_exit(
+                'Data type bindings are only supported in core (libafw). '
+                'Package "' + options.get('srcdir', options.get('prefix', '?')) +
+                '" has generate/objects/_AdaptiveDataTypeGenerate_/ but non-core '
+                'packages must not define Adaptive data types. Implement new data '
+                'types in src/afw; extensions and commands use existing types and '
+                'register functions/adapters only.')
         data_type_list = direct.retrieve_objects_direct(options['objects_dir_path'] +
             '_AdaptiveDataTypeGenerate_/')
         data_type_list.sort(key=sort_use_id_cb)
@@ -770,7 +784,10 @@ def generate(passed_options):
     # >>>>> Common generates
 
     # Generate declare helpers.
-    declare_helpers.generate(generated_by, options)
+    # Core declare/define macros live in hand-written afw_common.h.
+    # Non-core packages still get generated *declare_helpers.h (transition).
+    if not options.get('core'):
+        declare_helpers.generate(generated_by, options)
 
     # Run generated.py script from additional_generate
     if options['additional_generate']:
@@ -786,7 +803,7 @@ def generate(passed_options):
             options['srcdir_path'])
         sys.path.pop(0)
 
-    # Generate generated.h file.
+    # Generate generated_internal.h file.
     generated_h(options)
 
     # Generate version.h file.

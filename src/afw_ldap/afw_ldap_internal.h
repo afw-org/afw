@@ -17,7 +17,7 @@
 
 
 #include "afw_minimal.h"
-#include "generated/afw_ldap_generated.h"
+#include "generated/afw_ldap_generated_internal.h"
 #include <apr_ldap.h>
 #if APR_HAS_MICROSOFT_LDAPSDK == 1
 #include <winber.h>
@@ -63,7 +63,7 @@ typedef struct berval **
 
 /* Note: A register function might be added to register these callbacks */
 
-AFW_LDAP_DECLARE_INTERNAL_CONST_DATA(afw_adapter_factory_t) afw_ldap_adapter_factory;
+extern const afw_adapter_factory_t afw_ldap_adapter_factory;
 
 #ifdef WIN32
 #define AFW_LDAP_TIMEVAL LDAP_TIMEVAL

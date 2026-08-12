@@ -49,7 +49,7 @@ do { \
  * #define impl_afw_array_get_entry_meta \
  *    afw_array_impl_get_entry_meta
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_array_impl_get_entry_meta(
     const afw_array_t *instance,
     afw_integer_t index,
@@ -105,7 +105,7 @@ afw_array_external_impl_get_entry_meta(
  * #define impl_afw_array_get_next_entry_meta \
  *    afw_array_impl_get_next_entry_meta
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_array_impl_get_next_entry_meta(
     const afw_array_t *instance,
     const afw_iterator_old_t **iterator,
@@ -127,7 +127,7 @@ afw_array_impl_get_next_entry_meta(
  *
  * before including afw_array_impl_declares.h.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_array_impl_initialize_iterator(
     const afw_array_t *instance,
     const afw_iterator_t *iterator,

@@ -24,8 +24,10 @@
 
 /**
  * @file afw_ubjson.h
- * @brief UBJSON content-type public API and media-type constants.
+ * @brief UBJSON content-type extension (package-private C surface).
  *
+ * Media-type constants and package layout for the loadable extension.
+ * Not a second public C API; use libafw content-type macros after load.
  * See @ref afw_content_type and @ref afw_included_extensions.
  */
 

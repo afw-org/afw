@@ -526,9 +526,8 @@ def sort_useExecuteFunction(obj):
 def generate(generated_by, prefix, data_type_list, object_dir_path,
                 generated_dir_path, options):
 
-    declare = prefix.upper() + 'DECLARE'
-    define = prefix.upper() + 'DEFINE'
-    declare_data =  prefix.upper() + 'DECLARE_CONST_DATA'
+    # Plain C for package/core function binding get(); package DECLARE helpers
+    # remain generated for out-of-tree convert but are not emitted here.
     string_ref = '&' + prefix + 'self_s_'
 
     # Make sure generated/ directory structure exists
@@ -551,26 +550,28 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     category = None
     dataTypeMethod = []
     useExecuteFunction = []
-    filename = prefix + 'function_bindings.h'
+    # Package-private / core-internal: execute protos + (core) function_definition_*
+    # and bindings_get. Not public libafw API; *_internal.h is not installed.
+    filename = prefix + 'function_bindings_internal.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by,
-            'Adaptive Framework Core Adaptive Function Bindings', copyright, filename)
+            'Adaptive Framework Adaptive Function Bindings (internal)', copyright, filename)
         c.write_doxygen_file_section(fd, filename,
-            'Generated adaptive function bindings header for prefix `'
-            + prefix + '`.')
+            'Internal generated adaptive function bindings for prefix `'
+            + prefix + '` (execute protos / definitions). Not public C API.')
         fd.write('\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
-
 
         fd.write('\n/**\n')
-        fd.write(' * @addtogroup afw_c_api_public\n')
+        fd.write(' * @addtogroup afw_c_api_internal\n')
         fd.write(' * @{\n')
         fd.write(' *\n')
         fd.write(' */\n')
         fd.write('\n')
         fd.write('/**\n')
-        fd.write(' * @addtogroup afw_c_api_functions Adaptive functions\n')
+        fd.write(' * @addtogroup afw_c_api_functions Adaptive functions (internal catalog)\n')
+        fd.write(' *\n')
+        fd.write(' * Core/package generated bindings only — not extension-facing export.\n')
         fd.write(' *\n')
         fd.write(' * @{\n')
         fd.write(' */\n')
@@ -579,7 +580,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write(' * @brief Get array of pointers to ' + prefix + 'function bindings.\n')
         fd.write(' * @return pointer to array of function value pointers.\n')
         fd.write(' */\n')
-        fd.write(declare + '(const afw_value_function_definition_t **)\n')
+        fd.write('extern const afw_value_function_definition_t **\n')
         fd.write(prefix + 'function_bindings_get();\n')
 
         for obj in list:
@@ -621,7 +622,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # Declaration for core function definition.
             if options['core']:
                 fd.write('\n/** @brief Function definition ' + obj['functionId'] + ' */\n') 
-                fd.write('AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)\n')
+                fd.write('extern const afw_value_function_definition_t\n')
                 fd.write('afw_function_definition_' + obj['functionLabel'] + ';\n')
 
             fd.write('\n/**\n')
@@ -717,19 +718,23 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write('#include "afw.h"\n')
         if options['core']:
             fd.write('#include "afw_internal.h"\n')
-        fd.write('#include "' + prefix + 'function_bindings.h"\n')
+        fd.write('#include "' + prefix + 'function_bindings_internal.h"\n')
         if options['runtime_object_maps']:
             fd.write('#include "' + prefix + 'runtime_object_maps.h"\n')
         if options['strings']:
             fd.write('#include "' + prefix + 'strings.h"\n')
+            # Core zz__* permanents (briefs/descriptions) live here only.
+            if options['core']:
+                fd.write('#include "' + prefix + 'strings_internal.h"\n')
         fd.write('\n')
+
 
         for obj in list:
             label = obj['functionLabel']
             fd.write('\n/* ---------- ' + obj['functionId'] + ' ---------- */\n')
 
             # Declaration for function value afw_value_function_definition_t if not core.
-            # Core functions definitions are declared in afw_function_bindings.h.
+            # Core definitions are declared in function_bindings_internal.h.
             if not options['core']:
                 fd.write('\nstatic const afw_value_function_definition_t\n')
                 fd.write('impl_' + label + ';\n')
@@ -834,7 +839,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
             # Define function define and meta
             if options['core']:
-                fd.write('\nAFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)\n')
+                fd.write('\nconst afw_value_function_definition_t\n')
                 fd.write('afw_function_definition_' + label + ' = {\n')
                 fd.write('    {&afw_value_function_definition_inf},\n')
             else:
@@ -1137,7 +1142,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write('};\n')
 
         fd.write('\n/* Get array of pointers to ' + prefix + 'function bindings. */\n')
-        fd.write(define + '(const afw_value_function_definition_t **)\n')
+        fd.write('const afw_value_function_definition_t **\n')
         fd.write(prefix + 'function_bindings_get()\n')
         fd.write('{\n')
         fd.write('    return &impl_function_bindings[0];\n')
@@ -1174,7 +1179,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         fd.write(' *\n')
                         fd.write(' * ' + prefix + 'function_execute_' + obj['functionLabel'] + '\n')
                         fd.write(' *\n')
-                        fd.write(' * See ' + prefix + 'function_bindings.h for more information.\n')
+                        fd.write(' * See ' + prefix +
+                                 'function_bindings_internal.h for more information.\n')
                         function_comment(fd, obj)
                         fd.write(' */\n')
                         fd.write('const afw_value_t *\n')
@@ -1221,7 +1227,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     fd.write(' *\n')
                     fd.write(' * ' + prefix + 'function_execute_' + obj['functionLabel'] + '\n')
                     fd.write(' *\n')
-                    fd.write(' * See ' + prefix + 'function_bindings.h for more information.\n')
+                    fd.write(' * See ' + prefix +
+                             'function_bindings_internal.h for more information.\n')
                     function_comment(fd, obj)
                     fd.write(' */\n')
                     fd.write('const afw_value_t *\n')

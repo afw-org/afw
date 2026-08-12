@@ -240,26 +240,8 @@ afw_stack_extend_impl(
     (instance)->top = ((instance)->first) - 1
 
 
-/**
- * @internal
- * @brief Internal function called during xctx creation.
- * @param xctx to set evaluation stack in.
- */
-AFW_DEFINE_INTERNAL(void)
-afw_stack_internal_set_qualifier_stack(
-    afw_xctx_t *xctx);
+/* xctx create stack wiring: afw_stack_internal_* in afw_stack_internal.h */
 
-
-/**
- * @internal
- * @brief Internal function called during xctx creation.
- * @param xctx to set evaluation stack in.
- */
-AFW_DEFINE_INTERNAL(void)
-afw_stack_internal_set_evaluation_stack(
-    afw_xctx_t *xctx);
-    
-    
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup

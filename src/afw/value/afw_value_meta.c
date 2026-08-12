@@ -357,7 +357,7 @@ impl_afw_object_setter_set_property(
 
 
 
-AFW_DEFINE_INTERNAL(afw_value_meta_object_self_t *)
+afw_value_meta_object_self_t *
 afw_value_internal_create_meta_object_self(
     const afw_value_t *associated_value,
     const afw_pool_t *p,
@@ -385,7 +385,7 @@ afw_value_internal_create_meta_object_self(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_internal_get_evaluated_meta_default(
     const afw_value_t *value,
     const afw_pool_t *p,
@@ -400,7 +400,7 @@ afw_value_internal_get_evaluated_meta_default(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_internal_get_evaluated_metas_default(
     const afw_value_t *value,
     const afw_pool_t *p,
@@ -419,7 +419,7 @@ afw_value_internal_get_evaluated_metas_default(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_internal_get_evaluated_meta_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
@@ -436,7 +436,7 @@ afw_value_internal_get_evaluated_meta_for_array(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_internal_get_evaluated_metas_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
@@ -448,7 +448,7 @@ afw_value_internal_get_evaluated_metas_for_array(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_internal_get_evaluated_meta_for_object(
     const afw_value_t *value,
     const afw_pool_t *p,
@@ -470,7 +470,7 @@ afw_value_internal_get_evaluated_meta_for_object(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_internal_get_evaluated_metas_for_object(
     const afw_value_t *value,
     const afw_pool_t *p,

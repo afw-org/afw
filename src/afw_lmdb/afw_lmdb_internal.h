@@ -18,12 +18,12 @@
 #include "afw_minimal.h"
 #include "afw_lmdb.h"
 #include "afw_uuid.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include <lmdb.h>
 
 AFW_BEGIN_DECLARES
 
-AFW_LMDB_DECLARE_INTERNAL_CONST_DATA(afw_adapter_factory_t) afw_lmdb_adapter_factory;
+extern const afw_adapter_factory_t afw_lmdb_adapter_factory;
 
 /* Defined in afw_lmdb_metadata.h */
 typedef struct afw_lmdb_metadata_s afw_lmdb_metadata_t;

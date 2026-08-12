@@ -26,7 +26,6 @@
  */
 
 #include "afw_interface.h"
-#include "afw_ldap_declare_helpers.h"
 
 
 /** @brief #define for string in quotes */

@@ -23,10 +23,11 @@
 
 /**
  * @file afw_curl.h
- * @brief Public header for the curl extension (HTTP / SMTP client).
+ * @brief Package header for the curl extension (HTTP / SMTP client).
  *
- * **Example loadable extension** for authors studying how to package
- * functions and an error RV decoder on top of libafw (not an adapter type).
+ * Package-private C surface (not a second public C API). **Example
+ * loadable extension** for authors studying how to package functions and
+ * an error RV decoder on top of libafw (not an adapter type).
  *
  * Layout to mirror when creating a new extension with afwdev:
  * - `afw_curl_extension.c` — `afw_extension` initialize / register
@@ -45,15 +46,13 @@
 #include "afw_minimal.h"
 
 /* Include generated declare helpers. */
-#include "generated/afw_curl_declare_helpers.h"
-
-AFW_CURL_BEGIN_DECLARES
+AFW_BEGIN_DECLARES
 
 /** curl rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_curl "curl"
 
 
-AFW_CURL_END_DECLARES
+AFW_END_DECLARES
 
 /** @} */
 

@@ -409,12 +409,12 @@ afw_model_internal_register_context_type_model(afw_xctx_t *xctx);
  * does further appropriated processing on returned object.  ctx must be
  * initialized before call.
  */
-AFW_DECLARE_INTERNAL(const afw_object_t *)
+extern const afw_object_t *
 afw_model_internal_create_basic_to_adapter_mapped_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
     
-AFW_DECLARE_INTERNAL(afw_model_internal_context_t *)
+extern afw_model_internal_context_t *
 afw_model_internal_create_skeleton_context(
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
     const afw_context_cb_variable_t * const *current_variables,
@@ -425,7 +425,7 @@ afw_model_internal_create_skeleton_context(
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL(afw_model_internal_context_t *)
+extern afw_model_internal_context_t *
 afw_model_internal_create_to_adapter_skeleton_context(
     afw_model_internal_adapter_session_self_t *self,
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
@@ -446,73 +446,73 @@ afw_model_internal_create_to_adapter_skeleton_context(
  * Throws if adapter has no mappedAdapterId. Use before any default-processing
  * path that would call the mapped backend (issue #109).
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_model_internal_require_mapped_adapter(
     const afw_model_internal_adapter_self_t *adapter,
     const afw_utf8_z_t *operation,
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_model_internal_complete_ctx_default_add_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_model_internal_complete_ctx_default_delete_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_model_internal_complete_ctx_default_modify_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_model_internal_complete_ctx_default_replace_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_property_to_mapped[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_add_object[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_delete_object[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_get_object[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_modify_object[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_replace_object[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_retrieve_objects[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_property_from_mapped[];
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_for_initial_object_id[];
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_runtime_ctx[];
 
 
@@ -531,7 +531,7 @@ afw_model_internal_context_current_runtime_ctx[];
  * @param p to use for result.
  * @param xctx of caller;
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_model_internal_convert_property(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -555,7 +555,7 @@ afw_model_internal_convert_property(
  * @param p to use for result.
  * @param xctx of caller;
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_model_internal_convert_property_name(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -573,7 +573,7 @@ afw_model_internal_convert_property_name(
  * @param xctx of caller.
  * @return converted query criteria.
  */
-AFW_DECLARE_INTERNAL(const afw_query_criteria_t *)
+extern const afw_query_criteria_t *
 afw_model_internal_convert_query_criteria(
     const afw_model_object_type_t *model_object_type,
     const afw_query_criteria_t *criteria,
@@ -581,25 +581,25 @@ afw_model_internal_convert_query_criteria(
 
 
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_property_from_mapped[];
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_property_to_mapped[];
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_for_initial_object_id[];
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_add_object[];
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_delete_object[];
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_modify_object[];
 
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_replace_object[];
 
 /*
@@ -608,7 +608,7 @@ afw_model_internal_context_current_replace_object[];
  * in afw_model_internal_context_t *ctx is used to determine if a variable
  * is present or not.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+extern const afw_context_cb_variable_t *
 afw_model_internal_context_current_runtime_ctx[];
 
 AFW_END_DECLARES

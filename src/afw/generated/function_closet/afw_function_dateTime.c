@@ -20,7 +20,7 @@
  *
  * afw_function_execute_add_dayTimeDuration_dateTime
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add dateTime arg1 to dayTimeDuration arg2 and return the dateTime result.
  *
@@ -61,7 +61,7 @@ afw_function_execute_add_dayTimeDuration_dateTime(
  *
  * afw_function_execute_add_yearMonthDuration_dateTime
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add dateTime arg1 to yearMonthDuration arg2 and return the dateTime result.
  *
@@ -102,7 +102,7 @@ afw_function_execute_add_yearMonthDuration_dateTime(
  *
  * afw_function_execute_subtract_dayTimeDuration_dateTime
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Subtract dayTimeDuration arg2 from dateTime arg1 and return the dateTime
  * result.
@@ -144,7 +144,7 @@ afw_function_execute_subtract_dayTimeDuration_dateTime(
  *
  * afw_function_execute_subtract_yearMonthDuration_dateTime
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Subtract yearMonthDuration arg2 from dateTime arg1 and return the dateTime
  * result.

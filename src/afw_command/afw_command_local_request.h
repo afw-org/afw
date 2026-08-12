@@ -11,9 +11,6 @@
 
 #include "afw_interface.h"
 #include "afw_command_local_server.h"
-#include "generated/afw_command_declare_helpers.h"
-
-
 /**
  * @addtogroup afw_command_internal
  * @{
@@ -54,7 +51,7 @@ afw_command_local_request_self_s {
 
 
 
-AFW_COMMAND_DECLARE_INTERNAL(const afw_request_t *)
+extern const afw_request_t *
 afw_command_local_request_create(
     afw_command_local_server_self_t *server_self,
     const afw_memory_t *body,

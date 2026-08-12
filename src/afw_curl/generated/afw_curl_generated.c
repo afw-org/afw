@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_curl_generated.h"
+#include "afw_curl_generated_internal.h"
 #include "afw_curl_version_info.h"
 
 static const afw_utf8_z_t * impl_version_info_z[] = {

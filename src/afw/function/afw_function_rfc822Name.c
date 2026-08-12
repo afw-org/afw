@@ -20,7 +20,7 @@
  *
  * afw_function_execute_match_rfc822Name
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
  * compared using equal_rfc822Name.

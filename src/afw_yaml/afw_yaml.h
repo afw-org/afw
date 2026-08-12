@@ -10,7 +10,7 @@
 #define __AFW_YAML_H__
 
 #include "afw_minimal.h"
-#include "generated/afw_yaml_generated.h"
+#include "generated/afw_yaml_generated_internal.h"
 
 /**
  * @defgroup afw_yaml YAML content-type
@@ -25,8 +25,10 @@
 
 /**
  * @file afw_yaml.h
- * @brief YAML content-type and from/to value public API.
+ * @brief YAML content-type extension (package-private C surface).
  *
+ * Load as a content-type extension; use content-type call macros from libafw.
+ * This header is for the package tree, not a second public C API.
  * See @ref afw_content_type and @ref afw_included_extensions.
  */
 

@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_crypto_function_bindings.h"
+#include "afw_crypto_function_bindings_internal.h"
 #include "afw_crypto_runtime_object_maps.h"
 #include "afw_crypto_strings.h"
 
@@ -2315,7 +2315,7 @@ impl_function_bindings[] = {
 };
 
 /* Get array of pointers to afw_crypto_function bindings. */
-AFW_CRYPTO_DEFINE(const afw_value_function_definition_t **)
+const afw_value_function_definition_t **
 afw_crypto_function_bindings_get()
 {
     return &impl_function_bindings[0];

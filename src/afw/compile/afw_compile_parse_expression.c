@@ -84,7 +84,7 @@
  *
  *<<<ebnf*/
 /* Parse Reference.  Returns NULL if not an evaluation. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Reference(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -114,7 +114,7 @@ afw_compile_parse_Reference(afw_compile_parser_t *parser)
  *    )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_EntryFunctionLambdaOrVariableReference(
     afw_compile_parser_t *parser)
 {
@@ -265,7 +265,7 @@ afw_compile_parse_EntryFunctionLambdaOrVariableReference(
  *
  *<<<ebnf*/
 /* Parse Evaluation.  Returns NULL if not an evaluation. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
 {
     const afw_compile_value_contextual_t *contextual;
@@ -490,7 +490,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
  * This is so the function name symbol is placed in the same block as the
  * parameters.
  */
-AFW_DEFINE_INTERNAL(const afw_value_script_function_signature_t *)
+const afw_value_script_function_signature_t *
 afw_compile_parse_FunctionSignature(
     afw_compile_parser_t *parser,
     const afw_value_block_t **block,
@@ -712,7 +712,7 @@ afw_compile_parse_FunctionSignature(
  * FunctionBody ::= ( '{' Script '}' ) | Expression
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_FunctionSignatureAndBody(
     afw_compile_parser_t *parser,
     const afw_value_string_t **function_name_value,
@@ -797,7 +797,7 @@ afw_compile_parse_FunctionSignatureAndBody(
  *
  *FIXME Change this to recognize arrow functions as well as function keyword.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Lambda(afw_compile_parser_t *parser)
 {
     afw_compile_get_token();
@@ -844,7 +844,7 @@ afw_compile_parse_Lambda(afw_compile_parser_t *parser)
  * ParametersExceptFirst ::= Parameters
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_parse_Parameters(
     afw_compile_parser_t *parser,
     afw_compile_args_t *args)
@@ -909,7 +909,7 @@ afw_compile_parse_Parameters(
  * ParenthesizedExpression ::= '(' Expression ')' Parameters*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -1011,7 +1011,7 @@ impl_type_lookup_name(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_script_type_register(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name,
@@ -1048,7 +1048,7 @@ afw_compile_script_type_register(
  *     '}'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_ObjectTypeLiteral(afw_compile_parser_t *parser)
 {
     afw_value_type_t *type;
@@ -1131,7 +1131,7 @@ afw_compile_parse_ObjectTypeLiteral(afw_compile_parser_t *parser)
  * TupleType ::= '[' ( Type ( ',' Type )* ','? )? ']'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_TupleType(afw_compile_parser_t *parser)
 {
     apr_array_header_t *elems;
@@ -1202,7 +1202,7 @@ afw_compile_parse_TupleType(afw_compile_parser_t *parser)
  *     )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
 {
     afw_value_type_function_param_t *params_head;
@@ -1331,7 +1331,7 @@ afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
  *     '(' Type ')'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
 {
     afw_size_t save_token_offset;
@@ -1404,7 +1404,7 @@ afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
  *     TypeName
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
 {
     const afw_utf8_t *name;
@@ -1440,7 +1440,7 @@ afw_compile_parse_PrimaryType(afw_compile_parser_t *parser)
  * ArrayType ::= PrimaryType ( '[' ']' )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_ArrayType(afw_compile_parser_t *parser)
 {
     const afw_value_type_t *type;
@@ -1473,7 +1473,7 @@ afw_compile_parse_ArrayType(afw_compile_parser_t *parser)
  * IntersectionType ::= ArrayType ( '&' ArrayType )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_IntersectionType(afw_compile_parser_t *parser)
 {
     apr_array_header_t *members;
@@ -1517,7 +1517,7 @@ afw_compile_parse_IntersectionType(afw_compile_parser_t *parser)
  * UnionType ::= IntersectionType ( '|' IntersectionType )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_UnionType(afw_compile_parser_t *parser)
 {
     apr_array_header_t *members;
@@ -1564,7 +1564,7 @@ afw_compile_parse_UnionType(afw_compile_parser_t *parser)
  * Type ::= UnionType
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_Type(afw_compile_parser_t *parser)
 {
     return afw_compile_parse_UnionType(parser);
@@ -1579,7 +1579,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
  * OptionalReturnType ::= ( ':' Type )?
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_type_t *)
+const afw_value_type_t *
 afw_compile_parse_OptionalType(
     afw_compile_parser_t *parser,
     afw_boolean_t is_return)
@@ -1611,7 +1611,7 @@ afw_compile_parse_OptionalType(
  * NullishCoalescing ::= LogicalExpression ( '??'  LogicalExpression )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_NullishCoalescing(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -1661,7 +1661,7 @@ afw_compile_parse_NullishCoalescing(afw_compile_parser_t *parser)
  * LogicalExpression ::= LogicalAnd ( '||' LogicalAnd )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_LogicalExpression(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -1709,7 +1709,7 @@ afw_compile_parse_LogicalExpression(afw_compile_parser_t *parser)
  * LogicalAnd ::= Equality ( '&&' Equality )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_LogicalAnd(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -1758,7 +1758,7 @@ afw_compile_parse_LogicalAnd(afw_compile_parser_t *parser)
  *   ( ('==' | '===' | '!=' | '!==' ) Comparison )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Equality(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -1814,7 +1814,7 @@ afw_compile_parse_Equality(afw_compile_parser_t *parser)
  *      ('<' | '<=' | '>' | '>=' ) Factor )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Comparison(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -1900,7 +1900,7 @@ impl_parse_subtract(
  * Factor ::= Term ( ('+' | '-' ) Term )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Factor(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -1999,7 +1999,7 @@ impl_parse_divide_or_mod(
  * Term ::= Exponentiation ( ('*' | '/' | '%') Exponentiation )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Term(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -2062,7 +2062,7 @@ afw_compile_parse_Term(afw_compile_parser_t *parser)
  * Exponentiation ::= Prefixed ( '**' Prefixed )*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -2111,7 +2111,7 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser)
  * Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
@@ -2178,7 +2178,7 @@ afw_compile_parse_Prefixed(afw_compile_parser_t *parser)
  * Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Expression(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;

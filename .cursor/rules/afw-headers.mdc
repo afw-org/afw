@@ -49,7 +49,11 @@ Top-level `generated/*.h` are installed/public (bindings, interface, strings). C
 
 ## Adding a public header
 
-Drop `foo/afw_foo.h` under `src/afw` (outside `generate/`, `generated/`, `tests/`, `doc/`, `cmake/`). Next `./afwdev build --cdev -j` inventories it for install/include paths. If it is part of the public API, also add it to `include/afw.h`. If it is core-internal only, add it to `include/afw_internal.h` instead.
+Drop `foo/afw_foo.h` under `src/afw` (outside `generate/`, `generated/`, `tests/`, `doc/`, `cmake/`). Next `./afwdev build --cdev -j` inventories it for install/include paths. If it is part of the public API, also add it to `include/afw.h`. If it is core-internal only, add it to `include/afw_internal.h` instead (name it `*_internal.h`).
+
+**Install:** core `CMakeLists.txt` excludes `*_internal.h` and `afw_internal.h` from `PUBLIC_HEADER` install. Monorepo **build** still sees full source includes. Settled model: `designs/libafw-headers-and-api-surface.md`.
+
+**`.c` vs `.h`:** translation units use `afw.h` / `afw_internal.h`. Module headers use `afw_interface.h` or `afw_minimal.h` (bootstrap — not a thin app API). Do not put new core-only APIs on the `afw.h` list.
 
 Related: `afw-core-layout`, `afw-generate-metadata`, `afw-c-runtime`.
 

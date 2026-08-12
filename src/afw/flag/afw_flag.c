@@ -208,7 +208,7 @@ impl_refresh_default_flags(afw_xctx_t *xctx)
 
 
 /* Register core flags. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_flag_internal_early_register_core(afw_xctx_t *xctx)
 {
     afw_environment_t *env = (afw_environment_t *)xctx->env;

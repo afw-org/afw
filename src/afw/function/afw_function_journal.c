@@ -53,7 +53,7 @@ impl_return_faced_object(
  *
  * afw_function_execute_journal_advance_cursor_for_consumer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Update the advance cursor for a consumer referenced by the consumerId
  * parameter. The limit parameter specifies the maximum number of entries to
@@ -133,7 +133,7 @@ afw_function_execute_journal_advance_cursor_for_consumer(
  *
  * afw_function_execute_journal_get_by_cursor
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get journal entry specified by entry_cursor parameter.
  * 
@@ -186,7 +186,7 @@ afw_function_execute_journal_get_by_cursor(
  *
  * afw_function_execute_journal_get_first
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get first journal entry.
  * 
@@ -233,7 +233,7 @@ afw_function_execute_journal_get_first(
  *
  * afw_function_execute_journal_get_next_after_cursor
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get the next journal entry after the one specified by the entry_cursor
  * parameter.
@@ -286,7 +286,7 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  * afw_function_execute_journal_get_next_for_consumer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get the next journal entry for a consumer referenced by the consumer_id
  * parameter. The entry_cursor parameter is ignored. The limit parameter
@@ -375,7 +375,7 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  * afw_function_execute_journal_get_next_for_consumer_after_cursor
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get the next journal entry for a consumer referenced by the consumer_id after
  * the one specified by the entry_cursor parameter. The limit parameter
@@ -457,7 +457,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  * afw_function_execute_journal_mark_consumed
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Mark a journal entry returned by get_next_for_consumer() as consumed.
  *

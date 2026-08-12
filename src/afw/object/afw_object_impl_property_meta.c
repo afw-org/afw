@@ -444,7 +444,7 @@ afw_object_impl_get_next_property_meta(
 /*
  * Implementation of method get_property_meta for interface afw_object.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_object_impl_internal_get_property_meta(
     const afw_object_t *instance,
     const afw_utf8_t *property_name,
@@ -487,7 +487,7 @@ afw_object_impl_internal_get_property_meta(
 /*
  * Implementation of method get_next_property_meta for interface afw_object.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_object_impl_internal_get_next_property_meta(
     const afw_object_t *instance,
     const afw_iterator_old_t **iterator,

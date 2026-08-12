@@ -18,7 +18,7 @@
 
 #include "afw_lmdb_index.h"
 #include "afw_lmdb_internal.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 
 #define AFW_IMPLEMENTATION_ID "lmdb_index"
 #define AFW_ADAPTER_IMPL_INDEX_SELF_T afw_lmdb_adapter_impl_index_t

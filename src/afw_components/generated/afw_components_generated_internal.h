@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_components) Header
+ * Adaptive Framework Register Generated (afw_components) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,18 +16,17 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_COMPONENTS_GENERATED_H__
-#define __AFW_COMPONENTS_GENERATED_H__
+#ifndef __AFW_COMPONENTS_GENERATED_INTERNAL_H__
+#define __AFW_COMPONENTS_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_components_generated.h
- * @brief Generated register/API header for srcdir `afw_components`.
+ * @file afw_components_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_components` (not public C API).
  */
 
 #include "afw_minimal.h"
-#include "afw_components_declare_helpers.h"
-#include "afw_components_const_objects.h"
+#include "afw_components_const_objects_internal.h"
 #include "afw_runtime.h"
 #include "afw_components_runtime_object_maps.h"
 #include "afw_components_strings.h"
@@ -37,8 +36,8 @@
  * @brief Generated register for afw_components. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_COMPONENTS_DECLARE_INTERNAL(void)
+extern void
 afw_components_generated_register(afw_xctx_t *xctx);
 
 
-#endif /* __AFW_COMPONENTS_GENERATED_H__ */
+#endif /* __AFW_COMPONENTS_GENERATED_INTERNAL_H__ */

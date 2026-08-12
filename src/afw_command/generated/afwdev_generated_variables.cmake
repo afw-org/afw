@@ -23,13 +23,13 @@
 #
 
 # Header files that are installed for public use.
+# Excludes *_internal.h / afw_internal.h (libafw/package private).
+# Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
-    afw_command_internal.h
     afw_command_local_parse.h
     afw_command_local_request.h
     afw_command_local_server.h
     generated/afw_command_declare_helpers.h
-    generated/afw_command_generated.h
     generated/afw_command_strings.h
     generated/afw_command_version_info.h
 )

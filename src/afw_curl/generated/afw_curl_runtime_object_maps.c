@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_curl_generated.h"
+#include "afw_curl_generated_internal.h"
 /*
  *  generate/additional_includes/runtime_object_maps.h is added to generated
  *  *runtime_object_maps.c.

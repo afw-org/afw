@@ -20,7 +20,7 @@
  *
  * afw_function_execute_abs_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compute the absolute value of the integer value and return the integer
  * result.
@@ -59,7 +59,7 @@ afw_function_execute_abs_integer(
  *
  * afw_function_execute_add_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add 2 or more integer values and return the integer result.
  *
@@ -99,7 +99,7 @@ afw_function_execute_add_integer(
  *
  * afw_function_execute_divide_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Divide integer dividend by integer divisor and return the integer quotient.
  *
@@ -140,7 +140,7 @@ afw_function_execute_divide_integer(
  *
  * afw_function_execute_mod_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Divide integer dividend by integer divisor and return the integer remainder.
  *
@@ -181,7 +181,7 @@ afw_function_execute_mod_integer(
  *
  * afw_function_execute_multiply_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Multiply 2 or more integer values and return the integer result.
  *
@@ -221,7 +221,7 @@ afw_function_execute_multiply_integer(
  *
  * afw_function_execute_negative_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return negative of integer value.
  *
@@ -259,7 +259,7 @@ afw_function_execute_negative_integer(
  *
  * afw_function_execute_subtract_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Subtract integer arg2 from integer arg1 and return the integer result.
  *

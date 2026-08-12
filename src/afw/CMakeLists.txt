@@ -16,6 +16,20 @@ else()
     list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*/win/.*")
 endif()
 
+# Install supported public API only (what #include "afw.h" needs + interface
+# implementer *_impl_declares.h and related impl helpers).
+# Not installed: core *_internal.h / afw_internal.h, deprecated leftovers,
+# and other headers not on the public/impl surface. Source tree keeps them
+# for monorepo builds. See designs/libafw-headers-and-api-surface.md.
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*_internal\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*/afw_internal\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*afw_declare_helpers\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*afw_log_deprecated.*\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*afw_model_location\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*afw_array_template\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*skeleton_.*\\.h$")
+list(FILTER AFWDEV_GENERATED_PUBLIC_HEADERS_LIST EXCLUDE REGEX ".*/generate/additional_includes/.*")
+
 # -----------------------------------------------------------------------------
 # Include basic afw project and add additional dependencies and customizations.
 # -----------------------------------------------------------------------------

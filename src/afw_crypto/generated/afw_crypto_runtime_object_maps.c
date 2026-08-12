@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_crypto_generated.h"
+#include "afw_crypto_generated_internal.h"
 
 
 

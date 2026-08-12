@@ -15,14 +15,14 @@
 
 #include "afw.h"
 #include "afw_vfs_adapter_internal.h"
-#include "generated/afw_vfs_generated.h"
+#include "generated/afw_vfs_generated_internal.h"
 #include "generated/afw_vfs_version_info.h"
 
 /* Declares and rti/inf defines for interface afw_extension */
 #define AFW_IMPLEMENTATION_ID "afw_vfs"
 #define AFW_IMPLEMENTATION_VERSION AFW_VFS_VERSION_STRING
 #include "afw_extension_impl_declares.h"
-#include "generated/afw_vfs_generated.h"
+#include "generated/afw_vfs_generated_internal.h"
 
 
 /* Define extension implementation. */
