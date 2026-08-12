@@ -40,10 +40,11 @@ afw_internal.h    ← libafw .c only
 - Extension load: `afw_compiled_version_hex` on `afw_environment_extension_instance`.
 - Pre-1.0: major+minor must match; patch free. ≥1.0: same major, runtime minor ≥ compiled minor.
 
-### Install policy (goal)
+### Install policy (current)
 
-- **Default install = supported public API** (what `afw.h` and intentional public/`*_impl` headers need).
-- **Do not install** core `*_internal.h` / `afw_internal.h` by default (repo remains the place to explore internals).
+- **Default install = public + implementer surface:** transitive needs of `afw.h` plus generated `*_impl_declares.h` (and related impl helpers such as `afw_adapter_impl_index.h` used by in-tree adapters).
+- **Do not install:** core `*_internal.h` / `afw_internal.h`, generated register/bindings/const-objects glue (`*_function_bindings_internal.h`, etc.), `afw_strings_internal.h`, deprecated leftovers (`log_deprecated*`, `model_location`, `array_template`, any residual `declare_helpers`).
+- Filters live in `src/afw/CMakeLists.txt` (and generators omit `*_internal.h` from the public list).
 - Optional later: “dev headers” install if someone asks.
 - Monorepo builds still see full source includes at **build** time; filter applies to **install**.
 
@@ -139,3 +140,4 @@ Plain C (undecorated). Core: via `afw_internal.h`. Packages: package-private inc
 | 2026-08-12 | Extension/command policy + crypto declare_helpers pilot recipe (reverted; full pass later). |
 | 2026-08-12 | Core string dual header (`strings` / `strings_internal`); decorate public catalogs. |
 | 2026-08-12 | Rename generated register/bindings/const_objects headers to `*_internal.h` (not installed). |
+| 2026-08-12 | Stricter install excludes; `afw_runtime_register_core_value_accessors` → `runtime/afw_runtime_internal.h`; package header briefs package-private; whats-new declare_helpers **deprecated**. |

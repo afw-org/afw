@@ -71,13 +71,6 @@ struct afw_runtime_value_accessor_info_s {
 
 
 /**
- * @brief Register core runtime value accessors.
- * @param xctx of caller.
- */
-void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx);
-
-
-/**
  * @brief Runtime value accessor 'default' for default internal.
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is pointer to internal for result afw_value_t.

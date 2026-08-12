@@ -45,8 +45,8 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Templates (#97)**](#compile-time-template-substitutions-issue-97) | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates |
 | [**Adapter index `current::` (#54 partial)**](#adapter-index-filtervalue-current-issue-54-partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev (#1)**](#c-api-docs-and-full-package-builds-issue-1) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
-| [**libafw install headers**](#libafw-public-header-install) | Default install omits core `*_internal.h` / `afw_internal.h`; use `afw.h` only — **rebuild** out-of-tree; remove stale internals from an old prefix if present |
-| [**C declare helpers transition**](#c-declare-helpers-transition) | Core `AFW_DECLARE`/`AFW_DEFINE` live in `afw_common.h` (no core `afw_declare_helpers.h`); package helpers still generated but **removed soon** — **rebuild** out-of-tree |
+| [**libafw install headers**](#libafw-public-header-install) | Install is **public + implementer** surface only (`afw.h` path + `*_impl_declares`); omits internals, deprecated leftovers, register/bindings glue — **rebuild** out-of-tree; prune stale files under old prefixes |
+| [**C declare helpers transition**](#c-declare-helpers-transition) | Core macros in `afw_common.h`; package `*_declare_helpers.h` still **generated but deprecated** (base-repo packages do not use them) — **rebuild** out-of-tree; plan to drop helpers soon |
 | [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base — **recompile** out-of-tree commands/extensions |
 | [**`stringify` / `decompile` / listing (#18)**](#stringify-decompile-compiler-listing-and-binary-text) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
@@ -532,14 +532,24 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 
 **C builders / out-of-tree extensions and commands**
 
-Default **install** of libafw headers is the **supported public surface** (what you need for `#include "afw.h"`, interface call macros, and intentional `*_impl` helpers). Core **`*_internal.h`** and **`afw_internal.h`** are **not** installed by default; they remain in the **source tree** for libafw maintainers.
+Default **install** of libafw headers is the **supported public + implementer surface**:
+
+| Installed | Not installed (source tree only) |
+|-----------|----------------------------------|
+| Headers needed for `#include "afw.h"` (call API + intentional `*_impl` helpers) | Core `*_internal.h`, `afw_internal.h` |
+| Generated `*_impl_declares.h` (interface implementers) | Generated register/bindings/const-objects glue (`*_function_bindings_internal.h`, `*_const_objects_internal.h`, `*_generated_internal.h`) |
+| Stable core string catalog (`afw_strings.h`) | Invent-for-C string labels (`afw_strings_internal.h` / `zz__*`) |
+| | Deprecated leftovers (`afw_declare_helpers.h` if present, `afw_log_deprecated*`, `afw_model_location.h`, `afw_array_template.h`, …) |
+
+**Only libafw has a real public C API.** Base-repo extension/command packages are **package-private** (load DSO / Adaptive registration); their headers are not a second install surface.
 
 | Do | Don’t |
 |----|--------|
 | `#include "afw.h"` from your `.c` files | Include `afw_internal.h` or core `*_internal.h` from extensions/commands |
-| Rebuild/reinstall against this AFW after upgrading | Rely on an old install that still has leftover `*internal*.h` files |
+| Use `*_impl_declares.h` when implementing a core interface | Rely on old install leftovers (`*internal*.h`, `afw_function_bindings.h`, …) |
+| Rebuild/reinstall against this AFW after upgrading | Link or compile against core register/execute catalogs as if they were public |
 
-**Upgrade note:** CMake install does not delete previously installed files. If an older AFW left `afw_*_internal.h` under your include prefix (e.g. `/usr/local/include/afw/`), remove those leftovers when you upgrade so you do not accidentally keep using them.
+**Upgrade note:** CMake install does **not** delete previously installed files. After upgrade, remove stale names under your include prefix (e.g. `/usr/local/include/afw/`) such as `afw_*_internal.h`, old `afw_function_bindings.h` / `afw_const_objects.h` / `afw_generated.h`, and `afw_declare_helpers.h` if present.
 
 In-tree monorepo builds still see full source includes at **build** time. Maintainer notes: [`designs/libafw-headers-and-api-surface.md`](designs/libafw-headers-and-api-surface.md).
 
@@ -553,15 +563,16 @@ In-tree monorepo builds still see full source includes at **build** time. Mainta
 
 ### libafw (core)
 
-- Public macros **`AFW_DECLARE`**, **`AFW_DEFINE`**, **`AFW_BEGIN_DECLARES`**, DSO/inline helpers, etc. now live in hand-written **`afw_common.h`** (pulled by `afw.h` / `afw_minimal.h`).
+- Public macros **`AFW_DECLARE`**, **`AFW_DEFINE`**, **`AFW_BEGIN_DECLARES`**, DSO/inline helpers, etc. live in hand-written **`afw_common.h`** (pulled by `afw.h` / `afw_minimal.h`).
 - Core **no longer generates** `afw_declare_helpers.h`. Do not `#include "afw_declare_helpers.h"` for core.
-- In-tree core code uses **plain C** for former `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` sites.
+- In-tree core uses **plain C** for former `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` sites.
 
-### Extensions and commands (package helpers)
+### Extensions and commands (package helpers) — **deprecated**
 
-- Base-repo packages no longer **use** per-package `*_declare_helpers.h` macros (plain C + core `AFW_BEGIN_DECLARES` where needed).
-- Those headers are **still generated for a short transition** so older out-of-tree trees can keep including them while you test against **`mgg-develop`**.
-- **They will be removed soon.** Prefer ordinary C declarations/definitions in new or updated package code; plan to drop package `declare_helpers` includes before the next integration line hardens.
+- Per-package **`*_declare_helpers.h` is still generated** for a short **out-of-tree transition** (trees that still include it while testing against **`mgg-develop`**).
+- **Deprecated:** do not use these macros in new code. Prefer ordinary C declarations/definitions and core **`AFW_BEGIN_DECLARES`** / **`AFW_DECLARE`** only when exporting from **libafw**.
+- **Base-repo packages do not use** package declare helpers (plain C).
+- **They will be removed** once the transition window closes. Drop `#include "…/*_declare_helpers.h"` and `AFW_<PKG>_DECLARE` / `DEFINE` before the next integration line hardens.
 
 [↑ Highlights](#highlights)
 

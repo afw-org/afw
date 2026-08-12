@@ -23,10 +23,11 @@
 
 /**
  * @file afw_curl.h
- * @brief Public header for the curl extension (HTTP / SMTP client).
+ * @brief Package header for the curl extension (HTTP / SMTP client).
  *
- * **Example loadable extension** for authors studying how to package
- * functions and an error RV decoder on top of libafw (not an adapter type).
+ * Package-private C surface (not a second public C API). **Example
+ * loadable extension** for authors studying how to package functions and
+ * an error RV decoder on top of libafw (not an adapter type).
  *
  * Layout to mirror when creating a new extension with afwdev:
  * - `afw_curl_extension.c` — `afw_extension` initialize / register
