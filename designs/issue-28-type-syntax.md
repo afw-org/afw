@@ -11,7 +11,7 @@ Cadence: *Flexible plan, one step, then re-decide* (mantras pad). After each ste
 | # | Candidate step | Status |
 |---|----------------|--------|
 | 1 | **Inventory** — claimed surface / fix / decided-not / probe | Done (draft in pad) |
-| 1b | **Gray-zone type syntax** — one by one: support as claimed surface vs **no** (how Adaptive works); TypeScript-author expectation given what Adaptive is/isn’t; record in this pad + `typescript-differences.md` (plain language; definitive product wording, not “not yet”) | **In progress** |
+| 1b | **Gray-zone type syntax** — one by one: support as claimed surface vs **no** (how Adaptive works); TypeScript-author expectation given what Adaptive is/isn’t; record in this pad + `typescript-differences.md` (plain language; definitive product wording, not “not yet”) | **Done** |
 | 1c | **FunctionSignature formals** — (A) documented functor prototypes must be valid Adaptive Script Types (validate/generate guard); (B) under typeCheck, project FunctionSignature → function Type and compile-check known function arguments (script functions first). Align script formals with built-in HOF docs. Not TypeScript generics. | **Queued after 1b** (user wants B) |
 | 2 | **Highest-value gap vertical(s)** — remaining G1/G2/… after 1c as needed | Pending |
 | 3 | **Decided-not + pad/issue hygiene** — remaining nos; fix stale issue body (`Array<T>`, etc.) | Pending (partial with 1b) |
@@ -44,13 +44,15 @@ Order may change after any step.
 | `typeof` in type position | **No.** Keyword reserved (fail early); not the JavaScript operator; not a TypeScript type query. Write types with data type names / shapes / `type`·`interface`. | This pad + `typescript-differences.md` |
 | Method / call signatures in object types | **No.** Properties only: **`name: Type`**. Callables: **`run: (a: T) => R`**. No method shorthand, bare call signatures, or `new` signatures. | This pad + `typescript-differences.md` |
 | Assertions / `satisfies` / type predicates | **No.** No `as T`, `satisfies`, `x is T`, or `asserts`. Annotations + typeCheck when types known; runtime guards with conditions / helpers / `throw`. No control-flow narrowing lattice. | This pad + `typescript-differences.md` |
-| `enum` | pending | — |
-| Interface merging | pending | — |
-| `implements` | pending (likely covered by no classes) | — |
-| Import types | pending (likely covered by no modules) | — |
-| `never` | pending | — |
+| `enum` | **No.** No TypeScript/JavaScript `enum` / `const enum`. Vocabularies: Adaptive data types, string/integer (etc.) + runtime checks, property **allowed values**, Adaptive object types — not a second enum type form in script. | This pad + `typescript-differences.md` |
+| Interface merging | **No.** One `type` / `interface` definition per name in a compile unit; redeclaration is an error. No TypeScript declaration merging. | This pad + `typescript-differences.md` |
+| `implements` | **No.** No classes / `new`; nothing to implement. Script `interface` is a structural type shape only. | This pad + `typescript-differences.md` |
+| Import types | **No.** No `import` / `export` / type-only imports. Share via conf, qualifiers, Adaptive APIs, application-shared functions later ([#170](https://github.com/afw-org/afw/issues/170)). | This pad + `typescript-differences.md` |
+| `never` | **No.** No TypeScript bottom type `never`. Use Adaptive data types including `void` / `unknown` / `any` as appropriate; no separate `never` leaf. | This pad + `typescript-differences.md` |
 
 **Wording:** Gray-zone **no** means *how Adaptive Script works* for beta/release, not “not yet.” A future change needs an explicit new issue and decision — not silent reopen.
+
+**Step 1b complete.** Claimed type surface + firm nos are recorded. Natural next candidate: **1c** FunctionSignature A+B.
 
 ## Decisions
 
@@ -186,6 +188,11 @@ Reopen only by **explicit** new decision. Author-facing wording lives in root [`
 | **`typeof` in type position** (and JavaScript value `typeof`) | Keyword **reserved** so copy-paste fails early; **reserved ≠ implemented**. Not the JavaScript operator; not a TypeScript type query that pulls a value’s type into the type language. Prefer `: Type`, `type` / `interface` aliases. Not a “should fix.” |
 | **Method / call / construct signatures in object types** | Properties only: `name` / `name?` + `:` + Type. Use **function Types** for callables (`handler: (a: integer) => boolean`), matching built-in HOF FunctionSignature style. No `{ run(a: integer): boolean }`, bare `{ (): void }`, or `{ new (): T }`. One form over dual TypeScript sugar. |
 | **Type assertions / `satisfies` / type predicates / assertion functions** | Not part of Adaptive Script. No `as T`, non-null `!`, `satisfies`, `x is T`, or `asserts x is T`. No control-flow type narrowing. Use `: Type` + typeCheck when known; runtime conditions, Adaptive helpers, and `throw` for guards. |
+| **`enum` / `const enum`** | Not part of Adaptive Script. Enumerated vocabularies use data types, values + runtime checks, Adaptive property allowed values, or Adaptive object types. |
+| **Interface / declaration merging** | One script `type` or `interface` per name; no TypeScript-style merge of multiple declarations. |
+| **`implements`** | No classes or `new`; script `interface` is structural only. |
+| **Import types / type-only modules** | No script module `import` / `export`. |
+| **`never` as a type** | No TypeScript bottom type; use Adaptive data types (`void`, `unknown`, `any`, …) as defined. |
 | Adaptive **object type catalog → script type import** | Separate design family; script `interface` / shapes stay local |
 | **Convert-aware** Adaptive formal checks; **runtime typeCheck layer** on Adaptive function execute | Compile-only Adaptive formal checks; runtime stays Adaptive function behavior |
 | Compile-time **optimize** / produce-type percolation from known types | Separate track (`designs/compile-optimize-notes.md`); not type-check surface; amplifies specialize-when-known for poly (built-in and future script) |
