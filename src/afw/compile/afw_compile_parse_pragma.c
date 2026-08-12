@@ -275,7 +275,7 @@ impl_parse_compile_pragma(afw_compile_parser_t *parser)
 /**
  * Parse a #Name in statement position (pragma or compiler-internal).
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser)
 {
     if (impl_pragma_name_is(parser, "compile")) {

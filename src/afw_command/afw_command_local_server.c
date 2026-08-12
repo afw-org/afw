@@ -465,7 +465,7 @@ impl_afw_server_run(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(const afw_server_t *)
+const afw_server_t *
 afw_command_local_server_create(
     afw_command_self_t *command_self)
 {
@@ -551,7 +551,7 @@ afw_command_local_server_create(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(void)
+void
 afw_command_local_server_write_result(
     afw_command_local_server_self_t *self,
     const char *format, ...)
@@ -586,7 +586,7 @@ afw_command_local_server_write_result(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(void)
+void
 afw_command_local_server_write_error(
     afw_command_local_server_self_t *self, 
     const afw_error_t *error,
@@ -620,7 +620,7 @@ afw_command_local_server_write_error(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(void)
+void
 afw_command_local_server_write_end(
     afw_command_local_server_self_t *self)
 {

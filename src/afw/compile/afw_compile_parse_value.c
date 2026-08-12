@@ -53,7 +53,7 @@
  *
  *<<<ebnf*/
 /* Parse a JSON array. Input cursor must point to a [. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_List(
     afw_compile_parser_t *parser,
     afw_boolean_t allow_expression,
@@ -383,7 +383,7 @@ impl_object_migrate_properties_to_entries(
 }
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Object(
     afw_compile_parser_t *parser,
     afw_boolean_t allow_expression,
@@ -765,7 +765,7 @@ afw_compile_parse_Object(
  * RelaxedJson ::= Double | Integer | RelaxedList | RelaxedObject | String | 'true' | 'false' | 'null'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Json(afw_compile_parser_t *parser)
 {
     /* parser->strict false causes RelaxedJson to be used. */
@@ -839,7 +839,7 @@ afw_compile_parse_Json(afw_compile_parser_t *parser)
  * Literal ::= ListLiteral | ObjectLiteral | ScalarLiteral | 'undefined'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Literal(
     afw_compile_parser_t *parser,
     afw_boolean_t *is_Literal,
@@ -956,7 +956,7 @@ afw_compile_parse_Literal(
  *         CompilerInternalValue
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Value(afw_compile_parser_t *parser)
 {
     const afw_value_t *value = NULL;

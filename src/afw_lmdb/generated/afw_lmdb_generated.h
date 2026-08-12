@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_lmdb_declare_helpers.h"
 #include "afw_lmdb_const_objects.h"
 #include "afw_lmdb_function_bindings.h"
 #include "afw_runtime.h"
@@ -38,7 +37,7 @@
  * @brief Generated register for afw_lmdb. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_LMDB_DECLARE_INTERNAL(void)
+extern void
 afw_lmdb_generated_register(afw_xctx_t *xctx);
 
 
@@ -46,7 +45,7 @@ afw_lmdb_generated_register(afw_xctx_t *xctx);
  * @brief Register function for adapter_type lmdb
  * @param xctx of caller.
  */
-AFW_LMDB_DECLARE_INTERNAL(void)
+extern void
 afw_lmdb_adapter_type_lmdb_register(
     afw_xctx_t *xctx);
 
@@ -55,7 +54,7 @@ afw_lmdb_adapter_type_lmdb_register(
  * @brief Register function for error_rv_decoder lmdb
  * @param xctx of caller.
  */
-AFW_LMDB_DECLARE_INTERNAL(void)
+extern void
 afw_lmdb_error_rv_decoder_lmdb_register(
     afw_xctx_t *xctx);
 

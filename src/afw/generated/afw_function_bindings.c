@@ -173,7 +173,7 @@ impl_adapter_objectCallback_signature_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_adapter_objectCallback_signature = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__adapter_objectCallback_signature,
@@ -520,7 +520,7 @@ impl_add_object_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_object,
@@ -791,7 +791,7 @@ impl_add_object_with_uri_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_object_with_uri,
@@ -1056,7 +1056,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__convert_AdaptiveQueryCriteria_to_query_string,
@@ -1283,7 +1283,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__convert_query_string_to_AdaptiveQueryCriteria,
@@ -1592,7 +1592,7 @@ impl_delete_object_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_delete_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__delete_object,
@@ -1825,7 +1825,7 @@ impl_delete_object_with_uri_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_delete_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__delete_object_with_uri,
@@ -2128,7 +2128,7 @@ impl_get_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_get_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__get_object,
@@ -2355,7 +2355,7 @@ impl_get_object_with_uri_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_get_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__get_object_with_uri,
@@ -2702,7 +2702,7 @@ impl_modify_object_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_modify_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__modify_object,
@@ -2973,7 +2973,7 @@ impl_modify_object_with_uri_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_modify_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__modify_object_with_uri,
@@ -3168,7 +3168,7 @@ impl_reconcile_object_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_reconcile_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__reconcile_object,
@@ -3515,7 +3515,7 @@ impl_replace_object_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_replace_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__replace_object,
@@ -3786,7 +3786,7 @@ impl_replace_object_with_uri_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_replace_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__replace_object_with_uri,
@@ -4127,7 +4127,7 @@ impl_retrieve_objects_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects,
@@ -4506,7 +4506,7 @@ impl_retrieve_objects_to_callback_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_to_callback = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_to_callback,
@@ -4809,7 +4809,7 @@ impl_retrieve_objects_to_response_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_to_response = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_to_response,
@@ -5150,7 +5150,7 @@ impl_retrieve_objects_to_stream_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_to_stream = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_to_stream,
@@ -5415,7 +5415,7 @@ impl_retrieve_objects_with_uri_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri,
@@ -5718,7 +5718,7 @@ impl_retrieve_objects_with_uri_to_callback_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri_to_callback = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri_to_callback,
@@ -5945,7 +5945,7 @@ impl_retrieve_objects_with_uri_to_response_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri_to_response = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri_to_response,
@@ -6210,7 +6210,7 @@ impl_retrieve_objects_with_uri_to_stream_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri_to_stream = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri_to_stream,
@@ -6557,7 +6557,7 @@ impl_update_object_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_update_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__update_object,
@@ -6828,7 +6828,7 @@ impl_update_object_with_uri_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_update_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__update_object_with_uri,
@@ -6985,7 +6985,7 @@ impl_extension_load_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_extension_load = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__extension_load,
@@ -7142,7 +7142,7 @@ impl_extension_load_by_module_path_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_extension_load_by_module_path = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__extension_load_by_module_path,
@@ -7255,7 +7255,7 @@ impl_flag_get_active_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_flag_get_active = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__flag_get_active,
@@ -7368,7 +7368,7 @@ impl_flag_get_active_defaults_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_flag_get_active_defaults = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__flag_get_active_defaults,
@@ -7481,7 +7481,7 @@ impl_flag_get_defaults_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_flag_get_defaults = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__flag_get_defaults,
@@ -7670,7 +7670,7 @@ impl_flag_modify_defaults_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_flag_modify_defaults = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__flag_modify_defaults,
@@ -7821,7 +7821,7 @@ impl_flag_replace_defaults_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_flag_replace_defaults = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__flag_replace_defaults,
@@ -8010,7 +8010,7 @@ impl_flag_set_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_flag_set = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__flag_set,
@@ -8243,7 +8243,7 @@ impl_registry_key_check_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_registry_key_check = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__registry_key_check,
@@ -8394,7 +8394,7 @@ impl_service_get_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_service_get = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__service_get,
@@ -8551,7 +8551,7 @@ impl_service_restart_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_service_restart = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__service_restart,
@@ -8708,7 +8708,7 @@ impl_service_start_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_service_start = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__service_start,
@@ -8865,7 +8865,7 @@ impl_service_stop_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_service_stop = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__service_stop,
@@ -9024,7 +9024,7 @@ impl_anyURI_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__anyURI,
@@ -9213,7 +9213,7 @@ impl_at_least_one_member_of_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_anyURI,
@@ -9364,7 +9364,7 @@ impl_bag_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_anyURI,
@@ -9515,7 +9515,7 @@ impl_bag_size_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_anyURI,
@@ -9704,7 +9704,7 @@ impl_ends_with_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ends_with_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ends_with_anyURI,
@@ -9901,7 +9901,7 @@ impl_eq_anyURI_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_anyURI,
@@ -10090,7 +10090,7 @@ impl_eqx_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_anyURI,
@@ -10279,7 +10279,7 @@ impl_ge_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_anyURI,
@@ -10468,7 +10468,7 @@ impl_gt_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_anyURI,
@@ -10695,7 +10695,7 @@ impl_includes_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_includes_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__includes_anyURI,
@@ -10922,7 +10922,7 @@ impl_index_of_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_index_of_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__index_of_anyURI,
@@ -11111,7 +11111,7 @@ impl_intersection_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_anyURI,
@@ -11262,7 +11262,7 @@ impl_is_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_anyURI,
@@ -11451,7 +11451,7 @@ impl_is_in_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_anyURI,
@@ -11678,7 +11678,7 @@ impl_last_index_of_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_last_index_of_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__last_index_of_anyURI,
@@ -11867,7 +11867,7 @@ impl_le_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_anyURI,
@@ -12018,7 +12018,7 @@ impl_length_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_length_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__length_anyURI,
@@ -12207,7 +12207,7 @@ impl_lt_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_anyURI,
@@ -12404,7 +12404,7 @@ impl_ne_anyURI_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_anyURI,
@@ -12593,7 +12593,7 @@ impl_nex_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_anyURI,
@@ -12752,7 +12752,7 @@ impl_one_and_only_anyURI_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_anyURI,
@@ -12941,7 +12941,7 @@ impl_regexp_index_of_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_index_of_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_index_of_anyURI,
@@ -13130,7 +13130,7 @@ impl_regexp_match_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_match_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_match_anyURI,
@@ -13395,7 +13395,7 @@ impl_regexp_replace_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_replace_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_replace_anyURI,
@@ -13584,7 +13584,7 @@ impl_repeat_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_repeat_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__repeat_anyURI,
@@ -13849,7 +13849,7 @@ impl_replace_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_replace_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__replace_anyURI,
@@ -14038,7 +14038,7 @@ impl_set_equals_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_anyURI,
@@ -14265,7 +14265,7 @@ impl_split_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_split_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__split_anyURI,
@@ -14454,7 +14454,7 @@ impl_starts_with_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_starts_with_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__starts_with_anyURI,
@@ -14643,7 +14643,7 @@ impl_subset_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_anyURI,
@@ -14878,7 +14878,7 @@ impl_substring_anyURI_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_substring_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__substring_anyURI,
@@ -15029,7 +15029,7 @@ impl_to_string_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_anyURI,
@@ -15180,7 +15180,7 @@ impl_union_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_anyURI,
@@ -15331,7 +15331,7 @@ impl_url_encode_anyURI_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_url_encode_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__url_encode_anyURI,
@@ -15526,7 +15526,7 @@ impl_add_entries_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_entries = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_entries,
@@ -15677,7 +15677,7 @@ impl_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__array,
@@ -15866,7 +15866,7 @@ impl_at_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at,
@@ -16017,7 +16017,7 @@ impl_bag_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_array,
@@ -16168,7 +16168,7 @@ impl_bag_size_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_array,
@@ -16319,7 +16319,7 @@ impl_clone_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_clone_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__clone_array,
@@ -16478,7 +16478,7 @@ impl_create_array_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_create_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__create_array,
@@ -16675,7 +16675,7 @@ impl_eq_array_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_array,
@@ -16864,7 +16864,7 @@ impl_eqx_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_array,
@@ -17015,7 +17015,7 @@ impl_freeze_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_freeze_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__freeze_array,
@@ -17204,7 +17204,7 @@ impl_ge_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_array,
@@ -17393,7 +17393,7 @@ impl_gt_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_array,
@@ -17620,7 +17620,7 @@ impl_includes_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_includes_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__includes_array,
@@ -17771,7 +17771,7 @@ impl_is_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_array,
@@ -17960,7 +17960,7 @@ impl_join_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_join = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__join,
@@ -18149,7 +18149,7 @@ impl_le_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_array,
@@ -18300,7 +18300,7 @@ impl_length_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_length_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__length_array,
@@ -18489,7 +18489,7 @@ impl_lt_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_array,
@@ -18686,7 +18686,7 @@ impl_ne_array_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_array,
@@ -18875,7 +18875,7 @@ impl_nex_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_array,
@@ -19032,7 +19032,7 @@ impl_pop_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_pop = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__pop,
@@ -19227,7 +19227,7 @@ impl_push_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_push = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__push,
@@ -19378,7 +19378,7 @@ impl_reverse_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_reverse = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__reverse,
@@ -19535,7 +19535,7 @@ impl_shift_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_shift = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__shift,
@@ -19762,7 +19762,7 @@ impl_slice_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_slice = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__slice,
@@ -20033,7 +20033,7 @@ impl_splice_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_splice = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__splice,
@@ -20184,7 +20184,7 @@ impl_to_string_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_array,
@@ -20379,7 +20379,7 @@ impl_unshift_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_unshift = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__unshift,
@@ -20682,7 +20682,7 @@ impl_authorization_check_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_authorization_check = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__authorization_check,
@@ -20871,7 +20871,7 @@ impl_at_least_one_member_of_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_base64Binary,
@@ -21022,7 +21022,7 @@ impl_bag_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_base64Binary,
@@ -21173,7 +21173,7 @@ impl_bag_size_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_base64Binary,
@@ -21332,7 +21332,7 @@ impl_base64Binary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__base64Binary,
@@ -21483,7 +21483,7 @@ impl_decode_to_string_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_decode_to_string_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__decode_to_string_base64Binary,
@@ -21680,7 +21680,7 @@ impl_eq_base64Binary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_base64Binary,
@@ -21869,7 +21869,7 @@ impl_eqx_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_base64Binary,
@@ -22058,7 +22058,7 @@ impl_ge_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_base64Binary,
@@ -22247,7 +22247,7 @@ impl_gt_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_base64Binary,
@@ -22436,7 +22436,7 @@ impl_intersection_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_base64Binary,
@@ -22587,7 +22587,7 @@ impl_is_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_base64Binary,
@@ -22776,7 +22776,7 @@ impl_is_in_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_base64Binary,
@@ -22965,7 +22965,7 @@ impl_le_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_base64Binary,
@@ -23154,7 +23154,7 @@ impl_lt_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_base64Binary,
@@ -23351,7 +23351,7 @@ impl_ne_base64Binary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_base64Binary,
@@ -23540,7 +23540,7 @@ impl_nex_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_base64Binary,
@@ -23699,7 +23699,7 @@ impl_one_and_only_base64Binary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_base64Binary,
@@ -23888,7 +23888,7 @@ impl_set_equals_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_base64Binary,
@@ -24077,7 +24077,7 @@ impl_subset_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_base64Binary,
@@ -24228,7 +24228,7 @@ impl_to_string_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_base64Binary,
@@ -24379,7 +24379,7 @@ impl_union_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_base64Binary,
@@ -24568,7 +24568,7 @@ impl_at_least_one_member_of_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_boolean,
@@ -24719,7 +24719,7 @@ impl_bag_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_boolean,
@@ -24870,7 +24870,7 @@ impl_bag_size_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_boolean,
@@ -25029,7 +25029,7 @@ impl_boolean_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__boolean,
@@ -25226,7 +25226,7 @@ impl_eq_boolean_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_boolean,
@@ -25415,7 +25415,7 @@ impl_eqx_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_boolean,
@@ -25604,7 +25604,7 @@ impl_ge_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_boolean,
@@ -25793,7 +25793,7 @@ impl_gt_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_boolean,
@@ -25982,7 +25982,7 @@ impl_intersection_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_boolean,
@@ -26133,7 +26133,7 @@ impl_is_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_boolean,
@@ -26322,7 +26322,7 @@ impl_is_in_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_boolean,
@@ -26511,7 +26511,7 @@ impl_le_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_boolean,
@@ -26700,7 +26700,7 @@ impl_lt_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_boolean,
@@ -26897,7 +26897,7 @@ impl_ne_boolean_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_boolean,
@@ -27086,7 +27086,7 @@ impl_nex_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_boolean,
@@ -27245,7 +27245,7 @@ impl_one_and_only_boolean_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_boolean,
@@ -27434,7 +27434,7 @@ impl_set_equals_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_boolean,
@@ -27623,7 +27623,7 @@ impl_subset_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_boolean,
@@ -27774,7 +27774,7 @@ impl_to_string_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_boolean,
@@ -27925,7 +27925,7 @@ impl_union_boolean_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_boolean,
@@ -28076,7 +28076,7 @@ impl_nullish_coalescing_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nullish_coalescing = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nullish_coalescing,
@@ -28265,7 +28265,7 @@ impl_optional_chaining_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_optional_chaining = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__optional_chaining,
@@ -28416,7 +28416,7 @@ impl_void_operator_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_void_operator = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__void_operator,
@@ -28611,7 +28611,7 @@ impl_assign_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_assign = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__assign,
@@ -28762,7 +28762,7 @@ impl_break_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_break = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__break,
@@ -28989,7 +28989,7 @@ impl_const_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_const = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__const,
@@ -29102,7 +29102,7 @@ impl_continue_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_continue = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__continue,
@@ -29291,7 +29291,7 @@ impl_do_while_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_do_while = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__do_while,
@@ -29556,7 +29556,7 @@ impl_for_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_for = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__for,
@@ -29783,7 +29783,7 @@ impl_for_of_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_for_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__for_of,
@@ -30010,7 +30010,7 @@ impl_if_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_if = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__if,
@@ -30237,7 +30237,7 @@ impl_let_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_let = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__let,
@@ -30350,7 +30350,7 @@ impl_rethrow_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_rethrow = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__rethrow,
@@ -30501,7 +30501,7 @@ impl_return_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_return = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__return,
@@ -30728,7 +30728,7 @@ impl_switch_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_switch = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__switch,
@@ -30917,7 +30917,7 @@ impl_throw_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_throw = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__throw,
@@ -31182,7 +31182,7 @@ impl_try_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_try = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__try,
@@ -31371,7 +31371,7 @@ impl_while_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_while = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__while,
@@ -31522,7 +31522,7 @@ impl_wrap_literal_array_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_wrap_literal_array = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__wrap_literal_array,
@@ -31673,7 +31673,7 @@ impl_wrap_literal_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_wrap_literal_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__wrap_literal_object,
@@ -31862,7 +31862,7 @@ impl_assert_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_assert = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__assert,
@@ -32051,7 +32051,7 @@ impl_compile_from_file_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile_from_file = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile_from_file,
@@ -32240,7 +32240,7 @@ impl_decompile_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_decompile = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__decompile,
@@ -32429,7 +32429,7 @@ impl_eval_from_file_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eval_from_file = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eval_from_file,
@@ -32618,7 +32618,7 @@ impl_evaluate_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_evaluate = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__evaluate,
@@ -32807,7 +32807,7 @@ impl_evaluate_with_retry_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_evaluate_with_retry = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__evaluate_with_retry,
@@ -32996,7 +32996,7 @@ impl_qualifier_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_qualifier = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__qualifier,
@@ -33147,7 +33147,7 @@ impl_qualifiers_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_qualifiers = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__qualifiers,
@@ -33336,7 +33336,7 @@ impl_safe_evaluate_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_safe_evaluate = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__safe_evaluate,
@@ -33563,7 +33563,7 @@ impl_stringify_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_stringify = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__stringify,
@@ -33866,7 +33866,7 @@ impl_test_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_test_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__test_script,
@@ -34169,7 +34169,7 @@ impl_test_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_test_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__test_template,
@@ -34472,7 +34472,7 @@ impl_test_value_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_test_value = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__test_value,
@@ -34661,7 +34661,7 @@ impl_add_dayTimeDuration_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_dayTimeDuration_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_dayTimeDuration_dateTime,
@@ -34850,7 +34850,7 @@ impl_add_yearMonthDuration_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_yearMonthDuration_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_yearMonthDuration_dateTime,
@@ -35039,7 +35039,7 @@ impl_at_least_one_member_of_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_dateTime,
@@ -35190,7 +35190,7 @@ impl_bag_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_dateTime,
@@ -35341,7 +35341,7 @@ impl_bag_size_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_dateTime,
@@ -35500,7 +35500,7 @@ impl_dateTime_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__dateTime,
@@ -35697,7 +35697,7 @@ impl_eq_dateTime_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_dateTime,
@@ -35886,7 +35886,7 @@ impl_eqx_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_dateTime,
@@ -36075,7 +36075,7 @@ impl_ge_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_dateTime,
@@ -36264,7 +36264,7 @@ impl_gt_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_dateTime,
@@ -36453,7 +36453,7 @@ impl_intersection_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_dateTime,
@@ -36604,7 +36604,7 @@ impl_is_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_dateTime,
@@ -36793,7 +36793,7 @@ impl_is_in_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_dateTime,
@@ -36982,7 +36982,7 @@ impl_le_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_dateTime,
@@ -37171,7 +37171,7 @@ impl_lt_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_dateTime,
@@ -37322,7 +37322,7 @@ impl_max_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_max_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__max_dateTime,
@@ -37473,7 +37473,7 @@ impl_min_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_min_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__min_dateTime,
@@ -37670,7 +37670,7 @@ impl_ne_dateTime_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_dateTime,
@@ -37859,7 +37859,7 @@ impl_nex_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_dateTime,
@@ -38018,7 +38018,7 @@ impl_one_and_only_dateTime_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_dateTime,
@@ -38207,7 +38207,7 @@ impl_set_equals_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_dateTime,
@@ -38396,7 +38396,7 @@ impl_subset_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_dateTime,
@@ -38585,7 +38585,7 @@ impl_subtract_dayTimeDuration_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract_dayTimeDuration_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract_dayTimeDuration_dateTime,
@@ -38774,7 +38774,7 @@ impl_subtract_yearMonthDuration_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract_yearMonthDuration_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract_yearMonthDuration_dateTime,
@@ -38925,7 +38925,7 @@ impl_to_string_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_dateTime,
@@ -39076,7 +39076,7 @@ impl_union_dateTime_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_dateTime,
@@ -39265,7 +39265,7 @@ impl_add_yearMonthDuration_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_yearMonthDuration_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_yearMonthDuration_date,
@@ -39454,7 +39454,7 @@ impl_at_least_one_member_of_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_date,
@@ -39605,7 +39605,7 @@ impl_bag_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_date,
@@ -39756,7 +39756,7 @@ impl_bag_size_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_date,
@@ -39915,7 +39915,7 @@ impl_date_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__date,
@@ -40112,7 +40112,7 @@ impl_eq_date_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_date,
@@ -40301,7 +40301,7 @@ impl_eqx_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_date,
@@ -40490,7 +40490,7 @@ impl_ge_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_date,
@@ -40679,7 +40679,7 @@ impl_gt_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_date,
@@ -40868,7 +40868,7 @@ impl_intersection_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_date,
@@ -41019,7 +41019,7 @@ impl_is_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_date,
@@ -41208,7 +41208,7 @@ impl_is_in_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_date,
@@ -41397,7 +41397,7 @@ impl_le_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_date,
@@ -41586,7 +41586,7 @@ impl_lt_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_date,
@@ -41737,7 +41737,7 @@ impl_max_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_max_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__max_date,
@@ -41888,7 +41888,7 @@ impl_min_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_min_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__min_date,
@@ -42085,7 +42085,7 @@ impl_ne_date_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_date,
@@ -42274,7 +42274,7 @@ impl_nex_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_date,
@@ -42433,7 +42433,7 @@ impl_one_and_only_date_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_date,
@@ -42622,7 +42622,7 @@ impl_set_equals_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_date,
@@ -42811,7 +42811,7 @@ impl_subset_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_date,
@@ -43000,7 +43000,7 @@ impl_subtract_yearMonthDuration_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract_yearMonthDuration_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract_yearMonthDuration_date,
@@ -43151,7 +43151,7 @@ impl_to_string_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_date,
@@ -43302,7 +43302,7 @@ impl_union_date_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_date,
@@ -43491,7 +43491,7 @@ impl_at_least_one_member_of_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_dayTimeDuration,
@@ -43642,7 +43642,7 @@ impl_bag_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_dayTimeDuration,
@@ -43793,7 +43793,7 @@ impl_bag_size_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_dayTimeDuration,
@@ -43952,7 +43952,7 @@ impl_dayTimeDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__dayTimeDuration,
@@ -44149,7 +44149,7 @@ impl_eq_dayTimeDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_dayTimeDuration,
@@ -44338,7 +44338,7 @@ impl_eqx_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_dayTimeDuration,
@@ -44527,7 +44527,7 @@ impl_ge_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_dayTimeDuration,
@@ -44716,7 +44716,7 @@ impl_gt_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_dayTimeDuration,
@@ -44905,7 +44905,7 @@ impl_intersection_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_dayTimeDuration,
@@ -45056,7 +45056,7 @@ impl_is_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_dayTimeDuration,
@@ -45245,7 +45245,7 @@ impl_is_in_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_dayTimeDuration,
@@ -45434,7 +45434,7 @@ impl_le_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_dayTimeDuration,
@@ -45623,7 +45623,7 @@ impl_lt_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_dayTimeDuration,
@@ -45820,7 +45820,7 @@ impl_ne_dayTimeDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_dayTimeDuration,
@@ -46009,7 +46009,7 @@ impl_nex_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_dayTimeDuration,
@@ -46168,7 +46168,7 @@ impl_one_and_only_dayTimeDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_dayTimeDuration,
@@ -46357,7 +46357,7 @@ impl_set_equals_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_dayTimeDuration,
@@ -46546,7 +46546,7 @@ impl_subset_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_dayTimeDuration,
@@ -46697,7 +46697,7 @@ impl_to_string_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_dayTimeDuration,
@@ -46848,7 +46848,7 @@ impl_union_dayTimeDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_dayTimeDuration,
@@ -46999,7 +46999,7 @@ impl_bag_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_dnsName,
@@ -47150,7 +47150,7 @@ impl_bag_size_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_dnsName,
@@ -47309,7 +47309,7 @@ impl_dnsName_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__dnsName,
@@ -47506,7 +47506,7 @@ impl_eq_dnsName_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_dnsName,
@@ -47695,7 +47695,7 @@ impl_eqx_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_dnsName,
@@ -47884,7 +47884,7 @@ impl_ge_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_dnsName,
@@ -48073,7 +48073,7 @@ impl_gt_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_dnsName,
@@ -48224,7 +48224,7 @@ impl_is_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_dnsName,
@@ -48413,7 +48413,7 @@ impl_is_in_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_dnsName,
@@ -48602,7 +48602,7 @@ impl_le_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_dnsName,
@@ -48791,7 +48791,7 @@ impl_lt_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_dnsName,
@@ -48988,7 +48988,7 @@ impl_ne_dnsName_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_dnsName,
@@ -49177,7 +49177,7 @@ impl_nex_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_dnsName,
@@ -49336,7 +49336,7 @@ impl_one_and_only_dnsName_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_dnsName,
@@ -49525,7 +49525,7 @@ impl_regexp_match_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_match_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_match_dnsName,
@@ -49676,7 +49676,7 @@ impl_to_string_dnsName_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_dnsName,
@@ -49827,7 +49827,7 @@ impl_abs_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_abs_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__abs_double,
@@ -49978,7 +49978,7 @@ impl_add_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_double,
@@ -50167,7 +50167,7 @@ impl_at_least_one_member_of_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_double,
@@ -50318,7 +50318,7 @@ impl_bag_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_double,
@@ -50469,7 +50469,7 @@ impl_bag_size_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_double,
@@ -50620,7 +50620,7 @@ impl_ceil_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ceil_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ceil_double,
@@ -50809,7 +50809,7 @@ impl_divide_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_divide_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__divide_double,
@@ -50968,7 +50968,7 @@ impl_double_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__double,
@@ -51165,7 +51165,7 @@ impl_eq_double_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_double,
@@ -51354,7 +51354,7 @@ impl_eqx_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_double,
@@ -51505,7 +51505,7 @@ impl_floor_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_floor_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__floor_double,
@@ -51694,7 +51694,7 @@ impl_ge_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_double,
@@ -51883,7 +51883,7 @@ impl_gt_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_double,
@@ -52072,7 +52072,7 @@ impl_intersection_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_double,
@@ -52223,7 +52223,7 @@ impl_is_NaN_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_NaN = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_NaN,
@@ -52374,7 +52374,7 @@ impl_is_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_double,
@@ -52525,7 +52525,7 @@ impl_is_finite_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_finite = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_finite,
@@ -52714,7 +52714,7 @@ impl_is_in_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_double,
@@ -52903,7 +52903,7 @@ impl_le_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_double,
@@ -53092,7 +53092,7 @@ impl_lt_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_double,
@@ -53243,7 +53243,7 @@ impl_max_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_max_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__max_double,
@@ -53394,7 +53394,7 @@ impl_min_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_min_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__min_double,
@@ -53583,7 +53583,7 @@ impl_mod_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_mod_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__mod_double,
@@ -53734,7 +53734,7 @@ impl_multiply_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_multiply_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__multiply_double,
@@ -53931,7 +53931,7 @@ impl_ne_double_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_double,
@@ -54082,7 +54082,7 @@ impl_negative_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_negative_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__negative_double,
@@ -54271,7 +54271,7 @@ impl_nex_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_double,
@@ -54430,7 +54430,7 @@ impl_one_and_only_double_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_double,
@@ -54619,7 +54619,7 @@ impl_pow_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_pow_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__pow_double,
@@ -54770,7 +54770,7 @@ impl_round_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_round_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__round_double,
@@ -54959,7 +54959,7 @@ impl_set_equals_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_double,
@@ -55148,7 +55148,7 @@ impl_subset_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_double,
@@ -55337,7 +55337,7 @@ impl_subtract_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract_double,
@@ -55488,7 +55488,7 @@ impl_to_integer_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_integer_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_integer_double,
@@ -55639,7 +55639,7 @@ impl_to_string_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_double,
@@ -55790,7 +55790,7 @@ impl_union_double_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_double,
@@ -55941,7 +55941,7 @@ impl_bag_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_function,
@@ -56092,7 +56092,7 @@ impl_bag_size_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_function,
@@ -56289,7 +56289,7 @@ impl_eq_function_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_function,
@@ -56478,7 +56478,7 @@ impl_eqx_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_function,
@@ -56667,7 +56667,7 @@ impl_ge_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_function,
@@ -56856,7 +56856,7 @@ impl_gt_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_function,
@@ -57007,7 +57007,7 @@ impl_is_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_function,
@@ -57196,7 +57196,7 @@ impl_le_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_function,
@@ -57385,7 +57385,7 @@ impl_lt_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_function,
@@ -57582,7 +57582,7 @@ impl_ne_function_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_function,
@@ -57771,7 +57771,7 @@ impl_nex_function_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_function = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_function,
@@ -57960,7 +57960,7 @@ impl_at_least_one_member_of_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_hexBinary,
@@ -58111,7 +58111,7 @@ impl_bag_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_hexBinary,
@@ -58262,7 +58262,7 @@ impl_bag_size_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_hexBinary,
@@ -58413,7 +58413,7 @@ impl_decode_to_string_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_decode_to_string_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__decode_to_string_hexBinary,
@@ -58610,7 +58610,7 @@ impl_eq_hexBinary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_hexBinary,
@@ -58799,7 +58799,7 @@ impl_eqx_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_hexBinary,
@@ -58988,7 +58988,7 @@ impl_ge_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_hexBinary,
@@ -59177,7 +59177,7 @@ impl_gt_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_hexBinary,
@@ -59336,7 +59336,7 @@ impl_hexBinary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__hexBinary,
@@ -59525,7 +59525,7 @@ impl_intersection_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_hexBinary,
@@ -59676,7 +59676,7 @@ impl_is_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_hexBinary,
@@ -59865,7 +59865,7 @@ impl_is_in_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_hexBinary,
@@ -60054,7 +60054,7 @@ impl_le_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_hexBinary,
@@ -60243,7 +60243,7 @@ impl_lt_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_hexBinary,
@@ -60440,7 +60440,7 @@ impl_ne_hexBinary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_hexBinary,
@@ -60629,7 +60629,7 @@ impl_nex_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_hexBinary,
@@ -60788,7 +60788,7 @@ impl_one_and_only_hexBinary_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_hexBinary,
@@ -60977,7 +60977,7 @@ impl_set_equals_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_hexBinary,
@@ -61166,7 +61166,7 @@ impl_subset_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_hexBinary,
@@ -61317,7 +61317,7 @@ impl_to_string_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_hexBinary,
@@ -61468,7 +61468,7 @@ impl_union_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_hexBinary,
@@ -61657,7 +61657,7 @@ impl_all_of_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_all_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__all_of,
@@ -61884,7 +61884,7 @@ impl_all_of_all_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_all_of_all = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__all_of_all,
@@ -62111,7 +62111,7 @@ impl_all_of_any_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_all_of_any = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__all_of_any,
@@ -62300,7 +62300,7 @@ impl_any_of_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_any_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__any_of,
@@ -62527,7 +62527,7 @@ impl_any_of_all_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_any_of_all = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__any_of_all,
@@ -62754,7 +62754,7 @@ impl_any_of_any_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_any_of_any = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__any_of_any,
@@ -62943,7 +62943,7 @@ impl_every_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_every = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__every,
@@ -63132,7 +63132,7 @@ impl_filter_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_filter = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__filter,
@@ -63321,7 +63321,7 @@ impl_find_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_find = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__find,
@@ -63510,7 +63510,7 @@ impl_map_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_map = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__map,
@@ -63737,7 +63737,7 @@ impl_reduce_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_reduce = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__reduce,
@@ -63926,7 +63926,7 @@ impl_some_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_some = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__some,
@@ -64115,7 +64115,7 @@ impl_sort_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_sort = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__sort,
@@ -64266,7 +64266,7 @@ impl_bag_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_ia5String,
@@ -64417,7 +64417,7 @@ impl_bag_size_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_ia5String,
@@ -64614,7 +64614,7 @@ impl_eq_ia5String_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_ia5String,
@@ -64803,7 +64803,7 @@ impl_eqx_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_ia5String,
@@ -64992,7 +64992,7 @@ impl_ge_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_ia5String,
@@ -65181,7 +65181,7 @@ impl_gt_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_ia5String,
@@ -65340,7 +65340,7 @@ impl_ia5String_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ia5String,
@@ -65491,7 +65491,7 @@ impl_is_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_ia5String,
@@ -65680,7 +65680,7 @@ impl_le_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_ia5String,
@@ -65869,7 +65869,7 @@ impl_lt_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_ia5String,
@@ -66066,7 +66066,7 @@ impl_ne_ia5String_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_ia5String,
@@ -66255,7 +66255,7 @@ impl_nex_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_ia5String,
@@ -66406,7 +66406,7 @@ impl_to_string_ia5String_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_ia5String = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_ia5String,
@@ -66829,7 +66829,7 @@ impl_index_create_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_index_create = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__index_create,
@@ -67018,7 +67018,7 @@ impl_index_list_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_index_list = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__index_list,
@@ -67213,7 +67213,7 @@ impl_index_remove_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_index_remove = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__index_remove,
@@ -67364,7 +67364,7 @@ impl_abs_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_abs_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__abs_integer,
@@ -67515,7 +67515,7 @@ impl_add_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_integer,
@@ -67704,7 +67704,7 @@ impl_at_least_one_member_of_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_integer,
@@ -67855,7 +67855,7 @@ impl_bag_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_integer,
@@ -68006,7 +68006,7 @@ impl_bag_size_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_integer,
@@ -68195,7 +68195,7 @@ impl_divide_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_divide_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__divide_integer,
@@ -68392,7 +68392,7 @@ impl_eq_integer_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_integer,
@@ -68581,7 +68581,7 @@ impl_eqx_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_integer,
@@ -68770,7 +68770,7 @@ impl_ge_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_integer,
@@ -68959,7 +68959,7 @@ impl_gt_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_integer,
@@ -69118,7 +69118,7 @@ impl_integer_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__integer,
@@ -69307,7 +69307,7 @@ impl_intersection_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_integer,
@@ -69496,7 +69496,7 @@ impl_is_in_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_integer,
@@ -69647,7 +69647,7 @@ impl_is_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_integer,
@@ -69836,7 +69836,7 @@ impl_le_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_integer,
@@ -70025,7 +70025,7 @@ impl_lt_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_integer,
@@ -70176,7 +70176,7 @@ impl_max_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_max_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__max_integer,
@@ -70327,7 +70327,7 @@ impl_min_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_min_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__min_integer,
@@ -70516,7 +70516,7 @@ impl_mod_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_mod_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__mod_integer,
@@ -70667,7 +70667,7 @@ impl_multiply_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_multiply_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__multiply_integer,
@@ -70864,7 +70864,7 @@ impl_ne_integer_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_integer,
@@ -71015,7 +71015,7 @@ impl_negative_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_negative_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__negative_integer,
@@ -71204,7 +71204,7 @@ impl_nex_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_integer,
@@ -71363,7 +71363,7 @@ impl_one_and_only_integer_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_integer,
@@ -71552,7 +71552,7 @@ impl_set_equals_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_integer,
@@ -71741,7 +71741,7 @@ impl_subset_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_integer,
@@ -71930,7 +71930,7 @@ impl_subtract_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract_integer,
@@ -72089,7 +72089,7 @@ impl_to_double_integer_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_double_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_double_integer,
@@ -72240,7 +72240,7 @@ impl_to_string_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_integer,
@@ -72391,7 +72391,7 @@ impl_union_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_integer,
@@ -72542,7 +72542,7 @@ impl_bag_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_ipAddress,
@@ -72693,7 +72693,7 @@ impl_bag_size_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_ipAddress,
@@ -72890,7 +72890,7 @@ impl_eq_ipAddress_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_ipAddress,
@@ -73079,7 +73079,7 @@ impl_eqx_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_ipAddress,
@@ -73268,7 +73268,7 @@ impl_ge_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_ipAddress,
@@ -73457,7 +73457,7 @@ impl_gt_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_ipAddress,
@@ -73616,7 +73616,7 @@ impl_ipAddress_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ipAddress,
@@ -73805,7 +73805,7 @@ impl_is_in_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_ipAddress,
@@ -73956,7 +73956,7 @@ impl_is_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_ipAddress,
@@ -74145,7 +74145,7 @@ impl_le_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_ipAddress,
@@ -74334,7 +74334,7 @@ impl_lt_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_ipAddress,
@@ -74531,7 +74531,7 @@ impl_ne_ipAddress_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_ipAddress,
@@ -74720,7 +74720,7 @@ impl_nex_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_ipAddress,
@@ -74879,7 +74879,7 @@ impl_one_and_only_ipAddress_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_ipAddress,
@@ -75068,7 +75068,7 @@ impl_regexp_match_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_match_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_match_ipAddress,
@@ -75219,7 +75219,7 @@ impl_to_string_ipAddress_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_ipAddress,
@@ -75452,7 +75452,7 @@ impl_journal_advance_cursor_for_consumer_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_journal_advance_cursor_for_consumer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__journal_advance_cursor_for_consumer,
@@ -75641,7 +75641,7 @@ impl_journal_get_by_cursor_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_journal_get_by_cursor = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__journal_get_by_cursor,
@@ -75792,7 +75792,7 @@ impl_journal_get_first_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_journal_get_first = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__journal_get_first,
@@ -75981,7 +75981,7 @@ impl_journal_get_next_after_cursor_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_journal_get_next_after_cursor = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__journal_get_next_after_cursor,
@@ -76208,7 +76208,7 @@ impl_journal_get_next_for_consumer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_journal_get_next_for_consumer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__journal_get_next_for_consumer,
@@ -76473,7 +76473,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_journal_get_next_for_consumer_after_cursor = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__journal_get_next_for_consumer_after_cursor,
@@ -76706,7 +76706,7 @@ impl_journal_mark_consumed_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_journal_mark_consumed = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__journal_mark_consumed,
@@ -76895,7 +76895,7 @@ impl_compile_json_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile_json = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile_json,
@@ -77054,7 +77054,7 @@ impl_json_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_json = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__json,
@@ -77205,7 +77205,7 @@ impl_and_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_and = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__and,
@@ -77402,7 +77402,7 @@ impl_n_of_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_n_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__n_of,
@@ -77553,7 +77553,7 @@ impl_not_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_not = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__not,
@@ -77704,7 +77704,7 @@ impl_or_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_or = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__or,
@@ -77969,7 +77969,7 @@ impl_compare_uri_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compare_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compare_uri,
@@ -78164,7 +78164,7 @@ impl_debug_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_debug = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__debug,
@@ -78277,7 +78277,7 @@ impl_execution_start_time_local_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_execution_start_time_local = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__execution_start_time_local,
@@ -78390,7 +78390,7 @@ impl_execution_start_time_utc_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_execution_start_time_utc = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__execution_start_time_utc,
@@ -78503,7 +78503,7 @@ impl_generate_uuid_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_generate_uuid = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__generate_uuid,
@@ -78654,7 +78654,7 @@ impl_is_defined_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_defined = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_defined,
@@ -78805,7 +78805,7 @@ impl_is_nullish_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_nullish = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_nullish,
@@ -78962,7 +78962,7 @@ impl_log_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_log = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__log,
@@ -79075,7 +79075,7 @@ impl_now_local_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_now_local = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__now_local,
@@ -79188,7 +79188,7 @@ impl_now_utc_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_now_utc = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__now_utc,
@@ -79415,7 +79415,7 @@ impl_parse_uri_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_parse_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__parse_uri,
@@ -79566,7 +79566,7 @@ impl_perform_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_perform = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__perform,
@@ -79799,7 +79799,7 @@ impl_trace_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_trace = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__trace,
@@ -79950,7 +79950,7 @@ impl_variable_exists_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_variable_exists = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__variable_exists,
@@ -80139,7 +80139,7 @@ impl_variable_get_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_variable_get = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__variable_get,
@@ -80290,7 +80290,7 @@ impl_variable_is_not_null_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_variable_is_not_null = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__variable_is_not_null,
@@ -80631,7 +80631,7 @@ impl_model_default_add_object_action_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_model_default_add_object_action = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__model_default_add_object_action,
@@ -80934,7 +80934,7 @@ impl_model_default_delete_object_action_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_model_default_delete_object_action = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__model_default_delete_object_action,
@@ -81275,7 +81275,7 @@ impl_model_default_modify_object_action_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_model_default_modify_object_action = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__model_default_modify_object_action,
@@ -81616,7 +81616,7 @@ impl_model_default_replace_object_action_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_model_default_replace_object_action = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__model_default_replace_object_action,
@@ -81767,7 +81767,7 @@ impl_model_mapBackObject_signature_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_model_mapBackObject_signature = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__model_mapBackObject_signature,
@@ -81918,7 +81918,7 @@ impl_model_mapObject_signature_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_model_mapObject_signature = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__model_mapObject_signature,
@@ -82107,7 +82107,7 @@ impl_model_returnObject_signature_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_model_returnObject_signature = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__model_returnObject_signature,
@@ -82258,7 +82258,7 @@ impl_bag_null_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_null = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_null,
@@ -82409,7 +82409,7 @@ impl_bag_size_null_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_null = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_null,
@@ -82560,7 +82560,7 @@ impl_is_null_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_null = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_null,
@@ -82711,7 +82711,7 @@ impl_to_string_null_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_null = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_null,
@@ -82862,7 +82862,7 @@ impl_bag_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_objectId,
@@ -83013,7 +83013,7 @@ impl_bag_size_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_objectId,
@@ -83210,7 +83210,7 @@ impl_eq_objectId_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_objectId,
@@ -83399,7 +83399,7 @@ impl_eqx_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_objectId,
@@ -83588,7 +83588,7 @@ impl_ge_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_objectId,
@@ -83777,7 +83777,7 @@ impl_gt_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_objectId,
@@ -83928,7 +83928,7 @@ impl_is_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_objectId,
@@ -84117,7 +84117,7 @@ impl_le_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_objectId,
@@ -84306,7 +84306,7 @@ impl_lt_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_objectId,
@@ -84503,7 +84503,7 @@ impl_ne_objectId_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_objectId,
@@ -84692,7 +84692,7 @@ impl_nex_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_objectId,
@@ -84851,7 +84851,7 @@ impl_objectId_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__objectId,
@@ -85002,7 +85002,7 @@ impl_to_string_objectId_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_objectId = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_objectId,
@@ -85153,7 +85153,7 @@ impl_bag_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_objectPath,
@@ -85304,7 +85304,7 @@ impl_bag_size_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_objectPath,
@@ -85501,7 +85501,7 @@ impl_eq_objectPath_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_objectPath,
@@ -85690,7 +85690,7 @@ impl_eqx_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_objectPath,
@@ -85879,7 +85879,7 @@ impl_ge_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_objectPath,
@@ -86068,7 +86068,7 @@ impl_gt_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_objectPath,
@@ -86219,7 +86219,7 @@ impl_is_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_objectPath,
@@ -86408,7 +86408,7 @@ impl_le_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_objectPath,
@@ -86597,7 +86597,7 @@ impl_lt_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_objectPath,
@@ -86794,7 +86794,7 @@ impl_ne_objectPath_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_objectPath,
@@ -86983,7 +86983,7 @@ impl_nex_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_objectPath,
@@ -87142,7 +87142,7 @@ impl_objectPath_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__objectPath,
@@ -87293,7 +87293,7 @@ impl_to_string_objectPath_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_objectPath = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_objectPath,
@@ -87488,7 +87488,7 @@ impl_add_properties_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_properties = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_properties,
@@ -87677,7 +87677,7 @@ impl_apply_object_options_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_apply_object_options = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__apply_object_options,
@@ -87828,7 +87828,7 @@ impl_bag_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_object,
@@ -87979,7 +87979,7 @@ impl_bag_size_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_object,
@@ -88130,7 +88130,7 @@ impl_clone_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_clone_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__clone_object,
@@ -88281,7 +88281,7 @@ impl_entries_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_entries = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__entries,
@@ -88478,7 +88478,7 @@ impl_eq_object_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_object,
@@ -88667,7 +88667,7 @@ impl_eqx_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_object,
@@ -88818,7 +88818,7 @@ impl_freeze_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_freeze_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__freeze_object,
@@ -89007,7 +89007,7 @@ impl_ge_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_object,
@@ -89196,7 +89196,7 @@ impl_gt_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_object,
@@ -89347,7 +89347,7 @@ impl_is_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_object,
@@ -89498,7 +89498,7 @@ impl_keys_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_keys = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__keys,
@@ -89687,7 +89687,7 @@ impl_le_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_object,
@@ -89958,7 +89958,7 @@ impl_local_object_meta_set_ids_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_local_object_meta_set_ids = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__local_object_meta_set_ids,
@@ -90147,7 +90147,7 @@ impl_lt_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_object,
@@ -90344,7 +90344,7 @@ impl_ne_object_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_object,
@@ -90533,7 +90533,7 @@ impl_nex_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_object,
@@ -90692,7 +90692,7 @@ impl_object_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__object,
@@ -90881,7 +90881,7 @@ impl_property_delete_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_property_delete = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__property_delete,
@@ -91032,7 +91032,7 @@ impl_property_delete_by_reference_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_property_delete_by_reference = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__property_delete_by_reference,
@@ -91221,7 +91221,7 @@ impl_property_exists_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_property_exists = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__property_exists,
@@ -91448,7 +91448,7 @@ impl_property_get_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_property_get = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__property_get,
@@ -91637,7 +91637,7 @@ impl_property_is_not_null_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_property_is_not_null = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__property_is_not_null,
@@ -91788,7 +91788,7 @@ impl_to_string_object_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_object,
@@ -91939,7 +91939,7 @@ impl_values_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_values = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__values,
@@ -92090,7 +92090,7 @@ impl_bag_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_password,
@@ -92241,7 +92241,7 @@ impl_bag_size_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_password,
@@ -92438,7 +92438,7 @@ impl_eq_password_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_password,
@@ -92627,7 +92627,7 @@ impl_eqx_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_password,
@@ -92816,7 +92816,7 @@ impl_ge_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_password,
@@ -93005,7 +93005,7 @@ impl_gt_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_password,
@@ -93156,7 +93156,7 @@ impl_is_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_password,
@@ -93345,7 +93345,7 @@ impl_le_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_password,
@@ -93534,7 +93534,7 @@ impl_lt_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_password,
@@ -93731,7 +93731,7 @@ impl_ne_password_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_password,
@@ -93920,7 +93920,7 @@ impl_nex_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_password,
@@ -94079,7 +94079,7 @@ impl_password_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__password,
@@ -94230,7 +94230,7 @@ impl_to_string_password_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_password = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_password,
@@ -94388,7 +94388,7 @@ impl_abs_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_abs = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__abs,
@@ -94547,7 +94547,7 @@ impl_add_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add,
@@ -94742,7 +94742,7 @@ impl_add_dayTimeDuration_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_dayTimeDuration,
@@ -94938,7 +94938,7 @@ impl_add_yearMonthDuration_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_yearMonthDuration,
@@ -95146,7 +95146,7 @@ impl_at_least_one_member_of_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of,
@@ -95329,7 +95329,7 @@ impl_bag_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag,
@@ -95512,7 +95512,7 @@ impl_bag_size_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size,
@@ -95669,7 +95669,7 @@ impl_ceil_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ceil = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ceil,
@@ -95827,7 +95827,7 @@ impl_clone_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_clone = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__clone,
@@ -96027,7 +96027,7 @@ impl_compile_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile,
@@ -96185,7 +96185,7 @@ impl_decode_to_string_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_decode_to_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__decode_to_string,
@@ -96381,7 +96381,7 @@ impl_divide_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_divide = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__divide,
@@ -96538,7 +96538,7 @@ impl_encode_as_base64Binary_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_encode_as_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__encode_as_base64Binary,
@@ -96695,7 +96695,7 @@ impl_encode_as_hexBinary_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_encode_as_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__encode_as_hexBinary,
@@ -96891,7 +96891,7 @@ impl_ends_with_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ends_with = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ends_with,
@@ -97120,7 +97120,7 @@ impl_eq_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq,
@@ -97315,7 +97315,7 @@ impl_eq_ignore_case_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_ignore_case = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_ignore_case,
@@ -97536,7 +97536,7 @@ impl_eqx_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx,
@@ -97734,7 +97734,7 @@ impl_eval_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eval = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eval,
@@ -97891,7 +97891,7 @@ impl_floor_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_floor = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__floor,
@@ -98055,7 +98055,7 @@ impl_freeze_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_freeze = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__freeze,
@@ -98276,7 +98276,7 @@ impl_ge_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge,
@@ -98497,7 +98497,7 @@ impl_gt_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt,
@@ -98730,7 +98730,7 @@ impl_in_range_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_in_range = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__in_range,
@@ -98965,7 +98965,7 @@ impl_includes_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_includes = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__includes,
@@ -99199,7 +99199,7 @@ impl_index_of_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_index_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__index_of,
@@ -99407,7 +99407,7 @@ impl_intersection_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection,
@@ -99591,7 +99591,7 @@ impl_is_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is,
@@ -99801,7 +99801,7 @@ impl_is_in_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in,
@@ -100035,7 +100035,7 @@ impl_last_index_of_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_last_index_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__last_index_of,
@@ -100256,7 +100256,7 @@ impl_le_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le,
@@ -100415,7 +100415,7 @@ impl_length_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_length = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__length,
@@ -100636,7 +100636,7 @@ impl_lt_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt,
@@ -100832,7 +100832,7 @@ impl_match_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_match = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__match,
@@ -100994,7 +100994,7 @@ impl_max_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_max = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__max,
@@ -101156,7 +101156,7 @@ impl_min_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_min = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__min,
@@ -101352,7 +101352,7 @@ impl_mod_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_mod = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__mod,
@@ -101510,7 +101510,7 @@ impl_multiply_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_multiply = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__multiply,
@@ -101739,7 +101739,7 @@ impl_ne_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne,
@@ -101897,7 +101897,7 @@ impl_negative_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_negative = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__negative,
@@ -102118,7 +102118,7 @@ impl_nex_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex,
@@ -102275,7 +102275,7 @@ impl_normalize_space_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_normalize_space = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__normalize_space,
@@ -102432,7 +102432,7 @@ impl_normalize_to_lower_case_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_normalize_to_lower_case = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__normalize_to_lower_case,
@@ -102612,7 +102612,7 @@ impl_one_and_only_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only,
@@ -102807,7 +102807,7 @@ impl_pow_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_pow = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__pow,
@@ -103003,7 +103003,7 @@ impl_regexp_index_of_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_index_of = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_index_of,
@@ -103203,7 +103203,7 @@ impl_regexp_match_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_match = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_match,
@@ -103475,7 +103475,7 @@ impl_regexp_replace_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_replace = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_replace,
@@ -103671,7 +103671,7 @@ impl_repeat_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_repeat = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__repeat,
@@ -103943,7 +103943,7 @@ impl_replace_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_replace = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__replace,
@@ -104100,7 +104100,7 @@ impl_round_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_round = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__round,
@@ -104308,7 +104308,7 @@ impl_set_equals_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals,
@@ -104542,7 +104542,7 @@ impl_split_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_split = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__split,
@@ -104738,7 +104738,7 @@ impl_starts_with_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_starts_with = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__starts_with,
@@ -104946,7 +104946,7 @@ impl_subset_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset,
@@ -105188,7 +105188,7 @@ impl_substring_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_substring = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__substring,
@@ -105384,7 +105384,7 @@ impl_subtract_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract,
@@ -105579,7 +105579,7 @@ impl_subtract_dayTimeDuration_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract_dayTimeDuration,
@@ -105775,7 +105775,7 @@ impl_subtract_yearMonthDuration_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subtract_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subtract_yearMonthDuration,
@@ -105940,7 +105940,7 @@ impl_to_anyURI_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_anyURI = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_anyURI,
@@ -106105,7 +106105,7 @@ impl_to_boolean_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_boolean = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_boolean,
@@ -106270,7 +106270,7 @@ impl_to_date_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_date = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_date,
@@ -106435,7 +106435,7 @@ impl_to_dateTime_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_dateTime = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_dateTime,
@@ -106600,7 +106600,7 @@ impl_to_dayTimeDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_dayTimeDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_dayTimeDuration,
@@ -106765,7 +106765,7 @@ impl_to_dnsName_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_dnsName = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_dnsName,
@@ -106931,7 +106931,7 @@ impl_to_double_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_double = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_double,
@@ -107089,7 +107089,7 @@ impl_to_integer_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_integer,
@@ -107254,7 +107254,7 @@ impl_to_ipAddress_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_ipAddress = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_ipAddress,
@@ -107419,7 +107419,7 @@ impl_to_rfc822Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_rfc822Name,
@@ -107600,7 +107600,7 @@ impl_to_string_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string,
@@ -107765,7 +107765,7 @@ impl_to_time_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_time,
@@ -107930,7 +107930,7 @@ impl_to_x500Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_x500Name,
@@ -108095,7 +108095,7 @@ impl_to_yearMonthDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_yearMonthDuration,
@@ -108265,7 +108265,7 @@ impl_union_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union,
@@ -108423,7 +108423,7 @@ impl_url_encode_polymorphicDataTypes[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_url_encode = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__url_encode,
@@ -108574,7 +108574,7 @@ impl_random_base64Binary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_random_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__random_base64Binary,
@@ -108725,7 +108725,7 @@ impl_random_digits_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_random_digits = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__random_digits,
@@ -108876,7 +108876,7 @@ impl_random_hexBinary_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_random_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__random_hexBinary,
@@ -109065,7 +109065,7 @@ impl_random_integer_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_random_integer = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__random_integer,
@@ -109254,7 +109254,7 @@ impl_random_number_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_random_number = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__random_number,
@@ -109443,7 +109443,7 @@ impl_compile_regexp_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile_regexp,
@@ -109640,7 +109640,7 @@ impl_eq_regexp_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_regexp,
@@ -109829,7 +109829,7 @@ impl_eqx_regexp_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_regexp,
@@ -110018,7 +110018,7 @@ impl_ge_regexp_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_regexp,
@@ -110207,7 +110207,7 @@ impl_gt_regexp_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_regexp,
@@ -110396,7 +110396,7 @@ impl_le_regexp_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_regexp,
@@ -110585,7 +110585,7 @@ impl_lt_regexp_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_regexp,
@@ -110782,7 +110782,7 @@ impl_ne_regexp_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_regexp,
@@ -110971,7 +110971,7 @@ impl_nex_regexp_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_regexp,
@@ -111130,7 +111130,7 @@ impl_regexp_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp,
@@ -111319,7 +111319,7 @@ impl_compile_relaxed_json_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile_relaxed_json = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile_relaxed_json,
@@ -111478,7 +111478,7 @@ impl_relaxed_json_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_relaxed_json = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__relaxed_json,
@@ -111667,7 +111667,7 @@ impl_at_least_one_member_of_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_rfc822Name,
@@ -111818,7 +111818,7 @@ impl_bag_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_rfc822Name,
@@ -111969,7 +111969,7 @@ impl_bag_size_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_rfc822Name,
@@ -112166,7 +112166,7 @@ impl_eq_rfc822Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_rfc822Name,
@@ -112355,7 +112355,7 @@ impl_eqx_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_rfc822Name,
@@ -112544,7 +112544,7 @@ impl_ge_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_rfc822Name,
@@ -112733,7 +112733,7 @@ impl_gt_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_rfc822Name,
@@ -112922,7 +112922,7 @@ impl_intersection_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_rfc822Name,
@@ -113111,7 +113111,7 @@ impl_is_in_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_rfc822Name,
@@ -113262,7 +113262,7 @@ impl_is_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_rfc822Name,
@@ -113451,7 +113451,7 @@ impl_le_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_rfc822Name,
@@ -113640,7 +113640,7 @@ impl_lt_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_rfc822Name,
@@ -113829,7 +113829,7 @@ impl_match_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_match_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__match_rfc822Name,
@@ -114026,7 +114026,7 @@ impl_ne_rfc822Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_rfc822Name,
@@ -114215,7 +114215,7 @@ impl_nex_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_rfc822Name,
@@ -114374,7 +114374,7 @@ impl_one_and_only_rfc822Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_rfc822Name,
@@ -114563,7 +114563,7 @@ impl_regexp_match_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_match_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_match_rfc822Name,
@@ -114722,7 +114722,7 @@ impl_rfc822Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__rfc822Name,
@@ -114911,7 +114911,7 @@ impl_set_equals_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_rfc822Name,
@@ -115100,7 +115100,7 @@ impl_subset_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_rfc822Name,
@@ -115251,7 +115251,7 @@ impl_to_string_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_rfc822Name,
@@ -115402,7 +115402,7 @@ impl_union_rfc822Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_rfc822Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_rfc822Name,
@@ -115553,7 +115553,7 @@ impl_bag_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_script,
@@ -115704,7 +115704,7 @@ impl_bag_size_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_script,
@@ -115893,7 +115893,7 @@ impl_compile_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile_script,
@@ -116090,7 +116090,7 @@ impl_eq_script_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_script,
@@ -116279,7 +116279,7 @@ impl_eqx_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_script,
@@ -116468,7 +116468,7 @@ impl_eval_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eval_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eval_script,
@@ -116657,7 +116657,7 @@ impl_ge_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_script,
@@ -116846,7 +116846,7 @@ impl_gt_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_script,
@@ -116997,7 +116997,7 @@ impl_is_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_script,
@@ -117186,7 +117186,7 @@ impl_le_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_script,
@@ -117375,7 +117375,7 @@ impl_lt_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_script,
@@ -117572,7 +117572,7 @@ impl_ne_script_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_script,
@@ -117761,7 +117761,7 @@ impl_nex_script_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_script,
@@ -117920,7 +117920,7 @@ impl_script_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_script = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__script,
@@ -118077,7 +118077,7 @@ impl_close_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_close = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__close,
@@ -118234,7 +118234,7 @@ impl_flush_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_flush = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__flush,
@@ -118505,7 +118505,7 @@ impl_open_file_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_open_file = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__open_file,
@@ -118662,7 +118662,7 @@ impl_print_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_print = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__print,
@@ -118819,7 +118819,7 @@ impl_println_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_println = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__println,
@@ -119014,7 +119014,7 @@ impl_read_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_read = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__read,
@@ -119209,7 +119209,7 @@ impl_read_to_base64Binary_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_read_to_base64Binary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__read_to_base64Binary,
@@ -119404,7 +119404,7 @@ impl_read_to_hexBinary_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_read_to_hexBinary = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__read_to_hexBinary,
@@ -119561,7 +119561,7 @@ impl_readln_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_readln = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__readln,
@@ -119712,7 +119712,7 @@ impl_stream_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_stream = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__stream,
@@ -119907,7 +119907,7 @@ impl_write_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_write = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__write,
@@ -120102,7 +120102,7 @@ impl_write_internal_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_write_internal = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__write_internal,
@@ -120297,7 +120297,7 @@ impl_writeln_sideEffects[] = {
     { NULL }
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_writeln = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__writeln,
@@ -120486,7 +120486,7 @@ impl_add_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_add_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_string,
@@ -120675,7 +120675,7 @@ impl_at_least_one_member_of_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_string,
@@ -120826,7 +120826,7 @@ impl_bag_size_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_string,
@@ -120977,7 +120977,7 @@ impl_bag_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_string,
@@ -121136,7 +121136,7 @@ impl_concat_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_concat = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__concat,
@@ -121287,7 +121287,7 @@ impl_encode_as_base64Binary_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_encode_as_base64Binary_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__encode_as_base64Binary_string,
@@ -121438,7 +121438,7 @@ impl_encode_as_hexBinary_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_encode_as_hexBinary_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__encode_as_hexBinary_string,
@@ -121627,7 +121627,7 @@ impl_ends_with_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ends_with_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ends_with_string,
@@ -121816,7 +121816,7 @@ impl_eq_ignore_case_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_ignore_case_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_ignore_case_string,
@@ -122013,7 +122013,7 @@ impl_eq_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_string,
@@ -122202,7 +122202,7 @@ impl_eqx_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_string,
@@ -122391,7 +122391,7 @@ impl_eval_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eval_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eval_string,
@@ -122580,7 +122580,7 @@ impl_ge_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_string,
@@ -122769,7 +122769,7 @@ impl_gt_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_string,
@@ -122996,7 +122996,7 @@ impl_includes_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_includes_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__includes_string,
@@ -123223,7 +123223,7 @@ impl_index_of_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_index_of_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__index_of_string,
@@ -123412,7 +123412,7 @@ impl_intersection_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_string,
@@ -123601,7 +123601,7 @@ impl_is_in_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_string,
@@ -123752,7 +123752,7 @@ impl_is_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_string,
@@ -123979,7 +123979,7 @@ impl_last_index_of_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_last_index_of_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__last_index_of_string,
@@ -124168,7 +124168,7 @@ impl_le_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_string,
@@ -124319,7 +124319,7 @@ impl_length_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_length_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__length_string,
@@ -124508,7 +124508,7 @@ impl_lt_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_string,
@@ -124659,7 +124659,7 @@ impl_max_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_max_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__max_string,
@@ -124810,7 +124810,7 @@ impl_min_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_min_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__min_string,
@@ -125007,7 +125007,7 @@ impl_ne_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_string,
@@ -125196,7 +125196,7 @@ impl_nex_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_string,
@@ -125347,7 +125347,7 @@ impl_normalize_space_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_normalize_space_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__normalize_space_string,
@@ -125498,7 +125498,7 @@ impl_normalize_to_lower_case_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_normalize_to_lower_case_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__normalize_to_lower_case_string,
@@ -125657,7 +125657,7 @@ impl_one_and_only_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_string,
@@ -125846,7 +125846,7 @@ impl_regexp_index_of_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_index_of_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_index_of_string,
@@ -126035,7 +126035,7 @@ impl_regexp_match_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_match_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_match_string,
@@ -126300,7 +126300,7 @@ impl_regexp_replace_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_replace_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_replace_string,
@@ -126489,7 +126489,7 @@ impl_repeat_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_repeat_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__repeat_string,
@@ -126754,7 +126754,7 @@ impl_replace_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_replace_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__replace_string,
@@ -126943,7 +126943,7 @@ impl_set_equals_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_string,
@@ -127170,7 +127170,7 @@ impl_split_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_split_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__split_string,
@@ -127359,7 +127359,7 @@ impl_starts_with_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_starts_with_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__starts_with_string,
@@ -127518,7 +127518,7 @@ impl_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__string,
@@ -127707,7 +127707,7 @@ impl_subset_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_string,
@@ -127942,7 +127942,7 @@ impl_substring_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_substring_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__substring_string,
@@ -128101,7 +128101,7 @@ impl_to_anyURI_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_anyURI_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_anyURI_string,
@@ -128260,7 +128260,7 @@ impl_to_boolean_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_boolean_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_boolean_string,
@@ -128419,7 +128419,7 @@ impl_to_dateTime_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_dateTime_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_dateTime_string,
@@ -128578,7 +128578,7 @@ impl_to_date_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_date_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_date_string,
@@ -128737,7 +128737,7 @@ impl_to_dayTimeDuration_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_dayTimeDuration_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_dayTimeDuration_string,
@@ -128896,7 +128896,7 @@ impl_to_dnsName_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_dnsName_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_dnsName_string,
@@ -129055,7 +129055,7 @@ impl_to_double_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_double_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_double_string,
@@ -129206,7 +129206,7 @@ impl_to_integer_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_integer_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_integer_string,
@@ -129365,7 +129365,7 @@ impl_to_ipAddress_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_ipAddress_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_ipAddress_string,
@@ -129524,7 +129524,7 @@ impl_to_rfc822Name_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_rfc822Name_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_rfc822Name_string,
@@ -129675,7 +129675,7 @@ impl_to_string_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_string,
@@ -129834,7 +129834,7 @@ impl_to_time_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_time_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_time_string,
@@ -129993,7 +129993,7 @@ impl_to_x500Name_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_x500Name_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_x500Name_string,
@@ -130152,7 +130152,7 @@ impl_to_yearMonthDuration_string_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_yearMonthDuration_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_yearMonthDuration_string,
@@ -130303,7 +130303,7 @@ impl_union_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_string,
@@ -130454,7 +130454,7 @@ impl_url_decode_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_url_decode = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__url_decode,
@@ -130605,7 +130605,7 @@ impl_url_encode_string_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_url_encode_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__url_encode_string,
@@ -130756,7 +130756,7 @@ impl_bag_size_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_template,
@@ -130907,7 +130907,7 @@ impl_bag_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_template,
@@ -131096,7 +131096,7 @@ impl_compile_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile_template,
@@ -131293,7 +131293,7 @@ impl_eq_template_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_template,
@@ -131482,7 +131482,7 @@ impl_eqx_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_template,
@@ -131671,7 +131671,7 @@ impl_eval_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eval_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eval_template,
@@ -131860,7 +131860,7 @@ impl_ge_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_template,
@@ -132049,7 +132049,7 @@ impl_gt_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_template,
@@ -132200,7 +132200,7 @@ impl_is_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_template,
@@ -132389,7 +132389,7 @@ impl_le_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_template,
@@ -132578,7 +132578,7 @@ impl_lt_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_template,
@@ -132775,7 +132775,7 @@ impl_ne_template_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_template,
@@ -132964,7 +132964,7 @@ impl_nex_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_template,
@@ -133123,7 +133123,7 @@ impl_template_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__template,
@@ -133274,7 +133274,7 @@ impl_to_string_template_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_template = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_template,
@@ -133463,7 +133463,7 @@ impl_at_least_one_member_of_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_time,
@@ -133614,7 +133614,7 @@ impl_bag_size_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_time,
@@ -133765,7 +133765,7 @@ impl_bag_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_time,
@@ -133962,7 +133962,7 @@ impl_eq_time_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_time,
@@ -134151,7 +134151,7 @@ impl_eqx_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_time,
@@ -134340,7 +134340,7 @@ impl_ge_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_time,
@@ -134529,7 +134529,7 @@ impl_gt_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_time,
@@ -134756,7 +134756,7 @@ impl_in_range_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_in_range_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__in_range_time,
@@ -134945,7 +134945,7 @@ impl_intersection_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_time,
@@ -135134,7 +135134,7 @@ impl_is_in_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_time,
@@ -135285,7 +135285,7 @@ impl_is_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_time,
@@ -135474,7 +135474,7 @@ impl_le_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_time,
@@ -135663,7 +135663,7 @@ impl_lt_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_time,
@@ -135814,7 +135814,7 @@ impl_max_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_max_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__max_time,
@@ -135965,7 +135965,7 @@ impl_min_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_min_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__min_time,
@@ -136162,7 +136162,7 @@ impl_ne_time_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_time,
@@ -136351,7 +136351,7 @@ impl_nex_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_time,
@@ -136510,7 +136510,7 @@ impl_one_and_only_time_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_time,
@@ -136699,7 +136699,7 @@ impl_set_equals_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_time,
@@ -136888,7 +136888,7 @@ impl_subset_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_time,
@@ -137047,7 +137047,7 @@ impl_time_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__time,
@@ -137198,7 +137198,7 @@ impl_to_string_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_time,
@@ -137349,7 +137349,7 @@ impl_union_time_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_time = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_time,
@@ -137500,7 +137500,7 @@ impl_is_unevaluated_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_unevaluated = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_unevaluated,
@@ -137651,7 +137651,7 @@ impl_meta_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_meta = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__meta,
@@ -137802,7 +137802,7 @@ impl_metas_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_metas = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__metas,
@@ -137991,7 +137991,7 @@ impl_at_least_one_member_of_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_x500Name,
@@ -138142,7 +138142,7 @@ impl_bag_size_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_x500Name,
@@ -138293,7 +138293,7 @@ impl_bag_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_x500Name,
@@ -138490,7 +138490,7 @@ impl_eq_x500Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_x500Name,
@@ -138679,7 +138679,7 @@ impl_eqx_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_x500Name,
@@ -138868,7 +138868,7 @@ impl_ge_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_x500Name,
@@ -139057,7 +139057,7 @@ impl_gt_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_x500Name,
@@ -139246,7 +139246,7 @@ impl_intersection_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_x500Name,
@@ -139435,7 +139435,7 @@ impl_is_in_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_x500Name,
@@ -139586,7 +139586,7 @@ impl_is_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_x500Name,
@@ -139775,7 +139775,7 @@ impl_le_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_x500Name,
@@ -139964,7 +139964,7 @@ impl_lt_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_x500Name,
@@ -140153,7 +140153,7 @@ impl_match_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_match_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__match_x500Name,
@@ -140350,7 +140350,7 @@ impl_ne_x500Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_x500Name,
@@ -140539,7 +140539,7 @@ impl_nex_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_x500Name,
@@ -140698,7 +140698,7 @@ impl_one_and_only_x500Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_x500Name,
@@ -140887,7 +140887,7 @@ impl_regexp_match_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_regexp_match_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__regexp_match_x500Name,
@@ -141076,7 +141076,7 @@ impl_set_equals_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_x500Name,
@@ -141265,7 +141265,7 @@ impl_subset_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_x500Name,
@@ -141416,7 +141416,7 @@ impl_to_string_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_x500Name,
@@ -141567,7 +141567,7 @@ impl_union_x500Name_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_x500Name,
@@ -141726,7 +141726,7 @@ impl_x500Name_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_x500Name = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__x500Name,
@@ -141877,7 +141877,7 @@ impl_bag_size_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_xpathExpression,
@@ -142028,7 +142028,7 @@ impl_bag_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_xpathExpression,
@@ -142217,7 +142217,7 @@ impl_compile_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_compile_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__compile_xpathExpression,
@@ -142414,7 +142414,7 @@ impl_eq_xpathExpression_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_xpathExpression,
@@ -142603,7 +142603,7 @@ impl_eqx_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_xpathExpression,
@@ -142792,7 +142792,7 @@ impl_eval_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eval_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eval_xpathExpression,
@@ -142981,7 +142981,7 @@ impl_ge_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_xpathExpression,
@@ -143170,7 +143170,7 @@ impl_gt_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_xpathExpression,
@@ -143321,7 +143321,7 @@ impl_is_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_xpathExpression,
@@ -143510,7 +143510,7 @@ impl_le_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_xpathExpression,
@@ -143699,7 +143699,7 @@ impl_lt_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_xpathExpression,
@@ -143896,7 +143896,7 @@ impl_ne_xpathExpression_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_xpathExpression,
@@ -144085,7 +144085,7 @@ impl_nex_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_xpathExpression,
@@ -144236,7 +144236,7 @@ impl_to_string_xpathExpression_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_xpathExpression,
@@ -144395,7 +144395,7 @@ impl_xpathExpression_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_xpathExpression = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__xpathExpression,
@@ -144546,7 +144546,7 @@ impl_xpath_node_count_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_xpath_node_count = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__xpath_node_count,
@@ -144735,7 +144735,7 @@ impl_xpath_node_eq_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_xpath_node_eq = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__xpath_node_eq,
@@ -144924,7 +144924,7 @@ impl_xpath_node_match_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_xpath_node_match = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__xpath_node_match,
@@ -145113,7 +145113,7 @@ impl_at_least_one_member_of_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__at_least_one_member_of_yearMonthDuration,
@@ -145264,7 +145264,7 @@ impl_bag_size_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_size_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_size_yearMonthDuration,
@@ -145415,7 +145415,7 @@ impl_bag_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_bag_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__bag_yearMonthDuration,
@@ -145612,7 +145612,7 @@ impl_eq_yearMonthDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eq_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eq_yearMonthDuration,
@@ -145801,7 +145801,7 @@ impl_eqx_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_eqx_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__eqx_yearMonthDuration,
@@ -145990,7 +145990,7 @@ impl_ge_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ge_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ge_yearMonthDuration,
@@ -146179,7 +146179,7 @@ impl_gt_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_gt_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__gt_yearMonthDuration,
@@ -146368,7 +146368,7 @@ impl_intersection_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_intersection_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__intersection_yearMonthDuration,
@@ -146557,7 +146557,7 @@ impl_is_in_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_in_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_in_yearMonthDuration,
@@ -146708,7 +146708,7 @@ impl_is_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_is_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__is_yearMonthDuration,
@@ -146897,7 +146897,7 @@ impl_le_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_le_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__le_yearMonthDuration,
@@ -147086,7 +147086,7 @@ impl_lt_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_lt_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__lt_yearMonthDuration,
@@ -147283,7 +147283,7 @@ impl_ne_yearMonthDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_ne_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__ne_yearMonthDuration,
@@ -147472,7 +147472,7 @@ impl_nex_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_nex_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__nex_yearMonthDuration,
@@ -147631,7 +147631,7 @@ impl_one_and_only_yearMonthDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_one_and_only_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__one_and_only_yearMonthDuration,
@@ -147820,7 +147820,7 @@ impl_set_equals_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_set_equals_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__set_equals_yearMonthDuration,
@@ -148009,7 +148009,7 @@ impl_subset_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_subset_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__subset_yearMonthDuration,
@@ -148160,7 +148160,7 @@ impl_to_string_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_to_string_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__to_string_yearMonthDuration,
@@ -148311,7 +148311,7 @@ impl_union_yearMonthDuration_parameters[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_union_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__union_yearMonthDuration,
@@ -148470,7 +148470,7 @@ impl_yearMonthDuration_errorsThrown[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+const afw_value_function_definition_t
 afw_function_definition_yearMonthDuration = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__yearMonthDuration,
@@ -149329,7 +149329,7 @@ impl_function_bindings[] = {
 };
 
 /* Get array of pointers to afw_function bindings. */
-AFW_DEFINE(const afw_value_function_definition_t **)
+const afw_value_function_definition_t **
 afw_function_bindings_get()
 {
     return &impl_function_bindings[0];

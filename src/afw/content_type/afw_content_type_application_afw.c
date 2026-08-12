@@ -297,7 +297,7 @@ impl_afw_stream_write(
 
 
 /* Register application/x-afw content handler. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_content_type_application_afw_register(afw_xctx_t *xctx)
 {
     afw_content_type_register(&impl_afw_content_type_application_afw, xctx);

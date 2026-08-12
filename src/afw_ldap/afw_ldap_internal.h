@@ -63,7 +63,7 @@ typedef struct berval **
 
 /* Note: A register function might be added to register these callbacks */
 
-AFW_LDAP_DECLARE_INTERNAL_CONST_DATA(afw_adapter_factory_t) afw_ldap_adapter_factory;
+extern const afw_adapter_factory_t afw_ldap_adapter_factory;
 
 #ifdef WIN32
 #define AFW_LDAP_TIMEVAL LDAP_TIMEVAL

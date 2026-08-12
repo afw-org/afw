@@ -834,115 +834,115 @@ afw_stack_copy_and_release((args), (argc), (argv), \
  * usually goes through the hot macros above rather than *_impl names.
  */
 
-AFW_DECLARE_INTERNAL(afw_octet_t)
+extern afw_octet_t
 afw_compile_get_octet(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(afw_code_point_t)
+extern afw_code_point_t
 afw_compile_get_code_point_impl(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(afw_code_point_t)
+extern afw_code_point_t
 afw_compile_get_unescaped_code_point_impl(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(afw_boolean_t)
+extern afw_boolean_t
 afw_compile_is_reserved_word(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s);
 
-AFW_DECLARE_INTERNAL(afw_boolean_t)
+extern afw_boolean_t
 afw_compile_next_raw_starts_with_impl(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s);
 
-AFW_DECLARE_INTERNAL(afw_boolean_t)
+extern afw_boolean_t
 afw_compile_next_raw_starts_with_z_impl(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *s_z);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_get_raw_line_impl(
     afw_compile_parser_t *parser,
     afw_utf8_t *line);
 
-AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+extern const afw_utf8_t *
 afw_compile_current_raw_token(
     afw_compile_parser_t *parser);
 
 /* Intern string into shared->string_literals when possible. */
-AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+extern const afw_utf8_t *
 afw_compile_get_string_literal(
     afw_compile_parser_t *parser,
     const afw_utf8_octet_t *s,
     afw_size_t len);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_get_token_impl(
     afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_reuse_token_impl(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(afw_compile_internal_token_type_t)
+extern afw_compile_internal_token_type_t
 afw_compile_peek_next_token_impl(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_compile_value_contextual_t *)
+extern const afw_compile_value_contextual_t *
 afw_compile_create_contextual(
     afw_compile_parser_t *parser,
     afw_size_t start_offset,
     afw_size_t size);
 
-AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+extern const afw_utf8_t *
 afw_compile_create_source_location_impl(
     afw_compile_parser_t *parser,
     afw_size_t start_offset);
 
 /* Push code point onto parser->s while building a string. */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_internal_s_push_code_point(
     afw_compile_parser_t *parser,
     afw_code_point_t cp);
 
 /* Outer AFW_CATCH: attach parse location info to error. */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_parse_embellish_error(
     afw_compile_parser_t *parser,
     afw_error_t *error);
 
 /* Prefer AFW_COMPILE_THROW_ERROR_* macros from parse code. */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_parse_set_error_z(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *source_z,
     const afw_utf8_z_t *message_z);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_parse_set_error_fz(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *source_z,
     const afw_utf8_z_t *format_z, ...);
 
 /* Symbol table helpers for the current block chain. */
-AFW_DECLARE_INTERNAL(afw_value_block_symbol_t *)
+extern afw_value_block_symbol_t *
 afw_compile_parse_get_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name);
 
-AFW_DECLARE_INTERNAL(afw_value_block_symbol_t *)
+extern afw_value_block_symbol_t *
 afw_compile_parse_get_local_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name);
 
-AFW_DECLARE_INTERNAL(afw_value_block_symbol_t *)
+extern afw_value_block_symbol_t *
 afw_compile_parse_add_symbol_entry(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name);
 
 /* Push a new value block; pair with afw_compile_parse_pop_value_block. */
-AFW_DECLARE_INTERNAL(const afw_value_block_t *)
+extern const afw_value_block_t *
 afw_compile_parse_link_new_value_block(
     afw_compile_parser_t *parser,
     afw_size_t start_offset);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_parse_check_symbol(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name,
@@ -954,14 +954,14 @@ afw_compile_parse_check_symbol(
  * Reference for identifier: symbol_reference,
  * qualified_variable_reference, or function_definition.
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
     const afw_utf8_t *identifier);
 
 /* Introduce or resolve a local symbol (let/const/parameter/assign). */
-AFW_DECLARE_INTERNAL(const afw_value_symbol_reference_t *)
+extern const afw_value_symbol_reference_t *
 afw_compile_parse_variable_reference_create(
     afw_compile_parser_t *parser,
     const afw_compile_value_contextual_t *contextual,
@@ -970,15 +970,15 @@ afw_compile_parse_variable_reference_create(
     const afw_value_type_t *type);
 
 /* Skip white space and comments. */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_skip_ws(afw_compile_parser_t *parser);
 
 /* Enforce residual_check after top-level parse. */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_check_for_residual(afw_compile_parser_t *parser);
 
 /* Create / tear down a parser (public compile entry points use these). */
-AFW_DECLARE_INTERNAL(afw_compile_parser_t *)
+extern afw_compile_parser_t *
 afw_compile_lexical_parser_create(
     const afw_utf8_t *source,
     afw_utf8_octet_get_cb_t callback,
@@ -992,7 +992,7 @@ afw_compile_lexical_parser_create(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
     afw_xctx_t *xctx);
@@ -1000,7 +1000,7 @@ afw_compile_lexical_parser_finish_and_release(
 /**
  * @brief Register a script `type` / `interface` name for this compile unit.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_script_type_register(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name,
@@ -1013,7 +1013,7 @@ afw_compile_script_type_register(
  * In afw_function_compiler_internal.c; only call_script_function uses this.
  * Runtime typeCheck on unit → strict assignability; else leaf convert.
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_function_script_evaluate_parameter_with_type(
     const afw_value_t *value,
     afw_size_t parameter_number,
@@ -1028,7 +1028,7 @@ afw_function_script_evaluate_parameter_with_type(
  * Pattern parameters and destructure; target is symbol_reference,
  * assignment_target, etc. In afw_function_compiler_internal.c.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_function_script_assign_pattern(
     const afw_value_t *target,
     const afw_value_t *value,
@@ -1059,69 +1059,69 @@ afw_compile_peek_code_point(afw_compile_parser_t *parser)
  * so other parse units can call them.
  */
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_ArrayType(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Assignment(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_parse_AssignmentBindingTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type,
     const afw_value_type_t **type,
     const afw_value_t **value);
 
-AFW_DECLARE_INTERNAL(afw_compile_assignment_element_t *)
+extern afw_compile_assignment_element_t *
 afw_compile_parse_AssignmentElement(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_AssignmentExpression(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression,
     afw_boolean_t *just_expression_okay);
 
-AFW_DECLARE_INTERNAL(const afw_compile_list_destructure_t *)
+extern const afw_compile_list_destructure_t *
 afw_compile_parse_AssignmentListDestructureTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type);
 
-AFW_DECLARE_INTERNAL(const afw_compile_object_destructure_t *)
+extern const afw_compile_object_destructure_t *
 afw_compile_parse_AssignmentObjectDestructureTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_AssignmentOperation(
     afw_compile_parser_t *parser,
     const afw_value_t *target,
     afw_boolean_t just_expression_okay,
     afw_boolean_t *was_expression);
 
-AFW_DECLARE_INTERNAL(afw_compile_assignment_property_t *)
+extern afw_compile_assignment_property_t *
 afw_compile_parse_AssignmentProperty(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type);
 
 /* Parameter was_expression is used to support single return expression */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_AssignmentStatement(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_AssignmentTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Comparison(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser);
 
 /**
@@ -1132,7 +1132,7 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser);
  * Current token must be pound_identifier. See
  * afw_compile_parse_compiler_internal.c. Not for ordinary script authoring.
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser);
 
 /**
@@ -1144,114 +1144,114 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser);
  * afw_compile_parse_compiler_internal.c. Not for ordinary script authoring.
  * Decompile/recompile accept path (#block, #script_function, …).
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_EntryFunctionLambdaOrVariableReference(
     afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Equality(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Evaluation(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_EvaluationTimeSubstitution(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Exponentiation(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Expression(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Factor(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_script_function_signature_t *)
+extern const afw_value_script_function_signature_t *
 afw_compile_parse_FunctionSignature(
     afw_compile_parser_t *parser,
     const afw_value_block_t **block,
     const afw_value_string_t **function_name_value,
     const afw_value_type_t **return_type);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_FunctionSignatureAndBody(
     afw_compile_parser_t *parser,
     const afw_value_string_t **function_name_value,
     const afw_value_type_t **return_type);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_FunctionType(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_IntersectionType(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Json(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Lambda(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_List(
     afw_compile_parser_t *parser,
     afw_boolean_t allow_expression,
     afw_boolean_t allow_enhanced_literals);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Literal(
     afw_compile_parser_t *parser,
     afw_boolean_t *is_Literal,
     afw_boolean_t must_be_literal,
     afw_boolean_t scalar_only);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_LogicalAnd(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_LogicalExpression(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_NullishCoalescing(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Object(
     afw_compile_parser_t *parser,
     afw_boolean_t allow_expression,
     afw_boolean_t allow_enhanced_literals);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_ObjectTypeLiteral(afw_compile_parser_t *parser);
 
 /* afw_compile_parse_OptionalDefineTarget should be called first. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_OptionalDefineAssignment(
     afw_compile_parser_t *parser,
     const afw_value_t *target,
     const afw_value_t *define_function);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_OptionalDefineTarget(
     afw_compile_parser_t *parser,
     const afw_value_t **define_function,
     const afw_value_block_t **block);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_OptionalType(
     afw_compile_parser_t *parser,
     afw_boolean_t is_return);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_compile_parse_Parameters(
     afw_compile_parser_t *parser,
     afw_compile_args_t *args);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_ParenthesizedExpression(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_ParenthesizedOrFunctionType(
     afw_compile_parser_t *parser);
 
@@ -1264,25 +1264,25 @@ afw_compile_parse_ParenthesizedOrFunctionType(
  * pragmas (afw_compile_parse_pragma.c) then compiler-internal forms
  * (afw_compile_parse_CompilerInternalStatement).
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_PragmaStatement(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Prefixed(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_PrimaryType(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Reference(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Script(
     afw_compile_parser_t *parser,
     afw_boolean_t end_is_close_brace);
 
 /* If was_expression is NULL, statement can not be Expression. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Statement(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression);
@@ -1297,7 +1297,7 @@ afw_compile_parse_Statement(
  * Pass false for all historical call sites. Catch with a Pattern binding
  * opens the block early, then calls with true so statements share that block.
  */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_StatementList(
     afw_compile_parser_t *parser,
     afw_compile_parse_StatementList_cb_t *cb,
@@ -1306,32 +1306,32 @@ afw_compile_parse_StatementList(
     afw_boolean_t can_be_single_return_expression,
     afw_boolean_t use_existing_current_block);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Substitution(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Template(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_TemplateString(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Term(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_TestScript(
     afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_TupleType(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_Type(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_type_t *)
+extern const afw_value_type_t *
 afw_compile_parse_UnionType(afw_compile_parser_t *parser);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_compile_parse_Value(afw_compile_parser_t *parser);
 
 AFW_END_DECLARES

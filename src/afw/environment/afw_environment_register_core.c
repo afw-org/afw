@@ -18,7 +18,7 @@
 #include <errno.h>
 
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_function_internal_prepare_environment(afw_xctx_t *xctx);
 
 static const afw_utf8_t impl_s_apr =
@@ -469,7 +469,7 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     afw_json_register(xctx);
 
     /* Register application/x-afw content handler. */
-    AFW_DECLARE_INTERNAL(void)
+    extern void
         afw_content_type_application_afw_register(afw_xctx_t *xctx);
     afw_content_type_application_afw_register(xctx);
 

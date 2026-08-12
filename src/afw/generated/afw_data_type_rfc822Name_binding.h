@@ -482,7 +482,7 @@ afw_array_of_rfc822Name_remove(
  * defined in.  Use afw_data_type_rfc822Name when not referencing in
  * a static.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)
+extern const afw_data_type_t
 afw_data_type_rfc822Name_direct;
 
 /**
@@ -494,7 +494,7 @@ afw_data_type_rfc822Name_direct;
  * The implementation of the data type must define this.  It is
  * managed by the generated data type instance.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
+extern const afw_data_type_inf_t
 afw_data_type_rfc822Name_inf;
 
 AFW_END_DECLARES

@@ -110,15 +110,15 @@ impl_data_type_object_unknown__value = {
 };
 
 /* Value for empty array of unknown. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_unknown;
 
 /* Value for empty array of unknown. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_unknown;
 
 /* Data type unknown instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+const afw_data_type_t
 afw_data_type_unknown_direct = {
     &afw_data_type_unknown_inf,
     (const afw_object_t *)&impl_data_type_object_unknown,

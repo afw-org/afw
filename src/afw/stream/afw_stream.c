@@ -326,7 +326,7 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
  * @brief Called internal to xctx to create xctx->stream_anchor.
  * @param xctx of caller.
  */
-AFW_DEFINE_INTERNAL(const afw_stream_anchor_t *)
+const afw_stream_anchor_t *
 afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx)
 {
     afw_stream_anchor_t *stream_anchor;
@@ -342,7 +342,7 @@ afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx)
 
 
 /* Release xctx streams. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_stream_internal_release_all_streams(afw_xctx_t *xctx)
 {
     afw_size_t i;

@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_ldap_declare_helpers.h"
 #include "afw_ldap_const_objects.h"
 #include "afw_runtime.h"
 #include "afw_ldap_runtime_object_maps.h"
@@ -37,7 +36,7 @@
  * @brief Generated register for afw_ldap. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_LDAP_DECLARE_INTERNAL(void)
+extern void
 afw_ldap_generated_register(afw_xctx_t *xctx);
 
 
@@ -45,7 +44,7 @@ afw_ldap_generated_register(afw_xctx_t *xctx);
  * @brief Register function for adapter_type ldap
  * @param xctx of caller.
  */
-AFW_LDAP_DECLARE_INTERNAL(void)
+extern void
 afw_ldap_adapter_type_ldap_register(
     afw_xctx_t *xctx);
 
@@ -54,7 +53,7 @@ afw_ldap_adapter_type_ldap_register(
  * @brief Register function for error_rv_decoder ldap
  * @param xctx of caller.
  */
-AFW_LDAP_DECLARE_INTERNAL(void)
+extern void
 afw_ldap_error_rv_decoder_ldap_register(
     afw_xctx_t *xctx);
 

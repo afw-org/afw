@@ -192,15 +192,15 @@ impl_data_type_object_ia5String__value = {
 };
 
 /* Value for empty array of ia5String. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_ia5String;
 
 /* Value for empty array of ia5String. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_ia5String;
 
 /* Data type ia5String instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+const afw_data_type_t
 afw_data_type_ia5String_direct = {
     &afw_data_type_ia5String_inf,
     (const afw_object_t *)&impl_data_type_object_ia5String,
@@ -228,7 +228,7 @@ afw_data_type_ia5String_direct = {
 };
 
 /* Value for empty array of ia5String. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_ia5String = {
     {
         &afw_array_view_of_c_array_inf,
@@ -240,7 +240,7 @@ impl_empty_array_of_ia5String = {
 };
 
 /* Value for empty array of ia5String. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_ia5String = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_ia5String

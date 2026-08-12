@@ -30,14 +30,14 @@ AFW_BEGIN_DECLARES
  * @brief Create xctx->stream_anchor (libafw only).
  * @param xctx being created.
  */
-AFW_DECLARE_INTERNAL(const afw_stream_anchor_t *)
+extern const afw_stream_anchor_t *
 afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx);
 
 /**
  * @brief Release all streams on an xctx (libafw only).
  * @param xctx of caller.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_stream_internal_release_all_streams(afw_xctx_t *xctx);
 
 AFW_END_DECLARES

@@ -18,7 +18,7 @@
 /*
  * Implementation of method get_entry_meta for interface afw_array.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_array_impl_get_entry_meta(
     const afw_array_t *instance,
     afw_integer_t index,
@@ -47,7 +47,7 @@ afw_array_impl_get_entry_meta(
 /*
  * Implementation of method get_next_entry_meta for interface afw_array.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_array_impl_get_next_entry_meta(
     const afw_array_t *instance,
     const afw_iterator_old_t **iterator,
@@ -177,7 +177,7 @@ impl_afw_iterator_get_count(
  * Shared initialize_iterator for afw_array implementations.
  * Sets inf for array-as-iterator and resets cursor fields.
  */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_array_impl_initialize_iterator(
     const afw_array_t *instance,
     const afw_iterator_t *iterator,

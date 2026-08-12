@@ -224,7 +224,7 @@ def generate(generated_by, options):
             sortedOnGetValueCFunctionName = sorted(set(onGetValueCFunctionNames))
             for name in sortedOnGetValueCFunctionName:
                 fd.write('\n/* @brief Value accessor ' + name + '. */\n')
-                fd.write(options['prefix'].upper() + "DECLARE_INTERNAL(const afw_value_t *)\n")
+                fd.write("extern const afw_value_t *\n")
                 fd.write(name + '(\n')
                 fd.write('    const afw_runtime_object_map_property_t *prop,\n')
                 fd.write('    const void *internal,\n')

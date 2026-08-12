@@ -290,7 +290,7 @@ impl_function_bindings[] = {
 };
 
 /* Get array of pointers to afw_lmdb_function bindings. */
-AFW_LMDB_DEFINE(const afw_value_function_definition_t **)
+const afw_value_function_definition_t **
 afw_lmdb_function_bindings_get()
 {
     return &impl_function_bindings[0];

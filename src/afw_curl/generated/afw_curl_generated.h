@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_curl_declare_helpers.h"
 #include "afw_curl_const_objects.h"
 #include "afw_curl_function_bindings.h"
 #include "afw_runtime.h"
@@ -38,7 +37,7 @@
  * @brief Generated register for afw_curl. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_CURL_DECLARE_INTERNAL(void)
+extern void
 afw_curl_generated_register(afw_xctx_t *xctx);
 
 
@@ -46,7 +45,7 @@ afw_curl_generated_register(afw_xctx_t *xctx);
  * @brief Register function for error_rv_decoder curl
  * @param xctx of caller.
  */
-AFW_CURL_DECLARE_INTERNAL(void)
+extern void
 afw_curl_error_rv_decoder_curl_register(
     afw_xctx_t *xctx);
 

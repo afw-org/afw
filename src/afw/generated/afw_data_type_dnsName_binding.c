@@ -192,15 +192,15 @@ impl_data_type_object_dnsName__value = {
 };
 
 /* Value for empty array of dnsName. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_dnsName;
 
 /* Value for empty array of dnsName. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_dnsName;
 
 /* Data type dnsName instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+const afw_data_type_t
 afw_data_type_dnsName_direct = {
     &afw_data_type_dnsName_inf,
     (const afw_object_t *)&impl_data_type_object_dnsName,
@@ -228,7 +228,7 @@ afw_data_type_dnsName_direct = {
 };
 
 /* Value for empty array of dnsName. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_dnsName = {
     {
         &afw_array_view_of_c_array_inf,
@@ -240,7 +240,7 @@ impl_empty_array_of_dnsName = {
 };
 
 /* Value for empty array of dnsName. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_dnsName = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_dnsName

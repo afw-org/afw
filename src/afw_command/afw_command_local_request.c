@@ -246,7 +246,7 @@ impl_write_content_cb(
 
 
 
-AFW_COMMAND_DECLARE_INTERNAL(const afw_request_t *)
+extern const afw_request_t *
 afw_command_local_request_create(
     afw_command_local_server_self_t *server_self,
     const afw_memory_t *body,

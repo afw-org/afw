@@ -30,7 +30,7 @@ AFW_BEGIN_DECLARES
  * @brief Wire qualifier stack during xctx creation (libafw only).
  * @param xctx being created.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_stack_internal_set_qualifier_stack(
     afw_xctx_t *xctx);
 
@@ -38,7 +38,7 @@ afw_stack_internal_set_qualifier_stack(
  * @brief Wire evaluation stack during xctx creation (libafw only).
  * @param xctx being created.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_stack_internal_set_evaluation_stack(
     afw_xctx_t *xctx);
 

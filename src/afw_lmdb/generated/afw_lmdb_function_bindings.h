@@ -25,7 +25,6 @@
  * @brief Generated adaptive function bindings header for prefix `afw_lmdb_`.
  */
 
-#include "afw_lmdb_declare_helpers.h"
 
 /**
  * @addtogroup afw_c_api_public
@@ -43,7 +42,7 @@
  * @brief Get array of pointers to afw_lmdb_function bindings.
  * @return pointer to array of function value pointers.
  */
-AFW_LMDB_DECLARE(const afw_value_function_definition_t **)
+extern const afw_value_function_definition_t **
 afw_lmdb_function_bindings_get();
 
 

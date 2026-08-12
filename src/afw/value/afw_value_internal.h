@@ -866,7 +866,7 @@ typedef struct {
     afw_value_meta_special_set_t set;
 } afw_value_meta_name_handler_t;
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_call_built_in_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_function_definition_t *function,
@@ -875,7 +875,7 @@ afw_value_call_built_in_function(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
@@ -885,62 +885,62 @@ afw_value_call_script_function(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(afw_value_meta_object_self_t *)
+extern afw_value_meta_object_self_t *
 afw_value_internal_create_meta_object_self(
     const afw_value_t *associated_value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_meta_default(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_metas_default(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_meta_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_metas_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_meta_for_object(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_metas_for_object(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_meta_values_list_for_object_create(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_meta_values_list_for_list_create(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(afw_value_compiler_listing_t *)
+extern afw_value_compiler_listing_t *
 afw_value_compiler_listing_to_string_instance(
     const afw_value_t *value,
     afw_value_compiler_listing_t *parent,
@@ -978,56 +978,56 @@ struct afw_value_compiler_listing_s {
     int tab_size;
 };
 
-AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+extern const afw_utf8_t *
 afw_value_compiler_listing_symbol_type_name(
     afw_value_block_symbol_type_t type);
 
-AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+extern const afw_utf8_t *
 afw_value_compiler_listing_for_child(
     const afw_value_t *instance,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_begin_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
     const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_end_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_call_args(
     const afw_writer_t *writer,
     const afw_value_call_args_t *args,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_value(
     const afw_value_t *instance,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_name_and_type(
     const afw_writer_t *writer,
     const afw_utf8_t *name,
     const afw_value_type_t *type,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_block_evaluate_statement(
     afw_function_execute_t *x,
     const afw_value_t *block,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
@@ -1041,7 +1041,7 @@ afw_value_block_evaluate_block(
  *
  * Called from afw_environment_register_core.c. Implemented in afw_value.c.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_register_core_value_infs(afw_xctx_t *xctx);
 
 

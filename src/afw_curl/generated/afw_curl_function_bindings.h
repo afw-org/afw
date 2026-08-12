@@ -25,7 +25,6 @@
  * @brief Generated adaptive function bindings header for prefix `afw_curl_`.
  */
 
-#include "afw_curl_declare_helpers.h"
 
 /**
  * @addtogroup afw_c_api_public
@@ -43,7 +42,7 @@
  * @brief Get array of pointers to afw_curl_function bindings.
  * @return pointer to array of function value pointers.
  */
-AFW_CURL_DECLARE(const afw_value_function_definition_t **)
+extern const afw_value_function_definition_t **
 afw_curl_function_bindings_get();
 
 

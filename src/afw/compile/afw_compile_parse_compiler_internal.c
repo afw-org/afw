@@ -774,7 +774,7 @@ impl_parse_compiler_internal_statements(afw_compile_parser_t *parser)
 /**
  * Parse a compiler-internal form in statement position.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
 {
     /* #block is allowed as a statement so decompile output can recompile. */
@@ -820,7 +820,7 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
 /**
  * Parse a compiler-internal form in value/expression position.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
 {
     if (impl_compiler_internal_name_is(parser, "block")) {

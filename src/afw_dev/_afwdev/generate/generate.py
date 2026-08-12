@@ -50,7 +50,7 @@ from _afwdev.common import msg, direct, resources, package, nfc
 
 
 def generated_h(options):
-    declare_internal_function = options['prefix'].upper() + 'DECLARE_INTERNAL'
+    # Register functions: plain "extern void" (not AFW_*_DECLARE_INTERNAL).
     filename = options['prefix'] + 'generated.h'
     prefix = options['prefix']    
     srcdir = prefix[:-1]
@@ -66,7 +66,7 @@ def generated_h(options):
 
         fd.write('\n#include "afw_minimal.h"\n')
 
-        fd.write('#include "' + options['prefix'] + 'declare_helpers.h"\n')
+        # declare_helpers.h still generated for out-of-tree convert; not required here.
         if options['const_objects']:
             fd.write('#include "' + options['prefix'] + 'const_objects.h"\n')
         if options['data_types']:
@@ -83,7 +83,7 @@ def generated_h(options):
         fd.write(' * @brief Generated register for ' + options['srcdir'] + '. \n')
         fd.write(' * @param xctx of caller.  Should be base xctx.\n')
         fd.write(' */\n')
-        fd.write(declare_internal_function + '(void)\n')
+        fd.write('extern void\n')
         fd.write(options['prefix'] + 'generated_register(afw_xctx_t *xctx);\n')
 
         if options['manifest']:
@@ -98,7 +98,7 @@ def generated_h(options):
                     fd.write(' * @brief Register function for ' + registry_type + ' ' + key + '\n')
                     fd.write(' * @param xctx of caller.\n')
                     fd.write(' */\n')
-                    fd.write(declare_internal_function + '(void)\n')
+                    fd.write('extern void\n')
                     fd.write(options['prefix'] + registry_type +  '_' + key + '_register(\n')
                     fd.write('    afw_xctx_t *xctx);\n')
 

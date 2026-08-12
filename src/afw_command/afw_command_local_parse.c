@@ -107,7 +107,7 @@ impl_get_token(afw_command_local_parse_t *x)
 
 
 /* This is a very minimal parser and should only be used for http-like. */
-AFW_COMMAND_DEFINE_INTERNAL(const afw_memory_t *)
+const afw_memory_t *
 afw_command_local_parse_request(
     afw_command_local_server_self_t *self,
     const afw_memory_t **input,

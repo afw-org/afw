@@ -163,15 +163,15 @@ impl_data_type_object_yearMonthDuration__value = {
 };
 
 /* Value for empty array of yearMonthDuration. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_yearMonthDuration;
 
 /* Value for empty array of yearMonthDuration. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_yearMonthDuration;
 
 /* Data type yearMonthDuration instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+const afw_data_type_t
 afw_data_type_yearMonthDuration_direct = {
     &afw_data_type_yearMonthDuration_inf,
     (const afw_object_t *)&impl_data_type_object_yearMonthDuration,
@@ -199,7 +199,7 @@ afw_data_type_yearMonthDuration_direct = {
 };
 
 /* Value for empty array of yearMonthDuration. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_yearMonthDuration = {
     {
         &afw_array_view_of_c_array_inf,
@@ -211,7 +211,7 @@ impl_empty_array_of_yearMonthDuration = {
 };
 
 /* Value for empty array of yearMonthDuration. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_yearMonthDuration = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_yearMonthDuration

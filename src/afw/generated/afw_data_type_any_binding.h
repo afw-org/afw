@@ -118,7 +118,7 @@ struct afw_value_any_managed_s {
  * defined in.  Use afw_data_type_any when not referencing in
  * a static.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)
+extern const afw_data_type_t
 afw_data_type_any_direct;
 
 /**
@@ -130,7 +130,7 @@ afw_data_type_any_direct;
  * The implementation of the data type must define this.  It is
  * managed by the generated data type instance.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
+extern const afw_data_type_inf_t
 afw_data_type_any_inf;
 
 AFW_END_DECLARES

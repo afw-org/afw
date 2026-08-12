@@ -1039,7 +1039,7 @@ afw_value_contains(
 
 
 /* Register core value infs (libafw bootstrap; see afw_value_internal.h). */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_register_core_value_infs(afw_xctx_t *xctx)
 {
     afw_environment_register_value_inf(

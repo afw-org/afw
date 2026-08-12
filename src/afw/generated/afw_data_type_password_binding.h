@@ -482,7 +482,7 @@ afw_array_of_password_remove(
  * defined in.  Use afw_data_type_password when not referencing in
  * a static.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)
+extern const afw_data_type_t
 afw_data_type_password_direct;
 
 /**
@@ -494,7 +494,7 @@ afw_data_type_password_direct;
  * The implementation of the data type must define this.  It is
  * managed by the generated data type instance.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
+extern const afw_data_type_inf_t
 afw_data_type_password_inf;
 
 AFW_END_DECLARES

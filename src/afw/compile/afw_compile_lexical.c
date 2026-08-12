@@ -53,7 +53,7 @@ impl_parse_u(afw_compile_parser_t *parser);
 /* Static functions. */
 
 /* Get a utf-8 octet.  Set cursor_eof to cursor + 1 if at end. */
-AFW_DEFINE_INTERNAL(afw_octet_t)
+afw_octet_t
 afw_compile_get_octet(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t result;
@@ -306,7 +306,7 @@ impl_get_OctalDigit(afw_compile_parser_t *parser)
 
 
 /* Push cp on parser->s */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_internal_s_push_code_point(
     afw_compile_parser_t *parser,
     afw_code_point_t cp)
@@ -386,7 +386,7 @@ afw_compile_internal_s_push_code_point(
 
 
 /* Skip whitespace. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_skip_ws(afw_compile_parser_t *parser)
 {
     afw_size_t start_offset;
@@ -1398,7 +1398,7 @@ impl_parse_identifier(afw_compile_parser_t *parser)
  *      UnusedButReservedWords )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(afw_boolean_t)
+afw_boolean_t
 afw_compile_is_reserved_word(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s)
@@ -1507,7 +1507,7 @@ afw_compile_is_reserved_word(
 
 /* Internal functions. */
 
-AFW_DEFINE_INTERNAL(afw_code_point_t)
+afw_code_point_t
 afw_compile_get_code_point_impl(afw_compile_parser_t *parser)
 {
     afw_code_point_t result;
@@ -1701,7 +1701,7 @@ error:
 
 
 
-AFW_DEFINE_INTERNAL(afw_code_point_t)
+afw_code_point_t
 afw_compile_get_unescaped_code_point_impl(afw_compile_parser_t *parser)
 {
     afw_code_point_t cp;
@@ -1716,7 +1716,7 @@ afw_compile_get_unescaped_code_point_impl(afw_compile_parser_t *parser)
 }
 
 
-AFW_DEFINE_INTERNAL(afw_boolean_t)
+afw_boolean_t
 afw_compile_next_raw_starts_with_impl(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s)
@@ -1740,7 +1740,7 @@ afw_compile_next_raw_starts_with_impl(
 }
 
 
-AFW_DEFINE_INTERNAL(afw_boolean_t)
+afw_boolean_t
 afw_compile_next_raw_starts_with_z_impl(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *s_z)
@@ -1754,7 +1754,7 @@ afw_compile_next_raw_starts_with_z_impl(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_get_raw_line_impl(
     afw_compile_parser_t *parser,
     afw_utf8_t *line)
@@ -1817,7 +1817,7 @@ afw_compile_get_raw_line_impl(
  * END ::=
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_get_token_impl(afw_compile_parser_t *parser)
 {
     afw_code_point_t cp, cp2;
@@ -2299,7 +2299,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
 }
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_reuse_token_impl(afw_compile_parser_t *parser)
 {
     /* Ignore reuse token is last one is end of line. */
@@ -2325,7 +2325,7 @@ afw_compile_reuse_token_impl(afw_compile_parser_t *parser)
 }
 
 
-AFW_DEFINE_INTERNAL(afw_compile_internal_token_type_t)
+afw_compile_internal_token_type_t
 afw_compile_peek_next_token_impl(afw_compile_parser_t *parser)
 {
     afw_compile_internal_token_type_t result;
@@ -2339,7 +2339,7 @@ afw_compile_peek_next_token_impl(afw_compile_parser_t *parser)
 
 
 /* Make sure there is no residual data. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_check_for_residual(afw_compile_parser_t *parser)
 {
     afw_octet_t o;
@@ -2407,7 +2407,7 @@ afw_compile_shared_create(
 
 
 /* Create a parser. */
-AFW_DEFINE_INTERNAL(afw_compile_parser_t *)
+afw_compile_parser_t *
 afw_compile_lexical_parser_create(
     const afw_utf8_t *source,
     afw_utf8_octet_get_cb_t callback,
@@ -2500,7 +2500,7 @@ afw_compile_lexical_parser_create(
 }
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
     afw_xctx_t *xctx)
@@ -2512,7 +2512,7 @@ afw_compile_lexical_parser_finish_and_release(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+const afw_utf8_t *
 afw_compile_get_string_literal(
     afw_compile_parser_t *parser,
     const afw_utf8_octet_t *s,
@@ -2534,7 +2534,7 @@ afw_compile_get_string_literal(
 }
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t*)
+const afw_utf8_t*
 afw_compile_current_raw_token(
     afw_compile_parser_t* parser)
 {

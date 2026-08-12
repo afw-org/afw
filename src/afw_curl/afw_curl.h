@@ -45,15 +45,13 @@
 #include "afw_minimal.h"
 
 /* Include generated declare helpers. */
-#include "generated/afw_curl_declare_helpers.h"
-
-AFW_CURL_BEGIN_DECLARES
+AFW_BEGIN_DECLARES
 
 /** curl rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_curl "curl"
 
 
-AFW_CURL_END_DECLARES
+AFW_END_DECLARES
 
 /** @} */
 

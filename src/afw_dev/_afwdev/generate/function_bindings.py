@@ -526,9 +526,8 @@ def sort_useExecuteFunction(obj):
 def generate(generated_by, prefix, data_type_list, object_dir_path,
                 generated_dir_path, options):
 
-    declare = prefix.upper() + 'DECLARE'
-    define = prefix.upper() + 'DEFINE'
-    declare_data =  prefix.upper() + 'DECLARE_CONST_DATA'
+    # Plain C for package/core function binding get(); package DECLARE helpers
+    # remain generated for out-of-tree convert but are not emitted here.
     string_ref = '&' + prefix + 'self_s_'
 
     # Make sure generated/ directory structure exists
@@ -560,8 +559,6 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             'Generated adaptive function bindings header for prefix `'
             + prefix + '`.')
         fd.write('\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
-
 
         fd.write('\n/**\n')
         fd.write(' * @addtogroup afw_c_api_public\n')
@@ -579,7 +576,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write(' * @brief Get array of pointers to ' + prefix + 'function bindings.\n')
         fd.write(' * @return pointer to array of function value pointers.\n')
         fd.write(' */\n')
-        fd.write(declare + '(const afw_value_function_definition_t **)\n')
+        fd.write('extern const afw_value_function_definition_t **\n')
         fd.write(prefix + 'function_bindings_get();\n')
 
         for obj in list:
@@ -621,7 +618,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # Declaration for core function definition.
             if options['core']:
                 fd.write('\n/** @brief Function definition ' + obj['functionId'] + ' */\n') 
-                fd.write('AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)\n')
+                fd.write('extern const afw_value_function_definition_t\n')
                 fd.write('afw_function_definition_' + obj['functionLabel'] + ';\n')
 
             fd.write('\n/**\n')
@@ -834,7 +831,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
             # Define function define and meta
             if options['core']:
-                fd.write('\nAFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)\n')
+                fd.write('\nconst afw_value_function_definition_t\n')
                 fd.write('afw_function_definition_' + label + ' = {\n')
                 fd.write('    {&afw_value_function_definition_inf},\n')
             else:
@@ -1137,7 +1134,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write('};\n')
 
         fd.write('\n/* Get array of pointers to ' + prefix + 'function bindings. */\n')
-        fd.write(define + '(const afw_value_function_definition_t **)\n')
+        fd.write('const afw_value_function_definition_t **\n')
         fd.write(prefix + 'function_bindings_get()\n')
         fd.write('{\n')
         fd.write('    return &impl_function_bindings[0];\n')

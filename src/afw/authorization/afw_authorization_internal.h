@@ -147,7 +147,7 @@ typedef struct {
  * @param xctx of caller.
  * @return authorization control.
  */
-AFW_DEFINE_INTERNAL(afw_authorization_control_t *)
+afw_authorization_control_t *
 afw_authorization_internal_set_control(
     const afw_object_t *object,
     afw_xctx_t *xctx);
@@ -158,7 +158,7 @@ afw_authorization_internal_set_control(
  * @brief Internal function called to register core authorization.
  * @param xctx of caller.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_authorization_internal_register(
     afw_xctx_t *xctx);
 
@@ -170,7 +170,7 @@ afw_authorization_internal_register(
  *
  * This function is called by afw_authorization_internal_register().
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_authorization_internal_register_service_and_conf(
     afw_xctx_t *xctx);
 
@@ -182,7 +182,7 @@ afw_authorization_internal_register_service_and_conf(
  *
  * This function is called by afw_authorization_internal_register().
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_authorization_internal_register_handler_type_script(
     afw_xctx_t *xctx);
 

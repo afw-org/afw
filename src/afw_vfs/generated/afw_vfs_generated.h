@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_vfs_declare_helpers.h"
 #include "afw_vfs_const_objects.h"
 #include "afw_runtime.h"
 #include "afw_vfs_runtime_object_maps.h"
@@ -37,7 +36,7 @@
  * @brief Generated register for afw_vfs. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_VFS_DECLARE_INTERNAL(void)
+extern void
 afw_vfs_generated_register(afw_xctx_t *xctx);
 
 
@@ -45,7 +44,7 @@ afw_vfs_generated_register(afw_xctx_t *xctx);
  * @brief Register function for adapter_type vfs
  * @param xctx of caller.
  */
-AFW_VFS_DECLARE_INTERNAL(void)
+extern void
 afw_vfs_adapter_type_vfs_register(
     afw_xctx_t *xctx);
 

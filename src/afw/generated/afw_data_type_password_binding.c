@@ -192,15 +192,15 @@ impl_data_type_object_password__value = {
 };
 
 /* Value for empty array of password. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_password;
 
 /* Value for empty array of password. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_password;
 
 /* Data type password instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+const afw_data_type_t
 afw_data_type_password_direct = {
     &afw_data_type_password_inf,
     (const afw_object_t *)&impl_data_type_object_password,
@@ -228,7 +228,7 @@ afw_data_type_password_direct = {
 };
 
 /* Value for empty array of password. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_password = {
     {
         &afw_array_view_of_c_array_inf,
@@ -240,7 +240,7 @@ impl_empty_array_of_password = {
 };
 
 /* Value for empty array of password. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_password = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_password

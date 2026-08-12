@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_command_declare_helpers.h"
 #include "afw_command_strings.h"
 
 
@@ -34,7 +33,7 @@
  * @brief Generated register for afw_command. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_COMMAND_DECLARE_INTERNAL(void)
+extern void
 afw_command_generated_register(afw_xctx_t *xctx);
 
 

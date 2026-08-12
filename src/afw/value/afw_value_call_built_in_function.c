@@ -123,7 +123,7 @@ afw_value_call_built_in_function_create(
 }
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_call_built_in_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_function_definition_t *function,

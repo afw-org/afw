@@ -435,7 +435,7 @@ afw_array_of_null_remove(
  * defined in.  Use afw_data_type_null when not referencing in
  * a static.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)
+extern const afw_data_type_t
 afw_data_type_null_direct;
 
 /**
@@ -447,7 +447,7 @@ afw_data_type_null_direct;
  * The implementation of the data type must define this.  It is
  * managed by the generated data type instance.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
+extern const afw_data_type_inf_t
 afw_data_type_null_inf;
 
 AFW_END_DECLARES

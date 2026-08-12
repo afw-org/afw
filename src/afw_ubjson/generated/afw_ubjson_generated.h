@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_ubjson_declare_helpers.h"
 #include "afw_ubjson_strings.h"
 
 
@@ -34,7 +33,7 @@
  * @brief Generated register for afw_ubjson. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_UBJSON_DECLARE_INTERNAL(void)
+extern void
 afw_ubjson_generated_register(afw_xctx_t *xctx);
 
 
@@ -42,7 +41,7 @@ afw_ubjson_generated_register(afw_xctx_t *xctx);
  * @brief Register function for content_type ubjson
  * @param xctx of caller.
  */
-AFW_UBJSON_DECLARE_INTERNAL(void)
+extern void
 afw_ubjson_content_type_ubjson_register(
     afw_xctx_t *xctx);
 

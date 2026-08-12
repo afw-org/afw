@@ -166,7 +166,6 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
             'Generated string constants header for prefix `' + prefix + '`.')
 
         fd.write('\n#include "afw_interface.h"\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
 
         for dataType, strings in options['const'].items():
             use_prefix = prefix

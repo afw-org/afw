@@ -12,8 +12,6 @@
 #include "afw_minimal.h"
 
 /* Include generated declare helpers. */
-#include "generated/afw_ldap_declare_helpers.h"
-
 /**
  * @defgroup afw_ldap LDAP Adapter
  * @ingroup afw_included_extensions
@@ -36,12 +34,12 @@
  * @ref afw_dev_extending.
  */
 
-AFW_LDAP_BEGIN_DECLARES
+AFW_BEGIN_DECLARES
 
 /** ldap rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_ldap "ldap"
 
-AFW_LDAP_END_DECLARES
+AFW_END_DECLARES
 
 /** @} */
 

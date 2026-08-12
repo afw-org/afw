@@ -25,7 +25,6 @@
  * @brief Generated adaptive function bindings header for prefix `afw_crypto_`.
  */
 
-#include "afw_crypto_declare_helpers.h"
 
 /**
  * @addtogroup afw_c_api_public
@@ -43,7 +42,7 @@
  * @brief Get array of pointers to afw_crypto_function bindings.
  * @return pointer to array of function value pointers.
  */
-AFW_CRYPTO_DECLARE(const afw_value_function_definition_t **)
+extern const afw_value_function_definition_t **
 afw_crypto_function_bindings_get();
 
 

@@ -36,7 +36,7 @@ impl_useDefaultProcessing = {
 
 
 /* Value accessor afw_model_internal_get_current_adapterId. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_adapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -56,7 +56,7 @@ afw_model_internal_get_current_adapterId(
 }
 
 /* Value accessor afw_model_internal_get_current_adapterTypeSpecific. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_adapterTypeSpecific(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -75,7 +75,7 @@ afw_model_internal_get_current_adapterTypeSpecific(
 }
 
 /* Value accessor afw_model_internal_get_current_mapBackObject. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mapBackObject(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -88,7 +88,7 @@ afw_model_internal_get_current_mapBackObject(
 }
 
 /* Value accessor afw_model_internal_get_current_mapObject. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mapObject(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -101,7 +101,7 @@ afw_model_internal_get_current_mapObject(
 }
 
 /* Value accessor afw_model_internal_get_current_mappedAdapterId. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mappedAdapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -114,7 +114,7 @@ afw_model_internal_get_current_mappedAdapterId(
 }
 
 /* Value accessor afw_model_internal_get_current_mappedObject. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mappedObject(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -132,7 +132,7 @@ afw_model_internal_get_current_mappedObject(
 }
 
 /* Value accessor afw_model_internal_get_current_mappedObjectId. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mappedObjectId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -151,7 +151,7 @@ afw_model_internal_get_current_mappedObjectId(
 }
 
 /* Value accessor afw_model_internal_get_current_mappedObjectType. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mappedObjectType(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -171,7 +171,7 @@ afw_model_internal_get_current_mappedObjectType(
 }
 
 /* Value accessor afw_model_internal_get_current_mappedPropertyName. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mappedPropertyName(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -191,7 +191,7 @@ afw_model_internal_get_current_mappedPropertyName(
 }
 
 /* Value accessor afw_model_internal_get_current_mappedValue. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_mappedValue(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -204,7 +204,7 @@ afw_model_internal_get_current_mappedValue(
 }
 
 /* Value accessor afw_model_internal_get_current_modifyEntries. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_modifyEntries(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -217,7 +217,7 @@ afw_model_internal_get_current_modifyEntries(
 }
 
 /* Value accessor afw_model_internal_get_current_object. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_object(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -235,7 +235,7 @@ afw_model_internal_get_current_object(
 }
 
 /* Value accessor afw_model_internal_get_current_objectId. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_objectId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -254,7 +254,7 @@ afw_model_internal_get_current_objectId(
 }
 
 /* Value accessor afw_model_internal_get_current_objectType. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_objectType(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -273,7 +273,7 @@ afw_model_internal_get_current_objectType(
 }
 
 /* Value accessor afw_model_internal_get_current_propertyName. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_propertyName(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -293,7 +293,7 @@ afw_model_internal_get_current_propertyName(
 }
 
 /* Value accessor afw_model_internal_get_current_queryCriteria. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_queryCriteria(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -314,7 +314,7 @@ afw_model_internal_get_current_queryCriteria(
 }
 
 /* Value accessor afw_model_internal_get_current_returnObject. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_returnObject(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -327,7 +327,7 @@ afw_model_internal_get_current_returnObject(
 }
 
 /* Value accessor afw_model_internal_get_current_useDefaultProcessing. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_useDefaultProcessing(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -340,7 +340,7 @@ afw_model_internal_get_current_useDefaultProcessing(
 }
 
 /* Value accessor afw_model_internal_get_current_value. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_model_internal_get_current_value(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -1035,7 +1035,7 @@ impl_current_variable_useDefaultProcessing = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_property_to_mapped[] = {
     &impl_current_variable_adapterId,
     &impl_current_variable_object,
@@ -1047,7 +1047,7 @@ afw_model_internal_context_current_property_to_mapped[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_add_object[] = {
     &impl_current_variable_adapterId,
     &impl_current_variable_adapterTypeSpecific,
@@ -1059,7 +1059,7 @@ afw_model_internal_context_current_add_object[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_delete_object[] = {
     &impl_current_variable_adapterId,
     &impl_current_variable_adapterTypeSpecific,
@@ -1071,7 +1071,7 @@ afw_model_internal_context_current_delete_object[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_get_object[] = {
     &impl_current_variable_adapterId,
     &impl_current_variable_adapterTypeSpecific,
@@ -1085,7 +1085,7 @@ afw_model_internal_context_current_get_object[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_modify_object[] = {
     &impl_current_variable_modifyEntries,
     &impl_current_variable_adapterId,
@@ -1098,7 +1098,7 @@ afw_model_internal_context_current_modify_object[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_replace_object[] = {
     &impl_current_variable_adapterId,
     &impl_current_variable_adapterTypeSpecific,
@@ -1110,7 +1110,7 @@ afw_model_internal_context_current_replace_object[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_retrieve_objects[] = {
     &impl_current_variable_adapterId,
     &impl_current_variable_adapterTypeSpecific,
@@ -1125,7 +1125,7 @@ afw_model_internal_context_current_retrieve_objects[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_property_from_mapped[] = {
     &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
@@ -1137,7 +1137,7 @@ afw_model_internal_context_current_property_from_mapped[] = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_for_initial_object_id[] = {
     &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
@@ -1154,7 +1154,7 @@ afw_model_internal_context_current_for_initial_object_id[] = {
     NULL
 };
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 afw_model_internal_context_current_runtime_ctx[] = {
     &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
@@ -1319,7 +1319,7 @@ impl_custom_variable_contribute_cb(
  * Create a skeleton context used by many adapter functions and push
  * qualifies.
  */
-AFW_DEFINE_INTERNAL(afw_model_internal_context_t *)
+afw_model_internal_context_t *
 afw_model_internal_create_skeleton_context(
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
     const afw_context_cb_variable_t * const* current_variables,
@@ -1387,7 +1387,7 @@ afw_model_internal_create_skeleton_context(
 
 
 
-AFW_DEFINE_INTERNAL(afw_model_internal_context_t *)
+afw_model_internal_context_t *
 afw_model_internal_create_to_adapter_skeleton_context(
     afw_model_internal_adapter_session_self_t *self,
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,

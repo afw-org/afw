@@ -163,15 +163,15 @@ impl_data_type_object_dateTime__value = {
 };
 
 /* Value for empty array of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_dateTime;
 
 /* Value for empty array of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_dateTime;
 
 /* Data type dateTime instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+const afw_data_type_t
 afw_data_type_dateTime_direct = {
     &afw_data_type_dateTime_inf,
     (const afw_object_t *)&impl_data_type_object_dateTime,
@@ -199,7 +199,7 @@ afw_data_type_dateTime_direct = {
 };
 
 /* Value for empty array of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_dateTime = {
     {
         &afw_array_view_of_c_array_inf,
@@ -211,7 +211,7 @@ impl_empty_array_of_dateTime = {
 };
 
 /* Value for empty array of dateTime. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_dateTime = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_dateTime

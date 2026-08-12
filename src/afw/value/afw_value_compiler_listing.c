@@ -292,7 +292,7 @@ impl_afw_writer_decrement_indent(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+const afw_utf8_t *
 afw_value_compiler_listing_symbol_type_name(
     afw_value_block_symbol_type_t type)
 {
@@ -304,7 +304,7 @@ afw_value_compiler_listing_symbol_type_name(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+const afw_utf8_t *
 afw_value_compiler_listing_for_child(
     const afw_value_t *instance,
     const afw_writer_t *writer,
@@ -378,7 +378,7 @@ impl_symbol_listing(
 
 
 /* Decompile a value to a compiler listing string. */
-AFW_DEFINE_INTERNAL(afw_value_compiler_listing_t *)
+afw_value_compiler_listing_t *
 afw_value_compiler_listing_to_string_instance(
     const afw_value_t *value,
     afw_value_compiler_listing_t *parent,
@@ -619,7 +619,7 @@ afw_value_compiler_listing_to_string(
 
 
 /* Decompile a value to a compiler listing string. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_begin_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
@@ -680,7 +680,7 @@ afw_value_compiler_listing_begin_value(
 
 
 /* Decompile a value to a compiler listing string. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_end_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
@@ -691,7 +691,7 @@ afw_value_compiler_listing_end_value(
 
 
 /* Decompile call args. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_call_args(
     const afw_writer_t *writer,
     const afw_value_call_args_t *args,
@@ -709,7 +709,7 @@ afw_value_compiler_listing_call_args(
 
 
 /* List one value in a compiler listing (human-oriented; not decompile). */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_value(
     const afw_value_t *instance,
     const afw_writer_t *writer,
@@ -733,7 +733,7 @@ afw_value_compiler_listing_value(
 }
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_name_and_type(
     const afw_writer_t *writer,
     const afw_utf8_t *name,

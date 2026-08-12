@@ -25,7 +25,6 @@
  * @brief Generated adaptive function bindings header for prefix `afw_`.
  */
 
-#include "afw_declare_helpers.h"
 
 /**
  * @addtogroup afw_c_api_public
@@ -43,7 +42,7 @@
  * @brief Get array of pointers to afw_function bindings.
  * @return pointer to array of function value pointers.
  */
-AFW_DECLARE(const afw_value_function_definition_t **)
+extern const afw_value_function_definition_t **
 afw_function_bindings_get();
 
 
@@ -55,7 +54,7 @@ afw_function_bindings_get();
  */
 
 /** @brief Function definition adapter_objectCallback_signature */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_adapter_objectCallback_signature;
 
 /**
@@ -95,7 +94,7 @@ afw_function_execute_adapter_objectCallback_signature(
     afw_function_execute_t *x);
 
 /** @brief Function definition add_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_object;
 
 /**
@@ -157,7 +156,7 @@ afw_function_execute_add_object(
     afw_function_execute_t *x);
 
 /** @brief Function definition add_object_with_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_object_with_uri;
 
 /**
@@ -213,7 +212,7 @@ afw_function_execute_add_object_with_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition convert_AdaptiveQueryCriteria_to_query_string */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
 
 /**
@@ -274,7 +273,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
     afw_function_execute_t *x);
 
 /** @brief Function definition convert_query_string_to_AdaptiveQueryCriteria */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
 
 /**
@@ -318,7 +317,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
     afw_function_execute_t *x);
 
 /** @brief Function definition delete_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_delete_object;
 
 /**
@@ -373,7 +372,7 @@ afw_function_execute_delete_object(
     afw_function_execute_t *x);
 
 /** @brief Function definition delete_object_with_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_delete_object_with_uri;
 
 /**
@@ -423,7 +422,7 @@ afw_function_execute_delete_object_with_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition get_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_get_object;
 
 /**
@@ -479,7 +478,7 @@ afw_function_execute_get_object(
     afw_function_execute_t *x);
 
 /** @brief Function definition get_object_with_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_get_object_with_uri;
 
 /**
@@ -528,7 +527,7 @@ afw_function_execute_get_object_with_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition modify_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_modify_object;
 
 /**
@@ -609,7 +608,7 @@ afw_function_execute_modify_object(
     afw_function_execute_t *x);
 
 /** @brief Function definition modify_object_with_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_modify_object_with_uri;
 
 /**
@@ -686,7 +685,7 @@ afw_function_execute_modify_object_with_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition reconcile_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_reconcile_object;
 
 /**
@@ -727,7 +726,7 @@ afw_function_execute_reconcile_object(
     afw_function_execute_t *x);
 
 /** @brief Function definition replace_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_replace_object;
 
 /**
@@ -785,7 +784,7 @@ afw_function_execute_replace_object(
     afw_function_execute_t *x);
 
 /** @brief Function definition replace_object_with_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_replace_object_with_uri;
 
 /**
@@ -838,7 +837,7 @@ afw_function_execute_replace_object_with_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects;
 
 /**
@@ -914,7 +913,7 @@ afw_function_execute_retrieve_objects(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects_to_callback */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_to_callback;
 
 /**
@@ -990,7 +989,7 @@ afw_function_execute_retrieve_objects_to_callback(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects_to_response */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_to_response;
 
 /**
@@ -1058,7 +1057,7 @@ afw_function_execute_retrieve_objects_to_response(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects_to_stream */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_to_stream;
 
 /**
@@ -1126,7 +1125,7 @@ afw_function_execute_retrieve_objects_to_stream(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects_with_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri;
 
 /**
@@ -1193,7 +1192,7 @@ afw_function_execute_retrieve_objects_with_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects_with_uri_to_callback */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri_to_callback;
 
 /**
@@ -1261,7 +1260,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects_with_uri_to_response */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri_to_response;
 
 /**
@@ -1322,7 +1321,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
     afw_function_execute_t *x);
 
 /** @brief Function definition retrieve_objects_with_uri_to_stream */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_retrieve_objects_with_uri_to_stream;
 
 /**
@@ -1383,7 +1382,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
     afw_function_execute_t *x);
 
 /** @brief Function definition update_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_update_object;
 
 /**
@@ -1444,7 +1443,7 @@ afw_function_execute_update_object(
     afw_function_execute_t *x);
 
 /** @brief Function definition update_object_with_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_update_object_with_uri;
 
 /**
@@ -1510,7 +1509,7 @@ afw_function_execute_update_object_with_uri(
  */
 
 /** @brief Function definition extension_load */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_extension_load;
 
 /**
@@ -1550,7 +1549,7 @@ afw_function_execute_extension_load(
     afw_function_execute_t *x);
 
 /** @brief Function definition extension_load_by_module_path */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_extension_load_by_module_path;
 
 /**
@@ -1588,7 +1587,7 @@ afw_function_execute_extension_load_by_module_path(
     afw_function_execute_t *x);
 
 /** @brief Function definition flag_get_active */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_flag_get_active;
 
 /**
@@ -1622,7 +1621,7 @@ afw_function_execute_flag_get_active(
     afw_function_execute_t *x);
 
 /** @brief Function definition flag_get_active_defaults */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_flag_get_active_defaults;
 
 /**
@@ -1654,7 +1653,7 @@ afw_function_execute_flag_get_active_defaults(
     afw_function_execute_t *x);
 
 /** @brief Function definition flag_get_defaults */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_flag_get_defaults;
 
 /**
@@ -1690,7 +1689,7 @@ afw_function_execute_flag_get_defaults(
     afw_function_execute_t *x);
 
 /** @brief Function definition flag_modify_defaults */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_flag_modify_defaults;
 
 /**
@@ -1737,7 +1736,7 @@ afw_function_execute_flag_modify_defaults(
     afw_function_execute_t *x);
 
 /** @brief Function definition flag_replace_defaults */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_flag_replace_defaults;
 
 /**
@@ -1781,7 +1780,7 @@ afw_function_execute_flag_replace_defaults(
     afw_function_execute_t *x);
 
 /** @brief Function definition flag_set */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_flag_set;
 
 /**
@@ -1820,7 +1819,7 @@ afw_function_execute_flag_set(
     afw_function_execute_t *x);
 
 /** @brief Function definition registry_key_check */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_registry_key_check;
 
 /**
@@ -1867,7 +1866,7 @@ afw_function_execute_registry_key_check(
     afw_function_execute_t *x);
 
 /** @brief Function definition service_get */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_service_get;
 
 /**
@@ -1905,7 +1904,7 @@ afw_function_execute_service_get(
     afw_function_execute_t *x);
 
 /** @brief Function definition service_restart */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_service_restart;
 
 /**
@@ -1943,7 +1942,7 @@ afw_function_execute_service_restart(
     afw_function_execute_t *x);
 
 /** @brief Function definition service_start */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_service_start;
 
 /**
@@ -1981,7 +1980,7 @@ afw_function_execute_service_start(
     afw_function_execute_t *x);
 
 /** @brief Function definition service_stop */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_service_stop;
 
 /**
@@ -2029,7 +2028,7 @@ afw_function_execute_service_stop(
  */
 
 /** @brief Function definition anyURI */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_anyURI;
 
 /**
@@ -2067,7 +2066,7 @@ afw_function_definition_anyURI;
  */
 
 /** @brief Function definition at_least_one_member_of<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_anyURI;
 
 /**
@@ -2105,7 +2104,7 @@ afw_function_definition_at_least_one_member_of_anyURI;
  */
 
 /** @brief Function definition bag<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_anyURI;
 
 /**
@@ -2139,7 +2138,7 @@ afw_function_definition_bag_anyURI;
  */
 
 /** @brief Function definition bag_size<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_anyURI;
 
 /**
@@ -2173,7 +2172,7 @@ afw_function_definition_bag_size_anyURI;
  */
 
 /** @brief Function definition ends_with<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ends_with_anyURI;
 
 /**
@@ -2210,7 +2209,7 @@ afw_function_definition_ends_with_anyURI;
  */
 
 /** @brief Function definition eq<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_anyURI;
 
 /**
@@ -2253,7 +2252,7 @@ afw_function_definition_eq_anyURI;
  */
 
 /** @brief Function definition eqx<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_anyURI;
 
 /**
@@ -2292,7 +2291,7 @@ afw_function_definition_eqx_anyURI;
  */
 
 /** @brief Function definition ge<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_anyURI;
 
 /**
@@ -2330,7 +2329,7 @@ afw_function_definition_ge_anyURI;
  */
 
 /** @brief Function definition gt<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_anyURI;
 
 /**
@@ -2368,7 +2367,7 @@ afw_function_definition_gt_anyURI;
  */
 
 /** @brief Function definition includes<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_includes_anyURI;
 
 /**
@@ -2410,7 +2409,7 @@ afw_function_definition_includes_anyURI;
  */
 
 /** @brief Function definition index_of<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_index_of_anyURI;
 
 /**
@@ -2452,7 +2451,7 @@ afw_function_definition_index_of_anyURI;
  */
 
 /** @brief Function definition intersection<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_anyURI;
 
 /**
@@ -2490,7 +2489,7 @@ afw_function_definition_intersection_anyURI;
  */
 
 /** @brief Function definition is<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_anyURI;
 
 /**
@@ -2524,7 +2523,7 @@ afw_function_definition_is_anyURI;
  */
 
 /** @brief Function definition is_in<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_anyURI;
 
 /**
@@ -2562,7 +2561,7 @@ afw_function_definition_is_in_anyURI;
  */
 
 /** @brief Function definition last_index_of<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_last_index_of_anyURI;
 
 /**
@@ -2604,7 +2603,7 @@ afw_function_definition_last_index_of_anyURI;
  */
 
 /** @brief Function definition le<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_anyURI;
 
 /**
@@ -2642,7 +2641,7 @@ afw_function_definition_le_anyURI;
  */
 
 /** @brief Function definition length<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_length_anyURI;
 
 /**
@@ -2679,7 +2678,7 @@ afw_function_definition_length_anyURI;
  */
 
 /** @brief Function definition lt<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_anyURI;
 
 /**
@@ -2717,7 +2716,7 @@ afw_function_definition_lt_anyURI;
  */
 
 /** @brief Function definition ne<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_anyURI;
 
 /**
@@ -2760,7 +2759,7 @@ afw_function_definition_ne_anyURI;
  */
 
 /** @brief Function definition nex<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_anyURI;
 
 /**
@@ -2799,7 +2798,7 @@ afw_function_definition_nex_anyURI;
  */
 
 /** @brief Function definition one_and_only<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_anyURI;
 
 /**
@@ -2838,7 +2837,7 @@ afw_function_definition_one_and_only_anyURI;
  */
 
 /** @brief Function definition regexp_index_of<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_index_of_anyURI;
 
 /**
@@ -2876,7 +2875,7 @@ afw_function_definition_regexp_index_of_anyURI;
  */
 
 /** @brief Function definition regexp_match<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_anyURI;
 
 /**
@@ -2914,7 +2913,7 @@ afw_function_definition_regexp_match_anyURI;
  */
 
 /** @brief Function definition regexp_replace<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_replace_anyURI;
 
 /**
@@ -2958,7 +2957,7 @@ afw_function_definition_regexp_replace_anyURI;
  */
 
 /** @brief Function definition repeat<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_repeat_anyURI;
 
 /**
@@ -2995,7 +2994,7 @@ afw_function_definition_repeat_anyURI;
  */
 
 /** @brief Function definition replace<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_replace_anyURI;
 
 /**
@@ -3039,7 +3038,7 @@ afw_function_definition_replace_anyURI;
  */
 
 /** @brief Function definition set_equals<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_anyURI;
 
 /**
@@ -3077,7 +3076,7 @@ afw_function_definition_set_equals_anyURI;
  */
 
 /** @brief Function definition split<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_split_anyURI;
 
 /**
@@ -3120,7 +3119,7 @@ afw_function_definition_split_anyURI;
  */
 
 /** @brief Function definition starts_with<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_starts_with_anyURI;
 
 /**
@@ -3158,7 +3157,7 @@ afw_function_definition_starts_with_anyURI;
  */
 
 /** @brief Function definition subset<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_anyURI;
 
 /**
@@ -3196,7 +3195,7 @@ afw_function_definition_subset_anyURI;
  */
 
 /** @brief Function definition substring<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_substring_anyURI;
 
 /**
@@ -3243,7 +3242,7 @@ afw_function_definition_substring_anyURI;
  */
 
 /** @brief Function definition to_string<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_anyURI;
 
 /**
@@ -3278,7 +3277,7 @@ afw_function_definition_to_string_anyURI;
  */
 
 /** @brief Function definition union<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_anyURI;
 
 /**
@@ -3315,7 +3314,7 @@ afw_function_definition_union_anyURI;
  */
 
 /** @brief Function definition url_encode<anyURI> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_url_encode_anyURI;
 
 /**
@@ -3360,7 +3359,7 @@ afw_function_definition_url_encode_anyURI;
  */
 
 /** @brief Function definition add_entries */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_entries;
 
 /**
@@ -3399,7 +3398,7 @@ afw_function_execute_add_entries(
     afw_function_execute_t *x);
 
 /** @brief Function definition array */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_array;
 
 /**
@@ -3441,7 +3440,7 @@ afw_function_execute_array(
     afw_function_execute_t *x);
 
 /** @brief Function definition at */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at;
 
 /**
@@ -3480,7 +3479,7 @@ afw_function_execute_at(
     afw_function_execute_t *x);
 
 /** @brief Function definition bag<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_array;
 
 /**
@@ -3514,7 +3513,7 @@ afw_function_definition_bag_array;
  */
 
 /** @brief Function definition bag_size<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_array;
 
 /**
@@ -3548,7 +3547,7 @@ afw_function_definition_bag_size_array;
  */
 
 /** @brief Function definition clone<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_clone_array;
 
 /**
@@ -3582,7 +3581,7 @@ afw_function_definition_clone_array;
  */
 
 /** @brief Function definition create_array */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_create_array;
 
 /**
@@ -3624,7 +3623,7 @@ afw_function_execute_create_array(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_array;
 
 /**
@@ -3667,7 +3666,7 @@ afw_function_definition_eq_array;
  */
 
 /** @brief Function definition eqx<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_array;
 
 /**
@@ -3706,7 +3705,7 @@ afw_function_definition_eqx_array;
  */
 
 /** @brief Function definition freeze<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_freeze_array;
 
 /**
@@ -3741,7 +3740,7 @@ afw_function_definition_freeze_array;
  */
 
 /** @brief Function definition ge<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_array;
 
 /**
@@ -3779,7 +3778,7 @@ afw_function_definition_ge_array;
  */
 
 /** @brief Function definition gt<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_array;
 
 /**
@@ -3817,7 +3816,7 @@ afw_function_definition_gt_array;
  */
 
 /** @brief Function definition includes<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_includes_array;
 
 /**
@@ -3857,7 +3856,7 @@ afw_function_definition_includes_array;
  */
 
 /** @brief Function definition is<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_array;
 
 /**
@@ -3891,7 +3890,7 @@ afw_function_definition_is_array;
  */
 
 /** @brief Function definition join */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_join;
 
 /**
@@ -3928,7 +3927,7 @@ afw_function_execute_join(
     afw_function_execute_t *x);
 
 /** @brief Function definition le<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_array;
 
 /**
@@ -3966,7 +3965,7 @@ afw_function_definition_le_array;
  */
 
 /** @brief Function definition length<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_length_array;
 
 /**
@@ -4003,7 +4002,7 @@ afw_function_definition_length_array;
  */
 
 /** @brief Function definition lt<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_array;
 
 /**
@@ -4040,7 +4039,7 @@ afw_function_definition_lt_array;
  */
 
 /** @brief Function definition ne<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_array;
 
 /**
@@ -4083,7 +4082,7 @@ afw_function_definition_ne_array;
  */
 
 /** @brief Function definition nex<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_array;
 
 /**
@@ -4122,7 +4121,7 @@ afw_function_definition_nex_array;
  */
 
 /** @brief Function definition pop */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_pop;
 
 /**
@@ -4156,7 +4155,7 @@ afw_function_execute_pop(
     afw_function_execute_t *x);
 
 /** @brief Function definition push */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_push;
 
 /**
@@ -4194,7 +4193,7 @@ afw_function_execute_push(
     afw_function_execute_t *x);
 
 /** @brief Function definition reverse */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_reverse;
 
 /**
@@ -4228,7 +4227,7 @@ afw_function_execute_reverse(
     afw_function_execute_t *x);
 
 /** @brief Function definition shift */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_shift;
 
 /**
@@ -4262,7 +4261,7 @@ afw_function_execute_shift(
     afw_function_execute_t *x);
 
 /** @brief Function definition slice */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_slice;
 
 /**
@@ -4308,7 +4307,7 @@ afw_function_execute_slice(
     afw_function_execute_t *x);
 
 /** @brief Function definition splice */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_splice;
 
 /**
@@ -4354,7 +4353,7 @@ afw_function_execute_splice(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_string<array> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_array;
 
 /**
@@ -4389,7 +4388,7 @@ afw_function_definition_to_string_array;
  */
 
 /** @brief Function definition unshift */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_unshift;
 
 /**
@@ -4436,7 +4435,7 @@ afw_function_execute_unshift(
  */
 
 /** @brief Function definition authorization_check */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_authorization_check;
 
 /**
@@ -4501,7 +4500,7 @@ afw_function_execute_authorization_check(
  */
 
 /** @brief Function definition at_least_one_member_of<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_base64Binary;
 
 /**
@@ -4539,7 +4538,7 @@ afw_function_definition_at_least_one_member_of_base64Binary;
  */
 
 /** @brief Function definition bag<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_base64Binary;
 
 /**
@@ -4573,7 +4572,7 @@ afw_function_definition_bag_base64Binary;
  */
 
 /** @brief Function definition bag_size<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_base64Binary;
 
 /**
@@ -4607,7 +4606,7 @@ afw_function_definition_bag_size_base64Binary;
  */
 
 /** @brief Function definition base64Binary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_base64Binary;
 
 /**
@@ -4645,7 +4644,7 @@ afw_function_definition_base64Binary;
  */
 
 /** @brief Function definition decode_to_string<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_decode_to_string_base64Binary;
 
 /**
@@ -4679,7 +4678,7 @@ afw_function_execute_decode_to_string_base64Binary(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_base64Binary;
 
 /**
@@ -4722,7 +4721,7 @@ afw_function_definition_eq_base64Binary;
  */
 
 /** @brief Function definition eqx<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_base64Binary;
 
 /**
@@ -4761,7 +4760,7 @@ afw_function_definition_eqx_base64Binary;
  */
 
 /** @brief Function definition ge<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_base64Binary;
 
 /**
@@ -4799,7 +4798,7 @@ afw_function_definition_ge_base64Binary;
  */
 
 /** @brief Function definition gt<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_base64Binary;
 
 /**
@@ -4837,7 +4836,7 @@ afw_function_definition_gt_base64Binary;
  */
 
 /** @brief Function definition intersection<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_base64Binary;
 
 /**
@@ -4875,7 +4874,7 @@ afw_function_definition_intersection_base64Binary;
  */
 
 /** @brief Function definition is<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_base64Binary;
 
 /**
@@ -4909,7 +4908,7 @@ afw_function_definition_is_base64Binary;
  */
 
 /** @brief Function definition is_in<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_base64Binary;
 
 /**
@@ -4947,7 +4946,7 @@ afw_function_definition_is_in_base64Binary;
  */
 
 /** @brief Function definition le<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_base64Binary;
 
 /**
@@ -4985,7 +4984,7 @@ afw_function_definition_le_base64Binary;
  */
 
 /** @brief Function definition lt<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_base64Binary;
 
 /**
@@ -5023,7 +5022,7 @@ afw_function_definition_lt_base64Binary;
  */
 
 /** @brief Function definition ne<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_base64Binary;
 
 /**
@@ -5067,7 +5066,7 @@ afw_function_definition_ne_base64Binary;
  */
 
 /** @brief Function definition nex<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_base64Binary;
 
 /**
@@ -5106,7 +5105,7 @@ afw_function_definition_nex_base64Binary;
  */
 
 /** @brief Function definition one_and_only<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_base64Binary;
 
 /**
@@ -5145,7 +5144,7 @@ afw_function_definition_one_and_only_base64Binary;
  */
 
 /** @brief Function definition set_equals<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_base64Binary;
 
 /**
@@ -5183,7 +5182,7 @@ afw_function_definition_set_equals_base64Binary;
  */
 
 /** @brief Function definition subset<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_base64Binary;
 
 /**
@@ -5221,7 +5220,7 @@ afw_function_definition_subset_base64Binary;
  */
 
 /** @brief Function definition to_string<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_base64Binary;
 
 /**
@@ -5256,7 +5255,7 @@ afw_function_definition_to_string_base64Binary;
  */
 
 /** @brief Function definition union<base64Binary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_base64Binary;
 
 /**
@@ -5303,7 +5302,7 @@ afw_function_definition_union_base64Binary;
  */
 
 /** @brief Function definition at_least_one_member_of<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_boolean;
 
 /**
@@ -5341,7 +5340,7 @@ afw_function_definition_at_least_one_member_of_boolean;
  */
 
 /** @brief Function definition bag<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_boolean;
 
 /**
@@ -5375,7 +5374,7 @@ afw_function_definition_bag_boolean;
  */
 
 /** @brief Function definition bag_size<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_boolean;
 
 /**
@@ -5409,7 +5408,7 @@ afw_function_definition_bag_size_boolean;
  */
 
 /** @brief Function definition boolean */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_boolean;
 
 /**
@@ -5447,7 +5446,7 @@ afw_function_definition_boolean;
  */
 
 /** @brief Function definition eq<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_boolean;
 
 /**
@@ -5490,7 +5489,7 @@ afw_function_definition_eq_boolean;
  */
 
 /** @brief Function definition eqx<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_boolean;
 
 /**
@@ -5529,7 +5528,7 @@ afw_function_definition_eqx_boolean;
  */
 
 /** @brief Function definition ge<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_boolean;
 
 /**
@@ -5567,7 +5566,7 @@ afw_function_definition_ge_boolean;
  */
 
 /** @brief Function definition gt<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_boolean;
 
 /**
@@ -5605,7 +5604,7 @@ afw_function_definition_gt_boolean;
  */
 
 /** @brief Function definition intersection<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_boolean;
 
 /**
@@ -5643,7 +5642,7 @@ afw_function_definition_intersection_boolean;
  */
 
 /** @brief Function definition is<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_boolean;
 
 /**
@@ -5677,7 +5676,7 @@ afw_function_definition_is_boolean;
  */
 
 /** @brief Function definition is_in<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_boolean;
 
 /**
@@ -5715,7 +5714,7 @@ afw_function_definition_is_in_boolean;
  */
 
 /** @brief Function definition le<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_boolean;
 
 /**
@@ -5753,7 +5752,7 @@ afw_function_definition_le_boolean;
  */
 
 /** @brief Function definition lt<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_boolean;
 
 /**
@@ -5791,7 +5790,7 @@ afw_function_definition_lt_boolean;
  */
 
 /** @brief Function definition ne<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_boolean;
 
 /**
@@ -5834,7 +5833,7 @@ afw_function_definition_ne_boolean;
  */
 
 /** @brief Function definition nex<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_boolean;
 
 /**
@@ -5873,7 +5872,7 @@ afw_function_definition_nex_boolean;
  */
 
 /** @brief Function definition one_and_only<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_boolean;
 
 /**
@@ -5912,7 +5911,7 @@ afw_function_definition_one_and_only_boolean;
  */
 
 /** @brief Function definition set_equals<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_boolean;
 
 /**
@@ -5950,7 +5949,7 @@ afw_function_definition_set_equals_boolean;
  */
 
 /** @brief Function definition subset<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_boolean;
 
 /**
@@ -5988,7 +5987,7 @@ afw_function_definition_subset_boolean;
  */
 
 /** @brief Function definition to_string<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_boolean;
 
 /**
@@ -6023,7 +6022,7 @@ afw_function_definition_to_string_boolean;
  */
 
 /** @brief Function definition union<boolean> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_boolean;
 
 /**
@@ -6070,7 +6069,7 @@ afw_function_definition_union_boolean;
  */
 
 /** @brief Function definition nullish_coalescing */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nullish_coalescing;
 
 /**
@@ -6106,7 +6105,7 @@ afw_function_execute_nullish_coalescing(
     afw_function_execute_t *x);
 
 /** @brief Function definition optional_chaining */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_optional_chaining;
 
 /**
@@ -6144,7 +6143,7 @@ afw_function_execute_optional_chaining(
     afw_function_execute_t *x);
 
 /** @brief Function definition void_operator */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_void_operator;
 
 /**
@@ -6189,7 +6188,7 @@ afw_function_execute_void_operator(
  */
 
 /** @brief Function definition assign */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_assign;
 
 /**
@@ -6228,7 +6227,7 @@ afw_function_execute_assign(
     afw_function_execute_t *x);
 
 /** @brief Function definition break */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_break;
 
 /**
@@ -6265,7 +6264,7 @@ afw_function_execute_break(
     afw_function_execute_t *x);
 
 /** @brief Function definition const */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_const;
 
 /**
@@ -6307,7 +6306,7 @@ afw_function_execute_const(
     afw_function_execute_t *x);
 
 /** @brief Function definition continue */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_continue;
 
 /**
@@ -6339,7 +6338,7 @@ afw_function_execute_continue(
     afw_function_execute_t *x);
 
 /** @brief Function definition do_while */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_do_while;
 
 /**
@@ -6383,7 +6382,7 @@ afw_function_execute_do_while(
     afw_function_execute_t *x);
 
 /** @brief Function definition for */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_for;
 
 /**
@@ -6437,7 +6436,7 @@ afw_function_execute_for(
     afw_function_execute_t *x);
 
 /** @brief Function definition for_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_for_of;
 
 /**
@@ -6485,7 +6484,7 @@ afw_function_execute_for_of(
     afw_function_execute_t *x);
 
 /** @brief Function definition if */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_if;
 
 /**
@@ -6530,7 +6529,7 @@ afw_function_execute_if(
     afw_function_execute_t *x);
 
 /** @brief Function definition let */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_let;
 
 /**
@@ -6574,7 +6573,7 @@ afw_function_execute_let(
     afw_function_execute_t *x);
 
 /** @brief Function definition rethrow */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_rethrow;
 
 /**
@@ -6605,7 +6604,7 @@ afw_function_execute_rethrow(
     afw_function_execute_t *x);
 
 /** @brief Function definition return */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_return;
 
 /**
@@ -6643,7 +6642,7 @@ afw_function_execute_return(
     afw_function_execute_t *x);
 
 /** @brief Function definition switch */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_switch;
 
 /**
@@ -6697,7 +6696,7 @@ afw_function_execute_switch(
     afw_function_execute_t *x);
 
 /** @brief Function definition throw */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_throw;
 
 /**
@@ -6738,7 +6737,7 @@ afw_function_execute_throw(
     afw_function_execute_t *x);
 
 /** @brief Function definition try */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_try;
 
 /**
@@ -6798,7 +6797,7 @@ afw_function_execute_try(
     afw_function_execute_t *x);
 
 /** @brief Function definition while */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_while;
 
 /**
@@ -6844,7 +6843,7 @@ afw_function_execute_while(
     afw_function_execute_t *x);
 
 /** @brief Function definition wrap_literal_array */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_wrap_literal_array;
 
 /**
@@ -6882,7 +6881,7 @@ afw_function_execute_wrap_literal_array(
     afw_function_execute_t *x);
 
 /** @brief Function definition wrap_literal_object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_wrap_literal_object;
 
 /**
@@ -6930,7 +6929,7 @@ afw_function_execute_wrap_literal_object(
  */
 
 /** @brief Function definition assert */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_assert;
 
 /**
@@ -6968,7 +6967,7 @@ afw_function_execute_assert(
     afw_function_execute_t *x);
 
 /** @brief Function definition compile_from_file */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile_from_file;
 
 /**
@@ -7011,7 +7010,7 @@ afw_function_execute_compile_from_file(
     afw_function_execute_t *x);
 
 /** @brief Function definition decompile */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_decompile;
 
 /**
@@ -7059,7 +7058,7 @@ afw_function_execute_decompile(
     afw_function_execute_t *x);
 
 /** @brief Function definition eval_from_file */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eval_from_file;
 
 /**
@@ -7100,7 +7099,7 @@ afw_function_execute_eval_from_file(
     afw_function_execute_t *x);
 
 /** @brief Function definition evaluate */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_evaluate;
 
 /**
@@ -7142,7 +7141,7 @@ afw_function_execute_evaluate(
     afw_function_execute_t *x);
 
 /** @brief Function definition evaluate_with_retry */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_evaluate_with_retry;
 
 /**
@@ -7178,7 +7177,7 @@ afw_function_execute_evaluate_with_retry(
     afw_function_execute_t *x);
 
 /** @brief Function definition qualifier */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_qualifier;
 
 /**
@@ -7249,7 +7248,7 @@ afw_function_execute_qualifier(
     afw_function_execute_t *x);
 
 /** @brief Function definition qualifiers */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_qualifiers;
 
 /**
@@ -7309,7 +7308,7 @@ afw_function_execute_qualifiers(
     afw_function_execute_t *x);
 
 /** @brief Function definition safe_evaluate */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_safe_evaluate;
 
 /**
@@ -7347,7 +7346,7 @@ afw_function_execute_safe_evaluate(
     afw_function_execute_t *x);
 
 /** @brief Function definition stringify */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_stringify;
 
 /**
@@ -7402,7 +7401,7 @@ afw_function_execute_stringify(
     afw_function_execute_t *x);
 
 /** @brief Function definition test_script */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_test_script;
 
 /**
@@ -7454,7 +7453,7 @@ afw_function_execute_test_script(
     afw_function_execute_t *x);
 
 /** @brief Function definition test_template */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_test_template;
 
 /**
@@ -7506,7 +7505,7 @@ afw_function_execute_test_template(
     afw_function_execute_t *x);
 
 /** @brief Function definition test_value */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_test_value;
 
 /**
@@ -7568,7 +7567,7 @@ afw_function_execute_test_value(
  */
 
 /** @brief Function definition add_dayTimeDuration<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_dayTimeDuration_dateTime;
 
 /**
@@ -7604,7 +7603,7 @@ afw_function_execute_add_dayTimeDuration_dateTime(
     afw_function_execute_t *x);
 
 /** @brief Function definition add_yearMonthDuration<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_yearMonthDuration_dateTime;
 
 /**
@@ -7640,7 +7639,7 @@ afw_function_execute_add_yearMonthDuration_dateTime(
     afw_function_execute_t *x);
 
 /** @brief Function definition at_least_one_member_of<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_dateTime;
 
 /**
@@ -7678,7 +7677,7 @@ afw_function_definition_at_least_one_member_of_dateTime;
  */
 
 /** @brief Function definition bag<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_dateTime;
 
 /**
@@ -7712,7 +7711,7 @@ afw_function_definition_bag_dateTime;
  */
 
 /** @brief Function definition bag_size<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_dateTime;
 
 /**
@@ -7746,7 +7745,7 @@ afw_function_definition_bag_size_dateTime;
  */
 
 /** @brief Function definition dateTime */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_dateTime;
 
 /**
@@ -7784,7 +7783,7 @@ afw_function_definition_dateTime;
  */
 
 /** @brief Function definition eq<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_dateTime;
 
 /**
@@ -7827,7 +7826,7 @@ afw_function_definition_eq_dateTime;
  */
 
 /** @brief Function definition eqx<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_dateTime;
 
 /**
@@ -7866,7 +7865,7 @@ afw_function_definition_eqx_dateTime;
  */
 
 /** @brief Function definition ge<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_dateTime;
 
 /**
@@ -7907,7 +7906,7 @@ afw_function_definition_ge_dateTime;
  */
 
 /** @brief Function definition gt<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_dateTime;
 
 /**
@@ -7948,7 +7947,7 @@ afw_function_definition_gt_dateTime;
  */
 
 /** @brief Function definition intersection<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_dateTime;
 
 /**
@@ -7986,7 +7985,7 @@ afw_function_definition_intersection_dateTime;
  */
 
 /** @brief Function definition is<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_dateTime;
 
 /**
@@ -8020,7 +8019,7 @@ afw_function_definition_is_dateTime;
  */
 
 /** @brief Function definition is_in<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_dateTime;
 
 /**
@@ -8058,7 +8057,7 @@ afw_function_definition_is_in_dateTime;
  */
 
 /** @brief Function definition le<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_dateTime;
 
 /**
@@ -8099,7 +8098,7 @@ afw_function_definition_le_dateTime;
  */
 
 /** @brief Function definition lt<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_dateTime;
 
 /**
@@ -8140,7 +8139,7 @@ afw_function_definition_lt_dateTime;
  */
 
 /** @brief Function definition max<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_max_dateTime;
 
 /**
@@ -8178,7 +8177,7 @@ afw_function_definition_max_dateTime;
  */
 
 /** @brief Function definition min<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_min_dateTime;
 
 /**
@@ -8216,7 +8215,7 @@ afw_function_definition_min_dateTime;
  */
 
 /** @brief Function definition ne<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_dateTime;
 
 /**
@@ -8259,7 +8258,7 @@ afw_function_definition_ne_dateTime;
  */
 
 /** @brief Function definition nex<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_dateTime;
 
 /**
@@ -8298,7 +8297,7 @@ afw_function_definition_nex_dateTime;
  */
 
 /** @brief Function definition one_and_only<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_dateTime;
 
 /**
@@ -8337,7 +8336,7 @@ afw_function_definition_one_and_only_dateTime;
  */
 
 /** @brief Function definition set_equals<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_dateTime;
 
 /**
@@ -8375,7 +8374,7 @@ afw_function_definition_set_equals_dateTime;
  */
 
 /** @brief Function definition subset<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_dateTime;
 
 /**
@@ -8413,7 +8412,7 @@ afw_function_definition_subset_dateTime;
  */
 
 /** @brief Function definition subtract_dayTimeDuration<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract_dayTimeDuration_dateTime;
 
 /**
@@ -8450,7 +8449,7 @@ afw_function_execute_subtract_dayTimeDuration_dateTime(
     afw_function_execute_t *x);
 
 /** @brief Function definition subtract_yearMonthDuration<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract_yearMonthDuration_dateTime;
 
 /**
@@ -8487,7 +8486,7 @@ afw_function_execute_subtract_yearMonthDuration_dateTime(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_string<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_dateTime;
 
 /**
@@ -8522,7 +8521,7 @@ afw_function_definition_to_string_dateTime;
  */
 
 /** @brief Function definition union<dateTime> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_dateTime;
 
 /**
@@ -8569,7 +8568,7 @@ afw_function_definition_union_dateTime;
  */
 
 /** @brief Function definition add_yearMonthDuration<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_yearMonthDuration_date;
 
 /**
@@ -8605,7 +8604,7 @@ afw_function_execute_add_yearMonthDuration_date(
     afw_function_execute_t *x);
 
 /** @brief Function definition at_least_one_member_of<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_date;
 
 /**
@@ -8642,7 +8641,7 @@ afw_function_definition_at_least_one_member_of_date;
  */
 
 /** @brief Function definition bag<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_date;
 
 /**
@@ -8676,7 +8675,7 @@ afw_function_definition_bag_date;
  */
 
 /** @brief Function definition bag_size<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_date;
 
 /**
@@ -8710,7 +8709,7 @@ afw_function_definition_bag_size_date;
  */
 
 /** @brief Function definition date */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_date;
 
 /**
@@ -8748,7 +8747,7 @@ afw_function_definition_date;
  */
 
 /** @brief Function definition eq<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_date;
 
 /**
@@ -8791,7 +8790,7 @@ afw_function_definition_eq_date;
  */
 
 /** @brief Function definition eqx<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_date;
 
 /**
@@ -8830,7 +8829,7 @@ afw_function_definition_eqx_date;
  */
 
 /** @brief Function definition ge<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_date;
 
 /**
@@ -8871,7 +8870,7 @@ afw_function_definition_ge_date;
  */
 
 /** @brief Function definition gt<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_date;
 
 /**
@@ -8911,7 +8910,7 @@ afw_function_definition_gt_date;
  */
 
 /** @brief Function definition intersection<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_date;
 
 /**
@@ -8949,7 +8948,7 @@ afw_function_definition_intersection_date;
  */
 
 /** @brief Function definition is<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_date;
 
 /**
@@ -8983,7 +8982,7 @@ afw_function_definition_is_date;
  */
 
 /** @brief Function definition is_in<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_date;
 
 /**
@@ -9021,7 +9020,7 @@ afw_function_definition_is_in_date;
  */
 
 /** @brief Function definition le<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_date;
 
 /**
@@ -9062,7 +9061,7 @@ afw_function_definition_le_date;
  */
 
 /** @brief Function definition lt<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_date;
 
 /**
@@ -9102,7 +9101,7 @@ afw_function_definition_lt_date;
  */
 
 /** @brief Function definition max<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_max_date;
 
 /**
@@ -9140,7 +9139,7 @@ afw_function_definition_max_date;
  */
 
 /** @brief Function definition min<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_min_date;
 
 /**
@@ -9178,7 +9177,7 @@ afw_function_definition_min_date;
  */
 
 /** @brief Function definition ne<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_date;
 
 /**
@@ -9221,7 +9220,7 @@ afw_function_definition_ne_date;
  */
 
 /** @brief Function definition nex<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_date;
 
 /**
@@ -9260,7 +9259,7 @@ afw_function_definition_nex_date;
  */
 
 /** @brief Function definition one_and_only<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_date;
 
 /**
@@ -9299,7 +9298,7 @@ afw_function_definition_one_and_only_date;
  */
 
 /** @brief Function definition set_equals<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_date;
 
 /**
@@ -9337,7 +9336,7 @@ afw_function_definition_set_equals_date;
  */
 
 /** @brief Function definition subset<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_date;
 
 /**
@@ -9375,7 +9374,7 @@ afw_function_definition_subset_date;
  */
 
 /** @brief Function definition subtract_yearMonthDuration<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract_yearMonthDuration_date;
 
 /**
@@ -9411,7 +9410,7 @@ afw_function_execute_subtract_yearMonthDuration_date(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_string<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_date;
 
 /**
@@ -9446,7 +9445,7 @@ afw_function_definition_to_string_date;
  */
 
 /** @brief Function definition union<date> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_date;
 
 /**
@@ -9493,7 +9492,7 @@ afw_function_definition_union_date;
  */
 
 /** @brief Function definition at_least_one_member_of<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_dayTimeDuration;
 
 /**
@@ -9531,7 +9530,7 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration;
  */
 
 /** @brief Function definition bag<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_dayTimeDuration;
 
 /**
@@ -9565,7 +9564,7 @@ afw_function_definition_bag_dayTimeDuration;
  */
 
 /** @brief Function definition bag_size<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_dayTimeDuration;
 
 /**
@@ -9599,7 +9598,7 @@ afw_function_definition_bag_size_dayTimeDuration;
  */
 
 /** @brief Function definition dayTimeDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_dayTimeDuration;
 
 /**
@@ -9637,7 +9636,7 @@ afw_function_definition_dayTimeDuration;
  */
 
 /** @brief Function definition eq<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_dayTimeDuration;
 
 /**
@@ -9681,7 +9680,7 @@ afw_function_definition_eq_dayTimeDuration;
  */
 
 /** @brief Function definition eqx<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_dayTimeDuration;
 
 /**
@@ -9720,7 +9719,7 @@ afw_function_definition_eqx_dayTimeDuration;
  */
 
 /** @brief Function definition ge<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_dayTimeDuration;
 
 /**
@@ -9758,7 +9757,7 @@ afw_function_definition_ge_dayTimeDuration;
  */
 
 /** @brief Function definition gt<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_dayTimeDuration;
 
 /**
@@ -9796,7 +9795,7 @@ afw_function_definition_gt_dayTimeDuration;
  */
 
 /** @brief Function definition intersection<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_dayTimeDuration;
 
 /**
@@ -9834,7 +9833,7 @@ afw_function_definition_intersection_dayTimeDuration;
  */
 
 /** @brief Function definition is<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_dayTimeDuration;
 
 /**
@@ -9869,7 +9868,7 @@ afw_function_definition_is_dayTimeDuration;
  */
 
 /** @brief Function definition is_in<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_dayTimeDuration;
 
 /**
@@ -9907,7 +9906,7 @@ afw_function_definition_is_in_dayTimeDuration;
  */
 
 /** @brief Function definition le<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_dayTimeDuration;
 
 /**
@@ -9945,7 +9944,7 @@ afw_function_definition_le_dayTimeDuration;
  */
 
 /** @brief Function definition lt<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_dayTimeDuration;
 
 /**
@@ -9983,7 +9982,7 @@ afw_function_definition_lt_dayTimeDuration;
  */
 
 /** @brief Function definition ne<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_dayTimeDuration;
 
 /**
@@ -10027,7 +10026,7 @@ afw_function_definition_ne_dayTimeDuration;
  */
 
 /** @brief Function definition nex<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_dayTimeDuration;
 
 /**
@@ -10066,7 +10065,7 @@ afw_function_definition_nex_dayTimeDuration;
  */
 
 /** @brief Function definition one_and_only<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_dayTimeDuration;
 
 /**
@@ -10105,7 +10104,7 @@ afw_function_definition_one_and_only_dayTimeDuration;
  */
 
 /** @brief Function definition set_equals<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_dayTimeDuration;
 
 /**
@@ -10143,7 +10142,7 @@ afw_function_definition_set_equals_dayTimeDuration;
  */
 
 /** @brief Function definition subset<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_dayTimeDuration;
 
 /**
@@ -10181,7 +10180,7 @@ afw_function_definition_subset_dayTimeDuration;
  */
 
 /** @brief Function definition to_string<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_dayTimeDuration;
 
 /**
@@ -10216,7 +10215,7 @@ afw_function_definition_to_string_dayTimeDuration;
  */
 
 /** @brief Function definition union<dayTimeDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_dayTimeDuration;
 
 /**
@@ -10263,7 +10262,7 @@ afw_function_definition_union_dayTimeDuration;
  */
 
 /** @brief Function definition bag<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_dnsName;
 
 /**
@@ -10297,7 +10296,7 @@ afw_function_definition_bag_dnsName;
  */
 
 /** @brief Function definition bag_size<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_dnsName;
 
 /**
@@ -10331,7 +10330,7 @@ afw_function_definition_bag_size_dnsName;
  */
 
 /** @brief Function definition dnsName */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_dnsName;
 
 /**
@@ -10369,7 +10368,7 @@ afw_function_definition_dnsName;
  */
 
 /** @brief Function definition eq<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_dnsName;
 
 /**
@@ -10412,7 +10411,7 @@ afw_function_definition_eq_dnsName;
  */
 
 /** @brief Function definition eqx<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_dnsName;
 
 /**
@@ -10451,7 +10450,7 @@ afw_function_definition_eqx_dnsName;
  */
 
 /** @brief Function definition ge<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_dnsName;
 
 /**
@@ -10489,7 +10488,7 @@ afw_function_definition_ge_dnsName;
  */
 
 /** @brief Function definition gt<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_dnsName;
 
 /**
@@ -10527,7 +10526,7 @@ afw_function_definition_gt_dnsName;
  */
 
 /** @brief Function definition is<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_dnsName;
 
 /**
@@ -10561,7 +10560,7 @@ afw_function_definition_is_dnsName;
  */
 
 /** @brief Function definition is_in<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_dnsName;
 
 /**
@@ -10599,7 +10598,7 @@ afw_function_definition_is_in_dnsName;
  */
 
 /** @brief Function definition le<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_dnsName;
 
 /**
@@ -10637,7 +10636,7 @@ afw_function_definition_le_dnsName;
  */
 
 /** @brief Function definition lt<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_dnsName;
 
 /**
@@ -10675,7 +10674,7 @@ afw_function_definition_lt_dnsName;
  */
 
 /** @brief Function definition ne<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_dnsName;
 
 /**
@@ -10718,7 +10717,7 @@ afw_function_definition_ne_dnsName;
  */
 
 /** @brief Function definition nex<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_dnsName;
 
 /**
@@ -10757,7 +10756,7 @@ afw_function_definition_nex_dnsName;
  */
 
 /** @brief Function definition one_and_only<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_dnsName;
 
 /**
@@ -10796,7 +10795,7 @@ afw_function_definition_one_and_only_dnsName;
  */
 
 /** @brief Function definition regexp_match<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_dnsName;
 
 /**
@@ -10834,7 +10833,7 @@ afw_function_definition_regexp_match_dnsName;
  */
 
 /** @brief Function definition to_string<dnsName> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_dnsName;
 
 /**
@@ -10879,7 +10878,7 @@ afw_function_definition_to_string_dnsName;
  */
 
 /** @brief Function definition abs<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_abs_double;
 
 /**
@@ -10912,7 +10911,7 @@ afw_function_execute_abs_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition add<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_double;
 
 /**
@@ -10947,7 +10946,7 @@ afw_function_execute_add_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition at_least_one_member_of<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_double;
 
 /**
@@ -10985,7 +10984,7 @@ afw_function_definition_at_least_one_member_of_double;
  */
 
 /** @brief Function definition bag<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_double;
 
 /**
@@ -11019,7 +11018,7 @@ afw_function_definition_bag_double;
  */
 
 /** @brief Function definition bag_size<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_double;
 
 /**
@@ -11053,7 +11052,7 @@ afw_function_definition_bag_size_double;
  */
 
 /** @brief Function definition ceil<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ceil_double;
 
 /**
@@ -11087,7 +11086,7 @@ afw_function_execute_ceil_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition divide<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_divide_double;
 
 /**
@@ -11123,7 +11122,7 @@ afw_function_execute_divide_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition double */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_double;
 
 /**
@@ -11161,7 +11160,7 @@ afw_function_definition_double;
  */
 
 /** @brief Function definition eq<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_double;
 
 /**
@@ -11204,7 +11203,7 @@ afw_function_definition_eq_double;
  */
 
 /** @brief Function definition eqx<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_double;
 
 /**
@@ -11243,7 +11242,7 @@ afw_function_definition_eqx_double;
  */
 
 /** @brief Function definition floor<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_floor_double;
 
 /**
@@ -11277,7 +11276,7 @@ afw_function_execute_floor_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_double;
 
 /**
@@ -11315,7 +11314,7 @@ afw_function_definition_ge_double;
  */
 
 /** @brief Function definition gt<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_double;
 
 /**
@@ -11353,7 +11352,7 @@ afw_function_definition_gt_double;
  */
 
 /** @brief Function definition intersection<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_double;
 
 /**
@@ -11391,7 +11390,7 @@ afw_function_definition_intersection_double;
  */
 
 /** @brief Function definition is_NaN */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_NaN;
 
 /**
@@ -11425,7 +11424,7 @@ afw_function_execute_is_NaN(
     afw_function_execute_t *x);
 
 /** @brief Function definition is<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_double;
 
 /**
@@ -11459,7 +11458,7 @@ afw_function_definition_is_double;
  */
 
 /** @brief Function definition is_finite */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_finite;
 
 /**
@@ -11492,7 +11491,7 @@ afw_function_execute_is_finite(
     afw_function_execute_t *x);
 
 /** @brief Function definition is_in<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_double;
 
 /**
@@ -11530,7 +11529,7 @@ afw_function_definition_is_in_double;
  */
 
 /** @brief Function definition le<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_double;
 
 /**
@@ -11568,7 +11567,7 @@ afw_function_definition_le_double;
  */
 
 /** @brief Function definition lt<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_double;
 
 /**
@@ -11606,7 +11605,7 @@ afw_function_definition_lt_double;
  */
 
 /** @brief Function definition max<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_max_double;
 
 /**
@@ -11641,7 +11640,7 @@ afw_function_definition_max_double;
  */
 
 /** @brief Function definition min<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_min_double;
 
 /**
@@ -11676,7 +11675,7 @@ afw_function_definition_min_double;
  */
 
 /** @brief Function definition mod<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_mod_double;
 
 /**
@@ -11712,7 +11711,7 @@ afw_function_execute_mod_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition multiply<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_multiply_double;
 
 /**
@@ -11747,7 +11746,7 @@ afw_function_execute_multiply_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition ne<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_double;
 
 /**
@@ -11790,7 +11789,7 @@ afw_function_definition_ne_double;
  */
 
 /** @brief Function definition negative<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_negative_double;
 
 /**
@@ -11823,7 +11822,7 @@ afw_function_execute_negative_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition nex<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_double;
 
 /**
@@ -11862,7 +11861,7 @@ afw_function_definition_nex_double;
  */
 
 /** @brief Function definition one_and_only<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_double;
 
 /**
@@ -11901,7 +11900,7 @@ afw_function_definition_one_and_only_double;
  */
 
 /** @brief Function definition pow<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_pow_double;
 
 /**
@@ -11939,7 +11938,7 @@ afw_function_execute_pow_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition round<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_round_double;
 
 /**
@@ -11972,7 +11971,7 @@ afw_function_execute_round_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition set_equals<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_double;
 
 /**
@@ -12010,7 +12009,7 @@ afw_function_definition_set_equals_double;
  */
 
 /** @brief Function definition subset<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_double;
 
 /**
@@ -12048,7 +12047,7 @@ afw_function_definition_subset_double;
  */
 
 /** @brief Function definition subtract<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract_double;
 
 /**
@@ -12084,7 +12083,7 @@ afw_function_execute_subtract_double(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_integer<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_integer_double;
 
 /**
@@ -12118,7 +12117,7 @@ afw_function_definition_to_integer_double;
  */
 
 /** @brief Function definition to_string<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_double;
 
 /**
@@ -12153,7 +12152,7 @@ afw_function_definition_to_string_double;
  */
 
 /** @brief Function definition union<double> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_double;
 
 /**
@@ -12200,7 +12199,7 @@ afw_function_definition_union_double;
  */
 
 /** @brief Function definition bag<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_function;
 
 /**
@@ -12234,7 +12233,7 @@ afw_function_definition_bag_function;
  */
 
 /** @brief Function definition bag_size<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_function;
 
 /**
@@ -12268,7 +12267,7 @@ afw_function_definition_bag_size_function;
  */
 
 /** @brief Function definition eq<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_function;
 
 /**
@@ -12311,7 +12310,7 @@ afw_function_definition_eq_function;
  */
 
 /** @brief Function definition eqx<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_function;
 
 /**
@@ -12350,7 +12349,7 @@ afw_function_definition_eqx_function;
  */
 
 /** @brief Function definition ge<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_function;
 
 /**
@@ -12388,7 +12387,7 @@ afw_function_definition_ge_function;
  */
 
 /** @brief Function definition gt<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_function;
 
 /**
@@ -12426,7 +12425,7 @@ afw_function_definition_gt_function;
  */
 
 /** @brief Function definition is<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_function;
 
 /**
@@ -12460,7 +12459,7 @@ afw_function_definition_is_function;
  */
 
 /** @brief Function definition le<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_function;
 
 /**
@@ -12498,7 +12497,7 @@ afw_function_definition_le_function;
  */
 
 /** @brief Function definition lt<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_function;
 
 /**
@@ -12536,7 +12535,7 @@ afw_function_definition_lt_function;
  */
 
 /** @brief Function definition ne<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_function;
 
 /**
@@ -12579,7 +12578,7 @@ afw_function_definition_ne_function;
  */
 
 /** @brief Function definition nex<function> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_function;
 
 /**
@@ -12628,7 +12627,7 @@ afw_function_definition_nex_function;
  */
 
 /** @brief Function definition at_least_one_member_of<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_hexBinary;
 
 /**
@@ -12666,7 +12665,7 @@ afw_function_definition_at_least_one_member_of_hexBinary;
  */
 
 /** @brief Function definition bag<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_hexBinary;
 
 /**
@@ -12700,7 +12699,7 @@ afw_function_definition_bag_hexBinary;
  */
 
 /** @brief Function definition bag_size<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_hexBinary;
 
 /**
@@ -12734,7 +12733,7 @@ afw_function_definition_bag_size_hexBinary;
  */
 
 /** @brief Function definition decode_to_string<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_decode_to_string_hexBinary;
 
 /**
@@ -12768,7 +12767,7 @@ afw_function_execute_decode_to_string_hexBinary(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_hexBinary;
 
 /**
@@ -12811,7 +12810,7 @@ afw_function_definition_eq_hexBinary;
  */
 
 /** @brief Function definition eqx<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_hexBinary;
 
 /**
@@ -12850,7 +12849,7 @@ afw_function_definition_eqx_hexBinary;
  */
 
 /** @brief Function definition ge<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_hexBinary;
 
 /**
@@ -12888,7 +12887,7 @@ afw_function_definition_ge_hexBinary;
  */
 
 /** @brief Function definition gt<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_hexBinary;
 
 /**
@@ -12926,7 +12925,7 @@ afw_function_definition_gt_hexBinary;
  */
 
 /** @brief Function definition hexBinary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_hexBinary;
 
 /**
@@ -12964,7 +12963,7 @@ afw_function_definition_hexBinary;
  */
 
 /** @brief Function definition intersection<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_hexBinary;
 
 /**
@@ -13002,7 +13001,7 @@ afw_function_definition_intersection_hexBinary;
  */
 
 /** @brief Function definition is<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_hexBinary;
 
 /**
@@ -13036,7 +13035,7 @@ afw_function_definition_is_hexBinary;
  */
 
 /** @brief Function definition is_in<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_hexBinary;
 
 /**
@@ -13074,7 +13073,7 @@ afw_function_definition_is_in_hexBinary;
  */
 
 /** @brief Function definition le<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_hexBinary;
 
 /**
@@ -13112,7 +13111,7 @@ afw_function_definition_le_hexBinary;
  */
 
 /** @brief Function definition lt<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_hexBinary;
 
 /**
@@ -13150,7 +13149,7 @@ afw_function_definition_lt_hexBinary;
  */
 
 /** @brief Function definition ne<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_hexBinary;
 
 /**
@@ -13194,7 +13193,7 @@ afw_function_definition_ne_hexBinary;
  */
 
 /** @brief Function definition nex<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_hexBinary;
 
 /**
@@ -13233,7 +13232,7 @@ afw_function_definition_nex_hexBinary;
  */
 
 /** @brief Function definition one_and_only<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_hexBinary;
 
 /**
@@ -13272,7 +13271,7 @@ afw_function_definition_one_and_only_hexBinary;
  */
 
 /** @brief Function definition set_equals<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_hexBinary;
 
 /**
@@ -13310,7 +13309,7 @@ afw_function_definition_set_equals_hexBinary;
  */
 
 /** @brief Function definition subset<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_hexBinary;
 
 /**
@@ -13348,7 +13347,7 @@ afw_function_definition_subset_hexBinary;
  */
 
 /** @brief Function definition to_string<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_hexBinary;
 
 /**
@@ -13383,7 +13382,7 @@ afw_function_definition_to_string_hexBinary;
  */
 
 /** @brief Function definition union<hexBinary> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_hexBinary;
 
 /**
@@ -13430,7 +13429,7 @@ afw_function_definition_union_hexBinary;
  */
 
 /** @brief Function definition all_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_all_of;
 
 /**
@@ -13473,7 +13472,7 @@ afw_function_execute_all_of(
     afw_function_execute_t *x);
 
 /** @brief Function definition all_of_all */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_all_of_all;
 
 /**
@@ -13515,7 +13514,7 @@ afw_function_execute_all_of_all(
     afw_function_execute_t *x);
 
 /** @brief Function definition all_of_any */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_all_of_any;
 
 /**
@@ -13558,7 +13557,7 @@ afw_function_execute_all_of_any(
     afw_function_execute_t *x);
 
 /** @brief Function definition any_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_any_of;
 
 /**
@@ -13601,7 +13600,7 @@ afw_function_execute_any_of(
     afw_function_execute_t *x);
 
 /** @brief Function definition any_of_all */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_any_of_all;
 
 /**
@@ -13643,7 +13642,7 @@ afw_function_execute_any_of_all(
     afw_function_execute_t *x);
 
 /** @brief Function definition any_of_any */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_any_of_any;
 
 /**
@@ -13685,7 +13684,7 @@ afw_function_execute_any_of_any(
     afw_function_execute_t *x);
 
 /** @brief Function definition every */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_every;
 
 /**
@@ -13727,7 +13726,7 @@ afw_function_definition_every;
  */
 
 /** @brief Function definition filter */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_filter;
 
 /**
@@ -13770,7 +13769,7 @@ afw_function_execute_filter(
     afw_function_execute_t *x);
 
 /** @brief Function definition find */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_find;
 
 /**
@@ -13813,7 +13812,7 @@ afw_function_execute_find(
     afw_function_execute_t *x);
 
 /** @brief Function definition map */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_map;
 
 /**
@@ -13857,7 +13856,7 @@ afw_function_execute_map(
     afw_function_execute_t *x);
 
 /** @brief Function definition reduce */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_reduce;
 
 /**
@@ -13905,7 +13904,7 @@ afw_function_execute_reduce(
     afw_function_execute_t *x);
 
 /** @brief Function definition some */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_some;
 
 /**
@@ -13947,7 +13946,7 @@ afw_function_definition_some;
  */
 
 /** @brief Function definition sort */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_sort;
 
 /**
@@ -13999,7 +13998,7 @@ afw_function_execute_sort(
  */
 
 /** @brief Function definition bag<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_ia5String;
 
 /**
@@ -14033,7 +14032,7 @@ afw_function_definition_bag_ia5String;
  */
 
 /** @brief Function definition bag_size<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_ia5String;
 
 /**
@@ -14067,7 +14066,7 @@ afw_function_definition_bag_size_ia5String;
  */
 
 /** @brief Function definition eq<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_ia5String;
 
 /**
@@ -14110,7 +14109,7 @@ afw_function_definition_eq_ia5String;
  */
 
 /** @brief Function definition eqx<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_ia5String;
 
 /**
@@ -14149,7 +14148,7 @@ afw_function_definition_eqx_ia5String;
  */
 
 /** @brief Function definition ge<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_ia5String;
 
 /**
@@ -14187,7 +14186,7 @@ afw_function_definition_ge_ia5String;
  */
 
 /** @brief Function definition gt<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_ia5String;
 
 /**
@@ -14225,7 +14224,7 @@ afw_function_definition_gt_ia5String;
  */
 
 /** @brief Function definition ia5String */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ia5String;
 
 /**
@@ -14263,7 +14262,7 @@ afw_function_definition_ia5String;
  */
 
 /** @brief Function definition is<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_ia5String;
 
 /**
@@ -14297,7 +14296,7 @@ afw_function_definition_is_ia5String;
  */
 
 /** @brief Function definition le<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_ia5String;
 
 /**
@@ -14335,7 +14334,7 @@ afw_function_definition_le_ia5String;
  */
 
 /** @brief Function definition lt<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_ia5String;
 
 /**
@@ -14373,7 +14372,7 @@ afw_function_definition_lt_ia5String;
  */
 
 /** @brief Function definition ne<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_ia5String;
 
 /**
@@ -14417,7 +14416,7 @@ afw_function_definition_ne_ia5String;
  */
 
 /** @brief Function definition nex<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_ia5String;
 
 /**
@@ -14456,7 +14455,7 @@ afw_function_definition_nex_ia5String;
  */
 
 /** @brief Function definition to_string<ia5String> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_ia5String;
 
 /**
@@ -14501,7 +14500,7 @@ afw_function_definition_to_string_ia5String;
  */
 
 /** @brief Function definition index_create */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_index_create;
 
 /**
@@ -14565,7 +14564,7 @@ afw_function_execute_index_create(
     afw_function_execute_t *x);
 
 /** @brief Function definition index_list */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_index_list;
 
 /**
@@ -14603,7 +14602,7 @@ afw_function_execute_index_list(
     afw_function_execute_t *x);
 
 /** @brief Function definition index_remove */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_index_remove;
 
 /**
@@ -14651,7 +14650,7 @@ afw_function_execute_index_remove(
  */
 
 /** @brief Function definition abs<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_abs_integer;
 
 /**
@@ -14685,7 +14684,7 @@ afw_function_execute_abs_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition add<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_integer;
 
 /**
@@ -14720,7 +14719,7 @@ afw_function_execute_add_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition at_least_one_member_of<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_integer;
 
 /**
@@ -14758,7 +14757,7 @@ afw_function_definition_at_least_one_member_of_integer;
  */
 
 /** @brief Function definition bag<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_integer;
 
 /**
@@ -14792,7 +14791,7 @@ afw_function_definition_bag_integer;
  */
 
 /** @brief Function definition bag_size<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_integer;
 
 /**
@@ -14826,7 +14825,7 @@ afw_function_definition_bag_size_integer;
  */
 
 /** @brief Function definition divide<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_divide_integer;
 
 /**
@@ -14862,7 +14861,7 @@ afw_function_execute_divide_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_integer;
 
 /**
@@ -14905,7 +14904,7 @@ afw_function_definition_eq_integer;
  */
 
 /** @brief Function definition eqx<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_integer;
 
 /**
@@ -14944,7 +14943,7 @@ afw_function_definition_eqx_integer;
  */
 
 /** @brief Function definition ge<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_integer;
 
 /**
@@ -14982,7 +14981,7 @@ afw_function_definition_ge_integer;
  */
 
 /** @brief Function definition gt<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_integer;
 
 /**
@@ -15020,7 +15019,7 @@ afw_function_definition_gt_integer;
  */
 
 /** @brief Function definition integer */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_integer;
 
 /**
@@ -15058,7 +15057,7 @@ afw_function_definition_integer;
  */
 
 /** @brief Function definition intersection<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_integer;
 
 /**
@@ -15096,7 +15095,7 @@ afw_function_definition_intersection_integer;
  */
 
 /** @brief Function definition is_in<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_integer;
 
 /**
@@ -15134,7 +15133,7 @@ afw_function_definition_is_in_integer;
  */
 
 /** @brief Function definition is<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_integer;
 
 /**
@@ -15168,7 +15167,7 @@ afw_function_definition_is_integer;
  */
 
 /** @brief Function definition le<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_integer;
 
 /**
@@ -15206,7 +15205,7 @@ afw_function_definition_le_integer;
  */
 
 /** @brief Function definition lt<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_integer;
 
 /**
@@ -15244,7 +15243,7 @@ afw_function_definition_lt_integer;
  */
 
 /** @brief Function definition max<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_max_integer;
 
 /**
@@ -15279,7 +15278,7 @@ afw_function_definition_max_integer;
  */
 
 /** @brief Function definition min<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_min_integer;
 
 /**
@@ -15314,7 +15313,7 @@ afw_function_definition_min_integer;
  */
 
 /** @brief Function definition mod<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_mod_integer;
 
 /**
@@ -15350,7 +15349,7 @@ afw_function_execute_mod_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition multiply<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_multiply_integer;
 
 /**
@@ -15385,7 +15384,7 @@ afw_function_execute_multiply_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition ne<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_integer;
 
 /**
@@ -15428,7 +15427,7 @@ afw_function_definition_ne_integer;
  */
 
 /** @brief Function definition negative<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_negative_integer;
 
 /**
@@ -15461,7 +15460,7 @@ afw_function_execute_negative_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition nex<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_integer;
 
 /**
@@ -15500,7 +15499,7 @@ afw_function_definition_nex_integer;
  */
 
 /** @brief Function definition one_and_only<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_integer;
 
 /**
@@ -15539,7 +15538,7 @@ afw_function_definition_one_and_only_integer;
  */
 
 /** @brief Function definition set_equals<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_integer;
 
 /**
@@ -15577,7 +15576,7 @@ afw_function_definition_set_equals_integer;
  */
 
 /** @brief Function definition subset<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_integer;
 
 /**
@@ -15615,7 +15614,7 @@ afw_function_definition_subset_integer;
  */
 
 /** @brief Function definition subtract<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract_integer;
 
 /**
@@ -15651,7 +15650,7 @@ afw_function_execute_subtract_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_double<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_double_integer;
 
 /**
@@ -15689,7 +15688,7 @@ afw_function_definition_to_double_integer;
  */
 
 /** @brief Function definition to_string<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_integer;
 
 /**
@@ -15724,7 +15723,7 @@ afw_function_definition_to_string_integer;
  */
 
 /** @brief Function definition union<integer> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_integer;
 
 /**
@@ -15771,7 +15770,7 @@ afw_function_definition_union_integer;
  */
 
 /** @brief Function definition bag<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_ipAddress;
 
 /**
@@ -15805,7 +15804,7 @@ afw_function_definition_bag_ipAddress;
  */
 
 /** @brief Function definition bag_size<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_ipAddress;
 
 /**
@@ -15839,7 +15838,7 @@ afw_function_definition_bag_size_ipAddress;
  */
 
 /** @brief Function definition eq<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_ipAddress;
 
 /**
@@ -15882,7 +15881,7 @@ afw_function_definition_eq_ipAddress;
  */
 
 /** @brief Function definition eqx<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_ipAddress;
 
 /**
@@ -15921,7 +15920,7 @@ afw_function_definition_eqx_ipAddress;
  */
 
 /** @brief Function definition ge<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_ipAddress;
 
 /**
@@ -15959,7 +15958,7 @@ afw_function_definition_ge_ipAddress;
  */
 
 /** @brief Function definition gt<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_ipAddress;
 
 /**
@@ -15997,7 +15996,7 @@ afw_function_definition_gt_ipAddress;
  */
 
 /** @brief Function definition ipAddress */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ipAddress;
 
 /**
@@ -16035,7 +16034,7 @@ afw_function_definition_ipAddress;
  */
 
 /** @brief Function definition is_in<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_ipAddress;
 
 /**
@@ -16073,7 +16072,7 @@ afw_function_definition_is_in_ipAddress;
  */
 
 /** @brief Function definition is<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_ipAddress;
 
 /**
@@ -16107,7 +16106,7 @@ afw_function_definition_is_ipAddress;
  */
 
 /** @brief Function definition le<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_ipAddress;
 
 /**
@@ -16145,7 +16144,7 @@ afw_function_definition_le_ipAddress;
  */
 
 /** @brief Function definition lt<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_ipAddress;
 
 /**
@@ -16183,7 +16182,7 @@ afw_function_definition_lt_ipAddress;
  */
 
 /** @brief Function definition ne<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_ipAddress;
 
 /**
@@ -16227,7 +16226,7 @@ afw_function_definition_ne_ipAddress;
  */
 
 /** @brief Function definition nex<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_ipAddress;
 
 /**
@@ -16266,7 +16265,7 @@ afw_function_definition_nex_ipAddress;
  */
 
 /** @brief Function definition one_and_only<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_ipAddress;
 
 /**
@@ -16305,7 +16304,7 @@ afw_function_definition_one_and_only_ipAddress;
  */
 
 /** @brief Function definition regexp_match<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_ipAddress;
 
 /**
@@ -16343,7 +16342,7 @@ afw_function_definition_regexp_match_ipAddress;
  */
 
 /** @brief Function definition to_string<ipAddress> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_ipAddress;
 
 /**
@@ -16388,7 +16387,7 @@ afw_function_definition_to_string_ipAddress;
  */
 
 /** @brief Function definition journal_advance_cursor_for_consumer */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_journal_advance_cursor_for_consumer;
 
 /**
@@ -16448,7 +16447,7 @@ afw_function_execute_journal_advance_cursor_for_consumer(
     afw_function_execute_t *x);
 
 /** @brief Function definition journal_get_by_cursor */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_journal_get_by_cursor;
 
 /**
@@ -16488,7 +16487,7 @@ afw_function_execute_journal_get_by_cursor(
     afw_function_execute_t *x);
 
 /** @brief Function definition journal_get_first */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_journal_get_first;
 
 /**
@@ -16524,7 +16523,7 @@ afw_function_execute_journal_get_first(
     afw_function_execute_t *x);
 
 /** @brief Function definition journal_get_next_after_cursor */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_journal_get_next_after_cursor;
 
 /**
@@ -16564,7 +16563,7 @@ afw_function_execute_journal_get_next_after_cursor(
     afw_function_execute_t *x);
 
 /** @brief Function definition journal_get_next_for_consumer */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_journal_get_next_for_consumer;
 
 /**
@@ -16633,7 +16632,7 @@ afw_function_execute_journal_get_next_for_consumer(
     afw_function_execute_t *x);
 
 /** @brief Function definition journal_get_next_for_consumer_after_cursor */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_journal_get_next_for_consumer_after_cursor;
 
 /**
@@ -16692,7 +16691,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
     afw_function_execute_t *x);
 
 /** @brief Function definition journal_mark_consumed */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_journal_mark_consumed;
 
 /**
@@ -16742,7 +16741,7 @@ afw_function_execute_journal_mark_consumed(
  */
 
 /** @brief Function definition compile<json> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile_json;
 
 /**
@@ -16790,7 +16789,7 @@ afw_function_execute_compile_json(
     afw_function_execute_t *x);
 
 /** @brief Function definition json */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_json;
 
 /**
@@ -16840,7 +16839,7 @@ afw_function_definition_json;
  */
 
 /** @brief Function definition and */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_and;
 
 /**
@@ -16875,7 +16874,7 @@ afw_function_execute_and(
     afw_function_execute_t *x);
 
 /** @brief Function definition n_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_n_of;
 
 /**
@@ -16918,7 +16917,7 @@ afw_function_execute_n_of(
     afw_function_execute_t *x);
 
 /** @brief Function definition not */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_not;
 
 /**
@@ -16952,7 +16951,7 @@ afw_function_execute_not(
     afw_function_execute_t *x);
 
 /** @brief Function definition or */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_or;
 
 /**
@@ -16997,7 +16996,7 @@ afw_function_execute_or(
  */
 
 /** @brief Function definition compare_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compare_uri;
 
 /**
@@ -17046,7 +17045,7 @@ afw_function_execute_compare_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition debug */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_debug;
 
 /**
@@ -17087,7 +17086,7 @@ afw_function_execute_debug(
     afw_function_execute_t *x);
 
 /** @brief Function definition execution_start_time_local */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_execution_start_time_local;
 
 /**
@@ -17118,7 +17117,7 @@ afw_function_execute_execution_start_time_local(
     afw_function_execute_t *x);
 
 /** @brief Function definition execution_start_time_utc */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_execution_start_time_utc;
 
 /**
@@ -17149,7 +17148,7 @@ afw_function_execute_execution_start_time_utc(
     afw_function_execute_t *x);
 
 /** @brief Function definition generate_uuid */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_generate_uuid;
 
 /**
@@ -17179,7 +17178,7 @@ afw_function_execute_generate_uuid(
     afw_function_execute_t *x);
 
 /** @brief Function definition is_defined */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_defined;
 
 /**
@@ -17213,7 +17212,7 @@ afw_function_execute_is_defined(
     afw_function_execute_t *x);
 
 /** @brief Function definition is_nullish */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_nullish;
 
 /**
@@ -17247,7 +17246,7 @@ afw_function_execute_is_nullish(
     afw_function_execute_t *x);
 
 /** @brief Function definition log */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_log;
 
 /**
@@ -17280,7 +17279,7 @@ afw_function_execute_log(
     afw_function_execute_t *x);
 
 /** @brief Function definition now_local */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_now_local;
 
 /**
@@ -17310,7 +17309,7 @@ afw_function_execute_now_local(
     afw_function_execute_t *x);
 
 /** @brief Function definition now_utc */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_now_utc;
 
 /**
@@ -17340,7 +17339,7 @@ afw_function_execute_now_utc(
     afw_function_execute_t *x);
 
 /** @brief Function definition parse_uri */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_parse_uri;
 
 /**
@@ -17384,7 +17383,7 @@ afw_function_execute_parse_uri(
     afw_function_execute_t *x);
 
 /** @brief Function definition perform */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_perform;
 
 /**
@@ -17418,7 +17417,7 @@ afw_function_execute_perform(
     afw_function_execute_t *x);
 
 /** @brief Function definition trace */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_trace;
 
 /**
@@ -17461,7 +17460,7 @@ afw_function_execute_trace(
     afw_function_execute_t *x);
 
 /** @brief Function definition variable_exists */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_variable_exists;
 
 /**
@@ -17497,7 +17496,7 @@ afw_function_execute_variable_exists(
     afw_function_execute_t *x);
 
 /** @brief Function definition variable_get */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_variable_get;
 
 /**
@@ -17537,7 +17536,7 @@ afw_function_execute_variable_get(
     afw_function_execute_t *x);
 
 /** @brief Function definition variable_is_not_null */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_variable_is_not_null;
 
 /**
@@ -17583,7 +17582,7 @@ afw_function_execute_variable_is_not_null(
  */
 
 /** @brief Function definition model_default_add_object_action */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_model_default_add_object_action;
 
 /**
@@ -17646,7 +17645,7 @@ afw_function_execute_model_default_add_object_action(
     afw_function_execute_t *x);
 
 /** @brief Function definition model_default_delete_object_action */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_model_default_delete_object_action;
 
 /**
@@ -17704,7 +17703,7 @@ afw_function_execute_model_default_delete_object_action(
     afw_function_execute_t *x);
 
 /** @brief Function definition model_default_modify_object_action */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_model_default_modify_object_action;
 
 /**
@@ -17790,7 +17789,7 @@ afw_function_execute_model_default_modify_object_action(
     afw_function_execute_t *x);
 
 /** @brief Function definition model_default_replace_object_action */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_model_default_replace_object_action;
 
 /**
@@ -17852,7 +17851,7 @@ afw_function_execute_model_default_replace_object_action(
     afw_function_execute_t *x);
 
 /** @brief Function definition model_mapBackObject_signature */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_model_mapBackObject_signature;
 
 /**
@@ -17887,7 +17886,7 @@ afw_function_execute_model_mapBackObject_signature(
     afw_function_execute_t *x);
 
 /** @brief Function definition model_mapObject_signature */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_model_mapObject_signature;
 
 /**
@@ -17922,7 +17921,7 @@ afw_function_execute_model_mapObject_signature(
     afw_function_execute_t *x);
 
 /** @brief Function definition model_returnObject_signature */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_model_returnObject_signature;
 
 /**
@@ -17974,7 +17973,7 @@ afw_function_execute_model_returnObject_signature(
  */
 
 /** @brief Function definition bag<null> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_null;
 
 /**
@@ -18008,7 +18007,7 @@ afw_function_definition_bag_null;
  */
 
 /** @brief Function definition bag_size<null> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_null;
 
 /**
@@ -18042,7 +18041,7 @@ afw_function_definition_bag_size_null;
  */
 
 /** @brief Function definition is<null> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_null;
 
 /**
@@ -18076,7 +18075,7 @@ afw_function_definition_is_null;
  */
 
 /** @brief Function definition to_string<null> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_null;
 
 /**
@@ -18121,7 +18120,7 @@ afw_function_definition_to_string_null;
  */
 
 /** @brief Function definition bag<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_objectId;
 
 /**
@@ -18155,7 +18154,7 @@ afw_function_definition_bag_objectId;
  */
 
 /** @brief Function definition bag_size<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_objectId;
 
 /**
@@ -18189,7 +18188,7 @@ afw_function_definition_bag_size_objectId;
  */
 
 /** @brief Function definition eq<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_objectId;
 
 /**
@@ -18232,7 +18231,7 @@ afw_function_definition_eq_objectId;
  */
 
 /** @brief Function definition eqx<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_objectId;
 
 /**
@@ -18271,7 +18270,7 @@ afw_function_definition_eqx_objectId;
  */
 
 /** @brief Function definition ge<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_objectId;
 
 /**
@@ -18309,7 +18308,7 @@ afw_function_definition_ge_objectId;
  */
 
 /** @brief Function definition gt<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_objectId;
 
 /**
@@ -18347,7 +18346,7 @@ afw_function_definition_gt_objectId;
  */
 
 /** @brief Function definition is<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_objectId;
 
 /**
@@ -18381,7 +18380,7 @@ afw_function_definition_is_objectId;
  */
 
 /** @brief Function definition le<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_objectId;
 
 /**
@@ -18419,7 +18418,7 @@ afw_function_definition_le_objectId;
  */
 
 /** @brief Function definition lt<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_objectId;
 
 /**
@@ -18457,7 +18456,7 @@ afw_function_definition_lt_objectId;
  */
 
 /** @brief Function definition ne<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_objectId;
 
 /**
@@ -18500,7 +18499,7 @@ afw_function_definition_ne_objectId;
  */
 
 /** @brief Function definition nex<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_objectId;
 
 /**
@@ -18539,7 +18538,7 @@ afw_function_definition_nex_objectId;
  */
 
 /** @brief Function definition objectId */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_objectId;
 
 /**
@@ -18577,7 +18576,7 @@ afw_function_definition_objectId;
  */
 
 /** @brief Function definition to_string<objectId> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_objectId;
 
 /**
@@ -18622,7 +18621,7 @@ afw_function_definition_to_string_objectId;
  */
 
 /** @brief Function definition bag<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_objectPath;
 
 /**
@@ -18656,7 +18655,7 @@ afw_function_definition_bag_objectPath;
  */
 
 /** @brief Function definition bag_size<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_objectPath;
 
 /**
@@ -18690,7 +18689,7 @@ afw_function_definition_bag_size_objectPath;
  */
 
 /** @brief Function definition eq<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_objectPath;
 
 /**
@@ -18733,7 +18732,7 @@ afw_function_definition_eq_objectPath;
  */
 
 /** @brief Function definition eqx<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_objectPath;
 
 /**
@@ -18772,7 +18771,7 @@ afw_function_definition_eqx_objectPath;
  */
 
 /** @brief Function definition ge<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_objectPath;
 
 /**
@@ -18810,7 +18809,7 @@ afw_function_definition_ge_objectPath;
  */
 
 /** @brief Function definition gt<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_objectPath;
 
 /**
@@ -18848,7 +18847,7 @@ afw_function_definition_gt_objectPath;
  */
 
 /** @brief Function definition is<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_objectPath;
 
 /**
@@ -18882,7 +18881,7 @@ afw_function_definition_is_objectPath;
  */
 
 /** @brief Function definition le<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_objectPath;
 
 /**
@@ -18920,7 +18919,7 @@ afw_function_definition_le_objectPath;
  */
 
 /** @brief Function definition lt<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_objectPath;
 
 /**
@@ -18958,7 +18957,7 @@ afw_function_definition_lt_objectPath;
  */
 
 /** @brief Function definition ne<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_objectPath;
 
 /**
@@ -19002,7 +19001,7 @@ afw_function_definition_ne_objectPath;
  */
 
 /** @brief Function definition nex<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_objectPath;
 
 /**
@@ -19041,7 +19040,7 @@ afw_function_definition_nex_objectPath;
  */
 
 /** @brief Function definition objectPath */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_objectPath;
 
 /**
@@ -19079,7 +19078,7 @@ afw_function_definition_objectPath;
  */
 
 /** @brief Function definition to_string<objectPath> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_objectPath;
 
 /**
@@ -19124,7 +19123,7 @@ afw_function_definition_to_string_objectPath;
  */
 
 /** @brief Function definition add_properties */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_properties;
 
 /**
@@ -19164,7 +19163,7 @@ afw_function_execute_add_properties(
     afw_function_execute_t *x);
 
 /** @brief Function definition apply_object_options */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_apply_object_options;
 
 /**
@@ -19201,7 +19200,7 @@ afw_function_execute_apply_object_options(
     afw_function_execute_t *x);
 
 /** @brief Function definition bag<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_object;
 
 /**
@@ -19235,7 +19234,7 @@ afw_function_definition_bag_object;
  */
 
 /** @brief Function definition bag_size<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_object;
 
 /**
@@ -19269,7 +19268,7 @@ afw_function_definition_bag_size_object;
  */
 
 /** @brief Function definition clone<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_clone_object;
 
 /**
@@ -19303,7 +19302,7 @@ afw_function_definition_clone_object;
  */
 
 /** @brief Function definition entries */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_entries;
 
 /**
@@ -19338,7 +19337,7 @@ afw_function_execute_entries(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_object;
 
 /**
@@ -19381,7 +19380,7 @@ afw_function_definition_eq_object;
  */
 
 /** @brief Function definition eqx<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_object;
 
 /**
@@ -19420,7 +19419,7 @@ afw_function_definition_eqx_object;
  */
 
 /** @brief Function definition freeze<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_freeze_object;
 
 /**
@@ -19455,7 +19454,7 @@ afw_function_definition_freeze_object;
  */
 
 /** @brief Function definition ge<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_object;
 
 /**
@@ -19493,7 +19492,7 @@ afw_function_definition_ge_object;
  */
 
 /** @brief Function definition gt<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_object;
 
 /**
@@ -19531,7 +19530,7 @@ afw_function_definition_gt_object;
  */
 
 /** @brief Function definition is<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_object;
 
 /**
@@ -19565,7 +19564,7 @@ afw_function_definition_is_object;
  */
 
 /** @brief Function definition keys */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_keys;
 
 /**
@@ -19600,7 +19599,7 @@ afw_function_execute_keys(
     afw_function_execute_t *x);
 
 /** @brief Function definition le<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_object;
 
 /**
@@ -19638,7 +19637,7 @@ afw_function_definition_le_object;
  */
 
 /** @brief Function definition local_object_meta_set_ids */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_local_object_meta_set_ids;
 
 /**
@@ -19681,7 +19680,7 @@ afw_function_execute_local_object_meta_set_ids(
     afw_function_execute_t *x);
 
 /** @brief Function definition lt<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_object;
 
 /**
@@ -19719,7 +19718,7 @@ afw_function_definition_lt_object;
  */
 
 /** @brief Function definition ne<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_object;
 
 /**
@@ -19762,7 +19761,7 @@ afw_function_definition_ne_object;
  */
 
 /** @brief Function definition nex<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_object;
 
 /**
@@ -19801,7 +19800,7 @@ afw_function_definition_nex_object;
  */
 
 /** @brief Function definition object */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_object;
 
 /**
@@ -19841,7 +19840,7 @@ afw_function_definition_object;
  */
 
 /** @brief Function definition property_delete */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_property_delete;
 
 /**
@@ -19877,7 +19876,7 @@ afw_function_execute_property_delete(
     afw_function_execute_t *x);
 
 /** @brief Function definition property_delete_by_reference */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_property_delete_by_reference;
 
 /**
@@ -19910,7 +19909,7 @@ afw_function_execute_property_delete_by_reference(
     afw_function_execute_t *x);
 
 /** @brief Function definition property_exists */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_property_exists;
 
 /**
@@ -19948,7 +19947,7 @@ afw_function_execute_property_exists(
     afw_function_execute_t *x);
 
 /** @brief Function definition property_get */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_property_get;
 
 /**
@@ -19991,7 +19990,7 @@ afw_function_execute_property_get(
     afw_function_execute_t *x);
 
 /** @brief Function definition property_is_not_null */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_property_is_not_null;
 
 /**
@@ -20029,7 +20028,7 @@ afw_function_execute_property_is_not_null(
     afw_function_execute_t *x);
 
 /** @brief Function definition to_string<object> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_object;
 
 /**
@@ -20064,7 +20063,7 @@ afw_function_definition_to_string_object;
  */
 
 /** @brief Function definition values */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_values;
 
 /**
@@ -20109,7 +20108,7 @@ afw_function_execute_values(
  */
 
 /** @brief Function definition bag<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_password;
 
 /**
@@ -20143,7 +20142,7 @@ afw_function_definition_bag_password;
  */
 
 /** @brief Function definition bag_size<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_password;
 
 /**
@@ -20177,7 +20176,7 @@ afw_function_definition_bag_size_password;
  */
 
 /** @brief Function definition eq<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_password;
 
 /**
@@ -20220,7 +20219,7 @@ afw_function_definition_eq_password;
  */
 
 /** @brief Function definition eqx<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_password;
 
 /**
@@ -20259,7 +20258,7 @@ afw_function_definition_eqx_password;
  */
 
 /** @brief Function definition ge<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_password;
 
 /**
@@ -20297,7 +20296,7 @@ afw_function_definition_ge_password;
  */
 
 /** @brief Function definition gt<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_password;
 
 /**
@@ -20335,7 +20334,7 @@ afw_function_definition_gt_password;
  */
 
 /** @brief Function definition is<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_password;
 
 /**
@@ -20369,7 +20368,7 @@ afw_function_definition_is_password;
  */
 
 /** @brief Function definition le<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_password;
 
 /**
@@ -20407,7 +20406,7 @@ afw_function_definition_le_password;
  */
 
 /** @brief Function definition lt<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_password;
 
 /**
@@ -20445,7 +20444,7 @@ afw_function_definition_lt_password;
  */
 
 /** @brief Function definition ne<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_password;
 
 /**
@@ -20488,7 +20487,7 @@ afw_function_definition_ne_password;
  */
 
 /** @brief Function definition nex<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_password;
 
 /**
@@ -20527,7 +20526,7 @@ afw_function_definition_nex_password;
  */
 
 /** @brief Function definition password */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_password;
 
 /**
@@ -20565,7 +20564,7 @@ afw_function_definition_password;
  */
 
 /** @brief Function definition to_string<password> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_password;
 
 /**
@@ -20610,7 +20609,7 @@ afw_function_definition_to_string_password;
  */
 
 /** @brief Function definition abs */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_abs;
 
 /**
@@ -20649,7 +20648,7 @@ afw_function_definition_abs;
  */
 
 /** @brief Function definition add */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add;
 
 /**
@@ -20689,7 +20688,7 @@ afw_function_definition_add;
  */
 
 /** @brief Function definition add_dayTimeDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_dayTimeDuration;
 
 /**
@@ -20731,7 +20730,7 @@ afw_function_definition_add_dayTimeDuration;
  */
 
 /** @brief Function definition add_yearMonthDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_yearMonthDuration;
 
 /**
@@ -20773,7 +20772,7 @@ afw_function_definition_add_yearMonthDuration;
  */
 
 /** @brief Function definition at_least_one_member_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of;
 
 /**
@@ -20816,7 +20815,7 @@ afw_function_definition_at_least_one_member_of;
  */
 
 /** @brief Function definition bag */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag;
 
 /**
@@ -20857,7 +20856,7 @@ afw_function_definition_bag;
  */
 
 /** @brief Function definition bag_size */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size;
 
 /**
@@ -20898,7 +20897,7 @@ afw_function_definition_bag_size;
  */
 
 /** @brief Function definition ceil */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ceil;
 
 /**
@@ -20937,7 +20936,7 @@ afw_function_definition_ceil;
  */
 
 /** @brief Function definition clone */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_clone;
 
 /**
@@ -20975,7 +20974,7 @@ afw_function_definition_clone;
  */
 
 /** @brief Function definition compile */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile;
 
 /**
@@ -21028,7 +21027,7 @@ afw_function_definition_compile;
  */
 
 /** @brief Function definition decode_to_string */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_decode_to_string;
 
 /**
@@ -21067,7 +21066,7 @@ afw_function_definition_decode_to_string;
  */
 
 /** @brief Function definition divide */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_divide;
 
 /**
@@ -21109,7 +21108,7 @@ afw_function_definition_divide;
  */
 
 /** @brief Function definition encode_as_base64Binary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_encode_as_base64Binary;
 
 /**
@@ -21148,7 +21147,7 @@ afw_function_definition_encode_as_base64Binary;
  */
 
 /** @brief Function definition encode_as_hexBinary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_encode_as_hexBinary;
 
 /**
@@ -21187,7 +21186,7 @@ afw_function_definition_encode_as_hexBinary;
  */
 
 /** @brief Function definition ends_with */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ends_with;
 
 /**
@@ -21229,7 +21228,7 @@ afw_function_definition_ends_with;
  */
 
 /** @brief Function definition eq */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq;
 
 /**
@@ -21279,7 +21278,7 @@ afw_function_definition_eq;
  */
 
 /** @brief Function definition eq_ignore_case */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_ignore_case;
 
 /**
@@ -21321,7 +21320,7 @@ afw_function_definition_eq_ignore_case;
  */
 
 /** @brief Function definition eqx */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx;
 
 /**
@@ -21367,7 +21366,7 @@ afw_function_definition_eqx;
  */
 
 /** @brief Function definition eval */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eval;
 
 /**
@@ -21414,7 +21413,7 @@ afw_function_definition_eval;
  */
 
 /** @brief Function definition floor */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_floor;
 
 /**
@@ -21453,7 +21452,7 @@ afw_function_definition_floor;
  */
 
 /** @brief Function definition freeze */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_freeze;
 
 /**
@@ -21492,7 +21491,7 @@ afw_function_definition_freeze;
  */
 
 /** @brief Function definition ge */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge;
 
 /**
@@ -21537,7 +21536,7 @@ afw_function_definition_ge;
  */
 
 /** @brief Function definition gt */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt;
 
 /**
@@ -21582,7 +21581,7 @@ afw_function_definition_gt;
  */
 
 /** @brief Function definition in_range */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_in_range;
 
 /**
@@ -21631,7 +21630,7 @@ afw_function_definition_in_range;
  */
 
 /** @brief Function definition includes */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_includes;
 
 /**
@@ -21677,7 +21676,7 @@ afw_function_definition_includes;
  */
 
 /** @brief Function definition index_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_index_of;
 
 /**
@@ -21723,7 +21722,7 @@ afw_function_definition_index_of;
  */
 
 /** @brief Function definition intersection */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection;
 
 /**
@@ -21766,7 +21765,7 @@ afw_function_definition_intersection;
  */
 
 /** @brief Function definition is */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is;
 
 /**
@@ -21807,7 +21806,7 @@ afw_function_definition_is;
  */
 
 /** @brief Function definition is_in */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in;
 
 /**
@@ -21851,7 +21850,7 @@ afw_function_definition_is_in;
  */
 
 /** @brief Function definition last_index_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_last_index_of;
 
 /**
@@ -21897,7 +21896,7 @@ afw_function_definition_last_index_of;
  */
 
 /** @brief Function definition le */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le;
 
 /**
@@ -21942,7 +21941,7 @@ afw_function_definition_le;
  */
 
 /** @brief Function definition length */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_length;
 
 /**
@@ -21983,7 +21982,7 @@ afw_function_definition_length;
  */
 
 /** @brief Function definition lt */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt;
 
 /**
@@ -22028,7 +22027,7 @@ afw_function_definition_lt;
  */
 
 /** @brief Function definition match */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_match;
 
 /**
@@ -22070,7 +22069,7 @@ afw_function_definition_match;
  */
 
 /** @brief Function definition max */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_max;
 
 /**
@@ -22109,7 +22108,7 @@ afw_function_definition_max;
  */
 
 /** @brief Function definition min */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_min;
 
 /**
@@ -22148,7 +22147,7 @@ afw_function_definition_min;
  */
 
 /** @brief Function definition mod */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_mod;
 
 /**
@@ -22190,7 +22189,7 @@ afw_function_definition_mod;
  */
 
 /** @brief Function definition multiply */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_multiply;
 
 /**
@@ -22230,7 +22229,7 @@ afw_function_definition_multiply;
  */
 
 /** @brief Function definition ne */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne;
 
 /**
@@ -22281,7 +22280,7 @@ afw_function_definition_ne;
  */
 
 /** @brief Function definition negative */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_negative;
 
 /**
@@ -22319,7 +22318,7 @@ afw_function_definition_negative;
  */
 
 /** @brief Function definition nex */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex;
 
 /**
@@ -22365,7 +22364,7 @@ afw_function_definition_nex;
  */
 
 /** @brief Function definition normalize_space */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_normalize_space;
 
 /**
@@ -22403,7 +22402,7 @@ afw_function_definition_normalize_space;
  */
 
 /** @brief Function definition normalize_to_lower_case */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_normalize_to_lower_case;
 
 /**
@@ -22441,7 +22440,7 @@ afw_function_definition_normalize_to_lower_case;
  */
 
 /** @brief Function definition one_and_only */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only;
 
 /**
@@ -22486,7 +22485,7 @@ afw_function_definition_one_and_only;
  */
 
 /** @brief Function definition pow */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_pow;
 
 /**
@@ -22529,7 +22528,7 @@ afw_function_definition_pow;
  */
 
 /** @brief Function definition regexp_index_of */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_index_of;
 
 /**
@@ -22571,7 +22570,7 @@ afw_function_definition_regexp_index_of;
  */
 
 /** @brief Function definition regexp_match */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_match;
 
 /**
@@ -22613,7 +22612,7 @@ afw_function_definition_regexp_match;
  */
 
 /** @brief Function definition regexp_replace */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_replace;
 
 /**
@@ -22661,7 +22660,7 @@ afw_function_definition_regexp_replace;
  */
 
 /** @brief Function definition repeat */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_repeat;
 
 /**
@@ -22702,7 +22701,7 @@ afw_function_definition_repeat;
  */
 
 /** @brief Function definition replace */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_replace;
 
 /**
@@ -22750,7 +22749,7 @@ afw_function_definition_replace;
  */
 
 /** @brief Function definition round */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_round;
 
 /**
@@ -22789,7 +22788,7 @@ afw_function_definition_round;
  */
 
 /** @brief Function definition set_equals */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals;
 
 /**
@@ -22832,7 +22831,7 @@ afw_function_definition_set_equals;
  */
 
 /** @brief Function definition split */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_split;
 
 /**
@@ -22879,7 +22878,7 @@ afw_function_definition_split;
  */
 
 /** @brief Function definition starts_with */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_starts_with;
 
 /**
@@ -22921,7 +22920,7 @@ afw_function_definition_starts_with;
  */
 
 /** @brief Function definition subset */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset;
 
 /**
@@ -22964,7 +22963,7 @@ afw_function_definition_subset;
  */
 
 /** @brief Function definition substring */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_substring;
 
 /**
@@ -23015,7 +23014,7 @@ afw_function_definition_substring;
  */
 
 /** @brief Function definition subtract */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract;
 
 /**
@@ -23057,7 +23056,7 @@ afw_function_definition_subtract;
  */
 
 /** @brief Function definition subtract_dayTimeDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract_dayTimeDuration;
 
 /**
@@ -23099,7 +23098,7 @@ afw_function_definition_subtract_dayTimeDuration;
  */
 
 /** @brief Function definition subtract_yearMonthDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subtract_yearMonthDuration;
 
 /**
@@ -23141,7 +23140,7 @@ afw_function_definition_subtract_yearMonthDuration;
  */
 
 /** @brief Function definition to_anyURI */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_anyURI;
 
 /**
@@ -23183,7 +23182,7 @@ afw_function_definition_to_anyURI;
  */
 
 /** @brief Function definition to_boolean */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_boolean;
 
 /**
@@ -23225,7 +23224,7 @@ afw_function_definition_to_boolean;
  */
 
 /** @brief Function definition to_date */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_date;
 
 /**
@@ -23267,7 +23266,7 @@ afw_function_definition_to_date;
  */
 
 /** @brief Function definition to_dateTime */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_dateTime;
 
 /**
@@ -23309,7 +23308,7 @@ afw_function_definition_to_dateTime;
  */
 
 /** @brief Function definition to_dayTimeDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_dayTimeDuration;
 
 /**
@@ -23351,7 +23350,7 @@ afw_function_definition_to_dayTimeDuration;
  */
 
 /** @brief Function definition to_dnsName */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_dnsName;
 
 /**
@@ -23393,7 +23392,7 @@ afw_function_definition_to_dnsName;
  */
 
 /** @brief Function definition to_double */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_double;
 
 /**
@@ -23435,7 +23434,7 @@ afw_function_definition_to_double;
  */
 
 /** @brief Function definition to_integer */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_integer;
 
 /**
@@ -23473,7 +23472,7 @@ afw_function_definition_to_integer;
  */
 
 /** @brief Function definition to_ipAddress */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_ipAddress;
 
 /**
@@ -23515,7 +23514,7 @@ afw_function_definition_to_ipAddress;
  */
 
 /** @brief Function definition to_rfc822Name */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_rfc822Name;
 
 /**
@@ -23557,7 +23556,7 @@ afw_function_definition_to_rfc822Name;
  */
 
 /** @brief Function definition to_string */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string;
 
 /**
@@ -23599,7 +23598,7 @@ afw_function_definition_to_string;
  */
 
 /** @brief Function definition to_time */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_time;
 
 /**
@@ -23641,7 +23640,7 @@ afw_function_definition_to_time;
  */
 
 /** @brief Function definition to_x500Name */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_x500Name;
 
 /**
@@ -23683,7 +23682,7 @@ afw_function_definition_to_x500Name;
  */
 
 /** @brief Function definition to_yearMonthDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_yearMonthDuration;
 
 /**
@@ -23725,7 +23724,7 @@ afw_function_definition_to_yearMonthDuration;
  */
 
 /** @brief Function definition union */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union;
 
 /**
@@ -23767,7 +23766,7 @@ afw_function_definition_union;
  */
 
 /** @brief Function definition url_encode */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_url_encode;
 
 /**
@@ -23816,7 +23815,7 @@ afw_function_definition_url_encode;
  */
 
 /** @brief Function definition random_base64Binary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_random_base64Binary;
 
 /**
@@ -23849,7 +23848,7 @@ afw_function_execute_random_base64Binary(
     afw_function_execute_t *x);
 
 /** @brief Function definition random_digits */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_random_digits;
 
 /**
@@ -23882,7 +23881,7 @@ afw_function_execute_random_digits(
     afw_function_execute_t *x);
 
 /** @brief Function definition random_hexBinary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_random_hexBinary;
 
 /**
@@ -23915,7 +23914,7 @@ afw_function_execute_random_hexBinary(
     afw_function_execute_t *x);
 
 /** @brief Function definition random_integer */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_random_integer;
 
 /**
@@ -23951,7 +23950,7 @@ afw_function_execute_random_integer(
     afw_function_execute_t *x);
 
 /** @brief Function definition random_number */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_random_number;
 
 /**
@@ -23997,7 +23996,7 @@ afw_function_execute_random_number(
  */
 
 /** @brief Function definition compile<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile_regexp;
 
 /**
@@ -24045,7 +24044,7 @@ afw_function_execute_compile_regexp(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_regexp;
 
 /**
@@ -24088,7 +24087,7 @@ afw_function_definition_eq_regexp;
  */
 
 /** @brief Function definition eqx<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_regexp;
 
 /**
@@ -24127,7 +24126,7 @@ afw_function_definition_eqx_regexp;
  */
 
 /** @brief Function definition ge<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_regexp;
 
 /**
@@ -24165,7 +24164,7 @@ afw_function_definition_ge_regexp;
  */
 
 /** @brief Function definition gt<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_regexp;
 
 /**
@@ -24203,7 +24202,7 @@ afw_function_definition_gt_regexp;
  */
 
 /** @brief Function definition le<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_regexp;
 
 /**
@@ -24241,7 +24240,7 @@ afw_function_definition_le_regexp;
  */
 
 /** @brief Function definition lt<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_regexp;
 
 /**
@@ -24279,7 +24278,7 @@ afw_function_definition_lt_regexp;
  */
 
 /** @brief Function definition ne<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_regexp;
 
 /**
@@ -24322,7 +24321,7 @@ afw_function_definition_ne_regexp;
  */
 
 /** @brief Function definition nex<regexp> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_regexp;
 
 /**
@@ -24361,7 +24360,7 @@ afw_function_definition_nex_regexp;
  */
 
 /** @brief Function definition regexp */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp;
 
 /**
@@ -24412,7 +24411,7 @@ afw_function_definition_regexp;
  */
 
 /** @brief Function definition compile<relaxed_json> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile_relaxed_json;
 
 /**
@@ -24460,7 +24459,7 @@ afw_function_execute_compile_relaxed_json(
     afw_function_execute_t *x);
 
 /** @brief Function definition relaxed_json */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_relaxed_json;
 
 /**
@@ -24510,7 +24509,7 @@ afw_function_definition_relaxed_json;
  */
 
 /** @brief Function definition at_least_one_member_of<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_rfc822Name;
 
 /**
@@ -24548,7 +24547,7 @@ afw_function_definition_at_least_one_member_of_rfc822Name;
  */
 
 /** @brief Function definition bag<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_rfc822Name;
 
 /**
@@ -24582,7 +24581,7 @@ afw_function_definition_bag_rfc822Name;
  */
 
 /** @brief Function definition bag_size<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_rfc822Name;
 
 /**
@@ -24616,7 +24615,7 @@ afw_function_definition_bag_size_rfc822Name;
  */
 
 /** @brief Function definition eq<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_rfc822Name;
 
 /**
@@ -24659,7 +24658,7 @@ afw_function_definition_eq_rfc822Name;
  */
 
 /** @brief Function definition eqx<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_rfc822Name;
 
 /**
@@ -24698,7 +24697,7 @@ afw_function_definition_eqx_rfc822Name;
  */
 
 /** @brief Function definition ge<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_rfc822Name;
 
 /**
@@ -24736,7 +24735,7 @@ afw_function_definition_ge_rfc822Name;
  */
 
 /** @brief Function definition gt<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_rfc822Name;
 
 /**
@@ -24774,7 +24773,7 @@ afw_function_definition_gt_rfc822Name;
  */
 
 /** @brief Function definition intersection<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_rfc822Name;
 
 /**
@@ -24812,7 +24811,7 @@ afw_function_definition_intersection_rfc822Name;
  */
 
 /** @brief Function definition is_in<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_rfc822Name;
 
 /**
@@ -24850,7 +24849,7 @@ afw_function_definition_is_in_rfc822Name;
  */
 
 /** @brief Function definition is<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_rfc822Name;
 
 /**
@@ -24884,7 +24883,7 @@ afw_function_definition_is_rfc822Name;
  */
 
 /** @brief Function definition le<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_rfc822Name;
 
 /**
@@ -24922,7 +24921,7 @@ afw_function_definition_le_rfc822Name;
  */
 
 /** @brief Function definition lt<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_rfc822Name;
 
 /**
@@ -24960,7 +24959,7 @@ afw_function_definition_lt_rfc822Name;
  */
 
 /** @brief Function definition match<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_match_rfc822Name;
 
 /**
@@ -24997,7 +24996,7 @@ afw_function_execute_match_rfc822Name(
     afw_function_execute_t *x);
 
 /** @brief Function definition ne<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_rfc822Name;
 
 /**
@@ -25041,7 +25040,7 @@ afw_function_definition_ne_rfc822Name;
  */
 
 /** @brief Function definition nex<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_rfc822Name;
 
 /**
@@ -25080,7 +25079,7 @@ afw_function_definition_nex_rfc822Name;
  */
 
 /** @brief Function definition one_and_only<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_rfc822Name;
 
 /**
@@ -25119,7 +25118,7 @@ afw_function_definition_one_and_only_rfc822Name;
  */
 
 /** @brief Function definition regexp_match<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_rfc822Name;
 
 /**
@@ -25157,7 +25156,7 @@ afw_function_definition_regexp_match_rfc822Name;
  */
 
 /** @brief Function definition rfc822Name */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_rfc822Name;
 
 /**
@@ -25195,7 +25194,7 @@ afw_function_definition_rfc822Name;
  */
 
 /** @brief Function definition set_equals<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_rfc822Name;
 
 /**
@@ -25233,7 +25232,7 @@ afw_function_definition_set_equals_rfc822Name;
  */
 
 /** @brief Function definition subset<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_rfc822Name;
 
 /**
@@ -25271,7 +25270,7 @@ afw_function_definition_subset_rfc822Name;
  */
 
 /** @brief Function definition to_string<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_rfc822Name;
 
 /**
@@ -25306,7 +25305,7 @@ afw_function_definition_to_string_rfc822Name;
  */
 
 /** @brief Function definition union<rfc822Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_rfc822Name;
 
 /**
@@ -25353,7 +25352,7 @@ afw_function_definition_union_rfc822Name;
  */
 
 /** @brief Function definition bag<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_script;
 
 /**
@@ -25387,7 +25386,7 @@ afw_function_definition_bag_script;
  */
 
 /** @brief Function definition bag_size<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_script;
 
 /**
@@ -25421,7 +25420,7 @@ afw_function_definition_bag_size_script;
  */
 
 /** @brief Function definition compile<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile_script;
 
 /**
@@ -25469,7 +25468,7 @@ afw_function_execute_compile_script(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_script;
 
 /**
@@ -25512,7 +25511,7 @@ afw_function_definition_eq_script;
  */
 
 /** @brief Function definition eqx<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_script;
 
 /**
@@ -25551,7 +25550,7 @@ afw_function_definition_eqx_script;
  */
 
 /** @brief Function definition eval<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eval_script;
 
 /**
@@ -25593,7 +25592,7 @@ afw_function_execute_eval_script(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_script;
 
 /**
@@ -25631,7 +25630,7 @@ afw_function_definition_ge_script;
  */
 
 /** @brief Function definition gt<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_script;
 
 /**
@@ -25669,7 +25668,7 @@ afw_function_definition_gt_script;
  */
 
 /** @brief Function definition is<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_script;
 
 /**
@@ -25703,7 +25702,7 @@ afw_function_definition_is_script;
  */
 
 /** @brief Function definition le<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_script;
 
 /**
@@ -25741,7 +25740,7 @@ afw_function_definition_le_script;
  */
 
 /** @brief Function definition lt<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_script;
 
 /**
@@ -25779,7 +25778,7 @@ afw_function_definition_lt_script;
  */
 
 /** @brief Function definition ne<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_script;
 
 /**
@@ -25822,7 +25821,7 @@ afw_function_definition_ne_script;
  */
 
 /** @brief Function definition nex<script> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_script;
 
 /**
@@ -25861,7 +25860,7 @@ afw_function_definition_nex_script;
  */
 
 /** @brief Function definition script */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_script;
 
 /**
@@ -25911,7 +25910,7 @@ afw_function_definition_script;
  */
 
 /** @brief Function definition close */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_close;
 
 /**
@@ -25944,7 +25943,7 @@ afw_function_execute_close(
     afw_function_execute_t *x);
 
 /** @brief Function definition flush */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_flush;
 
 /**
@@ -25977,7 +25976,7 @@ afw_function_execute_flush(
     afw_function_execute_t *x);
 
 /** @brief Function definition open_file */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_open_file;
 
 /**
@@ -26043,7 +26042,7 @@ afw_function_execute_open_file(
     afw_function_execute_t *x);
 
 /** @brief Function definition print */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_print;
 
 /**
@@ -26077,7 +26076,7 @@ afw_function_execute_print(
     afw_function_execute_t *x);
 
 /** @brief Function definition println */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_println;
 
 /**
@@ -26112,7 +26111,7 @@ afw_function_execute_println(
     afw_function_execute_t *x);
 
 /** @brief Function definition read */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_read;
 
 /**
@@ -26150,7 +26149,7 @@ afw_function_execute_read(
     afw_function_execute_t *x);
 
 /** @brief Function definition read_to_base64Binary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_read_to_base64Binary;
 
 /**
@@ -26188,7 +26187,7 @@ afw_function_execute_read_to_base64Binary(
     afw_function_execute_t *x);
 
 /** @brief Function definition read_to_hexBinary */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_read_to_hexBinary;
 
 /**
@@ -26226,7 +26225,7 @@ afw_function_execute_read_to_hexBinary(
     afw_function_execute_t *x);
 
 /** @brief Function definition readln */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_readln;
 
 /**
@@ -26260,7 +26259,7 @@ afw_function_execute_readln(
     afw_function_execute_t *x);
 
 /** @brief Function definition stream */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_stream;
 
 /**
@@ -26296,7 +26295,7 @@ afw_function_execute_stream(
     afw_function_execute_t *x);
 
 /** @brief Function definition write */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_write;
 
 /**
@@ -26333,7 +26332,7 @@ afw_function_execute_write(
     afw_function_execute_t *x);
 
 /** @brief Function definition write_internal */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_write_internal;
 
 /**
@@ -26371,7 +26370,7 @@ afw_function_execute_write_internal(
     afw_function_execute_t *x);
 
 /** @brief Function definition writeln */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_writeln;
 
 /**
@@ -26419,7 +26418,7 @@ afw_function_execute_writeln(
  */
 
 /** @brief Function definition add<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_add_string;
 
 /**
@@ -26457,7 +26456,7 @@ afw_function_execute_add_string(
     afw_function_execute_t *x);
 
 /** @brief Function definition at_least_one_member_of<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_string;
 
 /**
@@ -26495,7 +26494,7 @@ afw_function_definition_at_least_one_member_of_string;
  */
 
 /** @brief Function definition bag_size<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_string;
 
 /**
@@ -26529,7 +26528,7 @@ afw_function_definition_bag_size_string;
  */
 
 /** @brief Function definition bag<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_string;
 
 /**
@@ -26563,7 +26562,7 @@ afw_function_definition_bag_string;
  */
 
 /** @brief Function definition concat */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_concat;
 
 /**
@@ -26603,7 +26602,7 @@ afw_function_execute_concat(
     afw_function_execute_t *x);
 
 /** @brief Function definition encode_as_base64Binary<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_encode_as_base64Binary_string;
 
 /**
@@ -26638,7 +26637,7 @@ afw_function_definition_encode_as_base64Binary_string;
  */
 
 /** @brief Function definition encode_as_hexBinary<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_encode_as_hexBinary_string;
 
 /**
@@ -26673,7 +26672,7 @@ afw_function_definition_encode_as_hexBinary_string;
  */
 
 /** @brief Function definition ends_with<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ends_with_string;
 
 /**
@@ -26710,7 +26709,7 @@ afw_function_definition_ends_with_string;
  */
 
 /** @brief Function definition eq_ignore_case<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_ignore_case_string;
 
 /**
@@ -26747,7 +26746,7 @@ afw_function_execute_eq_ignore_case_string(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_string;
 
 /**
@@ -26790,7 +26789,7 @@ afw_function_definition_eq_string;
  */
 
 /** @brief Function definition eqx<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_string;
 
 /**
@@ -26829,7 +26828,7 @@ afw_function_definition_eqx_string;
  */
 
 /** @brief Function definition eval<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eval_string;
 
 /**
@@ -26871,7 +26870,7 @@ afw_function_execute_eval_string(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_string;
 
 /**
@@ -26909,7 +26908,7 @@ afw_function_definition_ge_string;
  */
 
 /** @brief Function definition gt<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_string;
 
 /**
@@ -26947,7 +26946,7 @@ afw_function_definition_gt_string;
  */
 
 /** @brief Function definition includes<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_includes_string;
 
 /**
@@ -26989,7 +26988,7 @@ afw_function_definition_includes_string;
  */
 
 /** @brief Function definition index_of<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_index_of_string;
 
 /**
@@ -27031,7 +27030,7 @@ afw_function_definition_index_of_string;
  */
 
 /** @brief Function definition intersection<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_string;
 
 /**
@@ -27069,7 +27068,7 @@ afw_function_definition_intersection_string;
  */
 
 /** @brief Function definition is_in<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_string;
 
 /**
@@ -27107,7 +27106,7 @@ afw_function_definition_is_in_string;
  */
 
 /** @brief Function definition is<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_string;
 
 /**
@@ -27141,7 +27140,7 @@ afw_function_definition_is_string;
  */
 
 /** @brief Function definition last_index_of<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_last_index_of_string;
 
 /**
@@ -27183,7 +27182,7 @@ afw_function_definition_last_index_of_string;
  */
 
 /** @brief Function definition le<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_string;
 
 /**
@@ -27221,7 +27220,7 @@ afw_function_definition_le_string;
  */
 
 /** @brief Function definition length<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_length_string;
 
 /**
@@ -27258,7 +27257,7 @@ afw_function_definition_length_string;
  */
 
 /** @brief Function definition lt<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_string;
 
 /**
@@ -27296,7 +27295,7 @@ afw_function_definition_lt_string;
  */
 
 /** @brief Function definition max<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_max_string;
 
 /**
@@ -27331,7 +27330,7 @@ afw_function_definition_max_string;
  */
 
 /** @brief Function definition min<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_min_string;
 
 /**
@@ -27366,7 +27365,7 @@ afw_function_definition_min_string;
  */
 
 /** @brief Function definition ne<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_string;
 
 /**
@@ -27409,7 +27408,7 @@ afw_function_definition_ne_string;
  */
 
 /** @brief Function definition nex<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_string;
 
 /**
@@ -27448,7 +27447,7 @@ afw_function_definition_nex_string;
  */
 
 /** @brief Function definition normalize_space<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_normalize_space_string;
 
 /**
@@ -27481,7 +27480,7 @@ afw_function_execute_normalize_space_string(
     afw_function_execute_t *x);
 
 /** @brief Function definition normalize_to_lower_case<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_normalize_to_lower_case_string;
 
 /**
@@ -27514,7 +27513,7 @@ afw_function_execute_normalize_to_lower_case_string(
     afw_function_execute_t *x);
 
 /** @brief Function definition one_and_only<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_string;
 
 /**
@@ -27553,7 +27552,7 @@ afw_function_definition_one_and_only_string;
  */
 
 /** @brief Function definition regexp_index_of<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_index_of_string;
 
 /**
@@ -27591,7 +27590,7 @@ afw_function_definition_regexp_index_of_string;
  */
 
 /** @brief Function definition regexp_match<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_string;
 
 /**
@@ -27629,7 +27628,7 @@ afw_function_definition_regexp_match_string;
  */
 
 /** @brief Function definition regexp_replace<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_replace_string;
 
 /**
@@ -27673,7 +27672,7 @@ afw_function_definition_regexp_replace_string;
  */
 
 /** @brief Function definition repeat<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_repeat_string;
 
 /**
@@ -27710,7 +27709,7 @@ afw_function_definition_repeat_string;
  */
 
 /** @brief Function definition replace<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_replace_string;
 
 /**
@@ -27754,7 +27753,7 @@ afw_function_definition_replace_string;
  */
 
 /** @brief Function definition set_equals<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_string;
 
 /**
@@ -27792,7 +27791,7 @@ afw_function_definition_set_equals_string;
  */
 
 /** @brief Function definition split<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_split_string;
 
 /**
@@ -27835,7 +27834,7 @@ afw_function_definition_split_string;
  */
 
 /** @brief Function definition starts_with<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_starts_with_string;
 
 /**
@@ -27873,7 +27872,7 @@ afw_function_definition_starts_with_string;
  */
 
 /** @brief Function definition string */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_string;
 
 /**
@@ -27915,7 +27914,7 @@ afw_function_execute_string(
     afw_function_execute_t *x);
 
 /** @brief Function definition subset<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_string;
 
 /**
@@ -27953,7 +27952,7 @@ afw_function_definition_subset_string;
  */
 
 /** @brief Function definition substring<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_substring_string;
 
 /**
@@ -28000,7 +27999,7 @@ afw_function_definition_substring_string;
  */
 
 /** @brief Function definition to_anyURI<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_anyURI_string;
 
 /**
@@ -28038,7 +28037,7 @@ afw_function_definition_to_anyURI_string;
  */
 
 /** @brief Function definition to_boolean<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_boolean_string;
 
 /**
@@ -28076,7 +28075,7 @@ afw_function_definition_to_boolean_string;
  */
 
 /** @brief Function definition to_dateTime<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_dateTime_string;
 
 /**
@@ -28114,7 +28113,7 @@ afw_function_definition_to_dateTime_string;
  */
 
 /** @brief Function definition to_date<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_date_string;
 
 /**
@@ -28152,7 +28151,7 @@ afw_function_definition_to_date_string;
  */
 
 /** @brief Function definition to_dayTimeDuration<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_dayTimeDuration_string;
 
 /**
@@ -28190,7 +28189,7 @@ afw_function_definition_to_dayTimeDuration_string;
  */
 
 /** @brief Function definition to_dnsName<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_dnsName_string;
 
 /**
@@ -28228,7 +28227,7 @@ afw_function_definition_to_dnsName_string;
  */
 
 /** @brief Function definition to_double<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_double_string;
 
 /**
@@ -28266,7 +28265,7 @@ afw_function_definition_to_double_string;
  */
 
 /** @brief Function definition to_integer<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_integer_string;
 
 /**
@@ -28300,7 +28299,7 @@ afw_function_definition_to_integer_string;
  */
 
 /** @brief Function definition to_ipAddress<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_ipAddress_string;
 
 /**
@@ -28338,7 +28337,7 @@ afw_function_definition_to_ipAddress_string;
  */
 
 /** @brief Function definition to_rfc822Name<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_rfc822Name_string;
 
 /**
@@ -28376,7 +28375,7 @@ afw_function_definition_to_rfc822Name_string;
  */
 
 /** @brief Function definition to_string<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_string;
 
 /**
@@ -28411,7 +28410,7 @@ afw_function_definition_to_string_string;
  */
 
 /** @brief Function definition to_time<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_time_string;
 
 /**
@@ -28449,7 +28448,7 @@ afw_function_definition_to_time_string;
  */
 
 /** @brief Function definition to_x500Name<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_x500Name_string;
 
 /**
@@ -28487,7 +28486,7 @@ afw_function_definition_to_x500Name_string;
  */
 
 /** @brief Function definition to_yearMonthDuration<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_yearMonthDuration_string;
 
 /**
@@ -28525,7 +28524,7 @@ afw_function_definition_to_yearMonthDuration_string;
  */
 
 /** @brief Function definition union<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_string;
 
 /**
@@ -28562,7 +28561,7 @@ afw_function_definition_union_string;
  */
 
 /** @brief Function definition url_decode */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_url_decode;
 
 /**
@@ -28595,7 +28594,7 @@ afw_function_execute_url_decode(
     afw_function_execute_t *x);
 
 /** @brief Function definition url_encode<string> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_url_encode_string;
 
 /**
@@ -28640,7 +28639,7 @@ afw_function_definition_url_encode_string;
  */
 
 /** @brief Function definition bag_size<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_template;
 
 /**
@@ -28674,7 +28673,7 @@ afw_function_definition_bag_size_template;
  */
 
 /** @brief Function definition bag<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_template;
 
 /**
@@ -28708,7 +28707,7 @@ afw_function_definition_bag_template;
  */
 
 /** @brief Function definition compile<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile_template;
 
 /**
@@ -28756,7 +28755,7 @@ afw_function_execute_compile_template(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_template;
 
 /**
@@ -28799,7 +28798,7 @@ afw_function_definition_eq_template;
  */
 
 /** @brief Function definition eqx<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_template;
 
 /**
@@ -28838,7 +28837,7 @@ afw_function_definition_eqx_template;
  */
 
 /** @brief Function definition eval<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eval_template;
 
 /**
@@ -28880,7 +28879,7 @@ afw_function_execute_eval_template(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_template;
 
 /**
@@ -28918,7 +28917,7 @@ afw_function_definition_ge_template;
  */
 
 /** @brief Function definition gt<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_template;
 
 /**
@@ -28956,7 +28955,7 @@ afw_function_definition_gt_template;
  */
 
 /** @brief Function definition is<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_template;
 
 /**
@@ -28990,7 +28989,7 @@ afw_function_definition_is_template;
  */
 
 /** @brief Function definition le<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_template;
 
 /**
@@ -29028,7 +29027,7 @@ afw_function_definition_le_template;
  */
 
 /** @brief Function definition lt<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_template;
 
 /**
@@ -29066,7 +29065,7 @@ afw_function_definition_lt_template;
  */
 
 /** @brief Function definition ne<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_template;
 
 /**
@@ -29109,7 +29108,7 @@ afw_function_definition_ne_template;
  */
 
 /** @brief Function definition nex<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_template;
 
 /**
@@ -29148,7 +29147,7 @@ afw_function_definition_nex_template;
  */
 
 /** @brief Function definition template */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_template;
 
 /**
@@ -29188,7 +29187,7 @@ afw_function_definition_template;
  */
 
 /** @brief Function definition to_string<template> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_template;
 
 /**
@@ -29233,7 +29232,7 @@ afw_function_definition_to_string_template;
  */
 
 /** @brief Function definition at_least_one_member_of<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_time;
 
 /**
@@ -29270,7 +29269,7 @@ afw_function_definition_at_least_one_member_of_time;
  */
 
 /** @brief Function definition bag_size<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_time;
 
 /**
@@ -29304,7 +29303,7 @@ afw_function_definition_bag_size_time;
  */
 
 /** @brief Function definition bag<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_time;
 
 /**
@@ -29338,7 +29337,7 @@ afw_function_definition_bag_time;
  */
 
 /** @brief Function definition eq<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_time;
 
 /**
@@ -29381,7 +29380,7 @@ afw_function_definition_eq_time;
  */
 
 /** @brief Function definition eqx<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_time;
 
 /**
@@ -29420,7 +29419,7 @@ afw_function_definition_eqx_time;
  */
 
 /** @brief Function definition ge<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_time;
 
 /**
@@ -29461,7 +29460,7 @@ afw_function_definition_ge_time;
  */
 
 /** @brief Function definition gt<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_time;
 
 /**
@@ -29501,7 +29500,7 @@ afw_function_definition_gt_time;
  */
 
 /** @brief Function definition in_range<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_in_range_time;
 
 /**
@@ -29544,7 +29543,7 @@ afw_function_execute_in_range_time(
     afw_function_execute_t *x);
 
 /** @brief Function definition intersection<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_time;
 
 /**
@@ -29582,7 +29581,7 @@ afw_function_definition_intersection_time;
  */
 
 /** @brief Function definition is_in<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_time;
 
 /**
@@ -29620,7 +29619,7 @@ afw_function_definition_is_in_time;
  */
 
 /** @brief Function definition is<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_time;
 
 /**
@@ -29654,7 +29653,7 @@ afw_function_definition_is_time;
  */
 
 /** @brief Function definition le<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_time;
 
 /**
@@ -29695,7 +29694,7 @@ afw_function_definition_le_time;
  */
 
 /** @brief Function definition lt<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_time;
 
 /**
@@ -29735,7 +29734,7 @@ afw_function_definition_lt_time;
  */
 
 /** @brief Function definition max<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_max_time;
 
 /**
@@ -29773,7 +29772,7 @@ afw_function_definition_max_time;
  */
 
 /** @brief Function definition min<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_min_time;
 
 /**
@@ -29811,7 +29810,7 @@ afw_function_definition_min_time;
  */
 
 /** @brief Function definition ne<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_time;
 
 /**
@@ -29854,7 +29853,7 @@ afw_function_definition_ne_time;
  */
 
 /** @brief Function definition nex<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_time;
 
 /**
@@ -29893,7 +29892,7 @@ afw_function_definition_nex_time;
  */
 
 /** @brief Function definition one_and_only<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_time;
 
 /**
@@ -29932,7 +29931,7 @@ afw_function_definition_one_and_only_time;
  */
 
 /** @brief Function definition set_equals<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_time;
 
 /**
@@ -29970,7 +29969,7 @@ afw_function_definition_set_equals_time;
  */
 
 /** @brief Function definition subset<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_time;
 
 /**
@@ -30008,7 +30007,7 @@ afw_function_definition_subset_time;
  */
 
 /** @brief Function definition time */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_time;
 
 /**
@@ -30046,7 +30045,7 @@ afw_function_definition_time;
  */
 
 /** @brief Function definition to_string<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_time;
 
 /**
@@ -30081,7 +30080,7 @@ afw_function_definition_to_string_time;
  */
 
 /** @brief Function definition union<time> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_time;
 
 /**
@@ -30128,7 +30127,7 @@ afw_function_definition_union_time;
  */
 
 /** @brief Function definition is<unevaluated> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_unevaluated;
 
 /**
@@ -30172,7 +30171,7 @@ afw_function_definition_is_unevaluated;
  */
 
 /** @brief Function definition meta */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_meta;
 
 /**
@@ -30209,7 +30208,7 @@ afw_function_execute_meta(
     afw_function_execute_t *x);
 
 /** @brief Function definition metas */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_metas;
 
 /**
@@ -30254,7 +30253,7 @@ afw_function_execute_metas(
  */
 
 /** @brief Function definition at_least_one_member_of<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_x500Name;
 
 /**
@@ -30292,7 +30291,7 @@ afw_function_definition_at_least_one_member_of_x500Name;
  */
 
 /** @brief Function definition bag_size<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_x500Name;
 
 /**
@@ -30326,7 +30325,7 @@ afw_function_definition_bag_size_x500Name;
  */
 
 /** @brief Function definition bag<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_x500Name;
 
 /**
@@ -30360,7 +30359,7 @@ afw_function_definition_bag_x500Name;
  */
 
 /** @brief Function definition eq<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_x500Name;
 
 /**
@@ -30403,7 +30402,7 @@ afw_function_definition_eq_x500Name;
  */
 
 /** @brief Function definition eqx<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_x500Name;
 
 /**
@@ -30442,7 +30441,7 @@ afw_function_definition_eqx_x500Name;
  */
 
 /** @brief Function definition ge<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_x500Name;
 
 /**
@@ -30480,7 +30479,7 @@ afw_function_definition_ge_x500Name;
  */
 
 /** @brief Function definition gt<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_x500Name;
 
 /**
@@ -30518,7 +30517,7 @@ afw_function_definition_gt_x500Name;
  */
 
 /** @brief Function definition intersection<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_x500Name;
 
 /**
@@ -30556,7 +30555,7 @@ afw_function_definition_intersection_x500Name;
  */
 
 /** @brief Function definition is_in<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_x500Name;
 
 /**
@@ -30594,7 +30593,7 @@ afw_function_definition_is_in_x500Name;
  */
 
 /** @brief Function definition is<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_x500Name;
 
 /**
@@ -30628,7 +30627,7 @@ afw_function_definition_is_x500Name;
  */
 
 /** @brief Function definition le<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_x500Name;
 
 /**
@@ -30666,7 +30665,7 @@ afw_function_definition_le_x500Name;
  */
 
 /** @brief Function definition lt<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_x500Name;
 
 /**
@@ -30704,7 +30703,7 @@ afw_function_definition_lt_x500Name;
  */
 
 /** @brief Function definition match<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_match_x500Name;
 
 /**
@@ -30741,7 +30740,7 @@ afw_function_execute_match_x500Name(
     afw_function_execute_t *x);
 
 /** @brief Function definition ne<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_x500Name;
 
 /**
@@ -30784,7 +30783,7 @@ afw_function_definition_ne_x500Name;
  */
 
 /** @brief Function definition nex<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_x500Name;
 
 /**
@@ -30823,7 +30822,7 @@ afw_function_definition_nex_x500Name;
  */
 
 /** @brief Function definition one_and_only<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_x500Name;
 
 /**
@@ -30862,7 +30861,7 @@ afw_function_definition_one_and_only_x500Name;
  */
 
 /** @brief Function definition regexp_match<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_regexp_match_x500Name;
 
 /**
@@ -30900,7 +30899,7 @@ afw_function_definition_regexp_match_x500Name;
  */
 
 /** @brief Function definition set_equals<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_x500Name;
 
 /**
@@ -30938,7 +30937,7 @@ afw_function_definition_set_equals_x500Name;
  */
 
 /** @brief Function definition subset<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_x500Name;
 
 /**
@@ -30976,7 +30975,7 @@ afw_function_definition_subset_x500Name;
  */
 
 /** @brief Function definition to_string<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_x500Name;
 
 /**
@@ -31011,7 +31010,7 @@ afw_function_definition_to_string_x500Name;
  */
 
 /** @brief Function definition union<x500Name> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_x500Name;
 
 /**
@@ -31048,7 +31047,7 @@ afw_function_definition_union_x500Name;
  */
 
 /** @brief Function definition x500Name */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_x500Name;
 
 /**
@@ -31096,7 +31095,7 @@ afw_function_definition_x500Name;
  */
 
 /** @brief Function definition bag_size<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_xpathExpression;
 
 /**
@@ -31130,7 +31129,7 @@ afw_function_definition_bag_size_xpathExpression;
  */
 
 /** @brief Function definition bag<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_xpathExpression;
 
 /**
@@ -31164,7 +31163,7 @@ afw_function_definition_bag_xpathExpression;
  */
 
 /** @brief Function definition compile<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_compile_xpathExpression;
 
 /**
@@ -31212,7 +31211,7 @@ afw_function_execute_compile_xpathExpression(
     afw_function_execute_t *x);
 
 /** @brief Function definition eq<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_xpathExpression;
 
 /**
@@ -31256,7 +31255,7 @@ afw_function_definition_eq_xpathExpression;
  */
 
 /** @brief Function definition eqx<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_xpathExpression;
 
 /**
@@ -31295,7 +31294,7 @@ afw_function_definition_eqx_xpathExpression;
  */
 
 /** @brief Function definition eval<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eval_xpathExpression;
 
 /**
@@ -31337,7 +31336,7 @@ afw_function_execute_eval_xpathExpression(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_xpathExpression;
 
 /**
@@ -31375,7 +31374,7 @@ afw_function_definition_ge_xpathExpression;
  */
 
 /** @brief Function definition gt<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_xpathExpression;
 
 /**
@@ -31413,7 +31412,7 @@ afw_function_definition_gt_xpathExpression;
  */
 
 /** @brief Function definition is<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_xpathExpression;
 
 /**
@@ -31448,7 +31447,7 @@ afw_function_definition_is_xpathExpression;
  */
 
 /** @brief Function definition le<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_xpathExpression;
 
 /**
@@ -31486,7 +31485,7 @@ afw_function_definition_le_xpathExpression;
  */
 
 /** @brief Function definition lt<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_xpathExpression;
 
 /**
@@ -31524,7 +31523,7 @@ afw_function_definition_lt_xpathExpression;
  */
 
 /** @brief Function definition ne<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_xpathExpression;
 
 /**
@@ -31568,7 +31567,7 @@ afw_function_definition_ne_xpathExpression;
  */
 
 /** @brief Function definition nex<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_xpathExpression;
 
 /**
@@ -31607,7 +31606,7 @@ afw_function_definition_nex_xpathExpression;
  */
 
 /** @brief Function definition to_string<xpathExpression> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_xpathExpression;
 
 /**
@@ -31642,7 +31641,7 @@ afw_function_definition_to_string_xpathExpression;
  */
 
 /** @brief Function definition xpathExpression */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_xpathExpression;
 
 /**
@@ -31682,7 +31681,7 @@ afw_function_definition_xpathExpression;
  */
 
 /** @brief Function definition xpath_node_count */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_xpath_node_count;
 
 /**
@@ -31715,7 +31714,7 @@ afw_function_execute_xpath_node_count(
     afw_function_execute_t *x);
 
 /** @brief Function definition xpath_node_eq */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_xpath_node_eq;
 
 /**
@@ -31752,7 +31751,7 @@ afw_function_execute_xpath_node_eq(
     afw_function_execute_t *x);
 
 /** @brief Function definition xpath_node_match */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_xpath_node_match;
 
 /**
@@ -31799,7 +31798,7 @@ afw_function_execute_xpath_node_match(
  */
 
 /** @brief Function definition at_least_one_member_of<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_at_least_one_member_of_yearMonthDuration;
 
 /**
@@ -31837,7 +31836,7 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration;
  */
 
 /** @brief Function definition bag_size<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_size_yearMonthDuration;
 
 /**
@@ -31871,7 +31870,7 @@ afw_function_definition_bag_size_yearMonthDuration;
  */
 
 /** @brief Function definition bag<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_bag_yearMonthDuration;
 
 /**
@@ -31905,7 +31904,7 @@ afw_function_definition_bag_yearMonthDuration;
  */
 
 /** @brief Function definition eq<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eq_yearMonthDuration;
 
 /**
@@ -31949,7 +31948,7 @@ afw_function_definition_eq_yearMonthDuration;
  */
 
 /** @brief Function definition eqx<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_eqx_yearMonthDuration;
 
 /**
@@ -31988,7 +31987,7 @@ afw_function_definition_eqx_yearMonthDuration;
  */
 
 /** @brief Function definition ge<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ge_yearMonthDuration;
 
 /**
@@ -32026,7 +32025,7 @@ afw_function_definition_ge_yearMonthDuration;
  */
 
 /** @brief Function definition gt<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_gt_yearMonthDuration;
 
 /**
@@ -32064,7 +32063,7 @@ afw_function_definition_gt_yearMonthDuration;
  */
 
 /** @brief Function definition intersection<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_intersection_yearMonthDuration;
 
 /**
@@ -32102,7 +32101,7 @@ afw_function_definition_intersection_yearMonthDuration;
  */
 
 /** @brief Function definition is_in<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_in_yearMonthDuration;
 
 /**
@@ -32140,7 +32139,7 @@ afw_function_definition_is_in_yearMonthDuration;
  */
 
 /** @brief Function definition is<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_is_yearMonthDuration;
 
 /**
@@ -32175,7 +32174,7 @@ afw_function_definition_is_yearMonthDuration;
  */
 
 /** @brief Function definition le<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_le_yearMonthDuration;
 
 /**
@@ -32213,7 +32212,7 @@ afw_function_definition_le_yearMonthDuration;
  */
 
 /** @brief Function definition lt<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_lt_yearMonthDuration;
 
 /**
@@ -32251,7 +32250,7 @@ afw_function_definition_lt_yearMonthDuration;
  */
 
 /** @brief Function definition ne<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_ne_yearMonthDuration;
 
 /**
@@ -32295,7 +32294,7 @@ afw_function_definition_ne_yearMonthDuration;
  */
 
 /** @brief Function definition nex<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_nex_yearMonthDuration;
 
 /**
@@ -32334,7 +32333,7 @@ afw_function_definition_nex_yearMonthDuration;
  */
 
 /** @brief Function definition one_and_only<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_one_and_only_yearMonthDuration;
 
 /**
@@ -32373,7 +32372,7 @@ afw_function_definition_one_and_only_yearMonthDuration;
  */
 
 /** @brief Function definition set_equals<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_set_equals_yearMonthDuration;
 
 /**
@@ -32411,7 +32410,7 @@ afw_function_definition_set_equals_yearMonthDuration;
  */
 
 /** @brief Function definition subset<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_subset_yearMonthDuration;
 
 /**
@@ -32449,7 +32448,7 @@ afw_function_definition_subset_yearMonthDuration;
  */
 
 /** @brief Function definition to_string<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_to_string_yearMonthDuration;
 
 /**
@@ -32484,7 +32483,7 @@ afw_function_definition_to_string_yearMonthDuration;
  */
 
 /** @brief Function definition union<yearMonthDuration> */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_union_yearMonthDuration;
 
 /**
@@ -32521,7 +32520,7 @@ afw_function_definition_union_yearMonthDuration;
  */
 
 /** @brief Function definition yearMonthDuration */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+extern const afw_value_function_definition_t
 afw_function_definition_yearMonthDuration;
 
 /**

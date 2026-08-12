@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_server_fcgi_declare_helpers.h"
 #include "afw_server_fcgi_const_objects.h"
 #include "afw_server_fcgi_strings.h"
 
@@ -35,7 +34,7 @@
  * @brief Generated register for afw_server_fcgi. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_SERVER_FCGI_DECLARE_INTERNAL(void)
+extern void
 afw_server_fcgi_generated_register(afw_xctx_t *xctx);
 
 

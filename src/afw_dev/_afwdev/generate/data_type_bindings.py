@@ -671,7 +671,7 @@ def write_h_section(fd, prefix, obj):
     fd.write(' * defined in.  Use afw_data_type_' + id + ' when not referencing in\n')
     fd.write(' * a static.\n')
     fd.write(' */\n')
-    fd.write('AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)\n')
+    fd.write('extern const afw_data_type_t\n')
     fd.write('afw_data_type_' + id + '_direct;\n')
 
     # Data type inf extern.
@@ -684,7 +684,7 @@ def write_h_section(fd, prefix, obj):
     fd.write(' * The implementation of the data type must define this.  It is\n')
     fd.write(' * managed by the generated data type instance.\n')
     fd.write(' */\n')
-    fd.write('AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)\n')
+    fd.write('extern const afw_data_type_inf_t\n')
     fd.write('afw_data_type_' + id + '_inf;\n')
 
 
@@ -918,17 +918,17 @@ def write_c_section(fd, prefix, obj):
 
     # Declare for empty array of this data type
     fd.write('\n/* Value for empty array of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
+    fd.write('const afw_array_view_of_c_array_self_t\n')
     fd.write('impl_empty_array_of_' + id + ';\n')
     
     # Declare for empty array value of this data type
     fd.write('\n/* Value for empty array of ' + id + '. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)\n')
+    fd.write('const afw_value_array_t\n')
     fd.write('impl_value_empty_array_of_' + id + ';\n')
     
     # Data type
     fd.write('\n/* Data type ' + id + ' instance. */\n')
-    fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)\n')
+    fd.write('const afw_data_type_t\n')
     fd.write('afw_data_type_' + id + '_direct = {\n')
     fd.write('    &' + prefix + 'data_type_' + id + '_inf,\n')
 
@@ -1043,7 +1043,7 @@ def write_c_section(fd, prefix, obj):
 
         # Define for empty array of this data type
         fd.write('\n/* Value for empty array of ' + id + '. */\n')
-        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_view_of_c_array_self_t)\n')
+        fd.write('const afw_array_view_of_c_array_self_t\n')
         fd.write('impl_empty_array_of_' + id + ' = {\n')
         fd.write('    {\n')
         fd.write('        &afw_array_view_of_c_array_inf,\n')
@@ -1056,7 +1056,7 @@ def write_c_section(fd, prefix, obj):
         
         # Define for empty array of this data type
         fd.write('\n/* Value for empty array of ' + id + '. */\n')
-        fd.write('AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)\n')
+        fd.write('const afw_value_array_t\n')
         fd.write('impl_value_empty_array_of_' + id + ' = {\n')
         fd.write('    {&afw_value_permanent_array_inf},\n')
         fd.write('    (const afw_array_t *)&impl_empty_array_of_' + id + '\n')

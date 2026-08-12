@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_components_declare_helpers.h"
 #include "afw_components_const_objects.h"
 #include "afw_runtime.h"
 #include "afw_components_runtime_object_maps.h"
@@ -37,7 +36,7 @@
  * @brief Generated register for afw_components. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_COMPONENTS_DECLARE_INTERNAL(void)
+extern void
 afw_components_generated_register(afw_xctx_t *xctx);
 
 

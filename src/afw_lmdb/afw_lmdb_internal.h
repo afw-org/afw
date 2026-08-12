@@ -23,7 +23,7 @@
 
 AFW_BEGIN_DECLARES
 
-AFW_LMDB_DECLARE_INTERNAL_CONST_DATA(afw_adapter_factory_t) afw_lmdb_adapter_factory;
+extern const afw_adapter_factory_t afw_lmdb_adapter_factory;
 
 /* Defined in afw_lmdb_metadata.h */
 typedef struct afw_lmdb_metadata_s afw_lmdb_metadata_t;

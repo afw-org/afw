@@ -74,7 +74,7 @@ impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
  * Array-shaped formals accept utf8 code-point sequences via
  * afw_value_as_array_sequence (#153), same language rule as built-ins.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_function_script_evaluate_parameter_with_type(
     const afw_value_t *value,
     afw_size_t parameter_number,
@@ -134,7 +134,7 @@ afw_function_script_evaluate_parameter_with_type(
 
 
 /* Pattern parameters and shared destructure bind paths. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_function_script_assign_pattern(
     const afw_value_t *target,
     const afw_value_t *value,

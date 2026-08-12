@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_yaml_declare_helpers.h"
 #include "afw_yaml_strings.h"
 
 
@@ -34,7 +33,7 @@
  * @brief Generated register for afw_yaml. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_YAML_DECLARE_INTERNAL(void)
+extern void
 afw_yaml_generated_register(afw_xctx_t *xctx);
 
 

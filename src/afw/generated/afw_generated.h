@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_declare_helpers.h"
 #include "afw_const_objects.h"
 #include "afw_data_type_bindings.h"
 #include "afw_function_bindings.h"
@@ -39,7 +38,7 @@
  * @brief Generated register for afw. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_generated_register(afw_xctx_t *xctx);
 
 

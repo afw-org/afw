@@ -2294,7 +2294,7 @@ impl_afw_data_type_array_optional_initialize_iterator(
     _id, _to_utf8, _to_internal, _compare, _conv, _clone,                   \
     _compiler_listing, _expression, _iter)                                  \
                                                                             \
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_inf_t)                         \
+const afw_data_type_inf_t                         \
 afw_data_type_ ## _id ## _inf = {                                           \
     {                                                                       \
         AFW_UTF8_LITERAL("afw_data_type"),                                  \

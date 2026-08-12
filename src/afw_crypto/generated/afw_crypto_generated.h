@@ -26,7 +26,6 @@
  */
 
 #include "afw_minimal.h"
-#include "afw_crypto_declare_helpers.h"
 #include "afw_crypto_const_objects.h"
 #include "afw_crypto_function_bindings.h"
 #include "afw_runtime.h"
@@ -38,7 +37,7 @@
  * @brief Generated register for afw_crypto. 
  * @param xctx of caller.  Should be base xctx.
  */
-AFW_CRYPTO_DECLARE_INTERNAL(void)
+extern void
 afw_crypto_generated_register(afw_xctx_t *xctx);
 
 
