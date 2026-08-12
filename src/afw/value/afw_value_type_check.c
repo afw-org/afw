@@ -1470,6 +1470,7 @@ impl_project_function_parameter(
     afw_xctx_t *xctx)
 {
     afw_value_type_t *elem;
+    const afw_value_type_t *parsed;
 
     afw_memory_clear(out);
 
@@ -1506,8 +1507,37 @@ impl_project_function_parameter(
         return;
     }
 
+    /*
+     * Function formal with FunctionSignature string (issue #28): project to
+     * a full function Type so typeCheck can compare script function values
+     * to the documented prototype. Metadata uses dataType function plus a
+     * dataTypeParameter that starts with '(' (FunctionSignature spelling).
+     * Invalid signatures fall back to leaf function.
+     */
+    if (param->dataTypeParameter &&
+        param->dataTypeParameter->internal.len > 0 &&
+        param->dataTypeParameter->internal.s &&
+        param->dataTypeParameter->internal.s[0] == '(' &&
+        (param->data_type == afw_data_type_function ||
+            param->data_type == &afw_data_type_function_direct ||
+            !param->data_type))
+    {
+        parsed = afw_compile_type_from_utf8(
+            &param->dataTypeParameter->internal,
+            NULL, p, xctx);
+        if (parsed &&
+            parsed->kind == afw_value_type_kind_function)
+        {
+            *out = *parsed;
+            return;
+        }
+        /* Parse failed or unexpected kind: leaf function below. */
+    }
+
     out->kind = afw_value_type_kind_data_type;
-    out->data_type = param->data_type;
+    out->data_type = param->data_type
+        ? param->data_type
+        : afw_data_type_any;
 }
 
 

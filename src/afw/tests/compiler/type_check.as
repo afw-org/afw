@@ -738,6 +738,76 @@ compile<script>(script(
 return 0;
 
 //?
+//? test: check-hof-function-signature-ok
+//? description: filter accepts script predicate matching FunctionSignature
+//? expect: 0
+//? source: ...
+
+const r: any = evaluate(compile<script>(script(
+    "#compile typeCheck;\n" +
+    "const pred = function (x: any): boolean { return x === 1; };\n" +
+    "return filter(pred, [1, 2, 1]);"
+)));
+assert(length(r) === 2);
+return 0;
+
+//?
+//? test: check-hof-function-signature-bad-return
+//? description: filter rejects script predicate with non-boolean return type
+//? expect: error
+//? source: ...
+
+compile<script>(script(
+    "#compile typeCheck;\n" +
+    "const pred = function (x: any): string { return \"no\"; };\n" +
+    "return filter(pred, [1, 2]);"
+));
+return 0;
+
+//?
+//? test: check-hof-function-signature-inline-ok
+//? description: map accepts inline script function with any return
+//? expect: 0
+//? source: ...
+
+const r: any = evaluate(compile<script>(script(
+    "#compile typeCheck;\n" +
+    "return map(function (x: any): any { return x; }, [1, 2]);"
+)));
+assert(r[0] === 1);
+assert(r[1] === 2);
+return 0;
+
+//?
+//? test: check-function-signature-metadata-parses
+//? description: all built-in FunctionSignature strings parse as Types
+//? expect: 0
+//? source: ...
+
+/*
+ * Contract (1c A): documented FunctionSignature formals must be valid
+ * Adaptive Script Types. Keep this list in sync with generate metadata
+ * (dataType function + dataTypeParameter).
+ */
+const sigs: any = [
+    "(...values: any) => boolean",
+    "(...values: any) => any",
+    "(value1: any, value2: any) => boolean",
+    "(object: object, userData: any) => boolean",
+    "(accumulator: any, value: any) => any",
+    "(key: string, value: any) => any"
+];
+let i: integer = 0;
+while (i < length(sigs)) {
+    compile<script>(script(
+        "type T = " + string(sigs[i]) + ";\n" +
+        "return 0;"
+    ));
+    i = i + 1;
+}
+return 0;
+
+//?
 //? test: check-compileOnly-pragma-literal
 //? description: #compile typeCheckCompileOnly catches bad literal
 //? expect: error

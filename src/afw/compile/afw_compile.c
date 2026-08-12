@@ -633,3 +633,52 @@ afw_compile_policy_init_from_flags(
     policy->no_optimize = afw_flag_is_active(
         xctx->env->flag_index_compile_noOptimize_active, xctx);
 }
+
+
+
+/* Parse a script Type expression from UTF-8 (e.g. FunctionSignature). */
+AFW_DEFINE(const afw_value_type_t *)
+afw_compile_type_from_utf8(
+    const afw_utf8_t *source,
+    const afw_utf8_t *source_location,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_compile_parser_t *parser;
+    const afw_value_type_t *type;
+    afw_boolean_t failed;
+
+    if (!source || source->len == 0 || !p) {
+        return NULL;
+    }
+
+    /*
+     * cede_p true: type graph is allocated on caller pool p (not a
+     * transient parser subpool). residual to_full ensures the whole
+     * FunctionSignature string is a single Type.
+     */
+    parser = afw_compile_lexical_parser_create(
+        source, NULL, NULL, source_location,
+        afw_compile_type_script,
+        afw_compile_residual_check_to_full,
+        true, NULL, NULL, p, xctx);
+
+    type = NULL;
+    failed = false;
+    AFW_TRY {
+        type = afw_compile_parse_Type(parser);
+        afw_compile_check_for_residual(parser);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Caller may fall back (e.g. leaf function formal). */
+        type = NULL;
+        failed = true;
+    }
+    AFW_FINALLY {
+        afw_compile_lexical_parser_finish_and_release(parser, xctx);
+    }
+    AFW_ENDTRY;
+
+    (void)failed;
+    return type;
+}

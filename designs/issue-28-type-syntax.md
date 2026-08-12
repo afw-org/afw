@@ -12,7 +12,7 @@ Cadence: *Flexible plan, one step, then re-decide* (mantras pad). After each ste
 |---|----------------|--------|
 | 1 | **Inventory** — claimed surface / fix / decided-not / probe | Done (draft in pad) |
 | 1b | **Gray-zone type syntax** — one by one: support as claimed surface vs **no** (how Adaptive works); TypeScript-author expectation given what Adaptive is/isn’t; record in this pad + `typescript-differences.md` (plain language; definitive product wording, not “not yet”) | **Done** |
-| 1c | **FunctionSignature formals** — (A) documented functor prototypes must be valid Adaptive Script Types (validate/generate guard); (B) under typeCheck, project FunctionSignature → function Type and compile-check known function arguments (script functions first). Align script formals with built-in HOF docs. Not TypeScript generics. | **Queued after 1b** (user wants B) |
+| 1c | **FunctionSignature formals** — (A) documented functor prototypes must be valid Adaptive Script Types; (B) under typeCheck, project FunctionSignature → function Type and compile-check known function arguments (script functions first). Not TypeScript generics. | **Done** (project + const/let initial_value for call-site; tests; poly hub backticks stripped in generate — regenerate to refresh strings) |
 | 2 | **Highest-value gap vertical(s)** — remaining G1/G2/… after 1c as needed | Pending |
 | 3 | **Decided-not + pad/issue hygiene** — remaining nos; fix stale issue body (`Array<T>`, etc.) | Pending (partial with 1b) |
 | 4 | **Close package** — issue body, labels, `open-issues-status`, ready to close #28 | Pending |

@@ -374,6 +374,42 @@ afw_vfs_self_v_zz__ = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_zz__2566 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2566)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2567 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2567)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2568 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2568)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2569 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2569)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2570 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2570)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2571 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2571)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_zz__2572 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2572)
@@ -401,42 +437,6 @@ const afw_value_string_t
 afw_vfs_self_v_zz__2576 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2576)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2577 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2577)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2578 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2578)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2579 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2579)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2580 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2580)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2581 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2581)
-};
-
-const afw_value_string_t
-afw_vfs_self_v_zz__2582 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2582)
 };
 
 const afw_value_string_t
