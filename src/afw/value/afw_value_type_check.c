@@ -1470,6 +1470,7 @@ impl_project_function_parameter(
     afw_xctx_t *xctx)
 {
     afw_value_type_t *elem;
+    const afw_value_type_t *parsed;
 
     afw_memory_clear(out);
 
@@ -1506,8 +1507,37 @@ impl_project_function_parameter(
         return;
     }
 
+    /*
+     * Function formal with FunctionSignature string (issue #28): project to
+     * a full function Type so typeCheck can compare script function values
+     * to the documented prototype. Metadata uses dataType function plus a
+     * dataTypeParameter that starts with '(' (FunctionSignature spelling).
+     * Invalid signatures fall back to leaf function.
+     */
+    if (param->dataTypeParameter &&
+        param->dataTypeParameter->internal.len > 0 &&
+        param->dataTypeParameter->internal.s &&
+        param->dataTypeParameter->internal.s[0] == '(' &&
+        (param->data_type == afw_data_type_function ||
+            param->data_type == &afw_data_type_function_direct ||
+            !param->data_type))
+    {
+        parsed = afw_compile_type_from_utf8(
+            &param->dataTypeParameter->internal,
+            NULL, p, xctx);
+        if (parsed &&
+            parsed->kind == afw_value_type_kind_function)
+        {
+            *out = *parsed;
+            return;
+        }
+        /* Parse failed or unexpected kind: leaf function below. */
+    }
+
     out->kind = afw_value_type_kind_data_type;
-    out->data_type = param->data_type;
+    out->data_type = param->data_type
+        ? param->data_type
+        : afw_data_type_any;
 }
 
 
@@ -1547,6 +1577,56 @@ impl_specialize_polymorphic(
             AFW_UTF8_FMT_ARG(&function->functionId->internal));
     }
     return specialized;
+}
+
+
+
+AFW_DEFINE(void)
+afw_value_type_check_function_type_call(
+    const afw_value_type_t *function_type,
+    afw_size_t argc,
+    const afw_value_t *const *argv,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx)
+{
+    const afw_value_type_function_param_t *param;
+    afw_size_t i;
+
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx)) {
+        return;
+    }
+    if (!function_type ||
+        function_type->kind != afw_value_type_kind_function ||
+        !argv)
+    {
+        return;
+    }
+
+    i = 0;
+    for (param = function_type->function.parameters;
+        param;
+        param = param->next)
+    {
+        if (param->is_rest) {
+            for (; i < argc; i++) {
+                if (argv[i + 1] && param->type) {
+                    afw_value_type_check_compile_assignable(param->type,
+                        argv[i + 1], "parameter", contextual, xctx);
+                }
+            }
+            break;
+        }
+        if (i >= argc) {
+            break;
+        }
+        if (argv[i + 1] && param->type &&
+            !afw_value_type_is_any(param->type))
+        {
+            afw_value_type_check_compile_assignable(param->type,
+                argv[i + 1], "parameter", contextual, xctx);
+        }
+        i++;
+    }
 }
 
 

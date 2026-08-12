@@ -179,6 +179,44 @@ impl_compile_check_object_pattern(
 
 
 
+/*
+ * Remember compile-time RHS on simple **const** name bindings so later
+ * call-site typeCheck / early call bind can resolve unannotated const that
+ * holds a script function (FunctionSignature formals, issue #28).
+ *
+ * Do **not** set this for let: call create early-binds through initial_value,
+ * and reassigned let (e.g. test262 try completion cases that rebind fn)
+ * must evaluate the current value, not the first RHS.
+ */
+static void
+impl_set_simple_const_symbol_initial_value(
+    const afw_value_t *target,
+    const afw_value_t *value)
+{
+    const afw_value_assignment_target_t *at;
+    afw_value_block_symbol_t *symbol;
+
+    if (!value || !afw_value_is_assignment_target(target)) {
+        return;
+    }
+    at = (const afw_value_assignment_target_t *)target;
+    if (at->assignment_target->target_type !=
+        afw_compile_assignment_target_type_symbol_reference)
+    {
+        return;
+    }
+    symbol = (afw_value_block_symbol_t *)
+        at->assignment_target->symbol_reference->symbol;
+    if (symbol &&
+        symbol->symbol_type == afw_value_block_symbol_type_const &&
+        !symbol->initial_value)
+    {
+        symbol->initial_value = value;
+    }
+}
+
+
+
 static void
 impl_compile_check_assign_target(
     afw_compile_parser_t *parser,
@@ -636,6 +674,7 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
     }
     argv[2] = afw_compile_parse_Expression(parser);
     impl_compile_check_assign_target(parser, argv[1], argv[2]);
+    impl_set_simple_const_symbol_initial_value(argv[1], argv[2]);
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
     result = afw_value_call_built_in_function_create(
@@ -1182,6 +1221,7 @@ impl_parse_LetStatement(afw_compile_parser_t *parser)
         }
         argv[2] = afw_compile_parse_Expression(parser);
         impl_compile_check_assign_target(parser, argv[1], argv[2]);
+        /* let: do not set initial_value (mutable rebind). */
         AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
     }
 

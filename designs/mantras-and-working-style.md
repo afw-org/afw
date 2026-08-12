@@ -5,6 +5,8 @@
 
 **How to use:** consult when orienting on *how to think and partner*, not for every edit. Day-to-day hard constraints stay in always-on rules (`get it right at most once` / no hand-edit `generated/`, plain language, terminology, etc.). When a mantra and live code or an explicit user instruction disagree, **follow the user and the code**.
 
+**Scope — most of these are not AFW-specific.** They are long-standing ways of working and deciding. They apply **ongoing** (including after beta/release), wherever we partner — not a temporary campaign for Adaptive Framework alone. We **store and apply them here** because this repo is where we work on AFW; AFW examples illustrate the habits. A few rows are AFW-shaped (metadata/generate, pools, Adaptive terminology); the rest (process, consensus, maps, decide-while-in-the-work, plain language, …) are general.
+
 **Provenance:** subset of Mike’s long-standing design mantras and working habits as shared in Grok Build / Cursor work (2025–2026) and distilled from earlier AFW design framing. **Incomplete on purpose.** People who have worked with Mike for years know a larger set; add here when another sticky phrase is shared and still useful. Do not invent mantras that were never said.
 
 **Companions:** optional **team-facing** one-pager → [`ai-partner-lessons.md`](ai-partner-lessons.md). Structural “why” → [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md). Topic → sources → probes → [`knowledge-atlas.md`](knowledge-atlas.md).
@@ -32,7 +34,8 @@ This is how issue work has actually gone with AI partners — and how human deve
 4. **Guide with why** — when the feeling differs, walk the reasons (and the code / live system), not a decree.  
 5. **Either side can be wrong** — sometimes the partner was right; sometimes the long-time view was. Both are fine. When the partner **discovers** that something is correct without being argued into it, that is the good outcome: shared understanding, not winning.  
 6. **Close the loop with live truth** — show `afwfcgi`, point at registries in `afw_environment.h`, const objects vs runtime objects, adapters and services. When the partner’s mental model clicks, they often **intuit the next layer** (e.g. start/stop adapters, how pieces wire) without a full lecture.  
-7. **Ah-ha moments become maps** — one env/runtime discussion (smaller chunks, then live discovery) was the genesis of this support-partner path: if a careful partner can close that loop, AFW support and continuity are real work, not only ticket churn.
+7. **Ah-ha moments become maps** — one env/runtime discussion (smaller chunks, then live discovery) was the genesis of this support-partner path: if a careful partner can close that loop, AFW support and continuity are real work, not only ticket churn.  
+8. **Capture the no as well as the yes** — when consensus rejects a path (or locks a hard non-goal), write it down the same way you would a positive design decision. That is how the next person avoids rehashing settled ground; see mantra *Record what we decided not to do…* under Quality and process.
 
 Assistants: lead with honest models and questions; accept correction; prefer **live probes** when stuck arguing in the abstract; do not sulk when guided, and do not pretend consensus means never disagreeing.
 
@@ -71,8 +74,11 @@ Short form first; “means in practice” second. Several of these are already e
 | **Fix the layer, not the symptom twice** | Prefer one map/accessor/helper fix over scattered caller patches (classic in runtime catalog and utf8 index work). |
 | **Complete thin verticals** | Prefer a full thin path that works (discover → run → teardown, or generate → implement → test) over half of five grand designs. |
 | **Gate vs lab** | Language/package **gate** (`afwdev test -j`) is not the same job as **lab** load, soak, or experimental hosts (blast, advanced / orchestrated tests). Don’t redefine the gate as soak. |
+| **Tests are pretend mode that never goes away** | Writing scenarios (often **before or while** designing the code) is how we stress a sketch: act as if the feature exists and see whether the design actually does what we want. The act of writing the test often **uncovers flaws in the idea**, not only bugs in an implementation. Keep those scenarios as **automated regression** so later verticals (types, optimize, memory, …) cannot silently un-teach them. The gate (`afwdev test -j`, focused `type_*`, test262 where it applies) is that pretend mode on every change — **process that improves quality and speed of rework**, not ceremony. Pairs with *Pretend we already have it* (design) and *Gate vs lab* (don’t turn the gate into soak). |
 | **Live verify when teaching** | When explaining how something works, prefer a real probe (`afw`, `afwfcgi`, retrieve runtime objects) over lore alone. |
 | **Maps over tickets** | Durable notes: concept, contract, failure mode, probe. Issue numbers are **pointers**, not the title of the knowledge. |
+| **Record what we decided not to do as carefully as what we decided to do** | Negative decisions are first-class map content. Write them where a new person (or a later session) will look — issue pad, differences table, close comment — with a short *why*. **“Not yet / out of scope for this vertical”** is not the same as **“decided not to.”** Deferred work stays live backlog; a written *no* is a commitment until someone **explicitly** reopens it. Changing your mind is fine; drifting or re-litigating from zero is not. Especially valuable when onboarding or when the same topic comes back months later. Prefer firm **no** / “how it works” for product surface on the path to beta and release — not soft “not yet” that is really an undecided dangling choice. |
+| **Process should make you more efficient and improve the quality of your work** | **Standing rule (not AFW-only, not time-boxed).** Process is a **tool**, not a goal. Use it when it speeds good work or raises quality (clearer decisions, safer merges, better tests, shared maps). **Do not** do process for its own sake — ceremony that only slows progress often **lowers** quality as a side effect (context lost, decisions deferred, thrash). **Qualifier:** do not let process block **rapid development** when that process would **not** produce more efficient or higher-quality work. Examples of process that must not outrank the work: “keep the PR small because that is the standard way,” endless follow-up issues for choices we could decide **now**, or re-litigating settled nos without a new decision. Good process still includes real quality gates (build/test where they help), discuss-then-execute on hard multi-phase work, and honest deferral when information or people are truly missing. |
 | **Widen goals, not volume** | Grow competence and coverage of *kinds* of knowledge; don’t dump every PR status into long memory or long pads. |
 | **Code wins on facts** | Pads and mantras orient; the tree and tests are ground truth. When notes drift, fix the notes. |
 
@@ -83,7 +89,7 @@ Career-long patterns Mike uses for language / API / harness design (made explici
 | Mantra | Means in practice |
 |--------|-------------------|
 | **Sketch the syntax you probably want** | Write the *ultimate* shape of the file/API/language first (full-ish: fields you think you’ll need, not only today’s minimum). Get the *feel* right on paper. |
-| **Pretend we already have it** | Before implementing, **throw real scenarios at that sketch**. Act as if the thing exists: would this orchestration file (or API) actually do the jobs we care about? If a scenario is awkward or impossible, fix the sketch—not the first half-built runner. |
+| **Pretend we already have it** | Before implementing, **throw real scenarios at that sketch**. Act as if the thing exists: would this orchestration file (or API) actually do the jobs we care about? If a scenario is awkward or impossible, fix the sketch—not the first half-built runner. Often the scenarios become **tests** (even before the code) so the pretend mode stays automated — see *Tests are pretend mode that never goes away*. |
 | **Trim back on the way in** | First implementation is a **subset** of the sketch that still aims at the north star. Cut scope for v1; keep reserved ideas in the design pad so the schema is not painted into a corner. |
 | **Does something else already do this?** | Before building, name the alternatives (in-tree tools, other languages, industry defaults). If they already solve the problem well for *our* users, prefer them—or a thin glue layer—not a parallel product. |
 | **Does this make reliable good work easier?** | The new thing earns its keep only if **developers (or operators) can more reliably do good work** with it than with the alternatives—not because it is clever, novel, or “ours.” Harder, more fragile, or two ways to do the same job is a fail. |
@@ -100,11 +106,13 @@ Assistants: when Mike is in this mode, prefer **full sketch + scenario stress-te
 |-------|-------------------|
 | **Ask what you think first** | Open issues with the partner’s read; keep inviting it during the discussion (see *How consensus is grown* above). |
 | **Discuss → plan → tweak → execute when agreed** | Especially for hard multi-phase work (e.g. memory **#2**). Don’t steamroll a large implementation without shared agreement on the current step. For new syntax/harness shape, use *Design method* above. |
+| **Flexible plan, one step, then re-decide** | Prefer a **living candidate order** over a locked multi-step script. Share a flexible plan for orientation; do **one** step (discuss only as much as that step needs); when it feels finished, the human partner asks something like **“what do you think we should do next?”** — then either take the next candidate or **adapt** the plan from what you just learned. Assistants do **not** auto-chain the whole epic after one green light. Fits wrap-ups, residuals, and other issues where the edge is exploratory (classic use: **#28** close-out). Pairs with *Complete thin verticals* and *Discuss → plan → tweak → execute*. |
+| **Decide while we are in the work** | On feature branches and `mgg-develop`, **close product decisions** (yes / no / how it works) while the topic is open. Do not procrastinate choices into dangling “later” without a **real** reason (missing information, other people, blocked probe, truly separate capability). “Keep the branch/PR small because that is the standard way” is **not** a good enough reason — see *Process should make you more efficient…*. A firm written **no** finishes a decision; soft deferral does not. |
 | **Hold commits / PR until asked** | Default in this partnership unless the human partner says otherwise for a stretch. |
 | **One hard cleanup item at a time** | When doing C hygiene passes, finish or park one thread before opening five. |
 | **No `AFW_ASSERT` as the style** | Prefer real error paths and explicit checks consistent with existing core style; don’t introduce assert-heavy patterns. |
 | **Handbook is Jeremy’s house** | User-facing handbook: plain prose, Adaptive on its terms, Example subsections; no issue numbers or `designs/` paths in handbook XML. Welcome Jeremy to refine or revert. |
-| **Promote after deep work** | After a hard session: mental model change, wrong path never to take, live probe, optional user-facing sentence — into **git** when sticky. |
+| **Promote after deep work** | After a hard session: mental model change, wrong path never to take, **decided not to** (with why), live probe, optional user-facing sentence — into **git** when sticky. |
 | **Ah-ha → map** | When a loop closes (env, hosts, values, …), write the thin map so the next person does not re-earn it only in chat. |
 
 ---
@@ -117,12 +125,15 @@ Useful when someone (or an assistant) is about to “help” the wrong way:
 - Treating **objects as bags** / property bags in new docs or APIs.
 - Deep-cloning whole adapters or full registry **`current`** to paper over one bad accessor.
 - Making **default `afwdev test -j`** into a load/soak product.
+- Shipping a “win” in one vertical that **skips or weakens the regression gate**, or treating borrowed suites (e.g. test262) as optional noise when they catch real Adaptive rebinds and completion stories.
 - Closing the listen socket alone as the *long-term* multi-thread wake story for every host (host-specific wake + `terminating` flag instead).
 - Rewriting handbook voice into issue-tracker or design-pad voice.
 - Optimizing chat **memory volume** instead of **maps** that live in git.
 - Assuming beta ship date = end of partnership or end of learning the system.
 - Building a parallel tool/language/harness **without** checking alternatives and **ease of reliable good work** (see *Design method*).
 - Keeping two experimental ways to do the same maintainer job forever (e.g. advanced-test *and* blast *and* orchestrated tests) without a consolidation path.
+- **Process for its own sake** — ceremony that slows work without improving efficiency or quality (see *Process should make you more efficient…*).
+- Leaving **dangling product decisions** “for a follow-up PR” when we could decide now and write the no or the yes.
 
 ---
 
@@ -135,6 +146,8 @@ When another sticky phrase shows up in conversation and still helps:
 1. Add a row to the tables above (short form + means in practice).  
 2. Optionally one line in [`agent-support.md`](agent-support.md) concept cards if it is support-shaped.  
 3. Do **not** paste the whole list into always-on `.mdc` unless it is a true daily hard rule (most already are, or aren’t).
+
+This pad (and related maps) is also how long-standing **working habits** stay available when Mike is not in the room — useful personality and method for support/development partners, not a biography. Most habits here **outlive any one product milestone**. Promote sticky *how we decide* and *what we refused*, not chat volume. Use them on AFW work; they were not invented only for AFW.
 
 ---
 

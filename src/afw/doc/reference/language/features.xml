@@ -28,7 +28,7 @@
         other locations. The only way to share code between scripts is to store 
         them in qualified variables that would be accessible to scripts.
     </paragraph>
-    <header>Types and Type Casting</header>
+    <header>Types</header>
     <paragraph>
         Adaptive Script can annotate values with Adaptive data types
         (<literal>integer</literal>, <literal>string</literal>, arrays,

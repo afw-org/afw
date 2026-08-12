@@ -2192,6 +2192,24 @@ afw_value_type_check_adaptive_function_call(
     afw_xctx_t *xctx);
 
 /**
+ * @brief Compile-time check of call args against a function Type.
+ * @param function_type expected function type (kind must be function).
+ * @param argc user arg count (not including argv[0] callee).
+ * @param argv argv[0]=callee, argv[1..argc]=user args.
+ * @param contextual call site (NULL => process flags).
+ *
+ * Used when the callee is a binding annotated with a function Type so call
+ * sites honor the annotation, not only the implementation formals (#28 G1).
+ */
+AFW_DEFINE(void)
+afw_value_type_check_function_type_call(
+    const afw_value_type_t *function_type,
+    afw_size_t argc,
+    const afw_value_t *const *argv,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Decompile a type as Adaptive Type surface text (no leading ':').
  * @param type to decompile; NULL or "any" writes nothing (caller skips ':').
  * @param writer

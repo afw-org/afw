@@ -133,7 +133,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 | Gate vs lab | `test -j` is correctness; blast/lab is separate | recipe pad |
 | Beta | Quality campaign, not partnership end date | `AGENTS.md` mission |
 | Philosophy / taste | Metadata truth, values+pools, small patterned pieces | philosophy pad |
-| Mantras | “Get it right at most once,” maps over tickets, plain language, … | mantras pad |
+| Mantras | “Get it right at most once,” maps over tickets, record decided-not, process serves efficiency/quality, decide while in the work, tests as lasting pretend mode, plain language, … | mantras pad |
 | Knowledge atlas | Topic → sources → probe → gaps | [`knowledge-atlas.md`](knowledge-atlas.md) |
 
 ## Out of scope for this pad

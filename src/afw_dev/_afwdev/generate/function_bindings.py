@@ -919,7 +919,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # One-liner must use /* note */ — // would swallow the rest of the line.
             functionSignature = ""
             if obj.get('polymorphic', False):
-                functionSignature += "`<dataType>`"
+                # Adaptive call/prototype spelling: name<dataType>(…) — not
+                # markdown backticks (those were Doxygen monospace sugar).
+                functionSignature += "<dataType>"
             functionSignature += '('
             sep = ''
             for p in obj.get('parameters'):
@@ -951,7 +953,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             functionDeclaration = ""
             functionDeclaration += "function " + obj.get('functionId') + ' '
             if obj.get('polymorphic', False):
-                functionDeclaration += "`<dataType>`"
+                functionDeclaration += "<dataType>"
 
             numberOfRequiredParameters = 0
             maximumNumberOfParameters = 0

@@ -1296,7 +1296,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Permanent `src/*/tests` regression assets | — | #121 (docs only) |
 | `afw --allow` + YAML block strings / integers | #14 (closed) | regression tests on `mgg-develop` |
 | Meta on the wire / reserved `"_meta_"` (design) | #138 | — (open; not required for #38) |
-| Adaptive Script types | #28 (open; core shipped) | issue-#28 / #145 line on `mgg-develop` |
+| Adaptive Script types | #28 (wrap-up on `issue-#28-wrap-up`; core shipped) | #144 / #145 on `mgg-develop`; fence + FunctionSignature on wrap-up branch |
 | Mutable object faces (shared instances) | #17 (closed) | PR **#150** → `mgg-develop` (this file + `designs/issue-17-mutable-object-faces.md`) |
 | UTF-8 code-point sequences (`s[i]`, for-of, formals) | #153 | issue-#153 branch → `mgg-develop` (this file + `designs/utf8-code-point-sequences.md`) |
 | Array semantics (dense arrays, elision, `create_array`) | #39 | on `mgg-develop` |

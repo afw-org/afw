@@ -426,6 +426,28 @@ afw_compile_source_location_of_value(
     afw_xctx_t *xctx);
 
 
+/**
+ * @brief Parse a script Type expression from a UTF-8 string.
+ * @param source Type source (e.g. FunctionSignature metadata
+ *     `(...values: any) => boolean`).
+ * @param source_location optional label for errors, or NULL.
+ * @param p pool for the type graph (and temporary parser subpool unless
+ *     cede semantics use p).
+ * @param xctx of caller.
+ * @return type graph on `p`, or NULL if source is empty.
+ *
+ * Used for Adaptive function Formals whose dataTypeParameter is a
+ * FunctionSignature (issue #28). Returns NULL if source is empty or the
+ * Type does not parse (caller may fall back to a leaf function type).
+ */
+AFW_DECLARE(const afw_value_type_t *)
+afw_compile_type_from_utf8(
+    const afw_utf8_t *source,
+    const afw_utf8_t *source_location,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup
