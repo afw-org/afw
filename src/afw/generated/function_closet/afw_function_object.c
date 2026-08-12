@@ -20,7 +20,7 @@
  *
  * afw_function_execute_add_properties
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add the properties of one object to another replacing existing properties by
  * the same name.
@@ -65,7 +65,7 @@ afw_function_execute_add_properties(
  *
  * afw_function_execute_apply_object_options
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This will return an object with the specified object options applied.
  *
@@ -107,7 +107,7 @@ afw_function_execute_apply_object_options(
  *
  * afw_function_execute_entries
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array of property entries for an object. Each entry is a
  * two-element array [name, value] where name is a string. Order matches keys()
@@ -147,7 +147,7 @@ afw_function_execute_entries(
  *
  * afw_function_execute_keys
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array of the property names of an object, in the object's
  * property iteration order. The array is a snapshot; later changes to the
@@ -187,7 +187,7 @@ afw_function_execute_keys(
  *
  * afw_function_execute_local_object_meta_set_ids
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is used to set the ids in a local mutable object. The ids are used to
  * construct a local path.
@@ -235,7 +235,7 @@ afw_function_execute_local_object_meta_set_ids(
  *
  * afw_function_execute_property_delete
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete a property in an object.
  *
@@ -276,7 +276,7 @@ afw_function_execute_property_delete(
  *
  * afw_function_execute_property_delete_by_reference
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete a property from an object by reference.
  *
@@ -314,7 +314,7 @@ afw_function_execute_property_delete_by_reference(
  *
  * afw_function_execute_property_exists
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if the named property is present on the object, including when
  * its value is undefined or null. False only when the key is missing. Use
@@ -357,7 +357,7 @@ afw_function_execute_property_exists(
  *
  * afw_function_execute_property_get
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the value of a property. Optional default applies only when the
  * property is missing — not when the value is undefined. If missing and no
@@ -405,7 +405,7 @@ afw_function_execute_property_get(
  *
  * afw_function_execute_property_is_not_null
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if the named property is present and its value is not Adaptive
  * null. Undefined counts as not null. False if the property is missing or the
@@ -448,7 +448,7 @@ afw_function_execute_property_is_not_null(
  *
  * afw_function_execute_values
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array of the property values of an object, in the same order as
  * keys() for that object. Values may be undefined if a property was set to

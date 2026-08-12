@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_lmdb) Header
+ * Adaptive Framework Register Generated (afw_lmdb) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,18 +16,18 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_LMDB_GENERATED_H__
-#define __AFW_LMDB_GENERATED_H__
+#ifndef __AFW_LMDB_GENERATED_INTERNAL_H__
+#define __AFW_LMDB_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_lmdb_generated.h
- * @brief Generated register/API header for srcdir `afw_lmdb`.
+ * @file afw_lmdb_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_lmdb` (not public C API).
  */
 
 #include "afw_minimal.h"
-#include "afw_lmdb_const_objects.h"
-#include "afw_lmdb_function_bindings.h"
+#include "afw_lmdb_const_objects_internal.h"
+#include "afw_lmdb_function_bindings_internal.h"
 #include "afw_runtime.h"
 #include "afw_lmdb_runtime_object_maps.h"
 #include "afw_lmdb_strings.h"
@@ -59,4 +59,4 @@ afw_lmdb_error_rv_decoder_lmdb_register(
     afw_xctx_t *xctx);
 
 
-#endif /* __AFW_LMDB_GENERATED_H__ */
+#endif /* __AFW_LMDB_GENERATED_INTERNAL_H__ */

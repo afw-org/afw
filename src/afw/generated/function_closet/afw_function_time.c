@@ -20,7 +20,7 @@
  *
  * afw_function_execute_in_range_time
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks if time is between startTime and endTime, inclusive. Regardless of
  * endTime value, it is always considered to be equal to, but less than 24 hours

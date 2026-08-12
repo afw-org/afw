@@ -20,7 +20,7 @@
  *
  * afw_function_execute_add_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add (concatenate) a string with 1 or more values of any data type converted
  * to their string value and return the string result.
@@ -94,7 +94,7 @@ afw_function_execute_add_string(
  *
  * afw_function_execute_concat
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Convert two or more values of any data type to string and return the
  * concatenated result. A value with an undefined value is represented by
@@ -170,7 +170,7 @@ afw_function_execute_concat(
  *
  * afw_function_execute_eq_ignore_case_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for string arg1 is equal to string arg2 ignoring case and return the
  * boolean result.
@@ -221,7 +221,7 @@ afw_function_execute_eq_ignore_case_string(
  *
  * afw_function_execute_normalize_space_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Remove whitespace from the beginning and end of a string value.
  *
@@ -266,7 +266,7 @@ afw_function_execute_normalize_space_string(
  *
  * afw_function_execute_normalize_to_lower_case_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Normalize string value to lower case and returns string result.
  *
@@ -311,7 +311,7 @@ afw_function_execute_normalize_to_lower_case_string(
  *
  * afw_function_execute_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Conversion function for string: convert one or more values of any data type
  * to string and return the concatenated result. With one argument this is
@@ -389,7 +389,7 @@ afw_function_execute_string(
  *
  * afw_function_execute_url_decode
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * URL decode a value or bag of values.
  *
@@ -427,7 +427,7 @@ afw_function_execute_url_decode(
  *
  * afw_function_execute_eval_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile and evaluate string value as adaptive script.
  *

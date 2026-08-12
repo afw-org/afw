@@ -20,7 +20,7 @@
  *
  * afw_function_execute_authorization_check
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function can be used to check if the current subject has a given access
  * to the specified resource in the current environment.

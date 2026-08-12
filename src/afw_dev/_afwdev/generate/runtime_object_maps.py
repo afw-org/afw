@@ -181,7 +181,7 @@ def generate(generated_by, options):
             'Generated runtime object map registration implementation.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
-        fd.write('#include "' + options['prefix'] + 'generated.h"\n')
+        fd.write('#include "' + options['prefix'] + 'generated_internal.h"\n')
         if options.get('additional_includes_runtime_object_maps') is not None:
             fd.write(options['additional_includes_runtime_object_maps'])
         fd.write('\n')

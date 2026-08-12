@@ -663,7 +663,7 @@ impl_evaluate_one_or_more_values(
  *
  * afw_function_execute_assign
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Assign a value to the innermost structured block definition of a variable. If
  * the variable is not defined, the variable is defined in the innermost
@@ -715,7 +715,7 @@ afw_function_execute_assign(
  *
  * afw_function_execute_break
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is a special function that can be called to break out of the body of a
  * loop. If called outside of a loop body, an error is thrown.
@@ -771,7 +771,7 @@ afw_function_execute_break(
  *
  * afw_function_execute_const
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Define one or more statically scoped constants local to the current script
  * block with a permanent value. These constants can be accessed from the
@@ -830,7 +830,7 @@ afw_function_execute_const(
  *
  * afw_function_execute_continue
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is a special function that can be called in the body of a loop function
  * to test the condition and, if true, start evaluating the body again. If
@@ -871,7 +871,7 @@ afw_function_execute_continue(
  *
  * afw_function_execute_do_while
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -939,7 +939,7 @@ afw_function_execute_do_while(
  *
  * afw_function_execute_for
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -1070,7 +1070,7 @@ afw_function_execute_for(
  *
  * afw_function_execute_for_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -1192,7 +1192,7 @@ afw_function_execute_for_of(
  *
  * afw_function_execute_if
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate one of two different values depending on test condition.
  *
@@ -1258,7 +1258,7 @@ afw_function_execute_if(
  *
  * afw_function_execute_let
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Declare one or more statically scoped variable locations local to the current
  * script block and optionally assign them an initial value. These variables can
@@ -1317,7 +1317,7 @@ afw_function_execute_let(
  *
  * afw_function_execute_rethrow
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is a special function that can be called to rethrow an error inside of a
  * catch block. If called outside of a catch body, an error is thrown.
@@ -1357,7 +1357,7 @@ afw_function_execute_rethrow(
  *
  * afw_function_execute_return
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return from the outermost structured block. If the expression of a lambda
  * function is a block function, this will effectively return from the lambda
@@ -1421,7 +1421,7 @@ afw_function_execute_return(
  *
  * afw_function_execute_wrap_literal_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate an object value, create a memory object wrapper
  * (afw_object_create_wrapper_*) over its instance, and return that wrapper as
@@ -1479,7 +1479,7 @@ afw_function_execute_wrap_literal_object(
  *
  * afw_function_execute_wrap_literal_array
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate an array value, create a memory array wrapper
  * (afw_array_create_wrapper_*) over its instance, and return that wrapper as an
@@ -1533,7 +1533,7 @@ afw_function_execute_wrap_literal_array(
  *
  * afw_function_execute_switch
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Support for switch statement.
  *
@@ -1687,7 +1687,7 @@ afw_function_execute_switch(
  *
  * afw_function_execute_throw
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This throws an error that can be caught by a try/catch block. An error object
  * of object type _AdaptiveError_ will be available in the catch block. Its 'id'
@@ -1745,7 +1745,7 @@ afw_function_execute_throw(
  *
  * afw_function_execute_try
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This creates a new structured block with a new nested variable scope.
  * 
@@ -1982,7 +1982,7 @@ afw_function_execute_try(
  *
  * afw_function_execute_while
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This creates a new structured block with a new nested variable scope.
  * 

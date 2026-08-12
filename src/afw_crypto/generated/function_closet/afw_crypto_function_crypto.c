@@ -20,7 +20,7 @@
  *
  * afw_crypto_function_execute_crypto_decrypt
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Decrypt AES-GCM ciphertext. algorithm must include name, iv, and tag (16
  * octets). additionalData must match encrypt if used. Requires execute access.
@@ -68,7 +68,7 @@ afw_crypto_function_execute_crypto_decrypt(
  *
  * afw_crypto_function_execute_crypto_derive_key
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Derive a key via PBKDF2-HMAC-SHA256 and store it in the keystore. algorithm
  * object requires name PBKDF2, salt (min 16 octets), length (output octets),
@@ -123,7 +123,7 @@ afw_crypto_function_execute_crypto_derive_key(
  *
  * afw_crypto_function_execute_crypto_destroy_key
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Remove a key from the process keystore and cleanse its material. Requires
  * execute access.
@@ -164,7 +164,7 @@ afw_crypto_function_execute_crypto_destroy_key(
  *
  * afw_crypto_function_execute_crypto_digest
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Compute a cryptographic digest of binary data. Algorithm must be SHA-256 or
  * SHA-512. Data may be base64Binary or hexBinary.
@@ -206,7 +206,7 @@ afw_crypto_function_execute_crypto_digest(
  *
  * afw_crypto_function_execute_crypto_encrypt
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Encrypt binary plaintext with AES-GCM. algorithm is an object { name:
  * "AES-GCM", length?, iv?, additionalData? }. If iv is omitted, a 12-octet IV
@@ -255,7 +255,7 @@ afw_crypto_function_execute_crypto_encrypt(
  *
  * afw_crypto_function_execute_crypto_export_key
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Export raw key octets from a CryptoKey if extractable is true. Requires
  * execute access.
@@ -296,7 +296,7 @@ afw_crypto_function_execute_crypto_export_key(
  *
  * afw_crypto_function_execute_crypto_generate_key
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Generate a random key in the process keystore. Algorithm string or object.
  * AES-GCM length defaults to 256 bits. Requires execute access.
@@ -345,7 +345,7 @@ afw_crypto_function_execute_crypto_generate_key(
  *
  * afw_crypto_function_execute_crypto_hmac
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Compute HMAC over binary data. Algorithm must be HMAC-SHA-256 or
  * HMAC-SHA-512. Key is polymorphic (CryptoKey, raw binary, or reference
@@ -393,7 +393,7 @@ afw_crypto_function_execute_crypto_hmac(
  *
  * afw_crypto_function_execute_crypto_hmac_verify
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Verify an HMAC in constant time. Algorithm must be HMAC-SHA-256 or
  * HMAC-SHA-512. Requires execute access.
@@ -443,7 +443,7 @@ afw_crypto_function_execute_crypto_hmac_verify(
  *
  * afw_crypto_function_execute_crypto_import_key
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Import key material (or a key reference resolved to octets) into the process
  * keystore and return a CryptoKey handle. Algorithm is a string registry name
@@ -498,7 +498,7 @@ afw_crypto_function_execute_crypto_import_key(
  *
  * afw_crypto_function_execute_crypto_seal
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Convenience for AES-GCM encryption: generates an IV, encrypts data, and
  * returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }.
@@ -547,7 +547,7 @@ afw_crypto_function_execute_crypto_seal(
  *
  * afw_crypto_function_execute_crypto_unseal
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1)
  * an object with iv, tag, and ciphertext as base64Binary/hexBinary or as
@@ -594,7 +594,7 @@ afw_crypto_function_execute_crypto_unseal(
  *
  * afw_crypto_function_execute_crypto_version_info
  *
- * See afw_crypto_function_bindings.h for more information.
+ * See afw_crypto_function_bindings_internal.h for more information.
  *
  * Returns runtime OpenSSL and afw_crypto version information and the list of
  * supported algorithm names.

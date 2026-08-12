@@ -20,7 +20,7 @@
  *
  * afw_function_execute_random_base64Binary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns a specified number of random octets as dataType base64Binary.
  *
@@ -58,7 +58,7 @@ afw_function_execute_random_base64Binary(
  *
  * afw_function_execute_random_digits
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Generate a string containing a specified number of random decimal digits.
  *
@@ -96,7 +96,7 @@ afw_function_execute_random_digits(
  *
  * afw_function_execute_random_hexBinary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns a specified number of random octets as dataType hexBinary.
  *
@@ -134,7 +134,7 @@ afw_function_execute_random_hexBinary(
  *
  * afw_function_execute_random_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns a random integer between specified values inclusive.
  *
@@ -175,7 +175,7 @@ afw_function_execute_random_integer(
  *
  * afw_function_execute_random_number
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns a random double between specified values
  *

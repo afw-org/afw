@@ -20,7 +20,7 @@
  *
  * afw_function_execute_and
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluates 0 or more boolean conditions returning boolean true if there are no
  * conditions and boolean false if any condition evaluate to false. All
@@ -60,7 +60,7 @@ afw_function_execute_and(
  *
  * afw_function_execute_n_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * integer n specifies the number of boolean conditions that follow that must
  * evaluate to true for boolean true to be returned. If n is 0, true is
@@ -108,7 +108,7 @@ afw_function_execute_n_of(
  *
  * afw_function_execute_not
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluates boolean condition returning boolean true if condition evaluates to
  * false and false if condition evaluates to true.
@@ -147,7 +147,7 @@ afw_function_execute_not(
  *
  * afw_function_execute_or
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluates 0 or more boolean conditions returning boolean false if there are
  * no conditions and boolean true if any condition evaluate to true. All

@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_vfs) Header
+ * Adaptive Framework Register Generated (afw_vfs) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,17 +16,17 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_VFS_GENERATED_H__
-#define __AFW_VFS_GENERATED_H__
+#ifndef __AFW_VFS_GENERATED_INTERNAL_H__
+#define __AFW_VFS_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_vfs_generated.h
- * @brief Generated register/API header for srcdir `afw_vfs`.
+ * @file afw_vfs_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_vfs` (not public C API).
  */
 
 #include "afw_minimal.h"
-#include "afw_vfs_const_objects.h"
+#include "afw_vfs_const_objects_internal.h"
 #include "afw_runtime.h"
 #include "afw_vfs_runtime_object_maps.h"
 #include "afw_vfs_strings.h"
@@ -49,4 +49,4 @@ afw_vfs_adapter_type_vfs_register(
     afw_xctx_t *xctx);
 
 
-#endif /* __AFW_VFS_GENERATED_H__ */
+#endif /* __AFW_VFS_GENERATED_INTERNAL_H__ */

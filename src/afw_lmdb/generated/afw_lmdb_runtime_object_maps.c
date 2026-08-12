@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_lmdb_generated.h"
+#include "afw_lmdb_generated_internal.h"
 
 
 

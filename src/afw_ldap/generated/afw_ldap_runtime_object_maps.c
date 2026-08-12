@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_ldap_generated.h"
+#include "afw_ldap_generated_internal.h"
 
 
 

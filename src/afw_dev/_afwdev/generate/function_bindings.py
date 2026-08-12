@@ -550,24 +550,28 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     category = None
     dataTypeMethod = []
     useExecuteFunction = []
-    filename = prefix + 'function_bindings.h'
+    # Package-private / core-internal: execute protos + (core) function_definition_*
+    # and bindings_get. Not public libafw API; *_internal.h is not installed.
+    filename = prefix + 'function_bindings_internal.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by,
-            'Adaptive Framework Core Adaptive Function Bindings', copyright, filename)
+            'Adaptive Framework Adaptive Function Bindings (internal)', copyright, filename)
         c.write_doxygen_file_section(fd, filename,
-            'Generated adaptive function bindings header for prefix `'
-            + prefix + '`.')
+            'Internal generated adaptive function bindings for prefix `'
+            + prefix + '` (execute protos / definitions). Not public C API.')
         fd.write('\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @addtogroup afw_c_api_public\n')
+        fd.write(' * @addtogroup afw_c_api_internal\n')
         fd.write(' * @{\n')
         fd.write(' *\n')
         fd.write(' */\n')
         fd.write('\n')
         fd.write('/**\n')
-        fd.write(' * @addtogroup afw_c_api_functions Adaptive functions\n')
+        fd.write(' * @addtogroup afw_c_api_functions Adaptive functions (internal catalog)\n')
+        fd.write(' *\n')
+        fd.write(' * Core/package generated bindings only — not extension-facing export.\n')
         fd.write(' *\n')
         fd.write(' * @{\n')
         fd.write(' */\n')
@@ -714,7 +718,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write('#include "afw.h"\n')
         if options['core']:
             fd.write('#include "afw_internal.h"\n')
-        fd.write('#include "' + prefix + 'function_bindings.h"\n')
+        fd.write('#include "' + prefix + 'function_bindings_internal.h"\n')
         if options['runtime_object_maps']:
             fd.write('#include "' + prefix + 'runtime_object_maps.h"\n')
         if options['strings']:
@@ -730,7 +734,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('\n/* ---------- ' + obj['functionId'] + ' ---------- */\n')
 
             # Declaration for function value afw_value_function_definition_t if not core.
-            # Core functions definitions are declared in afw_function_bindings.h.
+            # Core definitions are declared in function_bindings_internal.h.
             if not options['core']:
                 fd.write('\nstatic const afw_value_function_definition_t\n')
                 fd.write('impl_' + label + ';\n')
@@ -1175,7 +1179,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         fd.write(' *\n')
                         fd.write(' * ' + prefix + 'function_execute_' + obj['functionLabel'] + '\n')
                         fd.write(' *\n')
-                        fd.write(' * See ' + prefix + 'function_bindings.h for more information.\n')
+                        fd.write(' * See ' + prefix +
+                                 'function_bindings_internal.h for more information.\n')
                         function_comment(fd, obj)
                         fd.write(' */\n')
                         fd.write('const afw_value_t *\n')
@@ -1222,7 +1227,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     fd.write(' *\n')
                     fd.write(' * ' + prefix + 'function_execute_' + obj['functionLabel'] + '\n')
                     fd.write(' *\n')
-                    fd.write(' * See ' + prefix + 'function_bindings.h for more information.\n')
+                    fd.write(' * See ' + prefix +
+                             'function_bindings_internal.h for more information.\n')
                     function_comment(fd, obj)
                     fd.write(' */\n')
                     fd.write('const afw_value_t *\n')

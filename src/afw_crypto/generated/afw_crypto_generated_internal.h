@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_crypto) Header
+ * Adaptive Framework Register Generated (afw_crypto) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,18 +16,18 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_CRYPTO_GENERATED_H__
-#define __AFW_CRYPTO_GENERATED_H__
+#ifndef __AFW_CRYPTO_GENERATED_INTERNAL_H__
+#define __AFW_CRYPTO_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_crypto_generated.h
- * @brief Generated register/API header for srcdir `afw_crypto`.
+ * @file afw_crypto_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_crypto` (not public C API).
  */
 
 #include "afw_minimal.h"
-#include "afw_crypto_const_objects.h"
-#include "afw_crypto_function_bindings.h"
+#include "afw_crypto_const_objects_internal.h"
+#include "afw_crypto_function_bindings_internal.h"
 #include "afw_runtime.h"
 #include "afw_crypto_runtime_object_maps.h"
 #include "afw_crypto_strings.h"
@@ -41,4 +41,4 @@ extern void
 afw_crypto_generated_register(afw_xctx_t *xctx);
 
 
-#endif /* __AFW_CRYPTO_GENERATED_H__ */
+#endif /* __AFW_CRYPTO_GENERATED_INTERNAL_H__ */

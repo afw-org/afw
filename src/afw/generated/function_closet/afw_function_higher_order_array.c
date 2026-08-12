@@ -20,7 +20,7 @@
  *
  * afw_function_execute_all_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if predicate returns true for every entry of the first array in
  * values (index order), or if that array is empty. Entries whose value is
@@ -68,7 +68,7 @@ afw_function_execute_all_of(
  *
  * afw_function_execute_all_of_all
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns true if the result of calling predicate with all of the combination
  * of values from array1 and array2 returns true.
@@ -115,7 +115,7 @@ afw_function_execute_all_of_all(
  *
  * afw_function_execute_all_of_any
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns true if the result of calling predicate with all of the
  * combination of values from array1 and any of the values of array2 returns
@@ -163,7 +163,7 @@ afw_function_execute_all_of_any(
  *
  * afw_function_execute_any_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return true if predicate returns true for any entry of the first array in
  * values (index order). Entries whose value is undefined are included. Empty
@@ -211,7 +211,7 @@ afw_function_execute_any_of(
  *
  * afw_function_execute_any_of_all
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns true if the result of calling predicate with all of the combination
  * of values from array2 and any of the values of array1 returns true.
@@ -258,7 +258,7 @@ afw_function_execute_any_of_all(
  *
  * afw_function_execute_any_of_any
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns true if the result of calling predicate with any of the
  * combination of values from array1 and array2 returns true.
@@ -305,7 +305,7 @@ afw_function_execute_any_of_any(
  *
  * afw_function_execute_filter
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array of entries from the first array in values for which
  * predicate returns true. Every index is considered, including entries whose
@@ -353,7 +353,7 @@ afw_function_execute_filter(
  *
  * afw_function_execute_find
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Call predicate for each entry of the first array in values, in index order,
  * until it returns true, then return that entry. Entries whose value is
@@ -401,7 +401,7 @@ afw_function_execute_find(
  *
  * afw_function_execute_map
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Call functor once for each entry of the first array in values, in index order
  * from 0 through length minus one, and return a new array of the same length
@@ -450,7 +450,7 @@ afw_function_execute_map(
  *
  * afw_function_execute_reduce
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Call functor for each entry of array, in index order, with the current
  * accumulator and that entry. The first call uses the accumulator argument;
@@ -503,7 +503,7 @@ afw_function_execute_reduce(
  *
  * afw_function_execute_sort
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return a new array with the same entries as array, ordered using
  * compareFunction. The array must have a single element data type (for example

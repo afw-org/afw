@@ -20,7 +20,7 @@
  *
  * afw_function_execute_compile_script
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile script value and return either an unevaluated adaptive value or a
  * string containing the compiler listing. The listing is a human-oriented dump
@@ -73,7 +73,7 @@ afw_function_execute_compile_script(
  *
  * afw_function_execute_eval_script
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile and evaluate script value.
  *

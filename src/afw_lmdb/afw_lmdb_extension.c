@@ -14,7 +14,7 @@
 
 #include "afw.h"
 #include "afw_lmdb_internal.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 
 
 /* Declares and rti/inf defines for interface afw_extension */

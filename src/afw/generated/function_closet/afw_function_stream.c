@@ -20,7 +20,7 @@
  *
  * afw_function_execute_close
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This will close an open stream
  *
@@ -58,7 +58,7 @@ afw_function_execute_close(
  *
  * afw_function_execute_flush
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Write the content of the stream's buffers to its destination.
  *
@@ -96,7 +96,7 @@ afw_function_execute_flush(
  *
  * afw_function_execute_open_file
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Open a file stream for reading and/or writing. The path is resolved using
  * application rootFilePaths (longest matching prefix; host path must remain
@@ -167,7 +167,7 @@ afw_function_execute_open_file(
  *
  * afw_function_execute_print
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stdout. An undefined value is represented by 'undefined'.
@@ -206,7 +206,7 @@ afw_function_execute_print(
  *
  * afw_function_execute_println
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to their string value, then write them
  * to stdout. A newline character ('\n') is written after the last value. An
@@ -246,7 +246,7 @@ afw_function_execute_println(
  *
  * afw_function_execute_read
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a UTF-8 text stream up to a specified number of octets. The stream must
  * contain valid UTF-8 or an error is thrown.
@@ -289,7 +289,7 @@ afw_function_execute_read(
  *
  * afw_function_execute_read_to_base64Binary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
  * internal memory of a base64Binary value.
@@ -332,7 +332,7 @@ afw_function_execute_read_to_base64Binary(
  *
  * afw_function_execute_read_to_hexBinary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
  * internal memory of a hexBinary value.
@@ -375,7 +375,7 @@ afw_function_execute_read_to_hexBinary(
  *
  * afw_function_execute_readln
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an
  * error is thrown.
@@ -414,7 +414,7 @@ afw_function_execute_readln(
  *
  * afw_function_execute_stream
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the streamNumber for a streamId, including automatically opened
  * standard streams 'console', 'stderr' and 'stdout', as well as any custom open
@@ -455,7 +455,7 @@ afw_function_execute_stream(
  *
  * afw_function_execute_write
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stream. An value with an undefined value is represented by 'undefined'.
@@ -497,7 +497,7 @@ afw_function_execute_write(
  *
  * afw_function_execute_write_internal
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Write a value's internal memory. This is especially useful for writing data
  * type base64Binary and hexBinary.
@@ -540,7 +540,7 @@ afw_function_execute_write_internal(
  *
  * afw_function_execute_writeln
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stream. A newline character ('\n') is written after the last value. An

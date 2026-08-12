@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Builtin Objects Header
+ * Adaptive Framework Builtin Objects Header (internal)
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,23 +16,23 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_SERVER_FCGI_CONST_OBJECTS_H__
-#define __AFW_SERVER_FCGI_CONST_OBJECTS_H__
+#ifndef __AFW_SERVER_FCGI_CONST_OBJECTS_INTERNAL_H__
+#define __AFW_SERVER_FCGI_CONST_OBJECTS_INTERNAL_H__
 
 
 /**
- * @file afw_server_fcgi_const_objects.h
- * @brief Generated header for builtin const adaptive objects.
+ * @file afw_server_fcgi_const_objects_internal.h
+ * @brief Internal header for builtin const adaptive object register (not public C API).
  */
 
 #include "afw_interface.h"
 
 
 /**
- * @brief Get array of afw_server_fcgi_ const objects. 
+ * @brief Register afw_server_fcgi_ const objects (package/core init).
  */
 void
 afw_server_fcgi_const_objects_register(afw_xctx_t *xctx);
 
 
-#endif /* __AFW_SERVER_FCGI_CONST_OBJECTS_H__ */
+#endif /* __AFW_SERVER_FCGI_CONST_OBJECTS_INTERNAL_H__ */

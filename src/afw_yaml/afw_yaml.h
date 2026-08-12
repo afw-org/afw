@@ -10,7 +10,7 @@
 #define __AFW_YAML_H__
 
 #include "afw_minimal.h"
-#include "generated/afw_yaml_generated.h"
+#include "generated/afw_yaml_generated_internal.h"
 
 /**
  * @defgroup afw_yaml YAML content-type

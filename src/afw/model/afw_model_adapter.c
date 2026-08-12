@@ -667,7 +667,7 @@ impl_execute_mapBackObject_thunk(
  *
  * Like adaptive function: model_returnObject_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Parameters:
  *     object - (object) This is the object to return.

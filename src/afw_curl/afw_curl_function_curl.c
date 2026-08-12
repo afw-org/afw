@@ -21,7 +21,7 @@
  *
  * afw_curl_function_execute_curl_version_info
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Returns run-time libcurl version info.
  *
@@ -97,7 +97,7 @@ afw_curl_function_execute_curl_version_info(
  *
  * afw_curl_function_execute_curl_easy_options
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Returns option names that are available with the installed version of
  * libcurl.

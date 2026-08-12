@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_command) Header
+ * Adaptive Framework Register Generated (afw_command) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,13 +16,13 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_COMMAND_GENERATED_H__
-#define __AFW_COMMAND_GENERATED_H__
+#ifndef __AFW_COMMAND_GENERATED_INTERNAL_H__
+#define __AFW_COMMAND_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_command_generated.h
- * @brief Generated register/API header for srcdir `afw_command`.
+ * @file afw_command_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_command` (not public C API).
  */
 
 #include "afw_minimal.h"
@@ -37,4 +37,4 @@ extern void
 afw_command_generated_register(afw_xctx_t *xctx);
 
 
-#endif /* __AFW_COMMAND_GENERATED_H__ */
+#endif /* __AFW_COMMAND_GENERATED_INTERNAL_H__ */

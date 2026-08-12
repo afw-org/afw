@@ -20,7 +20,7 @@
  *
  * afw_function_execute_compile_xpathExpression
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile xpathExpression value and return either an unevaluated adaptive value
  * or a string containing the compiler listing. The listing is a human-oriented
@@ -91,7 +91,7 @@ afw_function_execute_compile_xpathExpression(
  *
  * afw_function_execute_eval_xpathExpression
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile and evaluate xpathExpression value.
  *
@@ -138,7 +138,7 @@ afw_function_execute_eval_xpathExpression(
  *
  * afw_function_execute_xpath_node_count
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * The number of nodes in a node-set.
  *
@@ -176,7 +176,7 @@ afw_function_execute_xpath_node_count(
  *
  * afw_function_execute_xpath_node_match
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns true if any of the nodes matched by nodeset1 are equal to any of the
  * nodes matched by nodeset2 or their corresponding children.
@@ -218,7 +218,7 @@ afw_function_execute_xpath_node_match(
  *
  * afw_function_execute_xpath_node_eq
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for xpathExpression arg1 is equal to xpathExpression arg2 and return
  * the boolean result.

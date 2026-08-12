@@ -23,15 +23,13 @@
 #
 
 # Header files that are installed for public use.
+# Excludes *_internal.h / afw_internal.h (libafw/package private).
+# Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     afw_lmdb.h
     afw_lmdb_index.h
-    afw_lmdb_internal.h
     afw_lmdb_metadata.h
-    generated/afw_lmdb_const_objects.h
     generated/afw_lmdb_declare_helpers.h
-    generated/afw_lmdb_function_bindings.h
-    generated/afw_lmdb_generated.h
     generated/afw_lmdb_runtime_object_maps.h
     generated/afw_lmdb_strings.h
     generated/afw_lmdb_version_info.h

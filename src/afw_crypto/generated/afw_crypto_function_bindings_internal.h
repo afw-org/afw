@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Core Adaptive Function Bindings
+ * Adaptive Framework Adaptive Function Bindings (internal)
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,24 +16,26 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_CRYPTO_FUNCTION_BINDINGS_H__
-#define __AFW_CRYPTO_FUNCTION_BINDINGS_H__
+#ifndef __AFW_CRYPTO_FUNCTION_BINDINGS_INTERNAL_H__
+#define __AFW_CRYPTO_FUNCTION_BINDINGS_INTERNAL_H__
 
 
 /**
- * @file afw_crypto_function_bindings.h
- * @brief Generated adaptive function bindings header for prefix `afw_crypto_`.
+ * @file afw_crypto_function_bindings_internal.h
+ * @brief Internal generated adaptive function bindings for prefix `afw_crypto_` (execute protos / definitions). Not public C API.
  */
 
 
 /**
- * @addtogroup afw_c_api_public
+ * @addtogroup afw_c_api_internal
  * @{
  *
  */
 
 /**
- * @addtogroup afw_c_api_functions Adaptive functions
+ * @addtogroup afw_c_api_functions Adaptive functions (internal catalog)
+ *
+ * Core/package generated bindings only — not extension-facing export.
  *
  * @{
  */
@@ -554,4 +556,4 @@ afw_crypto_function_execute_crypto_version_info(
 /** @} */
 
 
-#endif /* __AFW_CRYPTO_FUNCTION_BINDINGS_H__ */
+#endif /* __AFW_CRYPTO_FUNCTION_BINDINGS_INTERNAL_H__ */

@@ -4,7 +4,7 @@
  */
 
 #include "afw.h"
-#include "afw_curl_generated.h"
+#include "afw_curl_generated_internal.h"
 
 #include <curl/curl.h>
 

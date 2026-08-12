@@ -23,7 +23,7 @@
  *
  * afw_curl_function_execute_http_post
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Makes a HTTP POST Request.
  *
@@ -102,7 +102,7 @@ afw_curl_function_execute_http_post(
  *
  * afw_curl_function_execute_http_get
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Makes a HTTP GET Request.
  *
@@ -175,7 +175,7 @@ afw_curl_function_execute_http_get(
  *
  * afw_curl_function_execute_http_delete
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Makes a HTTP DELETE Request.
  *
@@ -248,7 +248,7 @@ afw_curl_function_execute_http_delete(
  *
  * afw_curl_function_execute_http_patch
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Makes a HTTP PATCH Request.
  *
@@ -327,7 +327,7 @@ afw_curl_function_execute_http_patch(
  *
  * afw_curl_function_execute_http_put
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Makes a HTTP PUT Request.
  *
@@ -406,7 +406,7 @@ afw_curl_function_execute_http_put(
  *
  * afw_curl_function_execute_http_head
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Makes a HTTP HEAD Request.
  *
@@ -479,7 +479,7 @@ afw_curl_function_execute_http_head(
  *
  * afw_curl_function_execute_http_options
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Makes a HTTP OPTIONS Request.
  *

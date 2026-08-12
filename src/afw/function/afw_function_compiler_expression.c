@@ -20,7 +20,7 @@
  *
  * afw_function_execute_nullish_coalescing
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns the first value of values that is not null or undefined leaving the
  * remaining values unevaluated.
@@ -70,7 +70,7 @@ afw_function_execute_nullish_coalescing(
  *
  * afw_function_execute_optional_chaining
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns undefined if arg1 is null or undefined without evaluating arg2, but
  * otherwise returns evaluated value of arg2.
@@ -121,7 +121,7 @@ afw_function_execute_optional_chaining(
  *
  * afw_function_execute_void_operator
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is the support function for the void operator which evaluates value and
  * returns undefined.

@@ -16,7 +16,7 @@
 #include "afw_ldap_internal.h"
 #include "afw_adapter_impl.h"
 #include "afw_ldap_metadata.h"
-#include "generated/afw_ldap_generated.h"
+#include "generated/afw_ldap_generated_internal.h"
 
 /* Declares and rti/inf defines for interface afw_adapter */
 #define AFW_IMPLEMENTATION_ID "ldap"

@@ -117,6 +117,18 @@ same shot.
 
 Still public with `@internal` layouts/comments (later passes): lock struct bodies, adapter id anchor, pool thread create comment, etc.
 
+### Generated register / bindings (internal, not installed)
+
+| Old name | New name | Contents |
+|----------|----------|----------|
+| `*_function_bindings.h` | `*_function_bindings_internal.h` | `execute_*` protos, core `function_definition_*`, `bindings_get` |
+| `*_const_objects.h` | `*_const_objects_internal.h` | `const_objects_register` |
+| `*_generated.h` | `*_generated_internal.h` | `generated_register` + includes of the above / maps / strings |
+
+Plain C (undecorated). Core: via `afw_internal.h`. Packages: package-private includes. Default install excludes `*_internal.h`.
+
+**Still later (mixed / public generated):** data-type bindings catalog (public), `runtime_object_maps` (public), string dual header (done), struct layout exposure, hand undecorated stragglers.
+
 ## Changelog
 
 | Date | Note |
@@ -125,3 +137,5 @@ Still public with `@internal` layouts/comments (later passes): lock struct bodie
 | 2026-08-11 | Install filter; Doxygen/overview/`afw.h` docs; first re-homes (stack/stream/value/flag/lock bootstrap). |
 | 2026-08-11 | Corrected: internal decls live in module `*_internal.h` next to implementing `.c` (not env/xctx umbrellas). |
 | 2026-08-12 | Extension/command policy + crypto declare_helpers pilot recipe (reverted; full pass later). |
+| 2026-08-12 | Core string dual header (`strings` / `strings_internal`); decorate public catalogs. |
+| 2026-08-12 | Rename generated register/bindings/const_objects headers to `*_internal.h` (not installed). |

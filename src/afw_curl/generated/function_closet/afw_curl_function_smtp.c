@@ -20,7 +20,7 @@
  *
  * afw_curl_function_execute_smtp_send
  *
- * See afw_curl_function_bindings.h for more information.
+ * See afw_curl_function_bindings_internal.h for more information.
  *
  * Sends an eMail using SMTP protocol with cURL.
  *

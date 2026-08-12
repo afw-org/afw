@@ -18,7 +18,7 @@
 #include "afw_minimal.h"
 #include "afw_lmdb.h"
 #include "afw_uuid.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include <lmdb.h>
 
 AFW_BEGIN_DECLARES

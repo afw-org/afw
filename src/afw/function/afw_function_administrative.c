@@ -20,7 +20,7 @@
  *
  * afw_function_execute_flag_get_active
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an array of of the flagId of flags that are set in the current execution
  * context (xctx).
@@ -74,7 +74,7 @@ afw_function_execute_flag_get_active(
  *
  * afw_function_execute_flag_get_active_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an array of the flagId of flags that are set by default when a new
  * execution context (xctx) is created.
@@ -126,7 +126,7 @@ afw_function_execute_flag_get_active_defaults(
  *
  * afw_function_execute_flag_get_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get the array of the flagId of flags that are used to determine the default
  * active flags when an execution context (xctx) is created. This array can
@@ -188,7 +188,7 @@ afw_function_execute_flag_get_defaults(
  *
  * afw_function_execute_flag_modify_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add or remove flags from the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
@@ -279,7 +279,7 @@ afw_function_execute_flag_modify_defaults(
  *
  * afw_function_execute_flag_replace_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Completely replace the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
@@ -334,7 +334,7 @@ afw_function_execute_flag_replace_defaults(
  *
  * afw_function_execute_flag_set
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Set or unset one or more active xctx (request) flags.
  *
@@ -417,7 +417,7 @@ afw_function_execute_flag_set(
  *
  * afw_function_execute_extension_load
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Load an extension by its extension id if it is not already loaded. Loading an
  * AFW package's manifest extension will register the manifest of all extensions
@@ -477,7 +477,7 @@ afw_function_execute_extension_load(
  *
  * afw_function_execute_extension_load_by_module_path
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Load an extension by its module path. Loading an AFW package's manifest
  * extension will register the manifest of all extensions in the package.
@@ -532,7 +532,7 @@ afw_function_execute_extension_load_by_module_path(
  *
  * afw_function_execute_registry_key_check
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This will check to see if a registry key exists for a specified registry type
  * and optionally load it's associated extension if needed.
@@ -622,7 +622,7 @@ afw_function_execute_registry_key_check(
  *
  * afw_function_execute_service_get
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get a service object.
  *
@@ -675,7 +675,7 @@ afw_function_execute_service_get(
  *
  * afw_function_execute_service_restart
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Restart a service.
  *
@@ -730,7 +730,7 @@ afw_function_execute_service_restart(
  *
  * afw_function_execute_service_start
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Start a service.
  *
@@ -785,7 +785,7 @@ afw_function_execute_service_start(
  *
  * afw_function_execute_service_stop
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Stop a service.
  *

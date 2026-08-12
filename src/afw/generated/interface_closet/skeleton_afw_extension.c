@@ -18,7 +18,7 @@
 #include "afw_extension_impl_declares.h"
 
       
-#include "generated/<afwdev {prefix}>generated.h"
+#include "generated/<afwdev {prefix}>generated_internal.h"
 
 #define AFW_IMPLEMENTATION_VERSION <afwdev {prefix.upper()}>VERSION_STRING
 #include "generated/<afwdev {prefix}>version_info.h"

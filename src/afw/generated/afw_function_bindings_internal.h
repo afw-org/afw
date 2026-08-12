@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Core Adaptive Function Bindings
+ * Adaptive Framework Adaptive Function Bindings (internal)
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,24 +16,26 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_FUNCTION_BINDINGS_H__
-#define __AFW_FUNCTION_BINDINGS_H__
+#ifndef __AFW_FUNCTION_BINDINGS_INTERNAL_H__
+#define __AFW_FUNCTION_BINDINGS_INTERNAL_H__
 
 
 /**
- * @file afw_function_bindings.h
- * @brief Generated adaptive function bindings header for prefix `afw_`.
+ * @file afw_function_bindings_internal.h
+ * @brief Internal generated adaptive function bindings for prefix `afw_` (execute protos / definitions). Not public C API.
  */
 
 
 /**
- * @addtogroup afw_c_api_public
+ * @addtogroup afw_c_api_internal
  * @{
  *
  */
 
 /**
- * @addtogroup afw_c_api_functions Adaptive functions
+ * @addtogroup afw_c_api_functions Adaptive functions (internal catalog)
+ *
+ * Core/package generated bindings only — not extension-facing export.
  *
  * @{
  */
@@ -33717,4 +33719,4 @@ afw_function_execute_url_encode(
 /** @} */
 
 
-#endif /* __AFW_FUNCTION_BINDINGS_H__ */
+#endif /* __AFW_FUNCTION_BINDINGS_INTERNAL_H__ */

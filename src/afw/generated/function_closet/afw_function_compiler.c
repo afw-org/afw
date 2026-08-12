@@ -20,7 +20,7 @@
  *
  * afw_function_execute_assert
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Assert that a value is true. If not, an assertion_failed error is thrown.
  *
@@ -63,7 +63,7 @@ afw_function_execute_assert(
  *
  * afw_function_execute_compile_from_file
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function is deprecated.
  *
@@ -111,7 +111,7 @@ afw_function_execute_compile_from_file(
  *
  * afw_function_execute_decompile
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Decompile an adaptive value to Adaptive text that represents the compiled
  * form (functional forms and #implementation_id(...) pragmas such as
@@ -164,7 +164,7 @@ afw_function_execute_decompile(
  *
  * afw_function_execute_eval_from_file
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Load an external adaptive script, json, or template to be compiled and
  * evaluate.
@@ -210,7 +210,7 @@ afw_function_execute_eval_from_file(
  *
  * afw_function_execute_evaluate
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate an adaptive value.
  *
@@ -257,7 +257,7 @@ afw_function_execute_evaluate(
  *
  * afw_function_execute_evaluate_with_retry
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate a value and retry up to a limit if an exception occurs.
  *
@@ -298,7 +298,7 @@ afw_function_execute_evaluate_with_retry(
  *
  * afw_function_execute_qualifier
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns a new memory object whose properties are the active variables for the
  * given qualifier (issue #9). Built from the current xctx qualifier stack via
@@ -374,7 +374,7 @@ afw_function_execute_qualifier(
  *
  * afw_function_execute_qualifiers
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns a new memory object whose properties are active qualifier names; each
  * value is an object of that qualifier's variables (issue #9). Built from the
@@ -439,7 +439,7 @@ afw_function_execute_qualifiers(
  *
  * afw_function_execute_safe_evaluate
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the evaluated adaptive value. If an exception occurs, return evaluated
  * error instead.
@@ -482,7 +482,7 @@ afw_function_execute_safe_evaluate(
  *
  * afw_function_execute_stringify
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate value and serialize it as pure JSON text. Adaptive data types use
  * their jsonPrimitive (for example base64Binary and date become JSON strings).
@@ -542,7 +542,7 @@ afw_function_execute_stringify(
  *
  * afw_function_execute_test_script
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile and evaluate an adaptive script and compare the results to an
  * expected value. Return object with the test's results.
@@ -599,7 +599,7 @@ afw_function_execute_test_script(
  *
  * afw_function_execute_test_template
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile and evaluate an adaptive template and compare the results to an
  * expected value. Return object with the test's results.
@@ -656,7 +656,7 @@ afw_function_execute_test_template(
  *
  * afw_function_execute_test_value
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate an adaptive value and compare it to an expected value. Return object
  * with the test's results.

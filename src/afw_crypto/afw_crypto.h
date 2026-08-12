@@ -16,6 +16,6 @@
  */
 
 #include "afw.h"
-#include "generated/afw_crypto_generated.h"
+#include "generated/afw_crypto_generated_internal.h"
 
 #endif /* __AFW_CRYPTO_H__ */

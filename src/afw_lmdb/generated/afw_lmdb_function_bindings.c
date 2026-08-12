@@ -23,7 +23,7 @@
  */
 
 #include "afw.h"
-#include "afw_lmdb_function_bindings.h"
+#include "afw_lmdb_function_bindings_internal.h"
 #include "afw_lmdb_runtime_object_maps.h"
 #include "afw_lmdb_strings.h"
 

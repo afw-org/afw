@@ -84,7 +84,7 @@ impl_get_self_and_model(
  *
  * afw_function_execute_model_default_add_object_action
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onAdd parameter is not specified on the associated
@@ -243,7 +243,7 @@ afw_function_execute_model_default_add_object_action(
  *
  * afw_function_execute_model_default_delete_object_action
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onDeleteObject parameter is not specified on the associated
@@ -385,7 +385,7 @@ afw_function_execute_model_default_delete_object_action(
  *
  * afw_function_execute_model_default_modify_object_action
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onModifyObject parameter is not specified on the associated
@@ -561,7 +561,7 @@ afw_function_execute_model_default_modify_object_action(
  *
  * afw_function_execute_model_default_replace_object_action
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns a _AdaptiveAction_ object for the default action
  * performed if a onReplaceObject parameter is not specified on the associated
@@ -713,7 +713,7 @@ afw_function_execute_model_default_replace_object_action(
  *
  * afw_function_execute_model_mapBackObject_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is the function signature for current:mapBackObject used by onGetObjects
  * and onRetrieveObjects. Calling this directly will throw a 'Do not call
@@ -752,7 +752,7 @@ afw_function_execute_model_mapBackObject_signature(
  *
  * afw_function_execute_model_mapObject_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is the function signature for current:mapObject used by onAddObject.
  * onDeleteObject, onModifyObject, and onReplaceObject. Calling this directly
@@ -791,7 +791,7 @@ afw_function_execute_model_mapObject_signature(
  *
  * afw_function_execute_model_returnObject_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is the function signature for current:returnObject used by onGetObjects
  * and onRetrieveObjects. Calling this directly will throw a 'Do not call

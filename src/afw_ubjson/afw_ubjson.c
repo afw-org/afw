@@ -13,7 +13,7 @@
 
 #include "afw.h"
 #include "afw_content_type_impl.h"
-#include "generated/afw_ubjson_generated.h"
+#include "generated/afw_ubjson_generated_internal.h"
 #include "generated/afw_ubjson_version_info.h"
 
 

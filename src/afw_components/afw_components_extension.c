@@ -21,7 +21,7 @@
 /* Declares and rti/inf defines for interface afw_extension */
 #define AFW_IMPLEMENTATION_ID "afw_components"
 #include "afw_extension_impl_declares.h"
-#include "generated/afw_components_generated.h"
+#include "generated/afw_components_generated_internal.h"
 #include "generated/afw_components_version_info.h"
 
 

@@ -14,7 +14,7 @@
 
 #include "afw.h"
 #include "afw_ldap_internal.h"
-#include "generated/afw_ldap_generated.h"
+#include "generated/afw_ldap_generated_internal.h"
 
 
 /* Declares and rti/inf defines for interface afw_extension */

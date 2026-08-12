@@ -24,7 +24,7 @@
  *
  * afw_function_execute_abs_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compute the absolute value of the double value and return the double result.
  *
@@ -72,7 +72,7 @@ afw_function_execute_abs_double(
  *
  * afw_function_execute_add_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add 2 or more double values and return the double result.
  *
@@ -121,7 +121,7 @@ afw_function_execute_add_double(
  *
  * afw_function_execute_ceil_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine the smallest integer that is greater then or equal to the double
  * value and return the double result.
@@ -163,7 +163,7 @@ afw_function_execute_ceil_double(
  *
  * afw_function_execute_divide_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Divide double dividend by double divisor and return the double quotient.
  *
@@ -210,7 +210,7 @@ afw_function_execute_divide_double(
  *
  * afw_function_execute_mod_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Divide double dividend by double divisor and return the double remainder.
  *
@@ -258,7 +258,7 @@ afw_function_execute_mod_double(
  *
  * afw_function_execute_is_finite
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks if the argument 'number' is finite and returns the boolean result.
  *
@@ -301,7 +301,7 @@ afw_function_execute_is_finite(
  *
  * afw_function_execute_floor_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine the largest integer that is smaller then or equal to the double
  * value and return the double result.
@@ -344,7 +344,7 @@ afw_function_execute_floor_double(
  *
  * afw_function_execute_multiply_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Multiply 2 or more double values and return the double result.
  *
@@ -393,7 +393,7 @@ afw_function_execute_multiply_double(
  *
  * afw_function_execute_is_NaN
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks if the argument 'number' is not a number(NaN) and returns the boolean
  * result.
@@ -437,7 +437,7 @@ afw_function_execute_is_NaN(
  *
  * afw_function_execute_pow_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
  * specified to raise the previous exponent to the power of the latter exponent.
@@ -509,7 +509,7 @@ afw_function_execute_pow_double(
  *
  * afw_function_execute_round_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine the integer closest to double value and return the double result.
  *
@@ -552,7 +552,7 @@ afw_function_execute_round_double(
  *
  * afw_function_execute_subtract_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Subtract double arg2 from double arg1 and return the double result.
  *
@@ -599,7 +599,7 @@ afw_function_execute_subtract_double(
  *
  * afw_function_execute_to_integer_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Truncate double arg to a whole number and returns integer result.
  *
@@ -639,7 +639,7 @@ afw_function_execute_to_integer_double(
  *
  * afw_function_execute_negative_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return negative of double value.
  *

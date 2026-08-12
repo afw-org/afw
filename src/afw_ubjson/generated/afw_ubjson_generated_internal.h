@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Register Generated (afw_ubjson) Header
+ * Adaptive Framework Register Generated (afw_ubjson) Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -16,13 +16,13 @@
  * -------------------------------------------------------------------------*/
 
 
-#ifndef __AFW_UBJSON_GENERATED_H__
-#define __AFW_UBJSON_GENERATED_H__
+#ifndef __AFW_UBJSON_GENERATED_INTERNAL_H__
+#define __AFW_UBJSON_GENERATED_INTERNAL_H__
 
 
 /**
- * @file afw_ubjson_generated.h
- * @brief Generated register/API header for srcdir `afw_ubjson`.
+ * @file afw_ubjson_generated_internal.h
+ * @brief Internal generated register header for srcdir `afw_ubjson` (not public C API).
  */
 
 #include "afw_minimal.h"
@@ -46,4 +46,4 @@ afw_ubjson_content_type_ubjson_register(
     afw_xctx_t *xctx);
 
 
-#endif /* __AFW_UBJSON_GENERATED_H__ */
+#endif /* __AFW_UBJSON_GENERATED_INTERNAL_H__ */

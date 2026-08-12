@@ -20,7 +20,7 @@
  *
  * afw_lmdb_function_execute_reader_check
  *
- * See afw_lmdb_function_bindings.h for more information.
+ * See afw_lmdb_function_bindings_internal.h for more information.
  *
  * Check for stale entries in the reader lock table.
  *
@@ -58,7 +58,7 @@ afw_lmdb_function_execute_reader_check(
  *
  * afw_lmdb_function_execute_reader_list
  *
- * See afw_lmdb_function_bindings.h for more information.
+ * See afw_lmdb_function_bindings_internal.h for more information.
  *
  * Dump the entries in the reader lock table.
  *
