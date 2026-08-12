@@ -770,7 +770,10 @@ def generate(passed_options):
     # >>>>> Common generates
 
     # Generate declare helpers.
-    declare_helpers.generate(generated_by, options)
+    # Core declare/define macros live in hand-written afw_common.h.
+    # Non-core packages still get generated *declare_helpers.h (transition).
+    if not options.get('core'):
+        declare_helpers.generate(generated_by, options)
 
     # Run generated.py script from additional_generate
     if options['additional_generate']:

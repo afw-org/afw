@@ -1890,7 +1890,9 @@ def generate_h(prefix, obj, id, generated_by, dir, copyright, filename, options)
         c.write_h_prologue(fd, generated_by, 'Adaptive Data Type ' + id , copyright, filename)
         fd.write('\n#include "afw_minimal.h"\n')
         fd.write('#include "' + prefix + 'data_type_typedefs.h"\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
+        # Core: AFW_DECLARE* macros come from afw_common.h via afw_minimal.h.
+        if not options.get('core'):
+            fd.write('#include "' + prefix + 'declare_helpers.h"\n')
         if options['core']:
             fd.write('\n/**\n')
             fd.write(' * @defgroup afw_c_api_data_type_' + id + ' ' + id + '\n')
@@ -1920,7 +1922,8 @@ def generate_typedefs_h(prefix, data_type_array, id, generated_by, dir, copyrigh
             fd, filename,
             'Generated typedefs header for adaptive data type `' + id + '`.')
         fd.write('\n#include "afw_minimal.h"\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
+        if not options.get('core'):
+            fd.write('#include "' + prefix + 'declare_helpers.h"\n')
         fd.write('\nAFW_BEGIN_DECLARES\n')
 
         for obj in data_type_array:

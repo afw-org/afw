@@ -121,7 +121,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_x500Name_binding.h
     generated/afw_data_type_xpathExpression_binding.h
     generated/afw_data_type_yearMonthDuration_binding.h
-    generated/afw_declare_helpers.h
     generated/afw_extension_impl_declares.h
     generated/afw_function_bindings.h
     generated/afw_generated.h

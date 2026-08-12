@@ -22,7 +22,6 @@
 
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
-#include "afw_declare_helpers.h"
 
 /**
  * @defgroup afw_c_api_data_type_ia5String ia5String

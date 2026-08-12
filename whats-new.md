@@ -46,6 +46,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Adapter index `current::` (#54 partial)**](#adapter-index-filtervalue-current-issue-54-partial) | Index filter/value scripts see **`current::object`**, `objectId`, `objectType`, `key` (not bare ambient `object`) |
 | [**C builders / afwdev (#1)**](#c-api-docs-and-full-package-builds-issue-1) | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` |
 | [**libafw install headers**](#libafw-public-header-install) | Default install omits core `*_internal.h` / `afw_internal.h`; use `afw.h` only — **rebuild** out-of-tree; remove stale internals from an old prefix if present |
+| [**C declare helpers transition**](#c-declare-helpers-transition) | Core `AFW_DECLARE`/`AFW_DEFINE` live in `afw_common.h` (no core `afw_declare_helpers.h`); package helpers still generated but **removed soon** — **rebuild** out-of-tree |
 | [**Value / memory (α/β, #2)**](#value-lifetime-memory-management-issue-2-alphabeta) | Incremental work: permanent scalar reuse, dual-face object/array values, safer managed object value release; **`afw_pool_release` returns pool or NULL**; managed object faces pin base — **recompile** out-of-tree commands/extensions |
 | [**`stringify` / `decompile` / listing (#18)**](#stringify-decompile-compiler-listing-and-binary-text) | **`stringify`** pure JSON (+ replacer); **`decompile`** Adaptive compiled form; **compile listing** human tree+symbols; **`decode_to_string`** UTF-8 from octets |
 | [**UTF-8 in JSON / Fiddle**](#utf-8-in-json-results-and-python-local-mode) | Multi-byte UTF-8 survives **`stringify`**, Fiddle results, and other JSON emitters (signed-char octet bug) |
@@ -541,6 +542,26 @@ Default **install** of libafw headers is the **supported public surface** (what 
 **Upgrade note:** CMake install does not delete previously installed files. If an older AFW left `afw_*_internal.h` under your include prefix (e.g. `/usr/local/include/afw/`), remove those leftovers when you upgrade so you do not accidentally keep using them.
 
 In-tree monorepo builds still see full source includes at **build** time. Maintainer notes: [`designs/libafw-headers-and-api-surface.md`](designs/libafw-headers-and-api-surface.md).
+
+[↑ Highlights](#highlights)
+
+---
+
+## C declare helpers transition
+
+**C builders / out-of-tree extensions and commands** (rebuild against this tree)
+
+### libafw (core)
+
+- Public macros **`AFW_DECLARE`**, **`AFW_DEFINE`**, **`AFW_BEGIN_DECLARES`**, DSO/inline helpers, etc. now live in hand-written **`afw_common.h`** (pulled by `afw.h` / `afw_minimal.h`).
+- Core **no longer generates** `afw_declare_helpers.h`. Do not `#include "afw_declare_helpers.h"` for core.
+- In-tree core code uses **plain C** for former `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` sites.
+
+### Extensions and commands (package helpers)
+
+- Base-repo packages no longer **use** per-package `*_declare_helpers.h` macros (plain C + core `AFW_BEGIN_DECLARES` where needed).
+- Those headers are **still generated for a short transition** so older out-of-tree trees can keep including them while you test against **`mgg-develop`**.
+- **They will be removed soon.** Prefer ordinary C declarations/definitions in new or updated package code; plan to drop package `declare_helpers` includes before the next integration line hardens.
 
 [↑ Highlights](#highlights)
 

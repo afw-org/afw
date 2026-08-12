@@ -72,14 +72,15 @@ afw_internal.h    ← libafw .c only
 command headers are **package-private** (nothing links their C API; DSO/binary
 load + Adaptive registration is the product surface).
 
-**Package DECLARE helpers:** Keep **generating** `*_declare_helpers.h` for now
-(easier for out-of-tree packages still converting). **Stop using** them in
-base-repo extensions, `afw_command`, and `afw_server_fcgi`: ordinary C
-(`extern` / plain definitions); core `AFW_BEGIN_DECLARES` where needed.
-Generators no longer `#include` or emit package `DECLARE`/`DEFINE` macros
-(register / function_bindings_get / strings). libafw also stopped using
-`AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` (macros still defined in
-`afw_declare_helpers.h`).
+**Package DECLARE helpers:** Keep **generating** non-core `*_declare_helpers.h`
+for a short transition (out-of-tree rebuilds against `mgg-develop`). **Stop
+using** them in base-repo extensions / command / fcgi. They will be **removed
+soon** (see `whats-new.md`).
+
+**Core declare macros:** Live in hand-written `afw_common.h` (public
+`AFW_DECLARE` / `AFW_DEFINE` / `BEGIN_DECLARES` / DSO / inline helpers). Core
+no longer generates or includes `afw_declare_helpers.h`. In-tree stopped using
+`AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` (plain C instead).
 
 **Pilot (2026-08-12, reverted — do all packages in one shot later):**
 

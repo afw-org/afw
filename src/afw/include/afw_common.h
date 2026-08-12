@@ -102,8 +102,134 @@
 #endif
 #endif
 
-/* Include generated declare helpers. */
-#include "afw_declare_helpers.h"
+/*
+ * Public C API declare/define helpers (formerly generated afw_declare_helpers.h).
+ * Platform declspec + calling convention for the libafw shared library surface.
+ * Internal AFW_DECLARE_INTERNAL* macros are no longer used in-tree.
+ */
+
+/**
+ * AFW_BEGIN_DECLARES goes before declares and AFW_END_DECLARES at end in
+ * afw*.h files.
+ */
+#ifdef __cplusplus
+#define AFW_BEGIN_DECLARES extern "C" {
+#define AFW_END_DECLARES }
+#else
+#define AFW_BEGIN_DECLARES
+#define AFW_END_DECLARES
+#endif
+#if defined(WIN32)
+#error afw is not currently supported on Windows
+#endif
+
+/* #defines for declspec and calling convention. */
+#if defined(DOXYGEN) || !defined(WIN32)
+#define AFW_DECLSPEC_DECLARE extern
+#define AFW_DECLSPEC_DEFINE
+#define AFW_CALLING_CONVENTION
+#define AFW_CALLING_CONVENTION_ELLIPSIS
+#elif defined(AFW_DECLARE_STATIC)
+#define AFW_DECLSPEC_DECLARE extern
+#define AFW_DECLSPEC_DEFINE
+#define AFW_CALLING_CONVENTION __stdcall
+#define AFW_CALLING_CONVENTION_ELLIPSIS __cdecl
+#elif defined(AFW_DECLARE_EXPORT)
+#define AFW_DECLSPEC_DECLARE extern __declspec(dllexport)
+#define AFW_DECLSPEC_DEFINE __declspec(dllexport)
+#define AFW_CALLING_CONVENTION __stdcall
+#define AFW_CALLING_CONVENTION_ELLIPSIS __cdecl
+#else
+#define AFW_DECLSPEC_DECLARE extern __declspec(dllimport)
+#define AFW_DECLSPEC_DEFINE __declspec(dllimport)
+#define AFW_CALLING_CONVENTION __stdcall
+#define AFW_CALLING_CONVENTION_ELLIPSIS __cdecl
+#endif
+
+/**
+ * @brief Declare a public afw function.
+ * @param type of return value.
+ *
+ * There must be a corresponding AFW_DEFINE() in a /src/afw/ source .c file.
+ */
+#define AFW_DECLARE(type) \
+AFW_DECLSPEC_DECLARE \
+type \
+AFW_CALLING_CONVENTION
+
+/**
+ * @brief Declare a public afw function with variable arguments.
+ * @param type of return value.
+ */
+#define AFW_DECLARE_ELLIPSIS(type) \
+AFW_DECLSPEC_DECLARE \
+type \
+AFW_CALLING_CONVENTION_ELLIPSIS
+
+/**
+ * @brief Declare a public afw const variable.
+ * @param type of variable
+ */
+#define AFW_DECLARE_CONST_DATA(type) \
+AFW_DECLSPEC_DECLARE \
+const type
+
+/**
+ * @brief Define a public afw function.
+ * @param type of return value.
+ */
+#define AFW_DEFINE(type) \
+AFW_DECLSPEC_DEFINE \
+type \
+AFW_CALLING_CONVENTION
+
+/**
+ * @brief Define a public afw function with variable arguments.
+ * @param type of return value.
+ */
+#define AFW_DEFINE_ELLIPSIS(type) \
+AFW_DECLSPEC_DEFINE \
+type \
+AFW_CALLING_CONVENTION_ELLIPSIS
+
+/**
+ * @brief Define a public afw const variable.
+ * @param type of variable
+ */
+#define AFW_DEFINE_CONST_DATA(type) \
+AFW_DECLSPEC_DEFINE \
+const type
+
+#define AFW_CALLBACK \
+AFW_CALLING_CONVENTION
+
+#define AFW_CALLBACK_ELLIPSIS \
+AFW_CALLING_CONVENTION_ELLIPSIS
+
+#ifdef WIN32
+#define AFW_DEFINE_DSO(type) __declspec(dllexport) type
+#else
+#define AFW_DEFINE_DSO(type) type
+#endif
+
+#ifdef AFW_DISABLE_INLINE
+#define AFW_HAS_INLINE 0
+#define AFW_INLINE
+#else
+#define AFW_HAS_INLINE APR_HAS_INLINE
+#define AFW_INLINE APR_INLINE
+#endif
+
+/** AFW Inline. */
+#define AFW_STATIC_INLINE static AFW_INLINE
+
+#define AFW_DECLARE_STATIC(type) static type
+
+#if defined(DOXYGEN)
+#define AFW_DEFINE_STATIC_INLINE(type) type
+#else
+#define AFW_DEFINE_STATIC_INLINE(type) AFW_STATIC_INLINE type
+#endif
 
 /* Include template headers. */
 #include "afw_associative_array_template.h"
