@@ -45,7 +45,7 @@ impl_afw_content_type =
  * 
  *  afw_content_type_register(..._content_type_get(), xctx);
  */
-<afwdev {srcdir_prefix.upper()}>DEFINE(const afw_content_type_t *)
+const afw_content_type_t *
 <afwdev {prefixed_interface_name}>_get()
 {
     return &impl_afw_content_type;

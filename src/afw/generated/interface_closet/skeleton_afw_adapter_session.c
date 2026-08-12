@@ -18,7 +18,7 @@
 #include "afw_adapter_session_impl_declares.h"
 
 /* Create for <afwdev {implementation_id}> implementation of afw_adapter_session */
-<afwdev {srcdir_prefix.upper()}>DEFINE(const afw_adapter_session_t *)
+const afw_adapter_session_t *
 <afwdev {prefixed_interface_name}>_create_internal(
     const afw_object_t *parameters,
     const afw_pool_t *p,

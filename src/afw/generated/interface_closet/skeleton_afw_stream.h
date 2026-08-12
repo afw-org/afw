@@ -17,7 +17,6 @@
  */
 
 #include "afw_interface.h"
-#include "generated/<afwdev {srcdir_prefix}>declare_helpers.h"
 
 AFW_BEGIN_DECLARES
 

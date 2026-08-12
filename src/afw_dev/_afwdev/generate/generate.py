@@ -690,8 +690,16 @@ def generate(passed_options):
         msg.info('Adding objects/_AdaptiveFunctionGenerate_/ objects for polymorphic functions')
         polymorphic_functions.generate(options)
 
-    # Generate optional data types.
+    # Generate optional data types (core / libafw only).
     if options['data_types']:
+        if not options.get('core'):
+            msg.error_exit(
+                'Data type bindings are only supported in core (libafw). '
+                'Package "' + options.get('srcdir', options.get('prefix', '?')) +
+                '" has generate/objects/_AdaptiveDataTypeGenerate_/ but non-core '
+                'packages must not define Adaptive data types. Implement new data '
+                'types in src/afw; extensions and commands use existing types and '
+                'register functions/adapters only.')
         data_type_list = direct.retrieve_objects_direct(options['objects_dir_path'] +
             '_AdaptiveDataTypeGenerate_/')
         data_type_list.sort(key=sort_use_id_cb)

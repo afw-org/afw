@@ -17,7 +17,6 @@
  */
 
 #include "afw_interface.h"
-#include "generated/<afwdev {srcdir_prefix}>declare_helpers.h"
 
 AFW_BEGIN_DECLARES
 
@@ -35,13 +34,13 @@ typedef struct
 /**
  * @brief Singleton instance of afw_request_handler_factory for <afwdev {implementation_id}>.
  */
-<afwdev {srcdir_prefix.upper()}>DECLARE_CONST_DATA(afw_request_handler_factory_t)
+extern const afw_request_handler_factory_t
 <afwdev {prefixed_interface_name}>;
 
 /**
  * @brief Get singleton instance of afw_request_handler_factory for <afwdev {implementation_id}>.
  */
-<afwdev {srcdir_prefix.upper()}>DECLARE(const afw_request_handler_factory_t *)
+extern const afw_request_handler_factory_t *
 <afwdev {prefixed_interface_name}>_get(
     const afw_object_t *parameters,
     afw_xctx_t *xctx);

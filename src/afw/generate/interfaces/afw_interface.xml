@@ -1971,7 +1971,7 @@ AFW_DEFINE(const afw_authorization_handler_t *)
 /**
  *  @brief Get singleton instance of afw_context_typefor <afwdev {implementation_id}>.
  */
-<afwdev {srcdir_prefix.upper()}>DECLARE(const afw_content_type_t *)
+extern const afw_content_type_t *
 <afwdev {prefixed_interface_name}>_get()
 
 ]]>
@@ -2007,7 +2007,7 @@ impl_afw_content_type =
  * 
  *  afw_content_type_register(..._content_type_get(), xctx);
  */
-<afwdev {srcdir_prefix.upper()}>DEFINE(const afw_content_type_t *)
+const afw_content_type_t *
 <afwdev {prefixed_interface_name}>_get()
 {
     return &impl_afw_content_type;

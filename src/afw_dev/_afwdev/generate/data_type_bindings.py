@@ -8,8 +8,8 @@
 # Metadata source of truth is generate/objects/_AdaptiveDataTypeGenerate_/*.json
 # (fields such as cType, special, directReturn, scalar). This module emits the
 # C APIs and afw_value_inf_t instances used to create and classify evaluated
-# data-type values. Core and extensions include the generated headers and call
-# the create/allocate functions at runtime.
+# data-type values. Generated only for core (libafw); non-core packages must
+# not define _AdaptiveDataTypeGenerate_ (afwdev generate errors if they do).
 #
 # Adaptive values (afw_value_t) have an inf pointer and a typed payload. For
 # each data type this module generates afw_value_<dataType>_t (pub + internal
@@ -1890,9 +1890,7 @@ def generate_h(prefix, obj, id, generated_by, dir, copyright, filename, options)
         c.write_h_prologue(fd, generated_by, 'Adaptive Data Type ' + id , copyright, filename)
         fd.write('\n#include "afw_minimal.h"\n')
         fd.write('#include "' + prefix + 'data_type_typedefs.h"\n')
-        # Core: AFW_DECLARE* macros come from afw_common.h via afw_minimal.h.
-        if not options.get('core'):
-            fd.write('#include "' + prefix + 'declare_helpers.h"\n')
+        # AFW_DECLARE* macros come from afw_common.h via afw_minimal.h (core only).
         if options['core']:
             fd.write('\n/**\n')
             fd.write(' * @defgroup afw_c_api_data_type_' + id + ' ' + id + '\n')
@@ -1922,8 +1920,6 @@ def generate_typedefs_h(prefix, data_type_array, id, generated_by, dir, copyrigh
             fd, filename,
             'Generated typedefs header for adaptive data type `' + id + '`.')
         fd.write('\n#include "afw_minimal.h"\n')
-        if not options.get('core'):
-            fd.write('#include "' + prefix + 'declare_helpers.h"\n')
         fd.write('\nAFW_BEGIN_DECLARES\n')
 
         for obj in data_type_array:
@@ -1962,6 +1958,11 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
 
     # Just return if no data types
     if len(data_type_array) == 0: return
+
+    if not options.get('core'):
+        msg.error_exit(
+            'Data type bindings are only supported in core (libafw). '
+            'Non-core packages must not define _AdaptiveDataTypeGenerate_/.')
 
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
