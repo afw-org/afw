@@ -385,8 +385,12 @@ def generate(generated_by, prefix, object_dir_path,
             'Generated builtin const adaptive objects.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
+        # Core zz__* string permanents (property values, prose) for const objects.
+        if options.get('core'):
+            fd.write('#include "' + prefix + 'strings_internal.h"\n')
         fd.write('#include "' + prefix + 'generated.h"\n')
         fd.write('\n')
+
 
         for obj in list:
             obj['_meta_']['_label_'] = new_label()           

@@ -475,25 +475,21 @@ afw_array_of_ipAddress_remove(
     afw_xctx_t *xctx);
 
 /**
- * @brief extern for data type ipAddress struct.
+ * @brief Public data type ipAddress struct instance.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.  Use afw_data_type_ipAddress when not referencing in
- * a static.
+ * Prefer afw_data_type_ipAddress when a pointer is enough and you are not
+ * initializing static data that must reference the struct object.
  */
-extern const afw_data_type_t
+AFW_DECLARE_CONST_DATA(afw_data_type_t)
 afw_data_type_ipAddress_direct;
 
 /**
- * @brief extern for data type ipAddress inf.
+ * @brief Public data type ipAddress inf.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.
- *
- * The implementation of the data type must define this.  It is
- * managed by the generated data type instance.
+ * Defined with the data type implementation; managed by the generated
+ * data type instance.
  */
-extern const afw_data_type_inf_t
+AFW_DECLARE_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_ipAddress_inf;
 
 AFW_END_DECLARES

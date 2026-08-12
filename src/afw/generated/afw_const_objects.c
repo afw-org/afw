@@ -23,6 +23,7 @@
  */
 
 #include "afw.h"
+#include "afw_strings_internal.h"
 #include "afw_generated.h"
 
 

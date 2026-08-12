@@ -24,22754 +24,22755 @@
 
 #include "afw.h"
 #include "afw_strings.h"
+#include "afw_strings_internal.h"
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_200 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_200)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_201 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_201)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_400 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_400)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_403 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_403)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_404 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_404)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_500 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_500)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ACCEPT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ACCEPT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_AUTH_TYPE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_AUTH_TYPE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Actions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Actions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Adaptive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Adaptive)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Add = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Add)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Additional = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Additional)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Advice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Advice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Alert = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Alert)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Arguments = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Arguments)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Assertion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Assertion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Authority = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Authority)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Authorization = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Authorization)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_B = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_B)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_BOOL = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_BOOL)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_BS = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_BS)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Backtrace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Backtrace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_CONTENT_LENGTH = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_CONTENT_LENGTH)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_CONTENT_TYPE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_CONTENT_TYPE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Category = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Category)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Column = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Column)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Composite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Composite)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Concurrent = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Concurrent)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Conf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Conf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Configuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Configuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Console = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Console)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Copyright = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Copyright)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Created = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Created)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Critical = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Critical)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Custom = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Custom)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_DELETE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_DELETE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_DOCUMENT_ROOT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_DOCUMENT_ROOT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_DataType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_DataType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Debug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Debug)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Decision = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Decision)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Deny = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Deny)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Deprecated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Deprecated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Details = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Details)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Emergency = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Emergency)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Errors = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Errors)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Evaluated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Evaluated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Extension = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Extension)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Extensions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Extensions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_FCGI_ROLE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_FCGI_ROLE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Facility = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Facility)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Filter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Filter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Filters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Filters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Flags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Flags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Format = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Format)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Fragment = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Fragment)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_GATEWAY_INTERFACE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_GATEWAY_INTERFACE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_GET = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_GET)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_GNU = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_GNU)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HOME = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HOME)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTPS = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTPS)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_ACCEPT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_ACCEPT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_ACCEPT_CHARSET = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_ACCEPT_CHARSET)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_ACCEPT_ENCODING = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_ACCEPT_ENCODING)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_ACCEPT_LANGUAGE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_ACCEPT_LANGUAGE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_COOKIE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_COOKIE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_FROM = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_FROM)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_HOST = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_HOST)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_REFERER = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_REFERER)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_HTTP_USER_AGENT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_HTTP_USER_AGENT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Hints = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Hints)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Host = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Host)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ID = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ID)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_INF = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_INF)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Identifier = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Identifier)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Ignore = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Ignore)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Includes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Includes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Indeterminate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Indeterminate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Index = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Index)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Indirect = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Indirect)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Infinity = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Infinity)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Informational = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Informational)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Intermediate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Intermediate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_JeremyScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_JeremyScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Key = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Key)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_L = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_L)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Label = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Label)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Labels = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Labels)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Line = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Line)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Load = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Load)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Log = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Log)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_M = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_M)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Message = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Message)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Method = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Method)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Metrics = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Metrics)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Mode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Mode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Model = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Model)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_N = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_N)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_NS = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_NS)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_NULL = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_NULL)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_NaN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_NaN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Normalize = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Normalize)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Notice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Notice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_OK = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_OK)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ObjectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ObjectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Obligations = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Obligations)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Offset = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Offset)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Op = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Op)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Operation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Operation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Operator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Operator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Optional = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Optional)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_PATCH = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_PATCH)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_PATH_INFO = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_PATH_INFO)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_PATH_TRANSLATED = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_PATH_TRANSLATED)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_POST = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_POST)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_PUT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_PUT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Parameters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Parameters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Passed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Passed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Path)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Peer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Peer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Permit = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Permit)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Pid = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Pid)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Polymorphic = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Polymorphic)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Port = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Port)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Prefix = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Prefix)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Priority = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Priority)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Produces = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Produces)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Properties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Properties)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_PropertyType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_PropertyType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Pure = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Pure)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_QUERY_STRING = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_QUERY_STRING)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Qualifier = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Qualifier)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Qualifiers = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Qualifiers)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Query = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Query)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REMOTE_ADDR = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REMOTE_ADDR)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REMOTE_HOST = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REMOTE_HOST)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REMOTE_IDENT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REMOTE_IDENT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REMOTE_PORT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REMOTE_PORT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REMOTE_USER = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REMOTE_USER)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REQUEST_METHOD = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REQUEST_METHOD)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REQUEST_SCHEME = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REQUEST_SCHEME)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_REQUEST_URI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_REQUEST_URI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Reason = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Reason)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Reconcilable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Reconcilable)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Registers = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Registers)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Request = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Request)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Required = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Required)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Result = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Result)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Returns = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Returns)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Root = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Root)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Runtime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Runtime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Rv = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Rv)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_S = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_S)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SCHEME = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SCHEME)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SCRIPT_NAME = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SCRIPT_NAME)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SERVER_ADDR = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SERVER_ADDR)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SERVER_ADMIN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SERVER_ADMIN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SERVER_NAME = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SERVER_NAME)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SERVER_PORT = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SERVER_PORT)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SERVER_PROTOCOL = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SERVER_PROTOCOL)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SERVER_SIGNATURE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SERVER_SIGNATURE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SERVER_SOFTWARE = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SERVER_SOFTWARE)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SS = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SS)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_M_SERIAL = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_M_SERIAL)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_M_VERSION = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_M_VERSION)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_S_DN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_S_DN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_S_DN_CN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_S_DN_CN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_VERIFY = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_VERIFY)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_V_END = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_V_END)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_V_REMAIN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_V_REMAIN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_SSL_CLIENT_V_START = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_SSL_CLIENT_V_START)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Scalar = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Scalar)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Scheme = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Scheme)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Service = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Service)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Signature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Signature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Skeleton = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Skeleton)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Skip = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Skip)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Source = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Source)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Special = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Special)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Startup = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Startup)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Status = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Status)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Stderr = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Stderr)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Stdout = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Stdout)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Subject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Subject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Tags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Tags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Tests = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Tests)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace1)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace2)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace3 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace3)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace4 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace4)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace5 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace5)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace6 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace6)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace7 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace7)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Trace8 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Trace8)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Transitory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Transitory)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Typedef = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Typedef)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Unique = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Unique)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Userinfo = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Userinfo)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Version = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Version)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Warning = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Warning)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_Whitespace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Whitespace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__Adaptive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__Adaptive)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAction_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAction_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveActions_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveActions_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAdapterMetrics_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAdapterMetrics_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAdapterType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAdapterType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAdapter_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAdapter_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveApplicationComponents_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveApplicationComponents_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveApplication_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveApplication_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAuthorizationControl_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAuthorizationControl_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAuthorizationDecision_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAuthorizationDecision_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAuthorizationHandlerType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAuthorizationHandlerType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAuthorizationHandler_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAuthorizationHandler_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAuthorizationMode_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAuthorizationMode_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveAuthorizationResult_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveAuthorizationResult_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveCollection_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveCollection_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConfType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConfType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_adapter_afw_runtime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_adapter_afw_runtime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_adapter_file = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_adapter_file)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_adapter_model = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_adapter_model)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_application = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_application)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_authorizationHandler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_authorizationHandler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_authorizationHandler_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_authorizationHandler_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_extension = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_extension)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_log = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_log)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_log_event_log = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_log_event_log)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_log_standard = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_log_standard)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_log_syslog = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_log_syslog)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_requestHandler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_requestHandler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveConf_requestHandler_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveConf_requestHandler_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveContentType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveContentType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveContextType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveContextType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveDataTypeGenerate_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveDataTypeGenerate_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveDataType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveDataType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveEnvironmentRegistryType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveEnvironmentRegistryType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveEnvironmentRegistry_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveEnvironmentRegistry_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveEnvironmentVariables_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveEnvironmentVariables_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveErrorRVDecoder_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveErrorRVDecoder_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveError_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveError_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveExtension_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveExtension_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveFlag_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFlag_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveFunctionCategory_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFunctionCategory_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveFunctionDeclaration_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFunctionDeclaration_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveFunctionErrorThrown_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFunctionErrorThrown_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveFunctionGenerate_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFunctionGenerate_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveFunctionParameter_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFunctionParameter_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveFunction_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveFunction_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveInterface_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveInterface_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveJournalEntryRequest_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveJournalEntryRequest_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveJournalEntrySource_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveJournalEntrySource_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveJournalEntry_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveJournalEntry_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveLayoutComponentTypeCategory_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveLayoutComponentTypeCategory_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveLayoutComponentType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveLayoutComponentType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveLayoutComponent_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveLayoutComponent_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveLock_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveLock_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveLogType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveLogType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveLog_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveLog_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveManifest_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveManifest_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveMetaPropertyType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveMetaPropertyType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveMetaPropertyTypes_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveMetaPropertyTypes_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveMeta_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveMeta_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnAddObject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnAddObject_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnDeleteObject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnDeleteObject_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnGetInitialObjectId_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnGetInitialObjectId_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnGetInitialValue_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnGetInitialValue_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnGetObject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnGetObject_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnGetProperty_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnGetProperty_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnModifyObject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnModifyObject_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnReplaceObject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnReplaceObject_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnRetrieveObjects_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnRetrieveObjects_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrentOnSetProperty_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrentOnSetProperty_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelCurrent_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelCurrent_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelObjectType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelObjectType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelObjectTypes_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelObjectTypes_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelPropertyType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelPropertyType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModelPropertyTypes_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModelPropertyTypes_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveModel_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveModel_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveObjectOptions_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveObjectOptions_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveObjectType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveObjectType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveObjectTypes_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveObjectTypes_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveObject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveObject_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptivePackageCompileOptions_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptivePackageCompileOptions_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptivePackageSrcdirInfo_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptivePackageSrcdirInfo_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptivePackageSrcdirs_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptivePackageSrcdirs_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptivePackage_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptivePackage_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveParsedURI_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveParsedURI_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptivePolymorphicFunction_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptivePolymorphicFunction_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveProcess_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveProcess_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptivePropertyTypes_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptivePropertyTypes_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveProvisioningPeer_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveProvisioningPeer_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveQualifierDefinitions_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveQualifierDefinitions_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveQueryCriteriaFilter_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveQueryCriteriaFilter_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveQueryCriteria_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveQueryCriteria_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRequestContext_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRequestContext_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRequestHandlerType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRequestHandlerType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRequestHandler_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRequestHandler_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRequestProperties_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRequestProperties_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveResponseAction_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveResponseAction_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveResponse_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveResponse_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRootFilePaths_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRootFilePaths_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRuntimeCustom_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRuntimeCustom_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRuntimeLabels_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRuntimeLabels_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRuntimeObjectMapInf_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRuntimeObjectMapInf_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRuntimeObject_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRuntimeObject_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRuntimeProperty_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRuntimeProperty_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveRuntimeValueAccessor_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveRuntimeValueAccessor_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveServer_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveServer_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveServiceConf_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveServiceConf_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveServiceType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveServiceType_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveService_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveService_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveSingleton_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveSingleton_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveSystemInfo_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveSystemInfo_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveTag_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveTag_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveTemplatePropertiesObjects_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveTemplatePropertiesObjects_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveTemplateProperties_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveTemplateProperties_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveTestScriptResult_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveTestScriptResult_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveTestScriptTestResult_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveTestScriptTestResult_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveValueInf_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveValueInf_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveValueMeta_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveValueMeta_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveValuePath_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveValuePath_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__AdaptiveVersionInfo_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__AdaptiveVersionInfo_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__adaptive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__adaptive)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__flags_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__flags_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v__meta_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q__meta_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_Content_dash_Type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_Content_dash_Type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_Core_afw_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_Core_afw_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_adapter_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_adapter_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_adapter_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_adapter_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_bdb_adapter_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_bdb_adapter_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_bdb_adapter_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_bdb_adapter_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_dynamo_db_adapter_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_dynamo_db_adapter_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_dynamo_db_adapter_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_dynamo_db_adapter_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_ldap_adapter_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_ldap_adapter_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_ldap_adapter_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_ldap_adapter_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_lmdb_adapter_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_lmdb_adapter_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_lmdb_adapter_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_lmdb_adapter_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_sql_adapter_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_sql_adapter_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_sql_adapter_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_sql_adapter_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_ubjson_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_ubjson_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_ubjson_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_ubjson_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_xacml_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_xacml_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_xacml_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_xacml_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_yaml_module_path_dll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_yaml_module_path_dll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_afw_yaml_module_path_so = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_afw_yaml_module_path_so)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_ampersand = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_ampersand)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_anonymous_function_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_anonymous_function_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_application_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_application_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_application_json = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_application_json)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_application_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_application_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_application_xml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_application_xml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_application_yaml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_application_yaml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_asterisk = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_asterisk)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_authorizationHandler_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_authorizationHandler_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_authorizationHandler_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_authorizationHandler_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_automatic_start = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_automatic_start)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_backslash = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_backslash)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_bracketed_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_bracketed_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_close_angle_bracket = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_close_angle_bracket)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_close_brace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_close_brace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_close_parenthesis = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_close_parenthesis)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_close_square_bracket = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_close_square_bracket)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_colon = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_colon)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_comma = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_comma)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_compile_expect_error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_compile_expect_error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_compile_source_error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_compile_source_error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_context_type_application_qualifier_definitions_path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_context_type_application_qualifier_definitions_path)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_context_type_process_qualifier_definitions_path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_context_type_process_qualifier_definitions_path)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_current_colon_colon_mapBackObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_current_colon_colon_mapBackObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_current_colon_colon_mapObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_current_colon_colon_mapObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_current_colon_colon_returnObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_current_colon_colon_returnObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_dash = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_dash)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_dash_dash_syntax_test_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_dash_dash_syntax_test_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_dash_s_test_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_dash_s_test_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_decision_not_applicable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_decision_not_applicable)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_decision_not_applicable_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_decision_not_applicable_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_decision_not_applicable_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_decision_not_applicable_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_decision_not_applicable_upper_camel = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_decision_not_applicable_upper_camel)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_dot = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_dot)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_dot_dot_slash = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_dot_dot_slash)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_dot_slash = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_dot_slash)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_double_asterisk = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_double_asterisk)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_double_dot = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_double_dot)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_empty_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_empty_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_equal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_equal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_evaluate_expect_error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_evaluate_expect_error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_evaluate_source_error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_evaluate_source_error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_exclamation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_exclamation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_expect_stderr_mismatch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_expect_stderr_mismatch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_expect_stdout_mismatch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_expect_stdout_mismatch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_extension_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_extension_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_extension_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_extension_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_noImplicitAny = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_noImplicitAny)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_noImplicitAny_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_noImplicitAny_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_noImplicitAny_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_noImplicitAny_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_noOptimize = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_noOptimize)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_noOptimize_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_noOptimize_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_noOptimize_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_noOptimize_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_strict = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strict)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_strictNullChecks = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strictNullChecks)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_strictNullChecks_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strictNullChecks_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_strictNullChecks_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strictNullChecks_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_strict_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strict_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_strict_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_strict_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_typeCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_typeCheckCompileOnly = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheckCompileOnly)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_typeCheckCompileOnly_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheckCompileOnly_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_typeCheckCompileOnly_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheckCompileOnly_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_typeCheck_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheck_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_compile_typeCheck_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_compile_typeCheck_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_function_active = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_function_active)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_function_active_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_function_active_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_function_active_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_function_active_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_function_active_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_function_active_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_function_active_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_function_active_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_function_active_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_function_active_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_lock = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_lock)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_lock_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_lock_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_lock_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_lock_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_pool = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_pool)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_pool_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_pool_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_pool_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_pool_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_pool_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_pool_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_pool_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_pool_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_debug_pool_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_debug_pool_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_console = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_console)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_console_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_console_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_console_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_console_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_console_stream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_console_stream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_console_stream_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_console_stream_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_console_stream_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_console_stream_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtrace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtrace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtraceEvaluation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtraceEvaluation_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtraceEvaluation_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtraceEvaluation_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtrace_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtrace_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_backtrace_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_backtrace_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_contextual = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_contextual)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_contextual_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_contextual_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_contextual_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_contextual_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_hasAdditionalDetail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_hasAdditionalDetail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_hasAdditionalDetail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_hasAdditionalDetail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_error_hasAdditionalDetail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_error_hasAdditionalDetail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stderr = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stderr)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stderr_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stderr_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stderr_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stderr_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stderr_stream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stderr_stream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stderr_stream_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stderr_stream_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stderr_stream_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stderr_stream_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stdout = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stdout)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stdout_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stdout_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stdout_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stdout_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stdout_stream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stdout_stream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stdout_stream_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stdout_stream_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_response_stdout_stream_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_response_stdout_stream_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_adapter_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_adapter_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_adapter_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_adapter_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_adapter_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_adapter_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_adapter_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_adapter_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_adapter_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_adapter_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorizationHandler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorizationHandler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorizationHandler_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorizationHandler_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorizationHandler_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorizationHandler_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorizationHandler_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorizationHandler_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorizationHandler_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorizationHandler_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorizationHandler_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorizationHandler_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_bypass = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_bypass)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_bypass_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_bypass_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_bypass_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_bypass_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_check_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_check_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_decision = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_decision)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_decision_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_decision_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_decision_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_decision_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_decision_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_decision_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_decision_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_decision_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_decision_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_decision_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_authorization_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_authorization_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_evaluation_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_evaluation_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_evaluation_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_evaluation_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_evaluation_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_evaluation_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_request = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_request)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_request_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_request_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_request_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_request_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_request_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_request_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_request_detail_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_request_detail_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_trace_request_detail_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_trace_request_detail_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_unspecified = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_unspecified)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_unspecified_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_unspecified_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_flag_unspecified_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_flag_unspecified_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_in_catch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_in_catch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_in_finally = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_in_finally)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_journal_get_entry = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_journal_get_entry)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lambda_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lambda_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_adapter_id_anchor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_adapter_id_anchor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_adapter_id_anchor_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_adapter_id_anchor_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_adapter_id_anchor_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_adapter_id_anchor_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_authorization_handler_id_anchor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_authorization_handler_id_anchor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_authorization_handler_id_anchor_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_authorization_handler_id_anchor_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_authorization_handler_id_anchor_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_authorization_handler_id_anchor_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_environment = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_environment)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_environment_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_environment_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_environment_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_environment_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_file_journal_anchor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_file_journal_anchor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_file_journal_anchor_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_file_journal_anchor_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_file_journal_anchor_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_file_journal_anchor_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_flags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_flags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_flags_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_flags_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_flags_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_flags_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_log_list = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_log_list)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_log_list_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_log_list_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_log_list_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_log_list_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_multithreaded_pool = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_multithreaded_pool)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_multithreaded_pool_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_multithreaded_pool_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_lock_multithreaded_pool_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_lock_multithreaded_pool_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_log_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_log_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_log_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_log_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_meta_key = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_meta_key)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_meta_objectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_meta_objectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_newline_char = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_newline_char)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_not_implemented = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_not_implemented)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_open_angle_bracket = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_open_angle_bracket)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_open_brace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_open_brace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_open_parenthesis = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_open_parenthesis)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_open_square_bracket = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_open_square_bracket)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_other_error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_other_error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_period = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_period)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_qualification_operator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_qualification_operator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_requestHandler_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_requestHandler_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_requestHandler_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_requestHandler_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_request_body = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_request_body)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_semicolon = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_semicolon)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_service_type_adapter_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_service_type_adapter_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_service_type_authorizationHandler_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_service_type_authorizationHandler_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_service_type_log_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_service_type_log_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_services_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_services_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_services_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_services_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_slash = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_slash)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_slash_afw = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_slash_afw)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_star_slash_star = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_star_slash_star)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_tab = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_tab)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_a_vertical_bar = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_a_vertical_bar)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_abs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_abs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_absDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_absDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_absInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_absInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_abs_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_abs_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_abs_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_abs_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_accumulator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_accumulator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_action = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_action)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_actionId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_actionId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_actionNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_actionNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_actions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_actions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapterObjectCallbackSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapterObjectCallbackSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapterType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapterType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapterTypeSpecific = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapterTypeSpecific)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_additional_metrics = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_additional_metrics)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_id_anchor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_id_anchor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_metrics = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_metrics)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_objectCallback_signature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_objectCallback_signature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_properties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_properties)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_reference_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_reference_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_adapter_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_adapter_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addDayTimeDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addDayTimeDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addEntries = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addEntries)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addObjectCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addObjectCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addProperties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addProperties)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addYearMonthDurationDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addYearMonthDurationDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_addYearMonthDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_addYearMonthDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_dayTimeDuration_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_dayTimeDuration_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_entries = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_entries)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_object_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_object_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_object_with_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_object_with_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_properties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_properties)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_yearMonthDuration_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_yearMonthDuration_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_add_yearMonthDuration_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_add_yearMonthDuration_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_additional = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_additional)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_additionalArgCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_additionalArgCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_additionalConstraints = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_additionalConstraints)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_additionalUntrustedQualifiedVariables = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_additionalUntrustedQualifiedVariables)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_administrative = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_administrative)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_advanceCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_advanceCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_advice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_advice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAbs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAbs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAbsDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAbsDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAbsInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAbsInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAdapterObjectCallbackSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAdapterObjectCallbackSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAdd = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAdd)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddDayTimeDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddDayTimeDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddEntries = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddEntries)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddProperties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddProperties)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddYearMonthDurationDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddYearMonthDurationDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAddYearMonthDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAddYearMonthDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAllOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAllOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAllOfAll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAllOfAll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAllOfAny = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAllOfAny)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAnd = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAnd)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAnyOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAnyOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAnyOfAll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAnyOfAll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAnyOfAny = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAnyOfAny)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwApplyObjectOptions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwApplyObjectOptions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAssert = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAssert)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAssign = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAssign)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAt = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAt)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAtLeastOneMemberOfYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAtLeastOneMemberOfYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwAuthorizationCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwAuthorizationCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBag = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBag)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSize = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSize)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagSizeYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagSizeYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBagYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBagYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwBreak = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwBreak)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCamelCaseFunctionLabel = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCamelCaseFunctionLabel)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCeil = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCeil)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCeilDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCeilDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwClone = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwClone)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCloneArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCloneArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCloneObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCloneObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwClose = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwClose)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompareUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompareUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompileFromFile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompileFromFile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompileJson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompileJson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompileRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompileRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompileRelaxedJson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompileRelaxedJson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompileScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompileScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompileTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompileTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompileXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompileXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCompiledVersion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCompiledVersion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwConcat = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwConcat)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwConst = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwConst)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwContinue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwContinue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwConvertAdaptiveQueryCriteriaToQueryString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwConvertAdaptiveQueryCriteriaToQueryString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwConvertQueryStringToAdaptiveQueryCriteria = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwConvertQueryStringToAdaptiveQueryCriteria)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwCreateArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwCreateArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDebug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDebug)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDecodeToString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDecodeToString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDecodeToStringBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDecodeToStringBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDecodeToStringHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDecodeToStringHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDecompile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDecompile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDeleteObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDeleteObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDeleteObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDeleteObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDivide = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDivide)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDivideDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDivideDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDivideInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDivideInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDoWhile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDoWhile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEncodeAsBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEncodeAsBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEncodeAsBase64BinaryString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEncodeAsBase64BinaryString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEncodeAsHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEncodeAsHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEncodeAsHexBinaryString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEncodeAsHexBinaryString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEndsWith = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEndsWith)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEndsWithAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEndsWithAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEndsWithString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEndsWithString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEntries = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEntries)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEq = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEq)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqIgnoreCase = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqIgnoreCase)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqIgnoreCaseString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqIgnoreCaseString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqx = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqx)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEqxYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEqxYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEval = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEval)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvalFromFile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvalFromFile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvalScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvalScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvalString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvalString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvalTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvalTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvalXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvalXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvaluate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvaluate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvaluateWithRetry = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvaluateWithRetry)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwEvery = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvery)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwExecutionStartTimeLocal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwExecutionStartTimeLocal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwExecutionStartTimeUtc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwExecutionStartTimeUtc)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwExtensionLoad = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwExtensionLoad)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwExtensionLoadByModulePath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwExtensionLoadByModulePath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFilter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFilter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFind = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFind)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFlagGetActive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFlagGetActive)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFlagGetActiveDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFlagGetActiveDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFlagGetDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFlagGetDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFlagModifyDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFlagModifyDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFlagReplaceDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFlagReplaceDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFlagSet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFlagSet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFloor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFloor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFloorDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFloorDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFlush = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFlush)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwForOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwForOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFreeze = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFreeze)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFreezeArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFreezeArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwFreezeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwFreezeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGe = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGe)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGeYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGeYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGenerateUuid = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGenerateUuid)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGetObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGetObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGetObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGetObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGt = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGt)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwGtYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwGtYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwInRange = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwInRange)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwInRangeTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwInRangeTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIncludes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIncludes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIncludesAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIncludesAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIncludesArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIncludesArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIncludesString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIncludesString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIndexCreate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIndexCreate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIndexList = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIndexList)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIndexOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIndexOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIndexOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIndexOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIndexOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIndexOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIndexRemove = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIndexRemove)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersection = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersection)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIntersectionYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIntersectionYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsDefined = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsDefined)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsFinite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsFinite)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsIn = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsIn)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsNaN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsNaN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsNullish = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsNullish)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsUnevaluated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsUnevaluated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwIsYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwIsYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJoin = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJoin)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJournalAdvanceCursorForConsumer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJournalAdvanceCursorForConsumer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJournalGetByCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJournalGetByCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJournalGetFirst = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJournalGetFirst)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJournalGetNextAfterCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJournalGetNextAfterCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJournalGetNextForConsumer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJournalGetNextForConsumer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJournalGetNextForConsumerAfterCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJournalGetNextForConsumerAfterCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJournalMarkConsumed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJournalMarkConsumed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwJson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwJson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwKeys = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwKeys)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLastIndexOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLastIndexOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLastIndexOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLastIndexOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLastIndexOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLastIndexOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLe = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLe)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLeYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLeYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLength = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLength)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLengthAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLengthAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLengthArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLengthArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLengthString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLengthString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLocalObjectMetaSetIds = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLocalObjectMetaSetIds)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLog = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLog)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLt = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLt)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwLtYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwLtYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMap = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMap)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMatch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMatch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMatchRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMatchRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMatchX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMatchX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMax = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMax)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMaxDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMaxDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMaxDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMaxDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMaxDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMaxDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMaxInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMaxInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMaxString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMaxString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMaxTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMaxTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMeta = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMeta)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMetas = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMetas)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMin = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMin)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMinDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMinDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMinDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMinDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMinDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMinDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMinInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMinInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMinString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMinString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMinTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMinTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMod = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMod)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModelDefaultAddObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModelDefaultAddObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModelDefaultDeleteObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModelDefaultDeleteObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModelDefaultModifyObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModelDefaultModifyObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModelDefaultReplaceObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModelDefaultReplaceObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModelMapBackObjectSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModelMapBackObjectSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModelMapObjectSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModelMapObjectSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModelReturnObjectSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModelReturnObjectSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModifyObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModifyObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwModifyObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwModifyObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMultiply = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMultiply)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMultiplyDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMultiplyDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwMultiplyInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwMultiplyInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNe = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNe)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNeYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNeYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNegative = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNegative)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNegativeDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNegativeDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNegativeInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNegativeInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNex = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNex)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNexYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNexYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNormalizeSpace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNormalizeSpace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNormalizeSpaceString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNormalizeSpaceString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNormalizeToLowerCase = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNormalizeToLowerCase)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNormalizeToLowerCaseString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNormalizeToLowerCaseString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNot = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNot)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNowLocal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNowLocal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNowUtc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNowUtc)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwNullishCoalescing = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwNullishCoalescing)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnly = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnly)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOneAndOnlyYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOneAndOnlyYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOpenFile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOpenFile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOptionalChaining = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOptionalChaining)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwOr = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwOr)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPackageId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPackageId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPackageLabel = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPackageLabel)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwParseUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwParseUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPerform = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPerform)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPop = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPop)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPow = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPow)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPowDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPowDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPrint = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPrint)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPrintln = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPrintln)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPropertyDelete = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPropertyDelete)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPropertyDeleteByReference = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPropertyDeleteByReference)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPropertyExists = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPropertyExists)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPropertyGet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPropertyGet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPropertyIsNotNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPropertyIsNotNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwPush = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwPush)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwQualifier = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwQualifier)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwQualifiers = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwQualifiers)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRandomBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRandomBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRandomDigits = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRandomDigits)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRandomHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRandomHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRandomInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRandomInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRandomNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRandomNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRead = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRead)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReadToBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReadToBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReadToHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReadToHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReadln = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReadln)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReconcileObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReconcileObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReduce = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReduce)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpIndexOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpIndexOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpIndexOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpIndexOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpIndexOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpIndexOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpMatch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpMatch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpMatchAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpMatchAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpMatchDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpMatchDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpMatchIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpMatchIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpMatchRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpMatchRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpMatchString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpMatchString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpMatchX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpMatchX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpReplace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpReplace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpReplaceAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpReplaceAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegexpReplaceString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegexpReplaceString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRegistryKeyCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRegistryKeyCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRelaxedJson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRelaxedJson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRepeat = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRepeat)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRepeatAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRepeatAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRepeatString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRepeatString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReplace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReplace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReplaceAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReplaceAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReplaceObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReplaceObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReplaceObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReplaceObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReplaceString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReplaceString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRethrow = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRethrow)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjectsToCallback = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjectsToCallback)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjectsToResponse = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjectsToResponse)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjectsToStream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjectsToStream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjectsWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjectsWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjectsWithUriToCallback = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjectsWithUriToCallback)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjectsWithUriToResponse = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjectsWithUriToResponse)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRetrieveObjectsWithUriToStream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRetrieveObjectsWithUriToStream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReturn = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReturn)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwReverse = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwReverse)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRound = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRound)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwRoundDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwRoundDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSafeEvaluate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSafeEvaluate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwServiceGet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwServiceGet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwServiceRestart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwServiceRestart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwServiceStart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwServiceStart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwServiceStop = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwServiceStop)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEquals = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEquals)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSetEqualsYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSetEqualsYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwShift = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwShift)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSlice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSlice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSome = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSome)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSort = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSort)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSplice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSplice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSplit = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSplit)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSplitAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSplitAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSplitString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSplitString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwStartsWith = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwStartsWith)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwStartsWithAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwStartsWithAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwStartsWithString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwStartsWithString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwStream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwStream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwStringify = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwStringify)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubset = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubset)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubsetYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubsetYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubstring = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubstring)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubstringAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubstringAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubstringString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubstringString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtract = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtract)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtractDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtractDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtractDayTimeDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtractDayTimeDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtractDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtractDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtractInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtractInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtractYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtractYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtractYearMonthDurationDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtractYearMonthDurationDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSubtractYearMonthDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSubtractYearMonthDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwSwitch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwSwitch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwTestTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwTestTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwTestValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwTestValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwThrow = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwThrow)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToAnyURIString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToAnyURIString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToBooleanString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToBooleanString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDateString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDateString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDateTimeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDateTimeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDayTimeDurationString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDayTimeDurationString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDnsNameString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDnsNameString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDoubleInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDoubleInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToDoubleString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToDoubleString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToIntegerDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToIntegerDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToIntegerString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToIntegerString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToIpAddressString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToIpAddressString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToRfc822NameString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToRfc822NameString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToStringYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToStringYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToTimeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToTimeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToX500NameString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToX500NameString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwToYearMonthDurationString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwToYearMonthDurationString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwTrace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwTrace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwTry = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwTry)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnionYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnionYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUnshift = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUnshift)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUpdateObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUpdateObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUpdateObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUpdateObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUrlDecode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUrlDecode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUrlEncode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUrlEncode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUrlEncodeAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUrlEncodeAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwUrlEncodeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwUrlEncodeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwValues = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwValues)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwVariableExists = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwVariableExists)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwVariableGet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwVariableGet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwVariableIsNotNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwVariableIsNotNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwVersion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwVersion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwVoidOperator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwVoidOperator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwWhile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwWhile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwWrapLiteralArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwWrapLiteralArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwWrapLiteralObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwWrapLiteralObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwWrite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwWrite)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwWriteInternal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwWriteInternal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwWriteln = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwWriteln)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwXpathNodeCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwXpathNodeCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwXpathNodeEq = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwXpathNodeEq)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwXpathNodeMatch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwXpathNodeMatch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_factory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_factory)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_factory_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_factory_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_id_anchor_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_id_anchor_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_impl_index = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_impl_index)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_impl_index_cursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_impl_index_cursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_impl_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_impl_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_journal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_journal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_key_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_key_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_object_type_cache = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_object_type_cache)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_session = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_session)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_adapter_transaction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_adapter_transaction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_admin = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_admin)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_admin_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_admin_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_array_setter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_array_setter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_authorization_handler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_authorization_handler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_authorization_handler_factory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_authorization_handler_factory)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_authorization_handler_factory_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_authorization_handler_factory_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_authorization_handler_id_anchor_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_authorization_handler_id_anchor_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_bdb_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_bdb_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_bindings = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_bindings)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_bindings_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_bindings_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_client = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_client)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_client_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_client_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_command = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_command)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_command_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_command_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_compiled_version = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_compiled_version)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_extension_loaded = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_extension_loaded)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_react_core = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_react_core)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_react_core_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_react_core_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_react_material = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_react_material)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_react_material_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_react_material_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_react_monaco = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_react_monaco)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_react_monaco_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_react_monaco_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_components_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_components_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_connection = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_connection)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_content_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_content_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_content_type_object_list_writer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_content_type_object_list_writer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_crypto = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_crypto)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_crypto_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_crypto_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_curl = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_curl)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_curl_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_curl_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_data_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_data_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_data_type_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_data_type_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_dev = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_dev)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_dev_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_dev_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_dynamo_db_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_dynamo_db_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_environment_conf_type_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_environment_conf_type_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_environment_default_register_additional_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_environment_default_register_additional_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_environment_registry_type_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_environment_registry_type_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_extension = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_extension)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_extension_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_extension_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_flag_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_flag_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_iterator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_iterator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_iterator_old = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_iterator_old)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_iterator_with_key = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_iterator_with_key)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_ldap = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_ldap)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_ldap_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_ldap_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_ldap_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_ldap_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_lmdb = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_lmdb)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_lmdb_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_lmdb_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_lmdb_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_lmdb_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_lmdb_bindings = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_lmdb_bindings)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_lmdb_bindings_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_lmdb_bindings_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_lock_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_lock_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_log = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_log)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_log_factory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_log_factory)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_log_factory_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_log_factory_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_log_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_log_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_memory_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_memory_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_adapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_adapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_adapterTypeSpecific = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_adapterTypeSpecific)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_mapBackObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_mapBackObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_mappedAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_mappedAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_mappedObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_mappedObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_mappedObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_mappedObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_mappedObjectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_mappedObjectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_mappedPropertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_mappedPropertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_mappedValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_mappedValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_modifyEntries = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_modifyEntries)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_objectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_objectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_propertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_propertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_queryCriteria = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_queryCriteria)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_returnObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_returnObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_useDefaultProcessing = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_useDefaultProcessing)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_model_internal_get_current_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_model_internal_get_current_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_object_associative_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_object_associative_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_object_setter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_object_setter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_pool = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_pool)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_request = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_request)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_request_handler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_request_handler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_request_handler_factory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_request_handler_factory)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_request_handler_factory_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_request_handler_factory_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_request_handler_head = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_request_handler_head)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_runtime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_runtime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_runtime_value_accessor_info_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_runtime_value_accessor_info_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_server = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_server)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_server_fcgi = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_server_fcgi)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_server_fcgi_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_server_fcgi_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_server_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_server_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_service_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_service_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_service_type_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_service_type_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_sql_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_sql_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_stream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_stream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_test = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_test)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_test_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_test_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_ubjson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_ubjson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_ubjson_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_ubjson_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_utf8_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_utf8_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_value_function_definition_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_value_function_definition_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_value_function_parameter_t = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_value_function_parameter_t)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_value_get_evaluated_meta = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_value_get_evaluated_meta)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_value_get_evaluated_metas = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_value_get_evaluated_metas)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_variable_handler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_variable_handler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_version = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_version)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_vfs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_vfs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_vfs_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_vfs_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_writer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_writer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_yaml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_yaml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afw_yaml_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afw_yaml_)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwdev = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwdev)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwfcgi = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwfcgi)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwjson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwjson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwmake = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwmake)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_afwyaml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwyaml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_alert = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_alert)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allOfAll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allOfAll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allOfAny = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allOfAny)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_all_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_all_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_all_of_all = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_all_of_all)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_all_of_any = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_all_of_any)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowAdd = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowAdd)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowChange = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowChange)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowDelete = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowDelete)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowDenyOverride = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowDenyOverride)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowEntity = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowEntity)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowPermitOverride = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowPermitOverride)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowQuery = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowQuery)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowRead = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowRead)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowReregister = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowReregister)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowWrite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowWrite)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allow_reregister = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allow_reregister)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_allowedValues = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_allowedValues)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_an_ellipsis = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_an_ellipsis)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ancestorPaths = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ancestorPaths)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_and = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_and)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_any = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_any)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_anyOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_anyOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_anyOfAll = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_anyOfAll)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_anyOfAny = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_anyOfAny)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_any_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_any_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_any_of_all = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_any_of_all)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_any_of_any = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_any_of_any)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ao = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ao)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_applicableFlags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_applicableFlags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_applicablePolicies = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_applicablePolicies)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_applicable_flags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_applicable_flags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_application = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_application)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_applicationId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_applicationId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_applyObjectOptions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_applyObjectOptions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_apply_object_options = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_apply_object_options)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_arg1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_arg1)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_arg2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_arg2)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_argc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_argc)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_args = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_args)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_argument = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_argument)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_arguments = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_arguments)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_argv = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_argv)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_array1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_array1)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_array2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_array2)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_arrays = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_arrays)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_as = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_as)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_assert = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_assert)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_assert_has_property = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_assert_has_property)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_assert_has_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_assert_has_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_assert_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_assert_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_assertion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_assertion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_assign = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_assign)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_async = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_async)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_atLeastOneMemberOfYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_atLeastOneMemberOfYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_at_least_one_member_of_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_at_least_one_member_of_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authority = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authority)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationAdapterCreate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationAdapterCreate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationAdapterDelete = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationAdapterDelete)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationAdapterQuery = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationAdapterQuery)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationAdapterRead = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationAdapterRead)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationAdapterUpdate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationAdapterUpdate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationControl = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationControl)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationHandler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationHandler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationHandlerId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationHandlerId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationHandlerType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationHandlerType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorizationResults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorizationResults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization_check = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_check)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization_handler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_handler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization_handler_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_handler_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization_handler_id_anchor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_handler_id_anchor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization_handler_reference_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_handler_reference_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_authorization_handler_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_authorization_handler_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_autoFlush = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_autoFlush)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_autoRegister = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_autoRegister)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_auto_register_specified = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_auto_register_specified)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_await = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_await)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_backtrace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_backtrace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_backtraceEvaluation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_backtraceEvaluation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSize = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSize)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagSizeYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagSizeYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bagYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bagYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_null = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_null)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_null = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_null)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_size_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_size_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bag_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bag_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_base = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_base)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_basic = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_basic)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_beginTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_beginTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_body = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_body)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_break = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_break)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_brief = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_brief)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_bugReportEmail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_bugReportEmail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_buildType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_buildType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_buildTypeParameters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_buildTypeParameters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_cType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_cType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_call = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_call)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_camelCaseFunctionLabel = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_camelCaseFunctionLabel)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_canBeUndefined = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_canBeUndefined)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_canRestart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_canRestart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_canStart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_canStart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_canStop = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_canStop)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_case = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_case)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_case_clause = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_case_clause)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_case_insensitive_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_case_insensitive_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_case_sensitive_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_case_sensitive_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_catch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_catch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_category = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_category)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ceil = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ceil)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ceilDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ceilDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ceil_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ceil_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_checkIndividualObjectReadAccess = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_checkIndividualObjectReadAccess)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_checkIntermediateMode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_checkIntermediateMode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_checkOnly = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_checkOnly)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_checkRequired = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_checkRequired)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_class = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_class)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_clone = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_clone)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_cloneArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_cloneArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_cloneObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_cloneObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_clone_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_clone_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_clone_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_clone_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_close = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_close)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_collectionURIs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_collectionURIs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_column = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_column)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compareFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compareFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compareUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compareUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compare_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compare_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileFromFile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileFromFile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileJson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileJson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileOptions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileOptions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileRelaxedJson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileRelaxedJson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compileXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compileXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_from_file = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_from_file)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_json = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_json)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_relaxed_json = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_relaxed_json)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compile_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compile_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compiler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compiler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compiler_expression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compiler_expression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_compiler_internal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_compiler_internal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_componentType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_componentType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_composite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_composite)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_concat = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_concat)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_concurrent = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_concurrent)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_condition = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_condition)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_conditions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_conditions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_conf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_conf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_confAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_confAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_confId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_confId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_confPropertyObjectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_confPropertyObjectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_confSubtype = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_confSubtype)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_confType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_confType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_conf_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_conf_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_conf_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_conf_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_conf_type_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_conf_type_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_console = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_console)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_const = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_const)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_consumeCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_consumeCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_consumeFilter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_consumeFilter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_consumeStartTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_consumeStartTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_consumed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_consumed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_consumerId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_consumerId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_contains = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_contains)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_containsUnresolvedSubstitutions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_containsUnresolvedSubstitutions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_contentType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_contentType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_content_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_content_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_context = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_context)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_contextType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_contextType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_contextTypeId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_contextTypeId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_continue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_continue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_control = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_control)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_convertAdaptiveQueryCriteriaToQueryString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_convertAdaptiveQueryCriteriaToQueryString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_convertQueryStringToAdaptiveQueryCriteria = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_convertQueryStringToAdaptiveQueryCriteria)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_convert_AdaptiveQueryCriteria_to_query_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_convert_AdaptiveQueryCriteria_to_query_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_convert_query_string_to_AdaptiveQueryCriteria = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_convert_query_string_to_AdaptiveQueryCriteria)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_copiesUnderLock = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_copiesUnderLock)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_copies_under_lock = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_copies_under_lock)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_copyright = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_copyright)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_core = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_core)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_coreAuthorizationCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_coreAuthorizationCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_create = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_create)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_createArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_createArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_create_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_create_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_crit = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_crit)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_current = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_current)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_currentCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_currentCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_currentPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_currentPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_cursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_cursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_custom = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_custom)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_cwd = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_cwd)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_data = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_data)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dataType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dataType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dataTypeCategory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dataTypeCategory)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dataTypeMethod = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dataTypeMethod)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dataTypeMethodNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dataTypeMethodNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dataTypeParameter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dataTypeParameter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dataTypeParameterFormatted = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dataTypeParameterFormatted)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dataTypeParameterType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dataTypeParameterType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_data_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_data_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_data_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_data_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_data_type_parameter_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_data_type_parameter_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_debug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_debug)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_debugFlagId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_debugFlagId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_debugFlagIndex = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_debugFlagIndex)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decision = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decision)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decisionId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decisionId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_declare = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_declare)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decodeToString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decodeToString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decodeToStringBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decodeToStringBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decodeToStringHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decodeToStringHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decode_to_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decode_to_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decode_to_string_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decode_to_string_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decode_to_string_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decode_to_string_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_decompile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_decompile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_default = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_default)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_defaultAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_defaultAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_defaultFlags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_defaultFlags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_defaultModelAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_defaultModelAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_defaultOptions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_defaultOptions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_defaultValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_defaultValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_define = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_define)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_delete = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_delete)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_deleteCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_deleteCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_deleteObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_deleteObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_deleteObjectCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_deleteObjectCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_deleteObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_deleteObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_delete_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_delete_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_delete_object_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_delete_object_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_delete_object_with_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_delete_object_with_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_deny = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_deny)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_denyIfNotApplicable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_denyIfNotApplicable)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_deprecated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_deprecated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_description = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_description)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_descriptionPropertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_descriptionPropertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_detail = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_detail)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_details = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_details)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_differ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_differ)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_directReturn = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_directReturn)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_disabled = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_disabled)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_divide = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_divide)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_divideDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_divideDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_divideInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_divideInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_divide_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_divide_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_divide_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_divide_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dividend = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dividend)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_divisor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_divisor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_do = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_do)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_doWhile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_doWhile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_do_while = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_do_while)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_else = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_else)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_emerg = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_emerg)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encodeAsBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encodeAsBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encodeAsBase64BinaryString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encodeAsBase64BinaryString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encodeAsHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encodeAsHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encodeAsHexBinaryString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encodeAsHexBinaryString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encode_as_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encode_as_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encode_as_base64Binary_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encode_as_base64Binary_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encode_as_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encode_as_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encode_as_hexBinary_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encode_as_hexBinary_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_encoded = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_encoded)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_endIndex = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_endIndex)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_endTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_endTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_endsWith = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_endsWith)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_endsWithAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_endsWithAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_endsWithString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_endsWithString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ends_with = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ends_with)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ends_with_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ends_with_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ends_with_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ends_with_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_enforce = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_enforce)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ensure_afw_components_extension_loaded = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ensure_afw_components_extension_loaded)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_entityObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_entityObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_entityPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_entityPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_entries = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_entries)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_entry = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_entry)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_entryCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_entryCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_environment = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_environment)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqIgnoreCase = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqIgnoreCase)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqIgnoreCaseString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqIgnoreCaseString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_ignore_case = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_ignore_case)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_ignore_case_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_ignore_case_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eq_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eq_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqxYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqxYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eqx_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eqx_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_err = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_err)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_error = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_error)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_errorCode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_errorCode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_errorReason = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_errorReason)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_errorSource = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_errorSource)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_error_rv_decoder = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_error_rv_decoder)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_errors = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_errors)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_errorsThrown = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_errorsThrown)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eval = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eval)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evalFromFile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evalFromFile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evalScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evalScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evalString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evalString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evalTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evalTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evalXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evalXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eval_from_file = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eval_from_file)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eval_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eval_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eval_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eval_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eval_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eval_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_eval_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_eval_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evaluate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evaluate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evaluateWithRetry = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evaluateWithRetry)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evaluate_with_retry = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evaluate_with_retry)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evaluated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evaluated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_evaluation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evaluation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_every = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_every)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_excludes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_excludes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_executionStartTimeLocal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_executionStartTimeLocal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_executionStartTimeUtc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_executionStartTimeUtc)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_execution_start_time_local = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_execution_start_time_local)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_execution_start_time_utc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_execution_start_time_utc)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expect = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expect)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectCodepointLengthInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectCodepointLengthInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectCodepointOffsetInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectCodepointOffsetInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectColumnNumberInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectColumnNumberInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectLineNumberInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectLineNumberInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectLocation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectLocation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectUTF8OctetLengthInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectUTF8OctetLengthInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectUTF8OctetOffsetInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectUTF8OctetOffsetInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expect_stderr = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expect_stderr)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expect_stdout = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expect_stdout)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expected = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expected)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expectedError = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expectedError)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_exponent = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_exponent)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_export = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_export)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_expressions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_expressions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extends = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extends)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extension = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extension)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extensionId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extensionId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extensionLoad = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extensionLoad)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extensionLoadByModulePath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extensionLoadByModulePath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extensionModulePaths = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extensionModulePaths)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extensionVersion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extensionVersion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extension_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extension_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extension_load = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extension_load)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extension_load_by_module_path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extension_load_by_module_path)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extension_version = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extension_version)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_extensions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_extensions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_facility = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_facility)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_failure = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_failure)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_false = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_false)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_fatal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_fatal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_file = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_file)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_filenameSuffix = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_filenameSuffix)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_filter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_filter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_filters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_filters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_finally = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_finally)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_find = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_find)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagGetActive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagGetActive)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagGetActiveDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagGetActiveDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagGetDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagGetDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagIndex = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagIndex)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagModifyDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagModifyDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagReplaceDefaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagReplaceDefaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flagSet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flagSet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_get_active = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_get_active)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_get_active_defaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_get_active_defaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_get_defaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_get_defaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_id_debug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_id_debug)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_index = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_index)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_index_debug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_index_debug)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_modify_defaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_modify_defaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_replace_defaults = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_replace_defaults)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flag_set = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flag_set)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_floor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_floor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_floorDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_floorDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_floor_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_floor_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_flush = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_flush)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_fn = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_fn)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_for = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_for)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_forOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_forOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_for_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_for_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_format = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_format)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_fragment = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_fragment)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_fragmentTokens = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_fragmentTokens)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_freeze = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_freeze)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_freezeArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_freezeArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_freezeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_freezeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_freeze_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_freeze_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_freeze_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_freeze_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_from = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_from)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_fromIndex = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_fromIndex)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_functionDeclaration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_functionDeclaration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_functionDeclarationId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_functionDeclarationId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_functionId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_functionId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_functionLabel = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_functionLabel)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_functionResourceId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_functionResourceId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_functionSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_functionSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_functor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_functor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_geYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_geYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ge_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ge_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_general = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_general)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_generateUuid = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_generateUuid)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_generate_uuid = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_generate_uuid)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_getObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_getObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_getObjectCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_getObjectCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_getObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_getObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_get_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_get_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_get_object_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_get_object_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_get_object_with_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_get_object_with_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gitBranch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gitBranch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gitDescribe = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gitDescribe)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gitSha = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gitSha)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gtYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gtYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gt_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gt_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_gte = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_gte)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_handler_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_handler_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_hasErrors = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_hasErrors)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_higher_order_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_higher_order_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_hints = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_hints)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_homePageUrl = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_homePageUrl)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_host = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_host)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_idPropertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_idPropertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_idRegistryType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_idRegistryType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_idRuntimeObjectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_idRuntimeObjectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_id_property_name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_id_property_name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_id_registry_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_id_registry_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_id_runtime_object_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_id_runtime_object_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ident = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ident)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_if = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_if)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ignore = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ignore)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_immediate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_immediate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_implementationId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_implementationId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_implementationParameters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_implementationParameters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_import = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_import)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_in = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_in)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_inRange = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_inRange)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_inRangeTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_inRangeTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_in_range = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_in_range)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_in_range_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_in_range_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includeDefaultValues = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includeDefaultValues)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includeDescendentObjectTypes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includeDescendentObjectTypes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includeUntrusted = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includeUntrusted)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includedByFlags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includedByFlags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_included_by_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_included_by_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includesAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includesAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includesArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includesArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includesFlags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includesFlags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includesString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includesString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includes_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includes_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includes_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includes_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includes_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includes_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_includes_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includes_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_increment = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_increment)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indeterminate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indeterminate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indeterminateD = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indeterminateD)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indeterminateDP = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indeterminateDP)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indeterminateP = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indeterminateP)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_index = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_index)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indexCreate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indexCreate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indexList = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indexList)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indexOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indexOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indexOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indexOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indexOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indexOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indexRemove = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indexRemove)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_index_create = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_index_create)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_index_list = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_index_list)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_index_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_index_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_index_of_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_index_of_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_index_of_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_index_of_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_index_remove = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_index_remove)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indexes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indexes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indirect = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indirect)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_indirectObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_indirectObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_info = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_info)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_inheritedFrom = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_inheritedFrom)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_initial = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_initial)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_initialAuthorizationCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_initialAuthorizationCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_initialEnvironmentVariables = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_initialEnvironmentVariables)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_installPackageSubdir = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_installPackageSubdir)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_instanceObjectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_instanceObjectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_instanceof = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_instanceof)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_integersAsString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_integersAsString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_interface = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_interface)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intermediate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intermediate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intermediateOnly = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intermediateOnly)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_internal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_internal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersectionYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersectionYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_intersection_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_intersection_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isDefined = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isDefined)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isDevelopmentInput = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isDevelopmentInput)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isFinite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isFinite)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isIn = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isIn)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isModelLocation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isModelLocation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isNaN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isNaN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isNullish = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isNullish)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isPolicyLocation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isPolicyLocation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isUnevaluated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isUnevaluated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isUnique = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isUnique)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isValuePath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isValuePath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_isYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_isYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_NaN = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_NaN)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_defined = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_defined)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_finite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_finite)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_in_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_in_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_null = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_null)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_nullish = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_nullish)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_unevaluated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_unevaluated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_unique = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_unique)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_is_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_is_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_iteratorReturnDataType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_iteratorReturnDataType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_iterator_return_data_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_iterator_return_data_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_join = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_join)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalAdvanceCursorForConsumer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalAdvanceCursorForConsumer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalGetByCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalGetByCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalGetFirst = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalGetFirst)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalGetNextAfterCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalGetNextAfterCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalGetNextForConsumer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalGetNextForConsumer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalGetNextForConsumerAfterCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalGetNextForConsumerAfterCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journalMarkConsumed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journalMarkConsumed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal_advance_cursor_for_consumer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal_advance_cursor_for_consumer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal_get_by_cursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal_get_by_cursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal_get_first = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal_get_first)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal_get_next_after_cursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal_get_next_after_cursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal_get_next_for_consumer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal_get_next_for_consumer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal_get_next_for_consumer_after_cursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal_get_next_for_consumer_after_cursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_journal_mark_consumed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_journal_mark_consumed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_json = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_json)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_jsonImpliesDataType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_jsonImpliesDataType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_jsonPrimitive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_jsonPrimitive)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_jsonSchemaStringFormat = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_jsonSchemaStringFormat)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_json_implies_data_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_json_implies_data_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_key = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_key)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_keys = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_keys)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_label = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_label)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_labels = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_labels)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lambda = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lambda)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_largeIntegersAsString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_largeIntegersAsString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lastContactTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lastContactTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lastIndexOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lastIndexOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lastIndexOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lastIndexOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lastIndexOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lastIndexOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_last_index_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_last_index_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_last_index_of_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_last_index_of_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_last_index_of_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_last_index_of_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_layoutsAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_layoutsAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ldapOid = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ldapOid)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_leYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_leYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_le_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_le_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_length = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_length)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lengthAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lengthAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lengthArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lengthArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lengthString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lengthString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_length_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_length_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_length_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_length_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_length_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_length_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_let = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_let)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafw = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafw)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwVersion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwVersion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwVersionWithGitInfo = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwVersionWithGitInfo)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwcomponents = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwcomponents)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwcrypto = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwcrypto)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwcurl = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwcurl)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwldap = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwldap)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwlmdb = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwlmdb)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwubjson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwubjson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwvfs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwvfs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_libafwyaml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_libafwyaml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_like = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_like)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_limit = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_limit)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_line = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_line)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_listing = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_listing)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_load = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_load)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_loadExtension = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_loadExtension)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_localObjectMetaSetIds = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_localObjectMetaSetIds)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_local_object_meta_set_ids = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_local_object_meta_set_ids)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lockId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lockId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lock_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lock_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_log = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_log)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_logId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_logId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_logType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_logType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_log_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_log_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_log_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_log_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_logical = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_logical)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ltYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ltYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lt_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lt_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_lte = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_lte)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maluba = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maluba)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_manual = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_manual)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_manualMakefile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_manualMakefile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_map = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_map)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mapBackObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mapBackObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mapObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mapObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mapped = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mapped)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mappedAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mappedAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mappedObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mappedObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mappedObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mappedObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mappedObjectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mappedObjectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mappedPropertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mappedPropertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mappedValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mappedValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_match = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_match)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_matchRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_matchRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_matchX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_matchX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_match_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_match_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_match_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_match_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxConcurrent = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxConcurrent)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxLength = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxLength)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxNormalLength = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxNormalLength)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxObjects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_concurrent = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_concurrent)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maximumNumberOfParameters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maximumNumberOfParameters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mediaType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mediaType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_memberName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_memberName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_message = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_message)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_meta = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_meta)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_metaFull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_metaFull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_metaLimited = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_metaLimited)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_metas = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_metas)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_method = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_method)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_metrics = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_metrics)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_min = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_min)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minArgs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minArgs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minLength = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minLength)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_minValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_minValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_min_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_min_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_min_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_min_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_min_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_min_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_min_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_min_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_min_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_min_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_min_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_min_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_miscellaneous = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_miscellaneous)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mod = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mod)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mod_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mod_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mod_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mod_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_mode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_mode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modeId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modeId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelAddObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelAddObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelDefaultAddObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelDefaultAddObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelDefaultDeleteObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelDefaultDeleteObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelDefaultModifyObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelDefaultModifyObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelDefaultReplaceObjectAction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelDefaultReplaceObjectAction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelDeleteObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelDeleteObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelGetObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelGetObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelGetProperty = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelGetProperty)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelInitialObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelInitialObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelLocationAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelLocationAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelMapBackObjectSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelMapBackObjectSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelMapObjectSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelMapObjectSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelModifyObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelModifyObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelReplaceObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelReplaceObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelRetrieveObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelRetrieveObjects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelReturnObjectSignature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelReturnObjectSignature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modelSetProperty = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modelSetProperty)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_adapter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_adapter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_default_add_object_action = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_default_add_object_action)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_default_delete_object_action = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_default_delete_object_action)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_default_modify_object_action = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_default_modify_object_action)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_default_replace_object_action = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_default_replace_object_action)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_mapBackObject_signature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_mapBackObject_signature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_mapObject_signature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_mapObject_signature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_model_returnObject_signature = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_model_returnObject_signature)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modify = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modify)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modifyEntries = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modifyEntries)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modifyObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modifyObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modifyObjectCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modifyObjectCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modifyObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modifyObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modify_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modify_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modify_object_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modify_object_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modify_object_with_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modify_object_with_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_modulePath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_modulePath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_module_path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_module_path)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_multiply = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_multiply)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_multiplyDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_multiplyDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_multiplyInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_multiplyInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_multiply_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_multiply_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_multiply_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_multiply_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_n = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_n)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_n_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_n_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nePassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nePassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_neYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_neYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ne_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ne_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_negative = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_negative)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_negativeDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_negativeDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_negativeInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_negativeInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_negative_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_negative_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_negative_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_negative_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexRegexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexRegexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nexYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nexYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_function = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_function)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nex_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nex_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nodeset = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nodeset)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nodeset2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nodeset2)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_none = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_none)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalize = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalize)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalizeSpace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalizeSpace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalizeSpaceString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalizeSpaceString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalizeToLowerCase = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalizeToLowerCase)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalizeToLowerCaseString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalizeToLowerCaseString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalize_space = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalize_space)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalize_space_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalize_space_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalize_to_lower_case = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalize_to_lower_case)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalize_to_lower_case_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalize_to_lower_case_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalizedPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalizedPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_normalizedURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_normalizedURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_not = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_not)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_notApplicable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_notApplicable)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_notice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_notice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nowLocal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nowLocal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nowUtc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nowUtc)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_now_local = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_now_local)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_now_utc = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_now_utc)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_null = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_null)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_null_terminated_array_of_internal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_null_terminated_array_of_internal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_null_terminated_array_of_objects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_null_terminated_array_of_objects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_null_terminated_array_of_pointers = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_null_terminated_array_of_pointers)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_null_terminated_array_of_utf8_z_key_value_pair_objects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_null_terminated_array_of_utf8_z_key_value_pair_objects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_null_terminated_array_of_values = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_null_terminated_array_of_values)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nullishCoalescing = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nullishCoalescing)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_nullish_coalescing = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_nullish_coalescing)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_num_indexed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_num_indexed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_num_processed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_num_processed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_number = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_number)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_numberOfDigits = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_numberOfDigits)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_numberOfOctets = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_numberOfOctets)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_numberOfRequiredParameters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_numberOfRequiredParameters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_numeric = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_numeric)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_objectCallback = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_objectCallback)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_objectIdPropertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_objectIdPropertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_objectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_objectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_objectTypeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_objectTypeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_objectTypes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_objectTypes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_object_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_object_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_object_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_object_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_obligations = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_obligations)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_octet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_octet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_offset = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_offset)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onAddObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onAddObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onApplicationStartupComplete = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onApplicationStartupComplete)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onDeleteObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onDeleteObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onGetInitialObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onGetInitialObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onGetInitialValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onGetInitialValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onGetObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onGetObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onGetProperty = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onGetProperty)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onGetValueCFunctionName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onGetValueCFunctionName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onModifyObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onModifyObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onReplaceObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onReplaceObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onRetrieveObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onRetrieveObjects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_onSetProperty = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_onSetProperty)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnly = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnly)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_oneAndOnlyYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_oneAndOnlyYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_one_and_only_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_one_and_only_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_op = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_op)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_openFile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_openFile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_open_file = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_open_file)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_option = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_option)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionLogCons = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionLogCons)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionLogNoDelay = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionLogNoDelay)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionLogNoWait = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionLogNoWait)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionLogODelay = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionLogODelay)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionLogPError = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionLogPError)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionLogPid = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionLogPid)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optional = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optional)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionalChaining = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionalChaining)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionalChoiceDefault = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionalChoiceDefault)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optional_chaining = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optional_chaining)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_options = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_options)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_optionsObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_optionsObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_or = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_or)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_origin = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_origin)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalAuthority = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalAuthority)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalFragment = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalFragment)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalHierPart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalHierPart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalHost = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalHost)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalQuery = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalQuery)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_originalUserinfo = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_originalUserinfo)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_os = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_os)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_otherProperties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_otherProperties)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_out = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_out)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_own = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_own)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parameter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parameter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parameter_number = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parameter_number)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parameters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parameters)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parentPaths = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parentPaths)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parseUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parseUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parse_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parse_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parserColumnNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parserColumnNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parserCursor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parserCursor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parserLineNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parserLineNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_parserSource = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_parserSource)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_passed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_passed)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_path = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_path)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pathEmbedded = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pathEmbedded)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pathTokens = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pathTokens)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_peerId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_peerId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_perform = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_perform)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_permanent = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_permanent)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_permit = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_permit)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pid = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pid)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_platform = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_platform)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_policy_combining_algorithm = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_policy_combining_algorithm)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_polymorphic = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_polymorphic)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_polymorphicDataType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_polymorphicDataType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_polymorphicDataTypeParameter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_polymorphicDataTypeParameter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_polymorphicDataTypes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_polymorphicDataTypes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_polymorphicExecuteFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_polymorphicExecuteFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_polymorphicExecuteFunctionEvaluatesFirstParameter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_polymorphicExecuteFunctionEvaluatesFirstParameter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_polymorphicOverrides = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_polymorphicOverrides)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pop = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pop)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_port = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_port)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_position = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_position)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_possibleValues = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_possibleValues)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pow = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pow)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_powDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_powDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pow_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pow_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_predicate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_predicate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_prefix = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_prefix)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_print = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_print)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_println = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_println)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_priority = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_priority)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_process = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_process)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_processingOrder = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_processingOrder)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_processing_order = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_processing_order)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_produces = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_produces)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_programName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_programName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_properties = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_properties)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_property = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_property)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyDelete = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyDelete)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyDeleteByReference = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyDeleteByReference)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyExists = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyExists)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyGet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyGet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyIsNotNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyIsNotNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyNames = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyNames)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyTypeObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyTypeObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_propertyTypes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_propertyTypes)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_property_delete = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_property_delete)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_property_delete_by_reference = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_property_delete_by_reference)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_property_exists = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_property_exists)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_property_get = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_property_get)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_property_is_not_null = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_property_is_not_null)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_providesObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_providesObjects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_publish = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_publish)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_pure = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_pure)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_push = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_push)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_qualifiedVariables = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_qualifiedVariables)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_qualifier = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_qualifier)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_qualifierDefinitions = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_qualifierDefinitions)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_qualifiers = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_qualifiers)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_query = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_query)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_queryCriteria = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_queryCriteria)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_queryString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_queryString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_queryTokens = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_queryTokens)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_random = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_random)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_randomBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_randomBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_randomDigits = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_randomDigits)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_randomHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_randomHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_randomInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_randomInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_randomNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_randomNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_random_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_random_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_random_digits = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_random_digits)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_random_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_random_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_random_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_random_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_random_number = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_random_number)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_raw_response_body = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_raw_response_body)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_read = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_read)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_readToBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_readToBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_readToHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_readToHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_read_to_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_read_to_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_read_to_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_read_to_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_readln = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_readln)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reason = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reason)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reconcilable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reconcilable)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reconcileObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reconcileObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reconcile_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reconcile_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reduce = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reduce)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reference = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reference)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_referenceCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_referenceCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_referenceURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_referenceURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reference_by_key = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reference_by_key)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reference_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reference_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpIndexOf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpIndexOf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpIndexOfAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpIndexOfAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpIndexOfString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpIndexOfString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpMatch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpMatch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpMatchAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpMatchAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpMatchDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpMatchDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpMatchIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpMatchIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpMatchRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpMatchRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpMatchString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpMatchString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpMatchX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpMatchX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpReplace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpReplace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpReplaceAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpReplaceAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexpReplaceString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexpReplaceString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_index_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_index_of)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_index_of_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_index_of_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_index_of_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_index_of_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_match = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_match)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_match_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_match_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_match_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_match_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_match_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_match_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_match_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_match_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_match_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_match_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_match_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_match_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_replace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_replace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_replace_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_replace_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_regexp_replace_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_regexp_replace_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_registers = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_registers)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_registryKeyCheck = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_registryKeyCheck)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_registryType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_registryType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_registry_key_check = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_registry_key_check)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_registry_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_registry_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_registry_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_registry_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reissue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reissue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_related = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_related)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_relationalCompares = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_relationalCompares)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_relaxedJson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_relaxedJson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_relaxed_json = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_relaxed_json)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_remove_property = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_remove_property)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_remove_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_remove_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_repeat = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_repeat)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_repeatAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_repeatAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_repeatString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_repeatString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_repeat_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_repeat_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_repeat_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_repeat_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replaceAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replaceAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replaceObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replaceObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replaceObjectCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replaceObjectCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replaceObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replaceObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replaceString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replaceString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replace_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replace_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replace_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replace_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replace_object_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replace_object_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replace_object_with_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replace_object_with_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replace_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replace_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replacement = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replacement)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_replacer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_replacer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_request = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_request)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_requestCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_requestCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_requestHandler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_requestHandler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_requestHandlerType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_requestHandlerType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_requestId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_requestId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_request_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_request_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_request_handler = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_request_handler)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_request_handler_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_request_handler_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_request_session = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_request_session)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_request_thread = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_request_thread)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_required = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_required)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_requiresExecuteAccess = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_requiresExecuteAccess)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_resolvedParentPaths = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_resolvedParentPaths)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_resource = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_resource)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_resourceId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_resourceId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_response = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_response)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_response_body = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_response_body)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_result = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_result)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_resultDataType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_resultDataType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_rethrow = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_rethrow)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsToCallback = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsToCallback)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsToResponse = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsToResponse)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsToStream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsToStream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsWithUriToCallback = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsWithUriToCallback)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsWithUriToResponse = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsWithUriToResponse)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieveObjectsWithUriToStream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieveObjectsWithUriToStream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_to_callback = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_to_callback)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_to_response = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_to_response)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_to_stream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_to_stream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_with_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_with_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_with_uri_to_callback = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_with_uri_to_callback)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_with_uri_to_response = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_with_uri_to_response)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retrieve_objects_with_uri_to_stream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retrieve_objects_with_uri_to_stream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_retroactive = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_retroactive)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_return = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_return)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_returnObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_returnObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_returns = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_returns)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_returnsLiveReference = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_returnsLiveReference)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_returns_live_reference = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_returns_live_reference)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_reverse = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_reverse)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_root = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_root)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_rootFilePaths = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_rootFilePaths)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_round = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_round)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_roundDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_roundDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_round_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_round_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_rule_combining_algorithm = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_rule_combining_algorithm)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_runtime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_runtime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_runtime_custom = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_runtime_custom)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_runtime_object_map_inf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_runtime_object_map_inf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_runtime_value_accessor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_runtime_value_accessor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_rv = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_rv)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_rvDecoded = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_rvDecoded)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_rvSourceId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_rvSourceId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_safeEvaluate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_safeEvaluate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_safe_evaluate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_safe_evaluate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_scalar = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_scalar)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_scheme = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_scheme)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_scopeNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_scopeNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_scriptSupport = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_scriptSupport)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_searchElement = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_searchElement)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_searchString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_searchString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_select = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_select)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_separator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_separator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serverType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serverType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serverVersion = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serverVersion)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_server_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_server_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_server_version = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_server_version)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serviceGet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serviceGet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serviceId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serviceId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serviceRestart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serviceRestart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serviceStart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serviceStart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serviceStop = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serviceStop)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_serviceType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_serviceType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_get = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_get)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_restart = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_restart)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_start = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_start)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_startup = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_startup)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_status = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_status)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_stop = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_stop)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_service_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_service_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_services = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_services)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEquals = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEquals)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setEqualsYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setEqualsYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_setTo = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_setTo)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_equals_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_equals_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_set_property = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_set_property)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_shift = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_shift)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sideEffects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sideEffects)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_signatureOnly = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_signatureOnly)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_singleton = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_singleton)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_size = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_size)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_skeleton = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_skeleton)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_skip = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_skip)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_slice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_slice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_some = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_some)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sort = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sort)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sort_reverse = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sort_reverse)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_source = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_source)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceCodepointLengthInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceCodepointLengthInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceCodepointOffsetInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceCodepointOffsetInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceColumnNumberInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceColumnNumberInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceFile = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceFile)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceLineNumberInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceLineNumberInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceLocation = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceLocation)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceUTF8OctetLengthInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceUTF8OctetLengthInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_sourceUTF8OctetOffsetInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_sourceUTF8OctetOffsetInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_source_location = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_source_location)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_special = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_special)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_splice = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_splice)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_split = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_split)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_splitAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_splitAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_splitString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_splitString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_split_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_split_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_split_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_split_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_srcdirManifest = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_srcdirManifest)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_srcdirPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_srcdirPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_srcdirs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_srcdirs)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_startIndex = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_startIndex)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_startTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_startTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_start_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_start_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_startsWith = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_startsWith)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_startsWithAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_startsWithAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_startsWithString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_startsWithString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_starts_with = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_starts_with)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_starts_with_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_starts_with_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_starts_with_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_starts_with_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_startup = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_startup)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_startupDescription = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_startupDescription)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_status = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_status)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_statusDebug = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_statusDebug)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_statusDescription = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_statusDescription)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_statusMessage = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_statusMessage)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_stderr = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_stderr)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_stdout = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_stdout)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_stopping = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_stopping)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_stopping_adapter_instances = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_stopping_adapter_instances)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_stopping_authorization_handler_instances = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_stopping_authorization_handler_instances)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_stream = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_stream)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_streamId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_streamId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_streamNumber = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_streamNumber)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_stringify = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_stringify)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_style = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_style)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subjectCategories = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subjectCategories)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subsetYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subsetYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subset_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subset_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substitutedAdapterId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substitutedAdapterId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substitutedEntireObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substitutedEntireObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substitutedEntityObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substitutedEntityObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substitutedObjectTypeId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substitutedObjectTypeId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substitutedPropertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substitutedPropertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substitutionOccurred = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substitutionOccurred)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substring = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substring)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substringAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substringAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substringString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substringString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substring_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substring_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_substring_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_substring_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtractDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtractDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtractDayTimeDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtractDayTimeDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtractDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtractDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtractInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtractInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtractYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtractYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtractYearMonthDurationDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtractYearMonthDurationDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtractYearMonthDurationDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtractYearMonthDurationDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract_dayTimeDuration_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract_dayTimeDuration_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract_yearMonthDuration_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract_yearMonthDuration_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtract_yearMonthDuration_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtract_yearMonthDuration_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtypePropertyName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtypePropertyName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtypeRegistryType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtypeRegistryType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtypeRuntimeObjectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtypeRuntimeObjectType)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtype_property_name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtype_property_name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtype_registry_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtype_registry_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_subtype_runtime_object_type_id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_subtype_runtime_object_type_id)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_success = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_success)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_suggestedObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_suggestedObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_super = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_super)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_switch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_switch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_systemInfo = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_systemInfo)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_tagId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_tagId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_tags = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_tags)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_tarballName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_tarballName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_target = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_target)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_test = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_test)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_testDataParameter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_testDataParameter)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_testScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_testScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_testTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_testTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_testValue = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_testValue)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_test_script = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_test_script)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_test_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_test_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_test_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_test_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_tests = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_tests)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_then = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_then)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_this = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_this)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_threadCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_threadCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_thread_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_thread_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_throw = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_throw)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_times = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_times)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_title = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_title)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toAnyURIString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toAnyURIString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toBooleanString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toBooleanString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDateString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDateString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDateTimeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDateTimeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDayTimeDurationString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDayTimeDurationString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDnsNameString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDnsNameString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDoubleInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDoubleInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toDoubleString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toDoubleString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toIntegerDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toIntegerDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toIntegerString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toIntegerString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toIpAddressString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toIpAddressString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toRfc822NameString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toRfc822NameString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringDnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringDnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringIa5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringIa5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringIpAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringIpAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringObjectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringObjectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringObjectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringObjectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringPassword = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringPassword)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringTemplate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringTemplate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringXpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toStringYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toStringYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toTimeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toTimeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toX500NameString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toX500NameString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_toYearMonthDurationString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_toYearMonthDurationString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_anyURI_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_anyURI_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_boolean_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_boolean_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_dateTime_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_dateTime_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_date_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_date_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_dayTimeDuration_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_dayTimeDuration_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_dnsName_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_dnsName_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_double_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_double_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_double_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_double_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_integer_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_integer_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_integer_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_integer_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_ipAddress_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_ipAddress_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_rfc822Name_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_rfc822Name_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_dnsName = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_dnsName)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_ia5String = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_ia5String)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_ipAddress = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_ipAddress)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_null = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_null)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_objectId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_objectId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_objectPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_objectPath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_password = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_password)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_template = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_template)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_string_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_string_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_time_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_time_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_x500Name_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_x500Name_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_to_yearMonthDuration_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_to_yearMonthDuration_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace1)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace2)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace3 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace3)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace4 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace4)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace5 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace5)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace6 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace6)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace7 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace7)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_trace8 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_trace8)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_transitory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_transitory)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_true = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_true)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_try = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_try)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_type = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_type)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_typedValues = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_typedValues)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_typedef = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_typedef)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_typeof = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_typeof)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_ubjson = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_ubjson)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_uint32 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_uint32)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unavailable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unavailable)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_undeclared = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_undeclared)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_undefined = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_undefined)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unencoded = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unencoded)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unevaluated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unevaluated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unhandledErrors = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unhandledErrors)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unhandled_errors = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unhandled_errors)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionBase64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionBase64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionBoolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionBoolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionDate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionDate)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionDateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionDateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionDayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionDayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionDouble = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionDouble)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionHexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionHexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionInteger = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionInteger)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionRfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionRfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionX500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionX500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unionYearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unionYearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_base64Binary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_base64Binary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_boolean)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_date = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_date)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_dateTime = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_dateTime)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_dayTimeDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_dayTimeDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_double = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_double)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_hexBinary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_hexBinary)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_integer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_integer)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_rfc822Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_rfc822Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_time)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_union_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_union_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unique = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unique)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unknown = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unknown)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_unshift = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_unshift)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_untypedFunctionId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_untypedFunctionId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_upToTestsUTF8OctetOffsetInTestScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_upToTestsUTF8OctetOffsetInTestScript)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_update = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_update)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_updateObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_updateObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_updateObjectCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_updateObjectCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_updateObjectWithUri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_updateObjectWithUri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_update_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_update_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_update_object_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_update_object_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_update_object_with_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_update_object_with_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_uri = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_uri)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_uri1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_uri1)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_uri2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_uri2)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_uriPrefix = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_uriPrefix)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_uriRelated = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_uriRelated)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_uriServiceConf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_uriServiceConf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_urlDecode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_urlDecode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_urlEncode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_urlEncode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_urlEncodeAnyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_urlEncodeAnyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_urlEncodeString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_urlEncodeString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_urlEncodedRQLString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_urlEncodedRQLString)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_url_decode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_url_decode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_url_encode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_url_encode)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_url_encode_anyURI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_url_encode_anyURI)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_url_encode_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_url_encode_string)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_useDefaultProcessing = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_useDefaultProcessing)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_useExecuteFunction = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_useExecuteFunction)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_user = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_user)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_userData = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_userData)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_userinfo = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_userinfo)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_using = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_using)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_value)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_value1 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_value1)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_valueAccessor = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_valueAccessor)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_valueInf = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_valueInf)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_valueInfId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_valueInfId)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_valuePath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_valuePath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_values = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_values)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_var = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_var)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_variable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_variable)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_variableExists = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_variableExists)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_variableGet = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_variableGet)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_variableIsNotNull = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_variableIsNotNull)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_variable_exists = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_variable_exists)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_variable_get = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_variable_get)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_variable_is_not_null = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_variable_is_not_null)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_version = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_version)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_versionWithGitInfo = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_versionWithGitInfo)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_void = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_void)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_voidOperator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_voidOperator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_void_operator = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_void_operator)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_warning = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_warning)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_while = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_while)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_whitespace = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_whitespace)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_with = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_with)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_wrapLiteralArray = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_wrapLiteralArray)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_wrapLiteralObject = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_wrapLiteralObject)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_wrap_literal_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_wrap_literal_array)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_wrap_literal_object = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_wrap_literal_object)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_write = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_write)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_writeInternal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_writeInternal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_write_internal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_write_internal)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_writeln = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_writeln)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_x500Name = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_x500Name)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xacml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xacml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xctxUUID = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xctxUUID)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpath)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpathExpression)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpathNodeCount = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpathNodeCount)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpathNodeEq = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpathNodeEq)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpathNodeMatch = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpathNodeMatch)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpath_node_count = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpath_node_count)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpath_node_eq = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpath_node_eq)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_xpath_node_match = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_xpath_node_match)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_yaml = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_yaml)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_yearMonthDuration = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_yearMonthDuration)
 };
 
-const afw_value_string_t
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_zeroOffset = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zeroOffset)
@@ -59599,73 +59600,73 @@ afw_self_v_zz__xpath_related_functions = {
     AFW_UTF8_LITERAL(AFW_Q_zz__xpath_related_functions)
 };
 
-const afw_value_boolean_t
+AFW_DEFINE_CONST_DATA(afw_value_boolean_t)
 afw_boolean_self_v_false = {
     {&afw_value_permanent_boolean_inf},
     false
 };
 
-const afw_value_boolean_t
+AFW_DEFINE_CONST_DATA(afw_value_boolean_t)
 afw_boolean_self_v_true = {
     {&afw_value_permanent_boolean_inf},
     true
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_2 = {
     {&afw_value_permanent_integer_inf},
     2
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_3 = {
     {&afw_value_permanent_integer_inf},
     3
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_4 = {
     {&afw_value_permanent_integer_inf},
     4
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_5 = {
     {&afw_value_permanent_integer_inf},
     5
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_6 = {
     {&afw_value_permanent_integer_inf},
     6
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_7 = {
     {&afw_value_permanent_integer_inf},
     7
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_8 = {
     {&afw_value_permanent_integer_inf},
     8
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_9999 = {
     {&afw_value_permanent_integer_inf},
     9999
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_one = {
     {&afw_value_permanent_integer_inf},
     1
 };
 
-const afw_value_integer_t
+AFW_DEFINE_CONST_DATA(afw_value_integer_t)
 afw_integer_self_v_zero = {
     {&afw_value_permanent_integer_inf},
     0
@@ -59677,13 +59678,13 @@ afw_integer_self_v_zz___1 = {
     -1
 };
 
-const afw_value_double_t
+AFW_DEFINE_CONST_DATA(afw_value_double_t)
 afw_double_self_v_1 = {
     {&afw_value_permanent_double_inf},
     1.0e1
 };
 
-const afw_value_anyURI_t
+AFW_DEFINE_CONST_DATA(afw_value_anyURI_t)
 afw_anyURI_self_v_example = {
     {&afw_value_permanent_anyURI_inf},
     AFW_UTF8_LITERAL(AFW_ANYURI_Q_example)

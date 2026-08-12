@@ -475,25 +475,21 @@ afw_array_of_password_remove(
     afw_xctx_t *xctx);
 
 /**
- * @brief extern for data type password struct.
+ * @brief Public data type password struct instance.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.  Use afw_data_type_password when not referencing in
- * a static.
+ * Prefer afw_data_type_password when a pointer is enough and you are not
+ * initializing static data that must reference the struct object.
  */
-extern const afw_data_type_t
+AFW_DECLARE_CONST_DATA(afw_data_type_t)
 afw_data_type_password_direct;
 
 /**
- * @brief extern for data type password inf.
+ * @brief Public data type password inf.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.
- *
- * The implementation of the data type must define this.  It is
- * managed by the generated data type instance.
+ * Defined with the data type implementation; managed by the generated
+ * data type instance.
  */
-extern const afw_data_type_inf_t
+AFW_DECLARE_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_password_inf;
 
 AFW_END_DECLARES

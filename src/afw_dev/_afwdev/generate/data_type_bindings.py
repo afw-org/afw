@@ -663,28 +663,24 @@ def write_h_section(fd, prefix, obj):
         fd.write('    ' + parameter_ctype + 'value,\n')
         fd.write('    afw_xctx_t *xctx);\n')
 
-    # Data type direct extern.
+    # Data type direct (public: extensions use afw_data_type_*_direct in statics).
     fd.write('\n/**\n')
-    fd.write(' * @brief extern for data type ' + id + ' struct.\n')
+    fd.write(' * @brief Public data type ' + id + ' struct instance.\n')
     fd.write(' *\n')
-    fd.write(' * This should only be managed in the linkage unit the extern is\n')
-    fd.write(' * defined in.  Use afw_data_type_' + id + ' when not referencing in\n')
-    fd.write(' * a static.\n')
+    fd.write(' * Prefer afw_data_type_' + id + ' when a pointer is enough and you are not\n')
+    fd.write(' * initializing static data that must reference the struct object.\n')
     fd.write(' */\n')
-    fd.write('extern const afw_data_type_t\n')
+    fd.write(declare_data + '(afw_data_type_t)\n')
     fd.write('afw_data_type_' + id + '_direct;\n')
 
-    # Data type inf extern.
+    # Data type inf (vtable for the data type instance).
     fd.write('\n/**\n')
-    fd.write(' * @brief extern for data type ' + id + ' inf.\n')
+    fd.write(' * @brief Public data type ' + id + ' inf.\n')
     fd.write(' *\n')
-    fd.write(' * This should only be managed in the linkage unit the extern is\n')
-    fd.write(' * defined in.\n')
-    fd.write(' *\n')
-    fd.write(' * The implementation of the data type must define this.  It is\n')
-    fd.write(' * managed by the generated data type instance.\n')
+    fd.write(' * Defined with the data type implementation; managed by the generated\n')
+    fd.write(' * data type instance.\n')
     fd.write(' */\n')
-    fd.write('extern const afw_data_type_inf_t\n')
+    fd.write(declare_data + '(afw_data_type_inf_t)\n')
     fd.write('afw_data_type_' + id + '_inf;\n')
 
 
@@ -926,9 +922,9 @@ def write_c_section(fd, prefix, obj):
     fd.write('const afw_value_array_t\n')
     fd.write('impl_value_empty_array_of_' + id + ';\n')
     
-    # Data type
+    # Data type (public const object)
     fd.write('\n/* Data type ' + id + ' instance. */\n')
-    fd.write('const afw_data_type_t\n')
+    fd.write(define_data + '(afw_data_type_t)\n')
     fd.write('afw_data_type_' + id + '_direct = {\n')
     fd.write('    &' + prefix + 'data_type_' + id + '_inf,\n')
 

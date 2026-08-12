@@ -719,7 +719,11 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('#include "' + prefix + 'runtime_object_maps.h"\n')
         if options['strings']:
             fd.write('#include "' + prefix + 'strings.h"\n')
+            # Core zz__* permanents (briefs/descriptions) live here only.
+            if options['core']:
+                fd.write('#include "' + prefix + 'strings_internal.h"\n')
         fd.write('\n')
+
 
         for obj in list:
             label = obj['functionLabel']

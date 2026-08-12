@@ -143,6 +143,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_service_type_impl_declares.h
     generated/afw_stream_impl_declares.h
     generated/afw_strings.h
+    generated/afw_strings_internal.h
     generated/afw_value_impl_declares.h
     generated/afw_variable_handler_impl_declares.h
     generated/afw_version_info.h

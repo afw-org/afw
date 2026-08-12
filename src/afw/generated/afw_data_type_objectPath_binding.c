@@ -200,7 +200,7 @@ const afw_value_array_t
 impl_value_empty_array_of_objectPath;
 
 /* Data type objectPath instance. */
-const afw_data_type_t
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_objectPath_direct = {
     &afw_data_type_objectPath_inf,
     (const afw_object_t *)&impl_data_type_object_objectPath,

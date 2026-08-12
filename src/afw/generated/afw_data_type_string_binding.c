@@ -200,7 +200,7 @@ const afw_value_array_t
 impl_value_empty_array_of_string;
 
 /* Data type string instance. */
-const afw_data_type_t
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_string_direct = {
     &afw_data_type_string_inf,
     (const afw_object_t *)&impl_data_type_object_string,

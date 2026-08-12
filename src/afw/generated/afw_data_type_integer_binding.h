@@ -439,25 +439,21 @@ afw_array_of_integer_remove(
     afw_xctx_t *xctx);
 
 /**
- * @brief extern for data type integer struct.
+ * @brief Public data type integer struct instance.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.  Use afw_data_type_integer when not referencing in
- * a static.
+ * Prefer afw_data_type_integer when a pointer is enough and you are not
+ * initializing static data that must reference the struct object.
  */
-extern const afw_data_type_t
+AFW_DECLARE_CONST_DATA(afw_data_type_t)
 afw_data_type_integer_direct;
 
 /**
- * @brief extern for data type integer inf.
+ * @brief Public data type integer inf.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.
- *
- * The implementation of the data type must define this.  It is
- * managed by the generated data type instance.
+ * Defined with the data type implementation; managed by the generated
+ * data type instance.
  */
-extern const afw_data_type_inf_t
+AFW_DECLARE_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_integer_inf;
 
 AFW_END_DECLARES

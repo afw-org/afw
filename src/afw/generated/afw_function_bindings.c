@@ -27,6 +27,7 @@
 #include "afw_function_bindings.h"
 #include "afw_runtime_object_maps.h"
 #include "afw_strings.h"
+#include "afw_strings_internal.h"
 
 
 /* ---------- adapter_objectCallback_signature ---------- */

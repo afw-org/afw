@@ -200,7 +200,7 @@ const afw_value_array_t
 impl_value_empty_array_of_relaxed_json;
 
 /* Data type relaxed_json instance. */
-const afw_data_type_t
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_relaxed_json_direct = {
     &afw_data_type_relaxed_json_inf,
     (const afw_object_t *)&impl_data_type_object_relaxed_json,
