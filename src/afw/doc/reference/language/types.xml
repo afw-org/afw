@@ -79,8 +79,9 @@ const id: Id = 3;]]></code>
         <paragraph>
             Write an array of element type <literal>T</literal> as
             <literal>T[]</literal>. Multiple <literal>[]</literal> suffixes
-            nest (for example <literal>integer[][]</literal>). TypeScript’s
-            <literal>Array&lt;T&gt;</literal> spelling is not used.
+            nest (for example <literal>integer[][]</literal>). There is no
+            separate <literal>Array&lt;T&gt;</literal> form; use
+            <literal>T[]</literal> only.
         </paragraph>
         <section>
             <title>Example</title>
@@ -142,6 +143,10 @@ const v: integer | string | boolean = true;]]></code>
             An object type literal lists named properties with types. A
             trailing <literal>?</literal> after a property name marks it
             optional. Property names may be identifiers or string literals.
+            A property that holds a function is written with a function type
+            after the colon (for example
+            <literal>run: (a: integer) =&gt; integer</literal>), not with a
+            method-style signature.
         </paragraph>
         <paragraph>
             This is a script shape only. It does not import an adaptive object
@@ -149,7 +154,10 @@ const v: integer | string | boolean = true;]]></code>
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[const o: { host: string, port?: integer } = { host: "h" };]]></code>
+            <code><![CDATA[const o: { host: string, port?: integer } = { host: "h" };
+const handlers: { run: (a: integer) => integer } = {
+    run: function (a: integer): integer { return a; }
+};]]></code>
         </section>
     </section>
 
@@ -257,9 +265,11 @@ const p: Person = { id: 1, name: "a" };]]></code>
         <paragraph>
             Flags may be set from the host environment or with
             <literal>flag_set</literal> in a script. When compile checking is
-            on, calls to known Adaptive functions are also checked at compile
-            time against each function’s parameter and return data types (when
-            those types can be determined without running the call).
+            on, calls to known Adaptive functions are checked at compile time
+            against each function’s parameter and return types when those types
+            can be determined without running the call. That includes function
+            parameters that take a function (for example a predicate), when the
+            argument is a known script function.
         </paragraph>
 
         <header>Environment flags</header>
@@ -344,6 +354,12 @@ const p: Person = { id: 1, name: "a" };]]></code>
             commas), for example
             <literal>#compile typeCheck noImplicitAny;</literal>.
         </paragraph>
+        <paragraph>
+            A <literal>#compile</literal> statement may appear anywhere a
+            statement is allowed. It applies from that point on in the same
+            script. Constructs already parsed before the pragma are not
+            re-checked under the new options.
+        </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[/* Environment flags (host or flag_set) */
@@ -402,10 +418,22 @@ flag_set(["compile:strict"], true);
                 need data type <literal>function</literal>.
             </item>
             <item>
-                Array and object patterns: binding annotations such as
-                <literal>const [a: integer] = …</literal> or
-                <literal>{ host: h: string }</literal> are enforced when
-                checking is on.
+                Calls to a known script function (by name, or through a
+                <literal>const</literal> binding that holds a function with a
+                known type) check arguments against parameter types when those
+                types are known.
+            </item>
+            <item>
+                Calls to known Adaptive functions check arguments and arity
+                when types are known, including Adaptive functions that take a
+                function argument (for example a filter predicate) when the
+                argument is a known script function.
+            </item>
+            <item>
+                Array and object patterns: annotations on individual bindings
+                such as <literal>const [a: integer] = …</literal> or
+                <literal>{ host: h: string }</literal> are enforced when those
+                bindings receive values.
             </item>
         </list>
         <paragraph>
@@ -414,16 +442,25 @@ flag_set(["compile:strict"], true);
             unless <literal>noImplicitAny</literal> is set. Runtime data type
             and adaptive object-type rules still apply on their own.
         </paragraph>
+        <paragraph>
+            Checking only runs where types can be determined without evaluating
+            unknown expressions. Values that stay <literal>any</literal> or
+            unknown are not forced to invent a type at compile time.
+        </paragraph>
     </section>
 
     <section>
         <title>Examples with checking</title>
         <paragraph>
-            With <literal>compile:typeCheck</literal> active:
+            With type checking turned on for the script (for example
+            <literal>#compile typeCheck;</literal> or the matching environment
+            flag):
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[const ok: integer = 1;
+            <code><![CDATA[#compile typeCheck;
+
+const ok: integer = 1;
 // const bad: integer = "no";   // type error
 
 const nums: integer[] = [1, 2, 3];
@@ -435,7 +472,15 @@ interface Point {
 };
 const p: Point = { x: 0, y: 0 };
 // const q: Point = { x: 0 };   // missing required y
-// const r: Point = { x: 0, y: 0, z: 1 };  // extra property on object literal]]></code>
+// const r: Point = { x: 0, y: 0, z: 1 };  // extra property on object literal
+
+const f: (a: integer) => integer = function (a: integer): integer {
+    return a + 1;
+};
+// f("x");   // type error: argument is not integer
+
+// length is an Adaptive function; wrong argument type is a compile error
+// const n: integer = length(1);]]></code>
         </section>
     </section>
 </doc>
