@@ -1,6 +1,6 @@
 # Pragma and `#` design (Pattern B)
 
-**Status:** Active on `issue-#28-pragma-cleanup` (and follow-ons).  
+**Status:** **Landed** on `mgg-develop` (PR **#145** pragma cleanup; wrap-up with **#28** / PR **#171**).  
 **Code home:** `src/afw/compile/afw_compile_parse_pragma.c` (file header mirrors this).  
 **Related:** compiler-internal `#` forms — `afw_compile_parse_compiler_internal.c`; flags — `afw_flag.c` / `generate/strings/strings.txt`.
 

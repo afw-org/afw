@@ -1,8 +1,8 @@
 # Adaptive function compile-time type checking
 
-**Status:** Implemented and on `issue-#28` (merged with main #28 work for PR).  
-**Depends on:** Issue **#28** script type system (syntax, `afw_value_type_t`, opt-in flags, assignability, object-literal excess).  
-**Related later (separate issue):** Compile-time optimize (`designs/compile-optimize-notes.md`) — amplifies how often types are known; **not** part of #28.  
+**Status:** **Shipped** with **#28** (core PRs **#144**/**#145**; FunctionSignature HOF projection + call-site formals in wrap-up PR **#171**).  
+**Depends on:** Issue **#28** script type system (syntax, `afw_value_type_t`, opt-in flags, assignability, object-literal excess) — **closed**.  
+**Related later (separate):** Compile-time optimize (`designs/compile-optimize-notes.md`) — amplifies how often types are known; **not** part of #28. App-shared Adaptive functions / script poly → **#170**.  
 **Goal fit:** Complete Adaptive Script’s **opt-in type system** so known calls into **adaptive (built-in / registered) functions** are checked at compile the same *way* as script function calls, without expanding function metadata into full script structural types.
 
 ---
@@ -368,4 +368,4 @@ Do not hand-edit `generated/`; regenerate via afwdev.
 
 ---
 
-*Implemented on `issue-#28` with the main type-system work.*
+*Shipped with **#28** (closed); historical branch name was `issue-#28`.*

@@ -181,7 +181,7 @@ So: optional script types for local contracts; Adaptive functions keep runtime b
 
 | Item | Priority | Notes |
 |------|----------|--------|
-| Pattern annotation checking coverage | Ongoing | Syntax may store types; grow enforcement with #28 without promising full TS. |
+| Pattern annotation checking coverage | Low | Leaf annotations when the pattern binds (shipped with **#28**). Not a full TypeScript Pattern checker; no promise of deeper structural pattern types without a new decision. |
 | Surprising assignability vs runtime nullish | P1 | Same as C NULL / uninit above. |
 
 ---
@@ -297,7 +297,7 @@ Many JS/TS keywords are reserved even when unimplemented (`class`, `async`, `awa
 | [`.cursor/rules/afw-adaptive-script.mdc`](.cursor/rules/afw-adaptive-script.mdc) | Authoring quirks |
 | [`.cursor/rules/afw-qualified-variables.mdc`](.cursor/rules/afw-qualified-variables.mdc) | Qualifier get vs snapshots |
 | GitHub **#22** | Jeremy’s ES differences **document** work (separate from this file) |
-| **#28**, **#35** (open); **#14**, **#18**, **#38**, **#55**, **#131**, **#140**, **#9**, **#110** (closed) | Types/closures residuals vs landed helpers, exists, Patterns, snapshots, get defaults |
+| **#35** (open); **#28**, **#14**, **#18**, **#38**, **#55**, **#131**, **#140**, **#9**, **#110** (closed) | Closures residuals (#2 escape) vs landed types, helpers, exists, Patterns, snapshots, get defaults |
 
 ---
 

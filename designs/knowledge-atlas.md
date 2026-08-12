@@ -115,7 +115,7 @@
 | **Day rules** | `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function` |
 | **Deep pads** | `compile-optimize-notes`, `pragma-hash-design`, `decompile-compiler-internal-inventory`, `compile-contextual-audit`, `adaptive-function-compile-typecheck`, `issue-28-type-syntax` |
 | **Probe** | `afw -s '…'` / tests under `src/afw/tests/`; regenerate EBNF via `--cdev`; check `generated/ebnf/syntax.ebnf` has `::=` for nonterminals |
-| **Open** | #28 residuals; typecheck follow-on; compile optimize future |
+| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) |
 | **Gap** | Support playbook for “parse error / decompile mismatch” still thin — use rules + decompile pads |
 
 ---
@@ -305,8 +305,8 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Expression property names | `issue-38-…` | Closed |
 | Meta on wire | `issue-138-…` | Design/status in pad |
 | Decompile | `issue-18-…` | Pad useful; stringify closed |
-| Types | `issue-28-…` | Core shipped; residuals open |
-| Pragma `#` | `pragma-hash-design.md` | Pattern B `#compile` etc. |
+| Types | `issue-28-…` | **#28 closed** (PR **#171** wrap-up) |
+| Pragma `#` | `pragma-hash-design.md` | Pattern B `#compile` (landed) |
 
 ---
 

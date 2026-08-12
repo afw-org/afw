@@ -897,6 +897,8 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ## Adaptive Script types (issue #28)
 
+**Issue #28 closed** (2026-08-12) after wrap-up PR **#171** on `mgg-develop` (core earlier via **#144** / **#145**). Claimed type surface is release-grade; firm will-not-do fence in `typescript-differences.md`. Successors: compile-time optimize (design pad), app-shared Adaptive functions (**#170**).
+
 **Type syntax** uses **Adaptive data types** as leaves (`integer`, `string`, `any`, `void`, …) plus simple structured types. Examples: `integer[]`, `string[]`, `[integer, string]`, `integer|string`, `{ host: string, port?: integer }`, `(a: integer)=>integer`, plus script-local `type` / `interface` (**not** adaptive object types / OT catalogs). Array element types use postfix **`T[]` only** (not TypeScript `Array<T>`).
 
 Old Adaptive Type spellings such as `(array of integer)` and `(object "SomeOT")` are **removed** (hard cut). Existing scripts that used those forms need updating; plain unannotated scripts are unchanged because **checking is off by default**.

@@ -33,9 +33,9 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`issue-38-expression-property-names.md`](issue-38-expression-property-names.md) | **#38** — `[expr]: value` (issue closed) |
 | [`issue-138-meta-on-the-wire.md`](issue-138-meta-on-the-wire.md) | **#138** — `"_meta_"` wire / options / rich types |
 | [`compile-optimize-notes.md`](compile-optimize-notes.md) | Future compile-time optimize; #140 Pattern/param/catch (landed) + binding-site inventory |
-| [`issue-28-type-syntax.md`](issue-28-type-syntax.md) | **#28** script types + checking (core shipped; issue still open for residuals) |
-| [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md) | Follow-on: compile typeCheck for adaptive/built-in function calls (design) |
-| [`pragma-hash-design.md`](pragma-hash-design.md) | **`#` design** — pragma vs compiler-internal; Pattern B `#compile` |
+| [`issue-28-type-syntax.md`](issue-28-type-syntax.md) | **#28** script types + checking — **closed** (PRs **#144**/**#145** core; **#171** wrap-up) |
+| [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md) | Adaptive/built-in call formals under typeCheck — **shipped** with #28 |
+| [`pragma-hash-design.md`](pragma-hash-design.md) | **`#` design** — pragma vs compiler-internal; Pattern B `#compile` (landed with #28 line) |
 | [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) | Decompile emit vs `#…` accept checklist + tests |
 | [`compile-contextual-audit.md`](compile-contextual-audit.md) | call_create / type-check contextual inventory (NULL policy) |
 | [`issue-17-mutable-object-faces.md`](issue-17-mutable-object-faces.md) | **#17** — mutable faces (landed PR **#150** → `mgg-develop`; issue closed) |

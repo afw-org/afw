@@ -289,7 +289,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 - Metadata already has **`pure`** (and `sideEffects`) on function generate objects.
 - Hooks / FIXMEs: `allow_optimize`, `optimized_value`, `/** @fixme add optimization. */` on call / related value kinds; `compile_noOptimize` flag as escape hatch idea.
 - Today “optimize” paths are narrower (e.g. polymorphic built-in specialization) — **not** full pure constant-fold.
-- Related but different issues: **#28** compile-time types; **#97** `#{…}`; **#101** evaluate / unevaluated handling.
+- Related but different issues: **#28** compile-time types (**closed** PR **#171**); **#97** `#{…}`; **#101** evaluate / unevaluated handling; app-shared functions **#170**.
 
 ### Language / script syntax (misc)
 
