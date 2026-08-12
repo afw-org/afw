@@ -66,7 +66,36 @@ afw_internal.h    ← libafw .c only
 - `AFW_DECLARE_INTERNAL` / `AFW_DEFINE_INTERNAL` = not external API (no export declspec). Prefer those symbols in `*_internal.h`, not on the `afw.h` surface. If an extension/command legitimately needs a helper, promote to `AFW_DECLARE` and document under impl/public.
 - `afw_runtime_object_maps.h` stays public: extensions reference exported core `afw_runtime_inf_*` symbols.
 
-## Naming / placement convention (internal)
+## Extension / command headers (planned cleanup — not done yet)
+
+**Policy:** Only **libafw** has a real public C API (`afw.h` / install). Extension and
+command headers are **package-private** (nothing links their C API; DSO/binary
+load + Adaptive registration is the product surface).
+
+**Package DECLARE helpers:** Keep **generating** `*_declare_helpers.h` for now.
+Stop **using** them from hand-written extension/command code; use ordinary C
+(`extern` / plain definitions). Core `AFW_BEGIN_DECLARES` / `afw.h` /
+`afw_interface.h` remain fine. Generated sources may still include package
+helpers until the generator is thinned later.
+
+**Pilot (2026-08-12, reverted — do all packages in one shot later):**
+
+1. Grep hand-written `src/afw_<pkg>/` (exclude `generated/`) for
+   `declare_helpers` and `AFW_<PKG>_DECLARE` / `DEFINE` / `BEGIN_DECLARES`.
+2. Drop `#include "…/*_declare_helpers.h"` from hand headers.
+3. Replace package DECLARE/DEFINE macros with normal C if any; many packages
+   already declare plain functions (crypto did).
+4. Reword “public API” file briefs to package-private.
+5. Build `--cdev` + `afwdev test --srcdir-pattern <pkg>`.
+6. Crypto pilot: only `afw_crypto.h`, `afw_crypto_extension.h`,
+   `afw_crypto_internal.h` needed changes; tests 17/17 green. **Discarded** so
+   the full pass can land together.
+
+**Also later:** stop creating `*_internal.h` naming for new extension/command
+headers; simplify existing package dual headers opportunistically or in the
+same shot.
+
+## Naming / placement convention (internal, libafw)
 
 - Prefer **`<module>_internal.h` next to the implementing `.c`** under the same subdirectory (`flag/afw_flag_internal.h` ↔ `flag/afw_flag.c`).
 - Symbol names should keep the **module prefix** (`afw_flag_*`, `afw_stack_*`, …). Avoid parking `afw_flag_*` decls only on `afw_environment_internal.h` unless the body lives in `environment/`.
@@ -91,3 +120,4 @@ Still public with `@internal` layouts/comments (later passes): lock struct bodie
 | 2026-08-11 | Initial pad from `feature-afw-polish` brainstorm (layers, install goal, frozen common/minimal). |
 | 2026-08-11 | Install filter; Doxygen/overview/`afw.h` docs; first re-homes (stack/stream/value/flag/lock bootstrap). |
 | 2026-08-11 | Corrected: internal decls live in module `*_internal.h` next to implementing `.c` (not env/xctx umbrellas). |
+| 2026-08-12 | Extension/command policy + crypto declare_helpers pilot recipe (reverted; full pass later). |
