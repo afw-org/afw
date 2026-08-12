@@ -180,12 +180,16 @@ impl_compile_check_object_pattern(
 
 
 /*
- * Remember compile-time RHS on simple name bindings so later call-site
- * typeCheck can resolve unannotated const/let that hold script functions
- * (FunctionSignature formals, issue #28).
+ * Remember compile-time RHS on simple **const** name bindings so later
+ * call-site typeCheck / early call bind can resolve unannotated const that
+ * holds a script function (FunctionSignature formals, issue #28).
+ *
+ * Do **not** set this for let: call create early-binds through initial_value,
+ * and reassigned let (e.g. test262 try completion cases that rebind fn)
+ * must evaluate the current value, not the first RHS.
  */
 static void
-impl_set_simple_symbol_initial_value(
+impl_set_simple_const_symbol_initial_value(
     const afw_value_t *target,
     const afw_value_t *value)
 {
@@ -203,7 +207,10 @@ impl_set_simple_symbol_initial_value(
     }
     symbol = (afw_value_block_symbol_t *)
         at->assignment_target->symbol_reference->symbol;
-    if (symbol && !symbol->initial_value) {
+    if (symbol &&
+        symbol->symbol_type == afw_value_block_symbol_type_const &&
+        !symbol->initial_value)
+    {
         symbol->initial_value = value;
     }
 }
@@ -667,7 +674,7 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
     }
     argv[2] = afw_compile_parse_Expression(parser);
     impl_compile_check_assign_target(parser, argv[1], argv[2]);
-    impl_set_simple_symbol_initial_value(argv[1], argv[2]);
+    impl_set_simple_const_symbol_initial_value(argv[1], argv[2]);
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
     result = afw_value_call_built_in_function_create(
@@ -1214,7 +1221,7 @@ impl_parse_LetStatement(afw_compile_parser_t *parser)
         }
         argv[2] = afw_compile_parse_Expression(parser);
         impl_compile_check_assign_target(parser, argv[1], argv[2]);
-        impl_set_simple_symbol_initial_value(argv[1], argv[2]);
+        /* let: do not set initial_value (mutable rebind). */
         AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
     }
 

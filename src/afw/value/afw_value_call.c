@@ -100,36 +100,48 @@ afw_value_call_create(
     if (afw_value_is_symbol_reference(argv[0])) {
         const afw_value_symbol_reference_t *ref =
             (const afw_value_symbol_reference_t *)argv[0];
-        /*
-         * Binding annotated with a function Type: call-site formals follow
-         * the annotation (public contract), not only implementation formals
-         * (issue #28 G1).
-         */
-        if (ref->symbol &&
-            ref->symbol->type.kind == afw_value_type_kind_function)
-        {
-            afw_value_type_check_function_type_call(
-                &ref->symbol->type, argc, argv, contextual, xctx);
-        }
-        if (afw_value_is_script_function_definition(
-            ref->symbol->initial_value))
-        {
-            return afw_value_call_script_function_create(
-                contextual,
-                (const afw_value_script_function_definition_t *)
-                    ref->symbol->initial_value,
-                NULL,
-                argc, argv, allow_optimize, p, xctx);
-        }
-        if (afw_value_is_closure_binding(ref->symbol->initial_value))
-        {
-            return afw_value_call_script_function_create(
-                contextual,
-                ((const afw_value_closure_binding_t *)
-                    ref->symbol->initial_value)->script_function_definition,
-                ((const afw_value_closure_binding_t *)
-                    ref->symbol->initial_value)->enclosing_lexical_scope,
-                argc, argv, allow_optimize, p, xctx);
+        if (ref->symbol) {
+            /*
+             * Binding annotated with a function Type: call-site formals follow
+             * the annotation (public contract), not only implementation formals
+             * (issue #28 G1).
+             */
+            if (ref->symbol->type.kind == afw_value_type_kind_function) {
+                afw_value_type_check_function_type_call(
+                    &ref->symbol->type, argc, argv, contextual, xctx);
+            }
+            /*
+             * Early-bind only immutable bindings (const / function). let may
+             * be reassigned; initial_value would be stale (test262 try.as).
+             */
+            if (ref->symbol->symbol_type ==
+                    afw_value_block_symbol_type_const ||
+                ref->symbol->symbol_type ==
+                    afw_value_block_symbol_type_function)
+            {
+                if (afw_value_is_script_function_definition(
+                    ref->symbol->initial_value))
+                {
+                    return afw_value_call_script_function_create(
+                        contextual,
+                        (const afw_value_script_function_definition_t *)
+                            ref->symbol->initial_value,
+                        NULL,
+                        argc, argv, allow_optimize, p, xctx);
+                }
+                if (afw_value_is_closure_binding(ref->symbol->initial_value))
+                {
+                    return afw_value_call_script_function_create(
+                        contextual,
+                        ((const afw_value_closure_binding_t *)
+                            ref->symbol->initial_value)->
+                                script_function_definition,
+                        ((const afw_value_closure_binding_t *)
+                            ref->symbol->initial_value)->
+                                enclosing_lexical_scope,
+                        argc, argv, allow_optimize, p, xctx);
+                }
+            }
         }
     }
 
