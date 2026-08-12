@@ -105,7 +105,7 @@ Helpers: `afw_value_type_check_*` / `afw_value_type_is_assignable` in `afw_value
 **Where checks run**
 
 - **Runtime** (mode `on`): assignment, script function parameters, and function return values.
-- **Compile** (mode `on` or `compileOnly`): const/let/assign when RHS type is known (literals; typed symbols via type-to-type); return expressions; call sites when the callee is a known script function (named `function` form); known Adaptive function formals (create with `allow_optimize`).
+- **Compile** (mode `on` or `compileOnly`): const/let/assign when RHS type is known (literals; typed symbols via type-to-type); return expressions; call sites when the callee is known (see **Call-site formals and early-bind** below); known Adaptive function formals (create with `allow_optimize`).
 
 ### Compile-time vs runtime Adaptive value checking (overall)
 
@@ -131,6 +131,21 @@ Author-facing thin version: root [`typescript-differences.md`](../typescript-dif
 - **Patterns:** array/object destructure element annotations and symbol types on Pattern leaves.
 - **Call sites:** known named script functions; bindings with a **function Type** annotation or known script function definition; known Adaptive functions (projected formals / returns / FunctionSignature).
 - Error text: composites report missing property, element index, tuple length, or decompiled expected type.
+
+### Call-site formals and early-bind (wrap-up product rule)
+
+Two related but different mechanisms in `afw_value_call_create` (symbol-reference callee):
+
+| Mechanism | When | Role |
+|-----------|------|------|
+| **Annotation formals (G1)** | Symbol’s `type` is a **function Type** | Compile typeCheck uses **`afw_value_type_check_function_type_call`** — the annotation is the public contract, even if the runtime value later differs. Applies for `const` / `let` / `function` **as long as the type is known**. |
+| **Definition early-bind** | Symbol is **`const` or `function`** and `initial_value` is a script function (or closure binding) | Call optimizes to that definition (formals from the implementation). **Does not early-bind `let`.** |
+
+**Why not `let` for early-bind:** `let` may be reassigned; using `initial_value` would freeze the first function and break reassignment (test262 `try.as` / rebind cases). That is a **product correctness** rule, not a temporary gap.
+
+**Author implication under typeCheck:** prefer `const f: (a: T) => R = …` or `function f…` when you want reliable call-site checks from a known definition; a bare `let f = …` still checks if the **annotation** is a function Type, but will not early-bind the implementation.
+
+**HOF FunctionSignature:** Adaptive metadata strings such as `(...values: any) => boolean` are projected via `afw_compile_type_from_utf8` and checked like function Types when the argument is a known script function. Not TypeScript generics; polymorphic `add<integer>` is data-type specialization of built-in names.
 
 **Pragma:** `#compile` + flag short names (`typeCheck`, `typeCheckCompileOnly`, `noImplicitAny`, `strictNullChecks`, `strict`, `noOptimize`, **`noTypeCheck`**, …). Flags are **process defaults** snapshotted at each compile start into the unit’s policy; `#compile` mutates **only that unit** (including mid-unit “from here on”). **`noTypeCheck`** clears the type-check cluster on unit policy (does not clear `noOptimize`). Retired: bare `#compile off;`, old `#typecheck`. See `designs/pragma-hash-design.md`. Handbook teaches **flags**; pragma is optional for tests and compact scripts.
 
@@ -166,7 +181,7 @@ Shared map for closing #28. **“Not yet / residual” is not the same as “dec
 | ID | Item | Status |
 |----|------|--------|
 | **G0** | FunctionSignature valid Type + compile check | **Done** (1c) |
-| **G1** | Call-site formals from typed function variable / annotation | **Done** — `afw_value_type_check_function_type_call` when binding has function Type; definition formals when known; const/let `initial_value` |
+| **G1** | Call-site formals from typed function variable / annotation | **Done** — annotation formals via `afw_value_type_check_function_type_call` when type is function Type; definition early-bind only for **`const` / `function`** (not `let` — see Call-site formals above) |
 | **G2** | Pattern annotation coverage | **Claimed as:** leaf annotations enforced when the pattern **binds** (destructure / param evaluate). **No** full TypeScript-style Pattern type system or call-site re-check of array shape as a synthetic tuple type for pattern formals. Tests cover array/object pattern leaf cases. |
 | **G3** | Contract tests for claimed rules | **Done enough** for bar (`type_*` 101+); not infinite growth |
 | **G4** | Error message polish | Opportunistic only; not blocking close |
@@ -217,3 +232,18 @@ Reopen only by **explicit** new decision. Author-facing wording lives in root [`
 afwdev test -j --srcdir-pattern afw --test-pattern 'type_'
 # pre-release: ./afwdev build --fulldev ; afwdev test -j --env-mode valgrind
 ```
+
+## Where this knowledge lives (prefer git, not session memory)
+
+| Need | Where |
+|------|--------|
+| Product syntax + flags + claimed checks | Handbook **Types** (`src/afw/doc/reference/language/types.xml`); **Features** pragma short note |
+| User-facing `mgg-develop` notes | [`whats-new.md`](../whats-new.md) — Adaptive Script types |
+| Firm will-not-do fence (plain language) | [`typescript-differences.md`](../typescript-differences.md) |
+| Maintainer decisions, gray-zone table, call-site early-bind | **This pad** |
+| Adaptive / FunctionSignature compile path | [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md) |
+| Regression | `src/afw/tests/**/type_*.as` |
+| Process (flexible plan, decided-not, promote to git) | [`mantras-and-working-style.md`](mantras-and-working-style.md), [`ai-partner-lessons.md`](ai-partner-lessons.md) |
+| App-shared functions / script poly (successor) | GitHub **#170** living body |
+
+Issue **#28** body is the **closed** product summary on GitHub (labels: enhancement + implemented). Session / Grok memory is an optional local index only — **do not treat it as the archive.**

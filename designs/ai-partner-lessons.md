@@ -57,6 +57,8 @@ Durable notes that help later:
 
 Issue numbers are **pointers**, not the title of the knowledge. Do not dump every PR status into long memory files.
 
+**Git is the archive for AFW knowledge** — designs, `.cursor/rules`, handbook, tests, `whats-new.md`, `open-issues-status.md`, living GitHub issue bodies. Local AI session memory (flush / resume) is optional convenience for one machine; **do not rely on it** for continuity across partners, clones, or months later. After deep work, **promote** the map into the tree (and the issue body when it is the product summary).
+
 In this repo, starting points for maps:
 
 | Doc | Role |
@@ -79,7 +81,7 @@ Use any subset; none of this is mandatory for the team.
 - Keep **language tests** (`afwdev test -j`) as the correctness gate; keep **load / soak / experimental hosts** as a separate lab (blast, advanced-test) — do not redefine the gate as soak.  
 - **Never hand-edit `generated/`** — metadata is the single source of truth.  
 - Prefer **plain language** in chat and maintainer notes when a short phrase is enough.  
-- After a deep session, **promote** one thin map; do not grow unbounded session memory.
+- After a deep session, **promote** one thin map into **git**; do not grow unbounded session memory or treat `/flush` as a substitute for designs/tests.
 
 ---
 

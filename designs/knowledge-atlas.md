@@ -115,7 +115,7 @@
 | **Day rules** | `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function` |
 | **Deep pads** | `compile-optimize-notes`, `pragma-hash-design`, `decompile-compiler-internal-inventory`, `compile-contextual-audit`, `adaptive-function-compile-typecheck`, `issue-28-type-syntax` |
 | **Probe** | `afw -s '…'` / tests under `src/afw/tests/`; regenerate EBNF via `--cdev`; check `generated/ebnf/syntax.ebnf` has `::=` for nonterminals |
-| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) |
+| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) — map: `issue-28-type-syntax.md` + `typescript-differences.md` + handbook Types (git archive; not session memory) |
 | **Gap** | Support playbook for “parse error / decompile mismatch” still thin — use rules + decompile pads |
 
 ---

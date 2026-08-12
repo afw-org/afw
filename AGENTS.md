@@ -14,7 +14,7 @@ AFW is **metadata-driven**: define object types, functions, data types, and C **
 
 ## Knowledge map (where truth lives)
 
-Prefer **git** for durable shared truth. Session memory is a sticky index + preferences + thin resume — not a second handbook.
+Prefer **git** for durable shared truth (designs, rules, handbook, tests, living issue bodies). Session / harness memory is a sticky index + preferences + thin resume only — **not** the product archive and not a second handbook. After deep sessions, promote maps into the tree so other sessions and people do not depend on local flush.
 
 | Layer | Role |
 |-------|------|

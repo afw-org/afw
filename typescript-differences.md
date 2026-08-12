@@ -117,7 +117,8 @@ TypeScript authors often assume “types mean mostly compile-time.” Adaptive s
 | Job | When it runs | Role |
 |-----|----------------|------|
 | **Script type checking** | Off by default; when on, compile if the type is known, and (unless compile-only) also at run time for assigns / script parameters / returns | Script-local shapes and data types you wrote in the script |
-| **Adaptive function parameters** (built-ins) | Extra checks at **compile** when the function and argument types are known; **run time** still does the usual Adaptive convert and implementation checks | Not a second full type system on every execute |
+| **Call-site formals** | Under typeCheck: bindings with a **function Type** annotation are checked against that annotation; script **definition** early-bind (optimize/formals from the implementation) only for **`const` / `function`**, not **`let`** (reassignment must remain valid) | Prefer `const f: (a: T) => R = …` or `function f…` when you want both annotation and known definition |
+| **Adaptive function parameters** (built-ins) | Extra checks at **compile** when the function and argument types are known; HOF **FunctionSignature** strings project to function Types; **run time** still does the usual Adaptive convert and implementation checks | Not a second full type system on every execute |
 | **Adaptive objects** (object types, property meta, write rules such as allow write) | **Run time** (and the admin UI from meta) when the object and its type/meta are available | Catalogs, adapters, and models are dynamic — not fully imported into the script type checker at compile |
 
 So: optional script types for local contracts; Adaptive functions keep runtime behavior with earlier compile help when possible; Adaptive object rules stay meta- and write-path-driven. Longer maintainer note: [`designs/issue-28-type-syntax.md`](designs/issue-28-type-syntax.md).

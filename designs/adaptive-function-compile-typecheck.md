@@ -305,7 +305,7 @@ retrieve-ish(objOptions);  // object formal + OT id → only need object
 - **False confidence:** unknown param1 skips formal checks — do not claim “all adaptive calls are fully checked.”  
 - **Generate churn:** large bindings files; one-time regenerate.  
 - **Dual sources of truth:** string `dataTypeParameter` vs pointer — generate must set both; checks trust pointer + outer type.  
-- **Call binding gaps:** `const f = add; f(1,2)` may not early-bind — v1 skip; acceptable.
+- **Call early-bind (script):** only **`const` / `function`** bindings with a known script-function `initial_value` early-bind the definition for optimize/formals; **`let` does not** (rebind safety — see `issue-28-type-syntax.md` Call-site formals). Annotation-based function Types still typeCheck call args when the type is known. Adaptive built-ins use definition lookup when the callee is a known Adaptive function value, not only early-bind of a script symbol.
 
 ---
 

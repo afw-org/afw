@@ -112,7 +112,8 @@ Assistants: when Mike is in this mode, prefer **full sketch + scenario stress-te
 | **One hard cleanup item at a time** | When doing C hygiene passes, finish or park one thread before opening five. |
 | **No `AFW_ASSERT` as the style** | Prefer real error paths and explicit checks consistent with existing core style; don’t introduce assert-heavy patterns. |
 | **Handbook is Jeremy’s house** | User-facing handbook: plain prose, Adaptive on its terms, Example subsections; no issue numbers or `designs/` paths in handbook XML. Welcome Jeremy to refine or revert. |
-| **Promote after deep work** | After a hard session: mental model change, wrong path never to take, **decided not to** (with why), live probe, optional user-facing sentence — into **git** when sticky. |
+| **Promote after deep work** | After a hard session: mental model change, wrong path never to take, **decided not to** (with why), live probe, optional user-facing sentence — into **git** when sticky. **Git is the archive** (designs, rules, handbook, tests, whats-new, open-issues-status). Local harness memory (if any) is a sticky index + thin resume only — never the place other sessions or people should have to look. |
+| **Living issue body** | Keep the **GitHub issue body** as the current product summary (shipped / close bar / not this / successors). Thread comments are **history**. When the story changes, edit the body; do not leave the living state only in chat or session memory. Classic: **#28** wrap-up body, then closed summary after PR **#171**. |
 | **Ah-ha → map** | When a loop closes (env, hosts, values, …), write the thin map so the next person does not re-earn it only in chat. |
 
 ---
@@ -128,7 +129,7 @@ Useful when someone (or an assistant) is about to “help” the wrong way:
 - Shipping a “win” in one vertical that **skips or weakens the regression gate**, or treating borrowed suites (e.g. test262) as optional noise when they catch real Adaptive rebinds and completion stories.
 - Closing the listen socket alone as the *long-term* multi-thread wake story for every host (host-specific wake + `terminating` flag instead).
 - Rewriting handbook voice into issue-tracker or design-pad voice.
-- Optimizing chat **memory volume** instead of **maps** that live in git.
+- Optimizing chat **memory volume** instead of **maps** that live in git (or counting on local session flush as the product archive).
 - Assuming beta ship date = end of partnership or end of learning the system.
 - Building a parallel tool/language/harness **without** checking alternatives and **ease of reliable good work** (see *Design method*).
 - Keeping two experimental ways to do the same maintainer job forever (e.g. advanced-test *and* blast *and* orchestrated tests) without a consolidation path.
