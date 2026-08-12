@@ -32,7 +32,8 @@ This is how issue work has actually gone with AI partners — and how human deve
 4. **Guide with why** — when the feeling differs, walk the reasons (and the code / live system), not a decree.  
 5. **Either side can be wrong** — sometimes the partner was right; sometimes the long-time view was. Both are fine. When the partner **discovers** that something is correct without being argued into it, that is the good outcome: shared understanding, not winning.  
 6. **Close the loop with live truth** — show `afwfcgi`, point at registries in `afw_environment.h`, const objects vs runtime objects, adapters and services. When the partner’s mental model clicks, they often **intuit the next layer** (e.g. start/stop adapters, how pieces wire) without a full lecture.  
-7. **Ah-ha moments become maps** — one env/runtime discussion (smaller chunks, then live discovery) was the genesis of this support-partner path: if a careful partner can close that loop, AFW support and continuity are real work, not only ticket churn.
+7. **Ah-ha moments become maps** — one env/runtime discussion (smaller chunks, then live discovery) was the genesis of this support-partner path: if a careful partner can close that loop, AFW support and continuity are real work, not only ticket churn.  
+8. **Capture the no as well as the yes** — when consensus rejects a path (or locks a hard non-goal), write it down the same way you would a positive design decision. That is how the next person avoids rehashing settled ground; see mantra *Record what we decided not to do…* under Quality and process.
 
 Assistants: lead with honest models and questions; accept correction; prefer **live probes** when stuck arguing in the abstract; do not sulk when guided, and do not pretend consensus means never disagreeing.
 
@@ -73,6 +74,7 @@ Short form first; “means in practice” second. Several of these are already e
 | **Gate vs lab** | Language/package **gate** (`afwdev test -j`) is not the same job as **lab** load, soak, or experimental hosts (blast, advanced / orchestrated tests). Don’t redefine the gate as soak. |
 | **Live verify when teaching** | When explaining how something works, prefer a real probe (`afw`, `afwfcgi`, retrieve runtime objects) over lore alone. |
 | **Maps over tickets** | Durable notes: concept, contract, failure mode, probe. Issue numbers are **pointers**, not the title of the knowledge. |
+| **Record what we decided not to do as carefully as what we decided to do** | Negative decisions are first-class map content. Write them where a new person (or a later session) will look — issue pad, differences table, close comment — with a short *why*. **“Not yet / out of scope for this vertical”** is not the same as **“decided not to.”** Deferred work stays live backlog; a written *no* is a commitment until someone **explicitly** reopens it. Changing your mind is fine; drifting or re-litigating from zero is not. Especially valuable when onboarding or when the same topic comes back months later. |
 | **Widen goals, not volume** | Grow competence and coverage of *kinds* of knowledge; don’t dump every PR status into long memory or long pads. |
 | **Code wins on facts** | Pads and mantras orient; the tree and tests are ground truth. When notes drift, fix the notes. |
 
@@ -104,7 +106,7 @@ Assistants: when Mike is in this mode, prefer **full sketch + scenario stress-te
 | **One hard cleanup item at a time** | When doing C hygiene passes, finish or park one thread before opening five. |
 | **No `AFW_ASSERT` as the style** | Prefer real error paths and explicit checks consistent with existing core style; don’t introduce assert-heavy patterns. |
 | **Handbook is Jeremy’s house** | User-facing handbook: plain prose, Adaptive on its terms, Example subsections; no issue numbers or `designs/` paths in handbook XML. Welcome Jeremy to refine or revert. |
-| **Promote after deep work** | After a hard session: mental model change, wrong path never to take, live probe, optional user-facing sentence — into **git** when sticky. |
+| **Promote after deep work** | After a hard session: mental model change, wrong path never to take, **decided not to** (with why), live probe, optional user-facing sentence — into **git** when sticky. |
 | **Ah-ha → map** | When a loop closes (env, hosts, values, …), write the thin map so the next person does not re-earn it only in chat. |
 
 ---
@@ -135,6 +137,8 @@ When another sticky phrase shows up in conversation and still helps:
 1. Add a row to the tables above (short form + means in practice).  
 2. Optionally one line in [`agent-support.md`](agent-support.md) concept cards if it is support-shaped.  
 3. Do **not** paste the whole list into always-on `.mdc` unless it is a true daily hard rule (most already are, or aren’t).
+
+This pad (and related maps) is also how long-standing **working habits** stay available when Mike is not in the room — useful personality and method for support/development partners, not a biography. Promote sticky *how we decide* and *what we refused*, not chat volume.
 
 ---
 
