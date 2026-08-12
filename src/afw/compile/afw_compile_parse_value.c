@@ -17,7 +17,7 @@
 
 /*ebnf>>>
  *
- *# Expression must produce a value of data type list.
+ *# Expression must produce a value of data type array.
  * ListExpression ::= Expression
  *
  *# Strict JSON: dense values only (no elision, no trailing comma).
