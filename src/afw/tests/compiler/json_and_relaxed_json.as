@@ -43,6 +43,30 @@ compile(json("[/* c */ 1]"));
 compile(json("[1,]"));
 
 //?
+//? test: json-rejects-infinity
+//? description: Strict json does not allow Infinity
+//? expect: error
+//? source: ...
+
+compile(json("[Infinity]"));
+
+//?
+//? test: json-rejects-nan
+//? description: Strict json does not allow NaN
+//? expect: error
+//? source: ...
+
+compile(json("[NaN]"));
+
+//?
+//? test: json-rejects-negative-infinity
+//? description: Strict json does not allow -Infinity
+//? expect: error
+//? source: ...
+
+compile(json("[-Infinity]"));
+
+//?
 //? test: relaxed-accepts-documented-forms
 //? description: Comments, unquoted names, trailing comma, Infinity and NaN
 //? expect: 0

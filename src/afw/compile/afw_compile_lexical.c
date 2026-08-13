@@ -994,18 +994,21 @@ impl_parse_number(afw_compile_parser_t *parser)
     else if (o == '-') {
         is_negative = true;
 
-        if (impl_consume_matching_octets_z(parser, "Infinity") ||
-            impl_consume_matching_octets_z(parser, "INF"))
-        {
-            parser->token->type = afw_compile_token_type_number;
-            parser->token->number = parser->xctx->env->minus_infinity;
-            goto reserved_identifier;
-        }
+        /* Infinity / INF / NaN after '-' are relaxed only (not strict JSON). */
+        if (!parser->strict) {
+            if (impl_consume_matching_octets_z(parser, "Infinity") ||
+                impl_consume_matching_octets_z(parser, "INF"))
+            {
+                parser->token->type = afw_compile_token_type_number;
+                parser->token->number = parser->xctx->env->minus_infinity;
+                goto reserved_identifier;
+            }
 
-        if (impl_consume_matching_octets_z(parser, "NaN")) {
-            parser->token->type = afw_compile_token_type_number;
-            parser->token->number = parser->xctx->env->NaN;
-            goto reserved_identifier;
+            if (impl_consume_matching_octets_z(parser, "NaN")) {
+                parser->token->type = afw_compile_token_type_number;
+                parser->token->number = parser->xctx->env->NaN;
+                goto reserved_identifier;
+            }
         }
     }
 
@@ -1371,17 +1374,19 @@ impl_parse_identifier(afw_compile_parser_t *parser)
         parser->token->type = afw_compile_token_type_undefined;
     }
 
-    /* Handle reserved identifier Infinity and INF.  */
-    else if (
+    /* Handle reserved identifier Infinity and INF (not in strict JSON). */
+    else if (!parser->strict && (
         afw_utf8_equal_utf8_z(parser->token->identifier_name, "Infinity") ||
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, "INF"))
+        afw_utf8_equal_utf8_z(parser->token->identifier_name, "INF")))
     {
         parser->token->type = afw_compile_token_type_number;
         parser->token->number = parser->xctx->env->infinity;
     }
 
-    /* Handle reserved identifier NaN.  */
-    else if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "NaN")) {
+    /* Handle reserved identifier NaN (not in strict JSON). */
+    else if (!parser->strict &&
+        afw_utf8_equal_utf8_z(parser->token->identifier_name, "NaN"))
+    {
         parser->token->type = afw_compile_token_type_number;
         parser->token->number = parser->xctx->env->NaN;
     }
