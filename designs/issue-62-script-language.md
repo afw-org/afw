@@ -2,8 +2,8 @@
 
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#62](https://github.com/afw-org/afw/issues/62) — *Adaptive Script language changes*  
-**Branch:** `issue-#62-script-language` off `mgg-develop`. One feature branch; commit as we go.  
-**Status:** [PR #174](https://github.com/afw-org/afw/pull/174) — index 1–5 plus void / running-result / `expect: success`. Close to pull.
+**Branch:** `issue-#62-script-language` (deleted after merge).  
+**Status:** **Closed** 2026-08-13 — [PR #174](https://github.com/afw-org/afw/pull/174) merged to `mgg-develop`. Index 1–5 plus void / running-result / `expect: success`.
 
 Jeremy still wants the index items. Many of the ideas come from TypeScript / ECMAScript. They were not originally planned, so several productions (especially assignment and `for` init) have to change rather than grow a flag.
 
