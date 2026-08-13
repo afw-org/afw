@@ -7,7 +7,7 @@
 //?
 //? test: deny_extension_load
 //? description: Test deny access to extension_load
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caught = false;
@@ -25,7 +25,7 @@ assert(caught);
 //?
 //? test: deny_extension_load_by_module_path
 //? description: Test deny access to extension_load_by_module_path
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caught = false;
@@ -43,7 +43,7 @@ assert(caught);
 //?
 //? test: deny_service_get
 //? description: Test deny access to service_get
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caught = false;
@@ -61,7 +61,7 @@ assert(caught);
 //?
 //? test: deny_service_restart
 //? description: Test deny access to service_restart
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caught = false;
@@ -79,7 +79,7 @@ assert(caught);
 //?
 //? test: deny_service_stop
 //? description: Test deny access to service_stop
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caught = false;
@@ -97,7 +97,7 @@ assert(caught);
 //?
 //? test: deny_service_start
 //? description: Test deny access to service_start
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caught = false;
