@@ -202,7 +202,7 @@ struct afw_function_environment_s {
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(n) \
 do { \
     if ((x->argc) != (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -219,7 +219,7 @@ do { \
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(n) \
 do { \
     if (x->argc < (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting at least " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting at least " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -236,7 +236,7 @@ do { \
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(n) \
 do { \
     if (x->argc > (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting no more than " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting no more than " #n " parameters.", x->xctx);\
     } \
 } while (0)
 

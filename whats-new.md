@@ -128,6 +128,8 @@ This beta line also renamed a few ids that collided with language names or read 
 | `arg_error` | `argument_error` | Spell the word. |
 | `evaluate` | `evaluation_error` | Do not collide with the `evaluate()` function. |
 | `undefined` | `undefined_value` | Do not collide with the `undefined` value / data type. A required function parameter that is `undefined` now uses this id (it was `general`). |
+
+A failed convert-from-text of **date**, **dateTime**, **time**, **dayTimeDuration**, **yearMonthDuration**, **base64Binary**, or **hexBinary** is **`conversion_error`** (it was `general`). Too few or too many arguments, and a parameter of the wrong data type, are **`argument_error`**.
 | `code` | `coding_error` | `code` was too vague (and a throw-macro parameter name). |
 | `client_time_out` | `client_timeout` | Same style as `client_closed`. |
 

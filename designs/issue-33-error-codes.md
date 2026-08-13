@@ -2,12 +2,12 @@
 
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#33](https://github.com/afw-org/afw/issues/33) — *Review/Change Error Codes*  
-**Status:** best-effort pass on branch `issue-#33-error-codes`. Map reordered; some HTTP throws retargeted; script `throw` may set `id`; remaining unclear ids renamed. Extension-defined names still open.  
+**Status:** done for release on `issue-#33-error-codes`. Do not reopen unless release testing finds a wrong HTTP status or a name we cannot live with. Leftovers: extension-defined names (later); remove deprecated `throw "…" { … }` (#172).  
 **Related:** try/catch (`afw-script-errors`), HTTP request path (`afw-server` / `afw-server-fcgi`), crypto prefix convention (`secrets-and-afw-crypto.md`), #158 `terminating` → 503.
 
 ## Landed (this branch)
 
-Beta rebuild is assumed, so the enum was **reordered**: `none`, `general`, `throw` first, then language, then request/HTTP, then host. **Prefer `e.id`**. Unused HTTP tokens were wired where the message already said that. Unclear ids were renamed (`arg_error` → `argument_error`, `cast_error` → `conversion_error`, `evaluate` → `evaluation_error`, `undefined` → `undefined_value`, `code` → `coding_error`, `client_time_out` → `client_timeout`). A required parameter that is `undefined` now throws `undefined_value` instead of `general`.
+Beta rebuild is assumed, so the enum was **reordered**: `none`, `general`, `throw` first, then language, then request/HTTP, then host. **Prefer `e.id`**. Unused HTTP tokens were wired where the message already said that. Unclear ids were renamed (`arg_error` → `argument_error`, `cast_error` → `conversion_error`, `evaluate` → `evaluation_error`, `undefined` → `undefined_value`, `code` → `coding_error`, `client_time_out` → `client_timeout`). A required parameter that is `undefined` now throws `undefined_value` instead of `general`. Convert-from-text of date/time/duration/binary is `conversion_error`. Too few/too many arguments and a parameter of the wrong data type are `argument_error`.
 
 | Was `general` (500) | Now | HTTP |
 |---------------------|-----|------|
@@ -40,7 +40,7 @@ Sets `e.id` and the HTTP status from the map. Phrase on the status line stays th
 
 Built-in `errorsThrown` (this pass): catch-worthy names on adapter get/add/delete/replace/modify/retrieve, `assert`, `compile` / `compile_from_file` / `eval_from_file`, `authorization_check`, `journal_get_by_cursor`. `eq` / `ne` use `conversion_error` (was the non-name `conversion`). File and VFS “already exists” throw `conflict`. Empty `errorsThrown` still means nothing special.
 
-Not in this pass: extension-defined names; catch-by-id syntax.
+Not this branch: extension-defined names; catch-by-id syntax; `open_file` miss stays `general` + errno.
 
 ## Issue text (all of it)
 
@@ -228,15 +228,15 @@ Inventory and this pad first (this pass). Next, if we agree:
 - One **C retarget** that is obviously wrong (`method_not_supported` on the REST “Method not supported” path) plus a test that asserts `e.id` and, if we have a wire leaf, the status line.
 - Then talk about **script-selected id** before touching more throw sites.
 
-## Open questions
+## Open questions (decided)
 
-1. Should uncaught **script** `throw` stay HTTP 400, or should authors be able to choose a mapped id?
-2. Is `syntax` (500) correct for Adaptive parse errors in a request, or should those be `request_syntax` (400)?
-3. Do we want 401 (`authentication_required`) distinct from 403 (`denied`)?
-4. Should `open_file` missing file stay `general` + errno, or become `not_found`? Header says don’t throw `not_found` for normal misses — file open is closer to a named resource.
-5. Keep `im_a_teapot`?
-6. Publish the map as a runtime object on `adapterId=afw`, or handbook-only?
-7. Is `e.errorCode` something we still want scripts to use, or document “prefer `id`”?
+1. Uncaught script `throw` stays HTTP 400 unless the author sets `id` from the whitelist.
+2. Adaptive parse is `syntax` → 400. `request_syntax` is HTTP request body/path, not Adaptive source.
+3. `authentication_required` (401) stays unused until we distinguish “log in” from `denied` (403).
+4. `open_file` miss stays `general` + errno. Do not throw `not_found` for that.
+5. Keep `im_a_teapot`.
+6. Handbook + `whats-new` is enough; no runtime catalog of the map.
+7. Prefer `e.id`. Do not depend on numeric `errorCode`.
 
 ## Probe
 

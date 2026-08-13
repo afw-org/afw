@@ -123,12 +123,54 @@ throw "no" id "not_found" id "denied";
 
 //?
 //? test: conversion-error
-//? description: failed type conversion is conversion_error
+//? description: failed type conversion is conversion_error (integer, date/time, binary)
 //? expect: 0
 //? source: ...
 
 try {
     integer("not a number");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+try {
+    date("not a date");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+try {
+    dateTime("not a dateTime");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+try {
+    time("not a time");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+try {
+    dayTimeDuration("not a duration");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+try {
+    yearMonthDuration("not a duration");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+try {
+    base64Binary("!!!");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+try {
+    hexBinary("gg");
 }
 catch (e) {
     assert(e.id === "conversion_error", e.id);
@@ -151,12 +193,24 @@ return 0;
 
 //?
 //? test: arg-error-divide-by-zero
-//? description: integer divide by zero is argument_error
+//? description: divide by zero, arity, and type mismatch are argument_error
 //? expect: 0
 //? source: ...
 
 try {
     let x = 1 / 0;
+}
+catch (e) {
+    assert(e.id === "argument_error", e.id);
+}
+try {
+    abs();
+}
+catch (e) {
+    assert(e.id === "argument_error", e.id);
+}
+try {
+    and(1);
 }
 catch (e) {
     assert(e.id === "argument_error", e.id);

@@ -59,7 +59,7 @@ afw_function_execute_decode_to_string_hexBinary(
 
     if (!afw_utf8_is_valid(result->internal.s, result->internal.len, x->xctx))
     {
-        AFW_THROW_ERROR_Z(general, "value does not decode to valid utf-8",
+        AFW_THROW_ERROR_Z(conversion_error, "value does not decode to valid utf-8",
             x->xctx);
     }
 

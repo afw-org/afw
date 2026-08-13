@@ -85,7 +85,7 @@ impl_set_date_no_time_zone(
     afw_xctx_t *xctx)
 {
     if (year < 0 AFW_INT32_MIN || year > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "year must be between "
             AFW_STRINGIFY(AFW_INT32_MIN)
             " and "
@@ -94,14 +94,14 @@ impl_set_date_no_time_zone(
     }
 
     if (month < 1 || month > 12) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "month must be between 1 and 12",
             xctx);
     }
 
     /** @fixme check for leapyear. */
     if (day < 1 || day > 31) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "day must be between 1 and 31",
             xctx);
     }
@@ -123,31 +123,31 @@ impl_set_time_no_time_zone(
 
 {
     if (hour < 0 || hour > 24) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "hour must be between 0 and 24",
             xctx);
     }
 
     if (hour == 24 && minute != 0 && second != 0 && microsecond != 0) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "if hour is 24, minute, second, and microsecond must be 0",
             xctx);
     }
 
     if (minute < 0 || minute > 59) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "minute must be between 0 and 59",
             xctx);
     }
 
     if (second < 0 || second > 255) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "second must be between 0 and 255",
             xctx);
     }
 
     if (microsecond < 0 || microsecond > 999999) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "microsecond must be between 0 and 999999",
             xctx);
     }
@@ -167,14 +167,14 @@ impl_set_time_zone(
     afw_xctx_t *xctx)
 {
     if (tz_hours_offset < -14 || tz_hours_offset > 14) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "tz_hours_offset must be between -14 and 14",
             xctx);
     }
 
     if (tz_hours_offset == -14 || tz_hours_offset == 14) {
         if (tz_minutes_offset != 0) {
-            AFW_THROW_ERROR_Z(general,
+            AFW_THROW_ERROR_Z(argument_error,
                 "if tz_hours_offset is -14 or 14, "
                 "tz_minutes_offset must be 0",
                 xctx);
@@ -182,7 +182,7 @@ impl_set_time_zone(
     }
 
     if (tz_minutes_offset < -1 || tz_minutes_offset > 59) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "tz_minutes_offset must be between -1 and 59",
             xctx);
     }
@@ -348,35 +348,35 @@ afw_dayTimeDuration_set_from_parts(
     afw_xctx_t *xctx)
 {
     if (days < 0 || days > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "days parameter must be between 0 and "
             AFW_STRINGIFY(AFW_INT32_MAX),
             xctx);
     }
 
     if (hours < 0 || hours > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "hours parameter must be between 0 and "
             AFW_STRINGIFY(AFW_INT32_MAX),
             xctx);
     }
 
     if (minutes < 0 || minutes > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "minutes parameter must be between 0 and "
             AFW_STRINGIFY(AFW_INT32_MAX),
             xctx);
     }
 
     if (seconds < 0 || seconds > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "seconds parameter must be between 0 and "
             AFW_STRINGIFY(AFW_INT32_MAX),
             xctx);
     }
 
     if (microseconds < 0 || microseconds > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "microseconds parameter must be between 0 and "
             AFW_STRINGIFY(AFW_INT32_MAX),
             xctx);
@@ -476,14 +476,14 @@ afw_yearMonthDuration_set_from_parts(
     afw_xctx_t *xctx)
 {
     if (years < 0 || years > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "years parameter must be between 0 and "
             AFW_STRINGIFY(AFW_INT32_MAX),
             xctx);
     }
 
     if (months < 0 || months > AFW_INT32_MAX) {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(argument_error,
             "months parameter must be between 0 and "
             AFW_STRINGIFY(AFW_INT32_MAX),
             xctx);
@@ -901,7 +901,7 @@ impl_utf8_date_set_internal(
     return len - (afw_size_t)(s - from);
 
 error:
-    AFW_THROW_ERROR_Z(general, "date invalid", xctx);
+    AFW_THROW_ERROR_Z(conversion_error, "date invalid", xctx);
 }
 
 static afw_size_t
@@ -979,7 +979,7 @@ finish_up:
     return len;
 
 error:
-    AFW_THROW_ERROR_Z(general, "time invalid", xctx);
+    AFW_THROW_ERROR_Z(conversion_error, "time invalid", xctx);
 }
 
 
@@ -1034,7 +1034,7 @@ finish_up:
     return len;
 
 error:
-    AFW_THROW_ERROR_Z(general, "time zone invalid.  "
+    AFW_THROW_ERROR_Z(conversion_error, "time zone invalid.  "
         "(('+' | '-') hh ':' mm) | 'Z'.  "
         "hh 00-14, mm 00-59 or 00 if hh is 14", xctx);
 }
@@ -1071,7 +1071,7 @@ afw_date_utf8_set_internal(
     len = impl_set_utf8_time_zone_to_internal(s, len, &internal->time_zone,
         xctx);
     if (len != 0) {
-        AFW_THROW_ERROR_Z(general, "date invalid", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "date invalid", xctx);
     }
 }
 
@@ -1117,7 +1117,7 @@ afw_dateTime_utf8_set_internal(
     return;
 
 error:
-    AFW_THROW_ERROR_Z(general, "dateTime invalid", xctx);
+    AFW_THROW_ERROR_Z(conversion_error, "dateTime invalid", xctx);
 }
 
 
@@ -1360,7 +1360,7 @@ finished:
     return;
 
 error:
-    AFW_THROW_ERROR_Z(general, "dayTimeDuration invalid", xctx);
+    AFW_THROW_ERROR_Z(conversion_error, "dayTimeDuration invalid", xctx);
 }
 
 
@@ -1395,7 +1395,7 @@ afw_time_utf8_set_internal(
     len = impl_set_utf8_time_zone_to_internal(s, len, &internal->time_zone,
         xctx);
     if (len != 0) {
-        AFW_THROW_ERROR_Z(general, "Time invalid", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "Time invalid", xctx);
     }
 }
 
@@ -1509,7 +1509,7 @@ finished:
     return;
 
 error:
-    AFW_THROW_ERROR_Z(general, "yearMonthDuration invalid", xctx);
+    AFW_THROW_ERROR_Z(conversion_error, "yearMonthDuration invalid", xctx);
 }
 
 
@@ -2109,5 +2109,5 @@ afw_dataType_generalized_time_set_internal(
     return;
 
 error:
-    AFW_THROW_ERROR_Z(general, "Invalid generalized time", xctx);
+    AFW_THROW_ERROR_Z(conversion_error, "Invalid generalized time", xctx);
 }

@@ -326,7 +326,7 @@ afw_function_evaluate_parameter(
         if (parameter->data_type != afw_data_type_array && //@fixme don't require
             (parameter->data_type != result_data_type))
         {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "Parameter " AFW_SIZE_T_FMT
                 " of function " AFW_UTF8_FMT_Q
                 " must evaluate to data type " AFW_UTF8_FMT_Q
