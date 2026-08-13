@@ -19,9 +19,9 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Summary counts
 
-- **Open issues:** 40
+- **Open issues:** 39
 - **Jeremy:** 28 issues (as assignee, including shared)
-- **Mike:** 12 issues (as assignee, including shared)
+- **Mike:** 11 issues (as assignee, including shared)
 - **—:** 6 issues (unassigned)
 
 ## All open issues
@@ -48,7 +48,6 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#60](https://github.com/afw-org/afw/issues/60) | Jeremy | Fiddle output would be more useful if it changed when switching input tabs | This would take a re-design of how the tabbed editor and resizable pane are placed inside the fiddle page. | Fiddle output refresh on tab switch. Open UI. | 2023-08-29 |
 | [#63](https://github.com/afw-org/afw/issues/63) | Jeremy | Remove data types 'expression' and 'hybrid' | With the removal of data type 'expressiontuple', the ability to specify a script in a template, and since a script ca… | Data types and functions removed (PR **#66**, 2023). Leftover `test_expression.as` deleted. Stale JS mocks remain (#53). | 2026-08-13 |
 | [#64](https://github.com/afw-org/afw/issues/64) | Mike | Improve the way stack overflow, segfault, etc are handled | Especially for stack overflow, improve how they are detected and handled other than the indirect ways like setting ca… | Stack overflow / segfault handling improvements. Open. | 2023-09-06 |
-| [#69](https://github.com/afw-org/afw/issues/69) | Mike | Implement data type 'json' and 'relaxed_json' | Data type 'script', 'template', and others have a 'compile' and similar functions. For consistency, there should also… | Implement json / relaxed_json data types more fully. Open (related conversion/source-holding work on tree). | 2023-09-23 |
 | [#70](https://github.com/afw-org/afw/issues/70) | — | JSON <-> Adaptive Objects | JSON does not support Infinity, NaN and undefined. Also, an integer is handled differently by Adaptive Script and ECM… | JSON ↔ Adaptive objects semantics (Infinity/NaN/undefined). Unassigned. | 2023-09-25 |
 | [#74](https://github.com/afw-org/afw/issues/74) | Jeremy | Useful enhancements for Adaptive Script | While creating some Clemson scripts, the following enhancements would be nice to look into: | Partial: process:: ambient + afw_crypto. Interactive readpass / secrets polish still open. | 2026-08-13 |
 | [#80](https://github.com/afw-org/afw/issues/80) | Jeremy | Service Editor UI for authorizationHandler script is buggy | When editing an authorization handler script, the UI immediately closes when you attempt to change any source. | Service Editor UI for authorizationHandler script buggy. Open admin. | 2024-01-17 |
@@ -75,7 +74,7 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 |---------|--------|-------|
 | Memory / long-running | [#2](https://github.com/afw-org/afw/issues/2), related [#49](https://github.com/afw-org/afw/issues/49) | Value lifetimes; [#127](https://github.com/afw-org/afw/issues/127) progressive write-release **closed**; [#35](https://github.com/afw-org/afw/issues/35) escape skips; [#149](https://github.com/afw-org/afw/issues/149) catalog slice **closed** |
 | Adaptive Script language | [#35](https://github.com/afw-org/afw/issues/35), [#101](https://github.com/afw-org/afw/issues/101), [#22](https://github.com/afw-org/afw/issues/22), [#170](https://github.com/afw-org/afw/issues/170) | **#28 types** and **#62 language index closed** (PRs **#171**, **#174**); [#170](https://github.com/afw-org/afw/issues/170) app-shared functions + script poly; closures left open for [#2](https://github.com/afw-org/afw/issues/2) |
-| Built-ins / JSON | [#69](https://github.com/afw-org/afw/issues/69), [#70](https://github.com/afw-org/afw/issues/70) | stringify [#18](https://github.com/afw-org/afw/issues/18) **closed** 2026-08-04 |
+| Built-ins / JSON | [#70](https://github.com/afw-org/afw/issues/70) | stringify [#18](https://github.com/afw-org/afw/issues/18) **closed**; [#69](https://github.com/afw-org/afw/issues/69) json/relaxed_json types **closed** (PR **#175**) |
 | Adapters / auth / RQL | [#41](https://github.com/afw-org/afw/issues/41), [#54](https://github.com/afw-org/afw/issues/54), [#85](https://github.com/afw-org/afw/issues/85)–[#87](https://github.com/afw-org/afw/issues/87), [#91](https://github.com/afw-org/afw/issues/91), [#102](https://github.com/afw-org/afw/issues/102) | Review and feature work |
 | Retrieve / limits | [#49](https://github.com/afw-org/afw/issues/49) | maxObjects partial; progressive release [#127](https://github.com/afw-org/afw/issues/127) **closed** |
 | Conf / process / crypto | [#74](https://github.com/afw-org/afw/issues/74) | [#15](https://github.com/afw-org/afw/issues/15) **closed**; [#74](https://github.com/afw-org/afw/issues/74) still partial (`process::` + crypto landed, interactive read/readpass open) |
@@ -104,6 +103,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#55](https://github.com/afw-org/afw/issues/55) | Common object and array methods that will be useful | **Closed 2026-08-04** — PR #134 object/array helpers |
 | [#61](https://github.com/afw-org/afw/issues/61) | Create Exception subclasses for some 'afwdev' errors | **Closed 2026-08-09** — afwdev exception subclasses (with test harness work) |
 | [#62](https://github.com/afw-org/afw/issues/62) | Adaptive Script language changes | **Closed 2026-08-13** — PR **#174** multi let/const, for init, assignment chain, running result, labels |
+| [#69](https://github.com/afw-org/afw/issues/69) | Implement data type 'json' and 'relaxed_json' | **Closed 2026-08-13** — types already on tree; PR **#175** tests + strict json rejects Infinity/NaN |
 | [#89](https://github.com/afw-org/afw/issues/89) | Passing a function as a parameter from an array seems to generate an error | **Closed 2026-08-07** — function from array as callback |
 | [#90](https://github.com/afw-org/afw/issues/90) | checkIndividualObjectReadAccess configuration parameter for adaptors | checkIndividualObjectReadAccess — closed earlier |
 | [#109](https://github.com/afw-org/afw/issues/109) | Improvements for creating adapters with adaptive scripts | Pure-script model adapters — closed earlier |
@@ -135,6 +135,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#158](https://github.com/afw-org/afw/issues/158) | Graceful process stop — PR [#165](https://github.com/afw-org/afw/pull/165) |
 | [#33](https://github.com/afw-org/afw/issues/33) | Error codes / HTTP — PR [#173](https://github.com/afw-org/afw/pull/173) |
 | [#62](https://github.com/afw-org/afw/issues/62) | Language index — PR [#174](https://github.com/afw-org/afw/pull/174) |
+| [#69](https://github.com/afw-org/afw/issues/69) | json / relaxed_json types — PR [#175](https://github.com/afw-org/afw/pull/175) |
 | [#127](https://github.com/afw-org/afw/issues/127) | Progressive retrieve write-then-release — **closed 2026-08-11** |
 | [#28](https://github.com/afw-org/afw/issues/28) | Compile-time type checking — PRs [#144](https://github.com/afw-org/afw/pull/144)/[#145](https://github.com/afw-org/afw/pull/145) core; wrap-up PR [#171](https://github.com/afw-org/afw/pull/171) (fence, FunctionSignature typeCheck, call-site formals, handbook Types). **Closed 2026-08-12** |
 
