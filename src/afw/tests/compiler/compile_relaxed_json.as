@@ -20,11 +20,10 @@ compile(relaxed_json("[/* comment * 1, 2]"));
 
 return compile(relaxed_json("[/* comment */ 1, 2]"))[0];
 
+//?
 //? test: compile_relaxed_json
 //? description: Test compiling json with trailing comma
 //? expect: 2
 //? source: ...
-
-//FIXME mgg Should not require return
 
 return compile<relaxed_json>(relaxed_json('[1, 2,]'))[1];
