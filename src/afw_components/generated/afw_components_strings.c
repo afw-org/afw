@@ -3602,12 +3602,6 @@ afw_components_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_components_self_v_zz__2217 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_zz__2217)
-};
-
-const afw_value_string_t
 afw_components_self_v_zz__2218 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_zz__2218)
@@ -5147,6 +5141,12 @@ const afw_value_string_t
 afw_components_self_v_zz__2474 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_zz__2474)
+};
+
+const afw_value_string_t
+afw_components_self_v_zz__2475 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_zz__2475)
 };
 
 const afw_value_string_t
