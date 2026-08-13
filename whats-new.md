@@ -187,7 +187,7 @@ for (let i = 0, j = 1; i < 3; i = i + 1) {
 }
 ```
 
-You can chain assignments in one statement, right to left. That is still a statement, not an expression: `x = y = 1;` is fine; `(x = 1) > x` and `let x = y = 1` are not.
+You can chain assignments in one statement, right to left. That is still a statement, not an expression: `x = y = 1;` is fine; `(x = 1) > x` and `let x = y = 1` are not. Assignment inside a larger expression is almost always a typo.
 
 ```adaptive
 let x;

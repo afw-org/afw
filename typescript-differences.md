@@ -242,7 +242,7 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | **`===` / `!==` on objects and arrays** | **Structural** (deep) equality, not reference identity |
 | **Uninitialized `let`** | Readable as **undefined** (no TDZ); self-init `let x = x` is allowed |
 | **`const` reassignment** | **Rejected** (`Cannot assign to const variable "…"` / `read_only`); for-of **rebinds** const head each iteration without treating that as user assign |
-| **Assignment is a statement, not an expression** | **By design.** A **statement chain** `x = y = 1;` (and compound `+=` / `??=` on the rightmost assign) is supported (**#62**). ES also allows values like `(x = 1) > x`. Adaptive does **not**: you cannot nest assignment inside a larger expression, and `x = (y = 1)` / `let x = y = 1` stay illegal (`let`/`const` RHS is still an Expression). Order-of-evaluation tests use throw/`safe_evaluate` side effects instead. Do not treat “support `(x = 1)` in expressions” as a compatibility gap to close. |
+| **Assignment is a statement, not an expression** | **Decided not to nest.** A **statement chain** `x = y = 1;` (and compound `+=` / `??=` on the rightmost assign) is supported (**#62**). ES also allows values like `(x = 1) > x`. Adaptive does **not**: assignment inside a larger expression is almost always a typo (`=` vs `===` / `==`). `x = (y = 1)` / `let x = y = 1` stay illegal (`let`/`const` RHS is still an Expression). Order-of-evaluation tests use throw/`safe_evaluate` side effects instead. Not a compatibility gap to close. |
 | **`throw` / `catch`** | String message + optional data; fixed catch object shape |
 | **Type checking** | **Opt-in** (not always-on `tsc`) |
 | **Outside names** | **Qualifiers**, not globals |

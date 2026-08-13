@@ -37,7 +37,7 @@ How that applies to this index:
 
 ## Locked product rules
 
-**Assignment chain is a statement, not a general expression.** `x = y = 1;` (and the same idea with `+=` / `??=` on the rightmost assign) is the goal. `(x = 1) > x` stays illegal. That keeps the motivated difference in `typescript-differences.md` (assignment is not an expression you can nest). Item 4 is a production change to Assignment’s RHS, not “assignment everywhere Expression is.”
+**Assignment chain is a statement, not a general expression.** `x = y = 1;` (and the same idea with `+=` / `??=` on the rightmost assign) is the goal. `(x = 1) > x` stays illegal — assignment inside a larger expression is almost always a typo (`=` vs `===` / `==`). That is a **decided not to**, not a leftover: see `typescript-differences.md`. Item 4 is a production change to Assignment’s RHS, not “assignment everywhere Expression is.”
 
 **Script result (item 1, landed):** a running result, not last-statement-wins.
 
