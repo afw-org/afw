@@ -88,5 +88,5 @@ afw_curl_function_execute_smtp_send(
         afw_function_execute_contextual(x),
         x->p, x->xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }

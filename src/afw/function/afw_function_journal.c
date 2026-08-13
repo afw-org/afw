@@ -508,6 +508,6 @@ afw_function_execute_journal_mark_consumed(
         &adapterId->internal, &consumerId->internal, &cursor->internal,
         x->p, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }

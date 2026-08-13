@@ -78,8 +78,8 @@ afw_function_execute_assert(
         }
     }
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 

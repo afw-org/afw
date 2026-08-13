@@ -268,8 +268,8 @@ afw_function_execute_flag_modify_defaults(
         afw_flag_set_default(flag_id, add, x->xctx);
     }
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -323,8 +323,8 @@ afw_function_execute_flag_replace_defaults(
 
     afw_flag_set_default_flag_ids(array_value->internal, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -406,8 +406,8 @@ afw_function_execute_flag_set(
         afw_flag_set(flag_id, set_to, x->xctx);
     }
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 

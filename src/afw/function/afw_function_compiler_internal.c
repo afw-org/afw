@@ -1874,7 +1874,7 @@ afw_function_execute_throw(
     xctx->error->data = data;
     longjmp(((xctx)->current_try->throw_jmp_buf), code);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 

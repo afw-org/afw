@@ -199,8 +199,8 @@ afw_function_execute_local_object_meta_set_ids(
         &adapterId->internal, &objectType->internal, &objectId->internal,
         x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 

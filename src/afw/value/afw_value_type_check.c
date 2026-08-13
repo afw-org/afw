@@ -896,7 +896,7 @@ afw_value_type_is_assignable(
     }
 
     if (want == afw_data_type_void) {
-        if (afw_value_is_undefined(value)) {
+        if (afw_value_is_void(value) || afw_value_is_undefined(value)) {
             return true;
         }
         got = afw_value_get_data_type(value, xctx);

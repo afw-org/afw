@@ -154,8 +154,8 @@ afw_function_execute_debug(
 
     afw_debug(flag_index, NULL, s, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -546,7 +546,7 @@ afw_function_execute_trace(
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(filter, 2, boolean);
         if (!filter->internal) {
-            return afw_value_undefined;
+            return afw_value_void;
         }
     }
 
@@ -572,8 +572,8 @@ afw_function_execute_trace(
     /* Write string to trace log. */
     afw_trace_write(priority, NULL, AFW__FILE_LINE__, s, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 

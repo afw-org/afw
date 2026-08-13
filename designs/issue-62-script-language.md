@@ -90,6 +90,10 @@ On this tree (after item 5): running result as in item 1. `x = y = 1;` works as 
 
 `xctx->script_result` is the running result for the current **script** compile (not test_script / template). `assign` and `return` write it. `evaluate_block` of a script body uses that slot; `break` / `continue` keep the prior value. Nested `evaluate(compile<script>)` and script-function calls save and restore the slot so `f();` does not adopt `f`’s result. A **#block as a value** (decompile / `evaluate(b)`) still uses last-statement. A script that is only one call or `#block(add(1,2))` yields that value so decompile of `1+2` stays `#block(add(1,2))`. test262 cases that `expect: undefined` after an assignment need a later sweep (`return;` or new expect).
 
+## Void singleton (in progress, leftover 1 mechanism)
+
+`afw_value_void` in `afw_value.h` is the permanent instance of data type `void`. Built-ins already declared `returns: void` return that pointer (not `undefined`). Script `: void` will use the same value. Statement-list “do not override” and `let`/`const` as void are the next slice.
+
 ## Item 5 (landed on this branch)
 
 A label may precede `for` / `while` / `do` only. `break` / `continue` take an optional Identifier that must name an enclosing loop label. Unknown, duplicate, and `a: b:` (two labels on one loop) are compile errors. Nested functions do not see outer labels. IR: optional string last arg on `for` / `for_of` / `while` / `do_while` / `break` / `continue`. Runtime: `xctx->statement_flow_label`; an inner loop or `switch` consumes unlabeled break (switch) or unlabeled break/continue (loop) only; labeled flow propagates until the matching loop. Unlabeled `continue` from a `switch` now continues the enclosing loop (ES-shaped; previously the switch reset it).

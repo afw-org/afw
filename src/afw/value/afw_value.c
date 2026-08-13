@@ -38,6 +38,16 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_undefined =
 { &impl_value_undefined.pub };
 
+static const afw_value_void_t
+impl_value_void = {
+    {&afw_value_permanent_void_inf},
+    NULL
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_void =
+{ &impl_value_void.pub };
+
 static const afw_value_null_t
 impl_value_unique_default_case_value = {
     {&afw_value_permanent_null_inf},
