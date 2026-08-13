@@ -429,20 +429,26 @@ class compiler_internal
      *
      * This throws an error that can be caught by a try/catch block. An error
      * object of object type _AdaptiveError_ will be available in the catch
-     * block. Its 'id' property will be set to 'throw'. Optional additional
-     * information is available as 'data'. The other properties are set based
-     * on the parameters specified and where this function is called.
+     * block. Its 'id' property is 'throw' unless the optional id parameter is
+     * supplied. Optional data is available as the 'data' property. The other
+     * properties are set based on the parameters specified and where this
+     * function is called.
      *
      * @param string $message This is the message that will be included in the
      *                        _AdaptiveError_ error object available in the
      *                        catch block.
-     * @param  $additional Optional additional information that will be
-     *                     available as the 'data' property of the
-     *                     _AdaptiveError_ object in the catch block.
+     * @param  $data Optional data that will be available as the 'data'
+     *               property of the _AdaptiveError_ object in the catch
+     *               block.
+     * @param string $id Optional error id (mnemonic) to use instead of
+     *                   'throw'. Must be a name allowed on script throw (for
+     *                   example not_found, denied, conflict). Sets the id
+     *                   property of the catch object and the HTTP status if
+     *                   the error is not caught.
      *
      * @return void
      */
-    public function throw(, $message, $additional = null)
+    public function throw(, $message, $data = null, $id = null)
     {
         $request = $this->$session->request();
 
@@ -452,8 +458,11 @@ class compiler_internal
         $request->set("message", $message);
 
         /* pass along any optional parameters to the request payload */
-        if ($additional != null)
-            $request->set('additional', $additional);
+        if ($data != null)
+            $request->set('data', $data);
+
+        if ($id != null)
+            $request->set('id', $id);
 
         return $request->get_result();
     }

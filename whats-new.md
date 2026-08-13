@@ -4,6 +4,8 @@ This note is for **AFW users** (script authors, model authors, operators, and pe
 
 Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted unless they affect runtime or tooling you use day to day.
 
+Things that still work and **will be removed** are listed in GitHub [**#172**](https://github.com/afw-org/afw/issues/172) (for example `throw "…" { … }` without the word **`data`**, and C declare helpers).
+
 ---
 
 ## libafw C API: toward a release-ready surface
@@ -43,7 +45,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**File streams (#103)**](#file-streams-open_file-and-friends) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
 | [**Conf path templates (#15)**](#conf-path-templates-issue-15) | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
 | [**VFS adapter (#79)**](#vfs-adapter-afw_vfs) | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
-| [**Model adapters (#109)**](#pure-script-model-adapters) | `mappedAdapterId` is **optional** for pure-script models |
+| [**Model adapters (#109)**](#pure-script-model-adapters) | `mappedAdapterId` is **optional** for pure-script models; `onGetObject` can `throw` … `id "not_found"` for HTTP **404** |
 | [**`afw` CLI**](#interactive-afw-line-editing-and-history) | Optional interactive line editing and history (#30); **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) — see also [YAML / `--allow`](#afw-allow-and-yaml-value-output-issue-14) |
 | [**JSON Schema (#3)**](#json-schema-for-adaptive-object-types) | Cleaner editor schemas for Adaptive object types |
 | [**Process env (#71)**](#process-environment-variables-issue-71) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
@@ -68,7 +70,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
-| [**Error codes (#33)**](#error-codes-trycatch-and-http-issue-33) | Review of `e.id` / HTTP map: **`none` / `general` / `throw` first**; parse errors **400**; missing adapter **404**; wrong HTTP method **405**; journal retrieve **501**. Prefer **`e.id`** over numeric `errorCode` |
+| [**Error codes (#33)**](#error-codes-trycatch-and-http-issue-33) | Review of `e.id` / HTTP map; script `throw` … `id "not_found"` (and similar) sets the catch object and HTTP status |
 
 ---
 
@@ -130,7 +132,16 @@ Error codes are both what a script sees on **`catch (e)`** (`e.id`, `e.errorCode
 | Authorization deny | `denied` | 403 |
 | Anything else | `general` | 500 |
 
-Script `throw` still always uses id `throw`. Extra classification still goes in **`e.data`**.
+Script `throw` may set **`id`** so the catch object and the HTTP status match a built-in name:
+
+```adaptive
+throw "Person not found" id "not_found";
+throw "Person not found" id "not_found" data { personId: id };
+```
+
+Allowed names include `not_found`, `denied`, `conflict`, `bad_request`, `read_only`, `payload_too_large`, `query_too_complex`, `method_not_allowed`, and `authentication_required`. Omitted **`id`** is still **`throw`** (HTTP 400).
+
+`throw "…" { … }` (a second expression with no **`data`** name) still works so existing scripts can be tested on this line. That form is **deprecated** and will be removed; write **`throw "…" data { … }`**. After removal, **`data`** after the message is only the clause name, so a variable also named `data` is **`throw "…" data data`**.
 
 Handbook: Language Reference **Features** (exception handling). Tests: `src/afw/tests/errors/error_codes.as`.
 
@@ -1125,6 +1136,21 @@ If an operation needs default processing and `mappedAdapterId` is missing, AFW f
 In scripts, `current::mappedAdapterId` is nullish when unset (it does not throw).
 
 `modelId` and `modelLocationAdapterId` remain required for both hybrid and pure-script models.
+
+If an `on*` script is the whole implementation of a request (for example **`onGetObject`** for a missing person), use **`throw` … `id`** so the HTTP status matches what a client expects. A plain `throw "Person not found"` is **`throw`** and HTTP **400**. This sets **`not_found`** and HTTP **404** if the error is not caught:
+
+```adaptive
+/* onGetObject */
+const person = /* … look up current::objectId … */;
+if (is_nullish(person)) {
+    throw "Person not found" id "not_found" data {
+        objectId: current::objectId
+    };
+}
+return person;
+```
+
+The same pattern works for **`denied`** (403), **`conflict`** (409), and the other names allowed on script `throw`. See [Error codes, try/catch, and HTTP](#error-codes-trycatch-and-http-issue-33).
 
 [↑ Highlights](#highlights)
 

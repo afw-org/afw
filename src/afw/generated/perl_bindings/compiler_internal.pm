@@ -286,9 +286,9 @@ with value1 and the case clause's value2.
 
 This throws an error that can be caught by a try/catch block. An error object
 of object type _AdaptiveError_ will be available in the catch block. Its 'id'
-property will be set to 'throw'. Optional additional information is available
-as 'data'. The other properties are set based on the parameters specified and
-where this function is called.
+property is 'throw' unless the optional id parameter is supplied. Optional
+data is available as the 'data' property. The other properties are set based
+on the parameters specified and where this function is called.
 Throws an error
 
 =head4 Parameters
@@ -298,10 +298,16 @@ Throws an error
 This is the message that will be included in the _AdaptiveError_ error object
 available in the catch block.
 
-    $additional
+    $data
 
-Optional additional information that will be available as the 'data' property
-of the _AdaptiveError_ object in the catch block.
+Optional data that will be available as the 'data' property of the
+_AdaptiveError_ object in the catch block.
+
+    $id
+
+Optional error id (mnemonic) to use instead of 'throw'. Must be a name allowed
+on script throw (for example not_found, denied, conflict). Sets the id
+property of the catch object and the HTTP status if the error is not caught.
 
 =head3 try
 
@@ -567,15 +573,18 @@ sub switch {
 }
 
 sub throw {
-    my ($message, $additional) = @_;
+    my ($message, $data, $id) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "throw");
     $request->set("message", $message);
 
-    if (defined $additional)
-        $request->set("additional", $additional);
+    if (defined $data)
+        $request->set("data", $data);
+
+    if (defined $id)
+        $request->set("id", $id);
 
     return $request->getResult();
 }

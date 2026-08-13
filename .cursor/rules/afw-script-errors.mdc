@@ -31,9 +31,11 @@ Fill: `afw_error_add_to_object()` / `afw_error_to_object()` in `error/afw_error.
 | Property | Meaning |
 |----------|---------|
 | **`message`** | Human text from `message_z` — **primary** for users and tests |
-| **`id`** | Mnemonic for the code (`general`, `not_found`, `throw`, …). **Prefer this.** Map: `AFW_ERROR_CODE_MAP` / `designs/issue-33-error-codes.md` |
-| **`errorCode`** | Numeric AFW error code (may change on this beta line) |
-| **`data`** | Optional payload from script `throw "msg" { … }` |
+| **`id`** | Name of the code (`general`, `not_found`, `throw`, …). **Prefer this.** Map: `AFW_ERROR_CODE_MAP` / `designs/issue-33-error-codes.md` |
+| **`errorCode`** | Internal number. Do not depend on it in scripts. |
+| **`data`** | Optional payload from `throw "msg" { … }` or `throw "msg" data …` |
+
+Script `throw` may add `id "not_found"` (and similar allowed names) so `e.id` and the HTTP status match that name. Prefer `throw "…" data { … }`. The old `throw "…" { … }` (no `data` name) is deprecated and will be removed. `throw;` is still rethrow.
 | **`rv`** | System return value when set (e.g. errno integer) |
 | **`rvSourceId`** | Decoder key (`apr`, `icu`, `errno`, …) |
 | **`rvDecoded`** | Decoder string (e.g. `strerror` for errno) |

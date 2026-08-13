@@ -1395,21 +1395,44 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  *# If there is no expression, the exception is rethrow and can only be
- *# contained in a catch block. If there is an expression, it is the message
- *# for the exception to be thrown. If there is a second expression, it
- *# can be any value and will be the value for the "data" property of the
- *# error object.
+ *# contained in a catch block. If there is an expression, it is the
+ *# message. Optional 'data' and 'id' clauses may appear in either
+ *# order; 'id' must evaluate to a string allowed on script throw.
+ *# A following expression with no 'data' name is still accepted as
+ *# data (deprecated; will be removed).
  *#
- * ThrowStatement ::=  'throw' ( Expression  Expression? )?
+ * ThrowStatement ::= 'throw' |
+ *     'throw' Expression
+ *         ( Expression | ( ( 'data' Expression | 'id' Expression )+ ) )?
  *
  *<<<ebnf*/
+static void
+impl_throw_check_id(
+    afw_compile_parser_t *parser,
+    const afw_value_t *id_value)
+{
+    const afw_utf8_t *id;
+
+    id = &((const afw_value_string_t *)id_value)->internal;
+    if (!afw_error_id_allowed_on_script_throw(id)) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "id " AFW_UTF8_FMT_Q " is not allowed on throw",
+            AFW_UTF8_FMT_ARG(id));
+    }
+}
+
+
 static const afw_value_t *
 impl_parse_ThrowStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t *data_value;
+    const afw_value_t *id_value;
     afw_size_t argc;
     const afw_value_t **argv;
     const afw_compile_value_contextual_t *contextual;
+    afw_boolean_t saw_data;
+    afw_boolean_t saw_id;
 
     contextual = afw_compile_create_contextual_to_cursor(parser->cursor);
 
@@ -1428,23 +1451,66 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
     /* throw. */
     else {
         afw_compile_reuse_token();
-        argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 3,
+        argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 4,
             parser->xctx);
         argv[0] = &afw_function_definition_throw.pub;
         argc = 1;
+        data_value = NULL;
+        id_value = NULL;
+        saw_data = false;
+        saw_id = false;
 
         /* Message */
         argv[1] = afw_compile_parse_Expression(parser);
 
-        /* Optional data */
         afw_compile_get_token();
-        if (!afw_compile_token_is(semicolon)) {
+        if (afw_compile_token_is(semicolon)) {
+            /* message only */
+        }
+        else if (afw_compile_token_is_name(afw_s_data) ||
+            afw_compile_token_is_name(afw_s_id))
+        {
+            for (;;) {
+                if (afw_compile_token_is_name(afw_s_data)) {
+                    if (saw_data) {
+                        AFW_COMPILE_THROW_ERROR_Z(
+                            "data already specified on throw");
+                    }
+                    saw_data = true;
+                    data_value = afw_compile_parse_Expression(parser);
+                }
+                else if (afw_compile_token_is_name(afw_s_id)) {
+                    if (saw_id) {
+                        AFW_COMPILE_THROW_ERROR_Z(
+                            "id already specified on throw");
+                    }
+                    saw_id = true;
+                    id_value = afw_compile_parse_Expression(parser);
+                    if (AFW_VALUE_IS_DATA_TYPE(id_value, string)) {
+                        impl_throw_check_id(parser, id_value);
+                    }
+                }
+                else {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Expecting 'data', 'id', or ';'");
+                }
+                afw_compile_get_token();
+                if (afw_compile_token_is(semicolon)) {
+                    break;
+                }
+            }
+            argv[2] = data_value;
+            argv[3] = id_value;
+            argc = saw_id ? 3 : 2;
+        }
+        else {
+            /* Existing form: second expression is data. */
             afw_compile_reuse_token();
             argv[2] = afw_compile_parse_Expression(parser);
             argc = 2;
             AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
         }
-    
+
         /* Create the throw function call. */
         result = afw_value_call_built_in_function_create(
             contextual, argc, argv, true,

@@ -2,7 +2,7 @@
 
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#33](https://github.com/afw-org/afw/issues/33) — *Review/Change Error Codes*  
-**Status:** best-effort pass on branch `issue-#33-error-codes`. Map reordered; obvious `general` HTTP sites retargeted. Not closed — throw-with-id and more site review still open.  
+**Status:** best-effort pass on branch `issue-#33-error-codes`. Map reordered; some HTTP throws retargeted; script `throw` may set `id`. Built-in `errorsThrown` review and extension-defined names still open.  
 **Related:** try/catch (`afw-script-errors`), HTTP request path (`afw-server` / `afw-server-fcgi`), crypto prefix convention (`secrets-and-afw-crypto.md`), #158 `terminating` → 503.
 
 ## Landed (this branch)
@@ -21,7 +21,24 @@ Beta rebuild is assumed, so the enum was **reordered**: `none`, `general`, `thro
 
 `syntax` HTTP **500 → 400** (Adaptive parse is not a server bug). `general` stays the default for everything else (including `open_file` miss + errno `rv`).
 
-Not in this pass: script `throw` choosing an id; catch-by-id syntax; mass `general` retarget.
+### Script `throw` and `id`
+
+```adaptive
+throw "Person not found";
+throw "Person not found" data { personId: id };
+throw "Person not found" id "not_found";
+throw "Person not found" id "not_found" data { personId: id };
+```
+
+`data` and `id` are names only in this statement (not new reserved words). Either order. At most one of each.
+
+`throw "…" { … }` (second expression, no `data` name) is **deprecated**, kept for a while so people can test on `mgg-develop`. Remove it after that. `data` is a common variable name: while the old form remains, `throw "…" data` cannot mean “payload is the variable `data`” (it starts the `data` clause). After removal, that is only `throw "…" data data`.
+
+`id` must evaluate to a string allowed on script throw: `throw`, `not_found`, `denied`, `authentication_required`, `conflict`, `bad_request`, `read_only`, `payload_too_large`, `query_too_complex`, `method_not_allowed`. A string literal that is not allowed is a compile error; a value computed at run time that is not allowed is `arg_error`.
+
+Sets `e.id` and the HTTP status from the map. Phrase on the status line stays the map text.
+
+Not in this pass: built-in `errorsThrown` honesty pass; extension-defined names; catch-by-id syntax.
 
 ## Issue text (all of it)
 

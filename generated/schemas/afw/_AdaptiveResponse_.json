@@ -44,9 +44,15 @@
                     "markdownDescription": "**Additional**\n\nOptional data supplied on the throw.",
                     "title": "Additional"
                 },
+                "error": {
+                    "description": "Always true on an _AdaptiveError_ object. A marker so a printed or stringified object is easy to recognize.",
+                    "markdownDescription": "**Error**\n\nAlways true on an _AdaptiveError_ object. A marker so a printed or stringified object is easy to recognize.",
+                    "title": "Error",
+                    "type": "boolean"
+                },
                 "errorCode": {
-                    "description": "The numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
-                    "markdownDescription": "**Error Code**\n\nThe numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
+                    "description": "Internal numeric code from the C error map. Included so a printed or stringified error has everything that was collected. Scripts should use id, not this number. The number may change when the map is reviewed.",
+                    "markdownDescription": "**Error Code**\n\nInternal numeric code from the C error map. Included so a printed or stringified error has everything that was collected. Scripts should use id, not this number. The number may change when the map is reviewed.",
                     "title": "Error Code",
                     "type": "integer"
                 },
@@ -102,23 +108,23 @@
                     "description": "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
                     "markdownDescription": "**Parser Source**\n\nThis is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
                     "title": "Parser Source",
-                    "type": "integer"
-                },
-                "rv": {
-                    "description": "The return value.",
-                    "markdownDescription": "**Rv**\n\nThe return value.",
-                    "title": "Rv",
                     "type": "string"
                 },
+                "rv": {
+                    "description": "Internal integer from the failing library (for example an errno or APR status). Included so a printed or stringified error can be decoded. Scripts should not test this value; use message or id.",
+                    "markdownDescription": "**Rv**\n\nInternal integer from the failing library (for example an errno or APR status). Included so a printed or stringified error can be decoded. Scripts should not test this value; use message or id.",
+                    "title": "Rv",
+                    "type": "integer"
+                },
                 "rvDecoded": {
-                    "description": "The decoded rv.",
-                    "markdownDescription": "**Rv Decoded**\n\nThe decoded rv.",
+                    "description": "Internal human-readable decode of rv from the decoder named by rvSourceId (for example strerror for errno). Useful in a printed dump, not for script tests.",
+                    "markdownDescription": "**Rv Decoded**\n\nInternal human-readable decode of rv from the decoder named by rvSourceId (for example strerror for errno). Useful in a printed dump, not for script tests.",
                     "title": "Rv Decoded",
                     "type": "string"
                 },
                 "rvSourceId": {
-                    "description": "The source id of rv.",
-                    "markdownDescription": "**Rv Source**\n\nThe source id of rv.",
+                    "description": "Internal name of the decoder used for rv: errno, apr, or icu. Useful in a printed dump, not for script tests.",
+                    "markdownDescription": "**Rv Source**\n\nInternal name of the decoder used for rv: errno, apr, or icu. Useful in a printed dump, not for script tests.",
                     "title": "Rv Source",
                     "type": "string"
                 },
@@ -177,9 +183,15 @@
                     "markdownDescription": "**Additional**\n\nOptional data supplied on the throw.",
                     "title": "Additional"
                 },
+                "error": {
+                    "description": "Always true on an _AdaptiveError_ object. A marker so a printed or stringified object is easy to recognize.",
+                    "markdownDescription": "**Error**\n\nAlways true on an _AdaptiveError_ object. A marker so a printed or stringified object is easy to recognize.",
+                    "title": "Error",
+                    "type": "boolean"
+                },
                 "errorCode": {
-                    "description": "The numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
-                    "markdownDescription": "**Error Code**\n\nThe numeric error code. Prefer the mnemonic 'id' in scripts; this number may change on the beta line when the error-code map is reviewed.",
+                    "description": "Internal numeric code from the C error map. Included so a printed or stringified error has everything that was collected. Scripts should use id, not this number. The number may change when the map is reviewed.",
+                    "markdownDescription": "**Error Code**\n\nInternal numeric code from the C error map. Included so a printed or stringified error has everything that was collected. Scripts should use id, not this number. The number may change when the map is reviewed.",
                     "title": "Error Code",
                     "type": "integer"
                 },
@@ -235,23 +247,23 @@
                     "description": "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
                     "markdownDescription": "**Parser Source**\n\nThis is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
                     "title": "Parser Source",
-                    "type": "integer"
-                },
-                "rv": {
-                    "description": "The return value.",
-                    "markdownDescription": "**Rv**\n\nThe return value.",
-                    "title": "Rv",
                     "type": "string"
                 },
+                "rv": {
+                    "description": "Internal integer from the failing library (for example an errno or APR status). Included so a printed or stringified error can be decoded. Scripts should not test this value; use message or id.",
+                    "markdownDescription": "**Rv**\n\nInternal integer from the failing library (for example an errno or APR status). Included so a printed or stringified error can be decoded. Scripts should not test this value; use message or id.",
+                    "title": "Rv",
+                    "type": "integer"
+                },
                 "rvDecoded": {
-                    "description": "The decoded rv.",
-                    "markdownDescription": "**Rv Decoded**\n\nThe decoded rv.",
+                    "description": "Internal human-readable decode of rv from the decoder named by rvSourceId (for example strerror for errno). Useful in a printed dump, not for script tests.",
+                    "markdownDescription": "**Rv Decoded**\n\nInternal human-readable decode of rv from the decoder named by rvSourceId (for example strerror for errno). Useful in a printed dump, not for script tests.",
                     "title": "Rv Decoded",
                     "type": "string"
                 },
                 "rvSourceId": {
-                    "description": "The source id of rv.",
-                    "markdownDescription": "**Rv Source**\n\nThe source id of rv.",
+                    "description": "Internal name of the decoder used for rv: errno, apr, or icu. Useful in a printed dump, not for script tests.",
+                    "markdownDescription": "**Rv Source**\n\nInternal name of the decoder used for rv: errno, apr, or icu. Useful in a printed dump, not for script tests.",
                     "title": "Rv Source",
                     "type": "string"
                 },
