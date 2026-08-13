@@ -32,7 +32,8 @@
             <literal>--srcdir-pattern</literal> and 
             <literal>--test-pattern</literal>. A group is usually a 
             directory of related files that should stay together when they 
-            share conf or data.
+            share conf or data. A short note about the core gate tree is in 
+            <literal>src/afw/tests/README.md</literal>.
         </paragraph>
     </section>
     <section>

@@ -4,8 +4,9 @@ This tree is what `afwdev test -j` runs for core. The runner discovers tests
 under each source directory's `tests/` folder (`src/*/tests/`).
 
 Add a test by copying a neighbor and editing it. The handbook Developer
-Guide **Writing Tests** has the `//?` syntax and expect keys
-(`src/afw/doc/guide/developer/writing-tests.xml`).
+Guide **Writing Tests** (Guides → Developer → Writing Tests) has the
+`//?` syntax and expect keys. Source:
+`src/afw/doc/guide/developer/writing-tests.xml`.
 
 A few landmarks — not a catalog of every group:
 

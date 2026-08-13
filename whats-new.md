@@ -87,7 +87,7 @@ Hermetic multi-step / multi-request tests discovered by **`orchestration.yaml`**
 | **Gate examples** | `src/afw/tests/advanced/`, `src/afw_command/tests/local-mode/` |
 | **Extras** | Progressive, firehose, REST soaks — `src/afw/tests-extra/` ([README](src/afw/tests-extra/README.md), [SCHEMA](src/afw/tests-extra/SCHEMA.md)) |
 | **Test scripts** | `//? expect-stdout` / `expect-stderr` (and `//? key: <<< path` file values) on Adaptive test scripts |
-| **How to write** | Handbook Developer Guide [`src/afw/doc/guide/developer/writing-tests.xml`](src/afw/doc/guide/developer/writing-tests.xml); pads [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md) (history), [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md) |
+| **How to write** | Handbook **Developer Guide → Writing Tests** (installed: `/docs/afw/html/guide/developer/writing-tests.html`). Gate README [`src/afw/tests/README.md`](src/afw/tests/README.md). Pads [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md) (history), [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md) |
 | **PR** | **[#167](https://github.com/afw-org/afw/pull/167)** → `mgg-develop` |
 
 **Retired:** marker name **`advanced-test.yaml`** (migrated to `orchestration.yaml`);
@@ -208,7 +208,7 @@ outer: for (let i = 0; i < 3; i = i + 1) {
 }
 ```
 
-Handbook: Language Reference **Statements**. Tests: `src/afw/tests/language/script/let_const.as`, `for.as`, `assignment.as`, `script_result.as`, `void_result.as`, `labels.as`.
+Handbook: Language Reference **Statements**. How to write tests: Developer Guide **Writing Tests**. Tests: `src/afw/tests/language/script/let_const.as`, `for.as`, `assignment.as`, `script_result.as`, `void_result.as`, `labels.as`.
 
 [↑ Highlights](#highlights)
 

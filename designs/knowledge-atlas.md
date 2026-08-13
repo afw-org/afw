@@ -216,7 +216,6 @@
 | **Deep pads** | array-semantics, conversion-functions, utf8-code-point-sequences, issue-17 faces, issue-38, issue-138 meta wire, [`issue-33-error-codes.md`](issue-33-error-codes.md) |
 | **Probe** | Language suite under `src/afw/tests/`; Fiddle / `afw -s` |
 | **Open** | Language residuals tracked in issues/pads |
-| **Gap** | “How to write a good .as test” → `afw-tests` + handbook Developer Guide writing-tests |
 
 ---
 
@@ -224,7 +223,7 @@
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**) |
+| **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**); handbook Developer Guide **Writing Tests**; gate `src/afw/tests/README.md`; extras SCHEMA in `tests-extra/` |
 | **Day rules** | `afw-tests`, `afw-afwdev-python`, `afw-afwdev-generate` |
 | **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; handbook `guide/developer/writing-tests.xml` |
 | **Probe** | See recipe commands below |
