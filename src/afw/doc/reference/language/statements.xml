@@ -29,9 +29,18 @@
         <title>Assignment</title>
         <image generated-src="ebnf/syntax/diagram/Assignment.png" />
         <paragraph>
-            The Assignment statement assigns the value of an Expression to 
-            an AssignmentExpression. An AssignmentExpression is also an Expression 
-            which must evaluate to one of the following: 
+            The Assignment statement assigns a value to a variable, a
+            property, or an index. You can chain assignments in one
+            statement, right to left: <literal>x = y = 1</literal> sets
+            both names to <literal>1</literal>. Compound forms such as
+            <literal>+=</literal> can appear in the chain. Assignment is
+            not an expression: do not write <literal>(x = 1) &gt; x</literal>
+            or <literal>x = (y = 1)</literal>. The right-hand side of
+            <literal>let</literal> / <literal>const</literal> is still an
+            Expression, so <literal>let x = y = 1</literal> is not allowed.
+        </paragraph>
+        <paragraph>
+            The target must evaluate to one of the following:
         </paragraph>
         <list>
             <item>VariableReference</item>
@@ -46,7 +55,9 @@
         <section>
             <title>Example</title>
             <code><![CDATA[let x = 1;
-let {y} = { y: 2 };
+let y;
+x = y = 2;
+let { host } = { host: "h" };
 let [z] = [ 3 ];]]></code>
         </section>
     </section>

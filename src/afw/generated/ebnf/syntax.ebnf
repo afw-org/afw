@@ -560,6 +560,9 @@ OptionalDefineAssignment ::= (
 )
 
 /* From afw_compile_parse_script.c                                            */
+/* RHS is Assignment when it is another target + assign operator              */
+/* (x = y = 1). Otherwise Expression (x = i + 1). Issue #62.                  */
+/* Not assignment-as-expression: (x = 1) > x stays illegal.                   */
 
 AssignmentOperation ::=
    (
@@ -569,7 +572,7 @@ AssignmentOperation ::=
              '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
              '**=' | '&&=' | '||=' | '??='
            )
-           Expression
+           ( Assignment | Expression )
       )
    )
 
@@ -581,7 +584,7 @@ Assignment ::= AssignmentExpression AssignmentOperation
 
 AssignmentStatement ::=
    (
-       ( '(' AssignmentObjectDestructureTarget '=' Expression ')' ) |
+       ( '(' AssignmentObjectDestructureTarget '=' Assignment ')' ) |
        Assignment
    )
    ';'

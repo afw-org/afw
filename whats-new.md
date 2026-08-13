@@ -71,7 +71,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
 | [**Error codes (#33)**](#error-codes-trycatch-and-http-issue-33) | Review of `e.id` / HTTP map; script `throw` … `id "not_found"` (and similar) sets the catch object and HTTP status |
-| [**Multi `let` / `const` (#62)**](#multi-let-and-const-issue-62) | Several names on one `let` / `const`; C-style `for` init is one `let`, `const`, or assignment (`for (let i = 0, j = 1; …)`) |
+| [**Multi `let` / `const` (#62)**](#multi-let-and-const-issue-62) | Several names on one `let` / `const`; C-style `for` init is one statement; `x = y = 1;` is a statement chain |
 
 ---
 
@@ -187,7 +187,16 @@ for (let i = 0, j = 1; i < 3; i = i + 1) {
 }
 ```
 
-Other #62 language items (script result value, chained assignment, loop labels) are still in progress on this line.
+You can chain assignments in one statement, right to left. That is still a statement, not an expression: `x = y = 1;` is fine; `(x = 1) > x` and `let x = y = 1` are not.
+
+```adaptive
+let x;
+let y;
+x = y = 1;
+x = y += 2;
+```
+
+Other #62 language items (script result value, loop labels) are still in progress on this line.
 
 Handbook: Language Reference **Statements**. Tests: `src/afw/tests/language/script/let_const.as`.
 

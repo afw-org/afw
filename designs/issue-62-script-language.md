@@ -50,7 +50,7 @@ This is Adaptive completion, not ES `cptn-*` / test262.
 |------|------|--------|
 | **2** | Multi `let` / `const` | Landed. Enables a sane `for` header. |
 | **3** | `for` init is one statement | Landed. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is a reserved-word error. |
-| **4** | Chained assignment **statement** | Production rework; not general expression. |
+| **4** | Chained assignment **statement** | Landed. `x = y = 1;` works; `(x = 1) > x` and `let x = y = 1` do not. |
 | **1** | Running result | After the syntax that writes results is in place. |
 | **5** | Loop labels | Independent; last or a later slice. |
 
@@ -76,7 +76,11 @@ Decompile of the comma form may emit separate `let` / `const` lines (same bindin
 
 ## Live probes (before item 1)
 
-On this tree, last evaluated statement is the script result: `let x = 1;` → `1`; `let x = 1; if (true) { let y = 2; }` → `2`; empty `if` or bare `break;` → `undefined`. `x = y = 1` does not parse. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is “Variable name can not be a reserved word”. `outer: for` does not parse. Implicit `x = 1` without `let` is “Unknown built-in function `x`.”
+On this tree, last evaluated statement is the script result: `let x = 1;` → `1`; `let x = 1; if (true) { let y = 2; }` → `2`; empty `if` or bare `break;` → `undefined`. `x = y = 1;` works as a statement. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is “Variable name can not be a reserved word”. `outer: for` does not parse. Implicit `x = 1` without `let` is “Unknown built-in function `x`.”
+
+## Item 4 (landed on this branch)
+
+`AssignmentOperation` RHS is `Assignment`, so `x = y = 1` / `x = y += 1` is right-associative and still a statement. `let` / `const` / `if (…)` / parenthesized expressions stay Expression-only. `x = (y = 1)` is not accepted (the Adaptive cut vs TS/JS).
 
 ## Item 3 (landed on this branch)
 

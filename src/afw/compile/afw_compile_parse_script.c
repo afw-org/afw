@@ -409,7 +409,74 @@ afw_compile_parse_OptionalDefineAssignment(
 
 
 
+static afw_boolean_t
+impl_token_is_assignment_operator(const afw_compile_parser_t *parser)
+{
+    switch (parser->token->type) {
+    case afw_compile_token_type_equal:
+    case afw_compile_token_type_plus_equal:
+    case afw_compile_token_type_minus_equal:
+    case afw_compile_token_type_multiply_equal:
+    case afw_compile_token_type_divide_equal:
+    case afw_compile_token_type_modulus_equal:
+    case afw_compile_token_type_exponentiation_equal:
+    case afw_compile_token_type_and_equal:
+    case afw_compile_token_type_or_equal:
+    case afw_compile_token_type_nullish_equal:
+        return true;
+    default:
+        return false;
+    }
+}
+
+
+/*
+ * RHS of '=' / '+=' / … : chain if the next form is a target plus an
+ * assignment operator (x = y = 1). Otherwise a full Expression so
+ * x = i + 1 does not stop after i. Current token is the operator just
+ * recognized. Not assignment-as-expression: (y = 1) stays Expression.
+ */
+static const afw_value_t *
+impl_parse_assignment_rhs(afw_compile_parser_t *parser)
+{
+    const afw_value_t *target;
+    afw_size_t saved;
+    afw_boolean_t just_expression_okay;
+    afw_boolean_t was_expression;
+
+    /* Current token is the assign operator; cursor is after it. */
+    afw_compile_save_cursor(saved);
+    afw_compile_get_token();
+    /*
+     * '[' / '{' start array/object literals or destructure targets.
+     * AssignmentExpression would take the target path and throw on a
+     * literal. Those RHSs are Expressions (x = [1, 2]).
+     */
+    if (afw_compile_token_is(open_bracket) ||
+        afw_compile_token_is(open_brace))
+    {
+        afw_compile_restore_cursor(saved);
+        return afw_compile_parse_Expression(parser);
+    }
+    was_expression = false;
+    target = afw_compile_parse_AssignmentExpression(parser,
+        &was_expression, &just_expression_okay);
+    afw_compile_get_token();
+    if (impl_token_is_assignment_operator(parser)) {
+        afw_compile_reuse_token();
+        return afw_compile_parse_AssignmentOperation(parser, target,
+            just_expression_okay, &was_expression);
+    }
+    afw_compile_restore_cursor(saved);
+    return afw_compile_parse_Expression(parser);
+}
+
+
 /*ebnf>>>
+ *
+ *# RHS is Assignment when it is another target + assign operator
+ *# (x = y = 1). Otherwise Expression (x = i + 1). Issue #62.
+ *# Not assignment-as-expression: (x = 1) > x stays illegal.
  *
  * AssignmentOperation ::=
  *    (
@@ -419,7 +486,7 @@ afw_compile_parse_OptionalDefineAssignment(
  *              '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
  *              '**=' | '&&=' | '||=' | '??='
  *            )
- *            Expression
+ *            ( Assignment | Expression )
  *       )
  *    )
  *
@@ -507,7 +574,7 @@ afw_compile_parse_AssignmentOperation(
             result = afw_integer_v_one;
         }
         else {
-            result = afw_compile_parse_Expression(parser);
+            result = impl_parse_assignment_rhs(parser);
         }
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 3,
@@ -521,7 +588,7 @@ afw_compile_parse_AssignmentOperation(
                 2, argv, true, parser->p, parser->xctx);
     }
     else {
-        result = afw_compile_parse_Expression(parser);
+        result = impl_parse_assignment_rhs(parser);
     }
 
     argv = afw_pool_malloc(parser->p,
@@ -570,7 +637,7 @@ afw_compile_parse_Assignment(
  *
  * AssignmentStatement ::=
  *    (
- *        ( '(' AssignmentObjectDestructureTarget '=' Expression ')' ) |
+ *        ( '(' AssignmentObjectDestructureTarget '=' Assignment ')' ) |
  *        Assignment
  *    )
  *    ';'
