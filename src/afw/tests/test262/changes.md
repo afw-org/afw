@@ -85,6 +85,7 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 | Case | How | Brief |
 |------|-----|--------|
 | test262 `expect: undefined` vs last assign | **T:** →fix | Bulk `return;` so converter default matches “did not throw”; original TC39 is the check. let/const `cptn-value` now empty completion |
+| [try `cptn-*` / `S12.14_A6`](#try-cptn-assignment-probes) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Assignment probes; empty try/catch/finally do not write; break/continue keep last assign |
 
 ### Object / array helpers ([#55](https://github.com/afw-org/afw/issues/55)) and dense arrays ([#39](https://github.com/afw-org/afw/issues/39))
 
@@ -470,5 +471,21 @@ literal exponents). Same pattern for later subtraction/`**`.
 Was **false green**: `expect: error:#1: Scope chain disturbed` (assert throw).
 Adaptive: nested `f2` returns **outer** `x` (**0**), not inner `let x = 1`.
 Converted to hard expect `0` + `differences` (no var-hoist / ES TDZ lineage).
+
+[↑ Index](#index)
+
+---
+
+## try cptn assignment probes
+
+**Case:** `statements/try.as` — `cptn-*`, `S12.14_A6`, and the four
+`cptn-catch-empty-*` / `cptn-catch-finally-empty-*` parse-error stand-ins.
+
+Old skips were half-converted ES ExpressionStatements (`1;`, `'bad';`) plus
+undeclared `y;` / `z;`. Rewrote to Adaptive assignment probes: empty
+try/catch/finally do not write the running result; an assign inside does;
+`break` / `continue` keep the last assign (not ES UpdateEmpty). `if` needs a
+boolean (`i !== 0`). Still skip `scope-catch-block-lex-open` and
+`scope-catch-param-var-none` (catch Pattern / destructure — [#140](https://github.com/afw-org/afw/issues/140)).
 
 [↑ Index](#index)

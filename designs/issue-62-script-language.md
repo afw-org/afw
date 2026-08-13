@@ -89,7 +89,7 @@ On this tree (after item 5): running result as in item 1. `x = y = 1;` works as 
 
 ## Item 1 (landed on this branch)
 
-`xctx->script_result` is the running result for the current **script** compile (not test_script / template). `assign` and `return` write it. `evaluate_block` of a script body uses that slot; `break` / `continue` keep the prior value. Nested `evaluate(compile<script>)` and script-function calls save and restore the slot so `f();` does not adopt `f`’s result. A **#block as a value** (decompile / `evaluate(b)`) still uses last-statement. A script that is only one call or `#block(add(1,2))` yields that value so decompile of `1+2` stays `#block(add(1,2))`. test262 cases that `expect: undefined` after an assignment need a later sweep (`return;` or new expect).
+`xctx->script_result` is the running result for the current **script** compile (not test_script / template). `assign` and `return` write it. `evaluate_block` of a script body uses that slot; `break` / `continue` keep the prior value. Nested `evaluate(compile<script>)` and script-function calls save and restore the slot so `f();` does not adopt `f`’s result. A **#block as a value** (decompile / `evaluate(b)`) still uses last-statement. A script that is only one call or `#block(add(1,2))` yields that value so decompile of `1+2` stays `#block(add(1,2))`. test262 `expect: undefined` cases that only `throw` on failure got a trailing `return;`. `try.as` `cptn-*` / `S12.14_A6` were rewritten as assignment probes (still skip two catch-Pattern cases).
 
 ## Void singleton (in progress, leftover 1 mechanism)
 

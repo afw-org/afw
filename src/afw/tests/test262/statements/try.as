@@ -574,164 +574,142 @@ assert(
 
 //? test: cptn-catch-empty-break
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect:error:Parse error at offset 98 around line 1 column 99: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (break does not wipe).
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) { break; } } bad = 1; }"));
+assert(completion === 1);
+return;
 //? test: cptn-catch-empty-continue
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect: error:Parse error at offset 101 around line 1 column 102: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (continue does not wipe).
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) { continue; } } bad = 1; }"));
+assert(completion === 1);
+return;
 //? test: cptn-catch-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: error:Parse error at offset 109 around line 1 column 110: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (break in finally does not wipe).
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) {} finally { break; } } bad = 1; }"));
+assert(completion === 1);
+return;
 //? test: cptn-catch-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: error:Parse error at offset 112 around line 1 column 113: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (continue in finally does not wipe).
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
-assert(completion === undefined);
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) {} finally { continue; } } bad = 1; }"));
+assert(completion === 1);
+return;
 
 
 //? test: cptn-catch
 //? description: Completion value from `catch` clause of a try..catch statement
+//? differences: ...
+Adaptive has no `3;` ExpressionStatement. Probes use assignment.
+Empty catch does not write; assign in catch does.
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { throw null; } catch (err) { }') === undefined);
-assert(eval(script('2; try { throw null; } catch (err) { 3; }') === 3);
+assert(eval(script('let x; x = 1; try { throw "e"; } catch (err) { }')) === 1);
+assert(eval(script('let x; try { throw "e"; } catch (err) { x = 3; }')) === 3);
 return;
 //? test: cptn-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
+//? differences: ...
+ES UpdateEmpty on break in finally yields undefined. Adaptive keeps
+the last assignment (break does not wipe).
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
-assert(completion === undefined);
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try {} finally { break; } } bad = 1; }"));
+assert(completion === 1);
 return;
 //? test: cptn-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
+//? differences: ...
+No `'bad';` statement. Adaptive keeps the last assignment across
+continue in finally.
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
-assert(completion === undefined);
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try {} finally { continue; } } bad = 1; }"));
+assert(completion === 1);
 return;
 //? test: cptn-finally-from-catch
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
     (following execution of `catch` block)
+//? differences: Assignment probes; finally let does not override catch assign.
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
-assert(
-  eval(script('1; try { throw null; } catch (err) { } finally { }'), undefined
-);
-assert(
-  eval(script('2; try { throw null; } catch (err) { 3; } finally { }'), 3
-);
-assert(
-  eval(script('4; try { throw null; } catch (err) { } finally { 5; }'), undefined
-);
-assert(
-  eval(script('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
-);
+assert(eval(script('let x; x = 1; try { throw "e"; } catch (err) { } finally { }')) === 1);
+assert(eval(script('let x; try { throw "e"; } catch (err) { x = 3; } finally { }')) === 3);
+assert(eval(script('let x; x = 4; try { throw "e"; } catch (err) { } finally { let y = 5; }')) === 4);
+assert(eval(script('let x; try { throw "e"; } catch (err) { x = 7; } finally { let y = 8; }')) === 7);
 return;
 //? test: cptn-finally-skip-catch
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
     (when `catch` block is not executed)
+//? differences: Assignment probes; empty try/finally do not write.
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { } catch (err) { } finally { }') === undefined);
-assert(eval(script('2; try { } catch (err) { 3; } finally { }') === undefined);
-assert(eval(script('4; try { } catch (err) { } finally { 5; }') === undefined);
-assert(eval(script('6; try { } catch (err) { 7; } finally { 8; }') === undefined);
-assert(eval(script('9; try { 10; } catch (err) { } finally { }') === 10);
-assert(eval(script('11; try { 12; } catch (err) { 13; } finally { }') === 12);
-assert(eval(script('14; try { 15; } catch (err) { } finally { 16; }') === 15);
-assert(eval(script('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
+assert(eval(script('try { } catch (err) { } finally { }')) === undefined);
+assert(eval(script('let x; x = 2; try { } catch (err) { x = 3; } finally { }')) === 2);
+assert(eval(script('let x; try { x = 10; } catch (err) { } finally { }')) === 10);
+assert(eval(script('let x; try { x = 12; } catch (err) { x = 13; } finally { }')) === 12);
+assert(eval(script('let x; try { x = 15; } catch (err) { } finally { let y = 16; }')) === 15);
 return;
 //? test: cptn-finally-wo-catch
 //? description: Completion value from `finally` clause of a try..finally statement
+//? differences: Assignment probes; finally let does not override try assign.
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { } finally { }') === undefined);
-assert(eval(script('2; try { 3; } finally { }') === 3);
-assert(eval(script('4; try { } finally { 5; }') === undefined);
-assert(eval(script('6; try { 7; } finally { 8; }') === 7);
+assert(eval(script('try { } finally { }')) === undefined);
+assert(eval(script('let x; try { x = 3; } finally { }')) === 3);
+assert(eval(script('let x; x = 4; try { } finally { let y = 5; }')) === 4);
+assert(eval(script('let x; try { x = 7; } finally { let y = 8; }')) === 7);
 return;
 //? test: cptn-try
 //? description: Completion value from `try` clause of a try..catch statement
+//? differences: Assignment probes; empty try does not write.
 //? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { } catch (err) { }') === undefined);
-assert(eval(script('2; try { 3; } catch (err) { }') === 3);
-assert(eval(script('4; try { } catch (err) { 5; }') === undefined);
-assert(eval(script('6; try { 7; } catch (err) { 8; }') === 7);
+assert(eval(script('try { } catch (err) { }')) === undefined);
+assert(eval(script('let x; try { x = 3; } catch (err) { }')) === 3);
+assert(eval(script('let x; x = 4; try { } catch (err) { x = 5; }')) === 4);
+assert(eval(script('let x; try { x = 7; } catch (err) { x = 8; }')) === 7);
 return;
 //? test: early-catch-duplicates
 //? description:...
@@ -3519,9 +3497,8 @@ return;
 //? description:...
     Executing sequence of "try" statements, using counters with
     varying values within
+//? differences: Undeclared `y;` / `z;` are not Adaptive statements; use throw.
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: try statement semantics half-converted from test262
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3529,8 +3506,7 @@ return;
 let c1=0;
 try {
   c1+=1;
-  y;
-  throw '#1.1: "y" lead to throwing exception';
+  throw "y";
 }
 catch (e) {
   c1*=2;
@@ -3555,7 +3531,7 @@ if (c2!==2){
 let c3=0;
 try{
   c3=1;
-  z;
+  throw "z";
 }
 catch(err){
   c3*=2;
