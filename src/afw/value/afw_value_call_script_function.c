@@ -375,7 +375,19 @@ impl_afw_value_optional_evaluate(
         else {
             result = afw_value_evaluate(script->body, p, xctx);
         }
-        if (afw_value_is_void(result)) {
+        /*
+         * Declared : void is a procedure: discard the running result and
+         * return the void singleton so a call statement does not write
+         * (same as print()). Untyped empty body (void from let) still
+         * becomes undefined.
+         */
+        if (script->returns &&
+            afw_value_type_get_leaf_data_type(script->returns) ==
+                afw_data_type_void)
+        {
+            result = afw_value_void;
+        }
+        else if (afw_value_is_void(result)) {
             result = afw_value_undefined;
         }
 

@@ -93,6 +93,19 @@ assert(r === 1);
 return 0;
 
 //?
+//? test: void-script-function-does-not-write
+//? description: ...
+A script function declared : void that assigns internally does not
+override the caller running result.
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "function f(): void { let x; x = 7; } let y; y = 1; f();")));
+assert(r === 1);
+return 0;
+
+//?
 //? test: lone-call
 //? description: a script that is only a call yields the call value
 //? expect: 0

@@ -84,3 +84,15 @@ return 0;
 const f = function() 7;
 assert(f() === 7);
 return 0;
+
+//?
+//? test: void-script-function-is-void
+//? description: Declared : void yields the void singleton, not the body assign
+//? expect: 0
+//? source: ...
+
+const f = function(): void { let x; x = 7; };
+assert(f() === print());
+assert(f() !== 7);
+assert(f() !== undefined);
+return 0;
