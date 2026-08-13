@@ -80,6 +80,14 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 | [First-pass skipReason labels](#first-pass-skipreason-labels) | meta | Every skip got a prefix |
 | [FIXME triage note](#fixme-triage-note) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/FIXME-triage.md) | [`FIXME-triage.md`](FIXME-triage.md) shortlist |
 
+### Harness convert ([#106](https://github.com/afw-org/afw/issues/106))
+
+| Case | How | Brief |
+|------|-----|--------|
+| LTR `xf() op yf()` (`\|\|` `/` `%` `-` `**`) | **T:** →run | throw from left; right must not run |
+| `valueOf` / ToPrimitive order | **T:** →inc | **Never:** no JS object ToNumber |
+| assignment `null.prop` after RHS | **T:** →run | `count += 1` happens; then property set fails |
+
 ### Script result ([#62](https://github.com/afw-org/afw/issues/62))
 
 | Case | How | Brief |

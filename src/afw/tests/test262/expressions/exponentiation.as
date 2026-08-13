@@ -512,27 +512,21 @@ for (let i = 0; i < length(bases); i = i + 1) {
   }
 }
 //? test: exp-operator-evaluation-order
-//? description:Exponentiation Operator expression order of evaluation
-//? expect: success
-//? skip: true
-//? skipReason: ...
-Harness: half-converted; still uses ES valueOf / assert.throws /
-evaluation-order probes
+//? description: Exponentiation Operator expression order of evaluation
+//? expect: 0
 //? source: ...
 
-
-let capture = [];
-let leftValue = { valueOf() { capture.push("leftValue"); return 3; }};
-let rightValue = { valueOf() { capture.push("rightValue"); return 2; }};
-
-(capture.push("left"), leftValue) ** (capture.push("right"), rightValue);
-
-// Expected per operator evaluation order: "left", "right", "leftValue", "rightValue"
-
-assert(capture[0] ===  "left", "Expected the 1st element captured to be 'left'");
-assert(capture[1] ===  "right", "Expected the 2nd element captured to be 'right'");
-assert(capture[2] ===  "leftValue", "Expected the 3rd element captured to be 'leftValue'");
-assert(capture[3] ===  "rightValue", "Expected the 4th element captured to be 'rightValue'");
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
+try {
+    let unused = xf() ** yf();
+    assert(false);
+} catch (e) {
+    assert(e.message === "x");
+    assert(saw === "x");
+}
+return 0;
 //? test: exp-operator
 //? description: Performs exponential calculation on operands. Same algorithm as %MathPow%(base, exponent)
 //? expect: success
@@ -630,8 +624,8 @@ assert(1.0**INT32_MIN === 1.0,
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / assert.throws /
-evaluation-order probes
+Never: Adaptive does not ToPrimitive/ToNumeric via valueOf;
+left-to-right operand evaluation is exp-operator-evaluation-order
 //? source: ...
 
 

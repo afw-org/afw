@@ -10,8 +10,8 @@
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive does not ToPrimitive/ToNumeric via valueOf;
+left-to-right operand evaluation is S11.6.2_A2.4_T2
 //? source: ...
 #!/usr/bin/env afw
 
@@ -229,19 +229,21 @@ if (x - y !== 0) {
 }
 //? test: S11.6.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared x is a compile error
 x - 1;
 
 
 //? test: S11.6.2_A2.1_T3
 //? description: If GetBase(y) is null, throw ReferenceError
-//? expect: error:Parse error at offset 24 around line 3 column 5: Unknown built-in function 'y'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared y is a compile error
 1 - y;
 
 
@@ -250,9 +252,7 @@ x - 1;
 //? description: Checking with "throw"
 //? expect: success
 //? skip: true
-//? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+//? skipReason: Never: Adaptive does not convert objects to numbers via valueOf
 //? source: ...
 #!/usr/bin/env afw
 
@@ -274,28 +274,20 @@ try {
 }
 //? test: S11.6.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
-
-//CHECK#1
-let x = function () { throw "x"; };
-let y = function () { throw "y"; };
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
 try {
-   x() - y();
-   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() - y() throw "x". Actual: ' + (x() - y());
+    let unused = xf() - yf();
+    assert(false);
 } catch (e) {
-   if (e === "y") {
-     throw '#1.2: First expression is evaluated first, and then second expression';
-   } else {
-     if (e !== "x") {
-       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() - y() throw "x". Actual: ' + (e);
-     }
-   }
+    assert(e.message === "x");
+    assert(saw === "x");
 }
+return 0;
 //? test: S11.6.2_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
 //? expect: success

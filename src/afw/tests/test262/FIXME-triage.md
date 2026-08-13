@@ -4,7 +4,7 @@
 **Done log:** [`changes.md`](changes.md) — what already converted  
 **Suite rules:** [`README.md`](README.md)
 
-**Skip counts (approx, re-grep after edits):** ~63 skips total — **FIXME ~24**, **Incompatible ~18**, **Harness ~19**, **Deferred ~2**.
+**Skip counts (approx, re-grep after edits):** ~63 skips total — **FIXME ~24**, **Incompatible ~18**, **Never** (was Harness valueOf/ToPrimitive), **Deferred ~2**. **Harness leftovers: 0**.
 
 Use this to pick **next** converts. Prefer small rewrites or single product decisions over full ES ports.
 
@@ -17,7 +17,7 @@ Use this to pick **next** converts. Prefer small rewrites or single product deci
 | **3** | **`**` signed-zero / ∞** | Open | ~5 | `exponentiation.as` edges |
 | **4** | **for-of TDZ / ASI leftovers** | TDZ → **Incompatible** (no Adaptive TDZ). ASI leftover still open | ~1 | `let-array-with-newline` / empty-body ASI |
 | **5** | **for-of const + closures** | Blocked | 1 | **#35 / #2** — keep skip+FIXME, honest expect |
-| **6** | **Harness leftovers** | Open | ~19 | `valueOf` / `assert.throws` / ASI block-eval |
+| **6** | **Harness leftovers** | Done | 0 | Converted to Adaptive LTR or **Never:** (no `valueOf` / `assert.throws`) |
 | **7** | **Half-converted try/catch Pattern** | Done (#62) | — | `scope-catch-*` rewritten; see [`changes.md`](changes.md) |
 
 **Already done on this line of work** (see [`changes.md`](changes.md)): void probes + `void` undefined; raw LT in strings; for-of non-iterable / member LHS / string CP; const reassignment; no TDZ self-init; leading/trailing-dot numerics; NonEscape/`\x`/`\0`/line-continuation; unary+ identity; `??=` whitespace; switch rewrite; LTR without assign-in-expr; modulus + division IEEE template; #55 array helpers; #39 elision; #140 param defaults; #62 try `cptn-*` / `S12.14_A6` / `scope-catch-*`.

@@ -138,63 +138,34 @@ if (x / y !== 1) {
 }
 //? test: S11.5.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: error
 //? source: ...
 
-
-//CHECK#1
-try {
-  x / 1;
-  throw '#1.1: x / 1 throw ReferenceError. Actual: ' + (x / 1);
-}
-catch (e) {
-  if ((e instanceof ReferenceError) !== true) {
-    throw '#1.2: x / 1 throw ReferenceError. Actual: ' + (e);
-  }
-}
+// undeclared x is a compile error
+x / 1;
 //? test: S11.5.2_A2.1_T3
 //? description: If GetBase(y) is null, throw ReferenceError
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: error
 //? source: ...
 
-
-//CHECK#1
-try {
-  1 / y;
-  throw '#1.1: 1 / y throw ReferenceError. Actual: ' + (1 / y);
-}
-catch (e) {
-  if ((e instanceof ReferenceError) !== true) {
-    throw '#1.2: 1 / y throw ReferenceError. Actual: ' + (e);
-  }
-}
+// undeclared y is a compile error
+1 / y;
 //? test: S11.5.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: 0
 //? source: ...
 
-
-//CHECK#1
-let x = function () { throw "x"; };
-let y = function () { throw "y"; };
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
 try {
-   x() / y();
-   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (x() / y());
+    let unused = xf() / yf();
+    assert(false);
 } catch (e) {
-   if (e === "y") {
-     throw '#1.2: First expression is evaluated first, and then second expression';
-   } else {
-     if (e !== "x") {
-       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (e);
-     }
-   }
+    assert(e.message === "x");
+    assert(saw === "x");
 }
+return 0;
 //? test: S11.5.2_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
 //? expect: success
@@ -264,8 +235,8 @@ if (is_NaN({} / {}) !== true) {
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive / does not ToNumber-coerce strings or undefined
+(no new String / valueOf)
 //? source: ...
 
 

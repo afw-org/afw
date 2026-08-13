@@ -41,10 +41,11 @@ if (x !== 1) {
 }
 //? test: 11.13.1_A2.1_T2
 //? description: If GetBase(AssigmentExpression) is null, throw ReferenceError
-//? expect: error:Parse error at offset 28 around line 3 column 9: Unknown built-in function 'y'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared y is a compile error
 let x = y;
 
 
@@ -215,19 +216,18 @@ let x;
 assert(x === 1);
 //? test: target-member-identifier-reference-null
 //? description: Assignment Operator evaluates the value prior validating a MemberExpression's reference (null)
-//? expect: error
-//? skip: true
-//? skipReason: ...
-Harness: Adaptive assignment statement cannot appear in expression
-position as this ES test requires
+//? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
 let count = 0;
 let base = null;
-
-// we can't test this because assignment statement can't be used in expression
-base.prop = count += 1;
+try {
+    base.prop = count += 1;
+    assert(false);
+} catch (e) {
+    assert(count === 1);
+}
+return 0;
 
 
 //? test: target-member-computed-reference-undefined

@@ -47,7 +47,7 @@ official** ones for this suite and for language tests in general:
 | Key | Role |
 |-----|------|
 | **`test`** | Case id (stable name) |
-| **`description`** | What the case checks. Prefer staying **close to the TC39 description**, lightly tweaked for Adaptive wording. |
+| **`description`** | Stay **close to the TC39 description**. Skip notes go in **`skipReason`**. For **`expect: error`**, say why in a source **`//`** comment — do not rewrite `description` to explain the Adaptive error. |
 | **`differences`** | Optional. **Language** differences between ECMAScript and Adaptive for the construct under test only. Not harness wrapping. Good future harvest input for differences docs. |
 | **`expect`** | **`success`** (compiled and ran, ignore result — usual test262 “did not throw”), Adaptive value (`0`, `undefined`, …), or **`error`** / **`error:…`** |
 | **`skip`** | `true` / `false` — do not run |

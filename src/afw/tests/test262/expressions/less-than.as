@@ -115,8 +115,7 @@ x < 1;
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive does not convert objects to numbers via valueOf
 //? source: ...
 #!/usr/bin/env afw
 
