@@ -28,6 +28,9 @@
         }
     ],
     "pure": true,
-    "returns": {},
+    "returns": {
+        "dataType": "void",
+        "description": "Does not complete. Nested assignment still writes the running result."
+    },
     "scriptSupport": true
 }

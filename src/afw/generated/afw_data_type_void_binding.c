@@ -124,7 +124,7 @@ afw_data_type_void_direct = {
     (const afw_object_t *)&impl_data_type_object_void,
     AFW_UTF8_LITERAL("void"),
     AFW_UTF8_LITERAL("No value"),
-    AFW_UTF8_LITERAL("Commonly used as a return type for functions to indicate that the function does not return any value. While technically a variable could be of type void, in practice, it can only hold the values undefined (or null if compile::strictNullChecks flag is not set.)"),
+    AFW_UTF8_LITERAL("Return type for functions that do not produce a value. Built-in and script functions declared void yield the permanent void singleton (not undefined). A void variable may still hold undefined (or null if compile::strictNullChecks is not set)."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_void,
     AFW_UTF8_LITERAL(""),

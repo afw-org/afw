@@ -361,8 +361,23 @@ impl_afw_value_optional_evaluate(
             afw_xctx_scope_activate(enclosing_lexical_scope, xctx);
         }
 
-        /* Evaluate body. */
-        result = afw_value_evaluate(script->body, p, xctx);
+        /* Brace body: same running-result rule as a script (issue #62). */
+        if (afw_value_is_block(script->body)) {
+            afw_function_execute_t exec;
+
+            afw_memory_clear(&exec);
+            exec.p = p;
+            exec.xctx = xctx;
+            result = afw_value_block_evaluate_block(&exec,
+                (const afw_value_block_t *)script->body, p, xctx,
+                false);
+        }
+        else {
+            result = afw_value_evaluate(script->body, p, xctx);
+        }
+        if (afw_value_is_void(result)) {
+            result = afw_value_undefined;
+        }
 
         /* Runtime return type check (issue #28): definition unit, else call. */
         {

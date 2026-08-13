@@ -16,7 +16,8 @@
     ],
     "pure": true,
     "returns": {
-        "description": "This function leaves the body of a loop or switch."
+        "dataType": "void",
+        "description": "Does not complete. Leaves the body of a loop or switch."
     },
     "scriptSupport": true
 }

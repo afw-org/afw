@@ -48,7 +48,7 @@ export function afwAssign(client : any, name : string, value : any) : any {
  * @param {string} label - Optional loop label. If omitted, break the
  *     innermost loop or switch.
  * 
- * @returns {} This function leaves the body of a loop or switch.
+ * @returns {void} Does not complete. Leaves the body of a loop or switch.
  */
 export function afwBreak(client : any, label? : string) : any {
 
@@ -74,7 +74,8 @@ export function afwBreak(client : any, label? : string) : any {
  * 
  * @param {object} type - The type of the constant(s).
  * 
- * @returns {} The value assigned.
+ * @returns {void} Does not complete. A const statement does not override the
+ *     running result.
  */
 export function afwConst(client : any, name : any[], value : any, type? : object) : any {
 
@@ -99,7 +100,7 @@ export function afwConst(client : any, name : any[], value : any, type? : object
  * @param {string} label - Optional loop label. If omitted, continue the
  *     innermost loop.
  * 
- * @returns {} This function does not return.
+ * @returns {void} Does not complete. Continues the enclosing loop.
  */
 export function afwContinue(client : any, label? : string) : any {
 
@@ -131,7 +132,8 @@ export function afwContinue(client : any, label? : string) : any {
  * @param {string} label - Optional loop label for break/continue Identifier
  *     (issue #62).
  * 
- * @returns {} The last value evaluated in body or null if the body is empty.
+ * @returns {void} Does not complete. Nested assignment still writes the
+ *     running result.
  */
 export function afwDoWhile(client : any, condition : boolean, body : any[], label? : string) : any {
 
@@ -172,8 +174,8 @@ export function afwDoWhile(client : any, condition : boolean, body : any[], labe
  * @param {string} label - Optional loop label for break/continue Identifier
  *     (issue #62).
  * 
- * @returns {} The last value evaluated in body or null if condition evaluates
- *     to false the first time.
+ * @returns {void} Does not complete. Nested assignment still writes the
+ *     running result.
  */
 export function afwFor(client : any, initial? : any[], condition? : boolean, increment? : any[], body? : any[], label? : string) : any {
 
@@ -220,8 +222,8 @@ export function afwFor(client : any, initial? : any[], condition? : boolean, inc
  * @param {string} label - Optional loop label for break/continue Identifier
  *     (issue #62).
  * 
- * @returns {} The last value evaluated in body or null if condition evaluates
- *     to false the first time.
+ * @returns {void} Does not complete. Nested assignment still writes the
+ *     running result.
  */
 export function afwForOf(client : any, name : any[], value : any, body? : any[], label? : string) : any {
 
@@ -255,7 +257,8 @@ export function afwForOf(client : any, name : any[], value : any, body? : any[],
  *     false, a null value is returned. See the 'body' parameter of the
  *     'block' function for information on how the body is processed.
  * 
- * @returns {} The result of evaluating 'then' or 'else'
+ * @returns {} The result of evaluating 'then' or 'else'. Also the ternary
+ *     operator.
  */
 export function afwIf(client : any, condition : boolean, then : any[], _else? : any[]) : any {
 
@@ -285,7 +288,8 @@ export function afwIf(client : any, condition : boolean, then : any[], _else? : 
  * 
  * @param {object} type - The type of the variable(s).
  * 
- * @returns {} The value assigned.
+ * @returns {void} Does not complete. A let statement does not override the
+ *     running result.
  */
 export function afwLet(client : any, name : any[], value? : any, type? : object) : any {
 
@@ -363,7 +367,8 @@ export function afwReturn(client : any, value? : any) : any {
  *     case clauses are executed until a break or return is encountered. The
  *     predicate is called with value1 and the case clause's value2.
  * 
- * @returns {}
+ * @returns {void} Does not complete. Nested assignment still writes the
+ *     running result.
  */
 export function afwSwitch(client : any, predicate : any, value1 : any, case_clause : any) : any {
 
@@ -443,7 +448,8 @@ export function afwThrow(client : any, message : string, data? : any, id? : stri
  *     the catch block. See adaptive object type _AdaptiveObjectType_ for
  *     details.
  * 
- * @returns {} The last value evaluated in body.
+ * @returns {void} Does not complete. Nested assignment still writes the
+ *     running result.
  */
 export function afwTry(client : any, body : any[], _finally? : any[], _catch? : any[], error? : object) : any {
 
@@ -483,8 +489,8 @@ export function afwTry(client : any, body : any[], _finally? : any[], _catch? : 
  * @param {string} label - Optional loop label for break/continue Identifier
  *     (issue #62).
  * 
- * @returns {} The last value evaluated in body or null if condition evaluates
- *     to false the first time.
+ * @returns {void} Does not complete. Nested assignment still writes the
+ *     running result.
  */
 export function afwWhile(client : any, condition : boolean, body : any[], label? : string) : any {
 

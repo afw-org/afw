@@ -16,7 +16,8 @@
     ],
     "pure": true,
     "returns": {
-        "description": "This function does not return."
+        "dataType": "void",
+        "description": "Does not complete. Continues the enclosing loop."
     },
     "scriptSupport": true
 }

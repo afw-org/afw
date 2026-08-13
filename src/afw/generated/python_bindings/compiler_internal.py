@@ -58,7 +58,7 @@ def break_(session, label=None):
         or switch.
 
     Returns:
-        object: This function leaves the body of a loop or switch.
+        object: Does not complete. Leaves the body of a loop or switch.
     """
 
     request = session.Request()
@@ -95,7 +95,8 @@ def const(session, name, value, type=None):
         type (dict): The type of the constant(s).
 
     Returns:
-        object: The value assigned.
+        object: Does not complete. A const statement does not override the
+        running result.
     """
 
     request = session.Request()
@@ -131,7 +132,7 @@ def continue_(session, label=None):
         loop.
 
     Returns:
-        object: This function does not return.
+        object: Does not complete. Continues the enclosing loop.
     """
 
     request = session.Request()
@@ -174,7 +175,8 @@ def do_while(session, condition, body, label=None):
         #62).
 
     Returns:
-        object: The last value evaluated in body or null if the body is empty.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -226,8 +228,8 @@ def for_(session, initial=None, condition=None, increment=None, body=None, label
         #62).
 
     Returns:
-        object: The last value evaluated in body or null if condition
-        evaluates to false the first time.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -285,8 +287,8 @@ def for_of(session, name, value, body=None, label=None):
         #62).
 
     Returns:
-        object: The last value evaluated in body or null if condition
-        evaluates to false the first time.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -331,7 +333,8 @@ def if_(session, condition, then, _else=None):
         function for information on how the body is processed.
 
     Returns:
-        object: The result of evaluating 'then' or 'else'
+        object: The result of evaluating 'then' or 'else'. Also the ternary
+        operator.
     """
 
     request = session.Request()
@@ -372,7 +375,8 @@ def let(session, name, value=None, type=None):
         type (dict): The type of the variable(s).
 
     Returns:
-        object: The value assigned.
+        object: Does not complete. A let statement does not override the
+        running result.
     """
 
     request = session.Request()
@@ -485,7 +489,8 @@ def switch(session, predicate, value1, case_clause):
         value2.
 
     Returns:
-        object:
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -587,7 +592,8 @@ def try_(session, body, _finally=None, catch=None, error=None):
         details.
 
     Returns:
-        object: The last value evaluated in body.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -639,8 +645,8 @@ def while_(session, condition, body, label=None):
         #62).
 
     Returns:
-        object: The last value evaluated in body or null if condition
-        evaluates to false the first time.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()

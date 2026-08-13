@@ -112,6 +112,21 @@ impl_loop_should_exit(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 }
 
 
+/* Statement built-ins are void unless return/rethrow produced a value. */
+static const afw_value_t *
+impl_statement_result_or_void(
+    const afw_value_t *result,
+    afw_xctx_t *xctx)
+{
+    if (afw_xctx_statement_flow_is_type(return, xctx) ||
+        afw_xctx_statement_flow_is_type(rethrow, xctx))
+    {
+        return result;
+    }
+    return afw_value_void;
+}
+
+
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
 static afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
@@ -798,7 +813,7 @@ afw_function_execute_assign(
  * ```
  *   function break(
  *       label?: string
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -808,7 +823,7 @@ afw_function_execute_assign(
  *
  * Returns:
  *
- *   (any) This function leaves the body of a loop or switch.
+ *   (void) Does not complete. Leaves the body of a loop or switch.
  */
 const afw_value_t *
 afw_function_execute_break(
@@ -820,7 +835,7 @@ afw_function_execute_break(
     xctx->statement_flow_label = impl_optional_loop_label(x, 1);
     afw_xctx_statement_flow_set_type(break, xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -845,7 +860,7 @@ afw_function_execute_break(
  *       name: string[],
  *       value: any,
  *       type?: object // _AdaptiveValueMeta_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -859,7 +874,8 @@ afw_function_execute_break(
  *
  * Returns:
  *
- *   (any) The value assigned.
+ *   (void) Does not complete. A const statement does not override the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_const(
@@ -867,18 +883,17 @@ afw_function_execute_const(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
     /** @fixme process type. */
 
-    result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
+    impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
         afw_compile_assignment_type_const,
         p, xctx);
 
-    return result;
+    return afw_value_void;
 }
 
 
@@ -903,7 +918,7 @@ afw_function_execute_const(
  * ```
  *   function continue(
  *       label?: string
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -913,7 +928,7 @@ afw_function_execute_const(
  *
  * Returns:
  *
- *   (any) This function does not return.
+ *   (void) Does not complete. Continues the enclosing loop.
  */
 const afw_value_t *
 afw_function_execute_continue(
@@ -925,7 +940,7 @@ afw_function_execute_continue(
     xctx->statement_flow_label = impl_optional_loop_label(x, 1);
     afw_xctx_statement_flow_set_type(continue, xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -953,7 +968,7 @@ afw_function_execute_continue(
  *       condition: boolean,
  *       body: array,
  *       label?: string
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -971,7 +986,8 @@ afw_function_execute_continue(
  *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if the body is empty.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_do_while(
@@ -1000,7 +1016,7 @@ afw_function_execute_do_while(
 
     impl_loop_consume_if_target(this_label, xctx);
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -1029,7 +1045,7 @@ afw_function_execute_do_while(
  *       increment?: array,
  *       body?: array,
  *       label?: string
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1055,8 +1071,8 @@ afw_function_execute_do_while(
  *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_for(
@@ -1138,7 +1154,7 @@ afw_function_execute_for(
     }
     AFW_ENDTRY;
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -1168,7 +1184,7 @@ afw_function_execute_for(
  *       value: any,
  *       body?: array,
  *       label?: string
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1187,8 +1203,8 @@ afw_function_execute_for(
  *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_for_of(
@@ -1267,7 +1283,7 @@ afw_function_execute_for_of(
     }
     AFW_ENDTRY;
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -1310,7 +1326,7 @@ afw_function_execute_for_of(
  *
  * Returns:
  *
- *   (any) The result of evaluating 'then' or 'else'.
+ *   (any) The result of evaluating 'then' or 'else'. Also the ternary operator.
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -1333,6 +1349,10 @@ afw_function_execute_if(
         result = afw_value_block_evaluate_statement(x, x->argv[3], p, xctx);
     }
 
+    /*
+     * if is also the ternary operator. Always return then/else. The
+     * statement-list running result ignores this and uses the slot.
+     */
     return result;
 }
 
@@ -1360,7 +1380,7 @@ afw_function_execute_if(
  *       name: string[],
  *       value?: any,
  *       type?: object // _AdaptiveValueMeta_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1375,7 +1395,8 @@ afw_function_execute_if(
  *
  * Returns:
  *
- *   (any) The value assigned.
+ *   (void) Does not complete. A let statement does not override the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_let(
@@ -1383,16 +1404,15 @@ afw_function_execute_let(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(1);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
-    result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
+    impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
         afw_compile_assignment_type_let,
         p, xctx);
 
-    return result;
+    return afw_value_void;
 }
 
 
@@ -1635,7 +1655,7 @@ afw_function_execute_wrap_literal_array(
  *       case_clause_1: any,
  *       case_clause_2: any,
  *       ...case_clause_rest: any[]
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1661,7 +1681,8 @@ afw_function_execute_wrap_literal_array(
  *
  * Returns:
  *
- *   (any)
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_switch(
@@ -1771,7 +1792,7 @@ afw_function_execute_switch(
         afw_xctx_statement_flow_reset_break_and_continue(xctx);
     }
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -1905,7 +1926,7 @@ afw_function_execute_throw(
  *       finally?: array,
  *       catch?: array,
  *       error?: object // _AdaptiveObjectType_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1932,7 +1953,8 @@ afw_function_execute_throw(
  *
  * Returns:
  *
- *   (any) The last value evaluated in body.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_try(
@@ -2111,7 +2133,7 @@ afw_function_execute_try(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_set(use_type, xctx);
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -2140,7 +2162,7 @@ afw_function_execute_try(
  *       condition: boolean,
  *       body: array,
  *       label?: string
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -2158,8 +2180,8 @@ afw_function_execute_try(
  *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_while(
@@ -2190,5 +2212,5 @@ afw_function_execute_while(
 
     impl_loop_consume_if_target(this_label, xctx);
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }

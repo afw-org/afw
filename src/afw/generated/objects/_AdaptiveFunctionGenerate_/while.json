@@ -26,7 +26,8 @@
     ],
     "pure": true,
     "returns": {
-        "description": "The last value evaluated in body or null if condition evaluates to false the first time."
+        "dataType": "void",
+        "description": "Does not complete. Nested assignment still writes the running result."
     },
     "scriptSupport": true
 }

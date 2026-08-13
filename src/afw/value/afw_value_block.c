@@ -47,44 +47,6 @@
     x = &modified_x
 
 
-/*
- * let/const/control do not yield a script result by themselves. A script
- * that is only a call or #block still yields that value (decompile of
- * `1+2` is #block(add(1,2))).
- */
-static afw_boolean_t
-impl_statement_is_void_for_script_result(const afw_value_t *statement)
-{
-    const afw_value_call_built_in_function_t *call;
-    const afw_utf8_t *id;
-
-    if (!statement) {
-        return true;
-    }
-    if (!afw_value_is_call_built_in_function(statement)) {
-        return false;
-    }
-    call = (const afw_value_call_built_in_function_t *)statement;
-    if (!call->function || !call->function->functionId) {
-        return false;
-    }
-    id = &call->function->functionId->internal;
-    return
-        afw_utf8_equal(id, afw_s_let) ||
-        afw_utf8_equal(id, afw_s_const) ||
-        afw_utf8_equal(id, afw_s_if) ||
-        afw_utf8_equal(id, afw_s_for) ||
-        afw_utf8_equal(id, afw_s_for_of) ||
-        afw_utf8_equal(id, afw_s_while) ||
-        afw_utf8_equal(id, afw_s_do_while) ||
-        afw_utf8_equal(id, afw_s_switch) ||
-        afw_utf8_equal(id, afw_s_try) ||
-        afw_utf8_equal(id, afw_s_throw) ||
-        afw_utf8_equal(id, afw_s_break) ||
-        afw_utf8_equal(id, afw_s_continue);
-}
-
-
 const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
@@ -131,7 +93,9 @@ afw_value_block_evaluate_block(
                 result = afw_xctx_script_result_get(xctx);
             }
             else {
-                result = last;
+                if (!afw_value_is_void(last)) {
+                    result = last;
+                }
                 if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
                     break;
                 }
@@ -140,7 +104,7 @@ afw_value_block_evaluate_block(
         if (use_running &&
             !xctx->script_result_written &&
             self->statement_count == 1 &&
-            !impl_statement_is_void_for_script_result(self->statements[0]))
+            !afw_value_is_void(last))
         {
             result = last;
         }
