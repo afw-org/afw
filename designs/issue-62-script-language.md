@@ -3,7 +3,7 @@
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#62](https://github.com/afw-org/afw/issues/62) — *Adaptive Script language changes*  
 **Branch:** `issue-#62-script-language` off `mgg-develop`. One feature branch; commit as we go.  
-**Status:** in development. Productions were not written for these forms; parser and EBNF need rework.
+**Status:** landed on this branch (index items 1–5 plus void / running-result follow-through). Ready to review / PR when asked.
 
 Jeremy still wants the index items. Many of the ideas come from TypeScript / ECMAScript. They were not originally planned, so several productions (especially assignment and `for` init) have to change rather than grow a flag.
 
@@ -48,7 +48,7 @@ How that applies to this index:
 - `if` / `for` / `while` / `try` / `function` declarations do not reset it.
 - A non-void **call statement** writes it (ES `eval` ExpressionStatement). `print()` is void and does not.
 - Nested assignment inside those forms does update it.
-- `break;` **preserves** the running result (today it wipes to `undefined`). No `break expr` in the first cut; the built-in already has an optional value, syntax does not.
+- `break;` **preserves** the running result. No `break expr` (ES does not have one; the built-in is optional `label` only).
 - A script that is **only** a call or expression (`1 + 2`, `abs(-3);`, `#block(add(1,2))`) yields that value. `x = 1; abs(-3);` is `3` (ES `eval`). `print();` is void and does not override.
 
 This is Adaptive completion, not ES `cptn-*`. test262 cases that only `throw` on failure got a trailing `return;` so `expect: undefined` means “completed,” matching `_convert.py` and original TC39 (no asserted completion).
