@@ -617,8 +617,10 @@ afw_xctx_scope_symbol_set_value_by_name(
  */
 #define afw_xctx_statement_flow_reset_break_and_continue(xctx) \
     if (((afw_xctx_t *)xctx)->statement_flow <= \
-        afw_xctx_statement_flow_ge_is_leave) \
-            afw_xctx_statement_flow_set_type(sequential, xctx)
+        afw_xctx_statement_flow_ge_is_leave) { \
+            afw_xctx_statement_flow_set_type(sequential, xctx); \
+            ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
+    }
 
 /**
  * @brief Reset xctx statement flow except rethrow to sequential
@@ -630,6 +632,7 @@ afw_xctx_scope_symbol_set_value_by_name(
 #define afw_xctx_statement_flow_reset_all_except_rethrow(xctx) \
     if (!afw_xctx_statement_flow_is_type(rethrow, xctx)) { \
         afw_xctx_statement_flow_set_type(sequential, xctx); \
+        ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
     }
 
 /**

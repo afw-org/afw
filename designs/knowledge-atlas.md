@@ -308,7 +308,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Types | `issue-28-…` | **#28 closed** (PR **#171** wrap-up) |
 | Pragma `#` | `pragma-hash-design.md` | Pattern B `#compile` (landed) |
 | Error codes / HTTP / `e.id` | `issue-33-error-codes.md` | **#33** closed (PR **#173**) — map in `afw_common.h`; script `throw` may set `id`; prefer `e.id` |
-| Script language syntax | `issue-62-script-language.md` | **#62** — multi `let`/`const`, `for` init, assignment chain, running result landed; labels next |
+| Script language syntax | `issue-62-script-language.md` | **#62** — multi `let`/`const`, `for` init, assignment chain, running result, loop labels landed |
 
 ---
 

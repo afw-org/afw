@@ -56,16 +56,15 @@ class compiler_internal
      * break()
      *
      * This is a special function that can be called to break out of the body
-     * of a loop. If called outside of a loop body, an error is thrown.
+     * of a loop or switch. If a label is supplied, break the loop with that
+     * label. If called outside of a loop or switch body, an error is thrown.
      *
-     * @param  $value The value to evaluate that the enclosing loop will
-     *                return. If not specified, the last evaluated value or a
-     *                null value will be returned.
+     * @param string $label Optional loop label. If omitted, break the
+     *                      innermost loop or switch.
      *
-     * @return  This function returns from the body of a loop with the last
-     *          evaluated value.
+     * @return  This function leaves the body of a loop or switch.
      */
-    public function break(, $value = null)
+    public function break(, $label = null)
     {
         $request = $this->$session->request();
 
@@ -74,8 +73,8 @@ class compiler_internal
         /* pass along required parameters to the request payload */
 
         /* pass along any optional parameters to the request payload */
-        if ($value != null)
-            $request->set('value', $value);
+        if ($label != null)
+            $request->set('label', $label);
 
         return $request->get_result();
     }
@@ -117,12 +116,15 @@ class compiler_internal
      *
      * This is a special function that can be called in the body of a loop
      * function to test the condition and, if true, start evaluating the body
-     * again. If called outside of a loop body, an error is thrown.
+     * again. If a label is supplied, continue the loop with that label. If
+     * called outside of a loop body, an error is thrown.
      *
+     * @param string $label Optional loop label. If omitted, continue the
+     *                      innermost loop.
      *
      * @return  This function does not return.
      */
-    public function continue()
+    public function continue(, $label = null)
     {
         $request = $this->$session->request();
 
@@ -131,6 +133,9 @@ class compiler_internal
         /* pass along required parameters to the request payload */
 
         /* pass along any optional parameters to the request payload */
+        if ($label != null)
+            $request->set('label', $label);
+
         return $request->get_result();
     }
 
@@ -151,10 +156,12 @@ class compiler_internal
      *                    in body is evaluated in order until the end of the
      *                    array or until a 'break', 'continue', 'return' or
      *                    'throw' function is encountered.
+     * @param string $label Optional loop label for break/continue Identifier
+     *                      (issue #62).
      *
      * @return  The last value evaluated in body or null if the body is empty.
      */
-    public function do_while(, $condition, $body)
+    public function do_while(, $condition, $body, $label = null)
     {
         $request = $this->$session->request();
 
@@ -165,6 +172,9 @@ class compiler_internal
         $request->set("body", $body);
 
         /* pass along any optional parameters to the request payload */
+        if ($label != null)
+            $request->set('label', $label);
+
         return $request->get_result();
     }
 
@@ -190,11 +200,13 @@ class compiler_internal
      *                    in body is evaluated in order until the end of the
      *                    array or until a 'break', 'continue', 'return' or
      *                    'throw' function is encountered.
+     * @param string $label Optional loop label for break/continue Identifier
+     *                      (issue #62).
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
      */
-    public function for(, $initial = null, $condition = null, $increment = null, $body = null)
+    public function for(, $initial = null, $condition = null, $increment = null, $body = null, $label = null)
     {
         $request = $this->$session->request();
 
@@ -214,6 +226,9 @@ class compiler_internal
 
         if ($body != null)
             $request->set('body', $body);
+
+        if ($label != null)
+            $request->set('label', $label);
 
         return $request->get_result();
     }
@@ -236,11 +251,13 @@ class compiler_internal
      *                    in body is evaluated in order until the end of the
      *                    array or until a 'break', 'continue', 'return' or
      *                    'throw' function is encountered.
+     * @param string $label Optional loop label for break/continue Identifier
+     *                      (issue #62).
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
      */
-    public function for_of(, $name, $value, $body = null)
+    public function for_of(, $name, $value, $body = null, $label = null)
     {
         $request = $this->$session->request();
 
@@ -253,6 +270,9 @@ class compiler_internal
         /* pass along any optional parameters to the request payload */
         if ($body != null)
             $request->set('body', $body);
+
+        if ($label != null)
+            $request->set('label', $label);
 
         return $request->get_result();
     }
@@ -543,11 +563,13 @@ class compiler_internal
      *                    in body is evaluated in order until the end of the
      *                    list or until a 'break', 'continue', 'return' or
      *                    'throw' function is encountered.
+     * @param string $label Optional loop label for break/continue Identifier
+     *                      (issue #62).
      *
      * @return  The last value evaluated in body or null if condition
      *          evaluates to false the first time.
      */
-    public function while(, $condition, $body)
+    public function while(, $condition, $body, $label = null)
     {
         $request = $this->$session->request();
 
@@ -558,6 +580,9 @@ class compiler_internal
         $request->set("body", $body);
 
         /* pass along any optional parameters to the request payload */
+        if ($label != null)
+            $request->set('label', $label);
+
         return $request->get_result();
     }
 

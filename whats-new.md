@@ -71,7 +71,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
 | [**Error codes (#33)**](#error-codes-trycatch-and-http-issue-33) | Review of `e.id` / HTTP map; script `throw` … `id "not_found"` (and similar) sets the catch object and HTTP status |
-| [**Multi `let` / `const` (#62)**](#multi-let-and-const-issue-62) | Several names on one `let` / `const`; C-style `for` init; `x = y = 1;` chain; script result is a running value (assignment / `return`) |
+| [**Multi `let` / `const` (#62)**](#multi-let-and-const-issue-62) | Several names on one `let` / `const`; C-style `for` init; `x = y = 1;` chain; script result is a running value (assignment / `return`); loop labels |
 
 ---
 
@@ -198,9 +198,17 @@ x = y += 2;
 
 The **result of a script** is a running value. `return` and assignment write it. `let`, `const`, `if` / `for` / `while` / `try`, and `break;` do not reset it. Assignment inside those forms does write it. A script that is only a call or expression (`1 + 2`, `abs(-3);`) yields that value so Fiddle and `#block(add(1,2))` decompile stay useful. `x = 1; abs(-3);` stays `1`. An empty script is `undefined`.
 
-Other #62 language items (loop labels) are still in progress on this line.
+A **label** may precede `for`, `while`, or `do` (`outer: for (…)`). `break` / `continue` may name that label to leave or continue that loop from a nested loop or `switch`. Labels are not allowed on blocks or `if`. One label per loop.
 
-Handbook: Language Reference **Statements**. Tests: `src/afw/tests/language/script/let_const.as`.
+```adaptive
+outer: for (let i = 0; i < 3; i = i + 1) {
+    for (let j = 0; j < 3; j = j + 1) {
+        break outer;
+    }
+}
+```
+
+Handbook: Language Reference **Statements**. Tests: `src/afw/tests/language/script/let_const.as`, `for.as`, `assignment.as`, `script_result.as`, `labels.as`.
 
 [↑ Highlights](#highlights)
 

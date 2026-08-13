@@ -1537,60 +1537,8 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2574 \
-    "If true, filenames that begin with dot ('.') will be included."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2574 */
-#define afw_vfs_s_zz__2574 \
-    (&afw_vfs_self_v_zz__2574.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2574 */
-#define afw_vfs_self_s_zz__2574 \
-    (afw_vfs_self_v_zz__2574.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2574 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2574;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2574 */
-#define afw_vfs_z_zz__2574 \
-    (afw_vfs_self_v_zz__2574.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2574 */
-#define afw_vfs_v_zz__2574 \
-    (&afw_vfs_self_v_zz__2574.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2575 \
-    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'. For multi-entry vfsMap, only map entries whose objectId prefix matches this path are used; the path after that prefix is resolved under that entry's host directory (the map key is not appended twice to the host path)."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2575 */
-#define afw_vfs_s_zz__2575 \
-    (&afw_vfs_self_v_zz__2575.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2575 */
-#define afw_vfs_self_s_zz__2575 \
-    (afw_vfs_self_v_zz__2575.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2575 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2575;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2575 */
-#define afw_vfs_z_zz__2575 \
-    (afw_vfs_self_v_zz__2575.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2575 */
-#define afw_vfs_v_zz__2575 \
-    (&afw_vfs_self_v_zz__2575.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2576 \
-    "If specified, only files with filenames that end with the specified suffix are included."
+    "If true, filenames that begin with dot ('.') will be included."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2576 */
 #define afw_vfs_s_zz__2576 \
@@ -1616,7 +1564,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2577 \
-    "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is vfs."
+    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'. For multi-entry vfsMap, only map entries whose objectId prefix matches this path are used; the path after that prefix is resolved under that entry's host directory (the map key is not appended twice to the host path)."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2577 */
 #define afw_vfs_s_zz__2577 \
@@ -1642,7 +1590,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2578 \
-    "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
+    "If specified, only files with filenames that end with the specified suffix are included."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2578 */
 #define afw_vfs_s_zz__2578 \
@@ -1668,7 +1616,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2579 \
-    "Maximum number of bytes that will be read into memory for a single regular file on get_object/retrieve_objects. If a file is larger, the operation fails with an error. Default is 67108864 (64 MiB). Set to 0 for unlimited (not recommended for long-running hosts)."
+    "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is vfs."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2579 */
 #define afw_vfs_s_zz__2579 \
@@ -1694,7 +1642,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2580 \
-    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a template evaluated when the adapter is started (plain strings are unchanged; substitutions such as environment:: may be used). The evaluated string must be of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. Host directories are resolved to absolute paths at adapter start. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
+    "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2580 */
 #define afw_vfs_s_zz__2580 \
@@ -1720,7 +1668,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2581 \
-    "Adaptive Framework configuration component for type=adapter adapterType=vfs (extension afw_vfs). Files and directories are _AdaptiveFile_vfs objects: objectId is the path under vfsMap; directory objectIds end with '/'. The vfsPath property is /{adapterId}/{objectId}. ObjectIds must not contain path segments '.' or '..', or backslash. vfsMap uses longest matching objectId_prefix (path boundary), with host directories canonicalized at start; resolved paths must stay under that host root. Directory listings and retrieve_objects hide names starting with '.' unless includeHidden is true. Regular files are loaded fully into memory subject to maxReadBytes (default 64 MiB; 0 = unlimited). Writes replace the entire file (including empty or shorter content) via temp file then rename. Directory delete is non-recursive (must be empty). For retrieve subdirectory with multi-entry vfsMap, only matching prefixes are used and the map key is not double-applied to the host path. Not a security boundary against a hostile host filesystem (for example, pre-existing symlinks under a map root). See the administrative Adapters handbook section and src/afw_vfs/tests/."
+    "Maximum number of bytes that will be read into memory for a single regular file on get_object/retrieve_objects. If a file is larger, the operation fails with an error. Default is 67108864 (64 MiB). Set to 0 for unlimited (not recommended for long-running hosts)."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2581 */
 #define afw_vfs_s_zz__2581 \
@@ -1746,7 +1694,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2582 \
-    "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries (names beginning with '.' are omitted unless includeHidden is requested). If this is not a directory and the data is valid utf-8, data is a string; otherwise it is hexBinary. When adding or replacing a regular file, if data is omitted it defaults to an empty string (0-byte file). This property is ignored when adding a directory. Directory delete is non-recursive: the directory must be empty."
+    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a template evaluated when the adapter is started (plain strings are unchanged; substitutions such as environment:: may be used). The evaluated string must be of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. Host directories are resolved to absolute paths at adapter start. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2582 */
 #define afw_vfs_s_zz__2582 \
@@ -1772,7 +1720,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2583 \
-    "True if this object is a directory, false if it is a regular file. This property is read-only. A slash ('/') at the end of an objectId is used to indicate a directory in requests."
+    "Adaptive Framework configuration component for type=adapter adapterType=vfs (extension afw_vfs). Files and directories are _AdaptiveFile_vfs objects: objectId is the path under vfsMap; directory objectIds end with '/'. The vfsPath property is /{adapterId}/{objectId}. ObjectIds must not contain path segments '.' or '..', or backslash. vfsMap uses longest matching objectId_prefix (path boundary), with host directories canonicalized at start; resolved paths must stay under that host root. Directory listings and retrieve_objects hide names starting with '.' unless includeHidden is true. Regular files are loaded fully into memory subject to maxReadBytes (default 64 MiB; 0 = unlimited). Writes replace the entire file (including empty or shorter content) via temp file then rename. Directory delete is non-recursive (must be empty). For retrieve subdirectory with multi-entry vfsMap, only matching prefixes are used and the map key is not double-applied to the host path. Not a security boundary against a hostile host filesystem (for example, pre-existing symlinks under a map root). See the administrative Adapters handbook section and src/afw_vfs/tests/."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2583 */
 #define afw_vfs_s_zz__2583 \
@@ -1798,7 +1746,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2584 \
-    "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
+    "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries (names beginning with '.' are omitted unless includeHidden is requested). If this is not a directory and the data is valid utf-8, data is a string; otherwise it is hexBinary. When adding or replacing a regular file, if data is omitted it defaults to an empty string (0-byte file). This property is ignored when adding a directory. Directory delete is non-recursive: the directory must be empty."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2584 */
 #define afw_vfs_s_zz__2584 \
@@ -1819,6 +1767,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2584 */
 #define afw_vfs_v_zz__2584 \
     (&afw_vfs_self_v_zz__2584.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2585 \
+    "True if this object is a directory, false if it is a regular file. This property is read-only. A slash ('/') at the end of an objectId is used to indicate a directory in requests."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2585 */
+#define afw_vfs_s_zz__2585 \
+    (&afw_vfs_self_v_zz__2585.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2585 */
+#define afw_vfs_self_s_zz__2585 \
+    (afw_vfs_self_v_zz__2585.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2585 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2585;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2585 */
+#define afw_vfs_z_zz__2585 \
+    (afw_vfs_self_v_zz__2585.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2585 */
+#define afw_vfs_v_zz__2585 \
+    (&afw_vfs_self_v_zz__2585.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2586 \
+    "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2586 */
+#define afw_vfs_s_zz__2586 \
+    (&afw_vfs_self_v_zz__2586.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2586 */
+#define afw_vfs_self_s_zz__2586 \
+    (afw_vfs_self_v_zz__2586.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2586 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2586;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2586 */
+#define afw_vfs_z_zz__2586 \
+    (afw_vfs_self_v_zz__2586.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2586 */
+#define afw_vfs_v_zz__2586 \
+    (&afw_vfs_self_v_zz__2586.pub)
 
 
 

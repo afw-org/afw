@@ -6370,7 +6370,8 @@ afw_function_definition_break;
  * @param x function execute parameter.
  *
  * This is a special function that can be called to break out of the body of a
- * loop. If called outside of a loop body, an error is thrown.
+ * loop or switch. If a label is supplied, break the loop with that label. If
+ * called outside of a loop or switch body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6379,20 +6380,18 @@ afw_function_definition_break;
  *
  * ```
  *   function break(
- *       value?: any
+ *       label?: string
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   value - (optional any) The value to evaluate that the enclosing loop will
- *       return. If not specified, the last evaluated value or a null value will
- *       be returned.
+ *   label - (optional string) Optional loop label. If omitted, break the
+ *       innermost loop or switch.
  *
  * Returns:
  *
- *   (any) This function returns from the body of a loop with the last evaluated
- *       value.
+ *   (any) This function leaves the body of a loop or switch.
  */
 const afw_value_t *
 afw_function_execute_break(
@@ -6449,8 +6448,9 @@ afw_function_definition_continue;
  * @param x function execute parameter.
  *
  * This is a special function that can be called in the body of a loop function
- * to test the condition and, if true, start evaluating the body again. If
- * called outside of a loop body, an error is thrown.
+ * to test the condition and, if true, start evaluating the body again. If a
+ * label is supplied, continue the loop with that label. If called outside of a
+ * loop body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6459,10 +6459,14 @@ afw_function_definition_continue;
  *
  * ```
  *   function continue(
+ *       label?: string
  *   ): any;
  * ```
  *
  * Parameters:
+ *
+ *   label - (optional string) Optional loop label. If omitted, continue the
+ *       innermost loop.
  *
  * Returns:
  *
@@ -6494,7 +6498,8 @@ afw_function_definition_do_while;
  * ```
  *   function do_while(
  *       condition: boolean,
- *       body: array
+ *       body: array,
+ *       label?: string
  *   ): any;
  * ```
  *
@@ -6507,6 +6512,9 @@ afw_function_definition_do_while;
  *       for each iteration of the loop. Each value in body is evaluated in
  *       order until the end of the array or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
+ *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
  *
  * Returns:
  *
@@ -6539,7 +6547,8 @@ afw_function_definition_for;
  *       initial?: array,
  *       condition?: boolean,
  *       increment?: array,
- *       body?: array
+ *       body?: array,
+ *       label?: string
  *   ): any;
  * ```
  *
@@ -6560,6 +6569,9 @@ afw_function_definition_for;
  *       evaluated for each iteration of the loop. Each value in body is
  *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
+ *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
  *
  * Returns:
  *
@@ -6594,7 +6606,8 @@ afw_function_definition_for_of;
  *   function for_of(
  *       name: string[],
  *       value: any,
- *       body?: array
+ *       body?: array,
+ *       label?: string
  *   ): any;
  * ```
  *
@@ -6608,6 +6621,9 @@ afw_function_definition_for_of;
  *       evaluated for each iteration of the loop. Each value in body is
  *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
+ *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
  *
  * Returns:
  *
@@ -6980,7 +6996,8 @@ afw_function_definition_while;
  * ```
  *   function while(
  *       condition: boolean,
- *       body: array
+ *       body: array,
+ *       label?: string
  *   ): any;
  * ```
  *
@@ -6993,6 +7010,9 @@ afw_function_definition_while;
  *       for each iteration of the loop. Each value in body is evaluated in
  *       order until the end of the list or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
+ *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
  *
  * Returns:
  *

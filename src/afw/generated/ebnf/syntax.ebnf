@@ -590,8 +590,10 @@ AssignmentStatement ::=
    ';'
 
 /* From afw_compile_parse_script.c                                            */
+/* Optional Identifier must name an enclosing loop label (issue #62).         */
+/* No break expression. Semicolons required (no ASI).                         */
 
-BreakStatement ::= 'break' ';'
+BreakStatement ::= 'break' Identifier? ';'
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -620,8 +622,9 @@ TypeVariableName ::= Identifier
 TypeStatement ::= 'type' TypeVariableName '=' Type ';'
 
 /* From afw_compile_parse_script.c                                            */
+/* Optional Identifier must name an enclosing loop label (issue #62).         */
 
-ContinueStatement ::= 'continue' ';'
+ContinueStatement ::= 'continue' Identifier? ';'
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -724,6 +727,10 @@ EvaluationThatCompilesToCallValue ::= Evaluation
 
 CallStatement ::= EvaluationThatCompilesToCallValue
 /* BreakStatement and ContinueStatement can only be in a loop.                */
+/* LabeledStatement is only for / while / do (issue #62). Not blocks or if.   */
+
+LabeledStatement ::= Identifier ':' (
+    ForStatement | WhileStatement | DoWhileStatement )
 
 Block ::= '{' StatementList '}'
 
@@ -740,6 +747,7 @@ Statement ::=
    FunctionStatement |
    IfStatement |
    InterfaceStatement |
+   LabeledStatement |
    LetStatement |
    PragmaStatement |
    ReturnStatement |

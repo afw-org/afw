@@ -7,6 +7,14 @@
 
 Jeremy still wants the index items. Many of the ideas come from TypeScript / ECMAScript. They were not originally planned, so several productions (especially assignment and `for` init) have to change rather than grow a flag.
 
+## How we got here (decision context)
+
+Adaptive started as **Adaptive expression**. Scripting came later (Jeremy): Mike made a **functional** language that also allowed a **list of statements**, and every statement was a **function call**. Jeremy then wanted more **ECMAScript** surface while staying inside Adaptive Framework (values, compile, qualifiers, adapters). Incremental ES-shaped changes produced Adaptive Script as it is now.
+
+#62 is another step on that path — Jeremy asked for these items — not a rewrite into JS. The IR is still compiled calls/blocks. Use ES to decide **shared syntax and what a script/function yields** when we support the construct; keep Adaptive where the model already differs (assignment is a statement, no general `2;`, no completion records).
+
+Original yield rule: a statement list or last expression was the result, and a script could also be only an expression. The lone-expression script is still true. Jeremy pushed back on **every last statement** being the result (not what he expected from ES). Current direction: **follow ES for what the return is**, knowing we cannot be exact. See item 1 and the live gap table in the next session notes (functions without `return` still last-statement; call statements do not write; for increment writes).
+
 **Taste (do not fork this here):** [`typescript-differences.md`](../typescript-differences.md) — Adaptive Script is **not** TypeScript and **not** JavaScript. When we **support** a TS/JS-looking construct, it should behave as a TypeScript-literate author would reasonably expect **for that construct**. Prefer motivated Adaptive differences over accidental ones; do not half-implement the JS platform. Use TS/ES to answer subtle questions (comma lists, what `const` requires, what a `for` head looks like), not to import the rest of those languages.
 
 How that applies to this index:
@@ -52,7 +60,7 @@ This is Adaptive completion, not ES `cptn-*` / test262.
 | **3** | `for` init is one statement | Landed. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is a reserved-word error. |
 | **4** | Chained assignment **statement** | Landed. `x = y = 1;` works; `(x = 1) > x` and `let x = y = 1` do not. |
 | **1** | Running result | Landed. Assignment and return write it; most statements do not. |
-| **5** | Loop labels | Independent; last or a later slice. |
+| **5** | Loop labels | Landed. `outer: for` / `break outer` / `continue outer`. Not on blocks/`if`. |
 
 Do not mix **#170** / **#101** / **#35** onto this branch.
 
@@ -76,11 +84,15 @@ Decompile of the comma form may emit separate `let` / `const` lines (same bindin
 
 ## Live probes (before item 1)
 
-On this tree, last evaluated statement is the script result: `let x = 1;` → `1`; `let x = 1; if (true) { let y = 2; }` → `2`; empty `if` or bare `break;` → `undefined`. `x = y = 1;` works as a statement. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is “Variable name can not be a reserved word”. `outer: for` does not parse. Implicit `x = 1` without `let` is “Unknown built-in function `x`.”
+On this tree (after item 5): running result as in item 1. `x = y = 1;` works as a statement. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is “Variable name can not be a reserved word”. `outer: for` / `break outer` / `continue outer` work. Label on `if` or a block is “Labels are only allowed on for, while, and do statements”. Implicit `x = 1` without `let` is “Unknown built-in function `x`.”
 
 ## Item 1 (landed on this branch)
 
 `xctx->script_result` is the running result for the current **script** compile (not test_script / template). `assign` and `return` write it. `evaluate_block` of a script body uses that slot; `break` / `continue` keep the prior value. Nested `evaluate(compile<script>)` and script-function calls save and restore the slot so `f();` does not adopt `f`’s result. A **#block as a value** (decompile / `evaluate(b)`) still uses last-statement. A script that is only one call or `#block(add(1,2))` yields that value so decompile of `1+2` stays `#block(add(1,2))`. test262 cases that `expect: undefined` after an assignment need a later sweep (`return;` or new expect).
+
+## Item 5 (landed on this branch)
+
+A label may precede `for` / `while` / `do` only. `break` / `continue` take an optional Identifier that must name an enclosing loop label. Unknown, duplicate, and `a: b:` (two labels on one loop) are compile errors. Nested functions do not see outer labels. IR: optional string last arg on `for` / `for_of` / `while` / `do_while` / `break` / `continue`. Runtime: `xctx->statement_flow_label`; an inner loop or `switch` consumes unlabeled break (switch) or unlabeled break/continue (loop) only; labeled flow propagates until the matching loop. Unlabeled `continue` from a `switch` now continues the enclosing loop (ES-shaped; previously the switch reset it).
 
 ## Item 4 (landed on this branch)
 

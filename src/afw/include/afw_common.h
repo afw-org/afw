@@ -2256,6 +2256,12 @@ struct afw_xctx_s {
     afw_xctx_statement_flow_t statement_flow;
 
     /**
+     * Target loop label for break/continue (issue #62). NULL if unlabeled.
+     * Cleared when the matching loop consumes the flow.
+     */
+    const afw_utf8_t *statement_flow_label;
+
+    /**
      * Running Adaptive Script result for the current script or script
      * function. Assignment and return write it; let/const, calls, and
      * most other statements do not. Nested script activations save and

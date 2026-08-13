@@ -70,7 +70,10 @@ let [z] = [ 3 ];]]></code>
         <title>Break</title>
         <image generated-src="ebnf/syntax/diagram/BreakStatement.png" />        
         <paragraph>
-            The <literal>break</literal> statement breaks out of the current block.
+            The <literal>break</literal> statement leaves the innermost
+            loop or <literal>switch</literal>. An optional identifier
+            names a loop label (see For, While, and Do While). There is
+            no <literal>break</literal> expression.
         </paragraph>    
         <section>
             <title>Example</title>            
@@ -78,6 +81,11 @@ let [z] = [ 3 ];]]></code>
         if (1 < 2) {
             break;
         }
+}
+outer: for (let i = 0; i < 3; i = i + 1) {
+    for (let j = 0; j < 3; j = j + 1) {
+        break outer;
+    }
 }]]></code>
         </section>
     </section>
@@ -106,12 +114,36 @@ const p: integer = 0, q: integer = 1;]]></code>
         </section>
     </section>
     <section>
+        <title>Continue</title>
+        <image generated-src="ebnf/syntax/diagram/ContinueStatement.png" />
+        <paragraph>
+            The <literal>continue</literal> statement starts the next
+            iteration of the innermost loop. An optional identifier names
+            a loop label. <literal>continue</literal> is not allowed
+            outside a loop.
+        </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[for (let i = 0; i < 5; i = i + 1) {
+    if (i === 2) {
+        continue;
+    }
+}
+outer: for (let i = 0; i < 3; i = i + 1) {
+    for (let j = 0; j < 3; j = j + 1) {
+        continue outer;
+    }
+}]]></code>
+        </section>
+    </section>
+    <section>
         <title>Do While</title>
         <image generated-src="ebnf/syntax/diagram/DoWhileStatement.png" />
         <paragraph>
             The do-while statement executes a block of statements until a 
             condition is met. Unlike the while statement, the do-while statement
-            executes at least once.
+            executes at least once. A label may precede the statement
+            the same as on <literal>for</literal>.
         </paragraph>
         <section>
             <title>Example</title>
@@ -135,7 +167,11 @@ do {
             listed with commas. A second <literal>let</literal> or
             <literal>const</literal> keyword in the initializer is not
             allowed. <literal>let</literal> / <literal>const</literal>
-            names are local to the loop.
+            names are local to the loop. A label may precede the
+            statement (<literal>outer: for (…)</literal>) for
+            <literal>break</literal> / <literal>continue</literal>
+            of that loop. Labels are not allowed on blocks or
+            <literal>if</literal>.
         </paragraph>
         <section>
             <title>Example</title>
@@ -323,7 +359,8 @@ const x: Id = 3;]]></code>
             The <literal>while</literal> statement executes a block of 
             statements until a condition is met. Unlike the do-while statement, 
             the while statement executes the condition first and may not 
-            execute the block at all.
+            execute the block at all. A label may precede the statement
+            the same as on <literal>for</literal>.
         </paragraph>
         <section>
             <title>Example</title>

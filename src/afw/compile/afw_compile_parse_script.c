@@ -30,6 +30,73 @@ impl_function_definition_rethrow =
     &afw_function_definition_rethrow.pub;
 
 
+static const afw_utf8_t *
+impl_copy_token_identifier(afw_compile_parser_t *parser)
+{
+    return afw_utf8_create_copy(
+        parser->token->identifier_name->s,
+        parser->token->identifier_name->len,
+        parser->p, parser->xctx);
+}
+
+
+static afw_boolean_t
+impl_loop_label_is_active(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    const afw_compile_loop_label_t *e;
+
+    for (e = parser->loop_labels; e; e = e->next) {
+        if (afw_utf8_equal(e->name, name)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+static void
+impl_loop_label_push(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    afw_compile_loop_label_t *e;
+
+    e = afw_pool_calloc_type(parser->p,
+        afw_compile_loop_label_t, parser->xctx);
+    e->name = name;
+    e->next = parser->loop_labels;
+    parser->loop_labels = e;
+}
+
+
+static void
+impl_loop_label_pop(afw_compile_parser_t *parser)
+{
+    if (parser->loop_labels) {
+        parser->loop_labels = parser->loop_labels->next;
+    }
+}
+
+
+static const afw_value_t *
+impl_create_loop_call(
+    afw_compile_parser_t *parser,
+    afw_size_t start_offset,
+    afw_size_t argc,
+    const afw_value_t **argv,
+    const afw_utf8_t *label)
+{
+    if (label) {
+        argv[argc + 1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        argc++;
+    }
+    return afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        argc, argv, true, parser->p, parser->xctx);
+}
 
 
 /*
@@ -688,23 +755,57 @@ afw_compile_parse_AssignmentStatement(
 
 /*ebnf>>>
  *
- * BreakStatement ::= 'break' ';'
+ *# Optional Identifier must name an enclosing loop label (issue #62).
+ *# No break expression. Semicolons required (no ASI).
+ *
+ * BreakStatement ::= 'break' Identifier? ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_BreakStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t **argv;
+    const afw_utf8_t *label;
+    afw_size_t start_offset;
+    afw_size_t argc;
 
-    if (!parser->break_allowed) {
-        AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
+    start_offset = parser->token->token_source_offset;
+    label = NULL;
+    argc = 0;
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        label = impl_copy_token_identifier(parser);
+        if (!impl_loop_label_is_active(parser, label)) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Unknown loop label " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(label));
+        }
+        argc = 1;
+    }
+    else {
+        afw_compile_reuse_token();
+        if (!parser->break_allowed) {
+            AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
+        }
     }
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
+    if (label) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 2, parser->xctx);
+        argv[0] = impl_function_definition_break;
+        argv[1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            argc, argv, true, parser->p, parser->xctx);
+    }
+    else {
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
             0, &impl_function_definition_break, true,
             parser->p, parser->xctx);
+    }
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -1009,23 +1110,56 @@ impl_parse_TypeStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * ContinueStatement ::= 'continue' ';'
+ *# Optional Identifier must name an enclosing loop label (issue #62).
+ *
+ * ContinueStatement ::= 'continue' Identifier? ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t **argv;
+    const afw_utf8_t *label;
+    afw_size_t start_offset;
+    afw_size_t argc;
 
-    if (!parser->continue_allowed) {
-        AFW_COMPILE_THROW_ERROR_Z("Misplaced 'continue'");
+    start_offset = parser->token->token_source_offset;
+    label = NULL;
+    argc = 0;
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        label = impl_copy_token_identifier(parser);
+        if (!impl_loop_label_is_active(parser, label)) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Unknown loop label " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(label));
+        }
+        argc = 1;
+    }
+    else {
+        afw_compile_reuse_token();
+        if (!parser->continue_allowed) {
+            AFW_COMPILE_THROW_ERROR_Z("Misplaced 'continue'");
+        }
     }
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-        0, &impl_function_definition_continue, true,
-        parser->p, parser->xctx);
+    if (label) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 2, parser->xctx);
+        argv[0] = impl_function_definition_continue;
+        argv[1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            argc, argv, true, parser->p, parser->xctx);
+    }
+    else {
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            0, &impl_function_definition_continue, true,
+            parser->p, parser->xctx);
+    }
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -1039,7 +1173,9 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
+impl_parse_DoWhileStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -1049,7 +1185,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
     afw_compile_save_cursor(start_offset);
 
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = &afw_function_definition_do_while.pub;
 
     break_allowed = parser->break_allowed;
@@ -1079,9 +1215,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, true, parser->p, parser->xctx);
+    result = impl_create_loop_call(parser, start_offset, 2, argv, label);
         
     return result;
 }
@@ -1113,7 +1247,9 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_ForStatement(afw_compile_parser_t *parser)
+impl_parse_ForStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -1188,7 +1324,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
 
     if (is_for_of) {
         argv = afw_pool_malloc(parser->p,
-            sizeof(afw_value_t *) * 4, parser->xctx);
+            sizeof(afw_value_t *) * 5, parser->xctx);
         argv[0] = &afw_function_definition_for_of.pub;
         argv[1] = target;   
         argv[2] = afw_compile_parse_Expression(parser);
@@ -1206,13 +1342,11 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
-        result = afw_value_call_built_in_function_create(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            3, argv, true, parser->p, parser->xctx);
+        result = impl_create_loop_call(parser, start_offset, 3, argv, label);
     }
 
     else {
-        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
+        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 6, parser->xctx);
         argv[0] = &afw_function_definition_for.pub;
         argv[1] = init_value;
 
@@ -1262,9 +1396,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
-        result = afw_value_call_built_in_function_create(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            4, argv, true, parser->p, parser->xctx);
+        result = impl_create_loop_call(parser, start_offset, 4, argv, label);
 
     }
 
@@ -1895,7 +2027,9 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_WhileStatement(afw_compile_parser_t *parser)
+impl_parse_WhileStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -1905,7 +2039,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
 
     afw_compile_save_cursor(start_offset);
 
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = &afw_function_definition_while.pub;
 
     /* ( expression ) */
@@ -1927,9 +2061,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
     parser->break_allowed = break_allowed;
     parser->continue_allowed = continue_allowed;
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, true, parser->p, parser->xctx);
+    result = impl_create_loop_call(parser, start_offset, 2, argv, label);
 
     return result;
 }
@@ -1944,6 +2076,10 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  * CallStatement ::= EvaluationThatCompilesToCallValue
  *
  *# BreakStatement and ContinueStatement can only be in a loop.
+ *# LabeledStatement is only for / while / do (issue #62). Not blocks or if.
+ *
+ * LabeledStatement ::= Identifier ':' (
+ *     ForStatement | WhileStatement | DoWhileStatement )
  *
  * Block ::= '{' StatementList '}'
  *
@@ -1960,6 +2096,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    FunctionStatement |
  *    IfStatement |
  *    InterfaceStatement |
+ *    LabeledStatement |
  *    LetStatement |
  *    PragmaStatement |
  *    ReturnStatement |
@@ -1970,6 +2107,53 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    WhileStatement
  *
  *<<<ebnf*/
+
+
+static const afw_value_t *
+impl_parse_LabeledStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
+{
+    const afw_value_t *result;
+
+    if (impl_loop_label_is_active(parser, label)) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "Duplicate loop label " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_ARG(label));
+    }
+
+    /* Caller already saw Identifier. Next token is ':'. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is(colon)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
+    }
+
+    impl_loop_label_push(parser, label);
+
+    afw_compile_get_token();
+    if (afw_compile_token_is_name(afw_s_for)) {
+        result = impl_parse_ForStatement(parser, label);
+    }
+    else if (afw_compile_token_is_name(afw_s_while)) {
+        result = impl_parse_WhileStatement(parser, label);
+    }
+    else if (afw_compile_token_is_name(afw_s_do)) {
+        result = impl_parse_DoWhileStatement(parser, label);
+    }
+    else if (afw_compile_token_is_unqualified_identifier() &&
+        afw_compile_peek_next_token_is(colon))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Only one label is allowed on a loop");
+    }
+    else {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Labels are only allowed on for, while, and do statements");
+    }
+
+    impl_loop_label_pop(parser);
+    return result;
+}
 const afw_value_t *
 afw_compile_parse_Statement(
     afw_compile_parser_t *parser,
@@ -2026,12 +2210,12 @@ afw_compile_parse_Statement(
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_do))
         {
-            result = impl_parse_DoWhileStatement(parser);
+            result = impl_parse_DoWhileStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_for))
         {
-            result = impl_parse_ForStatement(parser);
+            result = impl_parse_ForStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_if))
@@ -2061,7 +2245,7 @@ afw_compile_parse_Statement(
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_while))
         {
-            result = impl_parse_WhileStatement(parser);
+            result = impl_parse_WhileStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_function))
@@ -2100,6 +2284,22 @@ afw_compile_parse_Statement(
      * 4) An invalid statement error is thrown.
      *
      */
+    if (!result &&
+        afw_compile_token_is_unqualified_identifier() &&
+        !parser->token->identifier_qualifier)
+    {
+        const afw_utf8_t *maybe_label;
+
+        /*
+         * Copy before peek: get_token() memsets the token, so a colon
+         * lookahead would drop identifier_name.
+         */
+        maybe_label = impl_copy_token_identifier(parser);
+        if (afw_compile_peek_next_token_is(colon)) {
+            result = impl_parse_LabeledStatement(parser, maybe_label);
+        }
+    }
+
     if (!result) {
         if (afw_compile_token_is(semicolon)) {
             return NULL;

@@ -1,19 +1,20 @@
 {
-    "brief": "Break out of a block",
+    "brief": "Break out of a loop or switch",
     "category": "compiler_internal",
-    "description": "This is a special function that can be called to break out of the body of a loop. If called outside of a loop body, an error is thrown.",
+    "description": "This is a special function that can be called to break out of the body of a loop or switch. If a label is supplied, break the loop with that label. If called outside of a loop or switch body, an error is thrown.",
     "functionId": "break",
     "functionLabel": "break",
     "pure": true,
     "parameters": [
         {
-            "description": "The value to evaluate that the enclosing loop will return. If not specified, the last evaluated value or a null value will be returned.",
-            "name": "value",
+            "dataType": "string",
+            "description": "Optional loop label. If omitted, break the innermost loop or switch.",
+            "name": "label",
             "optional": true
         }
     ],
     "returns": {
-        "description": "This function returns from the body of a loop with the last evaluated value."
+        "description": "This function leaves the body of a loop or switch."
     },
     "scriptSupport": true
 }

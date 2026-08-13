@@ -15525,60 +15525,8 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2214 \
-    "Component to display a list of options that may be selected or can be autocompleted by typing."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2214 */
-#define afw_components_s_zz__2214 \
-    (&afw_components_self_v_zz__2214.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2214 */
-#define afw_components_self_s_zz__2214 \
-    (afw_components_self_v_zz__2214.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2214 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2214;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2214 */
-#define afw_components_z_zz__2214 \
-    (afw_components_self_v_zz__2214.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2214 */
-#define afw_components_v_zz__2214 \
-    (&afw_components_self_v_zz__2214.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_COMPONENTS_Q_zz__2215 \
-    "This component provides a dropdown picker with possible values to quickly select from. By typing, it will narrow down the selection to make the list even shorter to choose a selection from. Additionally, it will offer the user the ability to enter a new value, if allowed."
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2215 */
-#define afw_components_s_zz__2215 \
-    (&afw_components_self_v_zz__2215.internal)
-
-/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2215 */
-#define afw_components_self_s_zz__2215 \
-    (afw_components_self_v_zz__2215.internal)
-
-/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2215 */
-extern const afw_value_string_t \
-    afw_components_self_v_zz__2215;
-
-/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2215 */
-#define afw_components_z_zz__2215 \
-    (afw_components_self_v_zz__2215.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2215 */
-#define afw_components_v_zz__2215 \
-    (&afw_components_self_v_zz__2215.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2216 \
-    "This component is a very powerful container, which implements a box allowing items to be added in a flexible way."
+    "Component to display a list of options that may be selected or can be autocompleted by typing."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2216 */
 #define afw_components_s_zz__2216 \
@@ -15604,7 +15552,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2217 \
-    "This component renders a path of url links that the user can click to navigate at any point within an application."
+    "This component provides a dropdown picker with possible values to quickly select from. By typing, it will narrow down the selection to make the list even shorter to choose a selection from. Additionally, it will offer the user the ability to enter a new value, if allowed."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2217 */
 #define afw_components_s_zz__2217 \
@@ -15630,7 +15578,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2218 \
-    "This component encapsulates a wide range of Button features, including labels, icons and colors. The Button component may even allow for a dropdown of selected actions to perform when clicked."
+    "This component is a very powerful container, which implements a box allowing items to be added in a flexible way."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2218 */
 #define afw_components_s_zz__2218 \
@@ -15656,7 +15604,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2219 \
-    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed."
+    "This component renders a path of url links that the user can click to navigate at any point within an application."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2219 */
 #define afw_components_s_zz__2219 \
@@ -15682,7 +15630,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2220 \
-    "This component can display a variety of simple or complex chart data in forms such as Pie, Line or Bar to offer a visual representation of the provided data."
+    "This component encapsulates a wide range of Button features, including labels, icons and colors. The Button component may even allow for a dropdown of selected actions to perform when clicked."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2220 */
 #define afw_components_s_zz__2220 \
@@ -15708,7 +15656,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2221 \
-    "This component is simply a checkbox that allows the user to click to enable or disable its value."
+    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2221 */
 #define afw_components_s_zz__2221 \
@@ -15734,7 +15682,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2222 \
-    "This component provides a mutually exclusive list of options, organized as radio buttons, that may be selected."
+    "This component can display a variety of simple or complex chart data in forms such as Pie, Line or Bar to offer a visual representation of the provided data."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2222 */
 #define afw_components_s_zz__2222 \
@@ -15760,7 +15708,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2223 \
-    "This component displays a rich text editor that allows the user to manually edit the source code for a particular piece of data."
+    "This component is simply a checkbox that allows the user to click to enable or disable its value."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2223 */
 #define afw_components_s_zz__2223 \
@@ -15786,7 +15734,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2224 \
-    "A layout container that displays content that can be hidden by a collapsible control."
+    "This component provides a mutually exclusive list of options, organized as radio buttons, that may be selected."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2224 */
 #define afw_components_s_zz__2224 \
@@ -15812,7 +15760,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2225 \
-    "This component helps organize data into a group, which can be temporarily concealed or revealed by clicking on the collapse or expand icons. This may be important for preserving real estate on the screen, or reducing the amount of data that may be present at a given time, to avoid overloading the end user with information."
+    "This component displays a rich text editor that allows the user to manually edit the source code for a particular piece of data."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2225 */
 #define afw_components_s_zz__2225 \
@@ -15838,7 +15786,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2226 \
-    "A component that allows you to select a date from a calendar."
+    "A layout container that displays content that can be hidden by a collapsible control."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2226 */
 #define afw_components_s_zz__2226 \
@@ -15864,7 +15812,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2227 \
-    "This component understands date values and allows the user to select a date from a calendar, or enter it in the appropriate format."
+    "This component helps organize data into a group, which can be temporarily concealed or revealed by clicking on the collapse or expand icons. This may be important for preserving real estate on the screen, or reducing the amount of data that may be present at a given time, to avoid overloading the end user with information."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2227 */
 #define afw_components_s_zz__2227 \
@@ -15890,7 +15838,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2228 \
-    "This component understands both dates and time formats, which allows the user to select a date and time from a calendar and clock for higher date precision."
+    "A component that allows you to select a date from a calendar."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2228 */
 #define afw_components_s_zz__2228 \
@@ -15916,7 +15864,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2229 \
-    "A layout container that displays content inside a popup, with a confirmation response."
+    "This component understands date values and allows the user to select a date from a calendar, or enter it in the appropriate format."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2229 */
 #define afw_components_s_zz__2229 \
@@ -15942,7 +15890,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2230 \
-    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed by confirming or cancelling via buttons."
+    "This component understands both dates and time formats, which allows the user to select a date and time from a calendar and clock for higher date precision."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2230 */
 #define afw_components_s_zz__2230 \
@@ -15968,7 +15916,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2231 \
-    "A component that displays a Divider line to separate content."
+    "A layout container that displays content inside a popup, with a confirmation response."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2231 */
 #define afw_components_s_zz__2231 \
@@ -15994,7 +15942,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2232 \
-    "A very simple way to divide content from the remaining content with the user of an dividing line."
+    "This component container is visible when a target element is clicked. It's used to quickly show or grab input from the user in a popup area and can be dismissed by confirming or cancelling via buttons."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2232 */
 #define afw_components_s_zz__2232 \
@@ -16020,7 +15968,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2233 \
-    "A component that renders content inside a side sheet anchored to one of the edges."
+    "A component that displays a Divider line to separate content."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2233 */
 #define afw_components_s_zz__2233 \
@@ -16046,7 +15994,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2234 \
-    "This component, which contains other content, is anchored to one of the edges of the main window. It's often animated to slide into view when an action occurs, but can be optionally docked, or permanent."
+    "A very simple way to divide content from the remaining content with the user of an dividing line."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2234 */
 #define afw_components_s_zz__2234 \
@@ -16072,7 +16020,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2235 \
-    "A component that displays a set of options that can be selected from a dropdown."
+    "A component that renders content inside a side sheet anchored to one of the edges."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2235 */
 #define afw_components_s_zz__2235 \
@@ -16098,7 +16046,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2236 \
-    "This component, given a set of options, provides the user with the ability to select one of the values by clicking on the dropdown icon and selecting the appropriate value from a list."
+    "This component, which contains other content, is anchored to one of the edges of the main window. It's often animated to slide into view when an action occurs, but can be optionally docked, or permanent."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2236 */
 #define afw_components_s_zz__2236 \
@@ -16124,7 +16072,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2237 \
-    "A component that manages a list of options in a Dropdown picker."
+    "A component that displays a set of options that can be selected from a dropdown."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2237 */
 #define afw_components_s_zz__2237 \
@@ -16150,7 +16098,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2238 \
-    "This component, given a set of options, provides the user with the ability to select, edit, add or delete one of the values by clicking on the dropdown icon and selecting the appropriate value and button from a list."
+    "This component, given a set of options, provides the user with the ability to select one of the values by clicking on the dropdown icon and selecting the appropriate value from a list."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2238 */
 #define afw_components_s_zz__2238 \
@@ -16176,7 +16124,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2239 \
-    "A component that calls out with an editable multiline text area."
+    "A component that manages a list of options in a Dropdown picker."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2239 */
 #define afw_components_s_zz__2239 \
@@ -16202,7 +16150,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2240 \
-    "This component wraps an editable text field inside a Callout component. This is useful when a label needs to be quickly edited by popping up an editor, rather than navigating them to a new page. The EditableLabel component that it displays may be a multiline text field."
+    "This component, given a set of options, provides the user with the ability to select, edit, add or delete one of the values by clicking on the dropdown icon and selecting the appropriate value and button from a list."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2240 */
 #define afw_components_s_zz__2240 \
@@ -16228,7 +16176,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2241 \
-    "A component that renders an label, which can be edited when clicked."
+    "A component that calls out with an editable multiline text area."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2241 */
 #define afw_components_s_zz__2241 \
@@ -16254,7 +16202,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2242 \
-    "This component provides a very quick way for a label to become 'editable' simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component."
+    "This component wraps an editable text field inside a Callout component. This is useful when a label needs to be quickly edited by popping up an editor, rather than navigating them to a new page. The EditableLabel component that it displays may be a multiline text field."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2242 */
 #define afw_components_s_zz__2242 \
@@ -16280,7 +16228,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2243 \
-    "A component that hides content under screen breakpoint conditions."
+    "A component that renders an label, which can be edited when clicked."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2243 */
 #define afw_components_s_zz__2243 \
@@ -16306,7 +16254,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2244 \
-    "This is a utility component that gives a layout the ability to hide content under screen size conditions. This is necessary for responsive layouts to provide both complex or simply designs that are accessible and usable from a variety of screen devices."
+    "This component provides a very quick way for a label to become 'editable' simply by clicking on the text label. After clicking on the label, the component changes from a static label to an editable TextField component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2244 */
 #define afw_components_s_zz__2244 \
@@ -16332,7 +16280,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2245 \
-    "This component displays an icon, which references a common dictionary of icon names, each of which may map to the appropriate icon library depending on the framework that is being used. The icon itself may be clickable."
+    "A component that hides content under screen breakpoint conditions."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2245 */
 #define afw_components_s_zz__2245 \
@@ -16358,7 +16306,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2246 \
-    "This component displays an image from a variety of sources and formats."
+    "This is a utility component that gives a layout the ability to hide content under screen size conditions. This is necessary for responsive layouts to provide both complex or simply designs that are accessible and usable from a variety of screen devices."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2246 */
 #define afw_components_s_zz__2246 \
@@ -16384,7 +16332,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2247 \
-    "This component understands how to render a link with the appropriate framework style, and handles the React Routing, if the link references another component within this same application."
+    "This component displays an icon, which references a common dictionary of icon names, each of which may map to the appropriate icon library depending on the framework that is being used. The icon itself may be clickable."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2247 */
 #define afw_components_s_zz__2247 \
@@ -16410,7 +16358,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2248 \
-    "This component is a simple container component that renders its contents in a sequential, scrollable list."
+    "This component displays an image from a variety of sources and formats."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2248 */
 #define afw_components_s_zz__2248 \
@@ -16436,7 +16384,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2249 \
-    "A component that allows the user to manage a list of text items."
+    "This component understands how to render a link with the appropriate framework style, and handles the React Routing, if the link references another component within this same application."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2249 */
 #define afw_components_s_zz__2249 \
@@ -16462,7 +16410,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2250 \
-    "This component renders a list of text and optional secondary text, items, which allows the user to add, edit or delete items from the list."
+    "This component is a simple container component that renders its contents in a sequential, scrollable list."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2250 */
 #define afw_components_s_zz__2250 \
@@ -16488,7 +16436,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2251 \
-    "This component pops up a Menu of items, each of which take an appropriate action when clicked. Menu items may also open up new submenus in order to organize or filter a set of items in a way that's easy for the end user to understand and select from."
+    "A component that allows the user to manage a list of text items."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2251 */
 #define afw_components_s_zz__2251 \
@@ -16514,7 +16462,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2252 \
-    "This component displays a text message within a surface that may alert the user to additional information, errors or warnings."
+    "This component renders a list of text and optional secondary text, items, which allows the user to add, edit or delete items from the list."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2252 */
 #define afw_components_s_zz__2252 \
@@ -16540,7 +16488,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2253 \
-    "This component represents any additional native HTML node that is required by the end user, which is not covered by other components within this library."
+    "This component pops up a Menu of items, each of which take an appropriate action when clicked. Menu items may also open up new submenus in order to organize or filter a set of items in a way that's easy for the end user to understand and select from."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2253 */
 #define afw_components_s_zz__2253 \
@@ -16566,7 +16514,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2254 \
-    "This component, often referred to as a Side Nav, displays a list of clickable links into a horizontal panel."
+    "This component displays a text message within a surface that may alert the user to additional information, errors or warnings."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2254 */
 #define afw_components_s_zz__2254 \
@@ -16592,7 +16540,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2255 \
-    "A component that allows contents to be displayed on a Paper like surface."
+    "This component represents any additional native HTML node that is required by the end user, which is not covered by other components within this library."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2255 */
 #define afw_components_s_zz__2255 \
@@ -16618,7 +16566,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2256 \
-    "This component allows data on its surface to stand out by providing an edged, or raised outline, with shadow depth and optional corner radius style. This component is another useful container to help separate a section of data from its surrounding contents."
+    "This component, often referred to as a Side Nav, displays a list of clickable links into a horizontal panel."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2256 */
 #define afw_components_s_zz__2256 \
@@ -16644,7 +16592,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2257 \
-    "A component that allows one or more items to be picked from a list."
+    "A component that allows contents to be displayed on a Paper like surface."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2257 */
 #define afw_components_s_zz__2257 \
@@ -16670,7 +16618,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2258 \
-    "This component allows for zero or more items to be selected from a list. When an item is selected, it appears as a tag in the selection, which may also be later removed."
+    "This component allows data on its surface to stand out by providing an edged, or raised outline, with shadow depth and optional corner radius style. This component is another useful container to help separate a section of data from its surrounding contents."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2258 */
 #define afw_components_s_zz__2258 \
@@ -16696,7 +16644,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2259 \
-    "A layout container that renders content in a grid format, with breakpoints defined for a variety of screen sizes."
+    "A component that allows one or more items to be picked from a list."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2259 */
 #define afw_components_s_zz__2259 \
@@ -16722,7 +16670,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2260 \
-    "This container component defines a Row/Column grid of components to display content horizontally and vertically, depending on the screen size. For larger displays, you may assign breakpoints that allow for all content to fit, while on smaller mobile devices, content will be divided up into chunks."
+    "This component allows for zero or more items to be selected from a list. When an item is selected, it appears as a tag in the selection, which may also be later removed."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2260 */
 #define afw_components_s_zz__2260 \
@@ -16748,7 +16696,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2261 \
-    "A component that displays a skeleton, or shape, of a component that may shimmer to indicate that an actual component is waiting to be loaded."
+    "A layout container that renders content in a grid format, with breakpoints defined for a variety of screen sizes."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2261 */
 #define afw_components_s_zz__2261 \
@@ -16774,7 +16722,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2262 \
-    "The Skeleton is a feedback utility component, similar to the Spinner, but it takes on a shape that gives the user the perspective that data is nearly ready and the component is attempting to render. It's a component placeholder, which often animates or shimmers."
+    "This container component defines a Row/Column grid of components to display content horizontally and vertically, depending on the screen size. For larger displays, you may assign breakpoints that allow for all content to fit, while on smaller mobile devices, content will be divided up into chunks."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2262 */
 #define afw_components_s_zz__2262 \
@@ -16800,7 +16748,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2263 \
-    "A component that displays numeric values in a slider control."
+    "A component that displays a skeleton, or shape, of a component that may shimmer to indicate that an actual component is waiting to be loaded."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2263 */
 #define afw_components_s_zz__2263 \
@@ -16826,7 +16774,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2264 \
-    "This component is used for numeric values, and allows the user to slide a controller to increase or decrease its value without having to enter data manually."
+    "The Skeleton is a feedback utility component, similar to the Spinner, but it takes on a shape that gives the user the perspective that data is nearly ready and the component is attempting to render. It's a component placeholder, which often animates or shimmers."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2264 */
 #define afw_components_s_zz__2264 \
@@ -16852,7 +16800,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2265 \
-    "This component pops up a small bar at the bottom of the screen to alert the user of a recent activity, such as a success or error status, typically following an action that was taken by the user."
+    "A component that displays numeric values in a slider control."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2265 */
 #define afw_components_s_zz__2265 \
@@ -16878,7 +16826,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2266 \
-    "A component that renders a numeric field that an be incremented or decremented."
+    "This component is used for numeric values, and allows the user to slide a controller to increase or decrease its value without having to enter data manually."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2266 */
 #define afw_components_s_zz__2266 \
@@ -16904,7 +16852,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2267 \
-    "This utility component displays a spinning circle to indicate to the user to wait for processing to complete."
+    "This component pops up a small bar at the bottom of the screen to alert the user of a recent activity, such as a success or error status, typically following an action that was taken by the user."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2267 */
 #define afw_components_s_zz__2267 \
@@ -16930,7 +16878,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2268 \
-    "A component that displays a Stepper indicating a list of steps and the current one you are on."
+    "A component that renders a numeric field that an be incremented or decremented."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2268 */
 #define afw_components_s_zz__2268 \
@@ -16956,7 +16904,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2269 \
-    "This component is useful for creating a step-by-step wizard, with each step providing a title, its contents, and a Next button to get to the next step."
+    "This utility component displays a spinning circle to indicate to the user to wait for processing to complete."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2269 */
 #define afw_components_s_zz__2269 \
@@ -16982,7 +16930,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2270 \
-    "This component arranges data into rows and columns, which can be optionally sorted, selected and edited through actions."
+    "A component that displays a Stepper indicating a list of steps and the current one you are on."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2270 */
 #define afw_components_s_zz__2270 \
@@ -17008,7 +16956,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2271 \
-    "This component displays a list of components, one at a time, by containing the content inside of their individual tabs. A tab has a clickable link, which when clicked, will switch the content to the desired component."
+    "This component is useful for creating a step-by-step wizard, with each step providing a title, its contents, and a Next button to get to the next step."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2271 */
 #define afw_components_s_zz__2271 \
@@ -17034,7 +16982,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2272 \
-    "A component that renders a text field with a label and description."
+    "This component arranges data into rows and columns, which can be optionally sorted, selected and edited through actions."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2272 */
 #define afw_components_s_zz__2272 \
@@ -17060,7 +17008,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2273 \
-    "This is a simple component for inputting text. It may display an outlined or underlined field from which the user can enter text into. It may also display a label and description to help the user understand its contents."
+    "This component displays a list of components, one at a time, by containing the content inside of their individual tabs. A tab has a clickable link, which when clicked, will switch the content to the desired component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2273 */
 #define afw_components_s_zz__2273 \
@@ -17086,7 +17034,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2274 \
-    "This component understands a time duration data type and renders a convenient way to select a duration of time."
+    "A component that renders a text field with a label and description."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2274 */
 #define afw_components_s_zz__2274 \
@@ -17112,7 +17060,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2275 \
-    "This component allows a time to be chosen, typically from a clock or spin buttons."
+    "This is a simple component for inputting text. It may display an outlined or underlined field from which the user can enter text into. It may also display a label and description to help the user understand its contents."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2275 */
 #define afw_components_s_zz__2275 \
@@ -17138,7 +17086,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2276 \
-    "This component allows a timezone to be chosen, typically from a dropdown of timezones, or from a world map."
+    "This component understands a time duration data type and renders a convenient way to select a duration of time."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2276 */
 #define afw_components_s_zz__2276 \
@@ -17164,7 +17112,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2277 \
-    "A component that renders a boolean value as a toggleable switch."
+    "This component allows a time to be chosen, typically from a clock or spin buttons."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2277 */
 #define afw_components_s_zz__2277 \
@@ -17190,7 +17138,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2278 \
-    "This component takes a boolean value and displays it as a switch that can be toggled on or off to represent true or false. It may also have text labels to interpret its meaning."
+    "This component allows a timezone to be chosen, typically from a dropdown of timezones, or from a world map."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2278 */
 #define afw_components_s_zz__2278 \
@@ -17216,7 +17164,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2279 \
-    "A component to display a selectable choice of options, presented as buttons that can be toggled on or off."
+    "A component that renders a boolean value as a toggleable switch."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2279 */
 #define afw_components_s_zz__2279 \
@@ -17242,7 +17190,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2280 \
-    "This component provides a list of options, organized as buttons, that may be toggled on or off. They may be inclusive or exclusive."
+    "This component takes a boolean value and displays it as a switch that can be toggled on or off to represent true or false. It may also have text labels to interpret its meaning."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2280 */
 #define afw_components_s_zz__2280 \
@@ -17268,7 +17216,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2281 \
-    "A container component that arranges a series of buttons or other minor content in a horizontal bar."
+    "A component to display a selectable choice of options, presented as buttons that can be toggled on or off."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2281 */
 #define afw_components_s_zz__2281 \
@@ -17294,7 +17242,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2282 \
-    "This component is used to provide actions, via buttons, labels or other small components, condensed into a common location so the user may use it to view or change data that is presented in the layout below."
+    "This component provides a list of options, organized as buttons, that may be toggled on or off. They may be inclusive or exclusive."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2282 */
 #define afw_components_s_zz__2282 \
@@ -17320,7 +17268,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2283 \
-    "This component renders a small popup with text when the user hovers over an element for a specific amount of time. This may provide helpful hints to explain to the user what they are looking at."
+    "A container component that arranges a series of buttons or other minor content in a horizontal bar."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2283 */
 #define afw_components_s_zz__2283 \
@@ -17346,7 +17294,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2284 \
-    "This component helps to organize content into a Tree structure, where nodes can be selected, expanded, or collapsed to allow the user to navigate more complex nested data or component structures."
+    "This component is used to provide actions, via buttons, labels or other small components, condensed into a common location so the user may use it to view or change data that is presented in the layout below."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2284 */
 #define afw_components_s_zz__2284 \
@@ -17372,7 +17320,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2285 \
-    "This component is a very simple one, which renders text into a static label with specified color, size or style.."
+    "This component renders a small popup with text when the user hovers over an element for a specific amount of time. This may provide helpful hints to explain to the user what they are looking at."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2285 */
 #define afw_components_s_zz__2285 \
@@ -17398,7 +17346,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2286 \
-    "Defines the screen size breakpoints for this column definition."
+    "This component helps to organize content into a Tree structure, where nodes can be selected, expanded, or collapsed to allow the user to navigate more complex nested data or component structures."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2286 */
 #define afw_components_s_zz__2286 \
@@ -17424,7 +17372,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2287 \
-    "Defines arbitrary Component properties that may be applicable to a specific Component Type."
+    "This component is a very simple one, which renders text into a static label with specified color, size or style.."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2287 */
 #define afw_components_s_zz__2287 \
@@ -17450,7 +17398,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2288 \
-    "The object, containing the property, to be displayed by the Adaptive Property Layout component."
+    "Defines the screen size breakpoints for this column definition."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2288 */
 #define afw_components_s_zz__2288 \
@@ -17476,7 +17424,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2289 \
-    "The property name in the object to be displayed by the Adaptive Property Layout component."
+    "Defines arbitrary Component properties that may be applicable to a specific Component Type."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2289 */
 #define afw_components_s_zz__2289 \
@@ -17502,7 +17450,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2290 \
-    "Adaptive Layout definition for the Adaptive Property Layout component."
+    "The object, containing the property, to be displayed by the Adaptive Property Layout component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2290 */
 #define afw_components_s_zz__2290 \
@@ -17528,7 +17476,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2291 \
-    "Specifies whether the Autocomplete component is currently loading."
+    "The property name in the object to be displayed by the Adaptive Property Layout component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2291 */
 #define afw_components_s_zz__2291 \
@@ -17554,7 +17502,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2292 \
-    "Specifies the placeholder text displayed when no value is present."
+    "Adaptive Layout definition for the Adaptive Property Layout component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2292 */
 #define afw_components_s_zz__2292 \
@@ -17580,7 +17528,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2293 \
-    "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how 'Justify Content' aligns individual items within the main-axis."
+    "Specifies whether the Autocomplete component is currently loading."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2293 */
 #define afw_components_s_zz__2293 \
@@ -17606,7 +17554,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2294 \
-    "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the 'Justify Content' version for the cross axis (perpendicular to the main-axis)."
+    "Specifies the placeholder text displayed when no value is present."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2294 */
 #define afw_components_s_zz__2294 \
@@ -17632,7 +17580,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2295 \
-    "This declares the direction that items are oriented inside the Box."
+    "This aligns a flex container's lines within when there is extra space in the cross-axis, similar to how 'Justify Content' aligns individual items within the main-axis."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2295 */
 #define afw_components_s_zz__2295 \
@@ -17658,7 +17606,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2296 \
-    "This defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line."
+    "This defines the default behavior for how flex items are laid out along the cross axis on the current line. Think of it as the 'Justify Content' version for the cross axis (perpendicular to the main-axis)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2296 */
 #define afw_components_s_zz__2296 \
@@ -17684,7 +17632,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2297 \
-    "By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property."
+    "This declares the direction that items are oriented inside the Box."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2297 */
 #define afw_components_s_zz__2297 \
@@ -17710,7 +17658,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2298 \
-    "This declares the components to be rendered inside the BoxItem."
+    "This defines the alignment along the main axis. It helps distribute extra free space leftover when either all the flex items on a line are inflexible, or are flexible but have reached their maximum size. It also exerts some control over the alignment of items when they overflow the line."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2298 */
 #define afw_components_s_zz__2298 \
@@ -17736,7 +17684,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2299 \
-    "This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.\n\nIf all items have flex-grow set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least)."
+    "By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2299 */
 #define afw_components_s_zz__2299 \
@@ -17762,7 +17710,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2300 \
-    "By default, flex items are laid out in the source order. However, the order property controls the order in which they appear in the flex container."
+    "This declares the components to be rendered inside the BoxItem."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2300 */
 #define afw_components_s_zz__2300 \
@@ -17788,7 +17736,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2301 \
-    "This defines the ability for a flex item to shrink if necessary."
+    "This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.\n\nIf all items have flex-grow set to 1, the remaining space in the container will be distributed equally to all children. If one of the children has a value of 2, the remaining space would take up twice as much space as the others (or it will try to, at least)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2301 */
 #define afw_components_s_zz__2301 \
@@ -17814,7 +17762,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2302 \
-    "Adaptive Layout definition for the Flexible BoxItem component."
+    "By default, flex items are laid out in the source order. However, the order property controls the order in which they appear in the flex container."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2302 */
 #define afw_components_s_zz__2302 \
@@ -17840,7 +17788,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2303 \
-    "Adaptive Layout definition for the Flexible BreadcrumbItem component."
+    "This defines the ability for a flex item to shrink if necessary."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2303 */
 #define afw_components_s_zz__2303 \
@@ -17866,7 +17814,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2304 \
-    "Specifies an optional color for this Button (primary, secondary, error)."
+    "Adaptive Layout definition for the Flexible BoxItem component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2304 */
 #define afw_components_s_zz__2304 \
@@ -17892,7 +17840,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2305 \
-    "Specifies optional text to be added below the main text label."
+    "Adaptive Layout definition for the Flexible BreadcrumbItem component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2305 */
 #define afw_components_s_zz__2305 \
@@ -17918,7 +17866,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2306 \
-    "Specifies the position of the callout, relative to the target component."
+    "Specifies an optional color for this Button (primary, secondary, error)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2306 */
 #define afw_components_s_zz__2306 \
@@ -17944,7 +17892,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2307 \
-    "The orientation of the Choice Group (horizontal or vertical)."
+    "Specifies optional text to be added below the main text label."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2307 */
 #define afw_components_s_zz__2307 \
@@ -17970,7 +17918,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2308 \
-    "Specifies whether this option is disabled in the ChoiceGroup."
+    "Specifies the position of the callout, relative to the target component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2308 */
 #define afw_components_s_zz__2308 \
@@ -17996,7 +17944,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2309 \
-    "Adaptive Layout definition for the ChoiceGroupOption component."
+    "The orientation of the Choice Group (horizontal or vertical)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2309 */
 #define afw_components_s_zz__2309 \
@@ -18022,7 +17970,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2310 \
-    "The source value for the CodeEditor component should be read-only."
+    "Specifies whether this option is disabled in the ChoiceGroup."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2310 */
 #define afw_components_s_zz__2310 \
@@ -18048,7 +17996,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2311 \
-    "Specifies whether the gutter should be visible in CodeEditor component."
+    "Adaptive Layout definition for the ChoiceGroupOption component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2311 */
 #define afw_components_s_zz__2311 \
@@ -18074,7 +18022,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2312 \
-    "Specifies whether the line numbers should be visible in CodeEditor component."
+    "The source value for the CodeEditor component should be read-only."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2312 */
 #define afw_components_s_zz__2312 \
@@ -18100,7 +18048,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2313 \
-    "Specifies whether the print margin should be visible in CodeEditor component."
+    "Specifies whether the gutter should be visible in CodeEditor component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2313 */
 #define afw_components_s_zz__2313 \
@@ -18126,7 +18074,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2314 \
-    "Specifies the component contained within this Collapsible Body."
+    "Specifies whether the line numbers should be visible in CodeEditor component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2314 */
 #define afw_components_s_zz__2314 \
@@ -18152,7 +18100,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2315 \
-    "Specifies the component contained within this Collapsible Header."
+    "Specifies whether the print margin should be visible in CodeEditor component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2315 */
 #define afw_components_s_zz__2315 \
@@ -18178,7 +18126,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2316 \
-    "Specifies whether the Collapsible content is collapsed or not."
+    "Specifies the component contained within this Collapsible Body."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2316 */
 #define afw_components_s_zz__2316 \
@@ -18204,7 +18152,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2317 \
-    "Specifies whether the Collapsible should render the collapse feature."
+    "Specifies the component contained within this Collapsible Header."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2317 */
 #define afw_components_s_zz__2317 \
@@ -18230,7 +18178,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2318 \
-    "This attribute is used to define a string that labels the current element. Use it in cases where a text label is not visible on the screen."
+    "Specifies whether the Collapsible content is collapsed or not."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2318 */
 #define afw_components_s_zz__2318 \
@@ -18256,7 +18204,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2319 \
-    "Establishes the relationships between objects and their label(s)."
+    "Specifies whether the Collapsible should render the collapse feature."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2319 */
 #define afw_components_s_zz__2319 \
@@ -18282,7 +18230,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2320 \
-    "Used internally, to indicate that the component is being rendered in 'design mode', in case it needs to behave differently."
+    "This attribute is used to define a string that labels the current element. Use it in cases where a text label is not visible on the screen."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2320 */
 #define afw_components_s_zz__2320 \
@@ -18308,7 +18256,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2321 \
-    "Identifies to parsing software the exact function of an element (and its children) as part of a web application."
+    "Establishes the relationships between objects and their label(s)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2321 */
 #define afw_components_s_zz__2321 \
@@ -18334,7 +18282,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2322 \
-    "An object representing the CSS style to be applied to this layout component type."
+    "Used internally, to indicate that the component is being rendered in 'design mode', in case it needs to behave differently."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2322 */
 #define afw_components_s_zz__2322 \
@@ -18360,7 +18308,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2323 \
-    "Any contents that needs to be rendered inside the Dialog's footer area."
+    "Identifies to parsing software the exact function of an element (and its children) as part of a web application."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2323 */
 #define afw_components_s_zz__2323 \
@@ -18386,7 +18334,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2324 \
-    "Determines if the Dialog should block dismissing until the user clicks a button."
+    "An object representing the CSS style to be applied to this layout component type."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2324 */
 #define afw_components_s_zz__2324 \
@@ -18412,7 +18360,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2325 \
-    "Should a close button be rendered, to allow the user to dismiss the Dialog."
+    "Any contents that needs to be rendered inside the Dialog's footer area."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2325 */
 #define afw_components_s_zz__2325 \
@@ -18438,7 +18386,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2326 \
-    "The content text to display inside the dialog box, directly under the Title."
+    "Determines if the Dialog should block dismissing until the user clicks a button."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2326 */
 #define afw_components_s_zz__2326 \
@@ -18464,7 +18412,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2327 \
-    "The modified source value for the DiffEditor component to render."
+    "Should a close button be rendered, to allow the user to dismiss the Dialog."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2327 */
 #define afw_components_s_zz__2327 \
@@ -18490,7 +18438,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2328 \
-    "The original source value for the DiffEditor component to render."
+    "The content text to display inside the dialog box, directly under the Title."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2328 */
 #define afw_components_s_zz__2328 \
@@ -18516,7 +18464,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2329 \
-    "Specifies whether the line numbers should be visible in DiffEditor component."
+    "The modified source value for the DiffEditor component to render."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2329 */
 #define afw_components_s_zz__2329 \
@@ -18542,7 +18490,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2330 \
-    "This property describes which side of the page, the drawer should be anchored to. It may be one of 'bottom', 'top', 'left' or 'right'."
+    "The original source value for the DiffEditor component to render."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2330 */
 #define afw_components_s_zz__2330 \
@@ -18568,7 +18516,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2331 \
-    "This declares a list of items to be rendered inside the Drawer."
+    "Specifies whether the line numbers should be visible in DiffEditor component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2331 */
 #define afw_components_s_zz__2331 \
@@ -18594,7 +18542,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2332 \
-    "This property describes whether the drawer should be anchored temporary, persistent or permanent. If temporary, the drawer will be dismissed when the user unblocks its focus. If persistent, the drawer will be displayed until the user manually closes it. If permanent, the drawer will always remain open."
+    "This property describes which side of the page, the drawer should be anchored to. It may be one of 'bottom', 'top', 'left' or 'right'."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2332 */
 #define afw_components_s_zz__2332 \
@@ -18620,7 +18568,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2333 \
-    "Whether the options managed by this Dropdown Editor are editable."
+    "This declares a list of items to be rendered inside the Drawer."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2333 */
 #define afw_components_s_zz__2333 \
@@ -18646,7 +18594,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2334 \
-    "Adaptive component definition for the Dropdown Option component."
+    "This property describes whether the drawer should be anchored temporary, persistent or permanent. If temporary, the drawer will be dismissed when the user unblocks its focus. If persistent, the drawer will be displayed until the user manually closes it. If permanent, the drawer will always remain open."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2334 */
 #define afw_components_s_zz__2334 \
@@ -18672,7 +18620,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2335 \
-    "The placeholder value for the text field when no value exists."
+    "Whether the options managed by this Dropdown Editor are editable."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2335 */
 #define afw_components_s_zz__2335 \
@@ -18698,7 +18646,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2336 \
-    "Adaptive Layout definition for the EditableCallout component."
+    "Adaptive component definition for the Dropdown Option component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2336 */
 #define afw_components_s_zz__2336 \
@@ -18724,7 +18672,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2337 \
-    "Specifies whether the TextField for the EditableLabel needs to be multilined."
+    "The placeholder value for the text field when no value exists."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2337 */
 #define afw_components_s_zz__2337 \
@@ -18750,7 +18698,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2338 \
-    "The breakpoint conditions for which the contained component will be hidden (xs, sm, md, lg, xl)."
+    "Adaptive Layout definition for the EditableCallout component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2338 */
 #define afw_components_s_zz__2338 \
@@ -18776,7 +18724,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2339 \
-    "This content will only be displayed on large displays or smaller."
+    "Specifies whether the TextField for the EditableLabel needs to be multilined."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2339 */
 #define afw_components_s_zz__2339 \
@@ -18802,7 +18750,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2340 \
-    "This content will only be displayed on medium displays or smaller."
+    "The breakpoint conditions for which the contained component will be hidden (xs, sm, md, lg, xl)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2340 */
 #define afw_components_s_zz__2340 \
@@ -18828,7 +18776,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2341 \
-    "This content will only be displayed on small displays or smaller."
+    "This content will only be displayed on large displays or smaller."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2341 */
 #define afw_components_s_zz__2341 \
@@ -18854,7 +18802,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2342 \
-    "This content will only be displayed on extra large displays or smaller."
+    "This content will only be displayed on medium displays or smaller."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2342 */
 #define afw_components_s_zz__2342 \
@@ -18880,7 +18828,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2343 \
-    "The layout components that are contained by this List component."
+    "This content will only be displayed on small displays or smaller."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2343 */
 #define afw_components_s_zz__2343 \
@@ -18906,7 +18854,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2344 \
-    "Optional components to be displayed for the Message component."
+    "This content will only be displayed on extra large displays or smaller."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2344 */
 #define afw_components_s_zz__2344 \
@@ -18932,7 +18880,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2345 \
-    "Specifies whether this Modal component is blocking or can lightly be dismissed."
+    "The layout components that are contained by this List component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2345 */
 #define afw_components_s_zz__2345 \
@@ -18958,7 +18906,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2346 \
-    "The layout row components that are contained by this Responsive."
+    "Optional components to be displayed for the Message component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2346 */
 #define afw_components_s_zz__2346 \
@@ -18984,7 +18932,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2347 \
-    "Defines the screen size breakpoints for this column definition"
+    "Specifies whether this Modal component is blocking or can lightly be dismissed."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2347 */
 #define afw_components_s_zz__2347 \
@@ -19010,7 +18958,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2348 \
-    "The layout components that are contained by this Responsive component."
+    "The layout row components that are contained by this Responsive."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2348 */
 #define afw_components_s_zz__2348 \
@@ -19036,7 +18984,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2349 \
-    "The layout columns that are contained by this ResponsiveRow component."
+    "Defines the screen size breakpoints for this column definition"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2349 */
 #define afw_components_s_zz__2349 \
@@ -19062,7 +19010,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2350 \
-    "The breakpoint definition on extra extra large resolution screens."
+    "The layout components that are contained by this Responsive component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2350 */
 #define afw_components_s_zz__2350 \
@@ -19088,7 +19036,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2351 \
-    "The breakpoint definition on extra extra extra large resolution screens."
+    "The layout columns that are contained by this ResponsiveRow component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2351 */
 #define afw_components_s_zz__2351 \
@@ -19114,7 +19062,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2352 \
-    "Adaptive parameters definition for the Responsive Breakpoints."
+    "The breakpoint definition on extra extra large resolution screens."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2352 */
 #define afw_components_s_zz__2352 \
@@ -19140,7 +19088,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2353 \
-    "The type of message for the Snackbar component (error, warning, info, success)."
+    "The breakpoint definition on extra extra extra large resolution screens."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2353 */
 #define afw_components_s_zz__2353 \
@@ -19166,7 +19114,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2354 \
-    "The list of steps to be displayed for a the Stepper component."
+    "Adaptive parameters definition for the Responsive Breakpoints."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2354 */
 #define afw_components_s_zz__2354 \
@@ -19192,7 +19140,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2355 \
-    "Sets or returns the alignment between the lines inside a flexible container when the items do not use all available space"
+    "The type of message for the Snackbar component (error, warning, info, success)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2355 */
 #define afw_components_s_zz__2355 \
@@ -19218,7 +19166,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2356 \
-    "Sets or returns the alignment for items inside a flexible container"
+    "The list of steps to be displayed for a the Stepper component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2356 */
 #define afw_components_s_zz__2356 \
@@ -19244,7 +19192,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2357 \
-    "Sets or returns the alignment for selected items inside a flexible container"
+    "Sets or returns the alignment between the lines inside a flexible container when the items do not use all available space"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2357 */
 #define afw_components_s_zz__2357 \
@@ -19270,7 +19218,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2358 \
-    "A shorthand property for all the animation properties below, except the animationPlayState property"
+    "Sets or returns the alignment for items inside a flexible container"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2358 */
 #define afw_components_s_zz__2358 \
@@ -19296,7 +19244,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2359 \
-    "Sets or returns whether or not the animation should play in reverse on alternate cycles"
+    "Sets or returns the alignment for selected items inside a flexible container"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2359 */
 #define afw_components_s_zz__2359 \
@@ -19322,7 +19270,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2360 \
-    "Sets or returns how many seconds or milliseconds an animation takes to complete one cycle"
+    "A shorthand property for all the animation properties below, except the animationPlayState property"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2360 */
 #define afw_components_s_zz__2360 \
@@ -19348,7 +19296,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2361 \
-    "Sets or returns what values are applied by the animation outside the time it is executing"
+    "Sets or returns whether or not the animation should play in reverse on alternate cycles"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2361 */
 #define afw_components_s_zz__2361 \
@@ -19374,7 +19322,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2362 \
-    "Sets or returns the number of times an animation should be played"
+    "Sets or returns how many seconds or milliseconds an animation takes to complete one cycle"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2362 */
 #define afw_components_s_zz__2362 \
@@ -19400,7 +19348,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2363 \
-    "Sets or returns whether or not an element should be visible when not facing the screen"
+    "Sets or returns what values are applied by the animation outside the time it is executing"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2363 */
 #define afw_components_s_zz__2363 \
@@ -19426,7 +19374,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2364 \
-    "Sets or returns all the background properties in one declaration"
+    "Sets or returns the number of times an animation should be played"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2364 */
 #define afw_components_s_zz__2364 \
@@ -19452,7 +19400,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2365 \
-    "Sets or returns whether a background-image is fixed or scrolls with the page"
+    "Sets or returns whether or not an element should be visible when not facing the screen"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2365 */
 #define afw_components_s_zz__2365 \
@@ -19478,7 +19426,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2366 \
-    "Sets or returns the positioning area of the background images"
+    "Sets or returns all the background properties in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2366 */
 #define afw_components_s_zz__2366 \
@@ -19504,7 +19452,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2367 \
-    "Sets or returns borderWidth, borderStyle, and borderColor in one declaration"
+    "Sets or returns whether a background-image is fixed or scrolls with the page"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2367 */
 #define afw_components_s_zz__2367 \
@@ -19530,7 +19478,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2368 \
-    "Sets or returns all the borderBottom properties in one declaration"
+    "Sets or returns the positioning area of the background images"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2368 */
 #define afw_components_s_zz__2368 \
@@ -19556,7 +19504,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2369 \
-    "Sets or returns the shape of the border of the bottom-left corner"
+    "Sets or returns borderWidth, borderStyle, and borderColor in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2369 */
 #define afw_components_s_zz__2369 \
@@ -19582,7 +19530,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2370 \
-    "Sets or returns the shape of the border of the bottom-right corner"
+    "Sets or returns all the borderBottom properties in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2370 */
 #define afw_components_s_zz__2370 \
@@ -19608,7 +19556,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2371 \
-    "Sets or returns whether the table border should be collapsed into a single border, or not"
+    "Sets or returns the shape of the border of the bottom-left corner"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2371 */
 #define afw_components_s_zz__2371 \
@@ -19634,7 +19582,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2372 \
-    "Sets or returns the color of an element's border (can have up to four values)"
+    "Sets or returns the shape of the border of the bottom-right corner"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2372 */
 #define afw_components_s_zz__2372 \
@@ -19660,7 +19608,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2373 \
-    "A shorthand property for setting or returning all the borderImage properties"
+    "Sets or returns whether the table border should be collapsed into a single border, or not"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2373 */
 #define afw_components_s_zz__2373 \
@@ -19686,7 +19634,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2374 \
-    "Sets or returns the amount by which the border image area extends beyond the border box"
+    "Sets or returns the color of an element's border (can have up to four values)"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2374 */
 #define afw_components_s_zz__2374 \
@@ -19712,7 +19660,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2375 \
-    "Sets or returns whether the image-border should be repeated, rounded or stretched"
+    "A shorthand property for setting or returning all the borderImage properties"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2375 */
 #define afw_components_s_zz__2375 \
@@ -19738,7 +19686,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2376 \
-    "Sets or returns all the borderLeft properties in one declaration"
+    "Sets or returns the amount by which the border image area extends beyond the border box"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2376 */
 #define afw_components_s_zz__2376 \
@@ -19764,7 +19712,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2377 \
-    "A shorthand property for setting or returning all the four borderRadius properties"
+    "Sets or returns whether the image-border should be repeated, rounded or stretched"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2377 */
 #define afw_components_s_zz__2377 \
@@ -19790,7 +19738,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2378 \
-    "Sets or returns all the borderRight properties in one declaration"
+    "Sets or returns all the borderLeft properties in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2378 */
 #define afw_components_s_zz__2378 \
@@ -19816,7 +19764,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2379 \
-    "Sets or returns the style of an element's border (can have up to four values)"
+    "A shorthand property for setting or returning all the four borderRadius properties"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2379 */
 #define afw_components_s_zz__2379 \
@@ -19842,7 +19790,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2380 \
-    "Sets or returns all the borderTop properties in one declaration"
+    "Sets or returns all the borderRight properties in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2380 */
 #define afw_components_s_zz__2380 \
@@ -19868,7 +19816,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2381 \
-    "Sets or returns the shape of the border of the top-left corner"
+    "Sets or returns the style of an element's border (can have up to four values)"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2381 */
 #define afw_components_s_zz__2381 \
@@ -19894,7 +19842,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2382 \
-    "Sets or returns the shape of the border of the top-right corner"
+    "Sets or returns all the borderTop properties in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2382 */
 #define afw_components_s_zz__2382 \
@@ -19920,7 +19868,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2383 \
-    "Sets or returns the width of an element's border (can have up to four values)"
+    "Sets or returns the shape of the border of the top-left corner"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2383 */
 #define afw_components_s_zz__2383 \
@@ -19946,7 +19894,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2384 \
-    "Sets or returns the behavior of the background and border of an element at page-break, or, for in-line elements, at line-break."
+    "Sets or returns the shape of the border of the top-right corner"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2384 */
 #define afw_components_s_zz__2384 \
@@ -19972,7 +19920,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2385 \
-    "Allows you to define certain elements to fit an area in a certain way"
+    "Sets or returns the width of an element's border (can have up to four values)"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2385 */
 #define afw_components_s_zz__2385 \
@@ -19998,7 +19946,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2386 \
-    "Sets or returns the position of the element relative to floating objects"
+    "Sets or returns the behavior of the background and border of an element at page-break, or, for in-line elements, at line-break."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2386 */
 #define afw_components_s_zz__2386 \
@@ -20024,7 +19972,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2387 \
-    "Sets or returns which part of a positioned element is visible"
+    "Allows you to define certain elements to fit an area in a certain way"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2387 */
 #define afw_components_s_zz__2387 \
@@ -20050,7 +19998,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2388 \
-    "Sets or returns the number of columns an element should be divided into"
+    "Sets or returns the position of the element relative to floating objects"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2388 */
 #define afw_components_s_zz__2388 \
@@ -20076,7 +20024,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2389 \
-    "A shorthand property for setting or returning all the columnRule properties"
+    "Sets or returns which part of a positioned element is visible"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2389 */
 #define afw_components_s_zz__2389 \
@@ -20102,7 +20050,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2390 \
-    "Sets or returns how many columns an element should span across"
+    "Sets or returns the number of columns an element should be divided into"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2390 */
 #define afw_components_s_zz__2390 \
@@ -20128,7 +20076,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2391 \
-    "A shorthand property for setting or returning columnWidth and columnCount"
+    "A shorthand property for setting or returning all the columnRule properties"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2391 */
 #define afw_components_s_zz__2391 \
@@ -20154,7 +20102,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2392 \
-    "Used with the :before and :after pseudo-elements, to insert generated content"
+    "Sets or returns how many columns an element should span across"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2392 */
 #define afw_components_s_zz__2392 \
@@ -20180,7 +20128,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2393 \
-    "Sets or returns the type of cursor to display for the mouse pointer"
+    "A shorthand property for setting or returning columnWidth and columnCount"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2393 */
 #define afw_components_s_zz__2393 \
@@ -20206,7 +20154,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2394 \
-    "Sets or returns whether to show the border and background of empty cells, or not"
+    "Used with the :before and :after pseudo-elements, to insert generated content"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2394 */
 #define afw_components_s_zz__2394 \
@@ -20232,7 +20180,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2395 \
-    "Sets or returns image filters (visual effects, like blur and saturation)"
+    "Sets or returns the type of cursor to display for the mouse pointer"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2395 */
 #define afw_components_s_zz__2395 \
@@ -20258,7 +20206,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2396 \
-    "A shorthand property for the flexDirection and the flexWrap properties"
+    "Sets or returns whether to show the border and background of empty cells, or not"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2396 */
 #define afw_components_s_zz__2396 \
@@ -20284,7 +20232,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2397 \
-    "Sets or returns how much the item will grow relative to the rest"
+    "Sets or returns image filters (visual effects, like blur and saturation)"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2397 */
 #define afw_components_s_zz__2397 \
@@ -20310,7 +20258,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2398 \
-    "Sets or returns how the item will shrink relative to the rest"
+    "A shorthand property for the flexDirection and the flexWrap properties"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2398 */
 #define afw_components_s_zz__2398 \
@@ -20336,7 +20284,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2399 \
-    "Sets or returns whether the flexible items should wrap or not"
+    "Sets or returns how much the item will grow relative to the rest"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2399 */
 #define afw_components_s_zz__2399 \
@@ -20362,7 +20310,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2400 \
-    "Sets or returns fontStyle, fontVariant, fontWeight, fontSize, lineHeight, and fontFamily in one declaration"
+    "Sets or returns how the item will shrink relative to the rest"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2400 */
 #define afw_components_s_zz__2400 \
@@ -20388,7 +20336,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2401 \
-    "Selects a normal, condensed, or expanded face from a font family"
+    "Sets or returns whether the flexible items should wrap or not"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2401 */
 #define afw_components_s_zz__2401 \
@@ -20414,7 +20362,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2402 \
-    "Sets or returns whether the style of the font is normal, italic or oblique"
+    "Sets or returns fontStyle, fontVariant, fontWeight, fontSize, lineHeight, and fontFamily in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2402 */
 #define afw_components_s_zz__2402 \
@@ -20440,7 +20388,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2403 \
-    "Sets or returns whether the font should be displayed in small capital letters"
+    "Selects a normal, condensed, or expanded face from a font family"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2403 */
 #define afw_components_s_zz__2403 \
@@ -20466,7 +20414,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2404 \
-    "Specifies whether a punctuation character may be placed outside the line box"
+    "Sets or returns whether the style of the font is normal, italic or oblique"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2404 */
 #define afw_components_s_zz__2404 \
@@ -20492,7 +20440,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2405 \
-    "Provides the author the ability to style an element with an iconic equivalent"
+    "Sets or returns whether the font should be displayed in small capital letters"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2405 */
 #define afw_components_s_zz__2405 \
@@ -20518,7 +20466,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2406 \
-    "Specifies a rotation in the right or clockwise direction that a user agent applies to an image"
+    "Specifies whether a punctuation character may be placed outside the line box"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2406 */
 #define afw_components_s_zz__2406 \
@@ -20544,7 +20492,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2407 \
-    "Defines whether an element must create a new stacking content"
+    "Provides the author the ability to style an element with an iconic equivalent"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2407 */
 #define afw_components_s_zz__2407 \
@@ -20570,7 +20518,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2408 \
-    "Sets or returns the alignment between the items inside a flexible container when the items do not use all available space."
+    "Specifies a rotation in the right or clockwise direction that a user agent applies to an image"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2408 */
 #define afw_components_s_zz__2408 \
@@ -20596,7 +20544,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2409 \
-    "Sets or returns listStyleImage, listStylePosition, and listStyleType in one declaration"
+    "Defines whether an element must create a new stacking content"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2409 */
 #define afw_components_s_zz__2409 \
@@ -20622,7 +20570,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2410 \
-    "Sets or returns the margins of an element (can have up to four values)"
+    "Sets or returns the alignment between the items inside a flexible container when the items do not use all available space."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2410 */
 #define afw_components_s_zz__2410 \
@@ -20648,7 +20596,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2411 \
-    "Sets or returns where to navigate when using the arrow-down navigation key"
+    "Sets or returns listStyleImage, listStylePosition, and listStyleType in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2411 */
 #define afw_components_s_zz__2411 \
@@ -20674,7 +20622,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2412 \
-    "Sets or returns where to navigate when using the arrow-left navigation key"
+    "Sets or returns the margins of an element (can have up to four values)"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2412 */
 #define afw_components_s_zz__2412 \
@@ -20700,7 +20648,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2413 \
-    "Sets or returns where to navigate when using the arrow-right navigation key"
+    "Sets or returns where to navigate when using the arrow-down navigation key"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2413 */
 #define afw_components_s_zz__2413 \
@@ -20726,7 +20674,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2414 \
-    "Sets or returns where to navigate when using the arrow-up navigation key"
+    "Sets or returns where to navigate when using the arrow-left navigation key"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2414 */
 #define afw_components_s_zz__2414 \
@@ -20752,7 +20700,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2415 \
-    "Specifies how the contents of a replaced element should be fitted to the box established by its used height and width"
+    "Sets or returns where to navigate when using the arrow-right navigation key"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2415 */
 #define afw_components_s_zz__2415 \
@@ -20778,7 +20726,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2416 \
-    "Specifies the alignment of the replaced element inside its box"
+    "Sets or returns where to navigate when using the arrow-up navigation key"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2416 */
 #define afw_components_s_zz__2416 \
@@ -20804,7 +20752,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2417 \
-    "Sets or returns the order of the flexible item, relative to the rest"
+    "Specifies how the contents of a replaced element should be fitted to the box established by its used height and width"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2417 */
 #define afw_components_s_zz__2417 \
@@ -20830,7 +20778,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2418 \
-    "Sets or returns the minimum number of lines for an element that must be left at the bottom of a page when a page break occurs inside an element"
+    "Specifies the alignment of the replaced element inside its box"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2418 */
 #define afw_components_s_zz__2418 \
@@ -20856,7 +20804,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2419 \
-    "Sets or returns all the outline properties in one declaration"
+    "Sets or returns the order of the flexible item, relative to the rest"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2419 */
 #define afw_components_s_zz__2419 \
@@ -20882,7 +20830,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2420 \
-    "Sets or returns what to do with content that renders outside the element box"
+    "Sets or returns the minimum number of lines for an element that must be left at the bottom of a page when a page break occurs inside an element"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2420 */
 #define afw_components_s_zz__2420 \
@@ -20908,7 +20856,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2421 \
-    "Specifies what to do with the left/right edges of the content, if it overflows the element's content area"
+    "Sets or returns all the outline properties in one declaration"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2421 */
 #define afw_components_s_zz__2421 \
@@ -20934,7 +20882,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2422 \
-    "Specifies what to do with the top/bottom edges of the content, if it overflows the element's content area"
+    "Sets or returns what to do with content that renders outside the element box"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2422 */
 #define afw_components_s_zz__2422 \
@@ -20960,7 +20908,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2423 \
-    "Sets or returns the padding of an element (can have up to four values)"
+    "Specifies what to do with the left/right edges of the content, if it overflows the element's content area"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2423 */
 #define afw_components_s_zz__2423 \
@@ -20986,7 +20934,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2424 \
-    "Sets or returns the perspective on how 3D elements are viewed"
+    "Specifies what to do with the top/bottom edges of the content, if it overflows the element's content area"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2424 */
 #define afw_components_s_zz__2424 \
@@ -21012,7 +20960,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2425 \
-    "Sets or returns the type of positioning method used for an element (static, relative, absolute or fixed)"
+    "Sets or returns the padding of an element (can have up to four values)"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2425 */
 #define afw_components_s_zz__2425 \
@@ -21038,7 +20986,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2426 \
-    "Sets or returns the type of quotation marks for embedded quotations"
+    "Sets or returns the perspective on how 3D elements are viewed"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2426 */
 #define afw_components_s_zz__2426 \
@@ -21064,7 +21012,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2427 \
-    "Sets or returns whether or not an element is resizable by the user"
+    "Sets or returns the type of positioning method used for an element (static, relative, absolute or fixed)"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2427 */
 #define afw_components_s_zz__2427 \
@@ -21090,7 +21038,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2428 \
-    "Sets or returns the way to lay out table cells, rows, and columns"
+    "Sets or returns the type of quotation marks for embedded quotations"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2428 */
 #define afw_components_s_zz__2428 \
@@ -21116,7 +21064,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2429 \
-    "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is 'justify'"
+    "Sets or returns whether or not an element is resizable by the user"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2429 */
 #define afw_components_s_zz__2429 \
@@ -21142,7 +21090,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2430 \
-    "Sets or returns the justification method used when text-align is 'justify'"
+    "Sets or returns the way to lay out table cells, rows, and columns"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2430 */
 #define afw_components_s_zz__2430 \
@@ -21168,7 +21116,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2431 \
-    "Sets or returns what should happen when text overflows the containing element"
+    "Sets or returns how the last line of a block or a line right before a forced line break is aligned when text-align is 'justify'"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2431 */
 #define afw_components_s_zz__2431 \
@@ -21194,7 +21142,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2432 \
-    "A shorthand property for setting or returning the four transition properties"
+    "Sets or returns the justification method used when text-align is 'justify'"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2432 */
 #define afw_components_s_zz__2432 \
@@ -21220,7 +21168,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2433 \
-    "Sets or returns how many seconds or milliseconds a transition effect takes to complete"
+    "Sets or returns what should happen when text overflows the containing element"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2433 */
 #define afw_components_s_zz__2433 \
@@ -21246,7 +21194,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2434 \
-    "Sets or returns the CSS property that the transition effect is for"
+    "A shorthand property for setting or returning the four transition properties"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2434 */
 #define afw_components_s_zz__2434 \
@@ -21272,7 +21220,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2435 \
-    "Sets or returns whether the text should be overridden to support multiple languages in the same document"
+    "Sets or returns how many seconds or milliseconds a transition effect takes to complete"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2435 */
 #define afw_components_s_zz__2435 \
@@ -21298,7 +21246,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2436 \
-    "Sets or returns whether the text of an element can be selected or not"
+    "Sets or returns the CSS property that the transition effect is for"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2436 */
 #define afw_components_s_zz__2436 \
@@ -21324,7 +21272,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2437 \
-    "Sets or returns the vertical alignment of the content in an element"
+    "Sets or returns whether the text should be overridden to support multiple languages in the same document"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2437 */
 #define afw_components_s_zz__2437 \
@@ -21350,7 +21298,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2438 \
-    "Sets or returns how to handle tabs, line breaks and whitespace in a text"
+    "Sets or returns whether the text of an element can be selected or not"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2438 */
 #define afw_components_s_zz__2438 \
@@ -21376,7 +21324,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2439 \
-    "Sets or returns the minimum number of lines for an element that must be visible at the top of a page"
+    "Sets or returns the vertical alignment of the content in an element"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2439 */
 #define afw_components_s_zz__2439 \
@@ -21402,7 +21350,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2440 \
-    "Allows long, unbreakable words to be broken and wrap to the next line"
+    "Sets or returns how to handle tabs, line breaks and whitespace in a text"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2440 */
 #define afw_components_s_zz__2440 \
@@ -21428,7 +21376,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2441 \
-    "The fieldName for the rows used in this Table component column definition."
+    "Sets or returns the minimum number of lines for an element that must be visible at the top of a page"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2441 */
 #define afw_components_s_zz__2441 \
@@ -21454,7 +21402,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2442 \
-    "The maximum width for this column used in this Table component."
+    "Allows long, unbreakable words to be broken and wrap to the next line"
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2442 */
 #define afw_components_s_zz__2442 \
@@ -21480,7 +21428,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2443 \
-    "The minimum width for this column used in this Table component."
+    "The fieldName for the rows used in this Table component column definition."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2443 */
 #define afw_components_s_zz__2443 \
@@ -21506,7 +21454,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2444 \
-    "The name to display for this column used in this Table component."
+    "The maximum width for this column used in this Table component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2444 */
 #define afw_components_s_zz__2444 \
@@ -21532,7 +21480,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2445 \
-    "An optional badge number to display next to the Tab text, indicating the number of items."
+    "The minimum width for this column used in this Table component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2445 */
 #define afw_components_s_zz__2445 \
@@ -21558,7 +21506,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2446 \
-    "The description for the TextField component that describes this input."
+    "The name to display for this column used in this Table component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2446 */
 #define afw_components_s_zz__2446 \
@@ -21584,7 +21532,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2447 \
-    "The value of the TimeDuration component expressed as a dayTime."
+    "An optional badge number to display next to the Tab text, indicating the number of items."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2447 */
 #define afw_components_s_zz__2447 \
@@ -21610,7 +21558,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2448 \
-    "The description for the TimeDuration component that describes this input."
+    "The description for the TextField component that describes this input."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2448 */
 #define afw_components_s_zz__2448 \
@@ -21636,7 +21584,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2449 \
-    "The value of the TimeDuration component expressed as a yearMonth."
+    "The value of the TimeDuration component expressed as a dayTime."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2449 */
 #define afw_components_s_zz__2449 \
@@ -21662,7 +21610,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2450 \
-    "Specifies whether the Toolbar should be condensed as much as possible."
+    "The description for the TimeDuration component that describes this input."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2450 */
 #define afw_components_s_zz__2450 \
@@ -21688,7 +21636,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2451 \
-    "The color of the text. This may be a theme definition, or an actual color."
+    "The value of the TimeDuration component expressed as a yearMonth."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2451 */
 #define afw_components_s_zz__2451 \
@@ -21714,7 +21662,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2452 \
-    "This allows you to explicitly set the underlying HTML tag in order to get the semantics correct."
+    "Specifies whether the Toolbar should be condensed as much as possible."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2452 */
 #define afw_components_s_zz__2452 \
@@ -21740,7 +21688,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2453 \
-    "An object describing a particular set of filtering options, including the ability to recurse it to embedded objects."
+    "The color of the text. This may be a theme definition, or an actual color."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2453 */
 #define afw_components_s_zz__2453 \
@@ -21766,7 +21714,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2454 \
-    "Determines when headers should be applied to Object Forms and their embedded objects."
+    "This allows you to explicitly set the underlying HTML tag in order to get the semantics correct."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2454 */
 #define afw_components_s_zz__2454 \
@@ -21792,7 +21740,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2455 \
-    "Should embedded objects in collapsible layouts be collapsed by default."
+    "An object describing a particular set of filtering options, including the ability to recurse it to embedded objects."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2455 */
 #define afw_components_s_zz__2455 \
@@ -21818,7 +21766,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2456 \
-    "The object to be displayed by the Object Form Layout component."
+    "Determines when headers should be applied to Object Forms and their embedded objects."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2456 */
 #define afw_components_s_zz__2456 \
@@ -21844,7 +21792,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2457 \
-    "In readonly mode, labels and values should be stacked horizontal (row) or vertical (column)."
+    "Should embedded objects in collapsible layouts be collapsed by default."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2457 */
 #define afw_components_s_zz__2457 \
@@ -21870,7 +21818,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2458 \
-    "The property descriptions should be displayed in editable mode."
+    "The object to be displayed by the Object Form Layout component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2458 */
 #define afw_components_s_zz__2458 \
@@ -21896,7 +21844,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2459 \
-    "The properties should be displayed along with their labels instead of property names."
+    "In readonly mode, labels and values should be stacked horizontal (row) or vertical (column)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2459 */
 #define afw_components_s_zz__2459 \
@@ -21922,7 +21870,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2460 \
-    "An object describing a particular set of sorting options, including the ability to recurse it to embedded objects."
+    "The property descriptions should be displayed in editable mode."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2460 */
 #define afw_components_s_zz__2460 \
@@ -21948,7 +21896,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2461 \
-    "Adaptive Layout definition for the Object Form Preferred Component option."
+    "The properties should be displayed along with their labels instead of property names."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2461 */
 #define afw_components_s_zz__2461 \
@@ -21974,7 +21922,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2462 \
-    "Specifies exclusive (AND) conditions for properties to display (required, optional, valued, unvalued)."
+    "An object describing a particular set of sorting options, including the ability to recurse it to embedded objects."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2462 */
 #define afw_components_s_zz__2462 \
@@ -22000,7 +21948,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2463 \
-    "Specifies inclusive (OR) conditions for properties to display (required, optional, valued, unvalued)."
+    "Adaptive Layout definition for the Object Form Preferred Component option."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2463 */
 #define afw_components_s_zz__2463 \
@@ -22026,7 +21974,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2464 \
-    "The Preferred Component to apply to this layout rule definition. For example, single booleans should be Switch components."
+    "Specifies exclusive (AND) conditions for properties to display (required, optional, valued, unvalued)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2464 */
 #define afw_components_s_zz__2464 \
@@ -22052,7 +22000,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2465 \
-    "Additional properties to be passed to each preferred component."
+    "Specifies inclusive (OR) conditions for properties to display (required, optional, valued, unvalued)."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2465 */
 #define afw_components_s_zz__2465 \
@@ -22078,7 +22026,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2466 \
-    "Any property that matches this dataType will have a Preferred Component applied to its layout."
+    "The Preferred Component to apply to this layout rule definition. For example, single booleans should be Switch components."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2466 */
 #define afw_components_s_zz__2466 \
@@ -22104,7 +22052,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2467 \
-    "Any property name that matches this name will have a Preferred Component applied to its layout."
+    "Additional properties to be passed to each preferred component."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2467 */
 #define afw_components_s_zz__2467 \
@@ -22130,7 +22078,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2468 \
-    "The required properties should be sorted before optional properties."
+    "Any property that matches this dataType will have a Preferred Component applied to its layout."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2468 */
 #define afw_components_s_zz__2468 \
@@ -22156,7 +22104,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2469 \
-    "Components that contain other layout components for a particular arrangement."
+    "Any property name that matches this name will have a Preferred Component applied to its layout."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2469 */
 #define afw_components_s_zz__2469 \
@@ -22182,7 +22130,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2470 \
-    "Components that allow for users to pick or select data from a source."
+    "The required properties should be sorted before optional properties."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2470 */
 #define afw_components_s_zz__2470 \
@@ -22208,7 +22156,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_COMPONENTS_Q_zz__2471 \
-    "Components that provide notification, feedback or contextual information."
+    "Components that contain other layout components for a particular arrangement."
 
 /** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2471 */
 #define afw_components_s_zz__2471 \
@@ -22229,6 +22177,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2471 */
 #define afw_components_v_zz__2471 \
     (&afw_components_self_v_zz__2471.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__2472 \
+    "Components that allow for users to pick or select data from a source."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2472 */
+#define afw_components_s_zz__2472 \
+    (&afw_components_self_v_zz__2472.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2472 */
+#define afw_components_self_s_zz__2472 \
+    (afw_components_self_v_zz__2472.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2472 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__2472;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2472 */
+#define afw_components_z_zz__2472 \
+    (afw_components_self_v_zz__2472.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2472 */
+#define afw_components_v_zz__2472 \
+    (&afw_components_self_v_zz__2472.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_COMPONENTS_Q_zz__2473 \
+    "Components that provide notification, feedback or contextual information."
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2473 */
+#define afw_components_s_zz__2473 \
+    (&afw_components_self_v_zz__2473.internal)
+
+/** @brief 'afw_utf8_t' for AFW_COMPONENTS_Q_zz__2473 */
+#define afw_components_self_s_zz__2473 \
+    (afw_components_self_v_zz__2473.internal)
+
+/** @brief 'afw_value_string_t' for AFW_COMPONENTS_Q_zz__2473 */
+extern const afw_value_string_t \
+    afw_components_self_v_zz__2473;
+
+/** @brief 'afw_utf8_z_t *' for AFW_COMPONENTS_Q_zz__2473 */
+#define afw_components_z_zz__2473 \
+    (afw_components_self_v_zz__2473.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_COMPONENTS_Q_zz__2473 */
+#define afw_components_v_zz__2473 \
+    (&afw_components_self_v_zz__2473.pub)
 
 
 

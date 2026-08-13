@@ -1,11 +1,17 @@
 {
     "brief": "Continue at beginning of a loop",
     "category": "compiler_internal",
-    "description": "This is a special function that can be called in the body of a loop function to test the condition and, if true, start evaluating the body again. If called outside of a loop body, an error is thrown.",
+    "description": "This is a special function that can be called in the body of a loop function to test the condition and, if true, start evaluating the body again. If a label is supplied, continue the loop with that label. If called outside of a loop body, an error is thrown.",
     "functionId": "continue",
     "functionLabel": "continue",
     "pure": true,
     "parameters": [
+        {
+            "dataType": "string",
+            "description": "Optional loop label. If omitted, continue the innermost loop.",
+            "name": "label",
+            "optional": true
+        }
     ],
     "returns": {
         "description": "This function does not return."

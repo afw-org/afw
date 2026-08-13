@@ -738,9 +738,18 @@ afw_compile_parse_FunctionSignatureAndBody(
     /* Parse body with return type in scope for compile checks (issue #28). */
     {
         const afw_value_type_t *saved_returns;
+        afw_boolean_t saved_break_allowed;
+        afw_boolean_t saved_continue_allowed;
+        afw_compile_loop_label_t *saved_loop_labels;
 
         saved_returns = parser->current_function_returns;
         parser->current_function_returns = signature->returns;
+        saved_break_allowed = parser->break_allowed;
+        saved_continue_allowed = parser->continue_allowed;
+        saved_loop_labels = parser->loop_labels;
+        parser->break_allowed = false;
+        parser->continue_allowed = false;
+        parser->loop_labels = NULL;
 
         afw_compile_get_token();
         if (afw_compile_token_is(open_brace)) {
@@ -762,6 +771,9 @@ afw_compile_parse_FunctionSignatureAndBody(
         }
 
         parser->current_function_returns = saved_returns;
+        parser->break_allowed = saved_break_allowed;
+        parser->continue_allowed = saved_continue_allowed;
+        parser->loop_labels = saved_loop_labels;
     }
 
     /* If there were parameters, pop block. */
