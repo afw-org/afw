@@ -30,8 +30,7 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 //if (x === 1) {
 //  throw "#5: Correct interpretation of single line comments";
 //}
-
-
+return;
 //? test: S7.4_A1_T2
 //? description: Simple test, create empty comment: ///
 //? expect: undefined
@@ -39,8 +38,7 @@ assert(y === undefined, "The value of 'y' is expected to equal undefined");
 
 //CHECK#1
 ///
-
-
+return;
 //? test: S7.4_A2_T1
 //? description: Create comments with any code
 //? expect: undefined
@@ -94,7 +92,7 @@ assert(string2 === "/*var y = 0", "The value of 'string2' is expected to equal '
 *
 **********
 **/
-
+return;
 //? test: S7.4_A2_T2
 //? description: Try use /*CHECK#1/. This is not closed multi line comment
 //? expect: error
@@ -137,8 +135,7 @@ x*/
 
 /* let
 *///x*/
-
-
+return;
 //? test: S7.4_A4_T3
 //? description: Insert Single line comment into Multi line comment
 //? expect: undefined
@@ -149,8 +146,7 @@ x*/
 /* let
 //x1
 */
-
-
+return;
 //? test: S7.4_A4_T4
 //? description: Try to open Multi line comment at the end of Single comment
 //? expect: error
@@ -170,8 +166,7 @@ x*/
 /*CHECK#1*/
 
 // let /* x */
-
-
+return;
 //? test: S7.4_A4_T6
 //? description: Insert Multi line comment with two closed tags into Single line comment
 //? expect: undefined
@@ -180,7 +175,7 @@ x*/
 /*CHECK#1*/
 
 // let /* x / = */ 1 */
-
+return;
 //? test: S7.4_A4_T7
 //? description: Insert Multi line comment into Single line comments
 //? expect: undefined
@@ -192,7 +187,7 @@ x*/
 // x
 // =
 // 1*/
-
+return;
 //? test: S7.4_A5
 //? description: //var " + xx + "yy = -1", insert instead of xx all Unicode characters
 //? expect: undefined
@@ -212,14 +207,13 @@ for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
                 if (LineTerminators) {
                     assert(e === -1, "The value of 'e' is expected to equal -1");
                 } else {
-                    assert(e === 0, "The value of 'e' is expected to equal 0");
+                    assert(e === undefined, "The value of 'e' is expected to equal undefined");
                 }                
             }
         }
     }
 }
-
-
+return;
 //? test: S7.4_A6
 //? description: "\"var\"+ yy+ \"xx = 1\", insert instead of yy all Unicode characters"
 //? expect: undefined
@@ -241,3 +235,4 @@ for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
         }
     }
 }
+return;

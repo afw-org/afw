@@ -24,8 +24,7 @@ function f1(){
 if(!(f1() === 1)){
   throw "#1: Scope chain disturbed";
 }
-
-
+return;
 //? test: S10.2.2_A1_T2
 //? description: Checking scope chain containing function declarations
 //? expect: undefined
@@ -44,8 +43,7 @@ function f1(){
 if(!(f1() === 0)){
   throw "#1: Scope chain disturbed";
 }
-
-
+return;
 //? test: S10.2.2_A1_T4
 //? description: Nested function and inner let (Adaptive scope vs ES var/TDZ lineage)
 //? expect: undefined
@@ -70,4 +68,4 @@ function f1(){
 if (f1() !== 0) {
   throw "#1: expected outer x (0) under Adaptive binding rules";
 }
-
+return;

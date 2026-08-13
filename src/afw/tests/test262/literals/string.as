@@ -230,8 +230,7 @@ assert("\ " === "");
 // LineTerminatorSequence :: <CR> <LF>
 assert("\
 " === "");
-
-
+return;
 //? test: line-continuation-single
 //? description: line-continuation-single
 //? expect: undefined
@@ -257,8 +256,7 @@ assert('\ ' === '');
 // LineTerminatorSequence :: <CR> <LF>
 assert('\
 ' === '');
-
-
+return;
 //? test: line-separator-eval
 //? description: line-separator-eval
 //? expect: undefined
@@ -267,8 +265,7 @@ assert('\
 
 
 assert(eval(script("'\u2028'")) ===  "\u2028");
-
-
+return;
 //? test: line-separator
 //? description: line-separator
 //? expect: undefined
@@ -278,8 +275,7 @@ assert(eval(script("'\u2028'")) ===  "\u2028");
 
 // U+2028 in strings; UTF8(0x2028) = 0xE2 0x80 0xA8
 assert(" " === "\u2028");
-
-
+return;
 //? test: mongolian-vowel-separator-eval
 //? description: mongolian-vowel-separator-eval
 //? expect: undefined
@@ -288,8 +284,7 @@ assert(" " === "\u2028");
 
 
 assert(eval(script("'\u180E'")) ===  "\u180E");
-
-
+return;
 //? test: mongolian-vowel-separator
 //? description:mongolian-vowel-separator
 //? expect: undefined
@@ -299,8 +294,7 @@ assert(eval(script("'\u180E'")) ===  "\u180E");
 
 // U+180E in strings; UTF8(0x180E) = 0xE1 0xA0 0x8E
 assert("᠎" ===  "\u180E");
-
-
+return;
 //? test: paragraph-separator-eval
 //? description: paragraph-separator-eval
 //? expect: undefined
@@ -309,8 +303,7 @@ assert("᠎" ===  "\u180E");
 
 
 assert(eval(script("'\u2029'")) ===  "\u2029");
-
-
+return;
 //? test: paragraph-separator
 //? description: paragraph-separator
 //? expect: undefined
@@ -320,8 +313,7 @@ assert(eval(script("'\u2029'")) ===  "\u2029");
 
 // U+2029 in strings; UTF8(0x2029) = 0xE2 0x80 0xA9
 assert(" " === "\u2029");
-
-
+return;
 //? test: S7.8.4_A1.1_T1
 //? description:...
     DoubleStringCharacter :: SourceCharacter but not double-quote " or
@@ -383,8 +375,7 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A2.1_T2
 //? description: Check ENGLISH SMALL ALPHABET
 //? expect: undefined
@@ -400,8 +391,7 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A2.2_T1
 //? description: Check RUSSIAN CAPITAL ALPHABET
 //? expect: undefined
@@ -417,8 +407,7 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A2.2_T2
 //? description: Check RUSSIAN SMALL ALPHABET
 //? expect: undefined
@@ -434,8 +423,7 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A2.3_T1
 //? description: Check DIGITS
 //? expect: undefined
@@ -451,8 +439,7 @@ for (let index = 0; index <= 9; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A3.1_T1
 //? description: Checking if execution of "\" fails
 //? expect: error
@@ -543,8 +530,7 @@ if (String.fromCharCode(0x000C) !== "\f") {
 if (String.fromCharCode(0x000D) !== "\r") {
   throw '#6: String.fromCharCode(0x000D) === "\\r"';
 }
-
-
+return;
 //? test: S7.8.4_A4.1_T2
 //? description: "SingleEscapeSequence :: one of ' \" \\"
 //? expect: undefined
@@ -579,8 +565,7 @@ if ("\'" !== "'") {
 if ('\"' !== '"') {
   throw '#5: \'\"\' === \'\\\"\'';
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T1
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
@@ -598,8 +583,7 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T2
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
@@ -710,8 +694,7 @@ if ("Y" !== "\Y") {
 if ("Z" !== "\Z") {
   throw '#Z';
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T3
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
 //? expect: undefined
@@ -729,8 +712,7 @@ for (let index = 0; index <= 17; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T4
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
 //? expect: undefined
@@ -811,8 +793,7 @@ if ("y" !== "\y") {
 if ("z" !== "\z") {
   throw '#z';
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T5
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
 //? expect: undefined
@@ -830,8 +811,7 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T6
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
 //? expect: undefined
@@ -971,8 +951,7 @@ if ("Я" !== "\Я") {
 if ("Ё" !== "\Ё") {
   throw '#Ё';
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T7
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
 //? expect: undefined
@@ -990,8 +969,7 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A4.2_T8
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
 //? expect: undefined
@@ -1132,8 +1110,7 @@ if ("я" !== "\я") {
 if ("ё" !== "\ё") {
   throw '#ё';
 }
-
-
+return;
 //? test: S7.8.4_A4.3_T1
 //? description: "EscapeCharacter :: DecimalDigits :: 1"
 //? expect: error
@@ -1189,8 +1166,7 @@ if ("t" === "\t") {
 if ("v" === "\v") {
   throw '#v';
 }
-
-
+return;
 //? test: S7.8.4_A5.1_T1
 //? description: String.fromCharCode(0x0000)
 //? expect: undefined
@@ -1205,8 +1181,7 @@ if ("v" === "\v") {
 if (String.fromCharCode(0x0000) !== "\0") {
   throw '#1: String.fromCharCode(0x0000) === "\\0"';
 }
-
-
+return;
 //? test: S7.8.4_A5.1_T2
 //? description: "\"\\u0000\""
 //? expect: undefined
@@ -1217,8 +1192,7 @@ if (String.fromCharCode(0x0000) !== "\0") {
 if ("\u0000" !== "\0") {
   throw '#1: "\\u0000" === "\\0"';
 }
-
-
+return;
 //? test: S7.8.4_A5.1_T3
 //? description: "\"\\x00\""
 //? expect: undefined
@@ -1229,8 +1203,7 @@ if ("\u0000" !== "\0") {
 if ("\x00" !== "\0") {
   throw '#1: "\\x00" === "\\0"';
 }
-
-
+return;
 //? test: S7.8.4_A6.1_T1
 //? description: "HexEscapeSequence ::  HexDigit"
 //? expect: undefined
@@ -1319,8 +1292,7 @@ if ("\x0E" !== String.fromCharCode("14")) {
 if ("\x0F" !== String.fromCharCode("15")) {
   throw '#F: "\\x0F" === String.fromCharCode("15")';
 }
-
-
+return;
 //? test: S7.8.4_A6.1_T2
 //? description: "HexEscapeSequence ::  ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
@@ -1335,8 +1307,7 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A6.1_T3
 //? description: "HexEscapeSequence ::  ENGLISH SMALL ALPHABET"
 //? expect: undefined
@@ -1351,8 +1322,7 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A6.3_T1
 //? description: Check similar to ('\x01F' === String.fromCharCode('1') + 'F')
 //? expect: undefined
@@ -1436,8 +1406,7 @@ if ('\x0E2' !== String.fromCharCode('14') + '2') {
 if ('\x0F1' !== String.fromCharCode('15') + '1') {
   throw "#F: '\x0F1' === String.fromCharCode('15') + '1'";
 }
-
-
+return;
 //? test: S7.8.4_A7.1_T1
 //? description: Check similar to ("\u0000" === String.fromCharCode("0"))
 //? expect: undefined
@@ -1526,8 +1495,7 @@ if ("\u000E" !== String.fromCharCode("14")) {
 if ("\u000F" !== String.fromCharCode("15")) {
   throw '#F: "\\u000F" === String.fromCharCode("15")';
 }
-
-
+return;
 //? test: S7.8.4_A7.1_T2
 //? description: "UnicodeEscapeSequence ::  ENGLISH CAPITAL ALPHABET"
 //? expect: undefined
@@ -1543,8 +1511,7 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A7.1_T3
 //? description: "UnicodeEscapeSequence ::  ENGLISH SMALL ALPHABET"
 //? expect: undefined
@@ -1560,8 +1527,7 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
+return;
 //? test: S7.8.4_A7.1_T4
 //? description: "UnicodeEscapeSequence :: u000G is incorrect"
 //? expect: error
@@ -1736,8 +1702,7 @@ if ("\u000E2" !== String.fromCharCode("14") + "2") {
 if ("\u000F1" !== String.fromCharCode("15") + "1") {
   throw '#F: "\\u000F1" === String.fromCharCode("15") + "1"';
 }
-
-
+return;
 //? test: unicode-escape-nls-err-double
 //? description: NumericLiteralSeperator disallowed in unicode CodePoint sequence (DoubleStringCharacters)
 //? expect: error

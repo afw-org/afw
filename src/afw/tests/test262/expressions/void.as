@@ -60,8 +60,7 @@ if (eval(script("void\u20290")) !== undefined) {
 if (eval(script("void\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20290")) !== undefined) {
   throw '#10: void\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20290 === undefined';
 }
-
-
+return;
 //? test: S11.4.2_A2_T1
 //? description: Either Type(x) is not Reference or GetBase(x) is not null
 //? expect: undefined
@@ -86,8 +85,7 @@ if (void x !== undefined) {
   throw '#3: let x = new Object(); void x === undefined. Actual: ' + (void x);
 }
 */
-
-
+return;
 //? test: S11.4.2_A2_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 25 around line 3 column 6: Unknown built-in function 'x'
@@ -116,8 +114,7 @@ if (void x !== undefined) {
   throw '#2: let x = new Boolean(true); void x === undefined. Actual: ' + (void x);
 }
 */
-
-
+return;
 //? test: S11.4.2_A4_T2
 //? description: Type(x) is number primitive or Number object
 //? expect: undefined
@@ -137,8 +134,7 @@ if (void x !== undefined) {
   throw '#2: let x = new Number(-1.1); void x === undefined. Actual: ' + (void x);
 }
 */
-
-
+return;
 //? test: S11.4.2_A4_T3
 //? description: Type(x) is string primitive (ES also covered String object)
 //? expect: undefined
@@ -156,8 +152,7 @@ x = "x";
 if (void x !== undefined) {
   throw '#2: let x = "x"; void x === undefined. Actual: ' + (void x);
 }
-
-
+return;
 //? test: S11.4.2_A4_T4
 //? description: Type(x) is undefined or null
 //? expect: undefined
@@ -173,8 +168,7 @@ x = null;
 if (void x !== undefined) {
   throw '#2: let x = null; void x === undefined. Actual: ' + (void x);
 }
-
-
+return;
 //? test: S11.4.2_A4_T5
 //? description: Type(x) is object or function
 //? expect: undefined
@@ -192,8 +186,7 @@ x = function () { return 1; };
 if (void x !== undefined) {
   throw '#2: let x = function () { return 1; }; void x === undefined. Actual: ' + (void x);
 }
-
-
+return;
 //? test: S11.4.2_A4_T6
 //? description: Checking Simple Assignment operator
 //? expect: error:Parse error at offset 103 around line 6 column 13: Expecting ')'

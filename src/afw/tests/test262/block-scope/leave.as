@@ -23,6 +23,8 @@ try {
 } catch (e) {}
 
 
+return;
+
 //?
 //? test: finally-block-let-declaration-only-shadows-outer-parameter-value-2
 //? description: finally block let declaration only shadows outer parameter value 2
@@ -46,6 +48,8 @@ try {
 })('outer');
 
 
+return;
+
 //?
 //? test: for-loop-block-let-declaration-only-shadows-outer-parameter-value-1
 //? description: for loop block let declaration only shadows outer parameter value 1
@@ -61,6 +65,8 @@ function(x) {
     assert(x === 'outer');
 }('outer');
 
+
+return;
 
 //?
 //? test: outermost-binding-updated-in-catch-block-nested-block-let-declaration-unseen-outside-of-block
@@ -109,6 +115,8 @@ assert(caught);
   }
 })('outer');
 
+return;
+
 //?
 //? test: try-block-let-declaration-only-shadows-outer-parameter-value-2
 //? description: try block let declaration only shadows outer parameter value 2
@@ -128,6 +136,8 @@ assert(caught);
   }
 })('outer');
 
+
+return;
 
 //?
 //? test: verify-context-in-finally-block
@@ -150,6 +160,8 @@ function f() {}
   }
 })('outer');
 
+return;
+
 //?
 //? test: verify-context-in-for-loop-block
 //? description: verify context in for loop block 2
@@ -167,6 +179,8 @@ function(x) {
     f();
     assert(x === "outer");
 }("outer");
+
+return;
 
 //?
 //? test: verify-context-in-for-loop-block
@@ -188,6 +202,8 @@ function f() {}
 })('outer');
 
 
+return;
+
 //?
 //? test: x-before-continue
 //? description: x before continue
@@ -205,3 +221,4 @@ do {
         assert(false);
     }
 } while (false);
+return;

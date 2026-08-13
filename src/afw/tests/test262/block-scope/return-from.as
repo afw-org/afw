@@ -18,7 +18,7 @@ function fn() {
     }    
 }
 assert(fn() === 9);
-
+return;
 //? test: block-let
 //? description: return from block
 //? expect: undefined
@@ -32,3 +32,4 @@ function fn() {
     }
 }
 assert(fn() === 9);
+return;

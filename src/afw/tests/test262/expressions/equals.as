@@ -30,9 +30,7 @@ y = 1;
 if ((x == y) !== true) {
     throw "x == y";
 }
-
-
-
+return;
 //? test: 11.9.1_A2.1_T2
 //? description: Reference error
 //? expect: error
@@ -93,10 +91,7 @@ assert(
         "error"
     ) === "error", "safe_evaluate(x() == y(), \"error\")"
 );
-
-
-
-
+return;
 //? test: 11.9.1_A3.1
 //? description: Return true, if x and y are both true or both false; otherwise, return false
 //? expect: undefined
@@ -118,9 +113,7 @@ if ((true == false) !== false) {
 if ((false == true) !== false) {
     throw "false == true";
 }
-
-
-
+return;
 //? test: 11.9.1_A3.2
 //? description: x is primitive boolean, y is primitive number
 //? expect: undefined
@@ -136,9 +129,7 @@ if ((false == "0") !== true) {
     throw "false == \"0\"";
 }
 */
-
-
-
+return;
 //? test: equals-6
 //? description: x is primitive integer, y is primitive boolean
 //? expect: undefined
@@ -154,9 +145,7 @@ if (("1" == true) !== true) {
     throw "false == \"0\"";
 }
 */
-
-
-
+return;
 //? test: 11.9.1_A4.1_T1
 //? description: If x or y is NaN, return false
 //? expect: undefined
@@ -190,8 +179,7 @@ if (("string" == NaN) !== false) {
     throw "\"string\" == NaN";
 }
 */
-
-
+return;
 //? test: 11.9.1_A4.2
 //? description: If x is +0(-0) and y is -0(+0), return true
 //? expect: undefined
@@ -205,9 +193,7 @@ if ((+0 == -0) !== true) {
 if ((-0 == +0) !== true) {
     throw "-0 == +0";
 }
-
-
-
+return;
 //? test: 11.9.1_A4.3
 //? description: Return true, if x is the same number value as y; otherwise, return false
 //? expect: undefined
@@ -230,10 +216,7 @@ if ((+Infinity == -negativeInfinity) !== true) {
 if ((1.0 == double(1)) !== true) {
     throw "(1.0 == double(1)) !== true)";
 }
-
-
-
-
+return;
 //? test: 11.9.1_A5.1
 //? description: Return true, if x and y are exactly the same sequence of characters; otherwise, return false
 //? expect: undefined
@@ -263,9 +246,7 @@ if (("1.0" == "1") !== false) {
 if (("0xff" == "255") !== false) {
     throw "\"0xff\" == \"255\"";
 }
-
-
-
+return;
 //? test: 11.9.1_A5.2
 //? description: x is primitive number, y is primitive string
 //? expect: undefined
@@ -294,10 +275,7 @@ if ((0 == "") !== true) {
 }
 
 */
-
-
-
-
+return;
 //? test: 11.9.1_A5.3
 //? description: x is primitive string, y is primitive number
 //? expect: undefined
@@ -323,9 +301,7 @@ if (("5e-324" == 5e-234) !== true) {
     throw "\"5e-324\" == 5e-234";
 }
 */
-
-
-
+return;
 //? test: 11.9.1_A6.1
 //? description: combinations of undefined and null
 //? expect: undefined
@@ -343,9 +319,7 @@ if ((undefined == null) !== true) {
 if ((null == null) !== true) {
     throw "null == null";
 }
-
-
-
+return;
 //? test: 11.9.1_A6.2_T1
 //? description: x is undefined or null, y is not
 //? expect: undefined
@@ -383,9 +357,7 @@ if ((null == "null") !== false) {
 if ((null == {}) !== false) {
     throw "null == {}";
 }
-
-
-
+return;
 //? test: 11.9.1_A6.2_T2
 //? description: y is null or undefined, x is not
 //? expect: undefined
@@ -423,4 +395,4 @@ if (("null" == null) !== false) {
 if (({} == null) !== false) {
     throw "{} == null";
 }
-
+return;

@@ -96,8 +96,7 @@ if (true) {
   const z = 1;
   assert(z === 1);
 }
-
-
+return;
 //? test: const-outer-inner-let-bindings
 //? description:...
     outer const binding unchanged by for-loop const binding
@@ -116,28 +115,29 @@ for (const x = "inner_x"; i < 1; i++) {
 }
 assert(x === "outer_x");
 assert(y === "outer_y");
-
-
+return;
 //? test: with-initializer-case-expression-statement-list
 //? description:...
     const declarations with initialisers in statement positions:
     case Expression : StatementList
-//? expect: 1
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { case true: const x = 1; }
+return;
 
 
 //? test: with-initializer-default-statement-list
 //? description:...
     const declarations with initialisers in statement positions:
     default : StatementList
-//? expect: 1
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { default: const x = 1; }
+return;
 
 
 //? test: with-initializer-do-statement-while-expression
@@ -161,8 +161,7 @@ do const x = 1; while (false)
 
 // this is OK in Adaptive Script for now
 for (;false;) const x = 1;
-
-
+return;
 //? test: with-initializer-if-expression-statement-else-statement
 //? description:...
     const declarations with initialisers in statement positions:
@@ -173,18 +172,18 @@ for (;false;) const x = 1;
 
 // this is OK in Adaptive Script for now
 if (true) {} else const x = 1;
-
-
+return;
 //? test: with-initializer-if-expression-statement
 //? description:...
     const declarations with initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: 1
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 // this is OK in Adaptive Script for now
 if (true) const x = 1;
+return;
 
 
 //? test: with-initializer-label-statement
@@ -208,8 +207,7 @@ label: const x = 1;
 
 // This is OK in Adaptive Script for now
 while (false) const x = 1;
-
-
+return;
 //? test: without-initializer-case-expression-statement-list
 //? description:...
     const declarations without initialisers in statement positions:

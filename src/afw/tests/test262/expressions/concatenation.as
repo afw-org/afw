@@ -17,9 +17,7 @@
 if (concat(string(undefined) + "") !== "undefined") {
     throw "undefined + \"\" === \"undefined\"";
 }
-
-
-
+return;
 //? test: S9.8_A2_T2
 //? description: result of string conversion from null value is "null"
 //? expect: undefined
@@ -28,9 +26,7 @@ if (concat(string(undefined) + "") !== "undefined") {
 if (concat(null, "") !== "null") {
     throw "null + \"\" === \"null\"";
 }
-
-
-
+return;
 //? test: S9.8_A3_T2
 //? description: result of string conversion from boolean value is "true" if the argument is "true", else is "false"
 //? expect: undefined
@@ -43,9 +39,7 @@ if (concat(false, "") !== "false") {
 if (concat(true, "") !== "true") {
     throw "true + \"\" === \"true\"";
 }
-
-
-
+return;
 //? test: S9.8_A4_T2
 //? description: result of string conversion from string value is input argument (no conversion)
 //? expect: undefined
@@ -60,4 +54,4 @@ let x2: string = "abc";
 if (concat(meta(x2).dataType, "") !== meta(x2).dataType) {
     throw "meta(x2).dataType + \"\" !== meta(x2).dataType";
 }
-
+return;

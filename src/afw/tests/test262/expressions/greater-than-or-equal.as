@@ -29,9 +29,7 @@ y = 1;
 if (x >= y !== true) {
     throw "x >= y === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A2.1_T2
 //? description: Undeclared variable
 //? expect: error
@@ -72,9 +70,7 @@ safe_evaluate(
 
 assert(x1 === 1, "left operand evaluated");
 assert(y1 === 0, "right operand not evaluated after left threw");
-
-
-
+return;
 //? test: 11.8.4_A2.4_T4
 //? description: Checking with undeclared variables / assignment-in-expression (ES form)
 //? expect: error
@@ -93,9 +89,7 @@ if ((y = 1) >= y !== true) {
 if (true >= true !== true) {
     throw "true >= true === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A3.1_T1.2
 //? description: Compare x >= y (integer)
 //? expect: undefined
@@ -104,10 +98,7 @@ if (true >= true !== true) {
 if (1 >= 1 !== true) {
     throw "1 >= 1 === true";
 }
-
-
-
-
+return;
 //? test: 11.8.4_A3.1_T2.2
 //? description: Compare x >= y (string, integer)
 //? expect: error
@@ -172,9 +163,7 @@ if (null >= "1" !== false) {
 if ("1" >= "1" !== true) {
     throw "'1' >= '1' === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.1
 //? description: If x is NaN, return false
 //? expect: undefined
@@ -203,10 +192,7 @@ if ((NaN >= +Infinity) !== false) {
 if ((NaN >= -Infinity) !== false) {
     throw "NaN >= -Infinity === false";
 }
-
-
-
-
+return;
 //? test: 11.8.4_A4.10
 //? description: If x is a prefix of y and x !== y, return false
 //? expect: undefined
@@ -236,9 +222,7 @@ let x: string = "x";
 if ((x >= (x + "y")) !== false) {
     throw "x >= x + 'y' === false";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.11
 //? description: If y is a prefix of x, return true
 //? expect: undefined
@@ -276,9 +260,7 @@ if (("a\u0000a" >= "a\u0000") !== true) {
 if ((" x" >= "x") !== false) {
     throw "' x' >= 'x' === false";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.12_T1
 //? description: If neither x, nor y is a prefix of each other, return result of strings comparison applies a simple lexicographic ordering to the sequences of code point value values
 //? expect: undefined
@@ -311,9 +293,7 @@ if (("a\u0000b" >= "a\u0000a") !== true) {
 if (("aa" >= "aB") !== true) {
     throw "'aa' >= 'aB' === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.12_T2
 //? description: If neither x, nor y is a prefix of each other, return result of strings comparison applies a simple lexicographic ordering to the sequences of code point value values
 //? expect: undefined
@@ -346,9 +326,7 @@ if (("-1" >= "+1") !== true) {
 if (("1e-10" >= "1") !== true) {
     throw "'1e-10' >= '1' === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.2
 //? description: If y is NaN, return false
 //? expect: undefined
@@ -377,9 +355,7 @@ if ((+Infinity >= NaN) !== false) {
 if ((-Infinity >= NaN) !== false) {
     throw "'-Infinity' >= NaN === false";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.3
 //? description: If x and y are the same number value, return true
 //? expect: undefined
@@ -404,9 +380,7 @@ if ((-Infinity >= -Infinity) !== true) {
 if ((+Infinity >= +Infinity) !== true) {
     throw "'+Infinity' >= '+Infinity' === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.4
 //? description: If either x or y is +0 and the other is -0, return true
 //? expect: undefined
@@ -427,9 +401,7 @@ if ((+0 >= -1) !== true) {
 if ((-0 >= +0) !== true) {
     throw "'-0' >= '+0' === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.5
 //? description: If x is +Infinity, return true
 //? expect: undefined
@@ -450,9 +422,7 @@ if ((+Infinity >= -1.1) !== true) {
 if ((+Infinity >= -Infinity) !== true) {
     throw "'+Infinity' >= '-Infinity' === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.6
 //? description: If y is +Infinity and x !== y, return false
 //? expect: undefined
@@ -473,9 +443,7 @@ if ((-1.1 >= +Infinity) !== false) {
 if ((-Infinity >= +Infinity) !== false) {
     throw "'-Infinity' >= '+Infinity' === false";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.7
 //? description: If x is -Infinity and x !== y, return false
 //? expect: undefined
@@ -496,9 +464,7 @@ if ((-Infinity >= -1.1) !== false) {
 if ((-Infinity >= +Infinity) !== false) {
     throw "'-Infinity' >= '+Infinity' === false";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.8
 //? description: If y is -Infinity, return true
 //? expect: undefined
@@ -519,9 +485,7 @@ if ((-1.1 >= -Infinity) !== true) {
 if ((+Infinity >= -Infinity) !== true) {
     throw "'+Infinity' >= '-Infinity' === true";
 }
-
-
-
+return;
 //? test: 11.8.4_A4.9
 //? description: If x is greater or equal than y and these values are both finite non-zero, return true; otherwise, return false
 //? expect: undefined
@@ -550,4 +514,4 @@ if ((0.1 >= 0.0) !== true) {
 if ((0.0 >= -0.1) !== true) {
     throw "0.0 >= -0.1 === true";
 }
-
+return;

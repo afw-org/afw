@@ -61,8 +61,7 @@ if (eval(script("1\u2029<=\u20291")) !== true) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029>\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20290")) !== true) {
   throw '#10: (1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029>\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20290) === true';
 }
-
-
+return;
 //? test: S11.8.3_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
 //? expect: undefined
@@ -93,8 +92,7 @@ y = 1;
 if (x <= y !== true) {
   throw '#4: let x = 1; let y = 1; x <= y === true';
 }
-
-
+return;
 //? test: S11.8.3_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -139,8 +137,7 @@ try {
      }
    }
 }
-
-
+return;
 //? test: S11.8.3_A2.4_T2
 //? description: Checking with "throw"
 //? expect: undefined
@@ -162,8 +159,7 @@ try {
      }
    }
 }
-
-
+return;
 //? test: S11.8.3_A2.4_T3
 //? description: Checking with undeclarated variables
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -185,9 +181,7 @@ x <= (x = 1);
 if (1 <= 1 !== true) {
   throw '#1: 1 <= 1 === true';
 }
-
-
-
+return;
 //? test: S11.8.3_A3.2_T1.1
 //? description:  Type(Primitive(x)) and Type(Primitive(y)) vary between primitive string and String object
 //? expect: undefined
@@ -209,8 +203,7 @@ if ("x" <= "1" !== false) {
 if ("1" <= "x" !== true) {
   throw '#6: "1" <= "x" === true';
 }
-
-
+return;
 //? test: S11.8.3_A4.10
 //? description: x and y are string primitives
 //? expect: undefined
@@ -248,8 +241,7 @@ let x = "x";
 if ((x + 'y' <= x) !== false) {
   throw '#6: let x = "x"; (x + "y" <= x) === false';
 }
-
-
+return;
 //? test: S11.8.3_A4.11
 //? description: x and y are string primitives
 //? expect: undefined
@@ -297,8 +289,7 @@ if (("a\u0000" <= "a\u0000a") !== true) {
 if (("x" <= " x") !== false) {
   throw '#8: ("x" <= " x") === false';
 }
-
-
+return;
 //? test: S11.8.3_A4.12_T1
 //? description: x and y are string primitives
 //? expect: undefined
@@ -340,8 +331,7 @@ if (("a\u0000a" <= "a\u0000b") !== true) {
 if (("aB" <= "aa") !== true) {
   throw '#7: ("aB" <= aa") === true';
 }
-
-
+return;
 //? test: S11.8.3_A4.12_T2
 //? description: x and y are string primitives
 //? expect: undefined
@@ -383,8 +373,7 @@ if (("+1" <= "-1") !== true) {
 if (("1" <= "1e-10") !== true) {
 throw '#7: ("1" <= "1e-10") !== true';
 }
-
-
+return;
 //? test: S11.8.3_A4.1
 //? description: y is number primitive
 //? expect: undefined
@@ -435,8 +424,7 @@ if ((NaN <= Number.MIN_VALUE) !== false) {
   throw '#8: (NaN <= Number.MIN_VALUE) === false';
 }
 */
-
-
+return;
 //? test: S11.8.3_A4.2
 //? description: x is number primitive
 //? expect: undefined
@@ -484,8 +472,7 @@ if ((Number.MIN_VALUE <= NaN) !== false) {
   throw '#8: (Number.MIN_VALUE <= NaN) === false';
 }
 */
-
-
+return;
 //? test: S11.8.3_A4.3
 //? description: x and y are number primitives
 //? expect: undefined
@@ -528,8 +515,7 @@ if ((Number.MIN_VALUE <= Number.MIN_VALUE) !== true) {
   throw '#7: (Number.MIN_VALUE <= Number.MIN_VALUE) === true';
 }
 */
-
-
+return;
 //? test: S11.8.3_A4.4
 //? description: Checking all combinations
 //? expect: undefined
@@ -556,8 +542,7 @@ if ((+0 <= -0) !== true) {
 if ((-0 <= +0) !== true) {
   throw '#4: (-0 <= +0) === true';
 }
-
-
+return;
 //? test: S11.8.3_A4.5
 //? description: y is number primitive
 //? expect: undefined
@@ -595,8 +580,7 @@ if ((Infinity <= Number.MIN_VALUE) !== false) {
   throw '#6: (+Infinity <= Number.MIN_VALUE) === false';
 }
 */
-
-
+return;
 //? test: S11.8.3_A4.6
 //? description: x is number primitive
 //? expect: undefined
@@ -634,8 +618,7 @@ if ((Number.MIN_VALUE <= Infinity) !== true) {
   throw '#6: (Number.MIN_VALUE <= +Infinity) === true';
 }
 */
-
-
+return;
 //? test: S11.8.3_A4.7
 //? description: y is number primitive
 //? expect: undefined
@@ -673,8 +656,7 @@ if ((-Infinity <= Number.MIN_VALUE) !== true) {
   throw '#6: (-Infinity <= Number.MIN_VALUE) === true';
 }
 */
-
-
+return;
 //? test: S11.8.3_A4.8
 //? description: x is number primitive
 //? expect: undefined
@@ -712,8 +694,7 @@ if ((Number.MIN_VALUE <= -Infinity) !== false) {
   throw '#6: (Number.MIN_VALUE <= -Infinity) === false';
 }
 */
-
-
+return;
 //? test: S11.8.3_A4.9
 //? description: x and y are number primitives
 //? expect: error:Data types do not match

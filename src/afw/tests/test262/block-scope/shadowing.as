@@ -28,8 +28,7 @@ function fn() {
   assert(c === 1);
 }
 fn(1);
-
-
+return;
 //? test: catch-parameter-shadowing-function-parameter-name
 //? description: catch parameter shadowing function parameter name
 //? expect: undefined
@@ -46,8 +45,7 @@ function fn(a) {
   }
 }
 fn(1);
-
-
+return;
 //? test: catch-parameter-shadowing-let-declaration
 //? description: catch parameter shadowing let declaration
 //? expect: undefined
@@ -65,8 +63,7 @@ fn(1);
   }
   assert(a === 3);
 }
-
-
+return;
 //? test: catch-parameter-shadowing-var-variable
 //? description: catch parameter shadowing var variable
 //? expect: undefined
@@ -83,8 +80,7 @@ function fn() {
   assert(a === 1);
 }
 fn();
-
-
+return;
 //? test: const-declaration-shadowing-catch-parameter
 //? description: const declaration shadowing catch parameter
 //? expect: undefined
@@ -105,8 +101,7 @@ function fn() {
   assert(a === 1);
 }
 fn();
-
-
+return;
 //? test: const-declarations-shadowing-parameter-name-let-const-and-var-variables
 //? description: const declarations shadowing parameter name, let, const and var variables
 //? expect: undefined
@@ -133,7 +128,7 @@ function fn(a) {
   assert(d === 1);
 }
 fn(1);
-
+return;
 //? test: dynamic-lookup-from-closure
 //? description: dynamic lookup from closure
 //? expect: undefined
@@ -159,7 +154,7 @@ function fn(one) {
   }
 }
 fn(1);
-
+return;
 //? test: dynamic-lookup-in-and-through-block-contexts
 //? description: dynamic lookup in and through block contexts
 //? expect: undefined
@@ -182,7 +177,7 @@ function fn(one) {
 }
 
 fn(1);
-
+return;
 //? test: let-declaration-shadowing-catch-parameter
 //? description: let declaration shadowing catch parameter
 //? expect: undefined
@@ -198,7 +193,7 @@ try {
   }
   assert(a.message === 'stuff1');
 }
-
+return;
 //? test: let-declarations-shadowing-parameter-name-let-const-and-var
 //? description: let declarations shadowing parameter name, let, const and var
 //? expect: undefined
@@ -220,8 +215,7 @@ function fn(a) {
   }
 }
 fn(1);
-
-
+return;
 //? test: lookup-from-closure
 //? description: lookup from closure
 //? expect: undefined
@@ -247,7 +241,7 @@ function f5(one) {
   }
 }
 f5(1);
-
+return;
 //? test: lookup-in-and-through-block-contexts
 //? description: lookup in and through block contexts
 //? expect: undefined
@@ -270,7 +264,7 @@ function fn(one) {
 }
 
 fn(1);
-
+return;
 //? test: parameter-name-shadowing-catch-parameter
 //? description: parameter name shadowing catch parameter
 //? expect: undefined
@@ -292,7 +286,7 @@ function fn() {
   assert(c === 1);
 }
 fn();
-
+return;
 //? test: parameter-name-shadowing-parameter-name-let-const-and-var
 //? description: parameter name shadowing parameter name, let, const and var
 //? expect: undefined
@@ -322,3 +316,4 @@ function fn(a) {
 }
 
 fn(1);
+return;

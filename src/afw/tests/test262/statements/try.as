@@ -27,8 +27,7 @@
   }
 
 assert(f("x") === 42);
-
-
+return;
 //? test: 12.14-11
 //? description: catch introduces scope - name lookup finds inner variable
 //? expect: undefined
@@ -53,9 +52,7 @@ assert(f("x") === 42);
   }
 
 assert(f("x") === 42);
-
-
-
+return;
 //? test: 12.14-12
 //? description: catch introduces scope - name lookup finds property
 //? expect: undefined
@@ -77,8 +74,7 @@ function f(o) {
 }
 
 assert(f({x:42}) === 42);
-
-
+return;
 //? test: 12.14-13
 //? description: catch introduces scope - updates are based on scope
 //? expect: error:Parse error at offset 194 around line 12 column 13: Unknown built-in function 'this'
@@ -217,8 +213,7 @@ catch (e) {
 }
 
 assert(variable_exists("foo") === false);
-
-
+return;
 //? test: 12.14-7
 //? description: catch introduces scope - scope removed when exiting catch block
 //? expect:error:Parse error at offset 282 around line 18 column 5: Unknown built-in function 'expObj'
@@ -266,8 +261,7 @@ catch (e) {
 }
 
 assert(o.foo === 42);
-
-
+return;
 //? test: 12.14-9
 //? description: catch introduces scope - name lookup finds outer variable
 //? expect: undefined
@@ -291,8 +285,7 @@ assert(o.foo === 42);
   }
 
 assert(f({}) === 42);
-
-
+return;
 //? test: completion-values-fn-finally-abrupt
 //? description:...
 //? expect: undefined
@@ -381,9 +374,7 @@ try {
     assert(count.finally === 1, '3: finally count');
 }
 assert(err, '3: try Normal, catch Normal, finally Abrupt; Completion: finally');
-
-
-
+return;
 //? test: completion-values-fn-finally-normal
 //? description:...
 //? expect: undefined
@@ -458,8 +449,7 @@ try {
 assert(caught, '3: try Abrupt, catch Abrupt, finally Normal; Completion: catch');
 assert(count.catch === 1, '3: catch count');
 assert(count.finally === 1, '3: finally count');
-
-
+return;
 //? test: completion-values-fn-finally-return
 //? description:...
 //? expect: undefined
@@ -528,8 +518,7 @@ fn = function() {
 assert(fn() === 'finally', '3: try Abrupt === catch Abrupt === finally Normal; Completion: finally');
 assert(count.catch === 1, '3: catch count');
 assert(count.finally === 1, '3: finally count');
-
-
+return;
 //? test: completion-values
 //? description:...
 //? expect: error:Parse error at offset 2 around line 1 column 3: Expression can not be followed by Statement
@@ -639,8 +628,7 @@ rewrite with Adaptive assert
 
 assert(eval(script('1; try { throw null; } catch (err) { }') === undefined);
 assert(eval(script('2; try { throw null; } catch (err) { 3; }') === 3);
-
-
+return;
 //? test: cptn-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
 //? expect: undefined
@@ -654,8 +642,7 @@ rewrite with Adaptive assert
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
 let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
 assert(completion === undefined);
-
-
+return;
 //? test: cptn-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
 //? expect: undefined
@@ -669,8 +656,7 @@ rewrite with Adaptive assert
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
 let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
 assert(completion === undefined);
-
-
+return;
 //? test: cptn-finally-from-catch
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
@@ -695,8 +681,7 @@ assert(
 assert(
   eval(script('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
 );
-
-
+return;
 //? test: cptn-finally-skip-catch
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
@@ -717,8 +702,7 @@ assert(eval(script('9; try { 10; } catch (err) { } finally { }') === 10);
 assert(eval(script('11; try { 12; } catch (err) { 13; } finally { }') === 12);
 assert(eval(script('14; try { 15; } catch (err) { } finally { 16; }') === 15);
 assert(eval(script('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
-
-
+return;
 //? test: cptn-finally-wo-catch
 //? description: Completion value from `finally` clause of a try..finally statement
 //? expect: undefined
@@ -733,8 +717,7 @@ assert(eval(script('1; try { } finally { }') === undefined);
 assert(eval(script('2; try { 3; } finally { }') === 3);
 assert(eval(script('4; try { } finally { 5; }') === undefined);
 assert(eval(script('6; try { 7; } finally { 8; }') === 7);
-
-
+return;
 //? test: cptn-try
 //? description: Completion value from `try` clause of a try..catch statement
 //? expect: undefined
@@ -749,7 +732,7 @@ assert(eval(script('1; try { } catch (err) { }') === undefined);
 assert(eval(script('2; try { 3; } catch (err) { }') === 3);
 assert(eval(script('4; try { } catch (err) { 5; }') === undefined);
 assert(eval(script('6; try { 7; } catch (err) { 8; }') === 7);
-
+return;
 //? test: early-catch-duplicates
 //? description:...
     It is a Syntax Error if BoundNames of CatchParameter contains any duplicate
@@ -797,8 +780,7 @@ try { } catch (x) { let x; }
 #!/usr/bin/env afw
 
 try {} catch {} finally {}
-
-
+return;
 //? test: optional-catch-binding
 //? description: try/catch syntax with omission of the catch binding
 //? expect: undefined
@@ -807,9 +789,7 @@ try {} catch {} finally {}
 
 
 try {} catch {}
-
-
-
+return;
 //? test: optional-catch-binding-lexical
 //? description: lexical environment runtime semantics for optional catch binding
 //? expect: error:Parse error at offset 235 around line 20 column 5: Unknown built-in function 'y'
@@ -872,8 +852,7 @@ catch(e){
   if(e.message!=="5")
     throw '#1: Exception === 5. Actual:  Exception === '+ e.message  ;
 }
-
-
+return;
 //? test: S12.14_A10_T2
 //? description: Try statement inside loop, where use continue loop
 //? expect: undefined
@@ -991,8 +970,7 @@ if(fin6!==1){
 if(c6!==2){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A10_T3
 //? description: Try statement inside loop, where use break
 //? expect: undefined
@@ -1145,9 +1123,7 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: "try finally{break}" must work correctly';
 }
-
-
-
+return;
 //? test: S12.14_A10_T4
 //? description: Try statement inside loop, where combinate using break and continue
 //? expect: undefined
@@ -1202,8 +1178,7 @@ if(fin2!==1){
 if(c2!==2){
   throw '#2.2: "try catch{break} finally{continue} must work correctly';
 }
-
-
+return;
 //? test: S12.14_A10_T5
 //? description: Throw some exceptions from different place of loop body
 //? expect: undefined
@@ -1240,8 +1215,7 @@ while(i<10){
 if(fin!==10){
   throw '#1.4: "finally" block must be evaluated';
 }
-
-
+return;
 //? test: S12.14_A11_T1
 //? description: Loop inside try Block, where throw exception
 //? expect: undefined
@@ -1258,8 +1232,7 @@ try{
 catch(e){
   if(e.message!=="5")throw '#1: Exception === 5. Actual:  Exception ==='+ e.message  ;
 }
-
-
+return;
 //? test: S12.14_A11_T2
 //? description: Try statement inside loop, where use continue loop
 //? expect: undefined
@@ -1382,8 +1355,7 @@ if(fin6!==1){
 if(c6!==10){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A11_T3
 //? description: Try statement inside loop, where use break
 //? expect: undefined
@@ -1535,8 +1507,7 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: "try finally{break}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A11_T4
 //? description: Try statement inside loop, where combinate using break and continue
 //? expect: undefined
@@ -1591,8 +1562,7 @@ if(fin2!==1){
 if(c2!==5){
   throw '#2.2: "try catch{break} finally{continue}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A12_T1
 //? description: Loop inside try Block, where throw exception
 //? expect: undefined
@@ -1616,8 +1586,7 @@ catch(e){
   if(e.message!=="ex")
     throw '#1: Exception ==="ex". Actual:  Exception ==='+ e.message  ;
 }
-
-
+return;
 //? test: S12.14_A12_T2
 //? description: Try statement inside loop, where use continue loop
 //? expect: undefined
@@ -1748,9 +1717,7 @@ if(fin6!==1){
 if(c6!==3){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
-
+return;
 //? test: S12.14_A12_T3
 //? description: Try statement inside loop, where use break
 //? expect: undefined
@@ -1913,8 +1880,7 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: "try finally{break}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A12_T4
 //? description: Try statement inside loop, where combinate using break and continue
 //? expect: undefined
@@ -1974,8 +1940,7 @@ if(fin2!==1){
 if(c2!==3){
   throw '#2.2: "try catch{break} finally{continue}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A13_T1
 //? description: Using try/catch syntax construction
 //? expect: error:Parse error at offset 537 around line 37 column 12: Unknown built-in function 'someValue'
@@ -2576,8 +2541,7 @@ try{
 catch(e){
   throw '#3.2: Catching exception inside function does not lead to throwing exception outside this function';
 }
-
-
+return;
 //? test: S12.14_A16_T10
 //? description: "Catch: \"catch (Identifier ) Block\""
 //? expect: error
@@ -2935,8 +2899,7 @@ try{
 catch(e){
   if (e.message!=="exception #1") throw '#4: Exception ==="exception #1". Actual:  Exception ==='+ e.message  ;
 }
-
-
+return;
 //? test: S12.14_A18_T5
 //? description: Catching Number
 //? expect: error:#1: Exception ===13. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'integer'
@@ -3316,8 +3279,7 @@ finally{
   fin=1;
 }
 if (fin!==1) throw '#7.2: "finally" block must be evaluated';
-
-
+return;
 //? test: S12.14_A1
 //? description:...
     Executing TryStatement : try Block Catch. The statements doesn't
@@ -3369,8 +3331,7 @@ if(x2!==1){
 if (c2!==1){
   throw '#3.3: "finally" block must be evaluated. Actual: finally Block has not been evaluated';
 }
-
-
+return;
 //? test: S12.14_A2
 //? description:...
     Checking if execution of "catch" catches an exception thrown with
@@ -3422,8 +3383,7 @@ if (x3!==1){
 if (c3!==1){
   throw '#3.3: "finally" block must be evaluated';
 }
-
-
+return;
 //? test: S12.14_A3
 //? description: Checking if execution of "catch" catches system exceptions
 //? expect: error:Parse error at offset 373 around line 31 column 6: Unknown built-in function 'someValue'
@@ -3554,9 +3514,7 @@ function SwitchTest1(value){
 }
 if (SwitchTest1(1)!==4) throw '#2.3: "finally" block must be evaluated';
 if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
-
-
-
+return;
 //? test: S12.14_A6
 //? description:...
     Executing sequence of "try" statements, using counters with
@@ -3623,8 +3581,7 @@ finally{
 if (c4!==2){
   throw '#4: Sequence evaluation of commands try/catch/finally(without exception) is 1. try, 2. finally';
 }
-
-
+return;
 //? test: S12.14_A7_T1
 //? description:...
     Checking if the production of nested TryStatement statements
@@ -3761,8 +3718,7 @@ catch(er1){
   if (er1.message!=="ex1") throw '#7.3: Exception ==="ex1". Actual:  Exception ==='+ er1.message  ;
 }
 if (c7!==2) throw '#7.4: "finally" block must be evaluated';
-
-
+return;
 //? test: S12.14_A7_T2
 //? description:...
     Checking if the production of nested TryStatement statements
@@ -3913,8 +3869,7 @@ catch(er1){
   if (er1.message!=="ex3") throw '#7.1: Exception === "ex3". Actual:  Exception ==='+er1.message ;
 }
 if (c7!==2) throw '#7.2: Embedded "try/finally" blocks must be evaluated';
-
-
+return;
 //? test: S12.14_A7_T3
 //? description:...
     Checking if the production of nested TryStatement statements
@@ -4082,8 +4037,7 @@ catch(er1){
   if (er1.message!=="ex1") throw '#7.3: Exception === "ex1". Actual:  Exception ==='+er1.message;
 }
 if (c7!==4) throw '#7.4: "finally" block must be evaluated';
-
-
+return;
 //? test: S12.14_A8
 //? description: Throwing exception within an "if" statement
 //? expect: undefined
@@ -4115,8 +4069,7 @@ if(c2===1){
     if(er1.message!="ex1") throw '#2.2: Exception ==="ex1". Actual:  Exception ==='+er1.message;
   }
 }
-
-
+return;
 //? test: S12.14_A9_T1
 //? description: Loop within a "try" Block, from where exception is thrown
 //? expect: undefined
@@ -4136,7 +4089,7 @@ try{
 catch(e){
   if(e.message!=="5")throw '#1: Exception ===5. Actual:  Exception ==='+ e.message  ;
 }
-
+return;
 //? test: S12.14_A9_T2
 //? description:...
     "try" statement within a loop, the statement contains "continue"
@@ -4262,8 +4215,7 @@ if(fin6!==1){
 if(c6!==2){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A9_T3
 //? description:...
     "try" statement within a loop, the statement contains "break"
@@ -4425,8 +4377,7 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: try finally{break} error';
 }
-
-
+return;
 //? test: S12.14_A9_T4
 //? description:...
     "try" statement within a loop, the statement contains "continue"
@@ -4485,8 +4436,7 @@ if(fin2!==1){
 if(c2!==2){
   throw '#2.2: "try catch{break} finally{continue}" must work correctly';
 }
-
-
+return;
 //? test: S12.14_A9_T5
 //? description:...
     Checking if exceptions are thrown correctly from wherever of loop
@@ -4526,8 +4476,7 @@ while(i<10);
 if(fin!==10){
   throw '#1.4: "finally" block must be evaluated';
 }
-
-
+return;
 //? test: scope-catch-block-lex-close
 //? description: Removal of lexical environment for `catch` block
 //? expect: undefined
@@ -4547,8 +4496,7 @@ x = 'outside';
 
 assert(x === 'outside');
 assert(probe() === 'inside');
-
-
+return;
 //? test: scope-catch-block-lex-open
 //? description: Creation of new lexical environment for `catch` block
 //? expect: undefined
@@ -4571,8 +4519,7 @@ try {
 
 assert(probeParam() === 'outside');
 assert(probeBlock() === 'inside');
-
-
+return;
 //? test: scope-catch-block-var-none
 //? description: Retainment of existing variable environment for `catch` block
 //? expect: error:Assertion failed: reference preceding statement
@@ -4717,8 +4664,7 @@ let callCount = 0;
   }
 }(20));
 assert(callCount === 1);
-
-
+return;
 //? test: tco-catch
 //? description: Statement within statement is a candidate for tail-call optimization.
 //? expect: undefined
@@ -4738,8 +4684,7 @@ let callCount = 0;
   }
 }(20));
 assert(callCount === 1);
-
-
+return;
 //? test: tco-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
 //? expect: undefined
@@ -4757,3 +4702,4 @@ let callCount = 0;
   }
 }(30));
 assert(callCount === 1);
+return;

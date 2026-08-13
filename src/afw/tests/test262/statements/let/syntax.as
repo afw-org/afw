@@ -160,9 +160,7 @@ if (true) {
   let y;
   assert(y === undefined);
 }
-
-
-
+return;
 //? test: let-let-declaration-split-across-two-lines
 //? description:...
     let: |let let| split across two lines is not subject to automatic semicolon insertion.
@@ -267,8 +265,7 @@ return 0;
 #!/usr/bin/env afw
 
 switch (true) { case true: let x = 1; }
-
-
+return;
 //? test: with-initialisers-in-statement-positions-default-statement-list
 //? description:...
     let declarations with initialisers in statement positions:
@@ -279,8 +276,7 @@ switch (true) { case true: let x = 1; }
 #!/usr/bin/env afw
 
 switch (true) { default: let x = 1; }
-
-
+return;
 //? test: with-initialisers-in-statement-positions-do-statement-while-expression
 //? description:...
     let declarations with initialisers in statement positions:
@@ -302,8 +298,7 @@ do let x = 1; while (false)
 
 // ecmascript does not allow this, but we don't fail on it
 for (;false;) let x = 1;
-
-
+return;
 //? test: with-initialisers-in-statement-positions-if-expression-statement-else-statement
 //? description:...
     let declarations with initialisers in statement positions:
@@ -314,8 +309,7 @@ for (;false;) let x = 1;
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) {} else let x = 1;
-
-
+return;
 //? test: with-initialisers-in-statement-positions-if-expression-statement
 //? description:...
     let declarations with initialisers in statement positions:
@@ -327,8 +321,7 @@ if (true) {} else let x = 1;
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) let x = 1;
-
-
+return;
 //? test: with-initialisers-in-statement-positions-label-statement
 //? description:...
     let declarations with initialisers in statement positions:
@@ -350,8 +343,7 @@ label: let x = 1;
 
 // ecmascript does not allow this, but we don't fail on it
 while (false) let x = 1;
-
-
+return;
 //? test: without-initialisers-in-statement-positions-case-expression-statement-list
 //? description:...
     let declarations without initialisers in statement positions:
@@ -361,8 +353,7 @@ while (false) let x = 1;
 #!/usr/bin/env afw
 
 switch (true) { case true: let x; }
-
-
+return;
 //? test: without-initialisers-in-statement-positions-default-statement-list
 //? description:...
     let declarations without initialisers in statement positions:
@@ -372,8 +363,7 @@ switch (true) { case true: let x; }
 #!/usr/bin/env afw
 
 switch (true) { default: let x; }
-
-
+return;
 //? test: without-initialisers-in-statement-positions-do-statement-while-expression
 //? description:...
     let declarations without initialisers in statement positions:
@@ -397,8 +387,7 @@ do let x; while (false)
 
 // ecmascript does not allow this, but we don't fail on it
 for (;false;) let x;
-
-
+return;
 //? test: without-initialisers-in-statement-positions-if-expression-statement-else-statement
 //? description:...
     let declarations without initialisers in statement positions:
@@ -409,8 +398,7 @@ for (;false;) let x;
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) {} else let x;
-
-
+return;
 //? test: without-initialisers-in-statement-positions-if-expression-statement
 //? description:...
     let declarations without initialisers in statement positions:
@@ -421,8 +409,7 @@ if (true) {} else let x;
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) let x;
-
-
+return;
 //? test: without-initialisers-in-statement-positions-label-statement
 //? description:...
     let declarations without initialisers in statement positions:
@@ -444,3 +431,4 @@ label: let x;
 
 // ecmascript does not allow this, but we don't fail on it
 while (false) let x;
+return;

@@ -109,8 +109,7 @@ assert(x === null, 'null ?? null');
 
 x = null ?? false;
 assert(x === false, 'null ?? false');
-
-
+return;
 //? test: follows-undefined
 //? description: If the CoalesceExpressionHead is undefined, follow return the right-side eval.
 //? expect: undefined
@@ -129,8 +128,7 @@ assert(x === null, 'undefined ?? null');
 
 x = undefined ?? false;
 assert(x === false, 'undefined ?? false');
-
-
+return;
 //? test: short-circuit-number-0
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (0)
 //? expect: undefined
@@ -177,8 +175,7 @@ assert(x === 0, 'undefined ?? 0 ?? null');
 x = undefined;
 x = undefined ?? 0 ?? undefined;
 assert(x === 0, 'undefined ?? 0 ?? undefined');
-
-
+return;
 //? test: short-circuit-number-42
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (42)
 //? expect: undefined
@@ -229,8 +226,7 @@ assert(x === 42, 'undefined ?? 42 ?? null');
 x = undefined;
 x = undefined ?? 42 ?? undefined;
 assert(x === 42, 'undefined ?? 42 ?? undefined');
-
-
+return;
 //? test: short-circuit-empty-string
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (the empty string)
 //? expect: undefined
@@ -283,8 +279,7 @@ assert(x === str, 'undefined ?? str ?? null');
 x = undefined;
 x = undefined ?? str ?? undefined;
 assert(x === str, 'undefined ?? str ?? undefined');
-
-
+return;
 //? test: short-circuit-number-false
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (false)
 //? expect: undefined
@@ -335,8 +330,7 @@ assert(x === false, 'undefined ?? false ?? null');
 x = undefined;
 x = undefined ?? false ?? undefined;
 assert(x === false, 'undefined ?? false ?? undefined');
-
-
+return;
 //? test: short-circuit-number-true
 //? description: Short circuit if the CoalesceExpressionHead is not undefined or null (true)
 //? expect: undefined
@@ -387,8 +381,7 @@ assert(x === true, 'undefined ?? true ?? null');
 x = undefined;
 x = undefined ?? true ?? undefined;
 assert(x === true, 'undefined ?? true ?? undefined');
-
-
+return;
 //? test: short-circuit-prevents-evaluation
 //? description: Short circuit can prevent evaluation of the right-side expressions
 //? expect: undefined
@@ -410,8 +403,7 @@ assert(x === 42);
 x = undefined;
 x = 42 ?? poison();
 assert(x === 42);
-
-
+return;
 //? test: tco-pos-null
 //? description: null ?? recursive call is a candidate for tail-call optimization (deep recursion)
 //? expect: 0

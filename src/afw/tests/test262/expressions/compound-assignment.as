@@ -78,8 +78,7 @@ _11_13_2_9 &= 1;
         _11_13_2_12 *= 2;
 
 assert(_11_13_2_12 === 10, '_11_13_2_12');
-
-
+return;
 //? test: 11.13.2-13-s
 //? description:  ReferenceError isn't thrown if the LeftHandSideExpression of a Compound Assignment operator(/=) evaluates to a resolvable reference 
 //? expect: undefined
@@ -90,8 +89,7 @@ assert(_11_13_2_12 === 10, '_11_13_2_12');
         _11_13_2_13 /= 2;
 
 assert(_11_13_2_13 === 3, '_11_13_2_13');
-
-
+return;
 //? test: 11.13.2-14-s
 //? description:  ReferenceError isn't thrown if the LeftHandSideExpression of a Compound Assignment operator(%=) evaluates to a resolvable reference 
 //? expect: undefined
@@ -102,8 +100,7 @@ assert(_11_13_2_13 === 3, '_11_13_2_13');
         _11_13_2_14 %= 2;
 
 assert(_11_13_2_14 === 1, '_11_13_2_14');
-
-
+return;
 //? test: 11.13.2-16-s
 //? description:  ReferenceError isn't thrown if the LeftHandSideExpression of a Compound Assignment operator(-=) evaluates to a resolvable reference 
 //? expect: undefined
@@ -114,8 +111,7 @@ assert(_11_13_2_14 === 1, '_11_13_2_14');
         _11_13_2_16 -= 2;
 
 assert(_11_13_2_16 === 3, '_11_13_2_16');
-
-
+return;
 //? test: 11.13.2-19-s
 //? description:  ReferenceError isn't thrown if the LeftHandSideExpression of a Compound Assignment operator(+=) evaluates to a resolvable reference 
 //? expect: undefined
@@ -126,8 +122,7 @@ assert(_11_13_2_16 === 3, '_11_13_2_16');
         _11_13_2_19 += 10;
 
 assert(_11_13_2_19 === 9, '_11_13_2_19');
-
-
+return;
 //? test: S11.13.2_A3.1_T1
 //? description: Checking Expression and Variable statements for x *= y
 //? expect: undefined
@@ -147,8 +142,7 @@ y *= -1;
 if (y !== -1) {
   throw '#2: y = 1; y *= -1; y === -1. Actual: ' + (y);
 }
-
-
+return;
 //? test: S11.13.2_A3.1_T2
 //? description: Checking Expression and Variable statements for x /= y
 //? expect: undefined
@@ -168,8 +162,7 @@ y /= -1;
 if (y !== -1) {
   throw '#2: y = 1; y /= -1; y === -1. Actual: ' + (y);
 }
-
-
+return;
 //? test: S11.13.2_A3.1_T3
 //? description: Checking Expression and Variable statements for x %= y
 //? expect: undefined
@@ -189,8 +182,7 @@ y %= 2;
 if (y !== -1) {
   throw '#2: y = -1; y %= 2; y === -1. Actual: ' + (y);
 }
-
-
+return;
 //? test: S11.13.2_A3.1_T4
 //? description: Checking Expression and Variable statements for x += y
 //? expect: undefined
@@ -210,8 +202,7 @@ y += 1;
 if (y !== 2) {
   throw '#2: y = 1; y += 1; y === 2. Actual: ' + (y);
 }
-
-
+return;
 //? test: S11.13.2_A3.1_T5
 //? description: Checking Expression and Variable statements for x -= y
 //? expect: undefined
@@ -231,8 +222,7 @@ y -= 1;
 if (y !== -2) {
   throw '#2: y = -1; y -= 1; y === -2. Actual: ' + (y);
 }
-
-
+return;
 //? test: S11.13.2_A4.1_T1.2
 //? description: The production x *= y is the same as x = x I y
 //? expect: undefined
@@ -246,7 +236,7 @@ x *= 1;
 if (x !== 1) {
   throw '#1: x = 1; x *= 1; x === 1. Actual: ' + (x);
 }
-
+return;
 //? test: S11.13.2_A4.3_T1.2
 //? description: The production x %= y is the same as x = x % y
 //? expect: undefined
@@ -260,8 +250,7 @@ x %= 1;
 if (x !== 0) {
   throw '#1: x = 1; x %= 1; x === 0. Actual: ' + (x);
 }
-
-
+return;
 //? test: add-non-simple
 //? description: Compound addition assignment with non-simple target
 //? expect: error:Invalid assignment target

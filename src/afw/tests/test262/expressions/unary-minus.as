@@ -28,9 +28,7 @@ x = -1;
 if (-(-x) !== -1) {
     throw "#4: -(-x) === -1";
 }
-
-
-
+return;
 //? test: 11.4.7_A3_T2
 //? description: Operator -x returns -integer(x)
 //? expect: undefined
@@ -40,9 +38,7 @@ if (-(-x) !== -1) {
 if (-(1) !== -1) {
     throw "#1: -(1) === -1";
 }
-
-
-
+return;
 //? test: 11.4.7_A4.2
 //? description: Negating +0 produces -0, negating -0 produces +0
 //? expect: undefined
@@ -60,3 +56,4 @@ x = -x;
 if (x !== 0) {
     throw "#2: x === 0";
 }
+return;

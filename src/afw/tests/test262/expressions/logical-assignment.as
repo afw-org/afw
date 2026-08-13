@@ -124,9 +124,7 @@ assert(value === "test", '(value ??= 1) === "test"; where value = "test"');
 let obj = {};
 value = obj;
 assert(value === obj, "(value ??= 1) === {}; where value = {}");
-
-
-
+return;
 //? test: lgcl-nullish-assignment-operator-non-simple-lhs
 //? description:  It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple.
 //? expect: error
@@ -218,8 +216,7 @@ x
 ??=
 1;
 assert(x === 1, 'U+000D carriage return');
-
-
+return;
 //? test: lgcl-or-assignment-operator-non-simple-lhs
 //? description:  It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple.
 //? expect: error

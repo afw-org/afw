@@ -579,8 +579,7 @@ for ([x] of [[0]]) {
 }
 
 assert(iterationCount === 1);
-
-
+return;
 //? test: body-put-error
 //? description:...
 //? expect: error:Parse error at offset 99 around line 8 column 7: Name of an object value must be followed by a colon
@@ -1735,8 +1734,7 @@ for (const x of [x]) {}
 for (const x of []) {
   let x;
 }
-
-
+return;
 //? test: head-const-bound-names-let
 //? description: The declaration may not contain a binding for `let`
 //? expect: error
@@ -1897,8 +1895,7 @@ for (let [x, x] of []) {}
 
 let x = 1;
 for (let x of [x]) {}
-
-
+return;
 //? test: head-let-bound-names-in-stmt
 //? description: The body may not re-declare variables declared in the head
 //? expect: undefined
@@ -1909,8 +1906,7 @@ for (let x of [x]) {}
 for (let x of []) {
   let x;
 }
-
-
+return;
 //? test: head-let-bound-names-let
 //? description: The declaration may not contain a binding for `let`
 //? expect: error

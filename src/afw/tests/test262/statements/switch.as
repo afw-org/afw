@@ -624,8 +624,7 @@ if(!(SwitchTest(void 0) === 32)){
 if(!(SwitchTest('0') === 32)){
   throw "#10: SwitchTest('0') === 32. Actual:  SwitchTest('0') ==="+ SwitchTest('0')  ;
 }
-
-
+return;
 //? test: S12.11_A1_T2
 //? description: Switch with different types of variables
 //? expect: undefined
@@ -704,8 +703,7 @@ if(!(SwitchTest('0') === 32)){
 if(!(SwitchTest(x) === 128)){
   throw "#10: SwitchTest(x) === 128. Actual:  SwitchTest(x) ==="+ SwitchTest(x)  ;
 }
-
-
+return;
 //? test: S12.11_A1_T3
 //? description: Using case with null, NaN, Infinity
 //? expect: undefined
@@ -793,8 +791,7 @@ if(!(SwitchTest(NaN) === 32)){
 if(!(SwitchTest(Infinity) === 768)){
   throw "#10: SwitchTest(NaN) === 768. Actual:  SwitchTest(NaN) ==="+ SwitchTest(NaN)  ;
 }
-
-
+return;
 //? test: S12.11_A1_T4
 //? description: switch cases with is_NaN, null, Infinity, fall-through (Adaptive rewrite)
 //? expect: undefined
@@ -855,8 +852,7 @@ if (SwitchTest(NaN) !== 32) {
 if (SwitchTest(Infinity) !== 256) {
   throw "#8: SwitchTest(Infinity) === 256. Actual: " + string(SwitchTest(Infinity));
 }
-
-
+return;
 //? test: S12.11_A2_T1
 //? description: Duplicate DefaultClause
 //? expect: error
@@ -1034,8 +1030,7 @@ function SwitchTest(value){
 
 let x = SwitchTest(0);
 if(x!==6) throw "#1: SwitchTest(0) === 6. Actual:  SwitchTest(0) ==="+ SwitchTest(0)  ;
-
-
+return;
 //? test: scope-lex-async-function
 //? description: Creation of new lexical environment (into `default` clause)
 //? expect: error:Parse error at offset 43 around line 4 column 23: Unknown built-in function 'async'
@@ -1080,8 +1075,7 @@ switch (null) {
 assert(probe1() === 'inside', 'from first `case` clause');
 assert(probe2() === 'inside', 'from second `case` clause');
 assert(x === 'outside');
-
-
+return;
 //? test: scope-lex-close-dflt
 //? description: Removal of lexical environment (from `default` clause)
 //? expect: undefined
@@ -1118,8 +1112,7 @@ assert(
 assert(
   probeCase() == 'inside', 'from `case` clause following `default` clause'
 );
-
-
+return;
 //? test: scope-lex-const
 //? description: Creation of new lexical environment (into `default` clause)
 //? expect: error:Parse error at offset 58 around line 5 column 1: Unknown built-in function 'x'
@@ -1262,8 +1255,7 @@ let callCount = 0;
   switch(0) { case 0: return f(n - 1); default: }
 }(30));
 assert(callCount === 1);
-
-
+return;
 //? test: tco-case-body
 //? description: Statement within statement is a candidate for tail-call optimization.
 //? expect: undefined
@@ -1280,8 +1272,7 @@ let callCount = 0;
   switch(0) { case 0: return f(n - 1); }
 }(30));
 assert(callCount === 1);
-
-
+return;
 //? test: tco-dftl-body
 //? description: Statement within statement is a candidate for tail-call optimization.
 //? expect: undefined
@@ -1298,5 +1289,4 @@ let callCount = 0;
   switch(0) { default: return f(n - 1); }
 }(30));
 assert(callCount === 1);
-
-
+return;

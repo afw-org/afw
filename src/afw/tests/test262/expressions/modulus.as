@@ -24,8 +24,7 @@ let x = 18
 ;
 
 assert(x === 1);
-
-
+return;
 //? test: order-of-evaluation
 //? description: Type coercion order of operations for modulus operator
 //? expect: undefined
@@ -162,8 +161,7 @@ assert.throws(TypeError, function() {
   })();
 }, "GetValue(lhs) throws.");
 assert.sameValue(trace, "1234", "GetValue(lhs) throws.");
-
-
+return;
 //? test: S11.5.3_A1
 //? description: Checking by using eval
 //? expect: undefined
@@ -220,8 +218,7 @@ if (eval(script("1\u2029%\u20291")) !== 0) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029%\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 0) {
   throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029%\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 0';
 }
-
-
+return;
 //? test: S11.5.3_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
 //? expect: undefined
@@ -252,9 +249,7 @@ y = 2;
 if (x % y !== 1) {
   throw '#4: let x = 1; let y = 2; x % y === 1. Actual: ' + (x % y);
 }
-
-
-
+return;
 //? test: S11.5.3_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -299,8 +294,7 @@ try {
      }
    }
 }
-
-
+return;
 //? test: S11.5.3_A2.4_T2
 //? description: Checking with "throw"
 //? expect: undefined
@@ -325,8 +319,7 @@ try {
      }
    }
 }
-
-
+return;
 //? test: S11.5.3_A2.4_T3
 //? description: Checking with undeclarated variables
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -347,8 +340,7 @@ x % (x = 1);
 if (1 % 1 !== 0) {
   throw '#1: 1 % 1 === 0. Actual: ' + (1 % 1);
 }
-
-
+return;
 //? test: S11.5.3_A3_T1.3
 //? description: Type(x) and Type(y) vary between primitive string and String object
 //? skip: true
@@ -389,8 +381,7 @@ if (is_NaN("x" % "1") !== true) {
 if (is_NaN("1" % "x") !== true) {
   throw '#6: "1" % "x" === Not-a-Number. Actual: ' + ("1" % "x");
 }
-
-
+return;
 //? test: S11.5.3_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? skip: true
@@ -419,8 +410,7 @@ if (is_NaN(undefined % undefined) !== true) {
 if (is_NaN(null % null) !== true) {
   throw '#4: null % null === Not-a-Number. Actual: ' + (null % null);
 }
-
-
+return;
 //? test: S11.5.3_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? skip: true
@@ -449,7 +439,7 @@ if (is_NaN(function(){return 1} % function(){return 1}) !== true) {
 if (is_NaN({} % {}) !== true) {
   throw '#4: {} % {} === Not-a-Number. Actual: ' + ({} % {});
 }
-
+return;
 //? test: S11.5.3_A3_T2.2
 //? description:...
     Type(x) is different from Type(y) and both types vary between
@@ -480,8 +470,7 @@ if (is_NaN("x" % 1) !== true) {
 if (is_NaN(1 % "x") !== true) {
   throw '#10: 1 % "x" === Not-a-Number. Actual: ' + (1 % "x");
 }
-
-
+return;
 //? test: S11.5.3_A3_T2.3
 //? description:...
     Type(x) is different from Type(y) and both types vary between
@@ -502,8 +491,7 @@ if (is_NaN(1 % null) !== true) {
 if (null % 1 !== 0) {
   throw '#2: null % 1 === 0. Actual: ' + (null % 1);
 }
-
-
+return;
 //? test: S11.5.3_A3_T2.4
 //? description:...
     Type(x) is different from Type(y) and both types vary between
@@ -524,8 +512,7 @@ if (is_NaN(1 % undefined) !== true) {
 if (is_NaN(undefined % 1) !== true) {
   throw '#2: undefined % 1 === Not-a-Number. Actual: ' + (undefined % 1);
 }
-
-
+return;
 //? test: S11.5.3_A3_T2.6
 //? description:...
     Type(x) is different from Type(y) and both types vary between
@@ -558,8 +545,7 @@ if (is_NaN(new String("1") % undefined) !== true) {
 if (is_NaN(undefined % new String("1")) !== true) {
   throw '#4: undefined % new String("1") === Not-a-Number. Actual: ' + (undefined % new String("1"));
 }
-
-
+return;
 //? test: S11.5.3_A3_T2.7
 //? description:...
     Type(x) is different from Type(y) and both types vary between
@@ -592,8 +578,7 @@ if (is_NaN(new String("1") % null) !== true) {
 if (null % new String("1") !== 0) {
   throw '#4: null % new String("1") === 0. Actual: ' + (null % new String("1"));
 }
-
-
+return;
 //? test: S11.5.3_A4_T1.1
 //? description: If either operand is NaN, the result is NaN (left NaN; double mod)
 //? expect: undefined
@@ -631,9 +616,7 @@ if (is_NaN(NaN % -Infinity) !== true) {
 if (is_NaN(NaN % 1.0) !== true) {
   throw '#6: NaN % 1.0 === Not-a-Number';
 }
-
-
-
+return;
 //? test: S11.5.3_A4_T1.2
 //? description: If either operand is NaN, the result is NaN (right NaN; double mod)
 //? expect: undefined
@@ -670,9 +653,7 @@ if (is_NaN(-Infinity % NaN) !== true) {
 if (is_NaN(1.0 % NaN) !== true) {
   throw '#6: 1.0 % NaN === Not-a-Number';
 }
-
-
-
+return;
 //? test: S11.5.3_A4_T2
 //? description:...
     The sign of the finite non-zero value result equals the sign of
@@ -791,9 +772,7 @@ if (is_NaN(Infinity % -1.0) !== true) {
 if (is_NaN(Infinity % 1.7976931348623157e+308) !== true) {
   throw '#9: Infinity % max-double === Not-a-Number';
 }
-
-
-
+return;
 //? test: S11.5.3_A4_T4
 //? description: If the divisor is zero results is NaN (double mod; not integer %)
 //? expect: undefined
@@ -854,9 +833,7 @@ if (is_NaN(Infinity % 0.0) !== true) {
 if (is_NaN(-Infinity % 0.0) !== true) {
   throw '#10: -Infinity % 0.0 === Not-a-Number';
 }
-
-
-
+return;
 //? test: S11.5.3_A4_T5
 //? description:...
     If dividend is finite and the divisor is an infinity, the result
@@ -922,8 +899,7 @@ if (-0.0 % -Infinity !== -0.0) {
     throw '#8.2: -0.0 % -Infinity === -0';
   }
 }
-
-
+return;
 //? test: S11.5.3_A4_T6
 //? description:...
     If dividend is a zero and the divisor is nonzero finite, the
@@ -988,8 +964,7 @@ if (-0.0 % 1.7976931348623157e+308 !== -0.0) {
     throw '#6.2: -0.0 % max-double === -0';
   }
 }
-
-
+return;
 //? test: S11.5.3_A4_T7
 //? description:...
     If operands neither an infinity, nor a zero, nor NaN, return x -
@@ -1065,3 +1040,4 @@ y = -1.1;
 if (x % y !== x - truncate(x / y) * y) {
   throw '#8: -1.3 % -1.1 === x - truncate(x / y) * y. Actual: ' + string(x % y);
 }
+return;

@@ -80,6 +80,12 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 | [First-pass skipReason labels](#first-pass-skipreason-labels) | meta | Every skip got a prefix |
 | [FIXME triage note](#fixme-triage-note) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/FIXME-triage.md) | [`FIXME-triage.md`](FIXME-triage.md) shortlist |
 
+### Script result ([#62](https://github.com/afw-org/afw/issues/62))
+
+| Case | How | Brief |
+|------|-----|--------|
+| test262 `expect: undefined` vs last assign | **T:** →fix | Bulk `return;` so converter default matches “did not throw”; original TC39 is the check. let/const `cptn-value` now empty completion |
+
 ### Object / array helpers ([#55](https://github.com/afw-org/afw/issues/55)) and dense arrays ([#39](https://github.com/afw-org/afw/issues/39))
 
 | Case | How | Brief |

@@ -49,9 +49,9 @@ How that applies to this index:
 - A non-void **call statement** writes it (ES `eval` ExpressionStatement). `print()` is void and does not.
 - Nested assignment inside those forms does update it.
 - `break;` **preserves** the running result (today it wipes to `undefined`). No `break expr` in the first cut; the built-in already has an optional value, syntax does not.
-- A script that is **only** a call or expression (`1 + 2`, `abs(-3);`, `#block(add(1,2))`) yields that value — same IR as decompile, and Fiddle-friendly. `x = 1; abs(-3);` stays `1`. The semicolon-vs-expression distinction is not a separate IR.
+- A script that is **only** a call or expression (`1 + 2`, `abs(-3);`, `#block(add(1,2))`) yields that value. `x = 1; abs(-3);` is `3` (ES `eval`). `print();` is void and does not override.
 
-This is Adaptive completion, not ES `cptn-*` / test262.
+This is Adaptive completion, not ES `cptn-*`. test262 cases that only `throw` on failure got a trailing `return;` so `expect: undefined` means “completed,” matching `_convert.py` and original TC39 (no asserted completion).
 
 ## Vertical order (this branch)
 

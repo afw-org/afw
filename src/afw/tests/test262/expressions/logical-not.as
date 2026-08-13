@@ -49,9 +49,7 @@ if (eval(script("!\u2029true")) !== false) {
 if (eval(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true")) !== false) {
     throw "#10 !\\u009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true === false";
 }
-
-
-
+return;
 //? test: 11.4.9_A2.1_T1
 //? description: Operator !x
 //? expect: undefined
@@ -74,9 +72,7 @@ x = true;
 if (!(!x) !== true) {
     throw "#4 !(!x) !== true";
 }
-
-
-
+return;
 //? test: 11.4.9_A3_T1
 //? description: x is boolean primitive
 //? expect: undefined
@@ -85,9 +81,7 @@ if (!(!x) !== true) {
 if (!false !== true) {
     throw "#1 !false !== true";
 }
-
-
-
+return;
 //? test: 11.4.9_A3_T2
 //? description: x is number
 //? expect: error

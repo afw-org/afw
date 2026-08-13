@@ -61,8 +61,7 @@ if (eval(script("0\u2029<\u20291")) !== true) {
 if (eval(script("0\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029<\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== true) {
   throw '#10: (0\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029<\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291) === true';
 }
-
-
+return;
 //? test: S11.8.1_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
 //? expect: undefined
@@ -93,9 +92,7 @@ y = 2;
 if (x < y !== true) {
   throw '#4: let x = 1; let y = 2; x < y === true';
 }
-
-
-
+return;
 //? test: S11.8.1_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -141,8 +138,7 @@ try {
      }
    }
 }
-
-
+return;
 //? test: S11.8.1_A2.4_T2
 //? description: Checking with "throw"
 //? expect: undefined
@@ -164,8 +160,7 @@ try {
      }
    }
 }
-
-
+return;
 //? test: S11.8.1_A3.1_T1.1
 //? description:  Type(Primitive(x)) and Type(Primitive(y)) vary between primitive boolean and Boolean object
 //? expect: undefined
@@ -177,8 +172,7 @@ try {
 if (true < true !== false) {
   throw '#1: true < true === false';
 }
-
-
+return;
 //? test: S11.8.1_A3.1_T1.2
 //? description:  Type(Primitive(x)) and Type(Primitive(y)) vary between primitive number and Number object
 //? expect: undefined
@@ -190,9 +184,7 @@ if (true < true !== false) {
 if (1 < 1 !== false) {
   throw '#1: 1 < 1 === false';
 }
-
-
-
+return;
 //? test: S11.8.1_A3.2_T1.1
 //? description:  Type(Primitive(x)) and Type(Primitive(y)) vary between primitive string and String object
 //? expect: undefined
@@ -214,9 +206,7 @@ if ("x" < "1" !== false) {
 if ("1" < "x" !== true) {
   throw '#6: "1" < "x" === true';
 }
-
-
-
+return;
 //? test: S11.8.1_A4.10
 //? description: x and y are string primitives
 //? expect: undefined
@@ -254,8 +244,7 @@ let x = "x";
 if ((x + "y" < x) !== false) {
   throw '#6: let x = "x"; (x + "y" < x) === false';
 }
-
-
+return;
 //? test: S11.8.1_A4.11
 //? description: x and y are string primitives
 //? expect: undefined
@@ -303,8 +292,7 @@ if (("a\u0000" < "a\u0000a") !== true) {
 if (("x" < " x") !== false) {
   throw '#8: ("x" < " x") === false';
 }
-
-
+return;
 //? test: S11.8.1_A4.12_T1
 //? description: x and y are string primitives
 //? expect: undefined
@@ -346,8 +334,7 @@ if (("a\u0000a" < "a\u0000b") !== true) {
 if (("aB" < "aa") !== true) {
   throw '#7: ("aB" < aa") === true';
 }
-
-
+return;
 //? test: S11.8.1_A4.12_T2
 //? description: x and y are string primitives
 //? expect: undefined
@@ -389,8 +376,7 @@ if (("+1" < "-1") !== true) {
 if (("1" < "1e-10") !== true) {
 throw '#7: ("1" < "1e-10") !== true';
 }
-
-
+return;
 //? test: S11.8.1_A4.1
 //? description: y is number primitive
 //? expect: error:Parameter 2 of function 'lt<double>' must evaluate to data type 'double' but evaluated to be 'integer'
@@ -491,8 +477,7 @@ if ((Number.MAX_VALUE < NaN) !== false) {
 if ((Number.MIN_VALUE < NaN) !== false) {
   throw '#8: (Number.MIN_VALUE < NaN) === false';
 }
-
-
+return;
 //? test: S11.8.1_A4.3
 //? description: x and y are number primitives
 //? expect: undefined
@@ -535,8 +520,7 @@ if ((Number.MIN_VALUE < Number.MIN_VALUE) !== false) {
   throw '#7: (Number.MIN_VALUE < Number.MIN_VALUE) === false';
 }
 */
-
-
+return;
 //? test: S11.8.1_A4.4
 //? description: Checking all combinations
 //? expect: undefined
@@ -563,8 +547,7 @@ if ((+0 < -0) !== false) {
 if ((-0 < +0) !== false) {
   throw '#4: (-0 < +0) === false';
 }
-
-
+return;
 //? test: S11.8.1_A4.5
 //? description: y is number primitive
 //? expect: error:Parameter 2 of function 'lt<double>' must evaluate to data type 'double' but evaluated to be 'integer'
@@ -645,8 +628,7 @@ if ((Number.MAX_VALUE < Infinity) !== true) {
 if ((Number.MIN_VALUE < Infinity) !== true) {
   throw '#6: (Number.MIN_VALUE < +Infinity) === true';
 }
-
-
+return;
 //? test: S11.8.1_A4.7
 //? description: y is number primitive
 //? expect: error:Parameter 2 of function 'lt<double>' must evaluate to data type 'double' but evaluated to be 'integer'

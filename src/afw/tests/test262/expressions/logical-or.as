@@ -62,8 +62,7 @@ if ((eval(script("false\u2029||\u2029true"))) !== true) {
 if ((eval(script("false\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029||\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true"))) !== true) {
   throw '#10: (false\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029||\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true) === true';
 }
-
-
+return;
 //? test: S11.11.2_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
 //? expect: undefined
@@ -80,9 +79,7 @@ if ((true || false) !== true) {
 if ((false || true) !== true) {
   throw '#2: (false || true) === true';
 }
-
-
-
+return;
 //? test: S11.11.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -138,8 +135,7 @@ try {
      }
    }
 }
-
-
+return;
 //? test: S11.11.2_A2.4_T3
 //? description: Checking with undeclared variables
 //? expect: error:Parse error at offset 38 around line 5 column 3: Unknown built-in function 'x'
@@ -179,8 +175,7 @@ if ((false || true) !== true) {
 if ((false || false) !== false) {
   throw '#2: (false || false) === false';
 }
-
-
+return;
 //? test: S11.11.2_A4_T1
 //? description:  Type(x) and Type(y) vary between primitive boolean and Boolean object
 //? expect: undefined
@@ -197,8 +192,7 @@ if (((true || true)) !== true) {
 if ((true || false) !== true) {
   throw '#2: (true || false) === true';
 }
-
-
+return;
 //? test: S11.11.2_A4_T4
 //? description: Type(x) or Type(y) vary between Null and Undefined
 //? expect: undefined
@@ -215,7 +209,4 @@ if ((true || undefined) !== true) {
 if ((true || null) !== true) {
   throw '#2: (true || null) === true';
 }
-
-
-
-
+return;

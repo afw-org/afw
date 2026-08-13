@@ -15,8 +15,7 @@
 if (true !== true) {
   throw '#1: Boolean(true) === true. Actual: Boolean(true) === ' + (string(true));
 }
-
-
+return;
 //? test: S7.8.2_A1_T2
 //? description: "BooleanLiteral :: false"
 //? expect: undefined
@@ -27,3 +26,4 @@ if (true !== true) {
 if (false !== false) {
   throw '#1: Boolean(false) === false. Actual: Boolean(false) === ' + (string(false));
 }
+return;

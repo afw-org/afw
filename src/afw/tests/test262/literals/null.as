@@ -15,3 +15,4 @@
 if (null !== null) {
   throw '#1: null === null';
 }
+return;

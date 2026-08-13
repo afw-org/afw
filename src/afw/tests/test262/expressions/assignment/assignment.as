@@ -39,7 +39,7 @@ x = y;
 if (x !== 1) {
   throw '#4: var y = 1; var x = y; x === 1. Actual: ' + (x);
 }
-
+return;
 //? test: 11.13.1_A2.1_T2
 //? description: If GetBase(AssigmentExpression) is null, throw ReferenceError
 //? expect: error:Parse error at offset 28 around line 3 column 9: Unknown built-in function 'y'
@@ -66,8 +66,7 @@ x = 1;
 if (x !== 1) {
   throw '#2: x = 1; x === 1. Actual: ' + (x);
 }
-
-
+return;
 //? test: 11.13.1_A4_T2
 //? description: let x = x self-init (ES TDZ ReferenceError in some modes)
 //? differences: Adaptive has no TDZ; let x = x yields undefined
@@ -124,8 +123,7 @@ if (_map.two !== "duo") {
 }
 //
 //////////////////////////////////////////////////////////////////////////////
-
-
+return;
 //? test: line-terminator
 //? description: White Space between LeftHandSideExpression and "=" or between "=" and AssignmentExpression is allowed
 //? expect: undefined
@@ -141,8 +139,7 @@ true;
 if (x !== true) {
     throw '#6: (x\\u000A=\\u000Atrue) === true';
 }
-
-
+return;
 //? test: member-expr-ident-name-break-escaped
 //? description: break is a valid identifier name, using escape (MemberExpression IdentifierName)
 //? skip: true
@@ -159,8 +156,7 @@ let obj = {};
 obj.bre\u0061k = 42;
 
 assert(property_exists(obj, "break"));
-
-
+return;
 //? test: member-expr-ident-name-default
 //? description: default is a valid identifier name (MemberExpression IdentifierName)
 //? expect: undefined
@@ -172,8 +168,7 @@ let obj = {};
 obj.default = 42;
 
 assert(property_exists(obj, "default"));
-
-
+return;
 //? test: non-simple-target
 //? description: It is an early Syntax Error if LeftHandSideExpression is neither an ObjectLiteral nor an ArrayLiteral and AssignmentTargetType of LeftHandSideExpression is invalid or strict.
 //? expect: error
@@ -225,8 +220,7 @@ let x;
 (x) = 1;
 
 assert(x === 1);
-
-
+return;
 //? test: target-member-identifier-reference-null
 //? description: Assignment Operator evaluates the value prior validating a MemberExpression's reference (null)
 //? expect: error
@@ -363,3 +357,4 @@ x	
 if (x !== 'U+0009U+000BU+000CU+0020U+00A0U+000DU+2028U+2029') {
   throw'#10: (x\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000D\\u2028\\u2029=\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000D\\u2028\\u2029true) === true';
 }
+return;
