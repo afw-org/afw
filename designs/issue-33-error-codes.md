@@ -2,7 +2,7 @@
 
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#33](https://github.com/afw-org/afw/issues/33) — *Review/Change Error Codes*  
-**Status:** done for release on `issue-#33-error-codes`. Do not reopen unless release testing finds a wrong HTTP status or a name we cannot live with. Leftovers: extension-defined names (later); remove deprecated `throw "…" { … }` (#172).  
+**Status:** closed. Landed on `mgg-develop` via [PR #173](https://github.com/afw-org/afw/pull/173). Do not reopen unless release testing finds a wrong HTTP status or a name we cannot live with. Leftovers: extension-defined names (later); remove deprecated `throw "…" { … }` (#172).  
 **Related:** try/catch (`afw-script-errors`), HTTP request path (`afw-server` / `afw-server-fcgi`), crypto prefix convention (`secrets-and-afw-crypto.md`), #158 `terminating` → 503.
 
 ## Landed (this branch)

@@ -307,7 +307,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Decompile | `issue-18-…` | Pad useful; stringify closed |
 | Types | `issue-28-…` | **#28 closed** (PR **#171** wrap-up) |
 | Pragma `#` | `pragma-hash-design.md` | Pattern B `#compile` (landed) |
-| Error codes / HTTP / `e.id` | `issue-33-error-codes.md` | **#33** — map in `afw_common.h`; script `throw` may set `id`; prefer `e.id` |
+| Error codes / HTTP / `e.id` | `issue-33-error-codes.md` | **#33** closed (PR **#173**) — map in `afw_common.h`; script `throw` may set `id`; prefer `e.id` |
 
 ---
 

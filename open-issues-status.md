@@ -2,7 +2,7 @@
 
 **Repo:** [afw-org/afw](https://github.com/afw-org/afw)  
 **Branch context:** `mgg-develop` (beta readiness)  
-**Generated / refreshed:** 2026-08-12  
+**Generated / refreshed:** 2026-08-13  
 **Source:** live GitHub open issues (`gh issue list --state open`) + maintainer notes from recent `mgg-develop` work.
 
 This is a **working tracker**, not a substitute for issue bodies or PRs. “How it stands” mixes GitHub metadata with known landings on `mgg-develop`; re-verify before closing anything.
@@ -19,9 +19,9 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Summary counts
 
-- **Open issues:** 42
-- **Jeremy:** 29 issues (as assignee, including shared)
-- **Mike:** 19 issues (as assignee, including shared)
+- **Open issues:** 41
+- **Jeremy:** 28 issues (as assignee, including shared)
+- **Mike:** 18 issues (as assignee, including shared)
 - **—:** 6 issues (unassigned)
 
 ## All open issues
@@ -34,7 +34,6 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#8](https://github.com/afw-org/afw/issues/8) | Jeremy | Migrate away from create-react-app | There are some unpleasant workarounds required to get the plumbing right for a create-react-app project like our curr… | Admin app build system (CRA → Vite etc.). No recent activity. | 2023-04-14 |
 | [#13](https://github.com/afw-org/afw/issues/13) | Jeremy | Support stress testing in afwdev | Currently, we can use the following command to send tests to afwfcgi in parallel: | Still open for Jeremy’s knobs/stats story. Load soaks via **orchestrated firehose** leaves (`tests-extra/`, PR **#167**); **`afwdev blast` retired**. | 2026-08-11 |
 | [#22](https://github.com/afw-org/afw/issues/22) | Jeremy | Finishing documenting differences between Adaptive Script and ECMAScript | Title says it all. | Jeremy’s polished ES differences doc. Maintainer notes in root typescript-differences.md (not a substitute). | 2023-07-27 |
-| [#33](https://github.com/afw-org/afw/issues/33) | Mike, Jeremy | Review/Change Error Codes | Now that we can try/catch in Adaptive Script, we need to review current error codes and change any, or create new one… | On `issue-#33-error-codes`: map frozen for release (IANA HTTP family + Adaptive extras). Old `throw "…" { … }` deprecated → #172. Extension-defined names later. | 2026-08-13 |
 | [#35](https://github.com/afw-org/afw/issues/35) | Mike, Jeremy | Support for closures | Here are a few tests that we expect to fail, because we do not currently implement closures like ECMAScript does: | Closures largely work (closures.as 25 pass). 11 skips are before2/after2 escape/lifetime (#2), not “no closures.” Handbook Features still says no closures (stale). Left open 2026-08-04 process-close pass. | 2026-07-22 |
 | [#40](https://github.com/afw-org/afw/issues/40) | Jeremy | Documentation for Language Bindings | We need docs on the Javascript and Python bindings (they are currently empty on the GitHub pages site). Perhaps these… | Language binding docs empty on GH Pages. Open documentation. | 2023-07-28 |
 | [#41](https://github.com/afw-org/afw/issues/41) | Jeremy | Review the calls to afw_authorization_check() in afw_adaptor_impl.c | Review all calls to afwauthorizationcheck() in afwadaptorimpl.c and make sure the information is passed that is neede… | Review adapter authorization_check call sites + tests. Open review. | 2026-07-19 |
