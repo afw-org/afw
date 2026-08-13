@@ -15,7 +15,7 @@ Use this to pick **next** converts. Prefer small rewrites or single product deci
 | **1** | **Arithmetic IEEE (more)** | In progress | division/subtraction/`**` residual | **modulus** pure `A4_*` + **division** `A4_T4/T5/T7–T9` done; coerce → **Incompatible** |
 | **2** | **try `cptn-*` completion** | Done (#62) | — | Assignment probes; see [`changes.md`](changes.md) |
 | **3** | **`**` signed-zero / ∞** | Open | ~5 | `exponentiation.as` edges |
-| **4** | **for-of TDZ / ASI leftovers** | Open | ~2–3 | `head-const-…-tdz`, `let-array-with-newline`; language-wide |
+| **4** | **for-of TDZ / ASI leftovers** | TDZ → **Incompatible** (no Adaptive TDZ). ASI leftover still open | ~1 | `let-array-with-newline` / empty-body ASI |
 | **5** | **for-of const + closures** | Blocked | 1 | **#35 / #2** — keep skip+FIXME, honest expect |
 | **6** | **Harness leftovers** | Open | ~19 | `valueOf` / `assert.throws` / ASI block-eval |
 | **7** | **Half-converted try/catch Pattern** | Done (#62) | — | `scope-catch-*` rewritten; see [`changes.md`](changes.md) |
@@ -32,7 +32,11 @@ Adaptive **has** closures; many ES-style fails are **escape / capture / lifetime
 |-------|--------|
 | Arithmetic IEEE / coercion | More `division`/`subtraction`/`**`; ToNumber cases → Incompatible |
 | try/catch `cptn-*` | Done (#62): assignment probes, not ES UpdateEmpty |
-| for-of TDZ / ASI / closures | Language / #35 |
+| for-of TDZ | **Incompatible:** no Adaptive TDZ |
+| ES sloppy function-name reassignment | **Incompatible** |
+| ES per-iteration for-let | **Incompatible:** one slot (#62) |
+| unicode-escaped reserved property names | **Incompatible** |
+| for-of ASI / closures | Language / #35 |
 | Harness | Runner form first |
 | Half-converted try/switch | try `scope-catch-*` done (#62); switch leftovers separate |
 

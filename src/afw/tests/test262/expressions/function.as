@@ -144,8 +144,8 @@ assert(callCount === 1, "function invoked exactly once");
 //? expect: success
 //? skip: true
 //? skipReason: ...
-FIXME: reassignment of function BindingIdentifier in body (ES silent
-ignore in sloppy mode) not modeled
+Incompatible: Adaptive has no ES sloppy mode. Reassignment of a
+function name in the body is not silently ignored.
 //? source: ...
 #!/usr/bin/env afw
 

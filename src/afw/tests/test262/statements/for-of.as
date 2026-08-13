@@ -1711,10 +1711,8 @@ for (const [x, x] of []) {}
 //? expect: error
 //? skip: true
 //? skipReason: ...
-FIXME: Adaptive has no general TDZ for let/const (inner binding is visible
-as undefined, not ReferenceError). for-of shares that gap: evaluating
-[x] with for (const x of [x]) does not throw. Needs language-wide TDZ,
-not a for-of-only hack.
+Incompatible: Adaptive has no TDZ. The inner for-of binding is
+undefined, not a ReferenceError. Not a for-of-only change.
 //? source: ...
 #!/usr/bin/env afw
 

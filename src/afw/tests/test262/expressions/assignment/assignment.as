@@ -140,15 +140,14 @@ if (x !== true) {
 //? description: break is a valid identifier name, using escape (MemberExpression IdentifierName)
 //? skip: true
 //? skipReason: ...
-FIXME: escaped reserved words as property names (break spelled with
-unicode escape) not decided
+Incompatible: no plan to treat a unicode-escaped reserved word
+(bre\\u0061k) as a property name.
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 let obj = {};
 
-// FIXME don't know if we should support this
 obj.bre\u0061k = 42;
 
 assert(property_exists(obj, "break"));
