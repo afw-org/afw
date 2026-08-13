@@ -118,7 +118,18 @@ Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent 
 
 Error codes are both what a script sees on **`catch (e)`** (`e.id`, `e.errorCode`) and the **HTTP status** of an uncaught error on `afwfcgi`.
 
-**`general`** remains the default. Prefer **`e.id`** (the mnemonic) over numeric **`e.errorCode`** — this beta line reordered the enum (`none`, `general`, `throw` first) so numbers may not match an older build.
+**`general`** remains the default. Prefer **`e.id`** over numeric **`e.errorCode`** — this beta line reordered the enum (`none`, `general`, `throw` first) so numbers may not match an older build.
+
+This beta line also renamed a few ids that collided with language names or read as jargon. HTTP status for each is unchanged:
+
+| Was | Now | Why |
+|-----|-----|-----|
+| `cast_error` | `conversion_error` | These are conversion functions, not casts. A failed `integer("x")` or a failed convert in `eq` / `ne` uses this name. |
+| `arg_error` | `argument_error` | Spell the word. |
+| `evaluate` | `evaluation_error` | Do not collide with the `evaluate()` function. |
+| `undefined` | `undefined_value` | Do not collide with the `undefined` value / data type. A required function parameter that is `undefined` now uses this id (it was `general`). |
+| `code` | `coding_error` | `code` was too vague (and a throw-macro parameter name). |
+| `client_time_out` | `client_timeout` | Same style as `client_closed`. |
 
 | Situation | `e.id` | HTTP if uncaught |
 |-----------|--------|------------------|
@@ -223,7 +234,7 @@ Not supported (by design): `for-in`, `in`, `delete`, sparse present/missing inde
 
 ## Conversion functions (type-named)
 
-Many Adaptive **data types** have a same-named **conversion function** `T(value)` that produces a value of type **T** (or fails with `cast_error`). Meta types (`any`, `undefined`, `void`, …) never had one.
+Many Adaptive **data types** have a same-named **conversion function** `T(value)` that produces a value of type **T** (or fails with **`conversion_error`**). That error id was previously named `cast_error`. Meta types (`any`, `undefined`, `void`, …) never had one.
 
 | Kind | Examples | Notes |
 |------|----------|--------|

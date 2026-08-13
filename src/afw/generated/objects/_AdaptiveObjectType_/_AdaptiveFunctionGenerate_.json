@@ -90,7 +90,7 @@
             "brief": "Errors thrown by this function",
             "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
-            "description": "Errors that can be thrown by this function.",
+            "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "label": "Errors Thrown",
             "required": false
         },

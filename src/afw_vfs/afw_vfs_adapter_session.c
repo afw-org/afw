@@ -1011,7 +1011,7 @@ impl_determine_path_for_object_id(
     }
     else {
         if (exists) {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(conflict, xctx,
                 "object_id " AFW_UTF8_FMT_Q " already exists",
                 AFW_UTF8_FMT_OPTIONAL_ARG(object_id));
         }

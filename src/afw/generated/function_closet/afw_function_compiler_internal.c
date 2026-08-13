@@ -638,7 +638,7 @@ afw_function_execute_switch(
  *   payload_too_large - id is payload_too_large
  *   query_too_complex - id is query_too_complex
  *   method_not_allowed - id is method_not_allowed
- *   arg_error - id is not a string or is not allowed on throw
+ *   argument_error - id is not a string or is not allowed on throw
  */
 const afw_value_t *
 afw_function_execute_throw(

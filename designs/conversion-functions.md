@@ -8,7 +8,7 @@
 Optional **conversion functions** whose **functionId equals a data type id**. Typical shape:
 
 - pure, one argument `value`
-- return that data type (or `cast_error` if conversion is impossible)
+- return that data type (or `conversion_error` if conversion is impossible)
 - most share `useExecuteFunction: afw_function_execute_convert` → `afw_value_convert` using `returns.data_type`
 
 They are **hand** entries under `generate/objects/_AdaptiveFunctionGenerate_/<type>.json`, not auto-emitted from `_AdaptiveDataTypeGenerate_`. No data-type flag controls them today.

@@ -4,6 +4,20 @@
     "camelCaseFunctionLabel": "retrieveObjectsToStream",
     "category": "adapter",
     "description": "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nEach object is written to the 'streamId' stream as it's retrieved.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.",
+    "errorsThrown": [
+        {
+            "error": "query_too_complex",
+            "reason": "adapter cannot run this query"
+        },
+        {
+            "error": "not_found",
+            "reason": "adapter is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        }
+    ],
     "functionId": "retrieve_objects_to_stream",
     "functionLabel": "retrieve_objects_to_stream",
     "parameters": [

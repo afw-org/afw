@@ -2,7 +2,7 @@
     "brief": "Compile <dataType> value",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging — not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
+    "description": "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
     "functionId": "compile",
     "functionLabel": "compile",
     "parameters": [
@@ -31,5 +31,11 @@
     "pure": true,
     "returns": {
         "dataType": "unevaluated"
-    }
+    },
+    "errorsThrown": [
+        {
+            "error": "syntax",
+            "reason": "source could not be compiled"
+        }
+    ]
 }

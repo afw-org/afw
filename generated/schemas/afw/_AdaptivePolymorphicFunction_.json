@@ -250,19 +250,19 @@
                     "type": "string"
                 },
                 "errorsThrown": {
-                    "description": "These are errors that can possibly be thrown by this function.",
+                    "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "items": {
                         "allOf": [
                             {
                                 "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
                             }
                         ],
-                        "description": "These are errors that can possibly be thrown by this function.",
-                        "markdownDescription": "These are errors that can possibly be thrown by this function.",
+                        "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
+                        "markdownDescription": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                         "title": "Errors thrown",
                         "type": "object"
                     },
-                    "markdownDescription": "**Errors Thrown**\n\nThese are errors that can possibly be thrown by this function.",
+                    "markdownDescription": "**Errors Thrown**\n\nErrors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "title": "Errors Thrown",
                     "type": "array"
                 },
@@ -486,19 +486,19 @@
                     "type": "string"
                 },
                 "errorsThrown": {
-                    "description": "Errors that can be thrown by this function.",
+                    "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "items": {
                         "allOf": [
                             {
                                 "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
                             }
                         ],
-                        "description": "Errors that can be thrown by this function.",
-                        "markdownDescription": "Errors that can be thrown by this function.",
+                        "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
+                        "markdownDescription": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                         "title": "Errors thrown by this function",
                         "type": "object"
                     },
-                    "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+                    "markdownDescription": "**Errors Thrown**\n\nErrors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "title": "Errors Thrown",
                     "type": "array"
                 },
@@ -676,19 +676,19 @@
                     "type": "boolean"
                 },
                 "errorsThrown": {
-                    "description": "Errors that can be thrown by this function.",
+                    "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "items": {
                         "allOf": [
                             {
                                 "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
                             }
                         ],
-                        "description": "Errors that can be thrown by this function.",
-                        "markdownDescription": "Errors that can be thrown by this function.",
+                        "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
+                        "markdownDescription": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                         "title": "Errors thrown by this function",
                         "type": "object"
                     },
-                    "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+                    "markdownDescription": "**Errors Thrown**\n\nErrors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "title": "Errors Thrown",
                     "type": "array"
                 },
@@ -782,19 +782,19 @@
             "type": "string"
         },
         "errorsThrown": {
-            "description": "Errors that can be thrown by this function.",
+            "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "items": {
                 "allOf": [
                     {
                         "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
                     }
                 ],
-                "description": "Errors that can be thrown by this function.",
-                "markdownDescription": "Errors that can be thrown by this function.",
+                "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
+                "markdownDescription": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                 "title": "Errors thrown by this function",
                 "type": "object"
             },
-            "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+            "markdownDescription": "**Errors Thrown**\n\nErrors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "title": "Errors Thrown",
             "type": "array"
         },

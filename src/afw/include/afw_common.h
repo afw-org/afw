@@ -989,14 +989,14 @@ typedef struct afw_object_meta_s {
  *
  * assertion_failed         - assert() failed.
  *
- * arg_error                - Adaptive function argument error (including
+ * argument_error           - Adaptive function argument error (including
  *                           things like integer divide by zero).
  *
- * cast_error               - Adaptive type cast failed.
+ * conversion_error         - Conversion to a data type failed.
  *
- * evaluate                 - Error while evaluating an adaptive value.
+ * evaluation_error         - Error while evaluating an adaptive value.
  *
- * undefined                - Required value was undefined.
+ * undefined_value          - Required value was undefined.
  *
  * syntax                   - Adaptive source parse / compile syntax error.
  *
@@ -1026,7 +1026,7 @@ typedef struct afw_object_meta_s {
  *
  * unsupported_accept       - None of the Accept types are supported.
  *
- * client_time_out          - Timed out waiting on the client.
+ * client_timeout           - Timed out waiting on the client.
  *
  * conflict                 - Conflict such as resource in use.
  *
@@ -1040,7 +1040,7 @@ typedef struct afw_object_meta_s {
  *
  * memory                   - Not enough memory to continue.
  *
- * code                     - Internal coding error.
+ * coding_error             - Internal coding error.
  *
  * method_not_supported     - This implementation does not support the
  *                           method or capability.
@@ -1052,36 +1052,36 @@ typedef struct afw_object_meta_s {
  *
  */
 #define AFW_ERROR_CODE_MAP(XX)                                                  \
-    XX(none,                   true,  200, "OK"                                )\
-    XX(general,                true,  500, "General Error"                     )\
-    XX(throw,                  true,  400, "Statement throw encountered"       )\
-    XX(assertion_failed,       true,  400, "Assertion failed"                  )\
-    XX(arg_error,              true,  400, "Adaptive Function Arg Error"       )\
-    XX(cast_error,             true,  400, "Adaptive Type Cast Error"          )\
-    XX(evaluate,               true,  400, "Evaluation error"                  )\
-    XX(undefined,              true,  400, "Undefined value"                   )\
-    XX(syntax,                 true,  400, "Syntax Error"                      )\
-    XX(bad_request,            true,  400, "Bad Request"                       )\
-    XX(query_too_complex,      true,  400, "Query Too Complex"                 )\
-    XX(request_syntax,         true,  400, "Request Syntax Error"              )\
-    XX(objects_needed,         true,  400, "Objects Needed To Complete Request")\
-    XX(authentication_required,true,  401, "Authentication Needed"             )\
-    XX(denied,                 true,  403, "Forbidden - Access Denied"         )\
-    XX(read_only,              true,  403, "Forbidden - Read Only"             )\
-    XX(not_found,              true,  404, "Not Found"                         )\
-    XX(method_not_allowed,     true,  405, "Method Not Allowed"                )\
-    XX(unsupported_accept,     false, 406, "Unsupported Content Type Requested")\
-    XX(client_time_out,        true,  408, "Request Timeout"                   )\
-    XX(conflict,               true,  409, "Conflict"                          )\
-    XX(length_required,        true,  411, "Content Length Required"           )\
-    XX(payload_too_large,      true,  413, "Payload too large"                 )\
-    XX(unsupported_content,    true,  415, "Unsupported Content Type"          )\
-    XX(im_a_teapot,            true,  418, "I'm a Teapot"                      )\
-    XX(memory,                 true,  500, "Memory Error"                      )\
-    XX(code,                   true,  500, "Clearly an internal coding error"  )\
-    XX(method_not_supported,   true,  501, "Method Not Supported"              )\
-    XX(client_closed,          false, 000, "Client Closed Connection"          )\
-    XX(terminating,            true,  503, "Server Terminating"                )\
+    XX(none,                    true,  200, "OK"                               )\
+    XX(general,                 true,  500, "General Error"                    )\
+    XX(throw,                   true,  400, "Statement throw encountered"      )\
+    XX(assertion_failed,        true,  400, "Assertion failed"                 )\
+    XX(argument_error,          true,  400, "Argument Error"                   )\
+    XX(conversion_error,        true,  400, "Conversion Error"                 )\
+    XX(evaluation_error,        true,  400, "Evaluation Error"                 )\
+    XX(undefined_value,         true,  400, "Undefined Value"                  )\
+    XX(syntax,                  true,  400, "Syntax Error"                     )\
+    XX(bad_request,             true,  400, "Bad Request"                      )\
+    XX(query_too_complex,       true,  400, "Query Too Complex"                )\
+    XX(request_syntax,          true,  400, "Request Syntax Error"             )\
+    XX(objects_needed,          true,  400, "Objects Needed To Complete Request")\
+    XX(authentication_required, true,  401, "Authentication Needed"            )\
+    XX(denied,                  true,  403, "Forbidden - Access Denied"        )\
+    XX(read_only,               true,  403, "Forbidden - Read Only"            )\
+    XX(not_found,               true,  404, "Not Found"                        )\
+    XX(method_not_allowed,      true,  405, "Method Not Allowed"               )\
+    XX(unsupported_accept,      false, 406, "Unsupported Content Type Requested")\
+    XX(client_timeout,          true,  408, "Request Timeout"                  )\
+    XX(conflict,                true,  409, "Conflict"                         )\
+    XX(length_required,         true,  411, "Content Length Required"          )\
+    XX(payload_too_large,       true,  413, "Payload Too Large"                )\
+    XX(unsupported_content,     true,  415, "Unsupported Content Type"         )\
+    XX(im_a_teapot,             true,  418, "I'm a Teapot"                     )\
+    XX(memory,                  true,  500, "Memory Error"                     )\
+    XX(coding_error,            true,  500, "Internal Coding Error"            )\
+    XX(method_not_supported,    true,  501, "Method Not Supported"             )\
+    XX(client_closed,           false, 000, "Client Closed Connection"         )\
+    XX(terminating,             true,  503, "Server Terminating"               )\
 
 /** Adaptive Framework error codes enum. */
 typedef enum afw_error_code_e {

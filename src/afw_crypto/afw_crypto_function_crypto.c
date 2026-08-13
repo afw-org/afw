@@ -55,7 +55,7 @@ impl_md_for_digest(afw_crypto_alg_kind_t k, afw_xctx_t *xctx)
     if (k == afw_crypto_alg_sha512 || k == afw_crypto_alg_hmac_sha512) {
         return EVP_sha512();
     }
-    AFW_THROW_ERROR_Z(arg_error,
+    AFW_THROW_ERROR_Z(argument_error,
         "error:crypto:unknown_algorithm: digest/HMAC algorithm", xctx);
     return NULL;
 }
@@ -179,7 +179,7 @@ afw_crypto_function_execute_crypto_digest(
 
     kind = afw_crypto_internal_alg_from_name(&algorithm->internal, x->xctx);
     if (kind != afw_crypto_alg_sha256 && kind != afw_crypto_alg_sha512) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:unknown_algorithm: digest requires SHA-256 or SHA-512",
             x->xctx);
     }
@@ -262,7 +262,7 @@ afw_crypto_function_execute_crypto_hmac(
     kind = afw_crypto_internal_alg_from_name(&algorithm->internal, xctx);
     if (kind != afw_crypto_alg_hmac_sha256 &&
         kind != afw_crypto_alg_hmac_sha512) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:unknown_algorithm: hmac requires HMAC-SHA-256 or HMAC-SHA-512",
             xctx);
     }
@@ -364,7 +364,7 @@ afw_crypto_function_execute_crypto_hmac_verify(
     kind = afw_crypto_internal_alg_from_name(&algorithm->internal, xctx);
     if (kind != afw_crypto_alg_hmac_sha256 &&
         kind != afw_crypto_alg_hmac_sha512) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:unknown_algorithm: hmac_verify requires HMAC-SHA-*",
             xctx);
     }
@@ -476,7 +476,7 @@ afw_crypto_function_execute_crypto_import_key(
     if (kind != afw_crypto_alg_aes_gcm &&
         kind != afw_crypto_alg_hmac_sha256 &&
         kind != afw_crypto_alg_hmac_sha512) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:unknown_algorithm: import supports AES-GCM and HMAC-SHA-*",
             xctx);
     }
@@ -733,7 +733,7 @@ afw_crypto_function_execute_crypto_encrypt(
     if (!name_v || !AFW_VALUE_IS_DATA_TYPE(name_v, string) ||
         !afw_utf8_equal_utf8_z(
             &((const afw_value_string_t *)name_v)->internal, "AES-GCM")) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:unknown_algorithm: encrypt requires AES-GCM",
             xctx);
     }
@@ -759,14 +759,14 @@ afw_crypto_function_execute_crypto_encrypt(
             cipher = EVP_aes_256_gcm();
         }
         else {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
                 xctx);
         }
 
         if (iv_in) {
             if (iv_in->size < AFW_CRYPTO_AES_GCM_IV_LEN) {
-                AFW_THROW_ERROR_Z(arg_error,
+                AFW_THROW_ERROR_Z(argument_error,
                     "error:crypto:missing_iv: iv must be at least 12 octets",
                     xctx);
             }
@@ -942,7 +942,7 @@ afw_crypto_function_execute_crypto_decrypt(
     if (!name_v || !AFW_VALUE_IS_DATA_TYPE(name_v, string) ||
         !afw_utf8_equal_utf8_z(
             &((const afw_value_string_t *)name_v)->internal, "AES-GCM")) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:unknown_algorithm: decrypt requires AES-GCM",
             xctx);
     }
@@ -955,7 +955,7 @@ afw_crypto_function_execute_crypto_decrypt(
     tag = afw_crypto_internal_object_get_binary(alg_obj, afw_crypto_s_tag,
         true, "error:crypto:missing_tag: tag required for decrypt", xctx);
     if (tag->size != AFW_CRYPTO_AES_GCM_TAG_LEN) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:invalid_tag_length: tag must be 16 octets",
             xctx);
     }
@@ -973,7 +973,7 @@ afw_crypto_function_execute_crypto_decrypt(
             cipher = EVP_aes_256_gcm();
         }
         else {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
                 xctx);
         }
@@ -1127,7 +1127,7 @@ afw_crypto_function_execute_crypto_derive_key(
     if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string) ||
         !afw_utf8_equal_utf8_z(
             &((const afw_value_string_t *)v)->internal, "PBKDF2")) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:unknown_algorithm: derive_key requires PBKDF2",
             xctx);
     }
@@ -1135,20 +1135,20 @@ afw_crypto_function_execute_crypto_derive_key(
     salt = afw_crypto_internal_object_get_binary(alg_obj, afw_crypto_s_salt,
         true, "error:crypto:expected_binary: salt required", xctx);
     if (salt->size < 16) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:invalid_key_length: salt must be at least 16 octets",
             xctx);
     }
 
     v = afw_object_get_property(alg_obj, afw_crypto_s_length, xctx);
     if (!v || !AFW_VALUE_IS_DATA_TYPE(v, integer)) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:invalid_key_length: PBKDF2 length (octets) required",
             xctx);
     }
     length_octets = ((const afw_value_integer_t *)v)->internal;
     if (length_octets <= 0 || length_octets > AFW_CRYPTO_MAX_KEY_OCTETS) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:invalid_key_length: PBKDF2 length out of range",
             xctx);
     }
@@ -1157,14 +1157,14 @@ afw_crypto_function_execute_crypto_derive_key(
     v = afw_object_get_property(alg_obj, afw_crypto_s_iterations, xctx);
     if (v) {
         if (!AFW_VALUE_IS_DATA_TYPE(v, integer)) {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "error:crypto:invalid_usage: iterations must be integer",
                 xctx);
         }
         iterations = ((const afw_value_integer_t *)v)->internal;
     }
     if (iterations < AFW_CRYPTO_PBKDF2_MIN_ITERATIONS) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:invalid_usage: iterations below minimum 100000",
             xctx);
     }
@@ -1175,7 +1175,7 @@ afw_crypto_function_execute_crypto_derive_key(
         if (!AFW_VALUE_IS_DATA_TYPE(v, string) ||
             !afw_utf8_equal_utf8_z(
                 &((const afw_value_string_t *)v)->internal, "SHA-256")) {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "error:crypto:unknown_algorithm: PBKDF2 hash must be SHA-256",
                 xctx);
         }
@@ -1313,7 +1313,7 @@ afw_crypto_function_execute_crypto_seal(
             cipher = EVP_aes_256_gcm();
         }
         else {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
                 xctx);
         }
@@ -1459,7 +1459,7 @@ afw_crypto_function_execute_crypto_unseal(
         json_s = &((const afw_value_string_t *)sealed_v)->internal;
         parsed = afw_json_to_value(json_s, NULL, x->p, xctx);
         if (!parsed || !AFW_VALUE_IS_DATA_TYPE(parsed, object)) {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "error:crypto:expected_binary: sealed string must be JSON object",
                 xctx);
         }
@@ -1469,7 +1469,7 @@ afw_crypto_function_execute_crypto_unseal(
         sealed_obj = ((const afw_value_object_t *)sealed_v)->internal;
     }
     else {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:expected_binary: sealed must be object or JSON string",
             xctx);
     }
@@ -1486,7 +1486,7 @@ afw_crypto_function_execute_crypto_unseal(
         x->p, xctx);
 
     if (tag->size != AFW_CRYPTO_AES_GCM_TAG_LEN) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "error:crypto:invalid_tag_length: tag must be 16 octets",
             xctx);
     }
@@ -1503,7 +1503,7 @@ afw_crypto_function_execute_crypto_unseal(
             cipher = EVP_aes_256_gcm();
         }
         else {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
                 xctx);
         }

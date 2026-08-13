@@ -4,6 +4,16 @@
     "camelCaseFunctionLabel": "getObject",
     "category": "adapter",
     "description": "Get an adaptive object from the adapter, specified by adapterId, objectType and objectId. Optional view options and adapter-specific options may be supplied to influence how the object is returned.",
+    "errorsThrown": [
+        {
+            "error": "not_found",
+            "reason": "adapter or object is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        }
+    ],
     "functionId": "get_object",
     "functionLabel": "get_object",
     "parameters": [
@@ -38,6 +48,6 @@
     ],
     "returns": {
         "dataType": "object",
-        "description": "Object retrieved or NULL if not found."
+        "description": "Object retrieved. Throws not_found if the adapter or object is not found."
     }
 }

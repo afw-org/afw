@@ -349,7 +349,7 @@ crypto_destroy_key(key) → void
 | `HMAC-SHA-256`, `HMAC-SHA-512` | `["sign", "verify"]` |
 | `PBKDF2` (`crypto_derive_key`) | `["encrypt", "decrypt"]` — suitable for derived AES keys; caller must pass explicit `["sign","verify"]` (etc.) if the derived key is for HMAC |
 
-If caller supplies `usages`, that list is stored as-is (must be non-empty; unknown usage string → `arg_error` / `error:crypto:invalid_usage`).
+If caller supplies `usages`, that list is stored as-is (must be non-empty; unknown usage string → `argument_error` / `error:crypto:invalid_usage`).
 
 #### Operation → required usage on CryptoKey (`resolve_key`)
 
@@ -365,7 +365,7 @@ If caller supplies `usages`, that list is stored as-is (must be non-empty; unkno
 
 **Ephemeral raw material** (`base64Binary` / `hexBinary` / reference resolved to octets for a single call): **skip usage checks** — there is no stored usage list. Usage enforcement applies only to keystore `keyId` objects.
 
-Missing required usage on a CryptoKey → `arg_error` with message prefix `error:crypto:usage_not_permitted`.
+Missing required usage on a CryptoKey → `argument_error` with message prefix `error:crypto:usage_not_permitted`.
 
 #### B. Keystore concurrency and limits (K13)
 
@@ -595,7 +595,7 @@ function crypto_derive_key(
 
 #### Stable error message prefixes vs `afw_error_code_t`
 
-**These are not new enum values.** Core `afw_error_code_t` is a fixed map in `src/afw/include/afw_common.h` (`general`, `arg_error`, `bad_request`, `not_found`, `payload_too_large`, `denied`, …). The extension **must not** add `afw_error_code_crypto_*` without a core change (out of scope).
+**These are not new enum values.** Core `afw_error_code_t` is a fixed map in `src/afw/include/afw_common.h` (`general`, `argument_error`, `bad_request`, `not_found`, `payload_too_large`, `denied`, …). The extension **must not** add `afw_error_code_crypto_*` without a core change (out of scope).
 
 **Normative mapping rule:**
 
@@ -606,14 +606,14 @@ function crypto_derive_key(
 
 | Message prefix (`error:crypto:…`) | `afw_error_code_t` | When |
 |-----------------------------------|--------------------|------|
-| `error:crypto:unknown_algorithm` | `arg_error` | Bad algorithm name |
-| `error:crypto:expected_binary` | `arg_error` | Wrong type for binary param (including bare string after JSON parse) |
-| `error:crypto:invalid_key_length` | `arg_error` | AES length mismatch |
-| `error:crypto:invalid_encoding` | `arg_error` | utf8 used as AES raw key, etc. |
-| `error:crypto:invalid_usage` | `arg_error` | Unknown usage string on import/generate |
-| `error:crypto:usage_not_permitted` | `arg_error` | CryptoKey missing required usage |
-| `error:crypto:missing_iv` / `missing_tag` / `invalid_tag_length` | `arg_error` | GCM parameter errors |
-| `error:crypto:not_extractable` | `arg_error` | export when `extractable=false` |
+| `error:crypto:unknown_algorithm` | `argument_error` | Bad algorithm name |
+| `error:crypto:expected_binary` | `argument_error` | Wrong type for binary param (including bare string after JSON parse) |
+| `error:crypto:invalid_key_length` | `argument_error` | AES length mismatch |
+| `error:crypto:invalid_encoding` | `argument_error` | utf8 used as AES raw key, etc. |
+| `error:crypto:invalid_usage` | `argument_error` | Unknown usage string on import/generate |
+| `error:crypto:usage_not_permitted` | `argument_error` | CryptoKey missing required usage |
+| `error:crypto:missing_iv` / `missing_tag` / `invalid_tag_length` | `argument_error` | GCM parameter errors |
+| `error:crypto:not_extractable` | `argument_error` | export when `extractable=false` |
 | `error:crypto:key_too_large` | `payload_too_large` | Key material over 8192 |
 | `error:crypto:input_too_large` | `payload_too_large` | Plaintext/ciphertext over 16 MiB |
 | `error:crypto:keystore_full` | `bad_request` | Max entries exceeded (caller can destroy keys) |
@@ -623,7 +623,7 @@ function crypto_derive_key(
 | `error:crypto:decryption_failed` | `general` | Auth failure / wrong key (generic; no Oracle detail) |
 | *(OpenSSL init / internal EVP failures)* | `general` | Unexpected library failure after valid args |
 
-**Rule of thumb:** caller mistakes → `arg_error` / `bad_request`; missing key or env → `not_found`; size caps → `payload_too_large`; authz → existing `denied` path; AEAD auth failure and internal crypto faults → `general`.
+**Rule of thumb:** caller mistakes → `argument_error` / `bad_request`; missing key or env → `not_found`; size caps → `payload_too_large`; authz → existing `denied` path; AEAD auth failure and internal crypto faults → `general`.
 
 #### Conf-time crypto
 

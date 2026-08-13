@@ -277,7 +277,7 @@ impl_afw_value_produce_compiler_listing(
     
     case afw_compile_assignment_target_type_max_type:
     default:
-        AFW_THROW_ERROR_Z(code, "Invalid case", xctx);
+        AFW_THROW_ERROR_Z(coding_error, "Invalid case", xctx);
     }
 
     afw_writer_decrement_indent(writer, xctx);

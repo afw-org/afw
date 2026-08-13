@@ -4,6 +4,12 @@
     "camelCaseFunctionLabel": "authorizationCheck",
     "category": "authorization",
     "description": "This function can be used to check if the current subject has a given access to the specified resource in the current environment.",
+    "errorsThrown": [
+        {
+            "error": "denied",
+            "reason": "enforce is true and access is denied"
+        }
+    ],
     "functionId": "authorization_check",
     "functionLabel": "authorization_check",
     "parameters": [

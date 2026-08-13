@@ -4,6 +4,24 @@
     "camelCaseFunctionLabel": "retrieveObjectsWithUri",
     "category": "adapter",
     "description": "Retrieve adaptive objects with a given URI.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 100; 0 means unlimited). When the max would be exceeded, payload_too_large is thrown. For large result sets prefer progressive retrieve functions.",
+    "errorsThrown": [
+        {
+            "error": "payload_too_large",
+            "reason": "more objects than maxObjects"
+        },
+        {
+            "error": "query_too_complex",
+            "reason": "adapter cannot run this query"
+        },
+        {
+            "error": "not_found",
+            "reason": "adapter is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        }
+    ],
     "functionId": "retrieve_objects_with_uri",
     "functionLabel": "retrieve_objects_with_uri",
     "parameters": [

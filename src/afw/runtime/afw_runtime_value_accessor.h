@@ -255,7 +255,7 @@ afw_runtime_value_accessor_null_terminated_array_of_objects(
  *     "error", "conversion",
  *     "reason", "arg2 cannot be converted to the data type of arg1.",
  *     NULL, 
- *     "error", "arg_error",
+ *     "error", "argument_error",
  *     "reason", "General parameter issue..",
  *     NULL,
  *     NULL

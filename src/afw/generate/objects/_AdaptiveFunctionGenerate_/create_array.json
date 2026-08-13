@@ -18,7 +18,7 @@
     },
     "errorsThrown": [
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "length is negative or exceeds the maximum allowed"
         }
     ]

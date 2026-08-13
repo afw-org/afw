@@ -122,6 +122,20 @@ throw "no" id "nope";
 throw "no" id "not_found" id "denied";
 
 //?
+//? test: conversion-error
+//? description: failed type conversion is conversion_error
+//? expect: 0
+//? source: ...
+
+try {
+    integer("not a number");
+}
+catch (e) {
+    assert(e.id === "conversion_error", e.id);
+}
+return 0;
+
+//?
 //? test: assertion-id
 //? description: assert failure is assertion_failed
 //? expect: 0
@@ -137,7 +151,7 @@ return 0;
 
 //?
 //? test: arg-error-divide-by-zero
-//? description: integer divide by zero is arg_error
+//? description: integer divide by zero is argument_error
 //? expect: 0
 //? source: ...
 
@@ -145,7 +159,21 @@ try {
     let x = 1 / 0;
 }
 catch (e) {
-    assert(e.id === "arg_error", e.id);
+    assert(e.id === "argument_error", e.id);
+}
+return 0;
+
+//?
+//? test: undefined-value-required-parameter
+//? description: required parameter that is undefined is undefined_value
+//? expect: 0
+//? source: ...
+
+try {
+    abs(undefined);
+}
+catch (e) {
+    assert(e.id === "undefined_value", e.id);
 }
 return 0;
 

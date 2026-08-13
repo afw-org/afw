@@ -4,6 +4,24 @@
     "camelCaseFunctionLabel": "addObject",
     "category": "adapter",
     "description": "Add an adaptive object to an adapter, specified by the adapterId, with a specified objectType. You may supply an optional objectId, if the underlying adapterId allows it.",
+    "errorsThrown": [
+        {
+            "error": "conflict",
+            "reason": "an object with this id already exists"
+        },
+        {
+            "error": "not_found",
+            "reason": "adapter is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        },
+        {
+            "error": "read_only",
+            "reason": "adapter does not allow add"
+        }
+    ],
     "functionId": "add_object",
     "functionLabel": "add_object",
     "parameters": [

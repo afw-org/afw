@@ -179,9 +179,9 @@ struct afw_error_s {
  * AFW_THROW_* skips FINALLY and leaves current_try wrong. Use break (to
  * FINALLY/ENDTRY) or the AFW_ERROR_* helpers above.
  *
- * ## Code tokens in AFW_THROW_ERROR_Z(code, ...)
+ * ## Code tokens in AFW_THROW_ERROR_Z(coding_error, ...)
  *
- * `code` is a token pasted as afw_error_code_##code (e.g. arg_error). Pass the
+ * `code` is a token pasted as afw_error_code_##code (e.g. argument_error). Pass the
  * short name, not an afw_error_code_t variable.
  *
  * @}

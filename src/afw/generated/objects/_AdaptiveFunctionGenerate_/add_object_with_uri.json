@@ -4,6 +4,24 @@
     "camelCaseFunctionLabel": "addObjectWithUri",
     "category": "adapter",
     "description": "Add an adaptive object with a given URI.",
+    "errorsThrown": [
+        {
+            "error": "conflict",
+            "reason": "an object with this id already exists"
+        },
+        {
+            "error": "not_found",
+            "reason": "adapter is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        },
+        {
+            "error": "read_only",
+            "reason": "adapter does not allow add"
+        }
+    ],
     "functionId": "add_object_with_uri",
     "functionLabel": "add_object_with_uri",
     "parameters": [

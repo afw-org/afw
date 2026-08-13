@@ -49,6 +49,10 @@
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   assertion_failed - assertion is not true
  */
 const afw_value_t *
 afw_function_execute_assert(
@@ -642,7 +646,7 @@ afw_function_execute_stringify(
             f_argv[0] = afw_function_evaluate_function_parameter(
                 replacer, x->p, xctx);
             if (!f_argv[0]) {
-                AFW_THROW_ERROR_Z(arg_error,
+                AFW_THROW_ERROR_Z(argument_error,
                     "stringify replacer function is required when replacer "
                     "is not an array of property names",
                     xctx);
@@ -1298,6 +1302,10 @@ int impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
  * Returns:
  *
  *   (any)
+ *
+ * Errors thrown:
+ *
+ *   syntax - file contents could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_from_file(
@@ -1409,6 +1417,10 @@ afw_function_execute_compile_from_file(
  * Returns:
  *
  *   (any)
+ *
+ * Errors thrown:
+ *
+ *   syntax - file contents could not be compiled
  */
 const afw_value_t *
 afw_function_execute_eval_from_file(

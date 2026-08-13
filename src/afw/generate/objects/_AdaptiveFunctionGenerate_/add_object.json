@@ -46,5 +46,23 @@
     },
     "sideEffects": [
         "Object created"
+    ],
+    "errorsThrown": [
+        {
+            "error": "conflict",
+            "reason": "an object with this id already exists"
+        },
+        {
+            "error": "not_found",
+            "reason": "adapter is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        },
+        {
+            "error": "read_only",
+            "reason": "adapter does not allow add"
+        }
     ]
 }

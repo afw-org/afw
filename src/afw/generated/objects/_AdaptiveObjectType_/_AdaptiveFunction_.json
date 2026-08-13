@@ -97,7 +97,7 @@
             "brief": "Errors thrown",
             "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
-            "description": "These are errors that can possibly be thrown by this function.",
+            "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "label": "Errors Thrown",
             "runtime": {
                 "valueAccessor": "null_terminated_array_of_utf8_z_key_value_pair_objects"

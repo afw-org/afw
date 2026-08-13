@@ -635,7 +635,7 @@ afw_value_convert(
         if (!required) {
             return NULL;
         }
-        AFW_THROW_ERROR_Z(undefined, "Result is undefined", xctx);
+        AFW_THROW_ERROR_Z(undefined_value, "Result is undefined", xctx);
     }
 
     /* If to_data_type is any, return result now. */
@@ -716,7 +716,7 @@ afw_value_convert_to_string(
         if (allow_undefined) {
             return afw_v_undefined;
         }
-        AFW_THROW_ERROR_Z(undefined, "Value is undefined", xctx);
+        AFW_THROW_ERROR_Z(undefined_value, "Value is undefined", xctx);
     }
 
     return result;

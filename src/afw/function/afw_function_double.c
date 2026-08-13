@@ -56,10 +56,10 @@ afw_function_execute_abs_double(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
 
     if (afw_number_is_NaN(arg->internal)) {
-        AFW_THROW_ERROR_Z(arg_error, "arg is not a number", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "arg is not a number", x->xctx);
     };
     if (!afw_number_is_finite(arg->internal)) {
-        AFW_THROW_ERROR_Z(arg_error, "arg is infinite", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "arg is infinite", x->xctx);
     };
 
     return afw_value_create_unmanaged_double(fabs(arg->internal), x->p, x->xctx);
@@ -622,10 +622,10 @@ afw_function_execute_to_integer_double(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
 
     if (afw_number_is_NaN(arg->internal)) {
-        AFW_THROW_ERROR_Z(arg_error, "arg is not a number", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "arg is not a number", x->xctx);
     };
     if (!afw_number_is_finite(arg->internal)) {
-        AFW_THROW_ERROR_Z(arg_error, "arg is infinite", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "arg is infinite", x->xctx);
     };
 
     d = trunc(arg->internal);

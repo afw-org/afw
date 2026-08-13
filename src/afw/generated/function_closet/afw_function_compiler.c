@@ -47,6 +47,10 @@
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   assertion_failed - assertion is not true
  */
 const afw_value_t *
 afw_function_execute_assert(
@@ -95,6 +99,10 @@ afw_function_execute_assert(
  * Returns:
  *
  *   (any)
+ *
+ * Errors thrown:
+ *
+ *   syntax - file contents could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_from_file(
@@ -194,6 +202,10 @@ afw_function_execute_decompile(
  * Returns:
  *
  *   (any)
+ *
+ * Errors thrown:
+ *
+ *   syntax - file contents could not be compiled
  */
 const afw_value_t *
 afw_function_execute_eval_from_file(

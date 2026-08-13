@@ -455,7 +455,7 @@ impl_assignment_target(
 
     case afw_compile_assignment_target_type_max_type:
     default:
-        AFW_THROW_ERROR_FZ(code, xctx, "Invalid case %d", at->target_type);
+        AFW_THROW_ERROR_FZ(coding_error, xctx, "Invalid case %d", at->target_type);
     }
 }
 
@@ -1737,7 +1737,7 @@ afw_function_execute_switch(
  *   payload_too_large - id is payload_too_large
  *   query_too_complex - id is query_too_complex
  *   method_not_allowed - id is method_not_allowed
- *   arg_error - id is not a string or is not allowed on throw
+ *   argument_error - id is not a string or is not allowed on throw
  */
 const afw_value_t *
 afw_function_execute_throw(
@@ -1765,7 +1765,7 @@ afw_function_execute_throw(
         if (!afw_error_code_from_id(&id_value->internal, &code) ||
             !afw_error_id_allowed_on_script_throw(&id_value->internal))
         {
-            AFW_THROW_ERROR_FZ(arg_error, xctx,
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "id " AFW_UTF8_FMT_Q " is not allowed on throw",
                 AFW_UTF8_FMT_ARG(&id_value->internal));
         }

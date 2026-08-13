@@ -368,7 +368,7 @@ afw_function_execute_ends_with(
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  */
 const afw_value_t *
 afw_function_execute_eq(
@@ -1133,7 +1133,7 @@ afw_function_execute_min(
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  */
 const afw_value_t *
 afw_function_execute_ne(
@@ -1232,7 +1232,7 @@ afw_function_execute_nex(
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  */
 const afw_value_t *
 afw_function_execute_one_and_only(
@@ -1719,7 +1719,7 @@ afw_function_execute_subset(
  *
  * Errors thrown:
  *
- *   arg_error - startIndex or endIndex is out of range
+ *   argument_error - startIndex or endIndex is out of range
  */
 const afw_value_t *
 afw_function_execute_substring(

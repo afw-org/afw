@@ -802,7 +802,7 @@ afw_value_is_fully_evaluated(
  */
 #define AFW_VALUE_ASSERT_IS(A_VALUE, A_TYPE_ID, A_SCOPE) \
 if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
-    AFW_THROW_ERROR_Z(cast_error, "Expecting " #A_TYPE_ID, A_SCOPE)
+    AFW_THROW_ERROR_Z(conversion_error, "Expecting " #A_TYPE_ID, A_SCOPE)
 
 
 /**
@@ -952,7 +952,7 @@ do { \
 #define AFW_VALUE_ASSERT_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE, A_SCOPE) \
 do { \
 if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE)) \
-    AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", A_SCOPE); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
 } while (0)
 
 
@@ -969,7 +969,7 @@ if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE)) \
 do { \
 if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, anyURI) && \
     !AFW_VALUE_IS_DATA_TYPE(A_VALUE, string) ) \
-    AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", A_SCOPE); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
 } while (0)
 
 
@@ -1094,7 +1094,7 @@ afw_value_contains(
 #define AFW_VALUE_ASSERT_DATA_TYPES_EQUAL(value1, value2, xctx) \
 if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \
 { \
-    AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", xctx); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", xctx); \
 }
 
 

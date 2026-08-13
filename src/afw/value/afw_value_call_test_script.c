@@ -224,12 +224,12 @@ impl_afw_value_optional_evaluate(
         expectUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_expectUTF8OctetLengthInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
         expectUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_expectUTF8OctetOffsetInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
 
         source = afw_object_old_get_property_as_string(test,
@@ -240,12 +240,12 @@ impl_afw_value_optional_evaluate(
         sourceUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_sourceUTF8OctetOffsetInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
         sourceUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_sourceUTF8OctetLengthInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
 
         /* Skip processing test is requested. */
@@ -533,7 +533,7 @@ impl_afw_value_produce_compiler_listing(
                     test, afw_s_sourceUTF8OctetOffsetInTestScript,
                     &found, xctx);
             if (!found) {
-                AFW_THROW_ERROR_Z(code,
+                AFW_THROW_ERROR_Z(coding_error,
                     "sourceUTF8OctetOffsetInTestScript missing",
                     xctx);
             }
@@ -545,7 +545,7 @@ impl_afw_value_produce_compiler_listing(
                     test, afw_s_sourceUTF8OctetLengthInTestScript,
                     &found, xctx);
             if (!found) {
-                AFW_THROW_ERROR_Z(code,
+                AFW_THROW_ERROR_Z(coding_error,
                     "sourceUTF8OctetLengthInTestScript missing",
                     xctx);
             }

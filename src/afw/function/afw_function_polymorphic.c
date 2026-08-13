@@ -27,7 +27,7 @@ impl_is_in_array(
     const afw_data_type_t *entry_data_type;
 
     if (!data_type) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "impl_is_in_array() called with NULL data_type",
             xctx);
     }
@@ -485,7 +485,7 @@ afw_function_execute_ends_with(
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  */
 const afw_value_t *
 afw_function_execute_eq(
@@ -514,7 +514,7 @@ afw_function_execute_eq(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -683,7 +683,7 @@ afw_function_execute_ge(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -761,7 +761,7 @@ afw_function_execute_gt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1056,7 +1056,7 @@ afw_function_execute_intersection(
     if (!data_type ||
         data_type != afw_array_get_data_type(array2->internal, x->xctx))
     {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type of the same type",
             x->xctx);
     }
@@ -1131,7 +1131,7 @@ afw_function_execute_is_in(
 
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     if (!data_type || afw_value_get_data_type(value, x->xctx) != data_type) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array must be array of value's data type",
             x->xctx);
     }
@@ -1200,7 +1200,7 @@ afw_function_execute_le(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1344,7 +1344,7 @@ afw_function_execute_lt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1530,7 +1530,7 @@ afw_function_execute_min(
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  */
 const afw_value_t *
 afw_function_execute_ne(
@@ -1559,7 +1559,7 @@ afw_function_execute_ne(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return true. */
@@ -1711,7 +1711,7 @@ afw_function_execute_nex(
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  */
 const afw_value_t *
 afw_function_execute_one_and_only(
@@ -1724,7 +1724,7 @@ afw_function_execute_one_and_only(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     if (afw_array_get_count(array->internal, x->xctx) != 1) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "arg must have exactly one value", x->xctx);
     }
 
@@ -1800,7 +1800,7 @@ afw_function_execute_regexp_match(
             x->p, x->xctx);
         xmlResetError(err);
         xmlRegFreeRegexp(rx);
-        AFW_THROW_ERROR_FZ(arg_error, x->xctx,
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(err_message));
     }
@@ -1871,7 +1871,7 @@ afw_function_execute_repeat(
 
     /** @fixme How should this limit be handled? 1000 was arbitrary. */
     if (times->internal > 1000) {
-        AFW_THROW_ERROR_Z(arg_error, "Parameter times exceeds 1000", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Parameter times exceeds 1000", x->xctx);
     }
 
     result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
@@ -2101,7 +2101,7 @@ afw_function_execute_set_equals(
     data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
     data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
     if (!data_type_1 || data_type_1 != data_type_2) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type that matches", x->xctx);
     }
 
@@ -2376,7 +2376,7 @@ afw_function_execute_subset(
     data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
     data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
     if (!data_type_1 || data_type_1 != data_type_2) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type that matches", x->xctx);
     }
 
@@ -2430,7 +2430,7 @@ afw_function_execute_subset(
  *
  * Errors thrown:
  *
- *   arg_error - startIndex or endIndex is out of range
+ *   argument_error - startIndex or endIndex is out of range
  */
 const afw_value_t *
 afw_function_execute_substring(
@@ -2455,7 +2455,7 @@ afw_function_execute_substring(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(startIndex, 2,
         integer);
     if (startIndex->internal < 0) {
-        AFW_THROW_ERROR_Z(arg_error, "startIndex is out of bounds", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "startIndex is out of bounds", x->xctx);
     }
     start = afw_safe_cast_integer_to_size(startIndex->internal, x->xctx);
 
@@ -2468,7 +2468,7 @@ afw_function_execute_substring(
             (endIndex->internal != -1 &&
                 startIndex->internal >= endIndex->internal))
         {
-            AFW_THROW_ERROR_Z(arg_error, "endIndex is out of bounds", x->xctx);
+            AFW_THROW_ERROR_Z(argument_error, "endIndex is out of bounds", x->xctx);
         }
         end = afw_safe_cast_integer_to_size(endIndex->internal, x->xctx);
     }
@@ -2478,7 +2478,7 @@ afw_function_execute_substring(
     for (offset = 0, pos = 0; pos < start; pos++)
     {
         if (afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx) < 0) {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "startIndex is out of bounds", x->xctx);
         }
     }
@@ -2492,7 +2492,7 @@ afw_function_execute_substring(
         for (; pos < end; pos++)
         {
             if (afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx) < 0) {
-                AFW_THROW_ERROR_Z(arg_error,
+                AFW_THROW_ERROR_Z(argument_error,
                     "startIndex and/or endIndex is out of bounds", x->xctx);
             }
         }
@@ -2556,7 +2556,7 @@ afw_function_execute_union(
     data_type = afw_array_get_data_type(array1->internal, x->xctx);
     if (!data_type)
     {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "all arrays must have the same data type",
             x->xctx);
     }
@@ -2566,7 +2566,7 @@ afw_function_execute_union(
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arrayn, i, array);
         if (afw_array_get_data_type(arrayn->internal, x->xctx) != data_type) {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "all arrays must have the same data type",
                 x->xctx);
         }

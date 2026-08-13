@@ -136,7 +136,7 @@ impl_afw_value_optional_evaluate(
 
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
-            AFW_THROW_ERROR_Z(evaluate,
+            AFW_THROW_ERROR_Z(evaluation_error,
                 "Index must be integer for array", xctx);
         }
 
@@ -164,7 +164,7 @@ impl_afw_value_optional_evaluate(
 
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
-            AFW_THROW_ERROR_Z(evaluate,
+            AFW_THROW_ERROR_Z(evaluation_error,
                 "Index must be integer for string code-point sequence",
                 xctx);
         }
@@ -192,7 +192,7 @@ impl_afw_value_optional_evaluate(
     }
 
     else {
-        AFW_THROW_ERROR_Z(evaluate,
+        AFW_THROW_ERROR_Z(evaluation_error,
             "Expecting object, array, or utf8 code-point sequence", xctx);
     }
 

@@ -67,7 +67,7 @@
             "reason": "id is method_not_allowed"
         },
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "id is not a string or is not allowed on throw"
         }
     ],
