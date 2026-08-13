@@ -74,7 +74,7 @@ afw_function_execute_flush(
     stream = impl_require_stream(streamNumber->internal, x);
     afw_stream_flush(stream, x->xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -131,7 +131,7 @@ afw_function_execute_print(
     }
     afw_stream_flush(stream, x->xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -190,7 +190,7 @@ afw_function_execute_println(
     afw_stream_write_eol(stream, x->xctx);
     afw_stream_flush(stream, x->xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -254,7 +254,7 @@ afw_function_execute_write(
         }
     }
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -320,7 +320,7 @@ afw_function_execute_writeln(
     }
     afw_stream_write_eol(stream, x->xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -376,7 +376,7 @@ afw_function_execute_close(
     afw_stream_release(stream, x->xctx);
     afw_stream_clear_slot(number, x->xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -908,5 +908,5 @@ afw_function_execute_write_internal(
             x->xctx);
     }
 
-    return afw_value_undefined;
+    return afw_value_void;
 }

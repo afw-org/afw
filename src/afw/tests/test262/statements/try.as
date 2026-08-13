@@ -7,7 +7,7 @@
 //?
 //? test: 12.14-10
 //? description: catch introduces scope - name lookup finds function parameter
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -27,11 +27,9 @@
   }
 
 assert(f("x") === 42);
-
-
 //? test: 12.14-11
 //? description: catch introduces scope - name lookup finds inner variable
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -53,12 +51,9 @@ assert(f("x") === 42);
   }
 
 assert(f("x") === 42);
-
-
-
 //? test: 12.14-12
 //? description: catch introduces scope - name lookup finds property
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -77,8 +72,6 @@ function f(o) {
 }
 
 assert(f({x:42}) === 42);
-
-
 //? test: 12.14-13
 //? description: catch introduces scope - updates are based on scope
 //? expect: error:Parse error at offset 194 around line 12 column 13: Unknown built-in function 'this'
@@ -203,7 +196,7 @@ assert(result === "test1" === 'result');
 
 //? test: 12.14-4
 //? description: catch introduces scope - block-local vars must shadow outer vars
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -217,8 +210,6 @@ catch (e) {
 }
 
 assert(variable_exists("foo") === false);
-
-
 //? test: 12.14-7
 //? description: catch introduces scope - scope removed when exiting catch block
 //? expect:error:Parse error at offset 282 around line 18 column 5: Unknown built-in function 'expObj'
@@ -252,7 +243,7 @@ assert(catchAccessed, 'e instanceof ReferenceError');
 //? description:...
     catch introduces scope - scope removed when exiting catch block
     (properties)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -266,11 +257,9 @@ catch (e) {
 }
 
 assert(o.foo === 42);
-
-
 //? test: 12.14-9
 //? description: catch introduces scope - name lookup finds outer variable
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -291,11 +280,9 @@ assert(o.foo === 42);
   }
 
 assert(f({}) === 42);
-
-
 //? test: completion-values-fn-finally-abrupt
 //? description:...
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -381,12 +368,9 @@ try {
     assert(count.finally === 1, '3: finally count');
 }
 assert(err, '3: try Normal, catch Normal, finally Abrupt; Completion: finally');
-
-
-
 //? test: completion-values-fn-finally-normal
 //? description:...
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -458,11 +442,9 @@ try {
 assert(caught, '3: try Abrupt, catch Abrupt, finally Normal; Completion: catch');
 assert(count.catch === 1, '3: catch count');
 assert(count.finally === 1, '3: finally count');
-
-
 //? test: completion-values-fn-finally-return
 //? description:...
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -528,8 +510,6 @@ fn = function() {
 assert(fn() === 'finally', '3: try Abrupt === catch Abrupt === finally Normal; Completion: finally');
 assert(count.catch === 1, '3: catch count');
 assert(count.finally === 1, '3: finally count');
-
-
 //? test: completion-values
 //? description:...
 //? expect: error:Parse error at offset 2 around line 1 column 3: Expression can not be followed by Statement
@@ -585,171 +565,130 @@ assert(
 
 //? test: cptn-catch-empty-break
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect:error:Parse error at offset 98 around line 1 column 99: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (break does not wipe).
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) { break; } } bad = 1; }"));
+assert(completion === 1);
 //? test: cptn-catch-empty-continue
 //? description: Abrupt completion from catch block calls UpdatEmpty()
-//? expect: error:Parse error at offset 101 around line 1 column 102: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (continue does not wipe).
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) { continue; } } bad = 1; }"));
+assert(completion === 1);
 //? test: cptn-catch-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: error:Parse error at offset 109 around line 1 column 110: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (break in finally does not wipe).
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) {} finally { break; } } bad = 1; }"));
+assert(completion === 1);
 //? test: cptn-catch-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: error:Parse error at offset 112 around line 1 column 113: Invalid statement
+//? differences: ...
+No `'bad';` statement; `if` needs boolean. Adaptive keeps the last
+assignment (continue in finally does not wipe).
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try { throw \"e\"; } catch (e) {} finally { continue; } } bad = 1; }"));
+assert(completion === 1);
 //? test: cptn-catch
 //? description: Completion value from `catch` clause of a try..catch statement
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
+//? differences: ...
+Adaptive has no `3;` ExpressionStatement. Probes use assignment.
+Empty catch does not write; assign in catch does.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { throw null; } catch (err) { }') === undefined);
-assert(eval(script('2; try { throw null; } catch (err) { 3; }') === 3);
-
-
+assert(eval(script('let x; x = 1; try { throw "e"; } catch (err) { }')) === 1);
+assert(eval(script('let x; try { throw "e"; } catch (err) { x = 3; }')) === 3);
 //? test: cptn-finally-empty-break
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
+//? differences: ...
+ES UpdateEmpty on break in finally yields undefined. Adaptive keeps
+the last assignment (break does not wipe).
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try {} finally { break; } } bad = 1; }"));
+assert(completion === 1);
 //? test: cptn-finally-empty-continue
 //? description: Abrupt completion from finally block calls UpdatEmpty()
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
+//? differences: ...
+No `'bad';` statement. Adaptive keeps the last assignment across
+continue in finally.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
-assert(completion === undefined);
-
-
+let completion = eval(script("let bad; for (let i = 0; i < 2; i = i + 1) { if (i !== 0) { try {} finally { continue; } } bad = 1; }"));
+assert(completion === 1);
 //? test: cptn-finally-from-catch
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
     (following execution of `catch` block)
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
+//? differences: Assignment probes; finally let does not override catch assign.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-assert(
-  eval(script('1; try { throw null; } catch (err) { } finally { }'), undefined
-);
-assert(
-  eval(script('2; try { throw null; } catch (err) { 3; } finally { }'), 3
-);
-assert(
-  eval(script('4; try { throw null; } catch (err) { } finally { 5; }'), undefined
-);
-assert(
-  eval(script('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
-);
-
-
+assert(eval(script('let x; x = 1; try { throw "e"; } catch (err) { } finally { }')) === 1);
+assert(eval(script('let x; try { throw "e"; } catch (err) { x = 3; } finally { }')) === 3);
+assert(eval(script('let x; x = 4; try { throw "e"; } catch (err) { } finally { let y = 5; }')) === 4);
+assert(eval(script('let x; try { throw "e"; } catch (err) { x = 7; } finally { let y = 8; }')) === 7);
 //? test: cptn-finally-skip-catch
 //? description:...
     Completion value from `finally` clause of a try..catch..finally statement
     (when `catch` block is not executed)
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
+//? differences: Assignment probes; empty try/finally do not write.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { } catch (err) { } finally { }') === undefined);
-assert(eval(script('2; try { } catch (err) { 3; } finally { }') === undefined);
-assert(eval(script('4; try { } catch (err) { } finally { 5; }') === undefined);
-assert(eval(script('6; try { } catch (err) { 7; } finally { 8; }') === undefined);
-assert(eval(script('9; try { 10; } catch (err) { } finally { }') === 10);
-assert(eval(script('11; try { 12; } catch (err) { 13; } finally { }') === 12);
-assert(eval(script('14; try { 15; } catch (err) { } finally { 16; }') === 15);
-assert(eval(script('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
-
-
+assert(eval(script('try { } catch (err) { } finally { }')) === undefined);
+assert(eval(script('let x; x = 2; try { } catch (err) { x = 3; } finally { }')) === 2);
+assert(eval(script('let x; try { x = 10; } catch (err) { } finally { }')) === 10);
+assert(eval(script('let x; try { x = 12; } catch (err) { x = 13; } finally { }')) === 12);
+assert(eval(script('let x; try { x = 15; } catch (err) { } finally { let y = 16; }')) === 15);
 //? test: cptn-finally-wo-catch
 //? description: Completion value from `finally` clause of a try..finally statement
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
+//? differences: Assignment probes; finally let does not override try assign.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { } finally { }') === undefined);
-assert(eval(script('2; try { 3; } finally { }') === 3);
-assert(eval(script('4; try { } finally { 5; }') === undefined);
-assert(eval(script('6; try { 7; } finally { 8; }') === 7);
-
-
+assert(eval(script('try { } finally { }')) === undefined);
+assert(eval(script('let x; try { x = 3; } finally { }')) === 3);
+assert(eval(script('let x; x = 4; try { } finally { let y = 5; }')) === 4);
+assert(eval(script('let x; try { x = 7; } finally { let y = 8; }')) === 7);
 //? test: cptn-try
 //? description: Completion value from `try` clause of a try..catch statement
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: try/catch/finally completion values (cptn-*) not matching ES;
-rewrite with Adaptive assert
+//? differences: Assignment probes; empty try does not write.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-assert(eval(script('1; try { } catch (err) { }') === undefined);
-assert(eval(script('2; try { 3; } catch (err) { }') === 3);
-assert(eval(script('4; try { } catch (err) { 5; }') === undefined);
-assert(eval(script('6; try { 7; } catch (err) { 8; }') === 7);
-
+assert(eval(script('try { } catch (err) { }')) === undefined);
+assert(eval(script('let x; try { x = 3; } catch (err) { }')) === 3);
+assert(eval(script('let x; x = 4; try { } catch (err) { x = 5; }')) === 4);
+assert(eval(script('let x; try { x = 7; } catch (err) { x = 8; }')) === 7);
 //? test: early-catch-duplicates
 //? description:...
     It is a Syntax Error if BoundNames of CatchParameter contains any duplicate
@@ -792,24 +731,19 @@ try { } catch (x) { let x; }
 
 //? test: optional-catch-binding-finally
 //? description: try/catch/finally syntax with omission of the catch binding
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 try {} catch {} finally {}
-
-
 //? test: optional-catch-binding
 //? description: try/catch syntax with omission of the catch binding
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 try {} catch {}
-
-
-
 //? test: optional-catch-binding-lexical
 //? description: lexical environment runtime semantics for optional catch binding
 //? expect: error:Parse error at offset 235 around line 20 column 5: Unknown built-in function 'y'
@@ -855,7 +789,7 @@ try {} catch () {}
 //? description:...
     Throwing exception while executing iteration statement placed into
     try Block
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -872,11 +806,9 @@ catch(e){
   if(e.message!=="5")
     throw '#1: Exception === 5. Actual:  Exception === '+ e.message  ;
 }
-
-
 //? test: S12.14_A10_T2
 //? description: Try statement inside loop, where use continue loop
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -991,11 +923,9 @@ if(fin6!==1){
 if(c6!==2){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
 //? test: S12.14_A10_T3
 //? description: Try statement inside loop, where use break
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1145,12 +1075,9 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: "try finally{break}" must work correctly';
 }
-
-
-
 //? test: S12.14_A10_T4
 //? description: Try statement inside loop, where combinate using break and continue
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1202,11 +1129,9 @@ if(fin2!==1){
 if(c2!==2){
   throw '#2.2: "try catch{break} finally{continue} must work correctly';
 }
-
-
 //? test: S12.14_A10_T5
 //? description: Throw some exceptions from different place of loop body
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1240,11 +1165,9 @@ while(i<10){
 if(fin!==10){
   throw '#1.4: "finally" block must be evaluated';
 }
-
-
 //? test: S12.14_A11_T1
 //? description: Loop inside try Block, where throw exception
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1258,11 +1181,9 @@ try{
 catch(e){
   if(e.message!=="5")throw '#1: Exception === 5. Actual:  Exception ==='+ e.message  ;
 }
-
-
 //? test: S12.14_A11_T2
 //? description: Try statement inside loop, where use continue loop
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1382,11 +1303,9 @@ if(fin6!==1){
 if(c6!==10){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
 //? test: S12.14_A11_T3
 //? description: Try statement inside loop, where use break
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1535,11 +1454,9 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: "try finally{break}" must work correctly';
 }
-
-
 //? test: S12.14_A11_T4
 //? description: Try statement inside loop, where combinate using break and continue
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1591,11 +1508,9 @@ if(fin2!==1){
 if(c2!==5){
   throw '#2.2: "try catch{break} finally{continue}" must work correctly';
 }
-
-
 //? test: S12.14_A12_T1
 //? description: Loop inside try Block, where throw exception
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1616,11 +1531,9 @@ catch(e){
   if(e.message!=="ex")
     throw '#1: Exception ==="ex". Actual:  Exception ==='+ e.message  ;
 }
-
-
 //? test: S12.14_A12_T2
 //? description: Try statement inside loop, where use continue loop
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1748,12 +1661,9 @@ if(fin6!==1){
 if(c6!==3){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
-
 //? test: S12.14_A12_T3
 //? description: Try statement inside loop, where use break
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1913,11 +1823,9 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: "try finally{break}" must work correctly';
 }
-
-
 //? test: S12.14_A12_T4
 //? description: Try statement inside loop, where combinate using break and continue
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1974,8 +1882,6 @@ if(fin2!==1){
 if(c2!==3){
   throw '#2.2: "try catch{break} finally{continue}" must work correctly';
 }
-
-
 //? test: S12.14_A13_T1
 //? description: Using try/catch syntax construction
 //? expect: error:Parse error at offset 537 around line 37 column 12: Unknown built-in function 'someValue'
@@ -2491,7 +2397,7 @@ if(myObj.p1!=='pass') throw '#4: "finally" block must be evaluated';
 
 //? test: S12.14_A15
 //? description: Insert try/catch/finally to switch statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2576,8 +2482,6 @@ try{
 catch(e){
   throw '#3.2: Catching exception inside function does not lead to throwing exception outside this function';
 }
-
-
 //? test: S12.14_A16_T10
 //? description: "Catch: \"catch (Identifier ) Block\""
 //? expect: error
@@ -2897,7 +2801,7 @@ catch(e){
 
 //? test: S12.14_A18_T4
 //? description: Catching string
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2935,8 +2839,6 @@ try{
 catch(e){
   if (e.message!=="exception #1") throw '#4: Exception ==="exception #1". Actual:  Exception ==='+ e.message  ;
 }
-
-
 //? test: S12.14_A18_T5
 //? description: Catching Number
 //? expect: error:#1: Exception ===13. Actual:  Exception ===Parameter 1 of function 'throw' must evaluate to data type 'string' but evaluated to be 'integer'
@@ -3220,7 +3122,7 @@ catch(e){
 
 //? test: S12.14_A19_T2
 //? description: Testing try/catch/finally syntax construction
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3316,13 +3218,11 @@ finally{
   fin=1;
 }
 if (fin!==1) throw '#7.2: "finally" block must be evaluated';
-
-
 //? test: S12.14_A1
 //? description:...
     Executing TryStatement : try Block Catch. The statements doesn't
     cause actual exceptions
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3369,13 +3269,11 @@ if(x2!==1){
 if (c2!==1){
   throw '#3.3: "finally" block must be evaluated. Actual: finally Block has not been evaluated';
 }
-
-
 //? test: S12.14_A2
 //? description:...
     Checking if execution of "catch" catches an exception thrown with
     "throw"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3422,8 +3320,6 @@ if (x3!==1){
 if (c3!==1){
   throw '#3.3: "finally" block must be evaluated';
 }
-
-
 //? test: S12.14_A3
 //? description: Checking if execution of "catch" catches system exceptions
 //? expect: error:Parse error at offset 373 around line 31 column 6: Unknown built-in function 'someValue'
@@ -3510,7 +3406,7 @@ catch(err){}
 
 //? test: S12.14_A5
 //? description: Checking "catch" catches the Identifier in appropriate way
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3554,16 +3450,12 @@ function SwitchTest1(value){
 }
 if (SwitchTest1(1)!==4) throw '#2.3: "finally" block must be evaluated';
 if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
-
-
-
 //? test: S12.14_A6
 //? description:...
     Executing sequence of "try" statements, using counters with
     varying values within
-//? expect: undefined
-//? skip: true
-//? skipReason: FIXME: try statement semantics half-converted from test262
+//? differences: Undeclared `y;` / `z;` are not Adaptive statements; use throw.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3571,8 +3463,7 @@ if (SwitchTest1(4)!==64)throw '#2.4: "finally" block must be evaluated';
 let c1=0;
 try {
   c1+=1;
-  y;
-  throw '#1.1: "y" lead to throwing exception';
+  throw "y";
 }
 catch (e) {
   c1*=2;
@@ -3597,7 +3488,7 @@ if (c2!==2){
 let c3=0;
 try{
   c3=1;
-  z;
+  throw "z";
 }
 catch(err){
   c3*=2;
@@ -3623,13 +3514,11 @@ finally{
 if (c4!==2){
   throw '#4: Sequence evaluation of commands try/catch/finally(without exception) is 1. try, 2. finally';
 }
-
-
 //? test: S12.14_A7_T1
 //? description:...
     Checking if the production of nested TryStatement statements
     evaluates correct
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3761,13 +3650,11 @@ catch(er1){
   if (er1.message!=="ex1") throw '#7.3: Exception ==="ex1". Actual:  Exception ==='+ er1.message  ;
 }
 if (c7!==2) throw '#7.4: "finally" block must be evaluated';
-
-
 //? test: S12.14_A7_T2
 //? description:...
     Checking if the production of nested TryStatement statements
     evaluates correct
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3913,13 +3800,11 @@ catch(er1){
   if (er1.message!=="ex3") throw '#7.1: Exception === "ex3". Actual:  Exception ==='+er1.message ;
 }
 if (c7!==2) throw '#7.2: Embedded "try/finally" blocks must be evaluated';
-
-
 //? test: S12.14_A7_T3
 //? description:...
     Checking if the production of nested TryStatement statements
     evaluates correct
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4082,11 +3967,9 @@ catch(er1){
   if (er1.message!=="ex1") throw '#7.3: Exception === "ex1". Actual:  Exception ==='+er1.message;
 }
 if (c7!==4) throw '#7.4: "finally" block must be evaluated';
-
-
 //? test: S12.14_A8
 //? description: Throwing exception within an "if" statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4115,11 +3998,9 @@ if(c2===1){
     if(er1.message!="ex1") throw '#2.2: Exception ==="ex1". Actual:  Exception ==='+er1.message;
   }
 }
-
-
 //? test: S12.14_A9_T1
 //? description: Loop within a "try" Block, from where exception is thrown
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4136,12 +4017,11 @@ try{
 catch(e){
   if(e.message!=="5")throw '#1: Exception ===5. Actual:  Exception ==='+ e.message  ;
 }
-
 //? test: S12.14_A9_T2
 //? description:...
     "try" statement within a loop, the statement contains "continue"
     statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4262,13 +4142,11 @@ if(fin6!==1){
 if(c6!==2){
   throw '#6.2: "try finally{continue}" must work correctly';
 }
-
-
 //? test: S12.14_A9_T3
 //? description:...
     "try" statement within a loop, the statement contains "break"
     statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4425,13 +4303,11 @@ if(fin7!==1){
 if(c7!==1){
   throw '#7.2: try finally{break} error';
 }
-
-
 //? test: S12.14_A9_T4
 //? description:...
     "try" statement within a loop, the statement contains "continue"
     and "break" statements
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4485,13 +4361,11 @@ if(fin2!==1){
 if(c2!==2){
   throw '#2.2: "try catch{break} finally{continue}" must work correctly';
 }
-
-
 //? test: S12.14_A9_T5
 //? description:...
     Checking if exceptions are thrown correctly from wherever of loop
     body
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4526,11 +4400,10 @@ while(i<10);
 if(fin!==10){
   throw '#1.4: "finally" block must be evaluated';
 }
-
-
 //? test: scope-catch-block-lex-close
 //? description: Removal of lexical environment for `catch` block
-//? expect: undefined
+//? differences: Catch-body `let` does not leak; closure keeps that binding.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4547,35 +4420,39 @@ x = 'outside';
 
 assert(x === 'outside');
 assert(probe() === 'inside');
-
-
 //? test: scope-catch-block-lex-open
 //? description: Creation of new lexical environment for `catch` block
-//? expect: undefined
-//? skip: true
-//? skipReason: FIXME: catch binding / scope rules half-converted or incomplete
+//? differences: ...
+Adaptive `throw` is message plus optional data (not `throw []`). Catch
+Pattern binds the error object (`data` is the array). Inner `let x`
+shadows; no assignment-as-expression default probe.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-let probeParam;
-let probeBlock;
 let x = 'outside';
+let bound;
+let probeBlock;
 
 try {
-  throw "" [];
-  // fixme decide if we should allow destructuring on catch
-} catch ({ "data": [_ = probeParam = function() { return x; }] }) {
-  probeBlock = function() { return x; };
+  throw "e" [ "payload" ];
+} catch ({ data: [item] }) {
   let x = 'inside';
+  bound = item;
+  probeBlock = function() { return x; };
+  assert(x === 'inside');
+  assert(item === 'payload');
 }
 
-assert(probeParam() === 'outside');
+assert(x === 'outside');
+assert(bound === 'payload');
 assert(probeBlock() === 'inside');
-
-
 //? test: scope-catch-block-var-none
 //? description: Retainment of existing variable environment for `catch` block
-//? expect: error:Assertion failed: reference preceding statement
+//? differences: ...
+No `var`. Catch-body `let x` is a new binding (does not assign outer
+`x`). Closures see the binding they closed over.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4588,18 +4465,18 @@ try {
 } catch (_) {
   let x = 2;
   probeInside = function() { return x; };
+  assert(x === 2, 'reference within statement');
 }
 
-// fixme closure causes x to be 1 instead of 2
-assert(probeBefore() === 2, 'reference preceding statement');
-assert(probeInside() === 2, 'reference within statement');
-assert(x === 2, 'reference following statement');
-
-
-
+assert(probeBefore() === 1, 'reference preceding statement');
+assert(probeInside() === 2, 'closure keeps catch-block let');
+assert(x === 1, 'reference following statement');
 //? test: scope-catch-param-lex-close
 //? description: Removal of lexical environment for `catch` parameter
-//? expect: error:Assertion failed
+//? differences: ...
+`catch (x)` binds the error object, not the thrown string. Closure
+keeps that binding after outer `x` is assigned.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4614,66 +4491,53 @@ try {
 x = 'outside';
 
 assert(x === 'outside');
-// fixme closure causes x to be 'outside' instead of 'inside'
-assert(probe() === 'inside');
-
-
+assert(probe().message === 'inside');
 //? test: scope-catch-param-lex-open
 //? description: Creation of new lexical environment for `catch` parameter
-//? expect: error:Parse error at offset 58 around line 3 column 39: Unknown built-in function 'x'
+//? differences: ...
+`throw "e" [ "inside" ]` then `catch ({ data: [x] })`. Pattern `x` is
+a new binding and does not leak. No assignment-as-expression default.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-let probeBefore = function() { return x; };
-let probeTry;
-let probeParam;
 let x = 'outside';
+let seenTry;
+let bound;
 
 try {
-  probeTry = function() { return x; };
+  seenTry = x;
+  throw "e" [ "inside" ];
+} catch ({ data: [x] }) {
+  bound = x;
+  assert(x === 'inside');
+}
 
-  throw ['inside'];
-  // fixme can't do this, and destructuring may not be allowed on catch
-} catch ([x, _ = probeParam = function() { return x; }]) {}
-
-assert(probeBefore() === 'outside');
-assert(probeTry() === 'outside');
-assert(probeParam() === 'inside');
-
+assert(x === 'outside');
+assert(seenTry === 'outside');
+assert(bound === 'inside');
 //? test: scope-catch-param-var-none
 //? description: Retainment of existing variable environment for `catch` parameter
-//? skip: true
-//? skipReason: ...
-FIXME: half-converted catch Pattern + eval(script) probe; rewrite under
-#140 / differences
-//? expect: error:Parse error at offset 297 around line 15 column 54: Expecting Value
+//? differences: ...
+No `var` and no `eval('var …')`. Nested `let` plus catch Pattern: each
+`x` is its own binding; thrown data is `data`.
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 let x = 1;
-let probeBefore = function() { return x; };
-let probeTry;
-let probeParam;
-let probeBlock;
 
 try {
   let x = 2;
-  probeTry = function() { return x; };
-  // can't throw array
-  throw [];
-  // can't destructure catch
-} catch ([_ = (eval(script('let x = 3;'), probeParam = function() { return x; })]) {
+  assert(x === 2);
+  throw "e" [ "payload" ];
+} catch ({ data: [item] }) {
   let x = 4;
-  probeBlock = function() { return x; };
+  assert(item === "payload");
+  assert(x === 4);
 }
 
-assert(probeBefore() === 4 === 'reference preceding statement');
-assert(probeTry() === 4 === 'reference from `try` block');
-assert(probeParam() === 4 === 'reference within CatchParameter');
-assert(probeBlock() === 4 === 'reference from `catch` block');
-assert(x === 4 === 'reference following statement');
-
-
+assert(x === 1);
 //? test: static-init-await-binding-invalid
 //? description: BindingIdentifier may not be `await` within class static blocks
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'class'
@@ -4702,7 +4566,7 @@ class C {
 
 //? test: tco-catch-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4717,11 +4581,9 @@ let callCount = 0;
   }
 }(20));
 assert(callCount === 1);
-
-
 //? test: tco-catch
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4738,11 +4600,9 @@ let callCount = 0;
   }
 }(20));
 assert(callCount === 1);
-
-
 //? test: tco-finally
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 

@@ -24,7 +24,7 @@
         }
     ],
     "returns": {
-        "description": "The result of evaluating 'then' or 'else'"
+        "description": "The result of evaluating 'then' or 'else'. Also the ternary operator."
     },
     "scriptSupport": true
 }

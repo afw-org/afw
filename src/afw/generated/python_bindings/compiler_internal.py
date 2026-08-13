@@ -45,21 +45,20 @@ def assign(session, name, value):
 
     return response['actions'][0]['result']
 
-def break_(session, value=None):
+def break_(session, label=None):
     """
-    Break out of a block
+    Break out of a loop or switch
 
     This is a special function that can be called to break out of the body of
-    a loop. If called outside of a loop body, an error is thrown.
+    a loop or switch. If a label is supplied, break the loop with that label.
+    If called outside of a loop or switch body, an error is thrown.
 
     Args:
-        value (object): The value to evaluate that the enclosing loop will
-        return. If not specified, the last evaluated value or a null value
-        will be returned.
+        label (str): Optional loop label. If omitted, break the innermost loop
+        or switch.
 
     Returns:
-        object: This function returns from the body of a loop with the last
-        evaluated value.
+        object: Does not complete. Leaves the body of a loop or switch.
     """
 
     request = session.Request()
@@ -68,8 +67,8 @@ def break_(session, value=None):
         "function": "break"
     }
 
-    if value != None:
-        action['value'] = value
+    if label != None:
+        action['label'] = label
 
     request.add_action(action)
 
@@ -96,7 +95,8 @@ def const(session, name, value, type=None):
         type (dict): The type of the constant(s).
 
     Returns:
-        object: The value assigned.
+        object: Does not complete. A const statement does not override the
+        running result.
     """
 
     request = session.Request()
@@ -118,17 +118,21 @@ def const(session, name, value, type=None):
 
     return response['actions'][0]['result']
 
-def continue_(session):
+def continue_(session, label=None):
     """
     Continue at beginning of a loop
 
     This is a special function that can be called in the body of a loop
     function to test the condition and, if true, start evaluating the body
-    again. If called outside of a loop body, an error is thrown.
+    again. If a label is supplied, continue the loop with that label. If
+    called outside of a loop body, an error is thrown.
 
     Args:
+        label (str): Optional loop label. If omitted, continue the innermost
+        loop.
+
     Returns:
-        object: This function does not return.
+        object: Does not complete. Continues the enclosing loop.
     """
 
     request = session.Request()
@@ -136,6 +140,9 @@ def continue_(session):
     action = {
         "function": "continue"
     }
+
+    if label != None:
+        action['label'] = label
 
     request.add_action(action)
 
@@ -145,7 +152,7 @@ def continue_(session):
 
     return response['actions'][0]['result']
 
-def do_while(session, condition, body):
+def do_while(session, condition, body, label=None):
     """
     Evaluate an array of values (statements) at least once while a condition is true
 
@@ -164,8 +171,12 @@ def do_while(session, condition, body):
         evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
+        label (str): Optional loop label for break/continue Identifier (issue
+        #62).
+
     Returns:
-        object: The last value evaluated in body or null if the body is empty.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -176,6 +187,9 @@ def do_while(session, condition, body):
         "body": body
     }
 
+    if label != None:
+        action['label'] = label
+
     request.add_action(action)
 
     response = request.perform()
@@ -184,7 +198,7 @@ def do_while(session, condition, body):
 
     return response['actions'][0]['result']
 
-def for_(session, initial=None, condition=None, increment=None, body=None):
+def for_(session, initial=None, condition=None, increment=None, body=None, label=None):
     """
     Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
@@ -210,9 +224,12 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
         evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
+        label (str): Optional loop label for break/continue Identifier (issue
+        #62).
+
     Returns:
-        object: The last value evaluated in body or null if condition
-        evaluates to false the first time.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -233,6 +250,9 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
     if body != None:
         action['body'] = body
 
+    if label != None:
+        action['label'] = label
+
     request.add_action(action)
 
     response = request.perform()
@@ -241,7 +261,7 @@ def for_(session, initial=None, condition=None, increment=None, body=None):
 
     return response['actions'][0]['result']
 
-def for_of(session, name, value, body=None):
+def for_of(session, name, value, body=None, label=None):
     """
     Evaluate an array of values (statements) while a condition is true with an array of initial and increment values
 
@@ -263,9 +283,12 @@ def for_of(session, name, value, body=None):
         evaluated in order until the end of the array or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
+        label (str): Optional loop label for break/continue Identifier (issue
+        #62).
+
     Returns:
-        object: The last value evaluated in body or null if condition
-        evaluates to false the first time.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -278,6 +301,9 @@ def for_of(session, name, value, body=None):
 
     if body != None:
         action['body'] = body
+
+    if label != None:
+        action['label'] = label
 
     request.add_action(action)
 
@@ -307,7 +333,8 @@ def if_(session, condition, then, _else=None):
         function for information on how the body is processed.
 
     Returns:
-        object: The result of evaluating 'then' or 'else'
+        object: The result of evaluating 'then' or 'else'. Also the ternary
+        operator.
     """
 
     request = session.Request()
@@ -348,7 +375,8 @@ def let(session, name, value=None, type=None):
         type (dict): The type of the variable(s).
 
     Returns:
-        object: The value assigned.
+        object: Does not complete. A let statement does not override the
+        running result.
     """
 
     request = session.Request()
@@ -461,7 +489,8 @@ def switch(session, predicate, value1, case_clause):
         value2.
 
     Returns:
-        object:
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -563,7 +592,8 @@ def try_(session, body, _finally=None, catch=None, error=None):
         details.
 
     Returns:
-        object: The last value evaluated in body.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -590,7 +620,7 @@ def try_(session, body, _finally=None, catch=None, error=None):
 
     return response['actions'][0]['result']
 
-def while_(session, condition, body):
+def while_(session, condition, body, label=None):
     """
     Evaluate an array of values (statements) while a condition is true
 
@@ -611,9 +641,12 @@ def while_(session, condition, body):
         evaluated in order until the end of the list or until a 'break',
         'continue', 'return' or 'throw' function is encountered.
 
+        label (str): Optional loop label for break/continue Identifier (issue
+        #62).
+
     Returns:
-        object: The last value evaluated in body or null if condition
-        evaluates to false the first time.
+        object: Does not complete. Nested assignment still writes the running
+        result.
     """
 
     request = session.Request()
@@ -623,6 +656,9 @@ def while_(session, condition, body):
         "condition": condition,
         "body": body
     }
+
+    if label != None:
+        action['label'] = label
 
     request.add_action(action)
 

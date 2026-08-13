@@ -207,7 +207,7 @@ assert('\377', '\xff' ===  '\\377');
 
 //? test: line-continuation-double
 //? description: line-continuation-double
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -230,11 +230,9 @@ assert("\ " === "");
 // LineTerminatorSequence :: <CR> <LF>
 assert("\
 " === "");
-
-
 //? test: line-continuation-single
 //? description: line-continuation-single
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -257,71 +255,57 @@ assert('\ ' === '');
 // LineTerminatorSequence :: <CR> <LF>
 assert('\
 ' === '');
-
-
 //? test: line-separator-eval
 //? description: line-separator-eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 assert(eval(script("'\u2028'")) ===  "\u2028");
-
-
 //? test: line-separator
 //? description: line-separator
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 // U+2028 in strings; UTF8(0x2028) = 0xE2 0x80 0xA8
 assert(" " === "\u2028");
-
-
 //? test: mongolian-vowel-separator-eval
 //? description: mongolian-vowel-separator-eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 assert(eval(script("'\u180E'")) ===  "\u180E");
-
-
 //? test: mongolian-vowel-separator
 //? description:mongolian-vowel-separator
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 // U+180E in strings; UTF8(0x180E) = 0xE1 0xA0 0x8E
 assert("᠎" ===  "\u180E");
-
-
 //? test: paragraph-separator-eval
 //? description: paragraph-separator-eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 assert(eval(script("'\u2029'")) ===  "\u2029");
-
-
 //? test: paragraph-separator
 //? description: paragraph-separator
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 // U+2029 in strings; UTF8(0x2029) = 0xE2 0x80 0xA9
 assert(" " === "\u2029");
-
-
 //? test: S7.8.4_A1.1_T1
 //? description:...
     DoubleStringCharacter :: SourceCharacter but not double-quote " or
@@ -370,7 +354,7 @@ return 0;
 
 //? test: S7.8.4_A2.1_T1
 //? description: Check ENGLISH CAPITAL ALPHABET
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -383,11 +367,9 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A2.1_T2
 //? description: Check ENGLISH SMALL ALPHABET
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -400,11 +382,9 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A2.2_T1
 //? description: Check RUSSIAN CAPITAL ALPHABET
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -417,11 +397,9 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A2.2_T2
 //? description: Check RUSSIAN SMALL ALPHABET
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -434,11 +412,9 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A2.3_T1
 //? description: Check DIGITS
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -451,8 +427,6 @@ for (let index = 0; index <= 9; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A3.1_T1
 //? description: Checking if execution of "\" fails
 //? expect: error
@@ -507,7 +481,7 @@ for (let index = 0; index <= 9; index = index + 1) {
 
 //? test: S7.8.4_A4.1_T1
 //? description: "SingleEscapeSequence :: one of b f n r t v"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -543,11 +517,9 @@ if (String.fromCharCode(0x000C) !== "\f") {
 if (String.fromCharCode(0x000D) !== "\r") {
   throw '#6: String.fromCharCode(0x000D) === "\\r"';
 }
-
-
 //? test: S7.8.4_A4.1_T2
 //? description: "SingleEscapeSequence :: one of ' \" \\"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -579,11 +551,9 @@ if ("\'" !== "'") {
 if ('\"' !== '"') {
   throw '#5: \'\"\' === \'\\\"\'';
 }
-
-
 //? test: S7.8.4_A4.2_T1
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -598,11 +568,9 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A4.2_T2
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -710,11 +678,9 @@ if ("Y" !== "\Y") {
 if ("Z" !== "\Z") {
   throw '#Z';
 }
-
-
 //? test: S7.8.4_A4.2_T3
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -729,11 +695,9 @@ for (let index = 0; index <= 17; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A4.2_T4
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -811,11 +775,9 @@ if ("y" !== "\y") {
 if ("z" !== "\z") {
   throw '#z';
 }
-
-
 //? test: S7.8.4_A4.2_T5
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -830,11 +792,9 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A4.2_T6
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -971,11 +931,9 @@ if ("Я" !== "\Я") {
 if ("Ё" !== "\Ё") {
   throw '#Ё';
 }
-
-
 //? test: S7.8.4_A4.2_T7
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -990,11 +948,9 @@ for (let index = 0; index <= 32; index = index + 1) {
     throw '#' + NonEscapeCharacter[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A4.2_T8
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1132,8 +1088,6 @@ if ("я" !== "\я") {
 if ("ё" !== "\ё") {
   throw '#ё';
 }
-
-
 //? test: S7.8.4_A4.3_T1
 //? description: "EscapeCharacter :: DecimalDigits :: 1"
 //? expect: error
@@ -1160,7 +1114,7 @@ if ("ё" !== "\ё") {
 
 //? test: S7.8.4_A4.3_T7
 //? description: "EscapeCharacter :: SingleEscapeCharacter :: one of b f n r t v"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1189,11 +1143,9 @@ if ("t" === "\t") {
 if ("v" === "\v") {
   throw '#v';
 }
-
-
 //? test: S7.8.4_A5.1_T1
 //? description: String.fromCharCode(0x0000)
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -1205,11 +1157,9 @@ if ("v" === "\v") {
 if (String.fromCharCode(0x0000) !== "\0") {
   throw '#1: String.fromCharCode(0x0000) === "\\0"';
 }
-
-
 //? test: S7.8.4_A5.1_T2
 //? description: "\"\\u0000\""
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1217,11 +1167,9 @@ if (String.fromCharCode(0x0000) !== "\0") {
 if ("\u0000" !== "\0") {
   throw '#1: "\\u0000" === "\\0"';
 }
-
-
 //? test: S7.8.4_A5.1_T3
 //? description: "\"\\x00\""
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1229,11 +1177,9 @@ if ("\u0000" !== "\0") {
 if ("\x00" !== "\0") {
   throw '#1: "\\x00" === "\\0"';
 }
-
-
 //? test: S7.8.4_A6.1_T1
 //? description: "HexEscapeSequence ::  HexDigit"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -1319,11 +1265,9 @@ if ("\x0E" !== String.fromCharCode("14")) {
 if ("\x0F" !== String.fromCharCode("15")) {
   throw '#F: "\\x0F" === String.fromCharCode("15")';
 }
-
-
 //? test: S7.8.4_A6.1_T2
 //? description: "HexEscapeSequence ::  ENGLISH CAPITAL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1335,11 +1279,9 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A6.1_T3
 //? description: "HexEscapeSequence ::  ENGLISH SMALL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1351,11 +1293,9 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A6.3_T1
 //? description: Check similar to ('\x01F' === String.fromCharCode('1') + 'F')
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -1436,11 +1376,9 @@ if ('\x0E2' !== String.fromCharCode('14') + '2') {
 if ('\x0F1' !== String.fromCharCode('15') + '1') {
   throw "#F: '\x0F1' === String.fromCharCode('15') + '1'";
 }
-
-
 //? test: S7.8.4_A7.1_T1
 //? description: Check similar to ("\u0000" === String.fromCharCode("0"))
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -1526,11 +1464,9 @@ if ("\u000E" !== String.fromCharCode("14")) {
 if ("\u000F" !== String.fromCharCode("15")) {
   throw '#F: "\\u000F" === String.fromCharCode("15")';
 }
-
-
 //? test: S7.8.4_A7.1_T2
 //? description: "UnicodeEscapeSequence ::  ENGLISH CAPITAL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1543,11 +1479,9 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A7.1_T3
 //? description: "UnicodeEscapeSequence ::  ENGLISH SMALL ALPHABET"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1560,8 +1494,6 @@ for (let index = 0; index <= 25; index = index + 1) {
     throw '#' + character[index] + ' ';
   }
 }
-
-
 //? test: S7.8.4_A7.1_T4
 //? description: "UnicodeEscapeSequence :: u000G is incorrect"
 //? expect: error
@@ -1655,7 +1587,7 @@ for (let index = 0; index <= 25; index = index + 1) {
 
 //? test: S7.8.4_A7.3_T1
 //? description: Check similar to ("\u0001F" === String.fromCharCode("1") + "F")
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
 //? source: ...
@@ -1736,8 +1668,6 @@ if ("\u000E2" !== String.fromCharCode("14") + "2") {
 if ("\u000F1" !== String.fromCharCode("15") + "1") {
   throw '#F: "\\u000F1" === String.fromCharCode("15") + "1"';
 }
-
-
 //? test: unicode-escape-nls-err-double
 //? description: NumericLiteralSeperator disallowed in unicode CodePoint sequence (DoubleStringCharacters)
 //? expect: error

@@ -80,6 +80,13 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 | [First-pass skipReason labels](#first-pass-skipreason-labels) | meta | Every skip got a prefix |
 | [FIXME triage note](#fixme-triage-note) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/FIXME-triage.md) | [`FIXME-triage.md`](FIXME-triage.md) shortlist |
 
+### Script result ([#62](https://github.com/afw-org/afw/issues/62))
+
+| Case | How | Brief |
+|------|-----|--------|
+| test262 `expect: undefined` vs last assign | **T:** →fix | **`expect: success`** means “did not throw” (ignore result). Dummy `return;` from the first sweep removed. let/const `cptn-value` still empty completion |
+| [try `cptn-*` / `S12.14_A6`](#try-cptn-assignment-probes) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Assignment probes; empty try/catch/finally do not write; break/continue keep last assign |
+
 ### Object / array helpers ([#55](https://github.com/afw-org/afw/issues/55)) and dense arrays ([#39](https://github.com/afw-org/afw/issues/39))
 
 | Case | How | Brief |
@@ -95,7 +102,8 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 |------|-----|--------|
 | [function param defaults](#function-param-defaults-issue-140) | [→impl / →fix](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/function.as) | Defaults are Expressions; prior params OK |
 | switch `S12.11_A1_T3` NaN/Infinity | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/switch.as) | Expect undefined (NaN/Infinity cases) |
-| try catch Pattern expects | [→fix / →fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Dup catch bind message; half-converted skip |
+| try catch Pattern expects | [→fix](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Dup catch bind message |
+| [try `scope-catch-*`](#try-scope-catch-adaptive) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Throw data + catch Pattern; `let` not `var`; catch param is error object |
 
 ### void / unary
 
@@ -464,5 +472,35 @@ literal exponents). Same pattern for later subtraction/`**`.
 Was **false green**: `expect: error:#1: Scope chain disturbed` (assert throw).
 Adaptive: nested `f2` returns **outer** `x` (**0**), not inner `let x = 1`.
 Converted to hard expect `0` + `differences` (no var-hoist / ES TDZ lineage).
+
+[↑ Index](#index)
+
+---
+
+## try cptn assignment probes
+
+**Case:** `statements/try.as` — `cptn-*`, `S12.14_A6`, and the four
+`cptn-catch-empty-*` / `cptn-catch-finally-empty-*` parse-error stand-ins.
+
+Old skips were half-converted ES ExpressionStatements (`1;`, `'bad';`) plus
+undeclared `y;` / `z;`. Rewrote to Adaptive assignment probes: empty
+try/catch/finally do not write the running result; an assign inside does;
+`break` / `continue` keep the last assign (not ES UpdateEmpty). `if` needs a
+boolean (`i !== 0`).
+
+[↑ Index](#index)
+
+---
+
+## try scope-catch Adaptive
+
+**Case:** `statements/try.as` — `scope-catch-*`.
+
+Catch Patterns already landed ([#140](https://github.com/afw-org/afw/issues/140)).
+The leftover bodies were ES `throw []` / assignment-in-default / `var`+`eval`.
+Rewrote to Adaptive intent: `throw "msg" data`, `catch ({ data: [x] })`,
+`catch (x)` binds the **error object** (use `x.message`), inner `let` does
+not leak. Catch-body and catch-param closures that already work are asserted;
+no #35 skip on this cluster.
 
 [↑ Index](#index)

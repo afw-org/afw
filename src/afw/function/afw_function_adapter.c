@@ -1963,8 +1963,8 @@ afw_function_execute_retrieve_objects_to_callback(
         (adapterTypeSpecific) ? adapterTypeSpecific->internal : NULL,
         x->p, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -2102,7 +2102,7 @@ afw_function_execute_retrieve_objects_to_response(
         (adapterTypeSpecific) ? adapterTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -2267,8 +2267,8 @@ afw_function_execute_retrieve_objects_to_stream(
         adapter_type_specific,
         x->p, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -2556,8 +2556,8 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
         (adapterTypeSpecific) ? adapterTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -2699,8 +2699,8 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
         (adapterTypeSpecific) ? adapterTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -2839,8 +2839,8 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
         (adapterTypeSpecific) ? adapterTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 

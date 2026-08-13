@@ -61,15 +61,15 @@ This is the value to assign to the variable.
 =head3 break
 
 This is a special function that can be called to break out of the body of a
-loop. If called outside of a loop body, an error is thrown.
-Break out of a block
+loop or switch. If a label is supplied, break the loop with that label. If
+called outside of a loop or switch body, an error is thrown.
+Break out of a loop or switch
 
 =head4 Parameters
 
-    $value
+    $label
 
-The value to evaluate that the enclosing loop will return. If not specified,
-the last evaluated value or a null value will be returned.
+Optional loop label. If omitted, break the innermost loop or switch.
 
 =head3 const
 
@@ -95,11 +95,16 @@ The type of the constant(s).
 =head3 continue
 
 This is a special function that can be called in the body of a loop function
-to test the condition and, if true, start evaluating the body again. If called
-outside of a loop body, an error is thrown.
+to test the condition and, if true, start evaluating the body again. If a
+label is supplied, continue the loop with that label. If called outside of a
+loop body, an error is thrown.
 Continue at beginning of a loop
 
 =head4 Parameters
+
+    $label
+
+Optional loop label. If omitted, continue the innermost loop.
 
 =head3 do_while
 
@@ -123,6 +128,10 @@ This is an array of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
 array or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
+
+    $label
+
+Optional loop label for break/continue Identifier (issue #62).
 
 =head3 for
 
@@ -155,6 +164,10 @@ of the loop. Each value in body is evaluated in order until the end of the
 array or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
+    $label
+
+Optional loop label for break/continue Identifier (issue #62).
+
 =head3 for_of
 
 This creates a new structured block with a new nested variable scope.
@@ -181,6 +194,10 @@ This is an array of values (statements) that are evaluated for each iteration
 of the loop. Each value in body is evaluated in order until the end of the
 array or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
+
+    $label
+
+Optional loop label for break/continue Identifier (issue #62).
 
 =head3 if
 
@@ -372,6 +389,10 @@ of the loop. Each value in body is evaluated in order until the end of the
 list or until a 'break', 'continue', 'return' or 'throw' function is
 encountered.
 
+    $label
+
+Optional loop label for break/continue Identifier (issue #62).
+
 =head3 wrap_literal_array
 
 Evaluate an array value, create a memory array wrapper
@@ -419,14 +440,14 @@ sub assign {
 }
 
 sub break_ {
-    my ($value) = @_;
+    my ($label) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "break");
 
-    if (defined $value)
-        $request->set("value", $value);
+    if (defined $label)
+        $request->set("label", $label);
 
     return $request->getResult();
 }
@@ -447,17 +468,20 @@ sub const {
 }
 
 sub continue_ {
-    my () = @_;
+    my ($label) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "continue");
 
+    if (defined $label)
+        $request->set("label", $label);
+
     return $request->getResult();
 }
 
 sub do_while {
-    my ($condition, $body) = @_;
+    my ($condition, $body, $label) = @_;
 
     my $request = $session->request()
 
@@ -465,11 +489,14 @@ sub do_while {
     $request->set("condition", $condition);
     $request->set("body", $body);
 
+    if (defined $label)
+        $request->set("label", $label);
+
     return $request->getResult();
 }
 
 sub for_ {
-    my ($initial, $condition, $increment, $body) = @_;
+    my ($initial, $condition, $increment, $body, $label) = @_;
 
     my $request = $session->request()
 
@@ -487,11 +514,14 @@ sub for_ {
     if (defined $body)
         $request->set("body", $body);
 
+    if (defined $label)
+        $request->set("label", $label);
+
     return $request->getResult();
 }
 
 sub for_of {
-    my ($name, $value, $body) = @_;
+    my ($name, $value, $body, $label) = @_;
 
     my $request = $session->request()
 
@@ -501,6 +531,9 @@ sub for_of {
 
     if (defined $body)
         $request->set("body", $body);
+
+    if (defined $label)
+        $request->set("label", $label);
 
     return $request->getResult();
 }
@@ -611,13 +644,16 @@ sub try_ {
 }
 
 sub while_ {
-    my ($condition, $body) = @_;
+    my ($condition, $body, $label) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "while");
     $request->set("condition", $condition);
     $request->set("body", $body);
+
+    if (defined $label)
+        $request->set("label", $label);
 
     return $request->getResult();
 }

@@ -302,6 +302,12 @@ struct afw_compile_internal_value_contextual_s {
 };
 
 
+/* Active loop labels while parsing (issue #62). Innermost first. */
+typedef struct afw_compile_loop_label_s {
+    const afw_utf8_t *name;
+    struct afw_compile_loop_label_s *next;
+} afw_compile_loop_label_t;
+
 /*
  * Mutable parse state for one compile. Not public API.
  * Hot macros below expect the local name `parser` for this pointer.
@@ -458,6 +464,9 @@ struct afw_compile_internal_parser_s {
 
     /* continue statement allowed in loop. */
     afw_boolean_t continue_allowed;
+
+    /* Active loop labels for break/continue Identifier (issue #62). */
+    afw_compile_loop_label_t *loop_labels;
 
     /*
      * Script type/interface name table for this compile (issue #28).

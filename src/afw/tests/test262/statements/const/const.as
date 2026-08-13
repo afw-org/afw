@@ -50,28 +50,18 @@ function() {
 
 //? test: cptn-value
 //? description: Returns an empty completion
-//? expect: undefined
-//? skip: true
-//? skipReason: ...
-FIXME: const/let declaration completion value should be undefined
-(eval(script(...)) probe)
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme let/const declarations should return undefined
 assert(
-  eval(script('const test262id1 = 1;') == undefined, 
-  'Single declaration');
+  eval(script('const test262id1 = 1;')) == undefined, 
+  'Single declaration'
 );
 assert(
   eval(script('const test262id2 = 2, test262id3 = 3;')) == undefined,
   'Multiple declarations'
 );
-
-assert(eval(script('4; const test262id5 = 5;')) === 4);
-assert(eval(script('6; let test262id7 = 7 === test262id8 = 8;')) === 6);
-
-
 //? test: fn-name-arrow
 //? description: Assignment of function `name` attribute (ArrowFunction)
 //? expect: error:Parse error at offset 35 around line 3 column 16: Expecting Value

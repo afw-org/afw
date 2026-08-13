@@ -128,6 +128,9 @@ impl_afw_value_optional_evaluate(
 {
     const afw_value_script_function_definition_t *script;
     const afw_value_t *result;
+    const afw_value_t *saved_script_result;
+    afw_boolean_t saved_script_result_active;
+    afw_boolean_t saved_script_result_written;
     const afw_xctx_scope_t *enclosing_lexical_scope;
     const afw_xctx_scope_t *parameter_scope;
     const afw_xctx_scope_t *caller_scope;
@@ -143,6 +146,12 @@ impl_afw_value_optional_evaluate(
     afw_boolean_t parameter_scope_activated;
 
     result = NULL;
+    saved_script_result = xctx->script_result;
+    saved_script_result_active = xctx->script_result_active;
+    saved_script_result_written = xctx->script_result_written;
+    xctx->script_result = afw_value_undefined;
+    xctx->script_result_active = true;
+    xctx->script_result_written = false;
     caller_scope = afw_xctx_scope_current(xctx);
     parameter_scope = NULL;
     parameter_scope_activated = false;
@@ -352,8 +361,35 @@ impl_afw_value_optional_evaluate(
             afw_xctx_scope_activate(enclosing_lexical_scope, xctx);
         }
 
-        /* Evaluate body. */
-        result = afw_value_evaluate(script->body, p, xctx);
+        /* Brace body: same running-result rule as a script (issue #62). */
+        if (afw_value_is_block(script->body)) {
+            afw_function_execute_t exec;
+
+            afw_memory_clear(&exec);
+            exec.p = p;
+            exec.xctx = xctx;
+            result = afw_value_block_evaluate_block(&exec,
+                (const afw_value_block_t *)script->body, p, xctx,
+                false);
+        }
+        else {
+            result = afw_value_evaluate(script->body, p, xctx);
+        }
+        /*
+         * Declared : void is a procedure: discard the running result and
+         * return the void singleton so a call statement does not write
+         * (same as print()). Untyped empty body (void from let) still
+         * becomes undefined.
+         */
+        if (script->returns &&
+            afw_value_type_get_leaf_data_type(script->returns) ==
+                afw_data_type_void)
+        {
+            result = afw_value_void;
+        }
+        else if (afw_value_is_void(result)) {
+            result = afw_value_undefined;
+        }
 
         /* Runtime return type check (issue #28): definition unit, else call. */
         {
@@ -395,6 +431,9 @@ impl_afw_value_optional_evaluate(
         }
 
         afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
+        xctx->script_result = saved_script_result;
+        xctx->script_result_active = saved_script_result_active;
+        xctx->script_result_written = saved_script_result_written;
     }
 
     AFW_ENDTRY;

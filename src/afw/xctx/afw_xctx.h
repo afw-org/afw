@@ -617,8 +617,10 @@ afw_xctx_scope_symbol_set_value_by_name(
  */
 #define afw_xctx_statement_flow_reset_break_and_continue(xctx) \
     if (((afw_xctx_t *)xctx)->statement_flow <= \
-        afw_xctx_statement_flow_ge_is_leave) \
-            afw_xctx_statement_flow_set_type(sequential, xctx)
+        afw_xctx_statement_flow_ge_is_leave) { \
+            afw_xctx_statement_flow_set_type(sequential, xctx); \
+            ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
+    }
 
 /**
  * @brief Reset xctx statement flow except rethrow to sequential
@@ -630,7 +632,32 @@ afw_xctx_scope_symbol_set_value_by_name(
 #define afw_xctx_statement_flow_reset_all_except_rethrow(xctx) \
     if (!afw_xctx_statement_flow_is_type(rethrow, xctx)) { \
         afw_xctx_statement_flow_set_type(sequential, xctx); \
+        ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
     }
+
+/**
+ * @brief Get the running Adaptive Script result.
+ * @param xctx of caller.
+ * @return Current script result, or undefined if none has been written.
+ */
+#define afw_xctx_script_result_get(xctx) \
+    ((xctx)->script_result \
+        ? (xctx)->script_result \
+        : afw_value_undefined)
+
+/**
+ * @brief Set the running Adaptive Script result.
+ * @param v result value (NULL is stored as undefined).
+ * @param xctx of caller.
+ *
+ * Assignment and return write this. Most other statements do not.
+ */
+#define afw_xctx_script_result_set(v, xctx) \
+do { \
+    ((afw_xctx_t *)xctx)->script_result = \
+        ((v) ? (v) : afw_value_undefined); \
+    ((afw_xctx_t *)xctx)->script_result_written = true; \
+} while (0)
 
 
 

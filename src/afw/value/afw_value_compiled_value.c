@@ -44,16 +44,43 @@ impl_afw_value_optional_evaluate(
     afw_xctx_t *xctx)
 {
     const afw_value_t *result;
+    const afw_value_t *saved_script_result;
+    afw_boolean_t saved_script_result_active;
+    afw_boolean_t saved_script_result_written;
     int nelts;
 
     nelts = xctx->scope_stack->nelts;
+    saved_script_result = xctx->script_result;
+    saved_script_result_active = xctx->script_result_active;
+    saved_script_result_written = xctx->script_result_written;
+    if (self->full_source_type &&
+        afw_utf8_equal(self->full_source_type, afw_s_script))
+    {
+        xctx->script_result = afw_value_undefined;
+        xctx->script_result_active = true;
+        xctx->script_result_written = false;
+    }
     AFW_TRY {
 
         /* Push a NULL onto the scope stack to indicate new compiled value. */
         APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = NULL;
 
         /* Evaluate compiled value root value. */
-        result = afw_value_evaluate(self->root_value, p, xctx);
+        if (xctx->script_result_active &&
+            self->root_value &&
+            afw_value_is_block(self->root_value))
+        {
+            afw_function_execute_t exec;
+
+            exec.p = p;
+            exec.xctx = xctx;
+            result = afw_value_block_evaluate_block(&exec,
+                (const afw_value_block_t *)self->root_value, p, xctx,
+                false);
+        }
+        else {
+            result = afw_value_evaluate(self->root_value, p, xctx);
+        }
 
     }
     AFW_FINALLY {
@@ -68,6 +95,10 @@ impl_afw_value_optional_evaluate(
 
         /* Pop off the NULL compiled value indicator on scope stack. */
         apr_array_pop(xctx->scope_stack);
+
+        xctx->script_result = saved_script_result;
+        xctx->script_result_active = saved_script_result_active;
+        xctx->script_result_written = saved_script_result_written;
         
     }
     AFW_ENDTRY;

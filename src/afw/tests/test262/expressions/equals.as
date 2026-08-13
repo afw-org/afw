@@ -7,7 +7,7 @@
 //?
 //? test: 11.9.1_A2.1_T1
 //? description: Operator x == y
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -30,9 +30,6 @@ y = 1;
 if ((x == y) !== true) {
     throw "x == y";
 }
-
-
-
 //? test: 11.9.1_A2.1_T2
 //? description: Reference error
 //? expect: error
@@ -70,7 +67,7 @@ if ((x == (x = 1)) !== false) {
 
 //? test: 11.9.1_A2.4_T2
 //? description: First expression is evaluated first, and then second expression: checking with assert()
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -93,13 +90,9 @@ assert(
         "error"
     ) === "error", "safe_evaluate(x() == y(), \"error\")"
 );
-
-
-
-
 //? test: 11.9.1_A3.1
 //? description: Return true, if x and y are both true or both false; otherwise, return false
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -118,12 +111,9 @@ if ((true == false) !== false) {
 if ((false == true) !== false) {
     throw "false == true";
 }
-
-
-
 //? test: 11.9.1_A3.2
 //? description: x is primitive boolean, y is primitive number
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -136,12 +126,9 @@ if ((false == "0") !== true) {
     throw "false == \"0\"";
 }
 */
-
-
-
 //? test: equals-6
 //? description: x is primitive integer, y is primitive boolean
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -154,12 +141,9 @@ if (("1" == true) !== true) {
     throw "false == \"0\"";
 }
 */
-
-
-
 //? test: 11.9.1_A4.1_T1
 //? description: If x or y is NaN, return false
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -190,11 +174,9 @@ if (("string" == NaN) !== false) {
     throw "\"string\" == NaN";
 }
 */
-
-
 //? test: 11.9.1_A4.2
 //? description: If x is +0(-0) and y is -0(+0), return true
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -205,12 +187,9 @@ if ((+0 == -0) !== true) {
 if ((-0 == +0) !== true) {
     throw "-0 == +0";
 }
-
-
-
 //? test: 11.9.1_A4.3
 //? description: Return true, if x is the same number value as y; otherwise, return false
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -230,13 +209,9 @@ if ((+Infinity == -negativeInfinity) !== true) {
 if ((1.0 == double(1)) !== true) {
     throw "(1.0 == double(1)) !== true)";
 }
-
-
-
-
 //? test: 11.9.1_A5.1
 //? description: Return true, if x and y are exactly the same sequence of characters; otherwise, return false
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -263,12 +238,9 @@ if (("1.0" == "1") !== false) {
 if (("0xff" == "255") !== false) {
     throw "\"0xff\" == \"255\"";
 }
-
-
-
 //? test: 11.9.1_A5.2
 //? description: x is primitive number, y is primitive string
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -294,13 +266,9 @@ if ((0 == "") !== true) {
 }
 
 */
-
-
-
-
 //? test: 11.9.1_A5.3
 //? description: x is primitive string, y is primitive number
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -323,12 +291,9 @@ if (("5e-324" == 5e-234) !== true) {
     throw "\"5e-324\" == 5e-234";
 }
 */
-
-
-
 //? test: 11.9.1_A6.1
 //? description: combinations of undefined and null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -343,12 +308,9 @@ if ((undefined == null) !== true) {
 if ((null == null) !== true) {
     throw "null == null";
 }
-
-
-
 //? test: 11.9.1_A6.2_T1
 //? description: x is undefined or null, y is not
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -383,12 +345,9 @@ if ((null == "null") !== false) {
 if ((null == {}) !== false) {
     throw "null == {}";
 }
-
-
-
 //? test: 11.9.1_A6.2_T2
 //? description: y is null or undefined, x is not
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -423,4 +382,3 @@ if (("null" == null) !== false) {
 if (({} == null) !== false) {
     throw "{} == null";
 }
-

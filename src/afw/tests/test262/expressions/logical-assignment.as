@@ -74,7 +74,7 @@ eval &&= 20;
 
 //? test: lgcl-nullish-assignment-operator
 //? description: Logical Nullish Assignment Operator
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -124,9 +124,6 @@ assert(value === "test", '(value ??= 1) === "test"; where value = "test"');
 let obj = {};
 value = obj;
 assert(value === obj, "(value ??= 1) === {}; where value = {}");
-
-
-
 //? test: lgcl-nullish-assignment-operator-non-simple-lhs
 //? description:  It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple.
 //? expect: error
@@ -193,7 +190,7 @@ eval ??= 20;
 
 //? test: lgcl-nullish-whitespace
 //? description: Checking by evaluating expression "x[...]??=[...]y"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -218,8 +215,6 @@ x
 ??=
 1;
 assert(x === 1, 'U+000D carriage return');
-
-
 //? test: lgcl-or-assignment-operator-non-simple-lhs
 //? description:  It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple.
 //? expect: error

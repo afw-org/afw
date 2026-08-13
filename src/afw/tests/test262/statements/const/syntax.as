@@ -82,7 +82,7 @@ for (const x of [1, 2, 3]) {
 //? test: const
 //? description:...
     global and block scope const
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -96,12 +96,10 @@ if (true) {
   const z = 1;
   assert(z === 1);
 }
-
-
 //? test: const-outer-inner-let-bindings
 //? description:...
     outer const binding unchanged by for-loop const binding
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -116,30 +114,24 @@ for (const x = "inner_x"; i < 1; i++) {
 }
 assert(x === "outer_x");
 assert(y === "outer_y");
-
-
 //? test: with-initializer-case-expression-statement-list
 //? description:...
     const declarations with initialisers in statement positions:
     case Expression : StatementList
-//? expect: 1
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { case true: const x = 1; }
-
-
 //? test: with-initializer-default-statement-list
 //? description:...
     const declarations with initialisers in statement positions:
     default : StatementList
-//? expect: 1
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { default: const x = 1; }
-
-
 //? test: with-initializer-do-statement-while-expression
 //? description:...
     const declarations with initialisers in statement positions:
@@ -155,38 +147,32 @@ do const x = 1; while (false)
 //? description:...
     const declarations with initialisers in statement positions:
     for ( ;;) Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // this is OK in Adaptive Script for now
 for (;false;) const x = 1;
-
-
 //? test: with-initializer-if-expression-statement-else-statement
 //? description:...
     const declarations with initialisers in statement positions:
     if ( Expression ) Statement else Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // this is OK in Adaptive Script for now
 if (true) {} else const x = 1;
-
-
 //? test: with-initializer-if-expression-statement
 //? description:...
     const declarations with initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: 1
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // this is OK in Adaptive Script for now
 if (true) const x = 1;
-
-
 //? test: with-initializer-label-statement
 //? description:...
     const declarations with initialisers in statement positions:
@@ -202,14 +188,12 @@ label: const x = 1;
 //? description:...
     const declarations with initialisers in statement positions:
     while ( Expression ) Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // This is OK in Adaptive Script for now
 while (false) const x = 1;
-
-
 //? test: without-initializer-case-expression-statement-list
 //? description:...
     const declarations without initialisers in statement positions:

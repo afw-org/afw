@@ -392,6 +392,19 @@ afw_value_undefined;
 
 
 /**
+ * @brief Adaptive value void (permanent singleton).
+ *
+ * Completion of a function whose declared return type is void. Identity is
+ * this address. Not undefined: `return;` is undefined; a void function
+ * yields this. The statement-list loop treats this pointer as “do not
+ * override the prior result.”
+ */
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_void;
+
+
+
+/**
  * @brief Unique value used to represent default case for switch().
  *
  * This is a unique value used to make the default case in parameters passed
@@ -469,6 +482,18 @@ afw_value_unique_default_case_value;
  */
 #define afw_value_is_undefined(A_VALUE) \
     (!A_VALUE || (A_VALUE) == afw_value_undefined)
+
+
+
+/**
+ * @brief Determine if value is the void singleton.
+ * @param value to test.
+ * @return boolean result.
+ *
+ * True only for the afw_value_void pointer. C NULL is undefined, not void.
+ */
+#define afw_value_is_void(A_VALUE) \
+    ((A_VALUE) == afw_value_void)
 
 
 

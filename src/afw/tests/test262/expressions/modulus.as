@@ -7,7 +7,7 @@
 //?
 //? test: line-terminator
 //? description: Line terminator between the operands of a modulus operator
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -24,11 +24,9 @@ let x = 18
 ;
 
 assert(x === 1);
-
-
 //? test: order-of-evaluation
 //? description: Type coercion order of operations for modulus operator
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
@@ -162,11 +160,9 @@ assert.throws(TypeError, function() {
   })();
 }, "GetValue(lhs) throws.");
 assert.sameValue(trace, "1234", "GetValue(lhs) throws.");
-
-
 //? test: S11.5.3_A1
 //? description: Checking by using eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -220,11 +216,9 @@ if (eval(script("1\u2029%\u20291")) !== 0) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029%\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 0) {
   throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029%\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 0';
 }
-
-
 //? test: S11.5.3_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -252,9 +246,6 @@ y = 2;
 if (x % y !== 1) {
   throw '#4: let x = 1; let y = 2; x % y === 1. Actual: ' + (x % y);
 }
-
-
-
 //? test: S11.5.3_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -275,7 +266,7 @@ x % 1;
 
 //? test: S11.5.3_A2.3_T1
 //? description: Checking with "throw"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
@@ -299,11 +290,9 @@ try {
      }
    }
 }
-
-
 //? test: S11.5.3_A2.4_T2
 //? description: Checking with "throw"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
@@ -325,8 +314,6 @@ try {
      }
    }
 }
-
-
 //? test: S11.5.3_A2.4_T3
 //? description: Checking with undeclarated variables
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -338,7 +325,7 @@ x % (x = 1);
 
 //? test: S11.5.3_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -347,15 +334,13 @@ x % (x = 1);
 if (1 % 1 !== 0) {
   throw '#1: 1 % 1 === 0. Actual: ' + (1 % 1);
 }
-
-
 //? test: S11.5.3_A3_T1.3
 //? description: Type(x) and Type(y) vary between primitive string and String object
 //? skip: true
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
 assert.throws
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -389,13 +374,11 @@ if (is_NaN("x" % "1") !== true) {
 if (is_NaN("1" % "x") !== true) {
   throw '#6: "1" % "x" === Not-a-Number. Actual: ' + ("1" % "x");
 }
-
-
 //? test: S11.5.3_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? skip: true
 //? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -419,13 +402,11 @@ if (is_NaN(undefined % undefined) !== true) {
 if (is_NaN(null % null) !== true) {
   throw '#4: null % null === Not-a-Number. Actual: ' + (null % null);
 }
-
-
 //? test: S11.5.3_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? skip: true
 //? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -449,14 +430,13 @@ if (is_NaN(function(){return 1} % function(){return 1}) !== true) {
 if (is_NaN({} % {}) !== true) {
   throw '#4: {} % {} === Not-a-Number. Actual: ' + ({} % {});
 }
-
 //? test: S11.5.3_A3_T2.2
 //? description:...
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and String (primitive and object)
 //? skip: true
 //? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -480,15 +460,13 @@ if (is_NaN("x" % 1) !== true) {
 if (is_NaN(1 % "x") !== true) {
   throw '#10: 1 % "x" === Not-a-Number. Actual: ' + (1 % "x");
 }
-
-
 //? test: S11.5.3_A3_T2.3
 //? description:...
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Null
 //? skip: true
 //? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -502,15 +480,13 @@ if (is_NaN(1 % null) !== true) {
 if (null % 1 !== 0) {
   throw '#2: null % 1 === 0. Actual: ' + (null % 1);
 }
-
-
 //? test: S11.5.3_A3_T2.4
 //? description:...
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Undefined
 //? skip: true
 //? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -524,8 +500,6 @@ if (is_NaN(1 % undefined) !== true) {
 if (is_NaN(undefined % 1) !== true) {
   throw '#2: undefined % 1 === Not-a-Number. Actual: ' + (undefined % 1);
 }
-
-
 //? test: S11.5.3_A3_T2.6
 //? description:...
     Type(x) is different from Type(y) and both types vary between
@@ -534,7 +508,7 @@ if (is_NaN(undefined % 1) !== true) {
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
 assert.throws
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -558,8 +532,6 @@ if (is_NaN(new String("1") % undefined) !== true) {
 if (is_NaN(undefined % new String("1")) !== true) {
   throw '#4: undefined % new String("1") === Not-a-Number. Actual: ' + (undefined % new String("1"));
 }
-
-
 //? test: S11.5.3_A3_T2.7
 //? description:...
     Type(x) is different from Type(y) and both types vary between
@@ -568,7 +540,7 @@ if (is_NaN(undefined % new String("1")) !== true) {
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
 assert.throws
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -592,11 +564,9 @@ if (is_NaN(new String("1") % null) !== true) {
 if (null % new String("1") !== 0) {
   throw '#4: null % new String("1") === 0. Actual: ' + (null % new String("1"));
 }
-
-
 //? test: S11.5.3_A4_T1.1
 //? description: If either operand is NaN, the result is NaN (left NaN; double mod)
-//? expect: undefined
+//? expect: success
 //? differences: Adaptive double % uses fmod (IEEE); integer % still throws on divide-by-zero
 //? source: ...
 #!/usr/bin/env afw
@@ -631,12 +601,9 @@ if (is_NaN(NaN % -Infinity) !== true) {
 if (is_NaN(NaN % 1.0) !== true) {
   throw '#6: NaN % 1.0 === Not-a-Number';
 }
-
-
-
 //? test: S11.5.3_A4_T1.2
 //? description: If either operand is NaN, the result is NaN (right NaN; double mod)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -670,9 +637,6 @@ if (is_NaN(-Infinity % NaN) !== true) {
 if (is_NaN(1.0 % NaN) !== true) {
   throw '#6: 1.0 % NaN === Not-a-Number';
 }
-
-
-
 //? test: S11.5.3_A4_T2
 //? description:...
     The sign of the finite non-zero value result equals the sign of
@@ -742,7 +706,7 @@ if (-101 % -51 !== -50) {
 
 //? test: S11.5.3_A4_T3
 //? description: If the dividend is an infinity results is NaN (double mod)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -791,12 +755,9 @@ if (is_NaN(Infinity % -1.0) !== true) {
 if (is_NaN(Infinity % 1.7976931348623157e+308) !== true) {
   throw '#9: Infinity % max-double === Not-a-Number';
 }
-
-
-
 //? test: S11.5.3_A4_T4
 //? description: If the divisor is zero results is NaN (double mod; not integer %)
-//? expect: undefined
+//? expect: success
 //? differences: Integer % still throws Integer divide by zero; double % yields NaN via fmod
 //? source: ...
 #!/usr/bin/env afw
@@ -854,14 +815,11 @@ if (is_NaN(Infinity % 0.0) !== true) {
 if (is_NaN(-Infinity % 0.0) !== true) {
   throw '#10: -Infinity % 0.0 === Not-a-Number';
 }
-
-
-
 //? test: S11.5.3_A4_T5
 //? description:...
     If dividend is finite and the divisor is an infinity, the result
     equals the dividend
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -922,13 +880,11 @@ if (-0.0 % -Infinity !== -0.0) {
     throw '#8.2: -0.0 % -Infinity === -0';
   }
 }
-
-
 //? test: S11.5.3_A4_T6
 //? description:...
     If dividend is a zero and the divisor is nonzero finite, the
     result equals the dividend
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -988,13 +944,11 @@ if (-0.0 % 1.7976931348623157e+308 !== -0.0) {
     throw '#6.2: -0.0 % max-double === -0';
   }
 }
-
-
 //? test: S11.5.3_A4_T7
 //? description:...
     If operands neither an infinity, nor a zero, nor NaN, return x -
     truncate(x / y) * y
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 

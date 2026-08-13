@@ -7,7 +7,7 @@
 //?
 //? test: 11.4.7_A2.1_T1
 //? description: Operator -x
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -28,24 +28,18 @@ x = -1;
 if (-(-x) !== -1) {
     throw "#4: -(-x) === -1";
 }
-
-
-
 //? test: 11.4.7_A3_T2
 //? description: Operator -x returns -integer(x)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 if (-(1) !== -1) {
     throw "#1: -(1) === -1";
 }
-
-
-
 //? test: 11.4.7_A4.2
 //? description: Negating +0 produces -0, negating -0 produces +0
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 

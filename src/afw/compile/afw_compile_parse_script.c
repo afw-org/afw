@@ -30,6 +30,73 @@ impl_function_definition_rethrow =
     &afw_function_definition_rethrow.pub;
 
 
+static const afw_utf8_t *
+impl_copy_token_identifier(afw_compile_parser_t *parser)
+{
+    return afw_utf8_create_copy(
+        parser->token->identifier_name->s,
+        parser->token->identifier_name->len,
+        parser->p, parser->xctx);
+}
+
+
+static afw_boolean_t
+impl_loop_label_is_active(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    const afw_compile_loop_label_t *e;
+
+    for (e = parser->loop_labels; e; e = e->next) {
+        if (afw_utf8_equal(e->name, name)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+static void
+impl_loop_label_push(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    afw_compile_loop_label_t *e;
+
+    e = afw_pool_calloc_type(parser->p,
+        afw_compile_loop_label_t, parser->xctx);
+    e->name = name;
+    e->next = parser->loop_labels;
+    parser->loop_labels = e;
+}
+
+
+static void
+impl_loop_label_pop(afw_compile_parser_t *parser)
+{
+    if (parser->loop_labels) {
+        parser->loop_labels = parser->loop_labels->next;
+    }
+}
+
+
+static const afw_value_t *
+impl_create_loop_call(
+    afw_compile_parser_t *parser,
+    afw_size_t start_offset,
+    afw_size_t argc,
+    const afw_value_t **argv,
+    const afw_utf8_t *label)
+{
+    if (label) {
+        argv[argc + 1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        argc++;
+    }
+    return afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        argc, argv, true, parser->p, parser->xctx);
+}
 
 
 /*
@@ -409,7 +476,74 @@ afw_compile_parse_OptionalDefineAssignment(
 
 
 
+static afw_boolean_t
+impl_token_is_assignment_operator(const afw_compile_parser_t *parser)
+{
+    switch (parser->token->type) {
+    case afw_compile_token_type_equal:
+    case afw_compile_token_type_plus_equal:
+    case afw_compile_token_type_minus_equal:
+    case afw_compile_token_type_multiply_equal:
+    case afw_compile_token_type_divide_equal:
+    case afw_compile_token_type_modulus_equal:
+    case afw_compile_token_type_exponentiation_equal:
+    case afw_compile_token_type_and_equal:
+    case afw_compile_token_type_or_equal:
+    case afw_compile_token_type_nullish_equal:
+        return true;
+    default:
+        return false;
+    }
+}
+
+
+/*
+ * RHS of '=' / '+=' / … : chain if the next form is a target plus an
+ * assignment operator (x = y = 1). Otherwise a full Expression so
+ * x = i + 1 does not stop after i. Current token is the operator just
+ * recognized. Not assignment-as-expression: (y = 1) stays Expression.
+ */
+static const afw_value_t *
+impl_parse_assignment_rhs(afw_compile_parser_t *parser)
+{
+    const afw_value_t *target;
+    afw_size_t saved;
+    afw_boolean_t just_expression_okay;
+    afw_boolean_t was_expression;
+
+    /* Current token is the assign operator; cursor is after it. */
+    afw_compile_save_cursor(saved);
+    afw_compile_get_token();
+    /*
+     * '[' / '{' start array/object literals or destructure targets.
+     * AssignmentExpression would take the target path and throw on a
+     * literal. Those RHSs are Expressions (x = [1, 2]).
+     */
+    if (afw_compile_token_is(open_bracket) ||
+        afw_compile_token_is(open_brace))
+    {
+        afw_compile_restore_cursor(saved);
+        return afw_compile_parse_Expression(parser);
+    }
+    was_expression = false;
+    target = afw_compile_parse_AssignmentExpression(parser,
+        &was_expression, &just_expression_okay);
+    afw_compile_get_token();
+    if (impl_token_is_assignment_operator(parser)) {
+        afw_compile_reuse_token();
+        return afw_compile_parse_AssignmentOperation(parser, target,
+            just_expression_okay, &was_expression);
+    }
+    afw_compile_restore_cursor(saved);
+    return afw_compile_parse_Expression(parser);
+}
+
+
 /*ebnf>>>
+ *
+ *# RHS is Assignment when it is another target + assign operator
+ *# (x = y = 1). Otherwise Expression (x = i + 1). Issue #62.
+ *# Not assignment-as-expression: (x = 1) > x stays illegal.
  *
  * AssignmentOperation ::=
  *    (
@@ -419,7 +553,7 @@ afw_compile_parse_OptionalDefineAssignment(
  *              '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
  *              '**=' | '&&=' | '||=' | '??='
  *            )
- *            Expression
+ *            ( Assignment | Expression )
  *       )
  *    )
  *
@@ -507,7 +641,7 @@ afw_compile_parse_AssignmentOperation(
             result = afw_integer_v_one;
         }
         else {
-            result = afw_compile_parse_Expression(parser);
+            result = impl_parse_assignment_rhs(parser);
         }
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 3,
@@ -521,7 +655,7 @@ afw_compile_parse_AssignmentOperation(
                 2, argv, true, parser->p, parser->xctx);
     }
     else {
-        result = afw_compile_parse_Expression(parser);
+        result = impl_parse_assignment_rhs(parser);
     }
 
     argv = afw_pool_malloc(parser->p,
@@ -570,7 +704,7 @@ afw_compile_parse_Assignment(
  *
  * AssignmentStatement ::=
  *    (
- *        ( '(' AssignmentObjectDestructureTarget '=' Expression ')' ) |
+ *        ( '(' AssignmentObjectDestructureTarget '=' Assignment ')' ) |
  *        Assignment
  *    )
  *    ';'
@@ -621,23 +755,57 @@ afw_compile_parse_AssignmentStatement(
 
 /*ebnf>>>
  *
- * BreakStatement ::= 'break' ';'
+ *# Optional Identifier must name an enclosing loop label (issue #62).
+ *# No break expression. Semicolons required (no ASI).
+ *
+ * BreakStatement ::= 'break' Identifier? ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_BreakStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t **argv;
+    const afw_utf8_t *label;
+    afw_size_t start_offset;
+    afw_size_t argc;
 
-    if (!parser->break_allowed) {
-        AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
+    start_offset = parser->token->token_source_offset;
+    label = NULL;
+    argc = 0;
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        label = impl_copy_token_identifier(parser);
+        if (!impl_loop_label_is_active(parser, label)) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Unknown loop label " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(label));
+        }
+        argc = 1;
+    }
+    else {
+        afw_compile_reuse_token();
+        if (!parser->break_allowed) {
+            AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
+        }
     }
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
+    if (label) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 2, parser->xctx);
+        argv[0] = impl_function_definition_break;
+        argv[1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            argc, argv, true, parser->p, parser->xctx);
+    }
+    else {
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
             0, &impl_function_definition_break, true,
             parser->p, parser->xctx);
+    }
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -646,41 +814,174 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
 
 
 
+static const afw_value_t *
+impl_create_let_or_const_call(
+    afw_compile_parser_t *parser,
+    const afw_value_t *define_function,
+    const afw_value_t *target,
+    const afw_value_t *value,
+    afw_size_t start_offset)
+{
+    const afw_value_t **argv;
+
+    argv = afw_pool_malloc(parser->p,
+        sizeof(afw_value_t *) * 4,
+        parser->xctx);
+    argv[0] = define_function;
+    argv[1] = target;
+    argv[2] = value;
+    argv[3] = NULL;
+
+    return afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        3, argv, true, parser->p, parser->xctx);
+}
+
+
+/* Current token is after the target. Leaves the following token current. */
+static const afw_value_t *
+impl_finish_one_let_or_const_binding(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const,
+    const afw_value_t *target,
+    afw_size_t binding_offset)
+{
+    const afw_value_t *value;
+
+    value = NULL;
+    if (afw_compile_token_is(equal)) {
+        value = afw_compile_parse_Expression(parser);
+        impl_compile_check_assign_target(parser, target, value);
+        if (is_const) {
+            impl_set_simple_const_symbol_initial_value(target, value);
+        }
+        afw_compile_get_token();
+    }
+    else if (is_const) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
+    }
+
+    return impl_create_let_or_const_call(parser,
+        is_const
+            ? &afw_function_definition_const.pub
+            : &afw_function_definition_let.pub,
+        target, value, binding_offset);
+}
+
+
+/*
+ * After the first binding's following token is current. Comma continues
+ * with more AssignmentTargets of the same kind (no second 'let'/'const').
+ */
+static const afw_value_t *
+impl_parse_more_let_or_const_bindings(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const,
+    const afw_value_t *first_call)
+{
+    const afw_value_t *call;
+    const afw_value_t *target;
+    const afw_array_t *list;
+    afw_compile_internal_assignment_type_t assignment_type;
+    afw_size_t binding_offset;
+
+    assignment_type = is_const
+        ? afw_compile_assignment_type_const
+        : afw_compile_assignment_type_let;
+    call = first_call;
+    list = NULL;
+
+    for (;;) {
+        if (afw_compile_token_is(comma)) {
+            if (!list) {
+                list = afw_array_create_generic(parser->p, parser->xctx);
+            }
+            afw_array_push_value(list, call, parser->xctx);
+            afw_compile_save_cursor(binding_offset);
+            target = afw_compile_parse_AssignmentTarget(parser,
+                assignment_type);
+            afw_compile_get_token();
+            call = impl_finish_one_let_or_const_binding(parser, is_const,
+                target, binding_offset);
+            continue;
+        }
+
+        if (!list) {
+            return call;
+        }
+        afw_array_push_value(list, call, parser->xctx);
+        afw_array_set_immutable(list, parser->xctx);
+        return afw_value_create_unmanaged_array(
+            list, parser->p, parser->xctx);
+    }
+}
+
+
+/*
+ * One or more let/const bindings in the current block. Keyword already
+ * consumed. Leaves the terminator token current (caller wants ';').
+ * One binding: that call. Several: array of calls for StatementList flatten.
+ */
+static const afw_value_t *
+impl_parse_let_or_const_bindings(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const)
+{
+    const afw_value_t *target;
+    const afw_value_t *first;
+    afw_compile_internal_assignment_type_t assignment_type;
+    afw_size_t binding_offset;
+
+    assignment_type = is_const
+        ? afw_compile_assignment_type_const
+        : afw_compile_assignment_type_let;
+
+    afw_compile_save_cursor(binding_offset);
+    target = afw_compile_parse_AssignmentTarget(parser, assignment_type);
+    afw_compile_get_token();
+    first = impl_finish_one_let_or_const_binding(parser, is_const,
+        target, binding_offset);
+    return impl_parse_more_let_or_const_bindings(parser, is_const, first);
+}
+
+
+static const afw_value_t *
+impl_for_init_as_statement_list(
+    afw_compile_parser_t *parser,
+    const afw_value_t *init)
+{
+    const afw_array_t *list;
+
+    if (!init) {
+        return NULL;
+    }
+    if (afw_value_is_array(init)) {
+        return init;
+    }
+    list = afw_array_create_generic(parser->p, parser->xctx);
+    afw_array_push_value(list, init, parser->xctx);
+    return afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
+}
+
+
 /*ebnf>>>
  *
- * ConstStatement ::= 'const' AssignmentTarget '=' Expression ';'
+ * ConstDeclaration ::=
+ *     'const' AssignmentTarget '=' Expression
+ *     ( ',' AssignmentTarget '=' Expression )*
+ *
+ * ConstStatement ::= ConstDeclaration ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_ConstStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
-    const afw_value_t **argv;
 
-    result = NULL;
-    argv = afw_pool_malloc(parser->p,
-        sizeof(afw_value_t *) * 4,
-        parser->xctx);
-
-    argv[0] = &afw_function_definition_const.pub;
-    argv[1] = afw_compile_parse_AssignmentTarget(parser,
-        afw_compile_assignment_type_const);
-    argv[2] = NULL;
-    argv[3] = NULL;
-
-    afw_compile_get_token();
-    if (!afw_compile_token_is(equal)) {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
+    result = impl_parse_let_or_const_bindings(parser, true);
+    if (!afw_compile_token_is(semicolon)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
     }
-    argv[2] = afw_compile_parse_Expression(parser);
-    impl_compile_check_assign_target(parser, argv[1], argv[2]);
-    impl_set_simple_const_symbol_initial_value(argv[1], argv[2]);
-    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
-
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-            3, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -809,23 +1110,56 @@ impl_parse_TypeStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * ContinueStatement ::= 'continue' ';'
+ *# Optional Identifier must name an enclosing loop label (issue #62).
+ *
+ * ContinueStatement ::= 'continue' Identifier? ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t **argv;
+    const afw_utf8_t *label;
+    afw_size_t start_offset;
+    afw_size_t argc;
 
-    if (!parser->continue_allowed) {
-        AFW_COMPILE_THROW_ERROR_Z("Misplaced 'continue'");
+    start_offset = parser->token->token_source_offset;
+    label = NULL;
+    argc = 0;
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        label = impl_copy_token_identifier(parser);
+        if (!impl_loop_label_is_active(parser, label)) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Unknown loop label " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(label));
+        }
+        argc = 1;
+    }
+    else {
+        afw_compile_reuse_token();
+        if (!parser->continue_allowed) {
+            AFW_COMPILE_THROW_ERROR_Z("Misplaced 'continue'");
+        }
     }
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-        0, &impl_function_definition_continue, true,
-        parser->p, parser->xctx);
+    if (label) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 2, parser->xctx);
+        argv[0] = impl_function_definition_continue;
+        argv[1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            argc, argv, true, parser->p, parser->xctx);
+    }
+    else {
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            0, &impl_function_definition_continue, true,
+            parser->p, parser->xctx);
+    }
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -839,7 +1173,9 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
+impl_parse_DoWhileStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -849,7 +1185,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
     afw_compile_save_cursor(start_offset);
 
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = &afw_function_definition_do_while.pub;
 
     break_allowed = parser->break_allowed;
@@ -879,9 +1215,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, true, parser->p, parser->xctx);
+    result = impl_create_loop_call(parser, start_offset, 2, argv, label);
         
     return result;
 }
@@ -890,10 +1224,19 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
+ *# C-style init is one let, one const, or assignment(s) — not a mixed
+ *# comma list of defines (issue #62). for (let i = 0, j = 1; …) is a
+ *# LetDeclaration. for (let i = 0, let j = 1; …) is not accepted.
+ *# Comma-separated Assignments stay (TS/JS comma operator stand-in).
+ *
  * ForStatement ::= 'for'
  *   '(' (
  *       (
- *           ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+ *           (
+ *               LetDeclaration |
+ *               ConstDeclaration |
+ *               ( Assignment ( ',' Assignment )* )
+ *           )?
  *           ';' Expression?
  *           ';' ( Assignment ( ',' Assignment )* )?
  *       ) |
@@ -904,12 +1247,15 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_ForStatement(afw_compile_parser_t *parser)
+impl_parse_ForStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
     const afw_value_t *value;
     const afw_value_t *target;
+    const afw_value_t *init_value;
     const afw_array_t *list;
     const afw_value_t *define_function;
     const afw_value_block_t *block;
@@ -927,50 +1273,58 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting '('");
     }
     list = NULL;
+    init_value = NULL;
     afw_compile_get_token();
     if (!afw_compile_token_is(semicolon)) {
+        afw_size_t binding_offset;
+        const afw_value_t *first_call;
+        afw_boolean_t is_const_decl;
+
         afw_compile_reuse_token();
-        for (;;) {
-            /*
-             * Get the target using OptionalDefineTarget(). This is needed for
-             * the "OptionalDefineTarget 'of' Expression" part of production. If
-             * it turns out the OptionalDefineAssignment matches instead, pass
-             * this target to OptionalDefineAssignment() since it has already
-             * been parsed and the first part is the same.
-             */
-            target = afw_compile_parse_OptionalDefineTarget(parser,
-                &define_function, &block);
+        afw_compile_save_cursor(binding_offset);
+        target = afw_compile_parse_OptionalDefineTarget(parser,
+            &define_function, &block);
 
-            afw_compile_get_token();
-            if (afw_compile_token_is_name(afw_s_of)) {
-                if (list) {
-                    AFW_COMPILE_THROW_ERROR_Z("Not expecting 'of'");
-                }
-                is_for_of = true;
-                break;
-            }
-            afw_compile_reuse_token();
-
-            value = afw_compile_parse_OptionalDefineAssignment(parser,
-                target, define_function);
-
-            if (!list) {
-                list = afw_array_create_generic(parser->p, parser->xctx);
-            }
-            afw_array_push_value(list, value, parser->xctx);
-            afw_compile_get_token();
-            if (afw_compile_token_is(semicolon)) {
-                break;
-            }
-            if (!afw_compile_token_is(comma)) {
+        afw_compile_get_token();
+        if (afw_compile_token_is_name(afw_s_of)) {
+            is_for_of = true;
+        }
+        else if (define_function) {
+            is_const_decl = (define_function ==
+                &afw_function_definition_const.pub);
+            first_call = impl_finish_one_let_or_const_binding(parser,
+                is_const_decl, target, binding_offset);
+            value = impl_parse_more_let_or_const_bindings(parser,
+                is_const_decl, first_call);
+            if (!afw_compile_token_is(semicolon)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
             }
+            init_value = impl_for_init_as_statement_list(parser, value);
+        }
+        else {
+            afw_compile_reuse_token();
+            value = afw_compile_parse_AssignmentOperation(parser,
+                target, false, NULL);
+            list = afw_array_create_generic(parser->p, parser->xctx);
+            afw_array_push_value(list, value, parser->xctx);
+            afw_compile_get_token();
+            while (afw_compile_token_is(comma)) {
+                afw_compile_get_token();
+                value = afw_compile_parse_Assignment(parser, NULL);
+                afw_array_push_value(list, value, parser->xctx);
+                afw_compile_get_token();
+            }
+            if (!afw_compile_token_is(semicolon)) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
+            }
+            init_value = afw_value_create_unmanaged_array(
+                list, parser->p, parser->xctx);
         }
     }
 
     if (is_for_of) {
         argv = afw_pool_malloc(parser->p,
-            sizeof(afw_value_t *) * 4, parser->xctx);
+            sizeof(afw_value_t *) * 5, parser->xctx);
         argv[0] = &afw_function_definition_for_of.pub;
         argv[1] = target;   
         argv[2] = afw_compile_parse_Expression(parser);
@@ -988,19 +1342,13 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
-        result = afw_value_call_built_in_function_create(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            3, argv, true, parser->p, parser->xctx);
+        result = impl_create_loop_call(parser, start_offset, 3, argv, label);
     }
 
     else {
-        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
+        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 6, parser->xctx);
         argv[0] = &afw_function_definition_for.pub;
-        argv[1] = NULL;
-        if (list) {
-            argv[1] = afw_value_create_unmanaged_array(
-                list, parser->p, parser->xctx);
-        }
+        argv[1] = init_value;
 
         /* Expression? ';' */
         argv[2] = NULL;
@@ -1048,9 +1396,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
-        result = afw_value_call_built_in_function_create(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            4, argv, true, parser->p, parser->xctx);
+        result = impl_create_loop_call(parser, start_offset, 4, argv, label);
 
     }
 
@@ -1194,41 +1540,22 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * LetStatement ::= 'let' AssignmentTarget ( '=' Expression )? ';'
+ * LetDeclaration ::=
+ *     'let' AssignmentTarget ( '=' Expression )?
+ *     ( ',' AssignmentTarget ( '=' Expression )? )*
+ *
+ * LetStatement ::= LetDeclaration ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_LetStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
-    const afw_value_t **argv;
- 
-    result = NULL;
-    argv = afw_pool_malloc(parser->p,
-        sizeof(afw_value_t *) * 4,
-        parser->xctx);
 
-    argv[0] = &afw_function_definition_let.pub;
-    argv[1] = afw_compile_parse_AssignmentTarget(parser,
-        afw_compile_assignment_type_let);
-    argv[2] = NULL;
-    argv[3] = NULL;
-
-    afw_compile_get_token();
+    result = impl_parse_let_or_const_bindings(parser, false);
     if (!afw_compile_token_is(semicolon)) {
-        if (!afw_compile_token_is(equal)) {
-            AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
-        }
-        argv[2] = afw_compile_parse_Expression(parser);
-        impl_compile_check_assign_target(parser, argv[1], argv[2]);
-        /* let: do not set initial_value (mutable rebind). */
-        AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
     }
-
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-            3, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -1700,7 +2027,9 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_WhileStatement(afw_compile_parser_t *parser)
+impl_parse_WhileStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -1710,7 +2039,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
 
     afw_compile_save_cursor(start_offset);
 
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = &afw_function_definition_while.pub;
 
     /* ( expression ) */
@@ -1732,9 +2061,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
     parser->break_allowed = break_allowed;
     parser->continue_allowed = continue_allowed;
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, true, parser->p, parser->xctx);
+    result = impl_create_loop_call(parser, start_offset, 2, argv, label);
 
     return result;
 }
@@ -1749,6 +2076,10 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  * CallStatement ::= EvaluationThatCompilesToCallValue
  *
  *# BreakStatement and ContinueStatement can only be in a loop.
+ *# LabeledStatement is only for / while / do (issue #62). Not blocks or if.
+ *
+ * LabeledStatement ::= Identifier ':' (
+ *     ForStatement | WhileStatement | DoWhileStatement )
  *
  * Block ::= '{' StatementList '}'
  *
@@ -1765,6 +2096,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    FunctionStatement |
  *    IfStatement |
  *    InterfaceStatement |
+ *    LabeledStatement |
  *    LetStatement |
  *    PragmaStatement |
  *    ReturnStatement |
@@ -1775,6 +2107,53 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    WhileStatement
  *
  *<<<ebnf*/
+
+
+static const afw_value_t *
+impl_parse_LabeledStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
+{
+    const afw_value_t *result;
+
+    if (impl_loop_label_is_active(parser, label)) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "Duplicate loop label " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_ARG(label));
+    }
+
+    /* Caller already saw Identifier. Next token is ':'. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is(colon)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
+    }
+
+    impl_loop_label_push(parser, label);
+
+    afw_compile_get_token();
+    if (afw_compile_token_is_name(afw_s_for)) {
+        result = impl_parse_ForStatement(parser, label);
+    }
+    else if (afw_compile_token_is_name(afw_s_while)) {
+        result = impl_parse_WhileStatement(parser, label);
+    }
+    else if (afw_compile_token_is_name(afw_s_do)) {
+        result = impl_parse_DoWhileStatement(parser, label);
+    }
+    else if (afw_compile_token_is_unqualified_identifier() &&
+        afw_compile_peek_next_token_is(colon))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Only one label is allowed on a loop");
+    }
+    else {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Labels are only allowed on for, while, and do statements");
+    }
+
+    impl_loop_label_pop(parser);
+    return result;
+}
 const afw_value_t *
 afw_compile_parse_Statement(
     afw_compile_parser_t *parser,
@@ -1831,12 +2210,12 @@ afw_compile_parse_Statement(
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_do))
         {
-            result = impl_parse_DoWhileStatement(parser);
+            result = impl_parse_DoWhileStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_for))
         {
-            result = impl_parse_ForStatement(parser);
+            result = impl_parse_ForStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_if))
@@ -1866,7 +2245,7 @@ afw_compile_parse_Statement(
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_while))
         {
-            result = impl_parse_WhileStatement(parser);
+            result = impl_parse_WhileStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_function))
@@ -1905,6 +2284,22 @@ afw_compile_parse_Statement(
      * 4) An invalid statement error is thrown.
      *
      */
+    if (!result &&
+        afw_compile_token_is_unqualified_identifier() &&
+        !parser->token->identifier_qualifier)
+    {
+        const afw_utf8_t *maybe_label;
+
+        /*
+         * Copy before peek: get_token() memsets the token, so a colon
+         * lookahead would drop identifier_name.
+         */
+        maybe_label = impl_copy_token_identifier(parser);
+        if (afw_compile_peek_next_token_is(colon)) {
+            result = impl_parse_LabeledStatement(parser, maybe_label);
+        }
+    }
+
     if (!result) {
         if (afw_compile_token_is(semicolon)) {
             return NULL;
@@ -2048,20 +2443,31 @@ afw_compile_parse_StatementList(
 
         statement = afw_compile_parse_Statement(parser, was_expression);
 
-        /** @fixme I believe these statements can go away. Return sets flow. */
-        // if (was_expression_value) {
-        //     argv = afw_pool_malloc(parser->p,
-        //         sizeof(afw_value_t *) * 2, parser->xctx);
-        //     argv[0] = &afw_function_definition_return.pub;
-        //     argv[1] = statement;
-        //     statement = afw_value_call_built_in_function_create(
-        //         afw_compile_create_contextual_to_cursor(start_offset),
-        //         1, argv, true, parser->p, parser->xctx);
-        // }
         was_expression = NULL;
 
         if (statement) {
-            afw_compile_args_add_value(args, statement);
+            /*
+             * Multi let/const is an array of calls in this block (no extra
+             * scope). Flatten so each binding is its own statement.
+             */
+            if (afw_value_is_array(statement)) {
+                const afw_iterator_old_t *iterator;
+                const afw_value_t *one;
+
+                iterator = NULL;
+                for (;;) {
+                    one = afw_array_get_next_value(
+                        ((const afw_value_array_t *)statement)->internal,
+                        &iterator, parser->p, parser->xctx);
+                    if (!one) {
+                        break;
+                    }
+                    afw_compile_args_add_value(args, one);
+                }
+            }
+            else {
+                afw_compile_args_add_value(args, statement);
+            }
         }
     }
 
@@ -2147,9 +2553,9 @@ afw_compile_parse_StatementList(
 /*ebnf>>>
  *
  *#
- *# The value returned from a script if the Expression specified on an
- *# evaluated ReturnStatement, the single Expression specified, or null
- *# if none of the above.
+ *# Script result (issue #62): return, assignment, or a lone Expression
+ *# (compiled as return). Most other statements do not write it. Empty
+ *# script is undefined.
  *#
  * Script ::= ScriptShebang? ( Statement* | Expression )
  *
@@ -2603,6 +3009,13 @@ impl_test_script_get_next_key_value(
                 "Must be 'error' by itself or 'error:' immediately "
                 "followed by the exact error message expected");
         }
+        if (*string &&
+            afw_utf8_starts_with(*string, afw_s_success) &&
+            !afw_utf8_equal(*string, afw_s_success))
+        {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Must be 'success' by itself (completed, ignore result)");
+        }
     }
 }
 
@@ -2664,8 +3077,14 @@ impl_test_script_get_next_key_value(
  * TestExpect ::= TestScriptLineStart
  *    'expect:' (
  *        ( 'error' '\n' ) |
- *        ( 'result' TestScriptValue )
+ *        ( 'error:' UnicodeNonControl* '\n' ) |
+ *        ( 'success' '\n' ) |
+ *        TestScriptValue
  *    )
+ *#
+ *# 'success' means compiled and ran with no throw; the result is ignored.
+ *# 'error' / 'error:message' mean a throw. Any other value is Adaptive
+ *# and compared to the script result (including 'undefined').
  *
  *# Optional side-channel text expects (string equality on captured utf-8;
  *# not Adaptive-eval). Hyphen keys only — ':' is the //? key/value separator.

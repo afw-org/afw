@@ -29,7 +29,8 @@
     ],
     "pure": true,
     "returns": {
-        "description": "The value assigned."
+        "dataType": "void",
+        "description": "Does not complete. A const statement does not override the running result."
     },
     "scriptSupport": true
 }

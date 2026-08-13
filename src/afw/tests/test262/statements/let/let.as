@@ -63,19 +63,15 @@
 
 //? test: cptn-value
 //? description: Returns an empty completion
-//? expect: error:Assertion failed: Single declaration bearing initializer
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
-
 
 assert(
   eval(script('let test262id1;')) == undefined, 
   'Single declaration without initializer'
 );
 
-// In adaptive script, declaring a variable and assigning it a value 
-// returns the value assigned. In ECMAScript, it returns undefined.
-// If we change this in the future, the expect should also be changed.
 assert(
   eval(script('let test262id2 = 2;')) == undefined,
   'Single declaration bearing initializer'
@@ -88,14 +84,6 @@ assert(
   eval(script('let test262id5, test262id6 = 6;')) == undefined,
   'Multiple declarations, final bearing initializer'
 );
-
-// can't do expressions as statements in adaptive script
-assert(eval(script('7; let test262id8;')) === 7);
-assert(eval(script('9; let test262id10 = 10;')) === 9);
-assert(eval(script('11; let test262id12 = 12 === test262id13;')) === 11);
-assert(eval(script('14; let test262id15 === test262id16 = 16;')) === 14);
-
-
 //? test: fn-name-arrow
 //? description: Assignment of function `name` attribute (ArrowFunction)
 //? expect: error:Parse error at offset 80 around line 4 column 14: Expecting Value

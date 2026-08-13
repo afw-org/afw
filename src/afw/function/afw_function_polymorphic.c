@@ -509,6 +509,14 @@ afw_function_execute_eq(
     if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
         return afw_boolean_v_false;
     }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
+    }
+    if (afw_value_is_void(arg2)) {
+        return afw_boolean_v_false;
+    }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
@@ -595,6 +603,14 @@ afw_function_execute_eqx(
             : afw_boolean_v_false;
     }
     if (afw_value_is_undefined(arg2)) {
+        return afw_boolean_v_false;
+    }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
+    }
+    if (afw_value_is_void(arg2)) {
         return afw_boolean_v_false;
     }
 
@@ -1554,6 +1570,14 @@ afw_function_execute_ne(
     if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
         return afw_boolean_v_true;
     }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_false
+            : afw_boolean_v_true;
+    }
+    if (afw_value_is_void(arg2)) {
+        return afw_boolean_v_true;
+    }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
@@ -1642,6 +1666,14 @@ afw_function_execute_nex(
             : afw_boolean_v_true;
     }
     if (afw_value_is_undefined(arg2)) {
+        return afw_boolean_v_true;
+    }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_false
+            : afw_boolean_v_true;
+    }
+    if (afw_value_is_void(arg2)) {
         return afw_boolean_v_true;
     }
 

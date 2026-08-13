@@ -4,7 +4,7 @@
 **Status:** **Shipped** on `mgg-develop` (PR **#167**). Authoritative schema/author guide:
 [`src/afw/tests-extra/SCHEMA.md`](../src/afw/tests-extra/SCHEMA.md),
 [`src/afw/tests-extra/README.md`](../src/afw/tests-extra/README.md),
-developer [`writing-tests.md`](../src/afw/doc/developer/writing-tests.md).  
+handbook [`writing-tests.xml`](../src/afw/doc/guide/developer/writing-tests.xml).  
 **GitHub issue:** [#157](https://github.com/afw-org/afw/issues/157) (may stay open for residuals).  
 **Related:** [#2](https://github.com/afw-org/afw/issues/2), [#149](https://github.com/afw-org/afw/issues/149), recipe [`afwdev-test-recipe.md`](afwdev-test-recipe.md).  
 **Depends on:** installed `afwfcgi` / `afw` via `./afwdev build … --install`.
@@ -304,7 +304,7 @@ Implementation: one shared dict builder `default_fcgi_params(path, method, body,
 |-----|------|
 | **This pad** | Design + decisions (experimental) |
 | **Smoke / showcase leaves** | Living examples under `src/afw/tests/advanced/` |
-| **`src/afw/doc/developer/writing-tests.md`** | Builder-facing how-to (test_script first; advanced-test section experimental) |
+| **`src/afw/doc/guide/developer/writing-tests.xml`** | Handbook Developer Guide how-to (test_script first; advanced-test section experimental) |
 | **`designs/README.md`** | Index entry |
 
 ---

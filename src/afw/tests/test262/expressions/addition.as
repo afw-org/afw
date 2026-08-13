@@ -7,7 +7,7 @@
 //?
 //? test: 11.6.1_A1
 //? description: White Space and Line Terminator between AdditiveExpression and "+" or between "+" and MultiplicativeExpression are allowed
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -60,11 +60,9 @@ if (eval(script("1\u2029+\u20291")) !== 2) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029+\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 2) {
   throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029+\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 2';
 }
-
-
 //? test: 11.6.1_A2.1_T1
 //? description: Operator x + y
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -87,8 +85,6 @@ y = 1;
 if (x + y !== 2) {
     throw "x + y !== 2";
 }
-
-
 //? test: 11.6.1_A2.1_T2
 //? description: If x is not declared, throw error
 //? expect: error
@@ -127,7 +123,7 @@ if (x = (x = 1) !== 1) {
 
 //? test: 11.6.1_A2.4_T2
 //? description: First expression is evaluated first, and then second expression: checking with assert errors
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -150,9 +146,6 @@ safe_evaluate(
 
 assert(x_1 === 1, "x_1 === 1");
 assert(y_1 === 0, "y_1 === 0");
-
-
-
 //? test: 11.6.1_A2.4_T3
 //? description: First expression is evaluated first, and then second expression: checking with undeclared variables
 //? expect: error:Parse error at offset 55 around line 5 column 9: Unknown built-in function 'x'

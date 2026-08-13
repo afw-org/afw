@@ -281,6 +281,10 @@ impl_afw_value_optional_evaluate(
             if (afw_utf8_starts_with(expect, afw_s_error)) {
                 expected_value = NULL;
             }
+            else if (afw_utf8_equal(expect, afw_s_success)) {
+                /* Completed without throw; ignore the result value. */
+                expected_value = NULL;
+            }
             else if (afw_utf8_equal(expect, afw_s_undefined)) {
                 expected_value = afw_value_undefined;
             }
@@ -323,25 +327,33 @@ impl_afw_value_optional_evaluate(
             error_in = error_in_other;
             (void)error_in; /* In catch. Avoid "not used" error. */
 
-            afw_object_set_property(test, afw_s_result,
-                evaluated_value, xctx);
+            /*
+             * success: ignore the value (do not put a raw Adaptive value
+             * on the test object — JSON cannot write script_function).
+             */
+            if (afw_utf8_equal(expect, afw_s_success)) {
+                afw_object_set_property(test, afw_s_passed,
+                    afw_boolean_v_true, xctx);
+            }
+            else {
+                afw_object_set_property(test, afw_s_result,
+                    evaluated_value, xctx);
 
-            afw_object_set_property(test, afw_s_passed,
-                afw_boolean_v_true,
-                xctx);
-
-            passed_value =
-                !afw_utf8_starts_with(expect, afw_s_error) &&
-                (
-                    (!expected_value && !evaluated_value) ||
+                passed_value =
+                    !afw_utf8_starts_with(expect, afw_s_error) &&
                     (
-                        expected_value &&
-                        afw_value_equal(evaluated_value, expected_value, xctx)
+                        (!expected_value && !evaluated_value) ||
+                        (
+                            expected_value &&
+                            afw_value_equal(evaluated_value, expected_value,
+                                xctx)
+                        )
                     )
-                )
-                ? afw_boolean_v_true
-                : afw_boolean_v_false;
-            afw_object_set_property(test, afw_s_passed, passed_value, xctx);
+                    ? afw_boolean_v_true
+                    : afw_boolean_v_false;
+                afw_object_set_property(test, afw_s_passed, passed_value,
+                    xctx);
+            }
         }
 
         AFW_CATCH_UNHANDLED{

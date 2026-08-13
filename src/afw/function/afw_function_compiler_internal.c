@@ -44,6 +44,89 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
+static const afw_utf8_t *
+impl_optional_loop_label(afw_function_execute_t *x, afw_size_t n)
+{
+    const afw_value_t *v;
+
+    if (!AFW_FUNCTION_PARAMETER_IS_PRESENT(n)) {
+        return NULL;
+    }
+    v = AFW_FUNCTION_ARGV(n);
+    if (!afw_value_is_string(v)) {
+        v = afw_function_evaluate_required_parameter(x, n,
+            afw_data_type_string);
+    }
+    return &((const afw_value_string_t *)v)->internal;
+}
+
+
+static afw_boolean_t
+impl_loop_is_flow_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
+{
+    const afw_utf8_t *target;
+
+    if (!afw_xctx_statement_flow_is_type(break, xctx) &&
+        !afw_xctx_statement_flow_is_type(continue, xctx))
+    {
+        return false;
+    }
+    target = xctx->statement_flow_label;
+    if (!target) {
+        return true;
+    }
+    return this_label && afw_utf8_equal(this_label, target);
+}
+
+
+static void
+impl_loop_consume_if_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
+{
+    if (impl_loop_is_flow_target(this_label, xctx)) {
+        afw_xctx_statement_flow_reset_break_and_continue(xctx);
+    }
+}
+
+
+/* True if this loop should stop iterating (propagate or consume break). */
+static afw_boolean_t
+impl_loop_should_exit(const afw_utf8_t *this_label, afw_xctx_t *xctx)
+{
+    if (afw_xctx_statement_flow_is_type(return, xctx) ||
+        afw_xctx_statement_flow_is_type(rethrow, xctx))
+    {
+        return true;
+    }
+    if (afw_xctx_statement_flow_is_type(break, xctx)) {
+        impl_loop_consume_if_target(this_label, xctx);
+        return true;
+    }
+    if (afw_xctx_statement_flow_is_type(continue, xctx)) {
+        if (impl_loop_is_flow_target(this_label, xctx)) {
+            impl_loop_consume_if_target(this_label, xctx);
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+
+/* Statement built-ins are void unless return/rethrow produced a value. */
+static const afw_value_t *
+impl_statement_result_or_void(
+    const afw_value_t *result,
+    afw_xctx_t *xctx)
+{
+    if (afw_xctx_statement_flow_is_type(return, xctx) ||
+        afw_xctx_statement_flow_is_type(rethrow, xctx))
+    {
+        return result;
+    }
+    return afw_value_void;
+}
+
+
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
 static afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
@@ -656,6 +739,25 @@ impl_evaluate_one_or_more_values(
 }
 
 
+/* for init/increment are assignment IR, not script assignment statements. */
+static void
+impl_evaluate_for_increment(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_value_t *values,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *saved_result;
+    afw_boolean_t saved_written;
+
+    saved_result = xctx->script_result;
+    saved_written = xctx->script_result_written;
+    impl_evaluate_one_or_more_values(x, parameter_number, values, p, xctx);
+    xctx->script_result = saved_result;
+    xctx->script_result_written = saved_written;
+}
+
 
 
 /*
@@ -705,6 +807,7 @@ afw_function_execute_assign(
         afw_compile_assignment_type_assign_only,
         p, xctx);
 
+    afw_xctx_script_result_set(result, xctx);
     return result;
 }
 
@@ -718,7 +821,8 @@ afw_function_execute_assign(
  * See afw_function_bindings_internal.h for more information.
  *
  * This is a special function that can be called to break out of the body of a
- * loop. If called outside of a loop body, an error is thrown.
+ * loop or switch. If a label is supplied, break the loop with that label. If
+ * called outside of a loop or switch body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -727,42 +831,30 @@ afw_function_execute_assign(
  *
  * ```
  *   function break(
- *       value?: any
- *   ): any;
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
  *
- *   value - (optional any) The value to evaluate that the enclosing loop will
- *       return. If not specified, the last evaluated value or a null value will
- *       be returned.
+ *   label - (optional string) Optional loop label. If omitted, break the
+ *       innermost loop or switch.
  *
  * Returns:
  *
- *   (any) This function returns from the body of a loop with the last evaluated
- *       value.
+ *   (void) Does not complete. Leaves the body of a loop or switch.
  */
 const afw_value_t *
 afw_function_execute_break(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_pool_t *p = x->p;
-    const afw_value_t *result;
 
-    result = afw_value_undefined;
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
+    xctx->statement_flow_label = impl_optional_loop_label(x, 1);
     afw_xctx_statement_flow_set_type(break, xctx);
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
-        result = afw_function_evaluate_required_parameter(x, 1, NULL);
-        if (afw_value_is_script_function_definition(result)) {
-            result = impl_create_closure_if_needed(
-                (const afw_value_script_function_definition_t *)result,
-                p, xctx);
-        }
-    }
 
-    return result;
+    return afw_value_void;
 }
 
 
@@ -787,7 +879,7 @@ afw_function_execute_break(
  *       name: string[],
  *       value: any,
  *       type?: object // _AdaptiveValueMeta_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -801,7 +893,8 @@ afw_function_execute_break(
  *
  * Returns:
  *
- *   (any) The value assigned.
+ *   (void) Does not complete. A const statement does not override the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_const(
@@ -809,18 +902,17 @@ afw_function_execute_const(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
     /** @fixme process type. */
 
-    result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
+    impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
         afw_compile_assignment_type_const,
         p, xctx);
 
-    return result;
+    return afw_value_void;
 }
 
 
@@ -833,8 +925,9 @@ afw_function_execute_const(
  * See afw_function_bindings_internal.h for more information.
  *
  * This is a special function that can be called in the body of a loop function
- * to test the condition and, if true, start evaluating the body again. If
- * called outside of a loop body, an error is thrown.
+ * to test the condition and, if true, start evaluating the body again. If a
+ * label is supplied, continue the loop with that label. If called outside of a
+ * loop body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -843,14 +936,18 @@ afw_function_execute_const(
  *
  * ```
  *   function continue(
- *   ): any;
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
  *
+ *   label - (optional string) Optional loop label. If omitted, continue the
+ *       innermost loop.
+ *
  * Returns:
  *
- *   (any) This function does not return.
+ *   (void) Does not complete. Continues the enclosing loop.
  */
 const afw_value_t *
 afw_function_execute_continue(
@@ -858,10 +955,11 @@ afw_function_execute_continue(
 {
     afw_xctx_t *xctx = x->xctx;
 
-    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(0);
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(1);
+    xctx->statement_flow_label = impl_optional_loop_label(x, 1);
     afw_xctx_statement_flow_set_type(continue, xctx);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -887,8 +985,9 @@ afw_function_execute_continue(
  * ```
  *   function do_while(
  *       condition: boolean,
- *       body: array
- *   ): any;
+ *       body: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -901,9 +1000,13 @@ afw_function_execute_continue(
  *       order until the end of the array or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if the body is empty.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_do_while(
@@ -914,10 +1017,14 @@ afw_function_execute_do_while(
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
-    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
+    const afw_utf8_t *this_label;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
+    this_label = impl_optional_loop_label(x, 3);
     for (;;) {
         result = afw_value_block_evaluate_statement(x, x->argv[2], p, xctx);
-        if (afw_xctx_statement_flow_is_leave(xctx)) {
+        if (impl_loop_should_exit(this_label, xctx)) {
             break;
         }
         AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
@@ -926,10 +1033,9 @@ afw_function_execute_do_while(
         }
     }
 
-    /* We don't want break/continue outside of this loop */
-    afw_xctx_statement_flow_reset_break_and_continue(xctx);
+    impl_loop_consume_if_target(this_label, xctx);
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -956,8 +1062,9 @@ afw_function_execute_do_while(
  *       initial?: array,
  *       condition?: boolean,
  *       increment?: array,
- *       body?: array
- *   ): any;
+ *       body?: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -978,10 +1085,13 @@ afw_function_execute_do_while(
  *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_for(
@@ -996,13 +1106,17 @@ afw_function_execute_for(
     const afw_value_t *increment;
     const afw_value_t *body;
 
+    const afw_utf8_t *this_label;
+
     previous_iterator_scope = NULL;
+    this_label = NULL;
     AFW_TRY{
 
-        AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
+        AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(5);
+        this_label = impl_optional_loop_label(x, 5);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
-            impl_evaluate_one_or_more_values(x, 1, x->argv[1], p, xctx);
+            impl_evaluate_for_increment(x, 1, x->argv[1], p, xctx);
         }
 
         increment = NULL;
@@ -1027,7 +1141,7 @@ afw_function_execute_for(
 
             if (body) {
                 result = afw_value_block_evaluate_statement(x, body, p, xctx);
-                if (afw_xctx_statement_flow_is_leave(xctx)) {
+                if (impl_loop_should_exit(this_label, xctx)) {
                     break;
                 }
             }
@@ -1044,14 +1158,13 @@ afw_function_execute_for(
                 }
                 previous_iterator_scope = scope;
                 afw_xctx_scope_activate(scope, xctx);
-                impl_evaluate_one_or_more_values(x, 3, increment, p, xctx);
+                impl_evaluate_for_increment(x, 3, increment, p, xctx);
             }
         }
     }
     AFW_FINALLY{
 
-        /* We don't want break/continue outside of this loop */
-        afw_xctx_statement_flow_reset_break_and_continue(xctx);
+        impl_loop_consume_if_target(this_label, xctx);
 
         /* Release final increment scope. */
         if (previous_iterator_scope) {
@@ -1060,7 +1173,7 @@ afw_function_execute_for(
     }
     AFW_ENDTRY;
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -1088,8 +1201,9 @@ afw_function_execute_for(
  *   function for_of(
  *       name: string[],
  *       value: any,
- *       body?: array
- *   ): any;
+ *       body?: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1103,10 +1217,13 @@ afw_function_execute_for(
  *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_for_of(
@@ -1119,11 +1236,15 @@ afw_function_execute_for_of(
     const afw_value_t *value;
     afw_compile_internal_assignment_type_t assignment_type;
     afw_iterator_t iterator;
+    const afw_utf8_t *this_label;
 
     result = afw_value_undefined;
+    this_label = NULL;
     AFW_TRY{
 
-        AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(3);
+        AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(3);
+        AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(4);
+        this_label = impl_optional_loop_label(x, 4);
 
         /*
          * Evaluate head without forcing array. Keyless afw_iterator covers
@@ -1168,7 +1289,7 @@ afw_function_execute_for_of(
             }
             result = afw_value_block_evaluate_statement(
                 x, x->argv[3], p, xctx);
-            if (afw_xctx_statement_flow_is_leave(xctx)) {
+            if (impl_loop_should_exit(this_label, xctx)) {
                 break;
             }
         }
@@ -1176,13 +1297,12 @@ afw_function_execute_for_of(
     }
     AFW_FINALLY{
 
-        /* We don't want break/continue outside of this loop */
-        afw_xctx_statement_flow_reset_break_and_continue(xctx);
+        impl_loop_consume_if_target(this_label, xctx);
 
     }
     AFW_ENDTRY;
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -1225,7 +1345,7 @@ afw_function_execute_for_of(
  *
  * Returns:
  *
- *   (any) The result of evaluating 'then' or 'else'.
+ *   (any) The result of evaluating 'then' or 'else'. Also the ternary operator.
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -1248,6 +1368,10 @@ afw_function_execute_if(
         result = afw_value_block_evaluate_statement(x, x->argv[3], p, xctx);
     }
 
+    /*
+     * if is also the ternary operator. Always return then/else. The
+     * statement-list running result ignores this and uses the slot.
+     */
     return result;
 }
 
@@ -1275,7 +1399,7 @@ afw_function_execute_if(
  *       name: string[],
  *       value?: any,
  *       type?: object // _AdaptiveValueMeta_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1290,7 +1414,8 @@ afw_function_execute_if(
  *
  * Returns:
  *
- *   (any) The value assigned.
+ *   (void) Does not complete. A let statement does not override the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_let(
@@ -1298,16 +1423,15 @@ afw_function_execute_let(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
-    const afw_value_t *result;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(1);
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
-    result = impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
+    impl_assign(x->argv[1], AFW_FUNCTION_ARGV(2),
         afw_compile_assignment_type_let,
         p, xctx);
 
-    return result;
+    return afw_value_void;
 }
 
 
@@ -1409,6 +1533,7 @@ afw_function_execute_return(
             result = afw_value_undefined;
         }
     }
+    afw_xctx_script_result_set(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
 
     return result;
@@ -1549,7 +1674,7 @@ afw_function_execute_wrap_literal_array(
  *       case_clause_1: any,
  *       case_clause_2: any,
  *       ...case_clause_rest: any[]
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1575,7 +1700,8 @@ afw_function_execute_wrap_literal_array(
  *
  * Returns:
  *
- *   (any)
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_switch(
@@ -1665,20 +1791,27 @@ afw_function_execute_switch(
                 }
                 result = afw_value_block_evaluate_statement(
                     x, statement, p, xctx);
-                if (afw_xctx_statement_flow_is_leave(xctx)) {
+                if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
                     break;
                 }
             }
-            if (afw_xctx_statement_flow_is_leave(xctx)) {
+            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
                 break;
             }
         }
     }
 
-    /* We don't want break/continue outside of this switch */
-    afw_xctx_statement_flow_reset_break_and_continue(xctx);
+    /*
+     * Unlabeled break stays in the switch. Labeled break/continue and
+     * unlabeled continue belong to an enclosing loop (issue #62).
+     */
+    if (afw_xctx_statement_flow_is_type(break, xctx) &&
+        !xctx->statement_flow_label)
+    {
+        afw_xctx_statement_flow_reset_break_and_continue(xctx);
+    }
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -1781,7 +1914,7 @@ afw_function_execute_throw(
     xctx->error->data = data;
     longjmp(((xctx)->current_try->throw_jmp_buf), code);
 
-    return afw_value_undefined;
+    return afw_value_void;
 }
 
 
@@ -1812,7 +1945,7 @@ afw_function_execute_throw(
  *       finally?: array,
  *       catch?: array,
  *       error?: object // _AdaptiveObjectType_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -1839,7 +1972,8 @@ afw_function_execute_throw(
  *
  * Returns:
  *
- *   (any) The last value evaluated in body.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_try(
@@ -2018,7 +2152,7 @@ afw_function_execute_try(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_set(use_type, xctx);
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }
 
 
@@ -2045,8 +2179,9 @@ afw_function_execute_try(
  * ```
  *   function while(
  *       condition: boolean,
- *       body: array
- *   ): any;
+ *       body: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -2059,10 +2194,13 @@ afw_function_execute_try(
  *       order until the end of the list or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_while(
@@ -2073,7 +2211,11 @@ afw_function_execute_while(
     const afw_value_t *result;
     const afw_value_boolean_t *condition;
 
-    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(2);
+    const afw_utf8_t *this_label;
+
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(2);
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
+    this_label = impl_optional_loop_label(x, 3);
 
     for (result = afw_value_undefined;;) {
         AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(condition, 1);
@@ -2081,14 +2223,13 @@ afw_function_execute_while(
             break;
         }
         result = afw_value_block_evaluate_statement(x, x->argv[2], p, xctx);
-        if (afw_xctx_statement_flow_is_leave(xctx))
+        if (impl_loop_should_exit(this_label, xctx))
         {
             break;
         }
     }
 
-    /* We don't want break/continue outside of this loop */
-    afw_xctx_statement_flow_reset_break_and_continue(xctx);
+    impl_loop_consume_if_target(this_label, xctx);
 
-    return result;
+    return impl_statement_result_or_void(result, xctx);
 }

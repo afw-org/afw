@@ -67,7 +67,8 @@ afw_function_execute_assign(
  * See afw_function_bindings_internal.h for more information.
  *
  * This is a special function that can be called to break out of the body of a
- * loop. If called outside of a loop body, an error is thrown.
+ * loop or switch. If a label is supplied, break the loop with that label. If
+ * called outside of a loop or switch body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -76,20 +77,18 @@ afw_function_execute_assign(
  *
  * ```
  *   function break(
- *       value?: any
- *   ): any;
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
  *
- *   value - (optional any) The value to evaluate that the enclosing loop will
- *       return. If not specified, the last evaluated value or a null value will
- *       be returned.
+ *   label - (optional string) Optional loop label. If omitted, break the
+ *       innermost loop or switch.
  *
  * Returns:
  *
- *   (any) This function returns from the body of a loop with the last evaluated
- *       value.
+ *   (void) Does not complete. Leaves the body of a loop or switch.
  */
 const afw_value_t *
 afw_function_execute_break(
@@ -122,7 +121,7 @@ afw_function_execute_break(
  *       name: string[],
  *       value: any,
  *       type?: object // _AdaptiveValueMeta_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -136,7 +135,8 @@ afw_function_execute_break(
  *
  * Returns:
  *
- *   (any) The value assigned.
+ *   (void) Does not complete. A const statement does not override the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_const(
@@ -156,8 +156,9 @@ afw_function_execute_const(
  * See afw_function_bindings_internal.h for more information.
  *
  * This is a special function that can be called in the body of a loop function
- * to test the condition and, if true, start evaluating the body again. If
- * called outside of a loop body, an error is thrown.
+ * to test the condition and, if true, start evaluating the body again. If a
+ * label is supplied, continue the loop with that label. If called outside of a
+ * loop body, an error is thrown.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -166,14 +167,18 @@ afw_function_execute_const(
  *
  * ```
  *   function continue(
- *   ): any;
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
  *
+ *   label - (optional string) Optional loop label. If omitted, continue the
+ *       innermost loop.
+ *
  * Returns:
  *
- *   (any) This function does not return.
+ *   (void) Does not complete. Continues the enclosing loop.
  */
 const afw_value_t *
 afw_function_execute_continue(
@@ -206,8 +211,9 @@ afw_function_execute_continue(
  * ```
  *   function do_while(
  *       condition: boolean,
- *       body: array
- *   ): any;
+ *       body: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -220,9 +226,13 @@ afw_function_execute_continue(
  *       order until the end of the array or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if the body is empty.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_do_while(
@@ -256,8 +266,9 @@ afw_function_execute_do_while(
  *       initial?: array,
  *       condition?: boolean,
  *       increment?: array,
- *       body?: array
- *   ): any;
+ *       body?: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -278,10 +289,13 @@ afw_function_execute_do_while(
  *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_for(
@@ -316,8 +330,9 @@ afw_function_execute_for(
  *   function for_of(
  *       name: string[],
  *       value: any,
- *       body?: array
- *   ): any;
+ *       body?: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -331,10 +346,13 @@ afw_function_execute_for(
  *       evaluated in order until the end of the array or until a 'break',
  *       'continue', 'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_for_of(
@@ -384,7 +402,7 @@ afw_function_execute_for_of(
  *
  * Returns:
  *
- *   (any) The result of evaluating 'then' or 'else'.
+ *   (any) The result of evaluating 'then' or 'else'. Also the ternary operator.
  */
 const afw_value_t *
 afw_function_execute_if(
@@ -418,7 +436,7 @@ afw_function_execute_if(
  *       name: string[],
  *       value?: any,
  *       type?: object // _AdaptiveValueMeta_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -433,7 +451,8 @@ afw_function_execute_if(
  *
  * Returns:
  *
- *   (any) The value assigned.
+ *   (void) Does not complete. A let statement does not override the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_let(
@@ -545,7 +564,7 @@ afw_function_execute_return(
  *       case_clause_1: any,
  *       case_clause_2: any,
  *       ...case_clause_rest: any[]
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -571,7 +590,8 @@ afw_function_execute_return(
  *
  * Returns:
  *
- *   (any)
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_switch(
@@ -681,7 +701,7 @@ afw_function_execute_throw(
  *       finally?: array,
  *       catch?: array,
  *       error?: object // _AdaptiveObjectType_
- *   ): any;
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -708,7 +728,8 @@ afw_function_execute_throw(
  *
  * Returns:
  *
- *   (any) The last value evaluated in body.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_try(
@@ -742,8 +763,9 @@ afw_function_execute_try(
  * ```
  *   function while(
  *       condition: boolean,
- *       body: array
- *   ): any;
+ *       body: array,
+ *       label?: string
+ *   ): void;
  * ```
  *
  * Parameters:
@@ -756,10 +778,13 @@ afw_function_execute_try(
  *       order until the end of the list or until a 'break', 'continue',
  *       'return' or 'throw' function is encountered.
  *
+ *   label - (optional string) Optional loop label for break/continue Identifier
+ *       (issue #62).
+ *
  * Returns:
  *
- *   (any) The last value evaluated in body or null if condition evaluates to
- *       false the first time.
+ *   (void) Does not complete. Nested assignment still writes the running
+ *       result.
  */
 const afw_value_t *
 afw_function_execute_while(

@@ -47,34 +47,109 @@
     x = &modified_x
 
 
+/*
+ * if/for/try/… can return a then-value (if is also ternary) but as
+ * statements they do not complete like an ES ExpressionStatement.
+ */
+static afw_boolean_t
+impl_statement_is_control(const afw_value_t *statement)
+{
+    const afw_value_call_built_in_function_t *call;
+    const afw_utf8_t *id;
+
+    if (!statement || !afw_value_is_call_built_in_function(statement)) {
+        return false;
+    }
+    call = (const afw_value_call_built_in_function_t *)statement;
+    if (!call->function || !call->function->functionId) {
+        return false;
+    }
+    id = &call->function->functionId->internal;
+    return
+        afw_utf8_equal(id, afw_s_if) ||
+        afw_utf8_equal(id, afw_s_for) ||
+        afw_utf8_equal(id, afw_s_for_of) ||
+        afw_utf8_equal(id, afw_s_while) ||
+        afw_utf8_equal(id, afw_s_do_while) ||
+        afw_utf8_equal(id, afw_s_switch) ||
+        afw_utf8_equal(id, afw_s_try) ||
+        afw_utf8_equal(id, afw_s_let) ||
+        afw_utf8_equal(id, afw_s_const) ||
+        afw_utf8_equal(id, afw_s_break) ||
+        afw_utf8_equal(id, afw_s_continue) ||
+        afw_utf8_equal(id, afw_s_throw);
+}
+
+
 const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
     const afw_pool_t *p,
-    afw_xctx_t *xctx)
+    afw_xctx_t *xctx,
+    afw_boolean_t as_value)
 {
     const afw_value_t *result;
+    const afw_value_t *last;
     const afw_compile_value_contextual_t *saved_contextual;
     afw_size_t i;
     const afw_xctx_scope_t *scope;
+    afw_boolean_t use_running;
 
     /* Push value on evaluation stack. */
     afw_xctx_evaluation_stack_push_value(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    result = afw_value_undefined;
+    use_running = xctx->script_result_active && !as_value;
+    result = use_running
+        ? afw_xctx_script_result_get(xctx)
+        : afw_value_undefined;
+    last = result;
 
     scope = afw_xctx_scope_create(self, afw_xctx_scope_current(xctx), xctx);
     afw_xctx_scope_activate(scope, xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
-            result = afw_value_block_evaluate_statement(
+            last = afw_value_block_evaluate_statement(
                 x, self->statements[i], p, xctx);
-            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
-                break;
+            if (use_running) {
+                if (afw_xctx_statement_flow_is_type(return, xctx)) {
+                    afw_xctx_script_result_set(last, xctx);
+                    result = last;
+                    break;
+                }
+                if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
+                    /* break / continue / rethrow: keep the running result. */
+                    result = afw_xctx_script_result_get(xctx);
+                    break;
+                }
+                /*
+                 * ES ExpressionStatement (assignment already wrote; a
+                 * non-void call writes). Control forms do not.
+                 */
+                if (!afw_value_is_void(last) &&
+                    !impl_statement_is_control(self->statements[i]))
+                {
+                    afw_xctx_script_result_set(last, xctx);
+                }
+                result = afw_xctx_script_result_get(xctx);
             }
+            else {
+                if (!afw_value_is_void(last)) {
+                    result = last;
+                }
+                if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
+                    break;
+                }
+            }
+        }
+        if (use_running &&
+            !xctx->script_result_written &&
+            self->statement_count == 1 &&
+            !afw_value_is_void(last))
+        {
+            result = last;
         }
     }
     AFW_FINALLY{
@@ -101,11 +176,13 @@ afw_value_block_evaluate_statement(
     const afw_value_t *result;
 
     afw_xctx_statement_flow_set_type(sequential, xctx);
+    xctx->statement_flow_label = NULL;
 
     /* If statement is block, handle special. */
     if (afw_value_is_block(statement)) {
         result = afw_value_block_evaluate_block(
-            x, (const afw_value_block_t *)statement, p, xctx);
+            x, (const afw_value_block_t *)statement, p, xctx,
+            false);
     }
 
     /* If not block, just evaluate. */
@@ -207,7 +284,8 @@ impl_afw_value_optional_evaluate(
 
     /* Evaluate block. */
     result = afw_value_block_evaluate_block(
-        &x, (const afw_value_block_t *)&self->pub, p, xctx);
+        &x, (const afw_value_block_t *)&self->pub, p, xctx,
+        true);
 
     return result;
 }

@@ -7,14 +7,15 @@
 //?
 //? test: service_get vs service_stop
 //? description: Test service_get
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caughtServiceGet = false;
 let caughtServiceStop = false;
 
 try {
-    service_get('adapter-files');
+    let svc = service_get('adapter-files');
+    assert(svc.serviceId === "adapter-files");
 } catch (e) {
     trace(e);
     assert(e.id === "denied");
@@ -40,7 +41,8 @@ assert(!caughtServiceGet && caughtServiceStop);
 let caughtServiceRestart = false;
 
 try {
-    service_restart('adapter-files');
+    let svc = service_restart('adapter-files');
+    assert(svc.serviceId === "adapter-files");
 } catch (e) {
     trace(e);
     caughtServiceRestart = true;
@@ -51,7 +53,7 @@ assert(!caughtServiceRestart);
 
 //? test: service_restart with two arguments
 //? description: Test service_restart with two arguments
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caughtServiceRestart = false;

@@ -80,7 +80,7 @@ eval(script("let a = 0x1;a = 01;"));
 
 //? test: binary
 //? description: Mathematical value of valid binary integer literals
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -104,8 +104,6 @@ assert(0b11 === 3, 'lower-case head');
 assert(0B11 === 3, 'upper-case head');
 assert(0b011 === 3, 'lower-case head with leading zeros');
 assert(0B011 === 3, 'upper-case head with leading zeros');
-
-
 //? test: legacy-octal-integer
 //? description: Mathematical value for LegacyOctalIntegerLiteral
 //? expect: error
@@ -407,7 +405,7 @@ assert(0799 === 799, '0799');
 
 //? test: octal
 //? description: Mathematical value of valid octal integer literals
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -441,11 +439,9 @@ assert(0o77 === 63, 'lower-case head');
 assert(0O77 === 63, 'upper-case head');
 assert(0o077 === 63, 'lower-case head with leading zeros');
 assert(0O077 === 63, 'upper-case head with leading zeros');
-
-
 //? test: S7.8.3_A1.1_T1
 //? description: "DecimalIntegerLiteral :: 0, NoNZeroDigit"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -499,11 +495,9 @@ if (8 !== 8) {
 if (9 !== 9) {
   throw '#9: 9 === 9';
 }
-
-
 //? test: S7.8.3_A1.1_T2
 //? description: "DecimalIntegerLiteral :: NoNZeroDigit DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -552,11 +546,9 @@ if (88 !== 88) {
 if (99 !== 99) {
   throw '#9: 99 === 99';
 }
-
-
 //? test: S7.8.3_A1.2_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -610,11 +602,9 @@ if (8e1 !== 80.0) {
 if (9e1 !== 90.0) {
   throw '#9: 9e1 === 90';
 }
-
-
 //? test: S7.8.3_A1.2_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -668,11 +658,9 @@ if (8E1 !== 80.0) {
 if (9E1 !== 90.0) {
   throw '#9: 9E1 === 90';
 }
-
-
 //? test: S7.8.3_A1.2_T3
 //? description: "ExponentPart :: e -DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -726,11 +714,9 @@ if (8e-1 !== 0.8) {
 if (9e-1 !== 0.9) {
   throw '#9: 9e-1 === 0.9';
 }
-
-
 //? test: S7.8.3_A1.2_T4
 //? description: "ExponentPart :: E -DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -784,11 +770,9 @@ if (8E-1 !== 0.8) {
 if (9E-1 !== 0.9) {
   throw '#9: 9E-1 === 0.9';
 }
-
-
 //? test: S7.8.3_A1.2_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -842,11 +826,9 @@ if (8e+1 !== 80.0) {
 if (9e+1 !== 90.0) {
   throw '#9: 9e+1 === 90';
 }
-
-
 //? test: S7.8.3_A1.2_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -900,11 +882,9 @@ if (8E+1 !== 80.0) {
 if (9E+1 !== 90.0) {
   throw '#9: 9E+1 === 90';
 }
-
-
 //? test: S7.8.3_A1.2_T7
 //? description: "ExponentPart :: e 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -958,11 +938,9 @@ if (8e0 !== 8.0) {
 if (9e0 !== 9.0) {
   throw '#9: 9e0 === 9';
 }
-
-
 //? test: S7.8.3_A1.2_T8
 //? description: "ExponentPart :: E 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1016,11 +994,9 @@ if (8E0 !== 8.0) {
 if (9E0 !== 9.0) {
   throw '#9: 9E0 === 9';
 }
-
-
 //? test: S7.8.3_A2.1_T1
 //? description: Use .DecimalDigit
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1073,11 +1049,9 @@ if (.8 !== 0.8) {
 if (.9 !== 0.9) {
   throw '#9: .9 === 0.9';
 }
-
-
 //? test: S7.8.3_A2.1_T2
 //? description: Use .DecimalDigits
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1130,11 +1104,9 @@ if (.88 !== 0.88) {
 if (.99 !== 0.99) {
   throw '#9: .99 === 0.99';
 }
-
-
 //? test: S7.8.3_A2.1_T3
 //? description: Use .DecimalDigits that have at the end zeros
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1187,11 +1159,9 @@ if (.80 !== 0.8) {
 if (.90 !== 0.9) {
   throw '#9: .9 === 0.9';
 }
-
-
 //? test: S7.8.3_A2.2_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1244,11 +1214,9 @@ if (.8e1 !== 8.0) {
 if (.9e1 !== 9.0) {
   throw '#9: .9e1 === 9';
 }
-
-
 //? test: S7.8.3_A2.2_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1301,11 +1269,9 @@ if (.8E1 !== 8.0) {
 if (.9E1 !== 9.0) {
   throw '#9: .9E1 === 9';
 }
-
-
 //? test: S7.8.3_A2.2_T3
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1358,11 +1324,9 @@ if (.8e-1 !== 0.08) {
 if (.9e-1 !== 0.09) {
   throw '#9: .9e-1 === 0.09';
 }
-
-
 //? test: S7.8.3_A2.2_T4
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1415,11 +1379,9 @@ if (.8E-1 !== 0.08) {
 if (.9E-1 !== 0.09) {
   throw '#9: .9E-1 === 0.09';
 }
-
-
 //? test: S7.8.3_A2.2_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1472,11 +1434,9 @@ if (.8e+1 !== 8.0) {
 if (.9e+1 !== 9.0) {
   throw '#9: .9e+1 === 9';
 }
-
-
 //? test: S7.8.3_A2.2_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1529,11 +1489,9 @@ if (.8E+1 !== 8.0) {
 if (.9E+1 !== 9.0) {
   throw '#9: .9E+1 === 9';
 }
-
-
 //? test: S7.8.3_A2.2_T7
 //? description: "ExponentPart :: e 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1586,11 +1544,9 @@ if (.8e0 !== 0.8) {
 if (.9e0 !== 0.9) {
   throw '#9: .9e0 === 0.9';
 }
-
-
 //? test: S7.8.3_A2.2_T8
 //? description: "ExponentPart :: E 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1643,11 +1599,9 @@ if (.8E0 !== 0.8) {
 if (.9E0 !== 0.9) {
   throw '#9: .9E0 === 0.9';
 }
-
-
 //? test: S7.8.3_A3.1_T1
 //? description: "DecimalIntegerLiteral :: 0, NoNZeroDigit"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1700,11 +1654,9 @@ if (8. !== 8.0) {
 if (9. !== 9.0) {
   throw '#9: 9. === 9';
 }
-
-
 //? test: S7.8.3_A3.1_T2
 //? description: "DecimalIntegerLiteral :: NoNZeroDigit DecimalDigigts"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1752,11 +1704,9 @@ if (88. !== 88.0) {
 if (99. !== 99.0) {
   throw '#9: 99. === 99';
 }
-
-
 //? test: S7.8.3_A3.2_T1
 //? description: After DecimalIntegerLiteral. used ZeroDigit
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1810,11 +1760,9 @@ if (8.0 !== 8.0) {
 if (9.0 !== 9.0) {
   throw '#9: 9.0 === 9';
 }
-
-
 //? test: S7.8.3_A3.2_T2
 //? description: After DecimalIntegerLiteral. used ZeroDigits
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1868,11 +1816,9 @@ if (8.00 !== 8.0) {
 if (9.00 !== 9.0) {
   throw '#9: 9.00 === 9';
 }
-
-
 //? test: S7.8.3_A3.2_T3
 //? description: After DecimalIntegerLiteral. used NoNZeroDigit
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1926,11 +1872,9 @@ if (8.8 !== 8.8) {
 if (9.9 !== 9.9) {
   throw '#9: 9.9 === 9.9';
 }
-
-
 //? test: S7.8.3_A3.3_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1983,11 +1927,9 @@ if (8.e1 !== 80.0) {
 if (9.e1 !== 90.0) {
   throw '#9: 9.e1 === 90';
 }
-
-
 //? test: S7.8.3_A3.3_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2040,11 +1982,9 @@ if (8.E1 !== 80.0) {
 if (9.E1 !== 90.0) {
   throw '#9: 9.E1 === 90';
 }
-
-
 //? test: S7.8.3_A3.3_T3
 //? description: "ExponentPart :: e -DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2097,11 +2037,9 @@ if (8.e-1 !== 0.8) {
 if (9.e-1 !== 0.9) {
   throw '#9: 9.e-1 === 0.9';
 }
-
-
 //? test: S7.8.3_A3.3_T4
 //? description: "ExponentPart :: E -DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2154,11 +2092,9 @@ if (8.E-1 !== 0.8) {
 if (9.E-1 !== 0.9) {
   throw '#9: 9.E-1 === 0.9';
 }
-
-
 //? test: S7.8.3_A3.3_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2211,11 +2147,9 @@ if (8.e+1 !== 80.0) {
 if (9.e+1 !== 90.0) {
   throw '#9: 9.e+1 === 90';
 }
-
-
 //? test: S7.8.3_A3.3_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2268,11 +2202,9 @@ if (8.E+1 !== 80.0) {
 if (9.E+1 !== 90.0) {
   throw '#9: 9.E+1 === 90';
 }
-
-
 //? test: S7.8.3_A3.3_T7
 //? description: "ExponentPart :: e 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2325,11 +2257,9 @@ if (8.e0 !== 8.0) {
 if (9.e0 !== 9.0) {
   throw '#9: 9.e0 === 9';
 }
-
-
 //? test: S7.8.3_A3.3_T8
 //? description: "ExponentPart :: E 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2382,11 +2312,9 @@ if (8.E0 !== 8.0) {
 if (9.E0 !== 9.0) {
   throw '#9: 9.E0 === 9';
 }
-
-
 //? test: S7.8.3_A3.4_T1
 //? description: "ExponentPart :: e DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2440,11 +2368,9 @@ if (8.8e1 !== 88.0) {
 if (9.9e1 !== 99.0) {
   throw '#9: 9.9e1 === 99';
 }
-
-
 //? test: S7.8.3_A3.4_T2
 //? description: "ExponentPart :: E DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2498,11 +2424,9 @@ if (8.8E1 !== 88.0) {
 if (9.9E1 !== 99.0) {
   throw '#9: 9.9E1 === 99';
 }
-
-
 //? test: S7.8.3_A3.4_T3
 //? description: "ExponentPart :: e -DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2556,11 +2480,9 @@ if (8.8e-1 !== 0.88) {
 if (9.9e-1 !== 0.99) {
   throw '#9: 9.9e-1 === 0.99';
 }
-
-
 //? test: S7.8.3_A3.4_T4
 //? description: "ExponentPart :: E -DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2614,11 +2536,9 @@ if (8.8E-1 !== 0.88) {
 if (9.9E-1 !== 0.99) {
   throw '#9: 9.9E-1 === 0.99';
 }
-
-
 //? test: S7.8.3_A3.4_T5
 //? description: "ExponentPart :: e +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2672,11 +2592,9 @@ if (8.8e+1 !== 88.0) {
 if (9.9e+1 !== 99.0) {
   throw '#9: 9.9e+1 === 99';
 }
-
-
 //? test: S7.8.3_A3.4_T6
 //? description: "ExponentPart :: E +DecimalDigits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2730,11 +2648,9 @@ if (8.8E+1 !== 88.0) {
 if (9.9E+1 !== 99.0) {
   throw '#9: 9.9E+1 === 99';
 }
-
-
 //? test: S7.8.3_A3.4_T7
 //? description: "ExponentPart :: e 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2788,11 +2704,9 @@ if (8.8e0 !== 8.8) {
 if (9.9e0 !== 9.9) {
   throw '#9: 9.9e0 === 9.9';
 }
-
-
 //? test: S7.8.3_A3.4_T8
 //? description: "ExponentPart :: E 0"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2846,8 +2760,6 @@ if (8.8E0 !== 8.8) {
 if (9.9E0 !== 9.9) {
   throw '#9: 9.9E0 === 9.9';
 }
-
-
 //? test: S7.8.3_A4.1_T1
 //? description: "ExponentPart :: e DecimalDigits"
 //? expect: error
@@ -2922,7 +2834,7 @@ E0
 
 //? test: S7.8.3_A4.2_T1
 //? description: "ExponentIndicator :: e"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -2976,11 +2888,9 @@ if (8e01 !== 80.0) {
 if (9e01 !== 90.0) {
   throw '#9: 9e01 === 90';
 }
-
-
 //? test: S7.8.3_A4.2_T2
 //? description: "ExponentIndicator :: E"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3034,11 +2944,9 @@ if (8E01 !== 80.0) {
 if (9E01 !== 90.0) {
   throw '#9: 9E01 === 90';
 }
-
-
 //? test: S7.8.3_A4.2_T3
 //? description: "ExponentIndicator :: e"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3092,11 +3000,9 @@ if (8e-01 !== 0.8) {
 if (9e-01 !== 0.9) {
   throw '#9: 9e-01 === 0.9';
 }
-
-
 //? test: S7.8.3_A4.2_T4
 //? description: "ExponentIndicator :: E"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3150,11 +3056,9 @@ if (8E-01 !== 0.8) {
 if (9E-01 !== 0.9) {
   throw '#9: 9E-01 === 0.9';
 }
-
-
 //? test: S7.8.3_A4.2_T5
 //? description: "ExponentIndicator :: e"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3208,11 +3112,9 @@ if (8e+01 !== 80.0) {
 if (9e+01 !== 90.0) {
   throw '#9: 9e+01 === 90';
 }
-
-
 //? test: S7.8.3_A4.2_T6
 //? description: "ExponentIndicator :: E"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3266,11 +3168,9 @@ if (8E+01 !== 80.0) {
 if (9E+01 !== 90.0) {
   throw '#9: 9E+01 === 90';
 }
-
-
 //? test: S7.8.3_A4.2_T7
 //? description: "ExponentIndicator :: e"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3324,11 +3224,9 @@ if (8e00 !== 8.0) {
 if (9e00 !== 9.0) {
   throw '#9: 9e00 === 9';
 }
-
-
 //? test: S7.8.3_A4.2_T8
 //? description: "ExponentIndicator :: E"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3382,11 +3280,9 @@ if (8E00 !== 8.0) {
 if (9E00 !== 9.0) {
   throw '#9: 9E00 === 9';
 }
-
-
 //? test: S7.8.3_A5.1_T1
 //? description: "HexIntegerLiteral :: 0x Digit"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3470,11 +3366,9 @@ if (0xE !== 14) {
 if (0xF !== 15) {
   throw '#F: 0xF === 15';
 }
-
-
 //? test: S7.8.3_A5.1_T2
 //? description: "HexIntegerLiteral :: 0X Digit"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3558,11 +3452,9 @@ if (0XE !== 14) {
 if (0XF !== 15) {
   throw '#F: 0XF === 15';
 }
-
-
 //? test: S7.8.3_A5.1_T3
 //? description: "HexIntegerLiteral :: 0x NonZeroDigit Digits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3611,11 +3503,9 @@ if (0x1000000 !== 16777216) {
 if (0x10000000 !== 268435456) {
   throw '#8: 0x10000000 === 268435456';
 }
-
-
 //? test: S7.8.3_A5.1_T4
 //? description: "HexIntegerLiteral :: 0X NonZeroDigit Digits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3664,11 +3554,9 @@ if (0X1000000 !== 16777216) {
 if (0X10000000 !== 268435456) {
   throw '#8: 0X10000000 === 268435456';
 }
-
-
 //? test: S7.8.3_A5.1_T5
 //? description: "HexIntegerLiteral :: 0x0 Digits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3717,11 +3605,9 @@ if (0x01000000 !== 16777216) {
 if (0x010000000 !== 268435456) {
   throw '#8: 0x010000000 === 268435456';
 }
-
-
 //? test: S7.8.3_A5.1_T6
 //? description: "HexIntegerLiteral :: 0X0 Digits"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3770,11 +3656,9 @@ if (0X01000000 !== 16777216) {
 if (0X010000000 !== 268435456) {
   throw '#8: 0X010000000 === 268435456';
 }
-
-
 //? test: S7.8.3_A5.1_T7
 //? description: "HexIntegerLiteral :: 0x one of a, b, c, d, e, f"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3808,11 +3692,9 @@ if (0xe !== 14) {
 if (0xf !== 15) {
   throw '#f: 0xf === 15';
 }
-
-
 //? test: S7.8.3_A5.1_T8
 //? description: "HexIntegerLiteral :: 0X one of a, b, c, d, e, f"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3845,8 +3727,6 @@ if (0Xe !== 14) {
 if (0Xf !== 15) {
   throw '#f: 0Xf === 15';
 }
-
-
 //? test: S7.8.3_A6.1_T1
 //? description: Checking if execution of "0x" passes
 //? expect: error
