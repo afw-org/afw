@@ -7,7 +7,7 @@
 //?
 //? test: S7.8.1_A1_T1
 //? description: Check null === null
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -15,4 +15,3 @@
 if (null !== null) {
   throw '#1: null === null';
 }
-return;

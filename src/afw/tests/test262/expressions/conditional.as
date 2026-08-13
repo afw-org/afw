@@ -7,7 +7,7 @@
 //?
 //? test: 11.12_A2.1_T1
 //? description: checking boolean conditions
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 assert((true ? false : true) === false, "true ? false : true !== false");
@@ -37,7 +37,6 @@ z = true;
 if ((x ? y : z) !== z) {
     throw "x ? y : z !== z";
 }
-return;
 //? test: 11.12_A2.1_T2
 //? description: undeclared reference in first argument throws error
 //? expect: error
@@ -70,7 +69,7 @@ if (false ? true : z) {
 
 //? test: 11.12_A3_T1
 //? description: If x is false, return z (booleans)
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if ((false ? false : true) !== true) {
@@ -81,10 +80,9 @@ let z: boolean = true;
 if ((false ? true : z) !== z) {
     throw "false ? true : z !== z";
 }
-return;
 //? test: 11.12_A3_T4
 //? description: If boolean(x) is false, return z
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if ((false ? true : undefined) !== undefined) {
@@ -94,10 +92,9 @@ if ((false ? true : undefined) !== undefined) {
 if ((false ? true : null) !== null) {
     throw "false ? true : null";
 }
-return;
 //? test: 11.12_A4_T1
 //? description: If x is true, return y (boolean)
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if ((true ? false : true) !== false) {
@@ -108,10 +105,9 @@ let y: boolean = true;
 if ((true ? y : false) !== y) {
     throw "true ? y : false !== y";
 }
-return;
 //? test: 11.12_A4_T4
 //? description: If x is true, return y (null/undefined)
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if ((true ? undefined : true) !== undefined) {
@@ -121,10 +117,9 @@ if ((true ? undefined : true) !== undefined) {
 if ((true ? null : true) !== null) {
     throw "true ? null : true !== null";
 }
-return;
 //? test: coalesce-expr-ternary
 //? description: short-circut expression in the conditional expression (? :)
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 let x: integer;
@@ -158,4 +153,3 @@ assert(x === 0, "true ?? false ? 0 : 42");
 x = undefined;
 x = true ?? true ? 0 : 42;
 assert(x === 0, "true ?? true ? 0 : 42");
-return;

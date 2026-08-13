@@ -7,7 +7,7 @@
 //?
 //? test: order-of-evaluation
 //? description: Type coercion order of operations for subtraction operator
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
@@ -141,10 +141,9 @@ assert.throws(TypeError, function() {
   })();
 }, "GetValue(lhs) throws.");
 assert.sameValue(trace, "1234", "GetValue(lhs) throws.");
-return;
 //? test: S11.6.2_A1
 //? description: Checking by using eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -198,10 +197,9 @@ if (eval(script("1\u2029-\u20291")) !== 0) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029-\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 0) {
   throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029-\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 0';
 }
-return;
 //? test: S11.6.2_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -229,7 +227,6 @@ y = 1;
 if (x - y !== 0) {
   throw '#4: let x = 1; let y = 1; x - y === 0. Actual: ' + (x - y);
 }
-return;
 //? test: S11.6.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -251,7 +248,7 @@ x - 1;
 
 //? test: S11.6.2_A2.3_T1
 //? description: Checking with "throw"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
@@ -275,10 +272,9 @@ try {
      }
    }
 }
-return;
 //? test: S11.6.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
@@ -300,10 +296,9 @@ try {
      }
    }
 }
-return;
 //? test: S11.6.2_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -312,10 +307,9 @@ return;
 if (1 - 1 !== 0) {
   throw '#1: 1 - 1 === 0. Actual: ' + (1 - 1);
 }
-return;
 //? test: S11.6.2_A4_T1
 //? description: If either operand is NaN, the result is NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -349,12 +343,11 @@ if (is_NaN(NaN - -Infinity) !== true ) {
 if (is_NaN(-Infinity - NaN) !== true ) {
   throw '#6: Infinity - NaN === Not-a-Number. Actual: ' + (Infinity - NaN);
 }
-return;
 //? test: S11.6.2_A4_T2
 //? description:...
     The difference of two infinities of opposite sign is the infinity
     of minuend sign
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -368,14 +361,13 @@ if (Infinity - -Infinity !== Infinity ) {
 if (-Infinity - Infinity !== -Infinity ) {
   throw '#2: -Infinity - Infinity === -Infinity. Actual: ' + (-Infinity - Infinity);
 }
-return;
 //? test: S11.6.2_A4_T3
 //? description: The difference of two infinities of the same sign is NaN
 //? skip: true
 //? skipReason: ...
 FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
 (no Number/Math globals)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -389,7 +381,6 @@ if (is_NaN(Infinity - Infinity) !== true ) {
 if (is_NaN(-Infinity - -Infinity) !== true ) {
   throw '#2: -Infinity - -Infinity === Not-a-Number. Actual: ' + (-Infinity - -Infinity);
 }
-return;
 //? test: S11.6.2_A4_T4
 //? description:...
     The difference of an infinity and a finite value is equal to
@@ -398,7 +389,7 @@ return;
 //? skipReason: ...
 FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
 (no Number/Math globals)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -442,7 +433,6 @@ if (-Infinity - Number.MAX_VALUE !== -Infinity ) {
 if (-Number.MAX_VALUE - -Infinity !== Infinity ) {
   throw '#8: -Number.MAX_VALUE - -Infinity === Infinity. Actual: ' + (-Number.MAX_VALUE - -Infinity);
 }
-return;
 //? test: S11.6.2_A4_T5
 //? description:...
     Using the rule of sum of two zeroes and the fact that a - b = a +
@@ -498,7 +488,7 @@ if (0 - 0 !== 0 ) {
 //? skipReason: ...
 FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
 (no Number/Math globals)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -542,7 +532,6 @@ if (-0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
 if (0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
   throw '#8: 0 - Number.MIN_VALUE === -Number.MIN_VALUE. Actual: ' + (0 - Number.MIN_VALUE);
 }
-return;
 //? test: S11.6.2_A4_T7
 //? description:...
     The mathematical difference of two nonzero finite values of the
@@ -551,7 +540,7 @@ return;
 //? skipReason: ...
 FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
 (no Number/Math globals)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -582,7 +571,6 @@ if (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE !== +0) {
     throw '#3.2: 1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE === + 0. Actual: -0';
   }
 }
-return;
 //? test: S11.6.2_A4_T8
 //? description:...
     If the magnitude is too large to represent, the operation
@@ -591,7 +579,7 @@ return;
 //? skipReason: ...
 FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
 (no Number/Math globals)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -615,4 +603,3 @@ if (1e+308 - -1e+308 !== Infinity) {
 if (-8.99e+307 - 8.99e+307 !== -Infinity) {
   throw '#4: -8.99e+307 - 8.99e+307 === -Infinity. Actual: ' + (-8.99e+307 - 8.99e+307);
 }
-return;

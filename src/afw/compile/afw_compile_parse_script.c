@@ -3009,6 +3009,13 @@ impl_test_script_get_next_key_value(
                 "Must be 'error' by itself or 'error:' immediately "
                 "followed by the exact error message expected");
         }
+        if (*string &&
+            afw_utf8_starts_with(*string, afw_s_success) &&
+            !afw_utf8_equal(*string, afw_s_success))
+        {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Must be 'success' by itself (completed, ignore result)");
+        }
     }
 }
 
@@ -3070,8 +3077,14 @@ impl_test_script_get_next_key_value(
  * TestExpect ::= TestScriptLineStart
  *    'expect:' (
  *        ( 'error' '\n' ) |
- *        ( 'result' TestScriptValue )
+ *        ( 'error:' UnicodeNonControl* '\n' ) |
+ *        ( 'success' '\n' ) |
+ *        TestScriptValue
  *    )
+ *#
+ *# 'success' means compiled and ran with no throw; the result is ignored.
+ *# 'error' / 'error:message' mean a throw. Any other value is Adaptive
+ *# and compared to the script result (including 'undefined').
  *
  *# Optional side-channel text expects (string equality on captured utf-8;
  *# not Adaptive-eval). Hyphen keys only — ':' is the //? key/value separator.

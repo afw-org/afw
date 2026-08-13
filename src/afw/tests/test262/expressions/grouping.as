@@ -7,7 +7,7 @@
 //?
 //? test: 11.1.6_A1
 //? description: White Space and Line Terminator inside "grouping" operator are allowed
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if (eval(script("(\u00091\u0009)")) != 1) {
@@ -49,28 +49,25 @@ if (eval(script("(\u20291\u2029)")) != 1) {
 if (eval(script("(\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029)")) != 1) {
     assert("#10: (\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029) === 1");
 }
-return;
 //? test:  11.1.6_A3_T1
 //? description: Applying grouping operator to boolean
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if ((true) !== true) {
     assert("#1: (true) === true");
 }
-return;
 //? test:  11.1.6_A3_T2
 //? description: Applying grouping operator to integer
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if ((1) !== 1) {
     assert("#1: (1) === 1");
 }
-return;
 //? test:  11.1.6_A3_T3
 //? description: Applying grouping operator to string
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if (("1") !== "1") {
@@ -80,10 +77,9 @@ if (("1") !== "1") {
 if (("x") !== "x") {
     assert("#2: (\"x\") === \"x\"");
 }
-return;
 //? test:  11.1.6_A3_T4
 //? description: Applying grouping operator to undefined/null
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if ((undefined) !== undefined) {
@@ -93,4 +89,3 @@ if ((undefined) !== undefined) {
 if ((null) !== null) {
     assert("#2: (null) === null");
 }
-return;

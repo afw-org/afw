@@ -7,7 +7,7 @@
 //?
 //? test: 10.1.1_A1_T2
 //? description: creating function dynamically
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -15,7 +15,6 @@ let y: integer = function (): integer {return 2;}();
 if (y !== 2) {
     throw "Create anonymous function dynamically failed";
 }
-return;
 //? test: dflt-params-abrupt
 //? description: abrupt completion returned by evaluation of initializer (function expression)
 //? expect: error
@@ -37,7 +36,7 @@ f();
 
 //? test: dflt-params-arg-val-undefined
 //? description: abrupt completion returned by evaluation of initializer (function expression)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -57,7 +56,6 @@ function fn(): any {
 ref(undefined, void 0);
 
 assert(callCount === 1, "callCount !== 1");
-return;
 //? test: dflt-params-duplicates
 //? description: It is a syntax error if function parameters contain duplicate parameter names
 //? expect: error
@@ -84,7 +82,7 @@ f = function (x = y, y?): any {
 
 //? test: dflt-params-ref-prior
 //? description: Referencing a parameter that occurs earlier in the parameter array
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -101,7 +99,6 @@ let ref = function (x, y = x, z = y): any {
 ref(3);
 
 assert(callCount === 1, "function invoked exactly once");
-return;
 //? test: dflt-params-ref-self
 //? description: Referencing a parameter from within its own initializer
 //? expect: error
@@ -144,7 +141,7 @@ assert(callCount === 1, "function invoked exactly once");
 
 //? test: named-no-strict-reassign-fn-name-in-body
 //? description: Reassignment of function name is silently ignored.
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 FIXME: reassignment of function BindingIdentifier in body (ES silent
@@ -162,7 +159,6 @@ let ref: function = BindingIdentifier;
 
 assert(ref() === ref, "ref() !== ref");
 assert(callCount === 1, "function invoked exactly once");
-return;
 //? test: param-duplicated-strict-1
 //? description: It is a syntax error if any identifier value occurs more than once within a parameter array
 //? expect: error

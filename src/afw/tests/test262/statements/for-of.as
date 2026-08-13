@@ -565,7 +565,7 @@ assert(callCount === 1 === 'Iterator is closed');
 
 //? test: body-dstr-assign
 //? description:...
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -579,7 +579,6 @@ for ([x] of [[0]]) {
 }
 
 assert(iterationCount === 1);
-return;
 //? test: body-put-error
 //? description:...
 //? expect: error:Parse error at offset 99 around line 8 column 7: Name of an object value must be followed by a colon
@@ -1726,7 +1725,7 @@ for (const x of [x]) {}
 
 //? test: head-const-bound-names-in-stmt
 //? description: The body may not re-declare variables declared in the head
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1734,7 +1733,6 @@ for (const x of [x]) {}
 for (const x of []) {
   let x;
 }
-return;
 //? test: head-const-bound-names-let
 //? description: The declaration may not contain a binding for `let`
 //? expect: error
@@ -1888,17 +1886,16 @@ for (let [x, x] of []) {}
 //? test: head-let-bound-names-fordecl-tdz
 //? description:...
     ForIn/Of: Bound names of ForDeclaration are in TDZ (for-of)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 
 let x = 1;
 for (let x of [x]) {}
-return;
 //? test: head-let-bound-names-in-stmt
 //? description: The body may not re-declare variables declared in the head
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1906,7 +1903,6 @@ return;
 for (let x of []) {
   let x;
 }
-return;
 //? test: head-let-bound-names-let
 //? description: The declaration may not contain a binding for `let`
 //? expect: error

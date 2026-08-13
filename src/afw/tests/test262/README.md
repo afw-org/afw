@@ -49,7 +49,7 @@ official** ones for this suite and for language tests in general:
 | **`test`** | Case id (stable name) |
 | **`description`** | What the case checks. Prefer staying **close to the TC39 description**, lightly tweaked for Adaptive wording. |
 | **`differences`** | Optional. **Language** differences between ECMAScript and Adaptive for the construct under test only. Not harness wrapping. Good future harvest input for differences docs. |
-| **`expect`** | Expected result (`0`, `error`, …) |
+| **`expect`** | **`success`** (compiled and ran, ignore result — usual test262 “did not throw”), Adaptive value (`0`, `undefined`, …), or **`error`** / **`error:…`** |
 | **`skip`** | `true` / `false` — do not run |
 | **`skipReason`** | Why skipped (see prefixes below). Long text: use `//? skipReason: ...` then body lines until the next `//?` (same `...` form as `description` / `source`; any key can do this for ~80-column editing) |
 | **`source`** | Adaptive Script body of the case |

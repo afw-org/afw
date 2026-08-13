@@ -140,7 +140,7 @@ for (let j = 0; j < 5; ++j) {
 //? test: let
 //? description:...
     global and block scope let
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -160,7 +160,6 @@ if (true) {
   let y;
   assert(y === undefined);
 }
-return;
 //? test: let-let-declaration-split-across-two-lines
 //? description:...
     let: |let let| split across two lines is not subject to automatic semicolon insertion.
@@ -259,24 +258,22 @@ return 0;
 //? description:...
     let declarations with initialisers in statement positions:
     case Expression : StatementList
-//? expect: undefined
+//? expect: success
 //? differences: let does not write the script result (#62)
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { case true: let x = 1; }
-return;
 //? test: with-initialisers-in-statement-positions-default-statement-list
 //? description:...
     let declarations with initialisers in statement positions:
     default : StatementList
-//? expect: undefined
+//? expect: success
 //? differences: let does not write the script result (#62)
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { default: let x = 1; }
-return;
 //? test: with-initialisers-in-statement-positions-do-statement-while-expression
 //? description:...
     let declarations with initialisers in statement positions:
@@ -292,36 +289,33 @@ do let x = 1; while (false)
 //? description:...
     let declarations with initialisers in statement positions:
     for ( ;;) Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 for (;false;) let x = 1;
-return;
 //? test: with-initialisers-in-statement-positions-if-expression-statement-else-statement
 //? description:...
     let declarations with initialisers in statement positions:
     if ( Expression ) Statement else Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) {} else let x = 1;
-return;
 //? test: with-initialisers-in-statement-positions-if-expression-statement
 //? description:...
     let declarations with initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: undefined
+//? expect: success
 //? differences: let does not write the script result (#62)
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) let x = 1;
-return;
 //? test: with-initialisers-in-statement-positions-label-statement
 //? description:...
     let declarations with initialisers in statement positions:
@@ -337,33 +331,30 @@ label: let x = 1;
 //? description:...
     let declarations with initialisers in statement positions:
     while ( Expression ) Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 while (false) let x = 1;
-return;
 //? test: without-initialisers-in-statement-positions-case-expression-statement-list
 //? description:...
     let declarations without initialisers in statement positions:
     case Expression : StatementList
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { case true: let x; }
-return;
 //? test: without-initialisers-in-statement-positions-default-statement-list
 //? description:...
     let declarations without initialisers in statement positions:
     default : StatementList
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 switch (true) { default: let x; }
-return;
 //? test: without-initialisers-in-statement-positions-do-statement-while-expression
 //? description:...
     let declarations without initialisers in statement positions:
@@ -381,35 +372,32 @@ do let x; while (false)
 //? description:...
     let declarations without initialisers in statement positions:
     for ( ;;) Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 for (;false;) let x;
-return;
 //? test: without-initialisers-in-statement-positions-if-expression-statement-else-statement
 //? description:...
     let declarations without initialisers in statement positions:
     if ( Expression ) Statement else Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) {} else let x;
-return;
 //? test: without-initialisers-in-statement-positions-if-expression-statement
 //? description:...
     let declarations without initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 if (true) let x;
-return;
 //? test: without-initialisers-in-statement-positions-label-statement
 //? description:...
     let declarations without initialisers in statement positions:
@@ -425,10 +413,9 @@ label: let x;
 //? description:...
     let declarations without initialisers in statement positions:
     while ( Expression ) Statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 // ecmascript does not allow this, but we don't fail on it
 while (false) let x;
-return;

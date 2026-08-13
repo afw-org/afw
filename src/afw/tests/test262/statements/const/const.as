@@ -50,7 +50,7 @@ function() {
 
 //? test: cptn-value
 //? description: Returns an empty completion
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -62,7 +62,6 @@ assert(
   eval(script('const test262id2 = 2, test262id3 = 3;')) == undefined,
   'Multiple declarations'
 );
-return;
 //? test: fn-name-arrow
 //? description: Assignment of function `name` attribute (ArrowFunction)
 //? expect: error:Parse error at offset 35 around line 3 column 16: Expecting Value

@@ -7,7 +7,7 @@
 //?
 //? test: S11.13.1_A2.1_T1
 //? description: Either AssigmentExpression is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -39,7 +39,6 @@ x = y;
 if (x !== 1) {
   throw '#4: var y = 1; var x = y; x === 1. Actual: ' + (x);
 }
-return;
 //? test: 11.13.1_A2.1_T2
 //? description: If GetBase(AssigmentExpression) is null, throw ReferenceError
 //? expect: error:Parse error at offset 28 around line 3 column 9: Unknown built-in function 'y'
@@ -51,7 +50,7 @@ let x = y;
 
 //? test: 11.13.1_A3.1
 //? description: Checking Expression and Variable statements
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -66,7 +65,6 @@ x = 1;
 if (x !== 1) {
   throw '#2: x = 1; x === 1. Actual: ' + (x);
 }
-return;
 //? test: 11.13.1_A4_T2
 //? description: let x = x self-init (ES TDZ ReferenceError in some modes)
 //? differences: Adaptive has no TDZ; let x = x yields undefined
@@ -81,7 +79,7 @@ return 0;
 
 //? test: S8.12.5_A2
 //? description: When the [[Put]] method of O is called with property P and value V, then set the value of the property to V. The attributes of the property are not changed
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -123,10 +121,9 @@ if (_map.two !== "duo") {
 }
 //
 //////////////////////////////////////////////////////////////////////////////
-return;
 //? test: line-terminator
 //? description: White Space between LeftHandSideExpression and "=" or between "=" and AssignmentExpression is allowed
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -139,14 +136,13 @@ true;
 if (x !== true) {
     throw '#6: (x\\u000A=\\u000Atrue) === true';
 }
-return;
 //? test: member-expr-ident-name-break-escaped
 //? description: break is a valid identifier name, using escape (MemberExpression IdentifierName)
 //? skip: true
 //? skipReason: ...
 FIXME: escaped reserved words as property names (break spelled with
 unicode escape) not decided
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -156,10 +152,9 @@ let obj = {};
 obj.bre\u0061k = 42;
 
 assert(property_exists(obj, "break"));
-return;
 //? test: member-expr-ident-name-default
 //? description: default is a valid identifier name (MemberExpression IdentifierName)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -168,7 +163,6 @@ let obj = {};
 obj.default = 42;
 
 assert(property_exists(obj, "default"));
-return;
 //? test: non-simple-target
 //? description: It is an early Syntax Error if LeftHandSideExpression is neither an ObjectLiteral nor an ArrayLiteral and AssignmentTargetType of LeftHandSideExpression is invalid or strict.
 //? expect: error
@@ -211,7 +205,7 @@ true = 42;
 
 //? test: target-cover-id
 //? description: It is an early Reference Error if LeftHandSideExpression is neither an ObjectLiteral nor an ArrayLiteral and IsValidSimpleAssignmentTarget of LeftHandSideExpression is false.
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -220,7 +214,6 @@ let x;
 (x) = 1;
 
 assert(x === 1);
-return;
 //? test: target-member-identifier-reference-null
 //? description: Assignment Operator evaluates the value prior validating a MemberExpression's reference (null)
 //? expect: error
@@ -303,7 +296,7 @@ null = 42;
 
 //? test: whitespace
 //? description:  White Space between LeftHandSideExpression and "=" or between "=" and AssignmentExpression is allowed
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -357,4 +350,3 @@ x	
 if (x !== 'U+0009U+000BU+000CU+0020U+00A0U+000DU+2028U+2029') {
   throw'#10: (x\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000D\\u2028\\u2029=\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000D\\u2028\\u2029true) === true';
 }
-return;

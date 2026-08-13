@@ -105,12 +105,14 @@ Notes:
   this form — do not begin free-text descriptions with those characters.  
 - After `//? source: ...` or `//? source: <<< …`, the body is the multi-line
   or file form above.  
-- **`expect:`** is Adaptive source for the **return value** you want (for
-  example `0`, `true`, `"ok"`, `anyURI("…")`), not free text. The runner
-  compiles and evaluates it, then compares to the case result. Use
-  `error` or `error:…message…` when the case should fail. A `<<<` file for
-  `expect` must contain that Adaptive source (for example `"hello"` with
-  quotes if you want a string return value).  
+- **`expect:`** is usually Adaptive source for the **return value** you
+  want (for example `0`, `true`, `"ok"`, `anyURI("…")`, `undefined`), not
+  free text. The runner compiles and evaluates it, then compares to the
+  case result. Two reserved tokens are not Adaptive values:
+  **`success`** means the case compiled and ran with **no throw** (the
+  result is ignored); **`error`** or **`error:…message…`** means it should
+  throw. A `<<<` file for `expect` must contain that Adaptive source (for
+  example `"hello"` with quotes if you want a string return value).  
 - **`expect-stdout:`** / **`expect-stderr:`** (optional) assert the **text**
   written to the Adaptive `stdout` / `stderr` streams during the case
   (`print` / `println` / stream writes). Values are **literal strings**, not

@@ -7,7 +7,7 @@
 //?
 //? test: S9.8_A1_T2
 //? description: result of string conversion from undefined value is "undefined"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 // When using "+" operator which calls polymorphic function "add", the first
@@ -17,19 +17,17 @@
 if (concat(string(undefined) + "") !== "undefined") {
     throw "undefined + \"\" === \"undefined\"";
 }
-return;
 //? test: S9.8_A2_T2
 //? description: result of string conversion from null value is "null"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if (concat(null, "") !== "null") {
     throw "null + \"\" === \"null\"";
 }
-return;
 //? test: S9.8_A3_T2
 //? description: result of string conversion from boolean value is "true" if the argument is "true", else is "false"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if (concat(false, "") !== "false") {
@@ -39,10 +37,9 @@ if (concat(false, "") !== "false") {
 if (concat(true, "") !== "true") {
     throw "true + \"\" === \"true\"";
 }
-return;
 //? test: S9.8_A4_T2
 //? description: result of string conversion from string value is input argument (no conversion)
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 let x1: string = "abc";
@@ -54,4 +51,3 @@ let x2: string = "abc";
 if (concat(meta(x2).dataType, "") !== meta(x2).dataType) {
     throw "meta(x2).dataType + \"\" !== meta(x2).dataType";
 }
-return;

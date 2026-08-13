@@ -7,7 +7,7 @@
 //?
 //? test: S10.2.2_A1_T1
 //? description: Checking scope chain containing function declarations
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -24,10 +24,9 @@ function f1(){
 if(!(f1() === 1)){
   throw "#1: Scope chain disturbed";
 }
-return;
 //? test: S10.2.2_A1_T2
 //? description: Checking scope chain containing function declarations
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -43,10 +42,9 @@ function f1(){
 if(!(f1() === 0)){
   throw "#1: Scope chain disturbed";
 }
-return;
 //? test: S10.2.2_A1_T4
 //? description: Nested function and inner let (Adaptive scope vs ES var/TDZ lineage)
-//? expect: undefined
+//? expect: success
 //? differences: Adaptive has no var-hoist; f2 sees outer x (0), not inner let x=1 as ES would after init
 //? source: ...
 
@@ -68,4 +66,3 @@ function f1(){
 if (f1() !== 0) {
   throw "#1: expected outer x (0) under Adaptive binding rules";
 }
-return;

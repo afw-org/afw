@@ -7,7 +7,7 @@
 //?
 //? test: start-underscore
 //? description: "IdentifierStart :: _"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -22,10 +22,9 @@ assert(_$ === 3);
 
 let __ = 4;
 assert(__ === 4);
-return;
 //? test: start-unicode-ltr
 //? description: "IdentifierStart :: UnicodeLetter"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -40,7 +39,6 @@ assert(x$ === 3);
 
 let x_ = 4;
 assert(x_ === 4);
-return;
 //? test: val-case
 //? description:...
     SyntaxError expected: reserved words used as Identifier
@@ -170,7 +168,7 @@ let return = 123;
 
 //? test: vals-eng-alpha-lower
 //? description: Check ENGLISH SMALL ALPHABET
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -278,10 +276,9 @@ let z = 1;
 if (z !== 1) {
   throw '#z';
 }
-return;
 //? test: vals-eng-alpha-upper
 //? description: Check ENGLISH CAPITAL ALPHABET
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -362,10 +359,9 @@ assert(Y === 1);
 
 let Z = 1;
 assert(Z === 1);
-return;
 //? test: vals-rus-alpha-lower
 //? description: Check RUSSIAN SMALL ALPHABET
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -467,7 +463,6 @@ assert(я === 1);
 
 let ё = 1;
 assert(ё === 1);
-return;
 //? test: val-throw
 //? description:...
     SyntaxError expected: reserved words used as Identifier
@@ -498,7 +493,7 @@ let try = 123;
 
 //? test: val-underscore
 //? description: Create variable _
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -506,7 +501,6 @@ let try = 123;
 let _ = 1;
 
 assert(_ === 1);
-return;
 //? test: val-var
 //? description:...
     SyntaxError expected: reserved words used as Identifier

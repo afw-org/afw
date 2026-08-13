@@ -37,7 +37,7 @@ agree:
 | **`test`** | Case id |
 | **`description`** | What the case checks (test262: stay close to TC39 text) |
 | **`differences`** | Optional ES vs Adaptive **language** delta for the construct under test (not harness) |
-| **`expect`** | Expected outcome (`0`, `error`, …) |
+| **`expect`** | Outcome: Adaptive value (`0`, `true`, `undefined`, …), **`success`** (ran, ignore result), or **`error`** / **`error:…`** |
 | **`skip`** | `true` / `false` |
 | **`skipReason`** | Why skipped; suggested prefixes below |
 | **`source`** | Case body |

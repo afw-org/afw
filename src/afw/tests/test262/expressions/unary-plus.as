@@ -7,7 +7,7 @@
 //?
 //? test: S11.4.6_A1
 //? description: Checking by using eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -61,10 +61,9 @@ if (eval(script("+\u20291")) !== 1) {
 if (eval(script("+\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
   throw '#10: +\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1';
 }
-return;
 //? test: S11.4.6_A2.1_T1
 //? description: Either Type(x) is not Reference or GetBase(x) is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -90,7 +89,6 @@ x = 1;
 if (+(+x) !== 1) {
   throw '#4: let x = 1; +(+x) === 1. Actual: ' + (+(+x));
 }
-return;
 //? test: S11.4.6_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 21 around line 3 column 2: Unknown built-in function 'x'
@@ -102,7 +100,7 @@ return;
 
 //? test: S11.4.6_A3_T1
 //? description: Type(x) is boolean primitive or Boolean object
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 Incompatible: Adaptive does not coerce boolean with unary + (ES
@@ -116,10 +114,9 @@ ToNumber)
 if (+false !== 0) {
   throw '#1: +false === 0. Actual: ' + string(+false);
 }
-return;
 //? test: S11.4.6_A3_T2
 //? description: Type(x) is number primitive or Number object
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -128,10 +125,9 @@ return;
 if (+0.1 !== 0.1) {
   throw '#1: +0.1 === 0.1. Actual: ' + (+0.1);
 }
-return;
 //? test: S11.4.6_A3_T3
 //? description: Type(x) is string primitive (Adaptive unary + identity)
-//? expect: undefined
+//? expect: success
 //? differences: Adaptive unary + is identity (no ToNumber); +"x" stays string, not NaN
 //? source: ...
 #!/usr/bin/env afw
@@ -145,10 +141,9 @@ if (+"1" !== "1") {
 if (+"x" !== "x") {
   throw '#3: +"x" === "x" (identity). Actual: ' + string(+"x");
 }
-return;
 //? test: S11.4.6_A3_T4
 //? description: Type(x) is undefined or null
-//? expect: undefined
+//? expect: success
 //? differences: Adaptive unary + is identity; +null === null, +undefined === undefined (not ES ToNumber)
 //? source: ...
 #!/usr/bin/env afw
@@ -162,10 +157,9 @@ if (+undefined !== undefined) {
 if (+null !== null) {
   throw '#2: +null === null. Actual: ' + string(+null);
 }
-return;
 //? test: S11.4.6_A3_T5
 //? description: Type(x) is Object object or Function object (Adaptive unary + identity)
-//? expect: undefined
+//? expect: success
 //? differences: Adaptive unary + is identity; +{} and +function stay object/function, not NaN
 //? source: ...
 #!/usr/bin/env afw
@@ -181,10 +175,9 @@ let f = function(){ return 1; };
 if (+f !== f) {
   throw '#2: +f === f (identity)';
 }
-return;
 //? test: S9.3_A1_T2
 //? description: undefined with unary + (Adaptive: identity, not ToNumber NaN)
-//? expect: undefined
+//? expect: success
 //? differences: Adaptive unary + is identity; +undefined === undefined (not NaN)
 //? source: ...
 #!/usr/bin/env afw
@@ -198,10 +191,9 @@ if (+(undefined) !== undefined) {
 if (+(eval(script("let x;"))) !== undefined) {
   throw '#3: +(eval(script("let x;"))) === undefined';
 }
-return;
 //? test: S9.3_A2_T2
 //? description: null with unary + (Adaptive: identity, not ES ToNumber)
-//? expect: undefined
+//? expect: success
 //? differences: Adaptive unary + is a no-op (no ToNumber); +null === null, not 0
 //? source: ...
 #!/usr/bin/env afw
@@ -210,10 +202,9 @@ return;
 if (+(null) !== null) {
   throw '#1: +(null) === null. Actual: ' + string(+(null));
 }
-return;
 //? test: S9.3_A3_T2
 //? description: False and true convert to Number by implicit transformation
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 Incompatible: Adaptive does not coerce boolean with unary + (ES
@@ -236,12 +227,11 @@ if (+(false) !== +0) {
 if (+(true) !== 1) {
   throw '#2: +(true) === 1. Actual: ' + string(+(true));
 }
-return;
 //? test: S9.3_A4.1_T2
 //? description:...
     Some numbers including Number.MAX_VALUE and Number.MIN_VALUE are
     converted to Number with implicit transformation
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -265,13 +255,12 @@ if (+(1.3) !== 1.3) {
 if (+(-1.3) !== -1.3) {
   throw '#4: +(-1.3) === -1.3. Actual: ' + (+(-1.3));
 }
-return;
 //? test: S9.3_A4.2_T2
 //? description:...
     Number.NaN, +0, -0, Number.POSITIVE_INFINITY,
     Number.NEGATIVE_INFINITY,  Number.MAX_VALUE and Number.MIN_VALUE
     convert to Number by implicit transformation
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -320,4 +309,3 @@ if (+(Number.MIN_VALUE) !== Number.MIN_VALUE) {
   throw '#7: +(Number.MIN_VALUE) === Number.MIN_VALUE. Actual: ' + (+(Number.MIN_VALUE));
 }
 */
-return;

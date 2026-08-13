@@ -63,7 +63,7 @@
 
 //? test: cptn-value
 //? description: Returns an empty completion
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -84,9 +84,6 @@ assert(
   eval(script('let test262id5, test262id6 = 6;')) == undefined,
   'Multiple declarations, final bearing initializer'
 );
-return;
-
-
 //? test: fn-name-arrow
 //? description: Assignment of function `name` attribute (ArrowFunction)
 //? expect: error:Parse error at offset 80 around line 4 column 14: Expecting Value

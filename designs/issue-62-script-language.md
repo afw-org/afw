@@ -51,7 +51,7 @@ How that applies to this index:
 - `break;` **preserves** the running result. No `break expr` (ES does not have one; the built-in is optional `label` only).
 - A script that is **only** a call or expression (`1 + 2`, `abs(-3);`, `#block(add(1,2))`) yields that value. `x = 1; abs(-3);` is `3` (ES `eval`). `print();` is void and does not override.
 
-This is Adaptive completion, not ES `cptn-*`. test262 cases that only `throw` on failure got a trailing `return;` so `expect: undefined` means “completed,” matching `_convert.py` and original TC39 (no asserted completion).
+This is Adaptive completion, not ES `cptn-*`. test262 cases that only care that the case does not throw use **`expect: success`** (ignore the result). `expect: undefined` still means the result really is `undefined`.
 
 ## Vertical order (this branch)
 

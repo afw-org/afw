@@ -7,7 +7,7 @@
 //?
 //? test: 7.3-15
 //? description: 7.3 - ES5 recognize <BOM> (\uFFFF) as a whitespace character
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -16,12 +16,11 @@
 assert(length(prop) === 3,  'prop.length');
 assert(prop !== "aa", 'prop');
 //assert(prop[1], "\uFFFF",  'prop[1]');
-return;
 //? test: 7.3-5
 //? description:...
     7.3 - ES5 recognizes the character <LS> (\u2028) as terminating
     string literal
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -30,12 +29,11 @@ return;
 assert(prop === "66\u2028123", 'prop');
 //assert(prop[2] === "\u2028", 'prop[2]');
 assert(length(prop) === 6, 'prop.length');
-return;
 //? test: 7.3-6
 //? description:...
     7.3 - ES5 recognizes the character <PS> (\u2029) as terminating
     string literal
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -44,10 +42,9 @@ return;
 assert(prop === "66\u2029123",  'prop');
 //assert(prop[2] === "\u2029",  'prop[2]');
 assert(length(prop) === 6,  'prop.length');
-return;
 //? test: between-tokens-cr
 //? description: Insert real CARRIAGE RETURN between tokens of let x=1
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -59,10 +56,9 @@ x
 if (x !== 1) {
   throw '#1: let\\nx\\n=\\n1\\n; x === 1. Actual: ' + (x);
 }
-return;
 //? test: between-tokens-lf
 //? description: Insert real LINE FEED between tokens of let x=1
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -72,30 +68,27 @@ x
 1;
 
 assert(x ===  1);
-return;
 //? test: between-tokens-ls
 //? description: Insert LINE SEPARATOR (\u2028) between tokens of let x=1
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
 let x = 1 ;
 
 assert(x ===  1);
-return;
 //? test: between-tokens-ps
 //? description: Insert PARAGRAPH SEPARATOR (\u2029) between tokens of let x=1
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
 let x = 1 ;
 
 assert(x === 1);
-return;
 //? test: comment-multi-cr
 //? description: Insert real CARRIAGE RETURN into multi line comment
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -106,7 +99,6 @@ multi^Mline^Mcomment^Mx = 1;
 x = 1;
 if (x !== 0) {
 }
-return;
 //? test: comment-multi-lf
 //? description: Insert real LINE FEED into multi line comment
 //? expect: error
@@ -415,7 +407,7 @@ ing
 
 //? test: S7.3_A5.4
 //? description: Insert PARAGRAPH SEPARATOR (U+2029) into multi line comment
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -425,7 +417,6 @@ ing
 let x = 0;
 if (x !== 0) {
 }
-return;
 //? test: S7.3_A6_T1
 //? description: Insert LINE FEED (U+000A) in let x
 //? expect: error
@@ -472,7 +463,7 @@ let\u2029x;
 
 //? test: S7.3_A7_T1
 //? description: Insert Line Terminator in let x=y+z
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -503,10 +494,9 @@ z
 if (x !== 5) {
   throw '#2: let\\nx\\n=\\ny\\n+\\nz\\n; x === 5. Actual: ' + (x);
 }
-return;
 //? test: S7.3_A7_T2
 //? description: Insert Line Terminator in let x=y-z
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -537,10 +527,9 @@ z
 if (x !== 1) {
   throw '#2: let\\nx\\n=\\ny\\n-\\nz\\n; x === 1. Actual: ' + (x);
 }
-return;
 //? test: S7.3_A7_T3
 //? description: Insert Line Terminator in let x=y*z
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -571,10 +560,9 @@ z
 if (x !== 6) {
   throw '#2: let\\nx\\n=\\ny\\n*\\nz\\n; x === 6. Actual: ' + (x);
 }
-return;
 //? test: S7.3_A7_T4
 //? description: Insert Line Terminator in let x=y/z
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -605,10 +593,9 @@ z
 if (x !== 6) {
   throw '#2: let\\nx\\n=\\ny\\n/\\nz\\n; x === 6. Actual: ' + (x);
 }
-return;
 //? test: S7.3_A7_T5
 //? description: Insert Line Terminator in let x=y%z
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -639,10 +626,9 @@ z
 if (x !== 6) {
   throw '#2: let\\nx\\n=\\ny\\n%\\nz\\n; x === 6. Actual: ' + (x);
 }
-return;
 //? test: S7.3_A7_T8
 //? description: Insert Line Terminator in let x=y<z
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -673,4 +659,3 @@ z
 if (x !== true) {
   throw '#2: let\\nx\\n=\\ny\\n<\\nz\\n; x === true. Actual: ' + (x);
 }
-return;

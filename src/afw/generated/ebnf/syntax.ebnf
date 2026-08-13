@@ -829,8 +829,14 @@ TestDifferences ::= TestScriptLineStart 'differences:' TestScriptValue
 TestExpect ::= TestScriptLineStart
    'expect:' (
        ( 'error' '\n' ) |
-       ( 'result' TestScriptValue )
+       ( 'error:' UnicodeNonControl* '\n' ) |
+       ( 'success' '\n' ) |
+       TestScriptValue
    )
+/*                                                                            */
+/* 'success' means compiled and ran with no throw; the result is ignored.     */
+/* 'error' / 'error:message' mean a throw. Any other value is Adaptive        */
+/* and compared to the script result (including 'undefined').                 */
 /* Optional side-channel text expects (string equality on captured utf-8;     */
 /* not Adaptive-eval). Hyphen keys only — ':' is the //? key/value separator. */
 /* Value forms match other keys (same-line trim, "..." multi-line, <<< file). */

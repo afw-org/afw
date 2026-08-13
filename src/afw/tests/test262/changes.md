@@ -84,7 +84,7 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 
 | Case | How | Brief |
 |------|-----|--------|
-| test262 `expect: undefined` vs last assign | **T:** →fix | Bulk `return;` so converter default matches “did not throw”; original TC39 is the check. let/const `cptn-value` now empty completion |
+| test262 `expect: undefined` vs last assign | **T:** →fix | **`expect: success`** means “did not throw” (ignore result). Dummy `return;` from the first sweep removed. let/const `cptn-value` still empty completion |
 | [try `cptn-*` / `S12.14_A6`](#try-cptn-assignment-probes) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Assignment probes; empty try/catch/finally do not write; break/continue keep last assign |
 
 ### Object / array helpers ([#55](https://github.com/afw-org/afw/issues/55)) and dense arrays ([#39](https://github.com/afw-org/afw/issues/39))

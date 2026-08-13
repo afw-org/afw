@@ -126,6 +126,15 @@ assert(r === 3);
 return 0;
 
 //?
+//? test: expect-success-ignores-result
+//? description: expect: success passes when the last assign is not undefined
+//? expect: success
+//? source: ...
+
+let x;
+x = 7;
+
+//?
 //? test: return-wins
 //? description: return sets the result and leaves
 //? expect: 0

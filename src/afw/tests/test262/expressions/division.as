@@ -7,7 +7,7 @@
 //?
 //? test: line-terminator
 //? description: Line terminator between the operands of a division operator
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -23,10 +23,9 @@ let x = 18
 ;
 
 assert(x ===  1);
-return;
 //? test: no-magic-asi-from-block-eval
 //? description: division after block statement (no ASI)
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 FIXME: ASI / block-eval interaction around division vs regexp;
@@ -40,10 +39,9 @@ let g = 2;
 let notRegExp = eval('{[42]}.8/of/g');
 
 assert(notRegExp ===  .1);
-return;
 //? test: no-magic-asi
 //? description: No ASI happening in identifier used as operands
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -54,10 +52,9 @@ let g = 2;
 let notRegExp = instance/of/g;
 
 assert(notRegExp ===  5);
-return;
 //? test: S11.5.2_A1
 //? description: Checking by using eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -110,10 +107,9 @@ if (eval(script("1\u2029/\u20291")) !== 1) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029/\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
   throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029/\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1';
 }
-return;
 //? test: S11.5.2_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -140,10 +136,9 @@ y = 1;
 if (x / y !== 1) {
   throw '#4: let x = 1; let y = 1; x / y === 1. Actual: ' + (x / y);
 }
-return;
 //? test: S11.5.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
@@ -159,10 +154,9 @@ catch (e) {
     throw '#1.2: x / 1 throw ReferenceError. Actual: ' + (e);
   }
 }
-return;
 //? test: S11.5.2_A2.1_T3
 //? description: If GetBase(y) is null, throw ReferenceError
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
@@ -178,10 +172,9 @@ catch (e) {
     throw '#1.2: 1 / y throw ReferenceError. Actual: ' + (e);
   }
 }
-return;
 //? test: S11.5.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Harness: half-converted arithmetic operator case from test262
 //? source: ...
@@ -202,10 +195,9 @@ try {
      }
    }
 }
-return;
 //? test: S11.5.2_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -213,10 +205,9 @@ return;
 if (1 / 1 !== 1) {
   throw '#1: 1 / 1 === 1. Actual: ' + (1 / 1);
 }
-return;
 //? test: S11.5.2_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
@@ -241,10 +232,9 @@ if (is_NaN(undefined / undefined) !== true) {
 if (is_NaN(null / null) !== true) {
   throw '#4: null / null === Not-a-Number. Actual: ' + (null / null);
 }
-return;
 //? test: S11.5.2_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: Incompatible: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
@@ -269,10 +259,9 @@ if (is_NaN(function(){return 1} / function(){return 1}) !== true) {
 if (is_NaN({} / {}) !== true) {
   throw '#4: {} / {} === Not-a-Number. Actual: ' + ({} / {});
 }
-return;
 //? test: S11.5.2_A3_T2.6
 //? description: Type(x) is different from Type(y) and both types vary between String (primitive or object) and Undefined
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 Harness: half-converted; still uses ES valueOf / boxed primitives /
@@ -299,10 +288,9 @@ if (is_NaN(new String("1") / undefined) !== true) {
 if (is_NaN(undefined / new String("1")) !== true) {
   throw '#4: undefined / new String("1") === Not-a-Number. Actual: ' + (undefined / new String("1"));
 }
-return;
 //? test: S11.5.2_A4_T10
 //? description: If both operands are finite and nonzero, the quotient is computed and rounded using IEEE 754 round-to-nearest mode.  If the magnitude is too small to represent, the result is then a zero of appropriate sign throw new Test262Error('#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0'); throw new Test262Error('#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0');
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
@@ -357,10 +345,9 @@ if (Number.MIN_VALUE / 1.1 !== Number.MIN_VALUE) {
 if (Number.MIN_VALUE / -1.1 !== -Number.MIN_VALUE) {
   throw '#8: Number.MIN_VALUE / -1.1 === -Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / -1.1);
 }
-return;
 //? test: S11.5.2_A4_T1.1
 //? description: If left operand is NaN, the result is NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -405,10 +392,9 @@ if (is_NaN(NaN / Number.MIN_VALUE) !== true) {
 if (is_NaN(NaN / 1.0) !== true) {
   throw '#8: NaN / 1 === Not-a-Number. Actual: ' + (NaN / 1);
 }
-return;
 //? test: S11.5.2_A4_T1.2
 //? description: If right operand is NaN, the result is NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -453,10 +439,9 @@ if (is_NaN(Number.MIN_VALUE / NaN) !== true) {
 if (is_NaN(1.0 / NaN) !== true) {
   throw '#8: 1 / NaN === Not-a-Number. Actual: ' + (1 / NaN);
 }
-return;
 //? test: S11.5.2_A4_T2
 //? description: The sign of the result is positive if both operands have the same sign, negative if the operands have different signs
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -479,10 +464,9 @@ if (-1 / 1 !== -1) {
 if (-1 / -1 !== 1) {
   throw '#4: -1 / -1 === 1. Actual: ' + (-1 / -1);
 }
-return;
 //? test: S11.5.2_A4_T3
 //? description: Division of an infinity by a zero results in an infinity of appropriate sign
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -505,10 +489,9 @@ if (Infinity / 0.0 !== Infinity) {
 if (Infinity / -0.0 !== -Infinity) {
   throw '#4: Infinity / -0 === -Infinity. Actual: ' + string(Infinity / -0.0);
 }
-return;
 //? test: S11.5.2_A4_T4
 //? description: Division of an infinity by an infinity results in NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -531,10 +514,9 @@ if (is_NaN(-Infinity / Infinity) !== true) {
 if (is_NaN(Infinity / -Infinity) !== true) {
   throw '#4: Infinity / -Infinity === Not-a-Number. Actual: ' + (Infinity / -Infinity);
 }
-return;
 //? test: S11.5.2_A4_T5
 //? description: Division of an infinity by a finite non-zero value results in a signed infinity
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -567,10 +549,9 @@ if (Infinity / -2.5 !== -Infinity) {
 if (-Infinity / 0.5 !== -Infinity) {
   throw '#6: -Infinity / 0.5 === -Infinity';
 }
-return;
 //? test: S11.5.2_A4_T6
 //? description: Division of a finite value by an infinity results in zero of appropriate sign throw new Test262Error('#1.2: 1 / -Infinity === - 0. Actual: +0'); throw new Test262Error('#2.2: -1 / -Infinity === + 0. Actual: -0'); throw new Test262Error('#3.2: 1 / Infinity === + 0. Actual: -0'); throw new Test262Error('#4.2: -1 / Infinity === - 0. Actual: +0');
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -609,10 +590,9 @@ if (-1.0 / Infinity !== -0.0) {
     throw '#4.2: -1 / Infinity === - 0. Actual: +0';
   }
 }
-return;
 //? test: S11.5.2_A4_T7
 //? description: Division of a zero by a zero results in NaN (double path)
-//? expect: undefined
+//? expect: success
 //? differences: Integer 0/0 throws; use 0.0 so / is double and yields NaN (IEEE)
 //? source: ...
 
@@ -636,10 +616,9 @@ if (is_NaN(+0.0 / -0.0) !== true) {
 if (is_NaN(-0.0 / -0.0) !== true) {
   throw '#4: -0.0 / -0.0 === Not-a-Number';
 }
-return;
 //? test: S11.5.2_A4_T8
 //? description: Division of a zero by any non-zero finite value — signed zero (double)
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -696,10 +675,9 @@ if (-0.0 / 0.5 !== -0.0) {
     throw '#6.2: -0.0 / 0.5 === -0';
   }
 }
-return;
 //? test: S11.5.2_A4_T9
 //? description: If the magnitude is too large to represent, the result is then an infinity of appropriate sign
-//? expect: undefined
+//? expect: success
 //? skip: true
 //? skipReason: ...
 FIXME: extreme double literals / overflow edges need reliable large
@@ -711,4 +689,3 @@ exponents (Number.MAX_VALUE lineage); use Infinity cases in A4_T3/T5 for now
 if (Number.MAX_VALUE / 0.9 !== Infinity) {
   throw '#1: Number.MAX_VALUE / 0.9 === Infinity. Actual: ' + (Number.MAX_VALUE / 0.9);
 }
-return;
