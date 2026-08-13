@@ -92,7 +92,7 @@ On this tree (after item 5): running result as in item 1. `x = y = 1;` works as 
 
 ## Void singleton (in progress, leftover 1 mechanism)
 
-`afw_value_void` in `afw_value.h` is the permanent instance of data type `void`. Built-ins declared `returns: void` (including `let` / `const` / `if` / loops / `break` / `continue` / `try` / `switch`) return that pointer. The statement-list loop skips it; `assign` / `return` still write `script_result`. Function brace bodies use the same running-result path as a script.
+`afw_value_void` in `afw_value.h` is the permanent instance of data type `void`. Built-ins declared `returns: void` (including `let` / `const` / `if` / loops / `break` / `continue` / `try` / `switch`) return that pointer. The statement-list loop skips it; `assign` / `return` still write `script_result`. Function brace bodies use the same running-result path as a script. C-style `for` init/increment evaluate assigns but restore the running result (not script assignment statements).
 
 ## Item 5 (landed on this branch)
 

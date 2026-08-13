@@ -5,8 +5,8 @@
 //? description: ...
 Running script result (issue #62). Assignment and return write it.
 let/const, call statements, if/for/while/try, and break do not reset
-it. Nested assignment does write it. A lone expression is the result;
-a call statement is not.
+it. Nested assignment does write it. for init/increment do not write.
+A lone expression is the result; a call statement is not.
 //? sourceType: script
 //?
 //? test: only-let
@@ -145,4 +145,26 @@ assert(r === undefined);
 const r2 = evaluate(compile<script>(script(
     "function f() { return 4; } let x; x = f();")));
 assert(r2 === 4);
+return 0;
+
+//?
+//? test: for-increment-does-not-write
+//? description: i = i + 1 in the for head does not override a body assign
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "let x; let i; for (i = 0; i < 2; i = i + 1) { x = 10; }")));
+assert(r === 10);
+return 0;
+
+//?
+//? test: for-increment-does-not-wipe-prior
+//? description: increment does not replace an assignment before the loop
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "let x; let i; x = 1; for (i = 0; i < 3; i = i + 1) { }")));
+assert(r === 1);
 return 0;

@@ -739,6 +739,25 @@ impl_evaluate_one_or_more_values(
 }
 
 
+/* for init/increment are assignment IR, not script assignment statements. */
+static void
+impl_evaluate_for_increment(
+    afw_function_execute_t *x,
+    afw_size_t parameter_number,
+    const afw_value_t *values,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *saved_result;
+    afw_boolean_t saved_written;
+
+    saved_result = xctx->script_result;
+    saved_written = xctx->script_result_written;
+    impl_evaluate_one_or_more_values(x, parameter_number, values, p, xctx);
+    xctx->script_result = saved_result;
+    xctx->script_result_written = saved_written;
+}
+
 
 
 /*
@@ -1097,7 +1116,7 @@ afw_function_execute_for(
         this_label = impl_optional_loop_label(x, 5);
 
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(1)) {
-            impl_evaluate_one_or_more_values(x, 1, x->argv[1], p, xctx);
+            impl_evaluate_for_increment(x, 1, x->argv[1], p, xctx);
         }
 
         increment = NULL;
@@ -1139,7 +1158,7 @@ afw_function_execute_for(
                 }
                 previous_iterator_scope = scope;
                 afw_xctx_scope_activate(scope, xctx);
-                impl_evaluate_one_or_more_values(x, 3, increment, p, xctx);
+                impl_evaluate_for_increment(x, 3, increment, p, xctx);
             }
         }
     }
