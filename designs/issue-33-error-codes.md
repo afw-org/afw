@@ -7,7 +7,7 @@
 
 ## Landed (this branch)
 
-Beta rebuild is assumed, so the enum was **reordered**: `none`, `general`, `throw` first, then language, then request/HTTP, then host. **Prefer `e.id`**. Unused HTTP tokens were wired where the message already said that. Unclear ids were renamed (`arg_error` → `argument_error`, `cast_error` → `conversion_error`, `evaluate` → `evaluation_error`, `undefined` → `undefined_value`, `code` → `coding_error`, `client_time_out` → `client_timeout`). A required parameter that is `undefined` now throws `undefined_value` instead of `general`. Convert-from-text of date/time/duration/binary is `conversion_error`. Too few/too many arguments and a parameter of the wrong data type are `argument_error`.
+Beta rebuild is assumed, so the enum was **reordered**: `none`, `general`, `throw` first, then language, then request/HTTP, then host. **Prefer `e.id`**. Unused HTTP tokens were wired where the message already said that. Unclear ids were renamed (`arg_error` → `argument_error`, `cast_error` → `conversion_error`, `evaluate` → `evaluation_error`, `undefined` → `undefined_value`, `code` → `coding_error`, `client_time_out` → `client_timeout`). A required parameter that is `undefined` now throws `undefined_value` instead of `general`. Convert-from-text of date/time/duration/binary is `conversion_error`. Too few/too many arguments and a parameter of the wrong data type are `argument_error`. `evaluation_error` and `objects_needed` were folded away. `open_file` ENOENT is `not_found`. The map includes assigned IANA HTTP statuses a server or extension may issue.
 
 | Was `general` (500) | Now | HTTP |
 |---------------------|-----|------|
@@ -34,7 +34,7 @@ throw "Person not found" id "not_found" data { personId: id };
 
 `throw "…" { … }` (second expression, no `data` name) is **deprecated**, kept for a while so people can test on `mgg-develop`. Remove it after that. `data` is a common variable name: while the old form remains, `throw "…" data` cannot mean “payload is the variable `data`” (it starts the `data` clause). After removal, that is only `throw "…" data data`.
 
-`id` must evaluate to a string allowed on script throw: `throw`, `not_found`, `denied`, `authentication_required`, `conflict`, `bad_request`, `read_only`, `payload_too_large`, `query_too_complex`, `method_not_allowed`. A string literal that is not allowed is a compile error; a value computed at run time that is not allowed is `argument_error`.
+`id` must evaluate to a request-facing name allowed on script throw (`not_found`, `denied`, `gone`, `too_many_requests`, redirects, …). A string literal that is not allowed is a compile error; a value computed at run time that is not allowed is `argument_error`.
 
 Sets `e.id` and the HTTP status from the map. Phrase on the status line stays the map text.
 
@@ -112,43 +112,13 @@ New tokens can still be appended before `highest_afw = 1000`. User codes above 1
 
 Sentinel: enum value `0` is `is_not_specified` (hardcoded row, not in the `XX` map).
 
-## Current map (after reorder)
+## Current map
 
-| n | `id` | HTTP | In body? | Phrase | Notes |
-|---|------|------|----------|--------|-------|
-| 0 | `is_not_specified` | 500† | no | OK / html 200 OK | sentinel |
-| 1 | `none` | 200 | yes | OK | success |
-| 2 | `general` | 500 | yes | General Error | default; still most throws |
-| 3 | `throw` | 400 | yes | Statement throw encountered | script `throw` |
-| 4 | `assertion_failed` | 400 | yes | Assertion failed | `assert()` |
-| 5 | `argument_error` | 400 | yes | Argument Error | was `arg_error`; args; `1 / 0` |
-| 6 | `conversion_error` | 400 | yes | Conversion Error | was `cast_error` |
-| 7 | `evaluation_error` | 400 | yes | Evaluation Error | was `evaluate` |
-| 8 | `undefined_value` | 400 | yes | Undefined Value | was `undefined`; required param |
-| 9 | `syntax` | 400 | yes | Syntax Error | Adaptive parse |
-| 10 | `bad_request` | 400 | yes | Bad Request | REST path/URI |
-| 11 | `query_too_complex` | 400 | yes | Query Too Complex | LDAP op |
-| 12 | `request_syntax` | 400 | yes | Request Syntax Error | bad POST body |
-| 13 | `objects_needed` | 400 | yes | Objects Needed… | cache resolve |
-| 14 | `authentication_required` | 401 | yes | Authentication Needed | still unused |
-| 15 | `denied` | 403 | yes | Forbidden - Access Denied | authz |
-| 16 | `read_only` | 403 | yes | Forbidden - Read Only | |
-| 17 | `not_found` | 404 | yes | Not Found | adapter/object/URI |
-| 18 | `method_not_allowed` | 405 | yes | Method Not Allowed | REST method |
-| 19 | `unsupported_accept` | 406 | **no** | Unsupported Content Type Requested | Accept |
-| 20 | `client_timeout` | 408 | yes | Request Timeout | was `client_time_out`; unused |
-| 21 | `conflict` | 409 | yes | Conflict | file/VFS already exists; script throw |
-| 22 | `length_required` | 411 | yes | Content Length Required | unused |
-| 23 | `payload_too_large` | 413 | yes | Payload Too Large | maxObjects / crypto |
-| 24 | `unsupported_content` | 415 | yes | Unsupported Content Type | request CT |
-| 25 | `im_a_teapot` | 418 | yes | I'm a Teapot | unused |
-| 26 | `memory` | 500 | yes | Memory Error | fcgi special catch |
-| 27 | `coding_error` | 500 | yes | Internal Coding Error | was `code` |
-| 28 | `method_not_supported` | 501 | yes | Method Not Supported | journal / capability |
-| 29 | `client_closed` | 000 | **no** | Client Closed Connection | fcgi; no body |
-| 30 | `terminating` | 503 | yes | Server Terminating | #158 |
+Truth is `AFW_ERROR_CODE_MAP` in `src/afw/include/afw_common.h`. Numbers change when rows are added; prefer `e.id`.
 
-Comment vs token drift in the same header: `query_to_complex` vs `query_too_complex`; `unsupported_content_type` vs `unsupported_content`. Comments also mention `error.additional`; the catch object uses `data`.
+Folded before freeze: `evaluation_error` → `argument_error` / `undefined_value`; `objects_needed` → `coding_error`. `open_file` ENOENT is `not_found`.
+
+The HTTP family includes assigned IANA 2xx–5xx a server or extension may issue (skipped 1xx, deprecated 305/306, obsolete 510). Adaptive extras share a number: `query_too_complex` / `request_syntax` (400), `read_only` (403), `terminating` (503 next to `service_unavailable`). `client_closed` stays 000 / no body.
 
 ## What already works (do not break)
 
@@ -183,7 +153,7 @@ These are observations, not a ship list.
 
 **Language codes are HTTP 400**
 
-Uncaught `throw`, `assert`, `argument_error`, `evaluation_error`, `undefined_value`, `conversion_error` all become **400**. That is “client request was bad” in HTTP. Reasonable if the request *body* is a script the client sent. Odd if a **server-side** model `on*` or conf script blows up — the client did not send a bad request; the app failed. One enum cannot say both without a host policy.
+Uncaught `throw`, `assert`, `argument_error`, `undefined_value`, `conversion_error` all become **400**. That is “client request was bad” in HTTP. Reasonable if the request *body* is a script the client sent. Odd if a **server-side** model `on*` or conf script blows up — the client did not send a bad request; the app failed. One enum cannot say both without a host policy.
 
 **`syntax` → 500** vs **`request_syntax` → 400** looks like the intended split (server compile vs request parse) that was never applied: compile always uses `syntax`.
 
@@ -211,7 +181,7 @@ Flexible order — pick after consensus. Small verticals beat a big bang remap.
 3. **Let script `throw` name an existing id** (e.g. `throw "gone" { id: "not_found" }` or a second parameter). Uncaught model/script errors could then be 404/403/409. Needs a whitelist (probably not `memory` / `client_closed` / `coding_error`). This is the feature that makes try/catch *control HTTP*.
 4. **Add codes at the end** only when catchers have a real branch (e.g. I/O / timeout / conflict). Do not add one code per subsystem.
 5. **Catch-by-id syntax** (`catch (e if e.id == "denied")`) is C `AFW_CATCH` envy. Not required if (1)+(inspect `e.id`) is enough. Language work; not implied by the issue text.
-6. **HTTP remap of language codes** (`evaluation_error`/`syntax`/`throw` → 500 vs 400) is policy. Do not flip globally without host/context.
+6. **HTTP remap of language codes** (`syntax`/`throw` → 500 vs 400) is policy. Do not flip globally without host/context.
 
 Non-goals unless someone asks:
 

@@ -63,8 +63,8 @@
                     "type": "object"
                 },
                 "additionalArgCheck": {
-                    "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
-                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+                    "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
+                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
                     "title": "Additional Arg Check",
                     "type": "boolean"
                 },
@@ -288,8 +288,8 @@
         "_AdaptiveFunctionGenerate_.propertyTypes": {
             "properties": {
                 "additionalArgCheck": {
-                    "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
-                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+                    "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
+                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
                     "title": "Additional Arg Check",
                     "type": "boolean"
                 },
@@ -664,8 +664,8 @@
             "type": "object"
         },
         "additionalArgCheck": {
-            "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
-            "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+            "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
+            "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
             "title": "Additional Arg Check",
             "type": "boolean"
         },

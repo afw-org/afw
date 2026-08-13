@@ -23456,7 +23456,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1809 \
-    "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future."
+    "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1809 */
 #define afw_s_zz__1809 \
@@ -40096,7 +40096,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__393 \
-    "Optional error id (mnemonic) to use instead of 'throw'. Must be a name allowed on script throw (for example not_found, denied, conflict). Sets the id property of the catch object and the HTTP status if the error is not caught."
+    "Optional error id (mnemonic) to use instead of 'throw'. Must be a name allowed on script throw (request-facing HTTP names such as not_found, denied, gone, too_many_requests). Sets the id property of the catch object and the HTTP status if the error is not caught."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__393 */
 #define afw_s_zz__393 \

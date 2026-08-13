@@ -46,6 +46,22 @@
             "reason": "id is method_not_allowed"
         },
         {
+            "error": "gone",
+            "reason": "id is gone"
+        },
+        {
+            "error": "too_many_requests",
+            "reason": "id is too_many_requests"
+        },
+        {
+            "error": "unprocessable_content",
+            "reason": "id is unprocessable_content"
+        },
+        {
+            "error": "moved_permanently",
+            "reason": "id is moved_permanently"
+        },
+        {
             "error": "argument_error",
             "reason": "id is not a string or is not allowed on throw"
         }
@@ -68,7 +84,7 @@
         {
             "brief": "Error id",
             "dataType": "string",
-            "description": "Optional error id (mnemonic) to use instead of 'throw'. Must be a name allowed on script throw (for example not_found, denied, conflict). Sets the id property of the catch object and the HTTP status if the error is not caught.",
+            "description": "Optional error id (mnemonic) to use instead of 'throw'. Must be a name allowed on script throw (request-facing HTTP names such as not_found, denied, gone, too_many_requests). Sets the id property of the catch object and the HTTP status if the error is not caught.",
             "name": "id",
             "optional": true
         }

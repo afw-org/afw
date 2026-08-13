@@ -351,7 +351,7 @@ afw_function_evaluate_parameter(
 
 
 
-/* Evaluate a value and cast if necessary without throwing error. */
+/* Evaluate a value and convert if necessary without throwing error. */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_required_parameter(
     afw_function_execute_t *x,

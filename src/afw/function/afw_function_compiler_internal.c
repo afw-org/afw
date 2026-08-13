@@ -1717,9 +1717,10 @@ afw_function_execute_switch(
  *       property of the _AdaptiveError_ object in the catch block.
  *
  *   id - (optional string) Optional error id (mnemonic) to use instead of
- *       'throw'. Must be a name allowed on script throw (for example not_found,
- *       denied, conflict). Sets the id property of the catch object and the
- *       HTTP status if the error is not caught.
+ *       'throw'. Must be a name allowed on script throw (request-facing HTTP
+ *       names such as not_found, denied, gone, too_many_requests). Sets the id
+ *       property of the catch object and the HTTP status if the error is not
+ *       caught.
  *
  * Returns:
  *
@@ -1737,6 +1738,10 @@ afw_function_execute_switch(
  *   payload_too_large - id is payload_too_large
  *   query_too_complex - id is query_too_complex
  *   method_not_allowed - id is method_not_allowed
+ *   gone - id is gone
+ *   too_many_requests - id is too_many_requests
+ *   unprocessable_content - id is unprocessable_content
+ *   moved_permanently - id is moved_permanently
  *   argument_error - id is not a string or is not allowed on throw
  */
 const afw_value_t *

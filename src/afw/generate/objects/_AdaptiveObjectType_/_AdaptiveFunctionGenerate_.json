@@ -10,7 +10,7 @@
             "allowQuery": true,
             "brief": "Additional argument check",
             "dataType": "boolean",
-            "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+            "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
             "label": "Additional Arg Check",
             "required": false
         },

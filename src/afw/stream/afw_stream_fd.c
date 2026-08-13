@@ -260,6 +260,11 @@ afw_stream_fd_open_and_create(
         if (err == 0) {
             err = EIO;
         }
+        if (err == ENOENT) {
+            AFW_THROW_ERROR_RV_FZ(not_found, errno, err, xctx,
+                "streamId " AFW_UTF8_FMT_Q " failed to open %s: %s",
+                AFW_UTF8_FMT_ARG(streamId), path_z, strerror(err));
+        }
         AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
             "streamId " AFW_UTF8_FMT_Q " failed to open %s: %s",
             AFW_UTF8_FMT_ARG(streamId), path_z, strerror(err));

@@ -1093,15 +1093,29 @@ afw_error_id_allowed_on_script_throw(const afw_utf8_t *id)
 
     switch (code) {
     case afw_error_code_throw:
-    case afw_error_code_not_found:
-    case afw_error_code_denied:
-    case afw_error_code_authentication_required:
-    case afw_error_code_conflict:
     case afw_error_code_bad_request:
-    case afw_error_code_read_only:
-    case afw_error_code_payload_too_large:
     case afw_error_code_query_too_complex:
+    case afw_error_code_authentication_required:
+    case afw_error_code_payment_required:
+    case afw_error_code_denied:
+    case afw_error_code_read_only:
+    case afw_error_code_not_found:
     case afw_error_code_method_not_allowed:
+    case afw_error_code_conflict:
+    case afw_error_code_gone:
+    case afw_error_code_precondition_failed:
+    case afw_error_code_payload_too_large:
+    case afw_error_code_uri_too_long:
+    case afw_error_code_unprocessable_content:
+    case afw_error_code_locked:
+    case afw_error_code_precondition_required:
+    case afw_error_code_too_many_requests:
+    case afw_error_code_unavailable_for_legal_reasons:
+    case afw_error_code_moved_permanently:
+    case afw_error_code_moved_temporarily:
+    case afw_error_code_see_other:
+    case afw_error_code_temporary_redirect:
+    case afw_error_code_permanent_redirect:
         return true;
     default:
         return false;

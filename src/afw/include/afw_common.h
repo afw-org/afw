@@ -994,21 +994,24 @@ typedef struct afw_object_meta_s {
  *
  * conversion_error         - Conversion to a data type failed.
  *
- * evaluation_error         - Error while evaluating an adaptive value.
- *
  * undefined_value          - Required value was undefined.
  *
  * syntax                   - Adaptive source parse / compile syntax error.
+ *
+ * HTTP-shaped ids follow IANA assigned codes a server or extension may
+ * issue (RFC 9110 plus later registry entries). Adaptive extras that share
+ * an HTTP number stay next to that number (query_too_complex and
+ * request_syntax with 400; read_only with 403; terminating with 503).
+ * Existing Adaptive names are kept (authentication_required, denied,
+ * unsupported_accept, client_timeout, payload_too_large,
+ * unsupported_content, method_not_supported). Not included: 1xx,
+ * deprecated 305/306, obsolete 510, temporary 104.
  *
  * bad_request              - Something about the request was bad.
  *
  * query_too_complex        - Query is too complex for this adapter/index.
  *
  * request_syntax           - Error parsing the HTTP request body / path.
- *
- * objects_needed           - Needed object is not in the xctx cache.
- *                           afw_object_resolve_instance() uses this when
- *                           the object with the URI passed is not cached.
  *
  * authentication_required  - Subject authentication required.
  *
@@ -1019,8 +1022,8 @@ typedef struct afw_object_meta_s {
  * not_found                - A named resource was not found. Do not throw
  *                           this when "missing" is a normal get (property
  *                           miss → NULL / found=false). Do throw for a
- *                           named adapter / object / URI the caller asked
- *                           for.
+ *                           named adapter / object / URI / file the
+ *                           caller asked for (open_file ENOENT).
  *
  * method_not_allowed       - HTTP method is not allowed for this resource.
  *
@@ -1033,10 +1036,11 @@ typedef struct afw_object_meta_s {
  * length_required          - Request requires a content length.
  *
  * payload_too_large        - Request or result exceeds a configured limit.
+ *                           HTTP phrase is IANA "Content Too Large".
  *
  * unsupported_content      - Request Content-Type is not supported.
  *
- * im_a_teapot              - RFC 2324.
+ * im_a_teapot              - Historical 418 (IANA lists 418 as unused).
  *
  * memory                   - Not enough memory to continue.
  *
@@ -1045,43 +1049,79 @@ typedef struct afw_object_meta_s {
  * method_not_supported     - This implementation does not support the
  *                           method or capability.
  *
- * client_closed            - Client closed the connection.
- *
  * terminating              - Server is terminating; stop starting more work
  *                           (e.g. mid retrieve at an object boundary).
+ *                           HTTP 503; service_unavailable is the generic 503.
+ *
+ * client_closed            - Client closed the connection.
  *
  */
 #define AFW_ERROR_CODE_MAP(XX)                                                  \
-    XX(none,                    true,  200, "OK"                               )\
-    XX(general,                 true,  500, "General Error"                    )\
-    XX(throw,                   true,  400, "Statement throw encountered"      )\
-    XX(assertion_failed,        true,  400, "Assertion failed"                 )\
-    XX(argument_error,          true,  400, "Argument Error"                   )\
-    XX(conversion_error,        true,  400, "Conversion Error"                 )\
-    XX(evaluation_error,        true,  400, "Evaluation Error"                 )\
-    XX(undefined_value,         true,  400, "Undefined Value"                  )\
-    XX(syntax,                  true,  400, "Syntax Error"                     )\
-    XX(bad_request,             true,  400, "Bad Request"                      )\
-    XX(query_too_complex,       true,  400, "Query Too Complex"                )\
-    XX(request_syntax,          true,  400, "Request Syntax Error"             )\
-    XX(objects_needed,          true,  400, "Objects Needed To Complete Request")\
-    XX(authentication_required, true,  401, "Authentication Needed"            )\
-    XX(denied,                  true,  403, "Forbidden - Access Denied"        )\
-    XX(read_only,               true,  403, "Forbidden - Read Only"            )\
-    XX(not_found,               true,  404, "Not Found"                        )\
-    XX(method_not_allowed,      true,  405, "Method Not Allowed"               )\
-    XX(unsupported_accept,      false, 406, "Unsupported Content Type Requested")\
-    XX(client_timeout,          true,  408, "Request Timeout"                  )\
-    XX(conflict,                true,  409, "Conflict"                         )\
-    XX(length_required,         true,  411, "Content Length Required"          )\
-    XX(payload_too_large,       true,  413, "Payload Too Large"                )\
-    XX(unsupported_content,     true,  415, "Unsupported Content Type"         )\
-    XX(im_a_teapot,             true,  418, "I'm a Teapot"                     )\
-    XX(memory,                  true,  500, "Memory Error"                     )\
-    XX(coding_error,            true,  500, "Internal Coding Error"            )\
-    XX(method_not_supported,    true,  501, "Method Not Supported"             )\
-    XX(client_closed,           false, 000, "Client Closed Connection"         )\
-    XX(terminating,             true,  503, "Server Terminating"               )\
+    XX(none,                               true,  200, "OK"                               )\
+    XX(general,                            true,  500, "General Error"                    )\
+    XX(throw,                              true,  400, "Statement throw encountered"      )\
+    XX(assertion_failed,                   true,  400, "Assertion failed"                 )\
+    XX(argument_error,                     true,  400, "Argument Error"                   )\
+    XX(conversion_error,                   true,  400, "Conversion Error"                 )\
+    XX(undefined_value,                    true,  400, "Undefined Value"                  )\
+    XX(syntax,                             true,  400, "Syntax Error"                     )\
+    XX(created,                            true,  201, "Created"                          )\
+    XX(accepted,                           true,  202, "Accepted"                         )\
+    XX(no_content,                         false, 204, "No Content"                       )\
+    XX(partial_content,                    true,  206, "Partial Content"                  )\
+    XX(multi_status,                       true,  207, "Multi-Status"                     )\
+    XX(multiple_choices,                   true,  300, "Multiple Choices"                 )\
+    XX(moved_permanently,                  true,  301, "Moved Permanently"                )\
+    XX(moved_temporarily,                  true,  302, "Found"                            )\
+    XX(see_other,                          true,  303, "See Other"                        )\
+    XX(not_modified,                       false, 304, "Not Modified"                     )\
+    XX(temporary_redirect,                 true,  307, "Temporary Redirect"               )\
+    XX(permanent_redirect,                 true,  308, "Permanent Redirect"               )\
+    XX(bad_request,                        true,  400, "Bad Request"                      )\
+    XX(query_too_complex,                  true,  400, "Query Too Complex"                )\
+    XX(request_syntax,                     true,  400, "Request Syntax Error"             )\
+    XX(authentication_required,            true,  401, "Authentication Needed"            )\
+    XX(payment_required,                   true,  402, "Payment Required"                 )\
+    XX(denied,                             true,  403, "Forbidden - Access Denied"        )\
+    XX(read_only,                          true,  403, "Forbidden - Read Only"            )\
+    XX(not_found,                          true,  404, "Not Found"                        )\
+    XX(method_not_allowed,                 true,  405, "Method Not Allowed"               )\
+    XX(unsupported_accept,                 false, 406, "Unsupported Content Type Requested")\
+    XX(proxy_authentication_required,      true,  407, "Proxy Authentication Required"    )\
+    XX(client_timeout,                     true,  408, "Request Timeout"                  )\
+    XX(conflict,                           true,  409, "Conflict"                         )\
+    XX(gone,                               true,  410, "Gone"                             )\
+    XX(length_required,                    true,  411, "Content Length Required"          )\
+    XX(precondition_failed,                true,  412, "Precondition Failed"              )\
+    XX(payload_too_large,                  true,  413, "Content Too Large"                )\
+    XX(uri_too_long,                       true,  414, "URI Too Long"                     )\
+    XX(unsupported_content,                true,  415, "Unsupported Media Type"           )\
+    XX(range_not_satisfiable,              true,  416, "Range Not Satisfiable"            )\
+    XX(expectation_failed,                 true,  417, "Expectation Failed"               )\
+    XX(im_a_teapot,                        true,  418, "I'm a Teapot"                     )\
+    XX(misdirected_request,                true,  421, "Misdirected Request"              )\
+    XX(unprocessable_content,              true,  422, "Unprocessable Content"            )\
+    XX(locked,                             true,  423, "Locked"                           )\
+    XX(failed_dependency,                  true,  424, "Failed Dependency"                )\
+    XX(too_early,                          true,  425, "Too Early"                        )\
+    XX(upgrade_required,                   true,  426, "Upgrade Required"                 )\
+    XX(precondition_required,              true,  428, "Precondition Required"            )\
+    XX(too_many_requests,                  true,  429, "Too Many Requests"                )\
+    XX(request_header_fields_too_large,    true,  431, "Request Header Fields Too Large"  )\
+    XX(unavailable_for_legal_reasons,      true,  451, "Unavailable For Legal Reasons"    )\
+    XX(memory,                             true,  500, "Memory Error"                     )\
+    XX(coding_error,                       true,  500, "Internal Coding Error"            )\
+    XX(method_not_supported,               true,  501, "Method Not Supported"             )\
+    XX(bad_gateway,                        true,  502, "Bad Gateway"                      )\
+    XX(service_unavailable,                true,  503, "Service Unavailable"              )\
+    XX(terminating,                        true,  503, "Server Terminating"               )\
+    XX(gateway_timeout,                    true,  504, "Gateway Timeout"                  )\
+    XX(http_version_not_supported,         true,  505, "HTTP Version Not Supported"       )\
+    XX(variant_also_negotiates,            true,  506, "Variant Also Negotiates"          )\
+    XX(insufficient_storage,               true,  507, "Insufficient Storage"             )\
+    XX(loop_detected,                      true,  508, "Loop Detected"                    )\
+    XX(network_authentication_required,    true,  511, "Network Authentication Required"  )\
+    XX(client_closed,                      false, 000, "Client Closed Connection"         )\
 
 /** Adaptive Framework error codes enum. */
 typedef enum afw_error_code_e {

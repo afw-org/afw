@@ -126,12 +126,17 @@ This beta line also renamed a few ids that collided with language names or read 
 |-----|-----|-----|
 | `cast_error` | `conversion_error` | These are conversion functions, not casts. A failed `integer("x")` or a failed convert in `eq` / `ne` uses this name. |
 | `arg_error` | `argument_error` | Spell the word. |
-| `evaluate` | `evaluation_error` | Do not collide with the `evaluate()` function. |
+| `evaluate` / `evaluation_error` | folded into `argument_error` / `undefined_value` | The leftover `evaluation_error` token was too vague. |
 | `undefined` | `undefined_value` | Do not collide with the `undefined` value / data type. A required function parameter that is `undefined` now uses this id (it was `general`). |
-
-A failed convert-from-text of **date**, **dateTime**, **time**, **dayTimeDuration**, **yearMonthDuration**, **base64Binary**, or **hexBinary** is **`conversion_error`** (it was `general`). Too few or too many arguments, and a parameter of the wrong data type, are **`argument_error`**.
 | `code` | `coding_error` | `code` was too vague (and a throw-macro parameter name). |
 | `client_time_out` | `client_timeout` | Same style as `client_closed`. |
+| `objects_needed` | `coding_error` | Cache-resolve miss is an internal invariant, not a client 400. |
+
+A failed convert-from-text of **date**, **dateTime**, **time**, **dayTimeDuration**, **yearMonthDuration**, **base64Binary**, or **hexBinary** is **`conversion_error`**. Too few or too many arguments, and a parameter of the wrong data type, are **`argument_error`**.
+
+`open_file` of a missing file (**ENOENT**) is **`not_found`** (still with errno on `e.rv`). Other open/I/O failures stay **`general`** plus errno.
+
+The map also includes assigned IANA HTTP statuses a server or extension may issue (201–511 that we might use, plus Adaptive extras that share a number). Prefer **`e.id`**. Script `throw` may use the request-facing names (including `gone`, `too_many_requests`, redirects). Host names such as `memory` and `coding_error` are not allowed on script `throw`.
 
 | Situation | `e.id` | HTTP if uncaught |
 |-----------|--------|------------------|
@@ -152,7 +157,7 @@ throw "Person not found" id "not_found";
 throw "Person not found" id "not_found" data { personId: id };
 ```
 
-Allowed names include `not_found`, `denied`, `conflict`, `bad_request`, `read_only`, `payload_too_large`, `query_too_complex`, `method_not_allowed`, and `authentication_required`. Omitted **`id`** is still **`throw`** (HTTP 400).
+Allowed names are the request-facing ones in the map (`not_found`, `denied`, `gone`, `too_many_requests`, redirects, and the rest of that family). Host names such as `memory` are not allowed. Omitted **`id`** is still **`throw`** (HTTP 400).
 
 `throw "…" { … }` (a second expression with no **`data`** name) still works so existing scripts can be tested on this line. That form is **deprecated** and will be removed; write **`throw "…" data { … }`**. After removal, **`data`** after the message is only the clause name, so a variable also named `data` is **`throw "…" data data`**.
 

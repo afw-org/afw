@@ -104,7 +104,7 @@ assert(caught);
 /* Host path is absolute; check stable message pieces (includes strerror(errno)). */
 assert(starts_with<string>(msg, "streamId 'open-fail-msg' failed to open "));
 assert(ends_with<string>(msg, "No such file or directory"));
-assert(id === "general");
+assert(id === "not_found");
 assert(rvSourceId === "errno");
 /* ENOENT is typically 2 on Linux. */
 assert(rv === 2);

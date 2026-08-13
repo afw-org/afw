@@ -76,7 +76,7 @@ return 0;
 
 //?
 //? test: throw-id-conflict
-//? description: throw id conflict
+//? description: throw id conflict, gone, too_many_requests
 //? expect: 0
 //? source: ...
 
@@ -85,6 +85,18 @@ try {
 }
 catch (e) {
     assert(e.id === "conflict", e.id);
+}
+try {
+    throw "no longer here" id "gone";
+}
+catch (e) {
+    assert(e.id === "gone", e.id);
+}
+try {
+    throw "slow down" id "too_many_requests";
+}
+catch (e) {
+    assert(e.id === "too_many_requests", e.id);
 }
 return 0;
 
