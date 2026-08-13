@@ -592,7 +592,10 @@ BreakStatement ::= 'break' ';'
 
 /* From afw_compile_parse_script.c                                            */
 
-ConstStatement ::= 'const' AssignmentTarget '=' Expression ';'
+ConstStatement ::=
+    'const' AssignmentTarget '=' Expression
+    ( ',' AssignmentTarget '=' Expression )*
+    ';'
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -648,7 +651,10 @@ IfStatement ::= 'if' '(' Expression ')' Statement ( 'else' Statement )?
 
 /* From afw_compile_parse_script.c                                            */
 
-LetStatement ::= 'let' AssignmentTarget ( '=' Expression )? ';'
+LetStatement ::=
+    'let' AssignmentTarget ( '=' Expression )?
+    ( ',' AssignmentTarget ( '=' Expression )? )*
+    ';'
 
 /* From afw_compile_parse_script.c                                            */
 /* Expression is required if inside a function that has a non-void return.    */

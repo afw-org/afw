@@ -77,11 +77,16 @@ let [z] = [ 3 ];]]></code>
         <title>Const</title>
         <image generated-src="ebnf/syntax/diagram/ConstStatement.png" />
         <paragraph>            
-            The <literal>const</literal> statement declares constant variables.
+            The <literal>const</literal> statement declares one or more
+            constant variables. Each name must have an initializer. You can
+            write several bindings in one statement, separated by commas.
+            A <literal>const</literal> cannot be assigned again.
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[const x = 1;]]></code>
+            <code><![CDATA[const x = 1;
+const a = 1, b = 2;
+const p: integer = 0, q: integer = 1;]]></code>
         </section>
     </section>
     <section>
@@ -196,9 +201,20 @@ const p: Point = { x: 0, y: 0 };]]></code>
         <title>Let</title>
         <image generated-src="ebnf/syntax/diagram/LetStatement.png" />
         <paragraph>
-            The <literal>let</literal> statement declares a local variable.
+            The <literal>let</literal> statement declares one or more local
+            variables in the current block. An initializer is optional. You
+            can write several bindings in one statement, separated by commas.
+            A name without an initializer is <literal>undefined</literal>
+            until it is assigned.
         </paragraph>
-        <code><![CDATA[let x = 1;]]></code>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[let x = 1;
+let a = 1, b = 2;
+let i, j = 0;
+let n: integer = 1, s: string = "x";
+let { host } = { host: "h" }, [first] = [7, 8];]]></code>
+        </section>
     </section>
     <section>
         <title>Return</title>
