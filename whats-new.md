@@ -75,7 +75,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 
 ---
 
-## Orchestrated tests (issue #157)
+## Orchestrated tests (issue [#157](https://github.com/afw-org/afw/issues/157))
 
 Hermetic multi-step / multi-request tests discovered by **`orchestration.yaml`**
 (or `.json`) under `src/*/tests/` (gate) and **`src/*/tests-extra/`** (opt-in).
@@ -99,7 +99,7 @@ Live `--env-mode afwfcgi` still means “shared stack”; orchestrated leaves st
 
 ---
 
-## Graceful process stop (SIGTERM/SIGINT, issue #158)
+## Graceful process stop (SIGTERM/SIGINT, issue [#158](https://github.com/afw-org/afw/issues/158))
 
 Operators and tooling can stop long-lived hosts without relying on SIGKILL under normal load.
 
@@ -115,7 +115,7 @@ Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent 
 
 ---
 
-## Error codes, try/catch, and HTTP (issue #33)
+## Error codes, try/catch, and HTTP (issue [#33](https://github.com/afw-org/afw/issues/33))
 
 Error codes are both what a script sees on **`catch (e)`** (`e.id`, `e.errorCode`) and the **HTTP status** of an uncaught error on `afwfcgi`.
 
@@ -166,7 +166,7 @@ Handbook: Language Reference **Features** (exception handling). Tests: `src/afw/
 
 [↑ Highlights](#highlights)
 
-## Multi `let` and `const` (issue #62)
+## Multi `let` and `const` (issue [#62](https://github.com/afw-org/afw/issues/62))
 
 One `let` or `const` statement may declare several names, separated by commas. Each binding is in the **current** block (same as writing two statements). An initializer is optional on `let` and required on every `const` binding. Types and destructuring work per name.
 
@@ -227,7 +227,7 @@ Recipes: [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md).
 
 ---
 
-## Runtime catalog / accessors (issue #149)
+## Runtime catalog / accessors (issue [#149](https://github.com/afw-org/afw/issues/149))
 
 Child of **[#2](https://github.com/afw-org/afw/issues/2)** memory work. Focused accessor / catalog lifetime slice (see GitHub **[#149](https://github.com/afw-org/afw/issues/149)**).
 
@@ -244,7 +244,7 @@ If you hold Adaptive values from `/afw/…` adapter objects across **service sto
 
 ---
 
-## UTF-8 code-point sequences (issue #153)
+## UTF-8 code-point sequences (issue [#153](https://github.com/afw-org/afw/issues/153))
 
 Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and other utf8-backed types) are treated as **immutable sequences of Unicode code points** (not UTF-16 code units, not raw bytes).
 
@@ -267,7 +267,7 @@ Residuals (not required for this language story): lazy array **face** over utf8;
 
 ---
 
-## Array semantics (issue #39)
+## Array semantics (issue [#39](https://github.com/afw-org/afw/issues/39))
 
 Adaptive **`array`** is a **dense** ordered sequence of values (not an object, not a sparse ES array).
 
@@ -307,7 +307,7 @@ Maintainer pad: [`designs/conversion-functions.md`](designs/conversion-functions
 
 ---
 
-## Mutable object faces (issue #17)
+## Mutable object faces (issue [#17](https://github.com/afw-org/afw/issues/17))
 
 > **Status:** **Landed on `mgg-develop`** via [PR #150](https://github.com/afw-org/afw/pull/150) (2026-08-06). Maintainer design pad: [`designs/issue-17-mutable-object-faces.md`](designs/issue-17-mutable-object-faces.md).
 
@@ -367,7 +367,7 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 
 ---
 
-## Function reference prototypes (#28 spelling)
+## Function reference prototypes ([#28](https://github.com/afw-org/afw/issues/28) spelling)
 
 Adaptive **function** docs no longer show old paren Types such as `(array of integer)` or `(object _AdaptiveJournalEntry_)`.
 
@@ -419,7 +419,7 @@ The Adaptive Framework local protocol length-prefixes chunks by **UTF-8 octet co
 
 ---
 
-## Function parameter and catch Patterns (issue #140)
+## Function parameter and catch Patterns (issue [#140](https://github.com/afw-org/afw/issues/140))
 
 **Issue [#140](https://github.com/afw-org/afw/issues/140)** — PRs **[#141](https://github.com/afw-org/afw/pull/141)** (params + catch Patterns) and **[#142](https://github.com/afw-org/afw/pull/142)** (call-site spread, Pattern keys, catch decompile, type syntax) on `mgg-develop`.
 
@@ -445,9 +445,9 @@ Not included: arrow functions, ES `arguments` object (use formal `...rest`). Lan
 
 ---
 
-## `variable_exists`: bound vs undefined (issue #131)
+## `variable_exists`: bound vs undefined (issue [#131](https://github.com/afw-org/afw/issues/131))
 
-**Issue [#131](https://github.com/afw-org/afw/issues/131)** on `mgg-develop` (branch `issue-[#131](https://github.com/afw-org/afw/issues/131)-variable-exists`).
+**Issue [#131](https://github.com/afw-org/afw/issues/131)** on `mgg-develop` (branch `issue-#131-variable-exists`).
 
 A declared name is **bound** even when its value is `undefined` (including `let x` with no initializer and an omitted optional parameter). That matches object `property_exists` (key present with undefined still exists) and TypeScript-shaped expectations for the same syntax.
 
@@ -474,7 +474,7 @@ Maintainer notes: root `typescript-differences.md` (bound vs value).
 
 ---
 
-## Object and array helpers (issue #55)
+## Object and array helpers (issue [#55](https://github.com/afw-org/afw/issues/55))
 
 **Issue [#55](https://github.com/afw-org/afw/issues/55)** — **closed** 2026-08-04 (landed via PR **[#134](https://github.com/afw-org/afw/pull/134)** on `mgg-develop`).
 
@@ -531,7 +531,7 @@ metadata when docs are built.
 
 ---
 
-## Expression property names in object values (issue #38)
+## Expression property names in object values (issue [#38](https://github.com/afw-org/afw/issues/38))
 
 **Issue [#38](https://github.com/afw-org/afw/issues/38)** — **closed** 2026-08-04 (landed via PR **[#139](https://github.com/afw-org/afw/pull/139)** on `mgg-develop`).
 
@@ -563,9 +563,9 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ---
 
-## Value lifetime / memory management (issue #2) — alpha/beta
+## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** — work in progress on `mgg-develop` via branch `issue-[#2](https://github.com/afw-org/afw/issues/2)` (partial land; design continues).
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** — work in progress on `mgg-develop` via branch `issue-#2` (partial land; design continues).
 
 This is **not** a finished memory-management productization. Treat it as **alpha/beta** on the maintainer develop line: useful foundation and mostly behavior-compatible for in-tree tests, but the long-running escape / assign / scope-release story is **not** complete.
 
@@ -590,7 +590,7 @@ This is **not** a finished memory-management productization. Treat it as **alpha
 
 ---
 
-## C API docs and full package builds (issue #1)
+## C API docs and full package builds (issue [#1](https://github.com/afw-org/afw/issues/1))
 
 **Issue [#1](https://github.com/afw-org/afw/issues/1)** / PR **[#132](https://github.com/afw-org/afw/pull/132)** (merged to `mgg-develop`)
 
@@ -671,7 +671,7 @@ In-tree monorepo builds still see full source includes at **build** time. Mainta
 
 ---
 
-## Adapter index filter/value `current::` (issue #54) — partial
+## Adapter index filter/value `current::` (issue [#54](https://github.com/afw-org/afw/issues/54)) — partial
 
 **Issue [#54](https://github.com/afw-org/afw/issues/54)** / PR **[#130](https://github.com/afw-org/afw/pull/130)** (core eval context; LMDB create path still has known issues)
 
@@ -692,7 +692,7 @@ Bare ambient **`object`** (old unqualified scope push) is **not** set. Prefer `c
 
 ---
 
-## List active qualified variables (issue #9)
+## List active qualified variables (issue [#9](https://github.com/afw-org/afw/issues/9))
 
 **Issue [#9](https://github.com/afw-org/afw/issues/9)** / PR **[#129](https://github.com/afw-org/afw/pull/129)**. (Multi-frame **`::` get** alignment is separate — see subsection below and issue **[#15](https://github.com/afw-org/afw/issues/15)** / PR **[#135](https://github.com/afw-org/afw/pull/135)**.)
 
@@ -734,7 +734,7 @@ Older builds stopped **`qualifier::name` get** after the **first matching qualif
 
 ---
 
-## Materializing retrieve: `maxObjects` (issue #49)
+## Materializing retrieve: `maxObjects` (issue [#49](https://github.com/afw-org/afw/issues/49))
 
 **Issue [#49](https://github.com/afw-org/afw/issues/49)** (partial)
 
@@ -791,7 +791,7 @@ Rebuild/install the admin app (or full JS install) and hard-refresh the browser.
 
 ---
 
-## Progressive retrieve release (issue #127)
+## Progressive retrieve release (issue [#127](https://github.com/afw-org/afw/issues/127))
 
 **Issue [#127](https://github.com/afw-org/afw/issues/127)** — **closed** when this lands on `mgg-develop`.
 
@@ -809,7 +809,7 @@ No Adaptive API change for callers: do not use an object after a progressive wri
 
 ---
 
-## Adapter get/retrieve authorization (issue #90)
+## Adapter get/retrieve authorization (issue [#90](https://github.com/afw-org/afw/issues/90))
 
 **Issue [#90](https://github.com/afw-org/afw/issues/90)**
 
@@ -829,7 +829,7 @@ Retrieve collection resource ids use a trailing slash (e.g. `/adapterId/ObjectTy
 
 ---
 
-## Compile-time template substitutions (issue #97)
+## Compile-time template substitutions (issue [#97](https://github.com/afw-org/afw/issues/97))
 
 **Issue [#97](https://github.com/afw-org/afw/issues/97)** (feature largely landed earlier as PR **[#100](https://github.com/afw-org/afw/pull/100)**; completed on this branch)
 
@@ -863,7 +863,7 @@ Language reference **Templates and Expressions** and a short note under **Qualif
 
 ---
 
-## Process environment variables (issue #71)
+## Process environment variables (issue [#71](https://github.com/afw-org/afw/issues/71))
 
 `retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` now returns a **single** `current` object (process environment), not two identical ones. The `environment::` qualifier is unchanged.
 
@@ -875,7 +875,7 @@ Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `r
 
 ---
 
-## Process ambient: `environment::` and `process::` (issues #71 / #74)
+## Process ambient: `environment::` and `process::` (issues [#71](https://github.com/afw-org/afw/issues/71) / [#74](https://github.com/afw-org/afw/issues/74))
 
 Process environment variables and invocation info are created at **environment create** (not per host) and pushed on **every** xctx via `afw_application_internal_push_qualifiers` (called from xctx finishup):
 
@@ -917,7 +917,7 @@ Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_ev
 
 ---
 
-## Crypto extension `afw_crypto` (issue #74 partial)
+## Crypto extension `afw_crypto` (issue [#74](https://github.com/afw-org/afw/issues/74) partial)
 
 Optional loadable extension **`afw_crypto`** (`libafwcrypto`, OpenSSL **libcrypto**) adds Adaptive functions for “hide values in plain sight” composition with streams, files, and process env. Load with conf `"extensions": ["afw_crypto"]`.
 
@@ -998,7 +998,7 @@ Tests: `src/afw/tests/compiler/stringify.as`, `decompile.as`, `decompile_fidelit
 
 ---
 
-## Adaptive Script types (issue #28)
+## Adaptive Script types (issue [#28](https://github.com/afw-org/afw/issues/28))
 
 **Issue [#28](https://github.com/afw-org/afw/issues/28) closed** (2026-08-12) after wrap-up PR **[#171](https://github.com/afw-org/afw/pull/171)** on `mgg-develop` (core earlier via **[#144](https://github.com/afw-org/afw/pull/144)** / **[#145](https://github.com/afw-org/afw/pull/145)**). Claimed type surface is release-grade; firm will-not-do fence in `typescript-differences.md`. Successors: compile-time optimize (design pad), app-shared Adaptive functions (**[#170](https://github.com/afw-org/afw/issues/170)**).
 
@@ -1033,7 +1033,7 @@ Handbook: Language Reference **Types** (flags and `#compile` options), **Languag
 
 ---
 
-## Conf path templates (issue #15)
+## Conf path templates (issue [#15](https://github.com/afw-org/afw/issues/15))
 
 **Issue [#15](https://github.com/afw-org/afw/issues/15) closed** (2026-08-04) after PR **[#135](https://github.com/afw-org/afw/pull/135)** on `mgg-develop`. Path-like conf properties use **`template`** (not hybrid) by design. No further conf host-path residuals planned at this time; curl `caInfo`/`caPath` remain plain runtime options.
 
@@ -1244,7 +1244,7 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 
 ---
 
-## `afw --allow` and YAML value output (issue #14)
+## `afw --allow` and YAML value output (issue [#14](https://github.com/afw-org/afw/issues/14))
 
 **Issue [#14](https://github.com/afw-org/afw/issues/14)** — **closed** 2026-08-04 (feature long on tree; regression suite on `mgg-develop`; re-verified 22 yaml tests)
 
@@ -1253,7 +1253,7 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 - `afw_yaml_to_object` (**`raw_to_object`**) fixed so **file adapters with `contentType: yaml`** work; libyaml parser always deleted.
 - Plain scalars: full-string **integer vs double** (`afw_number_parse`), `true`/`false`/`null`/`~`; quoted/literal/folded always strings; partial numbers like `123foo` stay strings.
 - Empty array/object emit **`[]` / `{}`**; mapping value without key errors.
-- No parse-time issue-[#17](https://github.com/afw-org/afw/issues/17) faces (conf/store plain; adapter/journal faces on return).
+- No parse-time issue [#17](https://github.com/afw-org/afw/issues/17) faces (conf/store plain; adapter/journal faces on return).
 
 The `afw` command can print evaluated adaptive values using any registered **content type**, not only JSON:
 
@@ -1418,7 +1418,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Meta on the wire / reserved `"_meta_"` (design) | [#138](https://github.com/afw-org/afw/issues/138) | — (open; not required for [#38](https://github.com/afw-org/afw/issues/38)) |
 | Adaptive Script types | [#28](https://github.com/afw-org/afw/issues/28) **closed** (PR **[#171](https://github.com/afw-org/afw/pull/171)**) | [#144](https://github.com/afw-org/afw/pull/144) / [#145](https://github.com/afw-org/afw/pull/145) core; [#171](https://github.com/afw-org/afw/pull/171) fence + FunctionSignature + handbook |
 | Mutable object faces (shared instances) | [#17](https://github.com/afw-org/afw/issues/17) (closed) | PR **[#150](https://github.com/afw-org/afw/pull/150)** → `mgg-develop` (this file + `designs/issue-17-mutable-object-faces.md`) |
-| UTF-8 code-point sequences (`s[i]`, for-of, formals) | [#153](https://github.com/afw-org/afw/issues/153) | issue-[#153](https://github.com/afw-org/afw/issues/153) branch → `mgg-develop` (this file + `designs/utf8-code-point-sequences.md`) |
+| UTF-8 code-point sequences (`s[i]`, for-of, formals) | [#153](https://github.com/afw-org/afw/issues/153) | issue-#153 branch → `mgg-develop` (this file + `designs/utf8-code-point-sequences.md`) |
 | Array semantics (dense arrays, elision, `create_array`) | [#39](https://github.com/afw-org/afw/issues/39) | on `mgg-develop` |
 | Conversion functions (type-named; no `null()` / `function()`) | — | on `mgg-develop` (see `designs/conversion-functions.md`) |
 | Runtime catalog / accessors | [#149](https://github.com/afw-org/afw/issues/149) (under [#2](https://github.com/afw-org/afw/issues/2)) | on `mgg-develop` |
