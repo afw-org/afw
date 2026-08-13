@@ -705,6 +705,7 @@ afw_function_execute_assign(
         afw_compile_assignment_type_assign_only,
         p, xctx);
 
+    afw_xctx_script_result_set(result, xctx);
     return result;
 }
 
@@ -1409,6 +1410,7 @@ afw_function_execute_return(
             result = afw_value_undefined;
         }
     }
+    afw_xctx_script_result_set(result, xctx);
     afw_xctx_statement_flow_set_type(return, xctx);
 
     return result;

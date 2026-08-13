@@ -341,7 +341,7 @@ return 0;
 //? test: switch-throw-fn
 //? description: #50-adjacent — throw from case leaves function via catch
 //? skip: false
-//? expect: undefined
+//? expect: 0
 //? source: ...
 
 function f(x) {
@@ -362,3 +362,4 @@ try {
 }
 
 assert(thrown === true);
+return 0;

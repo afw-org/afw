@@ -31,7 +31,7 @@ How that applies to this index:
 
 **Assignment chain is a statement, not a general expression.** `x = y = 1;` (and the same idea with `+=` / `??=` on the rightmost assign) is the goal. `(x = 1) > x` stays illegal. That keeps the motivated difference in `typescript-differences.md` (assignment is not an expression you can nest). Item 4 is a production change to Assignment’s RHS, not “assignment everywhere Expression is.”
 
-**Script result (item 1, later):** a running result, not last-statement-wins.
+**Script result (item 1, landed):** a running result, not last-statement-wins.
 
 - Start at `undefined` (empty script today).
 - `return` sets it and leaves.
@@ -40,7 +40,7 @@ How that applies to this index:
 - `if` / `for` / `while` / `try` / `function` / call statements do not reset it.
 - Nested assignment inside those forms does update it.
 - `break;` **preserves** the running result (today it wipes to `undefined`). No `break expr` in the first cut; the built-in already has an optional value, syntax does not.
-- Single-expression script (`1 + 2`, no semicolon-as-statement) still returns that expression. `abs(-3);` is a call statement and will not write the result once item 1 lands.
+- A script that is **only** a call or expression (`1 + 2`, `abs(-3);`, `#block(add(1,2))`) yields that value — same IR as decompile, and Fiddle-friendly. `x = 1; abs(-3);` stays `1`. The semicolon-vs-expression distinction is not a separate IR.
 
 This is Adaptive completion, not ES `cptn-*` / test262.
 
@@ -51,7 +51,7 @@ This is Adaptive completion, not ES `cptn-*` / test262.
 | **2** | Multi `let` / `const` | Landed. Enables a sane `for` header. |
 | **3** | `for` init is one statement | Landed. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is a reserved-word error. |
 | **4** | Chained assignment **statement** | Landed. `x = y = 1;` works; `(x = 1) > x` and `let x = y = 1` do not. |
-| **1** | Running result | After the syntax that writes results is in place. |
+| **1** | Running result | Landed. Assignment and return write it; most statements do not. |
 | **5** | Loop labels | Independent; last or a later slice. |
 
 Do not mix **#170** / **#101** / **#35** onto this branch.
@@ -77,6 +77,10 @@ Decompile of the comma form may emit separate `let` / `const` lines (same bindin
 ## Live probes (before item 1)
 
 On this tree, last evaluated statement is the script result: `let x = 1;` → `1`; `let x = 1; if (true) { let y = 2; }` → `2`; empty `if` or bare `break;` → `undefined`. `x = y = 1;` works as a statement. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is “Variable name can not be a reserved word”. `outer: for` does not parse. Implicit `x = 1` without `let` is “Unknown built-in function `x`.”
+
+## Item 1 (landed on this branch)
+
+`xctx->script_result` is the running result for the current **script** compile (not test_script / template). `assign` and `return` write it. `evaluate_block` of a script body uses that slot; `break` / `continue` keep the prior value. Nested `evaluate(compile<script>)` and script-function calls save and restore the slot so `f();` does not adopt `f`’s result. A **#block as a value** (decompile / `evaluate(b)`) still uses last-statement. A script that is only one call or `#block(add(1,2))` yields that value so decompile of `1+2` stays `#block(add(1,2))`. test262 cases that `expect: undefined` after an assignment need a later sweep (`return;` or new expect).
 
 ## Item 4 (landed on this branch)
 

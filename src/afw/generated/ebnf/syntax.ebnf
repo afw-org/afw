@@ -755,9 +755,9 @@ StatementList ::= Statement*
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */
-/* The value returned from a script if the Expression specified on an         */
-/* evaluated ReturnStatement, the single Expression specified, or null        */
-/* if none of the above.                                                      */
+/* Script result (issue #62): return, assignment, or a lone Expression        */
+/* (compiled as return). Most other statements do not write it. Empty         */
+/* script is undefined.                                                       */
 /*                                                                            */
 
 Script ::= ScriptShebang? ( Statement* | Expression )

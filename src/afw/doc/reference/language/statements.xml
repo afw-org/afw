@@ -14,6 +14,11 @@
             A Block is a sequence of statements that are executed sequentially. When 
             creating a script, a new block is created initially. Blocks can be nested 
             inside existing blocks, using braces <literal>{ }</literal>.
+            The result of a script is a running value: <literal>return</literal>
+            and assignment write it; <literal>let</literal>,
+            <literal>const</literal>, and most other statements do not.
+            A script that is only a call or expression yields that value.
+            An empty script is <literal>undefined</literal>.
         </paragraph>
         <section>
             <title>Example</title>

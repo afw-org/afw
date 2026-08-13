@@ -632,6 +632,30 @@ afw_xctx_scope_symbol_set_value_by_name(
         afw_xctx_statement_flow_set_type(sequential, xctx); \
     }
 
+/**
+ * @brief Get the running Adaptive Script result.
+ * @param xctx of caller.
+ * @return Current script result, or undefined if none has been written.
+ */
+#define afw_xctx_script_result_get(xctx) \
+    ((xctx)->script_result \
+        ? (xctx)->script_result \
+        : afw_value_undefined)
+
+/**
+ * @brief Set the running Adaptive Script result.
+ * @param v result value (NULL is stored as undefined).
+ * @param xctx of caller.
+ *
+ * Assignment and return write this. Most other statements do not.
+ */
+#define afw_xctx_script_result_set(v, xctx) \
+do { \
+    ((afw_xctx_t *)xctx)->script_result = \
+        ((v) ? (v) : afw_value_undefined); \
+    ((afw_xctx_t *)xctx)->script_result_written = true; \
+} while (0)
+
 
 
 /* ----------------------------------------------------------------------------

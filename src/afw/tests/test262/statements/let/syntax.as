@@ -239,7 +239,7 @@ function f() {
 //? test: let-outer-inner-let-bindings
 //? description:...
     outer let binding unchanged by for-loop let binding
-//? expect: undefined
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
@@ -254,17 +254,18 @@ for (let x = "inner_x", i = 0; i < 1; i++) {
 }
 assert(x === "outer_x");
 assert(y === "outer_y");
+return 0;
 
 
 //? test: with-initialisers-in-statement-positions-case-expression-statement-list
 //? description:...
     let declarations with initialisers in statement positions:
     case Expression : StatementList
-//? expect: 1
+//? expect: undefined
+//? differences: let does not write the script result (#62)
 //? source: ...
 #!/usr/bin/env afw
 
-// if we let declarations return undefined, the expect could change later
 switch (true) { case true: let x = 1; }
 
 
@@ -272,11 +273,11 @@ switch (true) { case true: let x = 1; }
 //? description:...
     let declarations with initialisers in statement positions:
     default : StatementList
-//? expect: 1
+//? expect: undefined
+//? differences: let does not write the script result (#62)
 //? source: ...
 #!/usr/bin/env afw
 
-// if we let declarations return undefined, the expect could change later
 switch (true) { default: let x = 1; }
 
 
@@ -319,7 +320,8 @@ if (true) {} else let x = 1;
 //? description:...
     let declarations with initialisers in statement positions:
     if ( Expression ) Statement
-//? expect: 1
+//? expect: undefined
+//? differences: let does not write the script result (#62)
 //? source: ...
 #!/usr/bin/env afw
 

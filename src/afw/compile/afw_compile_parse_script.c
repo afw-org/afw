@@ -2243,16 +2243,6 @@ afw_compile_parse_StatementList(
 
         statement = afw_compile_parse_Statement(parser, was_expression);
 
-        /** @fixme I believe these statements can go away. Return sets flow. */
-        // if (was_expression_value) {
-        //     argv = afw_pool_malloc(parser->p,
-        //         sizeof(afw_value_t *) * 2, parser->xctx);
-        //     argv[0] = &afw_function_definition_return.pub;
-        //     argv[1] = statement;
-        //     statement = afw_value_call_built_in_function_create(
-        //         afw_compile_create_contextual_to_cursor(start_offset),
-        //         1, argv, true, parser->p, parser->xctx);
-        // }
         was_expression = NULL;
 
         if (statement) {
@@ -2363,9 +2353,9 @@ afw_compile_parse_StatementList(
 /*ebnf>>>
  *
  *#
- *# The value returned from a script if the Expression specified on an
- *# evaluated ReturnStatement, the single Expression specified, or null
- *# if none of the above.
+ *# Script result (issue #62): return, assignment, or a lone Expression
+ *# (compiled as return). Most other statements do not write it. Empty
+ *# script is undefined.
  *#
  * Script ::= ScriptShebang? ( Statement* | Expression )
  *
