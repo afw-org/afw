@@ -8,7 +8,7 @@
 //? test: index_current_object
 //? description: index_create value/filter scripts use current::object (issue #54)
 //? skip: true
-//? skipReason: Pre-existing LMDB index_create txn/save_config and retroactive hang; unskip when create path fixed (#57).
+//? skipReason: FIXME: LMDB index_create txn/save_config and retroactive hang; unskip when create path is fixed (#57)
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
