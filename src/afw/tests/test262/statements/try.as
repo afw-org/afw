@@ -4455,6 +4455,7 @@ if(fin!==10){
 return;
 //? test: scope-catch-block-lex-close
 //? description: Removal of lexical environment for `catch` block
+//? differences: Catch-body `let` does not leak; closure keeps that binding.
 //? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
@@ -4475,30 +4476,38 @@ assert(probe() === 'inside');
 return;
 //? test: scope-catch-block-lex-open
 //? description: Creation of new lexical environment for `catch` block
+//? differences: ...
+Adaptive `throw` is message plus optional data (not `throw []`). Catch
+Pattern binds the error object (`data` is the array). Inner `let x`
+shadows; no assignment-as-expression default probe.
 //? expect: undefined
-//? skip: true
-//? skipReason: FIXME: catch binding / scope rules half-converted or incomplete
 //? source: ...
 #!/usr/bin/env afw
 
-let probeParam;
-let probeBlock;
 let x = 'outside';
+let bound;
+let probeBlock;
 
 try {
-  throw "" [];
-  // fixme decide if we should allow destructuring on catch
-} catch ({ "data": [_ = probeParam = function() { return x; }] }) {
-  probeBlock = function() { return x; };
+  throw "e" [ "payload" ];
+} catch ({ data: [item] }) {
   let x = 'inside';
+  bound = item;
+  probeBlock = function() { return x; };
+  assert(x === 'inside');
+  assert(item === 'payload');
 }
 
-assert(probeParam() === 'outside');
+assert(x === 'outside');
+assert(bound === 'payload');
 assert(probeBlock() === 'inside');
 return;
 //? test: scope-catch-block-var-none
 //? description: Retainment of existing variable environment for `catch` block
-//? expect: error:Assertion failed: reference preceding statement
+//? differences: ...
+No `var`. Catch-body `let x` is a new binding (does not assign outer
+`x`). Closures see the binding they closed over.
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4511,18 +4520,19 @@ try {
 } catch (_) {
   let x = 2;
   probeInside = function() { return x; };
+  assert(x === 2, 'reference within statement');
 }
 
-// fixme closure causes x to be 1 instead of 2
-assert(probeBefore() === 2, 'reference preceding statement');
-assert(probeInside() === 2, 'reference within statement');
-assert(x === 2, 'reference following statement');
-
-
-
+assert(probeBefore() === 1, 'reference preceding statement');
+assert(probeInside() === 2, 'closure keeps catch-block let');
+assert(x === 1, 'reference following statement');
+return;
 //? test: scope-catch-param-lex-close
 //? description: Removal of lexical environment for `catch` parameter
-//? expect: error:Assertion failed
+//? differences: ...
+`catch (x)` binds the error object, not the thrown string. Closure
+keeps that binding after outer `x` is assigned.
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
@@ -4537,64 +4547,56 @@ try {
 x = 'outside';
 
 assert(x === 'outside');
-// fixme closure causes x to be 'outside' instead of 'inside'
-assert(probe() === 'inside');
-
-
+assert(probe().message === 'inside');
+return;
 //? test: scope-catch-param-lex-open
 //? description: Creation of new lexical environment for `catch` parameter
-//? expect: error:Parse error at offset 58 around line 3 column 39: Unknown built-in function 'x'
+//? differences: ...
+`throw "e" [ "inside" ]` then `catch ({ data: [x] })`. Pattern `x` is
+a new binding and does not leak. No assignment-as-expression default.
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
-let probeBefore = function() { return x; };
-let probeTry;
-let probeParam;
 let x = 'outside';
+let seenTry;
+let bound;
 
 try {
-  probeTry = function() { return x; };
+  seenTry = x;
+  throw "e" [ "inside" ];
+} catch ({ data: [x] }) {
+  bound = x;
+  assert(x === 'inside');
+}
 
-  throw ['inside'];
-  // fixme can't do this, and destructuring may not be allowed on catch
-} catch ([x, _ = probeParam = function() { return x; }]) {}
-
-assert(probeBefore() === 'outside');
-assert(probeTry() === 'outside');
-assert(probeParam() === 'inside');
-
+assert(x === 'outside');
+assert(seenTry === 'outside');
+assert(bound === 'inside');
+return;
 //? test: scope-catch-param-var-none
 //? description: Retainment of existing variable environment for `catch` parameter
-//? skip: true
-//? skipReason: ...
-FIXME: half-converted catch Pattern + eval(script) probe; rewrite under
-#140 / differences
-//? expect: error:Parse error at offset 297 around line 15 column 54: Expecting Value
+//? differences: ...
+No `var` and no `eval('var …')`. Nested `let` plus catch Pattern: each
+`x` is its own binding; thrown data is `data`.
+//? expect: undefined
 //? source: ...
 #!/usr/bin/env afw
 
 let x = 1;
-let probeBefore = function() { return x; };
-let probeTry;
-let probeParam;
-let probeBlock;
 
 try {
   let x = 2;
-  probeTry = function() { return x; };
-  // can't throw array
-  throw [];
-  // can't destructure catch
-} catch ([_ = (eval(script('let x = 3;'), probeParam = function() { return x; })]) {
+  assert(x === 2);
+  throw "e" [ "payload" ];
+} catch ({ data: [item] }) {
   let x = 4;
-  probeBlock = function() { return x; };
+  assert(item === "payload");
+  assert(x === 4);
 }
 
-assert(probeBefore() === 4 === 'reference preceding statement');
-assert(probeTry() === 4 === 'reference from `try` block');
-assert(probeParam() === 4 === 'reference within CatchParameter');
-assert(probeBlock() === 4 === 'reference from `catch` block');
-assert(x === 4 === 'reference following statement');
+assert(x === 1);
+return;
 
 
 //? test: static-init-await-binding-invalid
