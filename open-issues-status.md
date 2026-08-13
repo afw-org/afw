@@ -20,7 +20,7 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 ## Summary counts
 
 - **Open issues:** 39
-- **Jeremy:** 28 issues (as assignee, including shared)
+- **Jeremy:** 27 issues (as assignee, including shared)
 - **Mike:** 11 issues (as assignee, including shared)
 - **—:** 6 issues (unassigned)
 
@@ -34,7 +34,7 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#8](https://github.com/afw-org/afw/issues/8) | Jeremy | Migrate away from create-react-app | There are some unpleasant workarounds required to get the plumbing right for a create-react-app project like our curr… | Admin app build system (CRA → Vite etc.). No recent activity. | 2023-04-14 |
 | [#13](https://github.com/afw-org/afw/issues/13) | Jeremy | Support stress testing in afwdev | Currently, we can use the following command to send tests to afwfcgi in parallel: | Still open for Jeremy’s knobs/stats story. Load soaks via **orchestrated firehose** leaves (`tests-extra/`, PR **#167**); **`afwdev blast` retired**. | 2026-08-11 |
 | [#22](https://github.com/afw-org/afw/issues/22) | Jeremy | Finishing documenting differences between Adaptive Script and ECMAScript | Title says it all. | Jeremy’s polished ES differences doc. Maintainer notes in root typescript-differences.md (not a substitute). | 2023-07-27 |
-| [#35](https://github.com/afw-org/afw/issues/35) | Mike, Jeremy | Support for closures | Here are a few tests that we expect to fail, because we do not currently implement closures like ECMAScript does: | Closures largely work (closures.as 25 pass). 11 skips are before2/after2 escape/lifetime (#2), not “no closures.” Handbook Features now says Adaptive supports closures. Left open 2026-08-04 process-close pass. | 2026-07-22 |
+| [#35](https://github.com/afw-org/afw/issues/35) | Mike | Support for closures | Here are a few tests that we expect to fail, because we do not currently implement closures like ECMAScript does: | Closures largely work (closures.as 25 pass). 11 skips are before2/after2 escape/lifetime (#2), not “no closures.” Handbook Features now says Adaptive supports closures. Left open 2026-08-04 process-close pass. | 2026-08-13 |
 | [#40](https://github.com/afw-org/afw/issues/40) | Jeremy | Documentation for Language Bindings | We need docs on the Javascript and Python bindings (they are currently empty on the GitHub pages site). Perhaps these… | Language binding docs empty on GH Pages. Open documentation. | 2023-07-28 |
 | [#41](https://github.com/afw-org/afw/issues/41) | Jeremy | Review the calls to afw_authorization_check() in afw_adaptor_impl.c | Review all calls to afwauthorizationcheck() in afwadaptorimpl.c and make sure the information is passed that is neede… | Review adapter authorization_check call sites + tests. Open review. | 2026-07-19 |
 | [#44](https://github.com/afw-org/afw/issues/44) | Jeremy | Fix "Docs" GitHub Action to auto-deploy GH Pages | This GitHub Action currently does not work. | Docs GH Action / Pages deploy broken. Open workflows bug. | 2023-08-03 |
@@ -73,7 +73,7 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | Cluster | Issues | Notes |
 |---------|--------|-------|
 | Memory / long-running | [#2](https://github.com/afw-org/afw/issues/2), related [#49](https://github.com/afw-org/afw/issues/49) | Value lifetimes; [#127](https://github.com/afw-org/afw/issues/127) progressive write-release **closed**; [#35](https://github.com/afw-org/afw/issues/35) escape skips; [#149](https://github.com/afw-org/afw/issues/149) catalog slice **closed** |
-| Adaptive Script language | [#35](https://github.com/afw-org/afw/issues/35), [#101](https://github.com/afw-org/afw/issues/101), [#22](https://github.com/afw-org/afw/issues/22), [#170](https://github.com/afw-org/afw/issues/170) | **#28 types** and **#62 language index closed** (PRs **#171**, **#174**); [#170](https://github.com/afw-org/afw/issues/170) app-shared functions + script poly; closures left open for [#2](https://github.com/afw-org/afw/issues/2) |
+| Adaptive Script language | [#35](https://github.com/afw-org/afw/issues/35), [#101](https://github.com/afw-org/afw/issues/101), [#22](https://github.com/afw-org/afw/issues/22), [#170](https://github.com/afw-org/afw/issues/170) | **#28 types** and **#62 language index closed** (PRs **#171**, **#174**); [#170](https://github.com/afw-org/afw/issues/170) app-shared functions + script poly; closures (#35) left open for [#2](https://github.com/afw-org/afw/issues/2) — Mike only |
 | Built-ins / JSON | [#70](https://github.com/afw-org/afw/issues/70) | stringify [#18](https://github.com/afw-org/afw/issues/18) **closed**; [#69](https://github.com/afw-org/afw/issues/69) json/relaxed_json types **closed** (PR **#175**) |
 | Adapters / auth / RQL | [#41](https://github.com/afw-org/afw/issues/41), [#54](https://github.com/afw-org/afw/issues/54), [#85](https://github.com/afw-org/afw/issues/85)–[#87](https://github.com/afw-org/afw/issues/87), [#91](https://github.com/afw-org/afw/issues/91), [#102](https://github.com/afw-org/afw/issues/102) | Review and feature work |
 | Retrieve / limits | [#49](https://github.com/afw-org/afw/issues/49) | maxObjects partial; progressive release [#127](https://github.com/afw-org/afw/issues/127) **closed** |
