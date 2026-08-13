@@ -47,6 +47,40 @@
     x = &modified_x
 
 
+/*
+ * if/for/try/… can return a then-value (if is also ternary) but as
+ * statements they do not complete like an ES ExpressionStatement.
+ */
+static afw_boolean_t
+impl_statement_is_control(const afw_value_t *statement)
+{
+    const afw_value_call_built_in_function_t *call;
+    const afw_utf8_t *id;
+
+    if (!statement || !afw_value_is_call_built_in_function(statement)) {
+        return false;
+    }
+    call = (const afw_value_call_built_in_function_t *)statement;
+    if (!call->function || !call->function->functionId) {
+        return false;
+    }
+    id = &call->function->functionId->internal;
+    return
+        afw_utf8_equal(id, afw_s_if) ||
+        afw_utf8_equal(id, afw_s_for) ||
+        afw_utf8_equal(id, afw_s_for_of) ||
+        afw_utf8_equal(id, afw_s_while) ||
+        afw_utf8_equal(id, afw_s_do_while) ||
+        afw_utf8_equal(id, afw_s_switch) ||
+        afw_utf8_equal(id, afw_s_try) ||
+        afw_utf8_equal(id, afw_s_let) ||
+        afw_utf8_equal(id, afw_s_const) ||
+        afw_utf8_equal(id, afw_s_break) ||
+        afw_utf8_equal(id, afw_s_continue) ||
+        afw_utf8_equal(id, afw_s_throw);
+}
+
+
 const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
@@ -89,6 +123,15 @@ afw_value_block_evaluate_block(
                     /* break / continue / rethrow: keep the running result. */
                     result = afw_xctx_script_result_get(xctx);
                     break;
+                }
+                /*
+                 * ES ExpressionStatement (assignment already wrote; a
+                 * non-void call writes). Control forms do not.
+                 */
+                if (!afw_value_is_void(last) &&
+                    !impl_statement_is_control(self->statements[i]))
+                {
+                    afw_xctx_script_result_set(last, xctx);
                 }
                 result = afw_xctx_script_result_get(xctx);
             }

@@ -13,7 +13,7 @@ Adaptive started as **Adaptive expression**. Scripting came later (Jeremy): Mike
 
 #62 is another step on that path — Jeremy asked for these items — not a rewrite into JS. The IR is still compiled calls/blocks. Use ES to decide **shared syntax and what a script/function yields** when we support the construct; keep Adaptive where the model already differs (assignment is a statement, no general `2;`, no completion records).
 
-Original yield rule: a statement list or last expression was the result, and a script could also be only an expression. The lone-expression script is still true. Jeremy pushed back on **every last statement** being the result (not what he expected from ES). Current direction: **follow ES for what the return is**, knowing we cannot be exact. See item 1 and the live gap table in the next session notes (functions without `return` still last-statement; call statements do not write; for increment writes).
+Original yield rule: a statement list or last expression was the result, and a script could also be only an expression. The lone-expression script is still true. Jeremy pushed back on **every last statement** being the result (not what he expected from ES). Current direction: **follow ES for what the return is**, knowing we cannot be exact. Function bodies match scripts; non-void call statements write; for init/increment do not.
 
 **Taste (do not fork this here):** [`typescript-differences.md`](../typescript-differences.md) — Adaptive Script is **not** TypeScript and **not** JavaScript. When we **support** a TS/JS-looking construct, it should behave as a TypeScript-literate author would reasonably expect **for that construct**. Prefer motivated Adaptive differences over accidental ones; do not half-implement the JS platform. Use TS/ES to answer subtle questions (comma lists, what `const` requires, what a `for` head looks like), not to import the rest of those languages.
 
@@ -45,7 +45,8 @@ How that applies to this index:
 - `return` sets it and leaves.
 - Assignment rebind (`=`, `+=`, …) updates it.
 - `let` / `const` do not.
-- `if` / `for` / `while` / `try` / `function` / call statements do not reset it.
+- `if` / `for` / `while` / `try` / `function` declarations do not reset it.
+- A non-void **call statement** writes it (ES `eval` ExpressionStatement). `print()` is void and does not.
 - Nested assignment inside those forms does update it.
 - `break;` **preserves** the running result (today it wipes to `undefined`). No `break expr` in the first cut; the built-in already has an optional value, syntax does not.
 - A script that is **only** a call or expression (`1 + 2`, `abs(-3);`, `#block(add(1,2))`) yields that value — same IR as decompile, and Fiddle-friendly. `x = 1; abs(-3);` stays `1`. The semicolon-vs-expression distinction is not a separate IR.

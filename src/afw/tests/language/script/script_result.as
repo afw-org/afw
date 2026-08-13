@@ -3,10 +3,11 @@
 //? testScript: script_result.as
 //? customPurpose: Part of language/script tests
 //? description: ...
-Running script result (issue #62). Assignment and return write it.
-let/const, call statements, if/for/while/try, and break do not reset
-it. Nested assignment does write it. for init/increment do not write.
-A lone expression is the result; a call statement is not.
+Running script result (issue #62). Assignment, return, and non-void
+call statements write it (ES eval). let/const, if/for/while/try, and
+break do not. Nested assignment does write it. for init/increment do
+not write. A lone expression is the result. print() is void and does
+not write.
 //? sourceType: script
 //?
 //? test: only-let
@@ -72,12 +73,22 @@ assert(r === 1);
 return 0;
 
 //?
-//? test: call-after-assign-does-not-write
-//? description: abs(-3); after assignment keeps the assignment
+//? test: call-after-assign-writes
+//? description: abs(-3); after assignment is the result (ES eval)
 //? expect: 0
 //? source: ...
 
 const r = evaluate(compile<script>(script("let x; x = 1; abs(-3);")));
+assert(r === 3);
+return 0;
+
+//?
+//? test: void-call-does-not-write
+//? description: print() is void and does not override an assignment
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script("let x; x = 1; print();")));
 assert(r === 1);
 return 0;
 
@@ -134,16 +145,16 @@ assert(r === 2);
 return 0;
 
 //?
-//? test: call-does-not-adopt-function-result
-//? description: f(); as a statement does not write the caller result
+//? test: call-adopts-function-result
+//? description: f(); as a statement is the result (ES eval)
 //? expect: 0
 //? source: ...
 
 const r = evaluate(compile<script>(script(
     "function f() { return 4; } f();")));
-assert(r === undefined);
+assert(r === 4);
 const r2 = evaluate(compile<script>(script(
-    "function f() { return 4; } let x; x = f();")));
+    "function f() { return 4; } let x; x = 1; f();")));
 assert(r2 === 4);
 return 0;
 
