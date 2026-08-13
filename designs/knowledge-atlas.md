@@ -216,7 +216,7 @@
 | **Deep pads** | array-semantics, conversion-functions, utf8-code-point-sequences, issue-17 faces, issue-38, issue-138 meta wire, [`issue-33-error-codes.md`](issue-33-error-codes.md) |
 | **Probe** | Language suite under `src/afw/tests/`; Fiddle / `afw -s` |
 | **Open** | Language residuals tracked in issues/pads |
-| **Gap** | “How to write a good .as test” → `afw-tests` + writing-tests developer doc |
+| **Gap** | “How to write a good .as test” → `afw-tests` + handbook Developer Guide writing-tests |
 
 ---
 
@@ -226,7 +226,7 @@
 |-------|---------|
 | **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**) |
 | **Day rules** | `afw-tests`, `afw-afwdev-python`, `afw-afwdev-generate` |
-| **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; developer `writing-tests.md` |
+| **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; handbook `guide/developer/writing-tests.xml` |
 | **Probe** | See recipe commands below |
 | **Open** | #13 stress knobs/stats on `test` (Jeremy); attach mode not fully built; #157 residuals if any |
 | **Gap** | MEMORY testing split → **in recipe + playbook**; drop duplicating full MEMORY novel after promote |

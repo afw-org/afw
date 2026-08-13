@@ -87,7 +87,7 @@ Hermetic multi-step / multi-request tests discovered by **`orchestration.yaml`**
 | **Gate examples** | `src/afw/tests/advanced/`, `src/afw_command/tests/local-mode/` |
 | **Extras** | Progressive, firehose, REST soaks — `src/afw/tests-extra/` ([README](src/afw/tests-extra/README.md), [SCHEMA](src/afw/tests-extra/SCHEMA.md)) |
 | **Test scripts** | `//? expect-stdout` / `expect-stderr` (and `//? key: <<< path` file values) on Adaptive test scripts |
-| **How to write** | [`src/afw/doc/developer/writing-tests.md`](src/afw/doc/developer/writing-tests.md); pads [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md) (history), [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md) |
+| **How to write** | Handbook Developer Guide [`src/afw/doc/guide/developer/writing-tests.xml`](src/afw/doc/guide/developer/writing-tests.xml); pads [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md) (history), [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md) |
 | **PR** | **[#167](https://github.com/afw-org/afw/pull/167)** → `mgg-develop` |
 
 **Retired:** marker name **`advanced-test.yaml`** (migrated to `orchestration.yaml`);
