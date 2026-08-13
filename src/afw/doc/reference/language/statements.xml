@@ -112,11 +112,27 @@ do {
             The <literal>for</literal> statement executes a block of statements 
             until a condition is met. Unlike the while statement, the for 
             statement executes an initializer, a condition, and an incrementor.
+            The initializer is empty, one <literal>let</literal>, one
+            <literal>const</literal>, or assignment. Several names on that
+            <literal>let</literal> or <literal>const</literal> use commas,
+            the same as a stand-alone declaration. Assignments may also be
+            listed with commas. A second <literal>let</literal> or
+            <literal>const</literal> keyword in the initializer is not
+            allowed. <literal>let</literal> / <literal>const</literal>
+            names are local to the loop.
         </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[for (let i = 0; i < 10; i = i + 1) {
     print(i);
+}
+for (let i = 0, j = 1; i < 3; i = i + 1) {
+    print(i + j);
+}
+let a = 0;
+let b = 0;
+for (a = 1, b = 2; a < 3; a = a + 1) {
+    print(a + b);
 }]]></code>
         </section>
     </section>

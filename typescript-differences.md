@@ -58,7 +58,7 @@ Supported surface we intend to keep. Prefer these when writing script that shoul
 ### Bindings and control flow
 
 - **`let` / `const`** (no `var`). Semicolons **required**. Bare expressions are not statements. One statement may declare several names (`let a = 1, b = 2` / `const a = 1, b = 2`; **#62**).
-- **`if` / `while` / `do` / `for` / `for-of` / `switch` / `try` / `throw` / `return` / `break` / `continue`**.
+- **`if` / `while` / `do` / `for` / `for-of` / `switch` / `try` / `throw` / `return` / `break` / `continue`**. C-style **`for` init** is one `let` / `const` (including `for (let i = 0, j = 1; …)`) or assignment(s); not `for (let i = 0, let j = 1; …)`.
 - **`for-of`** over **arrays** (by element) and **strings** (by Unicode **code point** / UTF-8 character). Objects: walk **`keys` / `values` / `entries`** (no `for-in`).
 - Nested **`function`** values and **closures** that capture enclosing bindings (runtime + `closures.as` — **25** pass; **11** skips are escape/lifetime under **#2**, not “no closures”). Issue **#35** left open for that residual bar. Handbook Features **Closure** section updated (no longer claims “no closures”).
 

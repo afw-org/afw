@@ -592,10 +592,11 @@ BreakStatement ::= 'break' ';'
 
 /* From afw_compile_parse_script.c                                            */
 
-ConstStatement ::=
+ConstDeclaration ::=
     'const' AssignmentTarget '=' Expression
     ( ',' AssignmentTarget '=' Expression )*
-    ';'
+
+ConstStatement ::= ConstDeclaration ';'
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -624,11 +625,19 @@ ContinueStatement ::= 'continue' ';'
 DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
 
 /* From afw_compile_parse_script.c                                            */
+/* C-style init is one let, one const, or assignment(s) — not a mixed         */
+/* comma list of defines (issue #62). for (let i = 0, j = 1; …) is a          */
+/* LetDeclaration. for (let i = 0, let j = 1; …) is not accepted.             */
+/* Comma-separated Assignments stay (TS/JS comma operator stand-in).          */
 
 ForStatement ::= 'for'
   '(' (
       (
-          ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+          (
+              LetDeclaration |
+              ConstDeclaration |
+              ( Assignment ( ',' Assignment )* )
+          )?
           ';' Expression?
           ';' ( Assignment ( ',' Assignment )* )?
       ) |
@@ -651,10 +660,11 @@ IfStatement ::= 'if' '(' Expression ')' Statement ( 'else' Statement )?
 
 /* From afw_compile_parse_script.c                                            */
 
-LetStatement ::=
+LetDeclaration ::=
     'let' AssignmentTarget ( '=' Expression )?
     ( ',' AssignmentTarget ( '=' Expression )? )*
-    ';'
+
+LetStatement ::= LetDeclaration ';'
 
 /* From afw_compile_parse_script.c                                            */
 /* Expression is required if inside a function that has a non-void return.    */

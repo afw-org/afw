@@ -670,60 +670,71 @@ impl_create_let_or_const_call(
 }
 
 
+/* Current token is after the target. Leaves the following token current. */
+static const afw_value_t *
+impl_finish_one_let_or_const_binding(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const,
+    const afw_value_t *target,
+    afw_size_t binding_offset)
+{
+    const afw_value_t *value;
+
+    value = NULL;
+    if (afw_compile_token_is(equal)) {
+        value = afw_compile_parse_Expression(parser);
+        impl_compile_check_assign_target(parser, target, value);
+        if (is_const) {
+            impl_set_simple_const_symbol_initial_value(target, value);
+        }
+        afw_compile_get_token();
+    }
+    else if (is_const) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
+    }
+
+    return impl_create_let_or_const_call(parser,
+        is_const
+            ? &afw_function_definition_const.pub
+            : &afw_function_definition_let.pub,
+        target, value, binding_offset);
+}
+
+
 /*
- * One or more let/const bindings in the current block. Keyword already
- * consumed. Leaves the terminator token current (caller wants ';').
- * One binding: that call. Several: array of calls for StatementList flatten.
+ * After the first binding's following token is current. Comma continues
+ * with more AssignmentTargets of the same kind (no second 'let'/'const').
  */
 static const afw_value_t *
-impl_parse_let_or_const_bindings(
+impl_parse_more_let_or_const_bindings(
     afw_compile_parser_t *parser,
-    afw_boolean_t is_const)
+    afw_boolean_t is_const,
+    const afw_value_t *first_call)
 {
-    const afw_value_t *define_function;
-    const afw_value_t *target;
-    const afw_value_t *value;
     const afw_value_t *call;
+    const afw_value_t *target;
     const afw_array_t *list;
     afw_compile_internal_assignment_type_t assignment_type;
     afw_size_t binding_offset;
 
-    if (is_const) {
-        define_function = &afw_function_definition_const.pub;
-        assignment_type = afw_compile_assignment_type_const;
-    }
-    else {
-        define_function = &afw_function_definition_let.pub;
-        assignment_type = afw_compile_assignment_type_let;
-    }
-
+    assignment_type = is_const
+        ? afw_compile_assignment_type_const
+        : afw_compile_assignment_type_let;
+    call = first_call;
     list = NULL;
+
     for (;;) {
-        afw_compile_save_cursor(binding_offset);
-        target = afw_compile_parse_AssignmentTarget(parser, assignment_type);
-        value = NULL;
-
-        afw_compile_get_token();
-        if (afw_compile_token_is(equal)) {
-            value = afw_compile_parse_Expression(parser);
-            impl_compile_check_assign_target(parser, target, value);
-            if (is_const) {
-                impl_set_simple_const_symbol_initial_value(target, value);
-            }
-            afw_compile_get_token();
-        }
-        else if (is_const) {
-            AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
-        }
-
-        call = impl_create_let_or_const_call(parser, define_function,
-            target, value, binding_offset);
-
         if (afw_compile_token_is(comma)) {
             if (!list) {
                 list = afw_array_create_generic(parser->p, parser->xctx);
             }
             afw_array_push_value(list, call, parser->xctx);
+            afw_compile_save_cursor(binding_offset);
+            target = afw_compile_parse_AssignmentTarget(parser,
+                assignment_type);
+            afw_compile_get_token();
+            call = impl_finish_one_let_or_const_binding(parser, is_const,
+                target, binding_offset);
             continue;
         }
 
@@ -738,12 +749,60 @@ impl_parse_let_or_const_bindings(
 }
 
 
+/*
+ * One or more let/const bindings in the current block. Keyword already
+ * consumed. Leaves the terminator token current (caller wants ';').
+ * One binding: that call. Several: array of calls for StatementList flatten.
+ */
+static const afw_value_t *
+impl_parse_let_or_const_bindings(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const)
+{
+    const afw_value_t *target;
+    const afw_value_t *first;
+    afw_compile_internal_assignment_type_t assignment_type;
+    afw_size_t binding_offset;
+
+    assignment_type = is_const
+        ? afw_compile_assignment_type_const
+        : afw_compile_assignment_type_let;
+
+    afw_compile_save_cursor(binding_offset);
+    target = afw_compile_parse_AssignmentTarget(parser, assignment_type);
+    afw_compile_get_token();
+    first = impl_finish_one_let_or_const_binding(parser, is_const,
+        target, binding_offset);
+    return impl_parse_more_let_or_const_bindings(parser, is_const, first);
+}
+
+
+static const afw_value_t *
+impl_for_init_as_statement_list(
+    afw_compile_parser_t *parser,
+    const afw_value_t *init)
+{
+    const afw_array_t *list;
+
+    if (!init) {
+        return NULL;
+    }
+    if (afw_value_is_array(init)) {
+        return init;
+    }
+    list = afw_array_create_generic(parser->p, parser->xctx);
+    afw_array_push_value(list, init, parser->xctx);
+    return afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
+}
+
+
 /*ebnf>>>
  *
- * ConstStatement ::=
+ * ConstDeclaration ::=
  *     'const' AssignmentTarget '=' Expression
  *     ( ',' AssignmentTarget '=' Expression )*
- *     ';'
+ *
+ * ConstStatement ::= ConstDeclaration ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
@@ -964,10 +1023,19 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
+ *# C-style init is one let, one const, or assignment(s) — not a mixed
+ *# comma list of defines (issue #62). for (let i = 0, j = 1; …) is a
+ *# LetDeclaration. for (let i = 0, let j = 1; …) is not accepted.
+ *# Comma-separated Assignments stay (TS/JS comma operator stand-in).
+ *
  * ForStatement ::= 'for'
  *   '(' (
  *       (
- *           ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+ *           (
+ *               LetDeclaration |
+ *               ConstDeclaration |
+ *               ( Assignment ( ',' Assignment )* )
+ *           )?
  *           ';' Expression?
  *           ';' ( Assignment ( ',' Assignment )* )?
  *       ) |
@@ -984,6 +1052,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
     const afw_value_t **argv;
     const afw_value_t *value;
     const afw_value_t *target;
+    const afw_value_t *init_value;
     const afw_array_t *list;
     const afw_value_t *define_function;
     const afw_value_block_t *block;
@@ -1001,44 +1070,52 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting '('");
     }
     list = NULL;
+    init_value = NULL;
     afw_compile_get_token();
     if (!afw_compile_token_is(semicolon)) {
+        afw_size_t binding_offset;
+        const afw_value_t *first_call;
+        afw_boolean_t is_const_decl;
+
         afw_compile_reuse_token();
-        for (;;) {
-            /*
-             * Get the target using OptionalDefineTarget(). This is needed for
-             * the "OptionalDefineTarget 'of' Expression" part of production. If
-             * it turns out the OptionalDefineAssignment matches instead, pass
-             * this target to OptionalDefineAssignment() since it has already
-             * been parsed and the first part is the same.
-             */
-            target = afw_compile_parse_OptionalDefineTarget(parser,
-                &define_function, &block);
+        afw_compile_save_cursor(binding_offset);
+        target = afw_compile_parse_OptionalDefineTarget(parser,
+            &define_function, &block);
 
-            afw_compile_get_token();
-            if (afw_compile_token_is_name(afw_s_of)) {
-                if (list) {
-                    AFW_COMPILE_THROW_ERROR_Z("Not expecting 'of'");
-                }
-                is_for_of = true;
-                break;
-            }
-            afw_compile_reuse_token();
-
-            value = afw_compile_parse_OptionalDefineAssignment(parser,
-                target, define_function);
-
-            if (!list) {
-                list = afw_array_create_generic(parser->p, parser->xctx);
-            }
-            afw_array_push_value(list, value, parser->xctx);
-            afw_compile_get_token();
-            if (afw_compile_token_is(semicolon)) {
-                break;
-            }
-            if (!afw_compile_token_is(comma)) {
+        afw_compile_get_token();
+        if (afw_compile_token_is_name(afw_s_of)) {
+            is_for_of = true;
+        }
+        else if (define_function) {
+            is_const_decl = (define_function ==
+                &afw_function_definition_const.pub);
+            first_call = impl_finish_one_let_or_const_binding(parser,
+                is_const_decl, target, binding_offset);
+            value = impl_parse_more_let_or_const_bindings(parser,
+                is_const_decl, first_call);
+            if (!afw_compile_token_is(semicolon)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
             }
+            init_value = impl_for_init_as_statement_list(parser, value);
+        }
+        else {
+            afw_compile_reuse_token();
+            value = afw_compile_parse_AssignmentOperation(parser,
+                target, false, NULL);
+            list = afw_array_create_generic(parser->p, parser->xctx);
+            afw_array_push_value(list, value, parser->xctx);
+            afw_compile_get_token();
+            while (afw_compile_token_is(comma)) {
+                afw_compile_get_token();
+                value = afw_compile_parse_Assignment(parser, NULL);
+                afw_array_push_value(list, value, parser->xctx);
+                afw_compile_get_token();
+            }
+            if (!afw_compile_token_is(semicolon)) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
+            }
+            init_value = afw_value_create_unmanaged_array(
+                list, parser->p, parser->xctx);
         }
     }
 
@@ -1070,11 +1147,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
     else {
         argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
         argv[0] = &afw_function_definition_for.pub;
-        argv[1] = NULL;
-        if (list) {
-            argv[1] = afw_value_create_unmanaged_array(
-                list, parser->p, parser->xctx);
-        }
+        argv[1] = init_value;
 
         /* Expression? ';' */
         argv[2] = NULL;
@@ -1268,10 +1341,11 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * LetStatement ::=
+ * LetDeclaration ::=
  *     'let' AssignmentTarget ( '=' Expression )?
  *     ( ',' AssignmentTarget ( '=' Expression )? )*
- *     ';'
+ *
+ * LetStatement ::= LetDeclaration ';'
  *
  *<<<ebnf*/
 static const afw_value_t *

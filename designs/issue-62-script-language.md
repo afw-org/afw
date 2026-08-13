@@ -48,8 +48,8 @@ This is Adaptive completion, not ES `cptn-*` / test262.
 
 | Step | Item | Notes |
 |------|------|--------|
-| **2** | Multi `let` / `const` | First code. Enables a sane `for` header. |
-| **3** | `for` init is one statement | Narrowing: `for (let i = 0, let j = 1; …)` goes away; `for (let i = 0, j = 1; …)` is item 2. |
+| **2** | Multi `let` / `const` | Landed. Enables a sane `for` header. |
+| **3** | `for` init is one statement | Landed. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is a reserved-word error. |
 | **4** | Chained assignment **statement** | Production rework; not general expression. |
 | **1** | Running result | After the syntax that writes results is in place. |
 | **5** | Loop labels | Independent; last or a later slice. |
@@ -76,4 +76,8 @@ Decompile of the comma form may emit separate `let` / `const` lines (same bindin
 
 ## Live probes (before item 1)
 
-On this tree, last evaluated statement is the script result: `let x = 1;` → `1`; `let x = 1; if (true) { let y = 2; }` → `2`; empty `if` or bare `break;` → `undefined`. `x = y = 1` does not parse. `for (let i = 0, let j = 1; …)` works; `for (let i = 0, j = 1; …)` does not. `outer: for` does not parse. Implicit `x = 1` without `let` is “Unknown built-in function `x`.”
+On this tree, last evaluated statement is the script result: `let x = 1;` → `1`; `let x = 1; if (true) { let y = 2; }` → `2`; empty `if` or bare `break;` → `undefined`. `x = y = 1` does not parse. `for (let i = 0, j = 1; …)` works; `for (let i = 0, let j = 1; …)` is “Variable name can not be a reserved word”. `outer: for` does not parse. Implicit `x = 1` without `let` is “Unknown built-in function `x`.”
+
+## Item 3 (landed on this branch)
+
+C-style `for` initializer is one `LetDeclaration`, one `ConstDeclaration`, or one or more `Assignment`s (comma-separated, same stand-in as the increment list). `for-of` still uses `OptionalDefineTarget 'of' Expression`. `let`/`const` still open a block around the loop so names do not leak.
