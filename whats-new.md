@@ -71,7 +71,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Graceful process stop**](#graceful-process-stop-sigtermsigint-issue-158) ([#158](https://github.com/afw-org/afw/issues/158)) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors**](#runtime-catalog-accessors-issue-149) ([#149](https://github.com/afw-org/afw/issues/149)) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
 | [**Error codes**](#error-codes-trycatch-and-http-issue-33) ([#33](https://github.com/afw-org/afw/issues/33)) | Review of `e.id` / HTTP map; script `throw` … `id "not_found"` (and similar) sets the catch object and HTTP status |
-| [**Multi `let` / `const`**](#multi-let-and-const-issue-62) ([#62](https://github.com/afw-org/afw/issues/62)) | Several names on one `let` / `const`; C-style `for` init; `x = y = 1;` chain; script result is a running value (assignment / `return` / non-void call); loop labels |
+| [**Multi `let` / `const`**](#multi-let-and-const-issue-62) ([#62](https://github.com/afw-org/afw/issues/62)) | Several names on one `let` / `const`; C-style `for` init; `x = y = 1;` chain; script result is set by assignment, `return`, and a call that is not void; loop labels |
 
 ---
 
@@ -87,7 +87,7 @@ Hermetic multi-step / multi-request tests discovered by **`orchestration.yaml`**
 | **Gate examples** | `src/afw/tests/advanced/`, `src/afw_command/tests/local-mode/` |
 | **Extras** | Progressive, firehose, REST soaks — `src/afw/tests-extra/` ([README](src/afw/tests-extra/README.md), [SCHEMA](src/afw/tests-extra/SCHEMA.md)) |
 | **Test scripts** | `//? expect-stdout` / `expect-stderr` (and `//? key: <<< path` file values) on Adaptive test scripts |
-| **How to write** | Handbook **Developer Guide → Writing Tests** (installed: `/docs/afw/html/guide/developer/writing-tests.html`). Gate README [`src/afw/tests/README.md`](src/afw/tests/README.md). Pads [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md) (history), [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md) |
+| **How to write** | Handbook Developer Guide **Writing Tests** (Guides → Developer → Writing Tests; installed `/docs/afw/html/guide/developer/writing-tests.html`). Also [`src/afw/tests/README.md`](src/afw/tests/README.md). Pads [`designs/afwdev-advanced-test.md`](designs/afwdev-advanced-test.md) (history), [`designs/afwdev-test-recipe.md`](designs/afwdev-test-recipe.md) |
 | **PR** | **[#167](https://github.com/afw-org/afw/pull/167)** → `mgg-develop` |
 
 **Retired:** marker name **`advanced-test.yaml`** (migrated to `orchestration.yaml`);
@@ -179,7 +179,7 @@ let n: integer = 1, s: string = "x";
 
 There is no trailing comma. `let a = 1, const b = 2` is two statements, not one.
 
-A C-style **`for` initializer** is empty, one `let`, one `const`, or assignment — not a mixed list of defines. `for (let i = 0, j = 1; …)` is that new `let`. `for (let i = 0, let j = 1; …)` is a syntax error. `for (i = 0, j = 1; …)` still assigns existing names. `for-of` is unchanged.
+A C-style **`for` initializer** can be empty, one `let`, one `const`, or assignment. It is not a mix of different kinds of declarations. `for (let i = 0, j = 1; …)` is one `let` with two names. `for (let i = 0, let j = 1; …)` is a syntax error. `for (i = 0, j = 1; …)` still assigns existing names. `for-of` is unchanged.
 
 ```adaptive
 for (let i = 0, j = 1; i < 3; i = i + 1) {
@@ -196,7 +196,7 @@ x = y = 1;
 x = y += 2;
 ```
 
-The **result of a script** is a running value. `return` and assignment write it. A non-void **call statement** writes it too (`x = 1; abs(-3);` is `3`). `let`, `const`, `if` / `for` / `while` / `try`, and `break;` do not reset it. `print()` and a script function declared `: void` are void and do not override. A script that is only a call or expression (`1 + 2`, `abs(-3);`) yields that value so Fiddle and `#block(add(1,2))` decompile stay useful. An empty script is `undefined`.
+The **result of a script** starts as `undefined`. A `return` or assignment sets it. Calling a function that is not void also sets it (`x = 1; abs(-3);` is `3`). `let`, `const`, `if` / `for` / `while` / `try`, and `break;` do not change it. `print()` and a script function declared `: void` do not change it either. A script that is only a call or an expression (`1 + 2`, `abs(-3);`) still has that value as its result. An empty script is `undefined`.
 
 A **label** may precede `for`, `while`, or `do` (`outer: for (…)`). `break` / `continue` may name that label to leave or continue that loop from a nested loop or `switch`. Labels are not allowed on blocks or `if`. One label per loop.
 
@@ -208,7 +208,7 @@ outer: for (let i = 0; i < 3; i = i + 1) {
 }
 ```
 
-Handbook: Language Reference **Statements**. How to write tests: Developer Guide **Writing Tests**. Tests: `src/afw/tests/language/script/let_const.as`, `for.as`, `assignment.as`, `script_result.as`, `void_result.as`, `labels.as`.
+Handbook: Language Reference **Statements**. Tests: `src/afw/tests/language/script/let_const.as`, `for.as`, `assignment.as`, `script_result.as`, `void_result.as`, `labels.as`.
 
 [↑ Highlights](#highlights)
 

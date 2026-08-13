@@ -14,13 +14,16 @@
             A Block is a sequence of statements that are executed sequentially. When 
             creating a script, a new block is created initially. Blocks can be nested 
             inside existing blocks, using braces <literal>{ }</literal>.
-            The result of a script is a running value: <literal>return</literal>,
-            assignment, and a non-void call statement write it;
+        </paragraph>
+        <paragraph>
+            The result of a script is set by <literal>return</literal>, by
+            assignment, and by calling a function that is not
+            <literal>void</literal>. Other statements, including
             <literal>let</literal>, <literal>const</literal>,
-            <literal>print()</literal>, a script function declared
-            <literal>: void</literal>, and most other statements do not.
-            A script that is only a call or expression yields that value.
-            An empty script is <literal>undefined</literal>.
+            <literal>print()</literal>, and a script function declared
+            <literal>: void</literal>, do not change it. If the script is
+            only a call or an expression, that value is the result. An
+            empty script is <literal>undefined</literal>.
         </paragraph>
         <section>
             <title>Example</title>
@@ -36,15 +39,18 @@
         <title>Assignment</title>
         <image generated-src="ebnf/syntax/diagram/Assignment.png" />
         <paragraph>
-            The Assignment statement assigns a value to a variable, a
-            property, or an index. You can chain assignments in one
-            statement, right to left: <literal>x = y = 1</literal> sets
-            both names to <literal>1</literal>. Compound forms such as
-            <literal>+=</literal> can appear in the chain. Assignment is
-            not an expression: do not write <literal>(x = 1) &gt; x</literal>
-            or <literal>x = (y = 1)</literal>. The right-hand side of
-            <literal>let</literal> / <literal>const</literal> is still an
-            Expression, so <literal>let x = y = 1</literal> is not allowed.
+            The Assignment statement assigns the value of an Expression to
+            a variable, a property, or an index. You can chain assignments
+            in one statement, from right to left. For example,
+            <literal>x = y = 1</literal> sets both names to
+            <literal>1</literal>. Compound forms such as
+            <literal>+=</literal> can be used in the chain. Assignment is
+            a statement, not an expression, so
+            <literal>(x = 1) &gt; x</literal> and
+            <literal>x = (y = 1)</literal> are not allowed. The
+            right-hand side of <literal>let</literal> and
+            <literal>const</literal> is still an Expression, so
+            <literal>let x = y = 1</literal> is also not allowed.
         </paragraph>
         <paragraph>
             The target must evaluate to one of the following:
@@ -72,10 +78,10 @@ let [z] = [ 3 ];]]></code>
         <title>Break</title>
         <image generated-src="ebnf/syntax/diagram/BreakStatement.png" />        
         <paragraph>
-            The <literal>break</literal> statement leaves the innermost
-            loop or <literal>switch</literal>. An optional identifier
-            names a loop label (see For, While, and Do While). There is
-            no <literal>break</literal> expression.
+            The <literal>break</literal> statement breaks out of the
+            current loop or <literal>switch</literal>. You may specify a
+            loop label to break out of that loop instead of the innermost
+            one.
         </paragraph>    
         <section>
             <title>Example</title>            
@@ -103,9 +109,9 @@ outer: for (let i = 0; i < 3; i = i + 1) {
         <title>Const</title>
         <image generated-src="ebnf/syntax/diagram/ConstStatement.png" />
         <paragraph>            
-            The <literal>const</literal> statement declares one or more
-            constant variables. Each name must have an initializer. You can
-            write several bindings in one statement, separated by commas.
+            The <literal>const</literal> statement declares constant
+            variables. Each name must have an initializer. You can declare
+            more than one name in the same statement, separated by commas.
             A <literal>const</literal> cannot be assigned again.
         </paragraph>
         <section>
@@ -119,10 +125,10 @@ const p: integer = 0, q: integer = 1;]]></code>
         <title>Continue</title>
         <image generated-src="ebnf/syntax/diagram/ContinueStatement.png" />
         <paragraph>
-            The <literal>continue</literal> statement starts the next
-            iteration of the innermost loop. An optional identifier names
-            a loop label. <literal>continue</literal> is not allowed
-            outside a loop.
+            The <literal>continue</literal> statement continues with the
+            next iteration of the current loop. You may specify a loop
+            label. The <literal>continue</literal> statement cannot be
+            used outside of a loop.
         </paragraph>
         <section>
             <title>Example</title>
@@ -144,8 +150,9 @@ outer: for (let i = 0; i < 3; i = i + 1) {
         <paragraph>
             The do-while statement executes a block of statements until a 
             condition is met. Unlike the while statement, the do-while statement
-            executes at least once. A label may precede the statement
-            the same as on <literal>for</literal>.
+            executes at least once. You may also put a label in front of
+            the statement, the same way you can with
+            <literal>for</literal>.
         </paragraph>
         <section>
             <title>Example</title>
@@ -162,18 +169,20 @@ do {
             The <literal>for</literal> statement executes a block of statements 
             until a condition is met. Unlike the while statement, the for 
             statement executes an initializer, a condition, and an incrementor.
-            The initializer is empty, one <literal>let</literal>, one
-            <literal>const</literal>, or assignment. Several names on that
-            <literal>let</literal> or <literal>const</literal> use commas,
-            the same as a stand-alone declaration. Assignments may also be
-            listed with commas. A second <literal>let</literal> or
-            <literal>const</literal> keyword in the initializer is not
-            allowed. <literal>let</literal> / <literal>const</literal>
-            names are local to the loop. A label may precede the
-            statement (<literal>outer: for (…)</literal>) for
-            <literal>break</literal> / <literal>continue</literal>
-            of that loop. Labels are not allowed on blocks or
-            <literal>if</literal>.
+            The initializer can be empty, a single <literal>let</literal>,
+            a single <literal>const</literal>, or assignment. You can
+            declare more than one name in that <literal>let</literal> or
+            <literal>const</literal> by separating them with commas, just
+            as you can in a regular <literal>let</literal> or
+            <literal>const</literal>. You can also list more than one
+            assignment, separated by commas. You cannot use more than one
+            <literal>let</literal> or <literal>const</literal> keyword in
+            the initializer. Names declared in the initializer are local
+            to the loop. You may put a label in front of the statement,
+            for example <literal>outer: for (…)</literal>, and use that
+            label with <literal>break</literal> or
+            <literal>continue</literal>. Labels are not allowed on blocks
+            or <literal>if</literal> statements.
         </paragraph>
         <section>
             <title>Example</title>
@@ -271,11 +280,11 @@ const p: Point = { x: 0, y: 0 };]]></code>
         <title>Let</title>
         <image generated-src="ebnf/syntax/diagram/LetStatement.png" />
         <paragraph>
-            The <literal>let</literal> statement declares one or more local
-            variables in the current block. An initializer is optional. You
-            can write several bindings in one statement, separated by commas.
-            A name without an initializer is <literal>undefined</literal>
-            until it is assigned.
+            The <literal>let</literal> statement declares local variables
+            in the current block. An initializer is optional. You can
+            declare more than one name in the same statement, separated
+            by commas. A name without an initializer is
+            <literal>undefined</literal> until it is assigned.
         </paragraph>
         <section>
             <title>Example</title>
@@ -361,8 +370,9 @@ const x: Id = 3;]]></code>
             The <literal>while</literal> statement executes a block of 
             statements until a condition is met. Unlike the do-while statement, 
             the while statement executes the condition first and may not 
-            execute the block at all. A label may precede the statement
-            the same as on <literal>for</literal>.
+            execute the block at all. You may also put a label in front of
+            the statement, the same way you can with
+            <literal>for</literal>.
         </paragraph>
         <section>
             <title>Example</title>

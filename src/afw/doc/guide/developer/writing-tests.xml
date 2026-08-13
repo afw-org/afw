@@ -3,11 +3,9 @@
     <title>Writing Tests</title>
     <paragraph>
         This section goes over how to add tests that 
-        <literal>afwdev test</literal> will run. Tests belong with the 
-        source they cover, under each source directory's 
-        <literal>tests</literal> folder. This is not a tutorial on Adaptive 
-        Script itself. It is about the layout and metadata the test runner 
-        expects.
+        <literal>afwdev test</literal> will run. Tests live with the 
+        source they cover, in each source directory's 
+        <literal>tests</literal> folder.
     </paragraph>
     <section>
         <title>Where Tests Live</title>
@@ -15,7 +13,7 @@
             Under each source directory:
         </paragraph>
         <code><![CDATA[src/<srcdir>/tests/
-  some_group/           # ordinary test group (one or more files)
+  some_group/           # related tests (one or more files)
     foo.as
     bar.as
     afw.conf            # optional; used when the group needs conf
@@ -27,27 +25,27 @@
       …
 ]]></code>
         <paragraph>
-            The <literal>afwdev test</literal> command walks 
-            <literal>src/*/tests/</literal> and can be limited with 
-            <literal>--srcdir-pattern</literal> and 
-            <literal>--test-pattern</literal>. A group is usually a 
-            directory of related files that should stay together when they 
-            share conf or data. A short note about the core gate tree is in 
-            <literal>src/afw/tests/README.md</literal>.
+            The <literal>afwdev test</literal> command looks under 
+            <literal>src/*/tests/</literal>. You can limit what it runs 
+            with <literal>--srcdir-pattern</literal> and 
+            <literal>--test-pattern</literal>. Related tests that share 
+            conf or data should stay in the same directory. There is also 
+            a short note in <literal>src/afw/tests/README.md</literal>.
         </paragraph>
     </section>
     <section>
         <title>Running Tests</title>
         <paragraph>
-            From the package root, after you have made code or generate 
-            changes, build with <literal>./afwdev build --cdev</literal> 
-            and then run tests with <literal>afwdev</literal> on your PATH. 
-            Use <literal>./afwdev</literal> when the build must refresh 
-            <literal>afwdev</literal> itself. Use <literal>afwdev</literal> 
-            afterward for <literal>test</literal>, 
-            <literal>validate</literal>, and similar.
+            From the package root, after you have changed source or 
+            generated files, build with 
+            <literal>./afwdev build --cdev</literal>. Then run tests with 
+            <literal>afwdev</literal>, once it is on your PATH. Use 
+            <literal>./afwdev</literal> when the build needs to install a 
+            new <literal>afwdev</literal>. After that, use 
+            <literal>afwdev</literal> for <literal>test</literal>, 
+            <literal>validate</literal>, and similar commands.
         </paragraph>
-        <code><![CDATA[# From package root — after code/generate changes
+        <code><![CDATA[# From the package root, after source or generate changes
 ./afwdev build --cdev -j
 
 # Run tests (installed afw / afwfcgi on PATH)
@@ -70,25 +68,25 @@ afwdev test --list --test-pattern smoke
             <rows>
                 <row>
                     <column>Adaptive test script (<literal>.as</literal>, <literal>--syntax test_script</literal>)</column>
-                    <column>The usual choice. Language, functions, and adapters under optional <literal>afw.conf</literal>.</column>
+                    <column>This is the usual kind of test. Use it for language, functions, and adapters. You may include an <literal>afw.conf</literal> if the test needs one.</column>
                 </row>
                 <row>
                     <column>Python (<literal>.py</literal> with <literal>run()</literal>)</column>
-                    <column>When you need host process control, raw environment octets, or bindings that are awkward in script.</column>
+                    <column>Use a Python test when you need to control the process, read environment values, or call APIs that are not easy to use from Adaptive Script.</column>
                 </row>
                 <row>
                     <column><literal>commands_*.txt</literal></column>
-                    <column>Drive shell-ish command sequences with a special runner.</column>
+                    <column>A file whose name starts with <literal>commands_</literal> and ends with <literal>.txt</literal> runs a sequence of commands.</column>
                 </row>
                 <row>
-                    <column>Orchestrated-test leaf</column>
-                    <column>Multi-request or long-lived <literal>afwfcgi</literal> work with <literal>orchestration.yaml</literal>. See Orchestrated Tests below.</column>
+                    <column>Orchestrated test</column>
+                    <column>A directory with an <literal>orchestration.yaml</literal> file. Use it for more than one request, or when you need a long-running <literal>afwfcgi</literal>. See Orchestrated Tests below.</column>
                 </row>
             </rows>
         </table>
         <paragraph>
-            You will usually want to use a test script unless you need 
-            process lifetime, a private server, or host-only APIs.
+            You will usually want to write an Adaptive test script, unless 
+            you need a separate process, your own server, or Python APIs.
         </paragraph>
     </section>
     <section>
@@ -126,38 +124,36 @@ return 0;
             The shebang must mention <literal>afw</literal> and 
             <literal>test_script</literal>, as above or as 
             <literal>afw --syntax test_script</literal>. Metadata lines 
-            start with <literal>//?</literal>. Keys such as 
+            start with <literal>//?</literal>. Common keys are 
             <literal>test</literal>, <literal>description</literal>, 
             <literal>expect</literal>, <literal>source</literal>, and 
-            <literal>skip</literal> are the common ones. Failures are 
-            reported per <literal>test:</literal> case.
+            <literal>skip</literal>. Failures are reported for each 
+            <literal>test:</literal> case.
         </paragraph>
         <header>Metadata values</header>
         <paragraph>
             Same-line values, for instance 
             <literal>//? expect: 0</literal> or 
             <literal>//? description: short title</literal>, have leading 
-            and trailing whitespace trimmed. You do not need to fuss over 
-            spaces or tabs after the value.
+            and trailing whitespace ignored.
         </paragraph>
         <paragraph>
             Multi-line values use <literal>//? key: ...</literal> and then 
             the text on the following lines until the next 
             <literal>//?</literal>, or the end of the file. That form 
-            keeps the text more literally, including newlines inside the 
-            block. A blank line before the next <literal>//?</literal> is 
-            the usual way to keep a final newline on the last content 
-            line.
+            keeps the text as you wrote it, including newlines. A blank 
+            line before the next <literal>//?</literal> is the usual way 
+            to keep a final newline on the last content line.
         </paragraph>
         <paragraph>
             File values use <literal>//? key: &lt;&lt;&lt; relative/path</literal>, 
             with the path relative to the directory of the 
             <literal>.as</literal> file. The file contents become the 
-            key's value exactly, with no trim. Paths must be relative and 
-            must not contain <literal>..</literal> segments. This is 
+            key's value exactly, with no trimming. Paths must be relative 
+            and must not contain <literal>..</literal> segments. This is 
             useful for long expects or sources. A value that starts with 
             <literal>&lt;&lt;&lt;</literal> is always this form, so do 
-            not begin a free-text description with those characters. After 
+            not begin a description with those characters. After 
             <literal>//? source: ...</literal> or 
             <literal>//? source: &lt;&lt;&lt; …</literal>, the body is the 
             multi-line or file form above.
@@ -185,7 +181,7 @@ return 0;
         <header>stdout and stderr</header>
         <paragraph>
             Optional keys <literal>expect-stdout</literal> and 
-            <literal>expect-stderr</literal> assert the text written to 
+            <literal>expect-stderr</literal> check the text written to 
             the Adaptive <literal>stdout</literal> and 
             <literal>stderr</literal> streams during the case, for 
             instance by <literal>print</literal>, 
@@ -196,10 +192,9 @@ return 0;
             utf-8. Use a hyphen in the key name. Do not put a colon 
             inside the name. <literal>expect:stdout</literal> is wrong, 
             because <literal>:</literal> separates the key from the 
-            value. When these keys are present, the harness captures 
-            output into an in-memory buffer so it does not pollute the 
-            <literal>afw</literal> process result channel. Omit the key 
-            to ignore that stream.
+            value. When these keys are present, the output is captured 
+            so it does not get mixed in with the test result. If you 
+            omit the key, that stream is ignored.
         </paragraph>
         <header>Conf and fixtures</header>
         <paragraph>
@@ -209,9 +204,9 @@ return 0;
             and set <literal>Environment</literal> in 
             <literal>config.py</literal>. The default 
             <literal>--env-mode afw</literal> runs <literal>afw</literal> 
-            with that conf when the group provides it. Keep fixtures 
-            small and hermetic. The runner copies group files into a 
-            temporary work directory.
+            with that conf when the group provides it. Keep extra files 
+            small. The runner copies the group's files into a temporary 
+            work directory.
         </paragraph>
         <header>Optional config.py</header>
         <paragraph>
@@ -221,7 +216,7 @@ return 0;
             <item>
                 <literal>Tags</literal> — a list of strings. 
                 <literal>afwdev test --tags</literal> with a regular 
-                expression filters groups.
+                expression selects groups.
             </item>
             <item>
                 <literal>Environment</literal> — the name of a directory 
@@ -237,7 +232,7 @@ return 0;
         <paragraph>
             See existing <literal>config.py</literal> files under 
             <literal>src/afw/tests/</literal> for patterns. The easiest 
-            way to start is to copy a nearby test and edit it. For 
+            way to start is to copy an existing test and change it. For 
             instance, look at 
             <literal>src/afw/tests/language/script/try.as</literal> and 
             <literal>src/afw/tests/compiler/test_script_file_value/</literal>.
@@ -246,8 +241,8 @@ return 0;
     <section>
         <title>How afwdev test Runs Tests</title>
         <paragraph>
-            The <literal>--env-mode</literal> option chooses how the 
-            runner hosts each test:
+            The <literal>--env-mode</literal> option chooses how each 
+            test is run:
         </paragraph>
         <table>
             <columns>
@@ -257,15 +252,15 @@ return 0;
             <rows>
                 <row>
                     <column><literal>afw</literal> (default)</column>
-                    <column>A subprocess <literal>afw</literal> for <literal>.as</literal> files. Hermetic orchestrated-test leaves spawn <literal>afwfcgi</literal>.</column>
+                    <column>Runs <literal>.as</literal> files with a subprocess <literal>afw</literal>. Orchestrated tests start their own <literal>afwfcgi</literal>.</column>
                 </row>
                 <row>
                     <column><literal>valgrind</literal></column>
-                    <column><literal>.as</literal> files under valgrind. Orchestrated leaves wrap <literal>afwfcgi</literal> when that is supported.</column>
+                    <column>Runs <literal>.as</literal> files under valgrind. Orchestrated tests wrap <literal>afwfcgi</literal> when that is supported.</column>
                 </row>
                 <row>
                     <column><literal>afwfcgi</literal></column>
-                    <column>Replays compatible <literal>.as</literal> files against a live stack. The default URL is <literal>http://localhost:8080/afw</literal>. Tests with a private <literal>afw.conf</literal> are skipped. Orchestrated leaves are also skipped, because hermetic conf does not apply to the live process.</column>
+                    <column>Replays compatible <literal>.as</literal> files against a running stack. The default URL is <literal>http://localhost:8080/afw</literal>. Tests with their own <literal>afw.conf</literal> are skipped. Orchestrated tests are also skipped, because their conf does not apply to the running process.</column>
                 </row>
                 <row>
                     <column><literal>actions</literal></column>
@@ -274,7 +269,7 @@ return 0;
             </rows>
         </table>
         <paragraph>
-            The file type still wins for some paths. A 
+            Some files always use their own runner. A 
             <literal>.py</literal> file uses the Python runner. A 
             <literal>commands_*.txt</literal> file uses the commands 
             runner.
@@ -283,36 +278,35 @@ return 0;
     <section>
         <title>Orchestrated Tests</title>
         <paragraph>
-            Use an orchestrated leaf when you need a long-lived 
-            <literal>afwfcgi</literal>, leaf-local conf, multi-request 
-            checks, REST feeds, <literal>Accept</literal> overrides such 
-            as <literal>application/x-afw</literal>, or a firehose 
-            schedule. Firehose replaces the retired 
-            <literal>afwdev blast</literal> subcommand. The leaf is a 
+            Use an orchestrated test when you need a long-running 
+            <literal>afwfcgi</literal>, conf that belongs to that test, 
+            more than one request, REST feeds, or an 
+            <literal>Accept</literal> header such as 
+            <literal>application/x-afw</literal>. You can also use a 
+            firehose schedule. Firehose replaces the retired 
+            <literal>afwdev blast</literal> subcommand. The test is a 
             directory that contains <literal>orchestration.yaml</literal>. 
             See <literal>src/afw/tests-extra/README.md</literal> and the 
-            gate examples under <literal>src/afw/tests/advanced/</literal>.
+            examples under <literal>src/afw/tests/advanced/</literal>.
         </paragraph>
         <paragraph>
-            The same vocabulary applies where it makes sense: 
+            The same keys can be used where they apply: 
             <literal>expect</literal>, 
             <literal>expect-stdout</literal>, 
             <literal>expect-stderr</literal>, plus 
             <literal>expectResponse</literal> and 
-            <literal>expectStatus</literal> for wire bodies.
+            <literal>expectStatus</literal> for HTTP bodies.
         </paragraph>
         <paragraph>
-            Leaves under <literal>src/afw/tests/</literal> are part of 
-            the default gate that <literal>afwdev test -j</literal> 
-            runs. Keep those short. Leaves under 
-            <literal>src/afw/tests-extra/</literal> are opt-in extras 
-            next to <literal>tests/</literal> for soaks, progressive 
-            work, firehose, and sketches. Those run only when you pass 
-            <literal>-T</literal>. Schema and extra scenarios live in 
-            <literal>src/afw/tests-extra/README.md</literal>.
+            Tests under <literal>src/afw/tests/</literal> are run by 
+            <literal>afwdev test -j</literal>. Keep those short. Tests 
+            under <literal>src/afw/tests-extra/</literal> are additional 
+            tests that you run only when you pass <literal>-T</literal>. 
+            Use that tree for longer tests, including firehose. More 
+            detail is in <literal>src/afw/tests-extra/README.md</literal>.
         </paragraph>
         <header>Shape</header>
-        <code><![CDATA[src/afw/tests-extra/<leaf>/     # or tests/<group>/ for gate leaves
+        <code><![CDATA[src/afw/tests-extra/<name>/      # or tests/<group>/ for tests in the default run
   orchestration.yaml            # or orchestration.json (not both)
   afw.conf
   objects/                      # optional fixtures
@@ -353,8 +347,8 @@ tests:
                 as evaluating a test script.
             </item>
             <item>
-                <literal>expect</literal> is an optional JSON-ish compare 
-                of the action result. Test script payloads use the inner 
+                <literal>expect</literal> optionally compares the JSON 
+                result of the action. Test script payloads use the inner 
                 <literal>passed</literal> flag.
             </item>
             <item>
@@ -366,54 +360,53 @@ tests:
                 PATH from an install build.
             </item>
         </list>
-        <header>Recording expectResponse goldens</header>
-        <code><![CDATA[afwdev test --capture-goldens -T path/to/leaf
-# or: AFWDEV_CAPTURE_GOLDENS=1 afwdev test -T path/to/leaf
+        <header>Recording expectResponse files</header>
+        <code><![CDATA[afwdev test --capture-goldens -T path/to/test
+# or: AFWDEV_CAPTURE_GOLDENS=1 afwdev test -T path/to/test
 ]]></code>
         <paragraph>
             That writes the actual response bytes to each 
             <literal>expectResponse: &lt;&lt;&lt; rel/path</literal>. 
-            Re-run without capture for the gate.
+            Run again without capture to check them.
         </paragraph>
     </section>
     <section>
-        <title>Some Practical Advice</title>
+        <title>Tips</title>
         <list>
             <item>
-                Start from a neighbor. Copy a test in the same area and 
-                edit it.
+                Copy a test that is already close to what you need and 
+                change it.
             </item>
             <item>
                 Name files so <literal>--test-pattern</literal> is useful. 
-                Patterns match the file path, the basename, or the leaf 
-                directory name for orchestration markers.
+                Patterns match the file path, the file name, or the 
+                directory name of an orchestrated test.
             </item>
             <item>
-                Keep groups small. Shared conf is fine. Do not hide 
-                unrelated suites in one directory if you want 
-                fine-grained parallel runs.
+                Keep groups small. Shared conf is fine. Do not put 
+                unrelated tests in one directory if you want them to 
+                run in parallel.
             </item>
             <item>
-                After meaningful changes, run 
+                After you make a change that should be tested, run 
                 <literal>afwdev test -j</literal>. Valgrind mode is 
-                slower and optional for day-to-day work.
+                slower and optional for everyday work.
             </item>
             <item>
                 Many function and datatype scripts under 
-                <literal>tests/generated/</literal> are generated. Prefer 
-                hand tests under clear group names for new product 
-                behavior.
+                <literal>tests/generated/</literal> are generated. For 
+                new tests, add a hand-written file under a clear group 
+                name.
             </item>
             <item>
-                Put load and soak work in orchestrated leaves with 
-                firehose under <literal>src/afw/tests-extra/</literal>, 
-                or under other <literal>-T</literal> roots. Do not put 
-                heavy firehose in the default <literal>tests/</literal> 
-                gate.
+                Put long load tests in orchestrated tests under 
+                <literal>src/afw/tests-extra/</literal>, or under other 
+                <literal>-T</literal> roots. Do not put heavy firehose 
+                tests in the default <literal>tests/</literal> run.
             </item>
         </list>
         <paragraph>
-            Maintainer notes for the orchestrated schema are in 
+            The orchestrated schema is described in 
             <literal>src/afw/tests-extra/SCHEMA.md</literal>. Command 
             help is available from <literal>afw --help</literal> 
             (<literal>-s test_script</literal>) and 
