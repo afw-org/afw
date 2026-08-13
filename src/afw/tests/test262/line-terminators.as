@@ -348,8 +348,7 @@ line comment
 //? differences: Adaptive allows raw CR in string literals; ES forbids unescaped line terminators in strings
 //? expect: 0
 //? source: ...
-let s = '
-';
+let s = '';
 assert(length(s) === 1);
 return 0;
 
