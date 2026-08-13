@@ -7,7 +7,7 @@
     "description": "This converts an array of x500Name values that contains one value to a single x500Name value.",
     "errorsThrown": [
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "array does not contain exactly one value"
         }
     ],

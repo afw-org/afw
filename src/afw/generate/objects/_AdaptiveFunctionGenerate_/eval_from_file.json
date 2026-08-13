@@ -20,5 +20,11 @@
     "pure": true,
     "returns": {
         "dataType": "any"
-    }
+    },
+    "errorsThrown": [
+        {
+            "error": "syntax",
+            "reason": "file contents could not be compiled"
+        }
+    ]
 }

@@ -409,7 +409,8 @@ def get_object(session, objectType, objectId, adapterId=None, options=None, adap
         Where ${adapterType} is the adapter type id.
 
     Returns:
-        dict: Object retrieved or NULL if not found.
+        dict: Object retrieved. Throws not_found if the adapter or object is
+        not found.
     """
 
     request = session.Request()

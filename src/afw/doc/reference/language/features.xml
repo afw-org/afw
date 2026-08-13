@@ -90,8 +90,19 @@ let y = 2;
     </paragraph>
     <paragraph>
         In Adaptive Script, <literal>throw</literal> is a statement that 
-        requires a string (the error message) and an optional data to allow 
-        users to pass along contextual data to the exception handler.
+        requires a string (the error message). Write optional 
+        <literal>data</literal> and then any value to store on the error 
+        object. Write optional <literal>id</literal> and then a string 
+        that sets the error object's <literal>id</literal> (for example 
+        <literal>not_found</literal>) so an uncaught error can use that 
+        name's HTTP status. A second expression with no 
+        <literal>data</literal> name is still accepted as data for now 
+        so existing scripts keep working; that form is deprecated and 
+        will be removed. Prefer 
+        <literal>throw "…" data { … }</literal>. After removal, 
+        <literal>data</literal> after the message is only the clause 
+        name, so a variable named <literal>data</literal> is written 
+        <literal>throw "…" data data</literal>.
     </paragraph>
     <paragraph>
         In ECMAScript, the <literal>catch</literal> statement accepts any value
@@ -101,12 +112,30 @@ let y = 2;
         Pattern (same destructuring as <literal>let</literal> /
         <literal>const</literal>), for example
         <literal>catch ({ message, data })</literal>.
+        The object also has an <literal>id</literal> (mnemonic such as
+        <literal>throw</literal>, <literal>not_found</literal>, or
+        <literal>denied</literal>) and a numeric
+        <literal>errorCode</literal>. Branch on <literal>id</literal>.
+        If the error is not caught, an HTTP request uses that code's mapped
+        status (for example <literal>not_found</literal> is 404).
+        <literal>general</literal> is the default code when nothing more
+        specific applies.
     </paragraph>
     <code><![CDATA[try {
-    throw "Something bad happened" { "code": 123 };
+    throw "Something bad happened" data { "code": 123 };
 } catch (e) {
     print(e.message);
     print(e.data.code);
+}
+
+try {
+    throw "Person not found" id "not_found" data { personId: id };
+} catch (e) {
+    if (e.id === "not_found") {
+        print(e.data.personId);
+    } else {
+        throw;
+    }
 }
 
 try {

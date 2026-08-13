@@ -152,6 +152,13 @@ afw_function_definition_add_object;
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
  *       'objectId' is the objectId assigned by the adapter.
+ *
+ * Errors thrown:
+ *
+ *   conflict - an object with this id already exists
+ *   not_found - adapter is not found
+ *   denied - authorization denied
+ *   read_only - adapter does not allow add
  */
 const afw_value_t *
 afw_function_execute_add_object(
@@ -208,6 +215,13 @@ afw_function_definition_add_object_with_uri;
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
  *       'objectId' is the objectId assigned by the adapter.
+ *
+ * Errors thrown:
+ *
+ *   conflict - an object with this id already exists
+ *   not_found - adapter is not found
+ *   denied - authorization denied
+ *   read_only - adapter does not allow add
  */
 const afw_value_t *
 afw_function_execute_add_object_with_uri(
@@ -368,6 +382,13 @@ afw_function_definition_delete_object;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow delete
+ *   method_not_supported - this object type cannot be deleted
  */
 const afw_value_t *
 afw_function_execute_delete_object(
@@ -418,6 +439,13 @@ afw_function_definition_delete_object_with_uri;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow delete
+ *   method_not_supported - this object type cannot be deleted
  */
 const afw_value_t *
 afw_function_execute_delete_object_with_uri(
@@ -473,7 +501,13 @@ afw_function_definition_get_object;
  *
  * Returns:
  *
- *   (object) Object retrieved or NULL if not found.
+ *   (object) Object retrieved. Throws not_found if the adapter or object is not
+ *       found.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_get_object(
@@ -523,6 +557,11 @@ afw_function_definition_get_object_with_uri;
  * Returns:
  *
  *   (object) Object retrieved or NULL if not found.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_get_object_with_uri(
@@ -604,6 +643,13 @@ afw_function_definition_modify_object;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow modify
+ *   method_not_supported - this object type cannot be modified
  */
 const afw_value_t *
 afw_function_execute_modify_object(
@@ -681,6 +727,13 @@ afw_function_definition_modify_object_with_uri;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow modify
+ *   method_not_supported - this object type cannot be modified
  */
 const afw_value_t *
 afw_function_execute_modify_object_with_uri(
@@ -780,6 +833,13 @@ afw_function_definition_replace_object;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow replace
+ *   method_not_supported - this object type cannot be replaced
  */
 const afw_value_t *
 afw_function_execute_replace_object(
@@ -833,6 +893,13 @@ afw_function_definition_replace_object_with_uri;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow replace
+ *   method_not_supported - this object type cannot be replaced
  */
 const afw_value_t *
 afw_function_execute_replace_object_with_uri(
@@ -909,6 +976,13 @@ afw_function_definition_retrieve_objects;
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
+ *
+ * Errors thrown:
+ *
+ *   payload_too_large - more objects than maxObjects
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -985,6 +1059,12 @@ afw_function_definition_retrieve_objects_to_callback;
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_callback(
@@ -1053,6 +1133,12 @@ afw_function_definition_retrieve_objects_to_response;
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_response(
@@ -1121,6 +1207,12 @@ afw_function_definition_retrieve_objects_to_stream;
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_stream(
@@ -1188,6 +1280,13 @@ afw_function_definition_retrieve_objects_with_uri;
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
+ *
+ * Errors thrown:
+ *
+ *   payload_too_large - more objects than maxObjects
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(
@@ -1256,6 +1355,12 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_callback(
@@ -1317,6 +1422,12 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_response(
@@ -1378,6 +1489,12 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_stream(
@@ -1439,6 +1556,12 @@ afw_function_definition_update_object;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow update
  */
 const afw_value_t *
 afw_function_execute_update_object(
@@ -1495,6 +1618,12 @@ afw_function_definition_update_object_with_uri;
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow update
  */
 const afw_value_t *
 afw_function_execute_update_object_with_uri(
@@ -2060,7 +2189,7 @@ afw_function_definition_anyURI;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -2246,7 +2375,7 @@ afw_function_definition_eq_anyURI;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -2753,7 +2882,7 @@ afw_function_definition_ne_anyURI;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -2831,7 +2960,7 @@ afw_function_definition_one_and_only_anyURI;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -3236,7 +3365,7 @@ afw_function_definition_substring_anyURI;
  *
  * Errors thrown:
  *
- *   arg_error - startIndex or endIndex is out of range
+ *   argument_error - startIndex or endIndex is out of range
  *
  * Implemented by afw_function_execute_substring()
  *
@@ -3618,7 +3747,7 @@ afw_function_definition_create_array;
  *
  * Errors thrown:
  *
- *   arg_error - length is negative or exceeds the maximum allowed
+ *   argument_error - length is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_create_array(
@@ -3660,7 +3789,7 @@ afw_function_definition_eq_array;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -4076,7 +4205,7 @@ afw_function_definition_ne_array;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -4486,6 +4615,10 @@ afw_function_definition_authorization_check;
  * Returns:
  *
  *   (object _AdaptiveAuthorizationResult_) The authorization result.
+ *
+ * Errors thrown:
+ *
+ *   denied - enforce is true and access is denied
  */
 const afw_value_t *
 afw_function_execute_authorization_check(
@@ -4638,7 +4771,7 @@ afw_function_definition_base64Binary;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -4715,7 +4848,7 @@ afw_function_definition_eq_base64Binary;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -5060,7 +5193,7 @@ afw_function_definition_ne_base64Binary;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -5138,7 +5271,7 @@ afw_function_definition_one_and_only_base64Binary;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -5440,7 +5573,7 @@ afw_function_definition_boolean;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -5483,7 +5616,7 @@ afw_function_definition_eq_boolean;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -5827,7 +5960,7 @@ afw_function_definition_ne_boolean;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -5905,7 +6038,7 @@ afw_function_definition_one_and_only_boolean;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -6707,8 +6840,9 @@ afw_function_definition_throw;
  *
  * This throws an error that can be caught by a try/catch block. An error object
  * of object type _AdaptiveError_ will be available in the catch block. Its 'id'
- * property will be set to 'throw'. The other properties set based on the
- * parameters specified and where this function is called.
+ * property is 'throw' unless the optional id parameter is supplied. Optional
+ * data is available as the 'data' property. The other properties are set based
+ * on the parameters specified and where this function is called.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6718,7 +6852,8 @@ afw_function_definition_throw;
  * ```
  *   function throw(
  *       message: string,
- *       additional?: any
+ *       data?: any,
+ *       id?: string
  *   ): void;
  * ```
  *
@@ -6727,12 +6862,36 @@ afw_function_definition_throw;
  *   message - (string) This is the message that will be included in the
  *       _AdaptiveError_ error object available in the catch block.
  *
- *   additional - (optional any) Optional additional information that will be
- *       available as a 'additional' property in the error object.
+ *   data - (optional any) Optional data that will be available as the 'data'
+ *       property of the _AdaptiveError_ object in the catch block.
+ *
+ *   id - (optional string) Optional error id (mnemonic) to use instead of
+ *       'throw'. Must be a name allowed on script throw (request-facing HTTP
+ *       names such as not_found, denied, gone, too_many_requests). Sets the id
+ *       property of the catch object and the HTTP status if the error is not
+ *       caught.
  *
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   throw - Default when id is omitted
+ *   not_found - id is not_found
+ *   denied - id is denied
+ *   authentication_required - id is authentication_required
+ *   conflict - id is conflict
+ *   bad_request - id is bad_request
+ *   read_only - id is read_only
+ *   payload_too_large - id is payload_too_large
+ *   query_too_complex - id is query_too_complex
+ *   method_not_allowed - id is method_not_allowed
+ *   gone - id is gone
+ *   too_many_requests - id is too_many_requests
+ *   unprocessable_content - id is unprocessable_content
+ *   moved_permanently - id is moved_permanently
+ *   argument_error - id is not a string or is not allowed on throw
  */
 const afw_value_t *
 afw_function_execute_throw(
@@ -6963,6 +7122,10 @@ afw_function_definition_assert;
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   assertion_failed - assertion is not true
  */
 const afw_value_t *
 afw_function_execute_assert(
@@ -7006,6 +7169,10 @@ afw_function_definition_compile_from_file;
  * Returns:
  *
  *   (any)
+ *
+ * Errors thrown:
+ *
+ *   syntax - file contents could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_from_file(
@@ -7095,6 +7262,10 @@ afw_function_definition_eval_from_file;
  * Returns:
  *
  *   (any)
+ *
+ * Errors thrown:
+ *
+ *   syntax - file contents could not be compiled
  */
 const afw_value_t *
 afw_function_execute_eval_from_file(
@@ -7777,7 +7948,7 @@ afw_function_definition_dateTime;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -7820,7 +7991,7 @@ afw_function_definition_eq_dateTime;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -8252,7 +8423,7 @@ afw_function_definition_ne_dateTime;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -8330,7 +8501,7 @@ afw_function_definition_one_and_only_dateTime;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -8741,7 +8912,7 @@ afw_function_definition_date;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -8784,7 +8955,7 @@ afw_function_definition_eq_date;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -9214,7 +9385,7 @@ afw_function_definition_ne_date;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -9292,7 +9463,7 @@ afw_function_definition_one_and_only_date;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -9630,7 +9801,7 @@ afw_function_definition_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -9674,7 +9845,7 @@ afw_function_definition_eq_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -10020,7 +10191,7 @@ afw_function_definition_ne_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -10098,7 +10269,7 @@ afw_function_definition_one_and_only_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -10362,7 +10533,7 @@ afw_function_definition_dnsName;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -10405,7 +10576,7 @@ afw_function_definition_eq_dnsName;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -10711,7 +10882,7 @@ afw_function_definition_ne_dnsName;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -10789,7 +10960,7 @@ afw_function_definition_one_and_only_dnsName;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -11154,7 +11325,7 @@ afw_function_definition_double;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -11197,7 +11368,7 @@ afw_function_definition_eq_double;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -11783,7 +11954,7 @@ afw_function_definition_ne_double;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -11894,7 +12065,7 @@ afw_function_definition_one_and_only_double;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -12304,7 +12475,7 @@ afw_function_definition_eq_function;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -12572,7 +12743,7 @@ afw_function_definition_ne_function;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -12804,7 +12975,7 @@ afw_function_definition_eq_hexBinary;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -12957,7 +13128,7 @@ afw_function_definition_hexBinary;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -13187,7 +13358,7 @@ afw_function_definition_ne_hexBinary;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -13265,7 +13436,7 @@ afw_function_definition_one_and_only_hexBinary;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -14103,7 +14274,7 @@ afw_function_definition_eq_ia5String;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -14256,7 +14427,7 @@ afw_function_definition_ia5String;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -14410,7 +14581,7 @@ afw_function_definition_ne_ia5String;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -14898,7 +15069,7 @@ afw_function_definition_eq_integer;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -15051,7 +15222,7 @@ afw_function_definition_integer;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -15421,7 +15592,7 @@ afw_function_definition_ne_integer;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -15532,7 +15703,7 @@ afw_function_definition_one_and_only_integer;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -15682,7 +15853,7 @@ afw_function_definition_to_double_integer;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_to_double_integer()
  *
@@ -15875,7 +16046,7 @@ afw_function_definition_eq_ipAddress;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -16028,7 +16199,7 @@ afw_function_definition_ipAddress;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -16220,7 +16391,7 @@ afw_function_definition_ne_ipAddress;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -16298,7 +16469,7 @@ afw_function_definition_one_and_only_ipAddress;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -16483,6 +16654,11 @@ afw_function_definition_journal_get_by_cursor;
  * Returns:
  *
  *   (object) Response object.
+ *
+ * Errors thrown:
+ *
+ *   not_found - no journal entry at this cursor
+ *   method_not_supported - adapter does not support journal
  */
 const afw_value_t *
 afw_function_execute_journal_get_by_cursor(
@@ -16785,6 +16961,10 @@ afw_function_definition_compile_json;
  * Returns:
  *
  *   (unevaluated)
+ *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_json(
@@ -16823,7 +17003,7 @@ afw_function_definition_json;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -16912,7 +17092,7 @@ afw_function_definition_n_of;
  *
  * Errors thrown:
  *
- *   arg_error - there are less than n conditions
+ *   argument_error - there are less than n conditions
  */
 const afw_value_t *
 afw_function_execute_n_of(
@@ -18225,7 +18405,7 @@ afw_function_definition_eq_objectId;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -18493,7 +18673,7 @@ afw_function_definition_ne_objectId;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -18570,7 +18750,7 @@ afw_function_definition_objectId;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -18726,7 +18906,7 @@ afw_function_definition_eq_objectPath;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -18995,7 +19175,7 @@ afw_function_definition_ne_objectPath;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -19072,7 +19252,7 @@ afw_function_definition_objectPath;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -19374,7 +19554,7 @@ afw_function_definition_eq_object;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -19755,7 +19935,7 @@ afw_function_definition_ne_object;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -19834,7 +20014,7 @@ afw_function_definition_object;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -20213,7 +20393,7 @@ afw_function_definition_eq_password;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -20481,7 +20661,7 @@ afw_function_definition_ne_password;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -20558,7 +20738,7 @@ afw_function_definition_password;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -21023,6 +21203,10 @@ afw_function_definition_compile;
  *
  *   (unevaluated)
  *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
+ *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
  * __________
@@ -21272,7 +21456,7 @@ afw_function_definition_eq;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -22274,7 +22458,7 @@ afw_function_definition_ne;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -22479,7 +22663,7 @@ afw_function_definition_one_and_only;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23008,7 +23192,7 @@ afw_function_definition_substring;
  *
  * Errors thrown:
  *
- *   arg_error - startIndex or endIndex is out of range
+ *   argument_error - startIndex or endIndex is out of range
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23176,7 +23360,7 @@ afw_function_definition_to_anyURI;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23218,7 +23402,7 @@ afw_function_definition_to_boolean;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23260,7 +23444,7 @@ afw_function_definition_to_date;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23302,7 +23486,7 @@ afw_function_definition_to_dateTime;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23344,7 +23528,7 @@ afw_function_definition_to_dayTimeDuration;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23386,7 +23570,7 @@ afw_function_definition_to_dnsName;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23428,7 +23612,7 @@ afw_function_definition_to_double;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23508,7 +23692,7 @@ afw_function_definition_to_ipAddress;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23550,7 +23734,7 @@ afw_function_definition_to_rfc822Name;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23634,7 +23818,7 @@ afw_function_definition_to_time;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23676,7 +23860,7 @@ afw_function_definition_to_x500Name;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -23718,7 +23902,7 @@ afw_function_definition_to_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24040,6 +24224,10 @@ afw_function_definition_compile_regexp;
  * Returns:
  *
  *   (unevaluated)
+ *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_regexp(
@@ -24081,7 +24269,7 @@ afw_function_definition_eq_regexp;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -24315,7 +24503,7 @@ afw_function_definition_ne_regexp;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -24395,7 +24583,7 @@ afw_function_definition_regexp;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -24455,6 +24643,10 @@ afw_function_definition_compile_relaxed_json;
  * Returns:
  *
  *   (unevaluated)
+ *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_relaxed_json(
@@ -24493,7 +24685,7 @@ afw_function_definition_relaxed_json;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -24652,7 +24844,7 @@ afw_function_definition_eq_rfc822Name;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -25034,7 +25226,7 @@ afw_function_definition_ne_rfc822Name;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -25112,7 +25304,7 @@ afw_function_definition_one_and_only_rfc822Name;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -25188,7 +25380,7 @@ afw_function_definition_rfc822Name;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -25464,6 +25656,10 @@ afw_function_definition_compile_script;
  * Returns:
  *
  *   (unevaluated)
+ *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_script(
@@ -25505,7 +25701,7 @@ afw_function_definition_eq_script;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -25815,7 +26011,7 @@ afw_function_definition_ne_script;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -25894,7 +26090,7 @@ afw_function_definition_script;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -26597,7 +26793,7 @@ afw_function_definition_concat;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_concat(
@@ -26783,7 +26979,7 @@ afw_function_definition_eq_string;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -27402,7 +27598,7 @@ afw_function_definition_ne_string;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -27546,7 +27742,7 @@ afw_function_definition_one_and_only_string;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -27909,7 +28105,7 @@ afw_function_definition_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_string(
@@ -27993,7 +28189,7 @@ afw_function_definition_substring_string;
  *
  * Errors thrown:
  *
- *   arg_error - startIndex or endIndex is out of range
+ *   argument_error - startIndex or endIndex is out of range
  *
  * Implemented by afw_function_execute_substring()
  *
@@ -28031,7 +28227,7 @@ afw_function_definition_to_anyURI_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28069,7 +28265,7 @@ afw_function_definition_to_boolean_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28107,7 +28303,7 @@ afw_function_definition_to_dateTime_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28145,7 +28341,7 @@ afw_function_definition_to_date_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28183,7 +28379,7 @@ afw_function_definition_to_dayTimeDuration_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28221,7 +28417,7 @@ afw_function_definition_to_dnsName_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28259,7 +28455,7 @@ afw_function_definition_to_double_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28331,7 +28527,7 @@ afw_function_definition_to_ipAddress_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28369,7 +28565,7 @@ afw_function_definition_to_rfc822Name_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28442,7 +28638,7 @@ afw_function_definition_to_time_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28480,7 +28676,7 @@ afw_function_definition_to_x500Name_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28518,7 +28714,7 @@ afw_function_definition_to_yearMonthDuration_string;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -28751,6 +28947,10 @@ afw_function_definition_compile_template;
  * Returns:
  *
  *   (unevaluated)
+ *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_template(
@@ -28792,7 +28992,7 @@ afw_function_definition_eq_template;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -29102,7 +29302,7 @@ afw_function_definition_ne_template;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -29181,7 +29381,7 @@ afw_function_definition_template;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -29374,7 +29574,7 @@ afw_function_definition_eq_time;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -29847,7 +30047,7 @@ afw_function_definition_ne_time;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -29925,7 +30125,7 @@ afw_function_definition_one_and_only_time;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -30039,7 +30239,7 @@ afw_function_definition_time;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -30396,7 +30596,7 @@ afw_function_definition_eq_x500Name;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -30777,7 +30977,7 @@ afw_function_definition_ne_x500Name;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -30855,7 +31055,7 @@ afw_function_definition_one_and_only_x500Name;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -31079,7 +31279,7 @@ afw_function_definition_x500Name;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -31207,6 +31407,10 @@ afw_function_definition_compile_xpathExpression;
  * Returns:
  *
  *   (unevaluated)
+ *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_xpathExpression(
@@ -31249,7 +31453,7 @@ afw_function_definition_eq_xpathExpression;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -31561,7 +31765,7 @@ afw_function_definition_ne_xpathExpression;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -31675,7 +31879,7 @@ afw_function_definition_xpathExpression;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *
@@ -31942,7 +32146,7 @@ afw_function_definition_eq_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_eq()
  *
@@ -32288,7 +32492,7 @@ afw_function_definition_ne_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  *
  * Implemented by afw_function_execute_ne()
  *
@@ -32366,7 +32570,7 @@ afw_function_definition_one_and_only_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  *
  * Implemented by afw_function_execute_one_and_only()
  *
@@ -32553,7 +32757,7 @@ afw_function_definition_yearMonthDuration;
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  *
  * Implemented by afw_function_execute_convert()
  *

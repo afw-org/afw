@@ -472,7 +472,7 @@ afw_object_resolve_instance(
     if (object) return object;
     if (!path) return NULL;
     /* Will not happen if objects retrieved using afw_cache_* */
-    AFW_THROW_ERROR_FZ(objects_needed, xctx, AFW_UTF8_FMT_Q,
+    AFW_THROW_ERROR_FZ(coding_error, xctx, AFW_UTF8_FMT_Q,
         AFW_UTF8_FMT_ARG(path));
 };
 

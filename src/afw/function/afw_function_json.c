@@ -59,6 +59,10 @@
  * Returns:
  *
  *   (unevaluated)
+ *
+ * Errors thrown:
+ *
+ *   syntax - source could not be compiled
  */
 const afw_value_t *
 afw_function_execute_compile_json(

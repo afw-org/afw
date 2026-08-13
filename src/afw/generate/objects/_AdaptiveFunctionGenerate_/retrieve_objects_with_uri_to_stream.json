@@ -34,5 +34,19 @@
     ],
     "returns": {
         "dataType": "void"
-    }
+    },
+    "errorsThrown": [
+        {
+            "error": "query_too_complex",
+            "reason": "adapter cannot run this query"
+        },
+        {
+            "error": "not_found",
+            "reason": "adapter is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        }
+    ]
 }

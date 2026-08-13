@@ -4,7 +4,7 @@
     "description": "Converts value to data type script returning script result. Holds Adaptive Script source text as a script value (does not compile or run). Use polymorphic compile to compile the source.",
     "errorsThrown": [
         {
-            "error": "cast_error",
+            "error": "conversion_error",
             "reason": "value could not be converted"
         }
     ],

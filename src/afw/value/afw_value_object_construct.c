@@ -64,7 +64,7 @@ impl_name_from_value(
     const afw_utf8_t *name;
 
     if (!name_value) {
-        AFW_THROW_ERROR_Z(evaluate,
+        AFW_THROW_ERROR_Z(undefined_value,
             "Object property name expression evaluated to undefined",
             xctx);
     }
@@ -73,7 +73,7 @@ impl_name_from_value(
     }
     name = afw_value_as_utf8(name_value, p, xctx);
     if (!name) {
-        AFW_THROW_ERROR_Z(evaluate,
+        AFW_THROW_ERROR_Z(argument_error,
             "Object property name expression must produce a string",
             xctx);
     }
@@ -108,7 +108,7 @@ impl_afw_value_optional_evaluate(
         if (e->type == afw_value_object_construct_entry_spread) {
             v = afw_value_evaluate(e->spread_expr, p, xctx);
             if (!v || !afw_value_is_object(v)) {
-                AFW_THROW_ERROR_Z(evaluate,
+                AFW_THROW_ERROR_Z(argument_error,
                     "Object spread must evaluate to an object",
                     xctx);
             }

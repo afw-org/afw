@@ -162,6 +162,11 @@ afw_function_execute_journal_advance_cursor_for_consumer(
  * Returns:
  *
  *   (object) Response object.
+ *
+ * Errors thrown:
+ *
+ *   not_found - no journal entry at this cursor
+ *   method_not_supported - adapter does not support journal
  */
 const afw_value_t *
 afw_function_execute_journal_get_by_cursor(

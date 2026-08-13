@@ -4,6 +4,24 @@
     "camelCaseFunctionLabel": "modifyObject",
     "category": "adapter",
     "description": "Modify an adaptive object.",
+    "errorsThrown": [
+        {
+            "error": "not_found",
+            "reason": "adapter or object is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        },
+        {
+            "error": "read_only",
+            "reason": "object or adapter does not allow modify"
+        },
+        {
+            "error": "method_not_supported",
+            "reason": "this object type cannot be modified"
+        }
+    ],
     "functionId": "modify_object",
     "functionLabel": "modify_object",
     "parameters": [

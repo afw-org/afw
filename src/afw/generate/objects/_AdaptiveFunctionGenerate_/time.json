@@ -4,7 +4,7 @@
     "description": "Converts value to data type time returning time result.",
     "errorsThrown": [
         {
-            "error": "cast_error",
+            "error": "conversion_error",
             "reason": "value could not be converted"
         }
     ],

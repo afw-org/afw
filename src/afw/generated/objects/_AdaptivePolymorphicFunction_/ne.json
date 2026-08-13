@@ -7,7 +7,7 @@
     "functionLabel": "ne",
     "errorsThrown": [
         {
-            "error": "conversion",
+            "error": "conversion_error",
             "reason": "arg2 cannot be converted to the data type of arg1."
         }
     ],

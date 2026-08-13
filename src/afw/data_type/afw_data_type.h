@@ -40,7 +40,7 @@ afw_data_type_boolean_false;
 
 #define AFW_DATA_TYPE_ASSERT_EQUAL(A_DATATYPE_1_, A_DATATYPE_2_, A_SCOPE) \
 if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
-    AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", A_SCOPE); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
 }
 
 

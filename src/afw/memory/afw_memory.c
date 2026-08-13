@@ -268,7 +268,7 @@ afw_memory_decode_base64(
 
         }
 
-        AFW_THROW_ERROR_Z(general, "Invalid base64 encoding", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid base64 encoding", xctx);
     }
 
     /* Allocate memory for result.  Just return if length is 0. */
@@ -366,7 +366,7 @@ afw_memory_decode_printable_hex(
     return;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(conversion_error, xctx,
         "Invalid printable hex value " AFW_UTF8_FMT_Q ".",
         AFW_UTF8_FMT_ARG(encoded));
 }

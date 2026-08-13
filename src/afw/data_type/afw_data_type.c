@@ -511,7 +511,7 @@ impl_afw_data_type_boolean_utf8_to_internal(
     return;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(conversion_error, xctx,
         "Not a valid boolean value " AFW_UTF8_FMT_Q ".",
         (int)len, s);
 }

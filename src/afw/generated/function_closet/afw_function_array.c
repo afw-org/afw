@@ -185,7 +185,7 @@ afw_function_execute_at(
  *
  * Errors thrown:
  *
- *   arg_error - length is negative or exceeds the maximum allowed
+ *   argument_error - length is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_create_array(

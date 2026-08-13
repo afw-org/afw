@@ -27,5 +27,15 @@
     "returns": {
         "dataType": "object",
         "description": "Object retrieved or NULL if not found."
-    }
+    },
+    "errorsThrown": [
+        {
+            "error": "not_found",
+            "reason": "adapter or object is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        }
+    ]
 }

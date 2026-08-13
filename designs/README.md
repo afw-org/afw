@@ -47,6 +47,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | [`agent-support.md`](agent-support.md) | Ongoing support/dev partner — playbook stubs, capture checklist; hub is `AGENTS.md` |
 | (no pad) | **#158** graceful process stop — landed (PR #165); user note in `whats-new.md` |
 | [`issue-127-progressive-retrieve-release.md`](issue-127-progressive-retrieve-release.md) | **#127** — progressive retrieve write-then-release (to_stream / to_response / HTTP list); script callback residual |
+| [`issue-33-error-codes.md`](issue-33-error-codes.md) | **#33** — review error codes / HTTP map / script `e.id` (done for release on `issue-#33-error-codes`) |
 | [`libafw-headers-and-api-surface.md`](libafw-headers-and-api-surface.md) | libafw header layers (`afw.h` / internal / minimal / common), install public-only goal, Doxygen public vs internal |
 
 ## Conventions

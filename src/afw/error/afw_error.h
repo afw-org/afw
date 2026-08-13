@@ -179,9 +179,9 @@ struct afw_error_s {
  * AFW_THROW_* skips FINALLY and leaves current_try wrong. Use break (to
  * FINALLY/ENDTRY) or the AFW_ERROR_* helpers above.
  *
- * ## Code tokens in AFW_THROW_ERROR_Z(code, ...)
+ * ## Code tokens in AFW_THROW_ERROR_Z(coding_error, ...)
  *
- * `code` is a token pasted as afw_error_code_##code (e.g. arg_error). Pass the
+ * `code` is a token pasted as afw_error_code_##code (e.g. argument_error). Pass the
  * short name, not an afw_error_code_t variable.
  *
  * @}
@@ -1085,6 +1085,29 @@ afw_error_http_status(const afw_error_t *error);
 AFW_DECLARE(const afw_utf8_z_t *)
 afw_error_code_id_z(const afw_error_t *error);
 
+
+/**
+ * @brief Look up an error id string in the error code map.
+ * @param id mnemonic such as not_found or throw.
+ * @param code receives the matching code when the function returns true.
+ * @return true if id is a known map entry.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_error_code_from_id(
+    const afw_utf8_t *id,
+    afw_error_code_t *code);
+
+
+/**
+ * @brief True if a script throw statement may use this id.
+ * @param id mnemonic to test.
+ * @return true if throw ... id <value> may use this id.
+ *
+ * Allowed names are the request-facing ones (not_found, denied, …)
+ * plus throw. Host and parser names are not allowed.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_error_id_allowed_on_script_throw(const afw_utf8_t *id);
 
 
 /**

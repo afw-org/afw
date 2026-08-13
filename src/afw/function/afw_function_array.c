@@ -272,7 +272,7 @@ afw_function_execute_includes_array(
  *
  * Errors thrown:
  *
- *   arg_error - length is negative or exceeds the maximum allowed
+ *   argument_error - length is negative or exceeds the maximum allowed
  */
 /* Hard cap so create_array(huge) cannot allocate without bound. */
 #define AFW_CREATE_ARRAY_MAX_LENGTH 1000000
@@ -290,7 +290,7 @@ afw_function_execute_create_array(
     n = length->internal;
 
     if (n < 0 || n > AFW_CREATE_ARRAY_MAX_LENGTH) {
-        AFW_THROW_ERROR_FZ(arg_error, x->xctx,
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             "create_array length must be between 0 and %d inclusive",
             AFW_CREATE_ARRAY_MAX_LENGTH);
     }

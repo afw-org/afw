@@ -28,7 +28,7 @@ alwaysApply: false
   - **`AFW_ERROR_RETHROW`:** flag only (`this_ERROR_CAUGHT = false` + break). FINALLY still runs; **`AFW_ENDTRY`** then rethrows to the outer try. Not an immediate `longjmp`.
   - **`AFW_ERROR_MARK_CAUGHT`:** in FINALLY, mark handled even if no CATCH matched.
   - **`AFW_ERROR_THROWN`:** only in CATCH / CATCH_UNHANDLED bodies.
-  - `code` in `AFW_THROW_ERROR_Z(code, …)` is a **token** (`arg_error`, `general`, …) pasted as `afw_error_code_##code` — not an `afw_error_code_t` variable.
+  - `code` in `AFW_THROW_ERROR_Z(coding_error, …)` is a **token** (`argument_error`, `general`, …) pasted as `afw_error_code_##code` — not an `afw_error_code_t` variable.
   - Authoritative comments: `error/afw_error.h` (design block + TRY usage).
 - **Non-pool resources** (OpenSSL `EVP_*_CTX`, `FILE *`, locks, `malloc`'d key material, etc.): init locals to **NULL**, do work in **`AFW_TRY`**, free/release in **`AFW_FINALLY` if non-NULL**. Do not mirror free+throw on every error path. Pool allocs still use `afw_pool_*` (throw-safe via pool unwind). Example: `src/afw_crypto/afw_crypto_function_crypto.c`.
 - Value lifetimes (permanent / managed / managed_slice / unmanaged) and pool/scope escape: see `afw-value-memory` (important for long-running scripts). Compile/eval graph: `afw-script-eval`.

@@ -185,7 +185,7 @@ afw_file_from_memory(
             APR_FPROT_OS_DEFAULT, apr_p);
         if (rv == APR_SUCCESS) {
             apr_file_close(f);
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(conflict, xctx,
                 "File %s already exists.", file_path_z);
         }
         /* If there is a '/' in path, make sure all of the directories exist */

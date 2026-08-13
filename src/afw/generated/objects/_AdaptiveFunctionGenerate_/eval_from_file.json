@@ -4,6 +4,12 @@
     "camelCaseFunctionLabel": "evalFromFile",
     "category": "compiler",
     "description": "Load an external adaptive script, json, or template to be compiled and evaluate.",
+    "errorsThrown": [
+        {
+            "error": "syntax",
+            "reason": "file contents could not be compiled"
+        }
+    ],
     "functionId": "eval_from_file",
     "functionLabel": "eval_from_file",
     "parameters": [

@@ -64,6 +64,10 @@
  * Returns:
  *
  *   (object _AdaptiveAuthorizationResult_) The authorization result.
+ *
+ * Errors thrown:
+ *
+ *   denied - enforce is true and access is denied
  */
 const afw_value_t *
 afw_function_execute_authorization_check(

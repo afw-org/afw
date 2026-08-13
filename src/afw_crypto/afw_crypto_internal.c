@@ -97,7 +97,7 @@ afw_crypto_internal_require_binary(
     afw_xctx_t *xctx)
 {
     if (!value) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: missing binary value", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: missing binary value", xctx);
     }
     if (AFW_VALUE_IS_DATA_TYPE(value, base64Binary)) {
         return &((const afw_value_base64Binary_t *)value)->internal;
@@ -105,7 +105,7 @@ afw_crypto_internal_require_binary(
     if (AFW_VALUE_IS_DATA_TYPE(value, hexBinary)) {
         return &((const afw_value_hexBinary_t *)value)->internal;
     }
-    AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: expected base64Binary or hexBinary",
+    AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: expected base64Binary or hexBinary",
         xctx);
     return NULL; /* not reached */
 }
@@ -116,7 +116,7 @@ afw_crypto_internal_alg_from_name(
     afw_xctx_t *xctx)
 {
     if (!name) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: missing algorithm name", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: missing algorithm name", xctx);
     }
     if (afw_utf8_equal_utf8_z(name, "AES-GCM")) {
         return afw_crypto_alg_aes_gcm;
@@ -136,7 +136,7 @@ afw_crypto_internal_alg_from_name(
     if (afw_utf8_equal_utf8_z(name, "PBKDF2")) {
         return afw_crypto_alg_pbkdf2;
     }
-    AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: unsupported algorithm name", xctx);
+    AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: unsupported algorithm name", xctx);
     return afw_crypto_alg_unknown;
 }
 
@@ -157,7 +157,7 @@ afw_crypto_internal_parse_algorithm_param(
     name = NULL;
 
     if (!algorithm) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: missing algorithm", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: missing algorithm", xctx);
     }
 
     if (AFW_VALUE_IS_DATA_TYPE(algorithm, string)) {
@@ -167,14 +167,14 @@ afw_crypto_internal_parse_algorithm_param(
         obj = ((const afw_value_object_t *)algorithm)->internal;
         v = afw_object_get_property(obj, afw_crypto_s_name, xctx);
         if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: object requires string name",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: object requires string name",
                 xctx);
         }
         name = &((const afw_value_string_t *)v)->internal;
         v = afw_object_get_property(obj, afw_crypto_s_length, xctx);
         if (v) {
             if (!AFW_VALUE_IS_DATA_TYPE(v, integer)) {
-                AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: length must be integer",
+                AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: length must be integer",
                     xctx);
             }
             *out_length_bits =
@@ -182,7 +182,7 @@ afw_crypto_internal_parse_algorithm_param(
         }
     }
     else {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: expected string or object",
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: expected string or object",
             xctx);
     }
 
@@ -194,7 +194,7 @@ afw_crypto_internal_parse_algorithm_param(
             *out_length_bits = 256;
         }
         if (*out_length_bits != 128 && *out_length_bits != 256) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_key_length: AES-GCM length must be 128 or 256",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_key_length: AES-GCM length must be 128 or 256",
                 xctx);
         }
     }
@@ -246,7 +246,7 @@ impl_set_usages_on_entry(
             break;
         }
         if (!AFW_VALUE_IS_DATA_TYPE(v, string)) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_usage: usages must be strings", xctx);
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_usage: usages must be strings", xctx);
         }
         s = &((const afw_value_string_t *)v)->internal;
         if (afw_utf8_equal_utf8_z(s, "encrypt")) {
@@ -265,12 +265,12 @@ impl_set_usages_on_entry(
             e->use_derive = true;
         }
         else {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_usage: unknown usage string", xctx);
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_usage: unknown usage string", xctx);
         }
     }
     if (!e->use_encrypt && !e->use_decrypt && !e->use_sign &&
         !e->use_verify && !e->use_derive) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_usage: usages must be non-empty", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_usage: usages must be non-empty", xctx);
     }
 }
 
@@ -317,10 +317,10 @@ afw_crypto_internal_parse_usages(
         if (use_defaults_if_absent) {
             return afw_crypto_internal_default_usages(alg, p, xctx);
         }
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_usage: usages required", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_usage: usages required", xctx);
     }
     if (!AFW_VALUE_IS_DATA_TYPE(usages_value, array)) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_usage: usages must be array", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_usage: usages must be array", xctx);
     }
     return ((const afw_value_array_t *)usages_value)->internal;
 }
@@ -397,17 +397,17 @@ impl_validate_key_size_for_alg(
     }
     if (alg == afw_crypto_alg_aes_gcm) {
         if (length_bits == 128 && key_size != 16) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_key_length: AES-128-GCM needs 16 octets",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_key_length: AES-128-GCM needs 16 octets",
                 xctx);
         }
         if (length_bits == 256 && key_size != 32) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_key_length: AES-256-GCM needs 32 octets",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_key_length: AES-256-GCM needs 32 octets",
                 xctx);
         }
         if (length_bits != 128 && length_bits != 256) {
             /* infer from size */
             if (key_size != 16 && key_size != 32) {
-                AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
+                AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_key_length: AES-GCM key must be 16 or 32 octets",
                     xctx);
             }
         }
@@ -465,7 +465,7 @@ afw_crypto_internal_import_key(
     else {
         free(e->material);
         free(e);
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: algorithm name too long", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: algorithm name too long", xctx);
     }
     impl_set_usages_on_entry(e, usages, xctx);
 
@@ -533,7 +533,7 @@ afw_crypto_internal_generate_key(
         length_bits = 512;
     }
     else {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_algorithm: cannot generate for this algorithm",
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_algorithm: cannot generate for this algorithm",
             xctx);
         return NULL;
     }
@@ -573,7 +573,7 @@ impl_key_id_from_value(const afw_value_t *key_value, afw_xctx_t *xctx)
     const afw_value_t *v;
 
     if (!key_value || !AFW_VALUE_IS_DATA_TYPE(key_value, object)) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:unknown_key: expected CryptoKey object", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:unknown_key: expected CryptoKey object", xctx);
     }
     obj = ((const afw_value_object_t *)key_value)->internal;
     v = afw_object_get_property(obj, afw_crypto_s_keyId, xctx);
@@ -603,7 +603,7 @@ afw_crypto_internal_export_key(
     }
     if (!e->extractable) {
         apr_thread_mutex_unlock(impl_keystore_mutex);
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:not_extractable: key is not extractable", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:not_extractable: key is not extractable", xctx);
     }
     copy = afw_pool_malloc(p, e->material_size, xctx);
     memcpy(copy, e->material, e->material_size);
@@ -708,7 +708,7 @@ impl_resolve_reference_object(
 
     v = afw_object_get_property(obj, afw_crypto_s_from, xctx);
     if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: key reference requires string from",
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: key reference requires string from",
             xctx);
     }
     from = &((const afw_value_string_t *)v)->internal;
@@ -718,7 +718,7 @@ impl_resolve_reference_object(
     v = afw_object_get_property(obj, afw_crypto_s_encoding, xctx);
     if (v) {
         if (!AFW_VALUE_IS_DATA_TYPE(v, string)) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_encoding: encoding must be string",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_encoding: encoding must be string",
                 xctx);
         }
         encoding = &((const afw_value_string_t *)v)->internal;
@@ -728,7 +728,7 @@ impl_resolve_reference_object(
     if (afw_utf8_equal_utf8_z(from, "material")) {
         v = afw_object_get_property(obj, afw_crypto_s_data, xctx);
         if (!v) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: material reference needs data",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: material reference needs data",
                 xctx);
         }
         mem = afw_crypto_internal_require_binary(v, xctx);
@@ -738,7 +738,7 @@ impl_resolve_reference_object(
     if (afw_utf8_equal_utf8_z(from, "environment")) {
         v = afw_object_get_property(obj, afw_crypto_s_name, xctx);
         if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:env_not_found: environment ref needs name",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:env_not_found: environment ref needs name",
                 xctx);
         }
         name_z = afw_utf8_z_create(
@@ -759,7 +759,7 @@ impl_resolve_reference_object(
             }
             if (has_encoding && afw_utf8_equal_utf8_z(encoding, "utf8")) {
                 if (!allow_utf8_material) {
-                    AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_encoding: utf8 not allowed for raw keys",
+                    AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_encoding: utf8 not allowed for raw keys",
                         xctx);
                 }
                 return impl_resolved_from_octets(
@@ -783,13 +783,13 @@ impl_resolve_reference_object(
             return impl_resolved_from_octets(
                 (const afw_octet_t *)as_utf8.s, as_utf8.len, xctx);
         }
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_encoding: unsupported encoding", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_encoding: unsupported encoding", xctx);
     }
 
     if (afw_utf8_equal_utf8_z(from, "file")) {
         v = afw_object_get_property(obj, afw_crypto_s_path, xctx);
         if (!v || !AFW_VALUE_IS_DATA_TYPE(v, string)) {
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:path_not_allowed: file ref needs path string",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:path_not_allowed: file ref needs path string",
                 xctx);
         }
         path = &((const afw_value_string_t *)v)->internal;
@@ -824,7 +824,7 @@ impl_resolve_reference_object(
         }
         if (has_encoding && afw_utf8_equal_utf8_z(encoding, "utf8")) {
             if (!allow_utf8_material) {
-                AFW_THROW_ERROR_Z(arg_error, "error:crypto:invalid_encoding: utf8 not allowed for raw keys",
+                AFW_THROW_ERROR_Z(argument_error, "error:crypto:invalid_encoding: utf8 not allowed for raw keys",
                     xctx);
             }
             return impl_resolved_from_octets(file_mem->ptr, file_mem->size,
@@ -834,7 +834,7 @@ impl_resolve_reference_object(
         return impl_resolved_from_octets(file_mem->ptr, file_mem->size, xctx);
     }
 
-    AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: unsupported key reference from",
+    AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: unsupported key reference from",
         xctx);
     return NULL;
 }
@@ -855,7 +855,7 @@ afw_crypto_internal_resolve_key(
     afw_crypto_resolved_key_t *rk;
 
     if (!key_value) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: missing key", xctx);
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: missing key", xctx);
     }
 
     /* Raw binary material — no usage check */
@@ -866,7 +866,7 @@ afw_crypto_internal_resolve_key(
     }
 
     if (!AFW_VALUE_IS_DATA_TYPE(key_value, object)) {
-        AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: key must be binary or object",
+        AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: key must be binary or object",
             xctx);
     }
 
@@ -887,7 +887,7 @@ afw_crypto_internal_resolve_key(
         }
         if (required_usage && !impl_usage_allowed(e, required_usage)) {
             apr_thread_mutex_unlock(impl_keystore_mutex);
-            AFW_THROW_ERROR_Z(arg_error, "error:crypto:usage_not_permitted: key missing required usage",
+            AFW_THROW_ERROR_Z(argument_error, "error:crypto:usage_not_permitted: key missing required usage",
                 xctx);
         }
         rk = impl_resolved_from_octets(e->material, e->material_size, xctx);
@@ -904,7 +904,7 @@ afw_crypto_internal_resolve_key(
             xctx);
     }
 
-    AFW_THROW_ERROR_Z(arg_error, "error:crypto:expected_binary: object is neither CryptoKey nor key reference",
+    AFW_THROW_ERROR_Z(argument_error, "error:crypto:expected_binary: object is neither CryptoKey nor key reference",
         xctx);
     return NULL;
 }
@@ -922,7 +922,7 @@ afw_crypto_internal_object_get_binary(
     v = afw_object_get_property(obj, name, xctx);
     if (!v) {
         if (required) {
-            AFW_THROW_ERROR_Z(arg_error, missing_prefix, xctx);
+            AFW_THROW_ERROR_Z(argument_error, missing_prefix, xctx);
         }
         return NULL;
     }
@@ -945,7 +945,7 @@ afw_crypto_internal_object_get_binary_or_b64string(
     v = afw_object_get_property(obj, name, xctx);
     if (!v) {
         if (required) {
-            AFW_THROW_ERROR_Z(arg_error, missing_prefix, xctx);
+            AFW_THROW_ERROR_Z(argument_error, missing_prefix, xctx);
         }
         return NULL;
     }
@@ -961,7 +961,7 @@ afw_crypto_internal_object_get_binary_or_b64string(
         afw_memory_decode_base64(mem, s, p, xctx);
         return mem;
     }
-    AFW_THROW_ERROR_Z(arg_error,
+    AFW_THROW_ERROR_Z(argument_error,
         "error:crypto:expected_binary: sealed field must be binary or base64/hex string",
         xctx);
     return NULL; /* not reached */

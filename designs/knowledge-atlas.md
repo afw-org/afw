@@ -213,7 +213,7 @@
 |-------|---------|
 | **Settled map** | Object/array terminology; equality/nullish quirks; prefer throw + try; `_AdaptiveError_` |
 | **Day rules** | `afw-adaptive-script`, `afw-script-errors` |
-| **Deep pads** | array-semantics, conversion-functions, utf8-code-point-sequences, issue-17 faces, issue-38, issue-138 meta wire |
+| **Deep pads** | array-semantics, conversion-functions, utf8-code-point-sequences, issue-17 faces, issue-38, issue-138 meta wire, [`issue-33-error-codes.md`](issue-33-error-codes.md) |
 | **Probe** | Language suite under `src/afw/tests/`; Fiddle / `afw -s` |
 | **Open** | Language residuals tracked in issues/pads |
 | **Gap** | “How to write a good .as test” → `afw-tests` + writing-tests developer doc |
@@ -307,6 +307,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Decompile | `issue-18-…` | Pad useful; stringify closed |
 | Types | `issue-28-…` | **#28 closed** (PR **#171** wrap-up) |
 | Pragma `#` | `pragma-hash-design.md` | Pattern B `#compile` (landed) |
+| Error codes / HTTP / `e.id` | `issue-33-error-codes.md` | **#33** — map in `afw_common.h`; script `throw` may set `id`; prefer `e.id` |
 
 ---
 

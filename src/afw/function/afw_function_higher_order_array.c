@@ -103,7 +103,7 @@ impl_over_array(
 
     /* There must be a typed array (or materializable sequence) arg. */
     if (!e.entry_arg_ptr) {
-        AFW_THROW_ERROR_Z(arg_error, "Missing typed array arg", e.xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Missing typed array arg", e.xctx);
     }
 
     /*
@@ -289,7 +289,7 @@ impl_bag_of_bag(
             memcpy(e2, internal2, data_type_2->c_type_size);
             v = afw_value_evaluate(call, x->p, x->xctx);
             if (!afw_value_is_boolean(v)) {
-                AFW_THROW_ERROR_Z(arg_error,
+                AFW_THROW_ERROR_Z(argument_error,
                     "First argument must be a boolean function", x->xctx);
             }
 

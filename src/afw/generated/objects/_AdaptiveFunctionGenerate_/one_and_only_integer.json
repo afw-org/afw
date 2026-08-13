@@ -7,7 +7,7 @@
     "description": "This converts an array of integer values that contains one value to a single integer value.",
     "errorsThrown": [
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "array does not contain exactly one value"
         }
     ],

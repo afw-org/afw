@@ -4,6 +4,8 @@ This note is for **AFW users** (script authors, model authors, operators, and pe
 
 Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted unless they affect runtime or tooling you use day to day.
 
+Things that still work and **will be removed** are listed in GitHub [**#172**](https://github.com/afw-org/afw/issues/172) (for example `throw "…" { … }` without the word **`data`**, and C declare helpers).
+
 ---
 
 ## libafw C API: toward a release-ready surface
@@ -43,7 +45,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**File streams (#103)**](#file-streams-open_file-and-friends) | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** (not `-1` / `get_stream_error`) |
 | [**Conf path templates (#15)**](#conf-path-templates-issue-15) | Path-like conf properties are **templates** at create/start; host dirs often resolved to full path; VFS `vfsMap` / LDAP `url` too |
 | [**VFS adapter (#79)**](#vfs-adapter-afw_vfs) | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
-| [**Model adapters (#109)**](#pure-script-model-adapters) | `mappedAdapterId` is **optional** for pure-script models |
+| [**Model adapters (#109)**](#pure-script-model-adapters) | `mappedAdapterId` is **optional** for pure-script models; `onGetObject` can `throw` … `id "not_found"` for HTTP **404** |
 | [**`afw` CLI**](#interactive-afw-line-editing-and-history) | Optional interactive line editing and history (#30); **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) — see also [YAML / `--allow`](#afw-allow-and-yaml-value-output-issue-14) |
 | [**JSON Schema (#3)**](#json-schema-for-adaptive-object-types) | Cleaner editor schemas for Adaptive object types |
 | [**Process env (#71)**](#process-environment-variables-issue-71) | One `current` on `_AdaptiveEnvironmentVariables_` retrieve; values string if valid UTF-8 else hexBinary |
@@ -68,6 +70,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop (#158)**](#graceful-process-stop-sigtermsigint-issue-158) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
 | [**Runtime catalog / accessors (#149)**](#runtime-catalog-accessors-issue-149) | Lock+copy **`referenceCount`**; accessor registry; rich objectOptions on permanent shells fixed; **metrics/properties** live-while-active with lock-safe pointer load |
+| [**Error codes (#33)**](#error-codes-trycatch-and-http-issue-33) | Review of `e.id` / HTTP map; script `throw` … `id "not_found"` (and similar) sets the catch object and HTTP status |
 
 ---
 
@@ -106,6 +109,59 @@ Operators and tooling can stop long-lived hosts without relying on SIGKILL under
 | **In-flight Adaptive work** | Long I/O / retrieve paths may throw error **`terminating`** → HTTP **503** (“Server Terminating”) via **`AFW_XCTX_THROW_IF_TERMINATING`**. |
 
 Hermetic suite check: `src/afw/tests/advanced/afwfcgi_signal_shutdown/`. Parent still may SIGKILL after a grace period (systemd/Docker/`stop_afwfcgi`). No configurable drain timer; no SIGHUP reload.
+
+[↑ Highlights](#highlights)
+
+---
+
+## Error codes, try/catch, and HTTP (issue #33)
+
+Error codes are both what a script sees on **`catch (e)`** (`e.id`, `e.errorCode`) and the **HTTP status** of an uncaught error on `afwfcgi`.
+
+**`general`** remains the default. Prefer **`e.id`** over numeric **`e.errorCode`** — this beta line reordered the enum (`none`, `general`, `throw` first) so numbers may not match an older build.
+
+This beta line also renamed a few ids that collided with language names or read as jargon. HTTP status for each is unchanged:
+
+| Was | Now | Why |
+|-----|-----|-----|
+| `cast_error` | `conversion_error` | These are conversion functions, not casts. A failed `integer("x")` or a failed convert in `eq` / `ne` uses this name. |
+| `arg_error` | `argument_error` | Spell the word. |
+| `evaluate` / `evaluation_error` | folded into `argument_error` / `undefined_value` | The leftover `evaluation_error` token was too vague. |
+| `undefined` | `undefined_value` | Do not collide with the `undefined` value / data type. A required function parameter that is `undefined` now uses this id (it was `general`). |
+| `code` | `coding_error` | `code` was too vague (and a throw-macro parameter name). |
+| `client_time_out` | `client_timeout` | Same style as `client_closed`. |
+| `objects_needed` | `coding_error` | Cache-resolve miss is an internal invariant, not a client 400. |
+
+A failed convert-from-text of **date**, **dateTime**, **time**, **dayTimeDuration**, **yearMonthDuration**, **base64Binary**, or **hexBinary** is **`conversion_error`**. Too few or too many arguments, and a parameter of the wrong data type, are **`argument_error`**.
+
+`open_file` of a missing file (**ENOENT**) is **`not_found`** (still with errno on `e.rv`). Other open/I/O failures stay **`general`** plus errno.
+
+The map also includes assigned IANA HTTP statuses a server or extension may issue (201–511 that we might use, plus Adaptive extras that share a number). Prefer **`e.id`**. Script `throw` may use the request-facing names (including `gone`, `too_many_requests`, redirects). Host names such as `memory` and `coding_error` are not allowed on script `throw`.
+
+| Situation | `e.id` | HTTP if uncaught |
+|-----------|--------|------------------|
+| Script `throw "…"` | `throw` | 400 |
+| `assert(false)` | `assertion_failed` | 400 |
+| Adaptive parse / compile error | `syntax` | **400** (was 500) |
+| Missing adapter, object, or URI | `not_found` | **404** (missing adapter was 500) |
+| HTTP method this resource does not allow | `method_not_allowed` | **405** (was 500) |
+| Unsupported request `Content-Type` | `unsupported_content` | **415** (was 500) |
+| Capability the implementation does not have (e.g. retrieve of journal entries) | `method_not_supported` | **501** (was 500) |
+| Authorization deny | `denied` | 403 |
+| Anything else | `general` | 500 |
+
+Script `throw` may set **`id`** so the catch object and the HTTP status match a built-in name:
+
+```adaptive
+throw "Person not found" id "not_found";
+throw "Person not found" id "not_found" data { personId: id };
+```
+
+Allowed names are the request-facing ones in the map (`not_found`, `denied`, `gone`, `too_many_requests`, redirects, and the rest of that family). Host names such as `memory` are not allowed. Omitted **`id`** is still **`throw`** (HTTP 400).
+
+`throw "…" { … }` (a second expression with no **`data`** name) still works so existing scripts can be tested on this line. That form is **deprecated** and will be removed; write **`throw "…" data { … }`**. After removal, **`data`** after the message is only the clause name, so a variable also named `data` is **`throw "…" data data`**.
+
+Handbook: Language Reference **Features** (exception handling). Tests: `src/afw/tests/errors/error_codes.as`.
 
 [↑ Highlights](#highlights)
 
@@ -185,7 +241,7 @@ Not supported (by design): `for-in`, `in`, `delete`, sparse present/missing inde
 
 ## Conversion functions (type-named)
 
-Many Adaptive **data types** have a same-named **conversion function** `T(value)` that produces a value of type **T** (or fails with `cast_error`). Meta types (`any`, `undefined`, `void`, …) never had one.
+Many Adaptive **data types** have a same-named **conversion function** `T(value)` that produces a value of type **T** (or fails with **`conversion_error`**). That error id was previously named `cast_error`. Meta types (`any`, `undefined`, `void`, …) never had one.
 
 | Kind | Examples | Notes |
 |------|----------|--------|
@@ -1098,6 +1154,21 @@ If an operation needs default processing and `mappedAdapterId` is missing, AFW f
 In scripts, `current::mappedAdapterId` is nullish when unset (it does not throw).
 
 `modelId` and `modelLocationAdapterId` remain required for both hybrid and pure-script models.
+
+If an `on*` script is the whole implementation of a request (for example **`onGetObject`** for a missing person), use **`throw` … `id`** so the HTTP status matches what a client expects. A plain `throw "Person not found"` is **`throw`** and HTTP **400**. This sets **`not_found`** and HTTP **404** if the error is not caught:
+
+```adaptive
+/* onGetObject */
+const person = /* … look up current::objectId … */;
+if (is_nullish(person)) {
+    throw "Person not found" id "not_found" data {
+        objectId: current::objectId
+    };
+}
+return person;
+```
+
+The same pattern works for **`denied`** (403), **`conflict`** (409), and the other names allowed on script `throw`. See [Error codes, try/catch, and HTTP](#error-codes-trycatch-and-http-issue-33).
 
 [↑ Highlights](#highlights)
 

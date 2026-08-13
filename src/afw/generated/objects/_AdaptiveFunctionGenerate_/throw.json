@@ -3,7 +3,69 @@
     "brief": "Throws an error",
     "camelCaseFunctionLabel": "throw",
     "category": "compiler_internal",
-    "description": "This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveError_ will be available in the catch block. Its 'id' property will be set to 'throw'. The other properties set based on the parameters specified and where this function is called.",
+    "description": "This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveError_ will be available in the catch block. Its 'id' property is 'throw' unless the optional id parameter is supplied. Optional data is available as the 'data' property. The other properties are set based on the parameters specified and where this function is called.",
+    "errorsThrown": [
+        {
+            "error": "throw",
+            "reason": "Default when id is omitted"
+        },
+        {
+            "error": "not_found",
+            "reason": "id is not_found"
+        },
+        {
+            "error": "denied",
+            "reason": "id is denied"
+        },
+        {
+            "error": "authentication_required",
+            "reason": "id is authentication_required"
+        },
+        {
+            "error": "conflict",
+            "reason": "id is conflict"
+        },
+        {
+            "error": "bad_request",
+            "reason": "id is bad_request"
+        },
+        {
+            "error": "read_only",
+            "reason": "id is read_only"
+        },
+        {
+            "error": "payload_too_large",
+            "reason": "id is payload_too_large"
+        },
+        {
+            "error": "query_too_complex",
+            "reason": "id is query_too_complex"
+        },
+        {
+            "error": "method_not_allowed",
+            "reason": "id is method_not_allowed"
+        },
+        {
+            "error": "gone",
+            "reason": "id is gone"
+        },
+        {
+            "error": "too_many_requests",
+            "reason": "id is too_many_requests"
+        },
+        {
+            "error": "unprocessable_content",
+            "reason": "id is unprocessable_content"
+        },
+        {
+            "error": "moved_permanently",
+            "reason": "id is moved_permanently"
+        },
+        {
+            "error": "argument_error",
+            "reason": "id is not a string or is not allowed on throw"
+        }
+    ],
     "functionId": "throw",
     "functionLabel": "throw",
     "parameters": [
@@ -14,9 +76,16 @@
             "name": "message"
         },
         {
-            "brief": "Optional additional information",
-            "description": "Optional additional information that will be available as a 'additional' property in the error object.",
-            "name": "additional",
+            "brief": "Optional data",
+            "description": "Optional data that will be available as the 'data' property of the _AdaptiveError_ object in the catch block.",
+            "name": "data",
+            "optional": true
+        },
+        {
+            "brief": "Error id",
+            "dataType": "string",
+            "description": "Optional error id (mnemonic) to use instead of 'throw'. Must be a name allowed on script throw (request-facing HTTP names such as not_found, denied, gone, too_many_requests). Sets the id property of the catch object and the HTTP status if the error is not caught.",
+            "name": "id",
             "optional": true
         }
     ],

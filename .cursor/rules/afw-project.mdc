@@ -23,6 +23,7 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 
 ## Prose and chat (plain language)
 - Prefer **clear words and short phrases** over casual acronyms in chat, commits, designs, handbook, tests, and comments **when a short phrase is enough**.
+- Prefer names **already used** in Adaptive docs and source (`id`, `message`, `data`, source location, object, property, array). Do not invent new labels or short forms for the same idea.
 - Examples: say **“out of range”** / **“out of bounds”**, not **OOB**; say **“compiled form”** (what compile produced), not **IR**. Established product names and code identifiers (`JSON`, `UTF-8`, `CMake`, API ids) stay as they are.
 - Handbook author voice: plain Adaptive language (see contributing / language reference style); do not invent jargon for the reader.
 

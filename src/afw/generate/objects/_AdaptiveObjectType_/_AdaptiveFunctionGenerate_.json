@@ -10,7 +10,7 @@
             "allowQuery": true,
             "brief": "Additional argument check",
             "dataType": "boolean",
-            "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+            "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
             "label": "Additional Arg Check",
             "required": false
         },
@@ -90,7 +90,7 @@
             "brief": "Errors thrown by this function",
             "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
-            "description": "Errors that can be thrown by this function.",
+            "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "label": "Errors Thrown",
             "required": false
         },

@@ -122,7 +122,7 @@ afw_function_execute_add_string(
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_concat(
@@ -341,7 +341,7 @@ afw_function_execute_normalize_to_lower_case_string(
  *
  * Errors thrown:
  *
- *   cast_error - value could not be converted
+ *   conversion_error - value could not be converted
  */
 const afw_value_t *
 afw_function_execute_string(

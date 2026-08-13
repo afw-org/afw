@@ -5,7 +5,7 @@
     "description": "Converts <dataType> value to rfc822Name.",
     "errorsThrown": [
         {
-            "error": "cast_error",
+            "error": "conversion_error",
             "reason": "value could not be converted"
         }
     ],

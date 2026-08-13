@@ -202,7 +202,7 @@ struct afw_function_environment_s {
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(n) \
 do { \
     if ((x->argc) != (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -219,7 +219,7 @@ do { \
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(n) \
 do { \
     if (x->argc < (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting at least " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting at least " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -236,7 +236,7 @@ do { \
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(n) \
 do { \
     if (x->argc > (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting no more than " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting no more than " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -255,7 +255,7 @@ if (!(A_VALUE) || !afw_utf8_equal( \
     &afw_value_get_data_type(((const afw_value_t *)A_VALUE), x->xctx)->cType, \
     afw_s_afw_utf8_t)) \
 { \
-    AFW_THROW_ERROR_Z(arg_error, \
+    AFW_THROW_ERROR_Z(argument_error, \
         "Value's data type not supported for this function", x->xctx); \
 }
 
@@ -331,14 +331,14 @@ A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
  * @param A_N 1-based parameter number in argv.
  *
  * Evaluates the arg, requires evaluated boolean (cast-safe
- * `const afw_value_boolean_t *`), else throws arg_error. "x" is the function
+ * `const afw_value_boolean_t *`), else throws argument_error. "x" is the function
  * execute struct pointer.
  */
 #define AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(A_RESULT, A_N) \
 A_RESULT = (const afw_value_boolean_t *) \
     afw_function_evaluate_required_parameter(x, A_N, NULL); \
     if (!afw_value_is_boolean(A_RESULT)) \
-        AFW_THROW_ERROR_FZ(arg_error, xctx, \
+        AFW_THROW_ERROR_FZ(argument_error, xctx, \
             "Condition must be boolean (parameter %d)", (A_N))
 
 

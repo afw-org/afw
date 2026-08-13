@@ -455,7 +455,7 @@ impl_assignment_target(
 
     case afw_compile_assignment_target_type_max_type:
     default:
-        AFW_THROW_ERROR_FZ(code, xctx, "Invalid case %d", at->target_type);
+        AFW_THROW_ERROR_FZ(coding_error, xctx, "Invalid case %d", at->target_type);
     }
 }
 
@@ -1691,8 +1691,9 @@ afw_function_execute_switch(
  *
  * This throws an error that can be caught by a try/catch block. An error object
  * of object type _AdaptiveError_ will be available in the catch block. Its 'id'
- * property will be set to 'throw'. The other properties set based on the
- * parameters specified and where this function is called.
+ * property is 'throw' unless the optional id parameter is supplied. Optional
+ * data is available as the 'data' property. The other properties are set based
+ * on the parameters specified and where this function is called.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1702,7 +1703,8 @@ afw_function_execute_switch(
  * ```
  *   function throw(
  *       message: string,
- *       additional?: any
+ *       data?: any,
+ *       id?: string
  *   ): void;
  * ```
  *
@@ -1711,12 +1713,36 @@ afw_function_execute_switch(
  *   message - (string) This is the message that will be included in the
  *       _AdaptiveError_ error object available in the catch block.
  *
- *   additional - (optional any) Optional additional information that will be
- *       available as a 'additional' property in the error object.
+ *   data - (optional any) Optional data that will be available as the 'data'
+ *       property of the _AdaptiveError_ object in the catch block.
+ *
+ *   id - (optional string) Optional error id (mnemonic) to use instead of
+ *       'throw'. Must be a name allowed on script throw (request-facing HTTP
+ *       names such as not_found, denied, gone, too_many_requests). Sets the id
+ *       property of the catch object and the HTTP status if the error is not
+ *       caught.
  *
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   throw - Default when id is omitted
+ *   not_found - id is not_found
+ *   denied - id is denied
+ *   authentication_required - id is authentication_required
+ *   conflict - id is conflict
+ *   bad_request - id is bad_request
+ *   read_only - id is read_only
+ *   payload_too_large - id is payload_too_large
+ *   query_too_complex - id is query_too_complex
+ *   method_not_allowed - id is method_not_allowed
+ *   gone - id is gone
+ *   too_many_requests - id is too_many_requests
+ *   unprocessable_content - id is unprocessable_content
+ *   moved_permanently - id is moved_permanently
+ *   argument_error - id is not a string or is not allowed on throw
  */
 const afw_value_t *
 afw_function_execute_throw(
@@ -1724,16 +1750,36 @@ afw_function_execute_throw(
 {
     afw_xctx_t *xctx = x->xctx;
     const afw_value_string_t *message;
+    const afw_value_string_t *id_value;
     const afw_value_t *data;
+    afw_error_code_t code;
 
     AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(1);
-    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(2);
+    AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(3);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(message, 1, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(data, 2);
+    id_value = NULL;
+    if (x->argc >= 3) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
+            id_value, 3, string);
+    }
 
-    AFW_THROW_ERROR_WITH_DATA_FZ(throw, data, xctx, AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(&message->internal));
+    code = afw_error_code_throw;
+    if (id_value) {
+        if (!afw_error_code_from_id(&id_value->internal, &code) ||
+            !afw_error_id_allowed_on_script_throw(&id_value->internal))
+        {
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
+                "id " AFW_UTF8_FMT_Q " is not allowed on throw",
+                AFW_UTF8_FMT_ARG(&id_value->internal));
+        }
+    }
+
+    afw_error_set_fz(code, AFW__FILE_LINE__, xctx,
+        AFW_UTF8_FMT, AFW_UTF8_FMT_ARG(&message->internal));
+    xctx->error->data = data;
+    longjmp(((xctx)->current_try->throw_jmp_buf), code);
 
     return afw_value_undefined;
 }

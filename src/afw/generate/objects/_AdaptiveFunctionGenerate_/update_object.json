@@ -45,5 +45,19 @@
     },
     "sideEffects": [
         "Object updated"
+    ],
+    "errorsThrown": [
+        {
+            "error": "not_found",
+            "reason": "adapter or object is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        },
+        {
+            "error": "read_only",
+            "reason": "object or adapter does not allow update"
+        }
     ]
 }

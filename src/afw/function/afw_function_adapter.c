@@ -302,6 +302,13 @@ impl_retrieve_to_stream_cb(const afw_object_t *object, void *context,
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
  *       'objectId' is the objectId assigned by the adapter.
+ *
+ * Errors thrown:
+ *
+ *   conflict - an object with this id already exists
+ *   not_found - adapter is not found
+ *   denied - authorization denied
+ *   read_only - adapter does not allow add
  */
 const afw_value_t *
 afw_function_execute_add_object(
@@ -405,6 +412,13 @@ afw_function_execute_add_object(
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
  *       'objectId' is the objectId assigned by the adapter.
+ *
+ * Errors thrown:
+ *
+ *   conflict - an object with this id already exists
+ *   not_found - adapter is not found
+ *   denied - authorization denied
+ *   read_only - adapter does not allow add
  */
 const afw_value_t *
 afw_function_execute_add_object_with_uri(
@@ -723,6 +737,13 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow delete
+ *   method_not_supported - this object type cannot be deleted
  */
 const afw_value_t *
 afw_function_execute_delete_object(
@@ -811,6 +832,13 @@ afw_function_execute_delete_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow delete
+ *   method_not_supported - this object type cannot be deleted
  */
 const afw_value_t *
 afw_function_execute_delete_object_with_uri(
@@ -917,7 +945,13 @@ afw_function_execute_delete_object_with_uri(
  *
  * Returns:
  *
- *   (object) Object retrieved or NULL if not found.
+ *   (object) Object retrieved. Throws not_found if the adapter or object is not
+ *       found.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_get_object(
@@ -1016,6 +1050,11 @@ afw_function_execute_get_object(
  * Returns:
  *
  *   (object) Object retrieved or NULL if not found.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_get_object_with_uri(
@@ -1150,6 +1189,13 @@ afw_function_execute_get_object_with_uri(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow modify
+ *   method_not_supported - this object type cannot be modified
  */
 const afw_value_t *
 afw_function_execute_modify_object(
@@ -1262,6 +1308,13 @@ afw_function_execute_modify_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow modify
+ *   method_not_supported - this object type cannot be modified
  */
 const afw_value_t *
 afw_function_execute_modify_object_with_uri(
@@ -1464,6 +1517,13 @@ afw_function_execute_reconcile_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow replace
+ *   method_not_supported - this object type cannot be replaced
  */
 const afw_value_t *
 afw_function_execute_replace_object(
@@ -1557,6 +1617,13 @@ afw_function_execute_replace_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow replace
+ *   method_not_supported - this object type cannot be replaced
  */
 const afw_value_t *
 afw_function_execute_replace_object_with_uri(
@@ -1683,6 +1750,13 @@ afw_function_execute_replace_object_with_uri(
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
+ *
+ * Errors thrown:
+ *
+ *   payload_too_large - more objects than maxObjects
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -1825,6 +1899,12 @@ afw_function_execute_retrieve_objects(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_callback(
@@ -1951,6 +2031,12 @@ afw_function_execute_retrieve_objects_to_callback(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_response(
@@ -2083,6 +2169,12 @@ afw_function_execute_retrieve_objects_to_response(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_stream(
@@ -2242,6 +2334,13 @@ afw_function_execute_retrieve_objects_to_stream(
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
+ *
+ * Errors thrown:
+ *
+ *   payload_too_large - more objects than maxObjects
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(
@@ -2384,6 +2483,12 @@ afw_function_execute_retrieve_objects_with_uri(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_callback(
@@ -2512,6 +2617,12 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_response(
@@ -2649,6 +2760,12 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_stream(
@@ -2783,6 +2900,12 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow update
  */
 const afw_value_t *
 afw_function_execute_update_object(
@@ -2880,6 +3003,12 @@ afw_function_execute_update_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow update
  */
 const afw_value_t *
 afw_function_execute_update_object_with_uri(

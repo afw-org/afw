@@ -304,7 +304,7 @@ return 0;
 
 //?
 //? test: create-array-negative-throws
-//? description: create_array(-1) throws arg_error
+//? description: create_array(-1) throws argument_error
 //? expect: error
 //? source: ...
 

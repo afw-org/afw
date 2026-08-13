@@ -171,7 +171,7 @@ afw_number_utf8_to_double(
 
     len = afw_number_parse(s->s, s->len, NULL, &d, &is_double, p, xctx);
     if (!is_double || len != s->len) {
-        AFW_THROW_ERROR_Z(general, "Invalid double", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid double", xctx);
     }
     return d;
 }
@@ -223,7 +223,7 @@ afw_number_utf8_to_integer(
 
     len = afw_number_parse(s->s, s->len, &i, NULL, &is_double, p, xctx);
     if (is_double || len != s->len) {
-        AFW_THROW_ERROR_Z(general, "Invalid integer", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid integer", xctx);
     }
     return i;
 }

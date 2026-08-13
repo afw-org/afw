@@ -4,6 +4,24 @@
     "camelCaseFunctionLabel": "deleteObjectWithUri",
     "category": "adapter",
     "description": "Delete an adaptive object with a given URI.",
+    "errorsThrown": [
+        {
+            "error": "not_found",
+            "reason": "adapter or object is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        },
+        {
+            "error": "read_only",
+            "reason": "object or adapter does not allow delete"
+        },
+        {
+            "error": "method_not_supported",
+            "reason": "this object type cannot be deleted"
+        }
+    ],
     "functionId": "delete_object_with_uri",
     "functionLabel": "delete_object_with_uri",
     "parameters": [

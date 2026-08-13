@@ -296,7 +296,7 @@ afw_function_evaluate_parameter(
             !afw_value_is_boolean_true(parameter->optional) &&
             !afw_value_is_boolean_true(parameter->canBeUndefined))
         {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(undefined_value, xctx,
                 "Parameter " AFW_SIZE_T_FMT
                 " of function " AFW_UTF8_FMT_Q
                 " can not be undefined",
@@ -326,7 +326,7 @@ afw_function_evaluate_parameter(
         if (parameter->data_type != afw_data_type_array && //@fixme don't require
             (parameter->data_type != result_data_type))
         {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "Parameter " AFW_SIZE_T_FMT
                 " of function " AFW_UTF8_FMT_Q
                 " must evaluate to data type " AFW_UTF8_FMT_Q
@@ -351,7 +351,7 @@ afw_function_evaluate_parameter(
 
 
 
-/* Evaluate a value and cast if necessary without throwing error. */
+/* Evaluate a value and convert if necessary without throwing error. */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_required_parameter(
     afw_function_execute_t *x,
@@ -368,7 +368,7 @@ afw_function_evaluate_required_parameter(
     if (!result) {
         afw_xctx_evaluation_stack_push_parameter_number(
             parameter_number, xctx);
-        AFW_THROW_ERROR_FZ(undefined, xctx,
+        AFW_THROW_ERROR_FZ(undefined_value, xctx,
             "Parameter " AFW_SIZE_T_FMT " is undefined value",
             parameter_number);
         afw_xctx_evaluation_stack_pop_parameter_number(xctx);

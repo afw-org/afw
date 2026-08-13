@@ -481,21 +481,28 @@ def switch(session, predicate, value1, case_clause):
 
     return response['actions'][0]['result']
 
-def throw(session, message, additional=None):
+def throw(session, message, data=None, id=None):
     """
     Throws an error
 
     This throws an error that can be caught by a try/catch block. An error
     object of object type _AdaptiveError_ will be available in the catch
-    block. Its 'id' property will be set to 'throw'. The other properties set
-    based on the parameters specified and where this function is called.
+    block. Its 'id' property is 'throw' unless the optional id parameter is
+    supplied. Optional data is available as the 'data' property. The other
+    properties are set based on the parameters specified and where this
+    function is called.
 
     Args:
         message (str): This is the message that will be included in the
         _AdaptiveError_ error object available in the catch block.
 
-        additional (object): Optional additional information that will be
-        available as a 'additional' property in the error object.
+        data (object): Optional data that will be available as the 'data'
+        property of the _AdaptiveError_ object in the catch block.
+
+        id (str): Optional error id (mnemonic) to use instead of 'throw'. Must
+        be a name allowed on script throw (request-facing HTTP names such as
+        not_found, denied, gone, too_many_requests). Sets the id property of
+        the catch object and the HTTP status if the error is not caught.
 
     Returns:
         object:
@@ -508,8 +515,11 @@ def throw(session, message, additional=None):
         "message": message
     }
 
-    if additional != None:
-        action['additional'] = additional
+    if data != None:
+        action['data'] = data
+
+    if id != None:
+        action['id'] = id
 
     request.add_action(action)
 

@@ -63,8 +63,8 @@
                     "type": "object"
                 },
                 "additionalArgCheck": {
-                    "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
-                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+                    "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
+                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
                     "title": "Additional Arg Check",
                     "type": "boolean"
                 },
@@ -125,19 +125,19 @@
                     "type": "string"
                 },
                 "errorsThrown": {
-                    "description": "Errors that can be thrown by this function.",
+                    "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "items": {
                         "allOf": [
                             {
                                 "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
                             }
                         ],
-                        "description": "Errors that can be thrown by this function.",
-                        "markdownDescription": "Errors that can be thrown by this function.",
+                        "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
+                        "markdownDescription": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                         "title": "Errors thrown by this function",
                         "type": "object"
                     },
-                    "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+                    "markdownDescription": "**Errors Thrown**\n\nErrors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "title": "Errors Thrown",
                     "type": "array"
                 },
@@ -288,8 +288,8 @@
         "_AdaptiveFunctionGenerate_.propertyTypes": {
             "properties": {
                 "additionalArgCheck": {
-                    "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
-                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+                    "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
+                    "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
                     "title": "Additional Arg Check",
                     "type": "boolean"
                 },
@@ -350,19 +350,19 @@
                     "type": "string"
                 },
                 "errorsThrown": {
-                    "description": "Errors that can be thrown by this function.",
+                    "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "items": {
                         "allOf": [
                             {
                                 "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
                             }
                         ],
-                        "description": "Errors that can be thrown by this function.",
-                        "markdownDescription": "Errors that can be thrown by this function.",
+                        "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
+                        "markdownDescription": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                         "title": "Errors thrown by this function",
                         "type": "object"
                     },
-                    "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+                    "markdownDescription": "**Errors Thrown**\n\nErrors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                     "title": "Errors Thrown",
                     "type": "array"
                 },
@@ -664,8 +664,8 @@
             "type": "object"
         },
         "additionalArgCheck": {
-            "description": "Additional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
-            "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before auto casting so may be deprecated in the future.",
+            "description": "Additional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
+            "markdownDescription": "**Additional Arg Check**\n\nAdditional argument checking is needed. This is residual from before automatic conversion so may be deprecated in the future.",
             "title": "Additional Arg Check",
             "type": "boolean"
         },
@@ -726,19 +726,19 @@
             "type": "string"
         },
         "errorsThrown": {
-            "description": "Errors that can be thrown by this function.",
+            "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "items": {
                 "allOf": [
                     {
                         "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
                     }
                 ],
-                "description": "Errors that can be thrown by this function.",
-                "markdownDescription": "Errors that can be thrown by this function.",
+                "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
+                "markdownDescription": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
                 "title": "Errors thrown by this function",
                 "type": "object"
             },
-            "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+            "markdownDescription": "**Errors Thrown**\n\nErrors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "title": "Errors Thrown",
             "type": "array"
         },

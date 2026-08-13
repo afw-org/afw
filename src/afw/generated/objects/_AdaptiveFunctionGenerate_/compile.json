@@ -5,6 +5,12 @@
     "category": "polymorphic",
     "dataTypeMethod": true,
     "description": "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing. The listing is a human-oriented dump (value tree interleaved with source, plus ---Symbols tables) for Fiddle and debugging \u2014 not pure JSON (use stringify) and not Adaptive compiled-form text (use decompile).",
+    "errorsThrown": [
+        {
+            "error": "syntax",
+            "reason": "source could not be compiled"
+        }
+    ],
     "functionId": "compile",
     "functionLabel": "compile",
     "parameters": [

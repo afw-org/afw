@@ -37,5 +37,23 @@
         "brief": "Objects retrieved or undefined",
         "dataType": "array",
         "description": "This is the array of objects retrieved."
-    }
+    },
+    "errorsThrown": [
+        {
+            "error": "payload_too_large",
+            "reason": "more objects than maxObjects"
+        },
+        {
+            "error": "query_too_complex",
+            "reason": "adapter cannot run this query"
+        },
+        {
+            "error": "not_found",
+            "reason": "adapter is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        }
+    ]
 }

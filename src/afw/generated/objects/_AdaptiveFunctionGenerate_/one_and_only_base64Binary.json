@@ -7,7 +7,7 @@
     "description": "This converts an array of base64Binary values that contains one value to a single base64Binary value.",
     "errorsThrown": [
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "array does not contain exactly one value"
         }
     ],

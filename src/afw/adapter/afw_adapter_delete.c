@@ -66,7 +66,7 @@ afw_adapter_delete_object(
         if (afw_utf8_equal(object_type_id,
             AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
         {
-            AFW_THROW_ERROR_Z(general,
+            AFW_THROW_ERROR_Z(method_not_supported,
                 "delete_object() is not supported for "
                 AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY,
                 xctx);

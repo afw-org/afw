@@ -333,7 +333,8 @@ export function afwDeleteObjectWithUri(client : any, uri : any, journal? : objec
  * 
  *     Where ${adapterType} is the adapter type id.
  * 
- * @returns {object} Object retrieved or NULL if not found.
+ * @returns {object} Object retrieved. Throws not_found if the adapter or
+ *     object is not found.
  */
 export function afwGetObject(client : any, objectType : string, objectId : string, adapterId? : string, options? : object, adapterTypeSpecific? : object) : any {
 

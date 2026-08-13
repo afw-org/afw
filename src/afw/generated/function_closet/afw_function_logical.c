@@ -91,7 +91,7 @@ afw_function_execute_and(
  *
  * Errors thrown:
  *
- *   arg_error - there are less than n conditions
+ *   argument_error - there are less than n conditions
  */
 const afw_value_t *
 afw_function_execute_n_of(

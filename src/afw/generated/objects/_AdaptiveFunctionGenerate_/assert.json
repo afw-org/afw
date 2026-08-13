@@ -4,6 +4,12 @@
     "camelCaseFunctionLabel": "assert",
     "category": "compiler",
     "description": "Assert that a value is true. If not, an assertion_failed error is thrown.",
+    "errorsThrown": [
+        {
+            "error": "assertion_failed",
+            "reason": "assertion is not true"
+        }
+    ],
     "functionId": "assert",
     "functionLabel": "assert",
     "parameters": [
