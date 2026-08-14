@@ -6,8 +6,9 @@ Maintainer map of **intentional** changes to cases under `src/afw/tests/test262/
 **Audience:** Mike, Jeremy, and anyone reviewing Adaptive vs ES language
 behavior in this suite.
 
-**Window:** everything that touched this tree on **`mgg-develop`** (and
-stacked work such as **`test262-skipreason-sweep`**) **since `mgg-develop`
+**Window:** everything that touched this tree during the **`mgg-develop`**
+campaign (now on **`develop`** via [PR #179](https://github.com/afw-org/afw/pull/179);
+plus stacked work such as **`test262-skipreason-sweep`**) **since that line
 branched from `develop`** — merge-base **`f945f97c`** (mid‑July 2026), same
 horizon as root [`whats-new.md`](../../../whats-new.md). Includes issue
 **[#55](https://github.com/afw-org/afw/issues/55)**,
@@ -33,7 +34,7 @@ product decisions, C surface changes, or non-obvious rewrites. Do **not** add
 a row per bulk `skipReason:` label — one **meta** row covers taxonomy passes.
 Do not paste diffs; git remains the record of *when*. When adding or changing
 an Index row, link **How** to
-`https://github.com/afw-org/afw/commits/mgg-develop/<path>` for the primary
+`https://github.com/afw-org/afw/commits/develop/<path>` for the primary
 associated file (see Index intro). Link real GitHub **issues** to
 `/issues/N` and **PRs** to `/pull/N` (do not link harness text like
 `error:#1:`).
@@ -64,7 +65,7 @@ line of story. Detail sections end with **[↑ Index](#index)**. Unlinked rows
 are Index-only.
 
 Linked **How** values open the GitHub commit list for the **primary** associated
-file on **`mgg-develop`** (basename path under this suite, or the design pad
+file on **`develop`** (basename path under this suite, or the design pad
 for meta-only rows). Multi-file clusters use one main file; pure bulk taxonomy
 with no single path stays plain `meta`. The Ledger table above stays unlinked.
 Tracker **`#nnn`** references link to GitHub issues or PRs.
@@ -75,10 +76,10 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 
 | Case | How | Brief |
 |------|-----|--------|
-| [Suite README + official `//?` tags](#suite-readme-and-official-tags) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/README.md) | Purpose, harness-once, tags |
-| [skipReason prefix convention](#skipreason-prefix-convention) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/README.md) | FIXME / Never |
+| [Suite README + official `//?` tags](#suite-readme-and-official-tags) | [meta](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/README.md) | Purpose, harness-once, tags |
+| [skipReason prefix convention](#skipreason-prefix-convention) | [meta](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/README.md) | FIXME / Never |
 | [First-pass skipReason labels](#first-pass-skipreason-labels) | meta | Every skip got a prefix |
-| [FIXME triage note](#fixme-triage-note) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/FIXME-triage.md) | [`FIXME-triage.md`](FIXME-triage.md) shortlist |
+| [FIXME triage note](#fixme-triage-note) | [meta](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/FIXME-triage.md) | [`FIXME-triage.md`](FIXME-triage.md) shortlist |
 
 ### Skip prefixes ([#106](https://github.com/afw-org/afw/issues/106))
 
@@ -100,79 +101,79 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 | Case | How | Brief |
 |------|-----|--------|
 | test262 `expect: undefined` vs last assign | **T:** →fix | **`expect: success`** means “did not throw” (ignore result). Dummy `return;` from the first sweep removed. let/const `cptn-value` still empty completion |
-| [try `cptn-*` / `S12.14_A6`](#try-cptn-assignment-probes) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Assignment probes; empty try/catch/finally do not write; break/continue keep last assign |
+| [try `cptn-*` / `S12.14_A6`](#try-cptn-assignment-probes) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/try.as) | Assignment probes; empty try/catch/finally do not write; break/continue keep last assign |
 
 ### Object / array helpers ([#55](https://github.com/afw-org/afw/issues/55)) and dense arrays ([#39](https://github.com/afw-org/afw/issues/39))
 
 | Case | How | Brief |
 |------|-----|--------|
-| [for-of push/pop mutation](#for-of-array-helpers-issue-55) | [→run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | `push`/`pop` not `Array.prototype` |
-| [for-of dense array lineage](#for-of-array-helpers-issue-55) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | No holes; no `.entries`/Symbol |
-| [object keys/values/entries for-of](#for-of-array-helpers-issue-55) | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Adaptive `keys`/`values`/`entries` |
-| [array elision for-of](#array-elision-for-of-issue-39) ([#39](https://github.com/afw-org/afw/issues/39)) | [→impl / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Elision → dense undefined, visited |
+| [for-of push/pop mutation](#for-of-array-helpers-issue-55) | [→run / →diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | `push`/`pop` not `Array.prototype` |
+| [for-of dense array lineage](#for-of-array-helpers-issue-55) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | No holes; no `.entries`/Symbol |
+| [object keys/values/entries for-of](#for-of-array-helpers-issue-55) | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | Adaptive `keys`/`values`/`entries` |
+| [array elision for-of](#array-elision-for-of-issue-39) ([#39](https://github.com/afw-org/afw/issues/39)) | [→impl / →diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | Elision → dense undefined, visited |
 
 ### Patterns / params / catch ([#140](https://github.com/afw-org/afw/issues/140))
 
 | Case | How | Brief |
 |------|-----|--------|
-| [function param defaults](#function-param-defaults-issue-140) | [→impl / →fix](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/function.as) | Defaults are Expressions; prior params OK |
-| switch `S12.11_A1_T3` NaN/Infinity | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/switch.as) | Expect undefined (NaN/Infinity cases) |
-| try catch Pattern expects | [→fix](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Dup catch bind message |
-| [try `scope-catch-*`](#try-scope-catch-adaptive) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/try.as) | Throw data + catch Pattern; `let` not `var`; catch param is error object |
+| [function param defaults](#function-param-defaults-issue-140) | [→impl / →fix](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/function.as) | Defaults are Expressions; prior params OK |
+| switch `S12.11_A1_T3` NaN/Infinity | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/switch.as) | Expect undefined (NaN/Infinity cases) |
+| try catch Pattern expects | [→fix](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/try.as) | Dup catch bind message |
+| [try `scope-catch-*`](#try-scope-catch-adaptive) | [**T:** →run / →diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/try.as) | Throw data + catch Pattern; `let` not `var`; catch param is error object |
 
 ### void / unary
 
 | Case | How | Brief |
 |------|-----|--------|
-| [void `S11.4.2_A4_T3`–`T5`](#void-probes-and-undefined) | [→fix / →impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/void.as) | Probe fix; then `void` accepts undefined |
-| [unary+ `S9.3_A2_T2`, `S11.4.6_A3_T4`](#unary-plus-identity) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/unary-plus.as) | + is identity; +null === null |
+| [void `S11.4.2_A4_T3`–`T5`](#void-probes-and-undefined) | [→fix / →impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/void.as) | Probe fix; then `void` accepts undefined |
+| [unary+ `S9.3_A2_T2`, `S11.4.6_A3_T4`](#unary-plus-identity) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/unary-plus.as) | + is identity; +null === null |
 
 ### Strings / line terminators / literals
 
 | Case | How | Brief |
 |------|-----|--------|
-| [raw LT in strings](#raw-line-terminators-in-strings) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/literals/string.as) | Adaptive allows raw CR/LF in string literals |
-| [line-continuation double/single](#string-escapes-and-line-continuation) | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/literals/string.as) | C: `\` + LT contributes nothing |
-| [NonEscape / `\x` / `\0` family](#string-escapes-and-line-continuation) | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/literals/string.as) | C: identity `\A`, `\xHH`, `\0` |
-| string fromCharCode cases | [→inc](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/literals/string.as) | No String.prototype / fromCharCode |
-| [leading/trailing-dot numerics](#leading-and-trailing-dot-numerics) | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/literals/numeric.as) | C: ES DecimalLiteral `.5`, `1.`, `.1e1` |
+| [raw LT in strings](#raw-line-terminators-in-strings) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/literals/string.as) | Adaptive allows raw CR/LF in string literals |
+| [line-continuation double/single](#string-escapes-and-line-continuation) | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/literals/string.as) | C: `\` + LT contributes nothing |
+| [NonEscape / `\x` / `\0` family](#string-escapes-and-line-continuation) | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/literals/string.as) | C: identity `\A`, `\xHH`, `\0` |
+| string fromCharCode cases | [→inc](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/literals/string.as) | No String.prototype / fromCharCode |
+| [leading/trailing-dot numerics](#leading-and-trailing-dot-numerics) | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/literals/numeric.as) | C: ES DecimalLiteral `.5`, `1.`, `.1e1` |
 
 ### for-of / const / let (sweep)
 
 | Case | How | Brief |
 |------|-----|--------|
-| [for-of non-iterable heads](#for-of-non-iterable-and-member-lhs) | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Hard error: array or string only |
-| [for-of `head-lhs-member`](#for-of-non-iterable-and-member-lhs) | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | C: assign to `x.y` / `reference_by_key` |
-| [for-of `string-bmp` / `string-astral`](#for-of-string-code-points) | [→impl / →diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | C: UTF-8 code points; not UTF-16 units |
-| for-of `head-const-bound-names-fordecl-tdz` | [→fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | No general TDZ (language-wide) |
-| for-of `let-array-with-newline` | [→fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | ASI / let vs `[` after empty for-of |
-| [for-of const + closures](#for-of-const-and-closures) | [→fixme](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | [#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2) capture; expect desired 0 |
-| [const reassignment](#const-reassignment) | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/const/const.as) | C: clear `read_only` / reject assign |
-| [no temporal dead zone self-init](#no-temporal-dead-zone) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/let/let.as) | `let x = x` → undefined (Adaptive) |
-| for-of destructure head / body decls | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | Converted with [#39](https://github.com/afw-org/afw/issues/39) pass (Adaptive OK) |
+| [for-of non-iterable heads](#for-of-non-iterable-and-member-lhs) | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | Hard error: array or string only |
+| [for-of `head-lhs-member`](#for-of-non-iterable-and-member-lhs) | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | C: assign to `x.y` / `reference_by_key` |
+| [for-of `string-bmp` / `string-astral`](#for-of-string-code-points) | [→impl / →diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | C: UTF-8 code points; not UTF-16 units |
+| for-of `head-const-bound-names-fordecl-tdz` | [→fixme](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | No general TDZ (language-wide) |
+| for-of `let-array-with-newline` | [→fixme](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | ASI / let vs `[` after empty for-of |
+| [for-of const + closures](#for-of-const-and-closures) | [→fixme](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | [#35](https://github.com/afw-org/afw/issues/35) / [#2](https://github.com/afw-org/afw/issues/2) capture; expect desired 0 |
+| [const reassignment](#const-reassignment) | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/const/const.as) | C: clear `read_only` / reject assign |
+| [no temporal dead zone self-init](#no-temporal-dead-zone) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/let/let.as) | `let x = x` → undefined (Adaptive) |
+| for-of destructure head / body decls | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | Converted with [#39](https://github.com/afw-org/afw/issues/39) pass (Adaptive OK) |
 
 ### `??` / operators / switch / assignment-as-expression
 
 | Case | How | Brief |
 |------|-----|--------|
-| [coalesce abrupt short-circuit](#coalesce-abrupt-short-circuit) | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/coalesce.as) | try/throw rewrite of ES assert.throws |
-| [`??=` whitespace](#nullish-assignment-whitespace) | [→run](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/logical-assignment.as) | T: tab/space/LF/CR around `??=` |
-| [switch `S12.11_A1_T4`](#switch-isnan-rewrite) | [→fix](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/switch.as) | Adaptive rewrite (is_NaN, fall-through) |
-| [`>` / `>=` LTR `A2.4_T1`](#assignment-is-statement-only) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/greater-than.as) | No assign-in-expr; throw order probe |
-| [`>=` `A2.4_T4` `(y=1)`](#assignment-is-statement-only) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/greater-than-or-equal.as) | Expect error; permanent non-support |
-| [modulus `A4_T*` IEEE](#double-mod-ieee-template) | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/modulus.as) | C: `mod<double>` via fmod |
-| [modulus null/string `%`](#double-mod-ieee-template) | [→inc](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/modulus.as) | No ToNumber on `%` |
-| [division `A4_T4/T5/T7–T8` IEEE](#double-mod-ieee-template) | [→impl / →fix](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/division.as) | Double `/` IEEE; 0.0/0.0 → NaN |
-| division null/object `/` | [→inc](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/division.as) | No ToNumber on `/` |
-| [unary+ string/object/undef false greens](#unary-plus-identity) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/expressions/unary-plus.as) | Identity, not is_NaN type-error expects |
-| [id-res `S10.2.2_A1_T4`](#identifier-resolution-inner-let) | [→diff](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/identifier-resolution.as) | Outer x (0); not expect-error on assert |
+| [coalesce abrupt short-circuit](#coalesce-abrupt-short-circuit) | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/coalesce.as) | try/throw rewrite of ES assert.throws |
+| [`??=` whitespace](#nullish-assignment-whitespace) | [→run](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/logical-assignment.as) | T: tab/space/LF/CR around `??=` |
+| [switch `S12.11_A1_T4`](#switch-isnan-rewrite) | [→fix](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/switch.as) | Adaptive rewrite (is_NaN, fall-through) |
+| [`>` / `>=` LTR `A2.4_T1`](#assignment-is-statement-only) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/greater-than.as) | No assign-in-expr; throw order probe |
+| [`>=` `A2.4_T4` `(y=1)`](#assignment-is-statement-only) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/greater-than-or-equal.as) | Expect error; permanent non-support |
+| [modulus `A4_T*` IEEE](#double-mod-ieee-template) | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/modulus.as) | C: `mod<double>` via fmod |
+| [modulus null/string `%`](#double-mod-ieee-template) | [→inc](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/modulus.as) | No ToNumber on `%` |
+| [division `A4_T4/T5/T7–T8` IEEE](#double-mod-ieee-template) | [→impl / →fix](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/division.as) | Double `/` IEEE; 0.0/0.0 → NaN |
+| division null/object `/` | [→inc](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/division.as) | No ToNumber on `/` |
+| [unary+ string/object/undef false greens](#unary-plus-identity) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/expressions/unary-plus.as) | Identity, not is_NaN type-error expects |
+| [id-res `S10.2.2_A1_T4`](#identifier-resolution-inner-let) | [→diff](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/identifier-resolution.as) | Outer x (0); not expect-error on assert |
 
 ### Related (outside pure test-only)
 
 | Case | How | Brief |
 |------|-----|--------|
-| empty-separator `split` | [→impl](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/statements/for-of.as) | C: split by code points (with for-of) |
-| [#153](https://github.com/afw-org/afw/issues/153) utf8 sequences pad | [meta](https://github.com/afw-org/afw/commits/mgg-develop/designs/utf8-code-point-sequences.md) | Design only; not test convert |
+| empty-separator `split` | [→impl](https://github.com/afw-org/afw/commits/develop/src/afw/tests/test262/statements/for-of.as) | C: split by code points (with for-of) |
+| [#153](https://github.com/afw-org/afw/issues/153) utf8 sequences pad | [meta](https://github.com/afw-org/afw/commits/develop/designs/utf8-code-point-sequences.md) | Design only; not test convert |
 
 ---
 

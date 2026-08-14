@@ -59,7 +59,7 @@ afw_internal.h    ← libafw .c only
 
 - Split `afw.h` into call-only vs impl-only umbrellas.
 - Rewrite `afw_common.h` / thin `afw_minimal.h` for purity.
-- Small-PR discipline while on `mgg-develop` (large coherent branch OK; **PR only when maintainer asks**).
+- Small-PR discipline on `develop` (large coherent branch OK; **PR only when maintainer asks**).
 - Rename payload-level “internal” fields (`afw_value_*_t.internal`, `*_to_internal`) — overloaded English, intentional in context; leave alone.
 
 ### Three senses of “internal” (do not conflate)

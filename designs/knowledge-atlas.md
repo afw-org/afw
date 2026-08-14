@@ -25,7 +25,7 @@
 | `.cursor/rules/*.mdc` | How to *work* in an area | Long history diaries |
 | `AGENTS.md` | System map, mission, build loop | Deep design archaeology |
 | `designs/*` | Why, options, open questions, maps | Always-on law |
-| `whats-new.md` | User/operator-facing on `mgg-develop` | Internal implementation plans |
+| `whats-new.md` | User/operator-facing on `develop` | Internal implementation plans |
 | Handbook / Doxygen | Authors and builders | Issue numbers / designs paths (handbook) |
 | Project MEMORY | Sticky prefs + thin resume | Second handbook; ticket dumps |
 

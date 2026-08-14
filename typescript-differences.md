@@ -1,6 +1,6 @@
 # Adaptive Script and TypeScript / JavaScript
 
-**Audience:** maintainers and AI assistants working on **`mgg-develop`** (beta readiness); useful secondary reading for script authors who already know TypeScript.  
+**Audience:** maintainers and AI assistants working on **`develop`** (beta readiness); useful secondary reading for script authors who already know TypeScript.  
 **Status:** living decision notes. Not polished product handbook. Update when we learn or fix something.
 
 ---
@@ -13,9 +13,9 @@ It is a **compiled** language hosted by Adaptive Framework (C runtime, Adaptive 
 
 **Product goal for shared surface:** when Adaptive **supports** TypeScript- or JS-looking syntax (or a built-in that plays the same role), it should behave as a TypeScript-literate author would reasonably expect **for that construct**. Prefer **motivated** Adaptive differences over accidental ones. Document deliberate non-goals instead of half-implementing the JS platform.
 
-### How this file is used on `mgg-develop`
+### How this file is used on `develop`
 
-`mgg-develop` work is aimed at getting AFW **beta-ready** (or closer). Sessions will include language and built-in fixes that are **not always tied to a single GitHub issue**. This file records:
+`develop` work is aimed at getting AFW **beta-ready** (or closer). Sessions will include language and built-in fixes that are **not always tied to a single GitHub issue**. This file records:
 
 | Section | Use when deciding… |
 |---------|---------------------|
@@ -292,7 +292,7 @@ Many JS/TS keywords are reserved even when unimplemented (`class`, `async`, `awa
 | Resource | Role |
 |----------|------|
 | Language Reference (handbook) | Normative Adaptive description |
-| [`whats-new.md`](whats-new.md) | User-facing `mgg-develop` notes |
+| [`whats-new.md`](whats-new.md) | User-facing `develop` notes |
 | [`beta-backlog.md`](beta-backlog.md) | Maintainer brain dump |
 | [`designs/`](designs/) | Issue/theme pads (#28, #140, pragma, …) |
 | [`.cursor/rules/afw-adaptive-script.mdc`](.cursor/rules/afw-adaptive-script.mdc) | Authoring quirks |

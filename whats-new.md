@@ -1,6 +1,6 @@
-# What’s new on `mgg-develop`
+# What’s new on `develop`
 
-This note is for **AFW users** (script authors, model authors, operators, and people editing Adaptive object JSON). It covers changes on **`mgg-develop`** since it branched from **`develop`** (merge-base `f945f97c`, mid‑July 2026).
+This note is for **AFW users** (script authors, model authors, operators, and people editing Adaptive object JSON). It covers changes that landed with the **`mgg-develop`** campaign, now merged into **`develop`** via [PR #179](https://github.com/afw-org/afw/pull/179) (merge-base `f945f97c`, mid‑July 2026; tags `before-mgg-develop-merge` / `after-mgg-develop-merge`).
 
 Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted unless they affect runtime or tooling you use day to day.
 
@@ -8,7 +8,7 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 
 ## Must change (read this first)
 
-This `mgg-develop` line is cleaning Adaptive Script and the supported C API toward a beta/release surface, so testers make one transition. If you only have a few minutes, change the things below so existing scripts and C keep working. Then use [Highlights](#highlights) and the detail sections for everything else.
+This `develop` line is cleaning Adaptive Script and the supported C API toward a beta/release surface, so testers make one transition. If you only have a few minutes, change the things below so existing scripts and C keep working. Then use [Highlights](#highlights) and the detail sections for everything else.
 
 The deprecated forms that used to still run ([#172](https://github.com/afw-org/afw/issues/172)) are **removed**: `throw "…" { … }` without **`data`**, and package **`*_declare_helpers.h`**.
 
@@ -623,7 +623,7 @@ Tests: `src/afw/tests/language/script/object_expression_names.as`.
 
 ## Value lifetime / memory management (issue [#2](https://github.com/afw-org/afw/issues/2)) — alpha/beta
 
-**Issue [#2](https://github.com/afw-org/afw/issues/2)** — work in progress on `mgg-develop` via branch `issue-#2` (partial land; design continues).
+**Issue [#2](https://github.com/afw-org/afw/issues/2)** — work in progress on `develop` via branch `issue-#2` (partial land; design continues).
 
 This is **not** a finished memory-management productization. Treat it as **alpha/beta** on the maintainer develop line: useful foundation and mostly behavior-compatible for in-tree tests, but the long-running escape / assign / scope-release story is **not** complete.
 
@@ -1466,7 +1466,7 @@ Must-change items are at the [top](#must-change-read-this-first). These are easi
 
 ## How this was produced
 
-Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **[#116](https://github.com/afw-org/afw/pull/116)**–**[#124](https://github.com/afw-org/afw/pull/124)**, **[#128](https://github.com/afw-org/afw/pull/128)**–**[#130](https://github.com/afw-org/afw/pull/130)**, **[#132](https://github.com/afw-org/afw/pull/132)**–**[#142](https://github.com/afw-org/afw/pull/142)**, **[#145](https://github.com/afw-org/afw/pull/145)**–**[#146](https://github.com/afw-org/afw/pull/146)**, **[#150](https://github.com/afw-org/afw/pull/150)**, **[#165](https://github.com/afw-org/afw/pull/165)**, **[#167](https://github.com/afw-org/afw/pull/167)**, and follow-up fixes on `mgg-develop`). For full commit history, see those PRs on the repository hosting Adaptive Framework.
+Diff basis: originally `git log develop..mgg-develop`; that line is now on **`develop`** ([PR #179](https://github.com/afw-org/afw/pull/179), merge commit, history preserved). Includes PRs **[#116](https://github.com/afw-org/afw/pull/116)**–**[#124](https://github.com/afw-org/afw/pull/124)**, **[#128](https://github.com/afw-org/afw/pull/128)**–**[#130](https://github.com/afw-org/afw/pull/130)**, **[#132](https://github.com/afw-org/afw/pull/132)**–**[#142](https://github.com/afw-org/afw/pull/142)**, **[#145](https://github.com/afw-org/afw/pull/145)**–**[#146](https://github.com/afw-org/afw/pull/146)**, **[#150](https://github.com/afw-org/afw/pull/150)**, **[#165](https://github.com/afw-org/afw/pull/165)**, **[#167](https://github.com/afw-org/afw/pull/167)**, and follow-up fixes from that campaign. For full commit history, see those PRs on the repository hosting Adaptive Framework.
 
 ### Maintaining the Highlights table (for agents)
 

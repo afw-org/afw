@@ -4,7 +4,7 @@ Long-form context for humans and AI assistants. **Always-on** rules live in [`.c
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
-Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes while on `mgg-develop`: [`whats-new.md`](whats-new.md). Open issues snapshot (refresh from GitHub): [`open-issues-status.md`](open-issues-status.md). **Optional team lessons** (AI partnering): [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). **Topic atlas** (where is X?): [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md). Support playbooks: [`designs/agent-support.md`](designs/agent-support.md). Philosophy: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference — not always-on).
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes on `develop`: [`whats-new.md`](whats-new.md). Open issues snapshot (refresh from GitHub): [`open-issues-status.md`](open-issues-status.md). **Optional team lessons** (AI partnering): [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). **Topic atlas** (where is X?): [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md). Support playbooks: [`designs/agent-support.md`](designs/agent-support.md). Philosophy: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference — not always-on).
 
 ## Mission
 
@@ -22,7 +22,7 @@ Prefer **git** for durable shared truth (designs, rules, handbook, tests, living
 | [`.cursor/rules/*.mdc`](.cursor/rules/) | How to *work* in each area (always-on + area rules) |
 | This file (`AGENTS.md`) | System map and agent mission |
 | [`designs/`](designs/README.md) | Why, history, open questions; **knowledge atlas**, playbooks, philosophy/mantras |
-| [`whats-new.md`](whats-new.md) | User/operator-facing notes on `mgg-develop` |
+| [`whats-new.md`](whats-new.md) | User/operator-facing notes on `develop` |
 | [`open-issues-status.md`](open-issues-status.md) | Working open-issue snapshot (assignees + “how it stands”); **refresh from GitHub**, not ground truth |
 | Handbook / Doxygen | Authors and builders (`src/afw/doc/`, `build/docs/`) |
 | Project memory (Grok workspace `MEMORY.md`) | Sticky prefs + resume; **maps over ticket status** |
@@ -44,7 +44,7 @@ Prefer **git** for durable shared truth (designs, rules, handbook, tests, living
 2. Start with something like: **“What do you think about issue #N?”** (or paste the issue text / a short symptom). Do **not** lead with “implement a fix” unless you already share the plan.  
 3. Discuss: keep asking what the partner thinks; push back; guide with **why** when you disagree.  
 4. When chat is stuck, **close the loop live** (`afw`, `afwfcgi`, runtime objects on `adapterId=afw`, the code the partner named).  
-5. If you decide to work it: ask for a **feature branch** off the right base (often `mgg-develop`), then implement in **small verticals** you both agree (build/test as you go). A useful cadence for wrap-ups and exploratory edges: **flexible plan, one step, then re-decide** — share a living candidate order; finish one step; then **“what do you think we should do next?”** and adapt (see [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md)).  
+5. If you decide to work it: ask for a **feature branch** off the right base (often `develop`), then implement in **small verticals** you both agree (build/test as you go). A useful cadence for wrap-ups and exploratory edges: **flexible plan, one step, then re-decide** — share a living candidate order; finish one step; then **“what do you think we should do next?”** and adapt (see [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md)).  
 6. **Commit / push when you ask** for a checkpoint — not as a silent default after every edit (unless you agree otherwise for a stretch).  
 7. When ready: **“Open a PR”** against the target branch; you still own review.  
 8. After a real click, leave a **thin map** in git if it will help the next person (atlas row, playbook note, or short pad) — issue ids as pointers only.

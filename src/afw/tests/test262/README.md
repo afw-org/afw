@@ -87,8 +87,8 @@ edits.
 **Leftover `FIXME:`** (not a convert shortlist): [`FIXME-triage.md`](FIXME-triage.md).
 
 **Case change log (what we already did):** see [`changes.md`](changes.md) —
-Index of unskips / rewrites / product `differences` **since `mgg-develop`
-branched** (merge-base `f945f97c`; same horizon as root `whats-new.md`).
+Index of unskips / rewrites / product `differences` **since the mid‑July
+2026 fork** (merge-base `f945f97c`; same horizon as root `whats-new.md`).
 Two-way links like `whats-new.md`. Update it when you change a case’s
 run/skip/expect meaning.
 
