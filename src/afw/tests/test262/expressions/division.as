@@ -28,8 +28,8 @@ assert(x ===  1);
 //? expect: success
 //? skip: true
 //? skipReason: ...
-FIXME: ASI / block-eval interaction around division vs regexp;
-half-converted
+Never: Adaptive has no ES eval / regexp-vs-division ASI after a
+block. Other / newline cases already run.
 //? source: ...
 
 
@@ -138,63 +138,34 @@ if (x / y !== 1) {
 }
 //? test: S11.5.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: error
 //? source: ...
 
-
-//CHECK#1
-try {
-  x / 1;
-  throw '#1.1: x / 1 throw ReferenceError. Actual: ' + (x / 1);
-}
-catch (e) {
-  if ((e instanceof ReferenceError) !== true) {
-    throw '#1.2: x / 1 throw ReferenceError. Actual: ' + (e);
-  }
-}
+// undeclared x is a compile error
+x / 1;
 //? test: S11.5.2_A2.1_T3
 //? description: If GetBase(y) is null, throw ReferenceError
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: error
 //? source: ...
 
-
-//CHECK#1
-try {
-  1 / y;
-  throw '#1.1: 1 / y throw ReferenceError. Actual: ' + (1 / y);
-}
-catch (e) {
-  if ((e instanceof ReferenceError) !== true) {
-    throw '#1.2: 1 / y throw ReferenceError. Actual: ' + (e);
-  }
-}
+// undeclared y is a compile error
+1 / y;
 //? test: S11.5.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: 0
 //? source: ...
 
-
-//CHECK#1
-let x = function () { throw "x"; };
-let y = function () { throw "y"; };
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
 try {
-   x() / y();
-   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (x() / y());
+    let unused = xf() / yf();
+    assert(false);
 } catch (e) {
-   if (e === "y") {
-     throw '#1.2: First expression is evaluated first, and then second expression';
-   } else {
-     if (e !== "x") {
-       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (e);
-     }
-   }
+    assert(e.message === "x");
+    assert(saw === "x");
 }
+return 0;
 //? test: S11.5.2_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
 //? expect: success
@@ -209,7 +180,7 @@ if (1 / 1 !== 1) {
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
+//? skipReason: Never: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
 
 
@@ -236,7 +207,7 @@ if (is_NaN(null / null) !== true) {
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
+//? skipReason: Never: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
 
 
@@ -264,8 +235,8 @@ if (is_NaN({} / {}) !== true) {
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive / does not ToNumber-coerce strings or undefined
+(no new String / valueOf)
 //? source: ...
 
 
@@ -291,59 +262,22 @@ if (is_NaN(undefined / new String("1")) !== true) {
 //? test: S11.5.2_A4_T10
 //? description: If both operands are finite and nonzero, the quotient is computed and rounded using IEEE 754 round-to-nearest mode.  If the magnitude is too small to represent, the result is then a zero of appropriate sign throw new Test262Error('#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0'); throw new Test262Error('#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0');
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? source: ...
 
-
 //CHECK#1
-if (Number.MIN_VALUE / 2.1 !== 0) {
-  throw '#1: Number.MIN_VALUE / 2.1 === 0. Actual: ' + (Number.MIN_VALUE / 2.1);
+if (#doubleMinSubnormal / 2.1 !== 0.0) {
+  throw '#1: #doubleMinSubnormal / 2.1 === 0. Actual: ' +
+    (#doubleMinSubnormal / 2.1);
 }
 
 //CHECK#2
-if (Number.MIN_VALUE / -2.1 !== -0) {
-  throw '#2.1: Number.MIN_VALUE / -2.1 === 0. Actual: ' + (Number.MIN_VALUE / -2.1);
+if (#doubleMinSubnormal / -2.1 !== -0.0) {
+  throw '#2.1: #doubleMinSubnormal / -2.1 === -0. Actual: ' +
+    (#doubleMinSubnormal / -2.1);
 } else {
-  if (1 / (Number.MIN_VALUE / -2.1) !== -Infinity) {
-    throw '#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0';
+  if (1.0 / (#doubleMinSubnormal / -2.1) !== -Infinity) {
+    throw '#2.2: #doubleMinSubnormal / -2.1 === -0. Actual: +0';
   }
-}
-
-//CHECK#3
-if (Number.MIN_VALUE / 2.0 !== 0) {
-  throw '#3: Number.MIN_VALUE / 2.0 === 0. Actual: ' + (Number.MIN_VALUE / 2.0);
-}
-
-//CHECK#4
-if (Number.MIN_VALUE / -2.0 !== -0) {
-  throw '#4.1: Number.MIN_VALUE / -2.0 === -0. Actual: ' + (Number.MIN_VALUE / -2.0);
-} else {
-  if (1 / (Number.MIN_VALUE / -2.0) !== -Infinity) {
-    throw '#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0';
-  }
-}
-
-//CHECK#5
-if (Number.MIN_VALUE / 1.9 !== Number.MIN_VALUE) {
-  throw '#5: Number.MIN_VALUE / 1.9 === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / 1.9);
-}
-
-//CHECK#6
-if (Number.MIN_VALUE / -1.9 !== -Number.MIN_VALUE) {
-  throw '#6: Number.MIN_VALUE / -1.9 === -Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / -1.9);
-}
-
-//CHECK#7
-if (Number.MIN_VALUE / 1.1 !== Number.MIN_VALUE) {
-  throw '#7: Number.MIN_VALUE / 1.1 === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / 1.1);
-}
-
-//CHECK#8
-if (Number.MIN_VALUE / -1.1 !== -Number.MIN_VALUE) {
-  throw '#8: Number.MIN_VALUE / -1.1 === -Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / -1.1);
 }
 //? test: S11.5.2_A4_T1.1
 //? description: If left operand is NaN, the result is NaN
@@ -678,14 +612,9 @@ if (-0.0 / 0.5 !== -0.0) {
 //? test: S11.5.2_A4_T9
 //? description: If the magnitude is too large to represent, the result is then an infinity of appropriate sign
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: extreme double literals / overflow edges need reliable large
-exponents (Number.MAX_VALUE lineage); use Infinity cases in A4_T3/T5 for now
 //? source: ...
 
-
 //CHECK#1
-if (Number.MAX_VALUE / 0.9 !== Infinity) {
-  throw '#1: Number.MAX_VALUE / 0.9 === Infinity. Actual: ' + (Number.MAX_VALUE / 0.9);
+if (#doubleMax / 0.9 !== Infinity) {
+  throw '#1: #doubleMax / 0.9 === Infinity. Actual: ' + (#doubleMax / 0.9);
 }

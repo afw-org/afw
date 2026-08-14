@@ -88,20 +88,14 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A14
 //? description:If base is −∞ and exponent > 0 and exponent is not an odd integer, the result is +∞.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
-
-
 
 let base = -Infinity;
 let exponents = [
 0.000000000000001,
-2,
-Math.PI,
-1.7976931348623157E308, //largest finite number
+2.0,
+#pi,
+#doubleMax,
 +Infinity
 ];
 
@@ -130,25 +124,19 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A16
 //? description:If base is −∞ and exponent < 0 and exponent is not an odd integer, the result is +0.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
-
-
 
 let base = -Infinity;
 let exponents = [
 -0.000000000000001,
--2,
--Math.PI,
--1.7976931348623157E308, //largest (by module) finite number
+-2.0,
+-#pi,
+-#doubleMax,
 -Infinity
 ];
 
 for (let i = 0; i < length(exponents); i = i + 1) {
-  if ((base ** exponents[i]) !== +0) {
+  if ((base ** exponents[i]) !== +0.0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
@@ -237,25 +225,19 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? test: applying-the-exp-operator_A20
 //? description:If base is −0 and exponent > 0 and exponent is not an odd integer, the result is +0.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
 
-
-
-let base = -0;
+let base = -0.0;
 let exponents = [
 0.000000000000001,
-2,
-Math.PI,
-1.7976931348623157E308, //largest finite number
+2.0,
+#pi,
+#doubleMax,
 +Infinity
 ];
 
 for (let i = 0; i < length(exponents); i = i + 1) {
-  if ((base ** exponents[i]) !== +0) {
+  if ((base ** exponents[i]) !== +0.0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
@@ -281,20 +263,14 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A22
 //? description:If base is −0 and exponent < 0 and exponent is not an odd integer, the result is +∞.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
 
-
-
-let base = -0;
+let base = -0.0;
 let exponents = [
 -0.000000000000001,
--2,
--Math.PI,
--1.7976931348623157E308, //largest (by module) finite number
+-2.0,
+-#pi,
+-#doubleMax,
 -Infinity
 ];
 
@@ -306,37 +282,31 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A23
 //? description:If base < 0 and base is finite and exponent is finite and exponent is not an integer, the result is NaN.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
 
-
-
-let bases = [];
--1.7976931348623157E308, //largest (by module) finite number
--Math.PI,
--1,
+let bases = [
+-#doubleMax,
+-#pi,
+-1.0,
 -0.000000000000001
 ];
 
 let exponents = [
--Math.PI,
--Math.E,
+-#pi,
+-#e,
 -1.000000000000001,
 -0.000000000000001,
 0.000000000000001,
 1.000000000000001,
-Math.E,
-Math.PI
+#e,
+#pi
 ];
 
 for (let i = 0; i < length(bases); i = i + 1) {
-  for (let j = 0; j < length(exponents); j++) {
+  for (let j = 0; j < length(exponents); j = j + 1) {
     assert(
-      bases[i] ** exponents[j] == NaN,      
-      bases[i] + " ** " + exponents[j]
+      is_NaN(bases[i] ** exponents[j]),
+      string(bases[i]) + " ** " + string(exponents[j])
     );
   }
 }
@@ -512,27 +482,21 @@ for (let i = 0; i < length(bases); i = i + 1) {
   }
 }
 //? test: exp-operator-evaluation-order
-//? description:Exponentiation Operator expression order of evaluation
-//? expect: success
-//? skip: true
-//? skipReason: ...
-Harness: half-converted; still uses ES valueOf / assert.throws /
-evaluation-order probes
+//? description: Exponentiation Operator expression order of evaluation
+//? expect: 0
 //? source: ...
 
-
-let capture = [];
-let leftValue = { valueOf() { capture.push("leftValue"); return 3; }};
-let rightValue = { valueOf() { capture.push("rightValue"); return 2; }};
-
-(capture.push("left"), leftValue) ** (capture.push("right"), rightValue);
-
-// Expected per operator evaluation order: "left", "right", "leftValue", "rightValue"
-
-assert(capture[0] ===  "left", "Expected the 1st element captured to be 'left'");
-assert(capture[1] ===  "right", "Expected the 2nd element captured to be 'right'");
-assert(capture[2] ===  "leftValue", "Expected the 3rd element captured to be 'leftValue'");
-assert(capture[3] ===  "rightValue", "Expected the 4th element captured to be 'rightValue'");
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
+try {
+    let unused = xf() ** yf();
+    assert(false);
+} catch (e) {
+    assert(e.message === "x");
+    assert(saw === "x");
+}
+return 0;
 //? test: exp-operator
 //? description: Performs exponential calculation on operands. Same algorithm as %MathPow%(base, exponent)
 //? expect: success
@@ -630,8 +594,8 @@ assert(1.0**INT32_MIN === 1.0,
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / assert.throws /
-evaluation-order probes
+Never: Adaptive does not ToPrimitive/ToNumeric via valueOf;
+left-to-right operand evaluation is exp-operator-evaluation-order
 //? source: ...
 
 

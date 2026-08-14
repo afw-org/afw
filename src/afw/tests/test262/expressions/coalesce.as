@@ -401,8 +401,8 @@ assert(x === 42);
 //? expect: 0
 //? skip: true
 //? skipReason: ...
-Deferred: ES-style tail-call optimization not planned for beta (deep
-recursion would overflow)
+Never: Adaptive ?? short-circuits; it does not tail-call-optimize.
+100k recursion is not a language requirement.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -424,8 +424,8 @@ return 0;
 //? expect: 0
 //? skip: true
 //? skipReason: ...
-Deferred: ES-style tail-call optimization not planned for beta (deep
-recursion would overflow)
+Never: Adaptive ?? short-circuits; it does not tail-call-optimize.
+100k recursion is not a language requirement.
 //? source: ...
 #!/usr/bin/env afw
 

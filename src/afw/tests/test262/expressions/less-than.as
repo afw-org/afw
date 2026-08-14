@@ -115,8 +115,7 @@ x < 1;
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive does not convert objects to numbers via valueOf
 //? source: ...
 #!/usr/bin/env afw
 
@@ -418,17 +417,11 @@ if ((NaN < Number.MIN_VALUE) !== false) {
 
 //? test: S11.8.1_A4.2
 //? description: x is number primitive
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: success
 //? source: ...
-#!/usr/bin/env afw
-
 
 //CHECK#1
-if ((0 < NaN) !== false) {
+if ((0.0 < NaN) !== false) {
   throw '#1: (0 < NaN) === false';
 }
 
@@ -458,13 +451,13 @@ if ((-Infinity < NaN) !== false) {
 }
 
 //CHECK#7
-if ((Number.MAX_VALUE < NaN) !== false) {
-  throw '#7: (Number.MAX_VALUE < NaN) === false';
+if ((#doubleMax < NaN) !== false) {
+  throw '#7: (#doubleMax < NaN) === false';
 }
 
 //CHECK#8
-if ((Number.MIN_VALUE < NaN) !== false) {
-  throw '#8: (Number.MIN_VALUE < NaN) === false';
+if ((#doubleMin < NaN) !== false) {
+  throw '#8: (#doubleMin < NaN) === false';
 }
 //? test: S11.8.1_A4.3
 //? description: x and y are number primitives
@@ -576,17 +569,11 @@ if ((Infinity < Number.MIN_VALUE) !== false) {
 
 //? test: S11.8.1_A4.6
 //? description: x is number primitive
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: success
 //? source: ...
-#!/usr/bin/env afw
-
 
 //CHECK#1
-if ((0 < Infinity) !== true) {
+if ((0.0 < Infinity) !== true) {
   throw '#1: (0 < +Infinity) === true';
 }
 
@@ -606,13 +593,13 @@ if ((-Infinity < Infinity) !== true) {
 }
 
 //CHECK#5
-if ((Number.MAX_VALUE < Infinity) !== true) {
-  throw '#5: (Number.MAX_VALUE < +Infinity) === true';
+if ((#doubleMax < Infinity) !== true) {
+  throw '#5: (#doubleMax < +Infinity) === true';
 }
 
 //CHECK#6
-if ((Number.MIN_VALUE < Infinity) !== true) {
-  throw '#6: (Number.MIN_VALUE < +Infinity) === true';
+if ((#doubleMin < Infinity) !== true) {
+  throw '#6: (#doubleMin < +Infinity) === true';
 }
 //? test: S11.8.1_A4.7
 //? description: y is number primitive

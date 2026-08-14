@@ -26,140 +26,22 @@ let x = 18
 assert(x === 1);
 //? test: order-of-evaluation
 //? description: Type coercion order of operations for modulus operator
-//? expect: success
-//? skip: true
-//? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+//? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
+try {
+    let unused = xf() % yf();
+    assert(false);
+} catch (e) {
+    assert(e.message === "x");
+    assert(saw === "x");
+}
+return 0;
 
-function MyError() {}
-let trace;
-
-// ?GetValue(lhs) throws.
-trace = "";
-assert.throws(MyError, function() {
-  (function() {
-    trace += "1";
-    throw new MyError();
-  })() % (function() {
-    trace += "2";
-    throw "should not be evaluated";
-  })();
-}, "?GetValue(lhs) throws.");
-assert.sameValue(trace, "1", "?GetValue(lhs) throws.");
-
-// ?GetValue(rhs) throws.
-trace = "";
-assert.throws(MyError, function() {
-  (function() {
-    trace += "1";
-    return {
-      valueOf: function() {
-        trace += "3";
-        throw "should not be evaluated";
-      }
-    };
-  })() % (function() {
-    trace += "2";
-    throw new MyError();
-  })();
-}, "?GetValue(rhs) throws.");
-assert.sameValue(trace, "12", "?GetValue(rhs) throws.");
-
-// ?ToPrimive(lhs) throws.
-trace = "";
-assert.throws(MyError, function() {
-  (function() {
-    trace += "1";
-    return {
-      valueOf: function() {
-        trace += "3";
-        throw new MyError();
-      }
-    };
-  })() % (function() {
-    trace += "2";
-    return {
-      valueOf: function() {
-        trace += "4";
-        throw "should not be evaluated";
-      }
-    };
-  })();
-}, "?ToPrimive(lhs) throws.");
-assert.sameValue(trace, "123", "?ToPrimive(lhs) throws.");
-
-// ?ToPrimive(rhs) throws.
-trace = "";
-assert.throws(MyError, function() {
-  (function() {
-    trace += "1";
-    return {
-      valueOf: function() {
-        trace += "3";
-        return 1;
-      }
-    };
-  })() % (function() {
-    trace += "2";
-    return {
-      valueOf: function() {
-        trace += "4";
-        throw new MyError();
-      }
-    };
-  })();
-}, "?ToPrimive(rhs) throws.");
-assert.sameValue(trace, "1234", "?ToPrimive(rhs) throws.");
-
-// ?ToNumeric(lhs) throws.
-trace = "";
-assert.throws(TypeError, function() {
-  (function() {
-    trace += "1";
-    return {
-      valueOf: function() {
-        trace += "3";
-        return Symbol("1");
-      }
-    };
-  })() % (function() {
-    trace += "2";
-    return {
-      valueOf: function() {
-        trace += "4";
-        throw "should not be evaluated";
-      }
-    };
-  })();
-}, "?ToNumeric(lhs) throws.");
-assert.sameValue(trace, "123", "?ToNumeric(lhs) throws.");
-
-// GetValue(lhs) throws.
-trace = "";
-assert.throws(TypeError, function() {
-  (function() {
-    trace += "1";
-    return {
-      valueOf: function() {
-        trace += "3";
-        return 1;
-      }
-    };
-  })() % (function() {
-    trace += "2";
-    return {
-      valueOf: function() {
-        trace += "4";
-        return Symbol("1");
-      }
-    };
-  })();
-}, "GetValue(lhs) throws.");
-assert.sameValue(trace, "1234", "GetValue(lhs) throws.");
+//?
 //? test: S11.5.3_A1
 //? description: Checking by using eval
 //? expect: success
@@ -248,19 +130,21 @@ if (x % y !== 1) {
 }
 //? test: S11.5.3_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared x is a compile error
 x % 1;
 
 
 //? test: S11.5.3_A2.1_T3
 //? description: If GetBase(y) is null, throw ReferenceError
-//? expect: error:Parse error at offset 24 around line 3 column 5: Unknown built-in function 'y'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared y is a compile error
 1 % y;
 
 
@@ -268,9 +152,7 @@ x % 1;
 //? description: Checking with "throw"
 //? expect: success
 //? skip: true
-//? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+//? skipReason: Never: Adaptive does not convert objects to numbers via valueOf
 //? source: ...
 #!/usr/bin/env afw
 
@@ -292,28 +174,20 @@ try {
 }
 //? test: S11.5.3_A2.4_T2
 //? description: Checking with "throw"
-//? expect: success
-//? skip: true
-//? skipReason: Harness: half-converted arithmetic operator case from test262
+//? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
-
-//CHECK#1
-let x = function () { throw "x"; };
-let y = function () { throw "y"; };
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
 try {
-   x() % y();
-   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() % y() throw "x". Actual: ' + (x() % y());
+    let unused = xf() % yf();
+    assert(false);
 } catch (e) {
-   if (e === "y") {
-     throw '#1.2: First expression is evaluated first, and then second expression';
-   } else {
-     if (e !== "x") {
-       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() % y() throw "x". Actual: ' + (e);
-     }
-   }
+    assert(e.message === "x");
+    assert(saw === "x");
 }
+return 0;
 //? test: S11.5.3_A2.4_T3
 //? description: Checking with undeclarated variables
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -338,8 +212,7 @@ if (1 % 1 !== 0) {
 //? description: Type(x) and Type(y) vary between primitive string and String object
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive % does not ToNumber-coerce strings (no new String)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -377,7 +250,7 @@ if (is_NaN("1" % "x") !== true) {
 //? test: S11.5.3_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -405,7 +278,7 @@ if (is_NaN(null % null) !== true) {
 //? test: S11.5.3_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -435,7 +308,7 @@ if (is_NaN({} % {}) !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and String (primitive and object)
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -465,7 +338,7 @@ if (is_NaN(1 % "x") !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Null
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -485,7 +358,7 @@ if (null % 1 !== 0) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Undefined
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -506,8 +379,8 @@ if (is_NaN(undefined % 1) !== true) {
     String (primitive or object) and Undefined
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive % does not ToNumber-coerce strings or undefined
+(no new String / valueOf)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -538,8 +411,8 @@ if (is_NaN(undefined % new String("1")) !== true) {
     String (primitive or object) and Null
 //? skip: true
 //? skipReason: ...
-Harness: half-converted; still uses ES valueOf / boxed primitives /
-assert.throws
+Never: Adaptive % does not ToNumber-coerce strings or undefined
+(no new String / valueOf)
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw

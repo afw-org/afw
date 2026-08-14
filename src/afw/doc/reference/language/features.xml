@@ -260,5 +260,21 @@ const n: integer = 1;
 
 /* Turn type checking off again in this script */
 #compile noTypeCheck;]]></code>
+    <header>Compiler literals</header>
+    <paragraph>
+        A compiler literal is a <literal>#</literal> name for a value the 
+        compiler already knows. It is a value in an expression, not a 
+        statement and not a function call. Examples include 
+        <literal>#doubleMax</literal>, <literal>#doubleMin</literal>, 
+        <literal>#integerMax</literal>, <literal>#pi</literal>, and 
+        <literal>#infinity</literal>. These are not the same as the 
+        <literal>#compile</literal> pragma or the <literal>#block</literal> 
+        forms used when decompiling. Reserved words such as 
+        <literal>Infinity</literal> and <literal>NaN</literal> stay as they 
+        are; <literal>#infinity</literal> is an alias.
+    </paragraph>
+    <code><![CDATA[assert(#doubleMax / 0.9 === Infinity);
+assert(#integerMax + #integerMin === -1);
+assert(#infinity === Infinity);]]></code>
 </doc>
 

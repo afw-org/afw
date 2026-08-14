@@ -47,7 +47,7 @@ official** ones for this suite and for language tests in general:
 | Key | Role |
 |-----|------|
 | **`test`** | Case id (stable name) |
-| **`description`** | What the case checks. Prefer staying **close to the TC39 description**, lightly tweaked for Adaptive wording. |
+| **`description`** | Stay **close to the TC39 description**. Skip notes go in **`skipReason`**. For **`expect: error`**, say why in a source **`//`** comment — do not rewrite `description` to explain the Adaptive error. |
 | **`differences`** | Optional. **Language** differences between ECMAScript and Adaptive for the construct under test only. Not harness wrapping. Good future harvest input for differences docs. |
 | **`expect`** | **`success`** (compiled and ran, ignore result — usual test262 “did not throw”), Adaptive value (`0`, `undefined`, …), or **`error`** / **`error:…`** |
 | **`skip`** | `true` / `false` — do not run |
@@ -62,39 +62,29 @@ harvests stay consistent. Prefer a **prefix + short clause**:
 
 | Prefix | Use when |
 |--------|----------|
-| **`Incompatible:`** | Never plan to convert (generators, `class`, prototypes, typed arrays via `new`, full ES iterator exotics, …) |
 | **`FIXME:`** | Adaptive should fix or decide; stays on the burn-down list |
-| **`Deferred:`** | Plausible later, not current priority |
-| **`Harness:`** | Rare — blocked by runner/adaptation limits, not language (prefer fixing harness instead) |
+| **`Never:`** | We do not plan to support this (ES-only, decided-not) |
 
 Examples:
 
 ```text
-//? skipReason: Incompatible: ES generators / function*
-//? skipReason: Incompatible: String.fromCharCode and prototype string APIs
-//? skipReason: FIXME: for-of member LHS (x.y)
-//? skipReason: FIXME: TDZ for for-of head const binding
-//? skipReason: Deferred: deep TCO; not planned for beta
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
+//? skipReason: FIXME: for-of const + per-iteration closure capture (#35 / #2)
 
 // Long reason (any //? key can use this form):
 //? skipReason: ...
-FIXME: Adaptive for-of does not enforce TDZ for for-of head const
-binding (outer x may be readable in [x]); ES requires error.
+FIXME: skipped because this body would pass at runtime and be a
+false positive. The real check is compile-time produce-type.
 ```
 
-Plain **`Incompatible`** with no detail is fine for a bulk first pass; enrich
-when you touch the file. Do **not** use `Incompatible` for “not yet” features
-that Adaptive might still implement — use **`FIXME:`** or **`Deferred:`**.
+Do **not** use **`Never:`** for “not yet” features — use **`FIXME:`** and
+say when/why in the sentence.
 
-**First-pass status (2026-08, branch `test262-skipreason-sweep`):** every
-skipped case has a prefixed `skipReason`. Counts will drift as cases unskip or
-reclassify — re-grep after edits. Use **`Incompatible:`** only for ES-only
-behavior Adaptive does not plan to support (confirm against the original
-test262 case when unsure); default uncertain skips to **`FIXME:`** or
-**`Deferred:`**.
+**First-pass status (2026-08, branch `issue-#106-fixme-reclassify`):** two
+prefixes only. Counts drift as cases unskip or reclassify — re-grep after
+edits.
 
-**FIXME triage (what to convert next):** see [`FIXME-triage.md`](FIXME-triage.md)
-— shortlist and theme inventory after the labeling pass.
+**Leftover `FIXME:`** (not a convert shortlist): [`FIXME-triage.md`](FIXME-triage.md).
 
 **Case change log (what we already did):** see [`changes.md`](changes.md) —
 Index of unskips / rewrites / product `differences` **since `mgg-develop`

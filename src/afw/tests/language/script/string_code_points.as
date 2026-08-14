@@ -291,19 +291,25 @@ const parts = split("a\u20ac" + "b", "\u20ac");
 assert(length(parts) === 2);
 assert(parts[0] === "a");
 assert(parts[1] === "b");
-return 0;//?
+return 0;
+
+//?
 //? test: Deferred-produce-type-script-call-return
 //? description: script call produce type for typed return (compile soft probes)
 //? skip: true
 //? skipReason: ...
-Deferred: produce-type percolation — script call IR does not yet report
-return type on get_data_type / quick inf->data_type. When that lands
-(see designs/compile-optimize-notes.md and #28 comment), type-check /
-soft iterator step type on call expressions can lock this without eval.
+FIXME: skipped because this body would pass at runtime and be a false
+positive. The real check is compile-time produce-type on the call, not
+eval of f().
 //? expect: 0
 //? source: ...
 
-/* Placeholder body: unskip when produce type is filled on script calls. */
+// Fixture only. Do not unskip until a compile/listing (or similar) probe
+// can assert, without evaluating f(), that the call IR for f() produces
+// string. Today get_data_type / inf->data_type on script-call is NULL
+// (@fixme Get right data type). When that lands: type-check and soft
+// iterator step type can use the call's produce type. See
+// designs/compile-optimize-notes.md.
 const f = function (): string {
     return "hi";
 };

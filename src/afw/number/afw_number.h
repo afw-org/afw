@@ -32,6 +32,18 @@ AFW_BEGIN_DECLARES
 #define AFW_NUMBER_Q_NEGATIVE_NAN       "-NaN"
 #define AFW_NUMBER_Q_EXPONENT_ZERO      "E0"
 
+/*
+ * IEEE / integer limits and a few math constants. C code can use these
+ * directly. Script sees them as compiler literals (#doubleMax, …).
+ * Permanent Adaptive values live in afw_value.h (afw_value_double_max, …).
+ */
+#define AFW_DOUBLE_MAX              DBL_MAX
+#define AFW_DOUBLE_MIN              DBL_MIN
+#define AFW_DOUBLE_EPSILON          DBL_EPSILON
+#define AFW_DOUBLE_MIN_SUBNORMAL    DBL_TRUE_MIN
+#define AFW_DOUBLE_PI               3.14159265358979323846
+#define AFW_DOUBLE_E                2.71828182845904523536
+
 /**
  * @brief Determine if double is finite.
  * @param d is double to check.
