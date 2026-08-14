@@ -318,6 +318,60 @@ assert(join(...["a", "b"], "c") === '["a","b","c"]');
 
 return 0;
 //?
+//? test: call-site-spread-evaluates-once
+//? description: Call-site ...expr evaluates the spread expression once (not once to size argv and again to fill)
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let n = 0;
+function make() {
+    n = n + 1;
+    return [n];
+}
+function take(x) {
+    return x;
+}
+
+assert(take(...make()) === 1);
+assert(n === 1);
+
+n = 0;
+assert(add(...make(), 10) === 11);
+assert(n === 1);
+
+return 0;
+//?
+//? test: call-site-spread-growing-second-eval
+//? description: Spread expression that would be longer on a second eval must not overflow argv
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let n = 0;
+function growing() {
+    n = n + 1;
+    if (n === 1) {
+        return [10];
+    }
+    return [10, 20, 30, 40, 50];
+}
+function take(x) {
+    return x;
+}
+
+assert(take(...growing()) === 10);
+assert(n === 1);
+
+n = 0;
+function join(...parts) {
+    return length(parts);
+}
+assert(join(1, ...growing(), 2) === 3);
+assert(n === 1);
+
+return 0;
+//?
 //? test: ts-computed-key-destructure
 //? description: Computed and string keys in object Patterns
 //? expect: 0
@@ -334,6 +388,26 @@ assert(take({ inner: 11, other: 22 }) === 33);
 
 const { [key]: x } = { inner: 5 };
 assert(x === 5);
+
+return 0;
+//?
+//? test: object-rest-computed-key-evaluates-once
+//? description: Object Pattern rest must not re-evaluate computed key expressions
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let n = 0;
+function key() {
+    n = n + 1;
+    return "a";
+}
+
+const { [key()]: v, ...r } = { a: 1, b: 2 };
+assert(v === 1);
+assert(r.b === 2);
+assert(length(keys(r)) === 1);
+assert(n === 1);
 
 return 0;
 //?

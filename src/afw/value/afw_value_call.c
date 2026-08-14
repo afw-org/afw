@@ -358,11 +358,11 @@ afw_value_call_args_expand_spreads(
     afw_size_t i;
     afw_size_t j;
     afw_size_t total;
-    afw_size_t n;
     afw_boolean_t any_spread;
     const afw_value_t *arg;
     const afw_value_t *evaled;
     const afw_value_t **new_argv;
+    const afw_value_t **evaled_argv;
     const afw_array_t *arr;
     const afw_iterator_old_t *it;
     const afw_value_t *elem;
@@ -384,7 +384,13 @@ afw_value_call_args_expand_spreads(
         return;
     }
 
-    /* Count expanded size. */
+    /*
+     * Evaluate each spread once, remember the arrays, then allocate and
+     * splice. Re-evaluating to fill would run side effects twice and can
+     * write past new_argv if the second result is longer.
+     */
+    evaled_argv = afw_pool_calloc(p,
+        sizeof(afw_value_t *) * (argc_in + 1), xctx);
     total = 0;
     for (i = 1; i <= argc_in; i++) {
         arg = argv_in[i];
@@ -394,17 +400,9 @@ afw_value_call_args_expand_spreads(
                 AFW_THROW_ERROR_Z(general,
                     "Call-site spread (...) requires an array", xctx);
             }
+            evaled_argv[i] = evaled;
             arr = ((const afw_value_array_t *)evaled)->internal;
-            n = 0;
-            it = NULL;
-            for (;;) {
-                elem = afw_array_get_next_value(arr, &it, p, xctx);
-                if (!elem) {
-                    break;
-                }
-                n++;
-            }
-            total += n;
+            total += afw_array_get_count(arr, xctx);
         }
         else {
             total++;
@@ -418,13 +416,18 @@ afw_value_call_args_expand_spreads(
     for (i = 1; i <= argc_in; i++) {
         arg = argv_in[i];
         if (arg && afw_value_is_array_expression(arg)) {
-            evaled = afw_value_evaluate(arg, p, xctx);
+            evaled = evaled_argv[i];
             arr = ((const afw_value_array_t *)evaled)->internal;
             it = NULL;
             for (;;) {
                 elem = afw_array_get_next_value(arr, &it, p, xctx);
                 if (!elem) {
                     break;
+                }
+                if (j > total) {
+                    AFW_THROW_ERROR_Z(general,
+                        "Call-site spread array grew during expand",
+                        xctx);
                 }
                 new_argv[j++] = elem;
             }
@@ -434,7 +437,7 @@ afw_value_call_args_expand_spreads(
         }
     }
 
-    *argc_out = total;
+    *argc_out = j - 1;
     *argv_out = new_argv;
 }
 
