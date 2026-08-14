@@ -103,7 +103,7 @@ def bag_size_dayTimeDuration(session, value):
 
 def dayTimeDuration(session, value):
     """
-    Convert to data type dateTimeDuration
+    Convert to data type dayTimeDuration
 
     Converts value to data type dayTimeDuration returning dayTimeDuration
     result.

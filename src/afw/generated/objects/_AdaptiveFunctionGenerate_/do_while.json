@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwDoWhile",
     "brief": "Evaluate an array of values (statements) at least once while a condition is true",
     "camelCaseFunctionLabel": "doWhile",
-    "category": "compiler_script",
+    "category": "compiler_internal",
     "description": "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) at least once while a condition is true. See the related functions 'break', 'continue', 'return' and 'throw'.",
     "functionId": "do_while",
     "functionLabel": "do_while",
@@ -16,11 +16,18 @@
             "dataType": "array",
             "description": "This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the array or until a 'break', 'continue', 'return' or 'throw' function is encountered.",
             "name": "body"
+        },
+        {
+            "dataType": "string",
+            "description": "Optional loop label for break/continue Identifier (issue #62).",
+            "name": "label",
+            "optional": true
         }
     ],
     "pure": true,
     "returns": {
-        "description": "The last value evaluated in body or null if the body is empty."
+        "dataType": "void",
+        "description": "Does not complete. Nested assignment still writes the running result."
     },
     "scriptSupport": true
 }

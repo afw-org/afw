@@ -15,28 +15,179 @@
 #include "afw_adapter_impl_index.h"
 
 
+/* -------------------------------------------------------------------------
+ * current:: variables for index filter/value evaluation (issue #54)
+ * ------------------------------------------------------------------------- */
+
+typedef struct {
+    const afw_value_t *object;
+    const afw_value_t *objectId;
+    const afw_value_t *objectType;
+    const afw_value_t *key;
+} impl_index_eval_ctx_t;
+
+
+static const afw_value_t *
+impl_index_current_object_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    impl_index_eval_ctx_t *ctx = entry->data;
+
+    (void)name;
+    (void)xctx;
+    return ctx->object;
+}
+
+static const afw_value_t *
+impl_index_current_objectId_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    impl_index_eval_ctx_t *ctx = entry->data;
+
+    (void)name;
+    (void)xctx;
+    return ctx->objectId;
+}
+
+static const afw_value_t *
+impl_index_current_objectType_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    impl_index_eval_ctx_t *ctx = entry->data;
+
+    (void)name;
+    (void)xctx;
+    return ctx->objectType;
+}
+
+static const afw_value_t *
+impl_index_current_key_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_utf8_t *name,
+    afw_xctx_t *xctx)
+{
+    impl_index_eval_ctx_t *ctx = entry->data;
+
+    (void)name;
+    (void)xctx;
+    return ctx->key;
+}
+
+
+static const afw_context_cb_variable_meta_t
+impl_index_current_meta_object =
+{
+    &afw_self_s_object,
+    &afw_value_unmanaged_object_inf,
+    &afw_data_type_object_direct,
+    "Object"
+};
+
+static const afw_context_cb_variable_t
+impl_index_current_variable_object = {
+    &impl_index_current_meta_object,
+    "The object being indexed.",
+    impl_index_current_object_cb,
+    1
+};
+
+static const afw_context_cb_variable_meta_t
+impl_index_current_meta_objectId =
+{
+    &afw_self_s_objectId,
+    &afw_value_unmanaged_string_inf,
+    &afw_data_type_string_direct,
+    "Object Id"
+};
+
+static const afw_context_cb_variable_t
+impl_index_current_variable_objectId = {
+    &impl_index_current_meta_objectId,
+    "The object id of the object being indexed.",
+    impl_index_current_objectId_cb,
+    1
+};
+
+static const afw_context_cb_variable_meta_t
+impl_index_current_meta_objectType =
+{
+    &afw_self_s_objectType,
+    &afw_value_unmanaged_string_inf,
+    &afw_data_type_string_direct,
+    "Object Type"
+};
+
+static const afw_context_cb_variable_t
+impl_index_current_variable_objectType = {
+    &impl_index_current_meta_objectType,
+    "The object type id of the object being indexed.",
+    impl_index_current_objectType_cb,
+    1
+};
+
+static const afw_context_cb_variable_meta_t
+impl_index_current_meta_key =
+{
+    &afw_self_s_key,
+    &afw_value_unmanaged_string_inf,
+    &afw_data_type_string_direct,
+    "Index Key"
+};
+
+static const afw_context_cb_variable_t
+impl_index_current_variable_key = {
+    &impl_index_current_meta_key,
+    "The index definition key (query name / default property name).",
+    impl_index_current_key_cb,
+    1
+};
+
+static const afw_context_cb_variable_t * const
+impl_index_current_variables[] = {
+    &impl_index_current_variable_object,
+    &impl_index_current_variable_objectId,
+    &impl_index_current_variable_objectType,
+    &impl_index_current_variable_key,
+    NULL
+};
+
+
 /*
  *
  * An index definition looks like:
  *
  *  "FullName" : {
- *      "value"      : "string-concat(object.get('givenName'), object.get('surname'))"
+ *      "value"      : "string_concat(current::object.get('givenName'), current::object.get('surname'))"
  *      "objectType" : ['Person']
- *      "filter"     : "string-equal(object.get('department'),'ENG')"
+ *      "filter"     : "eq(current::object.get('department'), 'ENG')"
  *      "options"    : [ "case-insensitive-string" ]
  *  }
+ *
+ *  Filter and value are Adaptive scripts (expression-like: they must return a
+ *  value). While they evaluate, issue #54 exposes current:: variables:
+ *
+ *      current::object      — the object under index
+ *      current::objectId    — its object id
+ *      current::objectType  — its object type id
+ *      current::key         — this definition's key (query / default property name)
  *
  *  The "key" property is the named identifier for the property, which is
  *      used as a reference in a retrieve_objects() query.
  *
- *  The "value" property is the computed value(s) for the index, which 
- *      is described by an AFW expression.
+ *  The "value" property is the computed value(s) for the index, which
+ *      is described by an Adaptive script (or omitted to index property `key`).
  *
  *  The "objectType" property optionally determines a list of applicable objectType(s)
  *      this index definition. An empty array implies any/all objectType's.
  *
  *  The "filter" property optionally determines if a given object is applicable for
- *      this index definition.  It is also represented by an AFW expression.
+ *      this index definition (script must return boolean).
  *
  *  The "options" property is a list of options for how the index needs to 
  *      be used.  Some options may possibly be:
@@ -72,7 +223,7 @@ afw_boolean_t afw_adapter_impl_index_object_type_applicable(
 {
     const afw_utf8_t   * nextObjectType;
     const afw_array_t   * objectTypes;
-    const afw_iterator_t * object_type_iterator;
+    const afw_iterator_old_t * object_type_iterator;
 
     objectTypes = afw_object_old_get_property_as_array(
         indexDefinition, afw_s_objectType, xctx);
@@ -101,10 +252,10 @@ afw_boolean_t afw_adapter_impl_index_object_type_applicable(
 
 /*
  * This routine uses the configured filter on the indexDefinition to determine
- * if the object in question passes the filter test.  Any variables required for
- * the filter expression should already be set on the xctx for evaluation. A
- * filter is an AFW Expression that must evaluate to a single boolean value.  If
- * the filter is omitted, then the default is 'true'.
+ * if the object in question passes the filter test.  Caller must push current::
+ * (see afw_adapter_impl_index_try) before calling when a filter script is used.
+ * A filter is an Adaptive script that must evaluate to a single boolean value.
+ * If the filter is omitted, then the default is 'true'.
  */
 afw_boolean_t afw_adapter_impl_index_filter_applicable(
     const afw_object_t * object,
@@ -154,7 +305,7 @@ afw_boolean_t afw_adapter_impl_index_option_case_insensitive(
 {
     const afw_array_t  * options;
     const afw_value_t * option;
-    const afw_iterator_t * option_iterator;
+    const afw_iterator_old_t * option_iterator;
 
     options = afw_object_old_get_property_as_array(
         indexDefinition, afw_s_options, xctx);
@@ -193,7 +344,7 @@ afw_boolean_t afw_adapter_impl_index_option_unique(
 {
     const afw_array_t  * options;
     const afw_value_t * option;
-    const afw_iterator_t * option_iterator;
+    const afw_iterator_old_t * option_iterator;
 
     options = afw_object_old_get_property_as_array(
         indexDefinition, afw_s_options, xctx);
@@ -238,7 +389,7 @@ void afw_adapter_impl_index_apply(
 {
     const afw_array_t  * options;
     const afw_value_t * option;
-    const afw_iterator_t * option_iterator;
+    const afw_iterator_old_t * option_iterator;
     afw_boolean_t       case_sensitive = true;
     afw_boolean_t       unique = false;
     const afw_utf8_t  * value_string;
@@ -313,6 +464,9 @@ afw_boolean_t afw_adapter_impl_index_try(
     const afw_utf8_t   * value_expression;
     const afw_value_t  * value;
     const afw_value_t  * eval;
+    impl_index_eval_ctx_t eval_ctx;
+    int top;
+    int i;
 
     /* first we make sure the objectType is applicable */
     if (!afw_adapter_impl_index_object_type_applicable(
@@ -321,91 +475,105 @@ afw_boolean_t afw_adapter_impl_index_try(
         return false;
     }
 
-    if (!afw_adapter_impl_index_filter_applicable(
-        object, indexDefinition, xctx)) {
-        /* the filter expression did not pass */
-        return false;
-    }
+    /*
+     * Push current:: for filter and value scripts (issue #54). Always restore
+     * the qualifier stack, including on error or early filter fail.
+     */
+    top = afw_xctx_qualifier_stack_top_get(xctx);
+    AFW_TRY {
 
-    /* generate an index value based on the provided expression */
-    value_expression = afw_object_old_get_property_as_string(
-        indexDefinition, afw_s_value, xctx);
-    if (value_expression) 
-    {
-        value = afw_compile_to_value(value_expression, NULL,
-            afw_compile_type_script, NULL, NULL, object->p, xctx);
+        eval_ctx.object = afw_value_create_unmanaged_object(
+            object, object->p, xctx);
+        eval_ctx.objectId = (object_id)
+            ? afw_value_create_unmanaged_string(object_id, object->p, xctx)
+            : NULL;
+        eval_ctx.objectType = (object_type_id)
+            ? afw_value_create_unmanaged_string(object_type_id, object->p, xctx)
+            : NULL;
+        eval_ctx.key = (key)
+            ? afw_value_create_unmanaged_string(key, object->p, xctx)
+            : NULL;
 
-        /* Add variables for the filter and value expressions to use */
-        /** @fixme These need to be current:: variables. See issue #54. */
+        afw_context_push_cb_variables(afw_s_current,
+            impl_index_current_variables, &eval_ctx, object->p, xctx);
 
-        /*
-            Evaluate the 'value' definition for the index.  This may generate
-            one or more afw_value_t types.  For each one, generate/remove an
-            index.
-         */
-        eval = NULL;
-        AFW_TRY {
+        if (!afw_adapter_impl_index_filter_applicable(
+            object, indexDefinition, xctx))
+        {
+            /* the filter expression did not pass */
+            break;
+        }
+
+        /* generate an index value based on the provided expression */
+        value_expression = afw_object_old_get_property_as_string(
+            indexDefinition, afw_s_value, xctx);
+        if (value_expression)
+        {
+            value = afw_compile_to_value(value_expression, NULL,
+                afw_compile_type_script, NULL, NULL, object->p, xctx);
+
+            /*
+             * Evaluate the 'value' definition for the index.  This may generate
+             * one or more afw_value_t types.  For each one, generate/remove an
+             * index.
+             */
             eval = afw_value_evaluate(value, object->p, xctx);
         }
-        AFW_FINALLY {
-            /* always release the stack frame */
-            /** @fixme These need to be current:: variables. See issue #54. */
-            // afw_xctx_scope_release(scope, xctx);
+        else
+        {
+            /* no value script: index property with the same name as the key */
+            eval = afw_object_get_property(object, key, xctx);
         }
-        AFW_ENDTRY;
-    }
 
-    else 
-    {
-        /* if we do not have a "value" expression, then assume we are after the property
-            by the same name as the index key */
-        eval = afw_object_get_property(object, key, xctx);
-    }
+        /* if eval is nullish, then we didn't generate a value and shouldn't index */
+        if (afw_value_is_nullish(eval))
+        {
+            /* nothing to do */
+        }
 
-    /* if eval is NULL, then we didn't generate a value and shouldn't index */
-    if (afw_value_is_null(eval)) 
-    {
-        /* nothing to do */
-    }
+        /* Check the type of afw_value_t we got back. */
+        else if (afw_value_is_object(eval))
+        {
+            /* we can't use an object as an index key */
+            AFW_THROW_ERROR_Z(general,
+                "Error: value expression generated an object and cannot be used as an index.",
+                xctx);
+        }
 
-    /* Check the type of afw_value_t we got back. */
-    else if (afw_value_is_object(eval)) 
-    {
-        /* we can't use an object as an index key */
-        AFW_THROW_ERROR_Z(general,
-            "Error: value expression generated an object and cannot be used as an index.", 
-            xctx);
-    }
+        /* if we have multiple values, then index each one */
+        else if (afw_value_is_array(eval))
+        {
+            index_values = afw_value_as_array_of_values(
+                eval, object->p, xctx);
+            for (i = 0; index_values[i]; i++) {
+                index_value = index_values[i];
 
-    /* if we have multiple values, then index each one */
-    else if (afw_value_is_array(eval))
-    {
-        int i;
-        index_values = afw_value_as_array_of_values(
-            eval, object->p, xctx);
-        for (i = 0; index_values[i]; i++) {
-            index_value = index_values[i];
+                afw_adapter_impl_index_apply(instance, indexDefinition,
+                    object_type_id, object_id, object, key, index_value,
+                    operation, xctx);
+            }
+            indexed = true;
+        }
 
+        /* a single value can be converted to a single utf8 string */
+        else if (afw_value_is_defined_and_evaluated(eval))
+        {
+            /* scalar value */
             afw_adapter_impl_index_apply(instance, indexDefinition,
-                object_type_id, object_id, object, key, index_value, operation, xctx);
+                object_type_id, object_id, object, key, eval, operation, xctx);
+            indexed = true;
         }
-        indexed = true;
-    }
 
-    /* a single value can be converted to a single utf8 string */
-    else if (afw_value_is_defined_and_evaluated(eval))
-    {
-        /* scalar value */
-        afw_adapter_impl_index_apply(instance, indexDefinition,
-            object_type_id, object_id, object, key, eval, operation, xctx);
-        indexed = true;
+        else {
+            AFW_THROW_ERROR_Z(general,
+                "Error: value expression generated an unknown and unhandled index value.",
+                xctx);
+        }
     }
-
-    else {
-        AFW_THROW_ERROR_Z(general,
-            "Error: value expression generated an unknown and unhandled index value.", 
-            xctx);
+    AFW_FINALLY {
+        afw_xctx_qualifier_stack_top_set(top, xctx);
     }
+    AFW_ENDTRY;
 
     return indexed;
 }
@@ -420,8 +588,8 @@ void afw_adapter_impl_index_open_definition(
     const afw_array_t *objectType;
     const afw_array_t *options;
     const afw_value_t *option;
-    const afw_iterator_t *option_iterator;
-    const afw_iterator_t *object_type_iterator;
+    const afw_iterator_old_t *option_iterator;
+    const afw_iterator_old_t *object_type_iterator;
     const afw_utf8_t *object_type_id;
     afw_boolean_t unique  = false;
     afw_boolean_t reverse = false;
@@ -478,7 +646,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_open_definitions(
     afw_xctx_t                    * xctx)
 {
     const afw_object_t * indexDefinition;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
     const afw_utf8_t   * key;
 
     index_iterator = NULL;
@@ -530,10 +698,7 @@ afw_boolean_t afw_adapter_impl_index_cb(
             "Error: unable to determine object_type_id for object.", xctx);
     }
 
-    /* Add the object as a variable for the filter and value expressions to use */
-    /** @fixme These need to be custom:: variables. See issue #54. */
-    // afw_xctx_scope_deprecated_variable_set(afw_s_object, 
-    //     afw_value_create_unmanaged_object(object, xctx->p, xctx), xctx);
+    /* current:: for filter/value is pushed inside afw_adapter_impl_index_try. */
 
     /* The index "key" is the name that will match the query */
     key = ctx->key;
@@ -566,7 +731,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_list(
 {
     const afw_adapter_impl_index_t * instance;
     const afw_adapter_session_t    * session;
-    const afw_iterator_t           * index_iterator;
+    const afw_iterator_old_t           * index_iterator;
     const afw_object_t             * indexDefinition;
     const afw_object_t             * result;
     const afw_utf8_t               * key;
@@ -614,7 +779,7 @@ AFW_DEFINE(const afw_object_t *) afw_adapter_impl_index_remove(
     const afw_object_t                 * indexDefinition;
     const afw_array_t                   * objectTypes;
     const afw_object_t                 * result;
-    const afw_iterator_t               * object_type_iterator;
+    const afw_iterator_old_t               * object_type_iterator;
     const afw_utf8_t                   * object_type_id;
     afw_rc_t                             rc;
 
@@ -876,7 +1041,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_object(
 {
     const afw_utf8_t   * index_name;
     const afw_object_t * indexDefinition;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
 
     if (instance->indexDefinitions) {
         /* iterate through each indexDefinition to see if it applies */
@@ -911,7 +1076,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_unindex_object(
 {
     const afw_utf8_t   * index_name;
     const afw_object_t * indexDefinition;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
 
     if (instance->indexDefinitions) {
         /* iterate through each indexDefinition to see if it applies */
@@ -948,7 +1113,7 @@ AFW_DEFINE(void) afw_adapter_impl_index_reindex_object(
     afw_xctx_t                    * xctx)
 {
     const afw_utf8_t   * index_name;
-    const afw_iterator_t * index_iterator;
+    const afw_iterator_old_t * index_iterator;
     const afw_object_t * indexDefinition;
 
     if (instance->indexDefinitions) {

@@ -1,0 +1,8 @@
+{
+    "category": "logical",
+    "functionLabel": "broken",
+    "returns": {
+        "dataType": "boolean"
+    },
+    "brief": "Invalid: missing functionId"
+}

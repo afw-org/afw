@@ -9,7 +9,7 @@
 
 /**
  * @file afw_trace.c
- * @brief Adaptive Framework Trace
+ * @brief Trace write helpers used by AFW_TRACE* macros.
  */
 
 #include "afw_internal.h"

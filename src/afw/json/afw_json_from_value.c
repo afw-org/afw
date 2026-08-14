@@ -8,7 +8,7 @@
 
 /**
  * @file afw_json_from_value.c
- * @brief Convert an AFW value to JSON.
+ * @brief Serialize adaptive values to JSON text.
  */
 
 #include "afw_internal.h"
@@ -20,6 +20,7 @@ typedef struct from_value_wa_s {
     const afw_object_options_t *options;
     void * context;
     afw_write_cb_t callback;
+    const afw_utf8_t *indent_unit; /* NULL → default four spaces when do_ws */
     afw_size_t indent;
     afw_size_t object_depth;
     afw_boolean_t skip_next_ws;
@@ -105,8 +106,13 @@ impl_put_ws(impl_from_value_wa_t *wa)
         if (!wa->skip_next_ws) {
             impl_putc(wa, '\n');
             for (indent = 1; indent <= wa->indent; indent++) {
-                /* default whitespace indentation to 4 spaces */                
-                impl_puts(wa, "    ");
+                if (wa->indent_unit && wa->indent_unit->len > 0) {
+                    impl_write(wa, wa->indent_unit->s, wa->indent_unit->len);
+                }
+                else {
+                    /* default whitespace indentation to 4 spaces */
+                    impl_puts(wa, "    ");
+                }
             }
         }
         wa->skip_next_ws = 0;
@@ -119,7 +125,9 @@ impl_put_json_string(
     impl_from_value_wa_t *wa,
     const afw_utf8_t *string)
 {
-    afw_utf8_octet_t c;
+    /* Unsigned: afw_utf8_octet_t is char and may be signed; high UTF-8 bytes
+     * must not be treated as control characters (see afw_common.h). */
+    unsigned char c;
     afw_size_t len;
     const afw_utf8_octet_t *s;
 
@@ -129,14 +137,17 @@ impl_put_json_string(
     len = string->len;
 
     while (len > 0) {
-        c = *s;
+        c = (unsigned char)*s;
 
         /* Add an extra backslash if character is backslash or quote. */
         if (c == '\\' || c == '"') {
             impl_putc(wa, '\\');
         }
 
-        /* If not a control character, output the character. */
+        /*
+         * Pass through ASCII printable and all non-ASCII UTF-8 octets.
+         * JSON (RFC 8259) only requires escaping ", \, and U+0000–U+001F.
+         */
         if (c >= 32) {
             impl_putc(wa, c);
         }
@@ -171,7 +182,7 @@ impl_put_json_string(
          * byte hex characters.
          */
         else {
-            impl_printf(wa, "\\u%04x", c);
+            impl_printf(wa, "\\u%04x", (unsigned)c);
         }
 
         len--;
@@ -201,7 +212,7 @@ impl_convert_list_to_json(
     impl_from_value_wa_t *wa,
     const afw_array_t *list)
 {
-    const afw_iterator_t *list_iterator;
+    const afw_iterator_old_t *list_iterator;
     const afw_value_t *next;
 
     /* Put [ and increment indent. */
@@ -234,7 +245,7 @@ impl_convert_object_to_json(
     impl_from_value_wa_t *wa,
     const afw_object_t *obj)
 {
-    const afw_iterator_t *property_iterator;
+    const afw_iterator_old_t *property_iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *next;
     afw_boolean_t starting_comma_needed;
@@ -457,6 +468,7 @@ void
 afw_json_internal_write_value(
     const afw_value_t *value,
     const afw_object_options_t *options,
+    const afw_utf8_t *indent,
     void * context,
     afw_write_cb_t callback,
     const afw_pool_t *p,
@@ -469,7 +481,9 @@ afw_json_internal_write_value(
     wa.xctx = xctx;
     wa.p = p;
     wa.options = options;
-    wa.do_ws = AFW_OBJECT_OPTION_IS(options, whitespace);
+    wa.indent_unit = indent;
+    wa.do_ws = AFW_OBJECT_OPTION_IS(options, whitespace) ||
+        (indent && indent->len > 0);
     wa.do_typed_values = AFW_OBJECT_OPTION_IS(options, typedValues);
     wa.skip_next_ws = 1;
     wa.context = context;
@@ -487,12 +501,24 @@ afw_json_from_value(
     const afw_object_options_t *options,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
+    return afw_json_from_value_with_indent(value, options, NULL, p, xctx);
+}
+
+
+/* Convert a value to json with optional indent unit string. */
+AFW_DEFINE(const afw_utf8_t *)
+afw_json_from_value_with_indent(
+    const afw_value_t *value,
+    const afw_object_options_t *options,
+    const afw_utf8_t *indent,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
     const afw_memory_writer_t *writer;
     const afw_memory_t *raw;
 
     writer = afw_memory_create_writer(p, xctx);
 
-    afw_json_internal_write_value(value, options,
+    afw_json_internal_write_value(value, options, indent,
         writer->context, writer->callback, p, xctx);
 
     raw = afw_memory_writer_retrieve_and_release(writer, xctx);
@@ -506,8 +532,11 @@ afw_json_write_encoded_string(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    afw_utf8_octet_t c;
-    afw_utf8_octet_t c2[2];
+    /* Unsigned: see impl_put_json_string — signed char breaks UTF-8. */
+    unsigned char c;
+    char c1;
+    char hex2[2];
+    static const char hex_digits[] = "0123456789abcdef";
     afw_size_t len;
     const afw_utf8_octet_t *s;
 
@@ -517,16 +546,17 @@ afw_json_write_encoded_string(
     len = string->len;
 
     while (len > 0) {
-        c = *s;
+        c = (unsigned char)*s;
 
         /* Add an extra backslash if character is backslash or quote. */
         if (c == '\\' || c == '"') {
             afw_writer_write_z(writer, "\\", xctx);
         }
 
-        /* If not a control character, output the character. */
+        /* ASCII printable and non-ASCII UTF-8 octets (RFC 8259). */
         if (c >= 32) {
-            afw_writer_write(writer, &c, 1, xctx);
+            c1 = (char)c;
+            afw_writer_write(writer, &c1, 1, xctx);
         }
 
         /* If \n */
@@ -560,9 +590,9 @@ afw_json_write_encoded_string(
          */
         else {
             afw_writer_write_z(writer, "\\u00", xctx);
-            c2[0] = c / 16 + '0';
-            c2[1] = c % 16 + '0';
-            afw_writer_write(writer, &c2, 2, xctx);
+            hex2[0] = hex_digits[c / 16];
+            hex2[1] = hex_digits[c % 16];
+            afw_writer_write(writer, hex2, 2, xctx);
         }
 
         len--;

@@ -21,7 +21,7 @@
 /* Declares and rti/inf defines for interface afw_extension */
 #define AFW_IMPLEMENTATION_ID "afw_components"
 #include "afw_extension_impl_declares.h"
-#include "generated/afw_components_generated.h"
+#include "generated/afw_components_generated_internal.h"
 #include "generated/afw_components_version_info.h"
 
 
@@ -34,7 +34,7 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
  */
 const afw_extension_t *
 impl_afw_extension_initialize(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -50,7 +50,7 @@ impl_afw_extension_initialize(
     /* Call the generated register function for this extension. */
     afw_components_generated_register(xctx);
 
-    /* Return extension instance. */
+    /* Return extension self. */
     return &impl_extension;
 }
 
@@ -60,7 +60,7 @@ impl_afw_extension_initialize(
  */
 void
 impl_afw_extension_release(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     afw_xctx_t *xctx)
 {
     /* Extension release() is not currently called. */

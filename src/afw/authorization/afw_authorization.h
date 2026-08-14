@@ -18,9 +18,11 @@
 
 /**
  * @file afw_authorization.h
- * @brief Adaptive Framework authorization.
+ * @brief Authorization check APIs and handler support.
  *
- * See @ref afw_authorization.
+ * See @ref afw_authorization. Core asks installed handlers whether an action
+ * is allowed; script handlers run policy as Adaptive Script. Prefer these
+ * helpers and `afw_authorization_handler_*()` macros over ad-hoc checks.
  */
 
 AFW_BEGIN_DECLARES

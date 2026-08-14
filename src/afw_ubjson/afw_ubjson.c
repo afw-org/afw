@@ -13,7 +13,7 @@
 
 #include "afw.h"
 #include "afw_content_type_impl.h"
-#include "generated/afw_ubjson_generated.h"
+#include "generated/afw_ubjson_generated_internal.h"
 #include "generated/afw_ubjson_version_info.h"
 
 
@@ -75,7 +75,7 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
  */
 const afw_extension_t *
 impl_afw_extension_initialize(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -101,7 +101,7 @@ impl_afw_extension_initialize(
  */
 void
 impl_afw_extension_release(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     afw_xctx_t *xctx)
 {
     /* Extension release() is not currently called. */
@@ -113,7 +113,7 @@ impl_afw_extension_release(
  */
 const afw_value_t *
 impl_afw_content_type_raw_to_value(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_pool_t * p,
@@ -129,7 +129,7 @@ impl_afw_content_type_raw_to_value(
  */
 const afw_object_t *
 impl_afw_content_type_raw_to_object (
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_utf8_t * adapter_id,
@@ -150,7 +150,7 @@ impl_afw_content_type_raw_to_object (
  */
 void
 impl_afw_content_type_write_value(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_value_t * value,
     const afw_object_options_t *options,
     void * context,
@@ -169,14 +169,14 @@ impl_afw_content_type_write_value(
  */
 const afw_content_type_object_list_writer_t *
 impl_afw_content_type_create_object_list_writer(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_object_options_t *options,
     void * context,
     afw_write_cb_t callback,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return afw_content_type_impl_create_object_list_writer(
-        instance, options, context, callback,
+        self, options, context, callback,
         &impl_raw_begin_object_list,
         NULL,
         NULL,

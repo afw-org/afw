@@ -1,0 +1,39 @@
+# Scenario: action feed is not only eval — any Adaptive function
+# Stresses: feed.function override, feed.args (sketch), non-eval work unit.
+#
+# Note: exact function ids/arg shapes must match product; this is a shape test.
+
+version: 1
+description: Action feed calling a non-eval Adaptive function (shape sketch)
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  # Default path still works:
+  - name: eval-path
+    sourceType: script
+    source: |
+      return 1;
+    expect: 1
+
+  # Explicit function (illustrative — names may need adjusting when real):
+  - name: retrieve-via-action
+    feed:
+      kind: action
+      function: retrieve_objects
+      # later: args map instead of sourceType/source
+      # args:
+      #   adapterId: afw
+      #   objectType: _AdaptiveObjectType_
+      #   maxObjects: 1
+    description: >
+      PLACEHOLDER — when implementing, either map sourceType/source only for
+      eval-* functions, or support feed.args for arbitrary functions.
+    skip: true

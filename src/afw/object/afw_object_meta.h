@@ -18,7 +18,7 @@
 
 /**
  * @file afw_object_meta.h
- * @brief afw_object Interface meta helpers.
+ * @brief Object meta property helpers (objectId, objectType, path).
  */
 
 AFW_BEGIN_DECLARES

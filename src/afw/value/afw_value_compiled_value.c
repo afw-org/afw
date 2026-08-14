@@ -30,6 +30,7 @@
 #define AFW_IMPLEMENTATION_ID "compiled_value"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_compiled_value_inf
+#define AFW_VALUE_SELF_T afw_value_compiled_value_t
 #include "afw_value_impl_declares.h"
 
 
@@ -38,23 +39,48 @@
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
     const afw_value_t *result;
+    const afw_value_t *saved_script_result;
+    afw_boolean_t saved_script_result_active;
+    afw_boolean_t saved_script_result_written;
     int nelts;
 
     nelts = xctx->scope_stack->nelts;
+    saved_script_result = xctx->script_result;
+    saved_script_result_active = xctx->script_result_active;
+    saved_script_result_written = xctx->script_result_written;
+    if (self->full_source_type &&
+        afw_utf8_equal(self->full_source_type, afw_s_script))
+    {
+        xctx->script_result = afw_value_undefined;
+        xctx->script_result_active = true;
+        xctx->script_result_written = false;
+    }
     AFW_TRY {
 
         /* Push a NULL onto the scope stack to indicate new compiled value. */
         APR_ARRAY_PUSH(xctx->scope_stack, const afw_xctx_scope_t *) = NULL;
 
         /* Evaluate compiled value root value. */
-        result = afw_value_evaluate(self->root_value, p, xctx);
+        if (xctx->script_result_active &&
+            self->root_value &&
+            afw_value_is_block(self->root_value))
+        {
+            afw_function_execute_t exec;
+
+            exec.p = p;
+            exec.xctx = xctx;
+            result = afw_value_block_evaluate_block(&exec,
+                (const afw_value_block_t *)self->root_value, p, xctx,
+                false);
+        }
+        else {
+            result = afw_value_evaluate(self->root_value, p, xctx);
+        }
 
     }
     AFW_FINALLY {
@@ -69,6 +95,10 @@ impl_afw_value_optional_evaluate(
 
         /* Pop off the NULL compiled value indicator on scope stack. */
         apr_array_pop(xctx->scope_stack);
+
+        xctx->script_result = saved_script_result;
+        xctx->script_result_active = saved_script_result_active;
+        xctx->script_result_written = saved_script_result_written;
         
     }
     AFW_ENDTRY;
@@ -85,7 +115,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Compiled values are always data type unevaluated. */
@@ -97,18 +127,16 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
     const afw_utf8_t *reference_id;
 
     reference_id = afw_value_compiler_listing_for_child(
-        instance, writer, xctx);
+        &self->pub, writer, xctx);
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer,
         " // See below beginning with: ---CompiledValue ",
@@ -122,12 +150,10 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
 
     afw_value_decompile(self->root_value, writer, xctx);
     /*FIXME Improve */
@@ -139,12 +165,12 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
-    info->optimized_value = instance;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
+    info->optimized_value = &self->pub;
 }

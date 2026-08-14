@@ -1,6 +1,6 @@
 {
     "brief": "Declare one or more variables in the current block",
-    "category": "compiler_script",
+    "category": "compiler_internal",
     "description": "Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks.",
     "functionId": "let",
     "functionLabel": "let",
@@ -27,7 +27,8 @@
     ],
     "pure": true,
     "returns": {
-        "description": "The value assigned."
+        "dataType": "void",
+        "description": "Does not complete. A let statement does not override the running result."
     },
     "scriptSupport": true
 }

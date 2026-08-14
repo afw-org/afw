@@ -8,7 +8,7 @@
 
 /**
  * @file afw_file.c
- * @brief Adaptive framework file support
+ * @brief File adapter and local filesystem object storage.
  */
 
 #include "afw_internal.h"
@@ -19,7 +19,9 @@
 /* Declares and rti/inf defines for interface afw_adapter_factory */
 #define AFW_IMPLEMENTATION_ID "file"
 #include "afw_adapter_factory_impl_declares.h"
+#define AFW_ADAPTER_SELF_T afw_file_internal_adapter_t
 #include "afw_adapter_impl_declares.h"
+#define AFW_ADAPTER_SESSION_SELF_T afw_file_internal_adapter_session_t
 #include "afw_adapter_session_impl_declares.h"
 
 
@@ -183,7 +185,7 @@ afw_file_from_memory(
             APR_FPROT_OS_DEFAULT, apr_p);
         if (rv == APR_SUCCESS) {
             apr_file_close(f);
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(conflict, xctx,
                 "File %s already exists.", file_path_z);
         }
         /* If there is a '/' in path, make sure all of the directories exist */
@@ -269,7 +271,7 @@ afw_file_adapter_factory_get()
  */
 const afw_adapter_t *
 impl_afw_adapter_factory_create_adapter_cede_p (
-    const afw_adapter_factory_t * instance,
+    const afw_adapter_factory_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -375,11 +377,11 @@ afw_file_adapter_create_cede_p(
  */
 void
 impl_afw_adapter_destroy(
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Release pool. */
-    afw_pool_release(instance->p, xctx);
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
@@ -388,10 +390,9 @@ impl_afw_adapter_destroy(
  */
 const afw_adapter_session_t *
 impl_afw_adapter_create_adapter_session (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_t *self = (afw_file_internal_adapter_t *)instance;
     afw_file_internal_adapter_session_t *session;
 
     session = afw_xctx_calloc_type(afw_file_internal_adapter_session_t, xctx);
@@ -400,7 +401,7 @@ impl_afw_adapter_create_adapter_session (
     session->pub.p = xctx->p;
     session->adapter = self;
 
-    /* Adapter session instance holds event journal instance. */
+    /* Adapter session &self->pub holds event journal &self->pub. */
     session->journal.inf = afw_file_internal_get_journal_inf();
     session->journal.session = (afw_adapter_session_t *)session;
 
@@ -415,7 +416,7 @@ impl_afw_adapter_create_adapter_session (
  */
 const afw_object_t *
 impl_afw_adapter_get_additional_metrics(
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
@@ -446,7 +447,7 @@ impl_get_full_path(
  */
 void
 impl_afw_adapter_session_destroy(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -459,7 +460,7 @@ impl_afw_adapter_session_destroy(
  */
 void
 impl_afw_adapter_session_retrieve_objects(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
@@ -469,7 +470,6 @@ impl_afw_adapter_session_retrieve_objects(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const char *dirname_z;
     const afw_utf8_t *full_path;
@@ -504,6 +504,9 @@ impl_afw_adapter_session_retrieve_objects(
 
     /* Process each JSON object in directory. */
     while (1) {
+
+        /* Stop starting more I/O if the server is shutting down. */
+        AFW_XCTX_THROW_IF_TERMINATING(xctx);
 
         /* Read next directory entry until there are no more.*/
         rv = apr_dir_read(&finfo, APR_FINFO_SIZE + APR_FINFO_NAME, dir);
@@ -549,7 +552,7 @@ impl_afw_adapter_session_retrieve_objects(
             AFW_UTF8_FMT_OPTIONAL_ARG(adapter->filename_suffix));
 
         /*
-         * Load file to memory and convert to object instance.  Ceed control
+         * Load file to memory and convert to object &self->pub.  Ceed control
          * of obj_p to object.
          */
         raw = afw_file_to_memory(full_path, (apr_size_t)finfo.size,
@@ -591,7 +594,7 @@ impl_afw_adapter_session_retrieve_objects(
  */
 void
 impl_afw_adapter_session_get_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -601,7 +604,6 @@ impl_afw_adapter_session_get_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
@@ -616,7 +618,7 @@ impl_afw_adapter_session_get_object(
         obj_p, xctx);
 
     /*
-     * Load file to memory and convert to object instance.  Ceed control
+     * Load file to memory and convert to object &self->pub.  Ceed control
      * of obj_p to object.
      */
     raw = afw_file_to_memory(full_path, 0, obj_p, xctx);
@@ -635,7 +637,7 @@ impl_afw_adapter_session_get_object(
  */
 const afw_utf8_t *
 impl_afw_adapter_session_add_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *suggested_object_id,
@@ -643,7 +645,6 @@ impl_afw_adapter_session_add_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
@@ -669,7 +670,7 @@ impl_afw_adapter_session_add_object(
  */
 void
 impl_afw_adapter_session_modify_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -677,8 +678,6 @@ impl_afw_adapter_session_modify_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_session_t * self =
-        (afw_file_internal_adapter_session_t *)instance;
     afw_file_internal_adapter_t *adapter =
         (afw_file_internal_adapter_t *)self->adapter;
     const afw_object_t *object;
@@ -727,7 +726,7 @@ impl_afw_adapter_session_modify_object(
  */
 void
 impl_afw_adapter_session_replace_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -735,7 +734,6 @@ impl_afw_adapter_session_replace_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
@@ -762,14 +760,13 @@ impl_afw_adapter_session_replace_object(
  */
 void
 impl_afw_adapter_session_delete_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
     afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
 
@@ -784,7 +781,7 @@ impl_afw_adapter_session_delete_object(
  */
 const afw_adapter_transaction_t *
 impl_afw_adapter_session_begin_transaction(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* This adapter does not support transactions. */
@@ -797,12 +794,11 @@ impl_afw_adapter_session_begin_transaction(
  */
 const afw_adapter_journal_t *
 impl_afw_adapter_session_get_journal_interface(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
 
-    /* Return event journal instance. */
+    /* Return event journal &self->pub. */
     return (afw_adapter_journal_t *)&self->journal;
 }
 
@@ -814,7 +810,7 @@ impl_afw_adapter_session_get_journal_interface(
  */
 const afw_adapter_key_value_t *
 impl_afw_adapter_session_get_key_value_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Key value interface is not supported by this adapter. */
@@ -826,7 +822,7 @@ impl_afw_adapter_session_get_key_value_interface (
  */
 const afw_adapter_impl_index_t *
 impl_afw_adapter_session_get_index_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Key value interface is not supported by this adapter. */
@@ -840,7 +836,7 @@ impl_afw_adapter_session_get_index_interface (
  */
 const afw_adapter_object_type_cache_t *
 impl_afw_adapter_session_get_object_type_cache_interface(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is on adapter cache. */

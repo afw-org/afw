@@ -1,0 +1,29 @@
+{
+    "brief": "Make <dataType> value immutable",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Set a <dataType> value immutable so further mutation throws. If already immutable, has no effect. Returns the same value.",
+    "functionId": "freeze",
+    "functionLabel": "freeze",
+    "pure": false,
+    "parameters": [
+        {
+            "description": "The <dataType> value to freeze.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "array",
+        "object"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_freeze",
+    "returns": {
+        "description": "The same value, now immutable.",
+        "polymorphicDataType": true
+    },
+    "sideEffects": [
+        "The value is set immutable."
+    ]
+}

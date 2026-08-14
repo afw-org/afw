@@ -9,7 +9,7 @@
 
 /**
  * @file afw_debug.c
- * @brief Adaptive Framework Debug
+ * @brief Debug write helpers used by AFW_DEBUG* macros.
  */
 
 #include "afw_internal.h"

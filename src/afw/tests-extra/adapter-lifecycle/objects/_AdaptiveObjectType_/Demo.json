@@ -1,0 +1,12 @@
+{
+    "objectType": "Demo",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,
+    "propertyTypes": {
+        "msg": {
+            "dataType": "string"
+        }
+    }
+}

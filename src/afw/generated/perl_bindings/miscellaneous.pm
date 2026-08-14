@@ -111,25 +111,27 @@ Generate UUID
 
 =head3 is_defined
 
-Test value returning boolean True if it is not undefined.
-Is defined
+Return true if the value is not undefined. Does not check whether a variable
+name is bound — use variable_exists for that. null is defined.
+True if value is not undefined
 
 =head4 Parameters
 
     $value
 
-Value to check
+Value to check.
 
 =head3 is_nullish
 
-Test value returning boolean True if it is null or undefined.
-Is nullish
+Return true if the value is null or undefined. Does not check whether a
+variable name is bound — use variable_exists for that.
+True if value is null or undefined
 
 =head4 Parameters
 
     $value
 
-Value to check
+Value to check.
 
 =head3 log
 
@@ -213,45 +215,50 @@ identify the trace log. The default is 1.
 
 =head3 variable_exists
 
-Return the true if the named variable exists.
-Determine if a variable exists
+Return true if the named variable is bound: a lexical symbol in the current
+scope chain, or a name defined on a visible qualifier frame. Still true when
+the value is undefined (including an uninitialized let) or null. False only
+when the name is not bound. Use is_defined / is_nullish for the value.
+True if a variable name is bound
 
 =head4 Parameters
 
     $name
 
-Name of variable to check. The name can optionally be preceded with a
-qualifier followed by '::'.
+Name of variable to check. Optionally qualifier::name.
 
 =head3 variable_get
 
-Return the value of a variable. If variable is not available, return a default
-or null value.
-Get a variable value
+Return the value of a bound variable. Optional default applies only when the
+name is not bound — not when the value is undefined. If unbound and no default
+is given, the result is undefined. Object/array defaults get a mutable memory
+face (issues #110 / #17); other defaults are cloned.
+Get a bound variable value
 
 =head4 Parameters
 
     $name
 
-Name of variable to get. The name can optionally be preceded with a qualifier
-followed by '::'.
+Name of variable to get. Optionally qualifier::name.
 
     $defaultValue
 
-The default value of variable if it does not exist in object. If not
-specified, null value is the default.
+Value to return only if the name is not bound. Isolated when used
+(object/array face; otherwise clone).
 
 =head3 variable_is_not_null
 
-Return the true if the named variable exists and is not null.
-Determine if a variable exists and is not null
+Return true if the named variable is bound and its value is not Adaptive null.
+Undefined (including an uninitialized let) counts as not null. False if the
+name is not bound or the value is null. This is not the same as is_defined or
+not is_nullish.
+True if bound and not Adaptive null
 
 =head4 Parameters
 
     $name
 
-Name of variable to check. The name can optionally be preceded with a
-qualifier followed by '::'.
+Name of variable to check. Optionally qualifier::name.
 
 =cut
 

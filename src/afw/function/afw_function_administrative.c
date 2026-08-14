@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_administrative.c
- * @brief afw_function_execute_* functions for administrative.
+ * @brief Adaptive function execute implementations for category `administrative`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_flag_get_active
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an array of of the flagId of flags that are set in the current execution
  * context (xctx).
@@ -34,15 +34,14 @@
  *
  * ```
  *   function flag_get_active(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags that are set in the
+ *   (string[]) This is an array of the flagId of flags that are set in the
  *       current execution context (xctx).
  */
 const afw_value_t *
@@ -60,7 +59,7 @@ afw_function_execute_flag_get_active(
         i++)
     {
         if (x->xctx->flags[i]) {
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
@@ -75,7 +74,7 @@ afw_function_execute_flag_get_active(
  *
  * afw_function_execute_flag_get_active_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an array of the flagId of flags that are set by default when a new
  * execution context (xctx) is created.
@@ -87,16 +86,15 @@ afw_function_execute_flag_get_active(
  *
  * ```
  *   function flag_get_active_defaults(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags that are set by
- *       default when a new execution context (xctx) is created.
+ *   (string[]) This is an array of the flagId of flags that are set by default
+ *       when a new execution context (xctx) is created.
  */
 const afw_value_t *
 afw_function_execute_flag_get_active_defaults(
@@ -113,7 +111,7 @@ afw_function_execute_flag_get_active_defaults(
         i++)
     {
         if (x->xctx->env->default_flags[i]) {
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
@@ -128,7 +126,7 @@ afw_function_execute_flag_get_active_defaults(
  *
  * afw_function_execute_flag_get_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get the array of the flagId of flags that are used to determine the default
  * active flags when an execution context (xctx) is created. This array can
@@ -144,16 +142,15 @@ afw_function_execute_flag_get_active_defaults(
  *
  * ```
  *   function flag_get_defaults(
- *   
- *   ): (array string);
+ *   ): string[];
  * ```
  *
  * Parameters:
  *
  * Returns:
  *
- *   (array string) This is an array of the flagId of flags used to determine
- *       the default active flags.
+ *   (string[]) This is an array of the flagId of flags used to determine the
+ *       default active flags.
  */
 const afw_value_t *
 afw_function_execute_flag_get_defaults(
@@ -174,7 +171,7 @@ afw_function_execute_flag_get_defaults(
             for (flag_id = env_internal->default_flag_ids; *flag_id; flag_id++)
             {
                 s = afw_utf8_clone(*flag_id, x->p, x->xctx);
-                afw_array_add_internal(array, afw_data_type_string, s, x->xctx);
+                afw_array_push_internal(array, afw_data_type_string, s, x->xctx);
             }
         }
 
@@ -191,7 +188,7 @@ afw_function_execute_flag_get_defaults(
  *
  * afw_function_execute_flag_modify_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add or remove flags from the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
@@ -212,14 +209,14 @@ afw_function_execute_flag_get_defaults(
  *
  * ```
  *   function flag_modify_defaults(
- *       flagId: (array string),
+ *       flagId: string[],
  *       add?: boolean
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) The flagId of flags to be added or removed.
+ *   flagId - (string[]) The flagId of flags to be added or removed.
  *
  *   add - (optional boolean) Specify true to add and false to remove flags. If
  *       not specified, flags are added.
@@ -235,7 +232,7 @@ afw_function_execute_flag_modify_defaults(
     const afw_value_array_t *array_value;
     const afw_value_boolean_t *set_to_value;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
     const void *internal;
     afw_boolean_t add;
@@ -271,8 +268,8 @@ afw_function_execute_flag_modify_defaults(
         afw_flag_set_default(flag_id, add, x->xctx);
     }
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -282,7 +279,7 @@ afw_function_execute_flag_modify_defaults(
  *
  * afw_function_execute_flag_replace_defaults
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Completely replace the array of the flagId of flags that are used to
  * determine the default active flags when an execution context (xctx) is
@@ -303,14 +300,14 @@ afw_function_execute_flag_modify_defaults(
  *
  * ```
  *   function flag_replace_defaults(
- *       flagId: (array string)
+ *       flagId: string[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) The array of the flagId of flags used to determine
- *       the default active flags.
+ *   flagId - (string[]) The array of the flagId of flags used to determine the
+ *       default active flags.
  *
  * Returns:
  *
@@ -326,8 +323,8 @@ afw_function_execute_flag_replace_defaults(
 
     afw_flag_set_default_flag_ids(array_value->internal, x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -337,7 +334,7 @@ afw_function_execute_flag_replace_defaults(
  *
  * afw_function_execute_flag_set
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Set or unset one or more active xctx (request) flags.
  *
@@ -350,14 +347,14 @@ afw_function_execute_flag_replace_defaults(
  *
  * ```
  *   function flag_set(
- *       flagId: (array string),
+ *       flagId: string[],
  *       setTo?: boolean
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   flagId - (array string) List of flagId of flags to set or unset.
+ *   flagId - (string[]) List of flagId of flags to set or unset.
  *
  *   setTo - (optional boolean) Specify true to set and false to unset. If not
  *       specified, flags are set.
@@ -373,7 +370,7 @@ afw_function_execute_flag_set(
     const afw_value_array_t *array_value;
     const afw_value_boolean_t *set_to_value;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
     const void *internal;
     afw_boolean_t set_to;
@@ -409,8 +406,8 @@ afw_function_execute_flag_set(
         afw_flag_set(flag_id, set_to, x->xctx);
     }
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -420,7 +417,7 @@ afw_function_execute_flag_set(
  *
  * afw_function_execute_extension_load
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Load an extension by its extension id if it is not already loaded. Loading an
  * AFW package's manifest extension will register the manifest of all extensions
@@ -480,7 +477,7 @@ afw_function_execute_extension_load(
  *
  * afw_function_execute_extension_load_by_module_path
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Load an extension by its module path. Loading an AFW package's manifest
  * extension will register the manifest of all extensions in the package.
@@ -535,7 +532,7 @@ afw_function_execute_extension_load_by_module_path(
  *
  * afw_function_execute_registry_key_check
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This will check to see if a registry key exists for a specified registry type
  * and optionally load it's associated extension if needed.
@@ -625,7 +622,7 @@ afw_function_execute_registry_key_check(
  *
  * afw_function_execute_service_get
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get a service object.
  *
@@ -639,7 +636,7 @@ afw_function_execute_registry_key_check(
  * ```
  *   function service_get(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -678,7 +675,7 @@ afw_function_execute_service_get(
  *
  * afw_function_execute_service_restart
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Restart a service.
  *
@@ -692,7 +689,7 @@ afw_function_execute_service_get(
  * ```
  *   function service_restart(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -733,7 +730,7 @@ afw_function_execute_service_restart(
  *
  * afw_function_execute_service_start
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Start a service.
  *
@@ -747,7 +744,7 @@ afw_function_execute_service_restart(
  * ```
  *   function service_start(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:
@@ -788,7 +785,7 @@ afw_function_execute_service_start(
  *
  * afw_function_execute_service_stop
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Stop a service.
  *
@@ -802,7 +799,7 @@ afw_function_execute_service_start(
  * ```
  *   function service_stop(
  *       serviceId: string
- *   ): (object _AdaptiveService_);
+ *   ): object; // _AdaptiveService_
  * ```
  *
  * Parameters:

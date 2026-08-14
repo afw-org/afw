@@ -19,7 +19,7 @@
 
 /**
  * @file afw_data_type_undefined_binding.c
- * @brief Adaptive Framework core data types.
+ * @brief Generated core adaptive data type implementations.
  */
 
 #include "afw.h"
@@ -52,8 +52,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_undefined_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent undefined values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent undefined (special type): optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_undefined"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_undefined_inf
@@ -110,15 +110,15 @@ impl_data_type_object_undefined__value = {
 };
 
 /* Value for empty array of undefined. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_undefined;
 
 /* Value for empty array of undefined. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_undefined;
 
 /* Data type undefined instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_undefined_direct = {
     &afw_data_type_undefined_inf,
     (const afw_object_t *)&impl_data_type_object_undefined,
@@ -141,7 +141,8 @@ afw_data_type_undefined_direct = {
     true,
     false,
     true,
-    true
+    true,
+    NULL
 };
 
 /* Data type struct for undefined. */
@@ -156,7 +157,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 

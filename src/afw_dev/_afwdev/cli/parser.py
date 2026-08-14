@@ -200,7 +200,10 @@ def setup_parser(options):
         dest="SUBCOMMAND",
         help="Additional help",
         description="Valid subcommands")
-    for info in _subcommand_infos:
+    # Always alphabetical so new subcommands (e.g. blast) do not depend on
+    # list order in info.py for --help readability.
+    for info in sorted(
+            _subcommand_infos, key=lambda i: i.get('subcommand') or ''):
         add_args(subparsers, info)
 
     return parser

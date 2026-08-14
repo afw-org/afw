@@ -19,3 +19,27 @@ return'\uD83D\uDE00\uD83D\uDE01\uD83D\uDE02\uD83D\uDE03\uD83D\uDE04 == \u{1F600}
 
 return'\u{11FFFF}';
 
+
+//?
+//? test: HexEscapeSequence-xHH
+//? description: \xHH hex escapes
+//? expect: true
+//? source: ...
+
+return "\x41" === "A" && "\x00" === "\0" && "\x61" === "a";
+
+//?
+//? test: NonEscapeSequence-identity
+//? description: Identity NonEscapeSequence \A === A
+//? expect: true
+//? source: ...
+
+return "\A" === "A" && "\z" === "z" && "\Q" === "Q";
+
+//?
+//? test: NullEscape-backslash-zero
+//? description: \0 is U+0000 when not followed by a digit
+//? expect: true
+//? source: ...
+
+return "\0" === "\u0000" && length("\0") === 1;

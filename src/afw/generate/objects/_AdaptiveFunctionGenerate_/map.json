@@ -1,23 +1,24 @@
 {
-    "brief": "Maps values of an array",
+    "brief": "Map each array value through a function",
     "category": "higher_order_array",
-    "description": "This function creates an array of the results of calling functor with each value of the first array in values",
+    "description": "Call functor once for each entry of the first array in values, in index order from 0 through length minus one, and return a new array of the same length with the results. Entries whose value is undefined (including omitted elements in array literals) are included; the functor receives undefined for those indexes. Additional values parameters, if present, are passed through on every call.",
     "functionId": "map",
     "functionLabel": "map",
     "pure": true,
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(... values: any): any",
+            "dataTypeParameter": "(...values: any) => any",
             "name": "functor"
         },
         {
-            "description": "These are the parameters passed to functor with the exception that the first array is passed one value at a time. At least one array is required.",
+            "description": "The first array is walked one entry at a time as the first argument to functor. Additional parameters are passed on every call. At least one array is required.",
             "name": "values",
             "minArgs": 1
         }
     ],
     "returns": {
-        "dataType": "array"
+        "dataType": "array",
+        "description": "A new array with one result per entry of the first array."
     }
 }

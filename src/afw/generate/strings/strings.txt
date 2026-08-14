@@ -95,13 +95,43 @@ read
 
 # flags
 
+#
+# compile:* flags — process/session defaults for the Adaptive Script compiler.
+# At each compile start these are snapshotted into the unit's compile policy.
+# Checking uses that unit policy (via contextual->compiled_value), not a live
+# process flag read for every check. So flag_set after compile is too late for
+# that unit; use flag_set before compile… or #compile inside the source.
+# The #compile pragma may override allow-listed knobs for that unit only (never
+# changes process flags). Mid-unit #compile applies from that statement on for
+# later parse/checks in the same unit. Operand = short name after "compile:".
+# Example: #compile typeCheck noImplicitAny;
+# #compile noTypeCheck; forces the type-check cluster off for that unit's policy.
+# See designs/pragma-hash-design.md and afw_compile_parse_pragma.c.
+#
+
 a_flag_compile_noImplicitAny=compile:noImplicitAny
 a_flag_compile_noImplicitAny_brief=Do not infer type any
-a_flag_compile_noImplicitAny_description=If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed.
+a_flag_compile_noImplicitAny_description=If a type isn't provided where it can be, this flag triggers an error. Without this flag, 'any' is assumed. Only applies when type checking is active (compile:typeCheck or compile:typeCheckCompileOnly). Process default; a script may override for one compile unit with #compile noImplicitAny; (or #compile noTypeCheck; on that unit) without changing this flag for the rest of the process.
+
+a_flag_compile_typeCheck=compile:typeCheck
+a_flag_compile_typeCheck_brief=Enable compile and runtime type checking
+a_flag_compile_typeCheck_description=When set, Adaptive Script performs type checking at compile time when types are known from source, and at runtime on assignment and script function parameters. Default is off. If compile:typeCheckCompileOnly is also set, compile-only mode wins. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheck; (or #compile noTypeCheck;), including mid-unit so later statements use the new policy, without changing this flag for the rest of the process.
+
+a_flag_compile_typeCheckCompileOnly=compile:typeCheckCompileOnly
+a_flag_compile_typeCheckCompileOnly_brief=Enable compile-time type checking only
+a_flag_compile_typeCheckCompileOnly_description=When set, Adaptive Script performs type checking at compile time when types are known from source, but not at runtime. Default is off. Takes precedence over compile:typeCheck when both are set. Process default snapshotted at each compile start; a script may override for one unit with #compile typeCheckCompileOnly; (or #compile noTypeCheck;), including mid-unit, without changing this flag for the rest of the process.
+
+a_flag_compile_strictNullChecks=compile:strictNullChecks
+a_flag_compile_strictNullChecks_brief=Strict null and undefined checks
+a_flag_compile_strictNullChecks_description=When type checking is active, null and undefined are not assignable to non-nullish types unless the type includes them. Similar to TypeScript strictNullChecks. Process default; a script may override for one compile unit with #compile strictNullChecks; (or #compile noTypeCheck;) without changing this flag for the rest of the process.
+
+a_flag_compile_strict=compile:strict
+a_flag_compile_strict_brief=TypeScript-like strict type checking
+a_flag_compile_strict_description=Enables compile:typeCheck (compile and runtime), compile:noImplicitAny, and compile:strictNullChecks. Similar to TypeScript compilerOption strict. Process default; a script may override for one compile unit with #compile strict; (or #compile noTypeCheck;) without changing this flag for the rest of the process.
 
 a_flag_compile_noOptimize=compile:noOptimize
 a_flag_compile_noOptimize_brief=Evaluate values that have not been optimized
-a_flag_compile_noOptimize_description=Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core.
+a_flag_compile_noOptimize_description=Normally, the optimized version of adaptive values are evaluated. Use this flag to indicate that the value before optimization should be evaluated instead. This should only be needed when debugging afw core. Process default; a script may override for one compile unit with #compile noOptimize; without changing this flag for the rest of the process (#compile noTypeCheck; does not clear noOptimize on the unit).
 
 a_lock_multithreaded_pool=multithreaded_pool
 a_lock_multithreaded_pool_brief=Multithreaded pool
@@ -289,6 +319,7 @@ size
 uint32
 metrics
 adapter_metrics
+adapter_properties
 null_terminated_array_of_internal
 null_terminated_array_of_objects
 null_terminated_array_of_utf8_z_key_value_pair_objects
@@ -327,6 +358,11 @@ a_evaluate_expect_error=Evaluate expect error
 a_compile_source_error=Compile source error
 a_evaluate_source_error=Evaluate source error
 a_other_error=Other error
+a_expect_stdout_mismatch=expect-stdout mismatch
+a_expect_stderr_mismatch=expect-stderr mismatch
+# //? test_script side-channel expects (hyphen; not Adaptive-eval)
+expect_stdout=expect-stdout
+expect_stderr=expect-stderr
 a_slash_afw=/afw
 a_anonymous_function_id=**anonymous**
 
@@ -408,6 +444,11 @@ systemInfo
 
 # application
 a_context_type_application_qualifier_definitions_path=/afw/_AdaptiveContextType_/application/qualifierDefinitions
+a_context_type_process_qualifier_definitions_path=/afw/_AdaptiveContextType_/process/qualifierDefinitions
+process
+argv
+argc
+HOME
 mode
 pid
 scopeNumber
@@ -446,6 +487,8 @@ a_service_type_authorizationHandler_title=Service type for authorizationHandler.
 a_service_type_log_title=Service type for logs.
 stopping_adapter_instances
 stopping_authorization_handler_instances
+adapter_reference_count
+authorization_handler_reference_count
 Configuration
 
 a_application_json=application/json
@@ -767,3 +810,6 @@ case_insensitive_string=case-insensitive-string
 case_sensitive_string=case-sensitive-string
 sort_reverse=sort-reverse
 numeric
+args
+cwd
+platform

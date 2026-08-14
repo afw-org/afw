@@ -19,11 +19,11 @@
 
 /**
  * @file afw_lmdb_function_bindings.c
- * @brief Adaptive Framework core adaptive function bindings.
+ * @brief Generated adaptive function bindings for prefix `afw_lmdb_`.
  */
 
 #include "afw.h"
-#include "afw_lmdb_function_bindings.h"
+#include "afw_lmdb_function_bindings_internal.h"
 #include "afw_lmdb_runtime_object_maps.h"
 #include "afw_lmdb_strings.h"
 
@@ -68,7 +68,7 @@ impl_reader_check_returns = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_integer_direct,
     &afw_lmdb_self_v_integer,
     NULL,
     NULL,
@@ -79,6 +79,7 @@ impl_reader_check_returns = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t
@@ -95,7 +96,7 @@ impl_reader_check_parameter_1 = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_string_direct,
     &afw_lmdb_self_v_string,
     NULL,
     &afw_lmdb_self_v_adapterId,
@@ -106,6 +107,7 @@ impl_reader_check_parameter_1 = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t *
@@ -144,6 +146,7 @@ impl_reader_check = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
@@ -192,7 +195,7 @@ impl_reader_list_returns = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_string_direct,
     &afw_lmdb_self_v_string,
     NULL,
     NULL,
@@ -203,6 +206,7 @@ impl_reader_list_returns = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t
@@ -219,7 +223,7 @@ impl_reader_list_parameter_1 = {
             NULL,
         }
     },
-    NULL,
+    &afw_data_type_string_direct,
     &afw_lmdb_self_v_string,
     NULL,
     &afw_lmdb_self_v_adapterId,
@@ -230,6 +234,7 @@ impl_reader_list_parameter_1 = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    NULL
 };
 
 static const afw_value_function_parameter_t *
@@ -274,6 +279,7 @@ impl_reader_list = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    &afw_lmdb_boolean_self_v_false,
 };
 
 static const afw_value_function_definition_t * 
@@ -284,7 +290,7 @@ impl_function_bindings[] = {
 };
 
 /* Get array of pointers to afw_lmdb_function bindings. */
-AFW_LMDB_DEFINE(const afw_value_function_definition_t **)
+const afw_value_function_definition_t **
 afw_lmdb_function_bindings_get()
 {
     return &impl_function_bindings[0];

@@ -15,6 +15,16 @@
             creating a script, a new block is created initially. Blocks can be nested 
             inside existing blocks, using braces <literal>{ }</literal>.
         </paragraph>
+        <paragraph>
+            The result of a script is set by <literal>return</literal>, by
+            assignment, and by calling a function that is not
+            <literal>void</literal>. Other statements, including
+            <literal>let</literal>, <literal>const</literal>,
+            <literal>print()</literal>, and a script function declared
+            <literal>: void</literal>, do not change it. If the script is
+            only a call or an expression, that value is the result. An
+            empty script is <literal>undefined</literal>.
+        </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[{
@@ -29,9 +39,21 @@
         <title>Assignment</title>
         <image generated-src="ebnf/syntax/diagram/Assignment.png" />
         <paragraph>
-            The Assignment statement assigns the value of an Expression to 
-            an AssignmentExpression. An AssignmentExpression is also an Expression 
-            which must evaluate to one of the following: 
+            The Assignment statement assigns the value of an Expression to
+            a variable, a property, or an index. You can chain assignments
+            in one statement, from right to left. For example,
+            <literal>x = y = 1</literal> sets both names to
+            <literal>1</literal>. Compound forms such as
+            <literal>+=</literal> can be used in the chain. Assignment is
+            a statement, not an expression, so
+            <literal>(x = 1) &gt; x</literal> and
+            <literal>x = (y = 1)</literal> are not allowed. The
+            right-hand side of <literal>let</literal> and
+            <literal>const</literal> is still an Expression, so
+            <literal>let x = y = 1</literal> is also not allowed.
+        </paragraph>
+        <paragraph>
+            The target must evaluate to one of the following:
         </paragraph>
         <list>
             <item>VariableReference</item>
@@ -46,7 +68,9 @@
         <section>
             <title>Example</title>
             <code><![CDATA[let x = 1;
-let {y} = { y: 2 };
+let y;
+x = y = 2;
+let { host } = { host: "h" };
 let [z] = [ 3 ];]]></code>
         </section>
     </section>
@@ -54,7 +78,10 @@ let [z] = [ 3 ];]]></code>
         <title>Break</title>
         <image generated-src="ebnf/syntax/diagram/BreakStatement.png" />        
         <paragraph>
-            The <literal>break</literal> statement breaks out of the current block.
+            The <literal>break</literal> statement breaks out of the
+            current loop or <literal>switch</literal>. You may specify a
+            loop label to break out of that loop instead of the innermost
+            one.
         </paragraph>    
         <section>
             <title>Example</title>            
@@ -62,6 +89,11 @@ let [z] = [ 3 ];]]></code>
         if (1 < 2) {
             break;
         }
+}
+outer: for (let i = 0; i < 3; i = i + 1) {
+    for (let j = 0; j < 3; j = j + 1) {
+        break outer;
+    }
 }]]></code>
         </section>
     </section>
@@ -77,18 +109,40 @@ let [z] = [ 3 ];]]></code>
         <title>Const</title>
         <image generated-src="ebnf/syntax/diagram/ConstStatement.png" />
         <paragraph>            
-            The <literal>const</literal> statement declares constant variables.
+            The <literal>const</literal> statement declares constant
+            variables. Each name must have an initializer. You can declare
+            more than one name in the same statement, separated by commas.
+            A <literal>const</literal> cannot be assigned again.
         </paragraph>
         <section>
             <title>Example</title>
-            <code><![CDATA[const x = 1;]]></code>
+            <code><![CDATA[const x = 1;
+const a = 1, b = 2;
+const p: integer = 0, q: integer = 1;]]></code>
         </section>
     </section>
     <section>
-        <title>Declare</title>
-        <image generated-src="ebnf/syntax/diagram/DeclareStatement.png" />
-        <paragraph>            
+        <title>Continue</title>
+        <image generated-src="ebnf/syntax/diagram/ContinueStatement.png" />
+        <paragraph>
+            The <literal>continue</literal> statement continues with the
+            next iteration of the current loop. You may specify a loop
+            label. The <literal>continue</literal> statement cannot be
+            used outside of a loop.
         </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[for (let i = 0; i < 5; i = i + 1) {
+    if (i === 2) {
+        continue;
+    }
+}
+outer: for (let i = 0; i < 3; i = i + 1) {
+    for (let j = 0; j < 3; j = j + 1) {
+        continue outer;
+    }
+}]]></code>
+        </section>
     </section>
     <section>
         <title>Do While</title>
@@ -96,7 +150,9 @@ let [z] = [ 3 ];]]></code>
         <paragraph>
             The do-while statement executes a block of statements until a 
             condition is met. Unlike the while statement, the do-while statement
-            executes at least once.
+            executes at least once. You may also put a label in front of
+            the statement, the same way you can with
+            <literal>for</literal>.
         </paragraph>
         <section>
             <title>Example</title>
@@ -113,11 +169,33 @@ do {
             The <literal>for</literal> statement executes a block of statements 
             until a condition is met. Unlike the while statement, the for 
             statement executes an initializer, a condition, and an incrementor.
+            The initializer can be empty, a single <literal>let</literal>,
+            a single <literal>const</literal>, or assignment. You can
+            declare more than one name in that <literal>let</literal> or
+            <literal>const</literal> by separating them with commas, just
+            as you can in a regular <literal>let</literal> or
+            <literal>const</literal>. You can also list more than one
+            assignment, separated by commas. You cannot use more than one
+            <literal>let</literal> or <literal>const</literal> keyword in
+            the initializer. Names declared in the initializer are local
+            to the loop. You may put a label in front of the statement,
+            for example <literal>outer: for (…)</literal>, and use that
+            label with <literal>break</literal> or
+            <literal>continue</literal>. Labels are not allowed on blocks
+            or <literal>if</literal> statements.
         </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[for (let i = 0; i < 10; i = i + 1) {
     print(i);
+}
+for (let i = 0, j = 1; i < 3; i = i + 1) {
+    print(i + j);
+}
+let a = 0;
+let b = 0;
+for (a = 1, b = 2; a < 3; a = a + 1) {
+    print(a + b);
 }]]></code>
         </section>
     </section>
@@ -125,14 +203,44 @@ do {
         <title>Function</title>
         <image generated-src="ebnf/syntax/diagram/FunctionStatement.png" />
         <paragraph>
-            This declares a function.
+            This declares a function. Parameters may be simple names or the same
+            list and object <literal>Pattern</literal>s used in
+            <literal>let</literal> / <literal>const</literal> destructuring
+            (holes, defaults, rest, rename, nesting, string keys, and
+            <literal>[expression]</literal> computed keys). Parameter defaults
+            may be any Expression. Types may be written on simple parameters,
+            on Pattern leaves, and on a whole Pattern formal (for upcoming
+            compile-time checking). When a Pattern parameter is optional, supply
+            a whole-argument default such as <literal>= {}</literal> so the
+            Pattern has an object to bind.
+        </paragraph>
+        <paragraph>
+            The same Patterns are already available in assignment,
+            <literal>for-of</literal> heads, and C-style <literal>for</literal>
+            initializers. Calls may use argument spread
+            <literal>f(...array)</literal> to expand an array into separate
+            arguments.
         </paragraph>
         <section>
             <title>Example</title>
             <code><![CDATA[function func(a, b) {
     return a + b;
 }
-function func2(a, b) : a + b;]]></code>
+function func2(a, b) : a + b;
+
+/* Options-style object Pattern (defaults apply per property or whole arg) */
+function connect({ host, port = 443 } = { host: "localhost" }) {
+    return host + ":" + string(port);
+}
+
+function headTail([first, , third, ...rest]) {
+    return first;
+}
+
+function sum3(a, b, c) {
+    return a + b + c;
+}
+assert(sum3(...[1, 2, 3]) === 6);]]></code>
         </section>
     </section>
     <section>
@@ -152,16 +260,40 @@ function func2(a, b) : a + b;]]></code>
     <section>
         <title>Interface</title>
         <image generated-src="ebnf/syntax/diagram/InterfaceStatement.png" />
-        <paragraph>            
+        <paragraph>
+            Declares a named object shape for script type checking. Optional
+            properties use <literal>?</literal>; use
+            <literal>extends</literal> for one or more bases. See
+            <link href="types.html" text="Types"/> for syntax, examples, and
+            checking flags.
         </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[interface Point {
+    x: integer,
+    y: integer
+};
+const p: Point = { x: 0, y: 0 };]]></code>
+        </section>
     </section>
     <section>
         <title>Let</title>
         <image generated-src="ebnf/syntax/diagram/LetStatement.png" />
         <paragraph>
-            The <literal>let</literal> statement declares a local variable.
+            The <literal>let</literal> statement declares local variables
+            in the current block. An initializer is optional. You can
+            declare more than one name in the same statement, separated
+            by commas. A name without an initializer is
+            <literal>undefined</literal> until it is assigned.
         </paragraph>
-        <code><![CDATA[let x = 1;]]></code>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[let x = 1;
+let a = 1, b = 2;
+let i, j = 0;
+let n: integer = 1, s: string = "x";
+let { host } = { host: "h" }, [first] = [7, 8];]]></code>
+        </section>
     </section>
     <section>
         <title>Return</title>
@@ -220,7 +352,16 @@ function func2(a, b) : a + b;]]></code>
         <title>Type</title>
         <image generated-src="ebnf/syntax/diagram/TypeStatement.png" />
         <paragraph>
+            Declares a local type alias:
+            <literal>type Name = Type;</literal>. See
+            <link href="types.html" text="Types"/> for the type expression
+            grammar, railroad diagrams, and checking flags.
         </paragraph>
+        <section>
+            <title>Example</title>
+            <code><![CDATA[type Id = integer;
+const x: Id = 3;]]></code>
+        </section>
     </section>
     <section>
         <title>While</title>
@@ -229,7 +370,9 @@ function func2(a, b) : a + b;]]></code>
             The <literal>while</literal> statement executes a block of 
             statements until a condition is met. Unlike the do-while statement, 
             the while statement executes the condition first and may not 
-            execute the block at all.
+            execute the block at all. You may also put a label in front of
+            the statement, the same way you can with
+            <literal>for</literal>.
         </paragraph>
         <section>
             <title>Example</title>

@@ -148,8 +148,9 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 
                 debug = stderr_r.read()  
 
-    except Exception as e:   
-        error = e
+    except Exception as e:
+        from _afwdev.common.errors import wrap_exception
+        error = wrap_exception(e)
 
     finally:
         try:

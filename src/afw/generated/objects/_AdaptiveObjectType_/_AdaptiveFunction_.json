@@ -97,7 +97,7 @@
             "brief": "Errors thrown",
             "dataType": "array",
             "dataTypeParameter": "object _AdaptiveFunctionErrorThrown_",
-            "description": "These are errors that can possibly be thrown by this function.",
+            "description": "Errors a script author may want to catch for this function (id plus a short reason). Not every possible failure. Do not list general. The error value must be a name from the error code map.",
             "label": "Errors Thrown",
             "runtime": {
                 "valueAccessor": "null_terminated_array_of_utf8_z_key_value_pair_objects"
@@ -159,7 +159,7 @@
                 "valueAccessor": "value"
             }
         },
-        "maximumNumberOfParameters": {
+        "maxNumberOfParameters": {
             "allowQuery": true,
             "brief": "Maximum number of parameters",
             "dataType": "integer",
@@ -242,6 +242,28 @@
             "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
             "label": "Requires Execute Access",
             "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
+        "scriptSupport": {
+            "allowQuery": true,
+            "brief": "Script support function",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "True for core functions that implement Adaptive Script statements (const, let, if, while, …). These are not normal user-callable adaptive functions; the compiler lowers statements to them, and their AdaptiveFunction parameter metadata may not match the internal call argv shape. Formal type-checking of adaptive calls skips functions with this flag.",
+            "label": "Script Support",
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
+        "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+            "allowQuery": true,
+            "brief": "First parameter evaluate deferred to polymorphic execute",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "If true, the first parameter evaluate is deferred to the polymorphic execute function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate function to call.",
+            "label": "Defer First Parameter Evaluate",
             "runtime": {
                 "valueAccessor": "value"
             }

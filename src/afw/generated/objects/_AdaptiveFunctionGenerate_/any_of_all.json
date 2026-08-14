@@ -10,7 +10,7 @@
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(value1: any, value2: any):boolean",
+            "dataTypeParameter": "(value1: any, value2: any) => boolean",
             "description": "The predicate is passed two parameters, the first is a value from array1 and the second is a value from array2.",
             "name": "predicate"
         },

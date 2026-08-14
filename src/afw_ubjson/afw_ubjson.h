@@ -13,16 +13,22 @@
 
 /**
  * @defgroup afw_ubjson Universal Binary JSON content-type
- * @ingroup  afw_included_extensions
- * 
- * Adaptive Framework UBJSON support.
- * 
-* @{
+ * @ingroup afw_included_extensions
+ *
+ * UBJSON content type (`src/afw_ubjson/`): compact binary JSON-like
+ * encoding for adaptive values. Self-contained extension srcdir over
+ * public core APIs. Registers as a content type extension.
+ *
+ * @{
  */
 
 /**
  * @file afw_ubjson.h
- * @brief Header file for Adaptive Framework UBJSON
+ * @brief UBJSON content-type extension (package-private C surface).
+ *
+ * Media-type constants and package layout for the loadable extension.
+ * Not a second public C API; use libafw content-type macros after load.
+ * See @ref afw_content_type and @ref afw_included_extensions.
  */
 
 AFW_BEGIN_DECLARES

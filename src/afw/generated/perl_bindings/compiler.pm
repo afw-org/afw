@@ -62,7 +62,8 @@ Compile an external file
 
     $file
 
-The path of the file to include, which will be resolved using rootFilePaths.
+The path of the file to include, resolved using rootFilePaths (longest
+matching prefix; host path must remain under that root).
 
     $compileType
 
@@ -71,14 +72,21 @@ For example, 'json', 'relaxed_json', 'script', 'template'
 
 =head3 decompile
 
-Decompile an adaptive value to string.
-Decompile value
+Decompile an adaptive value to Adaptive text that represents the compiled form
+(functional forms and #implementation_id(...) pragmas such as
+#script_function, #block, #assignment_target). This is not original source
+recovery and is not pure JSON — use stringify() for JSON of evaluated data,
+and compile(..., listing) for a human compiler listing with symbol tables.
+Many decompile forms recompile to the same compiled value; #closure_binding
+and #function_thunk are known rejects (runtime-only / C-side). Optional
+whitespace matches stringify/listing style (integer 0-10 or indent string).
+Decompile a value to Adaptive compiled form
 
 =head4 Parameters
 
     $value
 
-Value to decompile.
+Value to decompile (may be unevaluated, such as a compiled script root).
 
     $whitespace
 
@@ -97,7 +105,8 @@ Compile and evaluate an external file
 
     $file
 
-The path of the file to include, which will be resolved using rootFilePaths.
+The path of the file to include, resolved using rootFilePaths (longest
+matching prefix; host path must remain under that root).
 
     $compileType
 
@@ -139,9 +148,29 @@ Maximum number to retry if an exception occurs.
 
 =head3 qualifier
 
-This function allows the active variables for a qualifier to be accessed as
-the properties of an object.
-Access variables of a qualifier as an object
+Returns a new memory object whose properties are the active variables for the
+given qualifier (issue #9). Built from the current xctx qualifier stack via
+contribute callbacks; not a live view. Each call creates a fresh object.
+Intended for debugging, tooling, and tests — not for hot production paths that
+only need qualifier::name access.
+
+Warning: snapshots can be large. Qualifiers such as environment:: or request::
+may contribute many properties (and some values can themselves be large
+objects). qualifiers() nests a full snapshot per active qualifier name and
+multiplies that cost. Prefer qualifier::name for normal work; use these
+functions sparingly and avoid holding or repeatedly rebuilding large snapshots
+in long-running scripts.
+
+All matching visible stack entries for the qualifier name contribute into one
+object (most recent first; later entries only fill property names not already
+set). Get (qualifier::name) uses the same first-defining-frame rule per name
+(newest → older; first non-null get_cb wins, including present undefined/null
+values). Default visibility matches normal qualifier::name access right now.
+Optional includeUntrusted is only meaningful while the xctx is secure: set
+true so the snapshot includes the same frames you would see with :: if you
+were less secure (trusted and untrusted). When already not secure, the flag
+changes nothing.
+Snapshot of variables for a qualifier as an object
 
 =head4 Parameters
 
@@ -150,26 +179,51 @@ Access variables of a qualifier as an object
 This is the qualifier whose variables are to be accessed as properties of the
 returned object.
 
-    $forTesting
+    $includeUntrusted
 
-If specified and true, the object returned will be suitable to pass as the
-additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This
-is intended for testing purposes and should not be used in production.
+Default false: snapshot matches what qualifier::name can access in the current
+xctx (while secure, untrusted stack frames with secure=false are omitted). Set
+true while secure to use the same visibility as running less secure — trusted
+and untrusted frames (not untrusted-only). When the xctx is not secure, true
+and false are the same because :: already sees untrusted frames. Does not
+change hot-path get; only this snapshot. Useful for debugging secure
+evaluation and for building objects to re-inject as evaluate()'s
+additionalUntrustedQualifiedVariables.
 
 =head3 qualifiers
 
-This function allows the active qualifiers to be accessed as properties of an
-object. The value of each of these properties is an object whose properties
-are the variables for the corresponding qualifier.
-Access qualifiers as an object
+Returns a new memory object whose properties are active qualifier names; each
+value is an object of that qualifier's variables (issue #9). Built from the
+current xctx qualifier stack; each call creates a fresh object. Intended for
+debugging, tooling, and tests — not for hot production paths that only need
+qualifier::name access.
+
+Warning: the result can be very large. Each property is a full snapshot of
+that qualifier (see qualifier()), so environment, request, application,
+current, and others can all appear as nested objects with many properties.
+Prefer qualifier::name or qualifier(name) when you need one bag; avoid
+repeated qualifiers() calls or retaining the result in long-running work.
+
+Each nested variables object is the multi-entry snapshot for that name (all
+matching visible stack entries contribute; most recent wins per property). A
+qualifier name is omitted if it is not active (same as qualifier(name) being
+nullish); never invent an empty nested object for an inactive name. Default
+visibility matches normal qualifier::name access right now. Optional
+includeUntrusted is only meaningful while the xctx is secure: set true so each
+nested snapshot uses the same frame visibility as running less secure (trusted
+and untrusted). When already not secure, the flag changes nothing.
+Snapshot of active qualifiers as an object
 
 =head4 Parameters
 
-    $forTesting
+    $includeUntrusted
 
-If specified and true, the object returned will be suitable to pass as the
-additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This
-is intended for testing purposes and should not be used in production.
+Default false: only qualifiers/frames visible to qualifier::name in the
+current xctx. Set true while secure to match less-secure :: visibility
+(include untrusted frames). When not secure, true and false are the same. Does
+not change hot-path get. The result shape (qualifier → variables object) is
+suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables when
+that is the intent.
 
 =head3 safe_evaluate
 
@@ -190,19 +244,29 @@ evaluating this value, the exception will continue.
 
 =head3 stringify
 
-Evaluate and decompile an adaptive value to string. For most values this has
-the effect of producing a string containing json.
-Evaluate and decompile a value
+Evaluate value and serialize it as pure JSON text. Adaptive data types use
+their jsonPrimitive (for example base64Binary and date become JSON strings).
+The value is fully evaluated before serialization (not Adaptive compiled
+form). For Adaptive compiled form as text use decompile(). For binary octets
+as UTF-8 text use decode_to_string(); string(binary) is base64 printable text,
+not UTF-8. Optional replacer is a function (key, value) that returns the value
+to serialize, or an array of property names to include when serializing
+objects. Optional whitespace matches decompile/listing style.
+Serialize an evaluated value as JSON text
 
 =head4 Parameters
 
     $value
 
-Value to stringify.
+Evaluated value to serialize as JSON.
 
     $replacer
 
-Optional replacer function.
+Optional replacer: a function (key: string, value: any): any called for the
+root (key is empty string) and each object property or array element; return
+undefined to omit an object property (array elements become null). Or an array
+of string property names to keep when serializing objects. Omit or null for no
+replacer.
 
     $whitespace
 
@@ -392,28 +456,28 @@ sub evaluate_with_retry {
 }
 
 sub qualifier {
-    my ($qualifier, $forTesting) = @_;
+    my ($qualifier, $includeUntrusted) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "qualifier");
     $request->set("qualifier", $qualifier);
 
-    if (defined $forTesting)
-        $request->set("forTesting", $forTesting);
+    if (defined $includeUntrusted)
+        $request->set("includeUntrusted", $includeUntrusted);
 
     return $request->getResult();
 }
 
 sub qualifiers {
-    my ($forTesting) = @_;
+    my ($includeUntrusted) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "qualifiers");
 
-    if (defined $forTesting)
-        $request->set("forTesting", $forTesting);
+    if (defined $includeUntrusted)
+        $request->set("includeUntrusted", $includeUntrusted);
 
     return $request->getResult();
 }

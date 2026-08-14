@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_anyURI.c
- * @brief afw_function_execute_* functions for anyURI.
+ * @brief Adaptive function execute implementations for category `anyURI`.
  */
 
 #include "afw_internal.h"

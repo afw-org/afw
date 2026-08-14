@@ -20,7 +20,7 @@
  *
  * afw_function_execute_close
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This will close an open stream
  *
@@ -58,7 +58,7 @@ afw_function_execute_close(
  *
  * afw_function_execute_flush
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Write the content of the stream's buffers to its destination.
  *
@@ -92,49 +92,15 @@ afw_function_execute_flush(
 
 
 /*
- * Adaptive function: get_stream_error
- *
- * afw_function_execute_get_stream_error
- *
- * See afw_function_bindings.h for more information.
- *
- * Get the most recent stream error.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function get_stream_error(
- *   
- *   ): string;
- * ```
- *
- * Parameters:
- *
- * Returns:
- *
- *   (string) The most recent stream error.
- */
-const afw_value_t *
-afw_function_execute_get_stream_error(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
  * Adaptive function: open_file
  *
  * afw_function_execute_open_file
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
- * This will open a file stream.
+ * Open a file stream for reading and/or writing. The path is resolved using
+ * application rootFilePaths (longest matching prefix; host path must remain
+ * under that root). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -157,8 +123,8 @@ afw_function_execute_get_stream_error(
  *   streamId - (string) This is the streamId that will be associated with this
  *       open file stream.
  *
- *   path - (string) This is the path to the file to open. The rootDirectory of
- *       the path is defined in the application object.
+ *   path - (string) Logical path resolved using rootFilePaths (longest matching
+ *       prefix; host path must remain under that root).
  *
  *   mode - (string) This is the access mode string. Values can be:
  *         r - Open an existing file text file for read.
@@ -183,111 +149,11 @@ afw_function_execute_get_stream_error(
  *
  * Returns:
  *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
+ *   (integer) The streamNumber for the streamId. Throws on error (invalid path,
+ *       open failure, or streamId already open).
  */
 const afw_value_t *
 afw_function_execute_open_file(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
- * Adaptive function: open_response
- *
- * afw_function_execute_open_response
- *
- * See afw_function_bindings.h for more information.
- *
- * This will open a response text write-only stream that will be written to the
- * http response.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * This function requires 'execute' access.
- *
- * Declaration:
- *
- * ```
- *   function open_response(
- *       streamId: string,
- *       autoFlush?: boolean
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   streamId - (string) This is the streamId that will be associated with this
- *       open response stream.
- *
- *   autoFlush - (optional boolean) If specified and true, this will
- *       automatically flush the stream's buffers after every write.
- *
- * Returns:
- *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
- */
-const afw_value_t *
-afw_function_execute_open_response(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
- * Adaptive function: open_uri
- *
- * afw_function_execute_open_uri
- *
- * See afw_function_bindings.h for more information.
- *
- * This will open a read or write stream for a URI.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * This function requires 'execute' access.
- *
- * Declaration:
- *
- * ```
- *   function open_uri(
- *       streamId: string,
- *       uri: string,
- *       mode: string,
- *       autoFlush?: boolean
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   streamId - (string) This is the streamId that will be associated with this
- *       open URI stream.
- *
- *   uri - (string) This is the URI of the stream to open.
- *
- *   mode - (string) This is the access mode string. Values can be 'r' for read
- *       or 'w' for write.
- *
- *   autoFlush - (optional boolean) If specified and true, this will
- *       automatically flush the stream's buffers after every write.
- *
- * Returns:
- *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
- */
-const afw_value_t *
-afw_function_execute_open_uri(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
@@ -301,7 +167,7 @@ afw_function_execute_open_uri(
  *
  * afw_function_execute_print
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stdout. An undefined value is represented by 'undefined'.
@@ -313,13 +179,13 @@ afw_function_execute_open_uri(
  *
  * ```
  *   function print(
- *       ...values: (array of any)
+ *       ...values: any[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more any dataType) Values to print.
+ *   values - (0 or more any) Values to print.
  *
  * Returns:
  *
@@ -340,7 +206,7 @@ afw_function_execute_print(
  *
  * afw_function_execute_println
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to their string value, then write them
  * to stdout. A newline character ('\n') is written after the last value. An
@@ -353,13 +219,13 @@ afw_function_execute_print(
  *
  * ```
  *   function println(
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   value - (0 or more any dataType) Values to print.
+ *   value - (0 or more any) Values to print.
  *
  * Returns:
  *
@@ -380,7 +246,7 @@ afw_function_execute_println(
  *
  * afw_function_execute_read
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a UTF-8 text stream up to a specified number of octets. The stream must
  * contain valid UTF-8 or an error is thrown.
@@ -401,7 +267,7 @@ afw_function_execute_println(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -423,7 +289,7 @@ afw_function_execute_read(
  *
  * afw_function_execute_read_to_base64Binary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
  * internal memory of a base64Binary value.
@@ -444,7 +310,7 @@ afw_function_execute_read(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -466,7 +332,7 @@ afw_function_execute_read_to_base64Binary(
  *
  * afw_function_execute_read_to_hexBinary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
  * internal memory of a hexBinary value.
@@ -487,7 +353,7 @@ afw_function_execute_read_to_base64Binary(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any dataType) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read.
  *
  * Returns:
  *
@@ -509,7 +375,7 @@ afw_function_execute_read_to_hexBinary(
  *
  * afw_function_execute_readln
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Read a UTF-8 text stream line. The stream must contain valid UTF-8 or an
  * error is thrown.
@@ -548,11 +414,11 @@ afw_function_execute_readln(
  *
  * afw_function_execute_stream
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
- * This will return the streamNumber for a streamId. This function useful to
- * obtain the number of the automatically opened standard streams 'console',
- * 'stderr' and 'stdout' as well and any other open stream.
+ * Return the streamNumber for a streamId, including automatically opened
+ * standard streams 'console', 'stderr' and 'stdout', as well as any custom open
+ * stream. Throws if streamId is not open.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -571,8 +437,8 @@ afw_function_execute_readln(
  *
  * Returns:
  *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
+ *   (integer) The streamNumber for the streamId. Throws if the stream is not
+ *       open.
  */
 const afw_value_t *
 afw_function_execute_stream(
@@ -589,7 +455,7 @@ afw_function_execute_stream(
  *
  * afw_function_execute_write
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stream. An value with an undefined value is represented by 'undefined'.
@@ -602,7 +468,7 @@ afw_function_execute_stream(
  * ```
  *   function write(
  *       streamNumber: integer,
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
@@ -631,7 +497,7 @@ afw_function_execute_write(
  *
  * afw_function_execute_write_internal
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Write a value's internal memory. This is especially useful for writing data
  * type base64Binary and hexBinary.
@@ -652,7 +518,8 @@ afw_function_execute_write(
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (any) The internal memory of this value is written.
+ *   value - (any) The internal memory of this value is written (string,
+ *       hexBinary, or base64Binary).
  *
  * Returns:
  *
@@ -673,7 +540,7 @@ afw_function_execute_write_internal(
  *
  * afw_function_execute_writeln
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Evaluate and convert 0 or more values to its string value, then write them to
  * stream. A newline character ('\n') is written after the last value. An
@@ -687,7 +554,7 @@ afw_function_execute_write_internal(
  * ```
  *   function writeln(
  *       streamNumber: integer,
- *       ...value: (array of any)
+ *       ...value: any[]
  *   ): void;
  * ```
  *
@@ -695,7 +562,7 @@ afw_function_execute_write_internal(
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (0 or more any dataType) Values to write.
+ *   value - (0 or more any) Values to write.
  *
  * Returns:
  *

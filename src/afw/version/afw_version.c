@@ -8,7 +8,7 @@
 
 /**
  * @file afw_version.c
- * @brief Adaptive Framework version information
+ * @brief Runtime version string and git-info helpers.
  */
 
 #include "afw_internal.h"

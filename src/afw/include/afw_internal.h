@@ -12,26 +12,32 @@
 
 /**
  * @file afw_internal.h
- * @brief Adaptive Framework Core Internal.
+ * @brief Umbrella internal header for libafw implementation files.
  * @ingroup afw_c_api_internal
  *
- * This header includes all of the headers that are used internally by the
- * source of Adaptive Framework Core. This header should not be included by
- * anything outside of libafw as it may change from build to build.
+ * **libafw source under src/afw only** (implementation .c files). Includes
+ * `afw.h` plus core `*_internal.h` and register/generated glue. May change
+ * every build.
+ * Not installed with the default public header set; use the source tree.
+ * Extensions and commands must use `afw.h` only.
+ *
+ * See @ref afw_c_api_internal and `designs/libafw-headers-and-api-surface.md`.
  */
 
 #include "afw.h"
-#include "afw_generated.h"
+#include "afw_generated_internal.h"
 #include "afw_adapter_internal.h"
 #include "afw_application_internal.h"
 #include "afw_authorization_internal.h"
 #include "afw_compile_internal.h"
-#include "afw_const_objects.h"
+#include "afw_const_objects_internal.h"
 #include "afw_environment_internal.h"
 #include "afw_file_internal.h"
-#include "afw_function_bindings.h"
+#include "afw_flag_internal.h"
+#include "afw_function_bindings_internal.h"
 #include "afw_json_internal.h"
 #include "afw_array_internal.h"
+#include "afw_lock_internal.h"
 #include "afw_log_internal.h"
 #include "afw_model_internal.h"
 #include "afw_model_location.h"
@@ -39,7 +45,10 @@
 #include "afw_object_view_internal.h"
 #include "afw_pool_internal.h"
 #include "afw_request_handler_internal.h"
+#include "afw_runtime_internal.h"
 #include "afw_runtime_object_maps.h"
+#include "afw_stack_internal.h"
+#include "afw_stream_internal.h"
 #include "afw_xctx_internal.h"
 #include "afw_service_internal.h"
 #include "afw_value_internal.h"

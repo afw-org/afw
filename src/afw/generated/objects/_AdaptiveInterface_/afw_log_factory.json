@@ -1,4 +1,4 @@
 {
     "name": "afw_log_factory",
-    "description": "Log factory."
+    "description": "Factory that creates log instances of one log type id. Registered with\n      the environment; conf uses the factory to construct each named log.\n      Call afw_log_factory_create_log_cede_p() (macro). Implement with\n      afwdev add-log-type scaffolds. See group afw_log."
 }

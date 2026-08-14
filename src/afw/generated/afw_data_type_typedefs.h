@@ -22,11 +22,10 @@
 
 /**
  * @file afw_data_type_typedefs.h
- * @brief Adaptive data type typedefs yearMonthDuration header.
+ * @brief Generated typedefs header for adaptive data type `yearMonthDuration`.
  */
 
 #include "afw_minimal.h"
-#include "afw_declare_helpers.h"
 
 AFW_BEGIN_DECLARES
 

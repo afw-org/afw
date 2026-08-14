@@ -8,7 +8,7 @@
 
 /**
  * @file afw_xctx.c
- * @brief Implementation of afw_xctx interface.
+ * @brief Execution context (xctx) create, scope, and error state.
  */
 
 #include "afw_internal.h"
@@ -267,7 +267,7 @@ afw_xctx_scope_symbol_get_value_by_name(
 
 
 
-/* Determine if the named symbol exists in the current scope chain. */
+/* True if lexical symbol is bound (any slot value, including C NULL). */
 AFW_DECLARE(afw_boolean_t)
 afw_xctx_scope_symbol_exists_by_name(
     const afw_utf8_t *symbol_name,
@@ -290,6 +290,14 @@ afw_xctx_scope_symbol_set_value(
     value_address = afw_xctx_scope_symbol_get_value_address(
         symbol, afw_xctx_scope_current(xctx), xctx);
 
+    /*
+     * Prefer permanent undefined singleton over C NULL in slots so "bound
+     * with undefined" is never confused with "not applicable" at the pointer
+     * level (issue #131). let without initializer and nullish assigns land here.
+     */
+    if (!value) {
+        value = afw_value_undefined;
+    }
     *value_address = value;
 }
 
@@ -314,12 +322,24 @@ afw_xctx_scope_symbol_set_value_by_name(
             AFW_UTF8_FMT_ARG(symbol_name));
     }
 
+    if (!value) {
+        value = afw_value_undefined;
+    }
     *value_address = value;
 }
 
 
 
-/* Get a variable from xctx stack. */
+/*
+ * Get optionally qualified variable value.
+ *
+ * Unqualified: return slot contents (*address). Bound empty values are the
+ * undefined singleton after scope create / set_value; use address/exists
+ * helpers for “is bound?” (issue #131).
+ *
+ * Qualified: get_cb contract — non-NULL including undefined/null singletons
+ * means defined on that frame; C NULL means not on this frame.
+ */
 AFW_DEFINE(const afw_value_t *)
 afw_xctx_get_optionally_qualified_variable(
     const afw_utf8_t *qualifier,
@@ -331,6 +351,7 @@ afw_xctx_get_optionally_qualified_variable(
     const afw_value_t **value_address;
 
     if (!qualifier || (qualifier->len == 0)) {
+        /* Lexical: NULL only if name not bound (slots start as undefined). */
         value_address = afw_xctx_scope_symbol_get_value_address_by_name(
             name, xctx);
         if (value_address) {
@@ -341,13 +362,19 @@ afw_xctx_get_optionally_qualified_variable(
         }
     }
 
+    /*
+     * Walk matching frames newest → oldest. First non-NULL get_cb result wins
+     * (including permanent singletons afw_value_undefined / afw_value_null).
+     * C NULL from get_cb means "not defined on this frame" — keep looking.
+     * See afw_xctx_get_variable_cb_t contract.
+     */
     for (
         result = NULL,
         e_cur = xctx->qualifier_stack->top;
         e_cur >= xctx->qualifier_stack->first;
         e_cur--)
     {
-        if (!e_cur->get) {
+        if (!e_cur->get_cb) {
             continue;
         }
 
@@ -359,11 +386,13 @@ afw_xctx_get_optionally_qualified_variable(
             continue;
         }
 
-        result = e_cur->get(e_cur, name, xctx);
-        break;
+        result = e_cur->get_cb(e_cur, name, xctx);
+        if (result) {
+            break;
+        }
     }
 
-    /* Return result. */
+    /* Return result (NULL if no frame defined the name). */
     return result;
 }
 
@@ -398,7 +427,7 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *qualifier_name;
     const afw_object_t *qualifier_object;
 
@@ -419,16 +448,22 @@ afw_xctx_qualifier_stack_qualifier_push(
     const afw_utf8_t *qualifier,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,
-    afw_xctx_get_variable_t get,
+    afw_xctx_get_variable_cb_t get_cb,
+    afw_xctx_contribute_variables_cb_t contribute_cb,
     void * data,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /*! \fixme add support for qualifier object. */
     afw_xctx_qualifier_stack_entry_t *entry;
 
     if (!qualifier || qualifier->len == 0) {
         AFW_THROW_ERROR_Z(general, "Qualifier required", xctx);
+    }
+    if (!get_cb) {
+        AFW_THROW_ERROR_Z(general, "get_cb required", xctx);
+    }
+    if (!contribute_cb) {
+        AFW_THROW_ERROR_Z(general, "contribute_cb required", xctx);
     }
 
     afw_stack_push_and_get_entry(
@@ -436,32 +471,71 @@ afw_xctx_qualifier_stack_qualifier_push(
 
     memset(entry, 0, sizeof(afw_xctx_qualifier_stack_entry_t));
     entry->p = p;
-    if (qualifier) {
-        memcpy(&entry->qualifier, qualifier,
-            sizeof(afw_xctx_qualifier_stack_entry_t));
-    }
+    memcpy(&entry->qualifier, qualifier, sizeof(afw_utf8_t));
     entry->qualifier_object = qualifier_object;
-    entry->get = get;
+    entry->get_cb = get_cb;
+    entry->contribute_cb = contribute_cb;
     entry->data = data;
     entry->secure = secure;
-    
+
     return entry;
 }
 
 
 
 static const afw_value_t *
-impl_get_object_variable(
+impl_get_object_variable_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
     afw_xctx_t *xctx)
 {
-    /* Return property from qualifier_object as variable. */
+    /*
+     * Object-backed frame: missing property → C NULL (not this frame).
+     * Present null/undefined properties should be stored as afw_value_null /
+     * afw_value_undefined (or other values), not omitted.
+     */
     return afw_object_get_property(entry->qualifier_object, name, xctx);
 }
 
 
-/* Push qualifier on to stack. */
+/*
+ * Fixed contribute for object-push frames: walk qualifier_object and set
+ * missing names on the accumulator using the iterated name+value (same values
+ * as get_property / get_cb for that object; avoids a redundant re-get).
+ */
+static void
+impl_contribute_object_variables_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t include_untrusted,
+    afw_xctx_t *xctx)
+{
+    const afw_iterator_old_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+
+    (void)include_untrusted;
+
+    if (!entry->qualifier_object) {
+        AFW_THROW_ERROR_Z(general,
+            "object-push contribute_cb requires qualifier_object", xctx);
+    }
+
+    iterator = NULL;
+    while ((value = afw_object_get_next_property(
+        entry->qualifier_object, &iterator, &property_name, xctx)))
+    {
+        if (!property_name ||
+            afw_object_has_property(object, property_name, xctx))
+        {
+            continue;
+        }
+        afw_object_set_property(object, property_name, value, xctx);
+    }
+}
+
+
+/* Push qualifier object on to stack. */
 AFW_DEFINE(void)
 afw_xctx_qualifier_stack_qualifier_object_push(
     const afw_utf8_t *qualifier_name,
@@ -481,7 +555,8 @@ afw_xctx_qualifier_stack_qualifier_object_push(
         memcpy(&entry->qualifier, qualifier_name, sizeof(afw_utf8_t));
     }
     entry->qualifier_object = qualifier_object;
-    entry->get = impl_get_object_variable;
+    entry->get_cb = impl_get_object_variable_cb;
+    entry->contribute_cb = impl_contribute_object_variables_cb;
     entry->secure = secure;
 }
 
@@ -644,6 +719,19 @@ afw_xctx_scope_create(
     scope->block = block;
     xctx->scope_count++;
     scope->scope_number = xctx->scope_count;
+
+    /*
+     * Bound symbols start as Adaptive undefined (singleton), not C NULL, so
+     * slot contents are never "not a value pointer" while the name is bound
+     * (issue #131). set_value also coerces NULL → undefined.
+     */
+    {
+        afw_size_t i;
+
+        for (i = 0; i < block->symbol_count; i++) {
+            scope->symbol_values[i] = afw_value_undefined;
+        }
+    }
 
     /* If there is a parent_lexical_scope, update its reference count. */
     if (parent_lexical_scope) {

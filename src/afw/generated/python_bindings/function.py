@@ -136,34 +136,6 @@ def eqx_function(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def function(session, value):
-    """
-    
-
-    Converts value to data type function returning function result.
-
-    Args:
-        value (object): Value to convert
-
-    Returns:
-        object: Converted value
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "function",
-        "value": value
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def ge_function(session, arg1, arg2):
     """
     Checks for greater than or equal

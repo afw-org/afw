@@ -9,7 +9,7 @@
 
 /**
  * @file afw_flag.c
- * @brief Adaptive Framework Trace
+ * @brief Feature and trace flag registration and evaluation.
  */
 
 #include "afw_internal.h"
@@ -86,7 +86,7 @@ impl_flag_add_included_by(
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p = xctx->env->p;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *flag_id;
     const afw_data_type_t *data_type;
     afw_boolean_t *new_applicable;
@@ -127,11 +127,11 @@ impl_flag_add_included_by(
                         afw_data_type_string, p, xctx),
                     p, xctx);
         }
-        afw_array_add_value(flag->included_by_value->internal,
+        afw_array_push_value(flag->included_by_value->internal,
             included_by->flag_id_value, xctx);
 
         /* Add flag to includes of included_by. */
-        afw_array_add_value(included_by->includes_value->internal,
+        afw_array_push_value(included_by->includes_value->internal,
             flag->flag_id_value, xctx);
     }
 
@@ -208,7 +208,7 @@ impl_refresh_default_flags(afw_xctx_t *xctx)
 
 
 /* Register core flags. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_flag_internal_early_register_core(afw_xctx_t *xctx)
 {
     afw_environment_t *env = (afw_environment_t *)xctx->env;
@@ -232,6 +232,69 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
         afw_environment_get_flag(
             afw_s_a_flag_compile_noImplicitAny,
             xctx)->flag_index;
+
+    /* Register flag compile:typeCheckCompileOnly (before typeCheck/strict) */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_typeCheckCompileOnly,
+        afw_s_a_flag_compile_typeCheckCompileOnly_brief,
+        afw_s_a_flag_compile_typeCheckCompileOnly_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_typeCheckCompileOnly_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_typeCheckCompileOnly,
+            xctx)->flag_index;
+
+    /* Register flag compile:typeCheck (full compile + runtime) */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_typeCheck,
+        afw_s_a_flag_compile_typeCheck_brief,
+        afw_s_a_flag_compile_typeCheck_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_typeCheck_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_typeCheck,
+            xctx)->flag_index;
+
+    /* Register flag compile:strictNullChecks */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_strictNullChecks,
+        afw_s_a_flag_compile_strictNullChecks_brief,
+        afw_s_a_flag_compile_strictNullChecks_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_strictNullChecks_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_strictNullChecks,
+            xctx)->flag_index;
+
+    /*
+     * Register flag compile:strict (TS-like umbrella). When set, includes
+     * typeCheck, noImplicitAny, and strictNullChecks.
+     */
+    afw_flag_environment_register_flag(
+        afw_s_a_flag_compile_strict,
+        afw_s_a_flag_compile_strict_brief,
+        afw_s_a_flag_compile_strict_description,
+        NULL,
+        xctx);
+    env->flag_index_compile_strict_active =
+        afw_environment_get_flag(
+            afw_s_a_flag_compile_strict,
+            xctx)->flag_index;
+    afw_flag_add_included_by(
+        afw_s_a_flag_compile_typeCheck,
+        afw_s_a_flag_compile_strict,
+        xctx);
+    afw_flag_add_included_by(
+        afw_s_a_flag_compile_noImplicitAny,
+        afw_s_a_flag_compile_strict,
+        xctx);
+    afw_flag_add_included_by(
+        afw_s_a_flag_compile_strictNullChecks,
+        afw_s_a_flag_compile_strict,
+        xctx);
 
     /* Register flag compile:noOptimize */
     afw_flag_environment_register_flag(
@@ -857,7 +920,7 @@ afw_flag_set_default_flag_ids(
     const afw_utf8_t **id;
     const afw_utf8_t *s;
     const afw_data_type_t *data_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     AFW_LOCK_BEGIN(xctx->env->flags_lock) {
         p = afw_pool_create(xctx->env->p, xctx);

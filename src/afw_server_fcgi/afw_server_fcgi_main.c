@@ -9,12 +9,12 @@
 
 /**
  * @file afw_server_fcgi_main.c
- * @brief Adaptive Frame FastCGI Server
+ * @brief afwfcgi FastCGI server process entry point.
  */
 
 #include "afw.h"
 #include "afw_server_fcgi_internal.h"
-#include "generated/afw_server_fcgi_generated.h"
+#include "generated/afw_server_fcgi_generated_internal.h"
 #include "generated/afw_server_fcgi_version_info.h"
 
 typedef struct self_args_s {
@@ -44,8 +44,14 @@ typedef struct self_args_s {
 static void print_usage(void)
 {
     fprintf(stderr,
-        "Usage: afw_server_fcgi_main [-f filename] [-p path] [-n threads] [-e extension] "
-        "[-t content-type] [--help] [--version]\n");
+        "Usage: afwfcgi [-f filename] [-p path] [-n threads] [-e extension] "
+        "[-t content-type] [--help] [--version]\n"
+        "\n"
+        "Signals: SIGTERM and SIGINT set the environment terminating flag,\n"
+        "stop accepting new FastCGI requests, wake request threads, and\n"
+        "exit after they finish the current request if any. Unix listen\n"
+        "socket paths are removed on clean exit (no in-process drain\n"
+        "timer; the parent may still SIGKILL).\n");
 }
 
 
@@ -168,6 +174,7 @@ int main(int argc, const char * const * argv) {
     /* Create Adaptive Framework environment for server. */
     AFW_ENVIRONMENT_CREATE(xctx, argc, argv, &create_error);
     if (!xctx) {
+        /* xctx is NULL; use C stderr (redirects apply only after successful create). */
         afw_error_print(stderr, create_error);
         return EXIT_FAILURE;
     }

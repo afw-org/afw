@@ -55,21 +55,32 @@ IdentifierContinue ::= ID_CONTINUE | '$' | ZWNJ | ZWJ</code>
         <item><literal>ID_CONTINUE</literal> is any codepoint with <literal>ID_CONTINUE</literal> flag</item>
         <item><literal>ZWNJ</literal> is the Zero-width Non-Joiner (0x200c)</item>
         <item><literal>ZWJ</literal> is the Zero-width Joiner (0x200d)</item>
-    </list>    
+    </list>
+    <paragraph>
+        Separately, the lexical analyzer recognizes
+        <literal>pound_identifier</literal> tokens: a leading
+        <literal>#</literal> followed by an identifier-like name (for example
+        <literal>#block</literal> or <literal>#compile</literal>). You may see
+        them in <literal>decompile</literal> output; they are not ordinary
+        identifiers and cannot be used as variable names. Most are not
+        something you write in normal scripts (see Language Features);
+        policy forms such as <literal>#compile</literal> are the exception.
+    </paragraph>
     <header>Reserved Names</header>
     <paragraph>
-        When declaring a variable name, you may use any identifier with the exception 
-        of the following reserved names:
-    </paragraph>    
-    <code>false       INF         Infinity    NaN       null    
-true        undefined   break       case      catch
-const       continue    do          else      finally
-for         function    if          let       return
-switch      throw       try         void      while
-as          async       await       class     export
-extends     from        import      interface instanceof
-super       this        type        typeof    var
-with</code> 
+        When declaring a variable name, you may use any identifier with the
+        exception of the following reserved names:
+    </paragraph>
+    <code>false       INF         Infinity    NaN         null
+true        undefined
+break       case        catch       const       continue
+default     do          else        extends     finally
+for         function    if          interface   let
+return      switch      throw       try         type
+void        while
+as          async       await       class       delete
+export      from        import      in          instanceof
+super       this        typeof      var         with</code> 
     <header>Literals</header>
     <paragraph>
         Literals are constant that can be used as a values inside expressions. There are 

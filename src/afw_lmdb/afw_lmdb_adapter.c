@@ -13,7 +13,7 @@
  */
 
 #include "afw.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include "afw_lmdb.h"
 #include "afw_lmdb_internal.h"
 #include "afw_lmdb_metadata.h"
@@ -23,6 +23,7 @@
 
 /* Declares and rti/inf defines for interface afw_adapter */
 #define AFW_IMPLEMENTATION_ID "lmdb"
+#define AFW_ADAPTER_SELF_T afw_lmdb_adapter_t
 #include "afw_adapter_impl_declares.h"
 
 /*
@@ -76,12 +77,22 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
 
     env = afw_xctx_calloc_type(afw_lmdb_env_t, xctx);
 
+    /* path is a template evaluated at adapter start; full path (#15). */
     value = afw_object_get_property(envObject, afw_lmdb_s_path, xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general,
             "Property env.path required by LMDB adapter.", xctx);
     }
-    env->path_z = afw_value_as_utf8_z(value, p, xctx);
+    value = afw_value_compile_and_evaluate_as(value, NULL,
+        afw_compile_type_template, p, xctx);
+    if (!afw_value_is_string(value)) {
+        AFW_THROW_ERROR_Z(general,
+            "Property env.path must evaluate to string.", xctx);
+    }
+    env->path_z = afw_utf8_to_utf8_z(
+        afw_file_insure_full_path(
+            &((const afw_value_string_t *)value)->internal, p, xctx),
+        p, xctx);
 
     value = afw_object_get_property(envObject, afw_lmdb_s_mode, xctx);
     if (!value) {
@@ -348,10 +359,9 @@ const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
  */
 void
 impl_afw_adapter_destroy(
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {  
-    afw_lmdb_adapter_t *self = (afw_lmdb_adapter_t *) instance;
     apr_hash_index_t *hi;
 
     /* close any open databases */
@@ -371,7 +381,7 @@ impl_afw_adapter_destroy(
     mdb_env_close(self->dbEnv);
 
     /* Release pool. */
-    afw_pool_release(instance->p, xctx);
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
@@ -381,10 +391,9 @@ impl_afw_adapter_destroy(
  */
 const afw_adapter_session_t *
 impl_afw_adapter_create_adapter_session (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_t *self = (afw_lmdb_adapter_t *)instance;
 
     return (const afw_adapter_session_t *)
         afw_lmdb_adapter_session_create(self, xctx);
@@ -396,12 +405,10 @@ impl_afw_adapter_create_adapter_session (
  */
 const afw_object_t *
 impl_afw_adapter_get_additional_metrics (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_lmdb_adapter_t *self = 
-        (afw_lmdb_adapter_t *) instance;
     int major, minor, patch;
     char *version_str;
     const afw_object_t *metrics;

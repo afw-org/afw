@@ -9,7 +9,7 @@
 
 /**
  * @file afw_model_location.c
- * @brief Adaptive Framework model location
+ * @brief Model location resolve and hybrid model loading.
  */
 
 #include "afw_internal.h"

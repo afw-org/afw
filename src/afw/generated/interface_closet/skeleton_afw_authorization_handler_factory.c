@@ -25,7 +25,7 @@ impl_<afwdev {prefixed_interface_name}>_description =
     AFW_UTF8_LITERAL("<afwdev {description}>.");
 
 /* Singleton instance of afw_authorization_handler_factory for <afwdev {implementation_id}> */
-<afwdev {srcdir_prefix.upper()}>DEFINE_CONST_DATA(afw_authorization_handler_factory_t)
+const afw_authorization_handler_factory_t
 <afwdev {prefixed_interface_name}> =
 {
     &impl_afw_authorization_handler_factory_inf,
@@ -34,7 +34,7 @@ impl_<afwdev {prefixed_interface_name}>_description =
 };
 
 /* Get singleton instance of afw_authorization_handler_factory for <afwdev {implementation_id}> */
-<afwdev {srcdir_prefix.upper()}>DEFINE(const afw_authorization_handler_factory_t *)
+const afw_authorization_handler_factory_t *
 <afwdev {prefix}>get_afw_authorization_handler_factory(
     const afw_object_t *parameters,
     afw_xctx_t *xctx)

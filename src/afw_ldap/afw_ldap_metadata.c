@@ -9,7 +9,7 @@
 
 /**
  * @file afw_ldap_metadata.c
- * @brief  Internal LDAP Schema parser
+ * @brief LDAP schema/metadata parser for the LDAP adapter.
  */
 
 #include "afw.h"
@@ -272,7 +272,7 @@ impl_get_value(impl_lexical_t *self)
 
         /* Allocate list to hold strings and populate it. */
         s = afw_pool_malloc(self->p, count * sizeof(afw_utf8_t), self->xctx);
-        list = afw_array_create_wrapper_for_array(s, false,
+        list = afw_array_create_view_of_c_array(s, false,
             afw_data_type_string, count, self->p, self->xctx);
         val = afw_value_create_unmanaged_array(list, self->p, self->xctx);
         for (;;) {
@@ -404,8 +404,8 @@ impl_parse_definition(
     const afw_utf8_t *e;
     const afw_utf8_t *name;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
-    const afw_iterator_t *iterator2;
+    const afw_iterator_old_t *iterator;
+    const afw_iterator_old_t *iterator2;
 
     /* Use metadata p. */
     p = metadata->p;
@@ -731,7 +731,7 @@ impl_a_property_to_object_type(
     if (parent) {
         s = afw_object_meta_get_path(parent, xctx);
         parent_paths = afw_value_allocate_unmanaged_array(prop->p, xctx);
-        parent_paths->internal = afw_array_create_wrapper_for_array(
+        parent_paths->internal = afw_array_create_view_of_c_array(
             (const void *)s, false, afw_data_type_anyURI, 1, prop->p, xctx);
         afw_object_meta_set_parent_paths(prop, parent_paths, xctx);
     }
@@ -754,7 +754,7 @@ impl_properties_to_object_type(
     const afw_value_t *value;
     const afw_array_t *list;
     const afw_utf8_t *s;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_utf8_t req_pn;
 
     req_pn.s = (required) ? "MUST" : "MAY";
@@ -854,7 +854,7 @@ impl_add_parents_and_property_types(
     afw_utf8_t *ids;
     const afw_utf8_t *parent_id;
     const afw_utf8_t *parent_id2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     afw_size_t count;
     afw_size_t count2;
@@ -1102,9 +1102,8 @@ impl_make_object_types(
                 "_AdaptiveObjectType representation of LDAP object"
                 "class " AFW_UTF8_FMT_Q ".",
                 AFW_UTF8_FMT_ARG(id));
-            value = afw_value_make_single_string(
-                default_description->s, default_description->len,
-                p, xctx);
+            value = afw_value_create_unmanaged_string(
+                default_description, p, xctx);
         }
         afw_object_set_property(object_type_object, afw_s_description, value,
             xctx);

@@ -102,7 +102,7 @@ impl_afw_array_get_entry_value(
 const afw_value_t *
 impl_afw_array_get_next_entry_meta(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx)
 {
@@ -116,7 +116,7 @@ impl_afw_array_get_next_entry_meta(
 afw_boolean_t
 impl_afw_array_get_next_internal(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t * xctx)
@@ -131,8 +131,21 @@ impl_afw_array_get_next_internal(
 const afw_value_t *
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method initialize_iterator for interface afw_array.
+ */
+void
+impl_afw_array_initialize_iterator(
+    AFW_ARRAY_SELF_T *self,
+    const afw_iterator_t * iterator,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */

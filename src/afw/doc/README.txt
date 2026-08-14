@@ -4,4 +4,5 @@ src/afw/doc/
 This directory contains the doc for Adaptive Framework core.
 
 The syntax/ directory must be produced manually.  See the instructios
-at the top of src/afw/generated/ebnf/syntax.ebnf.
+at the top of src/afw/generated/ebnf/syntax.ebnf (harvested header; dual use
+for automated docs via rr.war and optional bottlecaps.de/rr/ui paste).

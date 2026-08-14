@@ -33,6 +33,7 @@ our @EXPORT_OK = qw(
     eqx 
     eval 
     floor 
+    freeze 
     ge 
     gt 
     in_range 
@@ -207,7 +208,10 @@ The `<dataType>` value to clone.
 =head3 compile
 
 Compile `<dataType>` value and return either an unevaluated adaptive value or
-a string containing the compiler listing.
+a string containing the compiler listing. The listing is a human-oriented dump
+(value tree interleaved with source, plus ---Symbols tables) for Fiddle and
+debugging — not pure JSON (use stringify) and not Adaptive compiled-form text
+(use decompile).
 Compile <dataType> value
 
 =head4 Parameters
@@ -218,10 +222,11 @@ Compile <dataType> value
 
     $listing
 
-If specified, a compiler listing is produced instead of an unevaluated
-compiled value.
+If specified, a human compiler listing is produced instead of an unevaluated
+compiled value (tree + ---Symbols; not recompilable). Use decompile() for
+Adaptive compiled-form text and stringify() for pure JSON of evaluated data.
 
-This parameter can be an integer between 0 and 10 of a string that is used for
+This parameter can be an integer between 0 and 10 or a string that is used for
 indentation. If 0 is specified, no whitespace is added to the resulting
 string. If 1 through 10 is specified, that number of spaces is used.
 
@@ -362,6 +367,18 @@ Round downwards to nearest integer
 
     $number
 
+
+=head3 freeze
+
+Set a `<dataType>` value immutable so further mutation throws. If already
+immutable, has no effect. Returns the same value.
+Make <dataType> value immutable
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value to freeze.
 
 =head3 ge
 
@@ -870,9 +887,10 @@ The second array.
 
 =head3 substring
 
-Returns the `<dataType>` substring of value beginning at zero-based position
-integer startIndex and ending at the position before integer endIndex. Specify
--1 or omitting endIndex to return up to end of `<dataType>`.
+Returns the string substring of value beginning at zero-based position integer
+startIndex and ending at the position before integer endIndex. Specify -1 or
+omit endIndex to return through the end of value. The result is always string
+(a slice of anyURI is not an anyURI).
 Extract a substring
 
 =head4 Parameters
@@ -1328,6 +1346,17 @@ sub floor {
 
     $request->set("function" => "floor");
     $request->set("number", $number);
+
+    return $request->getResult();
+}
+
+sub freeze {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "freeze");
+    $request->set("value", $value);
 
     return $request->getResult();
 }

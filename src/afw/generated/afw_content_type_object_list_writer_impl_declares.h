@@ -75,7 +75,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_content_type_object_list_writer_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_CONTENT_TYPE_OBJECT_LIST_WRITER_IMPL_DECLARES_H__

@@ -14,7 +14,7 @@
 
 #include "afw.h"
 #include "afw_ldap_internal.h"
-#include "generated/afw_ldap_generated.h"
+#include "generated/afw_ldap_generated_internal.h"
 
 
 /* Declares and rti/inf defines for interface afw_extension */
@@ -33,7 +33,7 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
  */
 const afw_extension_t *
 impl_afw_extension_initialize(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -58,7 +58,7 @@ impl_afw_extension_initialize(
  */
 void
 impl_afw_extension_release(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     afw_xctx_t *xctx)
 {
     /* Extension release() is not currently called. */

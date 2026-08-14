@@ -117,6 +117,26 @@ export function afwCloneObject(client : any, value : object) : any {
 }
 
 /**
+ * Return a new array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. Order matches
+ * keys() for the same object. The value may be undefined. The result is a
+ * snapshot.
+ * 
+ * @param {object} object - Object to list property entries from.
+ * 
+ * @returns {array} Array of [name, value] pair arrays.
+ */
+export function afwEntries(client : any, object : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "entries";
+    _action["object"] = object;
+
+    return client.perform(_action);
+}
+
+/**
  * Determine if object arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
@@ -156,6 +176,24 @@ export function afwEqxObject(client : any, arg1 : object, arg2 : any) : any {
     _action["function"] = "eqx<object>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Set a object value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ * 
+ * @param {object} value - The object value to freeze.
+ * 
+ * @returns {object} The same value, now immutable.
+ */
+export function afwFreezeObject(client : any, value : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "freeze<object>";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -215,6 +253,25 @@ export function afwIsObject(client : any, value : any) : any {
 
     _action["function"] = "is<object>";
     _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return a new array of the property names of an object, in the object's
+ * property iteration order. The array is a snapshot; later changes to the
+ * object do not change a previous result.
+ * 
+ * @param {object} object - Object to list property names from.
+ * 
+ * @returns {array} Array of property name strings.
+ */
+export function afwKeys(client : any, object : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "keys";
+    _action["object"] = object;
 
     return client.perform(_action);
 }
@@ -335,7 +392,10 @@ export function afwNexObject(client : any, arg1 : object, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type object returning object result.
+ * Converts value to data type object returning object result. A string is
+ * parsed as JSON (or relaxed JSON) and must yield an object; an object is
+ * left unchanged. This is not an object-literal constructor — use { ... } for
+ * that.
  * 
  * @param {} value - Value to convert
  * 
@@ -389,13 +449,15 @@ export function afwPropertyDeleteByReference(client : any, reference : any) : an
 }
 
 /**
- * Return true if the named property exists in an object.
+ * Return true if the named property is present on the object, including when
+ * its value is undefined or null. False only when the key is missing. Use
+ * is_defined / is_nullish for the value.
  * 
- * @param {object} object - Object to get property from.
+ * @param {object} object - Object to check.
  * 
- * @param {string} name - Name of property to check.
+ * @param {string} name - Property name.
  * 
- * @returns {boolean} True if object has named property.
+ * @returns {boolean} True if the property is present.
  */
 export function afwPropertyExists(client : any, object : object, name : string) : any {
 
@@ -409,17 +471,19 @@ export function afwPropertyExists(client : any, object : object, name : string) 
 }
 
 /**
- * Return the value of a property of an object. If property is not available,
- * return a default or null value.
+ * Return the value of a property. Optional default applies only when the
+ * property is missing — not when the value is undefined. If missing and no
+ * default is given, the result is undefined. Object/array defaults get a
+ * mutable memory face (issues #110 / #17); other defaults are cloned.
  * 
  * @param {object} object - Object to get property from.
  * 
- * @param {string} name - Name of property to get.
+ * @param {string} name - Property name.
  * 
- * @param {} defaultValue - The default value of property if it does not exist
- *     in object. If not specified, null value is the default.
+ * @param {} defaultValue - Value to return only if the property is missing.
+ *     Isolated when used (object/array face; otherwise clone).
  * 
- * @returns {} Evaluated property value or default.
+ * @returns {} Property value, or default / undefined if missing.
  */
 export function afwPropertyGet(client : any, object : object, name : string, defaultValue? : any) : any {
 
@@ -436,13 +500,15 @@ export function afwPropertyGet(client : any, object : object, name : string, def
 }
 
 /**
- * Return true if the named property exists in an object and is not null.
+ * Return true if the named property is present and its value is not Adaptive
+ * null. Undefined counts as not null. False if the property is missing or the
+ * value is null. Not the same as is_defined or not is_nullish.
  * 
- * @param {object} object - Object to get property from.
+ * @param {object} object - Object to check.
  * 
- * @param {string} name - Name of property to check.
+ * @param {string} name - Property name.
  * 
- * @returns {boolean} True if object has named property that is not null.
+ * @returns {boolean} True if present and value is not Adaptive null.
  */
 export function afwPropertyIsNotNull(client : any, object : object, name : string) : any {
 
@@ -469,6 +535,25 @@ export function afwToStringObject(client : any, value : object) : any {
 
     _action["function"] = "to_string<object>";
     _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return a new array of the property values of an object, in the same order
+ * as keys() for that object. Values may be undefined if a property was set to
+ * undefined. The array is a snapshot.
+ * 
+ * @param {object} object - Object to list property values from.
+ * 
+ * @returns {array} Array of property values.
+ */
+export function afwValues(client : any, object : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "values";
+    _action["object"] = object;
 
     return client.perform(_action);
 }

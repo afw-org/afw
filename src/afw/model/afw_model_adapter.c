@@ -8,7 +8,7 @@
 
 /**
  * @file afw_model_adapter.c
- * @brief Adaptive Framework model adapter.
+ * @brief Model adapter factory and session implementation.
  */
 
 #include "afw_internal.h"
@@ -18,7 +18,9 @@
 /* Declares and rti/inf defines for interface afw_adapter */
 #define AFW_IMPLEMENTATION_ID "model"
 #include "afw_adapter_factory_impl_declares.h"
+#define AFW_ADAPTER_SELF_T afw_model_internal_adapter_self_t
 #include "afw_adapter_impl_declares.h"
+#define AFW_ADAPTER_SESSION_SELF_T afw_model_internal_adapter_session_self_t
 #include "afw_adapter_session_impl_declares.h"
 #include "afw_adapter_object_type_cache_impl_declares.h"
 
@@ -69,6 +71,29 @@ afw_adapter_factory_model =
     AFW_UTF8_LITERAL("model"),
     &impl_factory_description
 };
+
+
+/*
+ * Require mappedAdapterId for default map-and-forward (issue #109).
+ */
+void
+afw_model_internal_require_mapped_adapter(
+    const afw_model_internal_adapter_self_t *adapter,
+    const afw_utf8_z_t *operation,
+    afw_xctx_t *xctx)
+{
+    if (adapter->mapped_adapter_id) {
+        return;
+    }
+
+    AFW_THROW_ERROR_FZ(general, xctx,
+        "Model adapter " AFW_UTF8_FMT_Q
+        " has no mappedAdapterId; default processing for %s is not available. "
+        "Implement the corresponding on* hook on the model object type, "
+        "or configure mappedAdapterId.",
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        operation);
+}
 
 
 static const afw_object_t *
@@ -316,7 +341,7 @@ impl_adapt_object_from_adapter(
 
 
 /* Convert a property based on object_type and adapt_type. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_convert_property(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -376,7 +401,7 @@ error:
 
 
 /* Convert a property name based on object_type and adapt_type. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_convert_property_name(
     const afw_model_object_type_t *object_type,
     afw_model_adapt_t adapt_type,
@@ -642,7 +667,7 @@ impl_execute_mapBackObject_thunk(
  *
  * Like adaptive function: model_returnObject_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Parameters:
  *     object - (object) This is the object to return.
@@ -729,7 +754,7 @@ impl_execute_returnObject_thunk(
 
 
 /* Convert query criteria based on model. */
-AFW_DEFINE_INTERNAL(const afw_query_criteria_t *)
+const afw_query_criteria_t *
 afw_model_internal_convert_query_criteria(
     const afw_model_object_type_t *model_object_type,
     const afw_query_criteria_t *criteria,
@@ -860,22 +885,28 @@ afw_model_adapter_create_cede_p(
 
     AFW_ENDTRY;
 
-    /* mappedAdapterId */
+    /*
+     * mappedAdapterId is optional (issue #109). Required only when default
+     * map-and-forward processing is used. Pure-script models that implement
+     * all used operations in on* may omit it.
+     */
     self->mappedAdapterId_value = afw_object_get_property(properties,
         afw_s_mappedAdapterId, xctx);
-    if (!self->mappedAdapterId_value) {
-        afw_adapter_impl_throw_property_required(adapter,
-        afw_s_mappedAdapterId, xctx);
+    if (self->mappedAdapterId_value) {
+        if (!afw_value_is_string(self->mappedAdapterId_value)) {
+            afw_adapter_impl_throw_property_invalid(adapter,
+                afw_s_mappedAdapterId, xctx);
+        }
+        self->mapped_adapter_id =
+            &((const afw_value_string_t *)self->mappedAdapterId_value)->internal;
+        if (afw_utf8_equal(self->mapped_adapter_id, &self->pub.adapter_id)) {
+            afw_adapter_impl_throw_property_invalid(adapter,
+                afw_s_mappedAdapterId, xctx);
+        }
     }
-    if (!afw_value_is_string(self->mappedAdapterId_value)) {
-        afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_mappedAdapterId, xctx);
-    }
-    self->mapped_adapter_id =
-        &((const afw_value_string_t *)self->mappedAdapterId_value)->internal;
-    if (afw_utf8_equal(self->mapped_adapter_id, &self->pub.adapter_id)) {
-        afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_mappedAdapterId, xctx);
+    else {
+        self->mapped_adapter_id = NULL;
+        self->mappedAdapterId_value = NULL;
     }
 
     /* Return adapter. */
@@ -888,7 +919,7 @@ afw_model_adapter_create_cede_p(
  */
 const afw_adapter_t *
 impl_afw_adapter_factory_create_adapter_cede_p (
-    const afw_adapter_factory_t * instance,
+    const afw_adapter_factory_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -902,11 +933,11 @@ impl_afw_adapter_factory_create_adapter_cede_p (
  */
 void
 impl_afw_adapter_destroy (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Release pool. */
-    afw_pool_release(instance->p, xctx);
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
@@ -916,17 +947,15 @@ impl_afw_adapter_destroy (
  */
 const afw_adapter_session_t *
 impl_afw_adapter_create_adapter_session (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_self_t * self =
-        (afw_model_internal_adapter_self_t *)instance;
     afw_model_internal_adapter_session_self_t *session;
 
     session = afw_xctx_calloc_type(afw_model_internal_adapter_session_self_t,
         xctx);
     session->pub.inf = &impl_afw_adapter_session_inf;
-    session->pub.adapter = instance;
+    session->pub.adapter = &self->pub;
     session->pub.p = xctx->p;
     session->adapter = self;
 
@@ -958,7 +987,7 @@ impl_afw_adapter_create_adapter_session (
  */
 const afw_object_t *
 impl_afw_adapter_get_additional_metrics (
-    const afw_adapter_t * instance,
+    AFW_ADAPTER_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
@@ -973,11 +1002,9 @@ impl_afw_adapter_get_additional_metrics (
  */
 void
 impl_afw_adapter_session_destroy (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self = 
-        (afw_model_internal_adapter_session_self_t *)instance;
 
     if (self->model_location_adapter) {
         afw_adapter_release(self->model_location_adapter, xctx);
@@ -1061,7 +1088,7 @@ impl_model_object_cb(
  */
 void
 impl_afw_adapter_session_retrieve_objects(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
@@ -1071,10 +1098,8 @@ impl_afw_adapter_session_retrieve_objects(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self =
-        (afw_model_internal_adapter_session_self_t *)instance;
     afw_model_internal_adapter_self_t * adapter =
-        (afw_model_internal_adapter_self_t *)instance->adapter;
+        (afw_model_internal_adapter_self_t *)self->pub.adapter;
     afw_model_internal_context_t *ctx;
     afw_model_internal_object_cb_context_t cb_ctx;
     apr_hash_index_t *hi;
@@ -1163,6 +1188,9 @@ impl_afw_adapter_session_retrieve_objects(
                 }
 
                 if (use_default_processing) {
+                    afw_model_internal_require_mapped_adapter(self->adapter,
+                        "retrieve_objects", xctx);
+
                     if (criteria) {
                         cb_ctx.criteria = afw_model_internal_convert_query_criteria(
                             cb_ctx.model_object_type, criteria, p, xctx);
@@ -1190,7 +1218,7 @@ impl_afw_adapter_session_retrieve_objects(
  */
 void
 impl_afw_adapter_session_get_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -1200,10 +1228,8 @@ impl_afw_adapter_session_get_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self =
-        (afw_model_internal_adapter_session_self_t *)instance;
     afw_model_internal_adapter_self_t *adapter =
-        (afw_model_internal_adapter_self_t *)instance->adapter;
+        (afw_model_internal_adapter_self_t *)self->pub.adapter;
     afw_model_internal_context_t *ctx;
     afw_model_internal_object_cb_context_t cb_ctx;
     const afw_object_t *object;
@@ -1295,6 +1321,8 @@ impl_afw_adapter_session_get_object(
 
                 /* Get object and map.  */
                 if (use_default_processing) {
+                    afw_model_internal_require_mapped_adapter(self->adapter,
+                        "get_object", xctx);
                     mapped_object = afw_adapter_get_object(
                         self->adapter->mapped_adapter_id,
                         cb_ctx.model_object_type->mapped_object_type_id,
@@ -1320,7 +1348,7 @@ impl_afw_adapter_session_get_object(
  * does further appropriated processing on returned object.  ctx must be
  * initialized before call.
  */
-AFW_DEFINE_INTERNAL(const afw_object_t *)
+const afw_object_t *
 afw_model_internal_create_basic_to_adapter_mapped_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1333,7 +1361,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
     const afw_value_t *mapped_value;
     const afw_model_property_type_t *pt;
     const afw_model_property_type_t * const *pts;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* */
     result = afw_object_create_unmanaged(p, xctx);
@@ -1402,7 +1430,7 @@ afw_model_internal_create_basic_to_adapter_mapped_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_add_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1431,7 +1459,7 @@ afw_model_internal_complete_ctx_default_add_object(
  */
 const afw_utf8_t *
 impl_afw_adapter_session_add_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *suggested_object_id,
@@ -1439,8 +1467,6 @@ impl_afw_adapter_session_add_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self =
-        (afw_model_internal_adapter_session_self_t *)instance;
     afw_model_internal_context_t *ctx;
     const afw_utf8_t *mapped_object_id;
     const afw_object_t *journal_entry;
@@ -1490,8 +1516,10 @@ impl_afw_adapter_session_add_object(
                 }
             }
 
-            /* If no onAddObject or it returned undefined, do default processing. */
+            /* If no onAddObject or it returned useDefaultProcessing, do default. */
             if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "add_object", xctx);
                 afw_model_internal_complete_ctx_default_add_object(ctx, xctx);
                 journal_entry = afw_object_create(ctx->p, xctx);
                 mapped_object_id = afw_adapter_add_object(
@@ -1522,7 +1550,7 @@ impl_afw_adapter_session_add_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_modify_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1553,7 +1581,7 @@ afw_model_internal_complete_ctx_default_modify_object(
         /* Make a skeleton modify entry list and add it. */
         mapped_entry = afw_array_create_generic(ctx->p, xctx);
         value = afw_value_create_unmanaged_array(mapped_entry, ctx->p, xctx);
-        afw_array_add_value(ctx->mapped_entries, value, xctx);
+        afw_array_push_value(ctx->mapped_entries, value, xctx);
 
         /* Add type to entry. */
         if ((*entry)->type < 0 ||
@@ -1562,7 +1590,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             AFW_THROW_ERROR_FZ(general, xctx, "Invalid modify type %d",
                 (*entry)->type);
         }
-        afw_array_add_value(mapped_entry,
+        afw_array_push_value(mapped_entry,
             afw_adapter_modify_entry_type_value((*entry)->type), xctx);
 
         /* Add mapped name to entry. */
@@ -1574,7 +1602,7 @@ afw_model_internal_complete_ctx_default_modify_object(
                 "Property name " AFW_UTF8_FMT_Q " invalid",
                 AFW_UTF8_FMT_ARG(&(*entry)->first_property_name_entry->property_name));
         }
-        afw_array_add_value(mapped_entry,
+        afw_array_push_value(mapped_entry,
             model_property_type->mapped_property_name_value, xctx);
 
         /* Add value if there is one. */
@@ -1590,7 +1618,7 @@ afw_model_internal_complete_ctx_default_modify_object(
                     ctx->p, xctx);
                 afw_memory_clear(&ctx->property_level);
             }
-            afw_array_add_value(mapped_entry, value, xctx);
+            afw_array_push_value(mapped_entry, value, xctx);
         }
     }
 }
@@ -1601,7 +1629,7 @@ afw_model_internal_complete_ctx_default_modify_object(
  */
 void
 impl_afw_adapter_session_modify_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -1609,8 +1637,6 @@ impl_afw_adapter_session_modify_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self =
-        (afw_model_internal_adapter_session_self_t *)instance;
     afw_model_internal_context_t *ctx;
     const afw_value_t *value;
     const afw_object_t *journal_entry;
@@ -1656,8 +1682,10 @@ impl_afw_adapter_session_modify_object(
                 }
             }
 
-            /* If no onModifyObject or it returned undefined, do default processing. */
-            if(use_default_processing) {
+            /* If no onModifyObject or it returned useDefaultProcessing, do default. */
+            if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "modify_object", xctx);
                 afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
                 journal_entry = afw_object_create(ctx->p, xctx);
                 afw_adapter_modify_object(
@@ -1685,7 +1713,7 @@ impl_afw_adapter_session_modify_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_replace_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1701,7 +1729,7 @@ afw_model_internal_complete_ctx_default_replace_object(
  */
 void
 impl_afw_adapter_session_replace_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -1709,8 +1737,6 @@ impl_afw_adapter_session_replace_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self =
-        (afw_model_internal_adapter_session_self_t *)instance;
     afw_model_internal_context_t *ctx;
     const afw_object_t *journal_entry;
     const afw_value_t *value;
@@ -1751,8 +1777,10 @@ impl_afw_adapter_session_replace_object(
                 }
             }
 
-            /* If no onReplaceObject or it returned undefined, do default processing. */
+            /* If no onReplaceObject or it returned useDefaultProcessing, do default. */
             if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "replace_object", xctx);
                 journal_entry = afw_object_create(ctx->p, xctx);
                 afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
                 afw_adapter_replace_object(
@@ -1780,7 +1808,7 @@ impl_afw_adapter_session_replace_object(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_model_internal_complete_ctx_default_delete_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx)
@@ -1795,15 +1823,13 @@ afw_model_internal_complete_ctx_default_delete_object(
  */
 void
 impl_afw_adapter_session_delete_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self =
-        (afw_model_internal_adapter_session_self_t *)instance;
     afw_model_internal_context_t *ctx;
     const afw_object_t *journal_entry;
     const afw_value_t *value;
@@ -1843,8 +1869,10 @@ impl_afw_adapter_session_delete_object(
                 }
             }
 
-            /* If no onDeleteObjector or it returned undefined, do default processing. */
+            /* If no onDeleteObject or it returned useDefaultProcessing, do default. */
             if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "delete_object", xctx);
                 journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
                 afw_model_internal_complete_ctx_default_delete_object(ctx, xctx);
                 afw_adapter_delete_object(self->adapter->mapped_adapter_id,
@@ -1871,11 +1899,19 @@ impl_afw_adapter_session_delete_object(
  */
 const afw_adapter_transaction_t *
 impl_afw_adapter_session_begin_transaction (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     afw_model_internal_adapter_self_t * adapter =
-        (afw_model_internal_adapter_self_t *)instance->adapter;
+        (afw_model_internal_adapter_self_t *)self->pub.adapter;
+
+    /*
+     * If no mappedAdapterId (pure-script model), there is no mapped backend
+     * transaction to open (issue #109).
+     */
+    if (!adapter->mapped_adapter_id) {
+        return NULL;
+    }
 
     /* Get cached session with begin_transaction. Ignore result. */
     afw_adapter_session_get_cached(adapter->mapped_adapter_id,
@@ -1892,7 +1928,7 @@ impl_afw_adapter_session_begin_transaction (
  */
 const afw_adapter_journal_t *
 impl_afw_adapter_session_get_journal_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is no journal interface for model adapter. */
@@ -1906,7 +1942,7 @@ impl_afw_adapter_session_get_journal_interface (
  */
 const afw_adapter_key_value_t *
 impl_afw_adapter_session_get_key_value_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is no key_value interface for model adapter. */
@@ -1920,7 +1956,7 @@ impl_afw_adapter_session_get_key_value_interface (
  */
 const afw_adapter_impl_index_t *
 impl_afw_adapter_session_get_index_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is no index interface for model adapter. */
@@ -1935,16 +1971,14 @@ impl_afw_adapter_session_get_index_interface (
  */
 const afw_adapter_object_type_cache_t *
 impl_afw_adapter_session_get_object_type_cache_interface(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_model_internal_adapter_session_self_t * self =
-        (afw_model_internal_adapter_session_self_t *)instance;
 
     afw_adapter_impl_object_type_cache_initialize(
         &self->object_type_cache,
         &impl_afw_adapter_object_type_cache_inf,
-        instance, true, xctx);
+        &self->pub, true, xctx);
 
     return &self->object_type_cache;
 }
@@ -1956,13 +1990,13 @@ impl_afw_adapter_session_get_object_type_cache_interface(
  */
 const afw_object_type_t *
 impl_afw_adapter_object_type_cache_get(
-    const afw_adapter_object_type_cache_t * instance,
+    const afw_adapter_object_type_cache_t * self,
     const afw_utf8_t * object_type_id,
     afw_boolean_t * final_result,
     afw_xctx_t *xctx)
 {
     afw_model_internal_adapter_session_self_t * session =
-        (afw_model_internal_adapter_session_self_t *)instance->session;
+        (afw_model_internal_adapter_session_self_t *)self->session;
     const afw_object_type_t *result;
     afw_model_t *model = (afw_model_t *)session->model;
 
@@ -1989,12 +2023,12 @@ impl_afw_adapter_object_type_cache_get(
  */
 void
 impl_afw_adapter_object_type_cache_set(
-    const afw_adapter_object_type_cache_t * instance,
+    const afw_adapter_object_type_cache_t * self,
     const afw_object_type_t * object_type,
     afw_xctx_t *xctx)
 {
     afw_model_internal_adapter_session_self_t * session =
-        (afw_model_internal_adapter_session_self_t *)instance->session;
+        (afw_model_internal_adapter_session_self_t *)self->session;
     afw_model_t *model = (afw_model_t *)session->model;
 
     AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(session->model_location_adapter)

@@ -19,7 +19,7 @@
 
 /**
  * @file afw_data_type_function_binding.c
- * @brief Adaptive Framework core data types.
+ * @brief Generated core adaptive data type implementations.
  */
 
 #include "afw.h"
@@ -75,8 +75,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_function_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for function values. For this one */
-/* optional_release is NULL and get_reference returns new reference. */
+/* unmanaged function: optional_release NULL; */
+/* clone_or_reference returns the same instance (pool lifetime). */
 #define AFW_IMPLEMENTATION_ID "function"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_function_inf
@@ -90,8 +90,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed function values. For this one */
-/* optional_release releases value and get_reference returns new reference. */
+/* managed function: optional_release frees header at RC 0; */
+/* clone_or_reference bumps RC and returns the same instance. */
 #define AFW_IMPLEMENTATION_ID "managed_function"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_function_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -105,8 +105,8 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent function values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent function: optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_function"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_function_inf
 #define impl_afw_value_optional_release NULL
@@ -163,15 +163,15 @@ impl_data_type_object_function__value = {
 };
 
 /* Value for empty array of function. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_function;
 
 /* Value for empty array of function. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_function;
 
 /* Data type function instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_function_direct = {
     &afw_data_type_function_inf,
     (const afw_object_t *)&impl_data_type_object_function,
@@ -194,14 +194,15 @@ afw_data_type_function_direct = {
     true,
     false,
     false,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of function. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_function = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_function
     },
@@ -210,7 +211,7 @@ impl_empty_array_of_function = {
 };
 
 /* Value for empty array of function. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_function = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_function
@@ -290,6 +291,7 @@ afw_value_create_managed_function(
         sizeof(afw_value_function_managed_t), xctx);
     v->inf = &afw_value_managed_function_inf;
     v->internal = internal;
+    /* Create starts at 0; see optional_release. */
     v->reference_count = 0;
 
     return &v->pub;
@@ -364,7 +366,7 @@ afw_object_get_property_as_function_source(
 AFW_DEFINE(const afw_value_t *)
 afw_object_get_next_property_as_function_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -417,7 +419,7 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* No reference counting takes place for unmanaged value. */
+    /* Unmanaged: return same instance (pool owns storage). */
     return instance;
 }
 
@@ -432,7 +434,7 @@ impl_afw_value_managed_get_reference(
     afw_value_function_managed_t *self =
         (afw_value_function_managed_t *)instance;
 
-    /* Increment reference count and return instance. */
+    /* Bump RC; return same instance (not a clone). */
     self->reference_count++;
     return instance;
 }
@@ -445,7 +447,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 
@@ -511,7 +513,7 @@ impl_afw_value_get_info(
 AFW_DEFINE(const afw_value_t *)
 afw_array_of_function_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
@@ -551,7 +553,7 @@ afw_array_of_function_add(
     }
 
     internal = value;
-    afw_array_setter_add_internal(setter, 
+    afw_array_setter_push_internal(setter, 
         afw_data_type_function,
         (const void *)&internal, xctx);
 }

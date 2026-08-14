@@ -1,0 +1,21 @@
+{
+    "category": "crypto",
+    "brief": "Export key",
+    "description": "Export raw key octets from a CryptoKey if extractable is true. Requires execute access.",
+    "functionId": "crypto_export_key",
+    "functionLabel": "crypto_export_key",
+    "requiresExecuteAccess": true,
+    "sideEffects": [
+        "Other"
+    ],
+    "parameters": [
+        {
+            "name": "key",
+            "description": "CryptoKey object with keyId."
+        }
+    ],
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "Raw key material."
+    }
+}

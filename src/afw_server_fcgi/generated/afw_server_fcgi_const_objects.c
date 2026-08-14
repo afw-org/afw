@@ -19,11 +19,11 @@
 
 /**
  * @file afw_server_fcgi_const_objects.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated builtin const adaptive objects.
  */
 
 #include "afw.h"
-#include "afw_server_fcgi_generated.h"
+#include "afw_server_fcgi_generated_internal.h"
 
 
 static const afw_runtime_const_object_instance_t

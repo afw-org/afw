@@ -22,7 +22,7 @@
 
 /**
  * @file afw_runtime_object_maps.h
- * @brief Adaptive Framework runtime object mapping header.
+ * @brief Generated runtime object map registration header.
  */
 
 
@@ -549,6 +549,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptivePolymorphicFunction_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveProcess_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveProcess_;
+
+/**
  * @brief Runtime object inf for object type _AdaptivePropertyTypes_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
@@ -754,7 +760,7 @@ void afw_register_runtime_object_maps(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_adapterId. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_adapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -762,7 +768,7 @@ afw_model_internal_get_current_adapterId(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_adapterTypeSpecific. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_adapterTypeSpecific(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -770,7 +776,7 @@ afw_model_internal_get_current_adapterTypeSpecific(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_mapBackObject. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_mapBackObject(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -778,7 +784,7 @@ afw_model_internal_get_current_mapBackObject(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_mappedAdapterId. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_mappedAdapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -786,7 +792,7 @@ afw_model_internal_get_current_mappedAdapterId(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_mappedObject. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_mappedObject(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -794,7 +800,7 @@ afw_model_internal_get_current_mappedObject(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_mappedObjectId. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_mappedObjectId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -802,7 +808,7 @@ afw_model_internal_get_current_mappedObjectId(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_mappedObjectType. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_mappedObjectType(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -810,7 +816,7 @@ afw_model_internal_get_current_mappedObjectType(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_mappedPropertyName. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_mappedPropertyName(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -818,7 +824,7 @@ afw_model_internal_get_current_mappedPropertyName(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_mappedValue. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_mappedValue(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -826,7 +832,7 @@ afw_model_internal_get_current_mappedValue(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_modifyEntries. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_modifyEntries(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -834,7 +840,7 @@ afw_model_internal_get_current_modifyEntries(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_object. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_object(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -842,7 +848,7 @@ afw_model_internal_get_current_object(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_objectId. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_objectId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -850,7 +856,7 @@ afw_model_internal_get_current_objectId(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_objectType. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_objectType(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -858,7 +864,7 @@ afw_model_internal_get_current_objectType(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_propertyName. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_propertyName(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -866,7 +872,7 @@ afw_model_internal_get_current_propertyName(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_queryCriteria. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_queryCriteria(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -874,7 +880,7 @@ afw_model_internal_get_current_queryCriteria(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_returnObject. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_returnObject(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -882,7 +888,7 @@ afw_model_internal_get_current_returnObject(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_useDefaultProcessing. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_useDefaultProcessing(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
@@ -890,7 +896,7 @@ afw_model_internal_get_current_useDefaultProcessing(
     afw_xctx_t *xctx);
 
 /* @brief Value accessor afw_model_internal_get_current_value. */
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_model_internal_get_current_value(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,

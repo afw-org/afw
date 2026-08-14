@@ -1,0 +1,38 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt.",
+    "objectType": "_AdaptiveCryptoEncryptResult_",
+    "propertyTypes": {
+        "algorithm": {
+            "dataType": "string",
+            "brief": "Algorithm",
+            "description": "Always AES-GCM in v1."
+        },
+        "ciphertext": {
+            "dataType": "base64Binary",
+            "brief": "Ciphertext",
+            "description": "Encrypted octets without authentication tag."
+        },
+        "iv": {
+            "dataType": "base64Binary",
+            "brief": "Initialization vector",
+            "description": "IV used for this encryption (12 octets recommended)."
+        },
+        "keyLength": {
+            "dataType": "integer",
+            "brief": "AES key length bits",
+            "description": "128 or 256."
+        },
+        "tag": {
+            "dataType": "base64Binary",
+            "brief": "GCM tag",
+            "description": "16-octet authentication tag."
+        }
+    }
+}

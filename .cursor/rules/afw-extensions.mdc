@@ -8,6 +8,19 @@ alwaysApply: false
 
 Loadable DSOs (`libafwcurl`, `libafwldap`, …). After `afw_environment_load_extension` / conf / **lazy manifest**, their registrations are **equal** to core’s. Interfaces come from core `afw_interface.xml` — these six do not ship their own interface XML.
 
+## Core vs base vs self-contained srcdirs
+
+| Term | Meaning |
+|------|---------|
+| **Core** | `src/afw/` — libafw C runtime |
+| **AFW base** | This whole repository (core + shipped commands/extensions) |
+| **Extension srcdir** | e.g. `src/afw_curl/` — keep **as self-contained as practical** (could move to another package repo) |
+
+- Extension/command srcdirs may use **all public** core APIs (`afw.h`, interface call macros, documented groups).
+- They must **not** depend on `afw_internal.h` or core-private headers/groups.
+- Prefer **per-srcdir** docs (public header `@defgroup`, tests, generate/) over stuffing extension detail into `src/afw/include/afw_doxygen.h`.
+- Core may **lightly** mention base extensions for navigation; not a hard purity rule.
+
 Hosts: `#include "afw.h"` (never `afw_internal.h`). Env APIs: `afw-environment`.
 
 ## Boilerplate (every extension)
@@ -55,10 +68,11 @@ Eager vs lazy: Adaptive **functions** / most metadata register inside `generated
 | Ext | Lib | Provides | External | Tests |
 |-----|-----|----------|----------|-------|
 | **curl** | `libafwcurl` | Functions: HTTP verbs, SMTP, curl meta; `error_rv_decoder/curl` | libcurl | `tests/{http,curl}/` |
+| **crypto** | `libafwcrypto` | Functions: digest/HMAC/AES-GCM encrypt·decrypt·seal·unseal, keystore, key refs, PBKDF2 (#74) | OpenSSL libcrypto | `tests/crypto/` — README at **srcdir root** (`src/afw_crypto/README.md`) |
 | **ldap** | `libafwldap` | `adapter_type/ldap` (+ session); `error_rv_decoder/ldap`; LDAP schema object types | OpenLDAP (APR) | — |
 | **lmdb** | `libafwlmdb` | `adapter_type/lmdb` (txn, KV, journal, indexes); `reader_*` functions; `error_rv_decoder/lmdb` | LMDB | `tests/{adapter,journal}/` |
 | **ubjson** | `libafwubjson` | `content_type/ubjson` | — | — (used by LMDB) |
-| **vfs** | `libafwvfs` | `adapter_type/vfs` (local FS via `vfsMap`) | — | `tests/vfs_test.as` |
+| **vfs** | `libafwvfs` | `adapter_type/vfs` (local FS via `vfsMap`) | — | `tests/vfs_*.as` (see **`afw-vfs`**) |
 | **yaml** | `libafwyaml` | `content_type/yaml` (+ lazy `x-yaml`) | libyaml | — |
 
 Impl ids: extension DSO id is `"afw_<name>"`; adapter/factory often shorter (`"ldap"`, `"lmdb"`, `"vfs"`).
@@ -66,10 +80,11 @@ Impl ids: extension DSO id is `"afw_<name>"`; adapter/factory often shorter (`"l
 ### Notes agents hit often
 
 - **curl**: `curl_global_init` in `initialize` before `generated_register`.
-- **lmdb**: richest adapter; docs say load **ubjson** content type for storage; conf samples may say `extension_id: "ubjson"` — runtime id is **`afw_ubjson`**.
+- **lmdb**: richest adapter; docs say load **ubjson** content type for storage; conf samples may say `extension_id: "ubjson"` — runtime id is **`afw_ubjson`**. Optional **indexes** (only consumer of core `afw_adapter_impl_index` today): defs in DB via `index_*`, not conf; filter/value use **`current::`** — see **`afw-adapter-index`**.
 - **ldap**: heavy `afw_ldap_syntax_handler.c` / metadata for schema ↔ values.
-- **vfs**: factory symbol `afw_vfs_adapter_factory_vfs`; conf `adapterType: "vfs"` lazy-loads.
+- **vfs**: factory symbol `afw_vfs_adapter_factory_vfs`; conf `adapterType: "vfs"` lazy-loads. Whole-file `data`, empty-file read (#79), multi-map longest prefix, `maxReadBytes` — details **`afw-vfs`**.
 - **ubjson/yaml**: dual-interface entry files; codecs in `*_from_value` / `*_to_value`.
+- **crypto**: OpenSSL `libcrypto` only (curl-style find module); process-global mutexed keystore; `decode_to_string` for password UTF-8 (not `string(binary)`); LDAP `bindParameters` single-sub template → object recipe in README. Extension README lives at **`src/<ext>/README.md`** when present (Jeremy/LMDB style).
 
 ## Adding a capability
 

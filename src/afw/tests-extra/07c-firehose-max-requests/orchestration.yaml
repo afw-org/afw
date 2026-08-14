@@ -1,0 +1,34 @@
+# Blast replacement sketch C — request-count limited (blast -m without time)
+#
+# Today:  afwdev blast -m 100 -c 8  (duration 0 / max requests)
+# Future: schedule.firehose with maxRequests only (or primary stop condition).
+
+version: 1
+description: Firehose until N successful feeds (or errors if stopOnError)
+
+host: afwfcgi
+afwfcgi:
+  threads: 8
+timeout_s: 300
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: "true"
+    sourceType: script
+    source: |
+      return true;
+
+  - name: loop
+    sourceType: script
+    source: <<< tests/cheap_loop.as
+
+schedule:
+  - firehose:
+      maxRequests: 100
+      concurrency: 8
+      fromTests: ["true", loop]
+      # duration_s omitted — run until maxRequests
+      stopOnError: false

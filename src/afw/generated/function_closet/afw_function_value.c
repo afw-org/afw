@@ -20,7 +20,7 @@
  *
  * afw_function_execute_meta
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns an object containing meta information for an adaptive
  * value.
@@ -38,8 +38,8 @@
  *
  * Parameters:
  *
- *   value - (any dataType) This is the adaptive value whose meta object is to
- *       be returned.
+ *   value - (any) This is the adaptive value whose meta object is to be
+ *       returned.
  *
  * Returns:
  *
@@ -62,7 +62,7 @@ afw_function_execute_meta(
  *
  * afw_function_execute_metas
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function returns an array of the result of calling meta() for each value
  * in an array or object adaptive value.
@@ -80,7 +80,7 @@ afw_function_execute_meta(
  *
  * Parameters:
  *
- *   value - (any dataType) This is an adaptive array or object.
+ *   value - (any) This is an adaptive array or object.
  *
  * Returns:
  *

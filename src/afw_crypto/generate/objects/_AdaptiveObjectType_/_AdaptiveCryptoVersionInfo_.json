@@ -1,0 +1,29 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto.",
+    "objectType": "_AdaptiveCryptoVersionInfo_",
+    "propertyTypes": {
+        "algorithms": {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "brief": "Supported algorithms",
+            "description": "Normative algorithm name registry supported by this build."
+        },
+        "extensionVersion": {
+            "dataType": "string",
+            "brief": "Extension version",
+            "description": "afw_crypto package/extension version string."
+        },
+        "opensslVersion": {
+            "dataType": "string",
+            "brief": "OpenSSL version",
+            "description": "OpenSSL_version(OPENSSL_VERSION) string."
+        }
+    }
+}

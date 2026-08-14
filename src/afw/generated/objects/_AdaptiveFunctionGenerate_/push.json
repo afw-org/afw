@@ -1,0 +1,31 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPush",
+    "brief": "Append values to an array",
+    "camelCaseFunctionLabel": "push",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Append one or more values to the end of a mutable array. Returns the same array after modification. The array must not be immutable (for example after freeze).",
+    "functionId": "push",
+    "functionLabel": "push",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "Target array. Must not be immutable.",
+            "name": "array"
+        },
+        {
+            "description": "Values to append in order.",
+            "minArgs": 0,
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "array",
+        "description": "The modified array."
+    },
+    "sideEffects": [
+        "Target array is modified."
+    ]
+}

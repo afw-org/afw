@@ -12,7 +12,7 @@
  */
 
 #include "afw.h"
-#include "generated/<afwdev {prefix}>generated.h"
+#include "generated/<afwdev {prefix}>generated_internal.h"
 #include "generated/<afwdev {prefix}>version_info.h"
 #include <apr_getopt.h>
 

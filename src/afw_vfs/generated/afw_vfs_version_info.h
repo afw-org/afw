@@ -22,7 +22,7 @@
 
 /**
  * @file afw_vfs_version_info.h
- * @brief Adaptive Framework Version (afw_vfs_) header.
+ * @brief Generated version macros for prefix `afw_vfs_`.
  */
 
 
@@ -30,14 +30,14 @@
 #include "afw_git_info.h"
 
 #define AFW_VFS_VERSION_MAJOR 0
-#define AFW_VFS_VERSION_MINOR 11
-#define AFW_VFS_VERSION_PATCH 0
+#define AFW_VFS_VERSION_MINOR 12
+#define AFW_VFS_VERSION_PATCH 2
 #define AFW_VFS_VERSION_HEX ( \
     (AFW_VERSION_MAJOR << 16) | \
     (AFW_VERSION_MINOR <<  8) | \
     (AFW_VERSION_PATCH))
-#define AFW_VFS_VERSION_STRING "0.11.0"
-#define AFW_VFS_VERSION_WITH_GIT_INFO "0.11.0" \
+#define AFW_VFS_VERSION_STRING "0.12.2"
+#define AFW_VFS_VERSION_WITH_GIT_INFO "0.12.2" \
     AFW_GIT_INFO_BRANCH_DESCRIBE
 #define AFW_VFS_VERSION_COMMAND_STRING "afw_vfs " \
     AFW_VFS_VERSION_WITH_GIT_INFO

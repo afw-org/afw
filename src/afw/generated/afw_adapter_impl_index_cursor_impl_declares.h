@@ -73,7 +73,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_adapter_impl_index_cursor_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_ADAPTER_IMPL_INDEX_CURSOR_IMPL_DECLARES_H__

@@ -1,9 +1,9 @@
 {
     "afwCamelCaseFunctionLabel": "afwAddEntries",
-    "brief": "Add entries of one or more arrays to another",
+    "brief": "Append entries from arrays onto a target array",
     "camelCaseFunctionLabel": "addEntries",
     "category": "array",
-    "description": "Add the entries of one or more arrays to another.",
+    "description": "Append every entry of each source array onto the end of target, in order. target must be mutable. Entries are copied by value reference; nested objects and arrays are not deeply cloned.",
     "functionId": "add_entries",
     "functionLabel": "add_entries",
     "parameters": [

@@ -39,3 +39,32 @@ assert((is_defined(result.objectId)), "objectId was not created without uuid pro
 delete_object("file", "TestObjectType1", result.objectId);
 
 return 0;
+
+//?
+//? test: add_object_already_exists
+//? description: add_object of an existing id is conflict
+//? expect: 0
+//? source: ...
+
+const uuid: string = generate_uuid();
+add_object(
+    "file",
+    "TestObjectType1",
+    { "TestString1": "first" },
+    uuid
+);
+let id: string = "";
+try {
+    add_object(
+        "file",
+        "TestObjectType1",
+        { "TestString1": "second" },
+        uuid
+    );
+}
+catch (e) {
+    id = e.id;
+}
+delete_object("file", "TestObjectType1", uuid);
+assert(id === "conflict", id);
+return 0;

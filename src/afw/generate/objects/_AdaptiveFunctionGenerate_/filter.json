@@ -1,14 +1,14 @@
 {
-    "brief": "Filter an array",
+    "brief": "Select array entries that pass a test",
     "category": "higher_order_array",
-    "description": "This produces an array containing only values from another array that pass a predicate test.",
+    "description": "Return a new array of entries from the first array in values for which predicate returns true. Every index is considered, including entries whose value is undefined. Order of kept entries is preserved.",
     "functionId": "filter",
     "functionLabel": "filter",
     "pure": true,
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(... values: any): boolean",
+            "dataTypeParameter": "(...values: any) => boolean",
             "description": "This is a boolean function that is called to determine if an array entry should be included in the returned array.",
             "name": "predicate"
         },
@@ -20,6 +20,6 @@
     ],
     "returns": {
         "dataType": "array",
-        "description": "This is the resulting filtered array."
+        "description": "A new array of the entries that passed the test (possibly empty)."
     }
 }

@@ -16,7 +16,6 @@ our @EXPORT_OK = qw(
     bag_null 
     bag_size_null 
     is_null 
-    null 
     to_string_null 
 );
 
@@ -58,17 +57,6 @@ Checks whether value is dataType null
     $value
 
 Value to check
-
-=head3 null
-
-Converts value to data type null returning null result.
-Convert to data type null
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 to_string_null
 
@@ -114,17 +102,6 @@ sub is_null {
     my $request = $session->request()
 
     $request->set("function" => "is<null>");
-    $request->set("value", $value);
-
-    return $request->getResult();
-}
-
-sub null {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "null");
     $request->set("value", $value);
 
     return $request->getResult();

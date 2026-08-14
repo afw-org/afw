@@ -7,7 +7,7 @@
 //?
 //? test: permit_extension_load
 //? description: Test permit access to extension_load
-//? expect: undefined
+//? expect: true
 //? source: ...
 
 let caught = false;
@@ -51,7 +51,8 @@ assert(!caught);
 let caught = false;
 
 try {
-    service_get('adapter-files');
+    let svc = service_get('adapter-files');
+    assert(svc.serviceId === "adapter-files");
 } catch (e) {
     trace(e);
     assert(e.id === "denied");
@@ -69,7 +70,8 @@ assert(!caught);
 let caught = false;
 
 try {
-    service_restart('adapter-files');
+    let svc = service_restart('adapter-files');
+    assert(svc.serviceId === "adapter-files");
 } catch (e) {
     trace(e);
     assert(e.id === "denied");
@@ -87,7 +89,8 @@ assert(!caught);
 let caught = false;
 
 try {
-    service_stop('adapter-files');
+    let svc = service_stop('adapter-files');
+    assert(svc.serviceId === "adapter-files");
 } catch (e) {
     trace(e);
     assert(e.id === "denied");
@@ -105,7 +108,8 @@ assert(!caught);
 let caught = false;
 
 try {
-    service_start('adapter-files');
+    let svc = service_start('adapter-files');
+    assert(svc.serviceId === "adapter-files");
 } catch (e) {
     trace(e);
     assert(e.id === "denied");

@@ -49,7 +49,11 @@ Top-level `generated/*.h` are installed/public (bindings, interface, strings). C
 
 ## Adding a public header
 
-Drop `foo/afw_foo.h` under `src/afw` (outside `generate/`, `generated/`, `tests/`, `doc/`, `cmake/`). Next `./afwdev build --cdev -j` inventories it for install/include paths. If it is part of the public API, also add it to `include/afw.h`. If it is core-internal only, add it to `include/afw_internal.h` instead.
+Drop `foo/afw_foo.h` under `src/afw` (outside `generate/`, `generated/`, `tests/`, `doc/`, `cmake/`). Next `./afwdev build --cdev -j` inventories it for install/include paths. If it is part of the public API, also add it to `include/afw.h`. If it is core-internal only, add it to `include/afw_internal.h` instead (name it `*_internal.h`).
+
+**Install:** core `CMakeLists.txt` excludes `*_internal.h` and `afw_internal.h` from `PUBLIC_HEADER` install. Monorepo **build** still sees full source includes. Settled model: `designs/libafw-headers-and-api-surface.md`.
+
+**`.c` vs `.h`:** translation units use `afw.h` / `afw_internal.h`. Module headers use `afw_interface.h` or `afw_minimal.h` (bootstrap — not a thin app API). Do not put new core-only APIs on the `afw.h` list.
 
 Related: `afw-core-layout`, `afw-generate-metadata`, `afw-c-runtime`.
 
@@ -62,6 +66,9 @@ Doxygen comments in `src/afw/**/*.h` (and `include/`) must be kept in sync with 
 - `@brief` and descriptive text should accurately reflect the function/macro being documented (avoid copy-pasted descriptions from similar functions).
 - Comment blocks must be lexically balanced. Stray `*/` or unescaped `/*` sequences inside `/** ... */` blocks will trigger `-Werror=comment` during normal C compilation.
 - Central rich group descriptions and mental models belong in `include/afw_doxygen.h` (`@defgroup`). Individual headers use `@addtogroup` + a `@file` block that says "See @ref ...".
+- Prefer **`@addtogroup` of a canonical group** declared in `afw_doxygen.h` (or a deliberate nested `@defgroup` under it). Avoid inventing one-off group names per file that never appear in the tree.
+- When editing a `/** @file … */` block, **preserve the long description** after `@brief` (blank ` *` line, then narrative / related headers / `@ref`). Only change that body when intentionally updating content—do not drop it in bulk cleanups.
+- Interface **call macros** are the developer-facing API; their Doxygen comes from **interface XML + generators**, not from hand-editing `generated/`. See `afw-interfaces-doxygen`.
 
 GitHub renders list markers (`-`, `*`, `+`) as bullets in the PR description view; the source uses dashes or asterisks.
 

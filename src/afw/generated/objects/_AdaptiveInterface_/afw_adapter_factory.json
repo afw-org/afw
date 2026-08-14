@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_factory",
-    "description": "Factory to create an instance of an afw_adapter."
+    "description": "Factory that creates adapter instances of one adapter type id.\n      Registered with the environment as an adapter_type; conf uses the\n      factory to construct each named adapter. Call\n      afw_adapter_factory_create_adapter_cede_p() (macro) rather than\n      inventing create paths. See group afw_adapter and afwdev\n      add-adapter-type scaffolds for implementers."
 }

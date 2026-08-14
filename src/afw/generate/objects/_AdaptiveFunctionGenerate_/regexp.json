@@ -1,10 +1,10 @@
 {
     "brief": "Convert to data type regexp",
     "category": "regexp",
-    "description": "Converts value to data type regexp returning regexp result.",
+    "description": "Converts value to data type regexp returning regexp result. Holds a regular expression source string as a regexp value (does not compile the pattern for matching by itself). Use polymorphic compile when a compiled form is required.",
     "errorsThrown": [
         {
-            "error": "cast_error",
+            "error": "conversion_error",
             "reason": "value could not be converted"
         }
     ],

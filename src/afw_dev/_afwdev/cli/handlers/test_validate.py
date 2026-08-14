@@ -26,6 +26,7 @@ def subcommand_test(args, options):
     test.run(options)
 
 
+
 ##
 # @defgroup afwdev_validate validate
 # @ingroup afwdev

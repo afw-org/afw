@@ -1,0 +1,57 @@
+---
+description: Adaptive Script language quirks — equality, nullish, defaults, asserts, CLI probes
+globs: "**/*.as,**/generate/objects/_AdaptiveModel_/**,src/afw/tests/environments/**/includes/**"
+alwaysApply: false
+---
+
+# Adaptive Script (authoring)
+
+Use when writing or reviewing `.as` tests, model `on*` handlers, Fiddle snippets, or script-shaped conf.
+
+## Types in prose
+- Say **object** / **properties** and **array**, not “bag.” Historical data-type name **bag** was renamed list then **array** (see always-on `afw-project` terminology).
+
+## Equality and identity
+
+- **`===` / `!==` on objects and arrays is structural** (deep equality), not pointer identity.
+- Two independently created `{}` values compare equal until one is mutated.
+- To prove **clone independence** (separate instances), mutate one side and assert the other did not change — do not rely on `a !== b` alone for fresh empties.
+
+Example (clone regression):
+
+```adaptive
+const a = property_get({}, "y", {});
+a.z = "from_a";
+const b = property_get({}, "y", {});
+assert(is_nullish(property_get(b, "z", null)));
+assert(a.z === "from_a");
+assert(a !== b);  // now true because structures differ
+```
+
+## Nullish and missing
+
+- **`is_nullish(v)`** — true for `null` or `undefined`.
+- Missing property / missing variable without a default → undefined (nullish).
+- Prefer `property_get(obj, name, default)` / `variable_get(name, default)` over assuming property access creates containers.
+- **`qualifier(name)`** when no visible stack entry matches → **nullish** (not `{}`). Prefer **`qualifier::name`** for normal access; `qualifier()` / `qualifiers()` are list/debug snapshots and can be **large** — see **`afw-qualified-variables`**.
+
+## Defaults that callers may mutate
+
+- Script literals such as `{}` and `[]` used as **function default arguments** may evaluate to a **shared** value (compiled / permanent).
+- Built-ins that return a caller-supplied default for a missing property/variable must **clone** into the call pool before return (see `property_get` / `variable_get`, issue **#110**).
+- When adding similar APIs, clone mutable defaults; for long-running / multi-request hosts (`afwfcgi`, model `on*`), residual mutations or freed pointers on a shared default cause crashes across invocations.
+
+## Assertions and process exit
+
+- **`assert(condition)`** / **`assert(condition, message)`** — failure throws `assertion_failed`.
+- Scripts run as **`afw -s script file.as`** must **`return` null or an integer 0–255** (tests typically `return 0` with `//? expect: 0`).
+- Interactive `afw -s script` without a file evaluates input as entered; multi-statement probes belong in a **file**.
+
+## Model / server scripts
+
+- Model `onGetObject` / `on*` bodies run in request-scoped pools on long-lived hosts. Prefer local objects; avoid mutating shared env state.
+- Reproduce server-only lifetime bugs in unit tests when possible (mutation isolation of defaults); use valgrind/`afwfcgi` when the failure needs multi-request free paths.
+
+## Related
+
+- Tests layout: `afw-tests`. Built-in execute bodies: `afw-function`. Value lifetimes: `afw-value-memory`. Qualifier stack / snapshots: `afw-qualified-variables`.

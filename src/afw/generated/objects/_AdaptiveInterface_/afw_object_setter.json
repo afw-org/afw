@@ -1,4 +1,4 @@
 {
     "name": "afw_object_setter",
-    "description": "This is interface used to set properties and meta of an adaptive object.\n      See interface afw_object method get_object_setter for more information."
+    "description": "Mutable face for an adaptive object (set/remove properties and meta).\n      Returned by afw_object_get_setter() when the object is mutable.\n      Call methods via afw_object_setter_*() macros. See group afw_object."
 }

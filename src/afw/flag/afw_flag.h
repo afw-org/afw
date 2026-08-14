@@ -18,7 +18,10 @@
 
 /**
  * @file afw_flag.h
- * @brief Adaptive Framework Software Flag Header.
+ * @brief Feature and debug/trace flag registration and tests.
+ *
+ * See @ref afw_flag. Register and test flags rather than hard-coding global
+ * booleans in extensions when possible.
  */
 
 AFW_BEGIN_DECLARES
@@ -215,13 +218,8 @@ afw_flag_add_included_by(
     afw_xctx_t *xctx);
 
 
-/**
- * @internal
- * @brief Register early core flags.
- */
-AFW_DECLARE_INTERNAL(void)
-afw_flag_internal_early_register_core(afw_xctx_t *xctx);
-
+/* Early core flag registration: afw_flag_internal_early_register_core in
+ * afw_flag_internal.h (libafw bootstrap only). */
 
 AFW_END_DECLARES
 

@@ -15,12 +15,13 @@
 #include "afw.h"
 #include "afw_lmdb.h"
 #include "afw_lmdb_internal.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include "afw_adapter_impl.h"
 #include "lmdb.h"
 
 /* Declares and rti/inf defines for interface afw_adapter_journal */
 #define AFW_IMPLEMENTATION_ID "lmdb"
+#define AFW_ADAPTER_JOURNAL_SELF_T afw_lmdb_journal_t
 #include "afw_adapter_journal_impl_declares.h"
 
 afw_lmdb_journal_t *
@@ -44,14 +45,12 @@ afw_lmdb_journal_create(
  */
 const afw_utf8_t *
 impl_afw_adapter_journal_add_entry(
-    const afw_adapter_journal_t * instance,
+    AFW_ADAPTER_JOURNAL_SELF_T *self,
     const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_lmdb_journal_t * self =
-        (afw_lmdb_journal_t *)instance;
+    /* Assign &self->pub pointer to self. */
     afw_lmdb_adapter_session_t *session = 
         (afw_lmdb_adapter_session_t *)self->session;
     afw_lmdb_adapter_t *adapter = 
@@ -682,7 +681,7 @@ afw_lmdb_journal_advance_cursor_for_consumer(
  */
 void
 impl_afw_adapter_journal_get_entry(
-    const afw_adapter_journal_t * instance,
+    AFW_ADAPTER_JOURNAL_SELF_T *self,
     const afw_adapter_impl_request_t * impl_request,
     afw_adapter_journal_option_t option,
     const afw_utf8_t * consumer_id,
@@ -691,8 +690,6 @@ impl_afw_adapter_journal_get_entry(
     const afw_object_t * response,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_journal_t * self =
-        (afw_lmdb_journal_t *)instance;
     afw_lmdb_adapter_session_t *session = 
         (afw_lmdb_adapter_session_t *)self->session;
     afw_lmdb_adapter_t *adapter = 
@@ -751,14 +748,12 @@ impl_afw_adapter_journal_get_entry(
  */
 void
 impl_afw_adapter_journal_mark_entry_consumed(
-    const afw_adapter_journal_t * instance,
+    AFW_ADAPTER_JOURNAL_SELF_T *self,
     const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_journal_t * self =
-        (afw_lmdb_journal_t *)instance;
     afw_lmdb_adapter_session_t *session = 
         (afw_lmdb_adapter_session_t *)self->session;
     afw_lmdb_adapter_t *adapter = 

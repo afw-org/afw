@@ -20,7 +20,7 @@
  *
  * afw_function_execute_adapter_objectCallback_signature
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is the function signature for the objectCallback parameter in adapter
  * functions. Calling this directly will throw a 'Do not call directly' error.
@@ -65,7 +65,7 @@ afw_function_execute_adapter_objectCallback_signature(
  *
  * afw_function_execute_add_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add an adaptive object to an adapter, specified by the adapterId, with a
  * specified objectType. You may supply an optional objectId, if the underlying
@@ -84,7 +84,7 @@ afw_function_execute_adapter_objectCallback_signature(
  *       objectId?: string,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -116,6 +116,13 @@ afw_function_execute_adapter_objectCallback_signature(
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
  *       'objectId' is the objectId assigned by the adapter.
+ *
+ * Errors thrown:
+ *
+ *   conflict - an object with this id already exists
+ *   not_found - adapter is not found
+ *   denied - authorization denied
+ *   read_only - adapter does not allow add
  */
 const afw_value_t *
 afw_function_execute_add_object(
@@ -132,7 +139,7 @@ afw_function_execute_add_object(
  *
  * afw_function_execute_add_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add an adaptive object with a given URI.
  *
@@ -147,7 +154,7 @@ afw_function_execute_add_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -177,6 +184,13 @@ afw_function_execute_add_object(
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
  *       'objectId' is the objectId assigned by the adapter.
+ *
+ * Errors thrown:
+ *
+ *   conflict - an object with this id already exists
+ *   not_found - adapter is not found
+ *   denied - authorization denied
+ *   read_only - adapter does not allow add
  */
 const afw_value_t *
 afw_function_execute_add_object_with_uri(
@@ -193,7 +207,7 @@ afw_function_execute_add_object_with_uri(
  *
  * afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function converts an _AdaptiveQueryCriteria_ object to a query string.
  *
@@ -204,7 +218,7 @@ afw_function_execute_add_object_with_uri(
  *
  * ```
  *   function convert_AdaptiveQueryCriteria_to_query_string(
- *       queryCriteria: (object _AdaptiveQueryCriteria_),
+ *       queryCriteria: object, // _AdaptiveQueryCriteria_
  *       adapterId?: string,
  *       objectType?: string,
  *       style?: integer
@@ -259,7 +273,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
  *
  * afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function converts a query string to an _AdaptiveQueryCriteria_ object.
  *
@@ -273,7 +287,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
  *       queryString: string,
  *       adapterId?: string,
  *       objectType?: string
- *   ): (object _AdaptiveQueryCriteria_);
+ *   ): object; // _AdaptiveQueryCriteria_
  * ```
  *
  * Parameters:
@@ -308,7 +322,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  *
  * afw_function_execute_delete_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete an adaptive object.
  *
@@ -324,7 +338,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  *       objectId: string,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -352,6 +366,13 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow delete
+ *   method_not_supported - this object type cannot be deleted
  */
 const afw_value_t *
 afw_function_execute_delete_object(
@@ -368,7 +389,7 @@ afw_function_execute_delete_object(
  *
  * afw_function_execute_delete_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete an adaptive object with a given URI.
  *
@@ -382,7 +403,7 @@ afw_function_execute_delete_object(
  *       uri: anyURI,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -407,6 +428,13 @@ afw_function_execute_delete_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow delete
+ *   method_not_supported - this object type cannot be deleted
  */
 const afw_value_t *
 afw_function_execute_delete_object_with_uri(
@@ -423,7 +451,7 @@ afw_function_execute_delete_object_with_uri(
  *
  * afw_function_execute_get_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an adaptive object from the adapter, specified by adapterId, objectType
  * and objectId. Optional view options and adapter-specific options may be
@@ -439,7 +467,7 @@ afw_function_execute_delete_object_with_uri(
  *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): object;
  * ```
@@ -467,7 +495,13 @@ afw_function_execute_delete_object_with_uri(
  *
  * Returns:
  *
- *   (object) Object retrieved or NULL if not found.
+ *   (object) Object retrieved. Throws not_found if the adapter or object is not
+ *       found.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_get_object(
@@ -484,7 +518,7 @@ afw_function_execute_get_object(
  *
  * afw_function_execute_get_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Get an object with a given URI.
  *
@@ -496,7 +530,7 @@ afw_function_execute_get_object(
  * ```
  *   function get_object_with_uri(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): object;
  * ```
@@ -522,6 +556,11 @@ afw_function_execute_get_object(
  * Returns:
  *
  *   (object) Object retrieved or NULL if not found.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_get_object_with_uri(
@@ -538,7 +577,7 @@ afw_function_execute_get_object_with_uri(
  *
  * afw_function_execute_modify_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Modify an adaptive object.
  *
@@ -555,7 +594,7 @@ afw_function_execute_get_object_with_uri(
  *       entries: array,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -608,6 +647,13 @@ afw_function_execute_get_object_with_uri(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow modify
+ *   method_not_supported - this object type cannot be modified
  */
 const afw_value_t *
 afw_function_execute_modify_object(
@@ -624,7 +670,7 @@ afw_function_execute_modify_object(
  *
  * afw_function_execute_modify_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Modify an adaptive object with a given URI.
  *
@@ -639,7 +685,7 @@ afw_function_execute_modify_object(
  *       entries: array,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -690,6 +736,13 @@ afw_function_execute_modify_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow modify
+ *   method_not_supported - this object type cannot be modified
  */
 const afw_value_t *
 afw_function_execute_modify_object_with_uri(
@@ -706,7 +759,7 @@ afw_function_execute_modify_object_with_uri(
  *
  * afw_function_execute_reconcile_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Reconcile an adaptive object.
  *
@@ -719,7 +772,7 @@ afw_function_execute_modify_object_with_uri(
  *   function reconcile_object(
  *       object: object,
  *       checkOnly?: boolean
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -752,7 +805,7 @@ afw_function_execute_reconcile_object(
  *
  * afw_function_execute_replace_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace an adaptive object.
  *
@@ -769,7 +822,7 @@ afw_function_execute_reconcile_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -799,6 +852,13 @@ afw_function_execute_reconcile_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow replace
+ *   method_not_supported - this object type cannot be replaced
  */
 const afw_value_t *
 afw_function_execute_replace_object(
@@ -815,7 +875,7 @@ afw_function_execute_replace_object(
  *
  * afw_function_execute_replace_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace an adaptive object with a given URI.
  *
@@ -830,7 +890,7 @@ afw_function_execute_replace_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -857,6 +917,13 @@ afw_function_execute_replace_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow replace
+ *   method_not_supported - this object type cannot be replaced
  */
 const afw_value_t *
 afw_function_execute_replace_object_with_uri(
@@ -873,7 +940,7 @@ afw_function_execute_replace_object_with_uri(
  *
  * afw_function_execute_retrieve_objects
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -882,6 +949,13 @@ afw_function_execute_replace_object_with_uri(
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adapterId, can be optionally supplied.
+ * 
+ * This function materializes all matching objects into a returned array. Use
+ * maxObjects to bound how many objects may be collected (default 100; 0 means
+ * unlimited). When the max would be exceeded, payload_too_large is thrown. For
+ * large result sets prefer retrieve_objects_to_response,
+ * retrieve_objects_to_stream, or retrieve_objects_to_callback so objects need
+ * not all be held in memory at once.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -892,9 +966,10 @@ afw_function_execute_replace_object_with_uri(
  *   function retrieve_objects(
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
- *       adapterTypeSpecific?: object
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
+ *       adapterTypeSpecific?: object,
+ *       maxObjects?: integer
  *   ): array;
  * ```
  *
@@ -921,9 +996,22 @@ afw_function_execute_replace_object_with_uri(
  * 
  *       Where ${adapterType} is the adapter type id.
  *
+ *   maxObjects - (optional integer) Maximum number of objects that may be
+ *       collected into the returned array. Default is 100. Set to 0 for
+ *       unlimited. When exceeded, the function fails with payload_too_large.
+ *       This bounds memory for materializing retrieves only; progressive
+ *       retrieve_* functions are not limited by this parameter.
+ *
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
+ *
+ * Errors thrown:
+ *
+ *   payload_too_large - more objects than maxObjects
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects(
@@ -940,7 +1028,7 @@ afw_function_execute_retrieve_objects(
  *
  * afw_function_execute_retrieve_objects_to_callback
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -959,27 +1047,26 @@ afw_function_execute_retrieve_objects(
  *
  * ```
  *   function retrieve_objects_to_callback(
- *       objectCallback: (function (object: object, userData: any): boolean),
+ *       objectCallback: (object: object, userData: any) => boolean,
  *       userData: any,
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   objectCallback - (function (object: object, userData: any): boolean) If
- *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return array. Parameter
- *       object will be an object retrieved or undefined if there are no more
- *       objects. This function should return true if it wants to abort the
- *       retrieve request.
+ *   objectCallback - ((object: object, userData: any) => boolean) If this is
+ *       specified, this function is called once for each object retrieved
+ *       instead of adding the object to the return array. Parameter object will
+ *       be an object retrieved or undefined if there are no more objects. This
+ *       function should return true if it wants to abort the retrieve request.
  *
- *   userData - (any dataType) This value is passed to the objectCallback
- *       function in the userData parameter.
+ *   userData - (any) This value is passed to the objectCallback function in the
+ *       userData parameter.
  *
  *   adapterId - (string) Id of adapter containing objects to retrieve.
  *
@@ -1006,6 +1093,12 @@ afw_function_execute_retrieve_objects(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_callback(
@@ -1022,7 +1115,7 @@ afw_function_execute_retrieve_objects_to_callback(
  *
  * afw_function_execute_retrieve_objects_to_response
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -1047,8 +1140,8 @@ afw_function_execute_retrieve_objects_to_callback(
  *   function retrieve_objects_to_response(
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1079,6 +1172,12 @@ afw_function_execute_retrieve_objects_to_callback(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_response(
@@ -1095,7 +1194,7 @@ afw_function_execute_retrieve_objects_to_response(
  *
  * afw_function_execute_retrieve_objects_to_stream
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects from an adapter, specified by
  * adapterId, which match the type specified by objectType.
@@ -1117,8 +1216,8 @@ afw_function_execute_retrieve_objects_to_response(
  *       streamNumber: integer,
  *       adapterId: string,
  *       objectType: string,
- *       queryCriteria?: (object _AdaptiveQueryCriteria_),
- *       options?: (object _AdaptiveObjectOptions_),
+ *       queryCriteria?: object, // _AdaptiveQueryCriteria_
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1152,6 +1251,12 @@ afw_function_execute_retrieve_objects_to_response(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_to_stream(
@@ -1168,7 +1273,7 @@ afw_function_execute_retrieve_objects_to_stream(
  *
  * afw_function_execute_retrieve_objects_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Retrieve adaptive objects with a given URI.
  * 
@@ -1176,6 +1281,11 @@ afw_function_execute_retrieve_objects_to_stream(
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adapterId, can be optionally supplied.
+ * 
+ * This function materializes all matching objects into a returned array. Use
+ * maxObjects to bound how many objects may be collected (default 100; 0 means
+ * unlimited). When the max would be exceeded, payload_too_large is thrown. For
+ * large result sets prefer progressive retrieve functions.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1185,8 +1295,9 @@ afw_function_execute_retrieve_objects_to_stream(
  * ```
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
- *       adapterTypeSpecific?: object
+ *       options?: object, // _AdaptiveObjectOptions_
+ *       adapterTypeSpecific?: object,
+ *       maxObjects?: integer
  *   ): array;
  * ```
  *
@@ -1209,9 +1320,22 @@ afw_function_execute_retrieve_objects_to_stream(
  * 
  *       Where ${adapterType} is the adapter type id.
  *
+ *   maxObjects - (optional integer) Maximum number of objects that may be
+ *       collected into the returned array. Default is 100. Set to 0 for
+ *       unlimited. When exceeded, the function fails with payload_too_large.
+ *       This bounds memory for materializing retrieves only; progressive
+ *       retrieve_* functions are not limited by this parameter.
+ *
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
+ *
+ * Errors thrown:
+ *
+ *   payload_too_large - more objects than maxObjects
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri(
@@ -1228,7 +1352,7 @@ afw_function_execute_retrieve_objects_with_uri(
  *
  * afw_function_execute_retrieve_objects_with_uri_to_callback
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Retrieve adaptive objects with a given URI.
  * 
@@ -1246,22 +1370,21 @@ afw_function_execute_retrieve_objects_with_uri(
  *
  * ```
  *   function retrieve_objects_with_uri_to_callback(
- *       objectCallback: (function (object: object, userData: any): boolean),
+ *       objectCallback: (object: object, userData: any) => boolean,
  *       userData: any,
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   objectCallback - (function (object: object, userData: any): boolean) If
- *       this is specified, this function is called once for each object
- *       retrieved instead of adding the object to the return array. Parameter
- *       object will be an object retrieved or undefined if there are no more
- *       objects. This function should return true if it wants to abort the
- *       retrieve request.
+ *   objectCallback - ((object: object, userData: any) => boolean) If this is
+ *       specified, this function is called once for each object retrieved
+ *       instead of adding the object to the return array. Parameter object will
+ *       be an object retrieved or undefined if there are no more objects. This
+ *       function should return true if it wants to abort the retrieve request.
  *
  *   userData - (any) This is the value passed to the objectCallback function in
  *       the userData parameter.
@@ -1286,6 +1409,12 @@ afw_function_execute_retrieve_objects_with_uri(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_callback(
@@ -1302,7 +1431,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  *
  * afw_function_execute_retrieve_objects_with_uri_to_response
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects with a given URI.
  * 
@@ -1325,7 +1454,7 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  * ```
  *   function retrieve_objects_with_uri_to_response(
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1352,6 +1481,12 @@ afw_function_execute_retrieve_objects_with_uri_to_callback(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_response(
@@ -1368,7 +1503,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  *
  * afw_function_execute_retrieve_objects_with_uri_to_stream
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function retrieves adaptive objects with a given URI.
  * 
@@ -1388,7 +1523,7 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  *   function retrieve_objects_with_uri_to_stream(
  *       streamNumber: integer,
  *       uri: anyURI,
- *       options?: (object _AdaptiveObjectOptions_),
+ *       options?: object, // _AdaptiveObjectOptions_
  *       adapterTypeSpecific?: object
  *   ): void;
  * ```
@@ -1418,6 +1553,12 @@ afw_function_execute_retrieve_objects_with_uri_to_response(
  * Returns:
  *
  *   (void)
+ *
+ * Errors thrown:
+ *
+ *   query_too_complex - adapter cannot run this query
+ *   not_found - adapter is not found
+ *   denied - authorization denied
  */
 const afw_value_t *
 afw_function_execute_retrieve_objects_with_uri_to_stream(
@@ -1434,7 +1575,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  *
  * afw_function_execute_update_object
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Update an adaptive object.
  *
@@ -1451,7 +1592,7 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1484,6 +1625,12 @@ afw_function_execute_retrieve_objects_with_uri_to_stream(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow update
  */
 const afw_value_t *
 afw_function_execute_update_object(
@@ -1500,7 +1647,7 @@ afw_function_execute_update_object(
  *
  * afw_function_execute_update_object_with_uri
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Update an adaptive object with a given URI.
  *
@@ -1515,7 +1662,7 @@ afw_function_execute_update_object(
  *       object: object,
  *       journal?: object,
  *       adapterTypeSpecific?: object
- *   ): (object _AdaptiveJournalEntry_);
+ *   ): object; // _AdaptiveJournalEntry_
  * ```
  *
  * Parameters:
@@ -1545,6 +1692,12 @@ afw_function_execute_update_object(
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry.
+ *
+ * Errors thrown:
+ *
+ *   not_found - adapter or object is not found
+ *   denied - authorization denied
+ *   read_only - object or adapter does not allow update
  */
 const afw_value_t *
 afw_function_execute_update_object_with_uri(

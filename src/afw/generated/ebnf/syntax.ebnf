@@ -5,22 +5,30 @@
 /* This grammar uses W3C (https://www.w3.org/) EBNF notation.                 */
 /*                                                                            */
 /* Note: This grammar is intended as documentation and is not                 */
-/* precise.                                                                   */
+/* precise. The C parser remains authoritative if docs and code               */
+/* disagree.                                                                  */
 /*                                                                            */
-/* Directory src/afw/doc/syntax/ must be produced manually from               */
-/* src/afw/generated/ebnf/syntax.ebnf using the following steps:              */
+/* Dual use of the harvested file                                             */
+/* src/afw/generated/ebnf/syntax.ebnf (do not hand-edit; produced by          */
+/* afwdev generate from these ebnf comments):                                 */
 /*                                                                            */
-/* 1) Visit http://bottlecaps.de/rr/ui in a web browser.                      */
-/* 2) Optionally, go to the "Options" tab and change Color to one             */
-/*    compatible with the admin app such as #DCDCDC which is shades           */
-/*    of gray.                                                                */
-/* 3) Paste the contents of src/afw/generated/syntax/compile.ebnf in          */
-/*    the text area of the "Edit Grammar" tab.                                */
-/* 4) Select the "View Diagram" tab then click the PNG radio button           */
-/*    in "Download diagram" box in the top right corner and press             */
-/*    the "Download" button.                                                  */
-/* 5) Replace the contents of the syntax/ directory with the contents         */
-/*    of the downloaded zip file.                                             */
+/* A) Automated handbook / docs build (usual path)                            */
+/*    afwdev build --docs / --fulldev runs Railroad Diagram Generator         */
+/*    (rr.war; same engine as https://bottlecaps.de/rr) with                  */
+/*    -color:#DCDCDC, unpacks PNG + index.html under                          */
+/*    build/docs/.../reference/language/ebnf/syntax/, and themes that         */
+/*    page for the Docs site. Handbook XML embeds PNGs from                   */
+/*    the diagram directory (e.g. statements.html).                           */
+/*                                                                            */
+/* B) Manual exploration (optional)                                           */
+/*    Paste syntax.ebnf into https://bottlecaps.de/rr/ui yourself if you      */
+/*    want alternate colors, SVG, or a one-off diagram:                       */
+/*    1) Open https://bottlecaps.de/rr/ui                                     */
+/*    2) Options tab: set Color if desired (docs default is #DCDCDC)          */
+/*    3) Edit Grammar: paste src/afw/generated/ebnf/syntax.ebnf               */
+/*    4) View Diagram: download PNG/SVG as needed                             */
+/*    You do not need to copy results back into the tree for the              */
+/*    published handbook unless you are changing the automated path.          */
 /*                                                                            */
 /* Root productions                                                           */
 /*                                                                            */
@@ -69,7 +77,9 @@ AssignmentObjectDestructureTarget ::=
 
 AssignmentProperty ::=
    ( PropertyName ('=' Expression )? ) |
-   ( PropertyName ( ':' AssignmentElement )? )
+   ( PropertyName ( ':' AssignmentElement )? ) |
+   ( String ( ':' AssignmentElement ) ) |
+   ( '[' Expression ']' ':' AssignmentElement )
 
 /* From afw_compile_parse_assignment_target.c                                 */
 /*                                                                            */
@@ -90,6 +100,117 @@ AssignmentBindingTarget ::=
 
 AssignmentTarget ::= AssignmentBindingTarget | Reference
 
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Compiler-internal #block( statementExpression, ... ).                      */
+/* Token is already pound_identifier with name "block".                       */
+
+CompilerInternalBlock ::=
+    '#block' '(' ( Expression ( ',' Expression )* )? ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Target shape for #assignment_target (symbol name or destructure Pattern).  */
+
+AssignmentTargetCompilerInternalShape ::=
+    Identifier |
+    String |
+    AssignmentListDestructureTarget |
+    AssignmentObjectDestructureTarget
+/* Compiler-internal #assignment_target( assignmentKind, Pattern ).           */
+/* assignmentKind — string Expression, e.g. "const", "let" (matches decompile). */
+
+CompilerInternalAssignmentTarget ::=
+    '#assignment_target' '(' Expression ','
+        AssignmentTargetCompilerInternalShape ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Compiler-internal wrapper for array spread entries. Matches decompile.     */
+
+CompilerInternalListExpression ::=
+    '#list_expression' '(' Expression ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Parts are Expressions (string segments and nested #block expressions).     */
+/* At least one part is required.                                             */
+
+CompilerInternalTemplateDefinition ::=
+    '#template_definition' '(' Expression ( ',' Expression )* ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* #script_function( param* , body [, returnType] ) — decompile form.         */
+/* Param symbols are introduced before the body is parsed.                    */
+/* A name or Pattern is a parameter only when followed by '?', ':', '=',      */
+/* or ',' (or after '...'); otherwise it starts the body Expression.          */
+
+ScriptFunctionCompilerInternalParamName ::=
+    Identifier | String
+
+ScriptFunctionCompilerInternalNameParameter ::=
+    ( '...' )? ScriptFunctionCompilerInternalParamName
+        ( '?' )? ( ':' Type )? ( '=' Expression )?
+
+ScriptFunctionCompilerInternalPatternParameter ::=
+    ( AssignmentListDestructureTarget |
+      AssignmentObjectDestructureTarget )
+        ( '?' )? ( '=' Expression )?
+
+ScriptFunctionCompilerInternalParameter ::=
+    ScriptFunctionCompilerInternalNameParameter |
+    ScriptFunctionCompilerInternalPatternParameter
+
+ScriptFunctionCompilerInternalArgs ::=
+    ( ScriptFunctionCompilerInternalParameter
+      ( ',' ScriptFunctionCompilerInternalParameter )*
+      ',' )?
+    Expression ( ',' Type )?
+
+CompilerInternalScriptFunction ::=
+    '#script_function' '(' ScriptFunctionCompilerInternalArgs ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Switch default-clause marker (unique permanent null). Optional "()".       */
+
+CompilerInternalSwitchDefault ::=
+    '#switch_default' ( '(' ')' )?
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Array value of compiled nodes without evaluating them (for for/switch      */
+/* statement lists). Unlike array(), elements stay as call/block nodes.       */
+
+CompilerInternalStatements ::=
+    '#statements' '(' ( Expression ( ',' Expression )* )? ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Statement-position compiler-internal #Name.                                */
+/* Token is already pound_identifier.                                         */
+/* #closure_binding / #function_thunk are recognized as known rejects         */
+/* (always compile errors; not productions — runtime / C-side only).          */
+
+CompilerInternalStatement ::=
+    CompilerInternalBlock
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Value/expression-position #Name.                                           */
+/* Token is already pound_identifier.                                         */
+/* Compiler-internal forms match decompile #implementation_id.                */
+/* Compiler literals fold to permanent values (not call forms).               */
+/* #closure_binding / #function_thunk are recognized but always compile       */
+/* errors (runtime / C-side only; not recompilable from decompile text).      */
+
+CompilerLiteral ::=
+    '#doubleMax' | '#doubleMin' | '#doubleMinSubnormal' |
+    '#doubleEpsilon' | '#integerMax' | '#integerMin' |
+    '#pi' | '#e' | '#infinity' | '#inf' | '#minusInfinity' | '#nan'
+
+CompilerInternalValue ::=
+    CompilerInternalBlock |
+    CompilerInternalAssignmentTarget |
+    CompilerInternalListExpression |
+    CompilerInternalScriptFunction |
+    CompilerInternalTemplateDefinition |
+    CompilerInternalSwitchDefault |
+    CompilerInternalStatements |
+    CompilerLiteral
+
 /* From afw_compile_parse_expression.c                                        */
 /* The objectId of any /afw/_AdaptiveDataType_/ objects.                      */
 /* This production only applies if ':' occurs before the end of current line. */
@@ -99,10 +220,11 @@ ColonBeforeEndOfLine ::= ':'
 DataType ::=
    'any' |
    'anyURI' |
+   'array' |
    'base64Binary' |
    'boolean' |
-   'date' |
    'dataTimeDuration' |
+   'date' |
    'dnsName' |
    'double' |
    'expression' |
@@ -111,7 +233,6 @@ DataType ::=
    'ia5String' |
    'integer' |
    'ipAddress' |
-   'array' |
    'null' |
    'object' |
    'objectId' |
@@ -129,10 +250,6 @@ DataType ::=
    'x500Name' |
    'xpathExpression' |
    'yearMonthDuration'
-/* ObjectType should be in quoted string since some may not conform to        */
-/* Identifier and consistency is desired.                                     */
-
-ObjectType ::= String
 
 Category ::= Identifier
 
@@ -207,16 +324,25 @@ ParameterList ::=
        ) |
        EllipsisParameter
    )
+/*                                                                            */
+/* A parameter is a ParameterName or a list/object Pattern (same Patterns as  */
+/* let/const destructure). Pattern parameters introduce nested parameter      */
+/* symbols; the whole argument is bound via the Pattern at call time.         */
+/*                                                                            */
+
+ParameterBinding ::=
+   ParameterName | AssignmentListDestructureTarget |
+   AssignmentObjectDestructureTarget
 
 RequiredParameterList ::=
-   ParameterName OptionalType
-   (',' ParameterName OptionalType)*
+   ParameterBinding OptionalType
+   (',' ParameterBinding OptionalType)*
 
 OptionalParameterList ::=
-   ( ParameterName '?'? OptionalType ( '=' Literal )? )
+   ( ParameterBinding '?'? OptionalType ( '=' Expression )? )
    (
        ','
-       ( ParameterName '?'? OptionalType ( '=' Literal )? )
+       ( ParameterBinding '?'? OptionalType ( '=' Expression )? )
    )*
 
 EllipsisParameter ::=
@@ -248,9 +374,14 @@ Lambda ::= 'function' SelfReferenceLambdaName? FunctionSignatureAndBody
 
 /* From afw_compile_parse_expression.c                                        */
 
-Parameters ::= '(' Expression (',' Expression)*')'
+Parameters ::= '('
+    ( ( Expression | ( '...' Expression ) )
+      ( ',' ( Expression | ( '...' Expression ) ) )* )?
+  ')'
 /*                                                                            */
 /* Denotes a parameter list without first parameter (method style call).      */
+/* Call-site spread (...expr) is wrapped as list_expression so call           */
+/* evaluation can expand the array into separate arguments (issue #140).      */
 /*                                                                            */
 
 ParametersExceptFirst ::= Parameters
@@ -260,42 +391,91 @@ ParametersExceptFirst ::= Parameters
 ParenthesizedExpression ::= '(' Expression ')' Parameters*
 
 /* From afw_compile_parse_expression.c                                        */
-/* See RFC https://tools.ietf.org/html/rfc2616#section-3.7                    */
-/* This is media-type in a quoted string                                      */
+/* Property name in an object type literal (identifier or string).            */
 
-MediaType ::= String
+ObjectTypePropertyName ::= PropertyName | String
 
-ArrayOf ::= ( 'of' 'array' )* ( 'of' Type )
-
-DataTypeWithParameter ::= '('
-              ( ( 'base64Binary' | 'hexBinary' | 'string' ) MediaType ) |
-              ( ( 'script' | 'template' ) ReturnType ) |
-              ( 'function' FunctionSignature ) |
-              ( 'array' ArrayOf ) |
-              ( ( 'object' | 'objectId' ) ObjectType ) |
-              ( 'unevaluated' Type ) |
-     ')'
-
-TypeName ::= DataType | TypeVariableName | InterfaceName
-
-TypeObject ::=
-     '{'
-         PropertyName '?'?  ':' Type
-         ( ',' PropertyName '?'?  ':' Type )*
-         ','?
-     '}' ';'
-/* An object type _AdaptiveValueMeta_ object.                                 */
-
-ValueMeta ::= 'meta' Object
-
-Type ::=  DataTypeWithParameter | TypeName | TypeObject | ValueMeta
+ObjectTypeLiteral ::=
+    '{'
+        (
+            ObjectTypePropertyName '?'? ':' Type
+            ( ',' ObjectTypePropertyName '?'? ':' Type )*
+            ','?
+        )?
+    '}'
 
 /* From afw_compile_parse_expression.c                                        */
-/* If Type is not specified, default is any.                                  */
+
+TupleType ::= '[' ( Type ( ',' Type )* ','? )? ']'
+
+/* From afw_compile_parse_expression.c                                        */
+/* Called with '(' already the current token (see ParenthesizedOrFunctionType). */
+
+FunctionType ::=
+    '(' FunctionTypeParameterList? ')' '=>' Type
+
+FunctionTypeParameterList ::=
+    FunctionTypeParameter ( ',' FunctionTypeParameter )*
+/* Named param: name ?: Type. Bare identifier without ':' is TypeName with    */
+/* optional '[]' only (not '|' / '&'). Non-identifier Type forms use full Type */
+/* (object/tuple/paren).                                                      */
+
+FunctionTypeParameter ::=
+    '...'? Identifier '?'? ':' Type |
+    '...'? TypeName ( '[' ']' )* |
+    '...'? (
+        ObjectTypeLiteral |
+        TupleType |
+        ParenthesizedOrFunctionType
+    )
+
+/* From afw_compile_parse_expression.c                                        */
+/* Current token is '('. Speculative scan chooses FunctionType if '=>'        */
+/* follows the matching ')' or a ':' appears at depth 1 (named parameter).    */
+
+ParenthesizedOrFunctionType ::=
+    FunctionType |
+    '(' Type ')'
+
+/* From afw_compile_parse_expression.c                                        */
+/* Single identifier: resolves to DataType, registered type/interface, or     */
+/* unresolved reference (non-checking). TypeVariableName / InterfaceName are  */
+/* both Identifier; DataType is the closed set of Adaptive data type ids.     */
+
+TypeName ::= DataType | Identifier
+/* Array element types use postfix T[] only (not TypeScript Array<T>).        */
+
+PrimaryType ::=
+    ObjectTypeLiteral |
+    TupleType |
+    ParenthesizedOrFunctionType |
+    TypeName
+
+/* From afw_compile_parse_expression.c                                        */
+
+ArrayType ::= PrimaryType ( '[' ']' )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+IntersectionType ::= ArrayType ( '&' ArrayType )*
+
+/* From afw_compile_parse_expression.c                                        */
+
+UnionType ::= IntersectionType ( '|' IntersectionType )*
+
+/* From afw_compile_parse_expression.c                                        */
+/* Script type expression (issue #28). Primary leaves are TypeName            */
+/* (DataType or script type/interface name). Hard cut: (array of T) /         */
+/* (object "OT") / meta {…} are not accepted.                                 */
+
+Type ::= UnionType
+
+/* From afw_compile_parse_expression.c                                        */
+/* If Type is not specified, default is any (afw_data_type_any).              */
 
 OptionalType ::= ( ':' Type )?
 
-OptionalReturnType ::= ( ':' ( 'void' | Type ) )?
+OptionalReturnType ::= ( ':' Type )?
 
 /* From afw_compile_parse_expression.c                                        */
 
@@ -339,6 +519,32 @@ Prefixed ::= ( ( '+' | '-' | '!' | 'void' ) Value ) | Value
 
 Expression ::= NullishCoalescing ( '?' Expression ':' Expression )?
 
+/* From afw_compile_parse_pragma.c                                            */
+/* Author compile-policy pragma. Token is already pound_identifier "compile". */
+/* Operands are compile:* flag short names (and special 'noTypeCheck').       */
+/* At least one operand required. Spaces separate tokens; no commas.          */
+
+CompilePragmaOperand ::=
+    'noImplicitAny' |
+    'noOptimize' |
+    'noTypeCheck' |
+    'strict' |
+    'strictNullChecks' |
+    'typeCheck' |
+    'typeCheckCompileOnly'
+
+CompilePragma ::=
+    '#compile' CompilePragmaOperand+ ';'
+
+/* From afw_compile_parse_pragma.c                                            */
+/* Statement-position #Name. Token is already pound_identifier.               */
+/* Author policy pragmas first; other # names are compiler-internal           */
+/* (see CompilerInternalStatement).                                           */
+
+PragmaStatement ::=
+    CompilePragma |
+    CompilerInternalStatement
+
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */
 /* Must evaluate one of following:                                            */
@@ -361,6 +567,9 @@ OptionalDefineAssignment ::= (
 )
 
 /* From afw_compile_parse_script.c                                            */
+/* RHS is Assignment when it is another target + assign operator              */
+/* (x = y = 1). Otherwise Expression (x = i + 1). Issue #62.                  */
+/* Not assignment-as-expression: (x = 1) > x stays illegal.                   */
 
 AssignmentOperation ::=
    (
@@ -370,7 +579,7 @@ AssignmentOperation ::=
              '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
              '**=' | '&&=' | '||=' | '??='
            )
-           Expression
+           ( Assignment | Expression )
       )
    )
 
@@ -382,29 +591,36 @@ Assignment ::= AssignmentExpression AssignmentOperation
 
 AssignmentStatement ::=
    (
-       ( '(' AssignmentObjectDestructureTarget '=' Expression ')' ) |
+       ( '(' AssignmentObjectDestructureTarget '=' Assignment ')' ) |
        Assignment
    )
    ';'
 
 /* From afw_compile_parse_script.c                                            */
+/* Optional Identifier must name an enclosing loop label (issue #62).         */
+/* No break expression. Semicolons required (no ASI).                         */
 
-BreakStatement ::= 'break' ';'
+BreakStatement ::= 'break' Identifier? ';'
 
 /* From afw_compile_parse_script.c                                            */
 
-ConstStatement ::= 'const' AssignmentTarget '=' Expression ';'
+ConstDeclaration ::=
+    'const' AssignmentTarget '=' Expression
+    ( ',' AssignmentTarget '=' Expression )*
+
+ConstStatement ::= ConstDeclaration ';'
 
 /* From afw_compile_parse_script.c                                            */
 
 InterfaceName ::= Identifier
 
-InterfaceStatement ::= 'interface' InterfaceName
-     '{'
-         ( String | Identifier ) ':' Type
-         ( ','  ( String | Identifier ) ':' Type )*
-         ','?
-     '}' ';'
+InterfaceStatement ::=
+    'interface' InterfaceName
+    ( 'extends' Type ( ',' Type )* )?
+    ObjectTypeLiteral
+    ';'
+/* Object body is an ObjectTypeLiteral (see Type productions in expression).  */
+/* Script-local only; not adaptive object types (issue #28).                  */
 
 /* From afw_compile_parse_script.c                                            */
 
@@ -413,23 +629,28 @@ TypeVariableName ::= Identifier
 TypeStatement ::= 'type' TypeVariableName '=' Type ';'
 
 /* From afw_compile_parse_script.c                                            */
+/* Optional Identifier must name an enclosing loop label (issue #62).         */
 
-ContinueStatement ::= 'continue' ';'
-
-/* From afw_compile_parse_script.c                                            */
-
-DeclareStatement ::= 'declare' AssignmentTarget ';'
+ContinueStatement ::= 'continue' Identifier? ';'
 
 /* From afw_compile_parse_script.c                                            */
 
 DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
 
 /* From afw_compile_parse_script.c                                            */
+/* C-style init is one let, one const, or assignment(s) — not a mixed         */
+/* comma list of defines (issue #62). for (let i = 0, j = 1; …) is a          */
+/* LetDeclaration. for (let i = 0, let j = 1; …) is not accepted.             */
+/* Comma-separated Assignments stay (TS/JS comma operator stand-in).          */
 
 ForStatement ::= 'for'
   '(' (
       (
-          ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+          (
+              LetDeclaration |
+              ConstDeclaration |
+              ( Assignment ( ',' Assignment )* )
+          )?
           ';' Expression?
           ';' ( Assignment ( ',' Assignment )* )?
       ) |
@@ -452,7 +673,11 @@ IfStatement ::= 'if' '(' Expression ')' Statement ( 'else' Statement )?
 
 /* From afw_compile_parse_script.c                                            */
 
-LetStatement ::= 'let' AssignmentTarget ( '=' Expression )? ';'
+LetDeclaration ::=
+    'let' AssignmentTarget ( '=' Expression )?
+    ( ',' AssignmentTarget ( '=' Expression )? )*
+
+LetStatement ::= LetDeclaration ';'
 
 /* From afw_compile_parse_script.c                                            */
 /* Expression is required if inside a function that has a non-void return.    */
@@ -475,17 +700,24 @@ SwitchStatement ::= 'switch' ParenthesizedExpression
 
 /* From afw_compile_parse_script.c                                            */
 /* If there is no expression, the exception is rethrow and can only be        */
-/* contained in a catch block. If there is an expression, it is the message   */
-/* for the exception to be thrown. If there is a second expression, it        */
-/* can be any value and will be the value for the "data" property of the      */
-/* error object.                                                              */
+/* contained in a catch block. If there is an expression, it is the           */
+/* message. Optional 'data' and 'id' clauses may appear in either             */
+/* order; 'id' must evaluate to a string allowed on script throw.             */
+/* After the message, a bare expression is not data — write                   */
+/* 'data' Expression. A variable named data is: throw "…" data data.          */
 /*                                                                            */
 
-ThrowStatement ::=  'throw' ( Expression  Expression? )?
+ThrowStatement ::= 'throw' |
+    'throw' Expression
+        ( ( 'data' Expression | 'id' Expression )+ )?
 
 /* From afw_compile_parse_script.c                                            */
+/*                                                                            */
+/* Catch binding is Identifier or the same list/object Pattern as let/const   */
+/* (issue #140). Runtime assigns the error object into the binding target.    */
+/*                                                                            */
 
-Catch ::= 'catch' ( '(' Identifier ')' )? Statement
+Catch ::= 'catch' ( '(' ( Identifier | AssignmentTarget ) ')' )? Statement
 
 Finally ::= 'finally' Statement
 
@@ -502,6 +734,10 @@ EvaluationThatCompilesToCallValue ::= Evaluation
 
 CallStatement ::= EvaluationThatCompilesToCallValue
 /* BreakStatement and ContinueStatement can only be in a loop.                */
+/* LabeledStatement is only for / while / do (issue #62). Not blocks or if.   */
+
+LabeledStatement ::= Identifier ':' (
+    ForStatement | WhileStatement | DoWhileStatement )
 
 Block ::= '{' StatementList '}'
 
@@ -513,15 +749,18 @@ Statement ::=
    CallStatement |
    ConstStatement |
    ContinueStatement |
-   DeclareStatement |
    DoWhileStatement |
    ForStatement |
    FunctionStatement |
    IfStatement |
    InterfaceStatement |
+   LabeledStatement |
    LetStatement |
+   PragmaStatement |
    ReturnStatement |
    SwitchStatement |
+   ThrowStatement |
+   TryStatement |
    TypeStatement |
    WhileStatement
 
@@ -531,9 +770,9 @@ StatementList ::= Statement*
 
 /* From afw_compile_parse_script.c                                            */
 /*                                                                            */
-/* The value returned from a script if the Expression specified on an         */
-/* evaluated ReturnStatement, the single Expression specified, or null        */
-/* if none of the above.                                                      */
+/* Script result (issue #62): return, assignment, or a lone Expression        */
+/* (compiled as return). Most other statements do not write it. Empty         */
+/* script is undefined.                                                       */
 /*                                                                            */
 
 Script ::= ScriptShebang? ( Statement* | Expression )
@@ -580,20 +819,46 @@ TestScriptValue ::= (
 TestScriptBegin ::= TestScriptLineStart 'test_script:' TestScriptValue
 
 TestBegin ::= TestScriptLineStart 'test:' TestScriptValue
-/* Identifier should be one that will not collide with standard ones.         */
+/* Official case properties (also accepted at file level where listed).       */
+/* Any other Identifier key is still accepted as TestCustomProperty and       */
+/* stored as a string on the test object (no compiler enum required).         */
 
 TestCustomProperty ::= Identifier ':' TestScriptValue
+/* What the case checks. For test262-derived cases, stay close to the TC39    */
+/* description (light Adaptive tweaks OK). Not the place for harness notes.   */
 
 TestDescription ::= TestScriptLineStart 'description:' TestScriptValue
+/* Optional ES vs Adaptive language delta for the construct under test only   */
+/* (not try/assert wrappers). Harvestable for differences docs later.         */
+
+TestDifferences ::= TestScriptLineStart 'differences:' TestScriptValue
 
 TestExpect ::= TestScriptLineStart
    'expect:' (
        ( 'error' '\n' ) |
-       ( 'result' TestScriptValue )
+       ( 'error:' UnicodeNonControl* '\n' ) |
+       ( 'success' '\n' ) |
+       TestScriptValue
    )
-/* Skip can be use for source that is not ready to test                       */
+/*                                                                            */
+/* 'success' means compiled and ran with no throw; the result is ignored.     */
+/* 'error' / 'error:message' mean a throw. Any other value is Adaptive        */
+/* and compared to the script result (including 'undefined').                 */
+/* Optional side-channel text expects (string equality on captured utf-8;     */
+/* not Adaptive-eval). Hyphen keys only — ':' is the //? key/value separator. */
+/* Value forms match other keys (same-line trim, "..." multi-line, <<< file). */
 
-TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
+TestExpectStdout ::= TestScriptLineStart 'expect-stdout:' TestScriptValue
+
+TestExpectStderr ::= TestScriptLineStart 'expect-stderr:' TestScriptValue
+/* Skip when the case is not ready to run (or permanently out of scope).      */
+
+TestSkip ::= TestScriptLineStart 'skip:' ( 'true' | 'false' ) '\n'
+/* Why skip is true. Suggested prefixes (convention): Incompatible: never     */
+/* convert; FIXME: Adaptive should fix/decide; Deferred: later; Harness: rare */
+/* runner limit. See src/afw/tests/test262/README.md.                         */
+
+TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
 /* Default is script or the one specified in TestScriptDefinition             */
 
 TestSourceType ::= TestScriptLineStart 'source_type:'
@@ -614,12 +879,16 @@ EvaluationTimeSubstitution ::= '${' Script '}'
 Substitution ::= CompileTimeSubstitution | EvaluationTimeSubstitution
 
 /* From afw_compile_parse_template.c                                          */
+/* In Template and TemplateString bodies, '\#' and '\$' emit a literal '#' or */
+/* '$' so that '#{' / '${' substitution openers are not formed. TemplateString */
+/* also supports normal string escapes ('\\', '\n', '\`', ...).               */
 
 Template ::=
    (
        ( Char - ['$' '#'] ) |
        ( ['$' '#'] ) |
        ( ['$' '#'] (Char - '{') ) |
+       ( '\\' ['$' '#'] ) |
        Substitution
    )*
 
@@ -627,35 +896,38 @@ Template ::=
 
 TemplateString ::= '`' + Template + '`'
 
-/* From afw_compile_parse_template.c                                          */
-
-NamedTemplateString ::= '`' + ((Char - '$') | ('\$') | ('$' (Char - '{')) | '${' PropertyName '}') * '`'
-
 /* From afw_compile_parse_value.c                                             */
-/* Expression must produce a value of data type list.                         */
+/* Expression must produce a value of data type array.                        */
 
 ListExpression ::= Expression
+/* Strict JSON: dense values only (no elision, no trailing comma).            */
 
 List ::=
    '['
        ( Json (',' Json)* )?
    ']'
+/* Relaxed / script: optional elision (hole → undefined) and trailing comma.  */
+/* Elision is a missing element between commas (or after '[' before a comma), */
+/* not a third array state. Same rules for script ListValue and relaxed_json. */
+/* Elision is written here as empty alternative between commas.               */
 
 RelaxedList ::=
    '['
-       ( RelaxedJson (',' RelaxedJson)* )? ','?
+       ( RelaxedJson? (',' RelaxedJson? )* )?
+       ','?
    ']'
 
 ListLiteral ::=
    '['
-       ( Literal (',' Literal )* )? ','?
+       ( Literal? (',' Literal? )* )?
+       ','?
    ']'
 
 ListValue ::=
    '['
        (
-           ( Expression | ( '...' ListExpression ) )
-           (',' ( Expression | ( '...' ListExpression ) ) )*
+           ( Expression | ( '...' ListExpression ) )?
+           (',' ( Expression | ( '...' ListExpression ) )? )*
        )?
        ','?
    ']'
@@ -696,12 +968,14 @@ ObjectValue ::=
    '{'
        (
            (
-               ( ( String | Identifier ) ':' Expression ) |
+               ( ( String | Identifier | '[' Expression ']' )
+                   ':' Expression ) |
                ('...' ObjectExpression )
            )
            ( ','
                (
-                   ( ( String | Identifier ) ':' Expression ) |
+                   ( ( String | Identifier | '[' Expression ']' )
+                       ':' Expression ) |
                    ('...' ObjectExpression )
                )
            )*
@@ -734,7 +1008,8 @@ Value ::= ListValue |
         Evaluation |
         ParenthesizedExpression |
         TemplateString |
-        CompileTimeSubstitution
+        CompileTimeSubstitution |
+        CompilerInternalValue
 
 /* From afw_compile_lexical.c                                                 */
 
@@ -807,7 +1082,23 @@ U ::= '\u' ( ( HexDigit HexDigit HexDigit HexDigit ) |
 String ::= '"' Char* '"'
 
 Char ::= [^\#x0-#x20] | '\"' | "\'" | '\`' | "\\" | '\/' |
-        '\b' | '\f' | '\n' | '\r' | '\t' | U
+        '\b' | '\f' | '\n' | '\r' | '\t' | '\v' | '\0' |
+        '\x' HexDigit HexDigit | U | NonEscapeSequence |
+        LineContinuation
+/* LineContinuation: backslash + line terminator contributes no characters.   */
+
+LineContinuation ::= '\' ( #x0A | #x0D #x0A? | LS | PS )
+/* NonEscapeSequence: backslash + a character that is not a recognized        */
+/* escape introducer; the character is taken as itself (e.g. \A → A).         */
+/* Digits 1-9 after backslash are not identity escapes (reserved for          */
+/* legacy octal, which Adaptive does not implement). Line terminators         */
+/* after backslash are LineContinuation, not NonEscapeSequence.               */
+/* Recognized introducers: b f n r t v ' " ` / u x 0 (and single-escape       */
+/* forms listed under Char).                                                  */
+
+NonEscapeSequence ::= '\' IdentityEscapeChar
+
+IdentityEscapeChar ::= [A-Za-z] | [#x80-#xFF]
 
 UnicodeCodePoint ::= #x0-#x10FFFF
 
@@ -822,7 +1113,7 @@ Integer ::= '-'? (
     DecimalIntegerLiteral |
     BinaryIntegerLiteral |
     HexIntegerLiteral |
-    OctetIntegerLiteral )
+    OctalIntegerLiteral )
 
 DecimalIntegerLiteral ::= '0' | ( [1-9] [0-9]* )
 
@@ -831,16 +1122,29 @@ BinaryIntegerLiteral ::= '0' ('b' | 'B' ) BinaryDigit+
 HexIntegerLiteral ::= '0' ('x' | 'X' ) HexDigit+
 
 OctalIntegerLiteral ::= '0' ('o' | 'O' ) OctalDigit+
-/* Infinity, INF and NaN are not allowed in strict mode.                      */
 
-Double ::= '-'? ( ( DecimalIntegerLiteral '.' [0-9]+ ([eE] [+-]? [0-9]+)? ) |
-   'Infinity' | 'INF' | 'NaN' )
+ExponentPart ::= [eE] [+-]? [0-9]+
+/* Infinity, INF and NaN are not allowed in strict mode.                      */
+/* Decimal / double forms match ECMAScript DecimalLiteral: leading-dot        */
+/* (e.g. .5, .1e1), trailing-dot (e.g. 1., 1.e10), and full fraction.         */
+
+Double ::= '-'? (
+    DecimalIntegerLiteral '.' [0-9]* ExponentPart? |
+    '.' [0-9]+ ExponentPart? |
+    DecimalIntegerLiteral ExponentPart? |
+    'Infinity' | 'INF' | 'NaN' )
 
 /* From afw_compile_lexical.c                                                 */
-/* ZWNJ - Unicode Zero-width non-joiner (0x200c)                              */
-/* ZWJ - Unicode Zero-width joiner (0x200d)                                   */
-/* ID_START is any codepoint with ID_START flag                               */
-/* ID_CONTINUE is any codepoint with ID_CONTINUE flag                         */
+/* Unicode identifier categories (ECMAScript ID_Start / ID_Continue).         */
+/* Not expanded to code-point ranges here.                                    */
+
+ID_START ::= "any Unicode ID_Start code point"
+
+ID_CONTINUE ::= "any Unicode ID_Continue code point"
+
+ZWNJ ::= #x200C
+
+ZWJ ::= #x200D
 
 IdentifierStart ::= ID_START | '$' | '_'
 
@@ -862,19 +1166,43 @@ PredefinedConstReservedWords ::= ( 'false' | 'INF' | 'Infinity' | 'NaN'  |
      'null' | 'true' | 'undefined' )
 
 /* From afw_compile_lexical.c                                                 */
+/* Statement / clause keywords (including type-system statements and          */
+/* interface 'extends'). 'void' is reserved with statements though it is      */
+/* also a data-type name.                                                     */
 
 StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
-     'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' |
-     'function' | 'if' | 'let' | 'return' | 'switch' |
-     'throw' | 'try' | 'void' | 'while' )
+     'continue' | 'default' | 'do' | 'else' | 'extends' | 'finally' |
+     'for' | 'function' | 'if' | 'interface' | 'let' | 'return' |
+     'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
 
 /* From afw_compile_lexical.c                                                 */
+/* Not implemented as syntax today; reserved for possible future surface or   */
+/* to block awkward identifiers. Keep 'var' and 'with' reserved even though   */
+/* Adaptive Script does not implement those keywords.                         */
+/*                                                                            */
+/* 'in' is reserved and is not planned as Adaptive Script syntax: arrays are  */
+/* not objects, and there is no for-in / "property in value" enumeration      */
+/* model. Walk objects with keys/values/entries and for-of instead. Keeping   */
+/* 'in' reserved blocks it as an identifier without implying a future         */
+/* operator.                                                                  */
+/*                                                                            */
+/* 'delete' is reserved and is not planned as Adaptive Script syntax for the  */
+/* same object-model reasons (no sparse "punch a hole" / property-remove      */
+/* operator). Mutate arrays with splice and related helpers; remove object    */
+/* properties through Adaptive object/adapter APIs, not a delete keyword.     */
 
 UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
-     'export' | 'extends' | 'from' | 'import' | 'in' | 'interface' |
-     'instanceof' | 'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
+     'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
+     'this' | 'typeof' | 'var' | 'with' )
 
 /* From afw_compile_lexical.c                                                 */
 /* End of source                                                              */
 
 END ::=
+
+/* From afw_compile_lexical.c                                                 */
+/* '#' starts compile-time substitution '#{', a pound identifier              */
+/* '#Name' (pragma or compiler-internal), or a bare pound sign.               */
+/* Bare '#' is a token only (pound_sign) — not a production.                  */
+
+PoundIdentifier ::= '#' Identifier

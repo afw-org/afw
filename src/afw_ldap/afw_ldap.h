@@ -11,29 +11,34 @@
 
 #include "afw_minimal.h"
 
-/* Include generated declare helpers. */
-#include "generated/afw_ldap_declare_helpers.h"
-
 /**
  * @defgroup afw_ldap LDAP Adapter
  * @ingroup afw_included_extensions
  *
- * Adaptive Framework LDAP adapter.
+ * LDAP adapter type (`src/afw_ldap/`): directory-backed adaptive objects.
+ * Package-private C surface over libafw public APIs (self-contained srcdir).
+ * Factory/session pattern from afwdev `add-adapter-type`. Use adapter
+ * session call macros for CRUD; this header maps extension layout and
+ * error RV source ids.
  *
  * @{
  */
 
 /**
  * @file afw_ldap.h
- * @brief Header for AFW LDAP Adapter.
+ * @brief Package header for the LDAP adapter extension.
+ *
+ * Start here for LDAP as an adapter-type extension example (with
+ * `afw_vfs` / `afw_lmdb`). See @ref afw_included_extensions and
+ * @ref afw_dev_extending. Not installed as a second public C API.
  */
 
-AFW_LDAP_BEGIN_DECLARES
+AFW_BEGIN_DECLARES
 
 /** ldap rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_ldap "ldap"
 
-AFW_LDAP_END_DECLARES
+AFW_END_DECLARES
 
 /** @} */
 

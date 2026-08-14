@@ -29,6 +29,7 @@
 
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "afw_runtime_const_meta"
+#define AFW_OBJECT_SELF_T afw_runtime_const_object_meta_object_t
 #include "afw_object_impl_declares.h"
 
 /*
@@ -41,15 +42,25 @@ afw_runtime_inf_const_meta_object_inf = {
         AFW_UTF8_LITERAL(__FILE__),
         AFW_UTF8_LITERAL(AFW_IMPLEMENTATION_ID)
     },
+    (afw_object_release_t)
     impl_afw_object_release,
+    (afw_object_get_reference_t)
     impl_afw_object_get_reference,
+    (afw_object_get_count_t)
     impl_afw_object_get_count,
+    (afw_object_get_meta_t)
     impl_afw_object_get_meta,
+    (afw_object_get_property_t)
     impl_afw_object_get_property,
+    (afw_object_get_property_meta_t)
     impl_afw_object_get_property_meta,
+    (afw_object_get_next_property_t)
     impl_afw_object_get_next_property,
+    (afw_object_get_next_property_meta_t)
     impl_afw_object_get_next_property_meta,
+    (afw_object_has_property_t)
     impl_afw_object_has_property,
+    (afw_object_get_setter_t)
     impl_afw_object_get_setter
 };
 
@@ -60,7 +71,7 @@ afw_runtime_inf_const_meta_object_inf = {
  */
 void
 impl_afw_object_release (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -73,7 +84,7 @@ impl_afw_object_release (
  */
 void
 impl_afw_object_get_reference (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -84,11 +95,11 @@ impl_afw_object_get_reference (
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)&self->pub;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -100,13 +111,11 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_property (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_runtime_const_object_meta_object_t * self = 
-        (afw_runtime_const_object_meta_object_t *)instance;
+    /* Assign &self->pub pointer to self. */
     const afw_value_t *result;
 
     result = NULL;
@@ -128,20 +137,18 @@ impl_afw_object_get_property (
  */
 const afw_value_t *
 impl_afw_object_get_next_property (
-    const afw_object_t * instance,
-    const afw_iterator_t * * iterator,
+    AFW_OBJECT_SELF_T *self,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_runtime_const_object_meta_object_t * self = 
-        (afw_runtime_const_object_meta_object_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
 
     /* Parent paths is only property. */
     if (!*iterator)
     {
-        *iterator = (afw_iterator_t *)afw_s_null;
+        *iterator = (afw_iterator_old_t *)afw_s_null;
         if (self->parent_paths) {
             if (property_name) {
                 *property_name = afw_s_parentPaths;
@@ -161,7 +168,7 @@ impl_afw_object_get_next_property (
  */
 afw_boolean_t
 impl_afw_object_has_property (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
@@ -175,7 +182,7 @@ impl_afw_object_has_property (
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* No setter. */

@@ -28,7 +28,7 @@
  *
  *<<<ebnf*/
 /* Note: Token '[' is already consumed. */
-AFW_DEFINE_INTERNAL(const afw_compile_list_destructure_t *)
+const afw_compile_list_destructure_t *
 afw_compile_parse_AssignmentListDestructureTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -86,7 +86,7 @@ afw_compile_parse_AssignmentListDestructureTarget(
  *    AssignmentBindingTarget ( '=' Expression )?
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(afw_compile_assignment_element_t *)
+afw_compile_assignment_element_t *
 afw_compile_parse_AssignmentElement(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -128,7 +128,7 @@ afw_compile_parse_AssignmentElement(
  *
  *<<<ebnf*/
 /* Note: Token '{' is already consumed. */
-AFW_DEFINE_INTERNAL(const afw_compile_object_destructure_t *)
+const afw_compile_object_destructure_t *
 afw_compile_parse_AssignmentObjectDestructureTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -185,11 +185,12 @@ afw_compile_parse_AssignmentObjectDestructureTarget(
  *
  * AssignmentProperty ::=
  *    ( PropertyName ('=' Expression )? ) |
- *    ( PropertyName ( ':' AssignmentElement )? )
+ *    ( PropertyName ( ':' AssignmentElement )? ) |
+ *    ( String ( ':' AssignmentElement ) ) |
+ *    ( '[' Expression ']' ':' AssignmentElement )
  *
  *<<<ebnf*/
-/* Note: Token identifier is already consumed and passed as parameter. */
-AFW_DEFINE_INTERNAL(afw_compile_assignment_property_t *)
+afw_compile_assignment_property_t *
 afw_compile_parse_AssignmentProperty(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -197,25 +198,50 @@ afw_compile_parse_AssignmentProperty(
     afw_compile_assignment_property_t *ap;
     const afw_compile_value_contextual_t *contextual;
     const afw_utf8_t *identifier;
+    const afw_value_t *name_expr;
 
-/*
-    if (afw_compile_token_is(identifier)) {
-        name = parser->token->identifier_name;
-    }
-    else if (afw_compile_token_is(integer)) {
-        name = afw_number_integer_to_utf8(
-            parser->token->integer,
-            parser->p, parser->xctx);
-    }
-    else {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting property name");
-    }
- */
     ap = afw_pool_calloc_type(parser->p,
         afw_compile_assignment_property_t, parser->xctx);
     afw_compile_get_token();
 
-    /* Get property name */
+    /* Computed property name: [ Expression ] : AssignmentElement */
+    if (afw_compile_token_is(open_bracket)) {
+        name_expr = afw_compile_parse_Expression(parser);
+        afw_compile_get_token();
+        if (!afw_compile_token_is(close_bracket)) {
+            AFW_COMPILE_THROW_ERROR_Z("Expecting ']' after computed property name");
+        }
+        afw_compile_get_token();
+        if (!afw_compile_token_is(colon)) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting ':' after computed property name in destructure");
+        }
+        ap->is_rename = true;
+        ap->property_name = NULL;
+        ap->property_name_expr = name_expr;
+        ap->assignment_element = afw_compile_parse_AssignmentElement(
+            parser, assignment_type);
+        return ap;
+    }
+
+    /* String property name: "name" : AssignmentElement */
+    if (afw_compile_token_is(utf8_string)) {
+        identifier = parser->token->string;
+        afw_compile_get_token();
+        if (!afw_compile_token_is(colon)) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "String property name in destructure requires ':' binding");
+        }
+        ap->is_rename = true;
+        ap->property_name = identifier;
+        ap->property_name_expr = NULL;
+        ap->property_name_was_string = true;
+        ap->assignment_element = afw_compile_parse_AssignmentElement(
+            parser, assignment_type);
+        return ap;
+    }
+
+    /* Identifier property name */
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting PropertyName");
     }
@@ -226,11 +252,13 @@ afw_compile_parse_AssignmentProperty(
     if (afw_compile_token_is(colon)) {
         ap->is_rename = true;
         ap->property_name = identifier;
+        ap->property_name_expr = NULL;
+        ap->property_name_was_string = false;
         ap->assignment_element = afw_compile_parse_AssignmentElement(
             parser, assignment_type);
     }
 
-    /* ( PropertyName ( '=' Expression )? ) */
+    /* ( PropertyName ( '=' Expression )? ) shorthand bind */
     else {
         contextual = afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset);
@@ -260,7 +288,7 @@ afw_compile_parse_AssignmentProperty(
  *    ( VariableName - ReservedWords )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_parse_AssignmentBindingTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type,
@@ -330,7 +358,8 @@ afw_compile_parse_AssignmentBindingTarget(
         }
  
         if (assignment_type == afw_compile_assignment_type_let ||
-            assignment_type == afw_compile_assignment_type_const)
+            assignment_type == afw_compile_assignment_type_const ||
+            assignment_type == afw_compile_assignment_type_parameter)
         {
             *type = afw_compile_parse_OptionalType(parser, false);
         }
@@ -358,7 +387,7 @@ afw_compile_parse_AssignmentBindingTarget(
  * AssignmentTarget ::= AssignmentBindingTarget | Reference
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentTarget(
     afw_compile_parser_t *parser,
     afw_compile_internal_assignment_type_t assignment_type)
@@ -378,9 +407,14 @@ afw_compile_parse_AssignmentTarget(
         target->assignment_type = assignment_type;
         target->target_type =
             afw_compile_assignment_target_type_symbol_reference;
-        target->variable_type = type;
+        /*
+         * symbol_reference shares a union with variable_type — only the
+         * reference is stored here. Type annotation (if any) was already
+         * copied onto symbol->type by variable_reference_create(..., type).
+         */
         target->symbol_reference =
             (const afw_value_symbol_reference_t *)result;
+        (void)type; /* type is on symbol->type, not on this union arm */
         result = afw_value_assignment_target_create(
             target->symbol_reference->contextual,
             target, parser->p, parser->xctx);

@@ -35,6 +35,7 @@ our @EXPORT_OK = qw(
     lt_double 
     max_double 
     min_double 
+    mod_double 
     multiply_double 
     ne_double 
     negative_double 
@@ -327,6 +328,19 @@ Minimum value
 =head4 Parameters
 
     $values
+
+
+=head3 mod_double
+
+Divide double dividend by double divisor and return the double remainder.
+Remainder of dividing numbers
+
+=head4 Parameters
+
+    $dividend
+
+
+    $divisor
 
 
 =head3 multiply_double
@@ -745,6 +759,18 @@ sub min_double {
 
     $request->set("function" => "min<double>");
     $request->set("values", $values);
+
+    return $request->getResult();
+}
+
+sub mod_double {
+    my ($dividend, $divisor) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "mod<double>");
+    $request->set("dividend", $dividend);
+    $request->set("divisor", $divisor);
 
     return $request->getResult();
 }

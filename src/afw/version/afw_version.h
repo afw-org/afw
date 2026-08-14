@@ -18,7 +18,7 @@
 
 /**
  * @file afw_version.h
- * @brief Adaptive Framework Version Information
+ * @brief Runtime version string and git-info API.
  */
 
 AFW_BEGIN_DECLARES

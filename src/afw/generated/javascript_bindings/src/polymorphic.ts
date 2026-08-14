@@ -188,14 +188,19 @@ export function afwClone(client : any, value : any) : any {
 
 /**
  * Compile `<dataType>` value and return either an unevaluated adaptive value
- * or a string containing the compiler listing.
+ * or a string containing the compiler listing. The listing is a
+ * human-oriented dump (value tree interleaved with source, plus ---Symbols
+ * tables) for Fiddle and debugging — not pure JSON (use stringify) and not
+ * Adaptive compiled-form text (use decompile).
  * 
  * @param {} source - `<dataType>` string to compile
  * 
- * @param {} listing - If specified, a compiler listing is produced instead of
- *     an unevaluated compiled value.
+ * @param {} listing - If specified, a human compiler listing is produced
+ *     instead of an unevaluated compiled value (tree + ---Symbols; not
+ *     recompilable). Use decompile() for Adaptive compiled-form text and
+ *     stringify() for pure JSON of evaluated data.
  * 
- *     This parameter can be an integer between 0 and 10 of a string that is
+ *     This parameter can be an integer between 0 and 10 or a string that is
  *     used for indentation. If 0 is specified, no whitespace is added to the
  *     resulting string. If 1 through 10 is specified, that number of spaces
  *     is used.
@@ -418,6 +423,24 @@ export function afwFloor(client : any, number : any) : any {
 
     _action["function"] = "floor";
     _action["number"] = number;
+
+    return client.perform(_action);
+}
+
+/**
+ * Set a `<dataType>` value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ * 
+ * @param {} value - The `<dataType>` value to freeze.
+ * 
+ * @returns {} The same value, now immutable.
+ */
+export function afwFreeze(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "freeze";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -979,7 +1002,8 @@ export function afwRegexpMatch(client : any, value : any, regexp : string) : any
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {} A `<dataType>` value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRegexpReplace(client : any, value : any, regexp : string, replacement : string, limit? : number) : any {
 
@@ -1003,7 +1027,8 @@ export function afwRegexpReplace(client : any, value : any, regexp : string, rep
  * 
  * @param {integer} times - The number of times to repeat the value.
  * 
- * @returns {} The repeated `<dataType>` value.
+ * @returns {string} Repeated text as string (not re-typed as the input data
+ *     type).
  */
 export function afwRepeat(client : any, value : any, times : number) : any {
 
@@ -1028,7 +1053,8 @@ export function afwRepeat(client : any, value : any, times : number) : any {
  * @param {integer} limit - This is the maximum times to replace. The default
  *     is 1. Specify -1 to replace all occurrences.
  * 
- * @returns {} A `<dataType>` value with the matched string(s) replaced.
+ * @returns {string} Result text as string (not re-typed as the input data
+ *     type).
  */
 export function afwReplace(client : any, value : any, match : string, replacement : string, limit? : number) : any {
 
@@ -1157,10 +1183,10 @@ export function afwSubset(client : any, array1 : any[], array2 : any[]) : any {
 }
 
 /**
- * Returns the `<dataType>` substring of value beginning at zero-based
- * position integer startIndex and ending at the position before integer
- * endIndex. Specify -1 or omitting endIndex to return up to end of
- * `<dataType>`.
+ * Returns the string substring of value beginning at zero-based position
+ * integer startIndex and ending at the position before integer endIndex.
+ * Specify -1 or omit endIndex to return through the end of value. The result
+ * is always string (a slice of anyURI is not an anyURI).
  * 
  * @param {} string -
  * 
@@ -1168,7 +1194,8 @@ export function afwSubset(client : any, array1 : any[], array2 : any[]) : any {
  * 
  * @param {integer} endIndex -
  * 
- * @returns {}
+ * @returns {string} Substring as string (not re-typed as the input data
+ *     type).
  */
 export function afwSubstring(client : any, string : any, startIndex : number, endIndex? : number) : any {
 

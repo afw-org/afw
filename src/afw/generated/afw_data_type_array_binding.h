@@ -22,7 +22,6 @@
 
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
-#include "afw_declare_helpers.h"
 
 /**
  * @defgroup afw_c_api_data_type_array array
@@ -35,7 +34,7 @@
 
 /**
  * @file afw_data_type_array_binding.h
- * @brief Adaptive data type array header.
+ * @brief Generated header for adaptive data type `array`.
  */
 
 AFW_BEGIN_DECLARES
@@ -63,7 +62,8 @@ afw_data_type_array;
 /**
  * @brief Unmanaged evaluated value inf for data type array.
  *
- * The lifetime of the value is the lifetime of its containing pool.
+ * Lifetime is the containing pool. optional_release is NULL;
+ * clone_or_reference returns the same instance (no clone, no RC).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_array_inf;
@@ -71,7 +71,10 @@ afw_value_unmanaged_array_inf;
 /**
  * @brief Managed evaluated value inf for data type array.
  *
- * The lifetime of the value is managed by reference count in xctx->p.
+ * Header allocated in xctx->p; lifetime by reference_count on the
+ * value header. Create starts at RC 0. optional_release frees the
+ * header when RC is 0, else decrements. clone_or_reference bumps RC
+ * and returns the same instance.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_array_inf;
@@ -79,7 +82,8 @@ afw_value_managed_array_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type array.
  *
- * The lifetime of the value is the lifetime of the afw environment.
+ * Lifetime is the afw environment / static const storage. optional_release
+ * is NULL; clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_array_inf;
@@ -96,9 +100,15 @@ afw_value_permanent_array_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array.
+ * @brief True if A_VALUE is an evaluated array value.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * For evaluated values only. When true, it is safe to cast A_VALUE to
+ * `const afw_value_array_t *`.
+ * If you want to know if the value will be array when fully
+ * evaluated (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, array, xctx)` instead.
  */
 #define afw_value_is_array(A_VALUE) \
 ( \
@@ -107,9 +117,12 @@ afw_value_permanent_array_inf;
 )
 
 /**
- * @brief Macro to determine if value is evaluated array of array.
+ * @brief True if A_VALUE is an evaluated array of array.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * When true, A_VALUE is an evaluated array (`const afw_value_array_t *`)
+ * whose element data type is array.
  */
 #define afw_value_is_array_of_array(A_VALUE) \
 ( \
@@ -191,9 +204,10 @@ afw_value_as_array(
  * @brief Allocate function for data type array value.
  * @param p to use for returned value.
  * @param xctx of caller.
- * @return Allocated afw_value_array_t with appropriate inf set.
+ * @return Allocated afw_value_array_t with unmanaged inf set.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Unmanaged: lifetime is pool p; no value refcount.
+ * Caller fills internal after allocate.
  */
 AFW_DECLARE(afw_value_array_t *)
 afw_value_allocate_unmanaged_array(
@@ -206,7 +220,12 @@ afw_value_allocate_unmanaged_array(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is managed by reference count.
+ * Allocates a managed value header in xctx->p. reference_count starts
+ * at 0: optional_release without a prior clone_or_reference frees the
+ * header immediately. Release frees the value header only.
+ * Stores the pointer as-is; does not clone or take a reference on the
+ * referent. Caller must ensure the referent outlives this value (or
+ * a future object/array path may special-case container RC).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_array(
@@ -220,7 +239,9 @@ afw_value_create_managed_array(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Allocates in pool p; lifetime is the pool (no value refcount).
+ * clone_or_reference returns the same instance as-is.
+ * Stores the pointer as-is; does not clone the referent.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_array(const afw_array_t * internal,
@@ -324,7 +345,7 @@ afw_object_get_next_property_as_array_source( \
 AFW_DECLARE(const afw_array_t *)
 afw_object_get_next_property_as_array_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -337,7 +358,11 @@ afw_object_get_next_property_as_array_source(
  * @param value of value to set.
  * @param xctx of caller.
  *
- * The value will be allocated in the object's pool. *
+ * The value will be allocated in the object's pool.
+ * Prefer afw_object_set_property(..., afw_v_*, ...) when a
+ * static const value (e.g. from afw_strings.h) already
+ * exists for that constant.
+ *
  */
 AFW_DECLARE(void)
 afw_object_set_property_as_array(
@@ -376,7 +401,7 @@ afw_object_set_property_as_array(
 AFW_DECLARE(const afw_array_t *)
 afw_array_of_array_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx);
 
@@ -405,25 +430,21 @@ afw_array_of_array_remove(
     afw_xctx_t *xctx);
 
 /**
- * @brief extern for data type array struct.
+ * @brief Public data type array struct instance.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.  Use afw_data_type_array when not referencing in
- * a static.
+ * Prefer afw_data_type_array when a pointer is enough and you are not
+ * initializing static data that must reference the struct object.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DECLARE_CONST_DATA(afw_data_type_t)
 afw_data_type_array_direct;
 
 /**
- * @brief extern for data type array inf.
+ * @brief Public data type array inf.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.
- *
- * The implementation of the data type must define this.  It is
- * managed by the generated data type instance.
+ * Defined with the data type implementation; managed by the generated
+ * data type instance.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
+AFW_DECLARE_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_array_inf;
 
 AFW_END_DECLARES

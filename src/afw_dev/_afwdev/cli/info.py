@@ -399,8 +399,9 @@ _info_build_all = {
     "arg": "--all",     
     "action": "store_true",    
     "default": False,
-    "help": "This is short for for the build type context switches --cmake, "
-        "--docker, --docs, and --js."
+    "help": "This is short for the build type context switches --cmake, "
+        "--docker, --docs, and --js. Does not enable --generate, --clean, "
+        "--install, or --scan (see --fulldev)."
 }
 
 _info_build_clean = {
@@ -445,7 +446,20 @@ _info_build_cdev = {
     "arg": "--cdev",     
     "action": "store_true",    
     "default": False,
-    "help": "This is a shortcut to enable common switches used during C development."
+    "help": "C development shortcut: enables --generate, --clean, --install, "
+        "and -j / parallel jobs (cmake context by default; not docs/JS/docker). "
+        "Explicit -j N still overrides. See also --fulldev."
+}
+
+_info_build_fulldev = {
+    "optionName": "build_fulldev",
+    "arg": "--fulldev",
+    "action": "store_true",
+    "default": False,
+    "help": "Full package dev-install shortcut: enables --all, --generate, "
+        "--clean, --install, --scan, and -j / parallel jobs. Use when the "
+        "whole tree (C, docs, JS, docker tags) should be rebuilt and "
+        "installed. Explicit -j N still overrides."
 }
 
 _info_build_generate = {
@@ -546,12 +560,16 @@ afw-package.json file.
 
 The build switches --cmake, --docker, --docs, --js provide build type context
 that other switches, such as --clean, --install, and --generate will execute
-under. The --all selects all of those contexts.
+under. The --all selects all of those contexts (not generate/install).
+
+Convenience profiles: --cdev (C day-to-day generate/clean/install/-j) and
+--fulldev (all contexts plus generate/clean/install/scan/-j for a full dev install).
 """,
     "thing": "build",
     "args": [
         _info_build_all,
         _info_build_cdev,
+        _info_build_fulldev,
         _info_build_clean,
         _info_build_cmake,
         _info_build_docker,
@@ -897,8 +915,22 @@ _info_test_output = {
     "default": "stdout",
     "noprompt": True,
     "help":
-        "Where to write a JSON results summary. Use 'stdout' (default) for "
-        "console only, or a file path."
+        "Where to write a results summary after the run. "
+        "Default 'stdout' means do not write a summary file (human "
+        "console only). Use a file path, or '-' to write the summary "
+        "to stdout (useful with --output-format json for agents/CI)."
+}
+
+_info_test_output_format = {
+    "optionName": "output_format",
+    "arg": "--output-format",
+    "action": "store",
+    "default": "json",
+    "noprompt": True,
+    "help":
+        "Format of --output summary when writing a file or '-'. "
+        "json (default, indented), json-compact, or text. "
+        "Does not change default human console reporting."
 }
 
 _info_test_pattern = {
@@ -918,10 +950,41 @@ _info_test_js = {
     "help": "Run Javascript and Web App tests."
 }
 
+# Shared by test and blast: opt-in trees outside package src/*/tests
+_info_tests_path = {
+    "optionName": "tests_path",
+    "arg": "--tests-path",
+    "short": "-T",
+    "action": "append",
+    "noprompt": True,
+    "help":
+        "Directory of tests to use (repeatable). When any --tests-path is "
+        "given, only those trees are searched (not package src/*/tests). "
+        "Default test -j never scans these roots — put extras under "
+        "src/afw/tests-extra/ (firehose, progressive, lab leaves)."
+}
+
+_info_test_capture_goldens = {
+    "optionName": "capture_goldens",
+    "arg": "--capture-goldens",
+    "action": "store_true",
+    "default": False,
+    "noprompt": True,
+    "help":
+        "Orchestrated tests: write actual HTTP response bodies to "
+        "expectResponse <<< paths (create/update goldens) and treat those "
+        "compares as pass. Also set AFWDEV_CAPTURE_GOLDENS=1. Review diffs "
+        "before committing. Does not affect ordinary test_script //? expects."
+}
+
 _info_test = {
     "subcommand": "test",
     "help": "Run tests",
-    "description": "Run tests for one more more source directories.",
+    "description":
+        "Run tests for one or more source directories. Default discovery is "
+        "package src/*/tests (regression gate for test -j). Optional "
+        "repeatable --tests-path/-T runs only those directory trees "
+        "(e.g. src/afw/tests-extra/) and does not use package tests/.",
     "thing": "test",
     "args": [        
         _info_test_bail,
@@ -930,17 +993,18 @@ _info_test = {
         _info_test_errors,
         _info_test_show_all,
         _info_srcdir_pattern, 
+        _info_tests_path,
+        _info_test_capture_goldens,
         _info_test_watch,
         _info_test_jobs,
         _info_test_env_mode,
         _info_test_output,
+        _info_test_output_format,
         _info_test_pattern,
         _info_test_js,
         _info_tmpdir
     ]
 }
-
-
 
 _info_pattern = {
     "optionName": "pattern",
@@ -1005,7 +1069,7 @@ be used.
 }
 
 
-# List of all subcommand infos in order displayed in --help
+# All subcommand infos (order here does not matter; --help sorts by name)
 _subcommand_infos = [
     _info_add_adapter_type,
     _info_add_content_type,
@@ -1022,7 +1086,7 @@ _subcommand_infos = [
     _info_settings,
     _info_task,
     _info_test,
-    _info_validate
+    _info_validate,
 ]
 
 #
@@ -1031,6 +1095,7 @@ _subcommand_infos = [
 afwdev_info = {
     "overall": _afwdev_overall_info,
     "args_for_all_commands" : _args_for_all_commands_infos,
-    "subcommands": _subcommand_infos
+    "subcommands": sorted(
+        _subcommand_infos, key=lambda i: i.get("subcommand") or ""),
 }
 

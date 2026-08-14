@@ -27,8 +27,8 @@
     "polymorphicExecuteFunction": "afw_function_execute_repeat",
     "pure": true,
     "returns": {
-        "description": "The repeated <dataType> value.",
-        "polymorphicDataType": true
+        "dataType": "string",
+        "description": "Repeated text as string (not re-typed as the input data type)."
     },
     "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
 }

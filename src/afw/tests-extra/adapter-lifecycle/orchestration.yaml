@@ -1,0 +1,77 @@
+# Run: afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
+# Opt-in only (not in default test -j). Moved from tests-extra/.
+version: 1
+description: >
+  Multi-request #149: stop/start disposable file adapter and check
+  referenceCount / metrics on _AdaptiveAdapter_
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 120
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: active adapter has refcount and metrics
+    sourceType: script
+    source: |
+      const a = get_object("afw", "_AdaptiveAdapter_", "lifecycle");
+      assert(a !== null && a !== undefined, "missing adapter lifecycle");
+      assert(a.adapterId === "lifecycle");
+      assert(a.serviceId === "adapter-lifecycle", "serviceId");
+      assert(a.referenceCount >= 1, "active refcount >= 1");
+      assert(a.metrics !== null && a.metrics !== undefined,
+          "metrics present while active");
+      return a.referenceCount;
+  - name: can use adapter while active
+    sourceType: script
+    source: |
+      add_object("lifecycle", "Demo", { "msg": "before-stop" }, "one");
+      const o = get_object("lifecycle", "Demo", "one");
+      assert(o.msg === "before-stop");
+      return o.msg;
+    expect: "before-stop"
+  - name: service_stop adapter-lifecycle
+    sourceType: script
+    source: |
+      service_stop("adapter-lifecycle");
+      return true;
+  - name: after stop — refcount 0, metrics null
+    sourceType: script
+    source: |
+      const a = get_object("afw", "_AdaptiveAdapter_", "lifecycle");
+      assert(a !== null && a !== undefined, "anchor should remain");
+      assert(a.adapterId === "lifecycle");
+      assert(a.referenceCount === 0, "stopped refcount expected 0");
+      assert(a.metrics === null || a.metrics === undefined,
+          "metrics should be absent when stopped");
+      const a2 = get_object("afw", "_AdaptiveAdapter_", "lifecycle");
+      assert(a2.referenceCount === 0);
+      return a.referenceCount;
+    expect: 0
+  - name: stopped adapter cannot get_object
+    sourceType: script
+    source: |
+      let threw = false;
+      try {
+          get_object("lifecycle", "Demo", "one");
+      } catch (e) {
+          threw = true;
+      }
+      assert(threw, "get_object on stopped adapter should fail");
+      return true;
+  - name: service_start adapter-lifecycle
+    sourceType: script
+    source: |
+      service_start("adapter-lifecycle");
+      return true;
+  - name: after start — refcount and metrics restored
+    sourceType: script
+    source: |
+      const a = get_object("afw", "_AdaptiveAdapter_", "lifecycle");
+      assert(a.referenceCount >= 1, "restarted refcount >= 1");
+      assert(a.metrics !== null && a.metrics !== undefined,
+          "metrics present after restart");
+      const o = get_object("lifecycle", "Demo", "one");
+      assert(o.msg === "before-stop", "data survived stop/start");
+      return a.referenceCount;

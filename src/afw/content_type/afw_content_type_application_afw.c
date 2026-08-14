@@ -21,6 +21,8 @@
 #include "afw_content_type_impl_declares.h"
 #undef AFW_IMPLEMENTATION_INF_SPECIFIER
 #undef AFW_IMPLEMENTATION_INF_LABEL
+typedef struct afw_content_type_application_afw_stream_self_s afw_content_type_application_afw_stream_self_t;
+#define AFW_STREAM_SELF_T afw_content_type_application_afw_stream_self_t
 #include "afw_stream_impl_declares.h"
 
 
@@ -113,7 +115,7 @@ impl_afw_content_type_application_afw =
  */
 const afw_value_t *
 impl_afw_content_type_raw_to_value(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_pool_t * p,
@@ -131,7 +133,7 @@ impl_afw_content_type_raw_to_value(
  */
 const afw_object_t *
 impl_afw_content_type_raw_to_object(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_utf8_t * adapter_id,
@@ -152,7 +154,7 @@ impl_afw_content_type_raw_to_object(
  */
 void
 impl_afw_content_type_write_value(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_value_t * value,
     const afw_object_options_t * options,
     void * context,
@@ -160,7 +162,7 @@ impl_afw_content_type_write_value(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_json_internal_write_value(value, options, context, callback,
+    afw_json_internal_write_value(value, options, NULL, context, callback,
         p, xctx);
 }
 
@@ -170,7 +172,7 @@ impl_afw_content_type_write_value(
  */
 const afw_content_type_object_list_writer_t *
 impl_afw_content_type_create_object_list_writer(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_object_options_t * options,
     void * context,
     afw_write_cb_t callback,
@@ -178,7 +180,7 @@ impl_afw_content_type_create_object_list_writer(
     afw_xctx_t *xctx)
 {
     return afw_content_type_impl_create_object_list_writer(
-        instance, options, context, callback,
+        self, options, context, callback,
         &impl_raw_begin_object_list,
         &impl_raw_object_separator,
         &impl_raw_last_object_separator,
@@ -217,28 +219,28 @@ impl_afw_stream_write_cb(
  */
 void
 impl_afw_stream_release(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_content_type_application_afw_stream_self_t *self =
-        (afw_content_type_application_afw_stream_self_t *)instance;
 
-    impl_afw_stream_flush(instance, xctx);
+    impl_afw_stream_flush(self, xctx);
     afw_pool_release(self->pub.p, xctx);
 }
 
 /*
  * Implementation of method read for interface afw_stream.
  */
-void
+afw_size_t
 impl_afw_stream_read(
-    const afw_stream_t *instance,
-    const void *buffer,
+    AFW_STREAM_SELF_T *self,
+    void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+    (void)&self->pub;
+    (void)buffer;
+    (void)size;
+    AFW_THROW_ERROR_Z(general, "Stream is not readable.", xctx);
 }
     
 /*
@@ -246,11 +248,9 @@ impl_afw_stream_read(
  */
 void
 impl_afw_stream_flush(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_content_type_application_afw_stream_self_t *self =
-        (afw_content_type_application_afw_stream_self_t *)instance;
     const afw_utf8_t *header;
     afw_size_t size;
 
@@ -283,7 +283,7 @@ impl_afw_stream_flush(
  */
 void
 impl_afw_stream_write(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -291,13 +291,13 @@ impl_afw_stream_write(
     if (size == 0) {
         return;
     }
-    impl_afw_stream_write_cb((void *)instance, buffer, size, instance->p, xctx);
+    impl_afw_stream_write_cb((void *)&self->pub, buffer, size, self->pub.p, xctx);
 }
 
 
 
 /* Register application/x-afw content handler. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_content_type_application_afw_register(afw_xctx_t *xctx)
 {
     afw_content_type_register(&impl_afw_content_type_application_afw, xctx);

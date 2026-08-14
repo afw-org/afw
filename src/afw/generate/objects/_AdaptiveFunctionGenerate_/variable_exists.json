@@ -1,18 +1,18 @@
 {
-    "brief": "Determine if a variable exists",
+    "brief": "True if a variable name is bound",
     "category": "miscellaneous",
-    "description": "Return the true if the named variable exists.",
+    "description": "Return true if the named variable is bound: a lexical symbol in the current scope chain, or a name defined on a visible qualifier frame. Still true when the value is undefined (including an uninitialized let) or null. False only when the name is not bound. Use is_defined / is_nullish for the value.",
     "functionId": "variable_exists",
     "functionLabel": "variable_exists",
     "parameters": [
         {
             "dataType": "string",
-            "description": "Name of variable to check. The name can optionally be preceded with a qualifier followed by '::'.",
+            "description": "Name of variable to check. Optionally qualifier::name.",
             "name": "name"
         }
     ],
     "returns": {
         "dataType": "boolean",
-        "description": "True if variable exists."
+        "description": "True if the name is bound."
     }
 }

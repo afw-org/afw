@@ -3,6 +3,7 @@
     "cType": "afw_utf8_t",
     "compileType": "xpathExpression",
     "dataType": "xpathExpression",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'xpathExpression' holds an XML Path Language (XPath) expression. An xpath expression provides the ability to navigate around the tree representation of an XML document.",
     "directReturn": false,
     "jsonPrimitive": "string",

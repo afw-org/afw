@@ -19,10 +19,31 @@
 
 /**
  * @file afw_value_internal.h
- * @brief Internal header for afw_value*.
+ * @brief Concrete value-kind structs (internal to libafw).
+ *
+ * These are **implementation layouts** for the value graph (blocks, calls,
+ * closures, symbol references, compiled values, …). The public API type
+ * remains `afw_value_t` (@ref afw_value). Each of these structs begins with
+ * the usual inf/`afw_value_t` pub union so instances can be passed as
+ * `const afw_value_t *`.
+ *
+ * Extension authors should rarely need this header; prefer `afw_value.h`
+ * and data-type create/evaluate APIs. Core maintainers use this file when
+ * adding or debugging a value kind.
  */
 
 AFW_BEGIN_DECLARES
+
+/**
+ * Whether compile-time checks for adaptive (built-in) function formals run.
+ * Default: same as compile type checking. A future compile:* flag can narrow
+ * this without hunting call sites.
+ *
+ * @see designs/adaptive-function-compile-typecheck.md
+ */
+/** Compile-time adaptive formals: same gate as unit/flag compile typeCheck. */
+#define AFW_VALUE_TYPE_CHECK_ADAPTIVE_FUNCTION_FORMALS(contextual, xctx) \
+    (AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED((contextual), (xctx)))
 
 
 #define AFW_VALUE_COMPILER_LISTING_IF_NOT_LIMIT_EXCEEDED \
@@ -85,51 +106,118 @@ struct afw_value_block_s {
 
 
 
-/** @brief Type meta (data type, data type parameters, and value meta object. */
-struct afw_value_type_s {
+/**
+ * @brief Kind of script/value type expression (TS-like; issue #28).
+ *
+ * Leaves are Adaptive data types (permanent pointers). Composites build
+ * script-local structure. Not adaptive object types.
+ */
+typedef enum afw_value_type_kind_e {
+    /** Adaptive data type leaf (integer, string, any, void, array, …). */
+    afw_value_type_kind_data_type,
 
-    /** @brief data type or NULL. */
-    const afw_data_type_t *data_type;
+    /** Named type/interface reference (type Foo = … / interface Bar). */
+    afw_value_type_kind_reference,
 
-    /** @brief contextual for data type parameter or NULL. */
-    const afw_compile_value_contextual_t *data_type_parameter_contextual;
+    /** Object type literal or interface body: { a?: T, … }. */
+    afw_value_type_kind_object,
 
-    /** @brief Data type specific data type parameter or NULL. */
-    union {
+    /** Array type: T[] (element type). */
+    afw_value_type_kind_array,
 
-        /** @brief string, base64Binary, hexBinary. */
-        const afw_utf8_t *media_type;
+    /** Tuple type: [T, U, …]. */
+    afw_value_type_kind_tuple,
 
-        /** @brief script and template. */
-        const afw_value_type_t *return_type;
+    /** Function type: (a: T, b?: U) => R. */
+    afw_value_type_kind_function,
 
-        /** @brief function. */
-        const afw_value_script_function_signature_t *function_signature;
+    /** Union: A | B | … */
+    afw_value_type_kind_union,
 
-        /** @brief list type (If NULL, 1 dimension with untyped cells). */
-        const afw_value_type_list_t *list_type;
+    /** Intersection: A & B & … */
+    afw_value_type_kind_intersection
+} afw_value_type_kind_t;
 
-        /** @brief object and objectId. */
-        const afw_utf8_t *object_type_id;
 
-        /** @brief unevaluated. */
-        const afw_value_type_t *type;
-    };
 
-    /** @brief _AdaptiveValueMeta_ object or NULL. */
-    const afw_object_t *value_meta_object;
+/** @brief Property in an object/interface type. */
+struct afw_value_type_property_s {
+    const afw_value_type_property_t *next;
+    const afw_utf8_t *name;
+    const afw_value_type_t *type;
+    afw_boolean_t optional;
 };
 
 
 
-/** @brief Type for list. */
-struct afw_value_type_list_s {
+/** @brief Parameter in a function type expression. */
+struct afw_value_type_function_param_s {
+    const afw_value_type_function_param_t *next;
+    const afw_utf8_t *name; /* optional; may be NULL for bare type params */
+    const afw_value_type_t *type;
+    afw_boolean_t optional;
+    afw_boolean_t is_rest;
+};
 
-    /** @brief Number of subscripts needed to access cell. */
-    afw_size_t dimension;
 
-    /** @brief Cell type. If NULL, cell is untyped. */
-    const afw_value_type_t *cell_type;
+
+/**
+ * @brief Type information for adaptive values / script bindings.
+ *
+ * TS-like type expression graph. Embeddable root (fixed size); children are
+ * pool pointers. Leaf identity for data types is permanent
+ * `afw_data_type_*` pointer comparison.
+ */
+struct afw_value_type_s {
+
+    /** @brief Discriminator for union below. */
+    afw_value_type_kind_t kind;
+
+    union {
+
+        /** kind_data_type: permanent adaptive data type (never NULL). */
+        const afw_data_type_t *data_type;
+
+        /** kind_reference: name of type/interface; resolved may be NULL. */
+        struct {
+            const afw_utf8_t *name;
+            const afw_value_type_t *resolved;
+        } reference;
+
+        /**
+         * kind_object: structural object or interface body.
+         * extends/extends_count used for interface extends list.
+         */
+        struct {
+            const afw_value_type_property_t *properties;
+            const afw_value_type_t *const *extends;
+            afw_size_t extends_count;
+            const afw_utf8_t *interface_name; /* NULL if type literal */
+        } object;
+
+        /** kind_array: element type (NULL = untyped elements). */
+        struct {
+            const afw_value_type_t *element;
+        } array;
+
+        /** kind_tuple: fixed element list. */
+        struct {
+            const afw_value_type_t *const *elements;
+            afw_size_t count;
+        } tuple;
+
+        /** kind_function: parameter list + return type. */
+        struct {
+            const afw_value_type_function_param_t *parameters;
+            const afw_value_type_t *returns;
+        } function;
+
+        /** kind_union / kind_intersection: member types. */
+        struct {
+            const afw_value_type_t *const *members;
+            afw_size_t count;
+        } compound;
+    };
 };
 
 /**
@@ -180,20 +268,33 @@ struct afw_value_block_symbol_s {
 
 
 
-/** @brief Struct for contextual and args for call values. */
+/**
+ * @brief Call argv bundle (shared by call, call_built_in, call_script, …).
+ *
+ * Unified layout for built-in adaptive functions and script functions:
+ *
+ *   argv[0]       — callee (may still need evaluation to find the function)
+ *   argv[1..argc] — user parameters (1-based parameter numbers 1..argc)
+ *   argc          — count of user parameters only (not including argv[0])
+ *
+ * Example: call f(a, b) → argc=2, argv = { f, a, b }.
+ *
+ * Script formal lists (`script_function_parameter_t **parameters`) are a
+ * separate C array indexed 0..count-1 for the same formals: parameters[0]
+ * is parameter number 1 / argv[1]. Do not mix 0-based C indexes with
+ * 1-based parameter_number without adjusting (usually ±1).
+ */
 struct afw_value_call_args_s {
 
     /** Contextual info for function call. */
     const afw_compile_value_contextual_t *contextual;
 
-    /** The number of function parameters (does not include argv[0]). */
+    /** Number of user parameters (does not include argv[0]). */
     afw_size_t argc;
 
     /**
-     * The function to call argv[0] followed by function parameters.
-     * 
-     * argv[0] might need to be evaluated to determine the function to call.
-     * 
+     * argv[0] = callee, argv[1..argc] = parameters.
+     * argv[0] might still need evaluation to determine the function.
      */
     const afw_value_t * const * argv;
 };
@@ -203,9 +304,9 @@ struct afw_value_call_args_s {
 /**
  * @brief Struct for call value.
  *
- * This is a call to the function defined in argv[0] with argc parameters
- * beginning with argv[1]. The function defined can be unevaluated, a
- * function definition, a script function definition, or a thunk definition.
+ * Call of the function in argv[0] with argc user parameters starting at
+ * argv[1]. Callee may be unevaluated, a built-in function definition, a
+ * script function definition, a closure binding, or similar.
  */
 struct afw_value_call_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
@@ -420,6 +521,12 @@ struct afw_value_internal_compiled_value_s {
 
     /* This is the data type of the evaluated result or NULL if unknown. */
     const afw_data_type_t *evaluated_data_type;
+
+    /**
+     * Effective compile policy for this unit (flags snapshotted at compile
+     * start; #compile may override fields without touching process flags).
+     */
+    afw_compile_policy_t compile_policy;
 };
 
 
@@ -478,6 +585,64 @@ struct afw_value_object_expression_s {
 
 
 
+/** @brief Kind of one entry in an object_construct value. */
+typedef enum {
+    /** Static property name + value expression. */
+    afw_value_object_construct_entry_static,
+
+    /** Expression property name + value expression. */
+    afw_value_object_construct_entry_name_expr,
+
+    /** Spread of an object expression (...obj). */
+    afw_value_object_construct_entry_spread
+} afw_value_object_construct_entry_type_t;
+
+
+
+/** @brief One ordered entry for object_construct. */
+struct afw_value_object_construct_entry_s {
+    afw_value_object_construct_entry_type_t type;
+
+    /** Static name when type is static; otherwise NULL. */
+    const afw_utf8_t *static_name;
+
+    /** Name expression when type is name_expr; otherwise NULL. */
+    const afw_value_t *name_expr;
+
+    /** Value expression for static / name_expr; NULL for spread. */
+    const afw_value_t *value;
+
+    /** Object expression when type is spread; otherwise NULL. */
+    const afw_value_t *spread_expr;
+
+    /** Next entry or NULL. */
+    afw_value_object_construct_entry_t *next;
+};
+
+
+
+/** @brief struct for object construct value (expression property names). */
+struct afw_value_object_construct_s {
+    /* Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    const afw_compile_value_contextual_t *contextual;
+
+    /** Head of ordered entry list. */
+    const afw_value_object_construct_entry_t *entries;
+
+    /**
+     * Optional meta object from a literal `_meta_` property in source.
+     * Installed on the evaluated object after properties are set.
+     */
+    const afw_object_t *meta;
+};
+
+
+
 /** @brief Struct for reference_by_key value. */
 struct afw_value_reference_by_key_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
@@ -505,32 +670,57 @@ struct afw_value_reference_by_key_s {
 
 
 
-/** @brief Struct for lambda parameter. */
+/**
+ * @brief Script function signature (formals + optional return type).
+ *
+ * `count` / `parameters` describe formals only. At call time those line up
+ * with call argv as: parameters[i] ↔ parameter number (i+1) ↔ argv[i+1].
+ * See `afw_value_call_args_s` for the full argv convention.
+ */
 struct afw_value_script_function_signature_s {
     const afw_compile_value_contextual_t *contextual;
     const afw_value_block_t *block;
     const afw_value_type_t *returns;
     const afw_value_block_symbol_t *function_name_symbol;
     const afw_value_string_t *function_name_value;
+    /** Number of formals; parameters has this many entries (0-based C array). */
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
 };
 
 
 
-/** @brief Struct for script function parameter. */
+/**
+ * @brief One script-function formal (name or Pattern).
+ *
+ * Simple name: `symbol` + `name` set; `assignment_target` NULL.
+ * Pattern (list/object destructure, issue #140): `assignment_target` holds
+ * the Pattern; nested leaves are parameter symbols in the function's
+ * parameter block. `name` / `symbol` may be NULL (no whole-arg binding).
+ *
+ * This struct is always the formal list entry (0-based index into
+ * `parameters[]`). Call argv still uses 1-based parameter numbers.
+ */
 struct afw_value_script_function_parameter_s {
     const afw_value_block_symbol_t *symbol;
     const afw_utf8_t *name;
     const afw_value_type_t *type;
     const afw_value_t *default_value;
+    /** Pattern bind target (list/object destructure), or NULL. */
+    const afw_value_t *assignment_target;
     afw_boolean_t is_optional;
     afw_boolean_t is_rest;
 };
 
 
 
-/** @brief Struct for lambda value. */
+/**
+ * @brief Compiled script function (lambda or named function value).
+ *
+ * `count` / `parameters` mirror the signature formals. When this value is
+ * called, bind using `afw_value_call_args_t`: argv[0] is this function,
+ * argv[1..] are arguments for parameters[0..].
+ */
 struct afw_value_script_function_definition_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
     union {
@@ -542,6 +732,7 @@ struct afw_value_script_function_definition_s {
     const afw_value_script_function_signature_t *signature;
     const afw_value_type_t *returns;
     afw_size_t depth;
+    /** Formal count (same as signature->count when signature is present). */
     afw_size_t count;
     const afw_value_script_function_parameter_t **parameters;
     const afw_value_t *body;
@@ -675,7 +866,7 @@ typedef struct {
     afw_value_meta_special_set_t set;
 } afw_value_meta_name_handler_t;
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_call_built_in_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_function_definition_t *function,
@@ -684,7 +875,7 @@ afw_value_call_built_in_function(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_call_script_function(
     const afw_compile_value_contextual_t *contextual,
     const afw_value_script_function_definition_t *script_function_definition,
@@ -694,62 +885,62 @@ afw_value_call_script_function(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(afw_value_meta_object_self_t *)
+extern afw_value_meta_object_self_t *
 afw_value_internal_create_meta_object_self(
     const afw_value_t *associated_value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_meta_default(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_metas_default(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_meta_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_metas_for_array(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_meta_for_object(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_internal_get_evaluated_metas_for_object(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_meta_values_list_for_object_create(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_meta_values_list_for_list_create(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(afw_value_compiler_listing_t *)
+extern afw_value_compiler_listing_t *
 afw_value_compiler_listing_to_string_instance(
     const afw_value_t *value,
     afw_value_compiler_listing_t *parent,
@@ -787,62 +978,72 @@ struct afw_value_compiler_listing_s {
     int tab_size;
 };
 
-AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+extern const afw_utf8_t *
 afw_value_compiler_listing_symbol_type_name(
     afw_value_block_symbol_type_t type);
 
-AFW_DECLARE_INTERNAL(const afw_utf8_t *)
+extern const afw_utf8_t *
 afw_value_compiler_listing_for_child(
     const afw_value_t *instance,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_begin_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
     const afw_compile_value_contextual_t *contextual,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_end_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_call_args(
     const afw_writer_t *writer,
     const afw_value_call_args_t *args,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_value(
     const afw_value_t *instance,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_value_compiler_listing_name_and_type(
     const afw_writer_t *writer,
     const afw_utf8_t *name,
     const afw_value_type_t *type,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_block_evaluate_statement(
     afw_function_execute_t *x,
     const afw_value_t *block,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-AFW_DECLARE_INTERNAL(const afw_value_t *)
+extern const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
     const afw_pool_t *p,
-    afw_xctx_t *xctx);
+    afw_xctx_t *xctx,
+    afw_boolean_t as_value);
 
+
+/**
+ * @brief Register core value infs during environment bootstrap (libafw only).
+ * @param xctx of caller.
+ *
+ * Called from afw_environment_register_core.c. Implemented in afw_value.c.
+ */
+extern void
+afw_value_register_core_value_infs(afw_xctx_t *xctx);
 
 
 AFW_END_DECLARES

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_thread.c
- * @brief Adaptive Framework thread support.
+ * @brief Thread create/join and thread-attribute helpers.
  */
 
 #include "afw_internal.h"

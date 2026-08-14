@@ -26,7 +26,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
             }
         ]
     }
-});
+}, undefined, undefined, 0);
 
 // should match one object
 assert(length(objects) === 1);
@@ -65,7 +65,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
             }
         ]
     }
-});
+}, undefined, undefined, 0);
 
 // should match one object
 assert(length(objects) === 1);
@@ -110,7 +110,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
             }
         ]
     }
-});
+}, undefined, undefined, 0);
 
 // should match one object
 assert(length(objects) === 1);

@@ -1,0 +1,103 @@
+---
+description: Qualifier stack, get vs snapshots (issue #9), contribute_cb, includeUntrusted, size
+globs: src/afw/xctx/**,src/afw/function/afw_function_compiler.c,src/afw/generate/objects/_AdaptiveFunctionGenerate_/qualifier.json,src/afw/generate/objects/_AdaptiveFunctionGenerate_/qualifiers.json,src/afw/doc/reference/language/qualified-variables.xml,src/afw/tests/compiler/qualifier*.as,src/afw/context/**,src/afw/model/afw_model_context.c
+alwaysApply: false
+---
+
+# Qualified variables (stack + issue #9 snapshots)
+
+Use when editing the **qualifier stack**, `qualifier()` / `qualifiers()`, push/contribute sites, or model/app context bags.
+
+## Two access paths
+
+| Path | Role |
+|------|------|
+| **`qualifier::name` (get)** | Hot path. Walk **most recent → older** matching **visible** frames; first frame whose **`get_cb` returns non-NULL** wins for that name. |
+| **`qualifier(q)` / `qualifiers()`** | Debug / tools / tests. Build a **fresh memory object** via **`contribute_cb`** (not a live proxy). Not for tight production loops. |
+
+Same stack, same visibility rules, same **first defining frame per name** semantics — not a second security model. Snapshot materializes bags; get answers one name.
+
+### get_cb contract
+
+| Return | Meaning |
+|--------|---------|
+| **C `NULL`** | Name **not defined** on this frame → stack continues |
+| **`afw_value_undefined`** | Defined, value undefined (permanent singleton; stop) |
+| **`afw_value_null`** | Defined, Adaptive/JSON null (permanent singleton; stop) |
+| other value | Defined (stop) |
+
+Do **not** return C `NULL` for present undefined. Context **name tables**: if the name is in the table but the value is unset, return `afw_value_undefined` so an older same-named frame is not used.
+
+## Snapshot rules (issue #9)
+
+- **`afw_xctx_qualifier_object_create`:** walk **all** matching visible entries for the name (most recent first); each **contributes** into one accumulator. Per property name, **most recent wins** (contribute should skip names already set).
+- **Nullish:** no matching visible entry → C `NULL` / script `undefined` (not `{}`). Empty object after contribute is still an object.
+- **`qualifiers()`:** one nested snapshot per **active** qualifier name. If create returns `NULL`, **omit** the property — **never invent `{}`**.
+- Nested pushes are normal; stack restore / `AFW_TRY` peels entries as execution leaves scopes.
+
+## Visibility and `includeUntrusted`
+
+| Situation | Snapshot / get frames |
+|-----------|------------------------|
+| xctx not secure | Trusted + untrusted (full normal view) |
+| Secure, `includeUntrusted` false (default) | Trusted only — same as secure `::` |
+| Secure, `includeUntrusted` true | Trusted + untrusted — **same as less-secure `::`** (not untrusted-only) |
+
+Default snapshot visibility **matches `qualifier::name` right now**. Flag only widens while secure.
+
+Frame `secure` = how the entry was **pushed** (never push client context as trusted). `xctx->secure` = how the section is **running** (`AFW_XCTX_SECURE_BEGIN`).
+
+## Contribute contract
+
+- Every stack entry that participates in snapshots needs a real **`contribute_cb`** (required on push; object-push uses a fixed walker).
+- Object-push: walk `get_next_property` and set **iterated name + value** (avoid re-get with bad names).
+- Callback tables (context, app `current::`, model `custom::`, …): list known variables; first-wins on name when merging layers inside one entry is local to that contribute.
+
+## Size and memory
+
+- Snapshots can be **large** (`environment::`, `request::`, nested `qualifiers()` over every active name, multi-entry contribute).
+- Prefer everyday **`qualifier::name`**. Do not hold or repeatedly rebuild large snapshots in long-running hosts.
+- Another beta pressure point for **#2 / `afw-value-memory`** (pools, managed escape). Maintainer notes: `beta-backlog.md`.
+
+## Model / authoring
+
+- Model `on*` hooks document bags via generate OT **`contextType`** and short property descriptions (`afw-model-adapter`). Optional `qualifier("current")` is debug/tools only.
+- **custom::** multi-layer redesign still deferred (residual names under property-level `on*` risk) — see beta-backlog.
+
+## `current::` vs `custom::` (product rule)
+
+| Qualifier | Role |
+|-----------|------|
+| **`current::`** | Framework **operation context** for this evaluate. **Name set is per context** (auth ≠ model ≠ log ≠ index). |
+| **`custom::`** | Conf maintainer **extra variables** for expressions/templates/scripts **within that configured thing**. Compile at conf load when hybrids; evaluate at use. Not a global “every adapter has custom.” |
+
+Push requires a **non-empty** qualifier name (`"Qualifier required"` if empty). Stale docs that mention empty-string qualifier for “unqualified variables” are residual.
+
+## Runtime lookup by name
+
+- Compiled locals: **`symbol_reference`** → frame depth + **index** (not name search).
+- Adaptive **`variable_get(name)`** / `variable_exists` / `variable_is_not_null`: optional `qualifier::name`; unqualified uses **by-name** scope walk; qualified uses qualifier stack.
+- Index filter/value: use **`current::object`** (or `variable_get("current::object")`), not bare `object` / `variable_get("object")` unless a lexical `object` exists.
+
+Index eval push: **`afw-adapter-index`**.
+
+## Key files
+
+| Path | Role |
+|------|------|
+| `xctx/afw_xctx.c` | Stack push/get; object-push contribute |
+| `xctx/afw_xctx_qualifier_object.c` | Snapshot create |
+| `xctx/afw_xctx.h` | APIs, secure macros, entry fields |
+| `function/afw_function_compiler.c` | `qualifier` / `qualifiers` execute |
+| `generate/.../qualifier.json`, `qualifiers.json` | Function metadata SSOT |
+| `doc/reference/language/qualified-variables.xml` | Handbook |
+| `context/afw_context.c` | CB variable tables + contribute |
+| `model/afw_model_context.c` | Model `current::` / `custom::` push |
+
+## Handbook XML (docs build)
+
+Author under `src/afw/doc/**/*.xml`. Supported inline tags: **`literal`**, **`strong`**, **`italic`** (not DocBook **`emphasis`**). `--cdev` skips handbook; use `./afwdev build --fulldev` (or `--docs`) to verify docs. See `afw-afwdev-python`.
+
+## Related
+
+- Runtime xctx: `afw-runtime-model`, `afw-script-eval`. Memory: `afw-value-memory`. Models: `afw-model-adapter`. Script authoring: `afw-adaptive-script`. Tests: `afw-tests`.

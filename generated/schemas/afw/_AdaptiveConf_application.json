@@ -1,35 +1,73 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveConf_application. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveAuthorizationControl_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveAuthorizationControl_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "This defines how authorization checking occurs in this application.",
-            "title": "Authorization",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveAuthorizationControl_.propertyTypes": {
+            "markdownDescription": "This defines how authorization checking occurs in this application.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "checkIntermediateMode": {
+                    "default": false,
                     "description": "Do authorization check when running in mode intermediate. If false, the checks will be bypassed.",
+                    "markdownDescription": "**Check Intermediate**\n\nDo authorization check when running in mode intermediate. If false, the checks will be bypassed.",
                     "title": "Check Intermediate",
                     "type": "boolean"
                 },
                 "coreAuthorizationCheck": {
                     "description": "This is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail.",
+                    "markdownDescription": "**Core Check**\n\nThis is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail.",
                     "title": "Core Check",
                     "type": "string"
                 },
                 "denyIfNotApplicable": {
+                    "default": false,
                     "description": "Specify true to deny access to resources when notApplicable is the final result of other checks.",
+                    "markdownDescription": "**Deny If Not Applicable**\n\nSpecify true to deny access to resources when notApplicable is the final result of other checks.",
                     "title": "Deny If Not Applicable",
                     "type": "boolean"
                 },
                 "initialAuthorizationCheck": {
                     "description": "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
+                    "markdownDescription": "**Initial Check**\n\nThis is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
+                    "title": "Initial Check",
+                    "type": "string"
+                }
+            },
+            "title": "Authorization",
+            "type": "object"
+        },
+        "_AdaptiveAuthorizationControl_.propertyTypes": {
+            "properties": {
+                "checkIntermediateMode": {
+                    "default": false,
+                    "description": "Do authorization check when running in mode intermediate. If false, the checks will be bypassed.",
+                    "markdownDescription": "**Check Intermediate**\n\nDo authorization check when running in mode intermediate. If false, the checks will be bypassed.",
+                    "title": "Check Intermediate",
+                    "type": "boolean"
+                },
+                "coreAuthorizationCheck": {
+                    "description": "This is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail.",
+                    "markdownDescription": "**Core Check**\n\nThis is evaluated for authorization checks when running in core mode. If not specified, access is permitted. Be very careful when specifying this parameter because an error can cause the application to fail.",
+                    "title": "Core Check",
+                    "type": "string"
+                },
+                "denyIfNotApplicable": {
+                    "default": false,
+                    "description": "Specify true to deny access to resources when notApplicable is the final result of other checks.",
+                    "markdownDescription": "**Deny If Not Applicable**\n\nSpecify true to deny access to resources when notApplicable is the final result of other checks.",
+                    "title": "Deny If Not Applicable",
+                    "type": "boolean"
+                },
+                "initialAuthorizationCheck": {
+                    "description": "This is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
+                    "markdownDescription": "**Initial Check**\n\nThis is evaluated before authorization handlers are called to determine whether to allow the requested access to the specified resourceId and/or object. A result of permit or deny is the final decision. If this parameter is not specified or the result is notApplicable, active authorization handlers will be processed. Parameter permitIfNotApplicable is used to determine the result when all checks return notApplicable.",
                     "title": "Initial Check",
                     "type": "string"
                 }
@@ -41,66 +79,71 @@
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "The description of this configuration component.",
+                    "markdownDescription": "**Description**\n\nThe description of this configuration component.",
                     "title": "Description",
                     "type": "string"
                 },
                 "sourceLocation": {
                     "description": "This is a contextual string added when this configuration object is processed.",
+                    "markdownDescription": "**Source Location**\n\nThis is a contextual string added when this configuration object is processed.",
                     "title": "Source Location",
                     "type": "string"
                 },
                 "title": {
                     "description": "The title for this configuration component.",
+                    "markdownDescription": "**Title**\n\nThe title for this configuration component.",
                     "title": "Title",
                     "type": "string"
                 },
                 "type": {
                     "description": "Configuration type.",
+                    "markdownDescription": "**Type**\n\nConfiguration type.",
                     "title": "Type",
                     "type": "string"
                 }
             },
-            "required": [
-                "type"
-            ],
             "type": "object"
         },
         "_AdaptiveConf_application": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveConf_application.propertyTypes"
-                },
-                {
-                    "$ref": "#/$defs/_AdaptiveConf_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Adaptive Framework configuration component for type=application. There is only one application conf entry per Adaptive Framework instance.\n\nUse path /afw/_AdaptiveConf_application/current to access this entry at run time.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveConf_application.propertyTypes": {
+            "markdownDescription": "Adaptive Framework configuration component for type=application. There is only one application conf entry per Adaptive Framework instance.\n\nUse path /afw/_AdaptiveConf_application/current to access this entry at run time.",
             "properties": {
-                "_meta_": {},
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "applicationId": {
                     "description": "This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
+                    "markdownDescription": "**Application Id**\n\nThis is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
                     "readOnly": true,
                     "title": "Application Id",
                     "type": "string"
                 },
                 "authorizationControl": {
-                    "$ref": "#/$defs/_AdaptiveAuthorizationControl_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveAuthorizationControl_"
+                        }
+                    ],
                     "description": "This defines how authorization checking occurs in this application.",
+                    "markdownDescription": "**Authorization**\n\nThis defines how authorization checking occurs in this application.",
                     "title": "Authorization",
                     "type": "object"
                 },
                 "confAdapterId": {
                     "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
+                    "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
                     "readOnly": true,
                     "title": "Conf Adapter",
                     "type": "string"
                 },
                 "defaultAdapterId": {
                     "description": "This is the adapterId chosen by default for user interface select components.",
+                    "markdownDescription": "**Default Adapter**\n\nThis is the adapterId chosen by default for user interface select components.",
                     "title": "Default Adapter",
                     "type": "string"
                 },
@@ -108,30 +151,36 @@
                     "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                     "items": {
                         "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                        "markdownDescription": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                         "title": "List of default flags to be set when an execution context (xctx) is created.",
                         "type": "string"
                     },
+                    "markdownDescription": "**Default Flags**\n\nThis is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
                     "title": "Default Flags",
                     "type": "array"
                 },
                 "defaultModelAdapterId": {
                     "description": "When presented with multiple model adapters, this is the default adapterId to use. This will be the default selected adapter chosen by user interface components.",
+                    "markdownDescription": "**Default Model Adapter**\n\nWhen presented with multiple model adapters, this is the default adapterId to use. This will be the default selected adapter chosen by user interface components.",
                     "title": "Default Model Adapter",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "The description of the application.",
+                    "markdownDescription": "**Description**\n\nThe description of the application.",
                     "title": "Description",
                     "type": "string"
                 },
                 "extensionModulePaths": {
-                    "description": "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                    "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
                     "items": {
-                        "description": "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                        "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                        "markdownDescription": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
                         "title": "List of modulePaths of extensions to load at startup",
                         "type": "string"
                     },
+                    "markdownDescription": "**Extension Module Paths**\n\nThis is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
                     "title": "Extension Module Paths",
                     "type": "array"
                 },
@@ -139,36 +188,192 @@
                     "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                     "items": {
                         "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                        "markdownDescription": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                         "title": "List of extensionIds to load at startup",
                         "type": "string"
                     },
+                    "markdownDescription": "**Extensions**\n\nThis is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
                     "title": "Extensions",
                     "type": "array"
                 },
                 "layoutsAdapterId": {
                     "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                    "markdownDescription": "**Layouts Adapter**\n\nThis is the adapterId that locates Adaptive Layout Component objects.",
                     "title": "Layouts Adapter",
                     "type": "string"
                 },
                 "onApplicationStartupComplete": {
                     "description": "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
+                    "markdownDescription": "**Application Startup Complete**\n\nThis is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
                     "title": "Application Startup Complete",
                     "type": "string"
                 },
                 "qualifiedVariables": {
-                    "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_"
+                        }
+                    ],
                     "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+                    "markdownDescription": "**Qualified Variables**\n\nThe name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
                     "title": "Qualified Variables",
                     "type": "object"
                 },
                 "rootFilePaths": {
-                    "$ref": "#/$defs/_AdaptiveRootFilePaths_",
-                    "description": "The properties of this object are the root file paths used by open_file().",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRootFilePaths_"
+                        }
+                    ],
+                    "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+                    "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+                    "title": "Root File Paths",
+                    "type": "object"
+                },
+                "sourceLocation": {
+                    "description": "This is a contextual string added when this configuration object is processed.",
+                    "markdownDescription": "**Source Location**\n\nThis is a contextual string added when this configuration object is processed.",
+                    "title": "Source Location",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
+                    "markdownDescription": "**Title**\n\nThe title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
+                    "title": "Title",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Configuration type.",
+                    "markdownDescription": "**Type**\n\nConfiguration type.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveConf_application",
+            "type": "object",
+            "x-afw-inheritedObjectTypes": [
+                "_AdaptiveConf_"
+            ]
+        },
+        "_AdaptiveConf_application.propertyTypes": {
+            "properties": {
+                "applicationId": {
+                    "description": "This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
+                    "markdownDescription": "**Application Id**\n\nThis is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
+                    "readOnly": true,
+                    "title": "Application Id",
+                    "type": "string"
+                },
+                "authorizationControl": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveAuthorizationControl_"
+                        }
+                    ],
+                    "description": "This defines how authorization checking occurs in this application.",
+                    "markdownDescription": "**Authorization**\n\nThis defines how authorization checking occurs in this application.",
+                    "title": "Authorization",
+                    "type": "object"
+                },
+                "confAdapterId": {
+                    "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
+                    "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
+                    "readOnly": true,
+                    "title": "Conf Adapter",
+                    "type": "string"
+                },
+                "defaultAdapterId": {
+                    "description": "This is the adapterId chosen by default for user interface select components.",
+                    "markdownDescription": "**Default Adapter**\n\nThis is the adapterId chosen by default for user interface select components.",
+                    "title": "Default Adapter",
+                    "type": "string"
+                },
+                "defaultFlags": {
+                    "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                    "items": {
+                        "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                        "markdownDescription": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                        "title": "List of default flags to be set when an execution context (xctx) is created.",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Default Flags**\n\nThis is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                    "title": "Default Flags",
+                    "type": "array"
+                },
+                "defaultModelAdapterId": {
+                    "description": "When presented with multiple model adapters, this is the default adapterId to use. This will be the default selected adapter chosen by user interface components.",
+                    "markdownDescription": "**Default Model Adapter**\n\nWhen presented with multiple model adapters, this is the default adapterId to use. This will be the default selected adapter chosen by user interface components.",
+                    "title": "Default Model Adapter",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "The description of the application.",
+                    "markdownDescription": "**Description**\n\nThe description of the application.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "extensionModulePaths": {
+                    "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                    "items": {
+                        "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                        "markdownDescription": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                        "title": "List of modulePaths of extensions to load at startup",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Extension Module Paths**\n\nThis is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                    "title": "Extension Module Paths",
+                    "type": "array"
+                },
+                "extensions": {
+                    "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                    "items": {
+                        "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                        "markdownDescription": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                        "title": "List of extensionIds to load at startup",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Extensions**\n\nThis is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                    "title": "Extensions",
+                    "type": "array"
+                },
+                "layoutsAdapterId": {
+                    "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                    "markdownDescription": "**Layouts Adapter**\n\nThis is the adapterId that locates Adaptive Layout Component objects.",
+                    "title": "Layouts Adapter",
+                    "type": "string"
+                },
+                "onApplicationStartupComplete": {
+                    "description": "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
+                    "markdownDescription": "**Application Startup Complete**\n\nThis is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
+                    "title": "Application Startup Complete",
+                    "type": "string"
+                },
+                "qualifiedVariables": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_"
+                        }
+                    ],
+                    "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+                    "markdownDescription": "**Qualified Variables**\n\nThe name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+                    "title": "Qualified Variables",
+                    "type": "object"
+                },
+                "rootFilePaths": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRootFilePaths_"
+                        }
+                    ],
+                    "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+                    "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
                     "title": "Root File Paths",
                     "type": "object"
                 },
                 "title": {
                     "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
+                    "markdownDescription": "**Title**\n\nThe title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
                     "title": "Title",
                     "type": "string"
                 }
@@ -177,15 +382,21 @@
         },
         "_AdaptiveRootFilePaths_": {
             "additionalProperties": {
-                "description": "A function open_file path that begins with a slash followed by this property name will access a file in the directory path specified as a value to this property. For example, if this property is 'my': '/temp/my', file_open('mine', '/my/xyz', 'w') will open '/temp/my/xyz' for write in the host file system.",
+                "description": "Maps a logical path prefix to a host directory for open_file(), compile_from_file(), and eval_from_file(). The property name is the prefix: a logical path must equal the property name or begin with the property name followed by '/'. Among matching prefixes, the longest wins (so property 'includes' is preferred over 'include' for path 'includes/a.as'). The property value is a template for the host directory, evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). The evaluated path is resolved to a full path at that time (relative paths use the process current working directory). The resolved host path must remain under that directory after canonicalization; path segments of '..' and other escapes are rejected. Example: property 'my' with value '/temp/my' allows open_file('s1', 'my/xyz', 'w') to open host file '/temp/my/xyz' when that path stays under '/temp/my'.",
+                "markdownDescription": "Maps a logical path prefix to a host directory for open_file(), compile_from_file(), and eval_from_file(). The property name is the prefix: a logical path must equal the property name or begin with the property name followed by '/'. Among matching prefixes, the longest wins (so property 'includes' is preferred over 'include' for path 'includes/a.as'). The property value is a template for the host directory, evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). The evaluated path is resolved to a full path at that time (relative paths use the process current working directory). The resolved host path must remain under that directory after canonicalization; path segments of '..' and other escapes are rejected. Example: property 'my' with value '/temp/my' allows open_file('s1', 'my/xyz', 'w') to open host file '/temp/my/xyz' when that path stays under '/temp/my'.",
                 "type": "string"
             },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveRootFilePaths_.propertyTypes"
+            "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+            "markdownDescription": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
                 }
-            ],
-            "description": "The properties of this object are the root file paths used by open_file().",
+            },
             "title": "Root File Paths",
             "type": "object"
         },
@@ -195,16 +406,26 @@
         },
         "_AdaptiveTemplatePropertiesObjects_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptiveTemplateProperties_",
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                    }
+                ],
                 "description": "Each property is a _AdaptiveTemplateProperties_ object.",
+                "markdownDescription": "Each property is a _AdaptiveTemplateProperties_ object.",
                 "type": "object"
             },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_.propertyTypes"
-                }
-            ],
             "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+            "markdownDescription": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
             "title": "Qualified Variables",
             "type": "object"
         },
@@ -215,14 +436,21 @@
         "_AdaptiveTemplateProperties_": {
             "additionalProperties": {
                 "description": "Each property is a template value.",
+                "markdownDescription": "Each property is a template value.",
                 "type": "string"
             },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveTemplateProperties_.propertyTypes"
-                }
-            ],
             "description": "Each property is a template value.",
+            "markdownDescription": "Each property is a template value.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
+            "title": "_AdaptiveTemplateProperties_",
             "type": "object"
         },
         "_AdaptiveTemplateProperties_.propertyTypes": {
@@ -231,9 +459,153 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveConf_application"
+    "additionalProperties": false,
+    "description": "Adaptive Framework configuration component for type=application. There is only one application conf entry per Adaptive Framework instance.\n\nUse path /afw/_AdaptiveConf_application/current to access this entry at run time.",
+    "markdownDescription": "Adaptive Framework configuration component for type=application. There is only one application conf entry per Adaptive Framework instance.\n\nUse path /afw/_AdaptiveConf_application/current to access this entry at run time.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "applicationId": {
+            "description": "This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
+            "markdownDescription": "**Application Id**\n\nThis is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
+            "readOnly": true,
+            "title": "Application Id",
+            "type": "string"
+        },
+        "authorizationControl": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveAuthorizationControl_"
+                }
+            ],
+            "description": "This defines how authorization checking occurs in this application.",
+            "markdownDescription": "**Authorization**\n\nThis defines how authorization checking occurs in this application.",
+            "title": "Authorization",
+            "type": "object"
+        },
+        "confAdapterId": {
+            "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
+            "markdownDescription": "**Conf Adapter**\n\nThis is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
+            "readOnly": true,
+            "title": "Conf Adapter",
+            "type": "string"
+        },
+        "defaultAdapterId": {
+            "description": "This is the adapterId chosen by default for user interface select components.",
+            "markdownDescription": "**Default Adapter**\n\nThis is the adapterId chosen by default for user interface select components.",
+            "title": "Default Adapter",
+            "type": "string"
+        },
+        "defaultFlags": {
+            "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+            "items": {
+                "description": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                "markdownDescription": "This is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+                "title": "List of default flags to be set when an execution context (xctx) is created.",
+                "type": "string"
+            },
+            "markdownDescription": "**Default Flags**\n\nThis is an array of the flagId of default flags that will be set when an execution context (xctx) is created. Flags in this array that are not yet registered will be set as a default when/if they are registered. Each registered flagId is the objectId of an object in /afw/_AdaptiveFlag_/.",
+            "title": "Default Flags",
+            "type": "array"
+        },
+        "defaultModelAdapterId": {
+            "description": "When presented with multiple model adapters, this is the default adapterId to use. This will be the default selected adapter chosen by user interface components.",
+            "markdownDescription": "**Default Model Adapter**\n\nWhen presented with multiple model adapters, this is the default adapterId to use. This will be the default selected adapter chosen by user interface components.",
+            "title": "Default Model Adapter",
+            "type": "string"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "The description of the application.",
+            "markdownDescription": "**Description**\n\nThe description of the application.",
+            "title": "Description",
+            "type": "string"
+        },
+        "extensionModulePaths": {
+            "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+            "items": {
+                "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                "markdownDescription": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+                "title": "List of modulePaths of extensions to load at startup",
+                "type": "string"
+            },
+            "markdownDescription": "**Extension Module Paths**\n\nThis is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+            "title": "Extension Module Paths",
+            "type": "array"
+        },
+        "extensions": {
+            "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+            "items": {
+                "description": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                "markdownDescription": "This is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+                "title": "List of extensionIds to load at startup",
+                "type": "string"
+            },
+            "markdownDescription": "**Extensions**\n\nThis is an array of extensionId of extensions to load at startup. Each extensionId must be the objectId of an object in /afw/_AdaptiveManifest_/.",
+            "title": "Extensions",
+            "type": "array"
+        },
+        "layoutsAdapterId": {
+            "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+            "markdownDescription": "**Layouts Adapter**\n\nThis is the adapterId that locates Adaptive Layout Component objects.",
+            "title": "Layouts Adapter",
+            "type": "string"
+        },
+        "onApplicationStartupComplete": {
+            "description": "This is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
+            "markdownDescription": "**Application Startup Complete**\n\nThis is an optional script to run after this application has completed startup but before starting to process requests. The script can perform additional startup functions or request that the application terminate. All permanent and immediate services will have been started before the script is called. If the script fails or explicitly returns a value other than 0, the application will terminate.",
+            "title": "Application Startup Complete",
+            "type": "string"
+        },
+        "qualifiedVariables": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_"
+                }
+            ],
+            "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+            "markdownDescription": "**Qualified Variables**\n\nThe name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
+            "title": "Qualified Variables",
+            "type": "object"
+        },
+        "rootFilePaths": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveRootFilePaths_"
+                }
+            ],
+            "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+            "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+            "title": "Root File Paths",
+            "type": "object"
+        },
+        "sourceLocation": {
+            "description": "This is a contextual string added when this configuration object is processed.",
+            "markdownDescription": "**Source Location**\n\nThis is a contextual string added when this configuration object is processed.",
+            "title": "Source Location",
+            "type": "string"
+        },
+        "title": {
+            "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
+            "markdownDescription": "**Title**\n\nThe title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
+            "title": "Title",
+            "type": "string"
+        },
+        "type": {
+            "description": "Configuration type.",
+            "markdownDescription": "**Type**\n\nConfiguration type.",
+            "title": "Type",
+            "type": "string"
         }
+    },
+    "title": "_AdaptiveConf_application",
+    "type": "object",
+    "x-afw-inheritedObjectTypes": [
+        "_AdaptiveConf_"
     ]
 }

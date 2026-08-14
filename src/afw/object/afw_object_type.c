@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object_type.c
- * @brief Object type helpers.
+ * @brief Object type helpers for property types and validation.
  */
 
 #include "afw_internal.h"
@@ -66,7 +66,7 @@ afw_object_type_internal_create(
     afw_xctx_t *xctx)
 {
     afw_object_type_t *self;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *property_type_object;
     afw_object_type_property_type_t *property_type;
     const afw_utf8_t *property_name;
@@ -131,7 +131,7 @@ afw_object_type_property_type_get(
 AFW_DEFINE(const afw_object_type_property_type_t *)
 afw_object_type_property_type_get_next(
     const afw_object_type_t *object_type,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     afw_xctx_t *xctx)
 {
@@ -157,7 +157,7 @@ afw_object_type_property_type_get_next(
         *property_name = result->property_name;
     }
 
-    *iterator = (afw_iterator_t *)result;
+    *iterator = (afw_iterator_old_t *)result;
 
     return result;
 }

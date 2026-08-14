@@ -18,7 +18,7 @@
 
 /**
  * @file afw_application_internal.h
- * @brief Application internal header.
+ * @brief Internal application conf and qualified-variable structures.
  */
 
 AFW_BEGIN_DECLARES

@@ -19,11 +19,11 @@
 
 /**
  * @file afw_generated.c
- * @brief Adaptive Framework register generated (afw_).
+ * @brief Generated register implementation for `afw`.
  */
 
 #include "afw.h"
-#include "afw_generated.h"
+#include "afw_generated_internal.h"
 #include "afw_version_info.h"
 
 static const afw_utf8_z_t * impl_version_info_z[] = {

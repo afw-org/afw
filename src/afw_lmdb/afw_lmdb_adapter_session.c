@@ -15,13 +15,14 @@
 #include "afw.h"
 #include "afw_adapter_impl.h"
 #include "afw_adapter_impl_index.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include "afw_lmdb_internal.h"
 #include "afw_lmdb_metadata.h"
 #include "afw_lmdb_index.h"
 
 /* Declares and rti/inf defines for interface afw_adapter_session */
 #define AFW_IMPLEMENTATION_ID "lmdb"
+#define AFW_ADAPTER_SESSION_SELF_T afw_lmdb_adapter_session_t
 #include "afw_adapter_session_impl_declares.h"
 
 
@@ -67,7 +68,7 @@ afw_lmdb_adapter_session_t *afw_lmdb_adapter_session_create(
  */
 void
 impl_afw_adapter_session_destroy(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
 }
@@ -79,7 +80,7 @@ impl_afw_adapter_session_destroy(
  */
 void
 impl_afw_adapter_session_retrieve_objects(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
@@ -89,7 +90,6 @@ impl_afw_adapter_session_retrieve_objects(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t * self = (afw_lmdb_adapter_session_t *)instance;
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     MDB_txn * txn;
 
@@ -135,7 +135,7 @@ impl_afw_adapter_session_retrieve_objects(
  */
 void
 impl_afw_adapter_session_get_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -145,7 +145,6 @@ impl_afw_adapter_session_get_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t * self = (afw_lmdb_adapter_session_t *)instance;
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     MDB_dbi dbi;
     MDB_txn *txn;
@@ -157,7 +156,7 @@ impl_afw_adapter_session_get_object(
      */
     if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
         object = afw_adapter_impl_generic_object_type_object_get(
-            instance->adapter, object_id, p, xctx);
+            self->pub.adapter, object_id, p, xctx);
         callback(object, context, xctx);
         return;
     }
@@ -187,7 +186,7 @@ impl_afw_adapter_session_get_object(
  */
 const afw_utf8_t *
 impl_afw_adapter_session_add_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *suggested_object_id,
@@ -195,7 +194,6 @@ impl_afw_adapter_session_add_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     MDB_dbi dbi;
     MDB_txn *txn;
@@ -241,7 +239,7 @@ impl_afw_adapter_session_add_object(
  */
 void
 impl_afw_adapter_session_modify_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -249,7 +247,6 @@ impl_afw_adapter_session_modify_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;    
     const afw_object_t *object, *new_object;
     MDB_dbi dbi;    
@@ -296,7 +293,7 @@ impl_afw_adapter_session_modify_object(
  */
 void
 impl_afw_adapter_session_replace_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -304,7 +301,6 @@ impl_afw_adapter_session_replace_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;    
     const afw_object_t *old_object;
     const afw_value_t *value;
@@ -354,14 +350,13 @@ impl_afw_adapter_session_replace_object(
  */
 void
 impl_afw_adapter_session_delete_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
     afw_lmdb_adapter_t *adapter = (afw_lmdb_adapter_t *)self->adapter;
     const afw_uuid_t *uuid;
     const afw_object_t *object;
@@ -426,10 +421,9 @@ impl_afw_adapter_session_delete_object(
  */
 const afw_adapter_transaction_t *
 impl_afw_adapter_session_begin_transaction(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
     afw_lmdb_transaction_t *transaction;
 
     /* create the session transaction at the time it's requested */
@@ -563,10 +557,9 @@ void afw_lmdb_adapter_session_dump_objects(
  */
 const afw_adapter_journal_t *
 impl_afw_adapter_session_get_journal_interface(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
 
     return (afw_adapter_journal_t *)self->journal;
 }
@@ -579,10 +572,9 @@ impl_afw_adapter_session_get_journal_interface(
  */
 const afw_adapter_key_value_t *
 impl_afw_adapter_session_get_key_value_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
 
     return (afw_adapter_key_value_t *)self->key_value;
 }
@@ -593,10 +585,9 @@ impl_afw_adapter_session_get_key_value_interface (
  */
 const afw_adapter_impl_index_t *
 impl_afw_adapter_session_get_index_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adapter_session_t *self = (afw_lmdb_adapter_session_t *)instance;
 
     return self->indexer;
 }
@@ -609,7 +600,7 @@ impl_afw_adapter_session_get_index_interface (
  */
 const afw_adapter_object_type_cache_t *
 impl_afw_adapter_session_get_object_type_cache_interface(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is on adapter cache. */

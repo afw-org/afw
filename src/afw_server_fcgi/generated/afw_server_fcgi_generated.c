@@ -19,11 +19,11 @@
 
 /**
  * @file afw_server_fcgi_generated.c
- * @brief Adaptive Framework register generated (afw_server_fcgi_).
+ * @brief Generated register implementation for `afw_server_fcgi`.
  */
 
 #include "afw.h"
-#include "afw_server_fcgi_generated.h"
+#include "afw_server_fcgi_generated_internal.h"
 #include "afw_server_fcgi_version_info.h"
 
 static const afw_utf8_z_t * impl_version_info_z[] = {

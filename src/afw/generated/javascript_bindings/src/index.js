@@ -6,7 +6,7 @@ export * from "./authorization";
 export * from "./base64Binary";
 export * from "./boolean";
 export * from "./compiler_expression";
-export * from "./compiler_script";
+export * from "./compiler_internal";
 export * from "./compiler";
 export * from "./dateTime";
 export * from "./date";

@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/vfs_extension"
     ],
-    "description": "Adaptive Framework configuration component for type=adapter adapterType=vfs. This is a virtual file system adapter that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adapter name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property.",
+    "description": "Adaptive Framework configuration component for type=adapter adapterType=vfs (extension afw_vfs). Files and directories are _AdaptiveFile_vfs objects: objectId is the path under vfsMap; directory objectIds end with '/'. The vfsPath property is /{adapterId}/{objectId}. ObjectIds must not contain path segments '.' or '..', or backslash. vfsMap uses longest matching objectId_prefix (path boundary), with host directories canonicalized at start; resolved paths must stay under that host root. Directory listings and retrieve_objects hide names starting with '.' unless includeHidden is true. Regular files are loaded fully into memory subject to maxReadBytes (default 64 MiB; 0 = unlimited). Writes replace the entire file (including empty or shorter content) via temp file then rename. Directory delete is non-recursive (must be empty). For retrieve subdirectory with multi-entry vfsMap, only matching prefixes are used and the map key is not double-applied to the host path. Not a security boundary against a hostile host filesystem (for example, pre-existing symlinks under a map root). See the administrative Adapters handbook section and src/afw_vfs/tests/.",
     "objectType": "_AdaptiveConf_adapter_vfs",
     "propertyTypes": {
         "_meta_": {
@@ -11,6 +11,14 @@
             "parentPaths": [
                 "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
             ]
+        },
+        "maxReadBytes": {
+            "brief": "Maximum file size read into memory",
+            "dataType": "integer",
+            "description": "Maximum number of bytes that will be read into memory for a single regular file on get_object/retrieve_objects. If a file is larger, the operation fails with an error. Default is 67108864 (64 MiB). Set to 0 for unlimited (not recommended for long-running hosts).",
+            "label": "Max Read Bytes",
+            "defaultValue": 67108864,
+            "required": false
         },
         "markExecutable": {
             "brief": "vfsPath filename patterns to mark as executable",
@@ -21,9 +29,10 @@
         },
         "vfsMap": {
             "brief": "VFS to operating system directory map",
+            "contextType": "process",
             "dataType": "array",
-            "dataTypeParameter": "string",
-            "description": "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths.",
+            "dataTypeParameter": "template",
+            "description": "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a template evaluated when the adapter is started (plain strings are unchanged; substitutions such as environment:: may be used). The evaluated string must be of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. Host directories are resolved to absolute paths at adapter start. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths.",
             "label": "VFS Map",
             "required": true
         }

@@ -54,6 +54,14 @@ Eventually, these adapters will not be required, but rather enabled/disabled via
     # YAML
     sudo apt-get install libyaml-dev
 
+## afw command interactive line editing (optional)
+
+    # NetBSD Editline (BSD-licensed). Enables line editing and history when
+    # running `afw` interactively on a terminal. History is stored in
+    # ~/.afw_history. Build succeeds without this package; editing is disabled.
+    sudo apt-get install libedit-dev
+    # Other distros: apk add libedit-dev  |  dnf install libedit-devel  |  zypper in libedit-devel
+
 ## HTTP stack, used by AdaptiveFramework 
 
     # FastCGI library

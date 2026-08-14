@@ -1,22 +1,22 @@
 {
-    "brief": "Get a variable value",
+    "brief": "Get a bound variable value",
     "category": "miscellaneous",
-    "description": "Return the value of a variable. If variable is not available, return a default or null value.",
+    "description": "Return the value of a bound variable. Optional default applies only when the name is not bound — not when the value is undefined. If unbound and no default is given, the result is undefined. Object/array defaults get a mutable memory face (issues #110 / #17); other defaults are cloned.",
     "functionId": "variable_get",
     "functionLabel": "variable_get",
     "parameters": [
         {
             "dataType": "string",
-            "description": "Name of variable to get. The name can optionally be preceded with a qualifier followed by '::'.",
+            "description": "Name of variable to get. Optionally qualifier::name.",
             "name": "name"
         },
         {
-            "description": "The default value of variable if it does not exist in object. If not specified, null value is the default.",
+            "description": "Value to return only if the name is not bound. Isolated when used (object/array face; otherwise clone).",
             "name": "defaultValue",
             "optional": true
         }
     ],
     "returns": {
-        "description": "Evaluated variable value or default."
+        "description": "Bound variable value, or default / undefined if unbound."
     }
 }

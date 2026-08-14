@@ -1,55 +1,63 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveAdapter_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveAdapterMetrics_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveAdapterMetrics_.propertyTypes"
-                }
-            ],
-            "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
-            "title": "Metrics",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveAdapterMetrics_.propertyTypes": {
+            "additionalProperties": false,
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+            "markdownDescription": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "addObjectCount": {
                     "description": "Method add_object() count.",
+                    "markdownDescription": "Method add_object() count.",
                     "title": "Add Object Count",
                     "type": "integer"
                 },
                 "additional": {
                     "description": "Additional adapter specific metrics.",
+                    "markdownDescription": "Additional adapter specific metrics.",
                     "title": "Additional",
                     "type": "object"
                 },
                 "deleteObjectCount": {
                     "description": "Method delete_object() count.",
+                    "markdownDescription": "Method delete_object() count.",
                     "title": "Delete Object Count",
                     "type": "integer"
                 },
                 "getObjectCount": {
                     "description": "Method get_object() count.",
+                    "markdownDescription": "Method get_object() count.",
                     "title": "Get Object Count",
                     "type": "integer"
                 },
                 "modifyObjectCount": {
                     "description": "Method modify_object() count.",
+                    "markdownDescription": "Method modify_object() count.",
                     "title": "Modify Object Count",
                     "type": "integer"
                 },
                 "replaceObjectCount": {
                     "description": "Method replace_object() count.",
+                    "markdownDescription": "Method replace_object() count.",
                     "title": "Replace Object Count",
                     "type": "integer"
                 },
                 "retrieveObjectsCount": {
                     "description": "Method retrieve_objects() count.",
+                    "markdownDescription": "Method retrieve_objects() count.",
                     "title": "Retrieve Objects Count",
                     "type": "integer"
                 },
                 "updateObjectCount": {
                     "description": "Method update_object() count.",
+                    "markdownDescription": "Method update_object() count.",
                     "title": "Update Object Count",
                     "type": "integer"
                 }
@@ -64,53 +72,171 @@
                 "retrieveObjectsCount",
                 "updateObjectCount"
             ],
+            "title": "Metrics",
+            "type": "object"
+        },
+        "_AdaptiveAdapterMetrics_.propertyTypes": {
+            "properties": {
+                "addObjectCount": {
+                    "description": "Method add_object() count.",
+                    "markdownDescription": "Method add_object() count.",
+                    "title": "Add Object Count",
+                    "type": "integer"
+                },
+                "additional": {
+                    "description": "Additional adapter specific metrics.",
+                    "markdownDescription": "Additional adapter specific metrics.",
+                    "title": "Additional",
+                    "type": "object"
+                },
+                "deleteObjectCount": {
+                    "description": "Method delete_object() count.",
+                    "markdownDescription": "Method delete_object() count.",
+                    "title": "Delete Object Count",
+                    "type": "integer"
+                },
+                "getObjectCount": {
+                    "description": "Method get_object() count.",
+                    "markdownDescription": "Method get_object() count.",
+                    "title": "Get Object Count",
+                    "type": "integer"
+                },
+                "modifyObjectCount": {
+                    "description": "Method modify_object() count.",
+                    "markdownDescription": "Method modify_object() count.",
+                    "title": "Modify Object Count",
+                    "type": "integer"
+                },
+                "replaceObjectCount": {
+                    "description": "Method replace_object() count.",
+                    "markdownDescription": "Method replace_object() count.",
+                    "title": "Replace Object Count",
+                    "type": "integer"
+                },
+                "retrieveObjectsCount": {
+                    "description": "Method retrieve_objects() count.",
+                    "markdownDescription": "Method retrieve_objects() count.",
+                    "title": "Retrieve Objects Count",
+                    "type": "integer"
+                },
+                "updateObjectCount": {
+                    "description": "Method update_object() count.",
+                    "markdownDescription": "Method update_object() count.",
+                    "title": "Update Object Count",
+                    "type": "integer"
+                }
+            },
             "type": "object"
         },
         "_AdaptiveAdapter_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveAdapter_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Runtime adapter information.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveAdapter_.propertyTypes": {
+            "markdownDescription": "Runtime adapter information.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "adapterId": {
                     "description": "The adapter id uniquely identifies an adapter instance.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id uniquely identifies an adapter instance.",
                     "title": "Adapter Id",
                     "type": "string"
                 },
                 "metrics": {
-                    "$ref": "#/$defs/_AdaptiveAdapterMetrics_",
-                    "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
+                        }
+                    ],
+                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
                     "title": "Metrics",
                     "type": "object"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "referenceCount": {
-                    "description": "The reference count is the total number of references that are currently being used for this adapter.",
+                    "description": "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
                     "title": "Reference Count",
                     "type": "integer"
                 },
                 "serviceId": {
                     "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
                     "title": "Service Id",
                     "type": "string"
                 },
                 "stopping": {
-                    "description": "Reference counts of stopping instances.",
+                    "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                     "items": {
-                        "description": "Reference counts of stopping instances.",
+                        "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                         "title": "Reference counts of stopping instances",
                         "type": "integer"
                     },
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                    "title": "Stopping Instances",
+                    "type": "array"
+                }
+            },
+            "title": "_AdaptiveAdapter_",
+            "type": "object"
+        },
+        "_AdaptiveAdapter_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id uniquely identifies an adapter instance.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id uniquely identifies an adapter instance.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "metrics": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
+                        }
+                    ],
+                    "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+                    "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+                    "title": "Metrics",
+                    "type": "object"
+                },
+                "properties": {
+                    "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+                    "title": "Properties",
+                    "type": "object"
+                },
+                "referenceCount": {
+                    "description": "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+                    "title": "Reference Count",
+                    "type": "integer"
+                },
+                "serviceId": {
+                    "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "title": "Service Id",
+                    "type": "string"
+                },
+                "stopping": {
+                    "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                    "items": {
+                        "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                        "title": "Reference counts of stopping instances",
+                        "type": "integer"
+                    },
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
                     "title": "Stopping Instances",
                     "type": "array"
                 }
@@ -119,9 +245,65 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveAdapter_"
+    "additionalProperties": false,
+    "description": "Runtime adapter information.",
+    "markdownDescription": "Runtime adapter information.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "adapterId": {
+            "description": "The adapter id uniquely identifies an adapter instance.",
+            "markdownDescription": "**Adapter Id**\n\nThe adapter id uniquely identifies an adapter instance.",
+            "title": "Adapter Id",
+            "type": "string"
+        },
+        "metrics": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
+                }
+            ],
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+            "markdownDescription": "**Metrics**\n\nLive metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
+            "title": "Metrics",
+            "type": "object"
+        },
+        "properties": {
+            "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+            "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+            "title": "Properties",
+            "type": "object"
+        },
+        "referenceCount": {
+            "description": "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+            "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
+            "title": "Reference Count",
+            "type": "integer"
+        },
+        "serviceId": {
+            "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "title": "Service Id",
+            "type": "string"
+        },
+        "stopping": {
+            "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+            "items": {
+                "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                "markdownDescription": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+                "title": "Reference counts of stopping instances",
+                "type": "integer"
+            },
+            "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
+            "title": "Stopping Instances",
+            "type": "array"
         }
-    ]
+    },
+    "title": "_AdaptiveAdapter_",
+    "type": "object"
 }

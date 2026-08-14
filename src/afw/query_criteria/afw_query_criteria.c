@@ -8,7 +8,7 @@
 
 /**
  * @file afw_query_criteria.c
- * @brief AFW Query criteria functions.
+ * @brief Query criteria parse, RQL support, and filter helpers.
  */
 
 #include "afw_internal.h"
@@ -890,7 +890,7 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
     }
 
     /* Return list of strings. */
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         values->elts, false, afw_data_type_string,
         values->nelts, parser->p, parser->xctx);
     result = afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
@@ -1290,7 +1290,7 @@ impl_parse_string_function(
                 if (parser->token_type != impl_token_type_string) {
                     IMPL_STRING_THROW_ERROR_Z("Expecting string value");
                 }
-                afw_array_add_value(list,
+                afw_array_push_value(list,
                     impl_token_to_value(parser), parser->xctx);
 
                 impl_get_token(parser);
@@ -1365,7 +1365,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     afw_query_criteria_filter_entry_t *child_tree;
     afw_query_criteria_filter_entry_t *previous_entry;
     afw_query_criteria_filter_entry_t *previous_tree;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *filters_list;
     const afw_object_t *child_object;
     const afw_value_t *value;
@@ -1490,7 +1490,7 @@ impl_AdaptiveQueryCriteria_object_parse_select(
     afw_const_utf8_a_stack_t *names;
     const afw_utf8_t *name;
     const afw_utf8_t * const *result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
 
     names = afw_stack_create(afw_const_utf8_a_stack_t, 20, 0, true,
@@ -1522,7 +1522,7 @@ impl_AdaptiveQueryCriteria_object_parse_sort(
     afw_query_criteria_sort_entry_t *prev;
     afw_query_criteria_sort_entry_t *curr;
     const afw_utf8_t *name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
 
     for (iterator = NULL, result = NULL, curr = NULL;;)
@@ -1573,12 +1573,12 @@ impl_compare_value(
 {
     afw_boolean_t is_true;
     const void *i1, *i2;
-    const afw_iterator_t *iterator, *iterator2;
+    const afw_iterator_old_t *iterator, *iterator2;
     const afw_value_t *entry_value;
     const afw_data_type_t *data_type;
     const afw_data_type_t *entry_data_type, *value_data_type;
     const afw_array_t *list, *entry_list;
-    afw_array_wrapper_for_array_self_t list_for_single_internal;
+    afw_array_view_of_c_array_self_t list_for_single_internal;
     const afw_value_t *entry_value_converted;
 
     /*
@@ -1614,7 +1614,7 @@ impl_compare_value(
     }
     else {
         data_type = afw_value_get_data_type(value, xctx);
-        AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY(
+        AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY(
             &list_for_single_internal,
             &((afw_value_common_t *)value)->internal, false,
             data_type, 1);
@@ -1994,7 +1994,7 @@ afw_query_criteria_parse_AdaptiveQueryCriteria_object(
 {
     afw_query_criteria_t *criteria;
     const afw_object_t *filter_object;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *sort;
     const afw_array_t *select;
     const afw_utf8_t *property_name;
@@ -2183,7 +2183,7 @@ impl_criteria_filter_to_property_value(
         for (e = entry->first_conjunctive_child; e; e = e->next_conjunctive_sibling) {
             o = impl_criteria_filter_to_property_value(e, p, xctx);
             v = afw_value_create_unmanaged_object(o, p, xctx);
-            afw_array_add_value(filters, v, xctx);
+            afw_array_push_value(filters, v, xctx);
         }
     }
 
@@ -2216,7 +2216,7 @@ impl_criteria_select_to_property_value(
     for (e = select; *e; e++) {
         v = afw_value_allocate_unmanaged_string(p, xctx);
         afw_memory_copy(&v->internal, *e);
-        afw_array_add_value(result, &v->pub, xctx);
+        afw_array_push_value(result, &v->pub, xctx);
     }
 
     return result;
@@ -2246,7 +2246,7 @@ impl_criteria_sort_to_property_value(
         v->internal.s = c = afw_pool_malloc(p, v->internal.len, xctx);
         *c++ = (e->descending) ? '-' : '+';
         memcpy(c, e->property_name->s, e->property_name->len);
-        afw_array_add_value(result, &v->pub, xctx);
+        afw_array_push_value(result, &v->pub, xctx);
     }
 
     return result;
@@ -2322,7 +2322,7 @@ impl_entry_to_query_string(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
     afw_boolean_t first_loop;

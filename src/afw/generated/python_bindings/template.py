@@ -74,15 +74,20 @@ def compile_template(session, source, listing=None):
     Compile template value
 
     Compile template value and return either an unevaluated adaptive value or
-    a string containing the compiler listing.
+    a string containing the compiler listing. The listing is a human-oriented
+    dump (value tree interleaved with source, plus ---Symbols tables) for
+    Fiddle and debugging — not pure JSON (use stringify) and not Adaptive
+    compiled-form text (use decompile).
 
     Args:
         source (object): template string to compile
 
-        listing (object): If specified, a compiler listing is produced instead
-        of an unevaluated compiled value.
+        listing (object): If specified, a human compiler listing is produced
+        instead of an unevaluated compiled value (tree + ---Symbols; not
+        recompilable). Use decompile() for Adaptive compiled-form text and
+        stringify() for pure JSON of evaluated data.
         
-        This parameter can be an integer between 0 and 10 of a string that is
+        This parameter can be an integer between 0 and 10 or a string that is
         used for indentation. If 0 is specified, no whitespace is added to the
         resulting string. If 1 through 10 is specified, that number of spaces
         is used.
@@ -441,7 +446,9 @@ def template(session, value):
     """
     Convert to data type template
 
-    Converts value to data type template returning template result.
+    Converts value to data type template returning template result. Holds
+    template source text as a template value (does not compile). Use
+    polymorphic compile to compile the source.
 
     Args:
         value (object): Value to convert

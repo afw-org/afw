@@ -41,7 +41,7 @@ afw_request_handler_factory_adapter =
  */
 const afw_request_handler_t *
 impl_afw_request_handler_factory_create_request_handler_cede_p (
-    const afw_request_handler_factory_t * instance,
+    const afw_request_handler_factory_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)

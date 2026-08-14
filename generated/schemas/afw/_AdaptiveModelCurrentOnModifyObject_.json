@@ -1,0 +1,182 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveModelCurrentOnModifyObject_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveModelCurrentOnModifyObject_": {
+            "additionalProperties": false,
+            "description": "Qualifier current:: for model onModifyObject.",
+            "markdownDescription": "Qualifier current:: for model onModifyObject.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mappedAdapterId": {
+                    "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "modifyEntries": {
+                    "description": "The modify entries.",
+                    "markdownDescription": "**Modify Entries**\n\nThe modify entries.",
+                    "title": "Modify Entries",
+                    "type": "array"
+                },
+                "objectId": {
+                    "description": "This is objectId of the object to modify.",
+                    "markdownDescription": "**Object Id**\n\nThis is objectId of the object to modify.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "title": "Use Default Processing"
+                }
+            },
+            "title": "_AdaptiveModelCurrentOnModifyObject_",
+            "type": "object"
+        },
+        "_AdaptiveModelCurrentOnModifyObject_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mappedAdapterId": {
+                    "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "modifyEntries": {
+                    "description": "The modify entries.",
+                    "markdownDescription": "**Modify Entries**\n\nThe modify entries.",
+                    "title": "Modify Entries",
+                    "type": "array"
+                },
+                "objectId": {
+                    "description": "This is objectId of the object to modify.",
+                    "markdownDescription": "**Object Id**\n\nThis is objectId of the object to modify.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "title": "Use Default Processing"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "Qualifier current:: for model onModifyObject.",
+    "markdownDescription": "Qualifier current:: for model onModifyObject.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "adapterId": {
+            "description": "The adapter id of the object being converted to mapped object.",
+            "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+            "title": "Adapter Id",
+            "type": "string"
+        },
+        "adapterTypeSpecific": {
+            "description": "This is the adapterTypeSpecific parameter value.",
+            "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+            "title": "Adapter Specific",
+            "type": "object"
+        },
+        "mappedAdapterId": {
+            "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+            "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+            "title": "Mapped Adapter Id",
+            "type": "string"
+        },
+        "mappedObjectType": {
+            "description": "The object type of the object being converted to object.",
+            "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+            "title": "Mapped Object Type",
+            "type": "string"
+        },
+        "modifyEntries": {
+            "description": "The modify entries.",
+            "markdownDescription": "**Modify Entries**\n\nThe modify entries.",
+            "title": "Modify Entries",
+            "type": "array"
+        },
+        "objectId": {
+            "description": "This is objectId of the object to modify.",
+            "markdownDescription": "**Object Id**\n\nThis is objectId of the object to modify.",
+            "title": "Object Id",
+            "type": "string"
+        },
+        "objectType": {
+            "description": "The object type of the object being converted to mapped object.",
+            "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+            "title": "Object Type",
+            "type": "string"
+        },
+        "useDefaultProcessing": {
+            "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+            "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+            "title": "Use Default Processing"
+        }
+    },
+    "title": "_AdaptiveModelCurrentOnModifyObject_",
+    "type": "object"
+}

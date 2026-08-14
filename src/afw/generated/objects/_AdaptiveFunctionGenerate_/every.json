@@ -1,0 +1,28 @@
+{
+    "additionalArgCheck": true,
+    "afwCamelCaseFunctionLabel": "afwEvery",
+    "brief": "Whether every array entry passes a test",
+    "camelCaseFunctionLabel": "every",
+    "category": "higher_order_array",
+    "description": "Return true if predicate returns true for every entry of the first array in values (index order), or if that array is empty. Entries whose value is undefined are included. Same single-array behavior as all_of.",
+    "functionId": "every",
+    "functionLabel": "every",
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(...values: any) => boolean",
+            "description": "Called for each value in the first array in values or until false is returned.",
+            "name": "predicate"
+        },
+        {
+            "description": "Parameters passed to predicate with the first array passed one value at a time.",
+            "minArgs": 1,
+            "name": "values"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "boolean"
+    },
+    "useExecuteFunction": "afw_function_execute_all_of"
+}

@@ -28,13 +28,14 @@
         other locations. The only way to share code between scripts is to store 
         them in qualified variables that would be accessible to scripts.
     </paragraph>
-    <header>Types and Type Casting</header>
+    <header>Types</header>
     <paragraph>
-        Adaptive Script has a type system that has more in common with 
-        Typescript. For instance, in ECMAScript, you can add values of 
-        different types together without runtime errors, often 
-        resulting in some unexpected results. In Adaptive Script, these will 
-        be caught at compile-time, preventing the script from being loaded.
+        Adaptive Script can annotate values with Adaptive data types
+        (<literal>integer</literal>, <literal>string</literal>, arrays,
+        object shapes, unions, and more). Annotations are always accepted;
+        optional type checking (off by default) can catch mismatches at
+        compile time and/or runtime. See the Types section for syntax and
+        flags.
     </paragraph>
     <header>Prototypal Inheritance</header>
     <paragraph>
@@ -42,25 +43,31 @@
     </paragraph>
     <header>Closure</header>
     <paragraph>
-        ECMAScript has a feature called closure, which allows a function to
-        access variables that are defined outside of its scope, and retain 
-        the values that were bound to those variables at the time of its 
-        scope creation.
+        Adaptive Script supports closures. A nested function can access
+        variables from an enclosing scope and keep those bindings after the
+        outer scope has finished, so later calls still see the values that
+        were in force when the function was created.
     </paragraph>
     <paragraph>
-        At this time, Adaptive Script does not provide closure features.
+        Nested <literal>function</literal> declarations and function values
+        returned from other functions both capture enclosing
+        <literal>let</literal> / <literal>const</literal> bindings (and
+        parameters). This is the same idea as an ECMAScript closure for
+        ordinary lexical variables—not a full copy of every host lifetime
+        edge case around long-running servers.
     </paragraph>
-    <code><![CDATA[let x = 1;
-let foo;
-{
-    let x = 2;
-    foo = function() {
-        return x;
-    }
+    <code><![CDATA[function make(n) {
+    let v = n;
+    return function() {
+        return v;
+    };
 }
 
-// in ECMAScript, foo() will return 2, but in Adaptive Script, it will return 1
-foo();]]></code>
+const a = make(10);
+const b = make(20);
+// a() is 10 and b() is 20 — each function keeps its own closed-over binding
+a();
+b();]]></code>
     <header>Statements</header>
     <paragraph>
         There are two import differences between Adaptive Script and ECMAScript 
@@ -83,36 +90,113 @@ let y = 2;
     </paragraph>
     <paragraph>
         In Adaptive Script, <literal>throw</literal> is a statement that 
-        requires a string (the error message) and an optional data to allow 
-        users to pass along contextual data to the exception handler.
+        requires a string (the error message). Write optional 
+        <literal>data</literal> and then any value to store on the error 
+        object. Write optional <literal>id</literal> and then a string 
+        that sets the error object's <literal>id</literal> (for example 
+        <literal>not_found</literal>) so an uncaught error can use that 
+        name's HTTP status. After the message, 
+        <literal>data</literal> is only the clause name, so a variable 
+        also named <literal>data</literal> is 
+        <literal>throw "…" data data</literal>.
     </paragraph>
     <paragraph>
         In ECMAScript, the <literal>catch</literal> statement accepts any value
         that was thrown, including an Error object, but in Adaptive Script, a 
         single object is always caught, which contains the message and data 
-        that was thrown.
+        that was thrown. The catch binding may be a simple name or a list/object
+        Pattern (same destructuring as <literal>let</literal> /
+        <literal>const</literal>), for example
+        <literal>catch ({ message, data })</literal>.
+        The object also has an <literal>id</literal> (mnemonic such as
+        <literal>throw</literal>, <literal>not_found</literal>, or
+        <literal>denied</literal>) and a numeric
+        <literal>errorCode</literal>. Branch on <literal>id</literal>.
+        If the error is not caught, an HTTP request uses that code's mapped
+        status (for example <literal>not_found</literal> is 404).
+        <literal>general</literal> is the default code when nothing more
+        specific applies.
     </paragraph>
     <code><![CDATA[try {
-    throw "Something bad happened" { "code": 123 };
+    throw "Something bad happened" data { "code": 123 };
 } catch (e) {
     print(e.message);
     print(e.data.code);
+}
+
+try {
+    throw "Person not found" id "not_found" data { personId: id };
+} catch (e) {
+    if (e.id === "not_found") {
+        print(e.data.personId);
+    } else {
+        throw;
+    }
+}
+
+try {
+    throw "boom";
+} catch ({ message }) {
+    print(message);
 }]]></code>
-    <header>Working with objects and lists</header>
+    <header>Functions and parameters</header>
     <paragraph>
-        Because Adaptive Script does not have classes, it does not have all 
-        of the Object and Array methods, that are included in ECMAScript, 
-        accessible as object properties. 
+        Function and lambda parameters may be a simple name or the same
+        list/object <literal>Pattern</literal> used in <literal>let</literal> /
+        <literal>const</literal> (holes, defaults, rest, rename, nesting,
+        string keys, and computed keys). Parameter defaults may be any
+        Expression. At a call site, <literal>f(...array)</literal> expands an
+        array into separate arguments (in addition to definition-side
+        <literal>...rest</literal> formals). See the Language Reference
+        Function statement for examples.
+    </paragraph>
+    <header>Working with objects and arrays</header>
+    <paragraph>
+        Object and array behavior is provided by Adaptive functions in the
+        environment, not by methods on shared type objects. Optional
+        method-style calls such as <literal>obj-&gt;keys()</literal> or
+        <literal>arr-&gt;push(1)</literal> are available when a function is a
+        data-type method (the receiver is the first parameter).
     </paragraph>
     <paragraph>
-        Object properties in Adaptive Script do not currently support computed 
-        names.
+        Helpers include property listing (<literal>keys</literal>,
+        <literal>values</literal>, <literal>entries</literal>), indexing
+        (<literal>at</literal>), stack and queue mutators
+        (<literal>push</literal>, <literal>pop</literal>,
+        <literal>shift</literal>, <literal>unshift</literal>,
+        <literal>splice</literal>), creating a fixed-length array of
+        <literal>undefined</literal> entries (<literal>create_array</literal>),
+        immutability (<literal>freeze</literal>), and quantifiers
+        (<literal>every</literal> / <literal>some</literal>, same family as
+        <literal>all_of</literal> / <literal>any_of</literal>). Array literals
+        may omit a value between commas (that entry is
+        <literal>undefined</literal>). See the Language Reference section
+        <literal>Objects and Arrays</literal> and the Function Reference
+        categories <literal>object</literal>, <literal>array</literal>, and
+        <literal>higher_order_array</literal>.
     </paragraph>
-    <code><![CDATA[let x = { 
-    a:   1, // valid in Adaptive Script 
-    "b": 2, // valid in Adaptive Script
-    [y]: 3, // invalid in Adaptive Script
-};]]></code>
+    <paragraph>
+        Object property names in an object value may be an identifier, a string
+        literal, or an expression in square brackets. Bracket expressions are
+        evaluated when the object value is evaluated; the result is used as the
+        property name (a string). This is the same idea as
+        <literal>obj[expression]</literal> for get and assignment. Variable and
+        parameter names remain lexical identifiers.
+    </paragraph>
+    <code><![CDATA[let y = "c";
+let x = {
+    a:   1,
+    "b": 2,
+    [y]: 3,
+    ["Customer Name"]: "Ada"
+};
+assert(x.c === 3);
+assert(x["Customer Name"] === "Ada");
+
+let names = keys(x);
+let a = [1, 2];
+push(a, 3);
+assert(at(a, -1) === 3);]]></code>
     <header>Keywords new and delete</header>
     <paragraph>
         Adaptive Script does not support the <literal>new</literal> and 
@@ -120,10 +204,12 @@ let y = 2;
     </paragraph>
     <header>Iterators and Generators</header>
     <paragraph>
-        At this time, Adaptive Script does not support generators. Although 
-        objects and lists can be iterated over using the 
-        <literal>for-of</literal> statement, creating iterators as you can in 
-        ECMAScript is not supported.
+        At this time, Adaptive Script does not support generators or
+        user-defined iterators. Arrays can be iterated with
+        <literal>for-of</literal>. Objects are iterated by walking
+        <literal>keys</literal>, <literal>values</literal>, or
+        <literal>entries</literal> (for example
+        <literal>for (let pair of entries(o))</literal>).
     </paragraph>
     <header>Asynchronous Operations</header>
     <paragraph>
@@ -156,4 +242,35 @@ let y = 2;
         some additional features, such as the ability to use functions to 
         compare values matching a case.
     </paragraph>
+    <header>Pragma</header>
+    <paragraph>
+        A script may include a <literal>#compile</literal> pragma to control
+        whether type checking runs for that script. The Types section lists
+        the environment flags and the matching
+        <literal>#compile</literal> options.
+    </paragraph>
+    <code><![CDATA[/* Turn type checking on for this script */
+#compile typeCheck;
+
+const n: integer = 1;
+
+/* Turn type checking off again in this script */
+#compile noTypeCheck;]]></code>
+    <header>Compiler literals</header>
+    <paragraph>
+        A compiler literal is a <literal>#</literal> name for a value the 
+        compiler already knows. It is a value in an expression, not a 
+        statement and not a function call. Examples include 
+        <literal>#doubleMax</literal>, <literal>#doubleMin</literal>, 
+        <literal>#integerMax</literal>, <literal>#pi</literal>, and 
+        <literal>#infinity</literal>. These are not the same as the 
+        <literal>#compile</literal> pragma or the <literal>#block</literal> 
+        forms used when decompiling. Reserved words such as 
+        <literal>Infinity</literal> and <literal>NaN</literal> stay as they 
+        are; <literal>#infinity</literal> is an alias.
+    </paragraph>
+    <code><![CDATA[assert(#doubleMax / 0.9 === Infinity);
+assert(#integerMax + #integerMin === -1);
+assert(#infinity === Infinity);]]></code>
 </doc>
+

@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Adapter Add Object
+ * Adaptive Framework Adapter Get Object
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_adapter_add.c
- * @brief Adaptive Framework adapter add object.
+ * @file afw_adapter_get.c
+ * @brief Adapter get/retrieve helpers (object fetch and callbacks).
  */
 
 #include "afw_internal.h"
@@ -78,8 +78,8 @@ afw_adapter_get_object(
     afw_object_set_property_as_string(request,
         afw_s_resourceId, impl_request.resource_id, xctx);
     impl_request.options = options;
-    afw_object_set_property_as_string(request,
-        afw_s_function, afw_s_get_object, xctx);
+    afw_object_set_property(request,
+        afw_s_function, afw_v_get_object, xctx);
     afw_object_set_property_as_string(request,
         afw_s_adapterId, adapter_id, xctx);
     afw_object_set_property_as_string(request,

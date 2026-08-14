@@ -8,13 +8,29 @@
 
 /**
  * @file afw_function.c
- * @brief AFW runtime functions support  
+ * @brief Built-in Adaptive function execute helpers.
  *
+ * AFW_FUNCTION_EVALUATE_* → afw_function_evaluate_parameter /
+ * evaluate_required_parameter. Definition-driven leaf formals; no script
+ * typeCheck. Script formals and IR ops: afw_function_compiler_internal.c.
  */
 
 #include "afw_internal.h"
 
-AFW_DEFINE_INTERNAL(void)
+/*
+ * Call-site contextual for nested call_create from execute_*. Public so
+ * extensions need not see afw_value_call_built_in_function_t layout.
+ */
+AFW_DEFINE(const afw_compile_value_contextual_t *)
+afw_function_execute_contextual(const afw_function_execute_t *x)
+{
+    if (!x || !x->self) {
+        return NULL;
+    }
+    return x->self->args.contextual;
+}
+
+void
 afw_function_internal_prepare_environment(afw_xctx_t *xctx)
 {
     afw_function_environment_t *e;
@@ -226,7 +242,10 @@ afw_function_evaluate_function_parameter(
 
 
 
-/* Evaluate a value and cast if necessary without throwing error. */
+/*
+ * Built-in formal: eval + definition metadata + optional convert to caller's
+ * requested leaf data_type. Not script typeCheck (see compiler_internal).
+ */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_parameter(
     afw_function_execute_t *x,
@@ -241,7 +260,7 @@ afw_function_evaluate_parameter(
     /* Push parameter number on evaluation stack. */
     afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
 
-    /* Get function parameter from function definition.  */
+    /* Formal metadata from Adaptive function definition. */
     parameter = x->function->parameters[
             (
                 (parameter_number <= x->function->parameters_count)
@@ -277,7 +296,7 @@ afw_function_evaluate_parameter(
             !afw_value_is_boolean_true(parameter->optional) &&
             !afw_value_is_boolean_true(parameter->canBeUndefined))
         {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(undefined_value, xctx,
                 "Parameter " AFW_SIZE_T_FMT
                 " of function " AFW_UTF8_FMT_Q
                 " can not be undefined",
@@ -288,6 +307,17 @@ afw_function_evaluate_parameter(
         return result;
     }
 
+    /*
+     * Caller requested array (EVALUATE_* … array): materialize keyless-
+     * iterator sequences (utf8 code points) as a temporary array (#153).
+     * Do not key off parameter->data_type alone — polymorphic bag rest
+     * formals are typed array in metadata but take scalar bag members
+     * (XACML bag-of-one), not code-point sequences.
+     */
+    if (data_type == afw_data_type_array) {
+        result = afw_value_as_array_sequence(result, x->p, xctx);
+    }
+
     /* Get result's data type. */
     result_data_type = afw_value_get_data_type(result, xctx);
 
@@ -296,7 +326,7 @@ afw_function_evaluate_parameter(
         if (parameter->data_type != afw_data_type_array && //@fixme don't require
             (parameter->data_type != result_data_type))
         {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(argument_error, xctx,
                 "Parameter " AFW_SIZE_T_FMT
                 " of function " AFW_UTF8_FMT_Q
                 " must evaluate to data type " AFW_UTF8_FMT_Q
@@ -321,7 +351,7 @@ afw_function_evaluate_parameter(
 
 
 
-/* Evaluate a value and cast if necessary without throwing error. */
+/* Evaluate a value and convert if necessary without throwing error. */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_required_parameter(
     afw_function_execute_t *x,
@@ -338,7 +368,7 @@ afw_function_evaluate_required_parameter(
     if (!result) {
         afw_xctx_evaluation_stack_push_parameter_number(
             parameter_number, xctx);
-        AFW_THROW_ERROR_FZ(undefined, xctx,
+        AFW_THROW_ERROR_FZ(undefined_value, xctx,
             "Parameter " AFW_SIZE_T_FMT " is undefined value",
             parameter_number);
         afw_xctx_evaluation_stack_pop_parameter_number(xctx);
@@ -350,42 +380,4 @@ afw_function_evaluate_required_parameter(
 
 
 
-/* Evaluate a parameter with dataTypeParameter. */
-/* Note: This is only called by afw_value_call_script_function at the moment. */
-AFW_DEFINE(const afw_value_t*)
-afw_function_evaluate_parameter_with_type(
-    const afw_value_t* value,
-    afw_size_t parameter_number,
-    const afw_value_type_t *type,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    const afw_value_t *result;
-
-    /** @fixme add support for dataTypeParameter. */
-
-    /* Just return if no evaluation or conversion needed. */
-    if (afw_value_is_defined_and_evaluated(value) &&
-        (!type || !type->data_type || type->data_type == afw_data_type_any ||
-            afw_value_get_data_type(value, xctx) == type->data_type))
-    {
-        return value;
-    }
-
-    /* Push parameter number on evaluation stack. */
-    afw_xctx_evaluation_stack_push_parameter_number(parameter_number, xctx);
-
-    /* Evaluate value. */
-    result = afw_value_evaluate(value, p, xctx);
-
-    /* Convert to requested data type if needed. */
-    if (result && type && type->data_type &&
-        afw_value_get_data_type(value, xctx) != type->data_type)
-    {
-        result = afw_value_convert(result, type->data_type, true, p, xctx);
-    }
-
-    /* Pop parameter number from evaluation stack and return result. */
-    afw_xctx_evaluation_stack_pop_parameter_number(xctx);
-    return result;
-}
 

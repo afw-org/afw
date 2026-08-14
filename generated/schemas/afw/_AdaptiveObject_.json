@@ -1,12 +1,18 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveObject_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveObject_": {
-            "additionalProperties": {},
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveObject_.propertyTypes"
+            "additionalProperties": true,
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
                 }
-            ],
+            },
+            "title": "_AdaptiveObject_",
             "type": "object"
         },
         "_AdaptiveObject_.propertyTypes": {
@@ -15,9 +21,16 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveObject_"
+    "additionalProperties": true,
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
         }
-    ]
+    },
+    "title": "_AdaptiveObject_",
+    "type": "object"
 }

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_error.c
- * @brief Adaptive Framework Error Handling
+ * @brief Error throw, try/catch macros support, and formatting.
  */
 
 #include "afw_internal.h"
@@ -1055,6 +1055,71 @@ afw_error_code_id_z(const afw_error_t *error)
     if (!result) result = "unknown";
 
     return result;
+}
+
+
+AFW_DEFINE(afw_boolean_t)
+afw_error_code_from_id(
+    const afw_utf8_t *id,
+    afw_error_code_t *code)
+{
+    afw_size_t i;
+    afw_size_t count;
+
+    if (!id || !code) {
+        return false;
+    }
+
+    count = sizeof(impl_error_code_map) / sizeof(impl_error_code_map_t);
+    for (i = 0; i < count; i++) {
+        if (afw_utf8_equal(id, &impl_error_code_map[i].id)) {
+            *code = (afw_error_code_t)i;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+AFW_DEFINE(afw_boolean_t)
+afw_error_id_allowed_on_script_throw(const afw_utf8_t *id)
+{
+    afw_error_code_t code;
+
+    if (!afw_error_code_from_id(id, &code)) {
+        return false;
+    }
+
+    switch (code) {
+    case afw_error_code_throw:
+    case afw_error_code_bad_request:
+    case afw_error_code_query_too_complex:
+    case afw_error_code_authentication_required:
+    case afw_error_code_payment_required:
+    case afw_error_code_denied:
+    case afw_error_code_read_only:
+    case afw_error_code_not_found:
+    case afw_error_code_method_not_allowed:
+    case afw_error_code_conflict:
+    case afw_error_code_gone:
+    case afw_error_code_precondition_failed:
+    case afw_error_code_payload_too_large:
+    case afw_error_code_uri_too_long:
+    case afw_error_code_unprocessable_content:
+    case afw_error_code_locked:
+    case afw_error_code_precondition_required:
+    case afw_error_code_too_many_requests:
+    case afw_error_code_unavailable_for_legal_reasons:
+    case afw_error_code_moved_permanently:
+    case afw_error_code_moved_temporarily:
+    case afw_error_code_see_other:
+    case afw_error_code_temporary_redirect:
+    case afw_error_code_permanent_redirect:
+        return true;
+    default:
+        return false;
+    }
 }
 
 

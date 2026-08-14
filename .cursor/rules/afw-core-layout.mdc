@@ -24,7 +24,7 @@ alwaysApply: false
 |-----|------|
 | `value/` | Immutable value graph, evaluate/decompile (`afw-script-eval`, `afw-value-memory`) |
 | `compile/` | Syntaxes → values (`afw-compile`, `afw-compiler-ebnf`) |
-| `xctx/` | Execution context, scopes, statement_flow |
+| `xctx/` | Execution context, scopes, statement_flow, **qualifier stack** / snapshots (`afw-qualified-variables`) |
 | `pool/` | Hierarchical pools / subpools |
 | `function/` | Built-in Adaptive function bodies (`afw-function`) |
 | `data_type/` | Helpers atop generated data-type bindings |

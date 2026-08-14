@@ -1,30 +1,134 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveRuntimeValueAccessor_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveRuntimeValueAccessor_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveRuntimeValueAccessor_.propertyTypes"
+            "additionalProperties": false,
+            "description": "A registered runtime value accessor. Core and extensions register these for mapped runtime object properties (see propertyTypes.runtime.valueAccessor). Retrieve and query this object type to discover accessors and their lifetime contracts before reusing or adding one.",
+            "markdownDescription": "A registered runtime value accessor. Core and extensions register these for mapped runtime object properties (see propertyTypes.runtime.valueAccessor). Retrieve and query this object type to discover accessors and their lifetime contracts before reusing or adding one.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "brief": {
+                    "description": "Short description of this accessor suitable for lists and completion.",
+                    "markdownDescription": "**Brief**\n\nShort description of this accessor suitable for lists and completion.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "copiesUnderLock": {
+                    "description": "When true, the accessor takes a lock (or equivalent) and copies data into the caller's pool so the result is stable after the call. Prefer this style for mutable env state shared across threads.",
+                    "markdownDescription": "**Copies Under Lock**\n\nWhen true, the accessor takes a lock (or equivalent) and copies data into the caller's pool so the result is stable after the call. Prefer this style for mutable env state shared across threads.",
+                    "title": "Copies Under Lock",
+                    "type": "boolean"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of what this accessor does, including expected internal shape, locking, and whether the Adaptive value aliases live state.",
+                    "markdownDescription": "**Description**\n\nDescription of what this accessor does, including expected internal shape, locking, and whether the Adaptive value aliases live state.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "key": {
+                    "description": "Key of this entry in registry type runtime_value_accessor. Use this string as propertyTypes.runtime.valueAccessor on mapped object types.",
+                    "markdownDescription": "**Key**\n\nKey of this entry in registry type runtime_value_accessor. Use this string as propertyTypes.runtime.valueAccessor on mapped object types.",
+                    "title": "Key",
+                    "type": "string"
+                },
+                "returnsLiveReference": {
+                    "description": "When true, the returned Adaptive value may point into live environment or instance state that can change or be released while the value is still held. Callers must not assume a snapshot unless copiesUnderLock is also true.",
+                    "markdownDescription": "**Returns Live Reference**\n\nWhen true, the returned Adaptive value may point into live environment or instance state that can change or be released while the value is still held. Callers must not assume a snapshot unless copiesUnderLock is also true.",
+                    "title": "Returns Live Reference",
+                    "type": "boolean"
                 }
-            ],
-            "description": "A registry type runtime_value_accessor entry.",
-            "type": "object",
-            "unevaluatedProperties": false
+            },
+            "title": "_AdaptiveRuntimeValueAccessor_",
+            "type": "object"
         },
         "_AdaptiveRuntimeValueAccessor_.propertyTypes": {
             "properties": {
+                "brief": {
+                    "description": "Short description of this accessor suitable for lists and completion.",
+                    "markdownDescription": "**Brief**\n\nShort description of this accessor suitable for lists and completion.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "copiesUnderLock": {
+                    "description": "When true, the accessor takes a lock (or equivalent) and copies data into the caller's pool so the result is stable after the call. Prefer this style for mutable env state shared across threads.",
+                    "markdownDescription": "**Copies Under Lock**\n\nWhen true, the accessor takes a lock (or equivalent) and copies data into the caller's pool so the result is stable after the call. Prefer this style for mutable env state shared across threads.",
+                    "title": "Copies Under Lock",
+                    "type": "boolean"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of what this accessor does, including expected internal shape, locking, and whether the Adaptive value aliases live state.",
+                    "markdownDescription": "**Description**\n\nDescription of what this accessor does, including expected internal shape, locking, and whether the Adaptive value aliases live state.",
+                    "title": "Description",
+                    "type": "string"
+                },
                 "key": {
-                    "description": "Key of entry.",
+                    "description": "Key of this entry in registry type runtime_value_accessor. Use this string as propertyTypes.runtime.valueAccessor on mapped object types.",
+                    "markdownDescription": "**Key**\n\nKey of this entry in registry type runtime_value_accessor. Use this string as propertyTypes.runtime.valueAccessor on mapped object types.",
                     "title": "Key",
                     "type": "string"
+                },
+                "returnsLiveReference": {
+                    "description": "When true, the returned Adaptive value may point into live environment or instance state that can change or be released while the value is still held. Callers must not assume a snapshot unless copiesUnderLock is also true.",
+                    "markdownDescription": "**Returns Live Reference**\n\nWhen true, the returned Adaptive value may point into live environment or instance state that can change or be released while the value is still held. Callers must not assume a snapshot unless copiesUnderLock is also true.",
+                    "title": "Returns Live Reference",
+                    "type": "boolean"
                 }
             },
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveRuntimeValueAccessor_"
+    "additionalProperties": false,
+    "description": "A registered runtime value accessor. Core and extensions register these for mapped runtime object properties (see propertyTypes.runtime.valueAccessor). Retrieve and query this object type to discover accessors and their lifetime contracts before reusing or adding one.",
+    "markdownDescription": "A registered runtime value accessor. Core and extensions register these for mapped runtime object properties (see propertyTypes.runtime.valueAccessor). Retrieve and query this object type to discover accessors and their lifetime contracts before reusing or adding one.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "brief": {
+            "description": "Short description of this accessor suitable for lists and completion.",
+            "markdownDescription": "**Brief**\n\nShort description of this accessor suitable for lists and completion.",
+            "title": "Brief",
+            "type": "string"
+        },
+        "copiesUnderLock": {
+            "description": "When true, the accessor takes a lock (or equivalent) and copies data into the caller's pool so the result is stable after the call. Prefer this style for mutable env state shared across threads.",
+            "markdownDescription": "**Copies Under Lock**\n\nWhen true, the accessor takes a lock (or equivalent) and copies data into the caller's pool so the result is stable after the call. Prefer this style for mutable env state shared across threads.",
+            "title": "Copies Under Lock",
+            "type": "boolean"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of what this accessor does, including expected internal shape, locking, and whether the Adaptive value aliases live state.",
+            "markdownDescription": "**Description**\n\nDescription of what this accessor does, including expected internal shape, locking, and whether the Adaptive value aliases live state.",
+            "title": "Description",
+            "type": "string"
+        },
+        "key": {
+            "description": "Key of this entry in registry type runtime_value_accessor. Use this string as propertyTypes.runtime.valueAccessor on mapped object types.",
+            "markdownDescription": "**Key**\n\nKey of this entry in registry type runtime_value_accessor. Use this string as propertyTypes.runtime.valueAccessor on mapped object types.",
+            "title": "Key",
+            "type": "string"
+        },
+        "returnsLiveReference": {
+            "description": "When true, the returned Adaptive value may point into live environment or instance state that can change or be released while the value is still held. Callers must not assume a snapshot unless copiesUnderLock is also true.",
+            "markdownDescription": "**Returns Live Reference**\n\nWhen true, the returned Adaptive value may point into live environment or instance state that can change or be released while the value is still held. Callers must not assume a snapshot unless copiesUnderLock is also true.",
+            "title": "Returns Live Reference",
+            "type": "boolean"
         }
-    ]
+    },
+    "title": "_AdaptiveRuntimeValueAccessor_",
+    "type": "object"
 }

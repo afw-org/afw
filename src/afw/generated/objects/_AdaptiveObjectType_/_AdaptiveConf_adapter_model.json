@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Adaptive Framework configuration component for type=adapter adapterType=model.",
+    "description": "Adaptive Framework configuration component for type=adapter adapterType=model. A model adapter loads an _AdaptiveModel_ from modelLocationAdapterId/modelId and exposes it as an adapter. It can map-and-forward to another adapter (hybrid) via mappedAdapterId, and/or fully implement operations in model object-type on* Adaptive Scripts (pure-script). Pure-script models that implement every used operation in on* may omit mappedAdapterId.",
     "objectType": "_AdaptiveConf_adapter_model",
     "propertyTypes": {
         "_meta_": {
@@ -22,17 +22,16 @@
         },
         "mappedAdapterId": {
             "allowQuery": true,
-            "brief": "This is the default mappedAdapterId value",
+            "brief": "Optional default backend adapter for map-and-forward",
             "dataType": "template",
-            "description": "This is the default mappedAdapterId value.",
-            "label": "Mapped Adapter",
-            "required": true
+            "description": "Adapter id used as the default backend for map-and-forward (default get/retrieve/add/modify/replace/delete, transactions, model_default_* actions, and when an on* hook returns current::useDefaultProcessing). Also exposed as current::mappedAdapterId in model scripts. Optional: pure-script models that implement every used operation in on* hooks may omit this property. When set, it must not equal this model adapter's own adapterId. If omitted and default processing is needed for an operation, an error is thrown.",
+            "label": "Mapped Adapter"
         },
         "modelId": {
             "allowQuery": true,
             "brief": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter",
             "dataType": "template",
-            "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter.",
+            "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter. Required for both hybrid and pure-script model adapters; the model definition (object types and on* scripts) is always loaded from this location.",
             "label": "Model",
             "required": true
         },
@@ -40,7 +39,7 @@
             "allowQuery": true,
             "brief": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects",
             "dataType": "template",
-            "description": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects.",
+            "description": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects. That adapter must be configured with isModelLocation=true. Required for both hybrid and pure-script model adapters.",
             "label": "Model Adapter",
             "required": true
         }

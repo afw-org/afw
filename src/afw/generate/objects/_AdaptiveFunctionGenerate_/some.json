@@ -1,0 +1,26 @@
+{
+    "additionalArgCheck": true,
+    "brief": "Whether any array entry passes a test",
+    "category": "higher_order_array",
+    "description": "Return true if predicate returns true for any entry of the first array in values (index order). Entries whose value is undefined are included. Empty array yields false. Same single-array behavior as any_of.",
+    "functionId": "some",
+    "functionLabel": "some",
+    "pure": true,
+    "useExecuteFunction": "afw_function_execute_any_of",
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(...values: any) => boolean",
+            "description": "Called for each value in the first array in values or until true is returned.",
+            "name": "predicate"
+        },
+        {
+            "minArgs": 1,
+            "description": "Parameters passed to predicate with the first array passed one value at a time.",
+            "name": "values"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

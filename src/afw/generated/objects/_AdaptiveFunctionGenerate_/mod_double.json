@@ -1,0 +1,25 @@
+{
+    "afwCamelCaseFunctionLabel": "afwModDouble",
+    "brief": "Remainder of dividing numbers",
+    "camelCaseFunctionLabel": "modDouble",
+    "category": "double",
+    "dataTypeMethod": true,
+    "description": "Divide double dividend by double divisor and return the double remainder.",
+    "functionId": "mod<double>",
+    "functionLabel": "mod_double",
+    "op": "%",
+    "parameters": [
+        {
+            "dataType": "double",
+            "name": "dividend"
+        },
+        {
+            "dataType": "double",
+            "name": "divisor"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "double"
+    }
+}

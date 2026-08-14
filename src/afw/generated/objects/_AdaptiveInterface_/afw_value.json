@@ -1,4 +1,4 @@
 {
     "name": "afw_value",
-    "description": "Adaptive value."
+    "description": "Public handle for an adaptive value (`const afw_value_t *`). Callers\n      must not assume a single C struct body: many kind layouts share this\n      face (data-type values, blocks, calls, compiled_value, …). Behavior\n      is selected by inf (especially optional_evaluate). Prefer\n      afw_value_evaluate() and create helpers in afw_value.h over calling\n      optional_* methods when they may be NULL. See group afw_value and\n      developer types-opaques notes."
 }

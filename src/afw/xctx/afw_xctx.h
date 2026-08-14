@@ -18,10 +18,12 @@
 
 /**
  * @file afw_xctx.h
- * @brief Adaptive Framework Execution Context (xctx) Implementation Header.
+ * @brief Execution context (xctx): scopes, stack, and statement_flow helpers.
  *
- * See @ref afw_xctx for mental model. Scopes are activated on the stack;
- * statement_flow is used for non-local control (break/return etc.).
+ * See @ref afw_xctx. An `afw_xctx_t` is a unit of work (request, eval, …).
+ * Scopes use subpools for automatic cleanup; statement_flow drives
+ * break/continue/return/rethrow without C++ exceptions. Struct layout is
+ * in `afw_common.h`; this header is the public helper surface.
  */
 
 
@@ -97,6 +99,23 @@ afw_xctx_environment_is_terminating(afw_xctx_t *xctx)
 {
     return xctx->env->terminating;
 }
+
+
+/**
+ * @brief If the environment is terminating, throw terminating (HTTP 503).
+ * @param xctx of caller.
+ *
+ * Use at object / work-unit boundaries in long I/O loops so in-flight work
+ * stops starting more work during graceful shutdown. Requires AFW throw
+ * macros (e.g. via afw_error.h / afw_minimal.h).
+ */
+#define AFW_XCTX_THROW_IF_TERMINATING(xctx) \
+    do { \
+        if (afw_xctx_environment_is_terminating(xctx)) { \
+            AFW_THROW_ERROR_Z(terminating, \
+                "Server is terminating", (xctx)); \
+        } \
+    } while (0)
 
 
 /**
@@ -256,7 +275,11 @@ struct afw_xctx_scope_s {
  * @return New xctx scope.
  *
  * Function afw_xctx_scope_create() is used to create a new scope for the
- * supplied block.
+ * supplied block. Symbol value slots start as the permanent
+ * **afw_value_undefined** singleton (not C NULL) so a bound name always has a
+ * value pointer; see afw_xctx_scope_symbol_exists_by_name and issue #131.
+ * afw_xctx_scope_symbol_set_value() also stores that singleton when given
+ * C NULL.
  *
  * If a parent_lexical_scope is specified, it's reference count will be
  * incremented. The block depth of the block supplied must be 1 more than the
@@ -421,10 +444,14 @@ afw_xctx_scope_unwind(
  * @param symbol whose value address is to be returned.
  * @param scope to start search from.
  * @param xctx of caller.
- * @return value address.
- * 
+ * @return value address (never NULL on success).
+ *
  * An error is thrown if the symbol's value location is not found. This most
  * likely is caused by a compile error.
+ *
+ * Non-NULL address means the symbol is bound. Slot contents are normally the
+ * permanent undefined singleton until assigned (or an explicit value); C NULL
+ * in a slot is legacy — treat with afw_value_is_undefined().
  */
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address(
@@ -438,7 +465,13 @@ afw_xctx_scope_symbol_get_value_address(
  *     current scope chain.
  * @param symbol_name of symbol whose value address is to be returned.
  * @param xctx of caller.
- * @return value address or NULL if not found.
+ * @return value address, or NULL if no symbol with that name is bound.
+ *
+ * NULL return means the name is **not bound**. Non-NULL means bound; *address
+ * is the current value (undefined singleton until assigned). Script
+ * variable_exists uses this distinction (issue #131). Prefer this or
+ * afw_xctx_scope_symbol_exists_by_name() over truthiness-testing a get
+ * result from the unqualified get path alone.
  */
 AFW_DECLARE(const afw_value_t **)
 afw_xctx_scope_symbol_get_value_address_by_name(
@@ -451,9 +484,11 @@ afw_xctx_scope_symbol_get_value_address_by_name(
  * @brief Get the value of a symbol in the current scope chain.
  * @param symbol to get value of.
  * @param xctx of caller.
- * @return value.
- * 
- * An error is thrown if the symbol's value location is not found.
+ * @return value pointer (undefined singleton until assigned; use
+ *     afw_value_is_undefined).
+ *
+ * An error is thrown if the symbol's value location is not found. Does not mean
+ * “missing symbol” when the value is undefined.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_symbol_get_value(
@@ -466,10 +501,9 @@ afw_xctx_scope_symbol_get_value(
  * @brief Get the value of a named symbol in the current scope chain.
  * @param symbol_name of value to get.
  * @param xctx of caller.
- * @return value.
- * 
- * An error is thrown if the symbol's name if not found in the current scope
- * chain.
+ * @return value pointer (undefined singleton until assigned).
+ *
+ * An error is thrown if the name is not bound. Undefined value is not “missing.”
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_scope_symbol_get_value_by_name(
@@ -479,10 +513,16 @@ afw_xctx_scope_symbol_get_value_by_name(
 
 
 /**
- * @brief Determine if the named symbol exists in the current scope chain.
- * @param symbol_name of value to check.
+ * @brief True if the named lexical symbol is bound in the current scope chain.
+ * @param symbol_name of symbol to check.
  * @param xctx of caller.
- * @return true if exists, false otherwise.
+ * @return true if a symbol with that name exists (any value, including
+ *     the undefined singleton).
+ *
+ * This is the C-side “variable_exists” for unqualified names: **bound**, not
+ * “value is non-nullish.” Does not consult the qualifier stack (use
+ * afw_xctx_get_optionally_qualified_variable for qualifier::name presence via
+ * get_cb contract).
  */
 AFW_DECLARE(afw_boolean_t)
 afw_xctx_scope_symbol_exists_by_name(
@@ -577,8 +617,10 @@ afw_xctx_scope_symbol_set_value_by_name(
  */
 #define afw_xctx_statement_flow_reset_break_and_continue(xctx) \
     if (((afw_xctx_t *)xctx)->statement_flow <= \
-        afw_xctx_statement_flow_ge_is_leave) \
-            afw_xctx_statement_flow_set_type(sequential, xctx)
+        afw_xctx_statement_flow_ge_is_leave) { \
+            afw_xctx_statement_flow_set_type(sequential, xctx); \
+            ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
+    }
 
 /**
  * @brief Reset xctx statement flow except rethrow to sequential
@@ -590,7 +632,32 @@ afw_xctx_scope_symbol_set_value_by_name(
 #define afw_xctx_statement_flow_reset_all_except_rethrow(xctx) \
     if (!afw_xctx_statement_flow_is_type(rethrow, xctx)) { \
         afw_xctx_statement_flow_set_type(sequential, xctx); \
+        ((afw_xctx_t *)xctx)->statement_flow_label = NULL; \
     }
+
+/**
+ * @brief Get the running Adaptive Script result.
+ * @param xctx of caller.
+ * @return Current script result, or undefined if none has been written.
+ */
+#define afw_xctx_script_result_get(xctx) \
+    ((xctx)->script_result \
+        ? (xctx)->script_result \
+        : afw_value_undefined)
+
+/**
+ * @brief Set the running Adaptive Script result.
+ * @param v result value (NULL is stored as undefined).
+ * @param xctx of caller.
+ *
+ * Assignment and return write this. Most other statements do not.
+ */
+#define afw_xctx_script_result_set(v, xctx) \
+do { \
+    ((afw_xctx_t *)xctx)->script_result = \
+        ((v) ? (v) : afw_value_undefined); \
+    ((afw_xctx_t *)xctx)->script_result_written = true; \
+} while (0)
 
 
 
@@ -725,13 +792,24 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
 
 
 /**
- * @brief Get a variable from xctx stack.
- * @param qualifier of variable or NULL.
+ * @brief Get an optionally qualified variable value.
+ * @param qualifier of variable, or NULL / empty for unqualified lexical name.
  * @param name of variable.
  * @param xctx of caller.
- * @return value or NULL if not found.
+ * @return value pointer, or C NULL (see below — meaning depends on path).
  *
- * The stack is searched from newest to oldest.
+ * **Unqualified** (no qualifier): looks up a lexical symbol by name and
+ * returns the **slot contents**. After scope create / set_value, bound slots
+ * use afw_value_undefined rather than C NULL for empty values, so a NULL
+ * return normally means **not bound**. Still prefer
+ * afw_xctx_scope_symbol_exists_by_name() / get_value_address_by_name() for
+ * existence (issue #131; script variable_exists / variable_get).
+ *
+ * **Qualified** (`qualifier::name`): walks matching visible frames newest →
+ * oldest. First frame whose get_cb returns non-NULL wins (including
+ * afw_value_undefined / afw_value_null). C NULL from get_cb means not defined
+ * on that frame (keep walking). Overall NULL means not defined on any frame.
+ * See afw_xctx_get_variable_cb_t — do not return C NULL for present undefined.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_get_optionally_qualified_variable(
@@ -751,13 +829,19 @@ struct afw_xctx_qualifier_stack_entry_s {
     /** @brief qualifier_object.  This may be NULL now. */
     const afw_object_t *qualifier_object;
 
-    /** @brief Get routine or NULL if get not allowed. */
-    afw_xctx_get_variable_t get;
+    /** @brief Get a variable by name (hot path). */
+    afw_xctx_get_variable_cb_t get_cb;
 
-    /** @brief Data that will be passed to get/set. */
+    /**
+     * @brief Contribute known variables into a snapshot object (slow path).
+     * Skip names already present on the object (first wins). Required.
+     */
+    afw_xctx_contribute_variables_cb_t contribute_cb;
+
+    /** @brief Data that will be passed to get/contribute callbacks. */
     void *data;
 
-    /** @brief Work area used by get/set. */
+    /** @brief Work area used by callbacks (e.g. CB variable table). */
     void *wa;
 
     /** @brief Secure access to this qualifier is allowed. */
@@ -817,17 +901,19 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
 /**
  * @brief Push qualifier on to stack.
  * @param qualifier or NULL.
- * @param qualifier_object
+ * @param qualifier_object optional object of properties (may be NULL).
  * @param secure access to this qualifier is allowed.
- * @param get routine or NULL.
- * @param data to be passed to get/set.
+ * @param get_cb get variable by name (hot path).
+ * @param contribute_cb contribute variables into a snapshot object (required;
+ *    used by qualifier()/qualifiers() listing — issue #9).
+ * @param data to be passed to callbacks (often ctx).
  * @param p used while evaluating variable values.
  * @param xctx of caller.
  * @return New qualifier stack entry.
- * 
- * The "get" function is the fastest way to get the value of a known
- * variable for this pushed qualifier.  The qualifier_object is used
- * when the get_next_property() method is needed.
+ *
+ * get_cb is the fastest way to get a known variable for this qualifier.
+ * contribute_cb must list that frame's variables into a memory object without
+ * overwriting existing property names (first wins).
  *
  * Never specify secure true if source of context is a client. A secure
  * context is used for access control and other server side configured
@@ -850,7 +936,8 @@ afw_xctx_qualifier_stack_qualifier_push(
     const afw_utf8_t *qualifier,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,
-    afw_xctx_get_variable_t get,
+    afw_xctx_get_variable_cb_t get_cb,
+    afw_xctx_contribute_variables_cb_t contribute_cb,
     void * data,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -881,32 +968,38 @@ afw_xctx_qualifier_stack_qualifier_object_push(
 
 
 /**
- * @brief Create object to access active variables for a qualifier.
- * @param qualifier_name
- * @param for_testing
+ * @brief Create a fresh snapshot object of active variables for a qualifier.
+ * @param qualifier name (e.g. environment, current).
+ * @param include_untrusted Default false: same frame visibility as
+ *    qualifier::name get right now. When xctx is secure, true uses the same
+ *    visibility as running less secure (trusted and untrusted frames). When
+ *    xctx is not secure, true and false are the same.
  * @param p to use.
  * @param xctx of caller.
- * @return qualifier object.
+ * @return New memory object (never a live view), or NULL if no matching
+ *    visible stack entry for that qualifier (nullish to scripts). Walks most
+ *    recent → older; every matching visible entry contributes (most recent
+ *    wins per property name). Empty object after contribute is still an object.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifier_object_create(
     const afw_utf8_t *qualifier,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 
 /**
- * @brief Create object to access active qualified variables.
- * @param for_testing
+ * @brief Create a fresh snapshot of all active qualifiers and their variables.
+ * @param include_untrusted Same meaning as afw_xctx_qualifier_object_create().
  * @param p to use.
  * @param xctx of caller.
- * @return qualifier object.
+ * @return New memory object of qualifier name → variables object.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifiers_object_create(
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

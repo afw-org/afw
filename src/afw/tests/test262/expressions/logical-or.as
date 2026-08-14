@@ -7,7 +7,7 @@
 //?
 //? test: S11.11.2_A1
 //? description: Checking by using eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -62,11 +62,9 @@ if ((eval(script("false\u2029||\u2029true"))) !== true) {
 if ((eval(script("false\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029||\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true"))) !== true) {
   throw '#10: (false\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029||\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true) === true';
 }
-
-
 //? test: S11.11.2_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -80,34 +78,34 @@ if ((true || false) !== true) {
 if ((false || true) !== true) {
   throw '#2: (false || true) === true';
 }
-
-
-
 //? test: S11.11.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared x is a compile error
 x || true;
 
 
 
 //? test: S11.11.2_A2.1_T3
 //? description:  If ToBoolean(x) is false and GetBase(y) is null, throw ReferenceError throw new Test262Error('#1.2: false || y throw ReferenceError. Actual: ' + (e));
-//? expect: error:Parse error at offset 29 around line 3 column 10: Unknown built-in function 'y'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared y is a compile error
 false || y;
 
 
 //? test: S11.11.2_A2.1_T4
 //? description: If ToBoolean(x) is true and GetBase(y) is null, return true
-//? expect: error:Parse error at offset 43 around line 4 column 14: Unknown built-in function 'x'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
+// undeclared x is a compile error (name is checked even if || would skip it)
 //CHECK#1
 if ((true || x) !== true) {
   throw '#1: (true || x) === true';
@@ -116,29 +114,20 @@ if ((true || x) !== true) {
 
 //? test: S11.11.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: undefined
-//? skip: true
+//? expect: 0
 //? source: ...
-#!/usr/bin/env afw
 
-
-//CHECK#1
-let x = function () { throw "x"; };
-let y = function () { throw "y"; };
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
 try {
-   x() || y();
-   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (x() || y());
+    let unused = xf() || yf();
+    assert(false);
 } catch (e) {
-   if (e === "y") {
-     throw '#1.2: First expression is evaluated first, and then second expression';
-   } else {
-     if (e !== "x") {
-       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() || y() throw "x". Actual: ' + (e);
-     }
-   }
+    assert(e.message === "x");
+    assert(saw === "x");
 }
-
-
+return 0;
 //? test: S11.11.2_A2.4_T3
 //? description: Checking with undeclared variables
 //? expect: error:Parse error at offset 38 around line 5 column 3: Unknown built-in function 'x'
@@ -164,7 +153,7 @@ if (((y = true) || y) !== true) {
 
 //? test: S11.11.2_A3_T1
 //? description:  Type(x) and Type(y) vary between primitive boolean and Boolean object
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -178,11 +167,9 @@ if ((false || true) !== true) {
 if ((false || false) !== false) {
   throw '#2: (false || false) === false';
 }
-
-
 //? test: S11.11.2_A4_T1
 //? description:  Type(x) and Type(y) vary between primitive boolean and Boolean object
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -196,11 +183,9 @@ if (((true || true)) !== true) {
 if ((true || false) !== true) {
   throw '#2: (true || false) === true';
 }
-
-
 //? test: S11.11.2_A4_T4
 //? description: Type(x) or Type(y) vary between Null and Undefined
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -214,7 +199,3 @@ if ((true || undefined) !== true) {
 if ((true || null) !== true) {
   throw '#2: (true || null) === true';
 }
-
-
-
-

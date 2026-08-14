@@ -9,7 +9,7 @@
 
 /**
  * @file afw_ldap_syntax_handler.c
- * @brief  Internal LDAP Syntax Handlers
+ * @brief LDAP attribute syntax handlers for metadata.
  */
 
 #include "afw.h"
@@ -581,7 +581,7 @@ impl_syntax_handler_list_binary_to_value(
 
     count = ldap_count_values_len(bv);
     e = afw_pool_malloc(p, count * sizeof(afw_memory_t), xctx);
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         e, false, afw_data_type_base64Binary, count, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -606,7 +606,7 @@ impl_syntax_handler_list_binary_to_ber(
     const afw_array_t *list;
     const afw_memory_t *raw;
     const afw_utf8_t *s;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
 
     if (afw_value_is_array(value)) {
@@ -689,7 +689,7 @@ impl_syntax_handler_list_boolean_to_value(
     }
 
     e = afw_pool_malloc(p, sizeof(afw_boolean_t) * count, xctx);
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         e, false, afw_data_type_boolean, count, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -718,9 +718,9 @@ impl_syntax_handler_list_boolean_to_ber(
     afw_boolean_t b;
     afw_size_t count;
     const afw_data_type_t *data_type;
-    afw_array_wrapper_for_array_self_t wrapper;
+    afw_array_view_of_c_array_self_t wrapper;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
 
     if (afw_value_is_array(value)) {
@@ -729,7 +729,7 @@ impl_syntax_handler_list_boolean_to_ber(
     }
     else {
         count = 1;
-        AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY_P(
+        AFW_ARRAY_INITIALIZE_VIEW_OF_C_ARRAY_P(
             &wrapper, AFW_VALUE_INTERNAL(value), false,
             afw_value_get_data_type(value, xctx),
             count, p);
@@ -780,7 +780,7 @@ impl_syntax_handler_list_generalized_time_to_value(
         return afw_data_type_dateTime->empty_array_value;
     }
     e = afw_pool_malloc(p, sizeof(afw_dateTime_t) * count, xctx);
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         (const void *)e, false, afw_data_type_dateTime, count, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
     for (; count > 0; count--, bv++, e++) {
@@ -805,7 +805,7 @@ impl_syntax_handler_list_generalized_time_to_ber(
     const afw_utf8_t *s;
     const afw_dateTime_t *val;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_size_t count;
 
     /* Process single dataTime. */
@@ -865,7 +865,7 @@ impl_syntax_handler_list_integer_to_value(
         return afw_data_type_integer->empty_array_value;
     }
     e = afw_pool_malloc(p, sizeof(afw_integer_t) * count, xctx);
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         e, false, afw_data_type_integer, count, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -909,7 +909,7 @@ impl_syntax_handler_list_string_to_value(
     }
 
     e = afw_pool_malloc(p, sizeof(afw_utf8_t) * count, xctx);
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         e, false, afw_data_type_string, count, p, xctx);
     result = afw_value_create_unmanaged_array(list, p, xctx);
 
@@ -932,7 +932,7 @@ impl_syntax_handler_list_string_to_ber(
     struct berval **result;
     struct berval **bv;
     const afw_utf8_t *s;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     const afw_data_type_t *data_type;
     const void *internal;
@@ -945,7 +945,7 @@ impl_syntax_handler_list_string_to_ber(
     }
     else {
         data_type = afw_value_get_data_type(value, xctx);
-        list = afw_array_create_wrapper_for_array(
+        list = afw_array_create_view_of_c_array(
             AFW_VALUE_INTERNAL(value), false, data_type, 1, p, xctx);
     }
 

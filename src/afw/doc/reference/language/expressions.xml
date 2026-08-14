@@ -3,16 +3,111 @@
     <title>Templates and Expressions</title>
     <header>Templates</header>
     <paragraph>
-        A template is a string literal that contains zero or more 
-        substitutions, where a substitution is a script or expression embedded 
-        inside <literal>{</literal> and <literal>}</literal>.
+        A template is a string that contains zero or more substitutions.
+        A substitution is a script embedded in either
+        <literal>#{</literal> … <literal>}</literal> (compile-time) or
+        <literal>${</literal> … <literal>}</literal> (evaluation-time).
     </paragraph>
     <paragraph>
-        The way that we interpret a template inside of an expression or script 
-        is by placing the template between <literal></literal> characters, also 
-        called a template string:
+        Inside an expression or script, a template string is written between
+        grave (backtick) characters:
     </paragraph>
-    <code>`The result of 1 + 1 is ${1 + 1}.`</code>
+    <code><![CDATA[`The result of 1 + 1 is ${1 + 1}.`
+`Hello #{'World'}!`
+`H#{'ello ' + 'Wor'}ld${'!'}`]]></code>
+    <paragraph>
+        Templates are also used as the compile type for application
+        <literal>qualifiedVariables</literal> and other conf values, and via
+        functions such as <literal>template()</literal>. Those use the same
+        substitution forms; only the surrounding syntax differs.
+    </paragraph>
+
+    <section>
+        <header>Compile-time and evaluation-time substitutions</header>
+        <paragraph>
+            There are two substitution openers:
+        </paragraph>
+        <code><![CDATA[#{ Script }   /* compile-time */
+${ Script }   /* evaluation-time */]]></code>
+        <paragraph>
+            <literal>#{…}</literal> is compiled and evaluated while the
+            containing source is compiled. The result is embedded as a fixed
+            value. The nested script is isolated: it cannot see
+            <literal>let</literal> / <literal>const</literal> locals from the
+            containing script. It can still call normal environment functions
+            available to the compiling host (for example
+            <literal>generate_uuid</literal> or
+            <literal>eval_from_file</literal> if registered). Side effects and
+            errors inside <literal>#{…}</literal> happen at compile or conf-load
+            time.
+        </paragraph>
+        <paragraph>
+            <literal>${…}</literal> is evaluated each time the template is
+            evaluated. When the template is compiled as part of a script, outer
+            locals are visible inside <literal>${…}</literal>.
+        </paragraph>
+        <code><![CDATA[const outer = 42;
+return `${outer}`;   /* → 42 */
+
+/* return #{outer};  → error: outer is not defined in the nested script */]]></code>
+        <paragraph>
+            Bare <literal>#{…}</literal> is also allowed as a Value in a script
+            (not only inside a template string). Bare
+            <literal>${…}</literal> is not a Value and is only valid inside a
+            template.
+        </paragraph>
+        <code><![CDATA[return #{1 + 2};     /* → 3 */
+/* return ${1 + 2};  → syntax error (Expecting Value) */]]></code>
+        <paragraph>
+            Each distinct <literal>#{…}</literal> site is evaluated once when
+            its containing unit is compiled. Different sites are not shared or
+            memoized with each other.
+        </paragraph>
+        <image generated-src="ebnf/syntax/diagram/CompileTimeSubstitution.png" />
+        <image generated-src="ebnf/syntax/diagram/EvaluationTimeSubstitution.png" />
+        <image generated-src="ebnf/syntax/diagram/Substitution.png" />
+    </section>
+
+    <section>
+        <header>Escaping openers</header>
+        <paragraph>
+            The openers are the two-character sequences
+            <literal>#{</literal> and <literal>${</literal>. A backslash before
+            <literal>#</literal> or <literal>$</literal> emits a literal
+            <literal>#</literal> or <literal>$</literal> so the opener is not
+            formed (the following <literal>{</literal> is ordinary text).
+            This applies in both raw templates and backtick template strings.
+        </paragraph>
+        <code><![CDATA[`\#{not a substitution} #{'is'}`
+/* → "#{not a substitution} is" */
+
+`\${not a substitution} ${'is'}`
+/* → "${not a substitution} is" */]]></code>
+        <paragraph>
+            In backtick template strings, normal string escapes still apply
+            (<literal>\\</literal>, <literal>\n</literal>,
+            <literal>\`</literal>, and so on).
+        </paragraph>
+        <image generated-src="ebnf/syntax/diagram/Template.png" />
+        <image generated-src="ebnf/syntax/diagram/TemplateString.png" />
+    </section>
+
+    <section>
+        <header>Templates in application conf</header>
+        <paragraph>
+            Application <literal>qualifiedVariables</literal> template strings
+            are compiled when the application conf is loaded (or reloaded).
+            <literal>#{…}</literal> runs then and embeds a static value for the
+            life of that compiled config.
+            <literal>${…}</literal> remains a template definition and re-runs
+            on each evaluation of that variable’s value. Use compile-time
+            substitution to freeze config (including one-shot values such as a
+            UUID or a function built once); use evaluation-time substitution
+            for values that must change per access (for example request-scoped
+            data).
+        </paragraph>
+    </section>
+
     <header>Expressions</header>
     <paragraph>
         An expression is a value composed, recursively, of one or more values, 
@@ -40,8 +135,11 @@
         <header>Values</header>
         <paragraph>
             Values are the fundamental components of an expression. They can be
-            Array Values, Object Values, Scalar Literals, Evaluations, 
-            Parenthesized Expressions or Template Strings.
+            list values, object values, scalar literals, evaluations,
+            parenthesized expressions, template strings, or compile-time
+            substitutions (<literal>#{…}</literal>). Evaluation-time
+            substitutions (<literal>${…}</literal>) are not bare values; they
+            appear only inside templates.
         </paragraph>
         <code><![CDATA[42
 "abc"
@@ -50,7 +148,8 @@ null
 [1, 2, 3]
 { "x": 42, "y": "abc" }
 (1 + 1) + 3
-`1 + 1 is {1 + 1}`]]></code>
+`1 + 1 is ${1 + 1}`
+#{1 + 2}]]></code>
     </section>
     <section>
         <header>Factors</header>

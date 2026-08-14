@@ -1,0 +1,50 @@
+# Catalog/registry firehose pool (ex blast -T catalog / tests_special/catalog).
+# Opt-in: afwdev test -T src/afw/tests-extra/07b-firehose-catalog-pool
+# Gate catalog contracts: src/afw/tests/advanced/catalog-value-accessors/
+
+version: 1
+description: >
+  Firehose over catalog/registry scripts (value accessors + adapter anchors)
+
+host: afwfcgi
+afwfcgi:
+  threads: 4
+timeout_s: 180
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: rva-retrieve
+    sourceType: script
+    source: <<< tests/rva_retrieve.as
+
+  - name: rva-stopping
+    sourceType: script
+    source: <<< tests/rva_stopping.as
+
+  - name: rva-lock-copy-set
+    sourceType: script
+    source: <<< tests/rva_lock_copy_set.as
+
+  - name: adapter-afw-get
+    sourceType: script
+    source: <<< tests/adapter_afw_get.as
+
+  - name: adapter-metrics
+    sourceType: script
+    source: <<< tests/adapter_metrics.as
+
+schedule:
+  - firehose:
+      duration_s: 15
+      concurrency: 4
+      maxRequests: 40
+      fromTests:
+        - rva-retrieve
+        - rva-stopping
+        - rva-lock-copy-set
+        - adapter-afw-get
+        - adapter-metrics
+      stopOnError: false

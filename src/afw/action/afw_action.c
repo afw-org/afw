@@ -241,7 +241,7 @@ afw_action_perform(
     const afw_utf8_t *name;
     afw_integer_t action_number = 0;
     const afw_value_t *value;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *error;
     const afw_stream_t *stream;
     afw_compile_value_contextual_t *contextual;
@@ -286,8 +286,8 @@ afw_action_perform(
                     request, response_content_type, response,
                     response->p, xctx);
 
-                afw_object_set_property_as_string(response, afw_s_status,
-                    afw_s_success, xctx);
+                afw_object_set_property(response,
+                    afw_s_status, afw_v_success, xctx);
 
                 break;
             }
@@ -340,7 +340,7 @@ afw_action_perform(
             action_response_entry_value = afw_value_create_unmanaged_object(
                 action_response_entry, response->p, xctx);
             if (!afw_content_type_is_application_afw(response_content_type)) {
-                afw_array_add_value(action_response_entries,
+                afw_array_push_value(action_response_entries,
                     action_response_entry_value, xctx);
             }
 
@@ -392,15 +392,15 @@ afw_action_perform(
         }
 
         /* Set status to success. */
-        afw_object_set_property_as_string(response, afw_s_status,
-            afw_s_success, xctx);
+        afw_object_set_property(response,
+            afw_s_status, afw_v_success, xctx);
     }
 
     AFW_CATCH_UNHANDLED{
 
         /* Add error to response object. */
-        afw_object_set_property_as_string(response,
-            afw_s_status, afw_s_error, xctx);
+        afw_object_set_property(response,
+            afw_s_status, afw_v_error, xctx);
         error = afw_object_create_embedded(response, afw_s_error, xctx);
         afw_error_add_to_object(error, &this_THROWN_ERROR, xctx);
 

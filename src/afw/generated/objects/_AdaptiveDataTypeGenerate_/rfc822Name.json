@@ -2,6 +2,7 @@
     "brief": "A RFC 822 name",
     "cType": "afw_utf8_t",
     "dataType": "rfc822Name",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'rfc822Name' holds a string value that conforms to RFC822: local-part@domain",
     "directReturn": false,
     "jsonPrimitive": "string",

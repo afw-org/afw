@@ -11,7 +11,7 @@
 
 #include "afw_doxygen.h"
 #include "afw_interface.h"
-#include "generated/afw_command_generated.h"
+#include "generated/afw_command_generated_internal.h"
 #include "generated/afw_command_version_info.h"
 
 /**
@@ -36,7 +36,6 @@ AFW_BEGIN_DECLARES
  */
 typedef struct afw_command_self_s {
     afw_xctx_t *xctx;
-    const afw_object_t *environment_variables_object;
     int index_first_non_option;
 
     const afw_utf8_t *source_location;
@@ -94,6 +93,13 @@ typedef struct afw_command_self_s {
 
     void *callback_data;
 
+    /* Opaque libedit handles (EditLine *, History *); set only in interactive TTY. */
+    void *editline;
+
+    void *editline_history;
+
+    char *history_path;
+
     afw_compile_type_t compile_option;
 
     afw_compile_residual_check_t residual_check;
@@ -101,6 +107,8 @@ typedef struct afw_command_self_s {
     afw_boolean_t help_option;
 
     afw_boolean_t interactive_mode;
+
+    afw_boolean_t use_line_editing;
 
     afw_boolean_t check_mode;
 
@@ -111,6 +119,8 @@ typedef struct afw_command_self_s {
     afw_boolean_t terminal_error;
 
     afw_boolean_t eof;
+
+    afw_boolean_t prompt_continuation;
 
     int local_model_fd_num;
 

@@ -6,6 +6,11 @@
  *
  */
 
+/**
+ * @file afw_service_internal.h
+ * @brief Internal service session helpers for _AdaptiveService_ objects.
+ */
+
 #ifndef __AFW_SERVICE_INTERNAL_H__
 #define __AFW_SERVICE_INTERNAL_H__
 
@@ -63,9 +68,9 @@ void
 afw_service_internal_start_initial_services(
     const afw_pool_t *p, afw_xctx_t *xctx);
 
-
 AFW_END_DECLARES
 
 /** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_SERVICE_INTERNAL_H__ */
+

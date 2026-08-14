@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object_options.c
- * @brief Adaptive object processing options.
+ * @brief Object processing options (view flags, embedding, etc.).
  */
 
 #include "afw_internal.h"
@@ -99,7 +99,7 @@ afw_object_options_set_from_object(
     const afw_object_t *options_object,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *v;
     const afw_utf8_t *name;
     afw_object_options_t *options;

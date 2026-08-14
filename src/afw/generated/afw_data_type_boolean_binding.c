@@ -19,7 +19,7 @@
 
 /**
  * @file afw_data_type_boolean_binding.c
- * @brief Adaptive Framework core data types.
+ * @brief Generated core adaptive data type implementations.
  */
 
 #include "afw.h"
@@ -75,8 +75,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_boolean_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for boolean values. For this one */
-/* optional_release is NULL and get_reference returns new reference. */
+/* unmanaged boolean: optional_release NULL; */
+/* clone_or_reference returns the same instance (pool lifetime). */
 #define AFW_IMPLEMENTATION_ID "boolean"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_boolean_inf
@@ -90,8 +90,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed boolean values. For this one */
-/* optional_release releases value and get_reference returns new reference. */
+/* managed boolean: optional_release frees header at RC 0; */
+/* clone_or_reference bumps RC and returns the same instance. */
 #define AFW_IMPLEMENTATION_ID "managed_boolean"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_boolean_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -105,8 +105,8 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent boolean values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent boolean: optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_boolean"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_boolean_inf
 #define impl_afw_value_optional_release NULL
@@ -163,15 +163,15 @@ impl_data_type_object_boolean__value = {
 };
 
 /* Value for empty array of boolean. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_boolean;
 
 /* Value for empty array of boolean. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_boolean;
 
 /* Data type boolean instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_boolean_direct = {
     &afw_data_type_boolean_inf,
     (const afw_object_t *)&impl_data_type_object_boolean,
@@ -194,14 +194,15 @@ afw_data_type_boolean_direct = {
     true,
     false,
     true,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of boolean. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_boolean = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_boolean
     },
@@ -210,7 +211,7 @@ impl_empty_array_of_boolean = {
 };
 
 /* Value for empty array of boolean. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_boolean = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_boolean
@@ -237,7 +238,7 @@ afw_object_set_property_as_boolean(
             xctx);
     }
 
-    v = afw_value_create_unmanaged_boolean(internal, object->p, xctx);
+    v = afw_value_for_boolean(internal);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -284,15 +285,9 @@ afw_value_create_managed_boolean(
     afw_boolean_t internal,
     afw_xctx_t *xctx)
 {
-    afw_value_boolean_managed_t *v;
-
-    v = afw_xctx_malloc(
-        sizeof(afw_value_boolean_managed_t), xctx);
-    v->inf = &afw_value_managed_boolean_inf;
-    v->internal = internal;
-    v->reference_count = 0;
-
-    return &v->pub;
+    /* Permanent true/false; no managed header. */
+    (void)xctx;
+    return afw_value_for_boolean(internal);
 }
 
 /* Create function for data type boolean value. */
@@ -300,13 +295,10 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_create_unmanaged_boolean(afw_boolean_t internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_boolean_t *v;
-
-    v = afw_pool_calloc(p, sizeof(afw_value_boolean_t),
-        xctx);
-    v->inf = &afw_value_unmanaged_boolean_inf;
-    v->internal = internal;
-    return &v->pub;
+    /* Permanent true/false; no pool header. */
+    (void)p;
+    (void)xctx;
+    return afw_value_for_boolean(internal);
 }
 
 /* Convert data type boolean string to afw_boolean_t *. */
@@ -367,7 +359,7 @@ afw_object_get_property_as_boolean_source(
 AFW_DEFINE(afw_boolean_t)
 afw_object_get_next_property_as_boolean_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
@@ -423,7 +415,7 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* No reference counting takes place for unmanaged value. */
+    /* Unmanaged: return same instance (pool owns storage). */
     return instance;
 }
 
@@ -438,7 +430,7 @@ impl_afw_value_managed_get_reference(
     afw_value_boolean_managed_t *self =
         (afw_value_boolean_managed_t *)instance;
 
-    /* Increment reference count and return instance. */
+    /* Bump RC; return same instance (not a clone). */
     self->reference_count++;
     return instance;
 }
@@ -451,7 +443,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 
@@ -517,7 +509,7 @@ impl_afw_value_get_info(
 AFW_DEFINE(afw_boolean_t)
 afw_array_of_boolean_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     afw_boolean_t *found,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
@@ -558,7 +550,7 @@ afw_array_of_boolean_add(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_array_setter_add_internal(setter, 
+    afw_array_setter_push_internal(setter, 
         afw_data_type_boolean,
         (const void *)value, xctx);
 }

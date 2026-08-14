@@ -1,6 +1,6 @@
 ---
-description: Adaptive Script (.as) tests and afwdev test / config.py environments
-globs: "**/tests/**/*.as","**/tests/**/config.py"
+description: Adaptive Script (.as) and Python afwdev tests, config.py, environments
+globs: "**/tests/**/*.as","**/tests/**/*.py","**/tests/**/config.py"
 alwaysApply: false
 ---
 
@@ -8,34 +8,184 @@ alwaysApply: false
 
 ## Layout
 - Per srcdir: `src/<srcdir>/tests/` — groups are subdirs with optional `config.py`.
-- Primary tests: `.as` files. Files starting with `_` and `config.py` are not tests.
+- Test files: `.as`, `.py`, `.sh`, or `commands_*.txt`. Files starting with `_` and `config.py` are not tests.
 - Environments: `tests/environments/<name>/` (`afw.conf`, seed objects); set `Environment = "<name>"` in `config.py`.
 - Hooks in `config.py`: `before_all`, `before_each`, `after_each`, `after_all` when needed.
+- Optional `Tags = ["..."]` in `config.py` for `afwdev test --tags`.
+
+## Tests under `src/` are permanent regression assets
+
+- **Never delete or “clean up”** test sources under `src/*/tests/` (`.as`, conf, fixtures, `config.py`) unless the user explicitly asks.
+- They exist so future `afwdev test` runs catch regressions. Treat them as product code.
+- **`afwdev test` runs in a temp work directory** and does **not** modify the `src/` tree for normal cases. Do not remove `src/` test files thinking they are runner scratch.
+- If you see many untracked files under a test dir after a manual `afw --conf ./afw.conf` from that folder, those may be local relative-path outputs — still **do not remove tracked test sources** (`.as`, fixtures). Prefer leave untracked outputs alone or only delete clearly untracked runtime junk after confirming `git ls-files` keeps the suite.
 
 ## `.as` test_script
 - Shebang: `#!/usr/bin/env -S afw --syntax test_script`
 - Metadata and cases via `//?` comments (multiple `//? test:` blocks per file).
 - Example pattern: `src/afw/tests/rql/eq.as`.
+- **test262-derived** suite: `src/afw/tests/test262/README.md` (TC39 lineage, purpose, metadata).
+
+### Official `//?` keys (documented)
+
+The compiler accepts **any** identifier as a custom string property
+(`TestCustomProperty`). Prefer these **official** names so tools and humans
+agree:
+
+| Key | Role |
+|-----|------|
+| **`test`** | Case id |
+| **`description`** | Stay close to TC39 text. Skip notes → `skipReason`. `expect: error` → source `//` comment, not a rewritten description |
+| **`differences`** | Optional ES vs Adaptive **language** delta for the construct under test (not harness) |
+| **`expect`** | Outcome: Adaptive value (`0`, `true`, `undefined`, …), **`success`** (ran, ignore result), or **`error`** / **`error:…`** |
+| **`skip`** | `true` / `false` |
+| **`skipReason`** | Why skipped; suggested prefixes below |
+| **`source`** | Case body |
+| **`sourceType`** | Usually `script` |
+
+**Suggested `skipReason` prefixes** (convention, not enforced):
+
+| Prefix | Meaning |
+|--------|---------|
+| **`FIXME:`** | Adaptive should fix or decide |
+| **`Never:`** | We do not plan to support this |
+
+Examples: `Never: no String.fromCharCode`; `FIXME: for-of const + closure (#35 / #2)`. Long `skipReason` (or any key): use `//? skipReason: ...` then body lines until the next `//?` for ~80-column editing. Full notes: `src/afw/tests/test262/README.md`.
+
+Typical case skeleton:
+
+```adaptive
+//?
+//? test: short_name
+//? description: What this case checks
+//? differences: Optional ES vs Adaptive language note
+//? skip: false
+//? skipReason: Never: … / FIXME: …
+//? expect: 0
+//? source: ...
+
+assert(...);
+return 0;
+```
+
+### Harness pattern (once, not per case)
+
+Shared runner adaptation (try/`assert`, `return 0`, no bare expression
+statements, no `assert.throws` / `typeof`, …) is the same for almost every
+test. Document it here; do **not** restate it in every `description` or
+`differences`. If one case is special, use a short **`//` comment in
+`source`**.
+
+### `//?` keys: single-line and multi-line values
+
+Each `//?` line is roughly **`key: value`** (not Adaptive Script, not YAML).
+
+| Form | Meaning |
+|------|---------|
+| `//? description: short text on this line` | Value is the rest of the line after `key:`. |
+| `//? description: ...` | Value is the **following lines** until the next `//` line (usually the next `//? …`). |
+| `//? source: ...` | Same: body of the case is the lines until the next `//` / `//?` block. |
+
+Use `...` for **longer descriptions**, multi-paragraph purpose notes, or any property that does not fit one line. Examples: file-level `//? description: ...` in `compiler/type_check.as`, case-level in `crypto_seal_unseal.as`. Do **not** invent YAML block markers (`|`, `>`, indent-only blocks); `...` is the supported continuation.
+
+- Prefer focused cases over one huge case.
+- Language quirks (structural `===`, nullish, defaults): **`afw-adaptive-script`**.
+
+### How the runner compiles and evaluates (important)
+
+Two layers (`afw_value_call_test_script.c` + `afw_compile_parse_TestScript`):
+
+1. **File once** — `//?` metadata is **not** Adaptive Script. The file compiles as `test_script` → a `call_test_script` value; each case `source:` is a **string** in a tests array.
+2. **Each case at evaluate** — for every non-skipped case: **`compile_script` on that source string** (new compile unit; `compile_policy` snapshotted from **process flags at that compile**), then **evaluate**. Errors are caught per case; the loop continues.
+3. **One process / one xctx** for all cases in a file. Process flags **persist** across cases unless cleared.
+
+Implications for process flags / unit policy (`compile:typeCheck`, `#compile`, …):
+
+- `flag_set` at the top of a case runs at **evaluate** — it does **not** change that case’s **own** outer unit policy (already snapshotted when the case source was compiled).
+- Put the unit under test in nested `compile<script>(script(…))` (or equivalent) **after** `flag_set` when process defaults matter.
+- `#compile` mutates only that nested unit’s policy, never process flags.
+- Soft isolation in one file: clear type-flag family at case start; if a case **enables** process typeCheck, clear again at end so the **next** case’s outer compile is not polluted.
+- **True process isolation** → separate `.as` files (each `afwdev test` / `afw` run is a new process). Prefer that over elaborate in-file flag gymnastics when defaults must differ.
+- Script function **runtime** formals/returns prefer **definition** unit contextual; **compile-time** formal checks on a call use the **call-site** unit (outer case unit if the call is in the case body).
+## Regression tests for runtime bugs
+
+When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
+
+- Put cases next to related tests (`miscellaneous/`, category folder, or adapter group).
+- Mention the issue id in `//? description` (e.g. `issue #110`).
+- Prefer **in-process** isolation checks (mutate returned defaults/objects; assert later calls are clean) over requiring full `afwfcgi` when the defect is local.
+- Multi-request / use-after-free still warrants occasional `afwdev test --env-mode valgrind -j`.
+- Reference examples: `src/afw/tests/miscellaneous/property_get.as`, `variable_get.as` (default-object clone).
+- Stream / open_file: `src/afw/tests/miscellaneous/stream_file/` (issue #103).
+- VFS adapter: `src/afw_vfs/tests/` (`vfs_test.as`, `vfs_multimap.as`, `vfs_phase4.as`; issue #79) — rules **`afw-vfs`**. Keep fixtures small (no multi‑MB permanent assets).
+- Process env / #71: `miscellaneous/environment_variables.as`, `environment_variables_external.py` (non-UTF-8 via setenv helper); `afw --local`: `src/afw_command/tests/local_test_3_*` — rules **`afw-environment-variables`**.
+
+## Model adapter tests
+
+| Group | Environment | Notes |
+|-------|-------------|--------|
+| `tests/model_adapter/` | `models` | Hybrid: file is model location **and** `mappedAdapterId` |
+| `tests/model_adapter_script_only/` | `models-script-only` | Issue **#109**: no `mappedAdapterId`; pure `on*`; errors when default processing is needed |
+
+- Seed models under `tests/environments/<name>/objects/_AdaptiveModel_/`.
+- Hook bodies may live in `includes/*.as` via `eval_from_file` from the model JSON.
+- Rules: **`afw-model-adapter`**. Conf/hook semantics SSOT: generate OT property `brief`/`description`.
+
+## Object equality in asserts
+
+- Object/array `===` is **structural**. Fresh `{}`/`[]` pairs compare equal even when distinct instances.
+- Prove clone/isolation by **mutating** one result and asserting the other is unchanged (`afw-adaptive-script`).
+
+## Python tests (afwdev python mode)
+- `.py` files always run in **python** mode (not the default `afw` env-mode runner). Implemented by `src/afw_dev/_afwdev/test/modes/python.py`: import the module and call **`run()`**.
+- Prefer `def run():` returning `{ "description", "tests": [ { "test", "description", "passed", "skip", ... } ] }`.
+- Use this when a pure `.as` test_script is not enough: spawn `afw`/`afw --local`/helpers, binary stdin protocols, compile C helpers, multi-step host checks, JSON Schema against generate output, etc.
+- The runner may chdir to a temp work dir with fixtures copied: resolve the package root (walk to `afw-package.json` from `__file__`) if you need the monorepo; do not assume `cwd` is the package root.
+- Put sibling helpers in `_name.py` so they are not discovered as tests.
+- **Example — local host protocol:** `src/afw_command/tests/local_test.py` feeds `local_test_*_input.txt` to `afw --local` and compares stdout to `*_expect.txt`. The local-mode version banner is **normalized** before compare so package version bumps do not require expect edits.
+- **Example — env octets:** `src/afw/tests/miscellaneous/environment_variables_external.py` (compile helper + exec `afw`).
+- **Example — generate artifacts:** `src/afw_dev/tests/json_schema/*.py`.
+
+### JSON Schema projection tests
+- `src/afw_dev/tests/json_schema/` — tags `json_schema`, `generate`.
+- Uses pre-built package-root `generated/schemas/afw/` (run generate/build first).
+- Run: `afwdev test -p afw_dev --tags json_schema --show-all`
+- Rules: `.cursor/rules/afw-json-schema.mdc`
 
 ## Commands
 ```bash
 # After C/Python changes, build/install first:
 ./afwdev build --cdev -j
 
-# Usual full script-test run (judge success from output)
+# Usual script-test run (judge success from command output)
 afwdev test -j
 
-# Occasional: same tests under valgrind (much slower). Use when working on
-# memory management or before a major PR — not for every edit cycle.
-afwdev test --env-mode valgrind -j
+# Thorough (maintainer default before a PR; also when user asks for full
+# build/test). --fulldev = --all --generate --clean --install --scan plus -j.
+./afwdev build --fulldev
+afwdev test -j --env-mode valgrind
 
-afwdev test --srcdir-pattern afw --pattern 'rql/.*'
-afwdev test --srcdir-pattern afw --tags rql
-afwdev test --srcdir-pattern afw --list
-afwdev test --srcdir-pattern afw --bail 1
+# Filename filter (regex on path under tests/)
+afwdev test -p afw --test-pattern 'miscellaneous/property_get'
+afwdev test -p afw --test-pattern 'stream_file'
+afwdev test -p afw --test-pattern 'rql/.*' --show-all
+afwdev test -p afw --tags rql
+afwdev test -p afw --list
+afwdev test -p afw --bail 1
+afwdev test -p afw_dev --tags json_schema --show-all
 ```
 
-Default `--env-mode` is `afw` (runs via the **`afw` CLI** from `src/afw_command` — see `afw-command`). Use `afwdev` from PATH after `--cdev` has installed it.
+- Filter flag is **`--test-pattern`** (not `--pattern`).
+- Default `--env-mode` is `afw` (runs via the **`afw` CLI** from `src/afw_command` — see `afw-command`). Use `afwdev` from PATH after `--cdev` has installed it. `.py` tests still use python mode. See **`afw-project`** for day-to-day vs full-verify matrix.
+
+## Quick manual probes
+```bash
+# Multi-statement script file (preferred)
+afw -s script /path/to/probe.as   # return 0..255 or null
+
+# Interactive: evaluates as entered — awkward for multi-line scripts
+afw -s script
+```
 
 ## Other test styles
 - `src/afw_command/tests/` — Python-mode fixtures for `afw --local` (`local_test.py`), not `.as` test_script.

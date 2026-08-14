@@ -53,7 +53,7 @@ impl_parse_u(afw_compile_parser_t *parser);
 /* Static functions. */
 
 /* Get a utf-8 octet.  Set cursor_eof to cursor + 1 if at end. */
-AFW_DEFINE_INTERNAL(afw_octet_t)
+afw_octet_t
 afw_compile_get_octet(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t result;
@@ -306,7 +306,7 @@ impl_get_OctalDigit(afw_compile_parser_t *parser)
 
 
 /* Push cp on parser->s */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_internal_s_push_code_point(
     afw_compile_parser_t *parser,
     afw_code_point_t cp)
@@ -386,7 +386,7 @@ afw_compile_internal_s_push_code_point(
 
 
 /* Skip whitespace. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_skip_ws(afw_compile_parser_t *parser)
 {
     afw_size_t start_offset;
@@ -629,7 +629,25 @@ error:
  * String ::= '"' Char* '"'
  *
  * Char ::= [^\#x0-#x20] | '\"' | "\'" | '\`' | "\\" | '\/' |
- *         '\b' | '\f' | '\n' | '\r' | '\t' | U
+ *         '\b' | '\f' | '\n' | '\r' | '\t' | '\v' | '\0' |
+ *         '\x' HexDigit HexDigit | U | NonEscapeSequence |
+ *         LineContinuation
+ *
+ *# LineContinuation: backslash + line terminator contributes no characters.
+ *
+ * LineContinuation ::= '\' ( #x0A | #x0D #x0A? | LS | PS )
+ *
+ *# NonEscapeSequence: backslash + a character that is not a recognized
+ *# escape introducer; the character is taken as itself (e.g. \A → A).
+ *# Digits 1-9 after backslash are not identity escapes (reserved for
+ *# legacy octal, which Adaptive does not implement). Line terminators
+ *# after backslash are LineContinuation, not NonEscapeSequence.
+ *# Recognized introducers: b f n r t v ' " ` / u x 0 (and single-escape
+ *# forms listed under Char).
+ *
+ * NonEscapeSequence ::= '\' IdentityEscapeChar
+ *
+ * IdentityEscapeChar ::= [A-Za-z] | [#x80-#xFF]
  *
  * UnicodeCodePoint ::= #x0-#x10FFFF
  *
@@ -643,12 +661,15 @@ error:
  * characters. Input string must begin with either a single or double quote.
  * Whichever one is used, it must be escaped if contained within the string.
  * The binary value of control characters is allowed in the string as well
- * as the escaped form.  \uxxxx and utf16be surrogates are supported.
+ * as the escaped form.  \uxxxx, \xHH, \0, identity NonEscapeSequence, and
+ * utf16be surrogates are supported.
  */
 static void
 impl_parse_String(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t quot, o;
+    afw_size_t save_cursor;
+    int hi, lo;
 
     /* Clear array used for building string. */
     apr_array_clear(parser->s);
@@ -710,12 +731,81 @@ impl_parse_String(afw_compile_parser_t *parser)
                 APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = AFW_ASCII_VT;
                 break;
 
+            case '0':
+                /*
+                 * Null escape \0 when not followed by a digit. Digits after
+                 * \0 would be legacy octal, which Adaptive does not support.
+                 */
+                afw_compile_save_cursor(save_cursor);
+                o = afw_compile_get_octet(parser);
+                if (!afw_compile_is_at_eof() && o >= '0' && o <= '9') {
+                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                }
+                afw_compile_restore_cursor(save_cursor);
+                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = 0;
+                break;
+
+            case 'x':
+                /* HexEscapeSequence \xHH (exactly two hex digits). */
+                hi = impl_get_HexDigit(parser);
+                lo = impl_get_HexDigit(parser);
+                if (hi < 0 || lo < 0) {
+                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                }
+                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) =
+                    (afw_utf8_octet_t)((hi << 4) | lo);
+                break;
+
             case 'u':
                 impl_parse_u(parser);
                 break;
 
             default:
-                AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                /*
+                 * LineContinuation: backslash + LineTerminatorSequence
+                 * contributes no characters (ES string grammar).
+                 *   LF / CR / CR LF / LS (U+2028) / PS (U+2029)
+                 */
+                if (o == AFW_ASCII_LF) {
+                    break;
+                }
+                if (o == AFW_ASCII_CR) {
+                    afw_compile_save_cursor(save_cursor);
+                    o = afw_compile_get_octet(parser);
+                    if (afw_compile_is_at_eof() || o != AFW_ASCII_LF) {
+                        afw_compile_restore_cursor(save_cursor);
+                    }
+                    break;
+                }
+                /* UTF-8 LS E2 80 A8, PS E2 80 A9 */
+                if ((afw_utf8_octet_t)o == (afw_utf8_octet_t)0xE2) {
+                    afw_compile_save_cursor(save_cursor);
+                    hi = -1;
+                    lo = -1;
+                    if (!afw_compile_is_at_eof()) {
+                        hi = (int)(unsigned char)
+                            afw_compile_get_octet(parser);
+                        if (!afw_compile_is_at_eof()) {
+                            lo = (int)(unsigned char)
+                                afw_compile_get_octet(parser);
+                        }
+                    }
+                    if (hi == 0x80 && (lo == 0xA8 || lo == 0xA9)) {
+                        break;
+                    }
+                    afw_compile_restore_cursor(save_cursor);
+                    /* fall through: identity of first octet 0xE2 */
+                }
+                /*
+                 * NonEscapeSequence / identity escape: backslash + letter
+                 * (or other non-special octet) yields that octet. Digits
+                 * 1-9 are not identity escapes.
+                 */
+                if (o >= '1' && o <= '9') {
+                    AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
+                }
+                APR_ARRAY_PUSH(parser->s, afw_utf8_octet_t) = o;
+                break;
             }
         }
 
@@ -746,7 +836,7 @@ impl_parse_String(afw_compile_parser_t *parser)
  *     DecimalIntegerLiteral |
  *     BinaryIntegerLiteral |
  *     HexIntegerLiteral |
- *     OctetIntegerLiteral )
+ *     OctalIntegerLiteral )
  *
  * DecimalIntegerLiteral ::= '0' | ( [1-9] [0-9]* )
  *
@@ -756,10 +846,18 @@ impl_parse_String(afw_compile_parser_t *parser)
  *
  * OctalIntegerLiteral ::= '0' ('o' | 'O' ) OctalDigit+
  *
+ * ExponentPart ::= [eE] [+-]? [0-9]+
+ *
  *# Infinity, INF and NaN are not allowed in strict mode.
  *
- * Double ::= '-'? ( ( DecimalIntegerLiteral '.' [0-9]+ ([eE] [+-]? [0-9]+)? ) |
- *    'Infinity' | 'INF' | 'NaN' )
+ *# Decimal / double forms match ECMAScript DecimalLiteral: leading-dot
+ *# (e.g. .5, .1e1), trailing-dot (e.g. 1., 1.e10), and full fraction.
+ *
+ * Double ::= '-'? (
+ *     DecimalIntegerLiteral '.' [0-9]* ExponentPart? |
+ *     '.' [0-9]+ ExponentPart? |
+ *     DecimalIntegerLiteral ExponentPart? |
+ *     'Infinity' | 'INF' | 'NaN' )
  *
  *<<<ebnf*/
 /*
@@ -871,6 +969,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     afw_boolean_t is_negative;
     afw_boolean_t is_integer;
     afw_boolean_t is_zero;
+    afw_boolean_t leading_dot;
     afw_utf8_octet_t o;
     afw_code_point_t cp;
 
@@ -879,6 +978,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     is_negative = false;
     is_integer = true;
     is_zero = true;
+    leading_dot = false;
 
     /* Determine if negative and handle reserved identifiers. */
     o = afw_compile_get_octet(parser);
@@ -894,18 +994,21 @@ impl_parse_number(afw_compile_parser_t *parser)
     else if (o == '-') {
         is_negative = true;
 
-        if (impl_consume_matching_octets_z(parser, "Infinity") ||
-            impl_consume_matching_octets_z(parser, "INF"))
-        {
-            parser->token->type = afw_compile_token_type_number;
-            parser->token->number = parser->xctx->env->minus_infinity;
-            goto reserved_identifier;
-        }
+        /* Infinity / INF / NaN after '-' are relaxed only (not strict JSON). */
+        if (!parser->strict) {
+            if (impl_consume_matching_octets_z(parser, "Infinity") ||
+                impl_consume_matching_octets_z(parser, "INF"))
+            {
+                parser->token->type = afw_compile_token_type_number;
+                parser->token->number = parser->xctx->env->minus_infinity;
+                goto reserved_identifier;
+            }
 
-        if (impl_consume_matching_octets_z(parser, "NaN")) {
-            parser->token->type = afw_compile_token_type_number;
-            parser->token->number = parser->xctx->env->NaN;
-            goto reserved_identifier;
+            if (impl_consume_matching_octets_z(parser, "NaN")) {
+                parser->token->type = afw_compile_token_type_number;
+                parser->token->number = parser->xctx->env->NaN;
+                goto reserved_identifier;
+            }
         }
     }
 
@@ -914,48 +1017,71 @@ impl_parse_number(afw_compile_parser_t *parser)
         afw_compile_restore_cursor(start_offset);
     }
 
-    /* Parse integer part and prescan floating point part. */
-    do {
-        o = afw_compile_get_octet(parser);
+    o = afw_compile_get_octet(parser);
 
-        /* Number can't end here. */
-        if (afw_compile_is_at_eof()) {
+    /* Number can't end here. */
+    if (afw_compile_is_at_eof()) {
+        goto error;
+    }
+
+    /*
+     * Leading-dot form: '.' DecimalDigits ExponentPart?
+     * (e.g. .5, .1e1). Digits after the dot are required.
+     */
+    if (o == '.') {
+        leading_dot = true;
+        is_integer = false;
+        o = afw_compile_get_octet(parser);
+        if (afw_compile_is_at_eof() || o < '0' || o > '9') {
             goto error;
         }
-
-        /* Can be '0' or digits'1'-'9' followed by additional digits '0'-'9'. */
-        if (o >= '1' && o <= '9') {
+        if (o != '0') {
             is_zero = false;
-            /* Sum digits as a negative number.  Negative is one larger. */
-            negative = -(o - '0');
-            for (;;) {
-                o = afw_compile_get_octet(parser);
-                if (afw_compile_is_at_eof()) {
-                    break;
-                }
-                if (o < '0' || o > '9') {
-                    parser->cursor--;
-                    break;
-                }
-                if (negative < AFW_INTEGER_MIN / 10)
-                {
-                    AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
-                }
-                negative = (negative * 10);
-                if (negative < AFW_INTEGER_MIN + (o - '0'))
-                {
-                    AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
-                }
-                negative -= (o - '0');
-            }
         }
-        else if (o == '0') {
+        for (;;) {
             o = afw_compile_get_octet(parser);
             if (afw_compile_is_at_eof()) {
                 break;
             }
-
-            /* Decimal literal can not start with a '0'. */
+            if (o < '0' || o > '9') {
+                parser->cursor--;
+                break;
+            }
+            if (o != '0') {
+                is_zero = false;
+            }
+        }
+    }
+    /* Can be '0' or digits '1'-'9' followed by additional digits '0'-'9'. */
+    else if (o >= '1' && o <= '9') {
+        is_zero = false;
+        /* Sum digits as a negative number.  Negative is one larger. */
+        negative = -(o - '0');
+        for (;;) {
+            o = afw_compile_get_octet(parser);
+            if (afw_compile_is_at_eof()) {
+                break;
+            }
+            if (o < '0' || o > '9') {
+                parser->cursor--;
+                break;
+            }
+            if (negative < AFW_INTEGER_MIN / 10)
+            {
+                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+            }
+            negative = (negative * 10);
+            if (negative < AFW_INTEGER_MIN + (o - '0'))
+            {
+                AFW_COMPILE_THROW_ERROR_Z("Integer is out of range");
+            }
+            negative -= (o - '0');
+        }
+    }
+    else if (o == '0') {
+        o = afw_compile_get_octet(parser);
+        if (!afw_compile_is_at_eof()) {
+            /* Decimal literal can not start with a multi-digit '0…'. */
             if (o >= '0' && o <= '9') {
                 goto error;
             }
@@ -991,36 +1117,25 @@ impl_parse_number(afw_compile_parser_t *parser)
                 }
             }
 
-            /* Parse as double or decimal integer. */
+            /* Put back for fraction / exponent scan. */
             parser->cursor--;
         }
-        else {
-            goto error;
-        }
+    }
+    else {
+        goto error;
+    }
 
-        /* Number is an integer if at end of eof. */
-        if (afw_compile_is_at_eof()) {
-            break;
-        }
-
-        /* Next can be an optional period followed by digits '0'-'9'. */
+    /*
+     * Optional fraction after integer part: '.' DecimalDigits?
+     * Trailing-dot forms (1., 1.e10) are allowed; digits are optional.
+     */
+    if (!leading_dot && !afw_compile_is_at_eof()) {
         o = afw_compile_get_octet(parser);
-        if (afw_compile_is_at_eof()) {
-            break;
-        }
         if (o != '.') {
             parser->cursor--;
         }
         else {
             is_integer = false;
-            o = afw_compile_get_octet(parser);
-            /* Number can't end here. */
-            if (afw_compile_is_at_eof() || o < '0' || o > '9') {
-                goto error;
-            }
-            if (o != '0') {
-                is_zero = false;
-            }
             for (;;) {
                 o = afw_compile_get_octet(parser);
                 if (afw_compile_is_at_eof()) {
@@ -1035,16 +1150,12 @@ impl_parse_number(afw_compile_parser_t *parser)
                 }
             }
         }
+    }
 
-        /* Number can end here. */
-        if (afw_compile_is_at_eof()) {
-            break;
-        }
-
-        /*
-         * Next can be an 'e' or 'E' followed by optional '-' or '+' followed
-         * by digits '0' - '9'.
-         */
+    /*
+     * Optional ExponentPart: 'e' or 'E', optional sign, one or more digits.
+     */
+    if (!afw_compile_is_at_eof()) {
         o = afw_compile_get_octet(parser);
         if (o != 'e' && o != 'E') {
             parser->cursor--;
@@ -1064,7 +1175,9 @@ impl_parse_number(afw_compile_parser_t *parser)
             }
 
             /* Number can't end here. */
-            if (afw_compile_is_at_eof() || o < '0' || o > '9') goto error;
+            if (afw_compile_is_at_eof() || o < '0' || o > '9') {
+                goto error;
+            }
 
             /* Skip digits. */
             for (;;) {
@@ -1078,7 +1191,7 @@ impl_parse_number(afw_compile_parser_t *parser)
                 }
             }
         }
-    } while (0);
+    }
 
     /*
      * If is_integer (no '.', 'e', or 'E'), return integer.
@@ -1102,7 +1215,7 @@ impl_parse_number(afw_compile_parser_t *parser)
 
 
     /*
-     * Not integer, create a double value. Use atof to convert number if it
+     * Not integer, create a double value. Use strtod to convert number if it
      * is not zero.
      */
     if (is_negative)
@@ -1171,10 +1284,13 @@ impl_get_identifier(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# ZWNJ - Unicode Zero-width non-joiner (0x200c)
- *# ZWJ - Unicode Zero-width joiner (0x200d)
- *# ID_START is any codepoint with ID_START flag
- *# ID_CONTINUE is any codepoint with ID_CONTINUE flag
+ *# Unicode identifier categories (ECMAScript ID_Start / ID_Continue).
+ *# Not expanded to code-point ranges here.
+ * ID_START ::= "any Unicode ID_Start code point"
+ * ID_CONTINUE ::= "any Unicode ID_Continue code point"
+ *
+ * ZWNJ ::= #x200C
+ * ZWJ ::= #x200D
  *
  * IdentifierStart ::= ID_START | '$' | '_'
  *
@@ -1258,17 +1374,19 @@ impl_parse_identifier(afw_compile_parser_t *parser)
         parser->token->type = afw_compile_token_type_undefined;
     }
 
-    /* Handle reserved identifier Infinity and INF.  */
-    else if (
+    /* Handle reserved identifier Infinity and INF (not in strict JSON). */
+    else if (!parser->strict && (
         afw_utf8_equal_utf8_z(parser->token->identifier_name, "Infinity") ||
-        afw_utf8_equal_utf8_z(parser->token->identifier_name, "INF"))
+        afw_utf8_equal_utf8_z(parser->token->identifier_name, "INF")))
     {
         parser->token->type = afw_compile_token_type_number;
         parser->token->number = parser->xctx->env->infinity;
     }
 
-    /* Handle reserved identifier NaN.  */
-    else if (afw_utf8_equal_utf8_z(parser->token->identifier_name, "NaN")) {
+    /* Handle reserved identifier NaN (not in strict JSON). */
+    else if (!parser->strict &&
+        afw_utf8_equal_utf8_z(parser->token->identifier_name, "NaN"))
+    {
         parser->token->type = afw_compile_token_type_number;
         parser->token->number = parser->xctx->env->NaN;
     }
@@ -1285,7 +1403,7 @@ impl_parse_identifier(afw_compile_parser_t *parser)
  *      UnusedButReservedWords )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(afw_boolean_t)
+afw_boolean_t
 afw_compile_is_reserved_word(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s)
@@ -1312,12 +1430,15 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_undefined)    ||
 
 /*ebnf>>>
- * 
- * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' | 
- *      'continue' | 'default' | 'do' | 'else' | 'finally' | 'for' | 
- *      'function' | 'if' | 'let' | 'return' | 'switch' |
- *      'throw' | 'try' | 'void' | 'while' )
- * 
+ *
+ *# Statement / clause keywords (including type-system statements and
+ *# interface 'extends'). 'void' is reserved with statements though it is
+ *# also a data-type name.
+ * StatementReservedWords ::= ( 'break' | 'case' | 'catch' | 'const' |
+ *      'continue' | 'default' | 'do' | 'else' | 'extends' | 'finally' |
+ *      'for' | 'function' | 'if' | 'interface' | 'let' | 'return' |
+ *      'switch' | 'throw' | 'try' | 'type' | 'void' | 'while' )
+ *
  *<<<ebnf*/
 
         afw_utf8_equal(s, afw_s_break)        ||
@@ -1328,23 +1449,40 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_default)      ||
         afw_utf8_equal(s, afw_s_do)           ||
         afw_utf8_equal(s, afw_s_else)         ||
+        afw_utf8_equal(s, afw_s_extends)      ||
         afw_utf8_equal(s, afw_s_finally)      ||
         afw_utf8_equal(s, afw_s_for)          ||
         afw_utf8_equal(s, afw_s_function)     ||
         afw_utf8_equal(s, afw_s_if)           ||
+        afw_utf8_equal(s, afw_s_interface)    ||
         afw_utf8_equal(s, afw_s_let)          ||
         afw_utf8_equal(s, afw_s_return)       ||
         afw_utf8_equal(s, afw_s_switch)       ||
         afw_utf8_equal(s, afw_s_throw)        ||
         afw_utf8_equal(s, afw_s_try)          ||
+        afw_utf8_equal(s, afw_s_type)         ||
         afw_utf8_equal(s, afw_s_void)         ||
         afw_utf8_equal(s, afw_s_while)        ||
 
 /*ebnf>>>
- * 
+ *
+ *# Not implemented as syntax today; reserved for possible future surface or
+ *# to block awkward identifiers. Keep 'var' and 'with' reserved even though
+ *# Adaptive Script does not implement those keywords.
+ *#
+ *# 'in' is reserved and is not planned as Adaptive Script syntax: arrays are
+ *# not objects, and there is no for-in / "property in value" enumeration
+ *# model. Walk objects with keys/values/entries and for-of instead. Keeping
+ *# 'in' reserved blocks it as an identifier without implying a future
+ *# operator.
+ *#
+ *# 'delete' is reserved and is not planned as Adaptive Script syntax for the
+ *# same object-model reasons (no sparse "punch a hole" / property-remove
+ *# operator). Mutate arrays with splice and related helpers; remove object
+ *# properties through Adaptive object/adapter APIs, not a delete keyword.
  * UnusedButReservedWords ::= ( 'as' | 'async' | 'await' | 'class' | 'delete' |
- *      'export' | 'extends' | 'from' | 'import' | 'in' | 'interface' |
- *      'instanceof' | 'super' | 'this' | 'type' | 'typeof' | 'var' | 'with' )
+ *      'export' | 'from' | 'import' | 'in' | 'instanceof' | 'super' |
+ *      'this' | 'typeof' | 'var' | 'with' )
  *
  *<<<ebnf*/
 
@@ -1354,15 +1492,12 @@ afw_compile_is_reserved_word(
         afw_utf8_equal(s, afw_s_class)        ||
         afw_utf8_equal(s, afw_s_delete)       ||
         afw_utf8_equal(s, afw_s_export)       ||
-        afw_utf8_equal(s, afw_s_extends)      ||
         afw_utf8_equal(s, afw_s_from)         ||
         afw_utf8_equal(s, afw_s_import)       ||
         afw_utf8_equal(s, afw_s_in)           ||
         afw_utf8_equal(s, afw_s_instanceof)   ||
-        afw_utf8_equal(s, afw_s_interface)    ||
         afw_utf8_equal(s, afw_s_super)        ||
         afw_utf8_equal(s, afw_s_this)         ||
-        afw_utf8_equal(s, afw_s_type)         ||
         afw_utf8_equal(s, afw_s_typeof)       ||
         afw_utf8_equal(s, afw_s_var)          ||
         afw_utf8_equal(s, afw_s_with)         )
@@ -1377,7 +1512,7 @@ afw_compile_is_reserved_word(
 
 /* Internal functions. */
 
-AFW_DEFINE_INTERNAL(afw_code_point_t)
+afw_code_point_t
 afw_compile_get_code_point_impl(afw_compile_parser_t *parser)
 {
     afw_code_point_t result;
@@ -1463,6 +1598,8 @@ impl_unescaped(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t o;
     afw_code_point_t cp, cp2;
+    afw_size_t save_cursor;
+    int hi, lo;
 
     /* If escape, get next octet and break if eof.*/
     o = afw_compile_get_octet(parser);
@@ -1505,6 +1642,27 @@ impl_unescaped(afw_compile_parser_t *parser)
         cp = AFW_ASCII_VT;
         break;
 
+    case '0':
+        /* Null escape \0 when not followed by a digit. */
+        afw_compile_save_cursor(save_cursor);
+        o = afw_compile_get_octet(parser);
+        if (!afw_compile_is_at_eof() && o >= '0' && o <= '9') {
+            goto error;
+        }
+        afw_compile_restore_cursor(save_cursor);
+        cp = 0;
+        break;
+
+    case 'x':
+        /* HexEscapeSequence \xHH. */
+        hi = impl_get_HexDigit(parser);
+        lo = impl_get_HexDigit(parser);
+        if (hi < 0 || lo < 0) {
+            goto error;
+        }
+        cp = (afw_code_point_t)((hi << 4) | lo);
+        break;
+
     case 'u':
         /* Code point for /uxxxx. */
         cp =
@@ -1532,7 +1690,12 @@ impl_unescaped(afw_compile_parser_t *parser)
         break;
 
     default:
-        goto error;
+        /* Identity NonEscapeSequence for non-digit characters. */
+        if (o >= '1' && o <= '9') {
+            goto error;
+        }
+        cp = o;
+        break;
     }
 
     return cp;
@@ -1543,7 +1706,7 @@ error:
 
 
 
-AFW_DEFINE_INTERNAL(afw_code_point_t)
+afw_code_point_t
 afw_compile_get_unescaped_code_point_impl(afw_compile_parser_t *parser)
 {
     afw_code_point_t cp;
@@ -1558,7 +1721,7 @@ afw_compile_get_unescaped_code_point_impl(afw_compile_parser_t *parser)
 }
 
 
-AFW_DEFINE_INTERNAL(afw_boolean_t)
+afw_boolean_t
 afw_compile_next_raw_starts_with_impl(
     afw_compile_parser_t *parser,
     const afw_utf8_t *s)
@@ -1582,7 +1745,7 @@ afw_compile_next_raw_starts_with_impl(
 }
 
 
-AFW_DEFINE_INTERNAL(afw_boolean_t)
+afw_boolean_t
 afw_compile_next_raw_starts_with_z_impl(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *s_z)
@@ -1596,7 +1759,7 @@ afw_compile_next_raw_starts_with_z_impl(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_get_raw_line_impl(
     afw_compile_parser_t *parser,
     afw_utf8_t *line)
@@ -1659,7 +1822,7 @@ afw_compile_get_raw_line_impl(
  * END ::=
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_get_token_impl(afw_compile_parser_t *parser)
 {
     afw_code_point_t cp, cp2;
@@ -1729,21 +1892,50 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         };
         break;
 
-    /* # and #{ */
+    /*
+     * '#' splits into three token types (no EBNF production for bare '#'):
+     *   '#{'     → compile_time_substitute_start  (CompileTimeSubstitution)
+     *   '#Name'  → pound_identifier               (PoundIdentifier / pragmas)
+     *   bare '#' → pound_sign                     (token only; parse rejects)
+     */
     case '#':
+        /*ebnf>>>
+         *
+         *# '#' starts compile-time substitution '#{', a pound identifier
+         *# '#Name' (pragma or compiler-internal), or a bare pound sign.
+         *# Bare '#' is a token only (pound_sign) — not a production.
+         *
+         * PoundIdentifier ::= '#' Identifier
+         *
+         *<<<ebnf*/
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
         if (cp2 == '{') {
             parser->token->type =
                 afw_compile_token_type_compile_time_substitute_start;
         }
+        else if (cp2 >= 0 &&
+            afw_compile_code_point_is_IdentifierStart(cp2))
+        {
+            /* Name after '#'; do not treat as special literal (true, NaN, …). */
+            afw_compile_restore_cursor(temp_cursor);
+            parser->token->type = afw_compile_token_type_pound_identifier;
+            parser->token->identifier_name = impl_get_identifier(parser);
+            /* Full lexeme including '#' for error text / display. */
+            parser->token->identifier = afw_compile_get_string_literal(
+                parser,
+                parser->full_source->s + entry_cursor,
+                parser->cursor - entry_cursor);
+            /* identifier_qualifier remains NULL (memset). */
+        }
         else {
+            /* Not '{' or IdentifierStart — leave following char for next token. */
             afw_compile_restore_cursor(temp_cursor);
             parser->token->type = afw_compile_token_type_pound_sign;
         }
         break;
 
-    /* $ and ${ */
+    /* '$' vs '${' (bare '$' may also begin Identifier elsewhere). */
     case '$':
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
@@ -1757,7 +1949,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         }
         break;
 
-    /* . and ... */
+    /* ., leading-dot number (.5, .1e1), and ... */
     case '.':
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
@@ -1769,6 +1961,13 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
             else {
                 afw_compile_restore_cursor(temp_cursor);
                 parser->token->type = afw_compile_token_type_period;
+            }
+        }
+        else if (cp2 >= '0' && cp2 <= '9') {
+            /* Leading-dot decimal / double literal. */
+            afw_compile_restore_cursor(entry_cursor);
+            if (!impl_parse_number(parser)) {
+                AFW_COMPILE_THROW_ERROR_Z("Invalid number");
             }
         }
         else {
@@ -2105,7 +2304,7 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
 }
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_reuse_token_impl(afw_compile_parser_t *parser)
 {
     /* Ignore reuse token is last one is end of line. */
@@ -2131,7 +2330,7 @@ afw_compile_reuse_token_impl(afw_compile_parser_t *parser)
 }
 
 
-AFW_DEFINE_INTERNAL(afw_compile_internal_token_type_t)
+afw_compile_internal_token_type_t
 afw_compile_peek_next_token_impl(afw_compile_parser_t *parser)
 {
     afw_compile_internal_token_type_t result;
@@ -2145,7 +2344,7 @@ afw_compile_peek_next_token_impl(afw_compile_parser_t *parser)
 
 
 /* Make sure there is no residual data. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_check_for_residual(afw_compile_parser_t *parser)
 {
     afw_octet_t o;
@@ -2213,7 +2412,7 @@ afw_compile_shared_create(
 
 
 /* Create a parser. */
-AFW_DEFINE_INTERNAL(afw_compile_parser_t *)
+afw_compile_parser_t *
 afw_compile_lexical_parser_create(
     const afw_utf8_t *source,
     afw_utf8_octet_get_cb_t callback,
@@ -2293,21 +2492,32 @@ afw_compile_lexical_parser_create(
         parser->compiled_value->current_block = parent->current_block;
     }
 
+    /*
+     * Snapshot flags into this unit's policy; #compile may override the
+     * snapshot only (never process flags). Wire parser contextual so
+     * type-check helpers can resolve unit policy via contextual->compiled_value.
+     */
+    afw_compile_policy_init_from_flags(
+        &parser->compiled_value->compile_policy, xctx);
+    parser->contextual.compiled_value = parser->compiled_value;
+
     return parser;
 }
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_compile_lexical_parser_finish_and_release(
     afw_compile_parser_t *parser,
     afw_xctx_t *xctx)
 {
-
+    /* No ambient xctx compile policy to restore (unit policy is on compiled_value). */
+    (void)parser;
+    (void)xctx;
 }
 
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+const afw_utf8_t *
 afw_compile_get_string_literal(
     afw_compile_parser_t *parser,
     const afw_utf8_octet_t *s,
@@ -2329,7 +2539,7 @@ afw_compile_get_string_literal(
 }
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t*)
+const afw_utf8_t*
 afw_compile_current_raw_token(
     afw_compile_parser_t* parser)
 {

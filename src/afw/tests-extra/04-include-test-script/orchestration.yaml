@@ -1,0 +1,25 @@
+# Scenario: include a whole test_script as one work unit ("A type" over FCGI)
+# Stresses: sourceType test_script, judging via inner passed flags,
+#           reuse of dense //? suites without rewriting as YAML evals.
+
+version: 1
+description: Feed a full test_script suite as one orchestrated work item
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: mini-suite
+    description: >
+      Payload is a normal test_script file (directives + sources).
+      Orchestrator feeds it once; evaluate semantics stay in call_test_script.
+    sourceType: test_script
+    source: <<< tests/mini_suite.as
+    # No outer expect required if harness treats test_script result like
+    # today's orchestrated leaf (any passed:false fails the item).

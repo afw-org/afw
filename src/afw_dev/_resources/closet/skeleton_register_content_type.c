@@ -1,5 +1,5 @@
 #include "afw.h"
-#include "<afwdev {srcdir}>_generated.h"
+#include "<afwdev {srcdir}>_generated_internal.h"
 
 /* Extern for inf. */
 extern const afw_content_type_inf_t *

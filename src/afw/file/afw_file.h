@@ -49,6 +49,28 @@ afw_file_insure_full_path(const afw_utf8_t *path,
 
 
 /**
+ * @brief Resolve a logical path using application rootFilePaths.
+ * @param logical_path path as used by open_file / compile_from_file /
+ *     eval_from_file (must start with a configured rootFilePaths property
+ *     name, followed by '/' or end of string).
+ * @param p pool for the returned path.
+ * @param xctx of caller.
+ * @return absolute host filesystem path (pool-allocated).
+ *
+ * Uses longest matching prefix among rootFilePaths keys. Host directory
+ * values may be absolute or relative (relative is absolutized at resolve
+ * time). Rejects path traversal (`..`) and paths that would escape the
+ * matched root after canonicalization. Throws if rootFilePaths is missing,
+ * no prefix matches, the root directory is missing, or containment fails.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_file_path_resolve_rootFilePaths(
+    const afw_utf8_t *logical_path,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Get the factory for file adapter.
  * @return factory singleton instance.
  */

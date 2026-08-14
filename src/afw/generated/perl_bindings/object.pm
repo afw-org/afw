@@ -18,11 +18,14 @@ our @EXPORT_OK = qw(
     bag_object 
     bag_size_object 
     clone_object 
+    entries 
     eq_object 
     eqx_object 
+    freeze_object 
     ge_object 
     gt_object 
     is_object 
+    keys 
     le_object 
     local_object_meta_set_ids 
     lt_object 
@@ -35,6 +38,7 @@ our @EXPORT_OK = qw(
     property_get 
     property_is_not_null 
     to_string_object 
+    values 
 );
 
 =head1 NAME
@@ -109,6 +113,19 @@ Clone object value
 
 The object value to clone.
 
+=head3 entries
+
+Return a new array of property entries for an object. Each entry is a
+two-element array [name, value] where name is a string. Order matches keys()
+for the same object. The value may be undefined. The result is a snapshot.
+Property name and value pairs of an object
+
+=head4 Parameters
+
+    $object
+
+Object to list property entries from.
+
 =head3 eq_object
 
 Determine if object arg1 is equal to the value of arg2 converted to the data
@@ -138,6 +155,18 @@ Checks for equal and type
 
     $arg2
 
+
+=head3 freeze_object
+
+Set a object value immutable so further mutation throws. If already immutable,
+has no effect. Returns the same value.
+Make object value immutable
+
+=head4 Parameters
+
+    $value
+
+The object value to freeze.
 
 =head3 ge_object
 
@@ -177,6 +206,19 @@ Checks whether value is dataType object
     $value
 
 Value to check
+
+=head3 keys
+
+Return a new array of the property names of an object, in the object's
+property iteration order. The array is a snapshot; later changes to the object
+do not change a previous result.
+Property names of an object
+
+=head4 Parameters
+
+    $object
+
+Object to list property names from.
 
 =head3 le_object
 
@@ -261,7 +303,9 @@ Checks for not equal value or type
 
 =head3 object
 
-Converts value to data type object returning object result.
+Converts value to data type object returning object result. A string is parsed
+as JSON (or relaxed JSON) and must yield an object; an object is left
+unchanged. This is not an object-literal constructor — use { ... } for that.
 Convert to data type object
 
 =head4 Parameters
@@ -298,24 +342,28 @@ This is a reference to the object property to delete.
 
 =head3 property_exists
 
-Return true if the named property exists in an object.
-Determine if a property exists in an object
+Return true if the named property is present on the object, including when its
+value is undefined or null. False only when the key is missing. Use is_defined
+/ is_nullish for the value.
+True if a property is present on an object
 
 =head4 Parameters
 
     $object
 
-Object to get property from.
+Object to check.
 
     $name
 
-Name of property to check.
+Property name.
 
 =head3 property_get
 
-Return the value of a property of an object. If property is not available,
-return a default or null value.
-Get property value
+Return the value of a property. Optional default applies only when the
+property is missing — not when the value is undefined. If missing and no
+default is given, the result is undefined. Object/array defaults get a mutable
+memory face (issues #110 / #17); other defaults are cloned.
+Get a property value
 
 =head4 Parameters
 
@@ -325,27 +373,29 @@ Object to get property from.
 
     $name
 
-Name of property to get.
+Property name.
 
     $defaultValue
 
-The default value of property if it does not exist in object. If not
-specified, null value is the default.
+Value to return only if the property is missing. Isolated when used
+(object/array face; otherwise clone).
 
 =head3 property_is_not_null
 
-Return true if the named property exists in an object and is not null.
-Determine if a property exists in an object and is not null
+Return true if the named property is present and its value is not Adaptive
+null. Undefined counts as not null. False if the property is missing or the
+value is null. Not the same as is_defined or not is_nullish.
+True if property present and not Adaptive null
 
 =head4 Parameters
 
     $object
 
-Object to get property from.
+Object to check.
 
     $name
 
-Name of property to check.
+Property name.
 
 =head3 to_string_object
 
@@ -358,6 +408,19 @@ Converts value to string
     $value
 
 A object value.
+
+=head3 values
+
+Return a new array of the property values of an object, in the same order as
+keys() for that object. Values may be undefined if a property was set to
+undefined. The array is a snapshot.
+Property values of an object
+
+=head4 Parameters
+
+    $object
+
+Object to list property values from.
 
 =cut
 
@@ -422,6 +485,17 @@ sub clone_object {
     return $request->getResult();
 }
 
+sub entries {
+    my ($object) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "entries");
+    $request->set("object", $object);
+
+    return $request->getResult();
+}
+
 sub eq_object {
     my ($arg1, $arg2) = @_;
 
@@ -442,6 +516,17 @@ sub eqx_object {
     $request->set("function" => "eqx<object>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub freeze_object {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "freeze<object>");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -477,6 +562,17 @@ sub is_object {
 
     $request->set("function" => "is<object>");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub keys {
+    my ($object) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "keys");
+    $request->set("object", $object);
 
     return $request->getResult();
 }
@@ -625,6 +721,17 @@ sub to_string_object {
 
     $request->set("function" => "to_string<object>");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub values {
+    my ($object) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "values");
+    $request->set("object", $object);
 
     return $request->getResult();
 }

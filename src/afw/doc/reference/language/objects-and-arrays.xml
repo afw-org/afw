@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+    <title>Objects and Arrays</title>
+    <paragraph>
+        Adaptive Script uses two main structured values: <literal>object</literal>
+        (named properties) and <literal>array</literal> (ordered sequence of
+        values). Operations on them are <literal>Adaptive Functions</literal>
+        registered in the environment, not methods attached to type objects or
+        inherited through a type hierarchy. Many of those functions may also be
+        called with method-style sugar when marked as data-type methods:
+        <literal>value-&gt;function(…)</literal> (the receiver is the first
+        parameter).
+    </paragraph>
+    <paragraph>
+        Per-function signatures and details are generated under the Function
+        Reference (categories <literal>object</literal>, <literal>array</literal>,
+        <literal>higher_order_array</literal>, and polymorphic methods such as
+        <literal>freeze</literal> and <literal>length</literal>). This page is a
+        language-oriented overview of everyday object and array work, including
+        helpers added for issue #55.
+    </paragraph>
+
+    <header>Objects</header>
+    <paragraph>
+        Object values use property names and values. A property name may be an
+        identifier, a string literal, or an expression in square brackets.
+        Bracket expressions are evaluated when the object value is evaluated;
+        the result is the property name (a string). Names that are not valid
+        identifiers (for example names with spaces) use a string literal or a
+        bracket expression. The same bracket form is used for
+        <literal>obj[name]</literal> get and assignment on an existing object.
+    </paragraph>
+    <code><![CDATA[let key = "b";
+let o = {
+    a: 1,
+    "Customer Name": "hello",
+    [key]: true
+};
+o.c = true;
+assert(o.a === 1);
+assert(property_get(o, "Customer Name") === "hello");
+assert(o.b === true);
+assert(property_exists(o, "c") === true);]]></code>
+    <paragraph>
+        Core property helpers include <literal>property_get</literal>,
+        <literal>property_exists</literal>, <literal>property_delete</literal>,
+        and <literal>add_properties</literal>. Prefer
+        <literal>property_get(obj, name, default)</literal> when a missing
+        property should supply a default; built-ins that return a default
+        clone mutable defaults so callers do not share a single permanent
+        empty object or array.
+    </paragraph>
+
+    <section>
+        <header>Listing properties</header>
+        <paragraph>
+            To list an object’s properties as arrays, use:
+        </paragraph>
+        <code><![CDATA[let o = { "name": "ada", "id": 42 };
+
+keys(o);      /* ["name", "id"] — property names */
+values(o);    /* ["ada", 42] */
+entries(o);   /* [ ["name", "ada"], ["id", 42] ] */
+
+/* Method form */
+o->keys();
+o->values();
+o->entries();
+
+for (let pair of entries(o)) {
+    /* pair[0] is the name, pair[1] is the value */
+}]]></code>
+        <paragraph>
+            Each call builds a <italic>new</italic> array (a snapshot of names,
+            values, or pairs at that moment). Later changes to the object do
+            not update an earlier snapshot. Order follows the object’s property
+            iteration order.
+        </paragraph>
+        <paragraph>
+            <literal>entries</literal> returns an array of two-element arrays
+            <literal>[name, value]</literal>. That is convenient for
+            <literal>for-of</literal> and higher-order functions such as
+            <literal>map</literal> / <literal>filter</literal>.
+        </paragraph>
+    </section>
+
+    <header>Arrays</header>
+    <paragraph>
+        Arrays are ordered sequences. Literals use square brackets. Indexing is
+        zero-based. In normal script use, arrays are dense sequences of values
+        (every index from zero through length minus one holds an entry). An
+        entry may be <literal>undefined</literal>. Arrays are not objects:
+        there is no <literal>for-in</literal> over array indexes, and Adaptive
+        Script does not support the <literal>in</literal> or
+        <literal>delete</literal> keywords.
+    </paragraph>
+    <code><![CDATA[let a = [10, 20, 30];
+assert(a[0] === 10);
+assert(length(a) === 3);
+assert(at(a, -1) === 30);   /* last element */
+assert(is_nullish(at(a, 99))); /* out of range → undefined */]]></code>
+    <paragraph>
+        <literal>length</literal> (and the bag-oriented
+        <literal>bag_size</literal>) return the number of entries.
+        <literal>slice</literal>, <literal>join</literal>,
+        <literal>reverse</literal>, <literal>sort</literal>, and higher-order
+        functions such as <literal>map</literal>, <literal>filter</literal>,
+        <literal>find</literal>, and <literal>reduce</literal> are ordinary
+        Adaptive functions that take arrays as arguments (or as the receiver
+        when used as data-type methods).
+    </paragraph>
+
+    <section>
+        <header>Array literals and omitted elements</header>
+        <paragraph>
+            Between commas in an array literal you may omit a value. That
+            position still counts toward the length and holds
+            <literal>undefined</literal> (the same idea as writing
+            <literal>undefined</literal> explicitly).
+        </paragraph>
+        <code><![CDATA[let a = ["a", , "b"];
+assert(length(a) === 3);
+assert(a[0] === "a");
+assert(a[1] === undefined);
+assert(a[2] === "b");
+
+let b = ["a", undefined, "b"];
+assert(a[1] === b[1]);]]></code>
+        <paragraph>
+            A trailing comma before the closing bracket does not add an extra
+            entry: <literal>[1,]</literal> has length 1. Omitted elements in
+            array literals are allowed in Adaptive Script and in relaxed JSON.
+            Strict JSON does not allow them (JSON arrays must list a value for
+            every element).
+        </paragraph>
+        <paragraph>
+            <literal>for-of</literal> and higher-order functions such as
+            <literal>map</literal> and <literal>filter</literal> walk every
+            index from zero through length minus one, including positions whose
+            value is <literal>undefined</literal>.
+        </paragraph>
+    </section>
+
+    <section>
+        <header>Indexing with at and bracket form</header>
+        <paragraph>
+            <literal>at(array, index)</literal> returns the value at a signed
+            index. Negative indexes count from the end (<literal>-1</literal>
+            is the last element). Out of range yields
+            <literal>undefined</literal> (nullish), not an error.
+        </paragraph>
+        <code><![CDATA[let a = ["a", "b", "c"];
+assert(at(a, 0) === "a");
+assert(a->at(-1) === "c");
+assert(is_nullish(at(a, 3)));]]></code>
+        <paragraph>
+            Bracket indexing <literal>a[index]</literal> is also zero-based
+            and accepts negative indexes from the end. When the index is
+            outside the array (for example past the end), the result is
+            <literal>undefined</literal>, the same as
+            <literal>at(array, index)</literal>.
+        </paragraph>
+    </section>
+
+    <section>
+        <header>Growing and shrinking (mutable arrays)</header>
+        <paragraph>
+            These functions require a <italic>mutable</italic> array (not
+            frozen). They modify the target in place.
+        </paragraph>
+        <code><![CDATA[let a = [1];
+push(a, 2, 3);          /* [1, 2, 3]; returns a */
+assert(pop(a) === 3);   /* [1, 2] */
+unshift(a, 0);          /* [0, 1, 2] */
+assert(shift(a) === 0); /* [1, 2] */
+
+/* empty pop/shift → undefined */
+assert(is_nullish(pop([])));
+
+/* bulk append of arrays */
+let b = [];
+add_entries(b, [1, 2], [3]);]]></code>
+        <paragraph>
+            <literal>push</literal> / <literal>pop</literal> form a stack
+            (LIFO). <literal>push</literal> / <literal>shift</literal> form a
+            queue (FIFO). Method form is available, for example
+            <literal>a-&gt;push(4)</literal>, <literal>a-&gt;pop()</literal>.
+        </paragraph>
+        <paragraph>
+            Assignment to an index can also grow a mutable array by one entry
+            when the index is exactly the current length (the next free
+            index). Assignment to an existing index replaces that entry.
+            Assignment past the end (an index greater than the length) is an
+            error; Adaptive Script does not fill missing indexes with
+            <literal>undefined</literal> on assign.
+        </paragraph>
+        <code><![CDATA[let a = [];
+a[0] = "x";             /* length becomes 1 */
+a[1] = "y";             /* length becomes 2 */
+a[0] = "z";             /* replace */
+/* a[5] = "no";        → error: index is past the end */]]></code>
+        <paragraph>
+            <literal>create_array(n)</literal> creates a new mutable array of
+            length <literal>n</literal> whose entries are all
+            <literal>undefined</literal>. The length must be a non-negative
+            integer within the implementation limit documented for that
+            function in the Function Reference. Use it when you want a known
+            length up front; use <literal>push</literal> or assignment at the
+            next free index when growing as you go. This is a length-based
+            constructor, not a conversion function.
+            <literal>array(...)</literal> builds from elements (and optional
+            spread); a non-spread array argument is nested as one element.
+        </paragraph>
+        <code><![CDATA[let a = create_array(3);
+assert(length(a) === 3);
+assert(a[0] === undefined);
+a[1] = "ready";]]></code>
+        <paragraph>
+            <literal>splice(array, startIndex, deleteCount?, …values)</literal>
+            removes zero or more values starting at
+            <literal>startIndex</literal> and optionally inserts new values
+            there. It returns an array of the removed values. Negative
+            <literal>startIndex</literal> counts from the end. If
+            <literal>deleteCount</literal> is omitted, all values from the
+            start index through the end are removed.
+        </paragraph>
+        <code><![CDATA[let a = ["a", "b", "c", "d"];
+let removed = splice(a, 1, 2, "X");
+/* a is ["a", "X", "d"]; removed is ["b", "c"] */]]></code>
+    </section>
+
+    <section>
+        <header>Immutability (freeze)</header>
+        <paragraph>
+            <literal>freeze(value)</literal> makes an object or array
+            immutable so further mutation throws. Freezing an already
+            immutable value is a no-op. The same value is returned.
+        </paragraph>
+        <code><![CDATA[let a = [1, 2];
+freeze(a);
+/* push(a, 3);  → error: array is immutable */
+
+let o = { "x": 1 };
+o->freeze();
+/* o.y = 2;  → error */
+
+/* Pure reads still work */
+assert(length(keys(o)) === 1);
+assert(at(a, 0) === 1);]]></code>
+        <paragraph>
+            Script object and array literals used as defaults or shared
+            values may already be immutable in some contexts. Prefer
+            <literal>clone</literal> when you need an independent mutable
+            copy.
+        </paragraph>
+    </section>
+
+    <section>
+        <header>Testing every element or any element</header>
+        <paragraph>
+            <literal>every(predicate, array, …)</literal> and
+            <literal>some(predicate, array, …)</literal> return whether all
+            or any values pass a boolean predicate. They share the same
+            implementation family as <literal>all_of</literal> and
+            <literal>any_of</literal> (including multi-array forms). An empty
+            array yields <literal>true</literal> for <literal>every</literal>
+            and <literal>false</literal> for <literal>some</literal>.
+        </paragraph>
+        <code><![CDATA[let isEven = function (n) { return n % 2 === 0; };
+assert(every(isEven, [2, 4, 6]) === true);
+assert(some(isEven, [1, 2, 3]) === true);
+assert(every(isEven, []) === true);
+assert(some(isEven, []) === false);]]></code>
+        <paragraph>
+            Use <literal>all_of</literal> / <literal>any_of</literal> when you
+            already rely on that naming or need the wider quantifier family
+            documented under higher-order array functions.
+        </paragraph>
+    </section>
+
+    <header>for-of iteration</header>
+    <paragraph>
+        <literal>for (let x of array)</literal> walks array values in order.
+        Objects are not for-of iterable as a whole; iterate
+        <literal>keys</literal>, <literal>values</literal>, or
+        <literal>entries</literal> instead.
+    </paragraph>
+    <code><![CDATA[for (let v of [1, 2, 3]) {
+    /* v is 1, then 2, then 3 */
+}
+
+for (let name of keys(o)) {
+    /* each property name */
+}
+
+for (let pair of entries(o)) {
+    /* pair[0] name, pair[1] value */
+}]]></code>
+
+    <header>Related reference</header>
+    <paragraph>
+        Function Reference categories: <literal>object</literal>,
+        <literal>array</literal>, <literal>higher_order_array</literal>,
+        and polymorphic methods (<literal>length</literal>,
+        <literal>clone</literal>, <literal>freeze</literal>, and others).
+        See also Language Features and Qualified Variables for additional
+        language and host-context material.
+    </paragraph>
+</doc>

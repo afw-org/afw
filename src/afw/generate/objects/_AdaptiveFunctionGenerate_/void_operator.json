@@ -7,12 +7,14 @@
     "parameters": [
         {
             "brief": "Value",
-            "description": "This is the value to evaluate.",
+            "canBeUndefined": true,
+            "description": "This is the value to evaluate (including undefined). Evaluated for side effects only.",
             "name": "value"
         }
     ],
     "returns": {
         "brief": "undefined",
+        "dataType": "undefined",
         "description": "This always returns undefined."
     }
 }

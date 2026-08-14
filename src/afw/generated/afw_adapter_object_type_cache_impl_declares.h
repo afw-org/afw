@@ -73,7 +73,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_adapter_object_type_cache_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_ADAPTER_OBJECT_TYPE_CACHE_IMPL_DECLARES_H__

@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoDestroyKey",
+    "brief": "Destroy key",
+    "camelCaseFunctionLabel": "cryptoDestroyKey",
+    "category": "crypto",
+    "description": "Remove a key from the process keystore and cleanse its material. Requires execute access.",
+    "functionId": "crypto_destroy_key",
+    "functionLabel": "crypto_destroy_key",
+    "parameters": [
+        {
+            "description": "CryptoKey object with keyId.",
+            "name": "key"
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "null",
+        "description": "null"
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

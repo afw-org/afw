@@ -18,7 +18,11 @@
 
 /**
  * @file afw_stream.h
- * @brief Adaptive Framework Stream Implementation Header.
+ * @brief Open helpers and xctx stream anchors for `afw_stream`.
+ *
+ * See @ref afw_stream. Prefer these helpers and `afw_stream_*()` call macros
+ * over inventing raw I/O for response bodies. Progressive large writes use
+ * stream write paths; distinct from adapter retrieve limits/paging.
  */
 
 AFW_BEGIN_DECLARES
@@ -38,7 +42,6 @@ typedef enum {
 struct afw_stream_anchor_s {
     afw_size_t maximum_number_of_streams;
     const afw_stream_t * const *streams;
-    const afw_utf8_t *last_stream_error;
 };
 
 
@@ -89,11 +92,27 @@ afw_stream_get_streamNumber_for_streamId(
  * @brief Set an opening stream and get its streamNumber.
  * @param stream
  * @param xctx of caller.
- * @return streamNumber or -1 if failed.
+ * @return streamNumber or (afw_size_t)-1 if failed (duplicate streamId or full).
  */
 AFW_DECLARE(afw_size_t)
 afw_stream_set(
     const afw_stream_t *stream,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Clear a stream table slot after the stream is released.
+ * @param streamNumber slot to clear.
+ * @param xctx of caller.
+ *
+ * Call after afw_stream_release for custom streams so the streamId can be
+ * reused. Do not use to tear down standard streams except via internal
+ * release-all paths.
+ */
+AFW_DECLARE(void)
+afw_stream_clear_slot(
+    afw_size_t streamNumber,
     afw_xctx_t *xctx);
 
 
@@ -270,24 +289,7 @@ afw_stream_fd_open_and_create(
 
 
 
-/**
- * @internal
- * @brief Called internal to xctx to create xctx->stream_anchor.
- * @param xctx of caller.
- */
-AFW_DEFINE_INTERNAL(const afw_stream_anchor_t *)
-afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx);
-
-
-
-/**
- * @internal
- * @brief Release all xctx's streams
- * @param xctx of caller.
- */
-AFW_DEFINE_INTERNAL(void)
-afw_stream_internal_release_all_streams(afw_xctx_t *xctx);
-
+/* xctx stream anchor: afw_stream_internal_* in afw_stream_internal.h */
 
 AFW_END_DECLARES
 

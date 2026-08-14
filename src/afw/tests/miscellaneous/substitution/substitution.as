@@ -353,3 +353,85 @@ is evaluated and assigned to variable does not reevaluate
 const x:unevaluated = evaluate(app::uuidEvalTime);
 
 return x == x;
+
+//?
+//? test: compile_time_outer_local_not_visible
+//? description: Outer locals are not visible inside compile-time substitution
+//? expect: error:Parse error at offset 0 around line 1 column 1: Unknown built-in function 'outer'
+//? source: ...
+
+const outer = 42;
+return #{outer};
+
+//?
+//? test: compile_time_throw
+//? description: throw inside compile-time substitution fails at compile time
+//? expect: error:Error during compile at offset 7 around line 2 column 7: boom
+//? source: ...
+
+return #{ throw "boom"; };
+
+//?
+//? test: template_string_escape_hash
+//? description: \# suppresses #{ opener in template string
+//? expect: "#{lit}"
+//? source: ...
+
+return `\#{lit}`;
+
+//?
+//? test: template_string_escape_dollar
+//? description: \$ suppresses ${ opener in template string
+//? expect: "${lit}"
+//? source: ...
+
+return `\${lit}`;
+
+//?
+//? test: template_string_sub_still_works
+//? description: #{ and ${ still substitute in template strings
+//? expect: "ab"
+//? source: ...
+
+return `#{'a'}${'b'}`;
+
+//?
+//? test: template_string_backslash
+//? description: \\ remains a normal string escape in template strings
+//? expect: "\\"
+//? source: ...
+
+return `\\`;
+
+//?
+//? test: template_string_mixed_escape_and_sub
+//? description: Mix opener-suppress and real substitution
+//? expect: "x#{y}z"
+//? source: ...
+
+return `x\#{y}${'z'}`;
+
+//?
+//? test: compile_time_value_integer
+//? description: Bare compile-time substitution as a Value
+//? expect: 3
+//? source: ...
+
+return #{1 + 2};
+
+//?
+//? test: compile_time_nested
+//? description: Nested compile-time substitutions
+//? expect: 3
+//? source: ...
+
+return #{ return #{1 + 2;}; };
+
+//?
+//? test: eval_time_outer_local_visible
+//? description: Outer locals are visible inside evaluation-time substitution
+//? expect: 42
+//? source: ...
+
+const outer = 42;
+return `${outer}`;

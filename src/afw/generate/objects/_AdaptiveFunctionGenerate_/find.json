@@ -1,14 +1,14 @@
 {
-    "brief": "Returns the first value in an array that passes a test",
+    "brief": "First array entry that passes a test",
     "category": "higher_order_array",
-    "description": "The predicate is called for each value in the first array in values until true is returned, then that value is returned.",
+    "description": "Call predicate for each entry of the first array in values, in index order, until it returns true, then return that entry. Entries whose value is undefined are included. If no entry passes, the result is undefined (the same as a found undefined entry; use filter if you need to tell those apart).",
     "functionId": "find",
     "functionLabel": "find",
     "pure": true,
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(... values: any): boolean",
+            "dataTypeParameter": "(...values: any) => boolean",
             "description": "This is a boolean function that is called to determine if an array entry passes the test.",
             "name": "predicate"
         },
@@ -19,6 +19,6 @@
         }
     ],
     "returns": {
-        "description": "The first value that passes the test is returned."
+        "description": "The first matching entry, or undefined if none match."
     }
 }

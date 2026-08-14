@@ -1,10 +1,10 @@
 {
-    "brief": "Convert to data type dateTimeDuration",
+    "brief": "Convert to data type dayTimeDuration",
     "category": "dayTimeDuration",
     "description": "Converts value to data type dayTimeDuration returning dayTimeDuration result.",
     "errorsThrown": [
         {
-            "error": "cast_error",
+            "error": "conversion_error",
             "reason": "value could not be converted"
         }
     ],

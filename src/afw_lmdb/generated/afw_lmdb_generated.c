@@ -19,11 +19,11 @@
 
 /**
  * @file afw_lmdb_generated.c
- * @brief Adaptive Framework register generated (afw_lmdb_).
+ * @brief Generated register implementation for `afw_lmdb`.
  */
 
 #include "afw.h"
-#include "afw_lmdb_generated.h"
+#include "afw_lmdb_generated_internal.h"
 #include "afw_lmdb_version_info.h"
 
 static const afw_utf8_z_t * impl_version_info_z[] = {

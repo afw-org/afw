@@ -12,7 +12,7 @@
 
 /**
  * @file afw_ldap_metadata.h
- * @brief Adaptive Framework LDAP Metadata Header
+ * @brief LDAP schema/metadata structures and accessors.
  *
  * Internal.
  */

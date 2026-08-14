@@ -73,23 +73,50 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
     for propname in sorted(propnames):
         prop = obj[propname]
         tag_propname = propname.replace('-', '_')
+        # Permanent scalar property values go through options['const'] via
+        # get_string_label so true/false/0/1 and repeated literals share one
+        # afw_*_self_v_* (see strings.seed_from_strings_dir / strings.txt).
+        # object/array still need per-instance permanent wrappers.
+        use_shared_scalar = False
+        value_expr = None
 
         if isinstance(prop, str):
             dataType = 'string'
-            value = 'AFW_UTF8_LITERAL(' + c.make_quoted(prop) + ')'
+            use_shared_scalar = True
+            value_expr = (
+                '&' + get_string_label(options, prop, 'self_v') + '.pub')
         elif isinstance(prop, bool):
+            # JSON bool before int (bool is a subclass of int in Python).
             dataType = 'boolean'
-            if prop:
-                value = "true"
-            else:
-                value = "false"
-                v = "false"
+            use_shared_scalar = True
+            bag = 'true' if prop else 'false'
+            value_expr = (
+                '&' + get_string_label(
+                    options, bag, 'self_v', dataType='boolean') + '.pub')
         elif isinstance(prop, int):
             dataType = 'integer'
-            value = str(prop)
+            use_shared_scalar = True
+            bag = str(prop)
+            # Prefer conventional labels when first registration (after seed
+            # these match integer::zero / integer::one from strings.txt).
+            label_pref = None
+            if prop == 0:
+                label_pref = 'zero'
+            elif prop == 1:
+                label_pref = 'one'
+            value_expr = (
+                '&' + get_string_label(
+                    options, bag, 'self_v', dataType='integer',
+                    labelPreference=label_pref) + '.pub')
         elif isinstance(prop, float):
             dataType = 'double'
-            value = str(prop)
+            use_shared_scalar = True
+            # C initializer text stored in the bag; must match a strings.txt
+            # double:: value text to share that permanent (e.g. 1.0e1).
+            bag = str(prop)
+            value_expr = (
+                '&' + get_string_label(
+                    options, bag, 'self_v', dataType='double') + '.pub')
         elif isinstance(prop, list):
             dataType = 'array'
             elementType = 'string'
@@ -117,10 +144,10 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
             fd.write('\nstatic const afw_value_array_t\n')
             fd.write(value_label + ';\n')
 
-            fd.write('\nstatic const afw_array_wrapper_for_array_self_t\n')
+            fd.write('\nstatic const afw_array_view_of_c_array_self_t\n')
             fd.write(label + ' = {\n')
             fd.write('    {\n')
-            fd.write('        &afw_array_wrapper_for_array_inf,\n')
+            fd.write('        &afw_array_view_of_c_array_inf,\n')
             fd.write('        NULL,\n')
             fd.write('        (const afw_value_t *)&' + value_label +'\n')
             fd.write('    },\n')
@@ -144,15 +171,23 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
             fd.write('    (const afw_array_t *)&' + label +'\n')
             fd.write('};\n')
 
-            value = '(const afw_array_t *)&' + obj['_meta_']['_label_'] + '_list_' + tag_propname
+            value_expr = (
+                '&' + obj['_meta_']['_label_'] +
+                '_property_value_' + tag_propname + '.pub')
+            value = (
+                '(const afw_array_t *)&' + obj['_meta_']['_label_'] +
+                '_list_' + tag_propname)
         elif isinstance(prop, dict):
             dataType = 'object'
+            value_expr = (
+                '&' + obj['_meta_']['_label_'] +
+                '_property_value_' + tag_propname + '.pub')
             value = '(const afw_object_t *)&' + prop['_meta_']['_label_']
         else:
             fd.write('Error>>>\n')
             return
 
-        if dataType != 'string':
+        if not use_shared_scalar:
             fd.write('\nstatic const afw_value_' + dataType + '_t\n' +
                 obj['_meta_']['_label_'] + '_property_value_' + tag_propname + ' = {\n')
             fd.write('    {&afw_value_permanent_' + dataType + '_inf},\n')
@@ -166,10 +201,7 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
         else:
             fd.write('    ' + s_ + propname + ',\n')
 
-        if dataType == 'string':
-            fd.write('    &' + get_string_label(options, prop, 'self_v') + '.pub\n')
-        else:
-            fd.write('    &' + obj['_meta_']['_label_'] + '_property_value_' + tag_propname + '.pub\n')
+        fd.write('    ' + value_expr + '\n')
         fd.write('};\n')
 
     fd.write('\nstatic const afw_runtime_property_t *\n')
@@ -193,9 +225,9 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
             comma = ',\n'
         fd.write('\n};\n')
 
-        fd.write('\nstatic const afw_array_wrapper_for_array_self_t\n')
+        fd.write('\nstatic const afw_array_view_of_c_array_self_t\n')
         fd.write(meta.get('_label_') + '_parentPaths_list = {\n')
-        fd.write('    { &afw_array_wrapper_for_array_inf, NULL, NULL },\n')
+        fd.write('    { &afw_array_view_of_c_array_inf, NULL, NULL },\n')
         fd.write('    &afw_data_type_anyURI_direct,\n')
         fd.write('    sizeof(' +  meta.get('_label_') + '_parentPaths_array) / sizeof(afw_utf8_t),\n')
         fd.write('    (const void *)&' + meta.get('_label_') + '_parentPaths_array\n')
@@ -325,18 +357,25 @@ def generate(generated_by, prefix, object_dir_path,
             list += direct.retrieve_objects_direct(path)           
     list.sort(key=sort_use_id_cb)
 
-    filename = prefix + 'const_objects.h'
+    # Register API only; not public. Name matches install *_internal.h filter.
+    filename = prefix + 'const_objects_internal.h'
 
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
 
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Builtin Objects Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework builtin objects header.')
+        c.write_h_prologue(
+            fd, generated_by,
+            'Adaptive Framework Builtin Objects Header (internal)', copyright,
+            filename)
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Internal header for builtin const adaptive object register '
+            '(not public C API).')
         fd.write('\n#include "afw_interface.h"\n')
         fd.write('\n\n/**\n')
-        fd.write(' * @brief Get array of ' + prefix + ' const objects. \n')
+        fd.write(' * @brief Register ' + prefix + ' const objects (package/core init).\n')
         fd.write(' */\n')
         fd.write('void\n')
         fd.write(prefix + 'const_objects_register(afw_xctx_t *xctx);\n')
@@ -346,11 +385,17 @@ def generate(generated_by, prefix, object_dir_path,
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_c_prologue(fd, generated_by, 'Adaptive Framework Const', copyright)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework builtin objects.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated builtin const adaptive objects.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
-        fd.write('#include "' + prefix + 'generated.h"\n')
+        # Core zz__* string permanents (property values, prose) for const objects.
+        if options.get('core'):
+            fd.write('#include "' + prefix + 'strings_internal.h"\n')
+        fd.write('#include "' + prefix + 'generated_internal.h"\n')
         fd.write('\n')
+
 
         for obj in list:
             obj['_meta_']['_label_'] = new_label()           

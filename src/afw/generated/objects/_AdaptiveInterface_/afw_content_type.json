@@ -1,4 +1,4 @@
 {
     "name": "afw_content_type",
-    "description": "Adaptive Content Type."
+    "description": "Serialization between adaptive values and media-typed bytes (JSON,\n      YAML, UBJSON, …). Core registers JSON; extensions add others via\n      environment registration. Selected by content-type / conf for\n      request and response bodies. Call methods via\n      afw_content_type_*() macros. See group afw_content_type and\n      afwdev add-content-type for implementers."
 }

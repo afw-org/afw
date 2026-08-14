@@ -8,7 +8,7 @@
 
 /**
  * @file afw_yaml.c
- * @brief YAML Miscellaneous Functions.
+ * @brief YAML content-type support and miscellaneous helpers.
  */
 
 #include "afw.h"
@@ -50,7 +50,7 @@ static const afw_memory_t impl_raw_last_object_separator = {
 /* Raw end object list. */
 static const afw_memory_t impl_raw_end_object_list = {
     (const afw_byte_t *)"]\n",
-    sizeof("[\n") - 1
+    sizeof("]\n") - 1
 };
 
 /* Content type singleton instance for this implementation. */
@@ -73,12 +73,10 @@ extern void afw_yaml_internal_write_value(
 
 
 /**
- * @brief Get the content type instance for FIXME.
+ * @brief Get the YAML content type singleton.
  *
- * Call this from extension impl_initialize() function
- * as parameter to afw_content_type_register() function.
- *
- * afw_content_type_register(afw_yaml_content_type_get(), xctx);
+ * Call from extension impl_initialize() via afw_yaml_register(), which
+ * registers this instance with the environment.
  */
 const afw_content_type_t *
 afw_yaml_content_type_get()
@@ -88,7 +86,7 @@ afw_yaml_content_type_get()
 
 
 
-/* Register xml support. */
+/* Register yaml content-type support. */
 void afw_yaml_register(afw_xctx_t *xctx)
 {
     afw_content_type_register(afw_yaml_content_type_get(), xctx);
@@ -104,7 +102,7 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
  */
 const afw_extension_t *
 impl_afw_extension_initialize(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -120,7 +118,7 @@ impl_afw_extension_initialize(
     /* Call the register function for this extension. */
     afw_yaml_register(xctx);
 
-    /* Return extension instance. */
+    /* Return extension self. */
     return &impl_extension;
 }
 
@@ -130,7 +128,7 @@ impl_afw_extension_initialize(
  */
 void
 impl_afw_extension_release(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     afw_xctx_t *xctx)
 {
 }
@@ -149,9 +147,13 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
     /* Add characters to array with proper escaping. */
     for (c = s; *c; c++) {
 
-        /* If control character, use \u00xx escape. */
-        if (*c < 32) {
-            u = apr_psprintf(afw_pool_get_apr_pool(xctx->p), "\\u%02x", *c);
+        /*
+         * ASCII controls only — cast unsigned so UTF-8 multi-byte octets are
+         * not misclassified when char is signed.
+         */
+        if ((unsigned char)*c < 32) {
+            u = apr_psprintf(afw_pool_get_apr_pool(xctx->p), "\\u%02x",
+                (unsigned char)*c);
             while (*u) {
                 APR_ARRAY_PUSH(a, char) = *u;
                 u++;
@@ -159,7 +161,7 @@ static const afw_utf8_z_t * impl_u8z_to_yaml(
         }
 
         /*
-         * If not control char, add char to array.
+         * If not control char, add char to array (includes UTF-8 octets).
          */
         else {
             APR_ARRAY_PUSH(a, char) = *c;
@@ -206,7 +208,7 @@ const afw_utf8_t * afw_yaml_from_error(afw_xctx_t *xctx)
  */
 const afw_value_t *
 impl_afw_content_type_raw_to_value(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_pool_t * p,
@@ -222,7 +224,7 @@ impl_afw_content_type_raw_to_value(
  */
 const afw_object_t *
 impl_afw_content_type_raw_to_object (
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
     const afw_utf8_t * adapter_id,
@@ -243,7 +245,7 @@ impl_afw_content_type_raw_to_object (
  */
 void
 impl_afw_content_type_write_value(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_value_t * value,
     const afw_object_options_t *options,
     void * context,
@@ -261,14 +263,14 @@ impl_afw_content_type_write_value(
  */
 const afw_content_type_object_list_writer_t *
 impl_afw_content_type_create_object_list_writer(
-    const afw_content_type_t * instance,
+    const afw_content_type_t * self,
     const afw_object_options_t *options,
     void * context,
     afw_write_cb_t callback,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return afw_content_type_impl_create_object_list_writer(
-        instance, options, context, callback,
+        self, options, context, callback,
         &impl_raw_begin_object_list,
         &impl_raw_object_separator,
         &impl_raw_last_object_separator,

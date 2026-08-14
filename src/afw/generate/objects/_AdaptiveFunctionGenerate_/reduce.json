@@ -1,19 +1,19 @@
 {
-    "brief": "Reduce values of an array to a single value",
+    "brief": "Reduce array entries to a single value",
     "category": "higher_order_array",
-    "description": "Reduce calls functor for each value in array with two parameters, accumulator and value, and must return a value of any dataType. Parameter accumulator is the reduce() accumulator parameter value on first call and the return value of previous functor() call on subsequent calls. The dataType of the return value should normally be the same as accumulator, but this is not required.",
+    "description": "Call functor for each entry of array, in index order, with the current accumulator and that entry. The first call uses the accumulator argument; each later call uses the previous return value. Every index is visited, including undefined entries. If array is empty, the accumulator argument is returned without calling functor.",
     "functionId": "reduce",
     "functionLabel": "reduce",
     "pure": true,
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(accumulator: any, value: any): any",
+            "dataTypeParameter": "(accumulator: any, value: any) => any",
             "description": "This function is called for each value in an array. The returned value is passed as the accumulator parameter on the next call to functor().",
             "name": "functor"
         },
         {
-            "description": "This is an initial accumulator value passed to functor(). Normally, the dataType of accumulator will be the dataTape for the reduce() return value, but this is not required.",
+            "description": "This is an initial accumulator value passed to functor(). Normally, the dataType of accumulator will be the data type for the reduce() return value, but this is not required.",
             "name": "accumulator"
         },
         {
@@ -23,6 +23,6 @@
         }
     ],
     "returns": {
-        "description": "This is the final return value from functor() or the accumulator parameter value if array is empty."
+        "description": "The final value returned by functor, or the initial accumulator if array is empty."
     }
 }

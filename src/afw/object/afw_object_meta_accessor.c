@@ -27,6 +27,7 @@
 
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "afw_object_meta_accessor"
+#define AFW_OBJECT_SELF_T afw_object_internal_meta_accessor_self_t
 #include "afw_object_impl_declares.h"
 
 
@@ -40,7 +41,7 @@ afw_object_meta_create_accessor_with_options(
     afw_xctx_t *xctx)
 {
     afw_object_internal_meta_accessor_self_t *self;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
 
     /* If instance of this implementation with no meta, return NULL. */
@@ -64,7 +65,7 @@ afw_object_meta_create_accessor_with_options(
 
     /* If there are no properties to return, return NULL. */
     iterator = NULL;
-    if (!impl_afw_object_get_next_property((afw_object_t *)self,
+    if (!impl_afw_object_get_next_property(self,
         &iterator, &property_name, xctx))
     {
         return NULL;
@@ -81,7 +82,7 @@ afw_object_meta_create_accessor_with_options(
  */
 void
 impl_afw_object_release(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -94,7 +95,7 @@ impl_afw_object_release(
  */
 void
 impl_afw_object_get_reference(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is no intent to implement this method. */
@@ -106,11 +107,11 @@ impl_afw_object_get_reference(
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)&self->pub;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -123,7 +124,7 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
@@ -138,13 +139,11 @@ impl_afw_object_get_property(
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t *instance,
-    const afw_iterator_t **iterator,
+    AFW_OBJECT_SELF_T *self,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_internal_meta_accessor_self_t *self =
-        (afw_object_internal_meta_accessor_self_t *)instance;
     const afw_pool_t *p = self->pub.p;
     const afw_value_t *result = NULL;
     const afw_utf8_t *s;
@@ -316,7 +315,7 @@ return_result:
  */
 afw_boolean_t
 impl_afw_object_has_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
@@ -331,7 +330,7 @@ impl_afw_object_has_property(
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* There is no intent to implement this method. */

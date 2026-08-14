@@ -1,4 +1,4 @@
 {
     "name": "afw_service_type",
-    "description": "Adaptive framework service type interface. Each instance is registered in the environment with type of \"service_type\" and id of the service type id."
+    "description": "Service type registration: how conf starts a class of long-running\n      components (adapters, logs, handlers, …). Each instance is registered\n      in the environment under type \"service_type\". Call methods via\n      afw_service_type_*() macros. See group afw_service."
 }

@@ -153,15 +153,17 @@ afw_adapter_get_reference(
 
     instance = impl_get_reference(adapter_id, xctx);
 
-    /* If adapter is not registered, try starting it. */
+    /* If adapter is not registered, try starting it when conf exists. */
     if (!instance) {
-        service_id = afw_utf8_concat(xctx->p, xctx,
-            afw_s_adapter, afw_s_a_dash,
-            adapter_id, NULL);
-        afw_service_start(service_id, false, xctx);
-        instance = impl_get_reference(adapter_id, xctx);
+        if (xctx->env->conf_adapter) {
+            service_id = afw_utf8_concat(xctx->p, xctx,
+                afw_s_adapter, afw_s_a_dash,
+                adapter_id, NULL);
+            afw_service_start(service_id, false, xctx);
+            instance = impl_get_reference(adapter_id, xctx);
+        }
         if (!instance) {
-            AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_THROW_ERROR_FZ(not_found, xctx,
                 "Adapter " AFW_UTF8_FMT_Q
                 " is not available",
                 AFW_UTF8_FMT_ARG(adapter_id));
@@ -599,14 +601,12 @@ afw_adapter_internal_register_afw_adapter(afw_xctx_t *xctx)
 
     p = afw_pool_create(xctx->env->p, xctx);
     conf = afw_object_create_unmanaged(p, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_type, afw_s_adapter, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_adapterType, afw_s_afw_runtime, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_adapterId, afw_s_afw, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_sourceLocation, afw_s_a_Core_afw_adapter, xctx);
+    afw_object_set_property(conf, afw_s_type, afw_v_adapter, xctx);
+    afw_object_set_property(conf,
+        afw_s_adapterType, afw_v_afw_runtime, xctx);
+    afw_object_set_property(conf, afw_s_adapterId, afw_v_afw, xctx);
+    afw_object_set_property(conf, afw_s_sourceLocation,
+        afw_v_a_Core_afw_adapter, xctx);
     afw_adapter_internal_conf_type_create_cede_p(afw_s_adapter,
         conf, afw_s_a_Core_afw_adapter, p, xctx);
 }
@@ -723,7 +723,7 @@ afw_adapter_internal_register_service_type(afw_xctx_t *xctx)
  */
 afw_integer_t
 impl_afw_service_type_related_instance_count (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
@@ -762,7 +762,7 @@ impl_afw_service_type_related_instance_count (
  */
 void
 impl_afw_service_type_start_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -802,7 +802,7 @@ impl_afw_service_type_start_cede_p (
  */
 void
 impl_afw_service_type_stop (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
@@ -816,11 +816,11 @@ impl_afw_service_type_stop (
  */
 void
 impl_afw_service_type_restart_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     /* Count on already running. Start will restart if necessary. */
-    impl_afw_service_type_start_cede_p(instance, properties, p, xctx);
+    impl_afw_service_type_start_cede_p(self, properties, p, xctx);
 }

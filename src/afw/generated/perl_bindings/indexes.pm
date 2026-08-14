@@ -43,15 +43,20 @@ Name of the property index to be created.
 
     $value
 
-Expression to calculate the index value(s).
+Adaptive script (expression-like; must return a value) used to calculate the
+index value(s). While evaluating, current::object, current::objectId,
+current::objectType, and current::key are available (issue #54). If omitted,
+the property named by key is indexed.
 
     $objectType
 
-Object Type(s) this index may apply to.
+Object type id(s) this index may apply to.
 
     $filter
 
-Expression to determine if this index applies to a particular object.
+Adaptive script that must return a boolean to decide whether this index
+applies to a particular object. Uses the same current:: variables as value
+(issue #54). If omitted, the filter is always true.
 
     $options
 

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_model_compile.c
- * @brief Adaptive Framework Model Compile
+ * @brief Compile model on* expressions and property defaults.
  */
 
 #include "afw_internal.h"
@@ -45,7 +45,7 @@ impl_compile_custom(
     afw_xctx_t *xctx)
 {
     const afw_object_t *result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *s;
     const afw_value_t *value;
@@ -394,7 +394,7 @@ impl_harvest_object_type(
     const afw_object_t *property_types;
     const afw_object_t *propertyTypes;
     const afw_utf8_t *property_name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_array_t *from_parent_paths;
     afw_value_array_t *to_parent_paths;
     const afw_utf8_t *path;
@@ -592,7 +592,7 @@ impl_object_type_compile(
     const afw_pool_t *p = model->p;
     afw_model_object_type_t *ot;
     const afw_object_t *properties;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *pt_object;
     const afw_model_property_type_t * *pt;
     const afw_utf8_t *property_name;
@@ -784,7 +784,7 @@ afw_model_compile(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     const afw_object_t *objectTypes;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *object_type;
     const afw_model_object_type_t *model_object_type;
     const afw_utf8_t *property_name;

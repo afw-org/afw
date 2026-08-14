@@ -19,7 +19,7 @@
 
 /**
  * @file afw_data_type_object_binding.c
- * @brief Adaptive Framework core data types.
+ * @brief Generated core adaptive data type implementations.
  */
 
 #include "afw.h"
@@ -75,8 +75,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_object_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for object values. For this one */
-/* optional_release is NULL and get_reference returns new reference. */
+/* unmanaged object: optional_release NULL; */
+/* clone_or_reference returns the same instance (pool lifetime). */
 #define AFW_IMPLEMENTATION_ID "object"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_object_inf
@@ -90,8 +90,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed object values. For this one */
-/* optional_release releases value and get_reference returns new reference. */
+/* managed object: optional_release frees header at RC 0; */
+/* clone_or_reference bumps RC and returns the same instance. */
 #define AFW_IMPLEMENTATION_ID "managed_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_object_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -105,8 +105,8 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent object values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent object: optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_object"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_object_inf
 #define impl_afw_value_optional_release NULL
@@ -163,15 +163,15 @@ impl_data_type_object_object__value = {
 };
 
 /* Value for empty array of object. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_object;
 
 /* Value for empty array of object. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_object;
 
 /* Data type object instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_object_direct = {
     &afw_data_type_object_inf,
     (const afw_object_t *)&impl_data_type_object_object,
@@ -194,14 +194,15 @@ afw_data_type_object_direct = {
     true,
     false,
     false,
-    false
+    false,
+    NULL
 };
 
 /* Value for empty array of object. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_object = {
     {
-        &afw_array_wrapper_for_array_inf,
+        &afw_array_view_of_c_array_inf,
         NULL,
         (const afw_value_t *)&impl_value_empty_array_of_object
     },
@@ -210,7 +211,7 @@ impl_empty_array_of_object = {
 };
 
 /* Value for empty array of object. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_object = {
     {&afw_value_permanent_array_inf},
     (const afw_array_t *)&impl_empty_array_of_object
@@ -286,10 +287,18 @@ afw_value_create_managed_object(
 {
     afw_value_object_managed_t *v;
 
+    if (!internal) {
+        AFW_THROW_ERROR_Z(general,
+            "internal object required for "
+            "managed object value",
+            xctx);
+    }
+    afw_object_get_reference(internal, xctx);
     v = afw_xctx_malloc(
         sizeof(afw_value_object_managed_t), xctx);
     v->inf = &afw_value_managed_object_inf;
     v->internal = internal;
+    /* Container hold is on object/array, not value RC. */
     v->reference_count = 0;
 
     return &v->pub;
@@ -364,7 +373,7 @@ afw_object_get_property_as_object_source(
 AFW_DEFINE(const afw_object_t *)
 afw_object_get_next_property_as_object_source(
     const afw_object_t *object,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_t * *property_name,
     const afw_utf8_z_t *source_z,
     const afw_pool_t *p,
@@ -398,15 +407,29 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_value_object_managed_t *self =
-        (afw_value_object_managed_t *)instance;
+    const afw_value_object_t *self =
+        (const afw_value_object_t *)instance;
+    const afw_object_t *obj = self->internal;
+    afw_boolean_t embedded;
 
-    /* Create starts at 0; get_reference increments. Free only at 0. */
-    if (self->reference_count == 0) {
-        afw_pool_free_memory((void *)instance, xctx);
+    /* Embedded when instance is the object's dual face. */
+    embedded = (obj && obj->value == instance);
+
+    if (obj) {
+        /* Paired with managed clone_or_reference. */
+        afw_object_release(obj, xctx);
     }
-    else {
-        self->reference_count--;
+
+    /* Free only heap wrappers; dual face has no freeable header. */
+    if (!embedded) {
+        afw_value_object_managed_t *managed =
+            (afw_value_object_managed_t *)instance;
+        if (managed->reference_count == 0) {
+            afw_pool_free_memory((void *)instance, xctx);
+        }
+        else {
+            managed->reference_count--;
+        }
     }
 }
 
@@ -417,7 +440,7 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* No reference counting takes place for unmanaged value. */
+    /* Unmanaged: return same instance (pool owns storage). */
     return instance;
 }
 
@@ -429,11 +452,22 @@ impl_afw_value_managed_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_object_managed_t *self =
-        (afw_value_object_managed_t *)instance;
+    const afw_value_object_t *self =
+        (const afw_value_object_t *)instance;
+    const afw_object_t *obj = self->internal;
+    afw_boolean_t embedded;
 
-    /* Increment reference count and return instance. */
-    self->reference_count++;
+    /* Hold is on the object (pool/entity RC). */
+    if (obj) {
+        afw_object_get_reference(obj, xctx);
+    }
+
+    /* Heap wrappers: bump value RC so optional_release frees once. */
+    embedded = (obj && obj->value == instance);
+    if (!embedded) {
+        ((afw_value_object_managed_t *)instance)->
+            reference_count++;
+    }
     return instance;
 }
 
@@ -445,7 +479,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 
@@ -511,7 +545,7 @@ impl_afw_value_get_info(
 AFW_DEFINE(const afw_object_t *)
 afw_array_of_object_get_next_source(
     const afw_array_t *instance,
-    const afw_iterator_t * *iterator,
+    const afw_iterator_old_t * *iterator,
     const afw_utf8_z_t *source_z,
     afw_xctx_t *xctx)
 {
@@ -551,7 +585,7 @@ afw_array_of_object_add(
     }
 
     internal = value;
-    afw_array_setter_add_internal(setter, 
+    afw_array_setter_push_internal(setter, 
         afw_data_type_object,
         (const void *)&internal, xctx);
 }

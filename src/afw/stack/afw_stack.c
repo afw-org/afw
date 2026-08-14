@@ -9,7 +9,7 @@
 
 /**
  * @file afw_stack.c
- * @brief stack support
+ * @brief Growable stack implementation used by compiler and runtime.
  */
 
 #include "afw_internal.h"
@@ -27,7 +27,7 @@ typedef struct impl_stack_self_s {
 
 
 /* Create a stack during xctx creation. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_stack_internal_set_qualifier_stack(
     afw_xctx_t *xctx)
 {
@@ -68,7 +68,7 @@ afw_stack_internal_set_qualifier_stack(
 
 
 /* Create a stack during xctx creation. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_stack_internal_set_evaluation_stack(
     afw_xctx_t *xctx)
 {

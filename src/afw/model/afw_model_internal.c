@@ -9,7 +9,7 @@
 
 /**
  * @file afw_model_internal.c
- * @brief Adaptive Framework model support
+ * @brief Internal model map and object-type resolution.
  */
 
 #include "afw_internal.h"

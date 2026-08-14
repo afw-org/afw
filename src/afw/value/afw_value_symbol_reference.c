@@ -27,6 +27,7 @@
 #define AFW_IMPLEMENTATION_ID "symbol_reference"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_symbol_reference_inf
+#define AFW_VALUE_SELF_T afw_value_symbol_reference_t
 #include "afw_value_impl_declares.h"
 
 
@@ -45,7 +46,10 @@ afw_value_symbol_reference_create(
     self->inf = &afw_value_symbol_reference_inf;
     self->contextual = contextual;
     self->symbol = symbol;
-    self->evaluated_data_type = symbol->type.data_type;
+    self->evaluated_data_type =
+        (symbol->type.kind == afw_value_type_kind_data_type)
+        ? symbol->type.data_type
+        : NULL;
 
     /** @fixme add optimization. Check type. Maybe replace evaluated_data_type*/
     self->optimized_value = (const afw_value_t *)self;
@@ -60,17 +64,15 @@ afw_value_symbol_reference_create(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_symbol_reference_t *self =
-        (const afw_value_symbol_reference_t *)instance;
     const afw_value_t *result;
     const afw_compile_value_contextual_t *saved_contextual;
 
     /* Push value on evaluation stack. */
-    afw_xctx_evaluation_stack_push_value(instance, xctx);
+    afw_xctx_evaluation_stack_push_value(&self->pub, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
@@ -88,11 +90,9 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    const afw_value_symbol_reference_t *self =
-        (const afw_value_symbol_reference_t *)instance;
 
     return self->evaluated_data_type;
 }
@@ -103,16 +103,14 @@ impl_afw_value_get_data_type(
  */
 const afw_value_t *
 impl_afw_value_get_evaluated_meta(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_symbol_reference_t *self =
-        (const afw_value_symbol_reference_t *)instance;
     afw_value_meta_object_self_t *meta;
 
     meta = afw_value_internal_create_meta_object_self(
-        instance, p, xctx);
+        &self->pub, p, xctx);
     meta->key = self->symbol->name;
     if (afw_value_is_object(meta->evaluated_value)) {
         meta->additional =
@@ -128,14 +126,12 @@ impl_afw_value_get_evaluated_meta(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_symbol_reference_t *self =
-        (const afw_value_symbol_reference_t *)instance;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer, " ", xctx);
     afw_writer_write_utf8(writer,
@@ -160,12 +156,10 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_symbol_reference_t *self =
-        (const afw_value_symbol_reference_t *)instance;
 
     afw_writer_write_utf8(writer, self->symbol->name, xctx);
 }
@@ -176,16 +170,14 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_symbol_reference_t *self =
-        (const afw_value_symbol_reference_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->evaluated_data_type = self->evaluated_data_type;
     info->optimized_value = self->optimized_value;

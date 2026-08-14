@@ -16,7 +16,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AdaptiveA"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 0);
@@ -40,12 +40,12 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AdaptiveAdapter_"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 0);
 
-const found = false;
+let found = false;
 
 // verify they all match
 for (const obj of objects) {
@@ -71,7 +71,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AdaptiveZZ"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) === 0);
@@ -90,7 +90,7 @@ const objects = retrieve_objects("afw", "_AdaptiveFunction_", {
         "property": "numberOfRequiredParameters",
         "value": 0
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 0);

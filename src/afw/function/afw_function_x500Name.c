@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_x500Name.c
- * @brief afw_function_execute_* functions for x500Name.
+ * @brief Adaptive function execute implementations for category `x500Name`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_match_x500Name
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
  * compared using equal_x500Name.

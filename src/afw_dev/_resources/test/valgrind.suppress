@@ -78,3 +78,31 @@
    obj:/usr/lib64/libunwind.so.8.0.1
    fun:_ULx86_64_step
 }
+#
+# OpenSSL 3.x AES-GCM assembly (AES-NI / optimized GHASH) uses internal
+# state that Memcheck reports as uninitialised inside EVP_DecryptFinal_ex.
+# Confirmed false positive for AFW call sites: OPENSSL_ia32cap=0 (no asm)
+# yields 0 errors on the same afw_crypto tests; with default asm, Cond
+# fires only in libcrypto.so under DecryptFinal. Related work: issue #74 /
+# designs/secrets-and-afw-crypto.md (afw_crypto extension).
+#
+{
+   openssl3_aes_gcm_EVP_DecryptFinal_ex_via_afw_crypto_decrypt
+   Memcheck:Cond
+   obj:*/libcrypto.so*
+   obj:*/libcrypto.so*
+   fun:EVP_DecryptFinal_ex
+   fun:afw_crypto_function_execute_crypto_decrypt
+   fun:afw_function_execute_requiresExecuteAccess_wrapper
+   ...
+}
+{
+   openssl3_aes_gcm_EVP_DecryptFinal_ex_via_afw_crypto_unseal
+   Memcheck:Cond
+   obj:*/libcrypto.so*
+   obj:*/libcrypto.so*
+   fun:EVP_DecryptFinal_ex
+   fun:afw_crypto_function_execute_crypto_unseal
+   fun:afw_function_execute_requiresExecuteAccess_wrapper
+   ...
+}

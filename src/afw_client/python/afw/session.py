@@ -49,40 +49,38 @@ class Session(object):
 
             args = shlex.split(command)
 
-            # open local session through a subprocess, forwarding stdout/stderr
+            # open local session through a subprocess, forwarding stdout/stderr.
+            # stdin is binary: local protocol lengths are UTF-8 octet counts.
             self._localSession = subprocess.Popen(
-                args, stdin=subprocess.PIPE, stdout=stdout, 
-                stderr=stderr, bufsize=1, encoding='utf-8')
+                args, stdin=subprocess.PIPE, stdout=stdout,
+                stderr=stderr, bufsize=0)
 
             # make sure it is running
             if self._localSession.poll() is None:
                 #FIXME Temporary fix to allow afw time to start up, but this
                 # needs to be fixed in a better way.
                 time.sleep(1.0)
-                self._fifo = open(self._filename, "r")
+                # Binary FIFO: length prefixes are octet counts (see
+                # afw_command_local.md). Text mode read(n) counts characters
+                # and deadlocks when JSON bodies contain multi-byte UTF-8.
+                self._fifo = open(self._filename, "rb", buffering=0)
 
             # read the version information and any preliminary text output
             # FIXME verify version
-            bytes = int(self._fifo.readline())
-            while bytes < 0:
-                # skip passed stderr (negative bytes)
-                err = self._fifo.read(bytes * -1)
-                # write it directly to stderr
-                sys.stderr.write(err)
+            nbytes = self._read_local_length()
+            while nbytes < 0:
+                # skip past stderr (negative lengths)
+                err = self._fifo.read(-nbytes)
+                sys.stderr.write(err.decode("utf-8", errors="replace"))
+                nbytes = self._read_local_length()
 
-                bytes = int(self._fifo.readline())
-
-            while bytes != 0:
-                self._fifo.read(bytes)
-                bytes = int(self._fifo.readline())                
-                while bytes < 0:
-                    # skip passed stderr (negative bytes)
-                    err = self._fifo.read(bytes * -1)
-                    # write it directly to stderr
-                    sys.stderr.write(err)
-
-                    bytes = int(self._fifo.readline())
-
+            while nbytes != 0:
+                self._fifo.read(nbytes)
+                nbytes = self._read_local_length()
+                while nbytes < 0:
+                    err = self._fifo.read(-nbytes)
+                    sys.stderr.write(err.decode("utf-8", errors="replace"))
+                    nbytes = self._read_local_length()
         else:
             # use the requests Session interface for efficiency
             self._httpSession = requests.Session()
@@ -95,6 +93,50 @@ class Session(object):
             self._httpSession.verify  = self._config_vars.get('verify')
             self._httpSession.cert    = self._config_vars.get('cert')
             self._httpSession.timeout = self._config_vars.get('timeout')
+
+    def _read_local_length(self):
+        """Read a local-mode length line (digits + newline) as an int.
+
+        Protocol lengths are UTF-8 octet counts (afw_command_local.md).
+        """
+        buf = bytearray()
+        while True:
+            b = self._fifo.read(1)
+            if not b:
+                raise EOFError("afw local mode FIFO closed while reading length")
+            if b == b"\n":
+                break
+            buf.extend(b)
+        return int(buf.decode("ascii"))
+
+    def _read_exact(self, nbytes):
+        """Read exactly nbytes from the FIFO (raw read may return short)."""
+        if nbytes == 0:
+            return b""
+        parts = []
+        remaining = nbytes
+        while remaining > 0:
+            chunk = self._fifo.read(remaining)
+            if not chunk:
+                got = nbytes - remaining
+                raise EOFError(
+                    "afw local mode FIFO closed during chunk "
+                    "(wanted %d octets, got %d)" % (nbytes, got))
+            parts.append(chunk)
+            remaining -= len(chunk)
+        return b"".join(parts)
+
+    def _read_local_chunk(self):
+        """Read one length-prefixed chunk; return (length, payload_bytes).
+
+        length 0 ends a segment; negative length is a stderr chunk.
+        """
+        nbytes = self._read_local_length()
+        if nbytes == 0:
+            return 0, b""
+        if nbytes < 0:
+            return nbytes, self._read_exact(-nbytes)
+        return nbytes, self._read_exact(nbytes)
 
     def set(self, name, prop):
 
@@ -111,15 +153,50 @@ class Session(object):
         
         if self._url == 'local':
             if self._fifo:
-                # close the named pipe
-                self._fifo.close()
+                # close the named pipe (reader side) so afw sees EOF
+                try:
+                    self._fifo.close()
+                except Exception:
+                    pass
+                self._fifo = None
 
-            # wait for process to exit
+            # Reap the local afw process. Under heavy parallel load (e.g.
+            # afwdev test --env-mode valgrind -j) terminate+wait with no
+            # timeout has been observed to hang the entire test pool.
             if self._localSession:
-                self._localSession.terminate()
-                self._localSession.wait()
+                proc = self._localSession
+                self._localSession = None
+                try:
+                    if proc.stdin:
+                        try:
+                            proc.stdin.close()
+                        except Exception:
+                            pass
+                    if proc.poll() is None:
+                        proc.terminate()
+                        try:
+                            proc.wait(timeout=5.0)
+                        except subprocess.TimeoutExpired:
+                            proc.kill()
+                            try:
+                                proc.wait(timeout=2.0)
+                            except subprocess.TimeoutExpired:
+                                pass
+                except Exception:
+                    try:
+                        if proc.poll() is None:
+                            proc.kill()
+                    except Exception:
+                        pass
 
-            if os.path.exists(self._filename):
-                os.remove(self._filename)
-                os.rmdir(self._tmpdir)
+            if self._filename and os.path.exists(self._filename):
+                try:
+                    os.remove(self._filename)
+                except OSError:
+                    pass
+            if self._tmpdir and os.path.isdir(self._tmpdir):
+                try:
+                    os.rmdir(self._tmpdir)
+                except OSError:
+                    pass
 

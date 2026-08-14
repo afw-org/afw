@@ -7,7 +7,7 @@
     "description": "This converts an array of dayTimeDuration values that contains one value to a single dayTimeDuration value.",
     "errorsThrown": [
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "array does not contain exactly one value"
         }
     ],

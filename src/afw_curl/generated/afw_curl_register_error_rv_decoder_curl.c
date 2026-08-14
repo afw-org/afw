@@ -1,5 +1,18 @@
+// See the 'COPYING' file in the project root for licensing information.
+/*
+ * Register error_rv_decoder `curl` for afw_curl
+ *
+ * Copyright (c) 2010-2024 Clemson University
+ *
+ */
+
+/**
+ * @file afw_curl_register_error_rv_decoder_curl.c
+ * @brief Generated environment register for error_rv_decoder `curl` (afw_curl).
+ */
+
 #include "afw.h"
-#include "afw_curl_generated.h"
+#include "afw_curl_generated_internal.h"
 
 #include <curl/curl.h>
 

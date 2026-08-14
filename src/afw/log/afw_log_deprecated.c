@@ -9,7 +9,7 @@
 
 /**
  * @file afw_log_deprecated.c
- * @brief Basic Log Implementation.
+ * @brief Deprecated basic log implementation (compatibility).
  */
 
 #define _AFW_LOGIMPL

@@ -11,8 +11,6 @@
 
 #include "afw_interface.h"
 #include "afw_command_local_server.h"
-#include "generated/afw_command_declare_helpers.h"
-
 /**
  * @addtogroup afw_command_internal
  * @{
@@ -49,7 +47,7 @@ typedef struct {
 } afw_command_local_parse_t;
 
 
-AFW_COMMAND_DECLARE_INTERNAL(const afw_memory_t *)
+extern const afw_memory_t *
 afw_command_local_parse_request(
     afw_command_local_server_self_t *self,
     const afw_memory_t **input,

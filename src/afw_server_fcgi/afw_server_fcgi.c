@@ -9,7 +9,7 @@
 
 /**
  * @file afw_server_fcgi.c
- * @brief Adaptive Frame FastCGI Support
+ * @brief FastCGI request/server implementation for afwfcgi.
  *
  */
 
@@ -20,6 +20,10 @@
 #include "afw_request_impl.h"
 #include <fcgiapp.h>
 #include <apr_signal.h>
+#include <apr_portable.h>
+#include <signal.h>
+#include <pthread.h>
+#include <unistd.h>
 
 /* Declares and rti/inf defines for interface afw_server */
 #define AFW_IMPLEMENTATION_ID "fcgi"
@@ -27,27 +31,100 @@
 #include "afw_server_fcgi_strings.h"
 #include "generated/afw_server_fcgi_version_info.h"
 
-/* Global to hold base xctx pointer. */
+/*
+ * Base xctx for the process. Used by the shutdown signal handler to set
+ * env->terminating. Published before handlers are installed in run().
+ */
 static afw_xctx_t *impl_server_xctx;
+
+/*
+ * Server instance while run() is active (request thread table). Set after
+ * all request threads are created, before handlers are installed.
+ */
+static afw_server_fcgi_internal_t *impl_server;
+
+/*
+ * Avoid a pthread_kill storm if the handler runs again (e.g. second signal
+ * or SIGTERM delivered to a worker that re-enters the handler).
+ */
+static volatile sig_atomic_t impl_shutdown_waking;
 
 /* Compiled afw version. */
 static const afw_utf8_t impl_compiled_afw_version =
 AFW_UTF8_LITERAL(AFW_VERSION_STRING);
 
-#ifdef __FIXME__
-/** @fixme Replace this when afw_signal is implemented. */
-static void impl_handle_sigterm(int signum)
+/*
+ * SIGTERM / SIGINT: stop accepting new FastCGI requests and let in-flight
+ * work finish.
+ *
+ * 1. Set env->terminating so request loops stop taking new work.
+ * 2. FCGX_ShutdownPending() (libfcgi; signal-handler safe).
+ * 3. pthread_kill each request thread with SIGUSR1 so a blocking accept()
+ *    returns EINTR; FCGI_FAIL_ACCEPT_ON_INTR then ends FCGX_Accept_r.
+ *
+ * Main is usually in join, so the process signal alone does not interrupt
+ * workers in accept. Waking APR/request threads matches multi-thread
+ * afw_server hosts; we do not close the libfcgi listen fd.
+ *
+ * SIGUSR1 is used to wake so we do not re-enter this SIGTERM/SIGINT handler
+ * on every worker. libfcgi already treats SIGUSR1 as ShutdownPending.
+ *
+ * Keep the handler minimal. Parent SIGKILL remains the backstop.
+ * POSIX process model; no Windows service path.
+ */
+static void
+impl_handle_shutdown_signal(int signum)
 {
     afw_environment_t *env;
+    afw_integer_t count;
+    afw_server_fcgi_internal_server_thread_t *server_thread;
+    const afw_thread_t *thread;
+    apr_os_thread_t *osthd;
+    apr_status_t rv;
 
-    /* Set flag in environment. */
-    env = (afw_environment_t *)impl_server_xctx->env;
-    env->terminating = true;
+    (void)signum;
 
-    /* Tell FCGI shutdown is pending. */
+    if (impl_server_xctx && impl_server_xctx->env) {
+        env = (afw_environment_t *)impl_server_xctx->env;
+        env->terminating = true;
+    }
+
     FCGX_ShutdownPending();
+
+    if (impl_shutdown_waking) {
+        return;
+    }
+    impl_shutdown_waking = 1;
+
+    if (!impl_server || !impl_server->threads) {
+        return;
+    }
+
+    for (count = 1, server_thread = impl_server->threads;
+        count <= impl_server->pub.thread_count;
+        count++, server_thread++)
+    {
+        thread = server_thread->thread;
+        if (!thread || !thread->apr_thread) {
+            continue;
+        }
+        rv = apr_os_thread_get(&osthd, thread->apr_thread);
+        if (rv != APR_SUCCESS || !osthd) {
+            continue;
+        }
+        (void)pthread_kill(*osthd, SIGUSR1);
+    }
 }
-#endif
+
+
+/* Install SIGTERM/SIGINT after request threads exist (impl_server set). */
+static void
+impl_install_shutdown_signal_handlers(afw_xctx_t *xctx)
+{
+    impl_server_xctx = xctx;
+    apr_signal(SIGTERM, impl_handle_shutdown_signal);
+    apr_signal(SIGINT, impl_handle_shutdown_signal);
+}
 
 
 /* Internal server create. */
@@ -68,15 +145,6 @@ afw_server_fcgi_internal_create(const char *path,
     /* Call FCGI_Finish on exit. */
     atexit(&FCGX_Finish);
 
-
-    /* Set signal handler function for sigterm. */
-    impl_server_xctx = xctx;
-
-    /** @fixme Removed for now because not working fully
-    apr_signal(SIGTERM, impl_handle_sigterm);
-     */
-
-
     /* Allocate and initialize self. */
     self = afw_xctx_calloc_type(afw_server_fcgi_internal_t, xctx);
     self->pub.inf = &impl_afw_server_inf;
@@ -92,19 +160,22 @@ afw_server_fcgi_internal_create(const char *path,
     /* Use afw version. */
     self->pub.server_version = &impl_compiled_afw_version;
 
-    /* Set object used to access environment variables. */
-    self->environment_variables_object =
-        afw_environment_create_environment_variables_object(true, xctx);
-    afw_runtime_xctx_set_object(self->environment_variables_object,
-        true, xctx);
-    afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
-        self->environment_variables_object, true, xctx->p, xctx);        
+    /* environment:: / process:: created at env create; pushed on base xctx. */
 
     /* Open socket. */
     self->sock = FCGX_OpenSocket(path, 500);
     if (self->sock < 0) {
         AFW_THROW_ERROR_Z(general,
             "FCGX_OpenSocket() error", xctx);
+    }
+
+    /*
+     * Remember Unix listen path for unlink after run(). TCP paths are
+     * ":<port>" (or empty default); libfcgi treats those as inet.
+     */
+    if (path && path[0] != '\0' && path[0] != ':') {
+        self->unix_socket_path_z = apr_pstrdup(
+            afw_pool_get_apr_pool(xctx->p), path);
     }
 
     /* Make sure this is not a CGI.
@@ -157,7 +228,7 @@ afw_server_fcgi_internal_create(const char *path,
  */
 void
 impl_afw_server_release(
-    const afw_server_t * instance,
+    const afw_server_t * self,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -304,12 +375,12 @@ impl_afw_server_request_thread_start(const afw_thread_t *thread,
  */
 void
 impl_afw_server_run(
-    const afw_server_t * instance,
+    const afw_server_t * self,
     const afw_request_handler_t * handler,
     afw_xctx_t *xctx)
 {
     afw_server_fcgi_internal_t * server =
-        (afw_server_fcgi_internal_t *)instance;
+        (afw_server_fcgi_internal_t *)self;
 
     afw_integer_t count;
     afw_server_fcgi_internal_server_thread_t *server_thread;
@@ -321,8 +392,6 @@ impl_afw_server_run(
         sizeof(afw_server_fcgi_internal_server_thread_t) *
         (afw_size_t)server->pub.thread_count,
         xctx);
-
-    /** @fixme Put in signal handling */
 
     /* The default thread attribute: detachable */
     thread_attr = afw_thread_attr_create(xctx->p, xctx);
@@ -341,7 +410,16 @@ impl_afw_server_run(
             count, xctx);
     }
 
-    /* Wait for request threads to die. */
+    /*
+     * Publish thread table, then install SIGTERM/SIGINT. Handler sets
+     * terminating + FCGX_ShutdownPending and pthread_kill(SIGUSR1) each
+     * request thread so Accept_r leaves; join below then returns.
+     */
+    impl_server = server;
+    impl_shutdown_waking = 0;
+    impl_install_shutdown_signal_handlers(xctx);
+
+    /* Wait for request threads to die (after terminating / accept returns). */
     for (count = 1, server_thread = server->threads;
         count <= server->pub.thread_count;
         count++, server_thread++)
@@ -349,6 +427,17 @@ impl_afw_server_run(
         afw_thread_join(server_thread->thread, xctx);
     }
 
+    impl_server = NULL;
+
+    /* Close listen fd and remove Unix socket file we created. */
+    if (server->sock >= 0) {
+        (void)close(server->sock);
+        server->sock = -1;
+    }
+    if (server->unix_socket_path_z) {
+        (void)unlink(server->unix_socket_path_z);
+        server->unix_socket_path_z = NULL;
+    }
 
     /* Run is finished. */
 }

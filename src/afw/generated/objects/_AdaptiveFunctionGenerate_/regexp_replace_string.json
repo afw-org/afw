@@ -33,7 +33,7 @@
     "pure": true,
     "returns": {
         "dataType": "string",
-        "description": "A string value with the matched string(s) replaced."
+        "description": "Result text as string (not re-typed as the input data type)."
     },
     "useExecuteFunction": "afw_function_execute_regexp_replace"
 }

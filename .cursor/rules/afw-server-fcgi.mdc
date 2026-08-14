@@ -8,6 +8,8 @@ alwaysApply: false
 
 Production **HTTP/FastCGI host** for libafw. Executable `afwfcgi` (not an extension DSO). Implements transport interfaces; routing and adapters live in core `src/afw/request/` + conf.
 
+**This is one `afw_server` implementation (FastCGI), not the only possible HTTP host.** Core streams, handlers, and adapters must stay host-agnostic. Other hosts: `afw --local` (`afw-command`), future native HTTP, etc. Overview: **`afw-server`**.
+
 ## Role vs siblings
 
 | | `afwfcgi` | `afw --local` (`afw-command`) |
@@ -40,9 +42,11 @@ Includes: hand `.c` use `afw.h`; `afw_server_fcgi_internal.h` must be first in s
 |-----------|------|-------------------------|
 | `afw_server` | `afw_server_fcgi.c` | `"fcgi"` |
 | `afw_request` | `afw_server_fcgi_request.c` | `"afw_server_fcgi"` |
-| `afw_object` (request properties) | `afw_server_fcgi_properties_object.c` | `"fcgi"` |
+| `afw_object` (request properties) | `afw_server_fcgi_properties_object.c` | `"fcgi_request_properties"` |
 
-Properties resolve in-memory then **`FCGX_GetParam(envp)`** — nginx/Apache must pass `REQUEST_METHOD`, `REQUEST_URI`/`PATH_INFO`, `QUERY_STRING`, `CONTENT_TYPE`, `HTTP_ACCEPT`, etc.
+**Request properties** (`_AdaptiveRequestProperties_/current`, `request::`): lazy cache + `FCGX_GetParam` / envp; values via **`afw_value_create_from_external_*`** (string \| hexBinary); bad names `_NONUTF8_` + hex. nginx/Apache must pass `REQUEST_METHOD`, `REQUEST_URI`/`PATH_INFO`, `QUERY_STRING`, `CONTENT_TYPE`, `HTTP_ACCEPT`, etc.
+
+**Process env** is separate (`environment::`, `_AdaptiveEnvironmentVariables_/current`): create once at server start; on each request xctx **push qualifier only** — do not re-register (issue **#71**). See **`afw-environment-variables`**.
 
 **Not** reimplemented: `afw_request_handler` (director + adapter/xacml handlers in libafw), streams, extensions.
 
@@ -81,10 +85,10 @@ No interfaces/manifest/functions in this `generate/` — capabilities come from 
 
 ## Known incompletes / drift
 
-- `impl_afw_server_release` stub; SIGTERM/`FCGX_ShutdownPending` path commented out.
-- Properties `get_count` not implemented.
+- `impl_afw_server_release` stub.
+- SIGTERM/SIGINT: after request threads exist in `run`, set `env->terminating` + `FCGX_ShutdownPending()` + `pthread_kill(SIGUSR1)` each APR request thread so accept gets EINTR under `FCGI_FAIL_ACCEPT_ON_INTR` (issue **#158**). After join: close listen fd; **unlink Unix `-p` path** (not TCP `:<port>`). No in-process drain timer.
 - Admin docs may mention `-d`; CLI does not.
-- No srcdir `.as` tests; `afwdev test --env-mode afwfcgi` needs nginx+`afwfcgi` (often `:8080`).
+- No srcdir FCGI `.as` tests; exercise request/env rules via `afw --local` (`local_test_3`) and process-env suites. `afwdev test --env-mode afwfcgi` needs nginx+`afwfcgi` (often `:8080`).
 
 ## When debugging
 

@@ -1,4 +1,4 @@
 {
     "name": "afw_writer",
-    "description": "An interface for a writer."
+    "description": "Incremental text/byte writer used when serializing values (JSON and\n      similar). Supports indent/tab for pretty-print; write_raw_cb for\n      callback-style consumers. Prefer writers over building large\n      intermediate strings when streaming. Call methods via\n      afw_writer_*() macros. See group afw_writer."
 }

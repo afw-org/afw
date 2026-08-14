@@ -18,7 +18,7 @@
 
 /**
  * @file afw_ascii.h
- * @brief Adaptive Framework ASCII
+ * @brief ASCII classification and conversion utilities.
  *
  * These also work for UNICODE codepoints, since ASCII is a subset.
  */
@@ -182,9 +182,13 @@ AFW_BEGIN_DECLARES
  * @brief Determine if octet is ascii control character.
  * @param v is octet to test.
  * @return result of test.
+ *
+ * Casts through unsigned char so a signed char holding a UTF-8 multi-byte
+ * octet (high bit set) is not treated as a control character.
  */
 #define afw_ascii_is_control_character(v) \
-    ( ((v) <= 31) || ((v) == AFW_ASCII_DELETE) )
+    ( (((unsigned char)(v)) <= 31) || \
+      (((unsigned char)(v)) == AFW_ASCII_DELETE) )
 
 
 /**

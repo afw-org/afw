@@ -7,7 +7,7 @@
 //?
 //? test: 10.1.1_A1_T2
 //? description: creating function dynamically
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -15,12 +15,9 @@ let y: integer = function (): integer {return 2;}();
 if (y !== 2) {
     throw "Create anonymous function dynamically failed";
 }
-
-
-
 //? test: dflt-params-abrupt
 //? description: abrupt completion returned by evaluation of initializer (function expression)
-//? expect: error:Parse error at offset 209 around line 9 column 38: Expecting a literal
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
@@ -29,16 +26,17 @@ function fn_assert(): any {
     throw "error";
 };
 
-// \fixme function parameter default assignment can't be a function call
+/* Defaults may be Expressions (#140); abrupt when the default is evaluated. */
 let f: function = function (x: any = fn_assert()): any {
     callCount = callCount + 1;
 };
+f();
 
 
 
 //? test: dflt-params-arg-val-undefined
 //? description: abrupt completion returned by evaluation of initializer (function expression)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -58,8 +56,6 @@ function fn(): any {
 ref(undefined, void 0);
 
 assert(callCount === 1, "callCount !== 1");
-
-
 //? test: dflt-params-duplicates
 //? description: It is a syntax error if function parameters contain duplicate parameter names
 //? expect: error
@@ -70,13 +66,14 @@ function f(x: integer = 0, x: integer): any {};
 
 //? test: dflt-params-ref-later
 //? description: Referencing a parameter that occurs later in the parameter array
-//? expect: error:Parse error at offset 85 around line 6 column 19: Expecting a literal
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
 let x = 0;
 let callCount = 0;
 let f: function;
+/* Later params are not in scope while parsing an earlier default Expression. */
 f = function (x = y, y?): any {
     callCount = callCount + 1;
 };
@@ -85,25 +82,23 @@ f = function (x = y, y?): any {
 
 //? test: dflt-params-ref-prior
 //? description: Referencing a parameter that occurs earlier in the parameter array
-//? expect: error:Parse error at offset 77 around line 5 column 28: Expecting a literal
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 let x = 0;
 let callCount = 0;
+/* Defaults are Expressions evaluated with prior params already bound (#140). */
 let ref = function (x, y = x, z = y): any {
     assert(x === 3, "first argument value");
     assert(y === 3, "second argument value");
-    assert(y === 3, "third argument value");
+    assert(z === 3, "third argument value");
     callCount = callCount + 1;
 };
 
 ref(3);
 
 assert(callCount === 1, "function invoked exactly once");
-
-
-
 //? test: dflt-params-ref-self
 //? description: Referencing a parameter from within its own initializer
 //? expect: error
@@ -146,8 +141,11 @@ assert(callCount === 1, "function invoked exactly once");
 
 //? test: named-no-strict-reassign-fn-name-in-body
 //? description: Reassignment of function name is silently ignored.
-//? expect: undefined
+//? expect: success
 //? skip: true
+//? skipReason: ...
+Never: Adaptive has no ES sloppy mode. Reassignment of a
+function name in the body is not silently ignored.
 //? source: ...
 #!/usr/bin/env afw
 
@@ -161,9 +159,6 @@ let ref: function = BindingIdentifier;
 
 assert(ref() === ref, "ref() !== ref");
 assert(callCount === 1, "function invoked exactly once");
-
-
-
 //? test: param-duplicated-strict-1
 //? description: It is a syntax error if any identifier value occurs more than once within a parameter array
 //? expect: error

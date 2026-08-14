@@ -16,6 +16,8 @@
 
 /* Declares and rti/inf defines for interface afw_log */
 #define AFW_IMPLEMENTATION_ID "event_log"
+typedef struct impl_afw_log_self_s impl_afw_os_log_self_;
+#define AFW_LOG_SELF_T impl_afw_os_log_self_
 #include "afw_log_impl_declares.h"
 #include "afw_log_factory_impl_declares.h"
 
@@ -71,7 +73,7 @@ AFW_DEFINE(const afw_log_t *) afw_os_log_create(
  */
 const afw_log_t *
 impl_afw_log_factory_create_log_cede_p (
-    const afw_log_factory_t * instance,
+    const afw_log_factory_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -85,10 +87,10 @@ impl_afw_log_factory_create_log_cede_p (
  */
 void
 impl_afw_log_destroy(
-    const afw_log_t * instance,
+    AFW_LOG_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_release(instance->p, xctx);
+    afw_pool_release(self->pub.p, xctx);
 }
 
 
@@ -97,14 +99,12 @@ impl_afw_log_destroy(
  */
 void
 impl_afw_log_set_own_mask(
-    const afw_log_t * instance,
+    AFW_LOG_SELF_T *self,
     afw_log_priority_mask_t mask,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_os_log_self_ * self =
-        (impl_afw_os_log_self_ *)instance;
-    afw_log_impl_t *impl = (afw_log_impl_t *)instance->impl;
+    /* Assign &self->pub pointer to self. */
+    afw_log_impl_t *impl = (afw_log_impl_t *)self->pub.impl;
 
     /* Set mask. */
     impl->mask = mask;
@@ -117,15 +117,13 @@ impl_afw_log_set_own_mask(
  */
 void
 impl_afw_log_write(
-    const afw_log_t * instance,
+    AFW_LOG_SELF_T *self,
     afw_log_priority_t priority,
     const afw_utf8_z_t * source_z,
     const afw_utf8_t * message,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_os_log_self_ * self =
-        (impl_afw_os_log_self_ *)instance;
+    /* Assign &self->pub pointer to self. */
 
     /** @fixme Write to event log. */
     fprintf(xctx->env->stderr_fd,

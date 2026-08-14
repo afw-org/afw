@@ -1,0 +1,28 @@
+# Port of src/afw/tests/advanced/smoke (orchestration.yaml sibling)
+# Stresses: feed defaults, sequential tests, inline source + sourcePath/<<<,
+#           test_script payload file (step_two.as).
+
+version: 1
+description: Spawn afwfcgi and feed trivial scripts via action (smoke)
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+
+# Document defaults — each test inherits unless it sets feed:
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: return-true
+    sourceType: script
+    source: |
+      return true;
+    expect: true
+
+  - name: script-file-test-script
+    description: Sibling file with test_script shebang (inner cases judged)
+    sourceType: test_script
+    source: <<< tests/step_two.as

@@ -11,8 +11,13 @@ This rule is for **`src/afw_dev/_afwdev/generate/`** — the Python that turns p
 ## Roles
 - Orchestration: `generate.py` — per-srcdir `generate()` then package `root_generate()`.
 - Per-srcdir: wipe `generated/`; optional overlay of `generate/external/` into `generate/temp_generate/`; run modules that match existing `generate/` subdirs (objects, interfaces, polymorphic functions, bindings, strings, cmake fragments, …).
-- Package-level: `root_generate()` writes package `generated/` (cmake fragments, JSON schemas, …).
-- Sibling modules (`function_bindings.py`, `interfaces.py`, `cmake.py`, …) are the generators; extend those rather than patching outputs.
+- Package-level: `root_generate()` writes package `generated/` (cmake fragments, **JSON schemas**, …).
+- Sibling modules (`function_bindings.py`, `interfaces.py`, `cmake.py`, `json_schema.py`, …) are the generators; extend those rather than patching outputs.
+
+## JSON Schema (`json_schema.py`)
+- Emits package-root `generated/schemas/afw/` from adaptive `_AdaptiveObjectType_` JSON.
+- **Primary consumer: editors** (VS Code), not a compact JS client. Never hand-edit schema output.
+- Full rules (issue #3 `$ref` form, inheritance merge/override, tests): `.cursor/rules/afw-json-schema.mdc`.
 
 ## Hard rules
 - Write only under `generated/` (or documented generator outputs). Never hand-edit `src/*/generated/**`.

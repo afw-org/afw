@@ -5,7 +5,7 @@
     "description": "Converts <dataType> value to ipAddress.",
     "errorsThrown": [
         {
-            "error": "cast_error",
+            "error": "conversion_error",
             "reason": "value could not be converted"
         }
     ],

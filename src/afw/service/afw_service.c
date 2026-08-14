@@ -8,7 +8,7 @@
 
 /**
  * @file afw_service.c
- * @brief Adaptive Framework service support
+ * @brief Service start/stop and conf-driven lifecycle.
  */
 
 #include "afw_internal.h"
@@ -730,7 +730,7 @@ impl_add_runtime_service_info_to_object(
 
                 case afw_service_status_invalid:
                 default:
-                    AFW_THROW_ERROR_Z(code, "Invalid case", xctx);
+                    AFW_THROW_ERROR_Z(coding_error, "Invalid case", xctx);
                 }
             }
             else {

@@ -1,0 +1,440 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveModelCurrentOnRetrieveObjects_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveModelCurrentOnRetrieveObjects_": {
+            "additionalProperties": false,
+            "description": "Qualifier current:: for model onRetrieveObjects.",
+            "markdownDescription": "Qualifier current:: for model onRetrieveObjects.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mapBackObject": {
+                    "description": "The function to map back an object.",
+                    "markdownDescription": "**mapBackObject**\n\nThe function to map back an object.",
+                    "title": "mapBackObject",
+                    "type": "string"
+                },
+                "mappedAdapterId": {
+                    "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "queryCriteria": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveQueryCriteria_"
+                        }
+                    ],
+                    "description": "The queryCriteria object.",
+                    "markdownDescription": "**queryCriteria**\n\nThe queryCriteria object.",
+                    "title": "queryCriteria",
+                    "type": "object"
+                },
+                "returnObject": {
+                    "description": "The function to call to return an object.",
+                    "markdownDescription": "**returnObject**\n\nThe function to call to return an object.",
+                    "title": "returnObject",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "title": "Use Default Processing"
+                }
+            },
+            "title": "_AdaptiveModelCurrentOnRetrieveObjects_",
+            "type": "object"
+        },
+        "_AdaptiveModelCurrentOnRetrieveObjects_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mapBackObject": {
+                    "description": "The function to map back an object.",
+                    "markdownDescription": "**mapBackObject**\n\nThe function to map back an object.",
+                    "title": "mapBackObject",
+                    "type": "string"
+                },
+                "mappedAdapterId": {
+                    "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "queryCriteria": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveQueryCriteria_"
+                        }
+                    ],
+                    "description": "The queryCriteria object.",
+                    "markdownDescription": "**queryCriteria**\n\nThe queryCriteria object.",
+                    "title": "queryCriteria",
+                    "type": "object"
+                },
+                "returnObject": {
+                    "description": "The function to call to return an object.",
+                    "markdownDescription": "**returnObject**\n\nThe function to call to return an object.",
+                    "title": "returnObject",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "title": "Use Default Processing"
+                }
+            },
+            "type": "object"
+        },
+        "_AdaptiveQueryCriteriaFilter_": {
+            "additionalProperties": false,
+            "description": "This is the object type for the filter property of the queryCriteria parameter of retrieve object functions.",
+            "markdownDescription": "This is the object type for the filter property of the queryCriteria parameter of retrieve object functions.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "filters": {
+                    "description": "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                    "items": {
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/_AdaptiveQueryCriteriaFilter_"
+                            }
+                        ],
+                        "description": "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                        "markdownDescription": "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                        "title": "Filters",
+                        "type": "object"
+                    },
+                    "markdownDescription": "**Filters**\n\nThis is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                    "title": "Filters",
+                    "type": "array"
+                },
+                "op": {
+                    "description": "This is the filter operations.",
+                    "enum": [
+                        "and",
+                        "or",
+                        "eq",
+                        "ne",
+                        "lt",
+                        "le",
+                        "lte",
+                        "gt",
+                        "ge",
+                        "match",
+                        "contains",
+                        "in"
+                    ],
+                    "markdownDescription": "**Operation**\n\nThis is the filter operations.",
+                    "title": "Operation",
+                    "type": "string"
+                },
+                "property": {
+                    "description": "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "markdownDescription": "**Property Name**\n\nThis is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "title": "Property Name",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "This is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "markdownDescription": "**Value**\n\nThis is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "title": "Value",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "op"
+            ],
+            "title": "_AdaptiveQueryCriteriaFilter_",
+            "type": "object"
+        },
+        "_AdaptiveQueryCriteriaFilter_.propertyTypes": {
+            "properties": {
+                "filters": {
+                    "description": "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                    "items": {
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/_AdaptiveQueryCriteriaFilter_"
+                            }
+                        ],
+                        "description": "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                        "markdownDescription": "This is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                        "title": "Filters",
+                        "type": "object"
+                    },
+                    "markdownDescription": "**Filters**\n\nThis is an array of _AdaptiveQueryCriteriaFilter_ objects for 'and' and 'or' operations. This property is allowed and required if the operation is 'and' or 'or'.",
+                    "title": "Filters",
+                    "type": "array"
+                },
+                "op": {
+                    "description": "This is the filter operations.",
+                    "enum": [
+                        "and",
+                        "or",
+                        "eq",
+                        "ne",
+                        "lt",
+                        "le",
+                        "lte",
+                        "gt",
+                        "ge",
+                        "match",
+                        "contains",
+                        "in"
+                    ],
+                    "markdownDescription": "**Operation**\n\nThis is the filter operations.",
+                    "title": "Operation",
+                    "type": "string"
+                },
+                "property": {
+                    "description": "This is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "markdownDescription": "**Property Name**\n\nThis is the name of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "title": "Property Name",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "This is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "markdownDescription": "**Value**\n\nThis is the value of the property used for the filter operation. This property is allowed and required if the operation is not 'and' or 'or'.",
+                    "title": "Value",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "_AdaptiveQueryCriteria_": {
+            "additionalProperties": false,
+            "description": "The queryCriteria object.",
+            "markdownDescription": "The queryCriteria object.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "filter": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveQueryCriteriaFilter_"
+                        }
+                    ],
+                    "description": "This filters the objects that will be returned. If not specified, all objects will be returned.",
+                    "markdownDescription": "**Filter**\n\nThis filters the objects that will be returned. If not specified, all objects will be returned.",
+                    "title": "Filter",
+                    "type": "object"
+                },
+                "select": {
+                    "description": "This is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                    "items": {
+                        "description": "This is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                        "markdownDescription": "This is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                        "title": "Properties to include",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Include Properties**\n\nThis is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                    "title": "Include Properties",
+                    "type": "array"
+                },
+                "sort": {
+                    "description": "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                    "items": {
+                        "description": "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                        "markdownDescription": "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                        "title": "Sort order",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Sort Order**\n\nThis is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                    "title": "Sort Order",
+                    "type": "array"
+                },
+                "urlEncodedRQLString": {
+                    "description": "This is a URL encoded RQL string. This parameter is mutually exclusive with all other properties.",
+                    "markdownDescription": "**URL RQL String**\n\nThis is a URL encoded RQL string. This parameter is mutually exclusive with all other properties.",
+                    "title": "URL RQL String",
+                    "type": "string"
+                }
+            },
+            "title": "queryCriteria",
+            "type": "object"
+        },
+        "_AdaptiveQueryCriteria_.propertyTypes": {
+            "properties": {
+                "filter": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveQueryCriteriaFilter_"
+                        }
+                    ],
+                    "description": "This filters the objects that will be returned. If not specified, all objects will be returned.",
+                    "markdownDescription": "**Filter**\n\nThis filters the objects that will be returned. If not specified, all objects will be returned.",
+                    "title": "Filter",
+                    "type": "object"
+                },
+                "select": {
+                    "description": "This is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                    "items": {
+                        "description": "This is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                        "markdownDescription": "This is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                        "title": "Properties to include",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Include Properties**\n\nThis is an array of the names of properties to include in result. If not specified, all properties are returned.",
+                    "title": "Include Properties",
+                    "type": "array"
+                },
+                "sort": {
+                    "description": "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                    "items": {
+                        "description": "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                        "markdownDescription": "This is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                        "title": "Sort order",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Sort Order**\n\nThis is an array of then names of properties used to sort the returned objects in highest to lowest order. Optionally, the property name can be prefixed with a minus sign ('-') to indicate descending order. FIXME '-' is probably not a good idea.",
+                    "title": "Sort Order",
+                    "type": "array"
+                },
+                "urlEncodedRQLString": {
+                    "description": "This is a URL encoded RQL string. This parameter is mutually exclusive with all other properties.",
+                    "markdownDescription": "**URL RQL String**\n\nThis is a URL encoded RQL string. This parameter is mutually exclusive with all other properties.",
+                    "title": "URL RQL String",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "Qualifier current:: for model onRetrieveObjects.",
+    "markdownDescription": "Qualifier current:: for model onRetrieveObjects.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "adapterId": {
+            "description": "The adapter id of the object being converted to mapped object.",
+            "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+            "title": "Adapter Id",
+            "type": "string"
+        },
+        "adapterTypeSpecific": {
+            "description": "This is the adapterTypeSpecific parameter value.",
+            "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+            "title": "Adapter Specific",
+            "type": "object"
+        },
+        "mapBackObject": {
+            "description": "The function to map back an object.",
+            "markdownDescription": "**mapBackObject**\n\nThe function to map back an object.",
+            "title": "mapBackObject",
+            "type": "string"
+        },
+        "mappedAdapterId": {
+            "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+            "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+            "title": "Mapped Adapter Id",
+            "type": "string"
+        },
+        "mappedObjectType": {
+            "description": "The object type of the object being converted to object.",
+            "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+            "title": "Mapped Object Type",
+            "type": "string"
+        },
+        "objectType": {
+            "description": "The object type of the object being converted to mapped object.",
+            "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+            "title": "Object Type",
+            "type": "string"
+        },
+        "queryCriteria": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveQueryCriteria_"
+                }
+            ],
+            "description": "The queryCriteria object.",
+            "markdownDescription": "**queryCriteria**\n\nThe queryCriteria object.",
+            "title": "queryCriteria",
+            "type": "object"
+        },
+        "returnObject": {
+            "description": "The function to call to return an object.",
+            "markdownDescription": "**returnObject**\n\nThe function to call to return an object.",
+            "title": "returnObject",
+            "type": "string"
+        },
+        "useDefaultProcessing": {
+            "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+            "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+            "title": "Use Default Processing"
+        }
+    },
+    "title": "_AdaptiveModelCurrentOnRetrieveObjects_",
+    "type": "object"
+}

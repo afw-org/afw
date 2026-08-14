@@ -59,7 +59,18 @@ struct afw_object_internal_memory_object_s {
         apr_hash_t *properties_ht;
     };
 
+    /*
+     * Optional base for look-through gets (NULL for a normal memory object).
+     * Local properties shadow this object; sets never write to it.
+     * See afw_object_create_wrapper_with_options().
+     */
+    const afw_object_t *wrapped;
+
     afw_boolean_t immutable;
+    /*
+     * Residual: public clone_on_set memory option was never productized.
+     * Field remains for embedder copy; always false on create today.
+     */
     afw_boolean_t clone_on_set;
     afw_boolean_t unmanaged;
     afw_boolean_t managed_by_entity;
@@ -71,52 +82,9 @@ struct afw_object_internal_memory_object_s {
 typedef struct {
     afw_object_t pub;
     afw_value_object_t value;
-
-    /* Mutable object or NULL if always immutable. */
-    const afw_object_t *mutable;
-
-    /* The objects to search. */
-    const afw_object_t * *objects;
-
-    /* Address of end of objects array. */
-    const afw_object_t * *end;
-
-    /* Object is immutable. */
-    afw_boolean_t immutable;
-
-} afw_object_internal_composite_self_t;
-
-
-
-/* Self for meta accessor object. */
-typedef struct {
-    afw_object_t pub;
-    afw_value_object_t value;
-    afw_object_setter_t setter;
-
-    /* Passed on create. */
-    void *data;
-
-    /* Array of callback entries. */
-    const afw_object_properties_callback_entry_t *callbacks;
-
-    /* Address of end of callback entries. */
-    const afw_object_properties_callback_entry_t *end;
-
-    /* Object is immutable. */
-    afw_boolean_t immutable;
-
-} afw_object_internal_properties_callback_self_t;
-
-
-
-/* Self for meta accessor object. */
-typedef struct {
-    afw_object_t pub;
-    afw_value_object_t value;
     const afw_object_t *instance;
     const afw_object_options_t *options;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_boolean_t embedded;
     afw_boolean_t limited_meta;
 
@@ -151,7 +119,7 @@ afw_object_aggregate_external_self_s {
     const afw_object_t * const *object_list;
     struct {
         const afw_object_t * const *object;
-        const afw_iterator_t *iterator;
+        const afw_iterator_old_t *iterator;
     } iterator; 
 } afw_object_aggregate_external_self_t;
 

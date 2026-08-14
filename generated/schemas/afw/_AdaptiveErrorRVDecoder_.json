@@ -1,19 +1,33 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveErrorRVDecoder_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveErrorRVDecoder_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveErrorRVDecoder_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "A registry type error_rv_decoder entry.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "A registry type error_rv_decoder entry.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "key": {
+                    "description": "Key of entry.",
+                    "markdownDescription": "**Key**\n\nKey of entry.",
+                    "title": "Key",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveErrorRVDecoder_",
+            "type": "object"
         },
         "_AdaptiveErrorRVDecoder_.propertyTypes": {
             "properties": {
                 "key": {
                     "description": "Key of entry.",
+                    "markdownDescription": "**Key**\n\nKey of entry.",
                     "title": "Key",
                     "type": "string"
                 }
@@ -22,9 +36,24 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveErrorRVDecoder_"
+    "additionalProperties": false,
+    "description": "A registry type error_rv_decoder entry.",
+    "markdownDescription": "A registry type error_rv_decoder entry.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "key": {
+            "description": "Key of entry.",
+            "markdownDescription": "**Key**\n\nKey of entry.",
+            "title": "Key",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveErrorRVDecoder_",
+    "type": "object"
 }

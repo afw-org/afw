@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_object.c
- * @brief afw_function_execute_* functions for object.
+ * @brief Adaptive function execute implementations for category `object`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_add_properties
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add the properties of one object to another replacing existing properties by
  * the same name.
@@ -34,7 +34,7 @@
  *   function add_properties(
  *       target: object,
  *       source_1: object,
- *       ...source_rest: (array of object)
+ *       ...source_rest: object[]
  *   ): object;
  * ```
  *
@@ -56,7 +56,7 @@ afw_function_execute_add_properties(
 {
     const afw_value_object_t *target;
     const afw_value_object_t *source;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
     afw_size_t count;
@@ -93,7 +93,7 @@ afw_function_execute_add_properties(
  *
  * afw_function_execute_apply_object_options
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This will return an object with the specified object options applied.
  *
@@ -105,7 +105,7 @@ afw_function_execute_add_properties(
  * ```
  *   function apply_object_options(
  *       object: object,
- *       options?: (object _AdaptiveObjectOptions_)
+ *       options?: object // _AdaptiveObjectOptions_
  *   ): object;
  * ```
  *
@@ -148,7 +148,7 @@ afw_function_execute_apply_object_options(
  *
  * afw_function_execute_local_object_meta_set_ids
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is used to set the ids in a local mutable object. The ids are used to
  * construct a local path.
@@ -199,8 +199,8 @@ afw_function_execute_local_object_meta_set_ids(
         &adapterId->internal, &objectType->internal, &objectId->internal,
         x->xctx);
 
-    /* Return undefined for void. */
-    return afw_value_undefined;
+    /* Return void singleton. */
+    return afw_value_void;
 }
 
 
@@ -210,7 +210,7 @@ afw_function_execute_local_object_meta_set_ids(
  *
  * afw_function_execute_property_delete
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete a property in an object.
  *
@@ -263,7 +263,7 @@ afw_function_execute_property_delete(
  *
  * afw_function_execute_property_delete_by_reference
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Delete a property from an object by reference.
  *
@@ -280,8 +280,7 @@ afw_function_execute_property_delete(
  *
  * Parameters:
  *
- *   reference - (any dataType) This is a reference to the object property to
- *       delete.
+ *   reference - (any) This is a reference to the object property to delete.
  *
  * Returns:
  *
@@ -348,9 +347,11 @@ afw_function_execute_property_delete_by_reference(
  *
  * afw_function_execute_property_exists
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
- * Return true if the named property exists in an object.
+ * Return true if the named property is present on the object, including when
+ * its value is undefined or null. False only when the key is missing. Use
+ * is_defined / is_nullish for the value.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -366,13 +367,13 @@ afw_function_execute_property_delete_by_reference(
  *
  * Parameters:
  *
- *   object - (object) Object to get property from.
+ *   object - (object) Object to check.
  *
- *   name - (string) Name of property to check.
+ *   name - (string) Property name.
  *
  * Returns:
  *
- *   (boolean) True if object has named property.
+ *   (boolean) True if the property is present.
  */
 const afw_value_t *
 afw_function_execute_property_exists(
@@ -397,10 +398,12 @@ afw_function_execute_property_exists(
  *
  * afw_function_execute_property_get
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
- * Return the value of a property of an object. If property is not available,
- * return a default or null value.
+ * Return the value of a property. Optional default applies only when the
+ * property is missing — not when the value is undefined. If missing and no
+ * default is given, the result is undefined. Object/array defaults get a
+ * mutable memory face (issues #110 / #17); other defaults are cloned.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -419,14 +422,14 @@ afw_function_execute_property_exists(
  *
  *   object - (object) Object to get property from.
  *
- *   name - (string) Name of property to get.
+ *   name - (string) Property name.
  *
- *   defaultValue - (optional any dataType) The default value of property if it
- *       does not exist in object. If not specified, null value is the default.
+ *   defaultValue - (optional any) Value to return only if the property is
+ *       missing. Isolated when used (object/array face; otherwise clone).
  *
  * Returns:
  *
- *   (any dataType) Evaluated property value or default.
+ *   (any) Property value, or default / undefined if missing.
  */
 const afw_value_t *
 afw_function_execute_property_get(
@@ -445,7 +448,7 @@ afw_function_execute_property_get(
         result = afw_value_undefined;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
             result = afw_value_evaluate(x->argv[3], x->p, x->xctx);
-            result = afw_value_clone(result, x->p, x->xctx);
+            result = afw_value_isolate_mutable_default(result, x->p, x->xctx);
         }
     }
 
@@ -459,9 +462,11 @@ afw_function_execute_property_get(
  *
  * afw_function_execute_property_is_not_null
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
- * Return true if the named property exists in an object and is not null.
+ * Return true if the named property is present and its value is not Adaptive
+ * null. Undefined counts as not null. False if the property is missing or the
+ * value is null. Not the same as is_defined or not is_nullish.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -477,13 +482,13 @@ afw_function_execute_property_get(
  *
  * Parameters:
  *
- *   object - (object) Object to get property from.
+ *   object - (object) Object to check.
  *
- *   name - (string) Name of property to check.
+ *   name - (string) Property name.
  *
  * Returns:
  *
- *   (boolean) True if object has named property that is not null.
+ *   (boolean) True if present and value is not Adaptive null.
  */
 const afw_value_t *
 afw_function_execute_property_is_not_null(
@@ -502,4 +507,185 @@ afw_function_execute_property_is_not_null(
     return (value && !afw_value_is_null(value))
         ? afw_boolean_v_true
         : afw_boolean_v_false;
+}
+
+
+
+/*
+ * Adaptive function: entries
+ *
+ * afw_function_execute_entries
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. Order matches keys()
+ * for the same object. The value may be undefined. The result is a snapshot.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function entries(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property entries from.
+ *
+ * Returns:
+ *
+ *   (array) Array of [name, value] pair arrays.
+ */
+const afw_value_t *
+afw_function_execute_entries(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_array_t *result_array;
+    const afw_array_t *pair;
+    const afw_iterator_old_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+    const afw_value_t *name_value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    result_array = afw_array_create_generic(x->p, x->xctx);
+    for (iterator = NULL;;) {
+        value = afw_object_get_next_property(
+            object->internal, &iterator, &property_name, x->xctx);
+        if (!value) {
+            break;
+        }
+        name_value = afw_value_create_unmanaged_string(
+            property_name, x->p, x->xctx);
+        pair = afw_array_create_generic(x->p, x->xctx);
+        afw_array_push_value(pair, name_value, x->xctx);
+        afw_array_push_value(pair, value, x->xctx);
+        afw_array_push_value(result_array,
+            afw_value_create_unmanaged_array(pair, x->p, x->xctx), x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: keys
+ *
+ * afw_function_execute_keys
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array of the property names of an object, in the object's
+ * property iteration order. The array is a snapshot; later changes to the
+ * object do not change a previous result.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function keys(
+ *       object: object
+ *   ): string[];
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property names from.
+ *
+ * Returns:
+ *
+ *   (string[]) Array of property name strings.
+ */
+const afw_value_t *
+afw_function_execute_keys(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_array_t *result_array;
+    const afw_iterator_old_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    result_array = afw_array_create_generic(x->p, x->xctx);
+    for (iterator = NULL;;) {
+        value = afw_object_get_next_property(
+            object->internal, &iterator, &property_name, x->xctx);
+        if (!value) {
+            break;
+        }
+        afw_array_push_value(result_array,
+            afw_value_create_unmanaged_string(property_name, x->p, x->xctx),
+            x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: values
+ *
+ * afw_function_execute_values
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Return a new array of the property values of an object, in the same order as
+ * keys() for that object. Values may be undefined if a property was set to
+ * undefined. The array is a snapshot.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function values(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property values from.
+ *
+ * Returns:
+ *
+ *   (array) Array of property values.
+ */
+const afw_value_t *
+afw_function_execute_values(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_array_t *result_array;
+    const afw_iterator_old_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    result_array = afw_array_create_generic(x->p, x->xctx);
+    for (iterator = NULL;;) {
+        value = afw_object_get_next_property(
+            object->internal, &iterator, &property_name, x->xctx);
+        if (!value) {
+            break;
+        }
+        afw_array_push_value(result_array, value, x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
 }

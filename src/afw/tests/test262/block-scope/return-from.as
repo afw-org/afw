@@ -7,7 +7,7 @@
 //?
 //? test: block-const
 //? description: return from block
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn() {
@@ -18,10 +18,9 @@ function fn() {
     }    
 }
 assert(fn() === 9);
-
 //? test: block-let
 //? description: return from block
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn() {

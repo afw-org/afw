@@ -24,24 +24,36 @@ Use when changing value lifetime, refcount, create/allocate APIs, data type bind
 
 Do not invent new lifetime paths; match existing create_* patterns.
 
+**Untrusted external bytes** (process env, FCGI params): never wrap as string without validation. Use **`afw_value_create_from_external_octets` / `_z`** (string if valid UTF-8 else hexBinary). See **`afw-environment-variables`**.
+
 ## Active long-running focus
 
 - Implement/complete **optional_release** / **clone_or_reference** (or get_reference) on escaping values: objects, lists/arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
 - Evaluation temporaries and results that belong to the current activation should use **current `scope->p`** (not a longer-lived pool) unless they intentionally escape.
 - Subpool + RC already handle bulk release and escape reparenting — polish the value-inf hooks and call sites; do not replace the pool model.
+- **Qualifier snapshots** (`qualifier()` / `qualifiers()`, issue **#9**) allocate **fresh, possibly large** memory objects (`environment::`, `request::`, nested `qualifiers()`). Prefer `qualifier::name` for normal work; treat repeated/retained snapshots as long-running stress — see **`afw-qualified-variables`**, `beta-backlog.md`.
+
+## Shared mutables and defaults (issue #110 class)
+
+- **Permanent** values and some **compiled literals** (`{}`, `[]`, const objects) may be **shared** across evaluations or requests. Script may still mutate object/array contents via property assignment.
+- Built-ins that **return a default** for a missing property/variable/key must not hand back a shared mutable without **`afw_value_clone` into the call/result pool** (`afw-function`). Residual properties or use-after-free show up on the **second** request in long-running hosts.
+- Prefer unit tests that mutate one returned default and assert a later call gets a clean default (`afw-adaptive-script`, `afw-tests`). Multi-request free paths: `afwdev test --env-mode valgrind` and/or `afwfcgi`.
 
 ## Source of truth and producers
 
-- Metadata: `generate/objects/_AdaptiveDataTypeGenerate_/*.json` (`cType`, `special`, `scalar`, …).
+- Metadata: `generate/objects/_AdaptiveDataTypeGenerate_/*.json` (`cType`, `special`, `scalar`, `directReturn`, …).
 - Generator of infs + create APIs: `_afwdev/generate/data_type_bindings.py`.
+- **Type × lifetime matrix (phase 0a):** living table and generator decision tree in [`designs/memory-management.md`](../../designs/memory-management.md) under **Phase 0 — 0a** (35 types; families special / utf8 / memory / struct / small-direct / pointer-direct). Use that before changing create/release behavior.
 - Const permanent instances: `strings.py` (scalar `self_v_*` for supported types), `const_objects.py` (objects + scalar/array props), bindings (ids/empty arrays), `function_bindings.py` (function object wrappers).
 - Runtime: core `.so` and extensions call generated `create_managed_*` / `create_unmanaged_*` and reuse permanent pointers (`afw_v_*`, null, empty arrays).
+- **Prefer static const Adaptive values over re-create:** use existing `afw_v_*` / `afw_boolean_v_*` / `afw_integer_v_zero|one` / `afw_value_null|undefined` (from `afw_strings.h`, `afw_value.h`, etc.) when the constant already exists. Do not `create_unmanaged_string(afw_s_foo)` or `set_property_as_string(..., afw_s_foo)` only to wrap one — use `afw_object_set_property(..., afw_v_foo, ...)`. `dataType::` lines in `strings.txt` produce typed static const values (`integer::zero` → `afw_integer_v_zero`), distinct from string `"zero"`.
+- **Wording in source:** do **not** call these a “catalog” in comments, docs, or generated text. Prefer **static const** / **permanent** values (or point at `afw_strings.h` / `afw_value.h`). Fine in chat; avoid in the tree.
 
 Never hand-edit `generated/` — change generator or JSON, then `./afwdev build --cdev -j`.
 
 ## Exploration order
 
-1. `_AdaptiveDataTypeGenerate_` JSON and `data_type_bindings.py` `@details`
+1. `_AdaptiveDataTypeGenerate_` JSON, `data_type_bindings.py` `@details`, and **Phase 0a matrix** in `designs/memory-management.md`
 2. `strings.py` / `const_objects.py` permanent emission
 3. Hand `src/afw/value/` (e.g. closure_binding) for non-dataType kinds
 4. Sample `create_unmanaged_*` call sites in `function/`
@@ -53,4 +65,4 @@ Never hand-edit `generated/` — change generator or JSON, then `./afwdev build 
 
 ## Related
 
-- `afw-environment` (`register_core` bootstrap), `afw-script-eval`, `afw-c-runtime`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`
+- `afw-environment` (`register_core` bootstrap), `afw-script-eval`, `afw-function`, `afw-c-runtime`, `afw-adaptive-script`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`

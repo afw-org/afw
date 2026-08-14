@@ -176,10 +176,12 @@ def generate(generated_by, options):
     onGetValueCFunctionNames = []
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_c_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping', copyright)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework runtime object mapping.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated runtime object map registration implementation.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
-        fd.write('#include "' + options['prefix'] + 'generated.h"\n')
+        fd.write('#include "' + options['prefix'] + 'generated_internal.h"\n')
         if options.get('additional_includes_runtime_object_maps') is not None:
             fd.write(options['additional_includes_runtime_object_maps'])
         fd.write('\n')
@@ -205,7 +207,9 @@ def generate(generated_by, options):
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework runtime object mapping header.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated runtime object map registration header.')
         fd.write('\n')
         for obj in list:
             write_h_map(fd, options['prefix'], obj, options);
@@ -220,7 +224,7 @@ def generate(generated_by, options):
             sortedOnGetValueCFunctionName = sorted(set(onGetValueCFunctionNames))
             for name in sortedOnGetValueCFunctionName:
                 fd.write('\n/* @brief Value accessor ' + name + '. */\n')
-                fd.write(options['prefix'].upper() + "DECLARE_INTERNAL(const afw_value_t *)\n")
+                fd.write("extern const afw_value_t *\n")
                 fd.write(name + '(\n')
                 fd.write('    const afw_runtime_object_map_property_t *prop,\n')
                 fd.write('    const void *internal,\n')

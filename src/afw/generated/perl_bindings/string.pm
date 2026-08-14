@@ -637,8 +637,10 @@ Checks whether value starts with a string
 
 =head3 string
 
-Convert one or more values of any data type to string and return the
-concatenated result. A value with an undefined value is represented by
+Conversion function for string: convert one or more values of any data type to
+string and return the concatenated result. With one argument this is
+convert-to-string; with more arguments each is converted then concatenated in
+order (no separator). A value with an undefined value is represented by
 'undefined'.
 Convert one or more values to string and concatenate
 
@@ -668,7 +670,8 @@ The second array.
 
 Returns the string substring of value beginning at zero-based position integer
 startIndex and ending at the position before integer endIndex. Specify -1 or
-omitting endIndex to return up to end of string.
+omit endIndex to return through the end of value. The result is always string
+(a slice of anyURI is not an anyURI).
 Extract a substring
 
 =head4 Parameters

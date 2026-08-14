@@ -19,7 +19,7 @@
 
 /**
  * @file afw_ldap_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_ldap_`.
  */
 
 #include "afw.h"
@@ -380,6 +380,12 @@ afw_ldap_self_v_collectionURIs = {
 };
 
 const afw_value_string_t
+afw_ldap_self_v_contextType = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_contextType)
+};
+
+const afw_value_string_t
 afw_ldap_self_v_dataType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_dataType)
@@ -512,6 +518,12 @@ afw_ldap_self_v_preventVerifyCert = {
 };
 
 const afw_value_string_t
+afw_ldap_self_v_process = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_process)
+};
+
+const afw_value_string_t
 afw_ldap_self_v_propertyTypes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_propertyTypes)
@@ -554,63 +566,69 @@ afw_ldap_self_v_url = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2568 = {
+afw_ldap_self_v_zz__2554 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2568)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2554)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2569 = {
+afw_ldap_self_v_zz__2555 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2569)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2555)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2570 = {
+afw_ldap_self_v_zz__2556 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2570)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2556)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2571 = {
+afw_ldap_self_v_zz__2557 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2571)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2557)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2572 = {
+afw_ldap_self_v_zz__2558 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2572)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2558)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2573 = {
+afw_ldap_self_v_zz__2559 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2573)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2559)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2574 = {
+afw_ldap_self_v_zz__2560 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2574)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2560)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2575 = {
+afw_ldap_self_v_zz__2561 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2575)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2561)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2576 = {
+afw_ldap_self_v_zz__2562 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2576)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2562)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2577 = {
+afw_ldap_self_v_zz__2563 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2577)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2563)
+};
+
+const afw_value_string_t
+afw_ldap_self_v_zz__2564 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2564)
 };
 
 const afw_value_string_t
@@ -734,13 +752,19 @@ afw_ldap_self_v_zz__This_is_used_as_the_base_for_ldap_search___ = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__URL_of_LDAP_Server__For_example__ldaps___ldap_server_636 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__URL_of_LDAP_Server__For_example__ldaps___ldap_server_636)
-};
-
-const afw_value_string_t
 afw_ldap_self_v_zz__object__AdaptiveConf_adapter_ldap_bind = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__object__AdaptiveConf_adapter_ldap_bind)
+};
+
+const afw_value_boolean_t
+afw_ldap_boolean_self_v_false = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+const afw_value_boolean_t
+afw_ldap_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
 };

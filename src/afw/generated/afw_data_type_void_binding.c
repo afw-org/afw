@@ -19,7 +19,7 @@
 
 /**
  * @file afw_data_type_void_binding.c
- * @brief Adaptive Framework core data types.
+ * @brief Generated core adaptive data type implementations.
  */
 
 #include "afw.h"
@@ -52,8 +52,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_void_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent void values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent void (special type): optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_void"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_void_inf
@@ -110,21 +110,21 @@ impl_data_type_object_void__value = {
 };
 
 /* Value for empty array of void. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
+const afw_array_view_of_c_array_self_t
 impl_empty_array_of_void;
 
 /* Value for empty array of void. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_array_t)
+const afw_value_array_t
 impl_value_empty_array_of_void;
 
 /* Data type void instance. */
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DEFINE_CONST_DATA(afw_data_type_t)
 afw_data_type_void_direct = {
     &afw_data_type_void_inf,
     (const afw_object_t *)&impl_data_type_object_void,
     AFW_UTF8_LITERAL("void"),
     AFW_UTF8_LITERAL("No value"),
-    AFW_UTF8_LITERAL("Commonly used as a return type for functions to indicate that the function does not return any value. While technically a variable could be of type void, in practice, it can only hold the values undefined (or null if compile::strictNullChecks flag is not set.)"),
+    AFW_UTF8_LITERAL("Return type for functions that do not produce a value. Built-in and script functions declared void yield the permanent void singleton (not undefined). A void variable may still hold undefined (or null if compile::strictNullChecks is not set)."),
     AFW_UTF8_LITERAL(""),
     afw_data_type_number_void,
     AFW_UTF8_LITERAL(""),
@@ -141,7 +141,8 @@ afw_data_type_void_direct = {
     true,
     false,
     true,
-    true
+    true,
+    NULL
 };
 
 /* Data type struct for void. */
@@ -156,7 +157,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object_meta.c
- * @brief Interface helpers for afw_object.
+ * @brief Object meta property helpers (objectId, objectType, path).
  */
 
 #include "afw_internal.h"
@@ -26,6 +26,7 @@
 
 /* Declares and rti/inf defines for interface afw_object */
 #define AFW_IMPLEMENTATION_ID "object_meta"
+#define AFW_OBJECT_SELF_T afw_object_meta_object_t
 #include "afw_object_impl_declares.h"
 #include "afw_object_setter_impl_declares.h"
 
@@ -49,8 +50,13 @@ impl_set_meta_object(
         afw_object_meta_object_t, xctx);
     meta_self->pub.p = self->p;
     meta_self->pub.inf = &impl_afw_object_inf;
-    meta_self->value.inf = &afw_value_managed_object_inf;
-    meta_self->value.internal = (const afw_object_t *)self;
+    /*
+     * Meta is a normal dual-face object: value.internal is the meta
+     * instance itself (not the entity). Pool-owned, so unmanaged face
+     * until container-aware managed release is used here.
+     */
+    meta_self->value.inf = &afw_value_unmanaged_object_inf;
+    meta_self->value.internal = (const afw_object_t *)meta_self;
     meta_self->pub.value = (const afw_value_t *)&meta_self->value;
     meta_self->pub.meta.embedding_object = self;
     meta_self->pub.meta.id = afw_s_a_meta_key;
@@ -258,7 +264,12 @@ afw_object_meta_get_path(
 
 /*
  * Get the property type object for an object's property from the meta
- * of an object, creating it if needed
+ * of an object, creating it if needed.
+ *
+ * With metaFull, meta get can surface propertyTypes from a permanent object
+ * type graph (p == NULL). Option/normalize processing must only mutate
+ * instance-owned meta on instance->p (views always have a pool). Materialize
+ * clones when the resolved bag or entry is permanent.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_object_meta_get_property_type(
@@ -270,8 +281,17 @@ afw_object_meta_get_property_type(
     const afw_object_t *property_types;
     const afw_object_t *property_type;
 
-    /* This is here for const objects for now. */
+    /* Const objects with no meta and no pool: cannot build mutable types. */
     if (!instance->meta.meta_object && !instance->p) {
+        return NULL;
+    }
+
+    /*
+     * Need a pool to own materializations. Permanent shells (p == NULL)
+     * cannot host option-driven propertyTypes writes — callers should be
+     * views or other pooled wrappers.
+     */
+    if (!instance->p) {
         return NULL;
     }
 
@@ -285,6 +305,15 @@ afw_object_meta_get_property_type(
             meta, afw_s_propertyTypes, xctx);
         ((afw_object_t *)property_types)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyTypes_;
+    }
+    else if (!property_types->p) {
+        /* Permanent OT propertyTypes — clone onto instance pool / delta. */
+        property_types = afw_object_create_clone(
+            property_types, instance->p, xctx);
+        ((afw_object_t *)property_types)->meta.object_type_uri =
+            afw_s__AdaptiveMetaPropertyTypes_;
+        afw_object_set_property_as_object(meta,
+            afw_s_propertyTypes, property_types, xctx);
     }
 
     property_type = afw_object_old_get_property_as_object(property_types,
@@ -305,6 +334,18 @@ afw_object_meta_get_property_type(
         }
         ((afw_object_t *)property_type)->meta.object_type_uri =
             afw_s__AdaptiveMetaPropertyType_;
+    }
+    else if (!property_type->p) {
+        /*
+         * Bag was cloned but entries can still be permanent (shallow
+         * nested object values). Replace with a pooled clone.
+         */
+        property_type = afw_object_create_clone(property_type,
+            instance->p, xctx);
+        ((afw_object_t *)property_type)->meta.object_type_uri =
+            afw_s__AdaptiveMetaPropertyType_;
+        afw_object_set_property_as_object(property_types,
+            property_name, property_type, xctx);
     }
 
     return property_type;
@@ -603,7 +644,7 @@ afw_object_meta_add_error(
     }
 
     value = afw_value_create_unmanaged_string(message, instance->p, xctx);
-    afw_array_add_value(errors, value, xctx);
+    afw_array_push_value(errors, value, xctx);
 }
 
 
@@ -633,7 +674,7 @@ impl_log_errors(
     const afw_utf8_t *source_location,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *error;
 
     iterator = NULL;
@@ -662,7 +703,7 @@ afw_object_meta_log_errors(
     const afw_object_t *meta;
     const afw_object_t *property_types;
     const afw_object_t *property_type;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *property_source_location;
     const afw_object_t *embedded;
@@ -760,9 +801,22 @@ afw_object_meta_add_property_error(
     const afw_object_t *property_type;
     const afw_value_t *value;
     const afw_array_t *errors;
- 
+
+    /*
+     * Cannot record property errors on permanent objects (no pool) or when
+     * property type materialization fails. Soft no-op so option processing
+     * does not replace the original failure with "Object must have a pool".
+     */
+    if (!instance->p) {
+        return;
+    }
+
     property_type = afw_object_meta_get_property_type(instance,
         property_name, xctx);
+    if (!property_type || !property_type->p) {
+        return;
+    }
+
     errors = afw_object_old_get_property_as_array(property_type,
         afw_s_errors, xctx);
     if (!errors) {
@@ -777,7 +831,7 @@ afw_object_meta_add_property_error(
     }
 
     value = afw_value_create_unmanaged_string(message, instance->p, xctx);
-    afw_array_add_value(errors, value, xctx);
+    afw_array_push_value(errors, value, xctx);
 }
 
 AFW_DEFINE(void)
@@ -836,11 +890,9 @@ afw_object_meta_add_thrown_property_error(
  */
 void
 impl_afw_object_release(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
 
     afw_object_release(self->pub.meta.embedding_object, xctx);
 }
@@ -850,11 +902,9 @@ impl_afw_object_release(
  */
 void
 impl_afw_object_get_reference(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
 
     afw_object_get_reference(self->pub.meta.embedding_object, xctx);
 }
@@ -864,11 +914,11 @@ impl_afw_object_get_reference(
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)&self->pub;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -880,12 +930,10 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
     const afw_value_t *result;
 
     result = afw_object_get_property(self->delta, property_name, xctx);
@@ -904,7 +952,7 @@ impl_afw_object_get_property(
 
 
 typedef struct {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     afw_boolean_t on_delta;
 } impl_get_next_property_iterator_t;
 
@@ -913,19 +961,17 @@ typedef struct {
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t *instance,
-    const afw_iterator_t **iterator,
+    AFW_OBJECT_SELF_T *self,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
     const afw_value_t *result;
     const afw_utf8_t *next_property_name;
     impl_get_next_property_iterator_t *i;
 
     if (!*iterator) {
-        *iterator = (afw_iterator_t *)afw_xctx_calloc_type(
+        *iterator = (afw_iterator_old_t *)afw_xctx_calloc_type(
             impl_get_next_property_iterator_t, xctx);
         if (!self->object_type || !self->object_type->object_type_object)
         {
@@ -979,12 +1025,10 @@ impl_afw_object_get_next_property(
  */
 afw_boolean_t
 impl_afw_object_has_property(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
     afw_boolean_t result;
 
     result = afw_object_has_property(self->delta, property_name, xctx);
@@ -997,11 +1041,9 @@ impl_afw_object_has_property(
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance;
 
     return &self->setter;
 }
@@ -1012,7 +1054,7 @@ impl_afw_object_get_setter(
  */
 void
 impl_afw_object_setter_set_immutable(
-    const afw_object_setter_t * instance,
+    const afw_object_setter_t * self,
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
@@ -1025,26 +1067,26 @@ impl_afw_object_setter_set_immutable(
  */
 void
 impl_afw_object_setter_set_property(
-    const afw_object_setter_t * instance,
+    const afw_object_setter_t * self,
     const afw_utf8_t * property_name,
     const afw_value_t * value,
     afw_xctx_t *xctx)
 {
-    afw_object_meta_object_t *self =
-        (afw_object_meta_object_t *)instance->object;
+    afw_object_meta_object_t *object_meta_object_self =
+        (afw_object_meta_object_t *)self->object;
 
     if (afw_utf8_equal(property_name, afw_s_path)) {
         AFW_VALUE_ASSERT_IS_ANYURI_OR_STRING(value, xctx);
         afw_object_meta_set_ids_using_path(
-            self->pub.meta.embedding_object,
+            object_meta_object_self->pub.meta.embedding_object,
             &((const afw_value_anyURI_t *)value)->internal,
             xctx);
     }
 
     else {
-        if (!self->delta) {
-            self->delta = afw_object_create_unmanaged(self->pub.p, xctx);
+        if (!object_meta_object_self->delta) {
+            object_meta_object_self->delta = afw_object_create_unmanaged(object_meta_object_self->pub.p, xctx);
         }
-        afw_object_set_property(self->delta, property_name, value, xctx);
+        afw_object_set_property(object_meta_object_self->delta, property_name, value, xctx);
     }
 }

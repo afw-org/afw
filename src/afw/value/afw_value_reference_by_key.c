@@ -27,6 +27,7 @@
 #define AFW_IMPLEMENTATION_ID "reference_by_key"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_reference_by_key_inf
+#define AFW_VALUE_SELF_T afw_value_reference_by_key_t
 #include "afw_value_impl_declares.h"
 
 /** @fixme Should have list entry by index too. */
@@ -87,24 +88,21 @@ afw_value_reference_by_key_create(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_reference_by_key_t *self =
-        (const afw_value_reference_by_key_t *)instance;
 
     const afw_value_t *v;
     const afw_value_object_t *object_value;
     const afw_value_array_t *list;
     const afw_value_t *key;
     const afw_utf8_t *name;
-    afw_size_t i;
     const afw_value_t *result;
     const afw_compile_value_contextual_t *saved_contextual;
 
     /* Push value on evaluation stack. */
-    afw_xctx_evaluation_stack_push_value(instance, xctx);
+    afw_xctx_evaluation_stack_push_value(&self->pub, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
@@ -132,30 +130,70 @@ impl_afw_value_optional_evaluate(
         result = afw_value_evaluate(v, p, xctx);
     }
 
-    /* If value is single list, index is index is index into list. */
+    /* If value is single list, index is index into the array. */
     else if (afw_value_is_array(v)) {
         list = (const afw_value_array_t *)v;
 
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
-            AFW_THROW_ERROR_Z(evaluate,
+            AFW_THROW_ERROR_Z(argument_error,
                 "Index must be integer for array", xctx);
         }
-        i = afw_safe_cast_integer_to_size(
-            ((const afw_value_integer_t *)key)->internal,
-            xctx);
 
+        /*
+         * Pass a signed index so negative indexes count from the end (same
+         * as at()). Out of range yields undefined, like ECMAScript a[i],
+         * not an error (at() already used this nullish form).
+         */
         result = afw_array_get_entry_value(list->internal,
-            i, p, xctx);
+            ((const afw_value_integer_t *)key)->internal, p, xctx);
         if (!result) {
-            AFW_THROW_ERROR_Z(evaluate,
-                "Index out of range for array", xctx);
+            result = afw_value_undefined;
+        }
+    }
+
+    /*
+     * Utf8-backed values (string, anyURI, …): code-point index via keyless
+     * afw_iterator (#153). Out of range → undefined (soft, like array).
+     * Negative indexes count from the end.
+     */
+    else if (afw_value_has_iterator(v)) {
+        afw_iterator_t iterator;
+        afw_integer_t index;
+        afw_size_t count;
+
+        key = afw_value_evaluate(self->key, p, xctx);
+        if (!afw_value_is_integer(key)) {
+            AFW_THROW_ERROR_Z(argument_error,
+                "Index must be integer for string code-point sequence",
+                xctx);
+        }
+        index = ((const afw_value_integer_t *)key)->internal;
+        afw_value_initialize_iterator(v, &iterator, xctx);
+        if (index < 0) {
+            count = afw_iterator_get_count(&iterator, xctx);
+            if ((afw_size_t)(-index) > count) {
+                result = afw_value_undefined;
+            }
+            else {
+                index = (afw_integer_t)count + index;
+                result = afw_iterator_get_by_index(&iterator, index, p, xctx);
+                if (!result) {
+                    result = afw_value_undefined;
+                }
+            }
+        }
+        else {
+            result = afw_iterator_get_by_index(&iterator, index, p, xctx);
+            if (!result) {
+                result = afw_value_undefined;
+            }
         }
     }
 
     else {
-        AFW_THROW_ERROR_Z(evaluate,
-            "Expecting object or array", xctx);
+        AFW_THROW_ERROR_Z(argument_error,
+            "Expecting object, array, or utf8 code-point sequence", xctx);
     }
 
     /* Pop value from evaluation stack and return result. */
@@ -170,7 +208,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -181,12 +219,10 @@ impl_afw_value_get_data_type(
  */
 const afw_value_t *
 impl_afw_value_get_evaluated_meta(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_reference_by_key_t *self =
-        (const afw_value_reference_by_key_t *)instance;
     const afw_value_t *result;
     const afw_value_t *key;
     const afw_value_t *aggregate_value;
@@ -232,14 +268,12 @@ impl_afw_value_get_evaluated_meta(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_reference_by_key_t *self =
-        (const afw_value_reference_by_key_t *)instance;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -262,7 +296,7 @@ impl_afw_value_produce_compiler_listing(
         afw_writer_write_eol(writer, xctx);
     }
 
-    if (self->optimized_value != instance) {
+    if (self->optimized_value != &self->pub) {
         afw_writer_write_z(writer, "optimized_value: ", xctx);
         afw_value_produce_compiler_listing(self->optimized_value, writer, xctx);
         afw_writer_write_eol(writer, xctx);
@@ -278,12 +312,10 @@ impl_afw_value_produce_compiler_listing(
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_reference_by_key_t *self =
-        (const afw_value_reference_by_key_t *)instance;
 
     afw_value_decompile(self->aggregate_value, writer, xctx);
     afw_writer_write_z(writer, "[", xctx);
@@ -297,16 +329,14 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_reference_by_key_t *self =
-        (const afw_value_reference_by_key_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->detail = self->backtrace_detail;
     info->evaluated_data_type = self->evaluated_data_type;

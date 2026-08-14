@@ -72,7 +72,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_data_type_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_DATA_TYPE_IMPL_DECLARES_H__
@@ -177,6 +177,16 @@ impl_afw_data_type_write_as_expression(
     const void * from_internal,
     afw_xctx_t * xctx);
 #endif
+
+#ifndef impl_afw_data_type_optional_initialize_iterator
+/* Declare method optional_initialize_iterator */
+AFW_DECLARE_STATIC(void)
+impl_afw_data_type_optional_initialize_iterator(
+    AFW_DATA_TYPE_SELF_T *self,
+    const void * internal,
+    const afw_iterator_t * iterator,
+    afw_xctx_t * xctx);
+#endif
 #endif
 
 /* inf for interface afw_data_type */
@@ -214,7 +224,9 @@ impl_afw_data_type_inf = {
     (afw_data_type_value_compiler_listing_t)
     impl_afw_data_type_value_compiler_listing,
     (afw_data_type_write_as_expression_t)
-    impl_afw_data_type_write_as_expression
+    impl_afw_data_type_write_as_expression,
+    (afw_data_type_optional_initialize_iterator_t)
+    impl_afw_data_type_optional_initialize_iterator
 };
 
 #undef _AFW_IMPLEMENTATION_ID_

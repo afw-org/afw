@@ -1,0 +1,113 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveCryptoVersionInfo_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveCryptoVersionInfo_": {
+            "additionalProperties": false,
+            "description": "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto.",
+            "markdownDescription": "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "algorithms": {
+                    "description": "Normative algorithm name registry supported by this build.",
+                    "items": {
+                        "description": "Normative algorithm name registry supported by this build.",
+                        "markdownDescription": "Normative algorithm name registry supported by this build.",
+                        "title": "Supported algorithms",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Supported algorithms**\n\nNormative algorithm name registry supported by this build.",
+                    "title": "Supported algorithms",
+                    "type": "array"
+                },
+                "extensionVersion": {
+                    "description": "afw_crypto package/extension version string.",
+                    "markdownDescription": "**Extension version**\n\nafw_crypto package/extension version string.",
+                    "title": "Extension version",
+                    "type": "string"
+                },
+                "opensslVersion": {
+                    "description": "OpenSSL_version(OPENSSL_VERSION) string.",
+                    "markdownDescription": "**OpenSSL version**\n\nOpenSSL_version(OPENSSL_VERSION) string.",
+                    "title": "OpenSSL version",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveCryptoVersionInfo_",
+            "type": "object"
+        },
+        "_AdaptiveCryptoVersionInfo_.propertyTypes": {
+            "properties": {
+                "algorithms": {
+                    "description": "Normative algorithm name registry supported by this build.",
+                    "items": {
+                        "description": "Normative algorithm name registry supported by this build.",
+                        "markdownDescription": "Normative algorithm name registry supported by this build.",
+                        "title": "Supported algorithms",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Supported algorithms**\n\nNormative algorithm name registry supported by this build.",
+                    "title": "Supported algorithms",
+                    "type": "array"
+                },
+                "extensionVersion": {
+                    "description": "afw_crypto package/extension version string.",
+                    "markdownDescription": "**Extension version**\n\nafw_crypto package/extension version string.",
+                    "title": "Extension version",
+                    "type": "string"
+                },
+                "opensslVersion": {
+                    "description": "OpenSSL_version(OPENSSL_VERSION) string.",
+                    "markdownDescription": "**OpenSSL version**\n\nOpenSSL_version(OPENSSL_VERSION) string.",
+                    "title": "OpenSSL version",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto.",
+    "markdownDescription": "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "algorithms": {
+            "description": "Normative algorithm name registry supported by this build.",
+            "items": {
+                "description": "Normative algorithm name registry supported by this build.",
+                "markdownDescription": "Normative algorithm name registry supported by this build.",
+                "title": "Supported algorithms",
+                "type": "string"
+            },
+            "markdownDescription": "**Supported algorithms**\n\nNormative algorithm name registry supported by this build.",
+            "title": "Supported algorithms",
+            "type": "array"
+        },
+        "extensionVersion": {
+            "description": "afw_crypto package/extension version string.",
+            "markdownDescription": "**Extension version**\n\nafw_crypto package/extension version string.",
+            "title": "Extension version",
+            "type": "string"
+        },
+        "opensslVersion": {
+            "description": "OpenSSL_version(OPENSSL_VERSION) string.",
+            "markdownDescription": "**OpenSSL version**\n\nOpenSSL_version(OPENSSL_VERSION) string.",
+            "title": "OpenSSL version",
+            "type": "string"
+        }
+    },
+    "title": "_AdaptiveCryptoVersionInfo_",
+    "type": "object"
+}

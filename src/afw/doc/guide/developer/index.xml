@@ -10,6 +10,7 @@
     <section href="contributing.xml" label="Contributing" content-type="xml"/>
     <section href="tools.xml" label="Tools" content-type="xml"/>  
     <section href="packages.xml" label="Packages" content-type="xml" />
+    <section href="writing-tests.xml" label="Writing Tests" content-type="xml"/>
     <section href="rest.xml" label="Web Services" content-type="xml"/>
     <section href="layouts.xml" label="Layouts" content-type="xml"/>
 </doc>

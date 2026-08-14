@@ -169,3 +169,36 @@ return -0o7777777777777777777771;
 
 return 0o7777777777777777777771;
 
+
+//? test: LeadingDot-decimal
+//? description: Leading-dot decimal / exponent forms
+//? expect: true
+//? source: ...
+
+return .5 === 0.5 && .1e1 === 1.0 && .25e2 === 25.0;
+
+//? test: TrailingDot-decimal
+//? description: Trailing-dot and empty-fraction with exponent
+//? expect: true
+//? source: ...
+
+return 1. === 1.0 && 1.e1 === 10.0 && 0. === 0.0;
+
+//? test: NegativeLeadingDot-decimal
+//? description: Unary minus with leading-dot
+//? expect: true
+//? source: ...
+
+return -.5 === -0.5 && -.1e1 === -1.0;
+
+//? test: Double-mod-IEEE
+//? description: double % (fmod) NaN / signed-zero / Infinity edges
+//? expect: true
+//? source: ...
+
+return is_NaN(NaN % 1.0) &&
+    is_NaN(1.0 % 0.0) &&
+    is_NaN(Infinity % 1.0) &&
+    (5.0 % 2.0 === 1.0) &&
+    (1.0 % Infinity === 1.0) &&
+    (1.0 / (-0.0 % 1.0) === -Infinity);

@@ -14,17 +14,20 @@
 
 /**
  * @file afw_minimal.h
- * @brief Adaptive Framework Minimal Header.
+ * @brief Header bootstrap set (not a thinner product API for `.c` files).
  * @ingroup afw_c_api_public
  *
- * The main intent of this header is to be included in other afw_*.h headers.
- * 
- * DONT PUT ANYTHING HERE THAT CAN NOT BE INCLUDED IN ALL AFW PROJECTS.
- * 
- * The headers included here only `#include` afw_interface.h from AFW to avoid
- * dependency issues.
+ * **Main intent:** include this from **other headers** that need more than
+ * `afw_interface.h` alone, without pulling full `afw.h` or creating cycles.
+ * `afw.h` includes this first so the include-order dance is done once.
+ * **Do not** use this as a substitute for `afw.h` in `.c` files.
  *
- * Other afw_*.h headers should `#include` afw_interface.h or afw_minimal.h.
+ * DONT PUT ANYTHING HERE THAT CAN NOT BE INCLUDED IN ALL AFW PROJECTS.
+ * Headers in this set only `#include` `afw_interface.h` from AFW (no peer
+ * module spaghetti). Membership is stable; do not thin casually.
+ *
+ * Other `afw_*.h` headers should `#include` `afw_interface.h` or
+ * `afw_minimal.h`. See `designs/libafw-headers-and-api-surface.md`.
  */
 #include "afw_version.h"
 #include "afw_interface.h"

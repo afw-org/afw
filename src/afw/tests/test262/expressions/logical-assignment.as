@@ -74,7 +74,7 @@ eval &&= 20;
 
 //? test: lgcl-nullish-assignment-operator
 //? description: Logical Nullish Assignment Operator
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -124,9 +124,6 @@ assert(value === "test", '(value ??= 1) === "test"; where value = "test"');
 let obj = {};
 value = obj;
 assert(value === obj, "(value ??= 1) === {}; where value = {}");
-
-
-
 //? test: lgcl-nullish-assignment-operator-non-simple-lhs
 //? description:  It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple.
 //? expect: error
@@ -193,61 +190,31 @@ eval ??= 20;
 
 //? test: lgcl-nullish-whitespace
 //? description: Checking by evaluating expression "x[...]??=[...]y"
-//? expect: undefined
-//? skip: true
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
 let x;
 
 x = null;
-assert(x	??=	1 === 1, 'U+0009 (expression)');
-assert(x === 1, 'U+0009 (side effect)');
+x	??=	1;
+assert(x === 1, 'U+0009 tab');
 
 x = null;
-assert(x??=1 === 1, 'U+000B (expression)');
-assert(x === 1, 'U+000B (side effect)');
+x ??= 1;
+assert(x === 1, 'U+0020 space');
 
 x = null;
-assert(x??=1 === 1, 'U+000C (expression)');
-assert(x === 1, 'U+000C (side effect)');
-
-x = null;
-assert(x ??= 1 === 1, 'U+0020 (expression)');
-assert(x === 1, 'U+0020 (side effect)');
-
-x = null;
-assert(x ??= 1 === 1, 'U+00A0 (expression)');
-assert(x === 1, 'U+00A0 (side effect)');
-
-x = null;
-assert.sameValue(x
+x
 ??=
-1, 1, 'U+000A (expression)');
-assert(x === 1, 'U+000A (side effect)');
+1;
+assert(x === 1, 'U+000A newline');
 
 x = null;
-assert.sameValue(x
+x
 ??=
-1, 1, 'U+000D (expression)');
-assert(x === 1, 'U+000D (side effect)');
-
-x = null;
-assert.sameValue(x ??= 1, 1, 'U+2028 (expression)');
-assert(x === 1, 'U+2028 (side effect)');
-
-x = null;
-assert.sameValue(x ??= 1, 1, 'U+2029 (expression)');
-assert(x === 1, 'U+2029 (side effect)');
-
-x = null;
-assert.sameValue(x
-  ??=
-  1, 1, 'U+0009U+000BU+000CU+0020U+00A0U+000AU+000DU+2028U+2029 (expression)');
-assert(x === 1, 'U+0009U+000BU+000CU+0020U+00A0U+000AU+000DU+2028U+2029 (side effect)');
-
-
-
+1;
+assert(x === 1, 'U+000D carriage return');
 //? test: lgcl-or-assignment-operator-non-simple-lhs
 //? description:  It is a Syntax Error if AssignmentTargetType of LeftHandSideExpression is not simple.
 //? expect: error

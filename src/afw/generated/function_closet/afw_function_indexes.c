@@ -20,7 +20,7 @@
  *
  * afw_function_execute_index_create
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Create an index definition.
  *
@@ -36,9 +36,9 @@
  *       adapterId: string,
  *       key: string,
  *       value?: string,
- *       objectType?: string,
+ *       objectType?: string[],
  *       filter?: string,
- *       options?: string,
+ *       options?: string[],
  *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
@@ -50,14 +50,20 @@
  *
  *   key - (string) Name of the property index to be created.
  *
- *   value - (optional string) Expression to calculate the index value(s).
+ *   value - (optional string) Adaptive script (expression-like; must return a
+ *       value) used to calculate the index value(s). While evaluating,
+ *       current::object, current::objectId, current::objectType, and
+ *       current::key are available (issue #54). If omitted, the property named
+ *       by key is indexed.
  *
- *   objectType - (optional string) Object Type(s) this index may apply to.
+ *   objectType - (optional string[]) Object type id(s) this index may apply to.
  *
- *   filter - (optional string) Expression to determine if this index applies to
- *       a particular object.
+ *   filter - (optional string) Adaptive script that must return a boolean to
+ *       decide whether this index applies to a particular object. Uses the same
+ *       current:: variables as value (issue #54). If omitted, the filter is
+ *       always true.
  *
- *   options - (optional string) Indexing options.
+ *   options - (optional string[]) Indexing options.
  *
  *   retroactive - (optional boolean) Retroactively generate indexes for
  *       existing objects.
@@ -83,7 +89,7 @@ afw_function_execute_index_create(
  *
  * afw_function_execute_index_list
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * List property indexes
  *
@@ -126,7 +132,7 @@ afw_function_execute_index_list(
  *
  * afw_function_execute_index_remove
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Remove an index definition.
  *

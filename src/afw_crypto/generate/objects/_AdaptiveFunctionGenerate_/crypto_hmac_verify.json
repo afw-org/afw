@@ -1,0 +1,34 @@
+{
+    "category": "crypto",
+    "brief": "Verify HMAC",
+    "description": "Verify an HMAC in constant time. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Requires execute access.",
+    "functionId": "crypto_hmac_verify",
+    "functionLabel": "crypto_hmac_verify",
+    "requiresExecuteAccess": true,
+    "sideEffects": [
+        "Other"
+    ],
+    "parameters": [
+        {
+            "name": "algorithm",
+            "dataType": "string",
+            "description": "HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512."
+        },
+        {
+            "name": "key",
+            "description": "Key material, CryptoKey object, or key reference."
+        },
+        {
+            "name": "data",
+            "description": "Data that was MAC'd (base64Binary or hexBinary)."
+        },
+        {
+            "name": "mac",
+            "description": "Expected MAC (base64Binary or hexBinary)."
+        }
+    ],
+    "returns": {
+        "dataType": "boolean",
+        "description": "true if MAC matches."
+    }
+}

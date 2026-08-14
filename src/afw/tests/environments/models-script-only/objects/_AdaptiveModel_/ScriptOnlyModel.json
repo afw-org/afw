@@ -1,0 +1,60 @@
+{
+    "modelId": "ScriptOnlyModel",
+    "description": "Pure-script model with no mappedAdapterId (issue #109)",
+    "objectTypes": {
+        "SyntheticRead": {
+            "onGetObject": "eval_from_file('includes/onGetObject_synthetic.as')",
+            "onRetrieveObjects": "eval_from_file('includes/onRetrieveObjects_synthetic.as')",
+            "propertyTypes": {
+                "x": {
+                    "dataType": "boolean"
+                },
+                "name": {
+                    "dataType": "string"
+                }
+            }
+        },
+        "SyntheticWrite": {
+            "onGetObject": "return { \"id\": current::objectId, \"ok\": true };",
+            "onAddObject": "return current::objectId ?? \"generated-id\";",
+            "onModifyObject": "return null;",
+            "onReplaceObject": "return null;",
+            "onDeleteObject": "return null;",
+            "propertyTypes": {
+                "id": {
+                    "dataType": "string"
+                },
+                "ok": {
+                    "dataType": "boolean"
+                }
+            }
+        },
+        "MissingHook": {
+            "propertyTypes": {
+                "x": {
+                    "dataType": "boolean"
+                }
+            }
+        },
+        "UseDefault": {
+            "onGetObject": "return current::useDefaultProcessing;",
+            "onRetrieveObjects": "return current::useDefaultProcessing;",
+            "propertyTypes": {
+                "x": {
+                    "dataType": "boolean"
+                }
+            }
+        },
+        "ContextCheck": {
+            "onGetObject": "eval_from_file('includes/onGetObject_context.as')",
+            "propertyTypes": {
+                "mappedAbsent": {
+                    "dataType": "boolean"
+                },
+                "snapshotOk": {
+                    "dataType": "boolean"
+                }
+            }
+        }
+    }
+}

@@ -284,15 +284,20 @@ def compile(session, source, listing=None):
     Compile <dataType> value
 
     Compile `<dataType>` value and return either an unevaluated adaptive value
-    or a string containing the compiler listing.
+    or a string containing the compiler listing. The listing is a
+    human-oriented dump (value tree interleaved with source, plus ---Symbols
+    tables) for Fiddle and debugging — not pure JSON (use stringify) and not
+    Adaptive compiled-form text (use decompile).
 
     Args:
         source (object): `<dataType>` string to compile
 
-        listing (object): If specified, a compiler listing is produced instead
-        of an unevaluated compiled value.
+        listing (object): If specified, a human compiler listing is produced
+        instead of an unevaluated compiled value (tree + ---Symbols; not
+        recompilable). Use decompile() for Adaptive compiled-form text and
+        stringify() for pure JSON of evaluated data.
         
-        This parameter can be an integer between 0 and 10 of a string that is
+        This parameter can be an integer between 0 and 10 or a string that is
         used for indentation. If 0 is specified, no whitespace is added to the
         resulting string. If 1 through 10 is specified, that number of spaces
         is used.
@@ -626,6 +631,35 @@ def floor(session, number):
     action = {
         "function": "floor",
         "number": number
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def freeze(session, value):
+    """
+    Make <dataType> value immutable
+
+    Set a `<dataType>` value immutable so further mutation throws. If already
+    immutable, has no effect. Returns the same value.
+
+    Args:
+        value (object): The `<dataType>` value to freeze.
+
+    Returns:
+        object: The same value, now immutable.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "freeze",
+        "value": value
     }
 
     request.add_action(action)
@@ -1484,7 +1518,7 @@ def regexp_replace(session, value, regexp, replacement, limit=None):
         Specify -1 to replace all occurrences.
 
     Returns:
-        object: A `<dataType>` value with the matched string(s) replaced.
+        str: Result text as string (not re-typed as the input data type).
     """
 
     request = session.Request()
@@ -1519,7 +1553,7 @@ def repeat(session, value, times):
         times (int): The number of times to repeat the value.
 
     Returns:
-        object: The repeated `<dataType>` value.
+        str: Repeated text as string (not re-typed as the input data type).
     """
 
     request = session.Request()
@@ -1555,7 +1589,7 @@ def replace(session, value, match, replacement, limit=None):
         Specify -1 to replace all occurrences.
 
     Returns:
-        object: A `<dataType>` value with the matched string(s) replaced.
+        str: Result text as string (not re-typed as the input data type).
     """
 
     request = session.Request()
@@ -1747,10 +1781,10 @@ def substring(session, string, startIndex, endIndex=None):
     """
     Extract a substring
 
-    Returns the `<dataType>` substring of value beginning at zero-based
-    position integer startIndex and ending at the position before integer
-    endIndex. Specify -1 or omitting endIndex to return up to end of
-    `<dataType>`.
+    Returns the string substring of value beginning at zero-based position
+    integer startIndex and ending at the position before integer endIndex.
+    Specify -1 or omit endIndex to return through the end of value. The result
+    is always string (a slice of anyURI is not an anyURI).
 
     Args:
         string (object):
@@ -1760,7 +1794,7 @@ def substring(session, string, startIndex, endIndex=None):
         endIndex (int):
 
     Returns:
-        object:
+        str: Substring as string (not re-typed as the input data type).
     """
 
     request = session.Request()

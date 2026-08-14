@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_session",
-    "description": "Adapter session interface."
+    "description": "Per-use session on an adapter: retrieve/get/add/modify/replace/delete\n      objects, optional transactions, and related journal/index hooks.\n      Sessions are typically short-lived (request or action scope). Prefer\n      afw_adapter.h helpers that create and release sessions with correct\n      reference counting. Call methods via afw_adapter_session_*()\n      macros (e.g. retrieve_objects, get_object)."
 }

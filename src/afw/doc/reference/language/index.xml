@@ -10,9 +10,16 @@
     <section href="lexical.xml" label="Lexical" content-type="xml"/>
     <section href="expressions.xml" label="Expressions" content-type="xml"/>
     <section href="statements.xml" label="Statements" content-type="xml"/>
+    <section href="objects-and-arrays.xml" label="Objects and Arrays" content-type="xml"/>
+    <section href="types.xml" label="Types" content-type="xml"/>
     <section href="qualified-variables.xml" label="Qualified Variables" content-type="xml"/>
     <paragraph>
         For the complete grammar productions and diagrams,
         please see the <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>.
+    </paragraph>
+    <paragraph>
+        Generated signatures for core Adaptive functions (including object and
+        array helpers) appear under the Function Reference in the documentation
+        home.
     </paragraph>
 </doc>

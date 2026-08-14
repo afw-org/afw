@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Integer
+ * afw_function_execute_* functions for integer
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_integer.c
- * @brief afw_function_execute_* functions for integer.
+ * @brief Adaptive function execute implementations for category `integer`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_abs_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compute the absolute value of the integer value and return the integer
  * result.
@@ -64,7 +64,7 @@ afw_function_execute_abs_integer(
  *
  * afw_function_execute_add_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add 2 or more integer values and return the integer result.
  *
@@ -77,7 +77,7 @@ afw_function_execute_abs_integer(
  *   function add<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (array of integer)
+ *       ...values_rest: integer[]
  *   ): integer;
  * ```
  *
@@ -102,7 +102,7 @@ afw_function_execute_add_integer(
         if ((arg->internal > 0 && (sum > AFW_INTEGER_MAX - arg->internal)) ||
             (arg->internal < 0 && (sum < AFW_INTEGER_MIN - arg->internal)))
         {
-            AFW_THROW_ERROR_Z(arg_error, "Integer add overflow", x->xctx);
+            AFW_THROW_ERROR_Z(argument_error, "Integer add overflow", x->xctx);
         }
         sum += arg->internal;
     }
@@ -117,7 +117,7 @@ afw_function_execute_add_integer(
  *
  * afw_function_execute_divide_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Divide integer dividend by integer divisor and return the integer quotient.
  *
@@ -154,7 +154,7 @@ afw_function_execute_divide_integer(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2, integer);
 
     if (arg2->internal == 0) {
-        AFW_THROW_ERROR_Z(arg_error, "Integer divide by zero error", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Integer divide by zero error", x->xctx);
     }
 
     return afw_value_create_unmanaged_integer(
@@ -169,7 +169,7 @@ afw_function_execute_divide_integer(
  *
  * afw_function_execute_mod_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Divide integer dividend by integer divisor and return the integer remainder.
  *
@@ -206,7 +206,7 @@ afw_function_execute_mod_integer(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2, integer);
 
     if (arg2->internal == 0) {
-        AFW_THROW_ERROR_Z(arg_error, "Integer divide by zero error", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Integer divide by zero error", x->xctx);
     }
 
     return afw_value_create_unmanaged_integer(
@@ -221,7 +221,7 @@ afw_function_execute_mod_integer(
  *
  * afw_function_execute_multiply_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Multiply 2 or more integer values and return the integer result.
  *
@@ -234,7 +234,7 @@ afw_function_execute_mod_integer(
  *   function multiply<integer>(
  *       values_1: integer,
  *       values_2: integer,
- *       ...values_rest: (array of integer)
+ *       ...values_rest: integer[]
  *   ): integer;
  * ```
  *
@@ -258,7 +258,7 @@ afw_function_execute_multiply_integer(
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, n, integer);
         next *= arg->internal;
         if (result != 0 && next / result != arg->internal) {
-            AFW_THROW_ERROR_Z(arg_error, "Integer multiply overflow", x->xctx);
+            AFW_THROW_ERROR_Z(argument_error, "Integer multiply overflow", x->xctx);
         } 
         result = next;       
     }
@@ -273,7 +273,7 @@ afw_function_execute_multiply_integer(
  *
  * afw_function_execute_subtract_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Subtract integer arg2 from integer arg1 and return the integer result.
  *
@@ -313,7 +313,7 @@ afw_function_execute_subtract_integer(
     if ((-arg2->internal < 0 && (arg1->internal < AFW_INTEGER_MIN - -arg2->internal)) ||
         (-arg2->internal > 0 && (arg1->internal > AFW_INTEGER_MAX - -arg2->internal)))
     {
-        AFW_THROW_ERROR_Z(arg_error, "Integer subtract overflow", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Integer subtract overflow", x->xctx);
     }
 
     return afw_value_create_unmanaged_integer(
@@ -328,7 +328,7 @@ afw_function_execute_subtract_integer(
  *
  * afw_function_execute_to_double_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Converts integer arg to double and returns double result.
  *
@@ -361,7 +361,7 @@ afw_function_execute_to_double_integer(
  *
  * afw_function_execute_negative_integer
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return negative of integer value.
  *

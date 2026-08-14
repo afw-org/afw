@@ -19,10 +19,12 @@ our @EXPORT_OK = qw(
     any_of 
     any_of_all 
     any_of_any 
+    every 
     filter 
     find 
     map 
     reduce 
+    some 
     sort 
 );
 
@@ -36,8 +38,10 @@ The following functions are exported by default
 
 =head3 all_of
 
-Returns true if all values in an array pass the predicate test.
-All values pass a test
+Return true if predicate returns true for every entry of the first array in
+values (index order), or if that array is empty. Entries whose value is
+undefined are included. every() is an alias for the common single-array form.
+Whether every array entry passes a test
 
 =head4 Parameters
 
@@ -92,8 +96,10 @@ the second is a value from array2.
 
 =head3 any_of
 
-Returns true if any value in an array pass the predicate test.
-Any values pass a test
+Return true if predicate returns true for any entry of the first array in
+values (index order). Entries whose value is undefined are included. Empty
+array yields false. some() is an alias for the common single-array form.
+Whether any array entry passes a test
 
 =head4 Parameters
 
@@ -145,11 +151,30 @@ the second is a value from array2.
     $array2
 
 
+=head3 every
+
+Return true if predicate returns true for every entry of the first array in
+values (index order), or if that array is empty. Entries whose value is
+undefined are included. Same single-array behavior as all_of.
+Whether every array entry passes a test
+
+=head4 Parameters
+
+    $predicate
+
+Called for each value in the first array in values or until false is returned.
+
+    $values
+
+Parameters passed to predicate with the first array passed one value at a
+time.
+
 =head3 filter
 
-This produces an array containing only values from another array that pass a
-predicate test.
-Filter an array
+Return a new array of entries from the first array in values for which
+predicate returns true. Every index is considered, including entries whose
+value is undefined. Order of kept entries is preserved.
+Select array entries that pass a test
 
 =head4 Parameters
 
@@ -166,9 +191,11 @@ is required.
 
 =head3 find
 
-The predicate is called for each value in the first array in values until true
-is returned, then that value is returned.
-Returns the first value in an array that passes a test
+Call predicate for each entry of the first array in values, in index order,
+until it returns true, then return that entry. Entries whose value is
+undefined are included. If no entry passes, the result is undefined (the same
+as a found undefined entry; use filter if you need to tell those apart).
+First array entry that passes a test
 
 =head4 Parameters
 
@@ -185,9 +212,13 @@ is required.
 
 =head3 map
 
-This function creates an array of the results of calling functor with each
-value of the first array in values
-Maps values of an array
+Call functor once for each entry of the first array in values, in index order
+from 0 through length minus one, and return a new array of the same length
+with the results. Entries whose value is undefined (including omitted elements
+in array literals) are included; the functor receives undefined for those
+indexes. Additional values parameters, if present, are passed through on every
+call.
+Map each array value through a function
 
 =head4 Parameters
 
@@ -196,17 +227,18 @@ Maps values of an array
 
     $values
 
-These are the parameters passed to functor with the exception that the first
-array is passed one value at a time. At least one array is required.
+The first array is walked one entry at a time as the first argument to
+functor. Additional parameters are passed on every call. At least one array is
+required.
 
 =head3 reduce
 
-Reduce calls functor for each value in array with two parameters, accumulator
-and value, and must return a value of any dataType. Parameter accumulator is
-the reduce() accumulator parameter value on first call and the return value of
-previous functor() call on subsequent calls. The dataType of the return value
-should normally be the same as accumulator, but this is not required.
-Reduce values of an array to a single value
+Call functor for each entry of array, in index order, with the current
+accumulator and that entry. The first call uses the accumulator argument; each
+later call uses the previous return value. Every index is visited, including
+undefined entries. If array is empty, the accumulator argument is returned
+without calling functor.
+Reduce array entries to a single value
 
 =head4 Parameters
 
@@ -218,31 +250,49 @@ passed as the accumulator parameter on the next call to functor().
     $accumulator
 
 This is an initial accumulator value passed to functor(). Normally, the
-dataType of accumulator will be the dataTape for the reduce() return value,
+dataType of accumulator will be the data type for the reduce() return value,
 but this is not required.
 
     $array
 
 This is an array to be reduced.
 
+=head3 some
+
+Return true if predicate returns true for any entry of the first array in
+values (index order). Entries whose value is undefined are included. Empty
+array yields false. Same single-array behavior as any_of.
+Whether any array entry passes a test
+
+=head4 Parameters
+
+    $predicate
+
+Called for each value in the first array in values or until true is returned.
+
+    $values
+
+Parameters passed to predicate with the first array passed one value at a
+time.
+
 =head3 sort
 
-This produces an array with values sorted based on result of compareFunction.
-The compareFunction is passed two values from the array and must return an
-integer less than 0 if the first value is less than the second value, 0 if
-they are equal, and a integer greater than 0 if the first value is greater
-than the second value.
-Sort values in an array
+Return a new array with the same entries as array, ordered using
+compareFunction. The array must have a single element data type (for example
+all integers or all strings); mixed or empty untyped arrays are not accepted.
+compareFunction is called with two entries and must return true when the first
+should sort before the second (boolean), not a numeric sort key.
+Return a sorted copy of a single-type array
 
 =head4 Parameters
 
     $compareFunction
 
-This function is called with two value from array.
+Return true if value1 should be ordered before value2.
 
     $array
 
-This is the array to sort.
+Array to sort. Must be single-type (all entries the same data type).
 
 =cut
 
@@ -322,6 +372,18 @@ sub any_of_any {
     return $request->getResult();
 }
 
+sub every {
+    my ($predicate, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "every");
+    $request->set("predicate", $predicate);
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub filter {
     my ($predicate, $values) = @_;
 
@@ -367,6 +429,18 @@ sub reduce {
     $request->set("functor", $functor);
     $request->set("accumulator", $accumulator);
     $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub some {
+    my ($predicate, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "some");
+    $request->set("predicate", $predicate);
+    $request->set("values", $values);
 
     return $request->getResult();
 }

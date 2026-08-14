@@ -1,15 +1,15 @@
 {
     "additionalArgCheck": true,
-    "brief": "All values pass a test",
+    "brief": "Whether every array entry passes a test",
     "category": "higher_order_array",
-    "description": "Returns true if all values in an array pass the predicate test.",
+    "description": "Return true if predicate returns true for every entry of the first array in values (index order), or if that array is empty. Entries whose value is undefined are included. every() is an alias for the common single-array form.",
     "functionId": "all_of",
     "functionLabel": "all_of",
     "pure": true,
     "parameters": [
         {
             "dataType": "function",
-            "dataTypeParameter": "(... values: any): boolean",
+            "dataTypeParameter": "(...values: any) => boolean",
             "description": "This function is called for each value in the first array in values or until false is returned. If no calls return false, the result is true.",
             "name": "predicate"
         },

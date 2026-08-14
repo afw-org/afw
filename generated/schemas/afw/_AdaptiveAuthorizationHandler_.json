@@ -1,49 +1,105 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveAuthorizationHandler_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveAuthorizationHandler_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveAuthorizationHandler_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Runtime authorization handler information.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveAuthorizationHandler_.propertyTypes": {
+            "markdownDescription": "Runtime authorization handler information.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "authorizationHandlerId": {
                     "description": "Authorization handler id.",
+                    "markdownDescription": "**Authorization Handler Id**\n\nAuthorization handler id.",
                     "title": "Authorization Handler Id",
                     "type": "string"
                 },
                 "processingOrder": {
                     "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+                    "markdownDescription": "**Processing Order**\n\nThis is the order this authorization handler will be processed. If 0, this handler is not active.",
                     "title": "Processing Order",
                     "type": "integer"
                 },
                 "properties": {
-                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "referenceCount": {
-                    "description": "Authorization handler's reference count.",
+                    "description": "Active instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
                     "title": "Reference Count",
                     "type": "integer"
                 },
                 "serviceId": {
                     "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
                     "title": "Service Id",
                     "type": "string"
                 },
                 "stopping": {
-                    "description": "Reference count of stopping instances.",
+                    "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                     "items": {
-                        "description": "Reference count of stopping instances.",
+                        "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                         "title": "Reference count of stopping instances",
                         "type": "integer"
                     },
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                    "title": "Stopping Instances",
+                    "type": "array"
+                }
+            },
+            "title": "_AdaptiveAuthorizationHandler_",
+            "type": "object"
+        },
+        "_AdaptiveAuthorizationHandler_.propertyTypes": {
+            "properties": {
+                "authorizationHandlerId": {
+                    "description": "Authorization handler id.",
+                    "markdownDescription": "**Authorization Handler Id**\n\nAuthorization handler id.",
+                    "title": "Authorization Handler Id",
+                    "type": "string"
+                },
+                "processingOrder": {
+                    "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+                    "markdownDescription": "**Processing Order**\n\nThis is the order this authorization handler will be processed. If 0, this handler is not active.",
+                    "title": "Processing Order",
+                    "type": "integer"
+                },
+                "properties": {
+                    "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+                    "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+                    "title": "Properties",
+                    "type": "object"
+                },
+                "referenceCount": {
+                    "description": "Active instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+                    "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+                    "title": "Reference Count",
+                    "type": "integer"
+                },
+                "serviceId": {
+                    "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "title": "Service Id",
+                    "type": "string"
+                },
+                "stopping": {
+                    "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                    "items": {
+                        "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                        "markdownDescription": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                        "title": "Reference count of stopping instances",
+                        "type": "integer"
+                    },
+                    "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
                     "title": "Stopping Instances",
                     "type": "array"
                 }
@@ -52,9 +108,60 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveAuthorizationHandler_"
+    "additionalProperties": false,
+    "description": "Runtime authorization handler information.",
+    "markdownDescription": "Runtime authorization handler information.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "authorizationHandlerId": {
+            "description": "Authorization handler id.",
+            "markdownDescription": "**Authorization Handler Id**\n\nAuthorization handler id.",
+            "title": "Authorization Handler Id",
+            "type": "string"
+        },
+        "processingOrder": {
+            "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+            "markdownDescription": "**Processing Order**\n\nThis is the order this authorization handler will be processed. If 0, this handler is not active.",
+            "title": "Processing Order",
+            "type": "integer"
+        },
+        "properties": {
+            "description": "Live object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+            "markdownDescription": "**Properties**\n\nLive object with selected conf properties plus runtime properties for this handler. Valid while the handler remains active; not deep-copied on get.",
+            "title": "Properties",
+            "type": "object"
+        },
+        "referenceCount": {
+            "description": "Active instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+            "markdownDescription": "**Reference Count**\n\nActive instance reference count, copied under authorization_handler_id_anchor_rw_lock (valueAccessor authorization_handler_reference_count). Safe scalar snapshot for admin/debug.",
+            "title": "Reference Count",
+            "type": "integer"
+        },
+        "serviceId": {
+            "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "title": "Service Id",
+            "type": "string"
+        },
+        "stopping": {
+            "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+            "items": {
+                "description": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                "markdownDescription": "Reference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+                "title": "Reference count of stopping instances",
+                "type": "integer"
+            },
+            "markdownDescription": "**Stopping Instances**\n\nReference counts of stopping instances, snapshotted under authorization_handler_id_anchor_rw_lock (valueAccessor stopping_authorization_handler_instances).",
+            "title": "Stopping Instances",
+            "type": "array"
         }
-    ]
+    },
+    "title": "_AdaptiveAuthorizationHandler_",
+    "type": "object"
 }

@@ -7,7 +7,7 @@
 //?
 //? test: S12.13_A1
 //? description: Trying to throw exception with "throw"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -21,11 +21,9 @@ try {
 }
 
 assert(inCatch === true);
-
-
 //? test: S12.13_A2_T4
 //? description: Throwing string
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -45,12 +43,9 @@ try{
 catch(e){
   if (e.message!=="exception #1") throw '#2: Exception ==="exception #1". Actual:  Exception ==='+ e.message ;
 }
-
-
-
 //? test: S12.13_A3_T2
 //? description: Evaluating string expression
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -73,12 +68,9 @@ catch(e){
   if (e.message!=="exception #1")
      throw '#2: Exception === "exception #1"(operation +. Actual:  Exception ==='+ e.message ;
 }
-
-
-
 //? test: S12.13_A3_T5
 //? description: Evaluating equation expression
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -92,11 +84,9 @@ catch(e){
   if (e.message!=="exception")
   throw '#1: Exception ==="exception"(operation ? , . Actual:  Exception ==='+e.message  ;
 }
-
-
 //? test: S12.13_A3_T6
 //? description: Evaluating functions
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 

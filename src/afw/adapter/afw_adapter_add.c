@@ -8,7 +8,7 @@
 
 /**
  * @file afw_adapter_add.c
- * @brief Adaptive Framework adapter add object.
+ * @brief Adapter add-object convenience implementation.
  */
 
 #include "afw_internal.h"
@@ -49,8 +49,8 @@ afw_adapter_add_object(
         AFW_UTF8_FMT_OPTIONAL_ARG(suggested_object_id));
     afw_object_set_property_as_string(request,
         afw_s_resourceId, impl_request.resource_id, xctx);
-    afw_object_set_property_as_string(request,
-        afw_s_function, afw_s_add_object, xctx);
+    afw_object_set_property(request,
+        afw_s_function, afw_v_add_object, xctx);
     afw_object_set_property_as_string(request,
         afw_s_adapterId, adapter_id, xctx);
     afw_object_set_property_as_string(request,

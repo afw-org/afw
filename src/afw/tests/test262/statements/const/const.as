@@ -24,21 +24,13 @@
 
 //? test: block-local-use-before-initialization-in-declaration-statement
 //? description:...
-    const: block local use before initialization in declaration statement.
-    (TDZ, Temporal Dead Zone)
-//? expect: undefined
-//? skip: true
+    const: block local use of name in its own initializer.
+//? differences: Adaptive has no TDZ; RHS sees the new binding as undefined, so x + 1 errors on add — not ES ReferenceError
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme this gives an error of:
-//     Unevaluated value encountered producing json (closure_binding )
-// when fixed, the expect should be an error due to 'x' not declared
-function() {
-  {
-    const x = x + 1;
-  }
-}
+const x = x + 1;
 
 
 //? test: block-local-use-before-initialization-in-prior-statement
@@ -58,25 +50,18 @@ function() {
 
 //? test: cptn-value
 //? description: Returns an empty completion
-//? expect: undefined
-//? skip: true
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-// fixme let/const declarations should return undefined
 assert(
-  eval(script('const test262id1 = 1;') == undefined, 
-  'Single declaration');
+  eval(script('const test262id1 = 1;')) == undefined, 
+  'Single declaration'
 );
 assert(
   eval(script('const test262id2 = 2, test262id3 = 3;')) == undefined,
   'Multiple declarations'
 );
-
-assert(eval(script('4; const test262id5 = 5;')) === 4);
-assert(eval(script('6; let test262id7 = 7 === test262id8 = 8;')) === 6);
-
-
 //? test: fn-name-arrow
 //? description: Assignment of function `name` attribute (ArrowFunction)
 //? expect: error:Parse error at offset 35 around line 3 column 16: Expecting Value

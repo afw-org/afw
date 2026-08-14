@@ -43,10 +43,23 @@ impl_afw_array_setter_determine_data_type_and_set_immutable(
 }
 
 /*
- * Implementation of method add_internal for interface afw_array_setter.
+ * Implementation of method push_value for interface afw_array_setter.
  */
 void
-impl_afw_array_setter_add_internal(
+impl_afw_array_setter_push_value(
+    AFW_ARRAY_SETTER_SELF_T *self,
+    const afw_value_t * value,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method push_internal for interface afw_array_setter.
+ */
+void
+impl_afw_array_setter_push_internal(
     AFW_ARRAY_SETTER_SELF_T *self,
     const afw_data_type_t * data_type,
     const void * internal,
@@ -57,11 +70,38 @@ impl_afw_array_setter_add_internal(
 }
 
 /*
- * Implementation of method add_value for interface afw_array_setter.
+ * Implementation of method pop_value for interface afw_array_setter.
+ */
+const afw_value_t *
+impl_afw_array_setter_pop_value(
+    AFW_ARRAY_SETTER_SELF_T *self,
+    afw_boolean_t * found,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method shift_value for interface afw_array_setter.
+ */
+const afw_value_t *
+impl_afw_array_setter_shift_value(
+    AFW_ARRAY_SETTER_SELF_T *self,
+    afw_boolean_t * found,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method insert_value for interface afw_array_setter.
  */
 void
-impl_afw_array_setter_add_value(
+impl_afw_array_setter_insert_value(
     AFW_ARRAY_SETTER_SELF_T *self,
+    afw_integer_t index,
     const afw_value_t * value,
     afw_xctx_t * xctx)
 {
@@ -75,9 +115,9 @@ impl_afw_array_setter_add_value(
 void
 impl_afw_array_setter_insert_internal(
     AFW_ARRAY_SETTER_SELF_T *self,
+    afw_integer_t index,
     const afw_data_type_t * data_type,
     const void * internal,
-    afw_size_t index,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */
@@ -85,25 +125,40 @@ impl_afw_array_setter_insert_internal(
 }
 
 /*
- * Implementation of method insert_value for interface afw_array_setter.
+ * Implementation of method set_value for interface afw_array_setter.
  */
 void
-impl_afw_array_setter_insert_value(
+impl_afw_array_setter_set_value(
+    AFW_ARRAY_SETTER_SELF_T *self,
+    afw_integer_t index,
+    const afw_value_t * value,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method remove_value_by_index for interface
+ * afw_array_setter.
+ */
+void
+impl_afw_array_setter_remove_value_by_index(
+    AFW_ARRAY_SETTER_SELF_T *self,
+    afw_integer_t index,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}
+
+/*
+ * Implementation of method remove_value for interface afw_array_setter.
+ */
+void
+impl_afw_array_setter_remove_value(
     AFW_ARRAY_SETTER_SELF_T *self,
     const afw_value_t * value,
-    afw_size_t index,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-}
-
-/*
- * Implementation of method remove_all_values for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_remove_all_values(
-    AFW_ARRAY_SETTER_SELF_T *self,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */
@@ -125,26 +180,11 @@ impl_afw_array_setter_remove_internal(
 }
 
 /*
- * Implementation of method remove_value for interface afw_array_setter.
+ * Implementation of method remove_all_values for interface afw_array_setter.
  */
 void
-impl_afw_array_setter_remove_value(
+impl_afw_array_setter_remove_all_values(
     AFW_ARRAY_SETTER_SELF_T *self,
-    const afw_value_t * value,
-    afw_xctx_t * xctx)
-{
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
-}
-
-/*
- * Implementation of method set_value_by_index for interface afw_array_setter.
- */
-void
-impl_afw_array_setter_set_value_by_index(
-    AFW_ARRAY_SETTER_SELF_T *self,
-    afw_size_t index,
-    const afw_value_t * value,
     afw_xctx_t * xctx)
 {
     /** @todo Add code to implement method. */

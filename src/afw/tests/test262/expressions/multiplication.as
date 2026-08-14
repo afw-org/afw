@@ -7,7 +7,7 @@
 //?
 //? test: 11.5.1_A1
 //? description: White Space and Line Terminator between multiplicative expression and "*"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -50,12 +50,9 @@ if (eval(script("1\u2029*\u20291")) !== 1) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029*\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
     throw "#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029*\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1";
 }
-
-
-
 //? test: 11.5.1_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -78,9 +75,6 @@ y = 1;
 if (x * y !== 1) {
     throw "x * y !== 1";
 }
-
-
-
 //? test: 11.5.1_A2.4_T1
 //? description: First expression is evaluated first, and then second expression - checking with "="
 //? expect: error:Parse error at offset 89 around line 5 column 8: Expecting ')'
@@ -102,7 +96,7 @@ if (x * (x = 1) !== 0) {
 
 //? test: 11.5.1_A2.4_T2
 //? description: First expression is evaluated first, and then second expression - checking with assert()
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -126,12 +120,9 @@ safe_evaluate(
 
 assert(x1 === 1, "x1 === 1");
 assert(y1 === 0, "y1 === 0");
-
-
-
 //? test: 11.5.1_A4_T2
 //? description: The sign of the result is positive if both operands have the same sign, negative if the operands have different signs
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -168,12 +159,9 @@ if (-0 * 0 !== -0) {
 if (-0 * -0 !== 0) {
     throw "#8: -0 * -0 !== 0";
 }
-
-
-
 //? test: 11.5.1_A4_T4
 //? description: Multiplication of an infinity by an infinity results in an infinity of appropriate sign
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -192,12 +180,9 @@ if (-Infinity * +Infinity !== -Infinity) {
 if (+Infinity * -Infinity !== -Infinity) {
     throw "#4: Infinity * -Infinity !== -Infinity";
 }
-
-
-
 //? test: 11.5.1_A4_T5
 //? description: Multiplication of an infinity by a finite non-zero value results in a signed infinity
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -216,12 +201,9 @@ if (+Infinity * -1.0 !== -Infinity) {
 if (-1.0 * +Infinity !== -Infinity) {
     throw "#4: -1.0 * Infinity !== -Infinity";
 }
-
-
-
 //? test: line-terminator
 //? description: Line terminator between the operands of a multiplication operator
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -237,4 +219,3 @@ let x: integer = 18
 ;
 
 assert(x === 324, "x === 324");
-

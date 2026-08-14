@@ -19,7 +19,7 @@
 
 /**
  * @file afw_vfs_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_vfs_`.
  */
 
 #include "afw.h"
@@ -140,6 +140,12 @@ afw_vfs_self_v_allowEntity = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_allowQuery = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_allowQuery)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_allowWrite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_allowWrite)
@@ -173,6 +179,12 @@ const afw_value_string_t
 afw_vfs_self_v_collectionURIs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_collectionURIs)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_contextType = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_contextType)
 };
 
 const afw_value_string_t
@@ -230,6 +242,12 @@ afw_vfs_self_v_indirect = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_integer = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_integer)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_isDirectory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_isDirectory)
@@ -248,6 +266,12 @@ afw_vfs_self_v_markExecutable = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_maxReadBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_maxReadBytes)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_objectType = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_objectType)
@@ -263,6 +287,12 @@ const afw_value_string_t
 afw_vfs_self_v_parentPaths = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_parentPaths)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_process = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_process)
 };
 
 const afw_value_string_t
@@ -302,6 +332,12 @@ afw_vfs_self_v_suffix = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_template = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_template)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_timeAccessed = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_timeAccessed)
@@ -338,63 +374,69 @@ afw_vfs_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2590 = {
+afw_vfs_self_v_zz__2578 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2590)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2578)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2591 = {
+afw_vfs_self_v_zz__2579 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2591)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2579)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2592 = {
+afw_vfs_self_v_zz__2580 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2592)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2580)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2593 = {
+afw_vfs_self_v_zz__2581 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2593)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2581)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2594 = {
+afw_vfs_self_v_zz__2582 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2594)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2582)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2595 = {
+afw_vfs_self_v_zz__2583 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2595)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2583)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2596 = {
+afw_vfs_self_v_zz__2584 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2596)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2584)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2597 = {
+afw_vfs_self_v_zz__2585 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2597)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2585)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2598 = {
+afw_vfs_self_v_zz__2586 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2598)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2586)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2599 = {
+afw_vfs_self_v_zz__2587 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2599)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2587)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2588 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2588)
 };
 
 const afw_value_string_t
@@ -455,6 +497,18 @@ const afw_value_string_t
 afw_vfs_self_v_zz__Mark_Executable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Mark_Executable)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Max_Read_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Max_Read_Bytes)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Maximum_file_size_read_into_memory = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Maximum_file_size_read_into_memory)
 };
 
 const afw_value_string_t
@@ -551,4 +605,22 @@ const afw_value_string_t
 afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable)
+};
+
+const afw_value_boolean_t
+afw_vfs_boolean_self_v_false = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+const afw_value_boolean_t
+afw_vfs_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+const afw_value_integer_t
+afw_vfs_integer_self_v_67108864 = {
+    {&afw_value_permanent_integer_inf},
+    67108864
 };

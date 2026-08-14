@@ -30,6 +30,7 @@
 #define AFW_IMPLEMENTATION_ID "call_test_script"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_call_test_script_inf
+#define AFW_VALUE_SELF_T afw_value_call_test_script_t
 #include "afw_value_impl_declares.h"
 
 
@@ -57,17 +58,100 @@ afw_value_call_test_script_create(
 
 
 /*
+ * Install a utf-8 capture stream on a standard stream slot so print/write to
+ * that streamId does not touch process FDs (and thus does not pollute the afw
+ * CLI result channel). Caller must release after harvesting.
+ */
+static void
+impl_test_script_install_utf8_capture(
+    afw_stream_number_t n,
+    const afw_utf8_t *streamId,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_stream_t *stream;
+
+    if (xctx->stream_anchor &&
+        n < xctx->stream_anchor->maximum_number_of_streams &&
+        xctx->stream_anchor->streams[n])
+    {
+        afw_stream_release(xctx->stream_anchor->streams[n], xctx);
+        *(const afw_stream_t **)&xctx->stream_anchor->streams[n] = NULL;
+    }
+
+    stream = afw_utf8_stream_create(streamId, p, xctx);
+    *(const afw_stream_t **)&xctx->stream_anchor->streams[n] = stream;
+}
+
+
+
+/*
+ * Harvest captured utf-8 for a standard stream, store actual under streamId
+ * (stdout/stderr), release the slot, and fail the case if expect does not
+ * match. expect NULL means do not assert (caller still may have left a
+ * previous FD stream; we only harvest when expect is set).
+ */
+static void
+impl_test_script_check_stream_expect(
+    const afw_object_t *test,
+    afw_stream_number_t n,
+    const afw_utf8_t *streamId,
+    const afw_utf8_t *expect,
+    const afw_utf8_t *mismatch_reason,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t actual;
+    const afw_utf8_t *actual_owned;
+
+    if (!expect) {
+        return;
+    }
+
+    actual.s = NULL;
+    actual.len = 0;
+    if (xctx->stream_anchor &&
+        n < xctx->stream_anchor->maximum_number_of_streams &&
+        xctx->stream_anchor->streams[n])
+    {
+        afw_utf8_stream_get_current_cached_string(
+            xctx->stream_anchor->streams[n], &actual, xctx);
+        /* Clone before release — capture buffer lives in the stream pool. */
+        actual_owned = afw_utf8_clone(&actual, p, xctx);
+        afw_stream_release(xctx->stream_anchor->streams[n], xctx);
+        *(const afw_stream_t **)&xctx->stream_anchor->streams[n] = NULL;
+    }
+    else {
+        actual_owned = afw_utf8_create_copy(
+            (const afw_utf8_octet_t *)"", 0, p, xctx);
+    }
+
+    /* Actual capture for harness / failure display. */
+    afw_object_set_property_as_string(test, streamId, actual_owned, xctx);
+
+    if (!afw_utf8_equal(actual_owned, expect)) {
+        afw_object_set_property(test, afw_s_passed,
+            afw_boolean_v_false, xctx);
+        /* Keep compile/eval errorReason if already set. */
+        if (!afw_object_has_property(test, afw_s_errorReason, xctx)) {
+            afw_object_set_property_as_string(test,
+                afw_s_errorReason, mismatch_reason, xctx);
+        }
+    }
+}
+
+
+
+/*
  * Implementation of method optional_evaluate for interface afw_value.
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *tests;
     const afw_object_t *test;
     const afw_value_t *value;
@@ -75,6 +159,8 @@ impl_afw_value_optional_evaluate(
     const afw_utf8_t *source_type;
     const afw_utf8_t *source;
     const afw_utf8_t *expect;
+    const afw_utf8_t *expect_stdout;
+    const afw_utf8_t *expect_stderr;
     const afw_value_t *expected_value;
     const afw_value_t *compiled_value;
     const afw_value_t *evaluated_value;
@@ -125,15 +211,25 @@ impl_afw_value_optional_evaluate(
             AFW_THROW_ERROR_Z(general, "expect required", xctx);
         }
 
+        /*
+         * Optional side-channel expects (string equality on captured utf-8).
+         * Keys are "expect-stdout" / "expect-stderr" (hyphen; not Adaptive).
+         * Absent key → do not assert that stream.
+         */
+        expect_stdout = afw_object_old_get_property_as_string(test,
+            afw_s_expect_stdout, xctx);
+        expect_stderr = afw_object_old_get_property_as_string(test,
+            afw_s_expect_stderr, xctx);
+
         expectUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_expectUTF8OctetLengthInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
         expectUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_expectUTF8OctetOffsetInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
 
         source = afw_object_old_get_property_as_string(test,
@@ -144,12 +240,12 @@ impl_afw_value_optional_evaluate(
         sourceUTF8OctetOffsetInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_sourceUTF8OctetOffsetInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
         sourceUTF8OctetLengthInTestScript = afw_object_old_get_property_as_integer(
             test, afw_s_sourceUTF8OctetLengthInTestScript, &found, xctx);
         if (!found) {
-            AFW_THROW_ERROR_Z(code, "Internal error", xctx);
+            AFW_THROW_ERROR_Z(coding_error, "Internal error", xctx);
         }
 
         /* Skip processing test is requested. */
@@ -165,10 +261,28 @@ impl_afw_value_optional_evaluate(
                 AFW_UTF8_FMT_ARG(source_type));
         }
 
+        /*
+         * Per-case capture: replace standard stdout/stderr with utf-8 buffers
+         * when those expects are present so print/println do not hit process
+         * FDs (afw CLI keeps Adaptive stdout on stderr for result JSON).
+         */
+        if (expect_stdout) {
+            impl_test_script_install_utf8_capture(
+                afw_stream_number_stdout, afw_s_stdout, p, xctx);
+        }
+        if (expect_stderr) {
+            impl_test_script_install_utf8_capture(
+                afw_stream_number_stderr, afw_s_stderr, p, xctx);
+        }
+
         AFW_TRY{
             error_in = error_in_other;
             (void)error_in; /* In catch. Avoid "not used" error. */
             if (afw_utf8_starts_with(expect, afw_s_error)) {
+                expected_value = NULL;
+            }
+            else if (afw_utf8_equal(expect, afw_s_success)) {
+                /* Completed without throw; ignore the result value. */
                 expected_value = NULL;
             }
             else if (afw_utf8_equal(expect, afw_s_undefined)) {
@@ -213,25 +327,33 @@ impl_afw_value_optional_evaluate(
             error_in = error_in_other;
             (void)error_in; /* In catch. Avoid "not used" error. */
 
-            afw_object_set_property(test, afw_s_result,
-                evaluated_value, xctx);
+            /*
+             * success: ignore the value (do not put a raw Adaptive value
+             * on the test object — JSON cannot write script_function).
+             */
+            if (afw_utf8_equal(expect, afw_s_success)) {
+                afw_object_set_property(test, afw_s_passed,
+                    afw_boolean_v_true, xctx);
+            }
+            else {
+                afw_object_set_property(test, afw_s_result,
+                    evaluated_value, xctx);
 
-            afw_object_set_property(test, afw_s_passed,
-                afw_boolean_v_true,
-                xctx);
-
-            passed_value =
-                !afw_utf8_starts_with(expect, afw_s_error) &&
-                (
-                    (!expected_value && !evaluated_value) ||
+                passed_value =
+                    !afw_utf8_starts_with(expect, afw_s_error) &&
                     (
-                        expected_value &&
-                        afw_value_equal(evaluated_value, expected_value, xctx)
+                        (!expected_value && !evaluated_value) ||
+                        (
+                            expected_value &&
+                            afw_value_equal(evaluated_value, expected_value,
+                                xctx)
+                        )
                     )
-                )
-                ? afw_boolean_v_true
-                : afw_boolean_v_false;
-            afw_object_set_property(test, afw_s_passed, passed_value, xctx);
+                    ? afw_boolean_v_true
+                    : afw_boolean_v_false;
+                afw_object_set_property(test, afw_s_passed, passed_value,
+                    xctx);
+            }
         }
 
         AFW_CATCH_UNHANDLED{
@@ -296,6 +418,14 @@ impl_afw_value_optional_evaluate(
         }
 
         AFW_ENDTRY;
+
+        /* Side-channel expects after return/error check; always release. */
+        impl_test_script_check_stream_expect(test,
+            afw_stream_number_stdout, afw_s_stdout,
+            expect_stdout, afw_s_a_expect_stdout_mismatch, p, xctx);
+        impl_test_script_check_stream_expect(test,
+            afw_stream_number_stderr, afw_s_stderr,
+            expect_stderr, afw_s_a_expect_stderr_mismatch, p, xctx);
     }
 
     return afw_value_create_unmanaged_object(
@@ -308,7 +438,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -320,12 +450,10 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
     const afw_pool_t *p;
     const afw_array_t *tests;
     const afw_object_t *test;
@@ -335,7 +463,7 @@ impl_afw_value_produce_compiler_listing(
     const afw_utf8_t *default_source_type;
     const afw_utf8_t *source_type;
     const afw_utf8_t *source_location;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_compile_type_info_t *info;
     const afw_value_t *compiled_value;
     const afw_utf8_t *test_name;
@@ -365,7 +493,7 @@ impl_afw_value_produce_compiler_listing(
     }
 
     /* Begin listing for test script. */
-    afw_value_compiler_listing_begin_value(writer, instance, &contextual, xctx);
+    afw_value_compiler_listing_begin_value(writer, &self->pub, &contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
     afw_writer_increment_indent(writer, xctx);
@@ -417,7 +545,7 @@ impl_afw_value_produce_compiler_listing(
                     test, afw_s_sourceUTF8OctetOffsetInTestScript,
                     &found, xctx);
             if (!found) {
-                AFW_THROW_ERROR_Z(code,
+                AFW_THROW_ERROR_Z(coding_error,
                     "sourceUTF8OctetOffsetInTestScript missing",
                     xctx);
             }
@@ -429,7 +557,7 @@ impl_afw_value_produce_compiler_listing(
                     test, afw_s_sourceUTF8OctetLengthInTestScript,
                     &found, xctx);
             if (!found) {
-                AFW_THROW_ERROR_Z(code,
+                AFW_THROW_ERROR_Z(coding_error,
                     "sourceUTF8OctetLengthInTestScript missing",
                     xctx);
             }
@@ -538,25 +666,22 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #call_test_script(test_script_object).
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    /*FIXME
+    const afw_value_t *argv[1];
 
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
-
-    if (self->qualifier.len > 0) {
-        afw_writer_write_utf8(writer, &self->qualifier, xctx);
-        afw_writer_write_z(writer, "::", xctx);
-    }
-    afw_writer_write_utf8(writer, &self->name, xctx);
-    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
-     */
+    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
+    argv[0] = self->test_script_object_value
+        ? (const afw_value_t *)self->test_script_object_value
+        : NULL;
+    afw_value_decompile_value_list(writer, 1, argv, xctx);
 }
 
 
@@ -565,20 +690,18 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_call_test_script_t *self =
-        (const afw_value_call_test_script_t *)instance;
 
     afw_memory_clear(info);
     info->detail = afw_s_test_script;
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->evaluated_data_type = afw_data_type_object;
-    info->optimized_value = instance;
+    info->optimized_value = &self->pub;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }

@@ -9,10 +9,37 @@ alwaysApply: false
 Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/compile/` (separate from interface-based extension APIs). Public API and compile types: **`afw-compile`**.
 
 ## Source of truth
-- Grammar fragments live in C comments marked `/*ebnf>>>` … `<<<ebnf*/` beside the real parser (mainly `compile/afw_compile_parse*.c`, `compile/afw_compile_lexical*.c`).
+- Grammar fragments live in C comments marked `/*ebnf>>>` … `<<<ebnf*/` **immediately above** the function that implements the production (mainly `compile/afw_compile_parse*.c`, `compile/afw_compile_lexical*.c`).
+- **Do not** leave full grammars as plain `/* … */` design notes only — they will **not** harvest. Only `ebnf>>>` / `<<<ebnf` markers are scanned (`_afwdev/generate/ebnf.py`).
 - `src/afw/generate/ebnf/*.txt` is **not** the grammar: first non-comment line is the output basename; following lines are source globs to scan (e.g. `syntax.txt` → `syntax.ebnf`).
-- `afwdev generate` harvests into `src/afw/generated/ebnf/` (e.g. `syntax.ebnf`). Derived docs only; W3C-style and explicitly imprecise.
+- `afwdev generate` (or `./afwdev build --cdev`) harvests into `src/afw/generated/ebnf/` (e.g. `syntax.ebnf`). Derived docs only; W3C-style and **explicitly imprecise**.
 - Handbook diagrams under `src/afw/doc/syntax/` are maintained from that harvest.
+- After language changes: regenerate harvest and **grep `syntax.ebnf`** so every referenced nonterminal has a `Name ::=` production.
+
+## Naming: production ↔ function ↔ declaration
+
+| Layer | Convention |
+|-------|------------|
+| **Production** | PascalCase, e.g. `PrimaryType`, `UnionType`, `AssignmentElement` |
+| **Implementing function** | Suffix matches the production: **`afw_compile_parse_<Production>`** (e.g. `afw_compile_parse_PrimaryType`) |
+| **Declaration** | **`AFW_DECLARE_INTERNAL`** in `src/afw/compile/afw_compile_internal.h`, grouped with other `afw_compile_parse_*` (roughly alphabetical) |
+| **Definition** | **`AFW_DEFINE_INTERNAL`** in the `.c` that owns the production; EBNF block directly above it |
+| **True helpers** (not productions) | `static` `impl_*` (e.g. `impl_type_alloc`, `impl_type_lookup_name`) — no harvest requirement |
+
+Script **statement** parsers sometimes stay `static impl_parse_FooStatement` with EBNF on that static; expression/type hierarchy prefers the public `afw_compile_parse_*` form (see `LogicalExpression`, `Type`, …).
+
+## EBNF comment hygiene
+- Lines with `*#` become harvest **comments** (`/* … */` in `syntax.ebnf`).
+- Other `* ` lines are production text (leading `*` stripped).
+- **Never** nest C `/* … */` inside an ebnf block — it terminates the outer comment early. Use `*#` prose or a quoted terminal string instead (see `ID_START ::= "any Unicode ID_Start code point"`).
+- Prefer productions that match real accept sets; use `*#` notes for lookahead / “token already consumed” (e.g. destructure after `[`, `FunctionType` after `(`).
+
+## Closure and accuracy
+- Every **referenced** nonterminal should have a `::=` production (check harvested `syntax.ebnf`).
+- Prefer linking existing shared productions (`DataType`, `Identifier`, `PropertyName`, `Type`, …) over inventing parallel names.
+- When the parser is stricter than a broad alt (e.g. bare function-type params: TypeName + `[]` only, not full `Type` with `|`/`&`), encode that in EBNF, not only in C comments.
+- Remove dead productions when the language hard-cuts them (e.g. old **`ObjectType ::= String`** for adaptive OT strings — gone with #28 type syntax).
+- Speculative parse / token-already-consumed is documented in `*#` notes; EBNF remains non-executable.
 
 ## Where productions live (edit C + EBNF comment together)
 
@@ -21,17 +48,22 @@ Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/c
 | Tokens / residual | `afw_compile_lexical.c` |
 | Symbols / contextual | `afw_compile_parse.c` |
 | Script / TestScript / statements | `afw_compile_parse_script.c` |
-| Expressions / operators / lambdas | `afw_compile_parse_expression.c` |
+| Expressions / operators / lambdas / **script types** | `afw_compile_parse_expression.c` (`Type`, `UnionType`, `PrimaryType`, `ObjectTypeLiteral`, …) |
+| Pragmas (author policy, e.g. `#typecheck`) | `afw_compile_parse_pragma.c` |
+| Compiler-internal `#…` (decompile/recompile) | `afw_compile_parse_compiler_internal.c` |
 | JSON / literals | `afw_compile_parse_value.c` |
-| Templates | `afw_compile_parse_template.c` |
+| Templates (`#{…}` / `${…}`, TemplateString) | `afw_compile_parse_template.c` — compile-time nested script is isolated (`parent=NULL`); `\#`/`\$` suppress openers |
 | Destructuring | `afw_compile_parse_assignment_target.c` |
 
 ## When changing the language
-1. Edit the EBNF comment blocks and the real parse/lex C.
-2. Change `generate/ebnf/*.txt` only if which files are scanned (or the output name) must change.
-3. `./afwdev build --cdev -j`
+1. Edit the EBNF comment **on** the implementing `afw_compile_parse_*` (or static statement parser) **and** the real parse/lex C.
+2. Declare new `afw_compile_parse_*` in `afw_compile_internal.h` if it is a shared production entry.
+3. Change `generate/ebnf/*.txt` only if which files are scanned (or the output name) must change.
+4. `./afwdev build --cdev -j` (or generate) → confirm `src/afw/generated/ebnf/syntax.ebnf`.
+5. Spot-check: no dangling nonterminal names; production order/precedence matches the call graph where reasonable.
 
 ## Do not
-- Hand-edit `generated/ebnf/`.
+- Hand-edit `generated/ebnf/` as the primary edit (regenerate from C).
 - Treat harvested EBNF as executable truth — the C parser is.
+- Leave new syntax only in non-harvested comments or design pads.
 - Assume a top-level `parenthesized` / `parentheses` compile type (dead docs only; it was an internal expression production, never wired as a `-s` value or compile type enum). See `afw-command` and `afw-compile`.

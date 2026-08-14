@@ -3,10 +3,10 @@
     "brief": "Convert to data type xpathExpression",
     "camelCaseFunctionLabel": "xpathExpression",
     "category": "xpathExpression",
-    "description": "Converts value to data type xpathExpression returning xpathExpression result.",
+    "description": "Converts value to data type xpathExpression returning xpathExpression result. Holds an XPath expression source string as an xpathExpression value (does not evaluate). Use polymorphic compile when a compiled form is required.",
     "errorsThrown": [
         {
-            "error": "cast_error",
+            "error": "conversion_error",
             "reason": "value could not be converted"
         }
     ],

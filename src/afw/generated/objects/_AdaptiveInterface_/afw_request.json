@@ -1,4 +1,4 @@
 {
     "name": "afw_request",
-    "description": "Adaptive framework request interface."
+    "description": "One HTTP-like request as seen by a host (afwfcgi, afw --local, …).\n      Carries the request xctx, properties (env/params/headers), and\n      read/write content callbacks. Handlers receive this instance from the\n      director. Call methods via afw_request_*() macros. See group\n      afw_request and afw_request_handler."
 }

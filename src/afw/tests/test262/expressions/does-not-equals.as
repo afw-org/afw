@@ -6,7 +6,7 @@
 //? sourceType: script
 //? test: S11.9.2_A1
 //? description:Checking by using eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -60,11 +60,9 @@ if (eval(script("true\u2029===\u20291")) !== false) {
 if (eval(script("true\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029===\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== false) {
   throw '#10: (true\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029===\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291) === false';
 }
-
-
 //? test: S11.9.2_A2.1_T1
 //? description:Either Type is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -92,8 +90,6 @@ y = 1;
 if ((x != y) !== false) {
   throw '#4: let x = 1; let y = 1; (x != y) === false';
 }
-
-
 //? test: S11.9.2_A2.1_T2
 //? description:If GetBase(x) is null, throw ReferenceError
 //? expect: error:Parse error at offset 20 around line 3 column 1: Unknown built-in function 'x'
@@ -116,7 +112,7 @@ x != 1;
 
 //? test: S11.9.2_A2.4_T2
 //? description:Checking with "throw"
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -135,11 +131,9 @@ try {
      }
    }
 }
-
-
 //? test: S11.9.2_A3.1
 //? description:x and y are boolean primitives
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -163,11 +157,9 @@ if ((true != false) !== true) {
 if ((false != true) !== true) {
   throw '#4: (false != true) === true';
 }
-
-
 //? test: S11.9.2_A4.1_T1
 //? description:x is NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -226,11 +218,9 @@ if ((NaN != {}) !== true) {
   throw '#9: (NaN != {}) === true';
 }
 */
-
-
 //? test: S11.9.2_A4.1_T2
 //? description:y is NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -282,12 +272,9 @@ if (("string" != NaN) !== true) {
   throw '#8: ("string" != NaN) === true';
 }
 */
-
-
-
 //? test: S11.9.2_A4.2
 //? description:Checking all combinations
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -301,11 +288,9 @@ if ((+0 != -0) !== false) {
 if ((-0 != +0) !== false) {
   throw '#2: (-0 != +0) === false';
 }
-
-
 //? test: S11.9.2_A4.3
 //? description:x and y are primitive numbers
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -319,12 +304,9 @@ if ((Infinity != Infinity) !== false) {
 if ((-Infinity != -Infinity) !== false) {
   throw '#2: (-Infinity != -Infinity) === false';
 }
-
-
-
 //? test: S11.9.2_A5.1
 //? description:x and y are primitive strings
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -363,12 +345,9 @@ if (("1.0" != "1") !== true) {
 if (("0xff" != "255") !== true) {
   throw '#7: ("0xff" != "255") === true';
 }
-
-
-
 //? test: S11.9.2_A6.1
 //? description: Checking all combinations
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 

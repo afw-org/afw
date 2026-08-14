@@ -4,6 +4,7 @@
     "compileType": "relaxed_json",
     "dataType": "relaxed_json",
     "dataTypeParameterType": "SourceParameter",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'relaxed_json' holds the source for a relaxed JSON value.",
     "directReturn": false,
     "evaluated": true,

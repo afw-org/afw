@@ -7,7 +7,7 @@
     "description": "This converts an array of anyURI values that contains one value to a single anyURI value.",
     "errorsThrown": [
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "array does not contain exactly one value"
         }
     ],

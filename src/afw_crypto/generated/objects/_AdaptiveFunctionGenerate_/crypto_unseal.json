@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoUnseal",
+    "brief": "Unseal AES-GCM sealed data",
+    "camelCaseFunctionLabel": "cryptoUnseal",
+    "category": "crypto",
+    "description": "Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as base64/hex strings; (2) a string of pure JSON with those properties as base64 strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext octets. Requires execute access.",
+    "functionId": "crypto_unseal",
+    "functionLabel": "crypto_unseal",
+    "parameters": [
+        {
+            "description": "Key material, CryptoKey, or key reference.",
+            "name": "key"
+        },
+        {
+            "description": "Sealed object or pure JSON string.",
+            "name": "sealed"
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "base64Binary",
+        "description": "Plaintext octets. Use decode_to_string() for UTF-8 text."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCryptoHmacVerify",
+    "brief": "Verify HMAC",
+    "camelCaseFunctionLabel": "cryptoHmacVerify",
+    "category": "crypto",
+    "description": "Verify an HMAC in constant time. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Requires execute access.",
+    "functionId": "crypto_hmac_verify",
+    "functionLabel": "crypto_hmac_verify",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "HMAC algorithm: HMAC-SHA-256 or HMAC-SHA-512.",
+            "name": "algorithm"
+        },
+        {
+            "description": "Key material, CryptoKey object, or key reference.",
+            "name": "key"
+        },
+        {
+            "description": "Data that was MAC'd (base64Binary or hexBinary).",
+            "name": "data"
+        },
+        {
+            "description": "Expected MAC (base64Binary or hexBinary).",
+            "name": "mac"
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "boolean",
+        "description": "true if MAC matches."
+    },
+    "sideEffects": [
+        "Other"
+    ]
+}

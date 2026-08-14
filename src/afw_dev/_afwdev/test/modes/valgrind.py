@@ -16,6 +16,8 @@ import os
 import subprocess
 
 from _afwdev.common import msg, nfc, resources
+from _afwdev.common.errors import AfwdevProcessError, wrap_exception
+from _afwdev.test.common import format_abnormal_process_exit
 
 ##
 # @brief Runs the tests under the afw command line tool and valgrind.
@@ -66,19 +68,36 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
             resources.copy_resources(options, "test/", todir=work_dir)            
 
             msg.debug("Running test script: %s" % test)
-            p = subprocess.run([
-                'valgrind', 
-                '--suppressions={0}/valgrind.suppress'.format(work_dir), 
-                '--xml=yes', 
-                '--xml-fd=2', 
-                '--show-possibly-lost=no'
-                ] + afw_cmd + [test], cwd=work_dir, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+            # Cap runtime so a stuck/valgrind-thrashing test cannot hang the
+            # parallel pool forever (seen with --env-mode valgrind -j).
+            # Per-test default is generous: full suite is still slow overall.
+            test_timeout = float(options.get("valgrind_test_timeout_s") or 300)
+            try:
+                p = subprocess.run([
+                    'valgrind',
+                    '--suppressions={0}/valgrind.suppress'.format(work_dir),
+                    '--xml=yes',
+                    '--xml-fd=2',
+                    '--show-possibly-lost=no'
+                    ] + afw_cmd + [test],
+                    cwd=work_dir,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    timeout=test_timeout)
+            except subprocess.TimeoutExpired as e:
+                raise AfwdevProcessError(
+                    "valgrind test timed out after {}s: {}".format(
+                        test_timeout, test)
+                ) from e
         else:
             msg.debug("Skipping test script (not adaptive script): %s" % test)
             return None, None, None
 
         if p.returncode < 0:
-            raise Exception("Process was terminated with return code {}".format(p.returncode))
+            raise AfwdevProcessError(
+                format_abnormal_process_exit(p.returncode),
+                returncode=p.returncode,
+            )
 
         stderr = p.stderr.decode("utf-8")
         stdout = p.stdout.decode("utf-8")              
@@ -90,11 +109,10 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     except Exception as e:                
         if stdout:            
             msg.debug(stdout)       
-        error = e     
+        error = wrap_exception(e)
 
-    # if the stderr stream reports valgrind errors, then wrap them in an Exception
+    # if the stderr stream reports valgrind errors, then wrap them
     if stderr != None and stderr.find("<error>") > -1:
-        # we have a valgrind error
-        error = Exception("Valgrind Error(s) detected.")   
+        error = AfwdevProcessError("Valgrind Error(s) detected.")
 
     return response, error, stderr

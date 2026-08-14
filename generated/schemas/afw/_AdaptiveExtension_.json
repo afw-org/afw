@@ -1,29 +1,57 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveExtension_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveExtension_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveExtension_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Run time information for a loaded extension.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveExtension_.propertyTypes": {
+            "markdownDescription": "Run time information for a loaded extension.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "afwCompiledVersion": {
                     "description": "Version of libafw this extension was compiled against.",
+                    "markdownDescription": "**AFW Version**\n\nVersion of libafw this extension was compiled against.",
                     "title": "AFW Version",
                     "type": "string"
                 },
                 "extensionId": {
                     "description": "Id of extension.",
+                    "markdownDescription": "**Extension Id**\n\nId of extension.",
                     "title": "Extension Id",
                     "type": "string"
                 },
                 "extensionVersion": {
                     "description": "Version of this extension.",
+                    "markdownDescription": "**Version**\n\nVersion of this extension.",
+                    "title": "Version",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveExtension_",
+            "type": "object"
+        },
+        "_AdaptiveExtension_.propertyTypes": {
+            "properties": {
+                "afwCompiledVersion": {
+                    "description": "Version of libafw this extension was compiled against.",
+                    "markdownDescription": "**AFW Version**\n\nVersion of libafw this extension was compiled against.",
+                    "title": "AFW Version",
+                    "type": "string"
+                },
+                "extensionId": {
+                    "description": "Id of extension.",
+                    "markdownDescription": "**Extension Id**\n\nId of extension.",
+                    "title": "Extension Id",
+                    "type": "string"
+                },
+                "extensionVersion": {
+                    "description": "Version of this extension.",
+                    "markdownDescription": "**Version**\n\nVersion of this extension.",
                     "title": "Version",
                     "type": "string"
                 }
@@ -32,9 +60,36 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveExtension_"
+    "additionalProperties": false,
+    "description": "Run time information for a loaded extension.",
+    "markdownDescription": "Run time information for a loaded extension.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "afwCompiledVersion": {
+            "description": "Version of libafw this extension was compiled against.",
+            "markdownDescription": "**AFW Version**\n\nVersion of libafw this extension was compiled against.",
+            "title": "AFW Version",
+            "type": "string"
+        },
+        "extensionId": {
+            "description": "Id of extension.",
+            "markdownDescription": "**Extension Id**\n\nId of extension.",
+            "title": "Extension Id",
+            "type": "string"
+        },
+        "extensionVersion": {
+            "description": "Version of this extension.",
+            "markdownDescription": "**Version**\n\nVersion of this extension.",
+            "title": "Version",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveExtension_",
+    "type": "object"
 }

@@ -16,6 +16,7 @@
 
 import os
 import shutil
+import signal
 import subprocess
 import importlib
 import importlib.machinery
@@ -23,6 +24,173 @@ import re
 from os.path import exists
 
 from _afwdev.common import msg, nfc
+from _afwdev.common.errors import error_message, error_to_dict
+
+
+##
+# @brief Human-readable message for a process killed by a signal
+# @param returncode Subprocess return code (negative when killed by signal)
+# @details Python reports signal death as a negative returncode (-N for
+#          signal N). Decode to a name such as SIGSEGV when possible.
+#
+def format_abnormal_process_exit(returncode):
+    if returncode is None:
+        return "Process exited abnormally"
+    if returncode >= 0:
+        return "Process exited with return code {}".format(returncode)
+    sig = -returncode
+    try:
+        name = signal.Signals(sig).name
+    except (ValueError, AttributeError):
+        name = "signal {}".format(sig)
+    return "Process exited abnormally with return code {} ({})".format(
+        returncode, name)
+
+
+##
+# @brief Path of a test file relative to base (package root when possible)
+#
+def test_path_for_display(test, base=None):
+    if base is None:
+        base = os.getcwd()
+    try:
+        return os.path.relpath(test, base)
+    except ValueError:
+        return test
+
+
+##
+# @brief Normalize --tests-path (-T) option values
+# @param raw None, str, or list of paths from CLI
+# @return list of absolute existing directory paths (may be empty)
+# @details Shared by afwdev test and afwdev blast. When non-empty, callers
+#          use only these roots instead of package src/*/tests discovery.
+#
+def normalize_tests_paths(raw):
+    if not raw:
+        return []
+    if isinstance(raw, str):
+        raw = [raw]
+    paths = []
+    for p in raw:
+        if p is None or p == "":
+            continue
+        ap = os.path.abspath(os.path.expanduser(str(p)))
+        if not os.path.isdir(ap):
+            msg.error_exit(
+                "afwdev --tests-path is not a directory: " + ap)
+        paths.append(ap)
+    return paths
+
+
+##
+# @brief Truncate a one-line detail for digests / JSON summaries
+#
+def clip_detail(text, max_len=400):
+    if text is None:
+        return ""
+    s = str(text).replace("\n", " ").strip()
+    if len(s) <= max_len:
+        return s
+    if max_len < 4:
+        return s[:max_len]
+    return s[: max_len - 3] + "..."
+
+
+##
+# @brief Write test/blast style results summary for --output / --output-format
+# @param options Must include output / output_format (optional)
+# @param summary dict to serialize
+# @param tool_label Short name for the "Wrote …" message (e.g. test, blast)
+#
+def write_results_summary(options, summary, tool_label="test"):
+    import sys
+
+    output = options.get("output") or "stdout"
+    # Compat: literal "stdout" = do not write a summary artifact
+    if output == "stdout":
+        return
+
+    fmt = (options.get("output_format") or "json").strip().lower()
+    if fmt in ("json-min", "compact"):
+        fmt = "json-compact"
+
+    close_fd = False
+    if output == "-":
+        fd = sys.stdout
+    else:
+        fd = nfc.open(output, "w")
+        close_fd = True
+
+    try:
+        if fmt == "json":
+            nfc.json_dump(summary, fd, indent=2, sort_keys=True)
+            fd.write("\n")
+        elif fmt == "json-compact":
+            nfc.json_dump(
+                summary, fd, sort_keys=True, separators=(",", ":"))
+            fd.write("\n")
+        elif fmt == "text":
+            # Generic: prefer tests/ then blast-style ok/fail counts
+            t = summary.get("tests") or summary.get("requests") or {}
+            if "passed" in t or "failed" in t:
+                fd.write(
+                    "passed={p} failed={f} skipped={s} total={n}\n"
+                    "time_seconds={sec}\n".format(
+                        p=t.get("passed", t.get("ok", 0)),
+                        f=t.get("failed", t.get("fail", 0)),
+                        s=t.get("skipped", t.get("timeout", 0)),
+                        n=t.get("total", 0),
+                        sec=summary.get("time_seconds", 0),
+                    ))
+            else:
+                fd.write(nfc.json_dumps(summary, indent=2) + "\n")
+            fails = summary.get("failures") or []
+            if fails:
+                fd.write("failures ({n}):\n".format(n=len(fails)))
+                for item in fails:
+                    fd.write(
+                        "  {path}  {detail}\n".format(
+                            path=item.get("test") or item.get("path") or "?",
+                            detail=item.get("detail") or "",
+                        ))
+            else:
+                fd.write("failures: none\n")
+        else:
+            msg.error_exit(
+                "Unknown --output-format {!r} "
+                "(use json, json-compact, or text)".format(fmt))
+    finally:
+        if close_fd:
+            fd.close()
+
+    if output != "-":
+        msg.highlighted_info(
+            "Wrote {tool} summary ({fmt}) to {path}".format(
+                tool=tool_label, fmt=fmt, path=output))
+
+
+##
+# @brief Print a short end-of-run list of failing tests
+# @param failures List of dicts with at least 'test' and optional 'detail'
+# @details Console-only helper so parallel runs still end with a greppable
+#          list of paths. Does not change --output JSON shape.
+#
+def print_failure_digest(failures):
+    if not failures:
+        return
+    msg.highlighted_info("")
+    msg.error("Failures ({}):".format(len(failures)))
+    for f in failures:
+        path = f.get('test') or '?'
+        detail = f.get('detail')
+        if detail:
+            msg.error("  {}  {}".format(path, detail))
+        else:
+            msg.error("  {}".format(path))
+    msg.highlighted_info(
+        "Re-run:  afwdev test --test-pattern '<filename>'  "
+        "(see also -p / --list)")
 
 
 ##
@@ -87,7 +255,10 @@ def after_all(root, testGroupConfig, testEnvironment):
 #
 def is_test_file(file):    
     skip = [        
-        "config.py"
+        "config.py",
+        # orchestrated-test markers are discovered as leaf units, not as scripts
+        "orchestration.yaml",
+        "orchestration.json",
     ]
 
     if (file.endswith(".as") or
@@ -97,6 +268,25 @@ def is_test_file(file):
         if file in skip or file.startswith("_"):
             return False        
         return True
+    return False
+
+
+def _test_pattern_matches(pattern, path_or_name):
+    """True if --test-pattern matches basename or full path string."""
+    if not pattern or pattern == ".*":
+        return True
+    try:
+        if re.search(pattern, path_or_name):
+            return True
+        base = os.path.basename(path_or_name)
+        if base != path_or_name and re.search(pattern, base):
+            return True
+        # leaf directory name (for orchestration.yaml under smoke/)
+        parent = os.path.basename(os.path.dirname(path_or_name))
+        if parent and re.search(pattern, parent):
+            return True
+    except re.error:
+        return False
     return False
 
 ##
@@ -240,11 +430,14 @@ def load_test_group_config(root):
 # For a given folder, find all tests 
 def find_tests(options, root, files):
     tests = []
+    pattern = options.get("test-pattern")
 
     for f in files:
         # check options to filter out tests
-        if options.get("test-pattern"):
-            if not re.match(options.get("test-pattern"), f):
+        if pattern and pattern != ".*":
+            full = os.path.join(root, f)
+            if not _test_pattern_matches(pattern, full) and \
+                    not _test_pattern_matches(pattern, f):
                 msg.debug("Skipping test (does not match): " + f)
                 continue
 
@@ -263,6 +456,31 @@ def find_test_groups(options, srcdir, tests_dir):
         # exclude subdirectory environments and any directories that start with an underscore
         dirs[:] = [d for d in dirs if d != 'environments' and not d.startswith('_')]
 
+        # orchestrated-test leaf: marker directory is one test; do not walk children
+        try:
+            from _afwdev.test.orchestrated.discovery import (
+                find_orchestration_marker)
+            marker = find_orchestration_marker(root)
+        except ValueError as e:
+            msg.error(str(e))
+            dirs[:] = []
+            testGroups.append((srcdir, root, []))
+            continue
+        except ImportError:
+            marker = None
+
+        if marker:
+            dirs[:] = []  # prune — assets only under leaf
+            pattern = options.get("test-pattern")
+            if pattern and pattern != ".*" and \
+                    not _test_pattern_matches(pattern, marker):
+                msg.debug(
+                    "Skipping orchestrated-test (does not match pattern): " +
+                    marker)
+                continue
+            testGroups.append((srcdir, root, [marker]))
+            continue
+
         if is_test_group(root):
             pass
 
@@ -278,6 +496,21 @@ def find_test_groups(options, srcdir, tests_dir):
 # group. After running the test, it returns a tuple containing the test
 # response, any errors, and the stderr output.
 def run_test(test, options, testEnvironment=None, testGroupConfig=None):
+
+    # orchestration.yaml|json — harness runner (env-mode modulates attach)
+    try:
+        from _afwdev.test.orchestrated.discovery import (
+            is_orchestration_marker_path)
+        from _afwdev.test.orchestrated.runner import run_orchestrated_test
+        if is_orchestration_marker_path(test):
+            return run_orchestrated_test(
+                test, options, testEnvironment, testGroupConfig)
+    except ImportError as e:
+        if test and (
+                test.endswith("orchestration.yaml") or
+                test.endswith("orchestration.json")):
+            msg.error("Unable to load orchestrated-test runner: " + str(e))
+            return (None, str(e), None)
 
     # look at the test file extension to determine how to run it
     # some files, such as .py files have to be run in 'python' mode
@@ -450,7 +683,7 @@ def get_rel_source_location_nav(test, testCase):
 def get_rel_error_source_location_nav(test, testCase):
 
     tc_sourceLineNumberInTestScript = testCase.get('sourceLineNumberInTestScript', 0)
-    error = testCase.get('error', None)
+    error = error_to_dict(testCase.get('error', None))
 
     if error:
         lineNumber = error.get("parserLineNumber")
@@ -488,7 +721,21 @@ def print_test_failure(test, testCase):
     sourceLocation = testCase.get("sourceLocation")
     sourceLocationNav = get_rel_source_location_nav(test, testCase)
     sourceErrorLocationNav = get_rel_error_source_location_nav(test, testCase)
-    error = testCase.get("error")
+    # Normalize to Adaptive-shaped dict (issue #61 helpers)
+    error = error_to_dict(testCase.get("error"))
+
+    def _print_stream_expects():
+        # Side-channel expects (expect-stdout / expect-stderr) — literal text
+        if testCase.get("expect-stdout") is not None:
+            msg.error("    Expected stdout: " +
+                      nfc.json_dumps(testCase.get("expect-stdout")))
+            msg.error("    Actual stdout:   " +
+                      nfc.json_dumps(testCase.get("stdout")) + "\n")
+        if testCase.get("expect-stderr") is not None:
+            msg.error("    Expected stderr: " +
+                      nfc.json_dumps(testCase.get("expect-stderr")))
+            msg.error("    Actual stderr:   " +
+                      nfc.json_dumps(testCase.get("stderr")) + "\n")
 
     if error:
         message = error.get("message")
@@ -534,7 +781,8 @@ def print_test_failure(test, testCase):
                 format_source_code(testCase.get("source"), "Test Failed at: {}".format(sourceLocationNav))
             elif errorSourceLocation is not None:
                 msg.error("Test Failed at: {}".format(sourceLocationNav) + " (id=" + error.get("id") + ")")
-                
+
+        _print_stream_expects()
 
     else:
         # if there was no error object, look for expect/result and dump the source
@@ -547,7 +795,9 @@ def print_test_failure(test, testCase):
             if (testCase.get("result") != None):
                 msg.error("    Result:   " + nfc.json_dumps(testCase.get("result")) + "\n")    
             else:
-                msg.error("    Result:   undefined\n") 
+                msg.error("    Result:   undefined\n")
+
+        _print_stream_expects()
 
         format_source_code(testCase.get("source"), "Test Failed at {}".format(sourceLocationNav))
 
@@ -606,11 +856,17 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
                 # failed test
                 msg.error("    \u2717", end="")
                 msg.highlighted_info(" {}".format(tc_test))
+                # One-line reason always (structured error.message when present)
+                reason = error_message(testCase.get("error"))
+                if reason:
+                    msg.error("      {}".format(reason))
+                elif tc_description and tc_description != tc_test:
+                    msg.error("      {}".format(tc_description))
                 if (msg.is_verbose_mode()):
                     print("\033[2m      {}\033[0m\n".format(tc_description))                
                 msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))
                 
-                # print test errors, if in verbose mode
+                # Full source navigation, if in verbose mode
                 if msg.is_verbose_mode():
                     print_test_failure(test, testCase)
 

@@ -41,10 +41,16 @@
             "description": "The column in line of the error. This is only available if source contains line breaks.",
             "label": "Column"
         },
+        "error": {
+            "brief": "True if this object is an error",
+            "dataType": "boolean",
+            "description": "Always true on an _AdaptiveError_ object. A marker so a printed or stringified object is easy to recognize.",
+            "label": "Error"
+        },
         "errorCode": {
             "brief": "The numeric error code",
             "dataType": "integer",
-            "description": "The numeric error code.",
+            "description": "Internal numeric code from the C error map. Included so a printed or stringified error has everything that was collected. Scripts should use id, not this number. The number may change when the map is reviewed.",
             "label": "Error Code"
         },
         "errorSource": {
@@ -56,7 +62,7 @@
         "id": {
             "brief": "Error code id",
             "dataType": "string",
-            "description": "The mnemonic for the numeric error code (errorCode).",
+            "description": "The mnemonic for the error code (errorCode). Scripts should branch on this (throw, general, not_found, denied, …). Uncaught errors on an HTTP request use this code's mapped status.",
             "label": "Error Code Id"
         },
         "line": {
@@ -97,26 +103,26 @@
         },
         "parserSource": {
             "brief": "The partial/full source available when the syntax error occurred",
-            "dataType": "integer",
+            "dataType": "string",
             "description": "This is the source being compiled that was available at the time of the syntax error. This may be the partial source since the compiler sometimes reads source as it is needed.",
             "label": "Parser Source"
         },
         "rv": {
             "brief": "The return value",
-            "dataType": "string",
-            "description": "The return value.",
+            "dataType": "integer",
+            "description": "Internal integer from the failing library (for example an errno or APR status). Included so a printed or stringified error can be decoded. Scripts should not test this value; use message or id.",
             "label": "Rv"
         },
         "rvDecoded": {
             "brief": "The decoded rv",
             "dataType": "string",
-            "description": "The decoded rv.",
+            "description": "Internal human-readable decode of rv from the decoder named by rvSourceId (for example strerror for errno). Useful in a printed dump, not for script tests.",
             "label": "Rv Decoded"
         },
         "rvSourceId": {
             "brief": "The source id of rv",
             "dataType": "string",
-            "description": "The source id of rv.",
+            "description": "Internal name of the decoder used for rv: errno, apr, or icu. Useful in a printed dump, not for script tests.",
             "label": "Rv Source"
         },
         "sourceFile": {

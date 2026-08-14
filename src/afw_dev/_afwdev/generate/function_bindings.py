@@ -15,7 +15,7 @@ def get_data_type(data_type_list, dataType):
     result = None
 
     for e in data_type_list:
-        if e['objectId'] == dataType:
+        if e.get('objectId') == dataType or e.get('dataType') == dataType:
             result = e
             break
 
@@ -29,8 +29,62 @@ def sort_category_functionLabel_cb(obj):
     return category + '~' + obj.get('functionLabel')
 
 
+def _data_type_object_id(dt):
+    return dt.get('objectId') or dt.get('dataType')
+
+
+def _libafw_data_type_by_id(options, data_type_list):
+    """
+    Map data type id → _AdaptiveDataTypeGenerate_ object for types that have
+    permanent libafw symbols afw_data_type_<id>_direct.
+
+    Prefer the package's data_type_list; for non-core packages also load
+    core's generate/objects so formals can reference string/integer/….
+    """
+    by_id = {}
+    for e in data_type_list or []:
+        i = _data_type_object_id(e)
+        if i:
+            by_id[i] = e
+
+    if not options.get('core'):
+        core_path = (
+            options.get('afw_package_dir_path', '') +
+            'src/afw/generate/objects/_AdaptiveDataTypeGenerate_/')
+        if os.path.isdir(core_path):
+            for e in direct.retrieve_objects_direct(core_path):
+                i = _data_type_object_id(e)
+                if i and i not in by_id:
+                    by_id[i] = e
+
+    return by_id
+
+
+def _c_data_type_pointer(dataType, libafw_dt_by_id):
+    """Permanent libafw data type pointer, or NULL."""
+    if not dataType or dataType not in libafw_dt_by_id:
+        return 'NULL'
+    return '&afw_data_type_' + dataType + '_direct'
+
+
+def _c_array_of_element_pointer(dataType, dataTypeParameter, libafw_dt_by_id):
+    """
+    For ArrayOf formals: resolve dataTypeParameter via outer data type's
+    dataTypeParameterType. OT ids / signatures / media types → NULL.
+    """
+    if not dataType or not dataTypeParameter:
+        return 'NULL'
+    outer = libafw_dt_by_id.get(dataType)
+    if not outer or outer.get('dataTypeParameterType') != 'ArrayOf':
+        return 'NULL'
+    if dataTypeParameter not in libafw_dt_by_id:
+        return 'NULL'
+    return _c_data_type_pointer(dataTypeParameter, libafw_dt_by_id)
+
+
 # afw_value_function_parameter_t
-def write_parameter(fd, prefix, options, label, p, embedding_object_label, property_name):
+def write_parameter(fd, prefix, options, label, p, embedding_object_label,
+                    property_name, libafw_dt_by_id):
     if options['core']:
         value_label = label + '__value'
         fd.write('\nstatic const afw_value_object_t\n')
@@ -59,12 +113,9 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     fd.write('        }\n')
     fd.write('    },\n')
 
-    # dataType
-    dataType = p.get('dataType','')
-    data_type = 'NULL'
-    if options['core'] and dataType != '':
-        data_type = '&afw_data_type_' + dataType + '_direct'
-    fd.write('    ' + data_type + ',\n')
+    # dataType — static pointer when id is a known libafw data type
+    dataType = p.get('dataType', '')
+    fd.write('    ' + _c_data_type_pointer(dataType, libafw_dt_by_id) + ',\n')
     if dataType != '':
         fd.write('    &' + get_string_label(options, dataType, 'self_v') + ',\n')
     else:
@@ -118,6 +169,10 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     polymorphicDataTypeParameter = 'false' if p.get('polymorphicDataTypeParameter', False) == False else 'true'
     fd.write('    &' + get_string_label(options, polymorphicDataTypeParameter, 'self_v', dataType='boolean') + ',\n')
 
+    # data_type_parameter_data_type (ArrayOf element; NULL otherwise)
+    fd.write('    ' + _c_array_of_element_pointer(
+        dataType, dataTypeParameter, libafw_dt_by_id) + '\n')
+
     fd.write('};\n')
 
     if options['core']:    
@@ -129,7 +184,13 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
 
 
 def function_arg(fd, arg):
-    types = []
+    """
+    One Parameters:/Returns: line for C/Doxygen comments.
+
+    Type text uses #28 spelling (T[], FunctionType =>). OT / media notes are
+    appended as plain text (not /* */ or //) so this stays safe inside the
+    outer C block comment and description text is not swallowed.
+    """
     line = '  '
 
     if arg.get('name') is not None:
@@ -140,19 +201,24 @@ def function_arg(fd, arg):
         line += str(arg.get('minArgs')) + ' or more '
     elif arg.get('optional', False):
         line += 'optional '
-    line += ' or '.join(types)
+
     if arg.get('polymorphicDataType', False) == True:
         line += '`<Type>`'
-    else:
-        if arg.get('dataType') is not None:
-            line += arg.get('dataType')
+    elif arg.get('polymorphicDataTypeParameter', False) == True:
+        # e.g. bag values: ArrayOf specialized element → `<Type>`[]
+        if arg.get('dataType') == 'array':
+            line += '`<Type>`[]'
         else:
-            line += 'any dataType'
-    if arg.get('polymorphicDataTypeParameter', False) == True:
-        line += ' `<Type>`'
-    elif arg.get('dataTypeParameter') is not None:
-        line += ' ' + arg.get('dataTypeParameter')
-    line +=  ')'
+            base = arg.get('dataType') if arg.get('dataType') is not None else 'any'
+            line += base + ' `<Type>`'
+    else:
+        spelling, note = _type_parts(arg)
+        line += spelling
+        if note:
+            # e.g. object _AdaptiveJournalEntry_  (C-comment safe)
+            line += ' ' + note
+
+    line += ')'
 
     if arg.get('description') is not None:
         line += ' '
@@ -161,19 +227,199 @@ def function_arg(fd, arg):
             line += '.'
     c.write_wrapped(fd, 80, ' * ', line, '      ')
 
-def make_Type(p):
-    type = ""
-    if p.get('dataTypeParameter') is not None:
-        type += "(" 
-    if p.get('dataType') is not None:
-        type += p.get('dataType')
-    elif p.get('polymorphicDataType', False):
-        type += 'dataType'
+
+def _looks_like_function_signature(s):
+    """True if s looks like a function Type / old FunctionSignature string."""
+    if not s:
+        return False
+    s = s.strip()
+    return s.startswith('(') and ')' in s
+
+
+def _modernize_function_signature(sig):
+    """
+    Map old FunctionSignature spelling to #28 FunctionType.
+
+    Old Adaptive:  (a: integer, b: string): boolean
+    New FunctionType: (a: integer, b: string) => boolean
+
+    Also normalizes a space after '...'.
+    """
+    if sig is None:
+        return sig
+    s = sig.strip()
+    # Collapse "... name" / "...  name" to "...name" (rest marker).
+    while '... ' in s:
+        s = s.replace('... ', '...')
+    if '=>' in s:
+        return s
+    # Return separator is the last "):" that closes the parameter list.
+    idx = s.rfind('):')
+    if idx >= 0:
+        rest = s[idx + 2:]
+        if rest.startswith(' '):
+            return s[:idx] + ') =>' + rest
+        return s[:idx] + ') => ' + rest
+    return s
+
+
+def _type_as_array_of(elem_type):
+    """T[] with parentheses when T is a composite FunctionType / union / etc."""
+    t = elem_type.strip()
+    if (t.startswith('(') or '=>' in t or '|' in t or '&' in t or
+            ' ' in t):
+        return '(' + t + ')[]'
+    return t + '[]'
+
+
+def _type_parts(p):
+    """
+    Return (type_spelling, constraint_note_or_None) for a formal/return.
+
+    type_spelling is #28 Type text only. constraint_note is OT id, media type,
+    or other dataTypeParameter that is not script Type syntax (docs only).
+    """
+    if p is None:
+        return ('any', None)
+
+    dt = p.get('dataType')
+    dtp = p.get('dataTypeParameter')
+    if dtp is not None:
+        dtp = str(dtp).strip()
+        if dtp == '':
+            dtp = None
+
+    if dt is None:
+        if p.get('polymorphicDataType', False):
+            base = 'dataType'
+        else:
+            base = None
     else:
-        type += 'any'
-    if p.get('dataTypeParameter') is not None:
-        type += " " + p.get('dataTypeParameter') + ")"
-    return type
+        base = dt
+
+    # Function formal: leaf "function" or FunctionSignature parameter.
+    if base == 'function' or (
+            base is None and dtp is not None and
+            _looks_like_function_signature(dtp)):
+        if dtp is not None and _looks_like_function_signature(dtp):
+            return (_modernize_function_signature(dtp), None)
+        if dtp is not None:
+            return ('function', dtp)
+        return ('function', None)
+
+    # ArrayOf: array + element (data type name, nested array, or object OT).
+    if base == 'array':
+        if dtp is None:
+            return ('array', None)
+        # Nested old spelling "array of T" if it ever appears in metadata.
+        if dtp.startswith('array of '):
+            return (
+                _type_as_array_of(_type_parts({
+                    'dataType': 'array',
+                    'dataTypeParameter': dtp[len('array of '):].strip()
+                })[0]),
+                None)
+        if dtp.startswith('object '):
+            # "object _AdaptiveX_" → object[] + note OT
+            return ('object[]', dtp[len('object '):].strip())
+        # Bare OT id (not a script Type / not an Adaptive data type name).
+        if dtp.startswith('_Adaptive') or dtp.startswith('_'):
+            return ('object[]', dtp)
+        # Element is an Adaptive data type (or TypeName-like) id.
+        return (_type_as_array_of(dtp), None)
+
+    # ObjectType: Type is object; OT id is constraint metadata.
+    if base == 'object':
+        if dtp is None:
+            return ('object', None)
+        return ('object', dtp)
+
+    # objectId + optional OT constraint (rare).
+    if base == 'objectId':
+        if dtp is None:
+            return ('objectId', None)
+        return ('objectId', dtp)
+
+    # MediaType / SourceParameter / other string-ish parameters.
+    if base is not None and dtp is not None:
+        if _looks_like_function_signature(dtp):
+            return (_modernize_function_signature(dtp), None)
+        return (base, dtp)
+
+    if base is not None:
+        return (base, None)
+
+    if dtp is not None:
+        if _looks_like_function_signature(dtp):
+            return (_modernize_function_signature(dtp), None)
+        return (dtp, None)
+
+    return ('any', None)
+
+
+def _doc_type_with_note(type_spelling, note, note_style='block'):
+    """
+    Type plus non-Type constraint as a comment (docs only).
+
+    note_style:
+      'block' — type /* note */  (functionSignature one-liner only; punct after)
+      'line'  — type // note     (avoid; attach // after ','/';' via _c_decl_line_note)
+      'none'  — type only        (functionDeclaration / C comment emitters)
+    """
+    if not note or note_style == 'none':
+        return type_spelling
+    if note_style == 'line':
+        # Prefer make_Type(..., 'none') + ' // ' after punctuation.
+        return type_spelling + ' // ' + note
+    return type_spelling + ' /* ' + note + ' */'
+
+
+def make_Type(p, note_style='block'):
+    """
+    Script-facing Type string for docs prototypes.
+
+    Uses issue #28 spelling (T[], FunctionType with =>). Hard-cut old forms:
+    (array of T), (object OT), (function …). OT / media constraints that are
+    not script Types: 'block' attaches /* note */; multi-line emitters use
+    'none' and put // note after ',' / ';'. Presentation only.
+
+    note_style: 'block' | 'none' (see _doc_type_with_note).
+    """
+    spelling, note = _type_parts(p)
+    return _doc_type_with_note(spelling, note, note_style)
+
+
+def make_Type_note(p):
+    """Constraint note (OT id, media, …) or None — for C Declaration // notes."""
+    return _type_parts(p)[1]
+
+
+def make_rest_Type(p, note_style='block'):
+    """
+    Type of a rest formal (the array that collects remaining args).
+
+    If the formal is already ArrayOf (dataType array), make_Type is the
+    collected type. Otherwise each arg has make_Type(p) and rest is T[].
+    """
+    if p is not None and p.get('dataType') == 'array':
+        return make_Type(p, note_style=note_style)
+    # Rest of non-array formals: T[] — notes rare; keep on element type path.
+    spelling, note = _type_parts(p)
+    return _doc_type_with_note(_type_as_array_of(spelling), note, note_style)
+
+
+def make_rest_Type_note(p):
+    """Note for a rest formal, if any."""
+    if p is not None and p.get('dataType') == 'array':
+        return make_Type_note(p)
+    return make_Type_note(p)
+
+
+def _c_decl_line_note(note):
+    """Suffix for C Declaration lines: punctuation already written."""
+    if not note:
+        return ''
+    return ' // ' + note
 
 
 def function_comment(fd, obj):
@@ -208,7 +454,7 @@ def function_comment(fd, obj):
         fd.write(' *\n')
         c.write_wrapped(fd, 80, ' *   ', ', '.join(obj.get('polymorphicDataTypes')) + '.')
      
-    # function declaration
+    # function declaration (inside C /* … */ — use // notes after ',' / ';')
     fd.write(' *\n')
     fd.write(' * Declaration:\n')
     fd.write(' *\n * ```\n')
@@ -216,30 +462,45 @@ def function_comment(fd, obj):
     fd.write(obj['functionId'])
     if obj.get('polymorphic', False):
         fd.write(" <dataType>")
-    fd.write('(\n *   ')
-    sep = '    '
-    for p in obj.get('parameters'):
-        fd.write(sep)
-        sep = ',\n *       '
+    fd.write('(\n')
+    params = obj.get('parameters') or []
+    for i, p in enumerate(params):
+        is_last = (i == len(params) - 1)
+        fd.write(' *       ')
         if p.get('minArgs') is not None:
-            i = 1
+            # name_1: T, name_2: T, ...name_rest: T[] // note
             n = int(p.get('minArgs'))
-            while i <= n:
-                fd.write(p.get('name') + '_' + str(i) + ': ' + make_Type(p) + sep)
-                i += 1
+            j = 1
+            while j <= n:
+                fd.write(p.get('name') + '_' + str(j) + ': ' +
+                         make_Type(p, note_style='none'))
+                # more fixed args, or rest always follows
+                fd.write(',\n *       ')
+                j += 1
             fd.write('...')
             if n == 0:
-                fd.write(p.get('name') + ': (array of ' + make_Type(p) + ')')
+                fd.write(p.get('name') + ': ' +
+                         make_rest_Type(p, note_style='none'))
             else:
-                fd.write(p.get('name') + '_rest: (array of ' + make_Type(p) + ')')
+                fd.write(p.get('name') + '_rest: ' +
+                         make_rest_Type(p, note_style='none'))
+            if not is_last:
+                fd.write(',')
+            fd.write(_c_decl_line_note(make_rest_Type_note(p)))
         else:
             fd.write(p.get('name'))
             if p.get('optional', False):
                 fd.write('?')
-            fd.write(': ' + make_Type(p))
-    fd.write('\n *   ): ')
-    fd.write(make_Type(obj.get('returns')))
-    fd.write(';\n * ```\n')
+            fd.write(': ' + make_Type(p, note_style='none'))
+            if not is_last:
+                fd.write(',')
+            fd.write(_c_decl_line_note(make_Type_note(p)))
+        fd.write('\n')
+    fd.write(' *   ): ')
+    fd.write(make_Type(obj.get('returns'), note_style='none'))
+    fd.write(';')
+    fd.write(_c_decl_line_note(make_Type_note(obj.get('returns'))))
+    fd.write('\n * ```\n')
 
     fd.write(' *\n')
     fd.write(' * Parameters:\n')
@@ -265,14 +526,16 @@ def sort_useExecuteFunction(obj):
 def generate(generated_by, prefix, data_type_list, object_dir_path,
                 generated_dir_path, options):
 
-    declare = prefix.upper() + 'DECLARE'
-    define = prefix.upper() + 'DEFINE'
-    declare_data =  prefix.upper() + 'DECLARE_CONST_DATA'
+    # Plain C for package/core function binding get(); package DECLARE helpers
+    # remain generated for out-of-tree convert but are not emitted here.
     string_ref = '&' + prefix + 'self_s_'
 
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)
     os.makedirs(os.path.dirname(generated_dir_path + 'function_closet/'), exist_ok=True)
+
+    # Data types with afw_data_type_<id>_direct (from objects, not a hard list)
+    libafw_dt_by_id = _libafw_data_type_by_id(options, data_type_list)
 
     # Get all functions and sort by category/functionLabel
     list = direct.retrieve_objects_direct(object_dir_path + '_AdaptiveFunctionGenerate_/')
@@ -287,25 +550,28 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     category = None
     dataTypeMethod = []
     useExecuteFunction = []
-    filename = prefix + 'function_bindings.h'
+    # Package-private / core-internal: execute protos + (core) function_definition_*
+    # and bindings_get. Not public libafw API; *_internal.h is not installed.
+    filename = prefix + 'function_bindings_internal.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by,
-            'Adaptive Framework Core Adaptive Function Bindings', copyright, filename)
+            'Adaptive Framework Adaptive Function Bindings (internal)', copyright, filename)
         c.write_doxygen_file_section(fd, filename,
-            'Adaptive Framework core adaptive function bindings header.')
+            'Internal generated adaptive function bindings for prefix `'
+            + prefix + '` (execute protos / definitions). Not public C API.')
         fd.write('\n')
-        fd.write('#include "' + prefix + 'declare_helpers.h"\n')
-
 
         fd.write('\n/**\n')
-        fd.write(' * @addtogroup afw_c_api_public\n')
+        fd.write(' * @addtogroup afw_c_api_internal\n')
         fd.write(' * @{\n')
         fd.write(' *\n')
         fd.write(' */\n')
         fd.write('\n')
         fd.write('/**\n')
-        fd.write(' * @addtogroup afw_c_api_functions Adaptive functions\n')
+        fd.write(' * @addtogroup afw_c_api_functions Adaptive functions (internal catalog)\n')
+        fd.write(' *\n')
+        fd.write(' * Core/package generated bindings only — not extension-facing export.\n')
         fd.write(' *\n')
         fd.write(' * @{\n')
         fd.write(' */\n')
@@ -314,7 +580,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write(' * @brief Get array of pointers to ' + prefix + 'function bindings.\n')
         fd.write(' * @return pointer to array of function value pointers.\n')
         fd.write(' */\n')
-        fd.write(declare + '(const afw_value_function_definition_t **)\n')
+        fd.write('extern const afw_value_function_definition_t **\n')
         fd.write(prefix + 'function_bindings_get();\n')
 
         for obj in list:
@@ -356,7 +622,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # Declaration for core function definition.
             if options['core']:
                 fd.write('\n/** @brief Function definition ' + obj['functionId'] + ' */\n') 
-                fd.write('AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)\n')
+                fd.write('extern const afw_value_function_definition_t\n')
                 fd.write('afw_function_definition_' + obj['functionLabel'] + ';\n')
 
             fd.write('\n/**\n')
@@ -446,24 +712,29 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         c.write_c_prologue(fd, generated_by, 
             'Adaptive Framework Core Adaptive Function Bindings ', copyright)
         c.write_doxygen_file_section(fd, filename,
-            'Adaptive Framework core adaptive function bindings.')
+            'Generated adaptive function bindings for prefix `'
+            + prefix + '`.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
         if options['core']:
             fd.write('#include "afw_internal.h"\n')
-        fd.write('#include "' + prefix + 'function_bindings.h"\n')
+        fd.write('#include "' + prefix + 'function_bindings_internal.h"\n')
         if options['runtime_object_maps']:
             fd.write('#include "' + prefix + 'runtime_object_maps.h"\n')
         if options['strings']:
             fd.write('#include "' + prefix + 'strings.h"\n')
+            # Core zz__* permanents (briefs/descriptions) live here only.
+            if options['core']:
+                fd.write('#include "' + prefix + 'strings_internal.h"\n')
         fd.write('\n')
+
 
         for obj in list:
             label = obj['functionLabel']
             fd.write('\n/* ---------- ' + obj['functionId'] + ' ---------- */\n')
 
             # Declaration for function value afw_value_function_definition_t if not core.
-            # Core functions definitions are declared in afw_function_bindings.h.
+            # Core definitions are declared in function_bindings_internal.h.
             if not options['core']:
                 fd.write('\nstatic const afw_value_function_definition_t\n')
                 fd.write('impl_' + label + ';\n')
@@ -505,7 +776,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('};\n')
 
             # returns
-            write_parameter(fd, prefix, options, 'impl_' + label + '_returns', obj.get('returns'), 'impl_' + label, 'returns')
+            write_parameter(fd, prefix, options, 'impl_' + label + '_returns',
+                obj.get('returns'), 'impl_' + label, 'returns',
+                libafw_dt_by_id)
 
             # parameters
             parametersCount = 0
@@ -513,7 +786,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 if parameter.get('name','') in ['arguments', 'function']:
                     msg.error_exit(obj.get('functionId') + ': parameter name "' + parameter.get('name') + '" is reserved')
                 parametersCount += 1
-                write_parameter(fd, prefix, options, 'impl_' + label + '_parameter_' + str(parametersCount), parameter, 'impl_' + label, "parameters")
+                write_parameter(fd, prefix, options,
+                    'impl_' + label + '_parameter_' + str(parametersCount),
+                    parameter, 'impl_' + label, "parameters",
+                    libafw_dt_by_id)
             fd.write('\nstatic const afw_value_function_parameter_t *\n')
             fd.write('impl_' + label + '_parameters[] = {\n')
             for i in range(parametersCount):
@@ -563,7 +839,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
             # Define function define and meta
             if options['core']:
-                fd.write('\nAFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)\n')
+                fd.write('\nconst afw_value_function_definition_t\n')
                 fd.write('afw_function_definition_' + label + ' = {\n')
                 fd.write('    {&afw_value_function_definition_inf},\n')
             else:
@@ -639,16 +915,18 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             else:
                 fd.write('    &' + get_string_label(options, description, 'self_v') + ',\n')
           
-            # functionSignature
+            # functionSignature (compact one-line; call-site shape with : return)
+            # One-liner must use /* note */ — // would swallow the rest of the line.
             functionSignature = ""
             if obj.get('polymorphic', False):
-                functionSignature += "`<dataType>`"
+                # Adaptive call/prototype spelling: name<dataType>(…) — not
+                # markdown backticks (those were Doxygen monospace sugar).
+                functionSignature += "<dataType>"
             functionSignature += '('
             sep = ''
             for p in obj.get('parameters'):
                 functionSignature += sep
                 sep = ', '
-                saveLen = len(functionSignature)
                 if p.get('minArgs') is not None:
                     i = 1
                     n = int(p.get('minArgs'))
@@ -657,9 +935,9 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         i += 1
                     functionSignature += '...'
                     if n == 0:
-                        functionSignature += p.get('name') + ': (array of ' + make_Type(p) + ')'
+                        functionSignature += p.get('name') + ': ' + make_rest_Type(p)
                     else:
-                        functionSignature += p.get('name') + '_rest: (array of ' + make_Type(p) + ')'
+                        functionSignature += p.get('name') + '_rest: ' + make_rest_Type(p)
                 else:
                     functionSignature += p.get('name')
                     if p.get('optional', False):
@@ -669,37 +947,25 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             functionSignature += make_Type(obj.get('returns'))
             fd.write('    &' + get_string_label(options, functionSignature, 'self_v') + ',\n')
 
-            # functionDeclaration
+            # functionDeclaration (pretty multi-line; admin reference + Monaco hover).
+            # No briefs. OT / media notes as // after ',' / ';' on the formal line
+            # (same layout as C function_comment Declaration).
             functionDeclaration = ""
-            if obj.get('brief') is not None:
-                functionDeclaration += '/* ' + obj.get('brief') + ' */\n'
             functionDeclaration += "function " + obj.get('functionId') + ' '
             if obj.get('polymorphic', False):
-                functionDeclaration += "`<dataType>`"
- 
-            # functionDeclaration: Calculate max len of "name: Type" part of parameter
-            maxLen = 0
-            for p in obj.get('parameters'):
-                thisLen = 0
-                if p.get('optional', False):
-                    thisLen = 1
-                thisLen += len(p.get('name')) + 2 + len(make_Type(p))
-                if thisLen > maxLen:
-                    maxLen = thisLen
+                functionDeclaration += "<dataType>"
 
-            # functionDeclaration: Emit parameters
             numberOfRequiredParameters = 0
-            maximumNumberOfParameters = 0
+            maxNumberOfParameters = 0
             encounteredOptional = False
             encounteredMinArgs = False
             functionDeclaration += '(\n'
-            sep = '    '
-            for p in obj.get('parameters'):
+            params = obj.get('parameters') or []
+            for i_param, p in enumerate(params):
+                is_last = (i_param == len(params) - 1)
                 if encounteredMinArgs:
                     msg.error_exit(obj.get('functionId') + ': minArgs can only be specified on last parameter')
-                functionDeclaration += sep
-                sep = ',\n    '
-                saveLen = len(functionDeclaration)
+
                 if p.get('minArgs') is not None:
                     encounteredMinArgs = True
                     i = 1
@@ -707,18 +973,24 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     if n > 1 and encounteredOptional:
                         msg.error_exit(obj.get('functionId') + ': minArgs > 1 is only allowed if there are no optional parameters')
                     numberOfRequiredParameters += n
-                    maximumNumberOfParameters = -1
+                    maxNumberOfParameters = -1
                     while i <= n:
-                        functionDeclaration += p.get('name') + '_' + str(i) + ': ' + make_Type(p) + sep
+                        functionDeclaration += (
+                            '    ' + p.get('name') + '_' + str(i) + ': ' +
+                            make_Type(p, note_style='none') + ',\n')
                         i += 1
-                    functionDeclaration += '...'
+                    type_note = make_rest_Type_note(p)
+                    functionDeclaration += '    ...'
                     if n == 0:
-                        functionDeclaration += p.get('name') + ': (array of ' + make_Type(p) + ')'
+                        functionDeclaration += p.get('name') + ': ' + make_rest_Type(
+                            p, note_style='none')
                     else:
-                        functionDeclaration += p.get('name') + '_rest: (array of ' + make_Type(p) + ')'
+                        functionDeclaration += p.get('name') + '_rest: ' + make_rest_Type(
+                            p, note_style='none')
                 else:
-                    maximumNumberOfParameters += 1
-                    functionDeclaration += p.get('name')
+                    maxNumberOfParameters += 1
+                    type_note = make_Type_note(p)
+                    functionDeclaration += '    ' + p.get('name')
                     if p.get('optional', False):
                         encounteredOptional = True
                         functionDeclaration += '?'
@@ -726,19 +998,20 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         if encounteredOptional:
                             msg.error_exit(obj.get('functionId') + ': all required parameters must be first')
                         numberOfRequiredParameters += 1
-                    functionDeclaration += ': ' + make_Type(p)
+                    functionDeclaration += ': ' + make_Type(p, note_style='none')
 
-                if p.get('brief') is not None:
-                    functionDeclaration += ' ' * (maxLen - (len(functionDeclaration) - saveLen))
-                    functionDeclaration += ' /* ' + p.get('brief') + ' */'
-            functionDeclaration += '\n): '
+                if not is_last:
+                    functionDeclaration += ','
+                if type_note is not None:
+                    functionDeclaration += ' // ' + type_note
+                functionDeclaration += '\n'
 
-
-            # functionDeclaration: Return type
-            functionDeclaration += make_Type(obj.get('returns'))
+            # Return: ): type; // OT
+            ret = obj.get('returns')
+            functionDeclaration += '): '
+            functionDeclaration += make_Type(ret, note_style='none')
             functionDeclaration += ';'
-            if obj.get('returns') is not None and obj.get('returns').get('brief') is not None:
-                functionDeclaration += ' /* ' + obj.get('returns').get('brief') + ' */'
+            functionDeclaration += _c_decl_line_note(make_Type_note(ret))
             functionDeclaration += '\n'
 
 
@@ -769,8 +1042,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # numberOfRequiredParameters
             fd.write('    &' + get_string_label(options, str(numberOfRequiredParameters), 'self_v', dataType='integer') + ',\n')
 
-            # maximumNumberOfParameters
-            fd.write('    &' + get_string_label(options, str(maximumNumberOfParameters), 'self_v', dataType='integer') + ',\n')
+            # maxNumberOfParameters
+            fd.write('    &' + get_string_label(options, str(maxNumberOfParameters), 'self_v', dataType='integer') + ',\n')
 
             # parameters
             fd.write('    &impl_' + label + '_parameters[0],\n')
@@ -847,6 +1120,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             requiresExecuteAccess = 'false' if obj.get('requiresExecuteAccess', False) == False else 'true'
             fd.write('    &' + get_string_label(options, requiresExecuteAccess, 'self_v', dataType='boolean') + ',\n')
 
+            # scriptSupport (const/let/if/… statement IR; not normal user calls)
+            scriptSupport = 'false' if obj.get('scriptSupport', False) == False else 'true'
+            fd.write('    &' + get_string_label(options, scriptSupport, 'self_v', dataType='boolean') + ',\n')
+
             fd.write('};\n')
 
             if options['core']:
@@ -867,7 +1144,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         fd.write('};\n')
 
         fd.write('\n/* Get array of pointers to ' + prefix + 'function bindings. */\n')
-        fd.write(define + '(const afw_value_function_definition_t **)\n')
+        fd.write('const afw_value_function_definition_t **\n')
         fd.write(prefix + 'function_bindings_get()\n')
         fd.write('{\n')
         fd.write('    return &impl_function_bindings[0];\n')
@@ -904,7 +1181,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         fd.write(' *\n')
                         fd.write(' * ' + prefix + 'function_execute_' + obj['functionLabel'] + '\n')
                         fd.write(' *\n')
-                        fd.write(' * See ' + prefix + 'function_bindings.h for more information.\n')
+                        fd.write(' * See ' + prefix +
+                                 'function_bindings_internal.h for more information.\n')
                         function_comment(fd, obj)
                         fd.write(' */\n')
                         fd.write('const afw_value_t *\n')
@@ -951,7 +1229,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     fd.write(' *\n')
                     fd.write(' * ' + prefix + 'function_execute_' + obj['functionLabel'] + '\n')
                     fd.write(' *\n')
-                    fd.write(' * See ' + prefix + 'function_bindings.h for more information.\n')
+                    fd.write(' * See ' + prefix +
+                             'function_bindings_internal.h for more information.\n')
                     function_comment(fd, obj)
                     fd.write(' */\n')
                     fd.write('const afw_value_t *\n')

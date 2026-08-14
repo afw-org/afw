@@ -19,7 +19,7 @@
 
 /**
  * @file afw_lmdb_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_lmdb_`.
  */
 
 #include "afw.h"
@@ -314,6 +314,12 @@ afw_lmdb_self_v_content_type = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_contextType = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_contextType)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_createTimeStamp = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_createTimeStamp)
@@ -578,6 +584,12 @@ afw_lmdb_self_v_path = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_process = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_process)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_propertyTypes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_propertyTypes)
@@ -656,6 +668,12 @@ afw_lmdb_self_v_string = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_template = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_template)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_time)
@@ -692,75 +710,81 @@ afw_lmdb_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2578 = {
+afw_lmdb_self_v_zz__2565 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2578)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2565)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2579 = {
+afw_lmdb_self_v_zz__2566 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2579)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2566)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2580 = {
+afw_lmdb_self_v_zz__2567 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2580)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2567)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2581 = {
+afw_lmdb_self_v_zz__2568 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2581)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2568)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2582 = {
+afw_lmdb_self_v_zz__2569 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2582)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2569)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2583 = {
+afw_lmdb_self_v_zz__2570 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2583)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2570)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2584 = {
+afw_lmdb_self_v_zz__2571 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2584)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2571)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2585 = {
+afw_lmdb_self_v_zz__2572 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2585)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2572)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2586 = {
+afw_lmdb_self_v_zz__2573 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2586)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2573)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2587 = {
+afw_lmdb_self_v_zz__2574 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2587)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2574)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2588 = {
+afw_lmdb_self_v_zz__2575 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2588)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2575)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2589 = {
+afw_lmdb_self_v_zz__2576 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2589)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2576)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2577 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2577)
 };
 
 const afw_value_string_t
@@ -803,12 +827,6 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__Database_limits_for_LMDB_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Database_limits_for_LMDB_)
-};
-
-const afw_value_string_t
-afw_lmdb_self_v_zz__Database_path_for_LMDB_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Database_path_for_LMDB_)
 };
 
 const afw_value_string_t
@@ -1139,4 +1157,10 @@ const afw_value_boolean_t
 afw_lmdb_boolean_self_v_false = {
     {&afw_value_permanent_boolean_inf},
     false
+};
+
+const afw_value_boolean_t
+afw_lmdb_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
 };

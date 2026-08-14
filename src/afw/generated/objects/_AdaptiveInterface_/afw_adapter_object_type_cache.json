@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_object_type_cache",
-    "description": "Adapter object type cache interface. This interface is used by\n      afw_adapter_get_object_type()."
+    "description": "Per-adapter cache of object type definitions used by\n      afw_adapter_get_object_type() and related paths. Speeds repeated\n      type lookups within a session or adapter lifetime. Call methods via\n      afw_adapter_object_type_cache_*() macros. See group afw_adapter."
 }

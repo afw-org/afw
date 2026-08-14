@@ -61,7 +61,7 @@ afw_object_impl_get_meta(
 /*
  * Implementation of method get_meta for interface afw_object.
  */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_object_impl_internal_get_meta(
     const afw_object_t *instance,
     const afw_pool_t *p,

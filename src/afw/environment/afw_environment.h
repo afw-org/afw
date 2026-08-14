@@ -217,11 +217,12 @@ AFW_BEGIN_DECLARES
         "The runtime object map interface for an object type id.")              \
                                                                                 \
     XX(runtime_value_accessor,                                                  \
-        impl_internal_additional_register_key_only,                             \
+        impl_internal_additional_register_default,                              \
         false,                                                                  \
         "runtimeValueAccessor",                                                 \
         "_AdaptiveRuntimeValueAccessor_",                                       \
-        "The afw_runtime_value_accessor_t for an accessor name.")               \
+        "The afw_runtime_value_accessor_info_t for an accessor name "           \
+            "(function plus Adaptive-visible contract properties).")            \
                                                                                 \
     XX(service,                                                                 \
         NULL,                                                                   \
@@ -471,7 +472,9 @@ typedef const afw_utf8_z_t * (*afw_environment_error_rv_decoder_z_t) (
  *    ... Create Adaptive Framework environment using helper macro ...
  *    AFW_ENVIRONMENT_CREATE(xctx, argc, argv, &create_error);
  *    if (!xctx) {
- *        afw_error_print(xctx->env->stderr_fd, create_error);
+ *        // Create failed: xctx is NULL. Use C stderr here; stream redirects
+ *        // via env->stderr_fd apply only after a successful create.
+ *        afw_error_print(stderr, create_error);
  *        return -1; 
  *    }
  *   
@@ -1724,41 +1727,45 @@ afw_environment_get_runtime_object_map_inf(
 
 
 /**
- * @brief Register a runtime value accessor function.
- * @param accessor_name used to identify accessor being registered.
- * @param function associated with this accessor.
+ * @brief Register a runtime value accessor.
+ * @param info permanent (or env-pool) accessor info including key and function.
  * @param xctx of caller.
+ *
+ * The registry value is `info`. Adaptive objects of type
+ * `_AdaptiveRuntimeValueAccessor_` map that struct. C callers still use
+ * afw_environment_get_runtime_value_accessor() to obtain the function.
+ *
+ * Define `info` next to the accessor implementation so brief, description,
+ * and lifetime flags stay with the code that must honor them.
  */
-AFW_DEFINE_STATIC_INLINE(void)
+AFW_DECLARE(void)
 afw_environment_register_runtime_value_accessor(
-    const afw_utf8_t *accessor_name,
-    afw_runtime_value_accessor_t function,
-    afw_xctx_t *xctx)
-{
-    afw_environment_registry_register(
-        afw_environemnt_registry_type_runtime_value_accessor,
-        accessor_name,
-        function,
-        xctx);
-}
+    const afw_runtime_value_accessor_info_t *info,
+    afw_xctx_t *xctx);
 
 
 /**
- * @brief Get the interface associated with a runtime object map.
+ * @brief Get the value accessor function for a registered name.
  * @param accessor_name used to identify accessor.
  * @param xctx of caller.
- * @return Associated function.
+ * @return Associated function or NULL if not registered.
  */
-AFW_DEFINE_STATIC_INLINE(afw_runtime_value_accessor_t)
+AFW_DECLARE(afw_runtime_value_accessor_t)
 afw_environment_get_runtime_value_accessor(
     const afw_utf8_t *accessor_name,
-    afw_xctx_t *xctx)
-{
-    return (afw_runtime_value_accessor_t)afw_environment_registry_get(
-        afw_environemnt_registry_type_runtime_value_accessor,
-        accessor_name,
-        xctx);
-}
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Get the full registered value accessor info.
+ * @param accessor_name used to identify accessor.
+ * @param xctx of caller.
+ * @return Associated info or NULL if not registered.
+ */
+AFW_DECLARE(const afw_runtime_value_accessor_info_t *)
+afw_environment_get_runtime_value_accessor_info(
+    const afw_utf8_t *accessor_name,
+    afw_xctx_t *xctx);
 
 
 

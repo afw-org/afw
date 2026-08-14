@@ -7,7 +7,7 @@
 //?
 //? test: S7.8.2_A1_T1
 //? description: "BooleanLiteral :: true"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -15,11 +15,9 @@
 if (true !== true) {
   throw '#1: Boolean(true) === true. Actual: Boolean(true) === ' + (string(true));
 }
-
-
 //? test: S7.8.2_A1_T2
 //? description: "BooleanLiteral :: false"
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 

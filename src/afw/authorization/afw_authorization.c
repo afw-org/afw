@@ -8,7 +8,7 @@
 
 /**
  * @file afw_authorization.c
- * @brief Functions for checking authorization.
+ * @brief Authorization check entry points and handler dispatch.
  */
 
 #include "afw_internal.h"
@@ -324,7 +324,7 @@ impl_current_variable_actionId = {
 };
 
 
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
+const afw_context_cb_variable_t *
 impl_context_current_runtime_ctx[] = {
     &impl_current_variable_requestId,
     &impl_current_variable_resourceId,
@@ -334,7 +334,7 @@ impl_context_current_runtime_ctx[] = {
 };
 
 
-AFW_DEFINE_INTERNAL(afw_authorization_control_t *)
+afw_authorization_control_t *
 afw_authorization_internal_set_control(
     const afw_object_t *object,
     afw_xctx_t *xctx)
@@ -390,7 +390,7 @@ afw_authorization_internal_set_control(
         (deny_if_not_applicable)
         ? afw_s_deny
         : afw_s_permit;
-    list = afw_array_create_wrapper_for_array(
+    list = afw_array_create_view_of_c_array(
         &impl_s_a_notApplicable_policy_id,
         false, afw_data_type_anyURI, 1, p, xctx);
     afw_object_set_property_as_array(not_applicable_object,
@@ -1247,7 +1247,7 @@ impl_authorization_conf_type_create_cede_p(
 
 
 /* Internal function called to register core authorization. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_authorization_internal_register_service_and_conf(
     afw_xctx_t *xctx)
 {
@@ -1291,7 +1291,7 @@ afw_authorization_internal_register_service_and_conf(
  */
 afw_integer_t
 impl_afw_service_type_related_instance_count (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
@@ -1330,7 +1330,7 @@ impl_afw_service_type_related_instance_count (
  */
 void
 impl_afw_service_type_start_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -1373,7 +1373,7 @@ impl_afw_service_type_start_cede_p (
  */
 void
 impl_afw_service_type_stop (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_utf8_t * id,
     afw_xctx_t *xctx)
 {
@@ -1387,11 +1387,11 @@ impl_afw_service_type_stop (
  */
 void
 impl_afw_service_type_restart_cede_p (
-    const afw_service_type_t * instance,
+    const afw_service_type_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     /* Count on already running. Start will restart if necessary. */
-    impl_afw_service_type_start_cede_p(instance, properties, p, xctx);
+    impl_afw_service_type_start_cede_p(self, properties, p, xctx);
 }

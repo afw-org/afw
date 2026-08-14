@@ -166,6 +166,37 @@ def clone_object(session, value):
 
     return response['actions'][0]['result']
 
+def entries(session, object):
+    """
+    Property name and value pairs of an object
+
+    Return a new array of property entries for an object. Each entry is a
+    two-element array [name, value] where name is a string. Order matches
+    keys() for the same object. The value may be undefined. The result is a
+    snapshot.
+
+    Args:
+        object (dict): Object to list property entries from.
+
+    Returns:
+        list: Array of [name, value] pair arrays.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "entries",
+        "object": object
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def eq_object(session, arg1, arg2):
     """
     Checks for equal
@@ -223,6 +254,35 @@ def eqx_object(session, arg1, arg2):
         "function": "eqx<object>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def freeze_object(session, value):
+    """
+    Make object value immutable
+
+    Set a object value immutable so further mutation throws. If already
+    immutable, has no effect. Returns the same value.
+
+    Args:
+        value (dict): The object value to freeze.
+
+    Returns:
+        dict: The same value, now immutable.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "freeze<object>",
+        "value": value
     }
 
     request.add_action(action)
@@ -315,6 +375,36 @@ def is_object(session, value):
     action = {
         "function": "is<object>",
         "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def keys(session, object):
+    """
+    Property names of an object
+
+    Return a new array of the property names of an object, in the object's
+    property iteration order. The array is a snapshot; later changes to the
+    object do not change a previous result.
+
+    Args:
+        object (dict): Object to list property names from.
+
+    Returns:
+        list: Array of property name strings.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "keys",
+        "object": object
     }
 
     request.add_action(action)
@@ -500,7 +590,10 @@ def object(session, value):
     """
     Convert to data type object
 
-    Converts value to data type object returning object result.
+    Converts value to data type object returning object result. A string is
+    parsed as JSON (or relaxed JSON) and must yield an object; an object is
+    left unchanged. This is not an object-literal constructor — use { ... }
+    for that.
 
     Args:
         value (object): Value to convert
@@ -586,17 +679,19 @@ def property_delete_by_reference(session, reference):
 
 def property_exists(session, object, name):
     """
-    Determine if a property exists in an object
+    True if a property is present on an object
 
-    Return true if the named property exists in an object.
+    Return true if the named property is present on the object, including when
+    its value is undefined or null. False only when the key is missing. Use
+    is_defined / is_nullish for the value.
 
     Args:
-        object (dict): Object to get property from.
+        object (dict): Object to check.
 
-        name (str): Name of property to check.
+        name (str): Property name.
 
     Returns:
-        bool: True if object has named property.
+        bool: True if the property is present.
     """
 
     request = session.Request()
@@ -617,21 +712,23 @@ def property_exists(session, object, name):
 
 def property_get(session, object, name, defaultValue=None):
     """
-    Get property value
+    Get a property value
 
-    Return the value of a property of an object. If property is not available,
-    return a default or null value.
+    Return the value of a property. Optional default applies only when the
+    property is missing — not when the value is undefined. If missing and no
+    default is given, the result is undefined. Object/array defaults get a
+    mutable memory face (issues #110 / #17); other defaults are cloned.
 
     Args:
         object (dict): Object to get property from.
 
-        name (str): Name of property to get.
+        name (str): Property name.
 
-        defaultValue (object): The default value of property if it does not
-        exist in object. If not specified, null value is the default.
+        defaultValue (object): Value to return only if the property is
+        missing. Isolated when used (object/array face; otherwise clone).
 
     Returns:
-        object: Evaluated property value or default.
+        object: Property value, or default / undefined if missing.
     """
 
     request = session.Request()
@@ -655,17 +752,19 @@ def property_get(session, object, name, defaultValue=None):
 
 def property_is_not_null(session, object, name):
     """
-    Determine if a property exists in an object and is not null
+    True if property present and not Adaptive null
 
-    Return true if the named property exists in an object and is not null.
+    Return true if the named property is present and its value is not Adaptive
+    null. Undefined counts as not null. False if the property is missing or
+    the value is null. Not the same as is_defined or not is_nullish.
 
     Args:
-        object (dict): Object to get property from.
+        object (dict): Object to check.
 
-        name (str): Name of property to check.
+        name (str): Property name.
 
     Returns:
-        bool: True if object has named property that is not null.
+        bool: True if present and value is not Adaptive null.
     """
 
     request = session.Request()
@@ -703,6 +802,36 @@ def to_string_object(session, value):
     action = {
         "function": "to_string<object>",
         "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def values(session, object):
+    """
+    Property values of an object
+
+    Return a new array of the property values of an object, in the same order
+    as keys() for that object. Values may be undefined if a property was set
+    to undefined. The array is a snapshot.
+
+    Args:
+        object (dict): Object to list property values from.
+
+    Returns:
+        list: Array of property values.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "values",
+        "object": object
     }
 
     request.add_action(action)

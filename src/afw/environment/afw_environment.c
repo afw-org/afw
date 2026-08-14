@@ -8,7 +8,7 @@
 
 /**
  * @file afw_environment.c
- * @brief Adaptive framework environment.
+ * @brief Environment create, registries, and core registration wiring.
  */
 
 #include "afw_internal.h"
@@ -44,6 +44,44 @@ impl_check_manifest_cb(
     const afw_object_t *object,
     void *context,
     afw_xctx_t *xctx);
+
+/*
+ * Evaluate a modulePath conf/manifest property as a template (#15).
+ * Returns NULL if property is absent.
+ */
+static const afw_utf8_t *
+impl_module_path_from_property(
+    const afw_object_t *object,
+    const afw_utf8_t *source_location,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+    const afw_utf8_t *detail_source_location;
+
+    value = afw_object_get_property(object, afw_s_modulePath, xctx);
+    if (!value) {
+        return NULL;
+    }
+    if (source_location) {
+        detail_source_location = afw_utf8_printf(p, xctx,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(source_location),
+            AFW_UTF8_FMT_ARG(afw_s_modulePath));
+    }
+    else {
+        detail_source_location = afw_s_modulePath;
+    }
+    value = afw_value_compile_and_evaluate_as(value,
+        detail_source_location, afw_compile_type_template, p, xctx);
+    if (!afw_value_is_string(value)) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            "modulePath must evaluate to string",
+            AFW_UTF8_FMT_ARG(detail_source_location));
+    }
+    return &((const afw_value_string_t *)value)->internal;
+}
 
 
 
@@ -324,7 +362,66 @@ afw_environment_create(
     env->pub.application_id.s = xctx->name->s;
     env->pub.application_id.len = xctx->name->len;
 
-    /* Finish up xctx creation. */
+    /*
+     * Process ambient objects (environment:: / process::). Create before
+     * finishup so push_qualifiers can install them on the base xctx. Register
+     * as runtime objects after register_core (object type maps ready).
+     * Preload process env so multi-thread hosts are safe (issue #71 / #74).
+     */
+    env->pub.environment_variables_object =
+        afw_environment_create_environment_variables_object(true, xctx);
+
+    {
+        const afw_object_t *process_object;
+        const afw_array_t *args_array;
+        const afw_utf8_t *arg;
+        const afw_utf8_t *cwd;
+        char *cwd_z;
+        afw_dateTime_t start_local;
+        afw_dateTime_t start_utc;
+        int ai;
+        apr_status_t rv;
+
+        process_object = afw_object_create_unmanaged(p, xctx);
+        afw_object_meta_set_ids(process_object, afw_s_afw,
+            afw_s__AdaptiveProcess_, afw_s_current, xctx);
+
+        /* programName — base name of args[0] (e.g. afw, afwfcgi). */
+        afw_object_set_property_as_string(process_object,
+            afw_s_programName, &env->pub.program_name, xctx);
+
+        /* process::args — ECMAScript-style name (issue #74); use length() for count. */
+        args_array = afw_array_of_create(afw_data_type_string, p, xctx);
+        for (ai = 0; ai < argc; ai++) {
+            arg = afw_utf8_create(argv[ai], AFW_UTF8_Z_LEN, p, xctx);
+            afw_array_push_internal(args_array, afw_data_type_string,
+                arg, xctx);
+        }
+        afw_object_set_property_as_array(process_object,
+            afw_s_args, args_array, xctx);
+
+        afw_object_set_property_as_integer(process_object,
+            afw_s_pid, (afw_integer_t)afw_os_get_pid(), xctx);
+
+        /* cwd snapshot at environment create (not live). */
+        rv = apr_filepath_get(&cwd_z, 0, afw_pool_get_apr_pool(p));
+        if (rv == APR_SUCCESS && cwd_z) {
+            cwd = afw_utf8_create(cwd_z, AFW_UTF8_Z_LEN, p, xctx);
+            afw_object_set_property_as_string(process_object,
+                afw_s_cwd, cwd, xctx);
+        }
+
+        afw_object_set_property_as_string(process_object,
+            afw_s_afwVersion, afw_version_string(), xctx);
+
+        afw_dateTime_set_now(&start_local, &start_utc, xctx);
+        afw_object_set_property_as_dateTime(process_object,
+            afw_s_startTime, &start_local, xctx);
+
+        env->pub.process_object = process_object;
+    }
+
+    /* Finish up xctx creation (pushes ambient qualifiers including env/process). */
     afw_xctx_internal_create_finishup(xctx);
 
     env->pub.log = afw_log_internal_create_environment_log(xctx);
@@ -359,6 +456,15 @@ afw_environment_create(
 
     /* Register core with new xctx. */
     afw_environment_internal_register_core(xctx);
+
+    /* Runtime register process ambient objects (maps available after core). */
+    if (env->pub.environment_variables_object) {
+        afw_runtime_env_set_object(
+            env->pub.environment_variables_object, false, xctx);
+    }
+    if (env->pub.process_object) {
+        afw_runtime_env_set_object(env->pub.process_object, false, xctx);
+    }
 
     /* Register registry type objects and property names. */
     for (i = 0; i < env->registry_types->nelts; i++) {
@@ -636,7 +742,7 @@ impl_check_manifest_cb(
     afw_utf8_t registry_type_id;
     afw_utf8_t registry_key;
     const afw_utf8_t *entry;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     impl_check_manifest_cb_context_t *ctx = context;
 
@@ -686,8 +792,8 @@ impl_check_manifest_cb(
             {
                 extension_id = afw_object_old_get_property_as_string(object,
                     afw_s_extensionId, xctx);
-                module_path = afw_object_old_get_property_as_string(object,
-                    afw_s_modulePath, xctx);
+                module_path = impl_module_path_from_property(object,
+                    NULL, xctx->p, xctx);
                 if (extension_id && module_path) {
                     afw_environment_load_extension(extension_id, module_path,
                         NULL, xctx);
@@ -957,15 +1063,21 @@ afw_environment_load_extension(
             }
         }
 
-        modulePath = afw_object_old_get_property_as_string(properties,
-            afw_s_modulePath, xctx);
+        modulePath = impl_module_path_from_property(properties,
+            NULL, p, xctx);
         if (modulePath) {
-            if (module_path && !afw_utf8_equal(module_path, modulePath)) {
-                AFW_THROW_ERROR_FZ(general, xctx,
-                    "module_path parameter " AFW_UTF8_FMT_Q
-                    " does not match properties.extension_id " AFW_UTF8_FMT_Q,
-                    AFW_UTF8_FMT_ARG(module_path),
-                    AFW_UTF8_FMT_ARG(modulePath));
+            if (module_path) {
+                if (!afw_utf8_equal(module_path, modulePath)) {
+                    AFW_THROW_ERROR_FZ(general, xctx,
+                        "module_path parameter " AFW_UTF8_FMT_Q
+                        " does not match properties.modulePath "
+                        AFW_UTF8_FMT_Q,
+                        AFW_UTF8_FMT_ARG(module_path),
+                        AFW_UTF8_FMT_ARG(modulePath));
+                }
+            }
+            else {
+                module_path = modulePath;
             }
         }
     }
@@ -1004,8 +1116,8 @@ afw_environment_load_extension(
                 manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
                     extension_id, xctx);
                 if (manifest) {
-                    module_path = afw_object_old_get_property_as_string(manifest,
-                        afw_s_modulePath, xctx);
+                    module_path = impl_module_path_from_property(manifest,
+                        NULL, p, xctx);
                 }
             }
 
@@ -1021,8 +1133,8 @@ afw_environment_load_extension(
 
             /* Prepare properties. Supply type=extension if needed. */
             if (!afw_object_has_property(properties, afw_s_type, xctx)) {
-                afw_object_set_property_as_string(properties,
-                    afw_s_type, afw_s_extension, xctx);
+                afw_object_set_property(properties,
+                    afw_s_type, afw_v_extension, xctx);
             }
             properties = afw_environment_prepare_conf_type_properties(
                 properties, xctx);

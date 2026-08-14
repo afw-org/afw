@@ -7,7 +7,7 @@
 //?
 //? test: catch-parameter-shadowing-catch-parameter
 //? description: catch parameter shadowing catch parameter
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn() {
@@ -28,11 +28,9 @@ function fn() {
   assert(c === 1);
 }
 fn(1);
-
-
 //? test: catch-parameter-shadowing-function-parameter-name
 //? description: catch parameter shadowing function parameter name
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn(a) {
@@ -46,11 +44,9 @@ function fn(a) {
   }
 }
 fn(1);
-
-
 //? test: catch-parameter-shadowing-let-declaration
 //? description: catch parameter shadowing let declaration
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 {
@@ -65,11 +61,9 @@ fn(1);
   }
   assert(a === 3);
 }
-
-
 //? test: catch-parameter-shadowing-var-variable
 //? description: catch parameter shadowing var variable
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn() {
@@ -83,11 +77,9 @@ function fn() {
   assert(a === 1);
 }
 fn();
-
-
 //? test: const-declaration-shadowing-catch-parameter
 //? description: const declaration shadowing catch parameter
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn() {
@@ -105,11 +97,9 @@ function fn() {
   assert(a === 1);
 }
 fn();
-
-
 //? test: const-declarations-shadowing-parameter-name-let-const-and-var-variables
 //? description: const declarations shadowing parameter name, let, const and var variables
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn(a) {
@@ -133,10 +123,9 @@ function fn(a) {
   assert(d === 1);
 }
 fn(1);
-
 //? test: dynamic-lookup-from-closure
 //? description: dynamic lookup from closure
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn(one) {
@@ -159,10 +148,9 @@ function fn(one) {
   }
 }
 fn(1);
-
 //? test: dynamic-lookup-in-and-through-block-contexts
 //? description: dynamic lookup in and through block contexts
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn(one) {
@@ -182,10 +170,9 @@ function fn(one) {
 }
 
 fn(1);
-
 //? test: let-declaration-shadowing-catch-parameter
 //? description: let declaration shadowing catch parameter
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 try {
@@ -198,10 +185,9 @@ try {
   }
   assert(a.message === 'stuff1');
 }
-
 //? test: let-declarations-shadowing-parameter-name-let-const-and-var
 //? description: let declarations shadowing parameter name, let, const and var
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn(a) {
@@ -220,11 +206,9 @@ function fn(a) {
   }
 }
 fn(1);
-
-
 //? test: lookup-from-closure
 //? description: lookup from closure
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function f5(one) {
@@ -247,10 +231,9 @@ function f5(one) {
   }
 }
 f5(1);
-
 //? test: lookup-in-and-through-block-contexts
 //? description: lookup in and through block contexts
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn(one) {
@@ -270,10 +253,9 @@ function fn(one) {
 }
 
 fn(1);
-
 //? test: parameter-name-shadowing-catch-parameter
 //? description: parameter name shadowing catch parameter
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 // can't do this function decl/call syntax
@@ -292,10 +274,9 @@ function fn() {
   assert(c === 1);
 }
 fn();
-
 //? test: parameter-name-shadowing-parameter-name-let-const-and-var
 //? description: parameter name shadowing parameter name, let, const and var
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 function fn(a) {

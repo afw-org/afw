@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_authorization.c
- * @brief afw_function_execute_* functions for authorization.
+ * @brief Adaptive function execute implementations for category `authorization`.
  */
 
 #include "afw.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_authorization_check
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This function can be used to check if the current subject has a given access
  * to the specified resource in the current environment.
@@ -37,7 +37,7 @@
  *       actionId: string,
  *       object?: object,
  *       enforce?: boolean
- *   ): (object _AdaptiveAuthorizationResult_);
+ *   ): object; // _AdaptiveAuthorizationResult_
  * ```
  *
  * Parameters:
@@ -64,6 +64,10 @@
  * Returns:
  *
  *   (object _AdaptiveAuthorizationResult_) The authorization result.
+ *
+ * Errors thrown:
+ *
+ *   denied - enforce is true and access is denied
  */
 const afw_value_t *
 afw_function_execute_authorization_check(

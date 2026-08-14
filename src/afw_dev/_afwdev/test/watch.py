@@ -98,15 +98,14 @@ class WatchEventHandler(watchdog.events.PatternMatchingEventHandler):
 
                 after_each(root, testGroupConfig, self.testEnvironments)
 
-                if error != None:                
-                    msg.highlighted_info("{}  ({}ms)".format(os.path.relpath(event.src_path), round((end - start) * 1000)))  
-                    if error:
-                        msg.error("\n    \u2717 {}\n".format(error))                   
+                test_display = os.path.relpath(event.src_path)
+                duration_ms = round((end - start) * 1000)
+                msg.highlighted_info("{}  ({}ms)".format(test_display, duration_ms))
+                if error is not None:
+                    msg.error("\n    \u2717 {}\n".format(error))
+                    msg.error("      test:  {}\n".format(test_display))
                     if debug:
-                        msg.debug(debug)       
-
-                else:
-                    msg.highlighted_info("{}  ({}ms)".format(os.path.relpath(event.src_path), round((end - start) * 1000)))
+                        msg.debug(debug)
 
                 print_test_response(self.options, event.src_path, response, hasFailures, allSuccess, allSkipped)                           
                 

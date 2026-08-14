@@ -41,6 +41,14 @@ AFW_BEGIN_DECLARES
  */
 #define AFW_ERROR_RV_SOURCE_ID_Z_icu "icu"
 
+/**
+ * @brief errno (libc) rv source id.
+ *
+ * Registered in afw_environment_register_core.c. Use when rv is a POSIX
+ * errno value (e.g. after fopen/fread/fwrite failures).
+ */
+#define AFW_ERROR_RV_SOURCE_ID_Z_errno "errno"
+
 
 /**
  * @brief Adaptive Framework Error Context.
@@ -112,7 +120,8 @@ struct afw_error_s {
     /*IMPORTANT AFW_ERROR_CLEAR_PARTIAL() will clear up to decode_rv_wa. */
 
     /** @brief Place to optionally hold rv_decoded_z. */
-    afw_utf8_z_t decode_rv_wa[23];
+    /* Sized for strerror / apr_strerror / ICU names (was 23; too short for errno). */
+    afw_utf8_z_t decode_rv_wa[128];
 
     /** @brief Makes sure there is a zero terminator after decode_rv_wa. */
     afw_utf8_z_t decode_rv_wa_safety_zero_terminator;
@@ -124,7 +133,59 @@ struct afw_error_s {
     afw_utf8_z_t message_wa_safety_zero_terminator;
 };
 
-/** @fixme AFW_ERROR_RETHROW doesn't restore evaluation_stack. */
+/**
+ * @name AFW error throw / try design (read before touching longjmp)
+ * @{
+ *
+ * ## Contract
+ *
+ * With a normal Adaptive xctx, **do not call setjmp/longjmp in hand code**.
+ * Throw only via the AFW_THROW_* macros (or the rare domain-specific throw
+ * macros such as AFW_COMPILE_THROW_ERROR_* that deliberately mirror them).
+ * Those macros:
+ *   1) fill xctx->error (code, AFW__FILE_LINE__, message, optional rv/data),
+ *   2) longjmp to xctx->current_try->throw_jmp_buf.
+ *
+ * The longjmp *inside* AFW_THROW_* is intentional: one place owns the throw
+ * protocol so it cannot drift across the tree.
+ *
+ * ## Try stack
+ *
+ * AFW_TRY pushes an afw_try_t onto xctx->current_try, setjmps, and requires
+ * the xctx pointer variable to be named **xctx**. Nested tries form a list
+ * via afw_try_t.prev. CATCH/FINALLY reinstall the *outer* try so throws from
+ * inside a handler go to the previous frame, not the one being finished.
+ *
+ * AFW_ENDTRY always restores xctx->current_try to the outer frame. If the
+ * error was not marked caught, ENDTRY copies the saved error back and
+ * longjmps to the outer try (rethrow). If it was caught, execution continues
+ * after ENDTRY. On the non-rethrow path, ENDTRY also restores the evaluation
+ * stack top to the offset saved at AFW_TRY entry.
+ *
+ * ## AFW_ERROR_RETHROW (flag, not an immediate rethrow)
+ *
+ * AFW_ERROR_RETHROW does **not** longjmp by itself. It only sets
+ * this_ERROR_CAUGHT = false and breaks out of the CATCH body so that:
+ *   - AFW_FINALLY (if present) still runs — cleanup can always run, and
+ *   - AFW_ENDTRY sees an uncaught error and performs the rethrow longjmp.
+ *
+ * Use it when you need side effects in CATCH (log, free, mark state) before
+ * the error continues to the outer try. AFW_ERROR_MARK_CAUGHT is the inverse
+ * in FINALLY: treat as handled even if no CATCH matched.
+ *
+ * ## Do not exit TRY blocks with return/goto
+ *
+ * Leaving AFW_TRY / CATCH* / FINALLY with return, goto, or longjmp other than
+ * AFW_THROW_* skips FINALLY and leaves current_try wrong. Use break (to
+ * FINALLY/ENDTRY) or the AFW_ERROR_* helpers above.
+ *
+ * ## Code tokens in AFW_THROW_ERROR_Z(coding_error, ...)
+ *
+ * `code` is a token pasted as afw_error_code_##code (e.g. argument_error). Pass the
+ * short name, not an afw_error_code_t variable.
+ *
+ * @}
+ */
 
 /** @brief Macro used to clear an error between code and decode_rv_wa. */
 #define AFW_ERROR_CLEAR_PARTIAL(__ERROR_) \
@@ -712,8 +773,9 @@ do { \
  *    break;               (optional) goes to AFW_FINALLY if present or
  *                         ENDTRY if not.
  *
- *    AFW_ERROR_RETHROW;  (Optional) Marks error as unhandled and breaks.
- *                         AFW_ENDTRY will rethrow error.
+ *    AFW_ERROR_RETHROW;  (Optional) Flag only: mark uncaught and break so
+ *                         FINALLY still runs; ENDTRY then rethrows. Does not
+ *                         longjmp immediately.
  *
  * }
  *
@@ -728,8 +790,7 @@ do { \
  *    break;               (optional) goes to AFW_FINALLY if present or
  *                         ENDTRY if not.
  *
- *    AFW_ERROR_RETHROW;  (Optional) Marks error as unhandled and breaks.
- *                         AFW_ENDTRY will rethrow error.
+ *    AFW_ERROR_RETHROW;  (Optional) Same flag behavior as in AFW_CATCH.
  *
  * }
  *
@@ -737,7 +798,8 @@ do { \
  *
  *    ...                  Body of FINALLY is executed after the body of the
  *                         AFW_TRY and bodies of AFW_CATCH* macros, regardless
- *                         of whether an error has occurred.
+ *                         of whether an error has occurred (including after
+ *                         AFW_ERROR_RETHROW).
  * 
  *    AFW_ERROR_MARK_CAUGHT;(Optional) Marks error as handled even if not caught
  *
@@ -747,7 +809,9 @@ do { \
  *
  * AFW_ENDTRY;              (Required) End of TRY block.  The xctx's current_try
  *                         will be set to its value before entering the TRY
- *                         block.  If error is unhandled, it will be rethrown.
+ *                         block.  If error is unhandled (never caught, or
+ *                         AFW_ERROR_RETHROW), it will be rethrown to the outer
+ *                         try.
  *
  */
 #define AFW_TRY \
@@ -863,10 +927,11 @@ do {\
     this_ERROR_CAUGHT = true;
 
 /**
- * @brief Use in an AFW_CATCH or AFW_CATCH_UNHANDLED block to mark error
- *   as not caught and break
+ * @brief Use in AFW_CATCH or AFW_CATCH_UNHANDLED to rethrow *after* FINALLY
  *
- * The AFW_ENDTRY will rethrow the error.
+ * This is only a flag + break: it sets this_ERROR_CAUGHT false and leaves the
+ * CATCH body so AFW_FINALLY still runs. AFW_ENDTRY then sees an uncaught error
+ * and longjmps to the outer try. It does **not** longjmp by itself.
  *
  * Always follow with a semicolon (AFW_ERROR_RETHROW;).
  */
@@ -1020,6 +1085,29 @@ afw_error_http_status(const afw_error_t *error);
 AFW_DECLARE(const afw_utf8_z_t *)
 afw_error_code_id_z(const afw_error_t *error);
 
+
+/**
+ * @brief Look up an error id string in the error code map.
+ * @param id mnemonic such as not_found or throw.
+ * @param code receives the matching code when the function returns true.
+ * @return true if id is a known map entry.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_error_code_from_id(
+    const afw_utf8_t *id,
+    afw_error_code_t *code);
+
+
+/**
+ * @brief True if a script throw statement may use this id.
+ * @param id mnemonic to test.
+ * @return true if throw ... id <value> may use this id.
+ *
+ * Allowed names are the request-facing ones (not_found, denied, …)
+ * plus throw. Host and parser names are not allowed.
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_error_id_allowed_on_script_throw(const afw_utf8_t *id);
 
 
 /**

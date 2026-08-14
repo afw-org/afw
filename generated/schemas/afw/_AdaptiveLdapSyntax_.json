@@ -1,15 +1,28 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveLdapSyntax_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveLdapSyntax_": {
-            "additionalProperties": {
-                "description": "Object type for type=adapter adapter_type=ldap synthetic syntax object."
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveLdapSyntax_.propertyTypes"
-                }
-            ],
+            "additionalProperties": true,
             "description": "Object type for type=adapter adapter_type=ldap synthetic syntax object.",
+            "markdownDescription": "Object type for type=adapter adapter_type=ldap synthetic syntax object.",
+            "properties": {
+                "DESC": {
+                    "title": "Description",
+                    "type": "string"
+                },
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "numericoid": {
+                    "title": "Numeric OID",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveLdapSyntax_",
             "type": "object"
         },
         "_AdaptiveLdapSyntax_.propertyTypes": {
@@ -27,9 +40,26 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveLdapSyntax_"
+    "additionalProperties": true,
+    "description": "Object type for type=adapter adapter_type=ldap synthetic syntax object.",
+    "markdownDescription": "Object type for type=adapter adapter_type=ldap synthetic syntax object.",
+    "properties": {
+        "DESC": {
+            "title": "Description",
+            "type": "string"
+        },
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "numericoid": {
+            "title": "Numeric OID",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveLdapSyntax_",
+    "type": "object"
 }

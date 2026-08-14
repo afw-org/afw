@@ -8,7 +8,7 @@
 
 /**
  * @file afw_ascii.c
- * @brief Adaptive Framework ASCII support.
+ * @brief ASCII classification and case conversion helpers.
  */
 
 #include "afw_internal.h"

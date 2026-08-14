@@ -1,55 +1,64 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveLayoutComponentType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveLayoutComponentType_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveLayoutComponentType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveLayoutComponentType_.propertyTypes": {
+            "markdownDescription": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "brief": {
                     "description": "Brief description of this component type.",
+                    "markdownDescription": "**Brief**\n\nBrief description of this component type.",
                     "title": "Brief",
                     "type": "string"
                 },
                 "category": {
                     "description": "Represents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful.",
+                    "markdownDescription": "**Category**\n\nRepresents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful.",
                     "title": "Category",
                     "type": "string"
                 },
                 "componentType": {
                     "description": "Component type id is the object id for this Layout Component Type.",
+                    "markdownDescription": "**Component Type**\n\nComponent type id is the object id for this Layout Component Type.",
                     "title": "Component Type",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of this component type.",
+                    "markdownDescription": "**Description**\n\nDescription of this component type.",
                     "title": "Description",
                     "type": "string"
                 },
                 "implementationId": {
                     "description": "Id associated with the implementation for this component type.",
+                    "markdownDescription": "**Implementation Id**\n\nId associated with the implementation for this component type.",
                     "title": "Implementation Id",
                     "type": "string"
                 },
                 "implementationParameters": {
                     "description": "This object is passed to the implementation.",
+                    "markdownDescription": "**Implementation Parameters**\n\nThis object is passed to the implementation.",
                     "title": "Implementation Parameters",
                     "type": "object"
                 },
                 "instanceObjectType": {
                     "description": "Object type id of the instance parameters object.",
+                    "markdownDescription": "**Parameters Object Type**\n\nObject type id of the instance parameters object.",
                     "title": "Parameters Object Type",
                     "type": "string"
                 },
                 "label": {
                     "description": "Label to be used for this component type.",
+                    "markdownDescription": "**Label**\n\nLabel to be used for this component type.",
                     "title": "Label",
                     "type": "string"
                 }
@@ -57,13 +66,129 @@
             "required": [
                 "componentType"
             ],
+            "title": "_AdaptiveLayoutComponentType_",
+            "type": "object"
+        },
+        "_AdaptiveLayoutComponentType_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "Brief description of this component type.",
+                    "markdownDescription": "**Brief**\n\nBrief description of this component type.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "category": {
+                    "description": "Represents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful.",
+                    "markdownDescription": "**Category**\n\nRepresents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful.",
+                    "title": "Category",
+                    "type": "string"
+                },
+                "componentType": {
+                    "description": "Component type id is the object id for this Layout Component Type.",
+                    "markdownDescription": "**Component Type**\n\nComponent type id is the object id for this Layout Component Type.",
+                    "title": "Component Type",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of this component type.",
+                    "markdownDescription": "**Description**\n\nDescription of this component type.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "implementationId": {
+                    "description": "Id associated with the implementation for this component type.",
+                    "markdownDescription": "**Implementation Id**\n\nId associated with the implementation for this component type.",
+                    "title": "Implementation Id",
+                    "type": "string"
+                },
+                "implementationParameters": {
+                    "description": "This object is passed to the implementation.",
+                    "markdownDescription": "**Implementation Parameters**\n\nThis object is passed to the implementation.",
+                    "title": "Implementation Parameters",
+                    "type": "object"
+                },
+                "instanceObjectType": {
+                    "description": "Object type id of the instance parameters object.",
+                    "markdownDescription": "**Parameters Object Type**\n\nObject type id of the instance parameters object.",
+                    "title": "Parameters Object Type",
+                    "type": "string"
+                },
+                "label": {
+                    "description": "Label to be used for this component type.",
+                    "markdownDescription": "**Label**\n\nLabel to be used for this component type.",
+                    "title": "Label",
+                    "type": "string"
+                }
+            },
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveLayoutComponentType_"
+    "additionalProperties": false,
+    "description": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
+    "markdownDescription": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "brief": {
+            "description": "Brief description of this component type.",
+            "markdownDescription": "**Brief**\n\nBrief description of this component type.",
+            "title": "Brief",
+            "type": "string"
+        },
+        "category": {
+            "description": "Represents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful.",
+            "markdownDescription": "**Category**\n\nRepresents the UI category to place this component in. Useful for selecting it from menus and any other visual representation that is helpful.",
+            "title": "Category",
+            "type": "string"
+        },
+        "componentType": {
+            "description": "Component type id is the object id for this Layout Component Type.",
+            "markdownDescription": "**Component Type**\n\nComponent type id is the object id for this Layout Component Type.",
+            "title": "Component Type",
+            "type": "string"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of this component type.",
+            "markdownDescription": "**Description**\n\nDescription of this component type.",
+            "title": "Description",
+            "type": "string"
+        },
+        "implementationId": {
+            "description": "Id associated with the implementation for this component type.",
+            "markdownDescription": "**Implementation Id**\n\nId associated with the implementation for this component type.",
+            "title": "Implementation Id",
+            "type": "string"
+        },
+        "implementationParameters": {
+            "description": "This object is passed to the implementation.",
+            "markdownDescription": "**Implementation Parameters**\n\nThis object is passed to the implementation.",
+            "title": "Implementation Parameters",
+            "type": "object"
+        },
+        "instanceObjectType": {
+            "description": "Object type id of the instance parameters object.",
+            "markdownDescription": "**Parameters Object Type**\n\nObject type id of the instance parameters object.",
+            "title": "Parameters Object Type",
+            "type": "string"
+        },
+        "label": {
+            "description": "Label to be used for this component type.",
+            "markdownDescription": "**Label**\n\nLabel to be used for this component type.",
+            "title": "Label",
+            "type": "string"
         }
-    ]
+    },
+    "required": [
+        "componentType"
+    ],
+    "title": "_AdaptiveLayoutComponentType_",
+    "type": "object"
 }

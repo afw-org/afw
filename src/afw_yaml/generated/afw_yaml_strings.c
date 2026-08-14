@@ -19,7 +19,7 @@
 
 /**
  * @file afw_yaml_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_yaml_`.
  */
 
 #include "afw.h"

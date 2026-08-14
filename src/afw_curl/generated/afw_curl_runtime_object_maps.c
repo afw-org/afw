@@ -19,11 +19,11 @@
 
 /**
  * @file afw_curl_runtime_object_maps.c
- * @brief Adaptive Framework runtime object mapping.
+ * @brief Generated runtime object map registration implementation.
  */
 
 #include "afw.h"
-#include "afw_curl_generated.h"
+#include "afw_curl_generated_internal.h"
 /*
  *  generate/additional_includes/runtime_object_maps.h is added to generated
  *  *runtime_object_maps.c.

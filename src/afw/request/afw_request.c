@@ -9,13 +9,15 @@
 
 /**
  * @file afw_request.c
- * @brief AFW request Support
+ * @brief Request helpers for HTTP-like adaptive request handling.
  */
 
 #include "afw_internal.h"
 
 /* Declares and rti/inf defines for interface afw_content_type */
 #define AFW_IMPLEMENTATION_ID "request"
+typedef struct afw_request_response_body_raw_writer_self_s afw_request_response_body_raw_writer_self_t;
+#define AFW_STREAM_SELF_T afw_request_response_body_raw_writer_self_t
 #include "afw_stream_impl_declares.h"
 
 
@@ -172,7 +174,7 @@ afw_request_body_to_value(
     content_type = afw_environment_get_content_type(
         &content_type_id, xctx);
     if (!content_type) {
-        AFW_THROW_ERROR_FZ(general, xctx,
+        AFW_THROW_ERROR_FZ(unsupported_content, xctx,
             "Unsupported content-type " AFW_UTF8_FMT_Q ".",
             AFW_UTF8_FMT_ARG(instance->content_type));
     }
@@ -235,7 +237,8 @@ afw_request_write_error_to_response_body(
     if (!response) {
         response = afw_object_create(xctx->p, xctx);
     }
-    afw_object_set_property_as_string(response, afw_s_status, afw_s_error, xctx);
+    afw_object_set_property(response,
+        afw_s_status, afw_v_error, xctx);
     err = afw_object_create_embedded(response, afw_s_error, xctx);
     afw_error_add_to_object(err, error, xctx);
     value = afw_value_create_unmanaged_object(response, xctx->p, xctx);
@@ -262,8 +265,8 @@ afw_request_write_success_response(
 
     /* Default status to success. */
     if (!afw_object_has_property(response, afw_s_status, xctx)) {
-        afw_object_set_property_as_string(response, afw_s_status,
-            afw_s_success, xctx);
+        afw_object_set_property(response,
+            afw_s_status, afw_v_success, xctx);
     }
 
     /* Write response to body. */
@@ -294,28 +297,28 @@ impl_response_write_cb(
  */
 void
 impl_afw_stream_release(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_request_response_body_raw_writer_self_t *self =
-        (afw_request_response_body_raw_writer_self_t *)instance;
 
-    impl_afw_stream_flush(instance, xctx);
+    impl_afw_stream_flush(self, xctx);
     afw_pool_release(self->pub.p, xctx);
 }
 
 /*
  * Implementation of method read for interface afw_stream.
  */
-void
+afw_size_t
 impl_afw_stream_read(
-    const afw_stream_t *instance,
-    const void *buffer,
+    AFW_STREAM_SELF_T *self,
+    void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+    (void)&self->pub;
+    (void)buffer;
+    (void)size;
+    AFW_THROW_ERROR_Z(general, "Stream is not readable.", xctx);
 }
 
 /*
@@ -323,11 +326,9 @@ impl_afw_stream_read(
  */
 void
 impl_afw_stream_flush(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_request_response_body_raw_writer_self_t *self =
-        (afw_request_response_body_raw_writer_self_t *)instance;
 
     afw_request_flush_response(self->request, xctx);
 }
@@ -337,7 +338,7 @@ impl_afw_stream_flush(
  */
 void
 impl_afw_stream_write(
-    const afw_stream_t *instance,
+    AFW_STREAM_SELF_T *self,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -346,7 +347,7 @@ impl_afw_stream_write(
         return;
     }
 
-    impl_response_write_cb((void *)instance, buffer, size,
+    impl_response_write_cb((void *)&self->pub, buffer, size,
         xctx->p, xctx);
 }
 

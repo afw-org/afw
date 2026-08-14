@@ -1,0 +1,54 @@
+---
+description: Package JSON Schema projection (json_schema.py, generated/schemas, editor use, tests)
+globs: "**/json_schema.py,**/generated/schemas/**/*,src/afw_dev/tests/json_schema/**/*"
+alwaysApply: false
+---
+
+# Adaptive object types → JSON Schema
+
+## Role
+- **Source of truth**: adaptive object types under `src/**/generate/objects/_AdaptiveObjectType_/` (and post-generate `src/**/generated/objects/_AdaptiveObjectType_/`).
+- **Projection**: package-root `generated/schemas/afw/*.json`, produced by `src/afw_dev/_afwdev/generate/json_schema.py` during package **`root_generate()`** (after per-srcdir generate).
+- **Primary use**: **editors** (VS Code `json.schemas` fileMatch → completion, hovers, light validation) when editing adaptive object JSON under `generate/objects/` (and similar paths).
+- **Secondary**: `afwdev validate`, generator regression tests. Not a full adaptive meta model; not optimized as a minimal JS-client payload.
+- **Never hand-edit** `generated/schemas/**` — change the generator or adaptive OT metadata, then regenerate.
+
+## Adaptive model reminders
+- Almost everything is an adaptive object typed by an `_AdaptiveObjectType_` instance.
+- Inheritance is **not** flattened in generate→generated OT JSON: keep `propertyTypes._meta_.parentPaths` links (e.g. `/afw/_AdaptiveObjectType_/<Parent>/propertyTypes` or layout `/*/*/<Parent>/propertyTypes`).
+- Child property definitions **override** same-named parent properties (e.g. ModelObjectType.`propertyTypes` → ModelPropertyTypes, not ObjectType’s PropertyTypes).
+
+## Generator rules (do not regress)
+- **Issue #3**: never emit `$ref` as a sibling of other keywords. Use pure `{ "$ref" }` or annotations + `"type": "object"` + `"allOf": [ { "$ref" } ]`.
+- **Entity documents**: put entity `type` / `properties` / `required` / `additionalProperties` at the **document root** (editor applies the file directly); keep nested types in `$defs`.
+- **Inheritance**: merge property maps with **child override** for the entity. Do **not** stack parent `.propertyTypes` as constraining `allOf` (breaks overrides and confuses editors). Record chain in `x-afw-inheritedObjectTypes` if useful for tests/tooling.
+- **required**: leaf object type only (not on shared `.propertyTypes` maps that would force ancestor-only fields on children).
+- Prefer **`additionalProperties: false`** (closed) over `unevaluatedProperties` for editor support.
+- Map `defaultValue` → `default`, `allowedValues`/`possibleValues` → `enum`; optional instance `_meta_` (wire/meta convention) on closed composites.
+- Verbose schemas are fine (generated, read-only). Optimize for VS Code-style consumers, not size.
+
+## Wire-up
+- VS Code: generator may update `.vscode/settings.json` `json.schemas` entries for `/src/*/generate*/objects/<ObjectType>/*.json`.
+- Validate: `afwdev validate` uses `generated/schemas/afw/` by object-type directory name (or `$schema` URI).
+
+## Tests
+- Location: `src/afw_dev/tests/json_schema/` (Python mode; files starting with `_` are helpers, not tests).
+- Assume **`generated/schemas/afw/` already exists** (run generate/build first). Resolve package root via `afw-package.json`, not `cwd` (test runner uses a temp work dir).
+- Run:
+```bash
+afwdev test -p afw_dev --tags json_schema --show-all
+```
+- Suites: structural (#3), adaptive OT compare, instances, complex inheritance, gnarly models (`_AdaptiveModel_`, TestModel1, TIER).
+
+## After changes
+```bash
+# Refresh schemas (part of package generate / full generate path)
+./afwdev build --cdev -j   # or generate that runs root_generate
+afwdev test -p afw_dev --tags json_schema --show-all
+```
+
+## Related
+- Generators orchestration: `afw-afwdev-generate`
+- Metadata inputs: `afw-generate-metadata`
+- afwdev Python layout: `afw-afwdev-python`
+- Tests layout: `afw-tests`

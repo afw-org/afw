@@ -9,14 +9,16 @@
 
 /**
  * @file afw_environment_register_core.c
- * @brief Register core environment.
+ * @brief Core environment registration order (generated then hand wiring).
  */
 
 #include "afw_internal.h"
 #include <unicode/utypes.h>
+#include <string.h>
+#include <errno.h>
 
 
-AFW_DECLARE_INTERNAL(void)
+extern void
 afw_function_internal_prepare_environment(afw_xctx_t *xctx);
 
 static const afw_utf8_t impl_s_apr =
@@ -24,6 +26,9 @@ AFW_UTF8_LITERAL("apr");
 
 static const afw_utf8_t impl_s_icu = 
 AFW_UTF8_LITERAL("icu");
+
+static const afw_utf8_t impl_s_errno =
+AFW_UTF8_LITERAL("errno");
 
 static const afw_utf8_t impl_s_description_initialEnvironmentVariables =
     AFW_UTF8_LITERAL("Environment variables when environment was created.");
@@ -41,6 +46,25 @@ static const afw_utf8_z_t * impl_rv_decoder_z_icu(int rv,
     afw_utf8_z_t *wa, afw_size_t wa_size)
 {
     return u_errorName(rv);
+}
+
+
+/* errno (libc) RV decoder. */
+static const afw_utf8_z_t * impl_rv_decoder_z_errno(int rv,
+    afw_utf8_z_t *wa, afw_size_t wa_size)
+{
+    const char *s;
+
+    if (wa_size == 0) {
+        return (const afw_utf8_z_t *)"";
+    }
+    s = strerror(rv);
+    if (!s) {
+        s = "Unknown errno";
+    }
+    strncpy((char *)wa, s, wa_size - 1);
+    wa[wa_size - 1] = 0;
+    return wa;
 }
 
 typedef struct impl_AdaptiveLayoutComponentType_context_s {
@@ -172,7 +196,8 @@ impl_create_environment_variables_object(
     char *s;
     char *c;
     const afw_utf8_t *name;
-    const afw_utf8_t *value;
+    const afw_value_t *value;
+    afw_size_t name_len;
 
     result = afw_object_create_unmanaged(xctx->p, xctx);
     afw_object_meta_set_ids(result,
@@ -184,14 +209,22 @@ impl_create_environment_variables_object(
         &impl_s_description_initialEnvironmentVariables, xctx);
     afw_object_meta_set_read_only(result, xctx);
 
+    /*
+     * Snapshot process environ at startup. Names that are not valid UTF-8 use
+     * _NONUTF8_ + hex; values are string if valid UTF-8 else hexBinary. Never
+     * fail environment create because of a single bad entry.
+     */
     for (v = environ; *v; v++)
     {
         for (s = c = *v; *c != '=' && *c != 0; c++);
-        name = afw_utf8_create_copy(s, c - s, result->p, xctx);
-        if (*c == '=') c++;
-        value = afw_utf8_create_copy(c, AFW_UTF8_Z_LEN, result->p, xctx);
-        afw_object_set_property_as_string(result,
-            name, value, xctx);
+        name_len = (afw_size_t)(c - s);
+        name = afw_utf8_create_property_name_from_external_octets(
+            (const afw_utf8_octet_t *)s, name_len, result->p, xctx);
+        if (*c == '=') {
+            c++;
+        }
+        value = afw_value_create_from_external_z(c, result->p, xctx);
+        afw_object_set_property(result, name, value, xctx);
     }
 
     return result;
@@ -242,6 +275,10 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     /* Register ICU RV decoder. */
     afw_environment_register_error_rv_decoder(&impl_s_icu,
         impl_rv_decoder_z_icu, xctx);
+
+    /* Register errno (libc) RV decoder for stdio/OS failures. */
+    afw_environment_register_error_rv_decoder(&impl_s_errno,
+        impl_rv_decoder_z_errno, xctx);
 
     /* Register flag that are needed early in register core. */
     afw_flag_internal_early_register_core(xctx);
@@ -432,7 +469,7 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     afw_json_register(xctx);
 
     /* Register application/x-afw content handler. */
-    AFW_DECLARE_INTERNAL(void)
+    extern void
         afw_content_type_application_afw_register(afw_xctx_t *xctx);
     afw_content_type_application_afw_register(xctx);
 

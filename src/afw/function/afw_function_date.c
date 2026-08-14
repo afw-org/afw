@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Date
+ * afw_function_execute_* functions for date
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_date.c
- * @brief afw_function_execute_* functions for date.
+ * @brief Adaptive function execute implementations for category `date`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_add_yearMonthDuration_date
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add date arg1 to yearMonthDuration arg2 and return the date result.
  *
@@ -73,7 +73,7 @@ afw_function_execute_add_yearMonthDuration_date(
  *
  * afw_function_execute_subtract_yearMonthDuration_date
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Subtract yearMonthDuration arg2 from date arg1 and return the date result.
  *

@@ -764,6 +764,37 @@ def generate_html_docs(options, docsHtml):
 
 # removes the folder specified by path, except for any files or folders
 # listed in the ignore list
+def _doxygen_cache_bust_extra_css(doxygen_html_dir, mtime):
+    """Rewrite doxygen-extra.css links in HTML to include ?v=<mtime>."""
+    version = str(int(mtime))
+    # Match plain or already versioned hrefs
+    pattern = re.compile(
+        r'href=(["\'])doxygen-extra\.css(?:\?[^"\']*)?\1')
+    replacement = r'href=\1doxygen-extra.css?v=' + version + r'\1'
+    updated = 0
+    for root, _dirs, files in os.walk(doxygen_html_dir):
+        for name in files:
+            if not name.endswith('.html'):
+                continue
+            path = os.path.join(root, name)
+            try:
+                with nfc.open(path, 'r') as fp:
+                    text = fp.read()
+            except Exception:
+                continue
+            if 'doxygen-extra.css' not in text:
+                continue
+            new_text, n = pattern.subn(replacement, text)
+            if n and new_text != text:
+                with nfc.open(path, 'w') as fp:
+                    fp.write(new_text)
+                updated += n
+    if updated:
+        msg.info(
+            'Cache-busted doxygen-extra.css in {} HTML link(s) (v={})'.format(
+                updated, version))
+
+
 def rmtree(options, path, ignore = []):
 
     build_directory_docs = options['build_directory_docs']
@@ -873,7 +904,25 @@ def run(options):
                     doxygen_cmd = "doxygen Doxyfile > /dev/null 2>&1"
                 msg.highlighted_info("Running doxygen")
 
-                subprocess.call(doxygen_cmd, shell=True)          
+                subprocess.call(doxygen_cmd, shell=True)
+
+            # Always refresh the skin stylesheet when present. Doxygen is often
+            # skipped (folder already exists), so CSS-only edits would otherwise
+            # never reach build/docs until --docs --clean. Match Doxyfile
+            # HTML_EXTRA_STYLESHEET = src/afw/doc/doxygen-extra.css
+            doxygen_html_dir = os.path.join(doxygen_output_dir, 'html')
+            extra_css_src = os.path.join(
+                options['afw_package_dir_path'],
+                'src', 'afw', 'doc', 'doxygen-extra.css')
+            extra_css_dst = os.path.join(doxygen_html_dir, 'doxygen-extra.css')
+            if os.path.isfile(extra_css_src) and os.path.isdir(doxygen_html_dir):
+                shutil.copy2(extra_css_src, extra_css_dst)
+                msg.info('Updated ' + extra_css_dst)
+                # Cache-bust: browsers often keep doxygen-extra.css on 304 even
+                # after a hard refresh of the HTML page. Rewrite link tags to
+                # include ?v=<mtime> so each skin edit loads fresh CSS.
+                _doxygen_cache_bust_extra_css(
+                    doxygen_html_dir, os.path.getmtime(extra_css_src))
 
 
     # copy over any static resources        

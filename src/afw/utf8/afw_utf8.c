@@ -8,7 +8,7 @@
 
 /**
  * @file afw_utf8.c
- * @brief AFW UTF-8 string functions.
+ * @brief UTF-8 string create, compare, and conversion functions.
  */
 
 #include "afw_internal.h"
@@ -360,6 +360,54 @@ afw_utf8_nfc(
 
 
 /*
+ * Create a property name from untrusted external octets. Valid UTF-8 becomes
+ * an NFC name; otherwise "_NONUTF8_" + uppercase hex of the raw bytes.
+ */
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_property_name_from_external_octets(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_memory_t memory;
+    afw_utf8_t hex;
+    afw_utf8_t *result;
+    afw_utf8_octet_t *out;
+    afw_size_t prefix_len;
+    const afw_utf8_octet_t *prefix =
+        (const afw_utf8_octet_t *)AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX;
+
+    if (len == AFW_UTF8_Z_LEN) {
+        len = (s) ? strlen(s) : 0;
+    }
+
+    if (!s || len == 0) {
+        return afw_s_a_empty_string;
+    }
+
+    if (afw_utf8_is_valid(s, len, xctx)) {
+        return afw_utf8_create_copy(s, len, p, xctx);
+    }
+
+    memory.ptr = (const afw_byte_t *)s;
+    memory.size = len;
+    afw_memory_encode_printable_hex(&hex, &memory, p, xctx);
+
+    prefix_len = strlen(AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX);
+    result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+    result->len = prefix_len + hex.len;
+    out = afw_pool_malloc(p, result->len, xctx);
+    memcpy(out, prefix, prefix_len);
+    if (hex.len > 0) {
+        memcpy(out + prefix_len, hex.s, hex.len);
+    }
+    result->s = out;
+    return result;
+}
+
+
+/*
  * Create a NFC normalized zero terminated UTF-8 string in specified
  * pool.
  */
@@ -544,8 +592,10 @@ AFW_DEFINE(afw_boolean_t)
 afw_utf8_contains(
     const afw_utf8_t *s1, const afw_utf8_t *s2)
 {
-    const afw_utf8_octet_t *c;
-    afw_size_t len;
+    UChar32 cp;
+    int32_t i;
+    int32_t length;
+    int32_t prev;
 
     if (!s1) {
         return false;
@@ -555,11 +605,23 @@ afw_utf8_contains(
         return true;
     }
 
-    for (c = s1->s, len = s1->len;
-        s2->len <= len; c++, len--)
-    {
-        if (memcmp(c, s2->s, s2->len) == 0) {
+    /*
+     * Strings are assumed valid UTF-8. Step by code point so search does not
+     * start mid multi-byte sequence (#153). No xctx on this API — use ICU
+     * U8_NEXT (same as afw_utf8_next_code_point body).
+     */
+    if (s1->len > (afw_size_t)INT32_MAX || s2->len > (afw_size_t)INT32_MAX) {
+        return false;
+    }
+    length = (int32_t)s1->len;
+    for (i = 0; s2->len <= (afw_size_t)(length - i); ) {
+        if (memcmp(s1->s + i, s2->s, s2->len) == 0) {
             return true;
+        }
+        prev = i;
+        U8_NEXT((const uint8_t *)s1->s, i, length, cp);
+        if (cp < 0 || i <= prev) {
+            break;
         }
     }
 

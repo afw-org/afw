@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_polymorphic.c
- * @brief afw_common polymorphic function_execute_* functions.
+ * @brief Common polymorphic function_execute_* implementations (shared across data-type methods).
  */
 
 #include "afw_internal.h"
@@ -22,12 +22,12 @@ impl_is_in_array(
     const afw_array_t *array,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *entry_internal;
     const afw_data_type_t *entry_data_type;
 
     if (!data_type) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "impl_is_in_array() called with NULL data_type",
             xctx);
     }
@@ -57,7 +57,7 @@ impl_is_subset_array(
     const afw_array_t *array2,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
     const afw_data_type_t *data_type;
 
@@ -82,7 +82,7 @@ impl_add_nondups_to_array(
     const afw_array_t *to,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
 
     for (iterator = NULL;;) {
@@ -92,7 +92,7 @@ impl_add_nondups_to_array(
             break;
         }
         if (!impl_is_in_array(data_type, internal, to, xctx)) {
-            afw_array_add_internal(to, data_type, internal, xctx);
+            afw_array_push_internal(to, data_type, internal, xctx);
         }
     }
 }
@@ -104,7 +104,7 @@ impl_add_nondups_to_array(
  *
  * afw_function_execute_at_least_one_member_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns boolean true if at least one value in `<dataType>` array1 is in
  * `<dataType>` array2.
@@ -128,9 +128,9 @@ impl_add_nondups_to_array(
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
@@ -142,7 +142,7 @@ afw_function_execute_at_least_one_member_of(
 {
     const afw_value_array_t *array1;
     const afw_value_array_t *array2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
 
@@ -168,7 +168,7 @@ afw_function_execute_at_least_one_member_of(
  *
  * afw_function_execute_bag
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Takes any number of `<dataType>` values and returns an array of array.
  *
@@ -186,17 +186,17 @@ afw_function_execute_at_least_one_member_of(
  *
  * ```
  *   function bag <dataType>(
- *       ...values: (array of array)
+ *       ...values: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   values - (0 or more array ``<Type>``)
+ *   values - (0 or more ``<Type>`[]`)
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  */
 const afw_value_t *
 afw_function_execute_bag(
@@ -214,7 +214,7 @@ afw_function_execute_bag(
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
-        afw_array_add_internal(array, x->data_type,
+        afw_array_push_internal(array, x->data_type,
             AFW_VALUE_INTERNAL(value), x->xctx);
     }
 
@@ -228,7 +228,7 @@ afw_function_execute_bag(
  *
  * afw_function_execute_bag_size
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns the integer number of values in array.
  *
@@ -252,7 +252,7 @@ afw_function_execute_bag(
  *
  * Parameters:
  *
- *   value - (array ``<Type>``)
+ *   value - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -279,7 +279,7 @@ afw_function_execute_bag_size(
  *
  * afw_function_execute_clone
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Deep clone a `<dataType>` value.
  *
@@ -327,7 +327,7 @@ afw_function_execute_clone(
  *
  * afw_function_execute_compile
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile <Type> value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
@@ -383,7 +383,7 @@ afw_function_execute_compile(
  *
  * afw_function_execute_ends_with
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value ends with a `<dataType>` and return the
  * boolean result.
@@ -448,7 +448,7 @@ afw_function_execute_ends_with(
  *
  * afw_function_execute_eq
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if `<dataType>` arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
@@ -477,7 +477,7 @@ afw_function_execute_ends_with(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -485,7 +485,7 @@ afw_function_execute_ends_with(
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  */
 const afw_value_t *
 afw_function_execute_eq(
@@ -509,12 +509,20 @@ afw_function_execute_eq(
     if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
         return afw_boolean_v_false;
     }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
+    }
+    if (afw_value_is_void(arg2)) {
+        return afw_boolean_v_false;
+    }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -540,7 +548,7 @@ afw_function_execute_eq(
  *
  * afw_function_execute_eqx
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if for `<dataType>` arg1 is equal to the value and data type of
  * arg2 then return the boolean result. Use 'eq' ('==') instead if you want arg2
@@ -569,7 +577,7 @@ afw_function_execute_eq(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -595,6 +603,14 @@ afw_function_execute_eqx(
             : afw_boolean_v_false;
     }
     if (afw_value_is_undefined(arg2)) {
+        return afw_boolean_v_false;
+    }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
+    }
+    if (afw_value_is_void(arg2)) {
         return afw_boolean_v_false;
     }
 
@@ -632,7 +648,7 @@ afw_function_execute_eqx(
  *
  * afw_function_execute_ge
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
  * and return the boolean result.
@@ -683,7 +699,7 @@ afw_function_execute_ge(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -710,7 +726,7 @@ afw_function_execute_ge(
  *
  * afw_function_execute_gt
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is greater than `<dataType>` arg2 and return the
  * boolean result.
@@ -761,7 +777,7 @@ afw_function_execute_gt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -787,7 +803,7 @@ afw_function_execute_gt(
  *
  * afw_function_execute_includes
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether the `<dataType>` value includes a string and return the
  * boolean result.
@@ -831,9 +847,10 @@ afw_function_execute_includes(
     const afw_value_string_t *a1;
     const afw_value_string_t *a2;
     const afw_value_integer_t *position;
-    const afw_utf8_octet_t *c;
-    afw_integer_t start;
-    afw_size_t len;
+    afw_size_t index;
+    afw_size_t offset;
+    afw_size_t count;
+    afw_integer_t start_cp;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg1, 1);
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(arg2, 2);
@@ -844,24 +861,53 @@ afw_function_execute_includes(
 
     a1 = (const afw_value_string_t *)arg1;
     a2 = (const afw_value_string_t *)arg2;
-    
-    c = a1->internal.s;
-    len = a1->internal.len;
-    
+
+    /*
+     * Search at code-point boundaries only (#153). Position is a zero-based
+     * code-point index (negative counts from end), not a byte offset.
+     */
+    index = 0;
     if (position) {
-        start = abs((int)position->internal) % a1->internal.len;
-
-        if (position->internal < 0 && start != 0) {
-            start = a1->internal.len - start;
+        start_cp = position->internal;
+        if (start_cp < 0) {
+            count = 0;
+            for (offset = 0;
+                afw_utf8_next_code_point(a1->internal.s, &offset,
+                    a1->internal.len, x->xctx) >= 0; )
+            {
+                count++;
+            }
+            if ((afw_size_t)(-start_cp) > count) {
+                return afw_boolean_v_false;
+            }
+            index = count + (afw_size_t)start_cp;
         }
-
-        c += start;
-        len -= start;
+        else {
+            index = (afw_size_t)start_cp;
+        }
     }
 
-    for ( ; a2->internal.len <= len; c++, len--) {
-        if (memcmp(c, a2->internal.s, a2->internal.len) == 0) {
+    for (offset = 0; offset < index; ) {
+        if (afw_utf8_next_code_point(a1->internal.s, &offset,
+            a1->internal.len, x->xctx) < 0)
+        {
+            return afw_boolean_v_false;
+        }
+    }
+
+    for (;;) {
+        if (offset + a2->internal.len > a1->internal.len) {
+            break;
+        }
+        if (memcmp(a1->internal.s + offset,
+            a2->internal.s, a2->internal.len) == 0)
+        {
             return afw_boolean_v_true;
+        }
+        if (afw_utf8_next_code_point(a1->internal.s, &offset,
+            a1->internal.len, x->xctx) < 0)
+        {
+            break;
         }
     }
 
@@ -875,7 +921,7 @@ afw_function_execute_includes(
  *
  * afw_function_execute_index_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns the zero-based index into `<dataType>` value of subString. If
  * subString is not found, -1 is returned.
@@ -976,7 +1022,7 @@ return_result:
  *
  * afw_function_execute_intersection
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns an array of `<dataType>` with the values that are common to both
  * array of `<dataType>` array1 and array2.
@@ -1000,13 +1046,13 @@ return_result:
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  */
 const afw_value_t *
 afw_function_execute_intersection(
@@ -1014,7 +1060,7 @@ afw_function_execute_intersection(
 {
     const afw_value_array_t *array1;
     const afw_value_array_t *array2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_data_type_t *data_type;
     const void *internal;
     const afw_array_t *array;
@@ -1026,7 +1072,7 @@ afw_function_execute_intersection(
     if (!data_type ||
         data_type != afw_array_get_data_type(array2->internal, x->xctx))
     {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type of the same type",
             x->xctx);
     }
@@ -1040,7 +1086,7 @@ afw_function_execute_intersection(
         }
         if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
             if (!impl_is_in_array(data_type, internal, array, x->xctx)) {
-                afw_array_add_internal(array, data_type, internal, x->xctx);
+                afw_array_push_internal(array, data_type, internal, x->xctx);
             }
         }
     }
@@ -1055,7 +1101,7 @@ afw_function_execute_intersection(
  *
  * afw_function_execute_is_in
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value is in array of `<dataType>` array and
  * returns the boolean result.
@@ -1082,7 +1128,7 @@ afw_function_execute_intersection(
  *
  *   value - (``<Type>``)
  *
- *   array - (array ``<Type>``)
+ *   array - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -1101,7 +1147,7 @@ afw_function_execute_is_in(
 
     data_type = afw_array_get_data_type(array->internal, x->xctx);
     if (!data_type || afw_value_get_data_type(value, x->xctx) != data_type) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array must be array of value's data type",
             x->xctx);
     }
@@ -1119,7 +1165,7 @@ afw_function_execute_is_in(
  *
  * afw_function_execute_le
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is less than or equal to `<dataType>` arg2 and
  * return the boolean result.
@@ -1147,7 +1193,7 @@ afw_function_execute_is_in(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -1170,7 +1216,7 @@ afw_function_execute_le(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1196,7 +1242,7 @@ afw_function_execute_le(
  *
  * afw_function_execute_length
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is a polymorphic function where `<dataType>` can be any of the supported
  * data types. Return the integer number of entries in datatype array or
@@ -1263,7 +1309,7 @@ afw_function_execute_length(
  *
  * afw_function_execute_lt
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks for `<dataType>` arg1 is less that `<dataType>` arg2 and return the
  * boolean result.
@@ -1314,7 +1360,7 @@ afw_function_execute_lt(
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return false. */
@@ -1340,7 +1386,7 @@ afw_function_execute_lt(
  *
  * afw_function_execute_max
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the `<dataType>` value that is greater than or equal to the others.
  *
@@ -1356,7 +1402,7 @@ afw_function_execute_lt(
  * ```
  *   function max <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -1401,7 +1447,7 @@ afw_function_execute_max(
  *
  * afw_function_execute_min
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return the `<dataType>` value that is less than or equal to the others.
  *
@@ -1417,7 +1463,7 @@ afw_function_execute_max(
  * ```
  *   function min <dataType>(
  *       values_1: dataType,
- *       ...values_rest: (array of dataType)
+ *       ...values_rest: dataType[]
  *   ): dataType;
  * ```
  *
@@ -1462,7 +1508,7 @@ afw_function_execute_min(
  *
  * afw_function_execute_ne
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if `<dataType>` arg1 is not equal to the value of arg2 converted to
  * the data type of arg1 then return the boolean result. Use 'nex' ('!==')
@@ -1492,7 +1538,7 @@ afw_function_execute_min(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -1500,7 +1546,7 @@ afw_function_execute_min(
  *
  * Errors thrown:
  *
- *   conversion - arg2 cannot be converted to the data type of arg1.
+ *   conversion_error - arg2 cannot be converted to the data type of arg1.
  */
 const afw_value_t *
 afw_function_execute_ne(
@@ -1524,12 +1570,20 @@ afw_function_execute_ne(
     if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
         return afw_boolean_v_true;
     }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_false
+            : afw_boolean_v_true;
+    }
+    if (afw_value_is_void(arg2)) {
+        return afw_boolean_v_true;
+    }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
     arg2_data_type = afw_value_get_data_type(arg2, x->xctx);
 
     if (arg1_data_type != arg2_data_type) {
-        AFW_THROW_ERROR_Z(arg_error, "Data types do not match", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Data types do not match", x->xctx);
     }
 
     /* If either arg is NaN, return true. */
@@ -1557,7 +1611,7 @@ afw_function_execute_ne(
  *
  * afw_function_execute_nex
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine if for `<dataType>` arg1 is not equal to the value or data type of
  * arg2 then return the boolean result. Use 'ne' ('!=') instead if you want arg2
@@ -1586,7 +1640,7 @@ afw_function_execute_ne(
  *
  *   arg1 - (``<Type>``)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
@@ -1612,6 +1666,14 @@ afw_function_execute_nex(
             : afw_boolean_v_true;
     }
     if (afw_value_is_undefined(arg2)) {
+        return afw_boolean_v_true;
+    }
+    if (afw_value_is_void(arg1)) {
+        return afw_value_is_void(arg2)
+            ? afw_boolean_v_false
+            : afw_boolean_v_true;
+    }
+    if (afw_value_is_void(arg2)) {
         return afw_boolean_v_true;
     }
 
@@ -1649,7 +1711,7 @@ afw_function_execute_nex(
  *
  * afw_function_execute_one_and_only
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This converts an array of `<dataType>` values that contains one value to a
  * single `<dataType>` value.
@@ -1667,13 +1729,13 @@ afw_function_execute_nex(
  *
  * ```
  *   function one_and_only <dataType>(
- *       array: (array array)
+ *       array: array[]
  *   ): dataType;
  * ```
  *
  * Parameters:
  *
- *   array - (array array)
+ *   array - (array[])
  *
  * Returns:
  *
@@ -1681,7 +1743,7 @@ afw_function_execute_nex(
  *
  * Errors thrown:
  *
- *   arg_error - array does not contain exactly one value
+ *   argument_error - array does not contain exactly one value
  */
 const afw_value_t *
 afw_function_execute_one_and_only(
@@ -1690,11 +1752,11 @@ afw_function_execute_one_and_only(
     const afw_value_array_t *array;
     const afw_data_type_t *data_type;
     const void *internal;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
     if (afw_array_get_count(array->internal, x->xctx) != 1) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "arg must have exactly one value", x->xctx);
     }
 
@@ -1712,7 +1774,7 @@ afw_function_execute_one_and_only(
  *
  * afw_function_execute_regexp_match
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value matches the regular expression regexp and
  * return the boolean result.
@@ -1770,7 +1832,7 @@ afw_function_execute_regexp_match(
             x->p, x->xctx);
         xmlResetError(err);
         xmlRegFreeRegexp(rx);
-        AFW_THROW_ERROR_FZ(arg_error, x->xctx,
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
             AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(err_message));
     }
@@ -1789,7 +1851,7 @@ afw_function_execute_regexp_match(
  *
  * afw_function_execute_repeat
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Repeat a `<dataType>` value a specified number of times.
  *
@@ -1806,7 +1868,7 @@ afw_function_execute_regexp_match(
  *   function repeat <dataType>(
  *       value: dataType,
  *       times: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -1817,7 +1879,7 @@ afw_function_execute_regexp_match(
  *
  * Returns:
  *
- *   (``<Type>``) The repeated `<dataType>` value.
+ *   (string) Repeated text as string (not re-typed as the input data type).
  */
 const afw_value_t *
 afw_function_execute_repeat(
@@ -1841,7 +1903,7 @@ afw_function_execute_repeat(
 
     /** @fixme How should this limit be handled? 1000 was arbitrary. */
     if (times->internal > 1000) {
-        AFW_THROW_ERROR_Z(arg_error, "Parameter times exceeds 1000", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "Parameter times exceeds 1000", x->xctx);
     }
 
     result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
@@ -1863,7 +1925,7 @@ afw_function_execute_repeat(
  *
  * afw_function_execute_replace
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace string(s) in a `<dataType>` value.
  *
@@ -1882,7 +1944,7 @@ afw_function_execute_repeat(
  *       match: string,
  *       replacement: string,
  *       limit?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -1898,7 +1960,7 @@ afw_function_execute_repeat(
  *
  * Returns:
  *
- *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  */
 const afw_value_t *
 afw_function_execute_replace(
@@ -1941,20 +2003,29 @@ afw_function_execute_replace(
     if (remaining.len == 0) {
         return afw_v_a_empty_string;
     }
-    for (count = 0; count < limit && remaining.len > match->internal.len; )
+    /*
+     * Advance search by code point only (#153) so matches are not attempted
+     * mid multi-byte sequence.
+     */
+    for (count = 0; count < limit && remaining.len >= match->internal.len; )
     {
-        for (;
-            remaining.len >= match->internal.len;
-            remaining.s++, remaining.len--)
+        if (memcmp(remaining.s, match->internal.s, match->internal.len) == 0)
         {
-            if (memcmp(remaining.s, match->internal.s, match->internal.len)
-                == 0)
+            remaining.s += match->internal.len;
+            remaining.len -= match->internal.len;
+            count++;
+        }
+        else {
+            afw_size_t cp_len;
+
+            cp_len = 0;
+            if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                remaining.len, x->xctx) < 0)
             {
-                remaining.s += match->internal.len;
-                remaining.len -= match->internal.len;
-                count++;
                 break;
             }
+            remaining.s += cp_len;
+            remaining.len -= cp_len;
         }
     }
 
@@ -1972,10 +2043,12 @@ afw_function_execute_replace(
     result->internal.len = len;
     result->internal.s = s;
 
-    /* Do replaces and return result. */
+    /* Do replaces and return result (same CP-step search). */
     for (; count > 0; count--) {
         for (;;) {
-            if (memcmp(remaining.s, match->internal.s, match->internal.len) == 0)
+            if (remaining.len >= match->internal.len &&
+                memcmp(remaining.s, match->internal.s, match->internal.len)
+                    == 0)
             {
                 memcpy(s, replacement->internal.s, replacement->internal.len);
                 s += replacement->internal.len;
@@ -1984,10 +2057,21 @@ afw_function_execute_replace(
                 break;
             }
             else {
-                *s++ = *remaining.s++;
-                remaining.len--;
+                afw_size_t cp_len;
+
+                cp_len = 0;
+                if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                    remaining.len, x->xctx) < 0)
+                {
+                    AFW_THROW_ERROR_Z(general,
+                        "Invalid UTF-8 in replace", x->xctx);
+                }
+                memcpy(s, remaining.s, cp_len);
+                s += cp_len;
+                remaining.s += cp_len;
+                remaining.len -= cp_len;
             }
-        }            
+        }
     }
     if (remaining.len > 0) {
         memcpy(s, remaining.s, remaining.len);
@@ -2002,7 +2086,7 @@ afw_function_execute_replace(
  *
  * afw_function_execute_set_equals
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns boolean true if `<dataType>` array1 and `<dataType>` array2 are
  * subsets of each other and return the boolean result.
@@ -2026,9 +2110,9 @@ afw_function_execute_replace(
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``)
+ *   array1 - (``<Type>`[]`)
  *
- *   array2 - (array ``<Type>``)
+ *   array2 - (``<Type>`[]`)
  *
  * Returns:
  *
@@ -2049,7 +2133,7 @@ afw_function_execute_set_equals(
     data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
     data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
     if (!data_type_1 || data_type_1 != data_type_2) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type that matches", x->xctx);
     }
 
@@ -2066,7 +2150,7 @@ afw_function_execute_set_equals(
  *
  * afw_function_execute_split
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Split `<dataType>` value into an array of strings using a separator.
  *
@@ -2143,11 +2227,11 @@ afw_function_execute_split(
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
     if (separator) {
+        /* Find separator only at code-point boundaries (#153). */
         for (count = 0; count < limit && remaining.len > 0; count++) {
-            for (split.s = remaining.s, split.len = remaining.len;
-                ;
-                remaining.s++, remaining.len--)
-            {
+            split.s = remaining.s;
+            split.len = remaining.len;
+            for (;;) {
                 if (remaining.len < separator->len) {
                     remaining.len = 0;
                     break;
@@ -2158,19 +2242,47 @@ afw_function_execute_split(
                     remaining.len -= separator->len;
                     break;
                 }
-            }            
-            afw_array_add_internal(array, afw_data_type_string,
+                {
+                    afw_size_t cp_len;
+
+                    cp_len = 0;
+                    if (afw_utf8_next_code_point(remaining.s, &cp_len,
+                        remaining.len, x->xctx) < 0)
+                    {
+                        AFW_THROW_ERROR_Z(general,
+                            "Invalid UTF-8 in split", x->xctx);
+                    }
+                    remaining.s += cp_len;
+                    remaining.len -= cp_len;
+                }
+            }
+            afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }
 
     else {
+        /*
+         * Empty / omitted separator: one entry per Unicode code point.
+         * afw_utf8_t is always valid UTF-8; never split mid-sequence by octet.
+         */
         for (count = 0; count < limit && remaining.len > 0; count++) {
+            afw_size_t offset;
+
+            offset = 0;
+            if (afw_utf8_next_code_point(remaining.s, &offset,
+                remaining.len, x->xctx) < 0)
+            {
+                AFW_THROW_ERROR_Z(general,
+                    "Invalid UTF-8 in split (should be unreachable for "
+                    "afw_utf8_t)",
+                    x->xctx);
+            }
             split.s = remaining.s;
-            split.len = 1;
-            remaining.s++;
-            remaining.len--;
-            afw_array_add_internal(array, afw_data_type_string,
+            split.len = offset;
+            remaining.s += offset;
+            remaining.len -= offset;
+            afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }
@@ -2185,7 +2297,7 @@ afw_function_execute_split(
  *
  * afw_function_execute_starts_with
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether `<dataType>` value starts with a subString and return the
  * boolean result.
@@ -2249,7 +2361,7 @@ afw_function_execute_starts_with(
  *
  * afw_function_execute_subset
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns boolean true if the unique values in `<dataType>` array1 are all in
  * `<dataType>` array2.
@@ -2273,9 +2385,9 @@ afw_function_execute_starts_with(
  *
  * Parameters:
  *
- *   array1 - (array ``<Type>``) The first array.
+ *   array1 - (``<Type>`[]`) The first array.
  *
- *   array2 - (array ``<Type>``) The second array.
+ *   array2 - (``<Type>`[]`) The second array.
  *
  * Returns:
  *
@@ -2296,7 +2408,7 @@ afw_function_execute_subset(
     data_type_1 = afw_array_get_data_type(array1->internal, x->xctx);
     data_type_2 = afw_array_get_data_type(array2->internal, x->xctx);
     if (!data_type_1 || data_type_1 != data_type_2) {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "array1 and array2 must have a data type that matches", x->xctx);
     }
 
@@ -2312,11 +2424,12 @@ afw_function_execute_subset(
  *
  * afw_function_execute_substring
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
- * Returns the `<dataType>` substring of value beginning at zero-based position
+ * Returns the string substring of value beginning at zero-based position
  * integer startIndex and ending at the position before integer endIndex.
- * Specify -1 or omitting endIndex to return up to end of `<dataType>`.
+ * Specify -1 or omit endIndex to return through the end of value. The result is
+ * always string (a slice of anyURI is not an anyURI).
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -2332,7 +2445,7 @@ afw_function_execute_subset(
  *       string: dataType,
  *       startIndex: integer,
  *       endIndex?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -2345,11 +2458,11 @@ afw_function_execute_subset(
  *
  * Returns:
  *
- *   (``<Type>``)
+ *   (string) Substring as string (not re-typed as the input data type).
  *
  * Errors thrown:
  *
- *   arg_error - startIndex or endIndex is out of range
+ *   argument_error - startIndex or endIndex is out of range
  */
 const afw_value_t *
 afw_function_execute_substring(
@@ -2374,7 +2487,7 @@ afw_function_execute_substring(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(startIndex, 2,
         integer);
     if (startIndex->internal < 0) {
-        AFW_THROW_ERROR_Z(arg_error, "startIndex is out of bounds", x->xctx);
+        AFW_THROW_ERROR_Z(argument_error, "startIndex is out of bounds", x->xctx);
     }
     start = afw_safe_cast_integer_to_size(startIndex->internal, x->xctx);
 
@@ -2387,7 +2500,7 @@ afw_function_execute_substring(
             (endIndex->internal != -1 &&
                 startIndex->internal >= endIndex->internal))
         {
-            AFW_THROW_ERROR_Z(arg_error, "endIndex is out of bounds", x->xctx);
+            AFW_THROW_ERROR_Z(argument_error, "endIndex is out of bounds", x->xctx);
         }
         end = afw_safe_cast_integer_to_size(endIndex->internal, x->xctx);
     }
@@ -2397,7 +2510,7 @@ afw_function_execute_substring(
     for (offset = 0, pos = 0; pos < start; pos++)
     {
         if (afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx) < 0) {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "startIndex is out of bounds", x->xctx);
         }
     }
@@ -2411,7 +2524,7 @@ afw_function_execute_substring(
         for (; pos < end; pos++)
         {
             if (afw_utf8_next_code_point(s->s, &offset, s->len, x->xctx) < 0) {
-                AFW_THROW_ERROR_Z(arg_error,
+                AFW_THROW_ERROR_Z(argument_error,
                     "startIndex and/or endIndex is out of bounds", x->xctx);
             }
         }
@@ -2429,7 +2542,7 @@ afw_function_execute_substring(
  *
  * afw_function_execute_union
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns an array of `<dataType>` contains all of the unique values in two or
  * more array of `<dataType>` values.
@@ -2448,17 +2561,17 @@ afw_function_execute_substring(
  *   function union <dataType>(
  *       arrays_1: array,
  *       arrays_2: array,
- *       ...arrays_rest: (array of array)
+ *       ...arrays_rest: array
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   arrays - (2 or more array ``<Type>``) Two or more arrays.
+ *   arrays - (2 or more ``<Type>`[]`) Two or more arrays.
  *
  * Returns:
  *
- *   (array ``<Type>``)
+ *   (``<Type>`[]`)
  */
 const afw_value_t *
 afw_function_execute_union(
@@ -2475,7 +2588,7 @@ afw_function_execute_union(
     data_type = afw_array_get_data_type(array1->internal, x->xctx);
     if (!data_type)
     {
-        AFW_THROW_ERROR_Z(arg_error,
+        AFW_THROW_ERROR_Z(argument_error,
             "all arrays must have the same data type",
             x->xctx);
     }
@@ -2485,7 +2598,7 @@ afw_function_execute_union(
     for (i = 2; i <= x->argc; i++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arrayn, i, array);
         if (afw_array_get_data_type(arrayn->internal, x->xctx) != data_type) {
-            AFW_THROW_ERROR_Z(arg_error,
+            AFW_THROW_ERROR_Z(argument_error,
                 "all arrays must have the same data type",
                 x->xctx);
         }
@@ -2502,7 +2615,7 @@ afw_function_execute_union(
  *
  * afw_function_execute_last_index_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns the zero-based index into `<dataType>` value of the last occurrence
  * of a subString. If subString is not found, -1 is returned.
@@ -2603,7 +2716,7 @@ return_result:
  *
  * afw_function_execute_regexp_index_of
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Search `<dataType>` value for a regular expression and return index. If not
  * found, -1 is returned.
@@ -2649,7 +2762,7 @@ afw_function_execute_regexp_index_of(
  *
  * afw_function_execute_regexp_replace
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Replace matched values for a regular expression in a `<dataType>` value.
  *
@@ -2668,7 +2781,7 @@ afw_function_execute_regexp_index_of(
  *       regexp: string,
  *       replacement: string,
  *       limit?: integer
- *   ): dataType;
+ *   ): string;
  * ```
  *
  * Parameters:
@@ -2684,7 +2797,7 @@ afw_function_execute_regexp_index_of(
  *
  * Returns:
  *
- *   (``<Type>``) A `<dataType>` value with the matched string(s) replaced.
+ *   (string) Result text as string (not re-typed as the input data type).
  */
 const afw_value_t *
 afw_function_execute_regexp_replace(
@@ -2701,7 +2814,7 @@ afw_function_execute_regexp_replace(
  *
  * afw_function_execute_url_encode
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * URL encode a value or bag of values.
  *
@@ -2752,7 +2865,7 @@ afw_function_execute_url_encode(
  *
  * afw_function_execute_encode_as_base64Binary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Encode a value as a base64Binary. The effect is to create a base64Binary
  * value with an internal value of the value passed.
@@ -2804,7 +2917,7 @@ afw_function_execute_encode_as_base64Binary(
  *
  * afw_function_execute_encode_as_hexBinary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Encode a value as a hexBinary. The effect is to create a hexBinary value with
  * an internal value of the value passed.
@@ -2856,7 +2969,7 @@ afw_function_execute_encode_as_hexBinary(
  *
  * afw_function_execute_is
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks whether value is dataType `<dataType>` and return the boolean result.
  *
@@ -2880,7 +2993,7 @@ afw_function_execute_encode_as_hexBinary(
  *
  * Parameters:
  *
- *   value - (any dataType) Value to check.
+ *   value - (any) Value to check.
  *
  * Returns:
  *
@@ -2903,4 +3016,69 @@ afw_function_execute_is(
     return (x->data_type == data_type)
         ? afw_boolean_v_true
         : afw_boolean_v_false;
+}
+
+
+
+/*
+ * Common polymorphic function for freeze
+ *
+ * afw_function_execute_freeze
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Set a `<dataType>` value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   array, object.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function freeze <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to freeze.
+ *
+ * Returns:
+ *
+ *   (``<Type>``) The same value, now immutable.
+ */
+const afw_value_t *
+afw_function_execute_freeze(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_value_object_t *object;
+    const afw_value_array_t *array;
+
+    AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
+    if (!value || afw_value_is_undefined(value)) {
+        AFW_THROW_ERROR_Z(general,
+            "freeze requires an object or array", x->xctx);
+    }
+
+    if (afw_value_is_object(value)) {
+        object = (const afw_value_object_t *)value;
+        afw_object_set_immutable(object->internal, x->xctx);
+        return value;
+    }
+
+    if (afw_value_is_array(value)) {
+        array = (const afw_value_array_t *)value;
+        afw_array_set_immutable(array->internal, x->xctx);
+        return value;
+    }
+
+    AFW_THROW_ERROR_Z(general,
+        "freeze requires an object or array", x->xctx);
 }

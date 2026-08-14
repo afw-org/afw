@@ -14,15 +14,22 @@
 /**
  * @defgroup afw_lmdb Lightning Memory-mapped Database Adapter
  * @ingroup afw_included_extensions
- * 
- * LMDB adapter.
- * 
+ *
+ * LMDB adapter (`src/afw_lmdb/`): embedded key/value object store with
+ * optional indexes and journal. Package-private C surface over libafw
+ * public APIs (self-contained srcdir). Index definitions live in the DB
+ * (see adapter index notes). Use adapter session macros for CRUD.
+ *
  * @{
  */
 
 /**
  * @file afw_lmdb.h
- * @brief Adaptive Framework LMDB Adapter
+ * @brief Package header for the LMDB adapter extension.
+ *
+ * Error RV source ids for lmdb / journal / index paths. Not a second
+ * public C API. See @ref afw_adapter_index_impl and
+ * @ref afw_included_extensions.
  */
 
 AFW_BEGIN_DECLARES

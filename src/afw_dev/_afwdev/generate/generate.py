@@ -20,6 +20,7 @@
 
 import glob
 import os
+import re
 import sys
 import shutil
 import importlib
@@ -29,7 +30,6 @@ from _afwdev.generate import \
     cmake, \
     const_objects, \
     data_type_bindings, \
-    declare_helpers, \
     ebnf, \
     function_bindings, \
     javascript_bindings, \
@@ -49,38 +49,46 @@ from _afwdev.common import msg, direct, resources, package, nfc
 
 
 def generated_h(options):
-    declare_internal_function = options['prefix'].upper() + 'DECLARE_INTERNAL'
-    filename = options['prefix'] + 'generated.h'
-    prefix = options['prefix']    
+    # Register glue: plain extern (not exported public API). Core + packages.
+    # Filename *_internal.h so default install excludes it.
+    filename = options['prefix'] + 'generated_internal.h'
+    prefix = options['prefix']
     srcdir = prefix[:-1]
     afw_package = package.get_afw_package(options)
     copyright = afw_package.get('copyright')
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-        c.write_h_prologue(fd, options['generated_by'], 
-                           'Adaptive Framework Register Generated (' + srcdir + ') Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework register generated (' + srcdir + ') header.')
+        c.write_h_prologue(
+            fd, options['generated_by'],
+            'Adaptive Framework Register Generated (' + srcdir +
+            ') Internal Header', copyright, filename)
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Internal generated register header for srcdir `' + srcdir +
+            '` (not public C API).')
 
         fd.write('\n#include "afw_minimal.h"\n')
 
-        fd.write('#include "' + options['prefix'] + 'declare_helpers.h"\n')
+        # Package *_declare_helpers.h is not generated (#172). Use afw_common.h.
         if options['const_objects']:
-            fd.write('#include "' + options['prefix'] + 'const_objects.h"\n')
+            fd.write('#include "' + options['prefix'] +
+                     'const_objects_internal.h"\n')
         if options['data_types']:
             fd.write('#include "' + options['prefix'] + 'data_type_bindings.h"\n')
         if options['functions']:
-            fd.write('#include "' + options['prefix'] + 'function_bindings.h"\n')
+            fd.write('#include "' + options['prefix'] +
+                     'function_bindings_internal.h"\n')
         if options['runtime_object_maps']:
             fd.write('#include "afw_runtime.h"\n')
             fd.write('#include "' + options['prefix'] + 'runtime_object_maps.h"\n')
         if options['strings']:
             fd.write('#include "' + options['prefix'] + 'strings.h"\n')
-        
+
         fd.write('\n\n/**\n')
         fd.write(' * @brief Generated register for ' + options['srcdir'] + '. \n')
         fd.write(' * @param xctx of caller.  Should be base xctx.\n')
         fd.write(' */\n')
-        fd.write(declare_internal_function + '(void)\n')
+        fd.write('extern void\n')
         fd.write(options['prefix'] + 'generated_register(afw_xctx_t *xctx);\n')
 
         if options['manifest']:
@@ -95,7 +103,7 @@ def generated_h(options):
                     fd.write(' * @brief Register function for ' + registry_type + ' ' + key + '\n')
                     fd.write(' * @param xctx of caller.\n')
                     fd.write(' */\n')
-                    fd.write(declare_internal_function + '(void)\n')
+                    fd.write('extern void\n')
                     fd.write(options['prefix'] + registry_type +  '_' + key + '_register(\n')
                     fd.write('    afw_xctx_t *xctx);\n')
 
@@ -112,7 +120,10 @@ def generated_version_h(options):
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_h_prologue(fd, options['generated_by'], 
                            'Adaptive Framework Version (' + options['prefix'] + ') Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework Version (' + options['prefix'] + ') header.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated version macros for prefix `'
+            + options['prefix'] + '`.')
         fd.write('\n\n')
 
         if not options['core']:
@@ -148,11 +159,14 @@ def generated_c(options):
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_c_prologue(fd, options['generated_by'],
             'Adaptive Framework Register Generated (' + options['prefix'] + ')', copyright)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework register generated (' + options['prefix'] + ').')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated register implementation for `'
+            + options['srcdir'] + '`.')
         fd.write('\n')
 
         fd.write('#include "afw.h"\n')
-        fd.write('#include "' + options['prefix'] + 'generated.h"\n')
+        fd.write('#include "' + options['prefix'] + 'generated_internal.h"\n')
         fd.write('#include "' + options['prefix'] + 'version_info.h"\n')
 
         fd.write('\n')
@@ -237,7 +251,48 @@ def generated_c(options):
 
                 cfile = nfc.read_path(options['generate_dir_path'] +  'manifest/' + registry_type + '/' + key)
                 with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-                    fd.write(cfile)
+                    # Manifest sources are often bare C snippets (or snippets
+                    # with a Doxygen block naming the *source* file). Always
+                    # emit a generated TU header using the real output name,
+                    # then append the body with any leading @file section
+                    # stripped so Doxygen does not see a mismatched @file.
+                    afw_package = package.get_afw_package(options)
+                    copyright = afw_package.get('copyright')
+                    title = (
+                        'Register ' + registry_type + ' `'
+                        + key[:-2] + '` for ' + options['srcdir'])
+                    c.write_copyright(fd, title, copyright)
+                    c.write_doxygen_file_section(
+                        fd, filename,
+                        'Generated environment register for '
+                        + registry_type + ' `' + key[:-2]
+                        + '` (' + options['srcdir'] + ').')
+                    fd.write('\n')
+                    body = cfile.lstrip('\n')
+                    # Drop a leading Doxygen file section from the snippet.
+                    if body.lstrip().startswith('/**'):
+                        end = body.find('*/')
+                        if end != -1:
+                            head = body[:end + 2]
+                            if '@file' in head or '\\file' in head:
+                                body = body[end + 2:].lstrip('\n')
+                    # Drop a leading license/copyright block if present so we
+                    # do not double-header the generated file.
+                    if body.startswith('// See the ') or body.startswith('/*'):
+                        if body.startswith('// See the '):
+                            nl = body.find('\n')
+                            rest = body[nl + 1:] if nl != -1 else body
+                            if rest.lstrip().startswith('/*'):
+                                end = rest.find('*/')
+                                if end != -1:
+                                    body = rest[end + 2:].lstrip('\n')
+                            else:
+                                body = rest.lstrip('\n')
+                        elif body.startswith('/*') and 'Copyright' in body[:400]:
+                            end = body.find('*/')
+                            if end != -1:
+                                body = body[end + 2:].lstrip('\n')
+                    fd.write(body)
 
 
 def special_merge_tree(fromdir, destdir):
@@ -266,6 +321,45 @@ def sort_use_id_cb(obj):
     return obj['_meta_']['objectId']
 
 
+def update_doxyfile_project_number(options):
+    """Set Doxyfile PROJECT_NUMBER from afw-package.json version.
+
+    Kept in the package root (not under generated/) so git and source
+    distributions show the correct Doxygen project number. Only the
+    PROJECT_NUMBER line is rewritten.
+    """
+    doxyfile_path = options['afw_package_dir_path'] + 'Doxyfile'
+    if not os.path.exists(doxyfile_path):
+        return
+
+    afw_package = package.get_afw_package(options)
+    version = afw_package.get('version')
+    if not version:
+        msg.error_exit('version property missing in afw-package.json')
+
+    with nfc.open(doxyfile_path, 'r') as fd:
+        text = fd.read()
+
+    new_text, n = re.subn(
+        r'(?m)^(PROJECT_NUMBER\s*=\s*).*$',
+        r'\g<1>' + version,
+        text,
+        count=1,
+    )
+    if n == 0:
+        msg.warning(
+            'Doxyfile has no PROJECT_NUMBER line; not updating for version '
+            + version)
+        return
+    if new_text == text:
+        msg.info('Doxyfile PROJECT_NUMBER already ' + version)
+        return
+
+    with nfc.open(doxyfile_path, 'w') as fd:
+        fd.write(new_text)
+    msg.info('Updated Doxyfile PROJECT_NUMBER to ' + version)
+
+
 def root_generate(options):
 
     # Output will go in the source director's generated directory.  Make sure
@@ -283,6 +377,9 @@ def root_generate(options):
     
     # Generate json_schema files
     json_schema.generate(options)
+
+    # Keep Doxyfile project number aligned with package version (source tree).
+    update_doxyfile_project_number(options)
 
 
 # Freshly generated generated directory from objects in object store directory
@@ -365,6 +462,7 @@ def generate(passed_options):
     if os.path.exists(options['generated_dir_path'] ):
         msg.info('Removing old generated/ directory')
         shutil.rmtree(options['generated_dir_path'] , ignore_errors=False)
+    os.makedirs(options['generated_dir_path'], exist_ok=True)
 
     # Delete existing temporary generate directory.
     options['temporary_generate_dir_path'] = options['srcdir_path'] + 'generate/temp_generate/'
@@ -479,6 +577,12 @@ def generate(passed_options):
     if options['objects']:
         options['strings'] = True
 
+    # Seed options['const'] from generate/strings/*.txt before function_bindings
+    # / const_objects so preferred labels (boolean::true, integer::zero, …)
+    # exist first and later get_string_label calls reuse those permanents.
+    if options.get('strings_dir_path'):
+        strings.seed_from_strings_dir(options)
+
     # If debug mode, print options.
     if msg.is_debug_mode():
         msg.debug(nfc.json_dumps(options, sort_keys=True, indent=4))
@@ -592,8 +696,16 @@ def generate(passed_options):
         msg.info('Adding objects/_AdaptiveFunctionGenerate_/ objects for polymorphic functions')
         polymorphic_functions.generate(options)
 
-    # Generate optional data types.
+    # Generate optional data types (core / libafw only).
     if options['data_types']:
+        if not options.get('core'):
+            msg.error_exit(
+                'Data type bindings are only supported in core (libafw). '
+                'Package "' + options.get('srcdir', options.get('prefix', '?')) +
+                '" has generate/objects/_AdaptiveDataTypeGenerate_/ but non-core '
+                'packages must not define Adaptive data types. Implement new data '
+                'types in src/afw; extensions and commands use existing types and '
+                'register functions/adapters only.')
         data_type_list = direct.retrieve_objects_direct(options['objects_dir_path'] +
             '_AdaptiveDataTypeGenerate_/')
         data_type_list.sort(key=sort_use_id_cb)
@@ -671,8 +783,8 @@ def generate(passed_options):
 
     # >>>>> Common generates
 
-    # Generate declare helpers.
-    declare_helpers.generate(generated_by, options)
+    # Core declare/define macros live in hand-written afw_common.h.
+    # Package *_declare_helpers.h is not generated (#172).
 
     # Run generated.py script from additional_generate
     if options['additional_generate']:
@@ -688,7 +800,7 @@ def generate(passed_options):
             options['srcdir_path'])
         sys.path.pop(0)
 
-    # Generate generated.h file.
+    # Generate generated_internal.h file.
     generated_h(options)
 
     # Generate version.h file.

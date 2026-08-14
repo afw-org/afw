@@ -11,7 +11,7 @@
 //? source: ...
 
 
-// There are still parts of this script that needs to be converted to assert()
+// Grab-bag script. Prefer assert() over print().
 
 let s: string;
 
@@ -106,10 +106,10 @@ assert(test2('1', '2') == '123');
 function test3 (a: string, b: string, c?: string): string (a + b + string(c));
 assert(test3('1', '2') == '12undefined');
 
-function test4 (a: string, ... b: (array of string)): string (a + string(b));
+function test4 (a: string, ... b: string[]): string (a + string(b));
 assert(test4('1', '2', '3', '4', '5') == '1["2","3","4","5"]');
 
-function test5 (a: string, ... b: (array of string)): string (a + string(b));
+function test5 (a: string, ... b: string[]): string (a + string(b));
 assert(test5('1') == '1[]');
 
 function test6(a: string, b?: string): string
@@ -171,24 +171,24 @@ assert(test9('1') == 'b is missing');
 // Trailing comma in array
 let y1: array = [1,3,2,4,];
 
-assert(string(y1) == string([1,3,2,4])); //FIXME Need to support array ==
+assert(y1 === [1, 3, 2, 4]);
 
 // Trailing comma in object
 let y2: object = {a:1,b:2,};
 
-assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
+assert(y2 === { a: 1, b: 2 });
 
-// Test evaluate script  
+// eval() compiles and evaluates a string as a script
 {
-    const hello: unevaluated = eval("return 'Hello ' + 'World!\n';");
-    //FIXME Should pass
-    //assert(evaluate(hello) == 'Hello World!');
+    const hello = eval("return 'Hello ' + 'World!\\n';");
+    assert(hello === "Hello World!\n");
+    assert(evaluate(hello) === "Hello World!\n");
 }
 
-// Test produce a compile listing
+// compile listing is a string (human dump, not recompilable)
 {
-    const hello: unevaluated = compile(script("return 'Hello ' + 'World!\n';"), "| ");
-    //FIXME Figure out a way to assert this: hello
+    const listing = compile(script("return 'Hello ' + 'World!\\n';"), "| ");
+    assert(is_string(listing));
 }
 
 
@@ -196,7 +196,7 @@ assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
 
 // ...array
 {
-    const l1: (array of string) = ["a", "b"];
+    const l1: string[] = ["a", "b"];
     const l2: array = ["d", "e"];
     const l3: array = [...l1, "c", ...l2, "f", "g", ...array("h", "i", "j"), "k",
         ...["l","m"], ...[], ...[...["n", "o", "p"], "q", "r", "s"] ];
@@ -320,36 +320,27 @@ assert(x == 'outside for-of');
 // Test make sure x same after for-of - should print >>>outside for-of\n>>>');
 assert(x == 'outside for-of');
 
-//FIXME Need to convert this
-/*
-print('\nTest for-of using retrieve_objects- should print >>> with info for each data type\n');
 {
-    for (const x: object of retrieve_objects('afw','_AdaptiveDataType_')) {
-        print('>>> ' + x.dataType + ' - ' + x.brief + '\n');
+    let n = 0;
+    let sawInteger = false;
+    for (const t of retrieve_objects("afw", "_AdaptiveDataType_")) {
+        n += 1;
+        if (t.dataType === "integer") {
+            sawInteger = true;
+        }
     }
-}
-print("\n");
-*/
+    assert(n > 0);
+    assert(sawInteger);
 
-//FIXME Need to convert this
-/*
-print('\nTest for-of using retrieve_objects- should print >>> with info for each data type\n');
-for (const {dataType, brief } of retrieve_objects('afw','_AdaptiveDataType_')) {
-    print('>>> ' + dataType + ' - ' + brief + '\n');
+    let n2 = 0;
+    for (const { dataType } of retrieve_objects("afw", "_AdaptiveDataType_")) {
+        n2 += 1;
+        if (dataType === "integer") {
+            sawInteger = true;
+        }
+    }
+    assert(n2 === n);
 }
-print("\n");
-*/
-
-//FIXME Need to convert this
-/*
-print('\nTest for-of using same retrieve_objects with object destructure - should print >>> with info for each data type\n');
-{
-    for (let {dataType, brief} of retrieve_objects('afw','_AdaptiveDataType_')) {
-        print('>>> ' + dataType + ' - ' + brief + '\n');
-    }    
-}
-print("\n");
-*/
 
 // Test while
 s = '';

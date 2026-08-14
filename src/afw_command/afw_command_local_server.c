@@ -14,6 +14,7 @@
 
 /* Declares and rti/inf defines for interface afw_server */
 #define AFW_IMPLEMENTATION_ID "afw_command_local"
+#define AFW_SERVER_SELF_T afw_command_local_server_self_t
 #include "afw_server_impl_declares.h"
 
 /**
@@ -288,6 +289,8 @@ impl_read_and_process_request(
 
     AFW_TRY {
 
+        /* environment:: / process:: pushed in xctx finishup from env. */
+
         /*
          * Loop until an error, exit, or request processed. This is to allow
          * directives to be processed and then a request.
@@ -378,8 +381,8 @@ impl_read_and_process_request(
                     (const afw_utf8_octet_t *)input->ptr, input->size,
                     p, xctx);
                 action_object = afw_object_create_unmanaged(p, xctx);
-                afw_object_set_property_as_string(action_object,
-                    afw_s_function, afw_s_eval_script, xctx);
+                afw_object_set_property(action_object,
+                    afw_s_function, afw_v_eval_script, xctx);
                 afw_object_set_property_as_string(action_object,
                     afw_s_source, string, xctx);
                 response_object = afw_action_perform(
@@ -434,7 +437,7 @@ impl_read_and_process_request(
  */
 void
 impl_afw_server_release(
-    const afw_server_t * instance,
+    AFW_SERVER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Everything will be released by afw_command.c */
@@ -447,12 +450,10 @@ impl_afw_server_release(
  */
 void
 impl_afw_server_run(
-    const afw_server_t * instance,
+    AFW_SERVER_SELF_T *self,
     const afw_request_handler_t * handler,
     afw_xctx_t *xctx)
 {
-    afw_command_local_server_self_t *self =
-        (afw_command_local_server_self_t *)instance;
 
     
     afw_command_local_server_write_result(self,
@@ -464,7 +465,7 @@ impl_afw_server_run(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(const afw_server_t *)
+const afw_server_t *
 afw_command_local_server_create(
     afw_command_self_t *command_self)
 {
@@ -550,7 +551,7 @@ afw_command_local_server_create(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(void)
+void
 afw_command_local_server_write_result(
     afw_command_local_server_self_t *self,
     const char *format, ...)
@@ -585,7 +586,7 @@ afw_command_local_server_write_result(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(void)
+void
 afw_command_local_server_write_error(
     afw_command_local_server_self_t *self, 
     const afw_error_t *error,
@@ -619,7 +620,7 @@ afw_command_local_server_write_error(
 
 
 
-AFW_COMMAND_DEFINE_INTERNAL(void)
+void
 afw_command_local_server_write_end(
     afw_command_local_server_self_t *self)
 {

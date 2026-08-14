@@ -20,6 +20,7 @@
 /* Declares and rti/inf defines for interface afw_request */
 #define AFW_IMPLEMENTATION_ID "afw_server_fcgi"
 #define AFW_IMPLEMENTATION_SPECIFIC NULL /* Change to &label if needed. */
+#define AFW_REQUEST_SELF_T afw_server_fcgi_internal_request_t
 #include "afw_request_impl_declares.h"
 
 
@@ -35,7 +36,7 @@ impl_read_content_cb(
     afw_size_t size_read;
 
     impl_afw_request_read_raw_request_body(
-        (const afw_request_t *)context,
+        (AFW_REQUEST_SELF_T *)context,
         size, (void *)buffer, &size_read, more_to_read, xctx);
 
     return size_read;
@@ -51,7 +52,7 @@ impl_write_content_cb(
     afw_xctx_t *xctx)
 {
     impl_afw_request_write_raw_response_body(
-        (const afw_request_t *)context, size, buffer, xctx);
+        (AFW_REQUEST_SELF_T *)context, size, buffer, xctx);
 
     return size;
 }
@@ -88,11 +89,7 @@ afw_server_fcgi_internal_create_request(
     afw_xctx_qualifier_stack_qualifier_object_push(afw_s_request, self->pub.properties,
         true, xctx->p, xctx);
 
-    /* Set environment object and qualifier. */
-    afw_runtime_xctx_set_object(server->environment_variables_object,
-        true, xctx);
-    afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
-        server->environment_variables_object, true, xctx->p, xctx);   
+    /* environment:: / process:: pushed in xctx finishup from env. */
 
     /* Get request method. */
     value = afw_object_get_property(self->pub.properties,
@@ -169,7 +166,7 @@ afw_server_fcgi_internal_create_request(
  */
 void
 impl_afw_request_release(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /*
@@ -187,12 +184,10 @@ impl_afw_request_release(
  */
 void
 impl_afw_request_set_error_info(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_object_t * error_info,
     afw_xctx_t *xctx)
 {
-    afw_server_fcgi_internal_request_t *self =
-        (afw_server_fcgi_internal_request_t *)instance;
 
     self->pub.error_info = error_info;
 }
@@ -204,15 +199,13 @@ impl_afw_request_set_error_info(
  */
 void
 impl_afw_request_read_raw_request_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_size_t buffer_size,
     void * buffer,
     afw_size_t * size,
     afw_boolean_t * more_to_read,
     afw_xctx_t *xctx)
 {
-    afw_server_fcgi_internal_request_t *self =
-        (afw_server_fcgi_internal_request_t *)instance;
     int c;
     unsigned char *b = buffer;
 
@@ -243,13 +236,11 @@ impl_afw_request_read_raw_request_body(
  */
 void
 impl_afw_request_set_response_status_code(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * code,
     const afw_utf8_t * reason,
     afw_xctx_t *xctx)
 {
-    afw_server_fcgi_internal_request_t *self =
-        (afw_server_fcgi_internal_request_t *)instance;
     int rv = 0;
 
     /* Ignore status if already past state. */
@@ -286,13 +277,11 @@ impl_afw_request_set_response_status_code(
  */
 void
 impl_afw_request_write_response_header(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * name,
     const afw_utf8_t * value,
     afw_xctx_t *xctx)
 {
-    afw_server_fcgi_internal_request_t *self =
-        (afw_server_fcgi_internal_request_t *)instance;
     int rv;
 
     /* Make sure in correct state then set it. */
@@ -319,13 +308,11 @@ impl_afw_request_write_response_header(
  */
 void
 impl_afw_request_write_raw_response_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     apr_size_t size,
     const void * buffer,
     afw_xctx_t *xctx)
 {
-    afw_server_fcgi_internal_request_t *self =
-        (afw_server_fcgi_internal_request_t *)instance;
     apr_size_t remaining;
     const char *next;
     int rv;
@@ -372,11 +359,9 @@ impl_afw_request_write_raw_response_body(
  */
 void
 impl_afw_request_flush_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_server_fcgi_internal_request_t *self =
-        (afw_server_fcgi_internal_request_t *)instance;
     int rv;
 
     rv = FCGX_FFlush(self->fcgx_request->out);
@@ -393,13 +378,11 @@ impl_afw_request_flush_response(
  */
 void
 impl_afw_request_finish_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t *xctx)
 {
     int rv;
 
-    afw_server_fcgi_internal_request_t *self =
-        (afw_server_fcgi_internal_request_t *)instance;
 
     /* If there was no write_response, write AFW_CRLF. */
     if (self->state < afw_request_state_response_written) {

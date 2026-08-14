@@ -30,6 +30,302 @@ impl_function_definition_rethrow =
     &afw_function_definition_rethrow.pub;
 
 
+static const afw_utf8_t *
+impl_copy_token_identifier(afw_compile_parser_t *parser)
+{
+    return afw_utf8_create_copy(
+        parser->token->identifier_name->s,
+        parser->token->identifier_name->len,
+        parser->p, parser->xctx);
+}
+
+
+static afw_boolean_t
+impl_loop_label_is_active(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    const afw_compile_loop_label_t *e;
+
+    for (e = parser->loop_labels; e; e = e->next) {
+        if (afw_utf8_equal(e->name, name)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+static void
+impl_loop_label_push(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    afw_compile_loop_label_t *e;
+
+    e = afw_pool_calloc_type(parser->p,
+        afw_compile_loop_label_t, parser->xctx);
+    e->name = name;
+    e->next = parser->loop_labels;
+    parser->loop_labels = e;
+}
+
+
+static void
+impl_loop_label_pop(afw_compile_parser_t *parser)
+{
+    if (parser->loop_labels) {
+        parser->loop_labels = parser->loop_labels->next;
+    }
+}
+
+
+static const afw_value_t *
+impl_create_loop_call(
+    afw_compile_parser_t *parser,
+    afw_size_t start_offset,
+    afw_size_t argc,
+    const afw_value_t **argv,
+    const afw_utf8_t *label)
+{
+    if (label) {
+        argv[argc + 1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        argc++;
+    }
+    return afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        argc, argv, true, parser->p, parser->xctx);
+}
+
+
+/*
+ * See through compile-time wrap_literal_array(...) (issue #17) for pattern
+ * element type checks against the constant array argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_array(const afw_value_t *value)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            "wrap_literal_array") ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+
+/* Compile-time type check for const/let/assign (issue #28). */
+static void
+impl_compile_check_list_pattern(
+    afw_compile_parser_t *parser,
+    const afw_compile_list_destructure_t *ld,
+    const afw_value_t *value)
+{
+    const afw_array_t *arr;
+    const afw_compile_assignment_element_t *ae;
+    const afw_value_t *elem;
+    afw_size_t i;
+
+    /*
+     * Evaluates to array (includes wrap_literal_array). Then require cast-safe
+     * evaluated array (after unwrap) to open entries.
+     */
+    if (!AFW_VALUE_EVALUATES_TO_DATA_TYPE(value, array, parser->xctx)) {
+        return;
+    }
+    value = impl_unwrap_wrap_literal_array(value);
+    if (!AFW_VALUE_IS_DATA_TYPE(value, array)) {
+        return;
+    }
+    arr = ((const afw_value_array_t *)value)->internal;
+    for (i = 0, ae = ld->assignment_element; ae; ae = ae->next, i++) {
+        if (!ae->assignment_target || !ae->type ||
+            afw_value_type_is_any(ae->type))
+        {
+            continue;
+        }
+        elem = afw_array_get_entry_value(arr, i, parser->p, parser->xctx);
+        if (!elem) {
+            continue;
+        }
+        afw_value_type_check_compile_assignable(ae->type, elem,
+            "list pattern element", &parser->contextual, parser->xctx);
+    }
+}
+
+
+
+/*
+ * See through compile-time wrap_literal_object(...) (issue #17) for pattern
+ * property type checks against the constant object argument.
+ */
+static const afw_value_t *
+impl_unwrap_wrap_literal_object(const afw_value_t *value)
+{
+    const afw_value_call_built_in_function_t *call;
+
+    if (!afw_value_is_call_built_in_function(value)) {
+        return value;
+    }
+    call = (const afw_value_call_built_in_function_t *)value;
+    if (!call->function ||
+        !afw_utf8_equal_utf8_z(&call->function->functionId->internal,
+            "wrap_literal_object") ||
+        call->args.argc < 1 || !call->args.argv[1])
+    {
+        return value;
+    }
+    return call->args.argv[1];
+}
+
+
+
+static void
+impl_compile_check_object_pattern(
+    afw_compile_parser_t *parser,
+    const afw_compile_object_destructure_t *od,
+    const afw_value_t *value)
+{
+    const afw_object_t *obj;
+    const afw_compile_assignment_property_t *ap;
+    const afw_value_t *pv;
+    const afw_value_type_t *type;
+    const afw_utf8_t *name;
+
+    /*
+     * Evaluates to object (includes wrap_literal_object call). Then require a
+     * cast-safe evaluated object (after unwrap) to walk properties.
+     */
+    if (!AFW_VALUE_EVALUATES_TO_DATA_TYPE(value, object, parser->xctx)) {
+        return;
+    }
+    value = impl_unwrap_wrap_literal_object(value);
+    if (!AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        return;
+    }
+    obj = ((const afw_value_object_t *)value)->internal;
+
+    for (ap = od->assignment_property; ap; ap = ap->next) {
+        type = NULL;
+        name = NULL;
+        if (ap->is_rename) {
+            if (ap->property_name_expr) {
+                /* Dynamic name: cannot check at compile. */
+                continue;
+            }
+            name = ap->property_name;
+            if (ap->assignment_element) {
+                type = ap->assignment_element->type;
+            }
+        }
+        else if (ap->symbol_reference && ap->symbol_reference->symbol) {
+            name = ap->symbol_reference->symbol->name;
+            type = &ap->symbol_reference->symbol->type;
+        }
+        if (!name || !type || afw_value_type_is_any(type)) {
+            continue;
+        }
+        pv = afw_object_get_property(obj, name, parser->xctx);
+        if (!pv) {
+            continue;
+        }
+        afw_value_type_check_compile_assignable(type, pv,
+            "object pattern property", &parser->contextual, parser->xctx);
+    }
+}
+
+
+
+/*
+ * Remember compile-time RHS on simple **const** name bindings so later
+ * call-site typeCheck / early call bind can resolve unannotated const that
+ * holds a script function (FunctionSignature formals, issue #28).
+ *
+ * Do **not** set this for let: call create early-binds through initial_value,
+ * and reassigned let (e.g. test262 try completion cases that rebind fn)
+ * must evaluate the current value, not the first RHS.
+ */
+static void
+impl_set_simple_const_symbol_initial_value(
+    const afw_value_t *target,
+    const afw_value_t *value)
+{
+    const afw_value_assignment_target_t *at;
+    afw_value_block_symbol_t *symbol;
+
+    if (!value || !afw_value_is_assignment_target(target)) {
+        return;
+    }
+    at = (const afw_value_assignment_target_t *)target;
+    if (at->assignment_target->target_type !=
+        afw_compile_assignment_target_type_symbol_reference)
+    {
+        return;
+    }
+    symbol = (afw_value_block_symbol_t *)
+        at->assignment_target->symbol_reference->symbol;
+    if (symbol &&
+        symbol->symbol_type == afw_value_block_symbol_type_const &&
+        !symbol->initial_value)
+    {
+        symbol->initial_value = value;
+    }
+}
+
+
+
+static void
+impl_compile_check_assign_target(
+    afw_compile_parser_t *parser,
+    const afw_value_t *target,
+    const afw_value_t *value)
+{
+    const afw_value_assignment_target_t *at;
+    const afw_value_type_t *type;
+
+    if (!AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+            &parser->contextual, parser->xctx))
+    {
+        return;
+    }
+    if (!afw_value_is_assignment_target(target)) {
+        return;
+    }
+    at = (const afw_value_assignment_target_t *)target;
+
+    switch (at->assignment_target->target_type) {
+    case afw_compile_assignment_target_type_symbol_reference:
+        type = &at->assignment_target->symbol_reference->symbol->type;
+        afw_value_type_check_compile_assignable(type, value,
+            "assignment", &parser->contextual, parser->xctx);
+        break;
+
+    case afw_compile_assignment_target_type_list_destructure:
+        impl_compile_check_list_pattern(parser,
+            at->assignment_target->list_destructure, value);
+        break;
+
+    case afw_compile_assignment_target_type_object_destructure:
+        impl_compile_check_object_pattern(parser,
+            at->assignment_target->object_destructure, value);
+        break;
+
+    case afw_compile_assignment_target_type_max_type:
+    default:
+        break;
+    }
+}
+
 
 /*ebnf>>>
  *
@@ -42,7 +338,7 @@ impl_function_definition_rethrow =
  * AssignmentExpression ::= Expression
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentExpression(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression,
@@ -87,7 +383,7 @@ afw_compile_parse_AssignmentExpression(
  *    ( ( 'let' | 'const' )? AssignmentTarget )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_OptionalDefineTarget(
     afw_compile_parser_t *parser,
     const afw_value_t **define_function,
@@ -137,7 +433,7 @@ afw_compile_parse_OptionalDefineTarget(
  *
  *<<<ebnf*/
 /* Call afw_compile_parse_OptionalDefineTarget() first to get params. */
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_OptionalDefineAssignment(
     afw_compile_parser_t *parser,
     const afw_value_t *target,
@@ -180,7 +476,74 @@ afw_compile_parse_OptionalDefineAssignment(
 
 
 
+static afw_boolean_t
+impl_token_is_assignment_operator(const afw_compile_parser_t *parser)
+{
+    switch (parser->token->type) {
+    case afw_compile_token_type_equal:
+    case afw_compile_token_type_plus_equal:
+    case afw_compile_token_type_minus_equal:
+    case afw_compile_token_type_multiply_equal:
+    case afw_compile_token_type_divide_equal:
+    case afw_compile_token_type_modulus_equal:
+    case afw_compile_token_type_exponentiation_equal:
+    case afw_compile_token_type_and_equal:
+    case afw_compile_token_type_or_equal:
+    case afw_compile_token_type_nullish_equal:
+        return true;
+    default:
+        return false;
+    }
+}
+
+
+/*
+ * RHS of '=' / '+=' / … : chain if the next form is a target plus an
+ * assignment operator (x = y = 1). Otherwise a full Expression so
+ * x = i + 1 does not stop after i. Current token is the operator just
+ * recognized. Not assignment-as-expression: (y = 1) stays Expression.
+ */
+static const afw_value_t *
+impl_parse_assignment_rhs(afw_compile_parser_t *parser)
+{
+    const afw_value_t *target;
+    afw_size_t saved;
+    afw_boolean_t just_expression_okay;
+    afw_boolean_t was_expression;
+
+    /* Current token is the assign operator; cursor is after it. */
+    afw_compile_save_cursor(saved);
+    afw_compile_get_token();
+    /*
+     * '[' / '{' start array/object literals or destructure targets.
+     * AssignmentExpression would take the target path and throw on a
+     * literal. Those RHSs are Expressions (x = [1, 2]).
+     */
+    if (afw_compile_token_is(open_bracket) ||
+        afw_compile_token_is(open_brace))
+    {
+        afw_compile_restore_cursor(saved);
+        return afw_compile_parse_Expression(parser);
+    }
+    was_expression = false;
+    target = afw_compile_parse_AssignmentExpression(parser,
+        &was_expression, &just_expression_okay);
+    afw_compile_get_token();
+    if (impl_token_is_assignment_operator(parser)) {
+        afw_compile_reuse_token();
+        return afw_compile_parse_AssignmentOperation(parser, target,
+            just_expression_okay, &was_expression);
+    }
+    afw_compile_restore_cursor(saved);
+    return afw_compile_parse_Expression(parser);
+}
+
+
 /*ebnf>>>
+ *
+ *# RHS is Assignment when it is another target + assign operator
+ *# (x = y = 1). Otherwise Expression (x = i + 1). Issue #62.
+ *# Not assignment-as-expression: (x = 1) > x stays illegal.
  *
  * AssignmentOperation ::=
  *    (
@@ -190,12 +553,12 @@ afw_compile_parse_OptionalDefineAssignment(
  *              '=' | '+=' | '-=' | '*=' |'/=' | '%=' |
  *              '**=' | '&&=' | '||=' | '??='
  *            )
- *            Expression
+ *            ( Assignment | Expression )
  *       )
  *    )
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentOperation(
     afw_compile_parser_t *parser,
     const afw_value_t *target,
@@ -275,10 +638,10 @@ afw_compile_parse_AssignmentOperation(
 
     if (function) {
         if (expression_is_one) {
-            result = afw_integer_v_1;
+            result = afw_integer_v_one;
         }
         else {
-            result = afw_compile_parse_Expression(parser);
+            result = impl_parse_assignment_rhs(parser);
         }
         argv = afw_pool_malloc(parser->p,
             sizeof(afw_value_t *) * 3,
@@ -292,7 +655,7 @@ afw_compile_parse_AssignmentOperation(
                 2, argv, true, parser->p, parser->xctx);
     }
     else {
-        result = afw_compile_parse_Expression(parser);
+        result = impl_parse_assignment_rhs(parser);
     }
 
     argv = afw_pool_malloc(parser->p,
@@ -301,6 +664,7 @@ afw_compile_parse_AssignmentOperation(
     argv[0] = &afw_function_definition_assign.pub;
     argv[1] = target;
     argv[2] = result;
+    impl_compile_check_assign_target(parser, target, result);
     result = afw_value_call_built_in_function_create(
         afw_compile_create_contextual_to_cursor(
             parser->token->token_source_offset),
@@ -316,7 +680,7 @@ afw_compile_parse_AssignmentOperation(
  * Assignment ::= AssignmentExpression AssignmentOperation
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Assignment(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression)
@@ -340,13 +704,13 @@ afw_compile_parse_Assignment(
  *
  * AssignmentStatement ::=
  *    (
- *        ( '(' AssignmentObjectDestructureTarget '=' Expression ')' ) |
+ *        ( '(' AssignmentObjectDestructureTarget '=' Assignment ')' ) |
  *        Assignment
  *    )
  *    ';'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_AssignmentStatement(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression)
@@ -391,23 +755,57 @@ afw_compile_parse_AssignmentStatement(
 
 /*ebnf>>>
  *
- * BreakStatement ::= 'break' ';'
+ *# Optional Identifier must name an enclosing loop label (issue #62).
+ *# No break expression. Semicolons required (no ASI).
+ *
+ * BreakStatement ::= 'break' Identifier? ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_BreakStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t **argv;
+    const afw_utf8_t *label;
+    afw_size_t start_offset;
+    afw_size_t argc;
 
-    if (!parser->break_allowed) {
-        AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
+    start_offset = parser->token->token_source_offset;
+    label = NULL;
+    argc = 0;
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        label = impl_copy_token_identifier(parser);
+        if (!impl_loop_label_is_active(parser, label)) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Unknown loop label " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(label));
+        }
+        argc = 1;
+    }
+    else {
+        afw_compile_reuse_token();
+        if (!parser->break_allowed) {
+            AFW_COMPILE_THROW_ERROR_Z("Misplaced break");
+        }
     }
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
+    if (label) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 2, parser->xctx);
+        argv[0] = impl_function_definition_break;
+        argv[1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            argc, argv, true, parser->p, parser->xctx);
+    }
+    else {
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
             0, &impl_function_definition_break, true,
             parser->p, parser->xctx);
+    }
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -416,39 +814,174 @@ impl_parse_BreakStatement(afw_compile_parser_t *parser)
 
 
 
+static const afw_value_t *
+impl_create_let_or_const_call(
+    afw_compile_parser_t *parser,
+    const afw_value_t *define_function,
+    const afw_value_t *target,
+    const afw_value_t *value,
+    afw_size_t start_offset)
+{
+    const afw_value_t **argv;
+
+    argv = afw_pool_malloc(parser->p,
+        sizeof(afw_value_t *) * 4,
+        parser->xctx);
+    argv[0] = define_function;
+    argv[1] = target;
+    argv[2] = value;
+    argv[3] = NULL;
+
+    return afw_value_call_built_in_function_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        3, argv, true, parser->p, parser->xctx);
+}
+
+
+/* Current token is after the target. Leaves the following token current. */
+static const afw_value_t *
+impl_finish_one_let_or_const_binding(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const,
+    const afw_value_t *target,
+    afw_size_t binding_offset)
+{
+    const afw_value_t *value;
+
+    value = NULL;
+    if (afw_compile_token_is(equal)) {
+        value = afw_compile_parse_Expression(parser);
+        impl_compile_check_assign_target(parser, target, value);
+        if (is_const) {
+            impl_set_simple_const_symbol_initial_value(target, value);
+        }
+        afw_compile_get_token();
+    }
+    else if (is_const) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
+    }
+
+    return impl_create_let_or_const_call(parser,
+        is_const
+            ? &afw_function_definition_const.pub
+            : &afw_function_definition_let.pub,
+        target, value, binding_offset);
+}
+
+
+/*
+ * After the first binding's following token is current. Comma continues
+ * with more AssignmentTargets of the same kind (no second 'let'/'const').
+ */
+static const afw_value_t *
+impl_parse_more_let_or_const_bindings(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const,
+    const afw_value_t *first_call)
+{
+    const afw_value_t *call;
+    const afw_value_t *target;
+    const afw_array_t *list;
+    afw_compile_internal_assignment_type_t assignment_type;
+    afw_size_t binding_offset;
+
+    assignment_type = is_const
+        ? afw_compile_assignment_type_const
+        : afw_compile_assignment_type_let;
+    call = first_call;
+    list = NULL;
+
+    for (;;) {
+        if (afw_compile_token_is(comma)) {
+            if (!list) {
+                list = afw_array_create_generic(parser->p, parser->xctx);
+            }
+            afw_array_push_value(list, call, parser->xctx);
+            afw_compile_save_cursor(binding_offset);
+            target = afw_compile_parse_AssignmentTarget(parser,
+                assignment_type);
+            afw_compile_get_token();
+            call = impl_finish_one_let_or_const_binding(parser, is_const,
+                target, binding_offset);
+            continue;
+        }
+
+        if (!list) {
+            return call;
+        }
+        afw_array_push_value(list, call, parser->xctx);
+        afw_array_set_immutable(list, parser->xctx);
+        return afw_value_create_unmanaged_array(
+            list, parser->p, parser->xctx);
+    }
+}
+
+
+/*
+ * One or more let/const bindings in the current block. Keyword already
+ * consumed. Leaves the terminator token current (caller wants ';').
+ * One binding: that call. Several: array of calls for StatementList flatten.
+ */
+static const afw_value_t *
+impl_parse_let_or_const_bindings(
+    afw_compile_parser_t *parser,
+    afw_boolean_t is_const)
+{
+    const afw_value_t *target;
+    const afw_value_t *first;
+    afw_compile_internal_assignment_type_t assignment_type;
+    afw_size_t binding_offset;
+
+    assignment_type = is_const
+        ? afw_compile_assignment_type_const
+        : afw_compile_assignment_type_let;
+
+    afw_compile_save_cursor(binding_offset);
+    target = afw_compile_parse_AssignmentTarget(parser, assignment_type);
+    afw_compile_get_token();
+    first = impl_finish_one_let_or_const_binding(parser, is_const,
+        target, binding_offset);
+    return impl_parse_more_let_or_const_bindings(parser, is_const, first);
+}
+
+
+static const afw_value_t *
+impl_for_init_as_statement_list(
+    afw_compile_parser_t *parser,
+    const afw_value_t *init)
+{
+    const afw_array_t *list;
+
+    if (!init) {
+        return NULL;
+    }
+    if (afw_value_is_array(init)) {
+        return init;
+    }
+    list = afw_array_create_generic(parser->p, parser->xctx);
+    afw_array_push_value(list, init, parser->xctx);
+    return afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
+}
+
+
 /*ebnf>>>
  *
- * ConstStatement ::= 'const' AssignmentTarget '=' Expression ';'
+ * ConstDeclaration ::=
+ *     'const' AssignmentTarget '=' Expression
+ *     ( ',' AssignmentTarget '=' Expression )*
+ *
+ * ConstStatement ::= ConstDeclaration ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_ConstStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
-    const afw_value_t **argv;
 
-    result = NULL;
-    argv = afw_pool_malloc(parser->p,
-        sizeof(afw_value_t *) * 4,
-        parser->xctx);
-
-    argv[0] = &afw_function_definition_const.pub;
-    argv[1] = afw_compile_parse_AssignmentTarget(parser,
-        afw_compile_assignment_type_const);
-    argv[2] = NULL;
-    argv[3] = NULL;
-
-    afw_compile_get_token();
-    if (!afw_compile_token_is(equal)) {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
+    result = impl_parse_let_or_const_bindings(parser, true);
+    if (!afw_compile_token_is(semicolon)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
     }
-    argv[2] = afw_compile_parse_Expression(parser);
-    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
-
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-            3, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -458,23 +991,86 @@ impl_parse_ConstStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * InterfaceName ::= Identifier
- * 
- * InterfaceStatement ::= 'interface' InterfaceName
- *      '{' 
- *          ( String | Identifier ) ':' Type
- *          ( ','  ( String | Identifier ) ':' Type )*
- *          ','?
- *      '}' ';'
+ *
+ * InterfaceStatement ::=
+ *     'interface' InterfaceName
+ *     ( 'extends' Type ( ',' Type )* )?
+ *     ObjectTypeLiteral
+ *     ';'
+ *
+ *# Object body is an ObjectTypeLiteral (see Type productions in expression).
+ *# Script-local only; not adaptive object types (issue #28).
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 {
-    const afw_value_t *result;
+    const afw_utf8_t *name;
+    const afw_value_type_t *body;
+    const afw_value_type_t *base;
+    afw_value_type_t *type;
+    apr_array_header_t *extends;
+    const afw_value_type_t **list;
+    afw_size_t i;
+    afw_size_t brace_offset;
 
-    AFW_COMPILE_THROW_ERROR_Z("interface statement is not supported yet");
+    /* 'interface' already consumed as statement keyword. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is_unqualified_identifier()) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting interface name");
+    }
+    name = parser->token->identifier_name;
 
-    return result;
+    extends = NULL;
+    afw_compile_get_token();
+    if (afw_compile_token_is_name_z("extends")) {
+        extends = apr_array_make(parser->apr_p, 2,
+            sizeof(const afw_value_type_t *));
+        for (;;) {
+            /* Each base: full Type starting at next token (name). */
+            base = afw_compile_parse_Type(parser);
+            APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
+            afw_compile_get_token();
+            if (!afw_compile_token_is(comma)) {
+                break;
+            }
+        }
+    }
+
+    if (!afw_compile_token_is(open_brace)) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Expecting '{' in interface declaration");
+    }
+
+    /* parse_Type begins with get_token; put '{' back so primary sees it. */
+    brace_offset = parser->token->token_source_offset;
+    afw_compile_restore_cursor(brace_offset);
+    body = afw_compile_parse_Type(parser);
+
+    if (body->kind != afw_value_type_kind_object) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Interface body must be an object type literal");
+    }
+
+    type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
+    type->kind = afw_value_type_kind_object;
+    type->object.properties = body->object.properties;
+    type->object.interface_name = name;
+    if (extends && extends->nelts > 0) {
+        type->object.extends_count = (afw_size_t)extends->nelts;
+        list = afw_pool_malloc(parser->p,
+            sizeof(afw_value_type_t *) * type->object.extends_count,
+            parser->xctx);
+        for (i = 0; i < type->object.extends_count; i++) {
+            list[i] = ((const afw_value_type_t **)extends->elts)[i];
+        }
+        type->object.extends = list;
+    }
+
+    afw_compile_script_type_register(parser, name, type);
+
+    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    return NULL;
 }
 
 
@@ -482,41 +1078,88 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  * TypeVariableName ::= Identifier
- * 
+ *
  * TypeStatement ::= 'type' TypeVariableName '=' Type ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_TypeStatement(afw_compile_parser_t *parser)
 {
-    const afw_value_t *result;
+    const afw_utf8_t *name;
+    const afw_value_type_t *type;
 
-    AFW_COMPILE_THROW_ERROR_Z("type statement is not supported yet");
+    afw_compile_get_token();
+    if (!afw_compile_token_is_unqualified_identifier()) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting type name");
+    }
+    name = parser->token->identifier_name;
 
-    return result;
+    afw_compile_get_token();
+    if (!afw_compile_token_is(equal)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '=' in type alias");
+    }
+
+    type = afw_compile_parse_Type(parser);
+    afw_compile_script_type_register(parser, name, type);
+
+    AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    return NULL;
 }
 
 
 
 /*ebnf>>>
  *
- * ContinueStatement ::= 'continue' ';'
+ *# Optional Identifier must name an enclosing loop label (issue #62).
+ *
+ * ContinueStatement ::= 'continue' Identifier? ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t **argv;
+    const afw_utf8_t *label;
+    afw_size_t start_offset;
+    afw_size_t argc;
 
-    if (!parser->continue_allowed) {
-        AFW_COMPILE_THROW_ERROR_Z("Misplaced 'continue'");
+    start_offset = parser->token->token_source_offset;
+    label = NULL;
+    argc = 0;
+    afw_compile_get_token();
+    if (afw_compile_token_is_unqualified_identifier()) {
+        label = impl_copy_token_identifier(parser);
+        if (!impl_loop_label_is_active(parser, label)) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Unknown loop label " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(label));
+        }
+        argc = 1;
+    }
+    else {
+        afw_compile_reuse_token();
+        if (!parser->continue_allowed) {
+            AFW_COMPILE_THROW_ERROR_Z("Misplaced 'continue'");
+        }
     }
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-        0, &impl_function_definition_continue, true,
-        parser->p, parser->xctx);
+    if (label) {
+        argv = afw_pool_malloc(parser->p,
+            sizeof(afw_value_t *) * 2, parser->xctx);
+        argv[0] = impl_function_definition_continue;
+        argv[1] = afw_value_create_unmanaged_string(
+            label, parser->p, parser->xctx);
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            argc, argv, true, parser->p, parser->xctx);
+    }
+    else {
+        result = afw_value_call_built_in_function_create(
+            afw_compile_create_contextual_to_cursor(start_offset),
+            0, &impl_function_definition_continue, true,
+            parser->p, parser->xctx);
+    }
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
@@ -526,24 +1169,13 @@ impl_parse_ContinueStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * DeclareStatement ::= 'declare' AssignmentTarget ';'
- *
- *<<<ebnf*/
-static const afw_value_t *
-impl_parse_DeclareStatement(afw_compile_parser_t *parser)
-{
-    AFW_COMPILE_THROW_ERROR_Z("Not implemented");
-}
-
-
-
-/*ebnf>>>
- *
  * DoWhileStatement ::= 'do' Statement 'while' '(' Expression ')' ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
+impl_parse_DoWhileStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -553,7 +1185,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
     afw_compile_save_cursor(start_offset);
 
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = &afw_function_definition_do_while.pub;
 
     break_allowed = parser->break_allowed;
@@ -583,9 +1215,7 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, true, parser->p, parser->xctx);
+    result = impl_create_loop_call(parser, start_offset, 2, argv, label);
         
     return result;
 }
@@ -594,10 +1224,19 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
+ *# C-style init is one let, one const, or assignment(s) — not a mixed
+ *# comma list of defines (issue #62). for (let i = 0, j = 1; …) is a
+ *# LetDeclaration. for (let i = 0, let j = 1; …) is not accepted.
+ *# Comma-separated Assignments stay (TS/JS comma operator stand-in).
+ *
  * ForStatement ::= 'for'
  *   '(' (
  *       (
- *           ( OptionalDefineAssignment ( ',' OptionalDefineAssignment )* )?
+ *           (
+ *               LetDeclaration |
+ *               ConstDeclaration |
+ *               ( Assignment ( ',' Assignment )* )
+ *           )?
  *           ';' Expression?
  *           ';' ( Assignment ( ',' Assignment )* )?
  *       ) |
@@ -608,12 +1247,15 @@ impl_parse_DoWhileStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_ForStatement(afw_compile_parser_t *parser)
+impl_parse_ForStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
     const afw_value_t *value;
     const afw_value_t *target;
+    const afw_value_t *init_value;
     const afw_array_t *list;
     const afw_value_t *define_function;
     const afw_value_block_t *block;
@@ -631,50 +1273,58 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         AFW_COMPILE_THROW_ERROR_Z("Expecting '('");
     }
     list = NULL;
+    init_value = NULL;
     afw_compile_get_token();
     if (!afw_compile_token_is(semicolon)) {
+        afw_size_t binding_offset;
+        const afw_value_t *first_call;
+        afw_boolean_t is_const_decl;
+
         afw_compile_reuse_token();
-        for (;;) {
-            /*
-             * Get the target using OptionalDefineTarget(). This is needed for
-             * the "OptionalDefineTarget 'of' Expression" part of production. If
-             * it turns out the OptionalDefineAssignment matches instead, pass
-             * this target to OptionalDefineAssignment() since it has already
-             * been parsed and the first part is the same.
-             */
-            target = afw_compile_parse_OptionalDefineTarget(parser,
-                &define_function, &block);
+        afw_compile_save_cursor(binding_offset);
+        target = afw_compile_parse_OptionalDefineTarget(parser,
+            &define_function, &block);
 
-            afw_compile_get_token();
-            if (afw_compile_token_is_name(afw_s_of)) {
-                if (list) {
-                    AFW_COMPILE_THROW_ERROR_Z("Not expecting 'of'");
-                }
-                is_for_of = true;
-                break;
-            }
-            afw_compile_reuse_token();
-
-            value = afw_compile_parse_OptionalDefineAssignment(parser,
-                target, define_function);
-
-            if (!list) {
-                list = afw_array_create_generic(parser->p, parser->xctx);
-            }
-            afw_array_add_value(list, value, parser->xctx);
-            afw_compile_get_token();
-            if (afw_compile_token_is(semicolon)) {
-                break;
-            }
-            if (!afw_compile_token_is(comma)) {
+        afw_compile_get_token();
+        if (afw_compile_token_is_name(afw_s_of)) {
+            is_for_of = true;
+        }
+        else if (define_function) {
+            is_const_decl = (define_function ==
+                &afw_function_definition_const.pub);
+            first_call = impl_finish_one_let_or_const_binding(parser,
+                is_const_decl, target, binding_offset);
+            value = impl_parse_more_let_or_const_bindings(parser,
+                is_const_decl, first_call);
+            if (!afw_compile_token_is(semicolon)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
             }
+            init_value = impl_for_init_as_statement_list(parser, value);
+        }
+        else {
+            afw_compile_reuse_token();
+            value = afw_compile_parse_AssignmentOperation(parser,
+                target, false, NULL);
+            list = afw_array_create_generic(parser->p, parser->xctx);
+            afw_array_push_value(list, value, parser->xctx);
+            afw_compile_get_token();
+            while (afw_compile_token_is(comma)) {
+                afw_compile_get_token();
+                value = afw_compile_parse_Assignment(parser, NULL);
+                afw_array_push_value(list, value, parser->xctx);
+                afw_compile_get_token();
+            }
+            if (!afw_compile_token_is(semicolon)) {
+                AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
+            }
+            init_value = afw_value_create_unmanaged_array(
+                list, parser->p, parser->xctx);
         }
     }
 
     if (is_for_of) {
         argv = afw_pool_malloc(parser->p,
-            sizeof(afw_value_t *) * 4, parser->xctx);
+            sizeof(afw_value_t *) * 5, parser->xctx);
         argv[0] = &afw_function_definition_for_of.pub;
         argv[1] = target;   
         argv[2] = afw_compile_parse_Expression(parser);
@@ -692,19 +1342,13 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
-        result = afw_value_call_built_in_function_create(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            3, argv, true, parser->p, parser->xctx);
+        result = impl_create_loop_call(parser, start_offset, 3, argv, label);
     }
 
     else {
-        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
+        argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 6, parser->xctx);
         argv[0] = &afw_function_definition_for.pub;
-        argv[1] = NULL;
-        if (list) {
-            argv[1] = afw_value_create_unmanaged_array(
-                list, parser->p, parser->xctx);
-        }
+        argv[1] = init_value;
 
         /* Expression? ';' */
         argv[2] = NULL;
@@ -727,7 +1371,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
                 if (!list) {
                     list = afw_array_create_generic(parser->p, parser->xctx);
                 }
-                afw_array_add_value(list, value, parser->xctx);
+                afw_array_push_value(list, value, parser->xctx);
                 afw_compile_get_token();
                 if (afw_compile_token_is(close_parenthesis)) {
                     break;
@@ -752,9 +1396,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         parser->break_allowed = break_allowed;
         parser->continue_allowed = continue_allowed;
 
-        result = afw_value_call_built_in_function_create(
-            afw_compile_create_contextual_to_cursor(start_offset),
-            4, argv, true, parser->p, parser->xctx);
+        result = impl_create_loop_call(parser, start_offset, 4, argv, label);
 
     }
 
@@ -808,9 +1450,13 @@ impl_parse_FunctionStatement(afw_compile_parser_t *parser)
             &function_name_value->internal);
         symbol->symbol_type = afw_value_block_symbol_type_function;
         symbol->initial_value = argv[2];
-        if (return_type) {
-            afw_memory_copy(&symbol->type, return_type);
-        }
+        /*
+         * Do not store the return type as symbol->type: the binding holds a
+         * function value. Return types live on the script_function_definition
+         * (issue #28 typeCheck would reject assigning a function to a
+         * return-type slot).
+         */
+        (void)return_type;
         argv[1] = afw_value_symbol_reference_create(
             afw_compile_create_contextual_to_cursor(start_offset),
             symbol, parser->p, parser->xctx);
@@ -894,39 +1540,22 @@ impl_parse_IfStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- * LetStatement ::= 'let' AssignmentTarget ( '=' Expression )? ';'
+ * LetDeclaration ::=
+ *     'let' AssignmentTarget ( '=' Expression )?
+ *     ( ',' AssignmentTarget ( '=' Expression )? )*
+ *
+ * LetStatement ::= LetDeclaration ';'
  *
  *<<<ebnf*/
 static const afw_value_t *
 impl_parse_LetStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
-    const afw_value_t **argv;
- 
-    result = NULL;
-    argv = afw_pool_malloc(parser->p,
-        sizeof(afw_value_t *) * 4,
-        parser->xctx);
 
-    argv[0] = &afw_function_definition_let.pub;
-    argv[1] = afw_compile_parse_AssignmentTarget(parser,
-        afw_compile_assignment_type_let);
-    argv[2] = NULL;
-    argv[3] = NULL;
-
-    afw_compile_get_token();
+    result = impl_parse_let_or_const_bindings(parser, false);
     if (!afw_compile_token_is(semicolon)) {
-        if (!afw_compile_token_is(equal)) {
-            AFW_COMPILE_THROW_ERROR_Z("Expecting '='");
-        }
-        argv[2] = afw_compile_parse_Expression(parser);
-        AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' or ';'");
     }
-
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(
-            parser->token->token_source_offset),
-            3, argv, true, parser->p, parser->xctx);
 
     return result;
 }
@@ -957,6 +1586,17 @@ impl_parse_ReturnStatement(afw_compile_parser_t *parser)
         afw_compile_reuse_token();
         argv[1] = afw_compile_parse_Expression(parser);
         AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+    }
+
+    /* Compile-time return type check when inside a typed function (issue #28). */
+    if (parser->current_function_returns &&
+        AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(
+            &parser->contextual, parser->xctx) &&
+        argv[1] && !afw_value_is_undefined(argv[1]))
+    {
+        afw_value_type_check_compile_assignable(
+            parser->current_function_returns, argv[1],
+            "return", &parser->contextual, parser->xctx);
     }
 
     result = afw_value_call_built_in_function_create(
@@ -1054,7 +1694,7 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
         }
         statement_list = afw_compile_parse_StatementList(parser,
-            NULL, false, true, false);
+            NULL, false, true, false, false);
         afw_compile_args_add_value(args, case_expression);
         afw_compile_args_add_value(args, statement_list);
     }
@@ -1082,21 +1722,44 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
 /*ebnf>>>
  *
  *# If there is no expression, the exception is rethrow and can only be
- *# contained in a catch block. If there is an expression, it is the message
- *# for the exception to be thrown. If there is a second expression, it
- *# can be any value and will be the value for the "data" property of the
- *# error object.
+ *# contained in a catch block. If there is an expression, it is the
+ *# message. Optional 'data' and 'id' clauses may appear in either
+ *# order; 'id' must evaluate to a string allowed on script throw.
+ *# After the message, a bare expression is not data — write
+ *# 'data' Expression. A variable named data is: throw "…" data data.
  *#
- * ThrowStatement ::=  'throw' ( Expression  Expression? )?
+ * ThrowStatement ::= 'throw' |
+ *     'throw' Expression
+ *         ( ( 'data' Expression | 'id' Expression )+ )?
  *
  *<<<ebnf*/
+static void
+impl_throw_check_id(
+    afw_compile_parser_t *parser,
+    const afw_value_t *id_value)
+{
+    const afw_utf8_t *id;
+
+    id = &((const afw_value_string_t *)id_value)->internal;
+    if (!afw_error_id_allowed_on_script_throw(id)) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "id " AFW_UTF8_FMT_Q " is not allowed on throw",
+            AFW_UTF8_FMT_ARG(id));
+    }
+}
+
+
 static const afw_value_t *
 impl_parse_ThrowStatement(afw_compile_parser_t *parser)
 {
     const afw_value_t *result;
+    const afw_value_t *data_value;
+    const afw_value_t *id_value;
     afw_size_t argc;
     const afw_value_t **argv;
     const afw_compile_value_contextual_t *contextual;
+    afw_boolean_t saw_data;
+    afw_boolean_t saw_id;
 
     contextual = afw_compile_create_contextual_to_cursor(parser->cursor);
 
@@ -1115,23 +1778,63 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
     /* throw. */
     else {
         afw_compile_reuse_token();
-        argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 3,
+        argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 4,
             parser->xctx);
         argv[0] = &afw_function_definition_throw.pub;
         argc = 1;
+        data_value = NULL;
+        id_value = NULL;
+        saw_data = false;
+        saw_id = false;
 
         /* Message */
         argv[1] = afw_compile_parse_Expression(parser);
 
-        /* Optional data */
         afw_compile_get_token();
-        if (!afw_compile_token_is(semicolon)) {
-            afw_compile_reuse_token();
-            argv[2] = afw_compile_parse_Expression(parser);
-            argc = 2;
-            AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+        if (afw_compile_token_is(semicolon)) {
+            /* message only */
         }
-    
+        else if (afw_compile_token_is_name(afw_s_data) ||
+            afw_compile_token_is_name(afw_s_id))
+        {
+            for (;;) {
+                if (afw_compile_token_is_name(afw_s_data)) {
+                    if (saw_data) {
+                        AFW_COMPILE_THROW_ERROR_Z(
+                            "data already specified on throw");
+                    }
+                    saw_data = true;
+                    data_value = afw_compile_parse_Expression(parser);
+                }
+                else if (afw_compile_token_is_name(afw_s_id)) {
+                    if (saw_id) {
+                        AFW_COMPILE_THROW_ERROR_Z(
+                            "id already specified on throw");
+                    }
+                    saw_id = true;
+                    id_value = afw_compile_parse_Expression(parser);
+                    if (AFW_VALUE_IS_DATA_TYPE(id_value, string)) {
+                        impl_throw_check_id(parser, id_value);
+                    }
+                }
+                else {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Expecting 'data', 'id', or ';'");
+                }
+                afw_compile_get_token();
+                if (afw_compile_token_is(semicolon)) {
+                    break;
+                }
+            }
+            argv[2] = data_value;
+            argv[3] = id_value;
+            argc = saw_id ? 3 : 2;
+        }
+        else {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting 'data', 'id', or ';'");
+        }
+
         /* Create the throw function call. */
         result = afw_value_call_built_in_function_create(
             contextual, argc, argv, true,
@@ -1149,6 +1852,7 @@ typedef struct {
     const afw_compile_value_contextual_t *contextual;
 } impl_parse_TryStatement_StatementList_cb_t;
 
+/* Identifier catch only: plant error name after StatementList opens the block. */
 static void
 impl_parse_TryStatement_StatementList_cb (
     afw_compile_parse_StatementList_cb_t *cb,
@@ -1168,7 +1872,11 @@ impl_parse_TryStatement_StatementList_cb (
 
 /*ebnf>>>
  *
- * Catch ::= 'catch' ( '(' Identifier ')' )? Statement
+ *#
+ *# Catch binding is Identifier or the same list/object Pattern as let/const
+ *# (issue #140). Runtime assigns the error object into the binding target.
+ *#
+ * Catch ::= 'catch' ( '(' ( Identifier | AssignmentTarget ) ')' )? Statement
  * 
  * Finally ::= 'finally' Statement
  *
@@ -1184,10 +1892,12 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
     afw_size_t argc;
     afw_size_t start_offset;
     afw_boolean_t rethrow_allowed;
+    afw_boolean_t pattern_binding;
 
     rethrow_allowed = parser->rethrow_allowed;
     parser->rethrow_allowed = false;
     cb.public.func = NULL;
+    pattern_binding = false;
     afw_compile_save_cursor(start_offset);
 
     argv = afw_pool_calloc(parser->p, sizeof(afw_value_t *) * 5, parser->xctx);
@@ -1209,19 +1919,44 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         else {
             argc = 4;
             afw_compile_get_token();
-            if (!afw_compile_token_is_unqualified_identifier()) {
-                AFW_COMPILE_THROW_ERROR_Z("Expecting identifier");
-            }
             /*
-             * Callback is needed so that error variable reference can be 
-             * created in afw_compile_parse_StatementList() after block has
-             * been created so it will be associated with the correct block.
+             * Pattern catch: open catch block first so Pattern leaves land
+             * on the same block as body statements. Identifier: keep the
+             * historical callback that plants the name when StatementList
+             * opens the block.
              */
-            cb.public.func = impl_parse_TryStatement_StatementList_cb;
-            cb.error_variable_name = parser->token->identifier_name;
-            cb.contextual = afw_compile_create_contextual_to_cursor(
-                start_offset);
-            cb.symbol_reference = &argv[4];
+            if (afw_compile_token_is(open_bracket) ||
+                afw_compile_token_is(open_brace))
+            {
+                /*
+                 * Pattern catch (issue #140): open the catch block first so
+                 * Pattern leaves are symbols on the same block as the body.
+                 * StatementList(..., use_existing_current_block=true) fills
+                 * that block; no StatementList callback needed.
+                 */
+                pattern_binding = true;
+                afw_compile_reuse_token();
+                (void)afw_compile_parse_link_new_value_block(parser,
+                    start_offset);
+                argv[4] = afw_compile_parse_AssignmentTarget(parser,
+                    afw_compile_assignment_type_let);
+            }
+            else if (afw_compile_token_is_unqualified_identifier()) {
+                /*
+                 * Identifier catch: StatementList opens the block, then the
+                 * callback plants the error variable on that block (historical
+                 * path; decompile of try expects argv[4] as symbol_reference).
+                 */
+                cb.public.func = impl_parse_TryStatement_StatementList_cb;
+                cb.error_variable_name = parser->token->identifier_name;
+                cb.contextual = afw_compile_create_contextual_to_cursor(
+                    start_offset);
+                cb.symbol_reference = &argv[4];
+            }
+            else {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Expecting identifier or Pattern in catch");
+            }
             afw_compile_get_token();
             if (!afw_compile_token_is(close_parenthesis)) {
                 AFW_COMPILE_THROW_ERROR_Z("Expecting ')'");
@@ -1233,9 +1968,16 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
         if (!afw_compile_token_is(open_brace)) {
             AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
         }
+        /*
+         * Pattern binding already opened the catch block (symbols live on
+         * that block). Identifier binding uses the StatementList callback to
+         * plant the name after a new block is opened. use_existing_current_block
+         * is only for the Pattern case so we do not nest a second block.
+         */
         argv[3] = afw_compile_parse_StatementList(parser,
             (cb.public.func) ? &cb.public : NULL,
-            true, false, false);
+            true, false, false,
+            /* use_existing_current_block */ pattern_binding);
         parser->rethrow_allowed = false;
     }
     else {
@@ -1254,7 +1996,7 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
             AFW_COMPILE_THROW_ERROR_Z("Expecting '{'");
         }
         argv[2] = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
     }
     else {
         afw_compile_reuse_token();
@@ -1282,7 +2024,9 @@ impl_parse_TryStatement(afw_compile_parser_t *parser)
  *
  *<<<ebnf*/
 static const afw_value_t *
-impl_parse_WhileStatement(afw_compile_parser_t *parser)
+impl_parse_WhileStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
 {
     const afw_value_t *result;
     const afw_value_t **argv;
@@ -1292,7 +2036,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
 
     afw_compile_save_cursor(start_offset);
 
-    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 3, parser->xctx);
+    argv = afw_pool_malloc(parser->p, sizeof(afw_value_t *) * 4, parser->xctx);
     argv[0] = &afw_function_definition_while.pub;
 
     /* ( expression ) */
@@ -1314,9 +2058,7 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
     parser->break_allowed = break_allowed;
     parser->continue_allowed = continue_allowed;
 
-    result = afw_value_call_built_in_function_create(
-        afw_compile_create_contextual_to_cursor(start_offset),
-        2, argv, true, parser->p, parser->xctx);
+    result = impl_create_loop_call(parser, start_offset, 2, argv, label);
 
     return result;
 }
@@ -1331,6 +2073,10 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  * CallStatement ::= EvaluationThatCompilesToCallValue
  *
  *# BreakStatement and ContinueStatement can only be in a loop.
+ *# LabeledStatement is only for / while / do (issue #62). Not blocks or if.
+ *
+ * LabeledStatement ::= Identifier ':' (
+ *     ForStatement | WhileStatement | DoWhileStatement )
  *
  * Block ::= '{' StatementList '}'
  *
@@ -1342,20 +2088,70 @@ impl_parse_WhileStatement(afw_compile_parser_t *parser)
  *    CallStatement |
  *    ConstStatement |
  *    ContinueStatement |
- *    DeclareStatement |
  *    DoWhileStatement |
  *    ForStatement |
  *    FunctionStatement |
  *    IfStatement |
  *    InterfaceStatement |
+ *    LabeledStatement |
  *    LetStatement |
+ *    PragmaStatement |
  *    ReturnStatement |
  *    SwitchStatement |
+ *    ThrowStatement |
+ *    TryStatement |
  *    TypeStatement |
- *    WhileStatement 
+ *    WhileStatement
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+
+
+static const afw_value_t *
+impl_parse_LabeledStatement(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *label)
+{
+    const afw_value_t *result;
+
+    if (impl_loop_label_is_active(parser, label)) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "Duplicate loop label " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_ARG(label));
+    }
+
+    /* Caller already saw Identifier. Next token is ':'. */
+    afw_compile_get_token();
+    if (!afw_compile_token_is(colon)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ':'");
+    }
+
+    impl_loop_label_push(parser, label);
+
+    afw_compile_get_token();
+    if (afw_compile_token_is_name(afw_s_for)) {
+        result = impl_parse_ForStatement(parser, label);
+    }
+    else if (afw_compile_token_is_name(afw_s_while)) {
+        result = impl_parse_WhileStatement(parser, label);
+    }
+    else if (afw_compile_token_is_name(afw_s_do)) {
+        result = impl_parse_DoWhileStatement(parser, label);
+    }
+    else if (afw_compile_token_is_unqualified_identifier() &&
+        afw_compile_peek_next_token_is(colon))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Only one label is allowed on a loop");
+    }
+    else {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Labels are only allowed on for, while, and do statements");
+    }
+
+    impl_loop_label_pop(parser);
+    return result;
+}
+const afw_value_t *
 afw_compile_parse_Statement(
     afw_compile_parser_t *parser,
     afw_boolean_t *was_expression)
@@ -1374,10 +2170,15 @@ afw_compile_parse_Statement(
     /* If next token is '{', parse Block. */
     if (afw_compile_token_is(open_brace)) {
         result = afw_compile_parse_StatementList(parser,
-            NULL, true, false, false);
+            NULL, true, false, false, false);
         return result;
     }
-   
+
+    /* If pound_identifier, parse pragma or compiler-internal # form. */
+    if (afw_compile_token_is(pound_identifier)) {
+        return afw_compile_parse_PragmaStatement(parser);
+    }
+
     /* If not assignment, process statement. */
     result = NULL;
     if (afw_compile_token_is(identifier) &&
@@ -1406,12 +2207,12 @@ afw_compile_parse_Statement(
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_do))
         {
-            result = impl_parse_DoWhileStatement(parser);
+            result = impl_parse_DoWhileStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_for))
         {
-            result = impl_parse_ForStatement(parser);
+            result = impl_parse_ForStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_if))
@@ -1441,7 +2242,7 @@ afw_compile_parse_Statement(
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_while))
         {
-            result = impl_parse_WhileStatement(parser);
+            result = impl_parse_WhileStatement(parser, NULL);
         }
         else if (afw_utf8_equal(parser->token->identifier_name,
             afw_s_function))
@@ -1457,11 +2258,6 @@ afw_compile_parse_Statement(
             afw_s_type))
         {
             result = impl_parse_TypeStatement(parser);
-        }
-        else if (afw_utf8_equal(parser->token->identifier_name,
-            afw_s_declare))
-        {
-            result = impl_parse_DeclareStatement(parser);
         }
     }
 
@@ -1485,6 +2281,22 @@ afw_compile_parse_Statement(
      * 4) An invalid statement error is thrown.
      *
      */
+    if (!result &&
+        afw_compile_token_is_unqualified_identifier() &&
+        !parser->token->identifier_qualifier)
+    {
+        const afw_utf8_t *maybe_label;
+
+        /*
+         * Copy before peek: get_token() memsets the token, so a colon
+         * lookahead would drop identifier_name.
+         */
+        maybe_label = impl_copy_token_identifier(parser);
+        if (afw_compile_peek_next_token_is(colon)) {
+            result = impl_parse_LabeledStatement(parser, maybe_label);
+        }
+    }
+
     if (!result) {
         if (afw_compile_token_is(semicolon)) {
             return NULL;
@@ -1528,13 +2340,14 @@ afw_compile_parse_Statement(
  * StatementList ::= Statement*
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_StatementList(
     afw_compile_parser_t *parser,
     afw_compile_parse_StatementList_cb_t *cb,
     afw_boolean_t end_is_close_brace,
     afw_boolean_t end_is_close_brace_case_or_default,   
-    afw_boolean_t can_be_single_return_expression)
+    afw_boolean_t can_be_single_return_expression,
+    afw_boolean_t use_existing_current_block)
 {
     const afw_value_t *result;
     const afw_value_t *statement;
@@ -1555,13 +2368,32 @@ afw_compile_parse_StatementList(
         : NULL;
 
     building_list_not_block = end_is_close_brace_case_or_default;
+    block = NULL;
 
     /* Save starting cursor. */
     afw_compile_save_cursor(start_offset);
 
-    /* Make new block and link if making block. */
+    /*
+     * Open a new value block, or continue the current one (catch Pattern:
+     * symbols already introduced on current_block before the body).
+     */
     if (!building_list_not_block) {
-        block = afw_compile_parse_link_new_value_block(parser, start_offset);   
+        if (use_existing_current_block) {
+            block = parser->compiled_value->current_block;
+            if (!block) {
+                AFW_COMPILE_THROW_ERROR_Z(
+                    "Internal error: StatementList use_existing_current_block "
+                    "with no current block");
+            }
+        }
+        else {
+            block = afw_compile_parse_link_new_value_block(parser,
+                start_offset);
+        }
+    }
+    else if (use_existing_current_block) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Internal error: use_existing_current_block with case-list mode");
     }
 
     /* If cb passed, call it now that args and block are set. */
@@ -1608,20 +2440,31 @@ afw_compile_parse_StatementList(
 
         statement = afw_compile_parse_Statement(parser, was_expression);
 
-        /** @fixme I believe these statements can go away. Return sets flow. */
-        // if (was_expression_value) {
-        //     argv = afw_pool_malloc(parser->p,
-        //         sizeof(afw_value_t *) * 2, parser->xctx);
-        //     argv[0] = &afw_function_definition_return.pub;
-        //     argv[1] = statement;
-        //     statement = afw_value_call_built_in_function_create(
-        //         afw_compile_create_contextual_to_cursor(start_offset),
-        //         1, argv, true, parser->p, parser->xctx);
-        // }
         was_expression = NULL;
 
         if (statement) {
-            afw_compile_args_add_value(args, statement);
+            /*
+             * Multi let/const is an array of calls in this block (no extra
+             * scope). Flatten so each binding is its own statement.
+             */
+            if (afw_value_is_array(statement)) {
+                const afw_iterator_old_t *iterator;
+                const afw_value_t *one;
+
+                iterator = NULL;
+                for (;;) {
+                    one = afw_array_get_next_value(
+                        ((const afw_value_array_t *)statement)->internal,
+                        &iterator, parser->p, parser->xctx);
+                    if (!one) {
+                        break;
+                    }
+                    afw_compile_args_add_value(args, one);
+                }
+            }
+            else {
+                afw_compile_args_add_value(args, statement);
+            }
         }
     }
 
@@ -1634,6 +2477,62 @@ afw_compile_parse_StatementList(
             argv, argc, parser->p, parser->xctx);
         result = afw_value_create_unmanaged_array(
             array, parser->p, parser->xctx);
+    }
+
+    /*
+     * If building a block: when this StatementList opened an empty block
+     * (no symbols) whose only statement is itself a block — e.g. recompiling
+     * decompile text "#block(...)" as a script — promote the inner block
+     * instead of wrapping (#block(#block(...))). Script always starts a
+     * top-level block; #block then nested inside it.
+     *
+     * After promotion, renumber depths for the whole subtree. Nested blocks
+     * (and script_function param blocks under them) keep parent links but
+     * their old depths would be off by one, breaking scope creation and
+     * script_function enclosing-scope resolution.
+     */
+    else if (
+        argc == 1 &&
+        argv[0] &&
+        afw_value_is_block(argv[0]) &&
+        block->symbol_count == 0 &&
+        parser->compiled_value->top_block == block)
+    {
+        afw_value_block_t *inner = (afw_value_block_t *)argv[0];
+        afw_value_block_t *b;
+        afw_value_block_t *child;
+        afw_value_block_t *stack[64];
+        afw_size_t sp;
+
+        parser->compiled_value->top_block = inner;
+        inner->parent_block = NULL;
+        inner->next_sibling_block = NULL;
+        /* Outer block is abandoned (never finalized with statements). */
+        parser->compiled_value->current_block = NULL;
+
+        /* Depth-first renumber: top=0, children = parent+1. */
+        inner->depth = 0;
+        stack[0] = inner;
+        sp = 1;
+        while (sp > 0) {
+            b = stack[--sp];
+            for (child = (afw_value_block_t *)b->first_child_block;
+                child;
+                child = (afw_value_block_t *)child->next_sibling_block)
+            {
+                child->depth = b->depth + 1;
+                if (sp < 64) {
+                    stack[sp++] = child;
+                }
+                else {
+                    AFW_COMPILE_THROW_ERROR_Z(
+                        "Block nesting too deep to renumber after #block "
+                        "unwrap");
+                }
+            }
+        }
+
+        result = argv[0];
     }
 
     /* If building block, finalize and set result. */
@@ -1651,16 +2550,16 @@ afw_compile_parse_StatementList(
 /*ebnf>>>
  *
  *#
- *# The value returned from a script if the Expression specified on an
- *# evaluated ReturnStatement, the single Expression specified, or null
- *# if none of the above.
+ *# Script result (issue #62): return, assignment, or a lone Expression
+ *# (compiled as return). Most other statements do not write it. Empty
+ *# script is undefined.
  *#
  * Script ::= ScriptShebang? ( Statement* | Expression )
  *
  * ScriptShebang ::= '#!' UnicodeNonControl* 'afw' UnicodeNonControl* '\n'
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_Script(
     afw_compile_parser_t *parser,
     afw_boolean_t end_is_close_brace)
@@ -1691,7 +2590,159 @@ afw_compile_parse_Script(
 
     /* Parse statements and return. */
     result = afw_compile_parse_StatementList(parser,
-        NULL, end_is_close_brace, false, true);
+        NULL, end_is_close_brace, false, true, false);
+    return result;
+}
+
+
+/*
+ * Load //? key: <<< rel_path — exact file bytes as the key value string.
+ * Path is relative to the directory of the test script being compiled
+ * (source_location). No trim of file contents. Rejects empty path, ".."
+ * segments, and absolute paths for v1.
+ */
+static const afw_utf8_t *
+impl_test_script_load_file_value(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *rel_path)
+{
+    const afw_utf8_t *source_location;
+    const afw_utf8_t *abs_path;
+    const afw_utf8_z_t *rel_z;
+    const afw_utf8_z_t *base_z;
+    const afw_utf8_z_t *slash;
+    const afw_utf8_z_t *seg;
+    afw_utf8_z_t *joined_z;
+    afw_size_t base_dir_len;
+    afw_size_t i;
+    apr_status_t rv;
+    apr_finfo_t finfo;
+    FILE *in;
+    afw_byte_t *buff;
+    const afw_utf8_t *result;
+
+    if (!rel_path || rel_path->len == 0) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'<<<' requires a non-empty path after the marker");
+    }
+
+    rel_z = afw_utf8_to_utf8_z(rel_path, parser->p, parser->xctx);
+
+    /* Absolute path not allowed in v1. */
+    if (rel_z[0] == '/' || rel_z[0] == '\\' ||
+        (rel_path->len >= 2 && rel_z[1] == ':'))
+    {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'<<<' path must be relative to the test script directory");
+    }
+
+    /* Reject ".." path segments (and empty segments from //). */
+    for (seg = rel_z; *seg; ) {
+        const afw_utf8_z_t *next;
+        afw_size_t seglen;
+
+        for (next = seg; *next && *next != '/' && *next != '\\'; next++);
+        seglen = (afw_size_t)(next - seg);
+        if (seglen == 0) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "'<<<' path must not contain empty segments");
+        }
+        if (seglen == 2 && seg[0] == '.' && seg[1] == '.') {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "'<<<' path must not contain '..' segments");
+        }
+        if (*next == '\0') {
+            break;
+        }
+        seg = next + 1;
+    }
+
+    source_location = parser->contextual.source_location;
+    if (!source_location || source_location->len == 0) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "'<<<' requires compiling a test script from a file path "
+            "(source location unavailable)");
+    }
+
+    base_z = afw_utf8_to_utf8_z(source_location, parser->p, parser->xctx);
+    slash = NULL;
+    for (i = 0; base_z[i]; i++) {
+        if (base_z[i] == '/' || base_z[i] == '\\') {
+            slash = base_z + i;
+        }
+    }
+    if (!slash) {
+        /* Source location is a bare filename — resolve relative to cwd. */
+        base_dir_len = 0;
+    }
+    else {
+        base_dir_len = (afw_size_t)(slash - base_z);
+    }
+
+    if (base_dir_len == 0) {
+        abs_path = afw_utf8_create_copy(rel_path->s, rel_path->len,
+            parser->p, parser->xctx);
+    }
+    else {
+        joined_z = afw_pool_malloc(parser->p,
+            base_dir_len + 1 + rel_path->len + 1, parser->xctx);
+        memcpy(joined_z, base_z, base_dir_len);
+        joined_z[base_dir_len] = '/';
+        memcpy(joined_z + base_dir_len + 1, rel_z, rel_path->len);
+        joined_z[base_dir_len + 1 + rel_path->len] = 0;
+        abs_path = afw_utf8_create(joined_z,
+            base_dir_len + 1 + rel_path->len, parser->p, parser->xctx);
+    }
+
+    {
+        const afw_utf8_z_t *abs_z =
+            afw_utf8_to_utf8_z(abs_path, parser->p, parser->xctx);
+
+        rv = apr_stat(&finfo, abs_z, APR_FINFO_SIZE,
+            afw_pool_get_apr_pool(parser->p));
+        if (rv != APR_SUCCESS) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Failed to open '<<<' file " AFW_UTF8_FMT_Q
+                " (relative path " AFW_UTF8_FMT_Q ")",
+                AFW_UTF8_FMT_ARG(abs_path),
+                AFW_UTF8_FMT_ARG(rel_path));
+        }
+
+        /* Empty file is a valid empty string value. */
+        if (finfo.size == 0) {
+            return afw_utf8_create_copy((const afw_utf8_octet_t *)"", 0,
+                parser->p, parser->xctx);
+        }
+
+        in = fopen(abs_z, "rb");
+        if (!in) {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Failed to open '<<<' file " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(abs_path));
+        }
+
+        buff = afw_pool_malloc(parser->p, (afw_size_t)finfo.size,
+            parser->xctx);
+        if (fread(buff, 1, (size_t)finfo.size, in) != (size_t)finfo.size) {
+            fclose(in);
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Failed to read '<<<' file " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(abs_path));
+        }
+        fclose(in);
+
+        if (!afw_utf8_is_valid((const afw_utf8_octet_t *)buff,
+            (afw_size_t)finfo.size, parser->xctx))
+        {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "'<<<' file " AFW_UTF8_FMT_Q " is not valid UTF-8",
+                AFW_UTF8_FMT_ARG(abs_path));
+        }
+
+        result = afw_utf8_create_copy((const afw_utf8_octet_t *)buff,
+            (afw_size_t)finfo.size, parser->p, parser->xctx);
+    }
+
     return result;
 }
 
@@ -1819,13 +2870,112 @@ impl_test_script_get_next_key_value(
                     }
 
                     /*
-                     * If not "..." string is rest of line except for training
-                     * whitespace.
+                     * If "<<< path", value is exact contents of the file
+                     * (relative to the test script directory). See
+                     * writing-tests.md. File is not whitespace-trimmed.
+                     */
+                    else if (afw_utf8_starts_with_z(&remaining, "<<<")) {
+                        afw_size_t value_len;
+                        afw_size_t offset;
+                        afw_size_t end_trim;
+                        afw_size_t path_start;
+                        afw_code_point_t cp;
+                        const afw_utf8_t *path;
+                        const afw_utf8_t *file_value;
+
+                        *string_offset = (afw_size_t)(start -
+                            parser->full_source->s);
+                        value_len = (afw_size_t)(end - start);
+
+                        /* Skip "<<<" then leading whitespace on path. */
+                        path_start = 3;
+                        while (path_start < value_len) {
+                            afw_size_t save = path_start;
+                            cp = afw_utf8_next_code_point(start, &path_start,
+                                value_len, parser->xctx);
+                            if (cp < 0) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Invalid utf-8 in '<<<' path");
+                            }
+                            if (!afw_compile_code_point_is_Whitespace(cp) &&
+                                !afw_compile_code_point_is_EOL(cp))
+                            {
+                                path_start = save;
+                                break;
+                            }
+                        }
+                        if (path_start >= value_len) {
+                            AFW_COMPILE_THROW_ERROR_Z(
+                                "'<<<' requires a path after the marker");
+                        }
+
+                        /* Trim trailing whitespace on the path. */
+                        offset = path_start;
+                        end_trim = path_start;
+                        while (offset < value_len) {
+                            cp = afw_utf8_next_code_point(start, &offset,
+                                value_len, parser->xctx);
+                            if (cp < 0) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Invalid utf-8 in '<<<' path");
+                            }
+                            if (!afw_compile_code_point_is_Whitespace(cp) &&
+                                !afw_compile_code_point_is_EOL(cp))
+                            {
+                                end_trim = offset;
+                            }
+                        }
+                        if (end_trim <= path_start) {
+                            AFW_COMPILE_THROW_ERROR_Z(
+                                "'<<<' requires a path after the marker");
+                        }
+
+                        path = afw_utf8_create_copy(start + path_start,
+                            end_trim - path_start, parser->p, parser->xctx);
+                        file_value = impl_test_script_load_file_value(
+                            parser, path);
+                        *string = file_value;
+                        *string_length = file_value->len;
+                        c = end;
+                    }
+
+                    /*
+                     * Same-line //? key: value — rest of line after ':' with
+                     * leading/trailing whitespace trimmed (Unicode Whitespace,
+                     * not only ASCII space). Authors should not need to hex-edit
+                     * trailing spaces. Multi-line "..." form is separate (keeps
+                     * interior newlines; see writing-tests.md).
                      */
                     else {
-                        *string_offset = start - parser->full_source->s;
-                        for (c = end - 1; c > start && *c == ' '; c--);
-                        *string_length = c - start + 1;
+                        afw_size_t value_len;
+                        afw_size_t offset;
+                        afw_size_t end_trim;
+                        afw_code_point_t cp;
+
+                        *string_offset = (afw_size_t)(start -
+                            parser->full_source->s);
+                        value_len = (afw_size_t)(end - start);
+                        offset = 0;
+                        end_trim = 0;
+                        while (offset < value_len) {
+                            cp = afw_utf8_next_code_point(start, &offset,
+                                value_len, parser->xctx);
+                            if (cp < 0) {
+                                AFW_COMPILE_THROW_ERROR_Z(
+                                    "Invalid utf-8 in test script key value");
+                            }
+                            /*
+                             * Whitespace production (Zs, tab, VT, FF, ZWNBSP).
+                             * Also drop EOL code points if present on the line
+                             * (e.g. stray CR).
+                             */
+                            if (!afw_compile_code_point_is_Whitespace(cp) &&
+                                !afw_compile_code_point_is_EOL(cp))
+                            {
+                                end_trim = offset;
+                            }
+                        }
+                        *string_length = end_trim;
                         *string = afw_utf8_create_copy(start, *string_length,
                             parser->p, parser->xctx);
                         c = end;
@@ -1855,6 +3005,13 @@ impl_test_script_get_next_key_value(
             AFW_COMPILE_THROW_ERROR_Z(
                 "Must be 'error' by itself or 'error:' immediately "
                 "followed by the exact error message expected");
+        }
+        if (*string &&
+            afw_utf8_starts_with(*string, afw_s_success) &&
+            !afw_utf8_equal(*string, afw_s_success))
+        {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Must be 'success' by itself (completed, ignore result)");
         }
     }
 }
@@ -1901,19 +3058,44 @@ impl_test_script_get_next_key_value(
  *
  * TestBegin ::= TestScriptLineStart 'test:' TestScriptValue
  *
- *# Identifier should be one that will not collide with standard ones.
+ *# Official case properties (also accepted at file level where listed).
+ *# Any other Identifier key is still accepted as TestCustomProperty and
+ *# stored as a string on the test object (no compiler enum required).
  * TestCustomProperty ::= Identifier ':' TestScriptValue
  *
+ *# What the case checks. For test262-derived cases, stay close to the TC39
+ *# description (light Adaptive tweaks OK). Not the place for harness notes.
  * TestDescription ::= TestScriptLineStart 'description:' TestScriptValue
+ *
+ *# Optional ES vs Adaptive language delta for the construct under test only
+ *# (not try/assert wrappers). Harvestable for differences docs later.
+ * TestDifferences ::= TestScriptLineStart 'differences:' TestScriptValue
  *
  * TestExpect ::= TestScriptLineStart
  *    'expect:' (
  *        ( 'error' '\n' ) |
- *        ( 'result' TestScriptValue )
+ *        ( 'error:' UnicodeNonControl* '\n' ) |
+ *        ( 'success' '\n' ) |
+ *        TestScriptValue
  *    )
+ *#
+ *# 'success' means compiled and ran with no throw; the result is ignored.
+ *# 'error' / 'error:message' mean a throw. Any other value is Adaptive
+ *# and compared to the script result (including 'undefined').
  *
- *# Skip can be use for source that is not ready to test
- * TestSkip ::= TestScriptLineStart 'skip:' 'true' '\n'
+ *# Optional side-channel text expects (string equality on captured utf-8;
+ *# not Adaptive-eval). Hyphen keys only — ':' is the //? key/value separator.
+ *# Value forms match other keys (same-line trim, "..." multi-line, <<< file).
+ * TestExpectStdout ::= TestScriptLineStart 'expect-stdout:' TestScriptValue
+ * TestExpectStderr ::= TestScriptLineStart 'expect-stderr:' TestScriptValue
+ *
+ *# Skip when the case is not ready to run (or permanently out of scope).
+ * TestSkip ::= TestScriptLineStart 'skip:' ( 'true' | 'false' ) '\n'
+ *
+ *# Why skip is true. Suggested prefixes (convention): Incompatible: never
+ *# convert; FIXME: Adaptive should fix/decide; Deferred: later; Harness: rare
+ *# runner limit. See src/afw/tests/test262/README.md.
+ * TestSkipReason ::= TestScriptLineStart 'skipReason:' TestScriptValue
  *
  *# Default is script or the one specified in TestScriptDefinition
  * TestSourceType ::= TestScriptLineStart 'source_type:'
@@ -1922,7 +3104,7 @@ impl_test_script_get_next_key_value(
  * TestSource ::= TestScriptLineStart 'source:' TestScriptValue
  *
  *<<<ebnf*/
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_compile_parse_TestScript(
     afw_compile_parser_t *parser)
 {
@@ -2044,7 +3226,7 @@ afw_compile_parse_TestScript(
                 break;
             }
             test_object = afw_object_create_unmanaged(parser->p, parser->xctx);
-            afw_array_add_value(test_list,
+            afw_array_push_value(test_list,
                 afw_value_create_unmanaged_object(
                     test_object, parser->p, parser->xctx),
                 parser->xctx);

@@ -2,6 +2,7 @@
     "brief": "An IP address",
     "cType": "afw_utf8_t",
     "dataType": "ipAddress",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'ipAddress' holds an Internet Protocol address (IP address).",
     "directReturn": false,
     "jsonPrimitive": "string",

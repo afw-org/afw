@@ -149,6 +149,31 @@ class object
     }
 
     /**
+     * entries()
+     *
+     * Return a new array of property entries for an object. Each entry is a
+     * two-element array [name, value] where name is a string. Order matches
+     * keys() for the same object. The value may be undefined. The result is a
+     * snapshot.
+     *
+     * @param object $object Object to list property entries from.
+     *
+     * @return array Array of [name, value] pair arrays.
+     */
+    public function entries(, $object)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "entries");
+
+        /* pass along required parameters to the request payload */
+        $request->set("object", $object);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * eq_object()
      *
      * Determine if object arg1 is equal to the value of arg2 converted to the
@@ -196,6 +221,29 @@ class object
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * freeze_object()
+     *
+     * Set a object value immutable so further mutation throws. If already
+     * immutable, has no effect. Returns the same value.
+     *
+     * @param object $value The object value to freeze.
+     *
+     * @return object The same value, now immutable.
+     */
+    public function freeze_object(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "freeze<object>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -268,6 +316,30 @@ class object
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * keys()
+     *
+     * Return a new array of the property names of an object, in the object's
+     * property iteration order. The array is a snapshot; later changes to the
+     * object do not change a previous result.
+     *
+     * @param object $object Object to list property names from.
+     *
+     * @return array Array of property name strings.
+     */
+    public function keys(, $object)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "keys");
+
+        /* pass along required parameters to the request payload */
+        $request->set("object", $object);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -410,7 +482,10 @@ class object
     /**
      * object()
      *
-     * Converts value to data type object returning object result.
+     * Converts value to data type object returning object result. A string is
+     * parsed as JSON (or relaxed JSON) and must yield an object; an object is
+     * left unchanged. This is not an object-literal constructor — use { ... }
+     * for that.
      *
      * @param  $value Value to convert
      *
@@ -479,12 +554,14 @@ class object
     /**
      * property_exists()
      *
-     * Return true if the named property exists in an object.
+     * Return true if the named property is present on the object, including
+     * when its value is undefined or null. False only when the key is
+     * missing. Use is_defined / is_nullish for the value.
      *
-     * @param object $object Object to get property from.
-     * @param string $name Name of property to check.
+     * @param object $object Object to check.
+     * @param string $name Property name.
      *
-     * @return boolean True if object has named property.
+     * @return boolean True if the property is present.
      */
     public function property_exists(, $object, $name)
     {
@@ -503,16 +580,18 @@ class object
     /**
      * property_get()
      *
-     * Return the value of a property of an object. If property is not
-     * available, return a default or null value.
+     * Return the value of a property. Optional default applies only when the
+     * property is missing — not when the value is undefined. If missing and
+     * no default is given, the result is undefined. Object/array defaults get
+     * a mutable memory face (issues #110 / #17); other defaults are cloned.
      *
      * @param object $object Object to get property from.
-     * @param string $name Name of property to get.
-     * @param  $defaultValue The default value of property if it does not
-     *                       exist in object. If not specified, null value is
-     *                       the default.
+     * @param string $name Property name.
+     * @param  $defaultValue Value to return only if the property is missing.
+     *                       Isolated when used (object/array face; otherwise
+     *                       clone).
      *
-     * @return  Evaluated property value or default.
+     * @return  Property value, or default / undefined if missing.
      */
     public function property_get(, $object, $name, $defaultValue = null)
     {
@@ -534,12 +613,15 @@ class object
     /**
      * property_is_not_null()
      *
-     * Return true if the named property exists in an object and is not null.
+     * Return true if the named property is present and its value is not
+     * Adaptive null. Undefined counts as not null. False if the property is
+     * missing or the value is null. Not the same as is_defined or not
+     * is_nullish.
      *
-     * @param object $object Object to get property from.
-     * @param string $name Name of property to check.
+     * @param object $object Object to check.
+     * @param string $name Property name.
      *
-     * @return boolean True if object has named property that is not null.
+     * @return boolean True if present and value is not Adaptive null.
      */
     public function property_is_not_null(, $object, $name)
     {
@@ -573,6 +655,30 @@ class object
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * values()
+     *
+     * Return a new array of the property values of an object, in the same
+     * order as keys() for that object. Values may be undefined if a property
+     * was set to undefined. The array is a snapshot.
+     *
+     * @param object $object Object to list property values from.
+     *
+     * @return array Array of property values.
+     */
+    public function values(, $object)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "values");
+
+        /* pass along required parameters to the request payload */
+        $request->set("object", $object);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

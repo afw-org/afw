@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object.c
- * @brief Interface helpers for afw_object.
+ * @brief Core object create/get/set helpers beyond the interface.
  */
 
 #include "afw_internal.h"
@@ -614,7 +614,7 @@ afw_object_merge(
     afw_boolean_t replace,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_value_t *from_value;
     const afw_utf8_t *property_name;
@@ -661,7 +661,7 @@ afw_object_property_count(
     afw_xctx_t *xctx)
 {
     afw_size_t result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
 
     iterator = NULL;

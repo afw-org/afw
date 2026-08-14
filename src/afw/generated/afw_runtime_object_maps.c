@@ -19,11 +19,11 @@
 
 /**
  * @file afw_runtime_object_maps.c
- * @brief Adaptive Framework runtime object mapping.
+ * @brief Generated runtime object map registration implementation.
  */
 
 #include "afw.h"
-#include "afw_generated.h"
+#include "afw_generated_internal.h"
 #include "afw_internal.h"
 
 
@@ -241,8 +241,8 @@ impl_properties__AdaptiveAdapter_[] = {
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_adapter_properties,
+        afw_runtime_value_accessor_adapter_properties
     },
     {
         &afw_self_s_referenceCount,
@@ -251,8 +251,8 @@ impl_properties__AdaptiveAdapter_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_adapter_reference_count,
+        afw_runtime_value_accessor_adapter_reference_count
     },
     {
         &afw_self_s_serviceId,
@@ -464,8 +464,8 @@ impl_properties__AdaptiveAuthorizationHandler_[] = {
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_authorization_handler_reference_count,
+        afw_runtime_value_accessor_authorization_handler_reference_count
     },
     {
         &afw_self_s_serviceId,
@@ -1056,6 +1056,16 @@ impl_properties__AdaptiveDataType_[] = {
         afw_runtime_value_accessor_default
     },
     {
+        &afw_self_s_iteratorReturnDataType,
+        offsetof(afw_data_type_t, iterator_return_data_type),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_data_type_id,
+        afw_runtime_value_accessor_data_type_id
+    },
+    {
         &afw_self_s_jsonImpliesDataType,
         offsetof(afw_data_type_t, json_implies_data_type),
         -1,
@@ -1130,7 +1140,7 @@ impl_properties__AdaptiveDataType_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveDataType_ = {
     &afw_self_s__AdaptiveDataType_,
-    15,
+    16,
     &impl_properties__AdaptiveDataType_[0]
 };
 
@@ -1787,8 +1797,8 @@ impl_properties__AdaptiveFunction_[] = {
         afw_runtime_value_accessor_value
     },
     {
-        &afw_self_s_maximumNumberOfParameters,
-        offsetof(afw_value_function_definition_t, maximumNumberOfParameters),
+        &afw_self_s_maxNumberOfParameters,
+        offsetof(afw_value_function_definition_t, maxNumberOfParameters),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -1847,6 +1857,16 @@ impl_properties__AdaptiveFunction_[] = {
         afw_runtime_value_accessor_null_terminated_array_of_internal
     },
     {
+        &afw_self_s_polymorphicExecuteFunctionEvaluatesFirstParameter,
+        offsetof(afw_value_function_definition_t, polymorphicExecuteFunctionEvaluatesFirstParameter),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
+    },
+    {
         &afw_self_s_pure,
         offsetof(afw_value_function_definition_t, pure),
         -1,
@@ -1875,6 +1895,16 @@ impl_properties__AdaptiveFunction_[] = {
         NULL,
         &afw_self_s_default,
         afw_runtime_value_accessor_default
+    },
+    {
+        &afw_self_s_scriptSupport,
+        offsetof(afw_value_function_definition_t, scriptSupport),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_self_s_sideEffects,
@@ -1911,7 +1941,7 @@ impl_properties__AdaptiveFunction_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveFunction_ = {
     &afw_self_s__AdaptiveFunction_,
-    26,
+    28,
     &impl_properties__AdaptiveFunction_[0]
 };
 
@@ -3802,6 +3832,21 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptivePolymorphicFunction_);
 
 
+/* Runtime object map properties for _AdaptiveProcess_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveProcess_ = {
+    &afw_self_s__AdaptiveProcess_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveProcess_, 
+    impl_runtime_meta__AdaptiveProcess_);
+
+
 /* Runtime object map properties for _AdaptivePropertyTypes_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -4135,21 +4180,61 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveRuntimeValueAccessor_[] = {
     {
-        &afw_self_s_key,
-        offsetof(afw_environment_default_register_additional_t, key),
+        &afw_self_s_brief,
+        offsetof(afw_runtime_value_accessor_info_t, brief),
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         &afw_self_s_indirect,
         afw_runtime_value_accessor_indirect
+    },
+    {
+        &afw_self_s_copiesUnderLock,
+        offsetof(afw_runtime_value_accessor_info_t, copies_under_lock),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
+    },
+    {
+        &afw_self_s_description,
+        offsetof(afw_runtime_value_accessor_info_t, description),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL("text/plain"),
+        NULL,
+        &afw_self_s_indirect,
+        afw_runtime_value_accessor_indirect
+    },
+    {
+        &afw_self_s_key,
+        offsetof(afw_runtime_value_accessor_info_t, key),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_indirect,
+        afw_runtime_value_accessor_indirect
+    },
+    {
+        &afw_self_s_returnsLiveReference,
+        offsetof(afw_runtime_value_accessor_info_t, returns_live_reference),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_default,
+        afw_runtime_value_accessor_default
     }
 };
 
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveRuntimeValueAccessor_ = {
     &afw_self_s__AdaptiveRuntimeValueAccessor_,
-    1,
+    5,
     &impl_properties__AdaptiveRuntimeValueAccessor_[0]
 };
 
@@ -4683,6 +4768,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptivePackage_,
     &afw_runtime_inf__AdaptiveParsedURI_,
     &afw_runtime_inf__AdaptivePolymorphicFunction_,
+    &afw_runtime_inf__AdaptiveProcess_,
     &afw_runtime_inf__AdaptivePropertyTypes_,
     &afw_runtime_inf__AdaptiveProvisioningPeer_,
     &afw_runtime_inf__AdaptiveQualifierDefinitions_,

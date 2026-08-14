@@ -1,0 +1,5 @@
+{
+    "brief": "Adaptive compiler-internal script runtime",
+    "category": "compiler_internal",
+    "description": "Functions that support compiled Adaptive Script at runtime (const, let, assign, control flow, …). They are mainly intended to be called by compiled units produced by the Adaptive compiler (including decompile/recompile). They remain in the function registry and docs for debugging, but are not the normal authoring surface — prefer language syntax. Function ids stay stable for decompile round-trip."
+}

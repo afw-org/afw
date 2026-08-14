@@ -19,7 +19,11 @@
 
 /**
  * @file afw_service.h
- * @brief Adaptive Framework service support
+ * @brief Service start/stop/status public API.
+ *
+ * See @ref afw_service. Adapters, logs, and similar conf-driven pieces are
+ * services. Use these helpers when adding startable components rather than
+ * one-off global init. Related: `afw_service_type` interface.
  */
 
 AFW_BEGIN_DECLARES

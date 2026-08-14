@@ -30,6 +30,7 @@
 #define AFW_IMPLEMENTATION_ID "block"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_block_inf
+#define AFW_VALUE_SELF_T afw_value_block_t
 #include "afw_value_impl_declares.h"
 
 #define IMPL_TEMP_FIX_ASSIGNS(XX) \
@@ -46,34 +47,109 @@
     x = &modified_x
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+/*
+ * if/for/try/… can return a then-value (if is also ternary) but as
+ * statements they do not complete like an ES ExpressionStatement.
+ */
+static afw_boolean_t
+impl_statement_is_control(const afw_value_t *statement)
+{
+    const afw_value_call_built_in_function_t *call;
+    const afw_utf8_t *id;
+
+    if (!statement || !afw_value_is_call_built_in_function(statement)) {
+        return false;
+    }
+    call = (const afw_value_call_built_in_function_t *)statement;
+    if (!call->function || !call->function->functionId) {
+        return false;
+    }
+    id = &call->function->functionId->internal;
+    return
+        afw_utf8_equal(id, afw_s_if) ||
+        afw_utf8_equal(id, afw_s_for) ||
+        afw_utf8_equal(id, afw_s_for_of) ||
+        afw_utf8_equal(id, afw_s_while) ||
+        afw_utf8_equal(id, afw_s_do_while) ||
+        afw_utf8_equal(id, afw_s_switch) ||
+        afw_utf8_equal(id, afw_s_try) ||
+        afw_utf8_equal(id, afw_s_let) ||
+        afw_utf8_equal(id, afw_s_const) ||
+        afw_utf8_equal(id, afw_s_break) ||
+        afw_utf8_equal(id, afw_s_continue) ||
+        afw_utf8_equal(id, afw_s_throw);
+}
+
+
+const afw_value_t *
 afw_value_block_evaluate_block(
     afw_function_execute_t *x,
     const afw_value_block_t *self,
     const afw_pool_t *p,
-    afw_xctx_t *xctx)
+    afw_xctx_t *xctx,
+    afw_boolean_t as_value)
 {
     const afw_value_t *result;
+    const afw_value_t *last;
     const afw_compile_value_contextual_t *saved_contextual;
     afw_size_t i;
     const afw_xctx_scope_t *scope;
+    afw_boolean_t use_running;
 
     /* Push value on evaluation stack. */
     afw_xctx_evaluation_stack_push_value(
         (const afw_value_t *)self, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
-    result = afw_value_undefined;
+    use_running = xctx->script_result_active && !as_value;
+    result = use_running
+        ? afw_xctx_script_result_get(xctx)
+        : afw_value_undefined;
+    last = result;
 
     scope = afw_xctx_scope_create(self, afw_xctx_scope_current(xctx), xctx);
     afw_xctx_scope_activate(scope, xctx);
     AFW_TRY{
         for (i = 0; i < self->statement_count; i++) {
-            result = afw_value_block_evaluate_statement(
+            last = afw_value_block_evaluate_statement(
                 x, self->statements[i], p, xctx);
-            if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
-                break;
+            if (use_running) {
+                if (afw_xctx_statement_flow_is_type(return, xctx)) {
+                    afw_xctx_script_result_set(last, xctx);
+                    result = last;
+                    break;
+                }
+                if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
+                    /* break / continue / rethrow: keep the running result. */
+                    result = afw_xctx_script_result_get(xctx);
+                    break;
+                }
+                /*
+                 * ES ExpressionStatement (assignment already wrote; a
+                 * non-void call writes). Control forms do not.
+                 */
+                if (!afw_value_is_void(last) &&
+                    !impl_statement_is_control(self->statements[i]))
+                {
+                    afw_xctx_script_result_set(last, xctx);
+                }
+                result = afw_xctx_script_result_get(xctx);
             }
+            else {
+                if (!afw_value_is_void(last)) {
+                    result = last;
+                }
+                if (!afw_xctx_statement_flow_is_type(sequential, xctx)) {
+                    break;
+                }
+            }
+        }
+        if (use_running &&
+            !xctx->script_result_written &&
+            self->statement_count == 1 &&
+            !afw_value_is_void(last))
+        {
+            result = last;
         }
     }
     AFW_FINALLY{
@@ -90,7 +166,7 @@ afw_value_block_evaluate_block(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_value_t *)
+const afw_value_t *
 afw_value_block_evaluate_statement(
     afw_function_execute_t *x,
     const afw_value_t *statement,
@@ -100,11 +176,13 @@ afw_value_block_evaluate_statement(
     const afw_value_t *result;
 
     afw_xctx_statement_flow_set_type(sequential, xctx);
+    xctx->statement_flow_label = NULL;
 
     /* If statement is block, handle special. */
     if (afw_value_is_block(statement)) {
         result = afw_value_block_evaluate_block(
-            x, (const afw_value_block_t *)statement, p, xctx);
+            x, (const afw_value_block_t *)statement, p, xctx,
+            false);
     }
 
     /* If not block, just evaluate. */
@@ -193,7 +271,7 @@ afw_value_block_finalize(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
@@ -206,7 +284,8 @@ impl_afw_value_optional_evaluate(
 
     /* Evaluate block. */
     result = afw_value_block_evaluate_block(
-        &x, (const afw_value_block_t *)instance, p, xctx);
+        &x, (const afw_value_block_t *)&self->pub, p, xctx,
+        true);
 
     return result;
 }
@@ -216,7 +295,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -227,16 +306,14 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_block_t *self =
-        (const afw_value_block_t *)instance;
     afw_value_block_symbol_t *symbol;
     afw_size_t i;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
 
     afw_writer_write_z(writer, " number=", xctx);
@@ -293,23 +370,19 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #block(statement, ...) matching listing's statement list.
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    /*
 
-    if (self->qualifier.len > 0) {
-        afw_writer_write_utf8(writer, &self->qualifier, xctx);
-        afw_writer_write_z(writer, "::", xctx);
-    }
-    afw_writer_write_utf8(writer, &self->name, xctx);
-    afw_value_decompile_call_args(writer, 0, &self->args, xctx);
-
-     */
+    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
+    afw_value_decompile_value_list(writer, self->statement_count,
+        self->statements, xctx);
 }
 
 
@@ -318,18 +391,16 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_block_t *self =
-        (const afw_value_block_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
-    info->optimized_value = instance;
+    info->optimized_value = &self->pub;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }

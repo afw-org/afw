@@ -131,47 +131,29 @@ class LocalRequest(object):
         """
         
 
-        cmd = 'perform(' + json.dumps(self._payload) + ')'
+        # Local protocol lengths are UTF-8 octet counts (binary stdin/FIFO).
+        cmd = ('perform(' + json.dumps(self._payload) + ')').encode('utf-8')
+        stdin = self._session._localSession.stdin
+        stdin.write(str(len(cmd)).encode('ascii') + b'\n')
+        stdin.write(cmd)
+        stdin.write(b'0\n')
+        stdin.flush()
 
-        # write the length of our request
-        self._session._localSession.stdin.write((str(len(cmd)) + '\n'))
+        # Read length-prefixed response segment (ends with 0\n).
+        response = bytearray()
+        while True:
+            nbytes, chunk = self._session._read_local_chunk()
+            if nbytes == 0:
+                break
+            if nbytes < 0:
+                sys.stderr.write(chunk.decode('utf-8', errors='replace'))
+                continue
+            response.extend(chunk)
 
-        # write the command
-        self._session._localSession.stdin.write(cmd)
-
-        # denote end of response with length (0)
-        self._session._localSession.stdin.write('0\n')
-
-        # flush input so it can be read
-        self._session._localSession.stdin.flush()
-
-        # read the response
-        response = ''
-
-        bytes = int(self._session._fifo.readline())
-        while bytes < 0:
-            # skip passed stderr (negative bytes)
-            err = self._fifo.read(bytes * -1)
-            # write it directly to stderr
-            sys.stderr.write(err)
-
-            bytes = int(self._fifo.readline())     
-
-        while bytes != 0:
-            response = response + self._session._fifo.read(bytes)            
-            bytes = int(self._session._fifo.readline())
-            while bytes < 0:
-                # skip passed stderr (negative bytes)
-                err = self._fifo.read(bytes * -1)
-                # write it directly to stderr
-                sys.stderr.write(err)
-
-                bytes = int(self._fifo.readline())
-
-        json_response = json.loads(response)        
+        json_response = json.loads(response.decode('utf-8'))
         if json_response.get('status') != 'success':
             raise Exception(json_response.get('error'))
-        
+
         return json_response.get('result')
 
     def add_action(self, action):

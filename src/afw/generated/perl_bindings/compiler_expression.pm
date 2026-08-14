@@ -61,7 +61,8 @@ Support for the void operator
 
     $value
 
-This is the value to evaluate.
+This is the value to evaluate (including undefined). Evaluated for side
+effects only.
 
 =cut
 

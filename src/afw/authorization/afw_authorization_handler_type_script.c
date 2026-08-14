@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Authorization Default Handler
+ * Adaptive Framework Script Authorization Handler
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_authorization.c
- * @brief Adaptive Framework script authorization handler
+ * @file afw_authorization_handler_type_script.c
+ * @brief Script-based authorization handler type implementation.
  */
 
 #include "afw_internal.h"
@@ -18,6 +18,7 @@
 /* Declares and rti/inf defines for interface afw_authorization_handler */
 #define AFW_IMPLEMENTATION_ID "script"
 #include "afw_authorization_handler_factory_impl_declares.h"
+#define AFW_AUTHORIZATION_HANDLER_SELF_T afw_authorization_handler_script_self_t
 #include "afw_authorization_handler_impl_declares.h"
 
 
@@ -37,7 +38,7 @@ impl_authorization_handler_factory_instance = {
  */
 const afw_authorization_handler_t *
 impl_afw_authorization_handler_factory_create_authorization_handler_cede_p(
-    const afw_authorization_handler_factory_t * instance,
+    const afw_authorization_handler_factory_t * self,
     const afw_object_t *properties,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -146,12 +147,12 @@ afw_authorization_handler_type_script_create_cede_p(
  */
 void
 impl_afw_authorization_handler_destroy(
-    const afw_authorization_handler_t * instance,
+    AFW_AUTHORIZATION_HANDLER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
+    /* Assign &self->pub pointer to self. */
     // afw_authorization_handler_script_self_t * self =
-    //     (afw_authorization_handler_script_self_t *)instance;
+    //     (afw_authorization_handler_script_self_t *)&self->pub;
 
     /* Add code, if needed. */
 }
@@ -164,15 +165,13 @@ impl_afw_authorization_handler_destroy(
  */
 const afw_value_t *
 impl_afw_authorization_handler_check(
-    const afw_authorization_handler_t * instance,
+    AFW_AUTHORIZATION_HANDLER_SELF_T *self,
     const afw_value_t *resource_id,
     const afw_value_t *object,
     const afw_value_t *action_id,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_authorization_handler_script_self_t *self =
-        (afw_authorization_handler_script_self_t *)instance;
     const afw_value_t *result;
     int top;
 
@@ -206,7 +205,7 @@ impl_afw_authorization_handler_check(
 
 
 /* Internal function called to register type=script authorization handler. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_authorization_internal_register_handler_type_script(
     afw_xctx_t *xctx)
 {

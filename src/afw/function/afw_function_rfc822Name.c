@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_rfc822Name.c
- * @brief afw_function_execute_* functions for rfc822Name.
+ * @brief Adaptive function execute implementations for category `rfc822Name`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_match_rfc822Name
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns true if arg1 matches some terminal sequence of RDNs from arg2 when
  * compared using equal_rfc822Name.

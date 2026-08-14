@@ -1,0 +1,32 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFreeze",
+    "brief": "Make <dataType> value immutable",
+    "camelCaseFunctionLabel": "freeze",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Set a <dataType> value immutable so further mutation throws. If already immutable, has no effect. Returns the same value.",
+    "functionId": "freeze",
+    "functionLabel": "freeze",
+    "parameters": [
+        {
+            "description": "The <dataType> value to freeze.",
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "array",
+        "object"
+    ],
+    "polymorphicExecuteFunction": "afw_function_execute_freeze",
+    "pure": false,
+    "returns": {
+        "description": "The same value, now immutable.",
+        "polymorphicDataType": true
+    },
+    "sideEffects": [
+        "The value is set immutable."
+    ],
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

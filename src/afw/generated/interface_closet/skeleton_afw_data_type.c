@@ -118,3 +118,18 @@ impl_afw_data_type_write_as_expression(
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
 }
+
+/*
+ * Implementation of method optional_initialize_iterator for interface
+ * afw_data_type.
+ */
+void
+impl_afw_data_type_optional_initialize_iterator(
+    AFW_DATA_TYPE_SELF_T *self,
+    const void * internal,
+    const afw_iterator_t * iterator,
+    afw_xctx_t * xctx)
+{
+    /** @todo Add code to implement method. */
+    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+}

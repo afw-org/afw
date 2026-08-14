@@ -20,7 +20,7 @@
  *
  * afw_function_execute_nullish_coalescing
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns the first value of values that is not null or undefined leaving the
  * remaining values unevaluated.
@@ -34,17 +34,17 @@
  *   function nullish_coalescing(
  *       values_1: any,
  *       values_2: any,
- *       ...values_rest: (array of any)
+ *       ...values_rest: any[]
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   values - (2 or more any dataType)
+ *   values - (2 or more any)
  *
  * Returns:
  *
- *   (any dataType) The first value of values that is not null or undefined.
+ *   (any) The first value of values that is not null or undefined.
  */
 const afw_value_t *
 afw_function_execute_nullish_coalescing(
@@ -61,7 +61,7 @@ afw_function_execute_nullish_coalescing(
  *
  * afw_function_execute_optional_chaining
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Returns undefined if arg1 is null or undefined without evaluating arg2, but
  * otherwise returns evaluated value of arg2.
@@ -80,14 +80,14 @@ afw_function_execute_nullish_coalescing(
  *
  * Parameters:
  *
- *   arg1 - (any dataType)
+ *   arg1 - (any)
  *
- *   arg2 - (any dataType)
+ *   arg2 - (any)
  *
  * Returns:
  *
- *   (any dataType) Undefined value if arg1 is null or undefined but otherwise
- *       evaluated arg2.
+ *   (any) Undefined value if arg1 is null or undefined but otherwise evaluated
+ *       arg2.
  */
 const afw_value_t *
 afw_function_execute_optional_chaining(
@@ -104,7 +104,7 @@ afw_function_execute_optional_chaining(
  *
  * afw_function_execute_void_operator
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This is the support function for the void operator which evaluates value and
  * returns undefined.
@@ -117,16 +117,17 @@ afw_function_execute_optional_chaining(
  * ```
  *   function void_operator(
  *       value: any
- *   ): any;
+ *   ): undefined;
  * ```
  *
  * Parameters:
  *
- *   value - (any dataType) This is the value to evaluate.
+ *   value - (any) This is the value to evaluate (including undefined).
+ *       Evaluated for side effects only.
  *
  * Returns:
  *
- *   (any dataType) This always returns undefined.
+ *   (undefined) This always returns undefined.
  */
 const afw_value_t *
 afw_function_execute_void_operator(

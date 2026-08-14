@@ -8,7 +8,7 @@
 
 /**
  * @file afw_adapter_journal.c
- * @brief Adaptive Framework adapter journal.
+ * @brief Adapter journal entry helpers and cursor support.
  */
 
 #include "afw_internal.h"
@@ -121,7 +121,7 @@ impl_get_journal_interface(const afw_utf8_t *adapter_id,
     return journal;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(method_not_supported, xctx,
         "Adapter " AFW_UTF8_FMT_Q " does not support journal",
         AFW_UTF8_FMT_ARG(adapter_id));
 }
@@ -476,8 +476,8 @@ afw_adapter_internal_journal_get_entry(
     }
 
     /* Set more specific request function. */
-    afw_object_set_property_as_string(request, afw_s_function,
-        afw_s_a_journal_get_entry, xctx);
+    afw_object_set_property(request, afw_s_function,
+        afw_v_a_journal_get_entry, xctx);
 
     /* Set option. */
     afw_object_set_property_as_string_from_utf8_z(request,
@@ -507,8 +507,8 @@ afw_adapter_internal_journal_get_entry(
     afw_memory_clear(&impl_request);
     afw_adapter_journal_get_entry(journal, &impl_request,
         option, consumer_id, entry_cursor, limit, journal_entry, xctx);
-    afw_object_set_property_as_string(journal_entry,
-        afw_s_status, afw_s_success, xctx);
+    afw_object_set_property(journal_entry,
+        afw_s_status, afw_v_success, xctx);
     return journal_entry;
 
 error_special_id:

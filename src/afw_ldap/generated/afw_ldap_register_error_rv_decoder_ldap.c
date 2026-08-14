@@ -1,3 +1,16 @@
+// See the 'COPYING' file in the project root for licensing information.
+/*
+ * Register error_rv_decoder `ldap` for afw_ldap
+ *
+ * Copyright (c) 2010-2024 Clemson University
+ *
+ */
+
+/**
+ * @file afw_ldap_register_error_rv_decoder_ldap.c
+ * @brief Generated environment register for error_rv_decoder `ldap` (afw_ldap).
+ */
+
 #include "afw.h"
 #include "afw_ldap_strings.h"
 #include "../afw_ldap_internal.h"

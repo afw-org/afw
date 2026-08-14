@@ -19,7 +19,7 @@
 
 /**
  * @file afw_number.h
- * @brief Adaptive Framework Number Header.
+ * @brief Number parse/format API for adaptive numeric types.
  */
 
 AFW_BEGIN_DECLARES
@@ -31,6 +31,18 @@ AFW_BEGIN_DECLARES
 #define AFW_NUMBER_Q_NAN                "NaN"
 #define AFW_NUMBER_Q_NEGATIVE_NAN       "-NaN"
 #define AFW_NUMBER_Q_EXPONENT_ZERO      "E0"
+
+/*
+ * IEEE / integer limits and a few math constants. C code can use these
+ * directly. Script sees them as compiler literals (#doubleMax, …).
+ * Permanent Adaptive values live in afw_value.h (afw_value_double_max, …).
+ */
+#define AFW_DOUBLE_MAX              DBL_MAX
+#define AFW_DOUBLE_MIN              DBL_MIN
+#define AFW_DOUBLE_EPSILON          DBL_EPSILON
+#define AFW_DOUBLE_MIN_SUBNORMAL    DBL_TRUE_MIN
+#define AFW_DOUBLE_PI               3.14159265358979323846
+#define AFW_DOUBLE_E                2.71828182845904523536
 
 /**
  * @brief Determine if double is finite.
@@ -171,7 +183,7 @@ afw_number_utf8_to_double(
 
     len = afw_number_parse(s->s, s->len, NULL, &d, &is_double, p, xctx);
     if (!is_double || len != s->len) {
-        AFW_THROW_ERROR_Z(general, "Invalid double", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid double", xctx);
     }
     return d;
 }
@@ -223,7 +235,7 @@ afw_number_utf8_to_integer(
 
     len = afw_number_parse(s->s, s->len, &i, NULL, &is_double, p, xctx);
     if (is_double || len != s->len) {
-        AFW_THROW_ERROR_Z(general, "Invalid integer", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid integer", xctx);
     }
     return i;
 }

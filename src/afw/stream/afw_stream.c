@@ -8,7 +8,7 @@
 
 /**
  * @file afw_stream.c
- * @brief Implementation of afw_stream interface.
+ * @brief Stream open helpers and common stream utilities.
  */
 
 #include "afw_internal.h"
@@ -26,7 +26,7 @@ afw_stream_get_by_streamId(
     afw_size_t number;
 
     *stream = NULL;
-    *streamNumber = -1;
+    *streamNumber = (afw_size_t)-1;
     if (xctx->stream_anchor) {
         if (afw_utf8_equal(streamId, afw_s_stdout)) {
             *stream = afw_stream_standard(stdout, xctx);
@@ -48,14 +48,20 @@ afw_stream_get_by_streamId(
             *stream = afw_stream_standard(raw_response_body, xctx);
             *streamNumber = (afw_size_t)afw_stream_number_raw_response_body;
         }
-        else for (streams = xctx->stream_anchor->streams,
-            number = afw_stream_number_count;
-            number < xctx->stream_anchor->maximum_number_of_streams;
-            streams++, number++)
-        {
-            if (afw_utf8_equal((*streams)->streamId, streamId)) {
-                *stream = *streams;
-                break;
+        else {
+            /* Custom slots only; index and table entry must stay in sync. */
+            for (number = (afw_size_t)afw_stream_number_count;
+                number < xctx->stream_anchor->maximum_number_of_streams;
+                number++)
+            {
+                streams = &xctx->stream_anchor->streams[number];
+                if (*streams &&
+                    afw_utf8_equal((*streams)->streamId, streamId))
+                {
+                    *stream = *streams;
+                    *streamNumber = number;
+                    break;
+                }
             }
         }
     }
@@ -109,39 +115,66 @@ afw_stream_get_streamNumber_for_streamId(
 
 
 
-/* Get streamNumber for streamId. */
+/* Set an opening stream and get its streamNumber. */
 AFW_DEFINE(afw_size_t)
 afw_stream_set(
     const afw_stream_t *stream,
     afw_xctx_t *xctx)
 {
-    const afw_stream_t **streams;
+    const afw_stream_t **table;
     afw_size_t count, number;
 
-    number = -1;
+    number = (afw_size_t)-1;
     if (xctx->stream_anchor) {
-        for (streams = (const afw_stream_t **)xctx->stream_anchor->streams,
-            count = 0;
+        table = (const afw_stream_t **)xctx->stream_anchor->streams;
+
+        /*
+         * Reject duplicate streamId in any slot. Allocate only from custom
+         * slots (index >= afw_stream_number_count) so standards stay reserved.
+         */
+        for (count = 0;
             count < xctx->stream_anchor->maximum_number_of_streams;
-            count++, streams++)
+            count++)
         {
-            if (*streams) {
-                if (afw_utf8_equal((*streams)->streamId, stream->streamId))
-                {
-                    return -1;
-                }
-            }
-            else if (number == -1) {
-                number = count;
+            if (table[count] &&
+                afw_utf8_equal(table[count]->streamId, stream->streamId))
+            {
+                return (afw_size_t)-1;
             }
         }
-        if (number != -1) {
-            streams[number] = stream;
+        for (count = (afw_size_t)afw_stream_number_count;
+            count < xctx->stream_anchor->maximum_number_of_streams;
+            count++)
+        {
+            if (!table[count]) {
+                number = count;
+                break;
+            }
+        }
+        if (number != (afw_size_t)-1) {
+            table[number] = stream;
         }
     }
 
     return number;
 }
+
+
+
+/* Clear a stream table slot after release (custom streams). */
+AFW_DEFINE(void)
+afw_stream_clear_slot(
+    afw_size_t streamNumber,
+    afw_xctx_t *xctx)
+{
+    if (xctx->stream_anchor &&
+        streamNumber < xctx->stream_anchor->maximum_number_of_streams)
+    {
+        *(const afw_stream_t **)&xctx->stream_anchor->streams[streamNumber] =
+            NULL;
+    }
+}
+
 
 
 
@@ -293,7 +326,7 @@ afw_stream_standard_impl(afw_stream_number_t n, afw_xctx_t *xctx)
  * @brief Called internal to xctx to create xctx->stream_anchor.
  * @param xctx of caller.
  */
-AFW_DEFINE_INTERNAL(const afw_stream_anchor_t *)
+const afw_stream_anchor_t *
 afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx)
 {
     afw_stream_anchor_t *stream_anchor;
@@ -309,15 +342,22 @@ afw_stream_internal_stream_anchor_create(afw_xctx_t *xctx)
 
 
 /* Release xctx streams. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_stream_internal_release_all_streams(afw_xctx_t *xctx)
 {
-    afw_stream_number_t i;
+    afw_size_t i;
+    afw_size_t max;
 
-    /* Release writers. */
-    for (i = 0; i < afw_stream_number_count; i++) {
+    if (!xctx->stream_anchor) {
+        return;
+    }
+
+    max = xctx->stream_anchor->maximum_number_of_streams;
+
+    /* Release all streams except raw_response_body first. */
+    for (i = 0; i < max; i++) {
         if (xctx->stream_anchor->streams[i] &&
-            i != afw_stream_number_raw_response_body)
+            i != (afw_size_t)afw_stream_number_raw_response_body)
         {
             afw_stream_release(xctx->stream_anchor->streams[i], xctx);
             *(afw_stream_t **)&xctx->stream_anchor->streams[i] = NULL;
@@ -325,9 +365,10 @@ afw_stream_internal_release_all_streams(afw_xctx_t *xctx)
     }
 
     /* Release raw_response_body last. */
-    if (afw_stream_standard(raw_response_body, xctx)) {
+    if (xctx->stream_anchor->streams[afw_stream_number_raw_response_body]) {
         afw_stream_release(
-            afw_stream_standard(raw_response_body, xctx), xctx);
+            xctx->stream_anchor->streams[afw_stream_number_raw_response_body],
+            xctx);
         *(afw_stream_t **)
             &xctx->stream_anchor->streams[afw_stream_number_raw_response_body]
             = NULL;

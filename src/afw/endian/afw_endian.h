@@ -18,7 +18,7 @@
 
 /**
  * @file afw_endian.h
- * @brief Adaptive Framework Endian Header.
+ * @brief Endian conversion helpers for portable binary data.
  */
 
 AFW_BEGIN_DECLARES

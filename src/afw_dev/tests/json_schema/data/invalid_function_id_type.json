@@ -1,0 +1,9 @@
+{
+    "category": "logical",
+    "functionId": 12345,
+    "functionLabel": "broken",
+    "returns": {
+        "dataType": "boolean"
+    },
+    "brief": "Invalid: functionId must be string"
+}

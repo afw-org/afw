@@ -29,8 +29,9 @@
         },
         "url": {
             "allowQuery": true,
-            "dataType": "string",
-            "description": "URL of LDAP Server. For example, ldaps://ldap-server:636",
+            "contextType": "process",
+            "dataType": "template",
+            "description": "URL of LDAP Server. For example, ldaps://ldap-server:636. This template is evaluated when the adapter is started (plain strings are unchanged; substitutions such as environment:: may be used).",
             "label": "Url",
             "required": true,
             "unique": false

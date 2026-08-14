@@ -8,7 +8,7 @@
 
 /**
  * @file afw_number.c
- * @brief Adaptive Framework Number.
+ * @brief Number parse/format helpers for adaptive numeric types.
  */
 
 #include "afw_internal.h"

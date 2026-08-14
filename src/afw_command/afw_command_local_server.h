@@ -11,8 +11,6 @@
 
 #include "afw_interface.h"
 #include "afw_command_internal.h"
-#include "generated/afw_command_declare_helpers.h"
-
 /**
  * @addtogroup afw_command_internal
  * @{
@@ -77,25 +75,25 @@ afw_command_local_server_self_s {
 
 
 
-AFW_COMMAND_DECLARE_INTERNAL(const afw_server_t *)
+extern const afw_server_t *
 afw_command_local_server_create(
     afw_command_self_t *command_self);
 
 
-AFW_COMMAND_DECLARE_INTERNAL(void)
+extern void
 afw_command_local_server_write_result(
     afw_command_local_server_self_t *self,
     const char *format, ...);
 
 
-AFW_COMMAND_DECLARE_INTERNAL(void)
+extern void
 afw_command_local_server_write_error(
     afw_command_local_server_self_t *self, 
     const afw_error_t *error,
     afw_xctx_t *xctx);
 
 
-AFW_COMMAND_DECLARE_INTERNAL(void)
+extern void
 afw_command_local_server_write_end(
     afw_command_local_server_self_t *self);
 

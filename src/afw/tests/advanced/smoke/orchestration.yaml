@@ -1,0 +1,18 @@
+# Migrated from advanced-test.yaml → orchestration.yaml
+version: 1
+description: Spawn afwfcgi and eval a trivial script via FCGI client
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 60
+feed:
+  kind: action
+  accept: application/json
+tests:
+  - name: return true
+    sourceType: script
+    source: |
+      return true;
+  - name: script file test_script
+    sourceType: test_script
+    sourcePath: step_two.as

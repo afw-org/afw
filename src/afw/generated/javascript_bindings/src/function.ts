@@ -98,23 +98,6 @@ export function afwEqxFunction(client : any, arg1 : any, arg2 : any) : any {
 }
 
 /**
- * Converts value to data type function returning function result.
- * 
- * @param {} value - Value to convert
- * 
- * @returns {function} Converted value
- */
-export function afwFunction(client : any, value : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "function";
-    _action["value"] = value;
-
-    return client.perform(_action);
-}
-
-/**
  * Checks for function arg1 is greater than or equal to function arg2 and
  * return the boolean result.
  * 

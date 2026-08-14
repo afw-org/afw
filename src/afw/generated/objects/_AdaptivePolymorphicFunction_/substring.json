@@ -2,10 +2,10 @@
     "brief": "Extract a substring",
     "category": "polymorphic",
     "dataTypeMethod": true,
-    "description": "Returns the <dataType> substring of value beginning at zero-based position integer startIndex and ending at the position before integer endIndex. Specify -1 or omitting endIndex to return up to end of <dataType>.",
+    "description": "Returns the string substring of value beginning at zero-based position integer startIndex and ending at the position before integer endIndex. Specify -1 or omit endIndex to return through the end of value. The result is always string (a slice of anyURI is not an anyURI).",
     "errorsThrown": [
         {
-            "error": "arg_error",
+            "error": "argument_error",
             "reason": "startIndex or endIndex is out of range"
         }
     ],
@@ -34,6 +34,7 @@
     ],
     "polymorphicExecuteFunction": "afw_function_execute_substring",
     "returns": {
-        "polymorphicDataType": true
+        "dataType": "string",
+        "description": "Substring as string (not re-typed as the input data type)."
     }
 }

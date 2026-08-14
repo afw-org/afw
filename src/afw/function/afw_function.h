@@ -18,16 +18,24 @@
 
 /**
  * @file afw_function.h
- * @brief Header file for Adaptive Framework Runtime Basic Function Support.
+ * @brief Built-in Adaptive function execute support.
  *
  * See @ref afw_function (defined centrally in afw_doxygen.h).
  *
- * Use the AFW_FUNCTION_* macros inside execute functions.
- * Polymorphic dispatch uses dataTypeMethod and execute == NULL.
+ * This header is the surface for **built-in Adaptive function** `execute_*`
+ * implementations under `function/afw_function_*.c`:
+ * - `AFW_FUNCTION_EVALUATE_*` macros and `afw_function_evaluate_parameter*`
+ *   use the Adaptive function **definition** (leaf data types, requiredness)
+ *   and optional convert-to-requested-type. Short hot path; no script type
+ *   graph / unit typeCheck branching here.
+ * - Polymorphic dispatch uses dataTypeMethod and execute == NULL.
+ * - Operator functions are prepared in
+ *   `afw_function_internal_prepare_environment`.
  *
- * Operator functions are prepared in afw_function_internal_prepare_environment.
- *
- * All functions are registered via environment; see afw_generated_register.
+ * Script language IR (const/let/assign/return, script formals, Patterns) lives
+ * in `afw_function_compiler_internal.c` and `afw_value_call_script_function.c`,
+ * not in these evaluate helpers. All Adaptive functions are still registered
+ * via the environment; see `afw_generated_register`.
  */
 
 AFW_BEGIN_DECLARES
@@ -51,10 +59,10 @@ AFW_BEGIN_DECLARES
 
 
 /**
- * @brief Function execute parameter
- * 
- * This is the parameter sent to implementation of a built-in function
- * during evaluation.
+ * @brief Argument block for a built-in Adaptive function execute_* call.
+ *
+ * Filled by afw_value_call_built_in_function and passed as `x` to execute
+ * bodies. Script language calls use call_script_function instead.
  */
 struct afw_function_execute_s {
 
@@ -83,15 +91,30 @@ struct afw_function_execute_s {
     const afw_value_t *first_arg;
 
     /**
-     * @brief This is the function parameters
-     * 
-     * argv[0] Is the original function definition. For a function called
-     * polymorphically, this is the polymorphic function definition.
-     * 
+     * @brief Call argv (function + parameters).
+     *
+     * Call layout is the same for built-in adaptive functions and script
+     * functions (see also `afw_value_call_args_t`):
+     *
+     *   argv[0]       — the function value (definition / polymorphic def /
+     *                   script function / closure). Not a user parameter.
+     *   argv[1..argc] — user parameters 1..argc (1-based parameter numbers).
+     *   argc          — number of user parameters only (does not include
+     *                   argv[0]). For f(a,b), argc is 2.
+     *
+     * AFW_FUNCTION_ARGV(n) and afw_function_evaluate_parameter(..., n, ...)
+     * use that 1-based n. Do not treat argv like a pure C 0-based param list.
+     *
+     * For a polymorphic call, argv[0] is the original polymorphic definition;
+     * x->function is the resolved per-type implementation.
      */
     const afw_value_t * const * argv;
 
-    /** @brief This is the argv count not counting argv[0] */
+    /**
+     * @brief Number of user parameters (not counting argv[0]).
+     *
+     * Valid parameter numbers are 1..argc. argv[argc] is the last parameter.
+     */
     afw_size_t argc;
     
 };
@@ -152,15 +175,16 @@ struct afw_function_environment_s {
 
 
 /**
- * @brief Get the unevaluated argv value or NULL.
- * @param A_N is the 1 based parameter number of argv to check.
- * @return argv[A_N] or NULL.
- * 
- * This will return NULL if A_N is greater than x->argc.
+ * @brief Get the unevaluated argv entry for a user parameter, or NULL.
+ * @param A_N 1-based parameter number (first user param is 1, not 0).
+ * @return x->argv[A_N], or NULL if A_N > x->argc.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * argv[0] is the function, not a parameter — use AFW_FUNCTION_ARGV(1) for the
+ * first parameter. Same numbering as error text "Parameter N" and as
+ * afw_function_evaluate_parameter(..., N, ...).
+ *
+ * Used in adaptive function execute bodies. Like all AFW_FUNCTION_* macros,
+ * "x" must be the name of the function execute struct pointer.
  */
 #define AFW_FUNCTION_ARGV(A_N) \
 ((A_N <= x->argc) ? x->argv[A_N] : NULL)
@@ -178,7 +202,7 @@ struct afw_function_environment_s {
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_IS(n) \
 do { \
     if ((x->argc) != (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -195,7 +219,7 @@ do { \
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MIN(n) \
 do { \
     if (x->argc < (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting at least " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting at least " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -212,7 +236,7 @@ do { \
 #define AFW_FUNCTION_ASSERT_PARAMETER_COUNT_MAX(n) \
 do { \
     if (x->argc > (n)) {\
-        AFW_THROW_ERROR_Z(general, "Expecting no more than " #n " parameters.", x->xctx);\
+        AFW_THROW_ERROR_Z(argument_error, "Expecting no more than " #n " parameters.", x->xctx);\
     } \
 } while (0)
 
@@ -231,7 +255,7 @@ if (!(A_VALUE) || !afw_utf8_equal( \
     &afw_value_get_data_type(((const afw_value_t *)A_VALUE), x->xctx)->cType, \
     afw_s_afw_utf8_t)) \
 { \
-    AFW_THROW_ERROR_Z(arg_error, \
+    AFW_THROW_ERROR_Z(argument_error, \
         "Value's data type not supported for this function", x->xctx); \
 }
 
@@ -252,18 +276,18 @@ if (!(A_VALUE) || !afw_utf8_equal( \
 
 
 /**
- * @brief Evaluate an arg for a particular data type
- * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param A_N is the 1 based parameter number in of argv to evaluate.
- * @param A_TYPE is the unquoted dataType.
- * @return the value casted to `afw_value_<A_TYPE>_t` * or NULL (undefined).
+ * @brief Evaluate an optional parameter as data type A_TYPE.
+ * @param A_RESULT const `afw_value_<A_TYPE>_t` * variable for the result.
+ * @param A_N 1-based parameter number in argv.
+ * @param A_TYPE unquoted data type id (e.g. string, object).
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
- * 
- * It is up to the implementation to check if A_RESULT is NULL and the
- * correct data type.
+ * Evaluates the argument, then yields a cast-safe
+ * `const afw_value_<A_TYPE>_t *` (or NULL if optional/undefined). This is
+ * evaluate-then-typed-pointer — not a produce-type probe like
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE`. Like other AFW_FUNCTION_* macros, "x"
+ * is the function execute struct pointer.
+ *
+ * It is up to the implementation to handle a NULL A_RESULT.
  */
 #define AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(A_RESULT, A_N, A_TYPE) \
 A_RESULT = (const afw_value_##A_TYPE##_t *) \
@@ -272,16 +296,15 @@ A_RESULT = (const afw_value_##A_TYPE##_t *) \
 
 
 /**
- * @brief Evaluate a parameter.
- * @param A_RESULT is a const afw_value_t * variable name for result.
- * @param A_N is the 1 based parameter number in argv to evaluate.
+ * @brief Evaluate an optional parameter (any type).
+ * @param A_RESULT const afw_value_t * variable for the result.
+ * @param A_N 1-based parameter number in argv.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * Result stays `const afw_value_t *` until you check with
+ * `AFW_VALUE_IS_DATA_TYPE` / `afw_value_is_*` before a typed cast. "x" is the
+ * function execute struct pointer.
  *
- * It is up to the implementation to check if A_RESULT is NULL and the
- * correct data type.
+ * It is up to the implementation to handle a NULL A_RESULT.
  */
 #define AFW_FUNCTION_EVALUATE_PARAMETER(A_RESULT, A_N) \
 A_RESULT = afw_function_evaluate_parameter(x, A_N, NULL)
@@ -289,15 +312,13 @@ A_RESULT = afw_function_evaluate_parameter(x, A_N, NULL)
 
 
 /**
- * @brief Evaluate an required parameter
- * @param A_RESULT is a const afw_value_t * variable name for result.
- * @param A_N is the 1 based parameter number in argv to evaluate.
+ * @brief Evaluate a required parameter (any type).
+ * @param A_RESULT const afw_value_t * variable for the result.
+ * @param A_N 1-based parameter number in argv.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
- *
- * A undefined error is thrown if result is NULL.
+ * Throws if the result is undefined/NULL. Result is still
+ * `const afw_value_t *` until a cast-safe `is_*` / `IS_DATA_TYPE` check. "x"
+ * is the function execute struct pointer.
  */
 #define AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(A_RESULT, A_N) \
 A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
@@ -305,32 +326,32 @@ A_RESULT = afw_function_evaluate_required_parameter(x, A_N, NULL);
 
 
 /**
- * @brief Evaluate an arg that is a required condition
- * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param A_N is the 1 based parameter number in of argv to evaluate.
+ * @brief Evaluate a required boolean condition parameter.
+ * @param A_RESULT const afw_value_boolean_t * variable for the result.
+ * @param A_N 1-based parameter number in argv.
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * Evaluates the arg, requires evaluated boolean (cast-safe
+ * `const afw_value_boolean_t *`), else throws argument_error. "x" is the function
+ * execute struct pointer.
  */
 #define AFW_FUNCTION_EVALUATE_REQUIRED_CONDITION_PARAMETER(A_RESULT, A_N) \
 A_RESULT = (const afw_value_boolean_t *) \
     afw_function_evaluate_required_parameter(x, A_N, NULL); \
     if (!afw_value_is_boolean(A_RESULT)) \
-        AFW_THROW_ERROR_FZ(arg_error, xctx, \
+        AFW_THROW_ERROR_FZ(argument_error, xctx, \
             "Condition must be boolean (parameter %d)", (A_N))
 
 
 
 /**
- * @brief Evaluate an arg for a particular data type
- * @param A_RESULT is a const `afw_value_<A_TYPE>_t` * variable name for result.
- * @param A_N is the 1 based parameter number in of argv to evaluate.
- * @param A_TYPE is the unquoted dataType.
+ * @brief Evaluate a required parameter as data type A_TYPE.
+ * @param A_RESULT const `afw_value_<A_TYPE>_t` * variable for the result.
+ * @param A_N 1-based parameter number in argv.
+ * @param A_TYPE unquoted data type id (e.g. string, object).
  *
- * This is used when implementing the body of an adaptive function.  Like all
- * of the AFW_FUNCTION_* macros, "x" must be the name of the function execute
- * struct pointer.
+ * Evaluates the argument and requires data type A_TYPE, then yields a
+ * cast-safe `const afw_value_<A_TYPE>_t *`. Throws if missing or wrong type.
+ * Not a produce-type-only check. "x" is the function execute struct pointer.
  */
 #define AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(A_RESULT, A_N, A_TYPE) \
 A_RESULT = (const afw_value_##A_TYPE##_t *) \
@@ -348,6 +369,21 @@ A_RESULT = (const afw_value_##A_TYPE##_t *) \
 #define AFW_FUNCTION_SOURCE_LOCATION \
 afw_compile_source_location_of_value( \
     (const afw_value_t *)x->self, x->p, x->xctx)
+
+
+/**
+ * @brief Call-site contextual for this built-in invocation.
+ * @param x Function execute struct pointer (`execute_*` argument).
+ * @return Unit contextual from the call, or NULL if no call value.
+ *
+ * Use for nested afw_value_call_create (and similar) from execute_* so the
+ * new call shares this invocation's unit link / source attribution. Prefer
+ * this over NULL: NULL means type-check helpers use process flags only.
+ * Safe from core and extensions (call_built_in layout stays opaque via
+ * afw.h). See designs/compile-contextual-audit.md.
+ */
+AFW_DECLARE(const afw_compile_value_contextual_t *)
+afw_function_execute_contextual(const afw_function_execute_t *x);
 
 
 /**
@@ -393,19 +429,24 @@ afw_function_evaluate_whitespace_parameter(
 
 
 /**
- * @brief Evaluate a parameter and convert if necessary.
+ * @brief Evaluate a built-in formal and convert if the caller requests a type.
  * @param x function execute struct pointer.
- * @param parameter_number starting at 1.
- * @param data_type result will be converted to if needed or NULL.
+ * @param parameter_number 1-based (first user parameter is 1 → x->argv[1]).
+ * @param data_type convert result to this leaf type if needed, or NULL.
  * @return value of parameter or undefined (NULL).
  *
- * This function adds the parameter number to the evaluation stack if an
- * evaluation or conversion is needed then removes it if successful.
+ * Built-in Adaptive formals only. Reads `x->function->parameters[]` for
+ * required/optional and declared leaf data type; optional convert uses the
+ * `data_type` argument from the implementer (via AFW_FUNCTION_EVALUATE_*).
+ * Does not apply script typeCheck policy.
  *
- * It's up to the caller to check if the returned value is undefined. Use
- * afw_function_evaluate_required_parameter() instead for required parameters.
+ * Uses the same 1-based numbering as AFW_FUNCTION_ARGV and "Parameter N"
+ * errors. Does not count argv[0] (the function value). Pushes parameter
+ * number on the evaluation stack when evaluating/converting, then pops.
  *
- * If data_type specified and result can't be converted, an error is thrown.
+ * Caller must handle NULL (undefined). Prefer
+ * afw_function_evaluate_required_parameter() when a non-NULL result is
+ * required. Throws if data_type is set and convert fails.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_function_evaluate_parameter(
@@ -416,17 +457,14 @@ afw_function_evaluate_parameter(
 
 
 /**
- * @brief Evaluate a required parameter and convert if necessary.
+ * @brief Like afw_function_evaluate_parameter, but throws if undefined.
  * @param x function execute struct pointer.
  * @param parameter_number starting at 1.
- * @param data_type result will be converted to if needed or NULL.
- * @return value of parameter.
+ * @param data_type convert result to this leaf type if needed, or NULL.
+ * @return non-NULL parameter value.
  *
- * This function adds the parameter number to the evaluation stack if an
- * evaluation or conversion is needed then removes it if successful.
- *
- * If result is undefined or data_type is specified and can't be converted, an
- * error is thrown.
+ * Built-in Adaptive formals only (same rules as evaluate_parameter).
+ * Throws if the result is undefined or if data_type convert fails.
  */
 AFW_DEFINE(const afw_value_t *)
 afw_function_evaluate_required_parameter(
@@ -436,29 +474,8 @@ afw_function_evaluate_required_parameter(
 
 
 
-/**
- * @brief Evaluate a parameter with dataTypeParameter.
- * @param value to evaluate.
- * @param parameter_number starting at 1.
- * @param type for result or NULL if not converting.
- * @param p Pool
- * @param xctx of caller.
- * @return value or undefined if there is an error.
- *
- * This is called for script function parameters so is different from others
- * for now.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_function_evaluate_parameter_with_type(
-    const afw_value_t *value,
-    afw_size_t parameter_number,
-    const afw_value_type_t *type,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-
-
 AFW_END_DECLARES
 
-/** @} */  // end of @addtogroup @addtogroup
+/** @} */
 
 #endif /* __AFW_FUNCTION_H__ */

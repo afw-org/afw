@@ -25,7 +25,7 @@
             "brief": "Adapter metrics",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveAdapterMetrics_",
-            "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
+            "description": "Live metrics object for this adapter instance (`valueAccessor` adapter_metrics). Active adapter pointer is loaded under adapter_id_anchor_lock; metrics contents are not deep-copied. Counters may change while held. Only valid while the adapter remains active (or while a session ref keeps the instance). Do not cache across stop/replace. NULL when no active instance.",
             "label": "Metrics",
             "runtime": {
                 "memberName": "adapter",
@@ -35,17 +35,22 @@
         "properties": {
             "brief": "Properties associated with adapter",
             "dataType": "object",
-            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
-            "label": "Properties"
+            "description": "Live object with selected conf properties plus runtime properties for this adapter instance (`valueAccessor` adapter_properties). Pointer loaded under adapter_id_anchor_lock; not deep-copied on get. Valid while registration/conf properties remain; typically absent after full stop.",
+            "label": "Properties",
+            "runtime": {
+                "memberName": "properties",
+                "valueAccessor": "adapter_properties"
+            }
         },
         "referenceCount": {
             "allowQuery": true,
             "brief": "Adapter's reference count",
             "dataType": "integer",
-            "description": "The reference count is the total number of references that are currently being used for this adapter.",
+            "description": "Active instance reference count, copied under adapter_id_anchor_lock (valueAccessor adapter_reference_count). Safe scalar snapshot for admin/debug.",
             "label": "Reference Count",
             "runtime": {
-                "memberName": "reference_count"
+                "memberName": "reference_count",
+                "valueAccessor": "adapter_reference_count"
             }
         },
         "serviceId": {
@@ -64,7 +69,7 @@
             "brief": "Reference counts of stopping instances",
             "dataType": "array",
             "dataTypeParameter": "integer",
-            "description": "Reference counts of stopping instances.",
+            "description": "Reference counts of stopping instances, snapshotted under adapter_id_anchor_lock (valueAccessor stopping_adapter_instances).",
             "label": "Stopping Instances",
             "runtime": {
                 "memberName": "adapter_id",

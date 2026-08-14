@@ -472,7 +472,7 @@ afw_object_resolve_instance(
     if (object) return object;
     if (!path) return NULL;
     /* Will not happen if objects retrieved using afw_cache_* */
-    AFW_THROW_ERROR_FZ(objects_needed, xctx, AFW_UTF8_FMT_Q,
+    AFW_THROW_ERROR_FZ(coding_error, xctx, AFW_UTF8_FMT_Q,
         AFW_UTF8_FMT_ARG(path));
 };
 
@@ -789,83 +789,86 @@ afw_object_create_with_options(
 
 
 /**
- * @brief Create a composite of immutable objects.
- * @param mutable true makes composite mutable.
- * @param p is pool for result.
+ * @brief Create a memory object that wraps another object (look-through).
+ * @param options as defined by AFW_OBJECT_MEMORY_OPTION_* defines.
+ * @param wrapped base object for property look-through. Required (non-NULL).
+ * @param p to use based on options.
  * @param xctx of caller.
- * @param ... is one or more objects terminated by a NULL.
- * @return instance of new object.
+ * @return instance of new wrapper object.
  *
+ * The result is a normal memory object whose local properties start empty.
+ * Gets search local properties first, then @p wrapped. Sets only affect the
+ * wrapper. Mutable object property values resolved from @p wrapped are
+ * promoted to a nested wrapper on the first get and stored on the wrapper
+ * so the shared base is not mutated through nested access.
+ *
+ * Nested mutable objects and arrays are promoted to faces on get.
+ *
+ * Managed faces take one reference on @p wrapped at create and release it
+ * when the face pool is destroyed. Unmanaged faces borrow @p wrapped only.
  */
 AFW_DECLARE(const afw_object_t *)
-afw_object_create_composite(
-    afw_boolean_t mutable,
-    const afw_pool_t *p, afw_xctx_t *xctx,
-    ...);
-
-
-
-/**
- * @brief Typedef for an object property get callback.
- * @param data to passed to afw_object_create_properties_callback().
- * @param property_name to get.
- * @param xctx of caller.
- * @return property value or NULL if not found.
- */
-typedef const afw_value_t *(*afw_object_properties_callback_entry_get_t) (
-    void *data,
-    const afw_utf8_t *property_name,
+afw_object_create_wrapper_with_options(
+    int options,
+    const afw_object_t *wrapped,
+    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-
 /**
- * @brief Typedef for an object property set callback.
- * @param data to passed to afw_object_create_properties_callback().
- * @param property_name to set.
- * @param value to set.
+ * @brief Create a managed memory wrapper over another object.
+ * @param wrapped base object for property look-through.
+ * @param p parent pool (a subpool is created for the wrapper).
  * @param xctx of caller.
+ * @return instance of new wrapper object.
  */
-typedef void (*afw_object_properties_callback_entry_set_t) (
-    void *data,
-    const afw_utf8_t *property_name,
-    const afw_value_t *value,
-    afw_xctx_t *xctx);
-
+#define afw_object_create_wrapper(wrapped, p, xctx) \
+    afw_object_create_wrapper_with_options( \
+        AFW_OBJECT_MEMORY_OPTION_managed, wrapped, p, xctx)
 
 
 /**
- * @brief Struct for afw_object_properties_callback_entry_t.
- *
- * An array of this is passed to the afw_object_create_properties_callback()
- * in as the callback parameter.  This consists of the property name, get
- * callback, and set callback or NULL if immutable.
- */
-struct afw_object_properties_callback_entry_s {
-    const afw_utf8_t *property_name;
-    afw_object_properties_callback_entry_get_t get;
-    afw_object_properties_callback_entry_set_t set;
-};
-
-
-
-/**
- * @brief Create a mutable composite of unmutable objects.
- * @param data to pass as first parameter to callbacks.
- * @param count is number of callbacks.
- * @param callbacks array.
- * @param p is pool for result.
+ * @brief Create an unmanaged memory wrapper over another object.
+ * @param wrapped base object for property look-through.
+ * @param p pool that controls the wrapper lifetime.
  * @param xctx of caller.
- * @return instance of new object.
+ * @return instance of new wrapper object.
+ */
+#define afw_object_create_wrapper_unmanaged(wrapped, p, xctx) \
+    afw_object_create_wrapper_with_options( \
+        AFW_OBJECT_MEMORY_OPTION_unmanaged, wrapped, p, xctx)
+
+
+/**
+ * @brief Create a memory wrapper that cedes control of pool p.
+ * @param wrapped base object for property look-through.
+ * @param p pool ceded to the wrapper.
+ * @param xctx of caller.
+ * @return instance of new wrapper object.
+ */
+#define afw_object_create_wrapper_cede_p(wrapped, p, xctx) \
+    afw_object_create_wrapper_with_options( \
+        AFW_OBJECT_MEMORY_OPTION_managed_cede_p, wrapped, p, xctx)
+
+
+/**
+ * @brief True if object is a memory look-through wrapper face.
+ * @param object to test (may be NULL).
+ * @return true if create_wrapper_* produced this instance (has a wrapped base).
  *
+ * Used by wrap_literal_object for idempotent wrap (issue #17).
+ */
+AFW_DECLARE(afw_boolean_t)
+afw_object_is_memory_wrapper(const afw_object_t *object);
+
+
+/**
+ * @brief Base object under a memory face, or object itself if not a face.
+ * @param object may be NULL.
+ * @return wrapped base if create_wrapper_* face; else object; NULL if object NULL.
  */
 AFW_DECLARE(const afw_object_t *)
-afw_object_create_properties_callback(
-    void *data,
-    afw_size_t count,
-    const afw_object_properties_callback_entry_t callbacks[],
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
+afw_object_memory_wrapper_base(const afw_object_t *object);
 
 
 /**

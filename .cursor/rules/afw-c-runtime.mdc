@@ -12,14 +12,25 @@ alwaysApply: false
 - Public symbols: prefix with header/module name (`afw_pool_*`). `#define`s: `AFW_POOL_*`.
 - Object/property type IDs: UpperCamelCase. Property names: lowerCamelCase.
 - 4-space indent, LF, UTF-8. Match file headers in existing modules (e.g. `function/afw_function_logical.c`).
+- **Line length:** prefer staying within **~80 columns** in C when it is not awkward (Linus-style soft preference, not a hard lint). Break after `(` or commas; continuation lines indent like nearby calls in the same file. Existing long lines need not be mass-reformatted; apply on new/changed code.
+- **Small helpers: prefer macros, not `static inline`.** Hot-path and often-called checks (flags, token tests, evaluate wrappers, compile policy, etc.) are historically **`#define` macros** in AFW (e.g. `afw_flag_is_active`, `afw_compile_token_is_*`, `afw_value_evaluate`). Early experience: `static inline` / `AFW_INLINE` still became real calls on some compilers unless optimization was on. Macros expand in every build (debug and optimized). Use a real function when the body is large, needs a single address, or is not on a hot path. New type-check / compile-policy helpers that only branch on contextual vs flags should follow the **macro** style.
+- **Wording:** do not use “catalog” in source comments for permanent/`afw_v_*` strings and values — say **static const** or **permanent** (see `afw-value-memory`).
 - Platform code: edit matching files under `os/nix/` and `os/win/` (cmake selects one).
 
 ## Memory and errors
 - Allocate with pools: `afw_pool_calloc` / `afw_pool_calloc_type`, or `afw_xctx_calloc` for xctx lifetime. No raw `malloc`/`free`.
 - Pass `p` (pool) and `xctx` through call chains. Throws need `xctx`.
-- Errors: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / related macros and memory helpers from `error/afw_error.h`. Prefer these for invariant failures, API misuse, and unexpected conditions—not `assert` / `AFW_ASSERT`.
-- **Do not use `AFW_ASSERT`** in new or changed code. It is a thin wrapper around C `assert()` (`afw_common.h`), aborts the process, and does **not** participate in `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY`. The macro is legacy (`@fixme` remove when unused). For checks that must fail hard in production paths, throw instead, e.g. `AFW_THROW_ERROR_Z(general, "…", xctx)` or `AFW_THROW_ERROR_FZ(...)`.
-- Structured recovery: `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY` / `AFW_ENDTRY` — the context variable must be named `xctx`. Thrown errors are what those blocks observe.
+- Errors: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / related macros and memory helpers from `error/afw_error.h`. Prefer these for invariant failures, API misuse, and unexpected conditions—not `assert` / `AFW_ASSERT` / raw `abort()`.
+- **Never abort the process from library/request paths.** Do **not** use `AFW_ASSERT`, C `assert()`, `abort()`, or invent an `AFW_ABORT`-style wrapper. `AFW_ASSERT` is a thin wrapper around `assert()` (`afw_common.h`); it can kill a server worker mid-request and does **not** participate in `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY`. Fail with throws: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ`, or compiler domain `AFW_COMPILE_THROW_ERROR_*`. Legacy `AFW_ASSERT` call sites should be converted when touched (`@fixme` remove the macro when unused). Macro comment on `AFW_ASSERT` in `afw_common.h` repeats this.
+- **Never raw `setjmp`/`longjmp` in hand code.** Throw only via `AFW_THROW_*` (or intentional domain throw macros such as `AFW_COMPILE_THROW_ERROR_*` that mirror them). The `longjmp` *inside* those macros is the choke point; do not duplicate it.
+- Structured recovery: `AFW_TRY` / `AFW_CATCH` / `AFW_CATCH_UNHANDLED` / `AFW_FINALLY` / `AFW_ENDTRY` — the context variable **must** be named **`xctx`**.
+  - **No** bare `return` / `goto` out of TRY/CATCH/FINALLY (skips FINALLY, corrupts `current_try`).
+  - **`AFW_ERROR_RETHROW`:** flag only (`this_ERROR_CAUGHT = false` + break). FINALLY still runs; **`AFW_ENDTRY`** then rethrows to the outer try. Not an immediate `longjmp`.
+  - **`AFW_ERROR_MARK_CAUGHT`:** in FINALLY, mark handled even if no CATCH matched.
+  - **`AFW_ERROR_THROWN`:** only in CATCH / CATCH_UNHANDLED bodies.
+  - `code` in `AFW_THROW_ERROR_Z(coding_error, …)` is a **token** (`argument_error`, `general`, …) pasted as `afw_error_code_##code` — not an `afw_error_code_t` variable.
+  - Authoritative comments: `error/afw_error.h` (design block + TRY usage).
+- **Non-pool resources** (OpenSSL `EVP_*_CTX`, `FILE *`, locks, `malloc`'d key material, etc.): init locals to **NULL**, do work in **`AFW_TRY`**, free/release in **`AFW_FINALLY` if non-NULL**. Do not mirror free+throw on every error path. Pool allocs still use `afw_pool_*` (throw-safe via pool unwind). Example: `src/afw_crypto/afw_crypto_function_crypto.c`.
 - Value lifetimes (permanent / managed / managed_slice / unmanaged) and pool/scope escape: see `afw-value-memory` (important for long-running scripts). Compile/eval graph: `afw-script-eval`.
 
 ## Adaptive functions

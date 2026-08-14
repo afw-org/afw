@@ -37,6 +37,7 @@
 #define AFW_IMPLEMENTATION_ID "template_definition"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_template_definition_inf
+#define AFW_VALUE_SELF_T afw_value_template_definition_t
 #include "afw_value_impl_declares.h"
 
 
@@ -70,12 +71,10 @@ afw_value_template_definition_create(
  */
 const afw_value_t *
 impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    const afw_value_template_definition_t *self =
-        (const afw_value_template_definition_t *)instance;
 
     afw_size_t i;
     const afw_value_t * const * v;
@@ -89,7 +88,7 @@ impl_afw_value_optional_evaluate(
     const afw_compile_value_contextual_t *saved_contextual;
 
     /* Push value on evaluation stack. */
-    afw_xctx_evaluation_stack_push_value(instance, xctx);
+    afw_xctx_evaluation_stack_push_value(&self->pub, xctx);
     saved_contextual = xctx->error->contextual;
     xctx->error->contextual = self->contextual;
 
@@ -129,7 +128,8 @@ impl_afw_value_optional_evaluate(
             }
         }
 
-        result = afw_value_make_single_string(concat, len, p, xctx);
+        result = afw_value_create_unmanaged_string(
+            afw_utf8_create(concat, len, p, xctx), p, xctx);
     }
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
@@ -145,7 +145,7 @@ impl_afw_value_optional_evaluate(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return afw_data_type_template;
@@ -157,15 +157,13 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_template_definition_t *self =
-        (const afw_value_template_definition_t *)instance;
     afw_size_t i;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -183,37 +181,19 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #template_definition(part, ...) — args match listing's
+ * values[] children (string segments and expression blocks).
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_template_definition_t *self =
-        (const afw_value_template_definition_t *)instance;
-    afw_value_string_t string_value;
 
-    if (self->count == 0) {
-        afw_writer_write_z(writer, "null", xctx);
-        return;
-    }
-
-    if (self->count == 1) {
-        afw_value_decompile(self->values[0], writer, xctx);
-        return;
-    }
-
-    afw_writer_write_z(writer, "eval_template(", xctx);
-
-    /*impl_decompile_template(self, writer, xctx);*/
-    string_value.inf = &afw_value_unmanaged_string_inf;
-    string_value.internal.s = self->contextual->compiled_value->full_source->s +
-        self->contextual->value_offset;
-    string_value.internal.len = self->contextual->value_size;
-    afw_value_decompile((const afw_value_t *)&string_value, writer, xctx);
-
-    afw_writer_write_z(writer, ")", xctx);
+    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
+    afw_value_decompile_value_list(writer, self->count, self->values, xctx);
 }
 
 
@@ -222,18 +202,16 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_template_definition_t *self =
-        (const afw_value_template_definition_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
-    info->optimized_value = instance;
+    info->optimized_value = &self->pub;
 
     /* Note: Maybe something can be done for optimized_value_data_type. */
 }

@@ -19,7 +19,9 @@ Public entry for Adaptive syntaxes. Output is an **`afw_value_t`** (usually `com
 | `afw_compile_to_object` | Strict JSON → `afw_object_t` (not `compiled_value`) |
 | `afw_compile_shared_create` | Share literals across compiles on same pool |
 
-**Pool precedence** (one required): `shared->p` → `parent->p` → `p`. Nested compiles pass `parent` for shared symbols/contextual (e.g. `#{…}` in templates).
+**Pool precedence** (one required): `shared->p` → `parent->p` → `p`.
+
+**Nested compiles / `parent`:** Pass `parent` when the nested compile should share symbols and contextual with the outer compiled value. **Do not** pass `parent` for compile-time substitution (`#{…}`): `afw_compile_parse_CompileTimeSubstitution` uses a nested `afw_compile_to_value_with_callback` with `parent=NULL` and `shared=NULL` so the nested script is isolated (no outer locals). It evaluates the nested script immediately and embeds the result.
 
 ## Compile types (`AFW_COMPILE_TYPE_MAP` in `afw_common.h`)
 
@@ -38,7 +40,9 @@ Data-type hybrid `compileType` in `_AdaptiveDataTypeGenerate_` maps to these enu
 
 ## Residual check
 
-`none` | `to_newline` | `to_full` (default) | `to_close_brace` (nested `{…}` bodies — no residual check). Enforced in `afw_compile_lexical.c`.
+`none` | `to_newline` | `to_full` (default) | `to_close_brace`. Enforced in `afw_compile_lexical.c`.
+
+For `to_close_brace`: (1) residual-after-parse does **not** demand EOF (same as `none` in `afw_compile_check_for_residual`); (2) when `compile_type` is `script`, `afw_compile.c` passes `end_is_close_brace=true` to `parse_Script` so the nested body ends at `}`. Used for `#{…}` nested compiles (and similar braced fragments).
 
 ## Contextual
 
@@ -54,7 +58,7 @@ Data-type hybrid `compileType` in `_AdaptiveDataTypeGenerate_` maps to these enu
 | `afw_compile_parse_script.c` | Statements, `TestScript`, control flow |
 | `afw_compile_parse_expression.c` | Expressions, lambdas, operators → `call_built_in_function` |
 | `afw_compile_parse_value.c` | JSON literals / objects / lists |
-| `afw_compile_parse_template.c` | Templates; `#{…}` / `${…}` |
+| `afw_compile_parse_template.c` | Templates; `#{…}` (compile-time, isolated nested script) / `${…}` (eval-time, outer symbols); TemplateString `` `…` `` (string unescapes + `\#`/`\$` opener-suppress) |
 | `afw_compile_parse_assignment_target.c` | Destructuring targets |
 
 **Operator lowering:** expression parser emits calls to env **operator** `function_definition`s — requires `afw_generated_register` then `afw_function_internal_prepare_environment` (see `register_core.c`).

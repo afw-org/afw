@@ -14,12 +14,18 @@
 
 /**
  * @file afw.h
- * @brief Adaptive Framework Core API.
+ * @brief Umbrella header for the Adaptive Framework core C API.
  * @ingroup afw_c_api_public
  *
- * This header includes all of the headers that are part of the API used to
- * access the `#define`s, functions and macros of Adaptive Framework Core
- * (libafw).
+ * Convenient single include for C users of libafw: public call API and
+ * interface implementation helpers (`*_impl.h`). Prefer this from `.c` files
+ * in extensions, commands, and applications.
+ *
+ * libafw sources use `afw_internal.h` instead. Core-only headers
+ * (`*_internal.h`) are not part of this umbrella. Header authors should
+ * include `afw_interface.h` or `afw_minimal.h`, not this file.
+ *
+ * See @ref afw_c_api_public and `designs/libafw-headers-and-api-surface.md`.
  */
 
 #include "afw_action.h"

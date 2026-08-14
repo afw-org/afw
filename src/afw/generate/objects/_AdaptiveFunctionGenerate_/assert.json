@@ -18,9 +18,14 @@
             "name": "reason",
             "optional": true
         }
-
     ],
     "returns": {
         "dataType": "void"
-    }
+    },
+    "errorsThrown": [
+        {
+            "error": "assertion_failed",
+            "reason": "assertion is not true"
+        }
+    ]
 }

@@ -22,6 +22,7 @@
 
 /* Declares and rti/inf defines for interface afw_request_handler */
 #define AFW_IMPLEMENTATION_ID "adapter"
+#define AFW_REQUEST_HANDLER_SELF_T afw_request_handler_adapter_internal_self_t
 #include "afw_request_handler_impl_declares.h"
 
 
@@ -79,10 +80,15 @@ static afw_boolean_t impl_retrieve_cb(const afw_object_t *object,
 
     /* If there is an object, write it. */
     if (object) {
+        /*
+         * Progressive collection GET (issue #127): same CB-release contract
+         * as retrieve_objects_to_stream / to_response — write then release.
+         */
         afw_content_type_object_list_writer_write_object(ctx->writer, object,
             xctx->p, xctx);
         /** @fixme Flush is not really necessary, but might make object available to to client sooner. */
         /*afw_request_flush_response(ctx->request, xctx);*/
+        afw_object_release(object, xctx);
     }
 
     /* If there are not more objects, release writer. */
@@ -99,7 +105,7 @@ static afw_boolean_t impl_retrieve_cb(const afw_object_t *object,
  */
 void
 impl_afw_request_handler_release(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Resources will be released when execution context (xctx) is released. */
@@ -111,7 +117,7 @@ impl_afw_request_handler_release(
  */
 void
 impl_afw_request_handler_process(
-    const afw_request_handler_t * instance,
+    AFW_REQUEST_HANDLER_SELF_T *self,
     const afw_request_t * request,
     afw_xctx_t *xctx)
 {
@@ -124,13 +130,12 @@ impl_afw_request_handler_process(
     const afw_stream_t *stream;
     impl_retrieve_cb_context_t retrieve_cb_context;
 
-    afw_request_handler_adapter_internal_self_t * self = (afw_request_handler_adapter_internal_self_t *)instance;
 
     /* Parse the path. */
     parsed_path = afw_object_path_parse(request->uri, NULL, self->default_options,
         xctx->p, xctx);
     if (!parsed_path) {
-        AFW_THROW_ERROR_Z(not_found, "Path format error.", xctx);
+        AFW_THROW_ERROR_Z(bad_request, "Path format error.", xctx);
     }
 
     /* Create journal entry memory object. */
@@ -163,8 +168,8 @@ impl_afw_request_handler_process(
         {
             /* Object type required. */
             if (parsed_path->object_type_id.len == 0) {
-                /** @fixme Make user error. */
-                AFW_THROW_ERROR_Z(general, "URI missing Object type", xctx);
+                AFW_THROW_ERROR_Z(bad_request,
+                    "URI missing Object type", xctx);
             }
 
             /* If query_objects(), which is a GET without an object_id. */
@@ -271,16 +276,19 @@ impl_afw_request_handler_process(
              */
             value = afw_request_body_to_value(request, xctx->p, xctx);
             if (!value || !afw_value_is_object(value)) {
-                AFW_THROW_ERROR_Z(general, "Invalid post data", xctx);
+                AFW_THROW_ERROR_Z(request_syntax, "Invalid post data",
+                    xctx);
             }
             obj = ((const afw_value_object_t *)value)->internal;
 
             if (parsed_path->entity_object_id.len == 0) {
-                AFW_THROW_ERROR_Z(general, "Object id missing in URI for replace.", xctx);
+                AFW_THROW_ERROR_Z(bad_request,
+                    "Object id missing in URI for replace.", xctx);
             }
             if (parsed_path->first_property_name) {
-                AFW_THROW_ERROR_Z(general,
-                    "Object id can not have dotted property name for replace.", xctx);
+                AFW_THROW_ERROR_Z(bad_request,
+                    "Object id can not have dotted property name for replace.",
+                    xctx);
             }
             /** @fixme Remove */ afw_object_meta_set_ids_using_path(obj,
                 &parsed_path->normalized_path, xctx);
@@ -363,7 +371,7 @@ impl_afw_request_handler_process(
              */
             value = afw_request_body_to_value(request, xctx->p, xctx);
             if (!value) {
-                AFW_THROW_ERROR_Z(general, "Post data missing", xctx);
+                AFW_THROW_ERROR_Z(bad_request, "Post data missing", xctx);
             }
 
             /* If Modify ... */
@@ -371,12 +379,13 @@ impl_afw_request_handler_process(
                 if (parsed_path->object_type_id.len == 0 ||
                     parsed_path->entity_object_id.len == 0)
                 {
-                    AFW_THROW_ERROR_Z(general,
+                    AFW_THROW_ERROR_Z(bad_request,
                         "Modify requires object type and object id", xctx);
                 }
                 if (parsed_path->first_property_name) {
-                    AFW_THROW_ERROR_Z(general,
-                        "Object id can not have dotted property name for modify.", xctx);
+                    AFW_THROW_ERROR_Z(bad_request,
+                        "Object id can not have dotted property name for modify.",
+                        xctx);
                 }
                 afw_adapter_modify_object(&parsed_path->adapter_id,
                     &parsed_path->object_type_id, &parsed_path->entity_object_id,
@@ -399,7 +408,8 @@ impl_afw_request_handler_process(
 
                 /* An error if just adapter_id other than afw. */
                 else if (parsed_path->object_type_id.len == 0) {
-                    AFW_THROW_ERROR_Z(general, "Invalid post path", xctx);
+                    AFW_THROW_ERROR_Z(bad_request,
+                        "Invalid post path", xctx);
                 }
 
                 /* If Add ... */
@@ -412,7 +422,7 @@ impl_afw_request_handler_process(
                 /* If Update ... */
                 else {
                     if (parsed_path->first_property_name) {
-                        AFW_THROW_ERROR_Z(general,
+                        AFW_THROW_ERROR_Z(bad_request,
                             "Object id can not have dotted property name for update.",
                             xctx);
                     }
@@ -429,7 +439,8 @@ impl_afw_request_handler_process(
 
             /* Not single_list or single_object, error. */
             else {
-                AFW_THROW_ERROR_Z(general, "Invalid post data", xctx);
+                AFW_THROW_ERROR_Z(request_syntax, "Invalid post data",
+                    xctx);
             }
 
             /* Write success response. */
@@ -442,7 +453,7 @@ impl_afw_request_handler_process(
         {
             /* Call adapter to delete object. */
             if (parsed_path->first_property_name) {
-                AFW_THROW_ERROR_Z(general,
+                AFW_THROW_ERROR_Z(bad_request,
                     "Object id can not have dotted property name for delete.",
                     xctx);
             }
@@ -455,7 +466,8 @@ impl_afw_request_handler_process(
 
         /* Else not supported method. */
         else {
-            AFW_THROW_ERROR_Z(general, "Method not supported.", xctx);
+            AFW_THROW_ERROR_Z(method_not_allowed,
+                "Method not supported.", xctx);
         }
 
     }

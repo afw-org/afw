@@ -16,6 +16,7 @@
 
 
 #define AFW_IMPLEMENTATION_ID "afw_value_compiler_listing_writer"
+#define AFW_WRITER_SELF_T afw_value_compiler_listing_t
 #include "afw_writer_impl_declares.h"
 
 static const afw_utf8_octet_t
@@ -80,7 +81,7 @@ impl_afw_writer_write_raw_cb(
  */
 void
 impl_afw_writer_release(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Don't do anything. */
@@ -93,7 +94,7 @@ impl_afw_writer_release(
  */
 void
 impl_afw_writer_flush(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Ignore flush. */
@@ -177,13 +178,11 @@ impl_write_source_line(
  */
 void
 impl_afw_writer_write(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
     afw_size_t count, i;
     const afw_octet_t *c;
     afw_boolean_t line_written;
@@ -251,11 +250,9 @@ impl_afw_writer_write(
  */
 void
 impl_afw_writer_write_eol(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
 
     if (self->writer.tab) {
         APR_ARRAY_PUSH(self->ary, char) = '\n';
@@ -268,11 +265,9 @@ impl_afw_writer_write_eol(
  */
 void
 impl_afw_writer_increment_indent(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
 
     self->writer.indent++;
 }
@@ -282,11 +277,9 @@ impl_afw_writer_increment_indent(
  */
 void
 impl_afw_writer_decrement_indent(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_value_compiler_listing_t *self =
-        (afw_value_compiler_listing_t *)instance;
 
     if (self->writer.indent == 0) {
         AFW_THROW_ERROR_Z(general,
@@ -299,7 +292,7 @@ impl_afw_writer_decrement_indent(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+const afw_utf8_t *
 afw_value_compiler_listing_symbol_type_name(
     afw_value_block_symbol_type_t type)
 {
@@ -311,7 +304,7 @@ afw_value_compiler_listing_symbol_type_name(
 
 
 
-AFW_DEFINE_INTERNAL(const afw_utf8_t *)
+const afw_utf8_t *
 afw_value_compiler_listing_for_child(
     const afw_value_t *instance,
     const afw_writer_t *writer,
@@ -385,7 +378,7 @@ impl_symbol_listing(
 
 
 /* Decompile a value to a compiler listing string. */
-AFW_DEFINE_INTERNAL(afw_value_compiler_listing_t *)
+afw_value_compiler_listing_t *
 afw_value_compiler_listing_to_string_instance(
     const afw_value_t *value,
     afw_value_compiler_listing_t *parent,
@@ -626,7 +619,7 @@ afw_value_compiler_listing_to_string(
 
 
 /* Decompile a value to a compiler listing string. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_begin_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
@@ -687,7 +680,7 @@ afw_value_compiler_listing_begin_value(
 
 
 /* Decompile a value to a compiler listing string. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_end_value(
     const afw_writer_t *writer,
     const afw_value_t *value,
@@ -698,7 +691,7 @@ afw_value_compiler_listing_end_value(
 
 
 /* Decompile call args. */
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_call_args(
     const afw_writer_t *writer,
     const afw_value_call_args_t *args,
@@ -715,8 +708,8 @@ afw_value_compiler_listing_call_args(
 
 
 
-/* Decompile Value::. */
-AFW_DEFINE_INTERNAL(void)
+/* List one value in a compiler listing (human-oriented; not decompile). */
+void
 afw_value_compiler_listing_value(
     const afw_value_t *instance,
     const afw_writer_t *writer,
@@ -726,13 +719,21 @@ afw_value_compiler_listing_value(
         afw_writer_write_utf8(writer, afw_s_undefined, xctx);
         afw_writer_write_eol(writer, xctx);
     }
+    /*
+     * Switch "default" uses a unique permanent null for identity. Show a clear
+     * label so listings are not confused with ordinary null.
+     */
+    else if (instance == afw_value_unique_default_case_value) {
+        afw_writer_write_z(writer, "switch_default", xctx);
+        afw_writer_write_eol(writer, xctx);
+    }
     else {
         afw_value_produce_compiler_listing(instance, writer, xctx);
     }
 }
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_value_compiler_listing_name_and_type(
     const afw_writer_t *writer,
     const afw_utf8_t *name,
@@ -746,21 +747,7 @@ afw_value_compiler_listing_name_and_type(
         if (name) {
             afw_writer_write_z(writer, ": ", xctx);
         }
-        if (type->data_type) {
-            afw_writer_write_utf8(writer,
-                &type->data_type->data_type_id, xctx);
-            if (type->data_type_parameter_contextual) {
-                afw_writer_write_z(writer, "<", xctx);
-                afw_writer_write(writer,
-                    type->data_type_parameter_contextual->compiled_value->
-                        full_source->s +
-                        type->data_type_parameter_contextual->value_offset,
-                    type->data_type_parameter_contextual->value_size,
-                    xctx);
-                afw_writer_write_z(writer, ">", xctx);
-            }
-        }
-        else {
+        if (!afw_value_decompile_type(type, writer, xctx)) {
             afw_writer_write_z(writer, "any", xctx);
         }
     }

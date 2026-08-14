@@ -25,11 +25,18 @@ alwaysApply: false
 - Optional per-srcdir hook: `generate/additional_generate/additional_generate.py`.
 - Doxygen (`@file` / `@brief` / `@details` / …) is used for afwdev docs. Keep it; do not add changelog or attribution comments.
 
+## Handbook XML (`build --docs` / `--fulldev`)
+
+- Source: `src/*/doc/**/*.xml`. Renderer: `_afwdev/build/docs/docs.py` + `docs_html.py`.
+- Supported inline tags include **`literal`** (→ `<code>`), **`strong`**, **`italic`**. Tags must have both a branch in `docs.py` **and** a method on `DocsHtml` (templates under `_resources/html_templates/`).
+- Unsupported tags log **`Unknown element: …`** (e.g. DocBook **`emphasis`** is not recognized). Missing methods crash the docs build (`AttributeError`).
+- **`--cdev` does not build the handbook.** Prefer **`./afwdev build --fulldev`** before commit/push when docs (or broader work) changed (`--all --generate --clean --install --scan` + `-j`). Docs-only exists; `--fulldev` is not much longer and also regenerates version headers / scans C.
+
 ## Related commands agents run
 ```bash
 # Use ./afwdev when the build installs/refreshes afwdev itself
-./afwdev build --cdev -j
+./afwdev build --cdev          # implies -j
 afwdev test -j
 afwdev validate --pattern '...'
-./afwdev build --all --install -j   # full repo including JS + docs
+./afwdev build --fulldev       # full package dev install (C, docs, JS, scan); implies -j
 ```

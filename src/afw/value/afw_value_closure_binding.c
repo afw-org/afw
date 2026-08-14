@@ -152,6 +152,8 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #closure_binding(script_function_definition).
  */
 void
 impl_afw_value_decompile(
@@ -159,6 +161,12 @@ impl_afw_value_decompile(
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
+    const afw_value_t *argv[1];
+
+    afw_value_decompile_write_synthetic_function_name(
+        (const afw_value_t *)self, writer, xctx);
+    argv[0] = (const afw_value_t *)self->script_function_definition;
+    afw_value_decompile_value_list(writer, 1, argv, xctx);
 }
 
 
@@ -176,8 +184,13 @@ impl_afw_value_get_info(
     info->value_inf_id = &self->inf->rti.implementation_id;
     //contextual
     //detail
-    info->evaluated_data_type =
-        self->script_function_definition->returns->data_type;
+    if (self->script_function_definition->returns &&
+        self->script_function_definition->returns->kind ==
+            afw_value_type_kind_data_type)
+    {
+        info->evaluated_data_type =
+            self->script_function_definition->returns->data_type;
+    }
     info->optimized_value = (const afw_value_t *)self;
     //extended_value_type
 }

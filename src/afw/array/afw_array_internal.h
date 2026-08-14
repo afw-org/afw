@@ -17,9 +17,9 @@
  */
 
 /**
-*  \file afw_array_internal.h
-*  \brief Internal header file for Adaptive Framework List
-*/
+ * @file afw_array_internal.h
+ * @brief Internal declarations for adaptive array/list implementations.
+ */
 
 AFW_BEGIN_DECLARES
 

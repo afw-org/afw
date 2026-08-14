@@ -11,7 +11,14 @@
 #include "afw_command_local_server.h"
 #include <apr_file_io.h>
 #include <apr_getopt.h>
+#include <apr_signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#ifdef AFW_COMMAND_HAVE_LIBEDIT
+#include <histedit.h>
+#endif
 
 /**
  * @addtogroup afw_command_internal
@@ -26,6 +33,39 @@
  * can change between releases and even between patches, so do not use outside
  * of the source for this command.
  */
+
+#ifdef AFW_COMMAND_HAVE_LIBEDIT
+/* Default number of history entries kept for interactive sessions. */
+#define AFW_COMMAND_HISTORY_SIZE 500
+#endif
+
+/*
+ * Base xctx for SIGTERM/SIGINT. Handler only sets env->terminating so
+ * long I/O / retrieve paths can AFW_XCTX_THROW_IF_TERMINATING. No accept
+ * wake (unlike afwfcgi); one-shot, interactive, and --local stay simple.
+ */
+static afw_xctx_t *impl_signal_xctx;
+
+static void
+impl_handle_terminating_signal(int signum)
+{
+    afw_environment_t *env;
+
+    (void)signum;
+    if (impl_signal_xctx && impl_signal_xctx->env) {
+        env = (afw_environment_t *)impl_signal_xctx->env;
+        env->terminating = true;
+    }
+}
+
+static void
+impl_install_terminating_signal_handlers(afw_xctx_t *xctx)
+{
+    impl_signal_xctx = xctx;
+    apr_signal(SIGTERM, impl_handle_terminating_signal);
+    apr_signal(SIGINT, impl_handle_terminating_signal);
+}
+
 
 static void
 impl_print_result(afw_command_self_t *self, const char *format, ...);
@@ -42,6 +82,12 @@ impl_print_end(afw_command_self_t *self);
 
 static int
 impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx);
+
+static void
+impl_line_editing_init(afw_command_self_t *self, afw_xctx_t *xctx);
+
+static void
+impl_line_editing_cleanup(afw_command_self_t *self);
 
 
 /* Command line options. */
@@ -103,6 +149,13 @@ static const char * impl_additional_help_text =
     "Each line read from stdin is evaluated as an adaptive expressions\n"
     "until either a line containing only \"exit\" or end of file is\n"
     "encountered.\n"
+#ifdef AFW_COMMAND_HAVE_LIBEDIT
+    "When stdin is a terminal, line editing and command history are\n"
+    "available; history is stored in ~/.afw_history when HOME is set.\n"
+#else
+    "Line editing and command history are not available in this build\n"
+    "because it was not linked with libedit.\n"
+#endif
     "\n"
     "If [IN] is specified but -s is not, the file is evaluated as an\n"
     "adaptive script.\n"
@@ -153,6 +206,225 @@ impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
 }
 
 
+#ifdef AFW_COMMAND_HAVE_LIBEDIT
+
+/* Prompt callback for libedit (primary or continuation). */
+static char *
+impl_editline_prompt(EditLine *el)
+{
+    afw_command_self_t *self;
+
+    self = NULL;
+    (void)el_get(el, EL_CLIENTDATA, &self);
+    if (self && self->prompt_continuation) {
+        return (char *)"> ";
+    }
+    return (char *)"afw> ";
+}
+
+
+/* Append octets to the input buffer. */
+static void
+impl_input_buffer_append(
+    afw_command_self_t *self,
+    const char *s,
+    size_t len)
+{
+    size_t i;
+
+    for (i = 0; i < len; i++) {
+        APR_ARRAY_PUSH(self->input_buffer, unsigned char) = (unsigned char)s[i];
+    }
+}
+
+
+/* Initialize libedit for interactive TTY sessions. */
+static void
+impl_line_editing_init(afw_command_self_t *self, afw_xctx_t *xctx)
+{
+    EditLine *el;
+    History *hist;
+    HistEvent ev;
+    const char *home;
+    size_t home_len;
+    size_t path_len;
+
+    AFW_ASSERT(self);
+    AFW_ASSERT(xctx);
+
+    /* Only for interactive mode with a terminal stdin. */
+    if (!self->interactive_mode) {
+        return;
+    }
+    if (!isatty(fileno(self->fd_input))) {
+        return;
+    }
+
+    /*
+     * Prompts and editing go to stderr so evaluated results on stdout stay
+     * clean when stdout is redirected.
+     */
+    el = el_init("afw", self->fd_input, stderr, stderr);
+    if (!el) {
+        return;
+    }
+
+    hist = history_init();
+    if (!hist) {
+        el_end(el);
+        return;
+    }
+
+    memset(&ev, 0, sizeof(ev));
+    history(hist, &ev, H_SETSIZE, AFW_COMMAND_HISTORY_SIZE);
+
+    home = getenv("HOME");
+    if (home && home[0]) {
+        home_len = strlen(home);
+        path_len = home_len + sizeof("/.afw_history");
+        self->history_path = afw_pool_malloc(xctx->p, path_len, xctx);
+        memcpy(self->history_path, home, home_len);
+        memcpy(self->history_path + home_len, "/.afw_history",
+            sizeof("/.afw_history"));
+        history(hist, &ev, H_LOAD, self->history_path);
+    }
+
+    el_set(el, EL_CLIENTDATA, self);
+    el_set(el, EL_PROMPT, impl_editline_prompt);
+    el_set(el, EL_EDITOR, "emacs");
+    el_set(el, EL_SIGNAL, 1);
+    el_set(el, EL_HIST, history, hist);
+
+    self->editline = el;
+    self->editline_history = hist;
+    self->use_line_editing = true;
+}
+
+
+/* Save history and tear down libedit. */
+static void
+impl_line_editing_cleanup(afw_command_self_t *self)
+{
+    HistEvent ev;
+    History *hist;
+
+    if (!self) {
+        return;
+    }
+
+    hist = (History *)self->editline_history;
+
+    /* Persist history before releasing EditLine (it may still reference hist). */
+    if (hist && self->history_path) {
+        memset(&ev, 0, sizeof(ev));
+        history(hist, &ev, H_SAVE, self->history_path);
+    }
+
+    /* End EditLine before History; EditLine holds the EL_HIST pointer. */
+    if (self->editline) {
+        el_end((EditLine *)self->editline);
+        self->editline = NULL;
+    }
+
+    if (hist) {
+        history_end(hist);
+        self->editline_history = NULL;
+    }
+
+    self->use_line_editing = false;
+}
+
+
+/* Get one logical line via libedit (including \ continuation). */
+static afw_utf8_t *
+impl_get_input_libedit(afw_command_self_t *self, afw_xctx_t *xctx)
+{
+    const char *line;
+    int count;
+    size_t len;
+    afw_boolean_t continued;
+    afw_boolean_t had_continuation;
+    HistEvent ev;
+
+    self->prompt_continuation = false;
+    had_continuation = false;
+
+    for (;;) {
+        line = el_gets((EditLine *)self->editline, &count);
+        if (!line || count <= 0) {
+            self->eof = true;
+            break;
+        }
+
+        len = (size_t)count;
+
+        /*
+         * Line ending with '\' followed by newline continues onto the
+         * next physical line (same rule as the fgetc path).
+         */
+        continued = false;
+        if (len >= 2 &&
+            line[len - 1] == '\n' &&
+            line[len - 2] == '\\')
+        {
+            continued = true;
+            len -= 2; /* drop backslash and newline */
+        }
+
+        impl_input_buffer_append(self, line, len);
+
+        if (continued) {
+            had_continuation = true;
+            self->prompt_continuation = true;
+            continue;
+        }
+
+        /* Enter complete logical line into history. */
+        if (self->editline_history && self->input_buffer->nelts > 0) {
+            memset(&ev, 0, sizeof(ev));
+            /*
+             * history() expects a NUL-terminated C string. Use the just-read
+             * line when it is a single physical line; otherwise terminate a
+             * copy of the assembled buffer.
+             */
+            if (!had_continuation && count > 0) {
+                history((History *)self->editline_history, &ev, H_ENTER, line);
+            }
+            else {
+                APR_ARRAY_PUSH(self->input_buffer, unsigned char) = 0;
+                history((History *)self->editline_history, &ev, H_ENTER,
+                    self->input_buffer->elts);
+                apr_array_pop(self->input_buffer);
+            }
+        }
+        break;
+    }
+
+    self->prompt_continuation = false;
+
+    return (self->input_buffer->nelts == 0)
+        ? NULL
+        : (afw_utf8_t *)afw_utf8_create(self->input_buffer->elts,
+            self->input_buffer->nelts, xctx->p, xctx);
+}
+
+#else /* !AFW_COMMAND_HAVE_LIBEDIT */
+
+static void
+impl_line_editing_init(afw_command_self_t *self, afw_xctx_t *xctx)
+{
+    (void)self;
+    (void)xctx;
+}
+
+static void
+impl_line_editing_cleanup(afw_command_self_t *self)
+{
+    (void)self;
+}
+
+#endif /* AFW_COMMAND_HAVE_LIBEDIT */
+
 
 /* Get input. */
 static afw_utf8_t *
@@ -171,8 +443,16 @@ impl_get_input(afw_command_self_t *self, afw_xctx_t *xctx)
             2000, 1);
     }
 
-    /* Read input up to a \n that is not preceded by a \ */
     apr_array_clear(self->input_buffer);
+
+#ifdef AFW_COMMAND_HAVE_LIBEDIT
+    /* Interactive TTY: line editing and history via libedit. */
+    if (self->use_line_editing && self->editline) {
+        return impl_get_input_libedit(self, xctx);
+    }
+#endif
+
+    /* Read input up to a \n that is not preceded by a \ */
     for (prev_c = 0; ; prev_c = c) {
         c = fgetc(self->fd_input);
         if (c == EOF) {
@@ -221,11 +501,7 @@ impl_evaluate(
     }
     AFW_TRY {
        
-        /* Set environment object and qualifier in new xctx. */
-        afw_runtime_xctx_set_object(self->environment_variables_object,
-            true, xctx);
-        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
-            self->environment_variables_object, true, xctx->p, xctx);        
+        /* environment:: / process:: pushed in xctx finishup from env. */
 
         /* If input is not NULL, insure it is NFC normalized utf-8. */
         if (input) {
@@ -666,9 +942,16 @@ main(int argc, const char * const *argv) {
     /* Create Adaptive Framework environment for command. */
     AFW_ENVIRONMENT_CREATE(xctx, argc, argv, &create_error);
     if (!xctx) {
-        afw_error_print(xctx->env->stderr_fd, create_error);
+        /* xctx is NULL; use C stderr (redirects apply only after successful create). */
+        afw_error_print(stderr, create_error);
         return EXIT_FAILURE;
     }
+
+    /*
+     * SIGTERM/SIGINT: set env->terminating only (one-shot, interactive, and
+     * --local). Cooperative I/O uses AFW_XCTX_THROW_IF_TERMINATING.
+     */
+    impl_install_terminating_signal_handlers(xctx);
 
     /* stdout except for result goes to stderr.*/
     afw_environment_set_stdout_fd(stderr, xctx);
@@ -700,13 +983,7 @@ main(int argc, const char * const *argv) {
             break;
         }
 
-        /* Create and set environment object and qualifier. */
-        self->environment_variables_object =
-            afw_environment_create_environment_variables_object(false, xctx);
-        afw_runtime_xctx_set_object(self->environment_variables_object,
-            true, xctx);
-        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
-            self->environment_variables_object, true, xctx->p, xctx);        
+        /* environment:: / process:: created at env create; pushed on base xctx. */
 
         /* If extension specified, load it. */
         if (self->extension.len > 0) {
@@ -787,6 +1064,7 @@ main(int argc, const char * const *argv) {
 
         if (self->interactive_mode) {
             self->source_location = afw_command_s_afw_command_interactive;
+            impl_line_editing_init(self, xctx);
         }
 
         /* If script, only evaluate once. */
@@ -832,6 +1110,10 @@ main(int argc, const char * const *argv) {
                     "afw " AFW_VERSION_STRING "\n\n"
                     "Input will be evaluated as entered.  "
                     "Type exit to end.\n");
+                if (self->use_line_editing) {
+                    impl_print_result(self,
+                        "Line editing and command history are enabled.\n");
+                }
             }
             impl_print_end(self);
 
@@ -848,6 +1130,11 @@ main(int argc, const char * const *argv) {
 
     /* Make sure things are cleaned up. */
     AFW_FINALLY{
+
+        /* Tear down interactive line editing / history. */
+        if (self) {
+            impl_line_editing_cleanup(self);
+        }
 
         /* If [IN] specified and file open, close it. */
         if (self && self->fd_input && self->in_z) {

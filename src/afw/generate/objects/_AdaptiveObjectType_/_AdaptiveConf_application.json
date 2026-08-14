@@ -70,9 +70,10 @@
         },
         "extensionModulePaths": {
             "brief": "List of modulePaths of extensions to load at startup",
+            "contextType": "process",
             "dataType": "array",
-            "dataTypeParameter": "string",
-            "description": "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
+            "dataTypeParameter": "template",
+            "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",
             "label": "Extension Module Paths",
             "required": false
         },
@@ -113,7 +114,7 @@
             "brief": "Root file paths",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveRootFilePaths_",
-            "description": "The properties of this object are the root file paths used by open_file().",
+            "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
             "label": "Root File Paths",
             "required": false
         },

@@ -1,0 +1,24 @@
+{
+    "afwCamelCaseFunctionLabel": "afwPop",
+    "brief": "Remove and return last array value",
+    "camelCaseFunctionLabel": "pop",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Remove the last value from a mutable array and return it. If the array is empty, returns undefined.",
+    "functionId": "pop",
+    "functionLabel": "pop",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "Target array. Must not be immutable.",
+            "name": "array"
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "description": "The removed value, or undefined if the array was empty."
+    },
+    "sideEffects": [
+        "Target array is modified."
+    ]
+}

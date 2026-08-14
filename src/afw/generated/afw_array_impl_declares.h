@@ -72,7 +72,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_array_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_ARRAY_IMPL_DECLARES_H__
@@ -164,7 +164,7 @@ impl_afw_array_get_entry_value(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_next_entry_meta(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
@@ -174,7 +174,7 @@ impl_afw_array_get_next_entry_meta(
 AFW_DECLARE_STATIC(afw_boolean_t)
 impl_afw_array_get_next_internal(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t * xctx);
@@ -185,8 +185,17 @@ impl_afw_array_get_next_internal(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_array_get_next_value(
     AFW_ARRAY_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_array_initialize_iterator
+/* Declare method initialize_iterator */
+AFW_DECLARE_STATIC(void)
+impl_afw_array_initialize_iterator(
+    AFW_ARRAY_SELF_T *self,
+    const afw_iterator_t * iterator,
     afw_xctx_t * xctx);
 #endif
 
@@ -239,6 +248,8 @@ impl_afw_array_inf = {
     impl_afw_array_get_next_internal,
     (afw_array_get_next_value_t)
     impl_afw_array_get_next_value,
+    (afw_array_initialize_iterator_t)
+    impl_afw_array_initialize_iterator,
     (afw_array_get_setter_t)
     impl_afw_array_get_setter
 };

@@ -398,7 +398,7 @@ afw_ldap_internal_expression_from_filter_entry(
                 AFW_UTF8_FMT_ARG(property_value));
             break;
         default:
-            AFW_THROW_ERROR_Z(general,
+            AFW_THROW_ERROR_Z(query_too_complex,
                 "query operator not supported by LDAP", xctx);
             break;
     }

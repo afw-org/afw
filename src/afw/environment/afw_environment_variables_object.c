@@ -9,7 +9,13 @@
 
 /**
  * @file afw_environment_variables_object.c
- * @brief Implementation of afw_object interface for environment variables.
+ * @brief Implementation of afw_object interface for process environment variables.
+ *
+ * Lazy object over process environ/getenv. Values are Adaptive string when the
+ * external bytes are valid UTF-8 (NFC), otherwise hexBinary. Property names that
+ * are not valid UTF-8 are exposed as "_NONUTF8_" + lowercase hex of the raw
+ * name. First access caches into an internal memory object; retrieve prefers
+ * cached/set properties and does not emit duplicates.
  */
 
 #include "afw.h"
@@ -17,7 +23,9 @@
 
 
 /* Declares and rti/inf defines for interface afw_object */
-#define AFW_IMPLEMENTATION_ID "fcgi"
+#define AFW_IMPLEMENTATION_ID "environment_variables"
+typedef struct impl_self_s impl_self_t;
+#define AFW_OBJECT_SELF_T impl_self_t
 #include "afw_object_impl_declares.h"
 
 typedef struct impl_self_s {
@@ -28,47 +36,76 @@ typedef struct impl_self_s {
 } impl_self_t;
 
 
-/* Called first time impl_afw_object_get_next_property() is called. */
+/* Get process environ pointer (Windows-aware). */
+static char **
+impl_get_environ(void)
+{
+#if defined(WIN) && (_MSC_VER >= 1900)
+    return *__p__environ();
+#else
+    extern char **environ;
+    return environ;
+#endif
+}
+
+
+/*
+ * Parse one environ entry "name=value", create property name and value, and
+ * set on the cache if the name is not already present (cache preferred).
+ */
+static void
+impl_cache_environ_entry(
+    impl_self_t *self,
+    const char *entry,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_octet_t *s;
+    const afw_utf8_octet_t *c;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+    afw_size_t name_len;
+    const afw_utf8_octet_t *value_octets;
+    afw_size_t value_len;
+
+    if (!entry) {
+        return;
+    }
+
+    for (s = c = (const afw_utf8_octet_t *)entry; *c && *c != '='; c++);
+    name_len = (afw_size_t)(c - s);
+    property_name = afw_utf8_create_property_name_from_external_octets(
+        s, name_len, self->pub.p, xctx);
+
+    if (afw_object_has_property(self->properties, property_name, xctx)) {
+        return;
+    }
+
+    if (!*c) {
+        value = afw_v_a_empty_string;
+    }
+    else {
+        value_octets = c + 1;
+        value_len = strlen(value_octets);
+        value = afw_value_create_from_external_octets(
+            value_octets, value_len, self->pub.p, xctx);
+    }
+
+    afw_object_set_property(self->properties, property_name, value, xctx);
+}
+
+
+/* Load all process environment variables into the cache (non-duplicates). */
 static void
 impl_load_all_variables(impl_self_t *self, afw_xctx_t *xctx)
 {
-    char ** envp;
-    const afw_utf8_octet_t *s;
-    const afw_utf8_octet_t *c;
-    afw_utf8_t property_name;
-    const afw_value_t *value;
+    char **envp;
 
-    /* Get point to environment variables special way for Windows. */
-#if defined(WIN) && (_MSC_VER >= 1900)
-    envp = *__p__environ();
-#else
-    extern char ** environ;
-    envp = environ;
-#endif
-
-    /* Loop adding missing variables. */
-    for (; *envp != 0; envp++) {
-        property_name.s = *envp;
-        for (s = c = *envp; *c && *c != '='; c++);
-        property_name.len = c - s;
-
-        if (!afw_object_has_property(self->properties, &property_name, xctx)) {
-            if (!*c) {
-                value = afw_v_a_empty_string;
-            }
-            else {
-                value = afw_value_create_string_from_u8z(c + 1,
-                    self->pub.p, xctx);
-            }
-            afw_object_set_property(self->properties,
-                afw_utf8_clone(&property_name, self->pub.p, xctx),
-                value, xctx);
-        }
+    envp = impl_get_environ();
+    for (; envp && *envp != 0; envp++) {
+        impl_cache_environ_entry(self, *envp, xctx);
     }
 
-    /* Indicate loaded. */
     self->all_variables_loaded = true;
-
 }
 
 
@@ -81,7 +118,7 @@ afw_environment_create_environment_variables_object(
     impl_self_t *self;
     const afw_pool_t *p;
 
-    static const afw_utf8_t impl_path = 
+    static const afw_utf8_t impl_path =
         AFW_UTF8_LITERAL("/afw/_AdaptiveEnvironmentVariables_/current");
 
     /* Allocate memory for self and initialize. */
@@ -96,7 +133,7 @@ afw_environment_create_environment_variables_object(
     self->pub.meta.object_type_uri = afw_s__AdaptiveEnvironmentVariables_;
     self->pub.meta.object_uri = &impl_path;
 
-    /* Create request properties object. */
+    /* Empty memory object used as first-access cache. */
     self->properties = afw_object_create_cede_p(p, xctx);
 
     if (preload_variables) {
@@ -113,10 +150,9 @@ afw_environment_create_environment_variables_object(
  */
 void
 impl_afw_object_release(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
 
     afw_object_release(self->properties, xctx);
 }
@@ -128,10 +164,9 @@ impl_afw_object_release(
  */
 void
 impl_afw_object_get_reference (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
 
     afw_object_get_reference(self->properties, xctx);
 }
@@ -141,11 +176,10 @@ impl_afw_object_get_reference (
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t * xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
- 
+
     /* If all variable not loaded yet, load them. */
     if (!self->all_variables_loaded) {
         impl_load_all_variables(self, xctx);
@@ -159,14 +193,13 @@ impl_afw_object_get_count(
  */
 const afw_value_t *
 impl_afw_object_get_meta(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     return afw_object_impl_get_meta(
-        instance, p, xctx);
+        &self->pub, p, xctx);
 }
-
 
 
 /*
@@ -174,29 +207,32 @@ impl_afw_object_get_meta(
  */
 const afw_value_t *
 impl_afw_object_get_property(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
-    const void *s;
+    const char *s;
     const afw_value_t *value;
     const afw_utf8_z_t *property_name_z;
 
-    /* Look for property in memory first. */
+    /* Look for property in cache first. */
     value = afw_object_get_property(self->properties, property_name,
         xctx);
     if (value) {
         return value;
     }
 
-    /* If not in memory, try FCGX_GetParam(). */
+    /*
+     * Lazy getenv for UTF-8 property names. Synthetic _NONUTF8_* names are
+     * only populated via load_all / iterate (raw name is not a C string key).
+     */
     value = NULL;
     property_name_z = afw_utf8_z_create(property_name->s, property_name->len,
         xctx->p, xctx);
     s = getenv(property_name_z);
     if (s) {
-        value = afw_value_make_string_copy(s, AFW_UTF8_Z_LEN, xctx->p, xctx);
+        value = afw_value_create_from_external_z(s, self->pub.p, xctx);
+        afw_object_set_property(self->properties, property_name, value, xctx);
     }
 
     return value;
@@ -209,13 +245,13 @@ impl_afw_object_get_property(
  */
 const afw_value_t *
 impl_afw_object_get_property_meta(
-    const afw_object_t *instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t *property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     return afw_object_impl_get_property_meta(
-        instance, property_name, p, xctx);
+        &self->pub, property_name, p, xctx);
 }
 
 
@@ -225,19 +261,17 @@ impl_afw_object_get_property_meta(
  */
 const afw_value_t *
 impl_afw_object_get_next_property(
-    const afw_object_t * instance,
-    const afw_iterator_t * * iterator,
+    AFW_OBJECT_SELF_T *self,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
-    impl_self_t *self = (impl_self_t *)instance;
- 
-    /* If all variable not loaded yet, load them. */
+
+    /* Materialize full environ into cache once; cache is source of truth. */
     if (!self->all_variables_loaded) {
         impl_load_all_variables(self, xctx);
     }
 
-    /* Call method of properties object. */
     return afw_object_get_next_property(self->properties,
         iterator, property_name, xctx);
 }
@@ -249,14 +283,14 @@ impl_afw_object_get_next_property(
  */
 const afw_value_t *
 impl_afw_object_get_next_property_meta(
-    const afw_object_t *instance,
-    const afw_iterator_t **iterator,
+    AFW_OBJECT_SELF_T *self,
+    const afw_iterator_old_t **iterator,
     const afw_utf8_t **property_name,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
     return afw_object_impl_get_next_property_meta(
-        instance, iterator, property_name, p, xctx);
+        &self->pub, iterator, property_name, p, xctx);
 }
 
 
@@ -266,15 +300,13 @@ impl_afw_object_get_next_property_meta(
  */
 afw_boolean_t
 impl_afw_object_has_property(
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
     const afw_value_t *value;
 
-    /* Call impl_get_own_property and throw away value. */
-    value = impl_afw_object_get_property(
-        instance, property_name, xctx);
+    value = impl_afw_object_get_property(self, property_name, xctx);
 
     return (value != NULL);
 }
@@ -286,7 +318,7 @@ impl_afw_object_has_property(
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter (
-    const afw_object_t * instance,
+    AFW_OBJECT_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Is readonly. */

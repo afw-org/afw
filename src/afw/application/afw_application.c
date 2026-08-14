@@ -8,7 +8,7 @@
 
 /**
  * @file afw_application.c
- * @brief Application functions.
+ * @brief Application conf, qualified variables, and startup.
  */
 
 #include "afw_internal.h"
@@ -44,6 +44,9 @@ impl_conf_object_cb(
  * Note: Make sure to update
  * afw_application_internal_register_basic_application_context_type()
  * with parallel changes to this function.
+ *
+ * get_cb: C NULL = not this frame; non-NULL = defined here (use
+ * afw_value_undefined for present undefined — permanent singleton).
  */
 static const afw_value_t *
 impl_current_get_variable_cb(
@@ -54,9 +57,12 @@ impl_current_get_variable_cb(
     const afw_value_t *result;
     afw_integer_t pid;
 
+    (void)entry;
+
     result = NULL;
     if (afw_utf8_equal(name, afw_s_mode)) {
-        result = xctx->mode;
+        /* Always defined on app current; mode is set at env create. */
+        result = xctx->mode ? xctx->mode : afw_value_undefined;
     }
     else if (afw_utf8_equal(name, afw_s_pid)) {
         pid = afw_os_get_pid();
@@ -74,6 +80,40 @@ impl_current_get_variable_cb(
 }
 
 
+static void
+impl_current_contribute_variables_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t include_untrusted,
+    afw_xctx_t *xctx)
+{
+    static const afw_utf8_t * const names[] = {
+        afw_s_mode,
+        afw_s_pid,
+        afw_s_xctxUUID,
+        afw_s_programName,
+        NULL
+    };
+    const afw_utf8_t * const *np;
+    const afw_value_t *value;
+
+    (void)include_untrusted;
+
+    for (np = names; *np; np++) {
+        if (afw_object_has_property(object, *np, xctx)) {
+            continue;
+        }
+        value = impl_current_get_variable_cb(entry, *np, xctx);
+        if (value) {
+            afw_object_set_property(object, *np, value, xctx);
+        }
+        else {
+            afw_object_set_property(object, *np, afw_value_undefined, xctx);
+        }
+    }
+}
+
+
 
 void
 afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
@@ -82,7 +122,21 @@ afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
 
     /* Push current:: qualifier. */
     afw_xctx_qualifier_stack_qualifier_push(afw_s_current, NULL, true,
-        impl_current_get_variable_cb, NULL, xctx->p, xctx);
+        impl_current_get_variable_cb, impl_current_contribute_variables_cb,
+        NULL, xctx->p, xctx);
+
+    /*
+     * Process ambient qualifiers (environment::, process::). Objects are
+     * created once at environment create; push only (issue #71).
+     */
+    if (env->environment_variables_object) {
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
+            env->environment_variables_object, true, xctx->p, xctx);
+    }
+    if (env->process_object) {
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_process,
+            env->process_object, true, xctx->p, xctx);
+    }
 
     /* If there is an application qualifier, push application qualifier. */
     if (env->application_object) {
@@ -109,11 +163,98 @@ void
 afw_application_internal_register_basic_application_context_type(
     afw_xctx_t *xctx)
 {
+    const afw_object_t *process_context_type_object;
     const afw_object_t *context_type_object;
+    const afw_object_t *qualifier_definitions;
     const afw_object_t *variable_definitions;
 
+    /*
+     * Context type "process": ambient process-level qualifiers available
+     * after environment create (environment:: and process::).
+     */
+    process_context_type_object = afw_context_type_create(
+        afw_s_process, xctx->env->p, xctx);
+    afw_object_set_property_as_string_from_utf8_z(
+        process_context_type_object, afw_s_description,
+        "Process-level qualifiers available after environment create: "
+        "environment:: (process environment variables) and process:: "
+        "(invocation: args, programName). Distinct from request::.",
+        xctx);
+
+    /* environment:: — open-ended process env names. */
+    variable_definitions =
+        afw_context_type_insure_variable_definitions_object_exists(
+            process_context_type_object, afw_s_environment, xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_HOME, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "HOME",
+        "Example process environment variable. Any process env name is "
+        "available as environment::<name>.",
+        NULL, NULL,
+        xctx);
+
+    /* process:: — invocation and process identity. */
+    variable_definitions =
+        afw_context_type_insure_variable_definitions_object_exists(
+            process_context_type_object, afw_s_process, xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_args, afw_s_runtime,
+        &afw_value_unmanaged_array_inf,
+        "Arguments",
+        "Command-line arguments (array of string) from process start. "
+        "Use length(process::args) for the count.",
+        "string", NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_programName, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "Program Name",
+        "Base name of args[0] (e.g. afw, afwfcgi).",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_pid, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Pid",
+        "Operating system process id at environment create.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_cwd, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "Working Directory",
+        "Working directory snapshot at environment create.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_afwVersion, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "AFW Version",
+        "Active libafw version string.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_startTime, afw_s_runtime,
+        &afw_value_unmanaged_dateTime_inf,
+        "Start Time",
+        "Local dateTime when the Adaptive environment was created.",
+        NULL, NULL,
+        xctx);
+
+    afw_environment_register_context_type(afw_s_process,
+        process_context_type_object, xctx);
+
+    /* Context type "application" — includes process ambient via parentPaths. */
     context_type_object = afw_context_type_create(
         afw_s_application, xctx->env->p, xctx);
+
+    qualifier_definitions =
+        afw_context_type_insure_qualifier_definitions_object_exists(
+            context_type_object, xctx);
+    afw_object_meta_add_parent_path(qualifier_definitions,
+        afw_s_a_context_type_process_qualifier_definitions_path,
+        xctx);
 
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
@@ -131,7 +272,7 @@ afw_application_internal_register_basic_application_context_type(
         afw_s_pid, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
         "Pid",
-        "The current processor id.",
+        "Deprecated: use process::pid. Process id (still provided on current:: for compatibility).",
         NULL, NULL,
         xctx);
 
@@ -139,7 +280,7 @@ afw_application_internal_register_basic_application_context_type(
         afw_s_programName, afw_s_runtime,
         &afw_value_unmanaged_string_inf,
         "Program Name",
-        "The current program name.",
+        "Deprecated: use process::programName. Program base name (still provided on current:: for compatibility).",
         NULL, NULL,
         xctx);
 
@@ -168,7 +309,7 @@ afw_application_internal_application_conf_type_create_cede_p(
     const afw_utf8_t *application_id;
     const afw_utf8_t *conf_adapter_id;
     const afw_adapter_session_t *session;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_value_t *entry_value;
     const afw_utf8_t *property_name;
@@ -178,7 +319,12 @@ afw_application_internal_application_conf_type_create_cede_p(
     const afw_object_t *variable_definitions_object;
     const afw_array_t *default_flags;
     const afw_utf8_t * const *extension_id;
-    const afw_utf8_t * const *module_path;
+    const afw_value_t * const *module_path_values;
+    const afw_value_t *evaluated;
+    const afw_utf8_t *module_path;
+    const afw_utf8_t *full_path;
+    const afw_object_t *root_file_paths;
+    const afw_object_t *normalized_root_file_paths;
     const afw_utf8_t *detail_source_location;
     const afw_object_t *object;
     const afw_utf8_t *s;
@@ -325,11 +471,26 @@ afw_application_internal_application_conf_type_create_cede_p(
     value = afw_object_get_property(env->application_object,
         afw_s_extensionModulePaths, xctx);
     if (value) {
-        for (module_path = afw_value_as_array_of_utf8(value, p, xctx);
-            *module_path;
-            module_path++)
+        detail_source_location = afw_utf8_printf(p, xctx,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(source_location),
+            AFW_UTF8_FMT_ARG(afw_s_extensionModulePaths));
+        for (module_path_values = afw_value_as_array_of_values(value, p, xctx);
+            *module_path_values;
+            module_path_values++)
         {
-            afw_environment_load_extension(NULL, *module_path, NULL, xctx);
+            evaluated = afw_value_compile_and_evaluate_as(
+                *module_path_values, detail_source_location,
+                afw_compile_type_template, p, xctx);
+            if (!afw_value_is_string(evaluated)) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                    "extensionModulePaths entries must evaluate to string",
+                    AFW_UTF8_FMT_ARG(detail_source_location));
+            }
+            module_path =
+                &((const afw_value_string_t *)evaluated)->internal;
+            afw_environment_load_extension(NULL, module_path, NULL, xctx);
         }
     }
 
@@ -337,9 +498,44 @@ afw_application_internal_application_conf_type_create_cede_p(
     context_type_object = afw_environment_get_context_type(afw_s_application,
         xctx);
 
-    /* rootFilePaths */
-    env->root_file_paths = afw_object_old_get_property_as_object(
+    /*
+     * rootFilePaths: evaluate each host directory as a template and resolve
+     * to a full path at application create (issue #15).
+     */
+    root_file_paths = afw_object_old_get_property_as_object(
         env->application_object, afw_s_rootFilePaths, xctx);
+    env->root_file_paths = NULL;
+    if (root_file_paths) {
+        detail_source_location = afw_utf8_printf(p, xctx,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(source_location),
+            AFW_UTF8_FMT_ARG(afw_s_rootFilePaths));
+        normalized_root_file_paths = afw_object_create(p, xctx);
+        for (iterator = NULL;;) {
+            value = afw_object_get_next_property(root_file_paths, &iterator,
+                &property_name, xctx);
+            if (!value) {
+                break;
+            }
+            evaluated = afw_value_compile_and_evaluate_as(
+                value, detail_source_location,
+                afw_compile_type_template, p, xctx);
+            if (!afw_value_is_string(evaluated)) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                    "rootFilePaths." AFW_UTF8_FMT
+                    " must evaluate to string",
+                    AFW_UTF8_FMT_ARG(detail_source_location),
+                    AFW_UTF8_FMT_ARG(property_name));
+            }
+            full_path = afw_file_insure_full_path(
+                &((const afw_value_string_t *)evaluated)->internal,
+                p, xctx);
+            afw_object_set_property_as_string(normalized_root_file_paths,
+                property_name, full_path, xctx);
+        }
+        env->root_file_paths = normalized_root_file_paths;
+    }
 
     /* defaultFlags */
     default_flags = afw_object_old_get_property_as_array(env->application_object,

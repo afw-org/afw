@@ -164,9 +164,10 @@ class miscellaneous
     /**
      * is_defined()
      *
-     * Test value returning boolean True if it is not undefined.
+     * Return true if the value is not undefined. Does not check whether a
+     * variable name is bound — use variable_exists for that. null is defined.
      *
-     * @param  $value Value to check
+     * @param  $value Value to check.
      *
      * @return boolean True if value is not undefined.
      */
@@ -186,9 +187,10 @@ class miscellaneous
     /**
      * is_nullish()
      *
-     * Test value returning boolean True if it is null or undefined.
+     * Return true if the value is null or undefined. Does not check whether a
+     * variable name is bound — use variable_exists for that.
      *
-     * @param  $value Value to check
+     * @param  $value Value to check.
      *
      * @return boolean True if value is null or undefined.
      */
@@ -366,12 +368,16 @@ class miscellaneous
     /**
      * variable_exists()
      *
-     * Return the true if the named variable exists.
+     * Return true if the named variable is bound: a lexical symbol in the
+     * current scope chain, or a name defined on a visible qualifier frame.
+     * Still true when the value is undefined (including an uninitialized let)
+     * or null. False only when the name is not bound. Use is_defined /
+     * is_nullish for the value.
      *
-     * @param string $name Name of variable to check. The name can optionally
-     *                     be preceded with a qualifier followed by '::'.
+     * @param string $name Name of variable to check. Optionally
+     *                     qualifier::name.
      *
-     * @return boolean True if variable exists.
+     * @return boolean True if the name is bound.
      */
     public function variable_exists(, $name)
     {
@@ -389,16 +395,19 @@ class miscellaneous
     /**
      * variable_get()
      *
-     * Return the value of a variable. If variable is not available, return a
-     * default or null value.
+     * Return the value of a bound variable. Optional default applies only
+     * when the name is not bound — not when the value is undefined. If
+     * unbound and no default is given, the result is undefined. Object/array
+     * defaults get a mutable memory face (issues #110 / #17); other defaults
+     * are cloned.
      *
-     * @param string $name Name of variable to get. The name can optionally be
-     *                     preceded with a qualifier followed by '::'.
-     * @param  $defaultValue The default value of variable if it does not
-     *                       exist in object. If not specified, null value is
-     *                       the default.
+     * @param string $name Name of variable to get. Optionally
+     *                     qualifier::name.
+     * @param  $defaultValue Value to return only if the name is not bound.
+     *                       Isolated when used (object/array face; otherwise
+     *                       clone).
      *
-     * @return  Evaluated variable value or default.
+     * @return  Bound variable value, or default / undefined if unbound.
      */
     public function variable_get(, $name, $defaultValue = null)
     {
@@ -419,12 +428,15 @@ class miscellaneous
     /**
      * variable_is_not_null()
      *
-     * Return the true if the named variable exists and is not null.
+     * Return true if the named variable is bound and its value is not
+     * Adaptive null. Undefined (including an uninitialized let) counts as not
+     * null. False if the name is not bound or the value is null. This is not
+     * the same as is_defined or not is_nullish.
      *
-     * @param string $name Name of variable to check. The name can optionally
-     *                     be preceded with a qualifier followed by '::'.
+     * @param string $name Name of variable to check. Optionally
+     *                     qualifier::name.
      *
-     * @return boolean True if variable exists and is not null.
+     * @return boolean True if bound and value is not Adaptive null.
      */
     public function variable_is_not_null(, $name)
     {

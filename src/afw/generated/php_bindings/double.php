@@ -550,6 +550,31 @@ class double
     }
 
     /**
+     * mod_double()
+     *
+     * Divide double dividend by double divisor and return the double
+     * remainder.
+     *
+     * @param double $dividend
+     * @param double $divisor
+     *
+     * @return double
+     */
+    public function mod_double(, $dividend, $divisor)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "mod<double>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("dividend", $dividend);
+        $request->set("divisor", $divisor);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * multiply_double()
      *
      * Multiply 2 or more double values and return the double result.

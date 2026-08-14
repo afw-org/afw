@@ -31,6 +31,20 @@
 
 AFW_BEGIN_DECLARES
 
+/**
+ * @brief Initialize compile policy from current process/xctx flags.
+ * @param policy out; fully written.
+ * @param xctx of caller.
+ *
+ * Used at the start of each compile. #compile then mutates the policy on the
+ * compiled value only — never flag_set.
+ */
+AFW_DECLARE(void)
+afw_compile_policy_init_from_flags(
+    afw_compile_policy_t *policy,
+    afw_xctx_t *xctx);
+
+
 /**  @brief Struc for afw_compile_type_info_t. */
 struct afw_compile_type_info_s {
     afw_compile_type_t compile_type;
@@ -408,6 +422,28 @@ afw_compile_split_qualified_name(
 AFW_DECLARE(const afw_utf8_t *)
 afw_compile_source_location_of_value(
     const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Parse a script Type expression from a UTF-8 string.
+ * @param source Type source (e.g. FunctionSignature metadata
+ *     `(...values: any) => boolean`).
+ * @param source_location optional label for errors, or NULL.
+ * @param p pool for the type graph (and temporary parser subpool unless
+ *     cede semantics use p).
+ * @param xctx of caller.
+ * @return type graph on `p`, or NULL if source is empty.
+ *
+ * Used for Adaptive function Formals whose dataTypeParameter is a
+ * FunctionSignature (issue #28). Returns NULL if source is empty or the
+ * Type does not parse (caller may fall back to a leaf function type).
+ */
+AFW_DECLARE(const afw_value_type_t *)
+afw_compile_type_from_utf8(
+    const afw_utf8_t *source,
+    const afw_utf8_t *source_location,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

@@ -1,0 +1,24 @@
+{
+    "brief": "Value at array index",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Return the value at a zero-based index in an array. Negative indexes count from the end (-1 is the last element). If the index is out of range, the result is undefined. Bracket indexing a[index] uses the same out-of-range result (undefined).",
+    "functionId": "at",
+    "functionLabel": "at",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "Array to index.",
+            "name": "array"
+        },
+        {
+            "dataType": "integer",
+            "description": "Zero-based index, or negative from the end.",
+            "name": "index"
+        }
+    ],
+    "returns": {
+        "description": "The value at the index, or undefined if out of range."
+    }
+}

@@ -17,7 +17,6 @@
  */
 
 #include "afw_interface.h"
-#include "generated/<afwdev {srcdir_prefix}>declare_helpers.h"
 
 AFW_BEGIN_DECLARES
 
@@ -38,7 +37,7 @@ typedef struct
  * @param p used to create afw_adapter_session.
  * @return new instance of afw_adapter_session
  */
-<afwdev {srcdir_prefix.upper()}>DECLARE(const afw_adapter_session_t *)
+extern const afw_adapter_session_t *
 <afwdev {prefixed_interface_name}>_create_internal(
     const afw_object_t *parameters,
     const afw_pool_t *p,

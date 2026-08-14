@@ -7,9 +7,8 @@
  */
 
 /**
- * @file afw_ubjson.c
- * @brief AFW ubjson conversion functions.
- *
+ * @file afw_ubjson_to_value.c
+ * @brief UBJSON decode into adaptive values.
  */
 
 #include "afw.h"
@@ -273,7 +272,7 @@ const afw_array_t * afw_ubjson_parse_array(
     while (c != AFW_UBJSON_MARKER_ARRAY_) {
         value = afw_ubjson_parse_value(parser, type, xctx);
 
-        afw_array_add_value(list, value, xctx);
+        afw_array_push_value(list, value, xctx);
 
         c = afw_ubjson_peek_byte(parser, xctx);
     }

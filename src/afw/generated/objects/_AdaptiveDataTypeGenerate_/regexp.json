@@ -4,6 +4,7 @@
     "compileType": "regexp",
     "dataType": "regexp",
     "dataTypeParameterType": "SourceParameter",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'regexp' holds the source for a regular expression conforming to XML Schemas Part 2 Datatype Appendix F.",
     "directReturn": false,
     "evaluated": true,

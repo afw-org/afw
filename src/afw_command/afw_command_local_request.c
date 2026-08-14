@@ -12,6 +12,7 @@
 
 /* Declares and rti/inf defines for interface afw_request */
 #define AFW_IMPLEMENTATION_ID "afw_command_local"
+#define AFW_REQUEST_SELF_T afw_command_local_request_self_t
 #include "afw_request_impl_declares.h"
 #include "afw_command_local_request.h"
 
@@ -34,7 +35,7 @@
  */
 void
 impl_afw_request_release(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Resource will be release when execution context (xctx) is released. */
@@ -47,12 +48,10 @@ impl_afw_request_release(
  */
 void
 impl_afw_request_set_error_info(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_object_t * error_info,
     afw_xctx_t *xctx)
 {
-    afw_command_local_request_self_t *self =
-        (afw_command_local_request_self_t *)instance;
 
     self->pub.error_info = error_info;
 }
@@ -64,15 +63,13 @@ impl_afw_request_set_error_info(
  */
 void
 impl_afw_request_read_raw_request_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_size_t buffer_size,
     void * buffer,
     afw_size_t * size,
     afw_boolean_t * more_to_read,
     afw_xctx_t *xctx)
 {
-    afw_command_local_request_self_t *self =
-        (afw_command_local_request_self_t *)instance;
 
     /* Make sure in correct state then set it. */
     if (self->state > afw_request_state_content_read) {
@@ -103,13 +100,11 @@ impl_afw_request_read_raw_request_body(
  */
 void
 impl_afw_request_set_response_status_code(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * code,
     const afw_utf8_t * reason,
     afw_xctx_t *xctx)
 {
-    afw_command_local_request_self_t *self =
-        (afw_command_local_request_self_t *)instance;
     
     /* Ignore status if already past state. */
     if (self->state >= afw_request_state_status_set) {
@@ -129,13 +124,11 @@ impl_afw_request_set_response_status_code(
  */
 void
 impl_afw_request_write_response_header(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     const afw_utf8_t * name,
     const afw_utf8_t * value,
     afw_xctx_t *xctx)
 {
-    afw_command_local_request_self_t *self =
-        (afw_command_local_request_self_t *)instance;
 
     /* Make sure in correct state then set it. */
     if (self->state > afw_request_state_header_written) {
@@ -160,13 +153,11 @@ impl_afw_request_write_response_header(
  */
 void
 impl_afw_request_write_raw_response_body(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_size_t size,
     const void * buffer,
     afw_xctx_t *xctx)
 {
-    afw_command_local_request_self_t *self =
-        (afw_command_local_request_self_t *)instance;
 
     /* Make sure in correct state. */
     if (self->state > afw_request_state_response_written) {
@@ -189,7 +180,7 @@ impl_afw_request_write_raw_response_body(
  */
 void
 impl_afw_request_flush_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing needs to be done since every write is flushed. */
@@ -202,11 +193,9 @@ impl_afw_request_flush_response(
  */
 void
 impl_afw_request_finish_response(
-    const afw_request_t * instance,
+    AFW_REQUEST_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_command_local_request_self_t *self =
-        (afw_command_local_request_self_t *)instance;
 
     /* Make sure in correct state then set it. */
     if (self->state >= afw_request_state_response_finished) {
@@ -233,7 +222,7 @@ impl_read_content_cb(
     afw_size_t size_read;
 
     impl_afw_request_read_raw_request_body(
-        (const afw_request_t *)context,
+        (AFW_REQUEST_SELF_T *)context,
         size, (void *)buffer, &size_read, more_to_read, xctx);
 
     return size_read;
@@ -250,14 +239,14 @@ impl_write_content_cb(
     afw_xctx_t *xctx)
 {
     impl_afw_request_write_raw_response_body(
-        (const afw_request_t *)context, size, buffer, xctx);
+        (AFW_REQUEST_SELF_T *)context, size, buffer, xctx);
 
     return size;
 }
 
 
 
-AFW_COMMAND_DECLARE_INTERNAL(const afw_request_t *)
+extern const afw_request_t *
 afw_command_local_request_create(
     afw_command_local_server_self_t *server_self,
     const afw_memory_t *body,

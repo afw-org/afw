@@ -6,14 +6,22 @@
  *
  */
 
+/**
+ * @file afw_lmdb_internal.c
+ * @brief LMDB adapter internal helpers (DBI handles, env, txn).
+ */
+
 #include "afw.h"
 #include "afw_uuid.h"
-#include "generated/afw_lmdb_generated.h"
+#include "generated/afw_lmdb_generated_internal.h"
 #include "afw_lmdb_internal.h"
 
 #define AFW_IMPLEMENTATION_ID "lmdb"
+#define AFW_ADAPTER_IMPL_INDEX_CURSOR_SELF_T impl_afw_adapter_impl_index_cursor_self_t
 #include "afw_adapter_impl_index_cursor_impl_declares.h"
+#define AFW_ADAPTER_KEY_VALUE_SELF_T afw_lmdb_key_value_t
 #include "afw_adapter_key_value_impl_declares.h"
+#define AFW_ADAPTER_TRANSACTION_SELF_T afw_lmdb_transaction_t
 #include "afw_adapter_transaction_impl_declares.h"
 
 /*
@@ -303,7 +311,6 @@ afw_rc_t afw_lmdb_internal_get_entry(
 
     return rc;
 }
-
 
 /*
  * void afw_lmdb_internal_create_entry_from_object()
@@ -633,15 +640,13 @@ afw_lmdb_key_value_t * afw_lmdb_key_value_create(
  */
 void
 impl_afw_adapter_key_value_add (
-    const afw_adapter_key_value_t * instance,
+    AFW_ADAPTER_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_lmdb_key_value_t * self = 
-        (afw_lmdb_key_value_t *)instance;
+    /* Assign &self->pub pointer to self. */
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
     const afw_utf8_t separator = AFW_UTF8_LITERAL("#");
@@ -678,16 +683,14 @@ impl_afw_adapter_key_value_add (
  */
 void
 impl_afw_adapter_key_value_delete (
-    const afw_adapter_key_value_t * instance,
+    AFW_ADAPTER_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_boolean_t must_exist,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_lmdb_key_value_t * self =
-        (afw_lmdb_key_value_t *)instance;
+    /* Assign &self->pub pointer to self. */
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
     const afw_utf8_t separator = AFW_UTF8_LITERAL("#");
@@ -727,16 +730,14 @@ impl_afw_adapter_key_value_delete (
  */
 void
 impl_afw_adapter_key_value_replace (
-    const afw_adapter_key_value_t * instance,
+    AFW_ADAPTER_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_boolean_t must_exist,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_lmdb_key_value_t * self =
-        (afw_lmdb_key_value_t *)instance;
+    /* Assign &self->pub pointer to self. */
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
     const afw_utf8_t separator = AFW_UTF8_LITERAL("#");
@@ -787,19 +788,16 @@ impl_afw_adapter_key_value_replace (
     AFW_LMDB_END_TRANSACTION();
 }
 
-
 /*
  * Implementation of method get of interface afw_adapter_key_value.
  */
 const afw_memory_t *
 impl_afw_adapter_key_value_get (
-    const afw_adapter_key_value_t * instance,
+    AFW_ADAPTER_KEY_VALUE_SELF_T *self,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_key_value_t * self =
-        (afw_lmdb_key_value_t *)instance;
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
     const afw_utf8_t separator = AFW_UTF8_LITERAL("#");
@@ -991,12 +989,10 @@ afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
  */
 void
 impl_afw_adapter_impl_index_cursor_release (
-    const afw_adapter_impl_index_cursor_t * instance,
+    AFW_ADAPTER_IMPL_INDEX_CURSOR_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_adapter_impl_index_cursor_self_t * self = 
-        (impl_afw_adapter_impl_index_cursor_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
 
     mdb_cursor_close(self->cursor);
 }
@@ -1068,13 +1064,11 @@ int afw_lmdb_internal_cursor_next(
  */
 const afw_object_t *
 impl_afw_adapter_impl_index_cursor_get_next_object (
-    const afw_adapter_impl_index_cursor_t * instance,
+    AFW_ADAPTER_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_adapter_impl_index_cursor_self_t * self = 
-        (impl_afw_adapter_impl_index_cursor_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
     const afw_lmdb_adapter_t *adapter = self->session->adapter;
     const afw_object_t *object = NULL;
     const afw_value_t *value;
@@ -1104,7 +1098,7 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
         rc = mdb_get(txn, self->dbPri, &key, &data);
         if (rc == MDB_NOTFOUND) {
             /* indicates an index was not cleaned up */
-            rc = afw_lmdb_internal_cursor_next(instance, xctx);
+            rc = afw_lmdb_internal_cursor_next(&self->pub, xctx);
             if (rc) {
                 return NULL;
             }
@@ -1129,7 +1123,7 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
             self->object_type_id, object_id, xctx);
 
         /* advance the cursor for the next object */
-        rc = afw_lmdb_internal_cursor_next(instance, xctx);
+        rc = afw_lmdb_internal_cursor_next(&self->pub, xctx);
         if (rc) {
             /* end of data */
             self->data.mv_data = NULL;
@@ -1140,20 +1134,17 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
     return object;
 }
 
-
 /*
  * Implementation of method contains_object of interface afw_adapter_impl_index_cursor.
  *
  */
 afw_boolean_t
 impl_afw_adapter_impl_index_cursor_contains_object (
-    const afw_adapter_impl_index_cursor_t * instance,
+    AFW_ADAPTER_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_object_t * object,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_adapter_impl_index_cursor_self_t * self = 
-        (impl_afw_adapter_impl_index_cursor_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
     const afw_utf8_t *object_id, *key_string;
     afw_memory_t index;
     MDB_val key, data;
@@ -1204,21 +1195,17 @@ impl_afw_adapter_impl_index_cursor_contains_object (
     return contains;
 }
 
-
-
 /*
  * Implementation of method inner_join of interface afw_adapter_impl_index_cursor.
  *
  */
 const afw_adapter_impl_index_cursor_t *
 impl_afw_adapter_impl_index_cursor_inner_join (
-    const afw_adapter_impl_index_cursor_t * instance,
+    AFW_ADAPTER_IMPL_INDEX_CURSOR_SELF_T *self,
     const afw_adapter_impl_index_cursor_t * cursor,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    impl_afw_adapter_impl_index_cursor_self_t * self = 
-        (impl_afw_adapter_impl_index_cursor_self_t *)instance;
+    /* Assign &self->pub pointer to self. */
     impl_afw_adapter_impl_index_cursor_self_t * that = 
         (impl_afw_adapter_impl_index_cursor_self_t *)cursor;
     size_t count_this, count_that;
@@ -1238,7 +1225,7 @@ impl_afw_adapter_impl_index_cursor_inner_join (
 
     /* use the cursor count and return the smaller set */
     if (count_this < count_that)
-        return instance;
+        return &self->pub;
     else
         return cursor;
 }
@@ -1248,12 +1235,10 @@ impl_afw_adapter_impl_index_cursor_inner_join (
  */
 afw_boolean_t
 impl_afw_adapter_impl_index_cursor_get_count(
-    const afw_adapter_impl_index_cursor_t * instance,
+    AFW_ADAPTER_IMPL_INDEX_CURSOR_SELF_T *self,
     size_t * count,
     afw_xctx_t *xctx)
 {
-    impl_afw_adapter_impl_index_cursor_self_t * self =
-        (impl_afw_adapter_impl_index_cursor_self_t *)instance;
     int rc;
 
     /* we can only calculate the count for duplicate data on a single key,
@@ -1266,8 +1251,6 @@ impl_afw_adapter_impl_index_cursor_get_count(
 
     return (rc == 0) ? true : false;
 }
-
-
 
 /*
  * Implementation of Transaction interface.
@@ -1315,20 +1298,15 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     return self;
 }
 
-
-
-
 /*
  * Implementation of method release of interface afw_adapter_transaction.
  */
 void
 impl_afw_adapter_transaction_release (
-    const afw_adapter_transaction_t * instance,
+    AFW_ADAPTER_TRANSACTION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_lmdb_transaction_t * self = 
-        (afw_lmdb_transaction_t *)instance;
+    /* Assign &self->pub pointer to self. */
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
 
@@ -1345,19 +1323,15 @@ impl_afw_adapter_transaction_release (
     session->transaction = NULL;
 }
 
-
-
 /*
  * Implementation of method commit of interface afw_adapter_transaction.
  */
 void
 impl_afw_adapter_transaction_commit (
-    const afw_adapter_transaction_t * instance,
+    AFW_ADAPTER_TRANSACTION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* Assign instance pointer to self. */
-    afw_lmdb_transaction_t * self = 
-        (afw_lmdb_transaction_t *)instance;
+    /* Assign &self->pub pointer to self. */
     afw_lmdb_adapter_session_t * session =
         (afw_lmdb_adapter_session_t *)self->session;
     int rc;
@@ -1424,6 +1398,7 @@ int afw_lmdb_internal_reader_list_cb(
  * Used by adaptive function to perform a reader_list to print a list of 
  * current readers of the database, including their pid and thread id's.
  */
+
 int afw_lmdb_internal_reader_list(
     const afw_adapter_t * instance,
     const afw_utf8_t ** list,

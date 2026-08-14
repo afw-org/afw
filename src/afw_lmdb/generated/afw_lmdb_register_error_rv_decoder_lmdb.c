@@ -1,5 +1,18 @@
+// See the 'COPYING' file in the project root for licensing information.
+/*
+ * Register error_rv_decoder `lmdb` for afw_lmdb
+ *
+ * Copyright (c) 2010-2024 Clemson University
+ *
+ */
+
+/**
+ * @file afw_lmdb_register_error_rv_decoder_lmdb.c
+ * @brief Generated environment register for error_rv_decoder `lmdb` (afw_lmdb).
+ */
+
 #include "afw.h"
-#include "afw_lmdb_generated.h"
+#include "afw_lmdb_generated_internal.h"
 #include "../afw_lmdb_internal.h"
 
 /* LMDB RV decoder */

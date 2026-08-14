@@ -8,11 +8,12 @@
 
 /**
  * @file afw_value.c
- * @brief Adaptive Framework Value Functions
+ * @brief Core value evaluate, clone, and utility functions.
  */
 
 #include "afw_internal.h"
 #include <libxml/xmlregexp.h>
+#include <math.h>
 
 
 
@@ -38,6 +39,16 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_undefined =
 { &impl_value_undefined.pub };
 
+static const afw_value_void_t
+impl_value_void = {
+    {&afw_value_permanent_void_inf},
+    NULL
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_void =
+{ &impl_value_void.pub };
+
 static const afw_value_null_t
 impl_value_unique_default_case_value = {
     {&afw_value_permanent_null_inf},
@@ -47,6 +58,127 @@ impl_value_unique_default_case_value = {
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_unique_default_case_value =
 { &impl_value_unique_default_case_value.pub };
+
+
+static const afw_value_double_t
+impl_value_double_max = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_MAX
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_max =
+{ &impl_value_double_max.pub };
+
+
+static const afw_value_double_t
+impl_value_double_min = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_MIN
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_min =
+{ &impl_value_double_min.pub };
+
+
+static const afw_value_double_t
+impl_value_double_min_subnormal = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_MIN_SUBNORMAL
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_min_subnormal =
+{ &impl_value_double_min_subnormal.pub };
+
+
+static const afw_value_double_t
+impl_value_double_epsilon = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_EPSILON
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_epsilon =
+{ &impl_value_double_epsilon.pub };
+
+
+static const afw_value_double_t
+impl_value_double_pi = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_PI
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_pi =
+{ &impl_value_double_pi.pub };
+
+
+static const afw_value_double_t
+impl_value_double_e = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_E
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_e =
+{ &impl_value_double_e.pub };
+
+
+static const afw_value_double_t
+impl_value_infinity = {
+    { &afw_value_permanent_double_inf },
+    INFINITY
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_infinity =
+{ &impl_value_infinity.pub };
+
+
+static const afw_value_double_t
+impl_value_minus_infinity = {
+    { &afw_value_permanent_double_inf },
+    -INFINITY
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_minus_infinity =
+{ &impl_value_minus_infinity.pub };
+
+
+static const afw_value_double_t
+impl_value_NaN = {
+    { &afw_value_permanent_double_inf },
+    NAN
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_NaN =
+{ &impl_value_NaN.pub };
+
+
+static const afw_value_integer_t
+impl_value_integer_max = {
+    { &afw_value_permanent_integer_inf },
+    AFW_INTEGER_MAX
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_integer_max =
+{ &impl_value_integer_max.pub };
+
+
+static const afw_value_integer_t
+impl_value_integer_min = {
+    { &afw_value_permanent_integer_inf },
+    AFW_INTEGER_MIN
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_integer_min =
+{ &impl_value_integer_min.pub };
 
 
 /* Compile a value. */
@@ -168,7 +300,7 @@ afw_value_is_fully_evaluated(
     afw_xctx_t *xctx)
 {
     afw_boolean_t result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *v;
 
@@ -255,6 +387,53 @@ afw_value_clone(const afw_value_t *value,
 
     /* If value is not evaluated, evaluate it. */
     return afw_value_evaluate(value, p, xctx);
+}
+
+
+
+/* Isolate default for property_get / variable_get (issues #110 / #17). */
+AFW_DEFINE(const afw_value_t *)
+afw_value_isolate_mutable_default(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_object_t *obj;
+    const afw_array_t *arr;
+    const afw_object_t *face_obj;
+    const afw_array_t *face_arr;
+
+    if (!value || afw_value_is_undefined(value) || afw_value_is_nullish(value)) {
+        return value;
+    }
+
+    if (AFW_VALUE_IS_DATA_TYPE(value, object)) {
+        obj = ((const afw_value_object_t *)value)->internal;
+        if (!obj) {
+            return value;
+        }
+        /* Always a *new* face over the base (even if value was already a face). */
+        obj = afw_object_memory_wrapper_base(obj);
+        face_obj = afw_object_create_wrapper_unmanaged(obj, p, xctx);
+        return face_obj->value
+            ? face_obj->value
+            : afw_value_create_unmanaged_object(face_obj, p, xctx);
+    }
+
+    if (AFW_VALUE_IS_DATA_TYPE(value, array)) {
+        arr = ((const afw_value_array_t *)value)->internal;
+        if (!arr) {
+            return value;
+        }
+        arr = afw_array_memory_wrapper_base(arr);
+        face_arr = afw_array_create_wrapper_unmanaged(arr, p, xctx);
+        return face_arr->value
+            ? face_arr->value
+            : afw_value_create_unmanaged_array(face_arr, p, xctx);
+    }
+
+    /* Scalars and other types: clone as before. */
+    return afw_value_clone(value, p, xctx);
 }
 
 
@@ -356,7 +535,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_one_and_only(
     const afw_value_t *value, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_array_t *list;
     const afw_value_t *result;
 
@@ -426,45 +605,54 @@ afw_value_as_utf8(const afw_value_t *value,
 
 
 
-/* Make an afw_value_common_t String using string in specified pool. */
+/*
+ * Create Adaptive value from untrusted external octets: string if valid
+ * UTF-8 (NFC), otherwise hexBinary with a copy of the same bytes.
+ */
 AFW_DEFINE(const afw_value_t *)
-afw_value_make_single_string(
+afw_value_create_from_external_octets(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_string_t *single;
+    const afw_utf8_t *string;
+    afw_memory_t memory;
+    const afw_byte_t *copy;
 
-    single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_unmanaged_string_inf;
-    single->internal.s = s;
-    single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
-    return &single->pub;
+    if (len == AFW_UTF8_Z_LEN) {
+        len = (s) ? strlen(s) : 0;
+    }
 
+    /* Empty or NULL → empty string (not hexBinary). */
+    if (!s || len == 0) {
+        return afw_v_a_empty_string;
+    }
+
+    /* Valid UTF-8 → NFC string value. */
+    if (afw_utf8_is_valid(s, len, xctx)) {
+        string = afw_utf8_create_copy(s, len, p, xctx);
+        return afw_value_create_unmanaged_string(string, p, xctx);
+    }
+
+    /* Invalid UTF-8 → hexBinary with owned copy of the same bytes. */
+    copy = afw_memory_dup(s, len, p, xctx);
+    memory.ptr = copy;
+    memory.size = len;
+    return afw_value_create_unmanaged_hexBinary(&memory, p, xctx);
 }
 
-/* Make an afw_value_common_t String using copy of string in specified pool. */
+
+/* NUL-terminated convenience wrapper. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_make_string_copy(
-    const afw_utf8_octet_t *s,
-    afw_size_t len,
+afw_value_create_from_external_z(
+    const char *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_string_t *single;
-
-    single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_unmanaged_string_inf;
-    single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
-    single->internal.s = (single->internal.len > 0)
-        ? afw_memory_dup(s, single->internal.len, p, xctx)
-        : NULL;
-
-    return &single->pub;
-
+    return afw_value_create_from_external_octets(
+        (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
 }
-
 
 
 /* Make an afw_value_string_t from in specified pool. */
@@ -489,7 +677,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
     const afw_value_t *untrusted_qualified_variables,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *object;
     const afw_utf8_t *property_name;
     const afw_object_t *qualifier_object;
@@ -498,7 +686,15 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
 
     result = NULL;
     if (untrusted_qualified_variables) {
-        AFW_VALUE_ASSERT_IS_DATA_TYPE(untrusted_qualified_variables, object, xctx);
+        /*
+         * Second argument of evaluate() may be wrap_literal_object(...) or
+         * other unevaluated form (issue #17). Evaluate to a finished object
+         * before cast / property walk.
+         */
+        untrusted_qualified_variables = afw_value_evaluate(
+            untrusted_qualified_variables, p, xctx);
+        AFW_VALUE_ASSERT_IS_DATA_TYPE(untrusted_qualified_variables, object,
+            xctx);
 
         top = afw_xctx_qualifier_stack_top_get(xctx);
         AFW_TRY {
@@ -514,7 +710,11 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
                     false, p, xctx);
             }
 
+            /* Fully evaluate while untrusted frames are still on the stack. */
             result = afw_value_evaluate(value, p, xctx);
+            while (result && afw_value_is_compiled_value(result)) {
+                result = afw_value_evaluate(result, p, xctx);
+            }
         }
 
         AFW_FINALLY{
@@ -544,7 +744,7 @@ afw_value_convert(
     const afw_data_type_t *v_data_type;
     afw_value_common_t *single;
     const afw_array_t *list;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const void *internal;
     const afw_data_type_t *data_type;
     afw_size_t evaluate_count;
@@ -567,7 +767,7 @@ afw_value_convert(
         if (!required) {
             return NULL;
         }
-        AFW_THROW_ERROR_Z(undefined, "Result is undefined", xctx);
+        AFW_THROW_ERROR_Z(undefined_value, "Result is undefined", xctx);
     }
 
     /* If to_data_type is any, return result now. */
@@ -581,7 +781,7 @@ afw_value_convert(
 
         /* Upconvert to one entry list. */
         if (to_data_type == afw_data_type_array) {
-            list = afw_array_create_wrapper_for_array(
+            list = afw_array_create_view_of_c_array(
                 &((afw_value_common_t *)result)->internal, false,
                 v_data_type, 1, p, xctx);
             result = afw_value_create_unmanaged_array(list, p, xctx);
@@ -593,7 +793,7 @@ afw_value_convert(
         {
             list = ((const afw_value_array_t *)result)->internal;
             if (afw_array_get_count(list, xctx) != 1) {
-                AFW_THROW_ERROR_Z(general,
+                AFW_THROW_ERROR_Z(conversion_error,
                     "Can't down convert an array with more than one entry",
                     xctx);
             }
@@ -648,7 +848,7 @@ afw_value_convert_to_string(
         if (allow_undefined) {
             return afw_v_undefined;
         }
-        AFW_THROW_ERROR_Z(undefined, "Value is undefined", xctx);
+        AFW_THROW_ERROR_Z(undefined_value, "Value is undefined", xctx);
     }
 
     return result;
@@ -715,7 +915,7 @@ impl_value_as_array_of_values(
     afw_size_t count;
     const afw_value_t **e;
     const afw_value_t **result;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
 
     /* If value is NULL, n is 0. */
     if (!value) {
@@ -769,6 +969,47 @@ afw_value_as_array_of_values(const afw_value_t * value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return impl_value_as_array_of_values(value, p, xctx);
+}
+
+
+/*
+ * Array formal / HOF choke: array as-is; non-array keyless iterator
+ * (utf8 code-point sequence) materializes to a temporary array (#153).
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_as_array_sequence(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_data_type_t *dt;
+    const afw_data_type_t *element_dt;
+    const afw_array_t *array;
+    const afw_value_t *v;
+    afw_iterator_t iterator;
+
+    if (!value || afw_value_is_array(value)) {
+        return value;
+    }
+    if (!afw_value_has_iterator(value)) {
+        return value;
+    }
+
+    dt = value->inf->is_evaluated_of_data_type;
+    element_dt = dt ? dt->iterator_return_data_type : NULL;
+    if (element_dt) {
+        array = afw_array_of_create(element_dt, p, xctx);
+    }
+    else {
+        array = afw_array_create_generic(p, xctx);
+    }
+
+    afw_value_initialize_iterator(value, &iterator, xctx);
+    while ((v = afw_iterator_get_next(&iterator, p, xctx)) != NULL) {
+        afw_array_push_value(array, v, xctx);
+    }
+
+    return afw_value_create_unmanaged_array(array, p, xctx);
 }
 
 
@@ -929,8 +1170,8 @@ afw_value_contains(
 }
 
 
-/* Register core value infs. */
-AFW_DEFINE(void)
+/* Register core value infs (libafw bootstrap; see afw_value_internal.h). */
+void
 afw_value_register_core_value_infs(afw_xctx_t *xctx)
 {
     afw_environment_register_value_inf(
@@ -960,6 +1201,10 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx)
     afw_environment_register_value_inf(
         &afw_value_object_expression_inf.rti.implementation_id,
         &afw_value_object_expression_inf, xctx);
+
+    afw_environment_register_value_inf(
+        &afw_value_object_construct_inf.rti.implementation_id,
+        &afw_value_object_construct_inf, xctx);
 
     afw_environment_register_value_inf(
         &afw_value_reference_by_key_inf.rti.implementation_id,

@@ -41,7 +41,12 @@
             </row>
             <row>
                 <column>afw_vfs</column>
-                <column>Virtual File System</column>
+                <column>
+                    Virtual File System adapter (<code>adapterType</code>
+                    <code>vfs</code>): host files as
+                    <code>_AdaptiveFile_vfs</code> objects via
+                    <code>vfsMap</code>
+                </column>
             </row>      
             <row>
                 <column>afw_yaml</column>

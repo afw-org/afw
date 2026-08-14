@@ -1,0 +1,44 @@
+# Scenario: REST feed (not only action/eval)
+# Stresses: feed.kind rest, method/path/accept, expectStatus, expectResponse,
+#           mix REST and action in one leaf schedule.
+
+version: 1
+description: REST GET collection plus action eval on same host
+
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 90
+
+feed:
+  kind: action
+  accept: application/json
+
+tests:
+  - name: seed
+    sourceType: script
+    source: <<< tests/seed.as
+    expect: true
+
+  - name: list-json
+    feed:
+      kind: rest
+      method: GET
+      path: /file/Demo
+      accept: application/json
+    expectStatus: 200
+    # expectResponse optional; status-only smoke is enough for schema stress
+
+  - name: list-x-afw
+    feed:
+      kind: rest
+      method: GET
+      path: /file/Demo
+      accept: application/x-afw
+    expectStatus: 200
+    # expectResponse: <<< goldens/list.xafw
+
+  - name: cleanup
+    sourceType: script
+    source: <<< tests/cleanup.as
+    expect: true

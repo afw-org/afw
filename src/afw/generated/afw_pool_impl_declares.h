@@ -72,7 +72,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_pool_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_POOL_IMPL_DECLARES_H__
@@ -106,7 +106,7 @@ AFW_BEGIN_DECLARES
 
 #ifndef impl_afw_pool_release
 /* Declare method release */
-AFW_DECLARE_STATIC(void)
+AFW_DECLARE_STATIC(const afw_pool_t *)
 impl_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t * xctx);

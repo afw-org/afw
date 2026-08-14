@@ -15,7 +15,7 @@ RUN dnf install -y epel-release && \
     libxml2-devel libxslt-devel libicu-devel \
     elfutils elfutils-devel libunwind-devel \
     httpd-devel mariadb mariadb-devel libdb-devel lmdb lmdb-devel \
-    libcurl-devel libyaml libyaml-devel \
+    libcurl-devel libyaml libyaml-devel libedit-devel \
     python3-pip python3-devel \
     fcgi fcgi-devel wget git \
     rpm-build npm \

@@ -16,7 +16,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AdaptiveObject_"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 0);
@@ -46,7 +46,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AdaptiveObjectX_"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 0);
@@ -76,7 +76,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AAdaptiveObject_"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) === 0);
@@ -95,7 +95,7 @@ const objects = retrieve_objects("afw", "_AdaptiveFunction_", {
         "property": "numberOfRequiredParameters",
         "value": 100
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 0);
@@ -119,7 +119,7 @@ const objects = retrieve_objects("afw", "_AdaptiveFunction_", {
         "property": "numberOfRequiredParameters",
         "value": 1
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 0);
@@ -149,7 +149,7 @@ const objects = retrieve_objects("afw", "_AdaptiveFunction_", {
         "property": "numberOfRequiredParameters",
         "value": -1
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) === 0);

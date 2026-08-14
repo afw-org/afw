@@ -18,7 +18,7 @@
 
 /**
  * @file afw_utf8.h
- * @brief AFW String functions.
+ * @brief UTF-8 string types and public string helpers.
  *
  * This is the header file for AFW String functions.
  */
@@ -364,6 +364,35 @@ afw_utf8_clone(
 #define afw_utf8_create_copy(s, len, p, xctx) \
     afw_utf8_nfc(s, len, afw_utf8_nfc_option_create_copy, p, xctx)
 
+
+/**
+ * @brief Prefix for property names synthesized from non-UTF-8 external names.
+ *
+ * When an external name (e.g. process env or FCGI parameter name) is not valid
+ * UTF-8, afw_utf8_create_property_name_from_external_octets() produces
+ * "_NONUTF8_" followed by uppercase hex of the raw name bytes.
+ */
+#define AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX "_NONUTF8_"
+
+
+/**
+ * @brief Create an object property name from untrusted external name octets.
+ * @param s pointer to name octets (may be NULL).
+ * @param len number of bytes, or AFW_UTF8_Z_LEN if s is NUL-terminated.
+ * @param p pool for the result.
+ * @param xctx of caller.
+ * @return NFC utf-8 name if s is valid UTF-8; otherwise
+ *    "_NONUTF8_" + uppercase hex of the raw bytes (always valid ASCII/UTF-8).
+ *
+ * Property names must be afw_utf8_t. Use this at boundaries instead of putting
+ * non-UTF-8 bytes into a property name.
+ */
+AFW_DECLARE(const afw_utf8_t *)
+afw_utf8_create_property_name_from_external_octets(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 
 /**

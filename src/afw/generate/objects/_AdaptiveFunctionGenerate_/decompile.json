@@ -1,13 +1,13 @@
 {
-    "brief": "Decompile value",
+    "brief": "Decompile a value to Adaptive compiled form",
     "category": "compiler",
-    "description": "Decompile an adaptive value to string.",
+    "description": "Decompile an adaptive value to Adaptive text that represents the compiled form (functional forms and #implementation_id(...) pragmas such as #script_function, #block, #assignment_target). This is not original source recovery and is not pure JSON — use stringify() for JSON of evaluated data, and compile(..., listing) for a human compiler listing with symbol tables. Many decompile forms recompile to the same compiled value; #closure_binding and #function_thunk are known rejects (runtime-only / C-side). Optional whitespace matches stringify/listing style (integer 0-10 or indent string).",
     "functionId": "decompile",
     "functionLabel": "decompile",
     "pure": true,
     "parameters": [
         {
-            "description": "Value to decompile.",
+            "description": "Value to decompile (may be unevaluated, such as a compiled script root).",
             "name": "value"
         },
         {
@@ -18,6 +18,6 @@
     ],
     "returns": {
         "dataType": "string",
-        "description": "Decompiled value."
+        "description": "Adaptive text for the compiled form of the value."
     }
 }

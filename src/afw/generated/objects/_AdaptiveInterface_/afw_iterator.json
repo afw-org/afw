@@ -1,4 +1,4 @@
 {
     "name": "afw_iterator",
-    "description": "This is the interface for an iterator. An iterator is created by the\n      'afw_value' 'create_iterator()' method."
+    "description": "Caller-defined iterator over a dense or sequential stream of adaptive\n      values without keys (array elements, string code points, …).\n\n      defined_instance_storage: the public afw_iterator_t is fixed-size\n      storage the caller provides (typically on the stack). A host method\n      initializes it (sets inf and cursor), e.g.\n      afw_array_initialize_iterator(array, &it, xctx). Do not release\n      the instance. Implementations use only the published fields.\n\n      After host initialize:\n      - get_next — next value, or NULL when done (same idea as\n        afw_array_get_next_value returning NULL)\n      - get_by_index — dense index; does not advance get_next cursor\n      - get_count — dense length when indexable\n\n      For key+value walks (e.g. object properties), use\n      afw_iterator_with_key instead.\n\n      Call methods via afw_iterator_*() macros. Legacy array/object\n      get_next_* cursors remain afw_iterator_old_t until migrated."
 }

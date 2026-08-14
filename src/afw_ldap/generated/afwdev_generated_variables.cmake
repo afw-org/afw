@@ -23,13 +23,11 @@
 #
 
 # Header files that are installed for public use.
+# Excludes *_internal.h / afw_internal.h (libafw/package private).
+# Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     afw_ldap.h
-    afw_ldap_internal.h
     afw_ldap_metadata.h
-    generated/afw_ldap_const_objects.h
-    generated/afw_ldap_declare_helpers.h
-    generated/afw_ldap_generated.h
     generated/afw_ldap_runtime_object_maps.h
     generated/afw_ldap_strings.h
     generated/afw_ldap_version_info.h

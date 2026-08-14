@@ -1,0 +1,31 @@
+{
+    "category": "crypto",
+    "brief": "Encrypt (AES-GCM)",
+    "description": "Encrypt binary plaintext with AES-GCM. algorithm is an object { name: \"AES-GCM\", length?, iv?, additionalData? }. If iv is omitted, a 12-octet IV is generated. Returns ciphertext, iv, and tag. Requires execute access.",
+    "functionId": "crypto_encrypt",
+    "functionLabel": "crypto_encrypt",
+    "requiresExecuteAccess": true,
+    "sideEffects": [
+        "Other"
+    ],
+    "parameters": [
+        {
+            "name": "algorithm",
+            "dataType": "object",
+            "description": "AES-GCM parameters object."
+        },
+        {
+            "name": "key",
+            "description": "Key material, CryptoKey, or key reference."
+        },
+        {
+            "name": "data",
+            "description": "Plaintext (base64Binary or hexBinary)."
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoEncryptResult_",
+        "description": "ciphertext, iv, tag, algorithm, keyLength."
+    }
+}

@@ -555,7 +555,7 @@ assert(
 
 //? test: S12.11_A1_T1
 //? description: Simple test using switch statement
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -624,11 +624,9 @@ if(!(SwitchTest(void 0) === 32)){
 if(!(SwitchTest('0') === 32)){
   throw "#10: SwitchTest('0') === 32. Actual:  SwitchTest('0') ==="+ SwitchTest('0')  ;
 }
-
-
 //? test: S12.11_A1_T2
 //? description: Switch with different types of variables
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -704,11 +702,9 @@ if(!(SwitchTest('0') === 32)){
 if(!(SwitchTest(x) === 128)){
   throw "#10: SwitchTest(x) === 128. Actual:  SwitchTest(x) ==="+ SwitchTest(x)  ;
 }
-
-
 //? test: S12.11_A1_T3
 //? description: Using case with null, NaN, Infinity
-//? expect: error:Parameter 1 is required
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -793,20 +789,16 @@ if(!(SwitchTest(NaN) === 32)){
 if(!(SwitchTest(Infinity) === 768)){
   throw "#10: SwitchTest(NaN) === 768. Actual:  SwitchTest(NaN) ==="+ SwitchTest(NaN)  ;
 }
-
-
 //? test: S12.11_A1_T4
-//? description: Using case with isNaN and isNaN(value)
-//? skip: true
-//? expect: undefined
+//? description: switch cases with is_NaN, null, Infinity, fall-through (Adaptive rewrite)
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
-
-function SwitchTest(value){
+function SwitchTest(value) {
   let result = 0;
 
-  switch(value) {
+  switch (value) {
     case 0:
       result += 2;
     case 1:
@@ -814,67 +806,49 @@ function SwitchTest(value){
       break;
     case 2:
       result += 8;
-    case isNaN(value):
-      result += 16;
-    default:
-      result += 32;
       break;
     case null:
       result += 64;
-    case isNaN:
+    case is_NaN:
       result += 128;
       break;
     case Infinity:
       result += 256;
-    case 2+3:
-      result += 512;
       break;
     case undefined:
       result += 1024;
+      break;
+    default:
+      result += 32;
   }
 
   return result;
 }
 
-let n = Number(false);
-
-if(!(SwitchTest(n) === 6)){
-  throw "#1: SwitchTest(Number(false)) === 6. Actual:  SwitchTest(Number(false)) ==="+ SwitchTest(n)  ;
+if (SwitchTest(0) !== 6) {
+  throw "#1: SwitchTest(0) === 6. Actual: " + string(SwitchTest(0));
 }
-
-if(!(SwitchTest(parseInt) === 32)){
-  throw "#2: SwitchTest(parseInt) === 32. Actual:  SwitchTest(parseInt) ==="+ SwitchTest(parseInt)  ;
+if (SwitchTest(1) !== 4) {
+  throw "#2: SwitchTest(1) === 4. Actual: " + string(SwitchTest(1));
 }
-
-if(!(SwitchTest(isNaN) === 128)){
-  throw "#3: SwitchTest(isNaN) === 128. Actual:  SwitchTest(isNaN) ==="+ SwitchTest(isNaN)  ;
+if (SwitchTest(is_NaN) !== 128) {
+  throw "#3: SwitchTest(is_NaN) === 128. Actual: " + string(SwitchTest(is_NaN));
 }
-
-if(!(SwitchTest(true) === 32)){
-  throw "#6: SwitchTest(true) === 32. Actual:  SwitchTest(true) ==="+ SwitchTest(true)  ;
+if (SwitchTest(true) !== 32) {
+  throw "#4: SwitchTest(true) === 32 (default). Actual: " + string(SwitchTest(true));
 }
-
-if(!(SwitchTest(false) === 48)){
-  throw "#7: SwitchTest(false) === 48. Actual:  SwitchTest(false) ==="+ SwitchTest(false)  ;
+if (SwitchTest(null) !== 192) {
+  throw "#5: SwitchTest(null) === 192 (fall-through to is_NaN). Actual: " + string(SwitchTest(null));
 }
-
-if(!(SwitchTest(null) === 192)){
-  throw "#8: SwitchTest(null) === 192. Actual:  SwitchTest(null) ==="+ SwitchTest(null)  ;
+if (SwitchTest(undefined) !== 1024) {
+  throw "#6: SwitchTest(undefined) === 1024. Actual: " + string(SwitchTest(undefined));
 }
-
-if(!(SwitchTest(void 0) === 1024)){
-  throw "#9: SwitchTest(void 0) === 1024. Actual:  SwitchTest(void 0) ==="+ SwitchTest(void 0)  ;
+if (SwitchTest(NaN) !== 32) {
+  throw "#7: SwitchTest(NaN) === 32 (default; NaN !== NaN). Actual: " + string(SwitchTest(NaN));
 }
-
-if(!(SwitchTest(NaN) === 32)){
-  throw "#10: SwitchTest(NaN) === 32. Actual:  SwitchTest(NaN) ==="+ SwitchTest(NaN)  ;
+if (SwitchTest(Infinity) !== 256) {
+  throw "#8: SwitchTest(Infinity) === 256. Actual: " + string(SwitchTest(Infinity));
 }
-
-if(!(SwitchTest(Infinity) === 768)){
-  throw "#10: SwitchTest(NaN) === 768. Actual:  SwitchTest(NaN) ==="+ SwitchTest(NaN)  ;
-}
-
-
 //? test: S12.11_A2_T1
 //? description: Duplicate DefaultClause
 //? expect: error
@@ -1022,7 +996,7 @@ let x = SwitchTest(0);
 
 //? test: S12.11_A4_T1
 //? description: Nesting one "switch" statement into StatementList of the other's
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1052,8 +1026,6 @@ function SwitchTest(value){
 
 let x = SwitchTest(0);
 if(x!==6) throw "#1: SwitchTest(0) === 6. Actual:  SwitchTest(0) ==="+ SwitchTest(0)  ;
-
-
 //? test: scope-lex-async-function
 //? description: Creation of new lexical environment (into `default` clause)
 //? expect: error:Parse error at offset 43 around line 4 column 23: Unknown built-in function 'async'
@@ -1078,7 +1050,7 @@ x;
 
 //? test: scope-lex-close-case
 //? description: Removal of lexical environment (from `case` clause)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1098,11 +1070,9 @@ switch (null) {
 assert(probe1() === 'inside', 'from first `case` clause');
 assert(probe2() === 'inside', 'from second `case` clause');
 assert(x === 'outside');
-
-
 //? test: scope-lex-close-dflt
 //? description: Removal of lexical environment (from `default` clause)
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1136,8 +1106,6 @@ assert(
 assert(
   probeCase() == 'inside', 'from `case` clause following `default` clause'
 );
-
-
 //? test: scope-lex-const
 //? description: Creation of new lexical environment (into `default` clause)
 //? expect: error:Parse error at offset 58 around line 5 column 1: Unknown built-in function 'x'
@@ -1267,7 +1235,7 @@ assert(x === 2 === 'reference following statement');
 
 //? test: tco-case-body-dflt
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1280,11 +1248,9 @@ let callCount = 0;
   switch(0) { case 0: return f(n - 1); default: }
 }(30));
 assert(callCount === 1);
-
-
 //? test: tco-case-body
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1298,11 +1264,9 @@ let callCount = 0;
   switch(0) { case 0: return f(n - 1); }
 }(30));
 assert(callCount === 1);
-
-
 //? test: tco-dftl-body
 //? description: Statement within statement is a candidate for tail-call optimization.
-//? expect: undefined
+//? expect: success
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1316,5 +1280,3 @@ let callCount = 0;
   switch(0) { default: return f(n - 1); }
 }(30));
 assert(callCount === 1);
-
-

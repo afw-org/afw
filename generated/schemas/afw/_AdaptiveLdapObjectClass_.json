@@ -1,26 +1,20 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveLdapObjectClass_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveLdapObjectClass_": {
-            "additionalProperties": {
-                "description": "Object type for type=adapter adapter_type=ldap synthetic object class object."
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveLdapObjectClass_.propertyTypes"
-                }
-            ],
+            "additionalProperties": true,
             "description": "Object type for type=adapter adapter_type=ldap synthetic object class object.",
-            "type": "object"
-        },
-        "_AdaptiveLdapObjectClass_.propertyTypes": {
+            "markdownDescription": "Object type for type=adapter adapter_type=ldap synthetic object class object.",
             "properties": {
                 "ABSTRACT": {
                     "description": "Abstract Class",
+                    "markdownDescription": "Abstract Class",
                     "title": "Abstract",
                     "type": "boolean"
                 },
                 "AUXILIARY": {
                     "description": "Auxiliary Class",
+                    "markdownDescription": "Auxiliary Class",
                     "title": "Auxiliary",
                     "type": "boolean"
                 },
@@ -32,8 +26,10 @@
                     "description": "Optional attributes of class.",
                     "items": {
                         "description": "Optional attributes of class.",
+                        "markdownDescription": "Optional attributes of class.",
                         "type": "string"
                     },
+                    "markdownDescription": "Optional attributes of class.",
                     "title": "Optional",
                     "type": "array"
                 },
@@ -41,8 +37,10 @@
                     "description": "Required attributes of class.",
                     "items": {
                         "description": "Required attributes of class.",
+                        "markdownDescription": "Required attributes of class.",
                         "type": "string"
                     },
+                    "markdownDescription": "Required attributes of class.",
                     "title": "Required",
                     "type": "array"
                 },
@@ -50,13 +48,16 @@
                     "description": "Name of class.",
                     "items": {
                         "description": "Name of class.",
+                        "markdownDescription": "Name of class.",
                         "type": "string"
                     },
+                    "markdownDescription": "Name of class.",
                     "title": "Name",
                     "type": "array"
                 },
                 "STRUCTURAL": {
                     "description": "Structural Class",
+                    "markdownDescription": "Structural Class",
                     "title": "Structural",
                     "type": "boolean"
                 },
@@ -64,8 +65,93 @@
                     "description": "Superior classes.",
                     "items": {
                         "description": "Superior classes.",
+                        "markdownDescription": "Superior classes.",
                         "type": "string"
                     },
+                    "markdownDescription": "Superior classes.",
+                    "title": "Sup",
+                    "type": "array"
+                },
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "numericoid": {
+                    "title": "Numeric OID",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveLdapObjectClass_",
+            "type": "object"
+        },
+        "_AdaptiveLdapObjectClass_.propertyTypes": {
+            "properties": {
+                "ABSTRACT": {
+                    "description": "Abstract Class",
+                    "markdownDescription": "Abstract Class",
+                    "title": "Abstract",
+                    "type": "boolean"
+                },
+                "AUXILIARY": {
+                    "description": "Auxiliary Class",
+                    "markdownDescription": "Auxiliary Class",
+                    "title": "Auxiliary",
+                    "type": "boolean"
+                },
+                "DESC": {
+                    "title": "Description",
+                    "type": "string"
+                },
+                "MAY": {
+                    "description": "Optional attributes of class.",
+                    "items": {
+                        "description": "Optional attributes of class.",
+                        "markdownDescription": "Optional attributes of class.",
+                        "type": "string"
+                    },
+                    "markdownDescription": "Optional attributes of class.",
+                    "title": "Optional",
+                    "type": "array"
+                },
+                "MUST": {
+                    "description": "Required attributes of class.",
+                    "items": {
+                        "description": "Required attributes of class.",
+                        "markdownDescription": "Required attributes of class.",
+                        "type": "string"
+                    },
+                    "markdownDescription": "Required attributes of class.",
+                    "title": "Required",
+                    "type": "array"
+                },
+                "NAME": {
+                    "description": "Name of class.",
+                    "items": {
+                        "description": "Name of class.",
+                        "markdownDescription": "Name of class.",
+                        "type": "string"
+                    },
+                    "markdownDescription": "Name of class.",
+                    "title": "Name",
+                    "type": "array"
+                },
+                "STRUCTURAL": {
+                    "description": "Structural Class",
+                    "markdownDescription": "Structural Class",
+                    "title": "Structural",
+                    "type": "boolean"
+                },
+                "SUP": {
+                    "description": "Superior classes.",
+                    "items": {
+                        "description": "Superior classes.",
+                        "markdownDescription": "Superior classes.",
+                        "type": "string"
+                    },
+                    "markdownDescription": "Superior classes.",
                     "title": "Sup",
                     "type": "array"
                 },
@@ -78,9 +164,88 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveLdapObjectClass_"
+    "additionalProperties": true,
+    "description": "Object type for type=adapter adapter_type=ldap synthetic object class object.",
+    "markdownDescription": "Object type for type=adapter adapter_type=ldap synthetic object class object.",
+    "properties": {
+        "ABSTRACT": {
+            "description": "Abstract Class",
+            "markdownDescription": "Abstract Class",
+            "title": "Abstract",
+            "type": "boolean"
+        },
+        "AUXILIARY": {
+            "description": "Auxiliary Class",
+            "markdownDescription": "Auxiliary Class",
+            "title": "Auxiliary",
+            "type": "boolean"
+        },
+        "DESC": {
+            "title": "Description",
+            "type": "string"
+        },
+        "MAY": {
+            "description": "Optional attributes of class.",
+            "items": {
+                "description": "Optional attributes of class.",
+                "markdownDescription": "Optional attributes of class.",
+                "type": "string"
+            },
+            "markdownDescription": "Optional attributes of class.",
+            "title": "Optional",
+            "type": "array"
+        },
+        "MUST": {
+            "description": "Required attributes of class.",
+            "items": {
+                "description": "Required attributes of class.",
+                "markdownDescription": "Required attributes of class.",
+                "type": "string"
+            },
+            "markdownDescription": "Required attributes of class.",
+            "title": "Required",
+            "type": "array"
+        },
+        "NAME": {
+            "description": "Name of class.",
+            "items": {
+                "description": "Name of class.",
+                "markdownDescription": "Name of class.",
+                "type": "string"
+            },
+            "markdownDescription": "Name of class.",
+            "title": "Name",
+            "type": "array"
+        },
+        "STRUCTURAL": {
+            "description": "Structural Class",
+            "markdownDescription": "Structural Class",
+            "title": "Structural",
+            "type": "boolean"
+        },
+        "SUP": {
+            "description": "Superior classes.",
+            "items": {
+                "description": "Superior classes.",
+                "markdownDescription": "Superior classes.",
+                "type": "string"
+            },
+            "markdownDescription": "Superior classes.",
+            "title": "Sup",
+            "type": "array"
+        },
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "numericoid": {
+            "title": "Numeric OID",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveLdapObjectClass_",
+    "type": "object"
 }

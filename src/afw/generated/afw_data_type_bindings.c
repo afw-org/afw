@@ -19,7 +19,7 @@
 
 /**
  * @file afw_data_type_bindings.c
- * @brief Adaptive Framework data type bindings.
+ * @brief Generated adaptive data type bindings implementation.
  */
 
 #include "afw.h"

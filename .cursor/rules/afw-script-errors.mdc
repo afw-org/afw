@@ -1,0 +1,70 @@
+---
+description: Adaptive Script try/catch and _AdaptiveError_ objects from C throws
+globs: src/afw/error/**,src/afw/function/afw_function_compiler_script.c,src/afw/generate/objects/_AdaptiveObjectType_/_AdaptiveError_.json,src/afw/generate/objects/_AdaptiveFunctionGenerate_/{try,throw}.json,src/afw/tests/language/script/try.as,src/afw/tests/miscellaneous/stream_file/**
+alwaysApply: false
+---
+
+# Script errors (`try` / `catch` / `_AdaptiveError_`)
+
+## Prefer throw + try
+
+AFW scripts almost never check return codes. Failures should **throw**; authors use straight-line code or `try` / `catch (e)`. Do not add soft `-1` + secondary error-string APIs (e.g. removed `get_stream_error`).
+
+## End-to-end wiring
+
+```text
+C: AFW_THROW_ERROR_* / AFW_THROW_ERROR_RV_*
+  → afw_error_t (code, message_z, rv, rv_source_id_z, rv_decoded_z, …)
+  → longjmp into AFW_TRY / statement flow
+
+catch (e) { … }
+  → afw_function_execute_try (compiler_script)
+  → afw_error_to_object(&this_THROWN_ERROR, …)
+  → bind object to catch variable `e`
+```
+
+Object type: `generate/objects/_AdaptiveObjectType_/_AdaptiveError_.json`  
+Fill: `afw_error_add_to_object()` / `afw_error_to_object()` in `error/afw_error.c`.
+
+## Properties scripts use most
+
+| Property | Meaning |
+|----------|---------|
+| **`message`** | Human text from `message_z` — **primary** for users and tests |
+| **`id`** | Name of the code (`general`, `not_found`, `throw`, …). **Prefer this.** Map: `AFW_ERROR_CODE_MAP` / `designs/issue-33-error-codes.md` |
+| **`errorCode`** | Internal number. Do not depend on it in scripts. |
+| **`data`** | Optional payload from `throw "msg" { … }` or `throw "msg" data …` |
+
+Script `throw` may add `id "not_found"` (and similar allowed names) so `e.id` and the HTTP status match that name. Prefer `throw "…" data { … }`. The old `throw "…" { … }` (no `data` name) is deprecated and will be removed. `throw;` is still rethrow.
+| **`rv`** | System return value when set (e.g. errno integer) |
+| **`rvSourceId`** | Decoder key (`apr`, `icu`, `errno`, …) |
+| **`rvDecoded`** | Decoder string (e.g. `strerror` for errno) |
+
+Debug/flag-gated: `errorSource`, `backtrace`, `backtraceEvaluation`, parser fields, `xctxUUID`.
+
+## C side for good catch objects
+
+1. Put the user-visible explanation in the throw **message** (include `strerror(errno)` for OS I/O).
+2. When a system code exists, use `AFW_THROW_ERROR_RV_Z` / `_FZ` with a registered **rv source** (`errno`, `apr`, `icu`) so `e.rv` / `e.rvDecoded` populate.
+3. Capture `errno` **immediately** after the failing call.
+4. Throw **only** through `AFW_THROW_*` macros — never hand `longjmp` to `xctx->current_try` (see **`afw-c-runtime`** and `error/afw_error.h`).
+
+Registered errno decoder: `AFW_ERROR_RV_SOURCE_ID_Z_errno` / `"errno"` in core environment register.
+
+## C `AFW_TRY` vs script `try`
+
+Script `try`/`catch` is Adaptive language; C `AFW_TRY` is the runtime exception stack. Nested Adaptive eval still uses C tries underneath. `AFW_ERROR_RETHROW` in C means “run FINALLY, then rethrow to outer C try” — not script rethrow syntax.
+
+## Script examples
+
+- `src/afw/tests/language/script/try.as` — `e.message`, throw with `data`
+- `src/afw/tests/miscellaneous/stream_file/stream_file.as` — open/stream failures via catch
+
+## Syntax / EBNF
+
+`try` / `catch` / `throw` grammar lives in compile comments `/*ebnf>>>` … `<<<ebnf*/`. Harvested docs: `src/afw/generated/ebnf/syntax.ebnf` (not a code generator). See **`afw-compiler-ebnf`**.
+
+## Related
+
+`afw-stream` (file I/O throws), `afw-script-eval`, `afw-function`, `afw-c-runtime`.  
+Error-code / HTTP review: `designs/issue-33-error-codes.md` (**#33**).

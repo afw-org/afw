@@ -1,15 +1,20 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveLdapMatchingRule_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveLdapMatchingRule_": {
-            "additionalProperties": {
-                "description": "Object type for type=adapter adapter_type=ldap synthetic matching rule object."
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveLdapMatchingRule_.propertyTypes"
-                }
-            ],
+            "additionalProperties": true,
             "description": "Object type for type=adapter adapter_type=ldap synthetic matching rule object.",
+            "markdownDescription": "Object type for type=adapter adapter_type=ldap synthetic matching rule object.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
+            "title": "_AdaptiveLdapMatchingRule_",
             "type": "object"
         },
         "_AdaptiveLdapMatchingRule_.propertyTypes": {
@@ -18,9 +23,18 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveLdapMatchingRule_"
+    "additionalProperties": true,
+    "description": "Object type for type=adapter adapter_type=ldap synthetic matching rule object.",
+    "markdownDescription": "Object type for type=adapter adapter_type=ldap synthetic matching rule object.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
         }
-    ]
+    },
+    "title": "_AdaptiveLdapMatchingRule_",
+    "type": "object"
 }

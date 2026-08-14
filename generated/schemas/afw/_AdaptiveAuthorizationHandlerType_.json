@@ -1,25 +1,47 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveAuthorizationHandlerType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveAuthorizationHandlerType_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveAuthorizationHandlerType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "A registry type authorization_handler_factory entry.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveAuthorizationHandlerType_.propertyTypes": {
+            "markdownDescription": "A registry type authorization_handler_factory entry.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "authorizationHandlerType": {
                     "description": "Type of authorization handler.",
+                    "markdownDescription": "**Authorization Handler Type**\n\nType of authorization handler.",
                     "title": "Authorization Handler Type",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of authorization handler type.",
+                    "markdownDescription": "**Description**\n\nDescription of authorization handler type.",
+                    "title": "Description",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveAuthorizationHandlerType_",
+            "type": "object"
+        },
+        "_AdaptiveAuthorizationHandlerType_.propertyTypes": {
+            "properties": {
+                "authorizationHandlerType": {
+                    "description": "Type of authorization handler.",
+                    "markdownDescription": "**Authorization Handler Type**\n\nType of authorization handler.",
+                    "title": "Authorization Handler Type",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of authorization handler type.",
+                    "markdownDescription": "**Description**\n\nDescription of authorization handler type.",
                     "title": "Description",
                     "type": "string"
                 }
@@ -28,9 +50,31 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveAuthorizationHandlerType_"
+    "additionalProperties": false,
+    "description": "A registry type authorization_handler_factory entry.",
+    "markdownDescription": "A registry type authorization_handler_factory entry.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "authorizationHandlerType": {
+            "description": "Type of authorization handler.",
+            "markdownDescription": "**Authorization Handler Type**\n\nType of authorization handler.",
+            "title": "Authorization Handler Type",
+            "type": "string"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of authorization handler type.",
+            "markdownDescription": "**Description**\n\nDescription of authorization handler type.",
+            "title": "Description",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveAuthorizationHandlerType_",
+    "type": "object"
 }

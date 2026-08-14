@@ -19,7 +19,7 @@
 
 /**
  * @file afw_log_deprecated.h
- * @brief Header file for afw_log_deprecated.c.
+ * @brief Deprecated log interface header (compatibility).
  */
 
 AFW_BEGIN_DECLARES

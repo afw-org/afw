@@ -17,7 +17,6 @@ our @EXPORT_OK = qw(
     bag_size_function 
     eq_function 
     eqx_function 
-    function 
     ge_function 
     gt_function 
     is_function 
@@ -84,17 +83,6 @@ Checks for equal and type
 
     $arg2
 
-
-=head3 function
-
-Converts value to data type function returning function result.
-
-
-=head4 Parameters
-
-    $value
-
-Value to convert
 
 =head3 ge_function
 
@@ -239,17 +227,6 @@ sub eqx_function {
     $request->set("function" => "eqx<function>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
-
-    return $request->getResult();
-}
-
-sub function {
-    my ($value) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "function");
-    $request->set("value", $value);
 
     return $request->getResult();
 }

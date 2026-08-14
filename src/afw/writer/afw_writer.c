@@ -8,10 +8,12 @@
 
 /**
  * @file afw_writer.c
- * @brief Helpers for interfaces afw_writer* 
+ * @brief Writer write helpers for utf8 and C strings.
  */
 
 #include "afw_internal.h"
+#include <errno.h>
+#include <string.h>
 
 
 
@@ -19,6 +21,8 @@
 
 /* Declares and rti/inf defines for interface afw_writer */
 #define AFW_IMPLEMENTATION_ID "afw_writer_fd"
+typedef struct afw_writer_fd_afw_writer_self_s afw_writer_fd_afw_writer_self_t;
+#define AFW_WRITER_SELF_T afw_writer_fd_afw_writer_self_t
 #include "afw_writer_impl_declares.h"
 
 
@@ -38,11 +42,9 @@ afw_writer_fd_afw_writer_self_s {
  */
 void
 impl_afw_writer_release(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_writer_fd_afw_writer_self_t *self =
-        (afw_writer_fd_afw_writer_self_t *)instance;
 
     if (self->close_on_release) {
         fclose(self->fd);
@@ -54,7 +56,7 @@ impl_afw_writer_release(
  */
 void
 impl_afw_writer_flush(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Ignore flush. */
@@ -65,22 +67,23 @@ impl_afw_writer_flush(
  */
 void
 impl_afw_writer_write(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_writer_fd_afw_writer_self_t *self =
-        (afw_writer_fd_afw_writer_self_t *)instance;
     size_t len;
 
     /** @todo loop if everything is not returned??? */
     if (size != 0) {
         len = fwrite(buffer, size, 1, self->fd);
         if (len == 0) {
-            AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
-                "fwrite() failed",
-                xctx);
+            int err = errno;
+            if (err == 0) {
+                err = EIO;
+            }
+            AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                "fwrite() failed: %s", strerror(err));
         }
     }
 }
@@ -90,19 +93,20 @@ impl_afw_writer_write(
  */
 void
 impl_afw_writer_write_eol(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_writer_fd_afw_writer_self_t *self =
-        (afw_writer_fd_afw_writer_self_t *)instance;
     size_t len;
 
     /** @todo loop if everything is not returned??? */
     len = fwrite("\n", 1, 1, self->fd);
     if (len == 0) {
-        AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
-            "fwrite() failed",
-            xctx);
+        int err = errno;
+        if (err == 0) {
+            err = EIO;
+        }
+        AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+            "fwrite() failed: %s", strerror(err));
     }
 }
 
@@ -111,11 +115,9 @@ impl_afw_writer_write_eol(
  */
 void
 impl_afw_writer_increment_indent(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_writer_fd_afw_writer_self_t *self =
-        (afw_writer_fd_afw_writer_self_t *)instance;
 
     (self->pub.indent)++;
 }
@@ -125,11 +127,9 @@ impl_afw_writer_increment_indent(
  */
 void
 impl_afw_writer_decrement_indent(
-    const afw_writer_t *instance,
+    AFW_WRITER_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_writer_fd_afw_writer_self_t *self =
-        (afw_writer_fd_afw_writer_self_t *)instance;
 
     if (self->pub.indent == 0) {
         AFW_THROW_ERROR_Z(general,

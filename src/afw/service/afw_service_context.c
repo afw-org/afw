@@ -7,8 +7,8 @@
  */
 
 /**
- * @file afw_service.c
- * @brief Adaptive Framework service context
+ * @file afw_service_context.c
+ * @brief Service context lifecycle and conf handling.
  */
 
 #include "afw_internal.h"

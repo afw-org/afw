@@ -20,7 +20,7 @@
  *
  * afw_function_execute_abs_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compute the absolute value of the double value and return the double result.
  *
@@ -58,7 +58,7 @@ afw_function_execute_abs_double(
  *
  * afw_function_execute_add_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Add 2 or more double values and return the double result.
  *
@@ -71,7 +71,7 @@ afw_function_execute_abs_double(
  *   function add<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -98,7 +98,7 @@ afw_function_execute_add_double(
  *
  * afw_function_execute_ceil_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine the smallest integer that is greater then or equal to the double
  * value and return the double result.
@@ -137,7 +137,7 @@ afw_function_execute_ceil_double(
  *
  * afw_function_execute_divide_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Divide double dividend by double divisor and return the double quotient.
  *
@@ -178,7 +178,7 @@ afw_function_execute_divide_double(
  *
  * afw_function_execute_floor_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine the largest integer that is smaller then or equal to the double
  * value and return the double result.
@@ -217,7 +217,7 @@ afw_function_execute_floor_double(
  *
  * afw_function_execute_is_NaN
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks if the argument 'number' is not a number(NaN) and returns the boolean
  * result.
@@ -256,7 +256,7 @@ afw_function_execute_is_NaN(
  *
  * afw_function_execute_is_finite
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks if the argument 'number' is finite and returns the boolean result.
  *
@@ -290,11 +290,52 @@ afw_function_execute_is_finite(
 
 
 /*
+ * Adaptive function: mod<double>
+ *
+ * afw_function_execute_mod_double
+ *
+ * See afw_function_bindings_internal.h for more information.
+ *
+ * Divide double dividend by double divisor and return the double remainder.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function mod<double>(
+ *       dividend: double,
+ *       divisor: double
+ *   ): double;
+ * ```
+ *
+ * Parameters:
+ *
+ *   dividend - (double)
+ *
+ *   divisor - (double)
+ *
+ * Returns:
+ *
+ *   (double)
+ */
+const afw_value_t *
+afw_function_execute_mod_double(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: multiply<double>
  *
  * afw_function_execute_multiply_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Multiply 2 or more double values and return the double result.
  *
@@ -307,7 +348,7 @@ afw_function_execute_is_finite(
  *   function multiply<double>(
  *       values_1: double,
  *       values_2: double,
- *       ...values_rest: (array of double)
+ *       ...values_rest: double[]
  *   ): double;
  * ```
  *
@@ -334,7 +375,7 @@ afw_function_execute_multiply_double(
  *
  * afw_function_execute_negative_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Return negative of double value.
  *
@@ -372,7 +413,7 @@ afw_function_execute_negative_double(
  *
  * afw_function_execute_pow_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * This returns the value of base raised to a power. Multiple exponents can be
  * specified to raise the previous exponent to the power of the latter exponent.
@@ -386,7 +427,7 @@ afw_function_execute_negative_double(
  *   function pow<double>(
  *       base: double,
  *       exponent_1: double,
- *       ...exponent_rest: (array of double)
+ *       ...exponent_rest: double[]
  *   ): double;
  * ```
  *
@@ -415,7 +456,7 @@ afw_function_execute_pow_double(
  *
  * afw_function_execute_round_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Determine the integer closest to double value and return the double result.
  *
@@ -453,7 +494,7 @@ afw_function_execute_round_double(
  *
  * afw_function_execute_subtract_double
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Subtract double arg2 from double arg1 and return the double result.
  *

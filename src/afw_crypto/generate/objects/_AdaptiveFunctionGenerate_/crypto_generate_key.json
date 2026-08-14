@@ -1,0 +1,35 @@
+{
+    "category": "crypto",
+    "brief": "Generate key",
+    "description": "Generate a random key in the process keystore. Algorithm string or object. AES-GCM length defaults to 256 bits. Requires execute access.",
+    "functionId": "crypto_generate_key",
+    "functionLabel": "crypto_generate_key",
+    "requiresExecuteAccess": true,
+    "sideEffects": [
+        "Other"
+    ],
+    "parameters": [
+        {
+            "name": "algorithm",
+            "description": "Algorithm string or object { name, length? }."
+        },
+        {
+            "name": "usages",
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "optional": true,
+            "description": "Optional usages; defaults depend on algorithm family."
+        },
+        {
+            "name": "extractable",
+            "dataType": "boolean",
+            "optional": true,
+            "description": "If true, crypto_export_key may export raw key. Default false."
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCryptoKey_",
+        "description": "Generated CryptoKey handle."
+    }
+}

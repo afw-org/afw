@@ -8,7 +8,7 @@
 
 /**
  * @file afw_memory.c
- * @brief Adaptive Framework memory support
+ * @brief Raw memory allocate/copy helpers on pools.
  */
 
 #include "afw_internal.h"
@@ -156,7 +156,7 @@ AFW_DEFINE(const afw_object_t *) afw_object_create_merged(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_object_t *result;
     const afw_value_t *value;
     const afw_utf8_t *property_name;
@@ -268,7 +268,7 @@ afw_memory_decode_base64(
 
         }
 
-        AFW_THROW_ERROR_Z(general, "Invalid base64 encoding", xctx);
+        AFW_THROW_ERROR_Z(conversion_error, "Invalid base64 encoding", xctx);
     }
 
     /* Allocate memory for result.  Just return if length is 0. */
@@ -366,7 +366,7 @@ afw_memory_decode_printable_hex(
     return;
 
 error:
-    AFW_THROW_ERROR_FZ(general, xctx,
+    AFW_THROW_ERROR_FZ(conversion_error, xctx,
         "Invalid printable hex value " AFW_UTF8_FMT_Q ".",
         AFW_UTF8_FMT_ARG(encoded));
 }

@@ -46,14 +46,17 @@ struct afw_server_fcgi_internal_s {
     /* Server request director. */
     const afw_request_handler_t * director;
 
-    /* Object used to access server environment variables. */
-    const afw_object_t *environment_variables_object;
-
     /* Trace flag index for request process. */
     afw_size_t flag_index_trace_process;
 
     /* Socket */
     int sock;
+
+    /*
+     * Listen path from -p / FCGX_OpenSocket. Non-NULL when a Unix domain path
+     * should be unlinked on clean exit (not used for TCP ":port").
+     */
+    const char *unix_socket_path_z;
  
     /* threads. */
     afw_server_fcgi_internal_server_thread_t *threads;

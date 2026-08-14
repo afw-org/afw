@@ -72,7 +72,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_stream_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_STREAM_IMPL_DECLARES_H__
@@ -122,10 +122,10 @@ impl_afw_stream_flush(
 
 #ifndef impl_afw_stream_read
 /* Declare method read */
-AFW_DECLARE_STATIC(void)
+AFW_DECLARE_STATIC(afw_size_t)
 impl_afw_stream_read(
     AFW_STREAM_SELF_T *self,
-    const void * buffer,
+    void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx);
 #endif

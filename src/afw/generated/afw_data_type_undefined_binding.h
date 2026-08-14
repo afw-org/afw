@@ -22,7 +22,6 @@
 
 #include "afw_minimal.h"
 #include "afw_data_type_typedefs.h"
-#include "afw_declare_helpers.h"
 
 /**
  * @defgroup afw_c_api_data_type_undefined undefined
@@ -35,7 +34,7 @@
 
 /**
  * @file afw_data_type_undefined_binding.h
- * @brief Adaptive data type undefined header.
+ * @brief Generated header for adaptive data type `undefined`.
  */
 
 AFW_BEGIN_DECLARES
@@ -63,7 +62,8 @@ afw_data_type_undefined;
 /**
  * @brief Permanent (life of afw environment) value inf for data type undefined.
  *
- * The lifetime of the value is the lifetime of the afw environment.
+ * Lifetime is the afw environment / static const storage. optional_release
+ * is NULL; clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_undefined_inf;
@@ -111,25 +111,21 @@ struct afw_value_undefined_managed_s {
 };
 
 /**
- * @brief extern for data type undefined struct.
+ * @brief Public data type undefined struct instance.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.  Use afw_data_type_undefined when not referencing in
- * a static.
+ * Prefer afw_data_type_undefined when a pointer is enough and you are not
+ * initializing static data that must reference the struct object.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_t)
+AFW_DECLARE_CONST_DATA(afw_data_type_t)
 afw_data_type_undefined_direct;
 
 /**
- * @brief extern for data type undefined inf.
+ * @brief Public data type undefined inf.
  *
- * This should only be managed in the linkage unit the extern is
- * defined in.
- *
- * The implementation of the data type must define this.  It is
- * managed by the generated data type instance.
+ * Defined with the data type implementation; managed by the generated
+ * data type instance.
  */
-AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
+AFW_DECLARE_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_undefined_inf;
 
 AFW_END_DECLARES

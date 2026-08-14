@@ -29,13 +29,19 @@ class relaxed_json
      * compile_relaxed_json()
      *
      * Compile relaxed_json value and return either an unevaluated adaptive
-     * value or a string containing the compiler listing.
+     * value or a string containing the compiler listing. The listing is a
+     * human-oriented dump (value tree interleaved with source, plus
+     * ---Symbols tables) for Fiddle and debugging — not pure JSON (use
+     * stringify) and not Adaptive compiled-form text (use decompile).
      *
      * @param relaxed_json $source relaxed_json string to compile
-     * @param  $listing If specified, a compiler listing is produced instead
-     *                  of an unevaluated compiled value.
+     * @param  $listing If specified, a human compiler listing is produced
+     *                  instead of an unevaluated compiled value (tree +
+     *                  ---Symbols; not recompilable). Use decompile() for
+     *                  Adaptive compiled-form text and stringify() for pure
+     *                  JSON of evaluated data.
      * 
-     *                  This parameter can be an integer between 0 and 10 of a
+     *                  This parameter can be an integer between 0 and 10 or a
      *                  string that is used for indentation. If 0 is
      *                  specified, no whitespace is added to the resulting
      *                  string. If 1 through 10 is specified, that number of
@@ -63,6 +69,8 @@ class relaxed_json
      * relaxed_json()
      *
      * Converts value to data type relaxed_json returning relaxed_json result.
+     * Holds relaxed JSON source text as a relaxed_json value (does not
+     * parse/compile). Use polymorphic compile to compile the source.
      *
      * @param  $value Value to convert
      *

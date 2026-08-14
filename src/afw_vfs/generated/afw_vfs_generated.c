@@ -19,11 +19,11 @@
 
 /**
  * @file afw_vfs_generated.c
- * @brief Adaptive Framework register generated (afw_vfs_).
+ * @brief Generated register implementation for `afw_vfs`.
  */
 
 #include "afw.h"
-#include "afw_vfs_generated.h"
+#include "afw_vfs_generated_internal.h"
 #include "afw_vfs_version_info.h"
 
 static const afw_utf8_z_t * impl_version_info_z[] = {

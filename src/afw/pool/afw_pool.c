@@ -137,7 +137,7 @@ impl_subpool_implementation_specific =
 #define AFW_IMPLEMENTATION_ID "multithreaded"
 #define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_multithreaded_inf
 
-static void
+static const afw_pool_t *
 impl_multithreaded_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
@@ -250,7 +250,7 @@ impl_multithreaded_implementation_specific =
 #define AFW_IMPLEMENTATION_ID "multithreaded_subpool"
 #define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_multithreaded_subpool_inf
 
-static void
+static const afw_pool_t *
 impl_multithreaded_subpool_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
@@ -735,8 +735,10 @@ impl_free_memory(
 
 /*
  * Implementation of method release for interface afw_pool.
+ *
+ * Returns the pool if it still exists, or NULL if this call destroyed it.
  */
-void
+const afw_pool_t *
 impl_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
@@ -746,7 +748,9 @@ impl_afw_pool_release(
     /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
         afw_pool_destroy(&self->pub, xctx);
+        return NULL;
     }
+    return &self->pub;
 }
 
 
@@ -1132,15 +1136,19 @@ impl_subpool_afw_pool_free_memory_internal(
 
 /* ----------------------------multithreaded implementations ---------------- */
 
-void
+const afw_pool_t *
 impl_multithreaded_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
+    const afw_pool_t *result;
+
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_release(self, xctx);
+        result = impl_afw_pool_release(self, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
+
+    return result;
 }
 
 void
@@ -1256,15 +1264,19 @@ impl_multithreaded_afw_pool_deregister_cleanup(
 
 /* ----------------------------multithreaded subpool implementations -------- */
 
-void
+const afw_pool_t *
 impl_multithreaded_subpool_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
+    const afw_pool_t *result;
+
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_release(self, xctx);
+        result = impl_afw_pool_release(self, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
+
+    return result;
 }
 
 void
@@ -1526,7 +1538,7 @@ afw_pool_free_memory(
 
 
 
-AFW_DEFINE_INTERNAL(void)
+void
 afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,

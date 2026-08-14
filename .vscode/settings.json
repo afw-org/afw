@@ -19,6 +19,10 @@
         "textbox"
     ],
     "cmake.configureOnOpen": false,
+    "cursorpyright.analysis.extraPaths": [
+        "./src/afw/generated",
+        "./src/afw_client/python"
+    ],
     "json.schemas": [
         {
             "fileMatch": [
@@ -409,6 +413,96 @@
                 "/src/*/generate*/objects/_AdaptiveCurlHttpResponse_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveCurlHttpResponse_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnModifyObject_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnModifyObject_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnGetProperty_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnGetProperty_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnGetInitialObjectId_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnGetInitialObjectId_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnAddObject_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnAddObject_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelPropertyType_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelPropertyType_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnRetrieveObjects_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnRetrieveObjects_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnReplaceObject_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnReplaceObject_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnDeleteObject_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnDeleteObject_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnSetProperty_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnSetProperty_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnGetInitialValue_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnGetInitialValue_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveModelCurrentOnGetObject_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveModelCurrentOnGetObject_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveProcess_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveProcess_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCryptoKey_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCryptoKey_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCryptoVersionInfo_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCryptoVersionInfo_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCryptoEncryptResult_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCryptoEncryptResult_.json"
         }
     ],
     "python.analysis.extraPaths": [
@@ -427,9 +521,5 @@
     "spellright.language": [
         "en"
     ],
-    "terminal.integrated.scrollback": 2000,
-    "cursorpyright.analysis.extraPaths": [
-        "./src/afw/generated",
-        "./src/afw_client/python"
-    ]
+    "terminal.integrated.scrollback": 2000
 }

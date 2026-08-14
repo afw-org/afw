@@ -7,7 +7,7 @@
 //?
 //? test: line-terminator
 //? description: Line terminator between the operands of a division operator
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -23,12 +23,13 @@ let x = 18
 ;
 
 assert(x ===  1);
-
-
 //? test: no-magic-asi-from-block-eval
 //? description: division after block statement (no ASI)
-//? expect: undefined
+//? expect: success
 //? skip: true
+//? skipReason: ...
+Never: Adaptive has no ES eval / regexp-vs-division ASI after a
+block. Other / newline cases already run.
 //? source: ...
 
 
@@ -38,11 +39,9 @@ let g = 2;
 let notRegExp = eval('{[42]}.8/of/g');
 
 assert(notRegExp ===  .1);
-
-
 //? test: no-magic-asi
 //? description: No ASI happening in identifier used as operands
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -53,12 +52,9 @@ let g = 2;
 let notRegExp = instance/of/g;
 
 assert(notRegExp ===  5);
-
-
-
 //? test: S11.5.2_A1
 //? description: Checking by using eval
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -111,11 +107,9 @@ if (eval(script("1\u2029/\u20291")) !== 1) {
 if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029/\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
   throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029/\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1';
 }
-
-
 //? test: S11.5.2_A2.1_T1
 //? description: Either Type is not Reference or GetBase is not null
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -142,73 +136,39 @@ y = 1;
 if (x / y !== 1) {
   throw '#4: let x = 1; let y = 1; x / y === 1. Actual: ' + (x / y);
 }
-
-
 //? test: S11.5.2_A2.1_T2
 //? description: If GetBase(x) is null, throw ReferenceError
-//? expect: undefined
-//? skip: true
+//? expect: error
 //? source: ...
 
-
-//CHECK#1
-try {
-  x / 1;
-  throw '#1.1: x / 1 throw ReferenceError. Actual: ' + (x / 1);
-}
-catch (e) {
-  if ((e instanceof ReferenceError) !== true) {
-    throw '#1.2: x / 1 throw ReferenceError. Actual: ' + (e);
-  }
-}
-
-
+// undeclared x is a compile error
+x / 1;
 //? test: S11.5.2_A2.1_T3
 //? description: If GetBase(y) is null, throw ReferenceError
-//? expect: undefined
-//? skip: true
+//? expect: error
 //? source: ...
 
-
-//CHECK#1
-try {
-  1 / y;
-  throw '#1.1: 1 / y throw ReferenceError. Actual: ' + (1 / y);
-}
-catch (e) {
-  if ((e instanceof ReferenceError) !== true) {
-    throw '#1.2: 1 / y throw ReferenceError. Actual: ' + (e);
-  }
-}
-
-
+// undeclared y is a compile error
+1 / y;
 //? test: S11.5.2_A2.4_T2
 //? description: Checking with "throw"
-//? expect: undefined
-//? skip: true
+//? expect: 0
 //? source: ...
 
-
-//CHECK#1
-let x = function () { throw "x"; };
-let y = function () { throw "y"; };
+let saw = "";
+function xf() { saw = saw + "x"; throw "x"; }
+function yf() { saw = saw + "y"; throw "y"; }
 try {
-   x() / y();
-   throw '#1.1: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (x() / y());
+    let unused = xf() / yf();
+    assert(false);
 } catch (e) {
-   if (e === "y") {
-     throw '#1.2: First expression is evaluated first, and then second expression';
-   } else {
-     if (e !== "x") {
-       throw '#1.3: let x = function () { throw "x"; }; let y = function () { throw "y"; }; x() / y() throw "x". Actual: ' + (e);
-     }
-   }
+    assert(e.message === "x");
+    assert(saw === "x");
 }
-
-
+return 0;
 //? test: S11.5.2_A3_T1.2
 //? description: Type(x) and Type(y) vary between primitive number and Number object
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -216,12 +176,11 @@ try {
 if (1 / 1 !== 1) {
   throw '#1: 1 / 1 === 1. Actual: ' + (1 / 1);
 }
-
-
 //? test: S11.5.2_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
-//? expect: undefined
+//? expect: success
 //? skip: true
+//? skipReason: Never: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
 
 
@@ -244,12 +203,11 @@ if (is_NaN(undefined / undefined) !== true) {
 if (is_NaN(null / null) !== true) {
   throw '#4: null / null === Not-a-Number. Actual: ' + (null / null);
 }
-
-
 //? test: S11.5.2_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
-//? expect: undefined
+//? expect: success
 //? skip: true
+//? skipReason: Never: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
 
 
@@ -272,12 +230,13 @@ if (is_NaN(function(){return 1} / function(){return 1}) !== true) {
 if (is_NaN({} / {}) !== true) {
   throw '#4: {} / {} === Not-a-Number. Actual: ' + ({} / {});
 }
-
-
 //? test: S11.5.2_A3_T2.6
 //? description: Type(x) is different from Type(y) and both types vary between String (primitive or object) and Undefined
-//? expect: undefined
+//? expect: success
 //? skip: true
+//? skipReason: ...
+Never: Adaptive / does not ToNumber-coerce strings or undefined
+(no new String / valueOf)
 //? source: ...
 
 
@@ -300,68 +259,29 @@ if (is_NaN(new String("1") / undefined) !== true) {
 if (is_NaN(undefined / new String("1")) !== true) {
   throw '#4: undefined / new String("1") === Not-a-Number. Actual: ' + (undefined / new String("1"));
 }
-
-
-
 //? test: S11.5.2_A4_T10
 //? description: If both operands are finite and nonzero, the quotient is computed and rounded using IEEE 754 round-to-nearest mode.  If the magnitude is too small to represent, the result is then a zero of appropriate sign throw new Test262Error('#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0'); throw new Test262Error('#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0');
-//? expect: undefined
-//? skip: true
+//? expect: success
 //? source: ...
 
-
 //CHECK#1
-if (Number.MIN_VALUE / 2.1 !== 0) {
-  throw '#1: Number.MIN_VALUE / 2.1 === 0. Actual: ' + (Number.MIN_VALUE / 2.1);
+if (#doubleMinSubnormal / 2.1 !== 0.0) {
+  throw '#1: #doubleMinSubnormal / 2.1 === 0. Actual: ' +
+    (#doubleMinSubnormal / 2.1);
 }
 
 //CHECK#2
-if (Number.MIN_VALUE / -2.1 !== -0) {
-  throw '#2.1: Number.MIN_VALUE / -2.1 === 0. Actual: ' + (Number.MIN_VALUE / -2.1);
+if (#doubleMinSubnormal / -2.1 !== -0.0) {
+  throw '#2.1: #doubleMinSubnormal / -2.1 === -0. Actual: ' +
+    (#doubleMinSubnormal / -2.1);
 } else {
-  if (1 / (Number.MIN_VALUE / -2.1) !== -Infinity) {
-    throw '#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0';
+  if (1.0 / (#doubleMinSubnormal / -2.1) !== -Infinity) {
+    throw '#2.2: #doubleMinSubnormal / -2.1 === -0. Actual: +0';
   }
 }
-
-//CHECK#3
-if (Number.MIN_VALUE / 2.0 !== 0) {
-  throw '#3: Number.MIN_VALUE / 2.0 === 0. Actual: ' + (Number.MIN_VALUE / 2.0);
-}
-
-//CHECK#4
-if (Number.MIN_VALUE / -2.0 !== -0) {
-  throw '#4.1: Number.MIN_VALUE / -2.0 === -0. Actual: ' + (Number.MIN_VALUE / -2.0);
-} else {
-  if (1 / (Number.MIN_VALUE / -2.0) !== -Infinity) {
-    throw '#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0';
-  }
-}
-
-//CHECK#5
-if (Number.MIN_VALUE / 1.9 !== Number.MIN_VALUE) {
-  throw '#5: Number.MIN_VALUE / 1.9 === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / 1.9);
-}
-
-//CHECK#6
-if (Number.MIN_VALUE / -1.9 !== -Number.MIN_VALUE) {
-  throw '#6: Number.MIN_VALUE / -1.9 === -Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / -1.9);
-}
-
-//CHECK#7
-if (Number.MIN_VALUE / 1.1 !== Number.MIN_VALUE) {
-  throw '#7: Number.MIN_VALUE / 1.1 === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / 1.1);
-}
-
-//CHECK#8
-if (Number.MIN_VALUE / -1.1 !== -Number.MIN_VALUE) {
-  throw '#8: Number.MIN_VALUE / -1.1 === -Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / -1.1);
-}
-
-
 //? test: S11.5.2_A4_T1.1
 //? description: If left operand is NaN, the result is NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -406,11 +326,9 @@ if (is_NaN(NaN / Number.MIN_VALUE) !== true) {
 if (is_NaN(NaN / 1.0) !== true) {
   throw '#8: NaN / 1 === Not-a-Number. Actual: ' + (NaN / 1);
 }
-
-
 //? test: S11.5.2_A4_T1.2
 //? description: If right operand is NaN, the result is NaN
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -455,11 +373,9 @@ if (is_NaN(Number.MIN_VALUE / NaN) !== true) {
 if (is_NaN(1.0 / NaN) !== true) {
   throw '#8: 1 / NaN === Not-a-Number. Actual: ' + (1 / NaN);
 }
-
-
 //? test: S11.5.2_A4_T2
 //? description: The sign of the result is positive if both operands have the same sign, negative if the operands have different signs
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -482,11 +398,9 @@ if (-1 / 1 !== -1) {
 if (-1 / -1 !== 1) {
   throw '#4: -1 / -1 === 1. Actual: ' + (-1 / -1);
 }
-
-
 //? test: S11.5.2_A4_T3
 //? description: Division of an infinity by a zero results in an infinity of appropriate sign
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -509,12 +423,9 @@ if (Infinity / 0.0 !== Infinity) {
 if (Infinity / -0.0 !== -Infinity) {
   throw '#4: Infinity / -0 === -Infinity. Actual: ' + string(Infinity / -0.0);
 }
-
-
 //? test: S11.5.2_A4_T4
 //? description: Division of an infinity by an infinity results in NaN
-//? expect: undefined
-//? skip: true
+//? expect: success
 //? source: ...
 
 
@@ -537,49 +448,44 @@ if (is_NaN(-Infinity / Infinity) !== true) {
 if (is_NaN(Infinity / -Infinity) !== true) {
   throw '#4: Infinity / -Infinity === Not-a-Number. Actual: ' + (Infinity / -Infinity);
 }
-
-
 //? test: S11.5.2_A4_T5
 //? description: Division of an infinity by a finite non-zero value results in a signed infinity
-//? expect: undefined
-//? skip: true
+//? expect: success
 //? source: ...
 
 
 //CHECK#1
-if (-Infinity / 1 !== -Infinity) {
-  throw '#1: -Infinity / 1 === -Infinity. Actual: ' + (-Infinity / 1);
+if (-Infinity / 1.0 !== -Infinity) {
+  throw '#1: -Infinity / 1.0 === -Infinity';
 }
 
 //CHECK#2
-if (-Infinity / -1 !== Infinity) {
-  throw '#2: -Infinity / -1 === Infinity. Actual: ' + (-Infinity / -1);
+if (-Infinity / -1.0 !== Infinity) {
+  throw '#2: -Infinity / -1.0 === Infinity';
 }
 
 //CHECK#3
-if (Infinity / 1 !== Infinity) {
-  throw '#3: Infinity / 1 === Infinity. Actual: ' + (Infinity / 1);
+if (Infinity / 1.0 !== Infinity) {
+  throw '#3: Infinity / 1.0 === Infinity';
 }
 
 //CHECK#4
-if (Infinity / -1 !== -Infinity) {
-  throw '#4: Infinity / -1 === -Infinity. Actual: ' + (Infinity / -1);
+if (Infinity / -1.0 !== -Infinity) {
+  throw '#4: Infinity / -1.0 === -Infinity';
 }
 
 //CHECK#5
-if (Infinity / -Number.MAX_VALUE !== -Infinity) {
-  throw '#5: Infinity / -Number.MAX_VALUE === -Infinity. Actual: ' + (Infinity / -Number.MAX_VALUE);
+if (Infinity / -2.5 !== -Infinity) {
+  throw '#5: Infinity / -2.5 === -Infinity';
 }
 
 //CHECK#6
-if (-Infinity / Number.MIN_VALUE !== -Infinity) {
-  throw '#6: -Infinity / Number.MIN_VALUE === -Infinity. Actual: ' + (-Infinity / Number.MIN_VALUE);
+if (-Infinity / 0.5 !== -Infinity) {
+  throw '#6: -Infinity / 0.5 === -Infinity';
 }
-
-
 //? test: S11.5.2_A4_T6
 //? description: Division of a finite value by an infinity results in zero of appropriate sign throw new Test262Error('#1.2: 1 / -Infinity === - 0. Actual: +0'); throw new Test262Error('#2.2: -1 / -Infinity === + 0. Actual: -0'); throw new Test262Error('#3.2: 1 / Infinity === + 0. Actual: -0'); throw new Test262Error('#4.2: -1 / Infinity === - 0. Actual: +0');
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 
@@ -618,128 +524,97 @@ if (-1.0 / Infinity !== -0.0) {
     throw '#4.2: -1 / Infinity === - 0. Actual: +0';
   }
 }
-
-
 //? test: S11.5.2_A4_T7
-//? description: Division of a zero by a zero results in NaN
-//? expect: error:Integer divide by zero error
+//? description: Division of a zero by a zero results in NaN (double path)
+//? expect: success
+//? differences: Integer 0/0 throws; use 0.0 so / is double and yields NaN (IEEE)
 //? source: ...
 
-/* In JS, these result in NaN, but in AS they throw exceptions, because they can't return NaN (double) */
 
 //CHECK#1
-if (is_NaN(+0 / +0) !== true) {
-  throw '#1: +0 / +0 === Not-a-Number. Actual: ' + (+0 / +0);
+if (is_NaN(+0.0 / +0.0) !== true) {
+  throw '#1: +0.0 / +0.0 === Not-a-Number';
 }
 
 //CHECK#2
-if (is_NaN(-0 / +0) !== true) {
-  throw '#2: -0 / +0 === Not-a-Number. Actual: ' + (-0 / +0);
+if (is_NaN(-0.0 / +0.0) !== true) {
+  throw '#2: -0.0 / +0.0 === Not-a-Number';
 }
 
 //CHECK#3
-if (is_NaN(+0 / -0) !== true) {
-  throw '#3: +0 / -0 === Not-a-Number. Actual: ' + (+0 / -0);
+if (is_NaN(+0.0 / -0.0) !== true) {
+  throw '#3: +0.0 / -0.0 === Not-a-Number';
 }
 
 //CHECK#4
-if (is_NaN(-0 / -0) !== true) {
-  throw '#4: -0 / -0 === Not-a-Number. Actual: ' + (-0 / -0);
+if (is_NaN(-0.0 / -0.0) !== true) {
+  throw '#4: -0.0 / -0.0 === Not-a-Number';
 }
-
-
 //? test: S11.5.2_A4_T8
-//? description: Division of a zero by any non-zero finite value -0 results in zero of appropriate sign throw new Test262Error('#1.2: -0 / 1 === - 0. Actual: +0'); throw new Test262Error('#2.2: -0 / -1 === + 0. Actual: -0'); throw new Test262Error('#3.2: +0 / 1 === + 0. Actual: -0'); throw new Test262Error('#4.2: +0 / -1 === - 0. Actual: +0'); throw new Test262Error('#5.2: +0 / -Number.MAX_VALUE === - 0. Actual: +0'); throw new Test262Error('#6.2: -0 / Number.MIN_VALUE === - 0. Actual: +0');
-//? expect: undefined
-//? skip: true
+//? description: Division of a zero by any non-zero finite value — signed zero (double)
+//? expect: success
 //? source: ...
 
 
 //CHECK#1
-if (-0 / 1 !== -0) {
-  throw '#1.1: -0 / 1 === 0. Actual: ' + (-0 / 1);
+if (-0.0 / 1.0 !== -0.0) {
+  throw '#1.1: -0.0 / 1.0 === -0';
 } else {
-  if (1 / (-0 / 1) !== -Infinity) {
-    throw '#1.2: -0 / 1 === - 0. Actual: +0';
+  if (1.0 / (-0.0 / 1.0) !== -Infinity) {
+    throw '#1.2: -0.0 / 1.0 === -0';
   }
 }
 
 //CHECK#2
-if (-0 / -1 !== +0) {
-  throw '#2.1: -0 / -1 === 0. Actual: ' + (-0 / -1);
+if (-0.0 / -1.0 !== +0.0) {
+  throw '#2.1: -0.0 / -1.0 === +0';
 } else {
-  if (1 / (-0 / -1) !== Infinity) {
-    throw '#2.2: -0 / -1 === + 0. Actual: -0';
+  if (1.0 / (-0.0 / -1.0) !== Infinity) {
+    throw '#2.2: -0.0 / -1.0 === +0';
   }
 }
 
 //CHECK#3
-if (+0 / 1 !== +0) {
-  throw '#3.1: +0 / 1 === 0. Actual: ' + (+0 / 1);
+if (+0.0 / 1.0 !== +0.0) {
+  throw '#3.1: +0.0 / 1.0 === +0';
 } else {
-  if (1 / (+0 / 1) !== Infinity) {
-    throw '#3.2: +0 / 1 === + 0. Actual: -0';
+  if (1.0 / (+0.0 / 1.0) !== Infinity) {
+    throw '#3.2: +0.0 / 1.0 === +0';
   }
 }
 
 //CHECK#4
-if (+0 / -1 !== -0) {
-  throw '#4.1: +0 / -1 === 0. Actual: ' + (+0 / -1);
+if (+0.0 / -1.0 !== -0.0) {
+  throw '#4.1: +0.0 / -1.0 === -0';
 } else {
-  if (1 / (+0 / -1) !== -Infinity) {
-    throw '#4.2: +0 / -1 === - 0. Actual: +0';
+  if (1.0 / (+0.0 / -1.0) !== -Infinity) {
+    throw '#4.2: +0.0 / -1.0 === -0';
   }
 }
 
 //CHECK#5
-if (+0 / -Number.MAX_VALUE !== -0) {
-  throw '#5.1: 0 / -Number.MAX_VALUE === 0. Actual: ' + (0 / -Number.MAX_VALUE);
+if (+0.0 / -2.5 !== -0.0) {
+  throw '#5.1: +0.0 / -2.5 === -0';
 } else {
-  if (1 / (+0 / -Number.MAX_VALUE) !== -Infinity) {
-    throw '#5.2: +0 / -Number.MAX_VALUE === - 0. Actual: +0';
+  if (1.0 / (+0.0 / -2.5) !== -Infinity) {
+    throw '#5.2: +0.0 / -2.5 === -0';
   }
 }
 
 //CHECK#6
-if (-0 / Number.MIN_VALUE !== -0) {
-  throw '#6.1: -0 / Number.MIN_VALUE === 0. Actual: ' + (-0 / Number.MIN_VALUE);
+if (-0.0 / 0.5 !== -0.0) {
+  throw '#6.1: -0.0 / 0.5 === -0';
 } else {
-  if (1 / (-0 / Number.MIN_VALUE) !== -Infinity) {
-    throw '#6.2: -0 / Number.MIN_VALUE === - 0. Actual: +0';
+  if (1.0 / (-0.0 / 0.5) !== -Infinity) {
+    throw '#6.2: -0.0 / 0.5 === -0';
   }
 }
-
-
 //? test: S11.5.2_A4_T9
 //? description: If the magnitude is too large to represent, the result is then an infinity of appropriate sign
-//? expect: undefined
-//? skip: true
+//? expect: success
 //? source: ...
 
-
 //CHECK#1
-if (Number.MAX_VALUE / 0.9 !== Infinity) {
-  throw '#1: Number.MAX_VALUE / 0.9 === Infinity. Actual: ' + (Number.MAX_VALUE / 0.9);
+if (#doubleMax / 0.9 !== Infinity) {
+  throw '#1: #doubleMax / 0.9 === Infinity. Actual: ' + (#doubleMax / 0.9);
 }
-
-//CHECK#2
-if (Number.MAX_VALUE / -0.9 !== -Infinity) {
-  throw '#2: Number.MAX_VALUE / -0.9 === -Infinity. Actual: ' + (Number.MAX_VALUE / -0.9);
-}
-
-//CHECK#3
-if (Number.MAX_VALUE / 1 !== Number.MAX_VALUE) {
-  throw '#3: Number.MAX_VALUE / 1 === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE / 1);
-}
-
-//CHECK#4
-if (Number.MAX_VALUE / -1 !== -Number.MAX_VALUE) {
-  throw '#4: Number.MAX_VALUE / -1 === -Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE / -1);
-}
-
-//CHECK#5
-if (Number.MAX_VALUE / (Number.MAX_VALUE / 0.9) === (Number.MAX_VALUE / Number.MAX_VALUE) / 0.9) {
-  throw '#5: Number.MAX_VALUE / (Number.MAX_VALUE / 0.9) !== (Number.MAX_VALUE / Number.MAX_VALUE) / 0.9';
-}
-
-

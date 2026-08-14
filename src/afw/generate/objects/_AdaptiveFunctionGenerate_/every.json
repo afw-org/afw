@@ -1,0 +1,26 @@
+{
+    "additionalArgCheck": true,
+    "brief": "Whether every array entry passes a test",
+    "category": "higher_order_array",
+    "description": "Return true if predicate returns true for every entry of the first array in values (index order), or if that array is empty. Entries whose value is undefined are included. Same single-array behavior as all_of.",
+    "functionId": "every",
+    "functionLabel": "every",
+    "pure": true,
+    "useExecuteFunction": "afw_function_execute_all_of",
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(...values: any) => boolean",
+            "description": "Called for each value in the first array in values or until false is returned.",
+            "name": "predicate"
+        },
+        {
+            "minArgs": 1,
+            "description": "Parameters passed to predicate with the first array passed one value at a time.",
+            "name": "values"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

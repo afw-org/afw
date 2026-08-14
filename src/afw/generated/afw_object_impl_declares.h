@@ -72,7 +72,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_object_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_OBJECT_IMPL_DECLARES_H__
@@ -161,7 +161,7 @@ impl_afw_object_get_property_meta(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_object_get_next_property(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t * xctx);
 #endif
@@ -171,7 +171,7 @@ impl_afw_object_get_next_property(
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_object_get_next_property_meta(
     AFW_OBJECT_SELF_T *self,
-    const afw_iterator_t * * iterator,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     const afw_pool_t * p,
     afw_xctx_t * xctx);

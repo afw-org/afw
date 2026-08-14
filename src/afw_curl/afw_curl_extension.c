@@ -9,7 +9,15 @@
 
 /**
  * @file afw_curl_extension.c
- * @brief Implementation of afw_extension interface for afw_curl
+ * @brief afw_extension implementation for the curl extension.
+ *
+ * Pattern: set AFW_IMPLEMENTATION_ID, include afw_extension_impl_declares.h,
+ * AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL(), implement initialize (call
+ * generated register + any one-time setup). Closet skeleton for this
+ * interface is under core generated/interface_closet/; afwdev scaffolds
+ * copy and substitute for new extensions.
+ *
+ * See @ref afw_dev_implementing.
  */
 
 #include "afw.h"
@@ -22,7 +30,7 @@
 /* Declares and rti/inf defines for interface afw_extension */
 #define AFW_IMPLEMENTATION_ID "afw_curl"
 #include "afw_extension_impl_declares.h"
-#include "generated/afw_curl_generated.h"
+#include "generated/afw_curl_generated_internal.h"
 #include "generated/afw_curl_version_info.h"
 
 
@@ -36,7 +44,7 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
  */
 const afw_extension_t *
 impl_afw_extension_initialize(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
@@ -60,7 +68,7 @@ impl_afw_extension_initialize(
     /* Call the generated register function for this extension. */
     afw_curl_generated_register(xctx);
 
-    /* Return extension instance. */
+    /* Return extension self. */
     return &impl_extension;
 }
 
@@ -69,7 +77,7 @@ impl_afw_extension_initialize(
  */
 void
 impl_afw_extension_release(
-    const afw_extension_t * instance,
+    const afw_extension_t * self,
     afw_xctx_t *xctx)
 {
     /* Extension release() is not currently called. */

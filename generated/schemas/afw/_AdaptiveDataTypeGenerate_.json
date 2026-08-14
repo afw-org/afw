@@ -1,28 +1,154 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveDataTypeGenerate_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveDataTypeGenerate_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveDataTypeGenerate_.propertyTypes"
-                },
-                {
-                    "$ref": "#/$defs/_AdaptiveDataType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveDataTypeGenerate_.propertyTypes": {
+            "markdownDescription": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects.",
             "properties": {
-                "_meta_": {},
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "afw_value_get_evaluated_meta": {
                     "description": "This is the label in C source of the afw_value_get_evaluated_meta for this data type.",
+                    "markdownDescription": "**afw_value_get_evaluated_meta**\n\nThis is the label in C source of the afw_value_get_evaluated_meta for this data type.",
                     "title": "afw_value_get_evaluated_meta",
                     "type": "string"
                 },
                 "afw_value_get_evaluated_metas": {
                     "description": "This is the label in C source of the afw_value_get_evaluated_metas for this data type.",
+                    "markdownDescription": "**afw_value_get_evaluated_metas**\n\nThis is the label in C source of the afw_value_get_evaluated_metas for this data type.",
+                    "title": "afw_value_get_evaluated_metas",
+                    "type": "string"
+                },
+                "brief": {
+                    "description": "This is a predicate for the data type with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for the data type with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "cType": {
+                    "description": "C data type.",
+                    "markdownDescription": "**C Type**\n\nC data type.",
+                    "title": "C Type",
+                    "type": "string"
+                },
+                "compileType": {
+                    "description": "If specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property.",
+                    "markdownDescription": "**Compile Type**\n\nIf specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property.",
+                    "title": "Compile Type",
+                    "type": "string"
+                },
+                "dataType": {
+                    "description": "Data type id.",
+                    "markdownDescription": "**Data Type**\n\nData type id.",
+                    "title": "Data Type",
+                    "type": "string"
+                },
+                "dataTypeParameterType": {
+                    "description": "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+                    "enum": [
+                        "FunctionSignature",
+                        "ArrayOf",
+                        "MediaType",
+                        "ObjectType",
+                        "SourceParameter",
+                        "Type"
+                    ],
+                    "markdownDescription": "**Parameter Type**\n\nThis is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+                    "title": "Parameter Type",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of this object type.",
+                    "markdownDescription": "**Description**\n\nDescription of this object type.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "directReturn": {
+                    "description": "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
+                    "markdownDescription": "**Direct Return**\n\nGenerate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
+                    "title": "Direct Return",
+                    "type": "boolean"
+                },
+                "evaluated": {
+                    "description": "This data type is source that can be compiled and evaluated with the compile() adaptive function.",
+                    "markdownDescription": "**Evaluated**\n\nThis data type is source that can be compiled and evaluated with the compile() adaptive function.",
+                    "title": "Evaluated",
+                    "type": "boolean"
+                },
+                "iteratorReturnDataType": {
+                    "description": "When set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "markdownDescription": "**Iterator Return Data Type**\n\nWhen set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "title": "Iterator Return Data Type",
+                    "type": "string"
+                },
+                "jsonImpliesDataType": {
+                    "default": false,
+                    "description": "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
+                    "markdownDescription": "**JSON Implies Data Type**\n\nIndicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
+                    "title": "JSON Implies Data Type",
+                    "type": "boolean"
+                },
+                "jsonPrimitive": {
+                    "description": "This specifies the JSON primitive type that is used to represent this dataType.",
+                    "markdownDescription": "**JSON Primitive**\n\nThis specifies the JSON primitive type that is used to represent this dataType.",
+                    "title": "JSON Primitive",
+                    "type": "string"
+                },
+                "jsonSchemaStringFormat": {
+                    "description": "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.",
+                    "markdownDescription": "**JSON String Format**\n\nThis is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.",
+                    "title": "JSON String Format",
+                    "type": "string"
+                },
+                "ldapOid": {
+                    "description": "LDAP OID.",
+                    "markdownDescription": "**Ldap Oid**\n\nLDAP OID.",
+                    "title": "Ldap Oid",
+                    "type": "string"
+                },
+                "relationalCompares": {
+                    "description": "If true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed.",
+                    "markdownDescription": "**Relational Compares**\n\nIf true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed.",
+                    "title": "Relational Compares",
+                    "type": "boolean"
+                },
+                "scalar": {
+                    "description": "Data type represents a scalar value.",
+                    "markdownDescription": "**Scalar**\n\nData type represents a scalar value.",
+                    "title": "Scalar",
+                    "type": "boolean"
+                },
+                "special": {
+                    "description": "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
+                    "markdownDescription": "**Special**\n\nSpecial data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
+                    "title": "Special",
+                    "type": "boolean"
+                }
+            },
+            "title": "_AdaptiveDataTypeGenerate_",
+            "type": "object",
+            "x-afw-inheritedObjectTypes": [
+                "_AdaptiveDataType_"
+            ]
+        },
+        "_AdaptiveDataTypeGenerate_.propertyTypes": {
+            "properties": {
+                "afw_value_get_evaluated_meta": {
+                    "description": "This is the label in C source of the afw_value_get_evaluated_meta for this data type.",
+                    "markdownDescription": "**afw_value_get_evaluated_meta**\n\nThis is the label in C source of the afw_value_get_evaluated_meta for this data type.",
+                    "title": "afw_value_get_evaluated_meta",
+                    "type": "string"
+                },
+                "afw_value_get_evaluated_metas": {
+                    "description": "This is the label in C source of the afw_value_get_evaluated_metas for this data type.",
+                    "markdownDescription": "**afw_value_get_evaluated_metas**\n\nThis is the label in C source of the afw_value_get_evaluated_metas for this data type.",
                     "title": "afw_value_get_evaluated_metas",
                     "type": "string"
                 }
@@ -33,92 +159,248 @@
             "properties": {
                 "brief": {
                     "description": "This is a predicate for the data type with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for the data type with the first letter capitalized and without a trailing period.",
                     "title": "Brief",
                     "type": "string"
                 },
                 "cType": {
                     "description": "C data type.",
+                    "markdownDescription": "**C Type**\n\nC data type.",
                     "title": "C Type",
                     "type": "string"
                 },
                 "compileType": {
                     "description": "If specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property.",
+                    "markdownDescription": "**Compile Type**\n\nIf specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property.",
                     "title": "Compile Type",
                     "type": "string"
                 },
                 "dataType": {
                     "description": "Data type id.",
+                    "markdownDescription": "**Data Type**\n\nData type id.",
                     "title": "Data Type",
                     "type": "string"
                 },
                 "dataTypeParameterType": {
                     "description": "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+                    "enum": [
+                        "FunctionSignature",
+                        "ArrayOf",
+                        "MediaType",
+                        "ObjectType",
+                        "SourceParameter",
+                        "Type"
+                    ],
+                    "markdownDescription": "**Parameter Type**\n\nThis is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
                     "title": "Parameter Type",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of this object type.",
+                    "markdownDescription": "**Description**\n\nDescription of this object type.",
                     "title": "Description",
                     "type": "string"
                 },
                 "directReturn": {
                     "description": "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
+                    "markdownDescription": "**Direct Return**\n\nGenerate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
                     "title": "Direct Return",
                     "type": "boolean"
                 },
                 "evaluated": {
                     "description": "This data type is source that can be compiled and evaluated with the compile() adaptive function.",
+                    "markdownDescription": "**Evaluated**\n\nThis data type is source that can be compiled and evaluated with the compile() adaptive function.",
                     "title": "Evaluated",
                     "type": "boolean"
                 },
+                "iteratorReturnDataType": {
+                    "description": "When set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "markdownDescription": "**Iterator Return Data Type**\n\nWhen set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+                    "title": "Iterator Return Data Type",
+                    "type": "string"
+                },
                 "jsonImpliesDataType": {
+                    "default": false,
                     "description": "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
+                    "markdownDescription": "**JSON Implies Data Type**\n\nIndicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
                     "title": "JSON Implies Data Type",
                     "type": "boolean"
                 },
                 "jsonPrimitive": {
                     "description": "This specifies the JSON primitive type that is used to represent this dataType.",
+                    "markdownDescription": "**JSON Primitive**\n\nThis specifies the JSON primitive type that is used to represent this dataType.",
                     "title": "JSON Primitive",
                     "type": "string"
                 },
                 "jsonSchemaStringFormat": {
                     "description": "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.",
+                    "markdownDescription": "**JSON String Format**\n\nThis is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.",
                     "title": "JSON String Format",
                     "type": "string"
                 },
                 "ldapOid": {
                     "description": "LDAP OID.",
+                    "markdownDescription": "**Ldap Oid**\n\nLDAP OID.",
                     "title": "Ldap Oid",
                     "type": "string"
                 },
                 "relationalCompares": {
                     "description": "If true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed.",
+                    "markdownDescription": "**Relational Compares**\n\nIf true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed.",
                     "title": "Relational Compares",
                     "type": "boolean"
                 },
                 "scalar": {
                     "description": "Data type represents a scalar value.",
+                    "markdownDescription": "**Scalar**\n\nData type represents a scalar value.",
                     "title": "Scalar",
                     "type": "boolean"
                 },
                 "special": {
                     "description": "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
+                    "markdownDescription": "**Special**\n\nSpecial data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
                     "title": "Special",
                     "type": "boolean"
                 }
             },
-            "required": [
-                "cType",
-                "dataType"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveDataTypeGenerate_"
+    "additionalProperties": false,
+    "description": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects.",
+    "markdownDescription": "This is the object type for objects in the generate/objects/_AdaptiveDataTypeGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveDataType_ objects.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "afw_value_get_evaluated_meta": {
+            "description": "This is the label in C source of the afw_value_get_evaluated_meta for this data type.",
+            "markdownDescription": "**afw_value_get_evaluated_meta**\n\nThis is the label in C source of the afw_value_get_evaluated_meta for this data type.",
+            "title": "afw_value_get_evaluated_meta",
+            "type": "string"
+        },
+        "afw_value_get_evaluated_metas": {
+            "description": "This is the label in C source of the afw_value_get_evaluated_metas for this data type.",
+            "markdownDescription": "**afw_value_get_evaluated_metas**\n\nThis is the label in C source of the afw_value_get_evaluated_metas for this data type.",
+            "title": "afw_value_get_evaluated_metas",
+            "type": "string"
+        },
+        "brief": {
+            "description": "This is a predicate for the data type with the first letter capitalized and without a trailing period.",
+            "markdownDescription": "**Brief**\n\nThis is a predicate for the data type with the first letter capitalized and without a trailing period.",
+            "title": "Brief",
+            "type": "string"
+        },
+        "cType": {
+            "description": "C data type.",
+            "markdownDescription": "**C Type**\n\nC data type.",
+            "title": "C Type",
+            "type": "string"
+        },
+        "compileType": {
+            "description": "If specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property.",
+            "markdownDescription": "**Compile Type**\n\nIf specified, the internal for this data type can be compiled using the afw_compile_type_<type> where <type> is the value of this property.",
+            "title": "Compile Type",
+            "type": "string"
+        },
+        "dataType": {
+            "description": "Data type id.",
+            "markdownDescription": "**Data Type**\n\nData type id.",
+            "title": "Data Type",
+            "type": "string"
+        },
+        "dataTypeParameterType": {
+            "description": "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+            "enum": [
+                "FunctionSignature",
+                "ArrayOf",
+                "MediaType",
+                "ObjectType",
+                "SourceParameter",
+                "Type"
+            ],
+            "markdownDescription": "**Parameter Type**\n\nThis is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+            "title": "Parameter Type",
+            "type": "string"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of this object type.",
+            "markdownDescription": "**Description**\n\nDescription of this object type.",
+            "title": "Description",
+            "type": "string"
+        },
+        "directReturn": {
+            "description": "Generate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
+            "markdownDescription": "**Direct Return**\n\nGenerate afw_value_as_* and afw_object_old_get_property_as_* return value instead of value pointer.",
+            "title": "Direct Return",
+            "type": "boolean"
+        },
+        "evaluated": {
+            "description": "This data type is source that can be compiled and evaluated with the compile() adaptive function.",
+            "markdownDescription": "**Evaluated**\n\nThis data type is source that can be compiled and evaluated with the compile() adaptive function.",
+            "title": "Evaluated",
+            "type": "boolean"
+        },
+        "iteratorReturnDataType": {
+            "description": "When set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+            "markdownDescription": "**Iterator Return Data Type**\n\nWhen set, the id of the data type of each value produced by a keyless afw_iterator over values of this type (get_next / get_by_index). Null or omitted when the type does not support that iterator or the step type is not fixed at the data type level (e.g. array). Distinct from whether iteration is supported: that is the C optional_initialize_iterator method. See issue #153.",
+            "title": "Iterator Return Data Type",
+            "type": "string"
+        },
+        "jsonImpliesDataType": {
+            "default": false,
+            "description": "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
+            "markdownDescription": "**JSON Implies Data Type**\n\nIndicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
+            "title": "JSON Implies Data Type",
+            "type": "boolean"
+        },
+        "jsonPrimitive": {
+            "description": "This specifies the JSON primitive type that is used to represent this dataType.",
+            "markdownDescription": "**JSON Primitive**\n\nThis specifies the JSON primitive type that is used to represent this dataType.",
+            "title": "JSON Primitive",
+            "type": "string"
+        },
+        "jsonSchemaStringFormat": {
+            "description": "This is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.",
+            "markdownDescription": "**JSON String Format**\n\nThis is the format to use in JSON Schema for this data type. This is only applicable to data types with jsonPrimitive of 'string'.",
+            "title": "JSON String Format",
+            "type": "string"
+        },
+        "ldapOid": {
+            "description": "LDAP OID.",
+            "markdownDescription": "**Ldap Oid**\n\nLDAP OID.",
+            "title": "Ldap Oid",
+            "type": "string"
+        },
+        "relationalCompares": {
+            "description": "If true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed.",
+            "markdownDescription": "**Relational Compares**\n\nIf true, this data type supports equality (equal) and relational compares (greater than and less than). If false, only equality compares are allowed.",
+            "title": "Relational Compares",
+            "type": "boolean"
+        },
+        "scalar": {
+            "description": "Data type represents a scalar value.",
+            "markdownDescription": "**Scalar**\n\nData type represents a scalar value.",
+            "title": "Scalar",
+            "type": "boolean"
+        },
+        "special": {
+            "description": "Special data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
+            "markdownDescription": "**Special**\n\nSpecial data types are not associated with a particular instance of a value but can be used to specify what data types a value can be.",
+            "title": "Special",
+            "type": "boolean"
         }
+    },
+    "title": "_AdaptiveDataTypeGenerate_",
+    "type": "object",
+    "x-afw-inheritedObjectTypes": [
+        "_AdaptiveDataType_"
     ]
 }

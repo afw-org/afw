@@ -18,15 +18,21 @@
 
 /**
  * @file afw_value.h
- * @brief Adaptive Framework header for adaptive values.
+ * @brief Public API for adaptive values (`afw_value_t`).
  *
- * See the @ref afw_value group (defined in afw_doxygen.h) for the overall mental model.
+ * See the @ref afw_value group for the full mental model.
  *
- * This is the main public header. It declares the common value structures
- * and the afw_value_evaluate() macro that everything flows through.
+ * **Public type:** always talk about values as `const afw_value_t *`.
+ * That name is a typedef; many different C structs implement values.
+ * Callers must not depend on a single `struct` body — use
+ * `afw_value_evaluate()` and related helpers, and data-type create APIs.
  *
- * Core value kinds: data type values (permanent/managed), compiled_value,
- * block, call_*, symbol_reference, closure_binding.
+ * This header declares shared helpers (`afw_value_common_s` prefix access,
+ * function definition structs, evaluate macros) and is the right include
+ * for most extension/command code that touches values.
+ *
+ * Kind-specific layouts (block, call, symbol, …) live mainly in
+ * `afw_value_internal.h` and generated `afw_data_type_*_binding.h`.
  */
 
 AFW_BEGIN_DECLARES
@@ -54,7 +60,12 @@ struct afw_value_info_s {
 
 
 /**
- * @brief Struct to access internal of all values.
+ * @brief Shared prefix layout used to inspect any value kind.
+ *
+ * Not “the” only body for `afw_value_t`. Concrete kinds embed this pattern
+ * (inf/pub union first) so a value pointer can be treated as `afw_value_t *`.
+ * The `internal` byte is the start of type-specific payload, not a complete
+ * value by itself.
  */
 struct afw_value_common_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
@@ -96,6 +107,13 @@ struct afw_value_function_parameter_s {
 
     /* Indicates that dataTypeParameter is polymorphic. */
     const afw_value_boolean_t *polymorphicDataTypeParameter;
+
+    /**
+     * If non-NULL, dataTypeParameter was resolved at generate to this Adaptive
+     * data type (typically ArrayOf element type). NULL: do not use the
+     * parameter string for compile-time type projection.
+     */
+    const afw_data_type_t *data_type_parameter_data_type;
 
 };
 
@@ -169,8 +187,8 @@ struct afw_value_function_definition_s {
     /** @brief The number of required parameters. */
     const afw_value_integer_t *numberOfRequiredParameters;
 
-    /** @brief The maximum number of required parameters or -1 is no max. */
-    const afw_value_integer_t *maximumNumberOfParameters;
+    /** @brief The maximum number of parameters or -1 if there is no max. */
+    const afw_value_integer_t *maxNumberOfParameters;
 
     /** @brief Function parameters. */
     const afw_value_function_parameter_t * const *parameters;
@@ -232,6 +250,13 @@ struct afw_value_function_definition_s {
      * @brief Requires 'execute' access to function.
      */
     const afw_value_boolean_t *requiresExecuteAccess;
+
+    /**
+     * @brief True if this is a script-support / statement IR function
+     *     (const, let, if, …). Not a normal user-callable adaptive function;
+     *     formals in metadata may not match compiler argv shape.
+     */
+    const afw_value_boolean_t *scriptSupport;
 };
 
 
@@ -306,6 +331,12 @@ afw_value_object_expression_inf;
 
 
 
+/** @brief Value object construct inf (expression property names). */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_object_construct_inf;
+
+
+
 /** @brief Value qualified_variable_reference inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_qualified_variable_reference_inf;
@@ -331,10 +362,10 @@ afw_value_symbol_reference_inf;
 
 
 /**
- * @brief Adaptive value null.
+ * @brief Adaptive value null (typed singleton).
  *
- * Note: this is different from c NULL which is represented by undefined.  See
- * afw_value_undefined.
+ * This is Adaptive/JSON **null**, not C NULL and not undefined. See
+ * afw_value_undefined and afw_value_is_nullish().
  */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_null;
@@ -342,19 +373,34 @@ afw_value_null;
 
 
 /**
- * @brief Adaptive value null.
+ * @brief Adaptive value undefined (permanent singleton).
  *
- * Undefined values are represented by C NULL or a pointer to this exact value.
- * Throughout source NULL and undefined are used interchangeably, but it's
- * preferred that undefined is represented by a pointer to this value. This is
- * because C NULL is sometimes used as a return value to mean something other
- * than undefined such as "not applicable".
+ * For **values**, undefined may be represented by C NULL **or** a pointer to
+ * this exact singleton. Prefer storing/returning this singleton when the
+ * meaning is “present but undefined” (e.g. object properties, qualifier
+ * get_cb). C NULL is also treated as undefined by afw_value_is_undefined() /
+ * is_nullish(), but in some APIs C NULL means something else (not bound, not
+ * applicable, keep walking) — see afw_xctx_get_optionally_qualified_variable()
+ * and afw_xctx_get_variable_cb_t.
  *
- * Macro afw_value_is_undefined() should always be used to check for an
- * undefined value since it checks for both of these conditions.
+ * Always use afw_value_is_undefined() (or is_nullish()) to test; do not rely
+ * on pointer identity alone unless you know you stored the singleton.
  */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_undefined;
+
+
+
+/**
+ * @brief Adaptive value void (permanent singleton).
+ *
+ * Completion of a function whose declared return type is void. Identity is
+ * this address. Not undefined: `return;` is undefined; a void function
+ * yields this. The statement-list loop treats this pointer as “do not
+ * override the prior result.”
+ */
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_void;
 
 
 
@@ -371,9 +417,61 @@ afw_value_unique_default_case_value;
 
 
 /**
+ * @brief Permanent values for compiler literals (script `#doubleMax`, …).
+ *
+ * C macros for the same numbers are in afw_number.h (`AFW_DOUBLE_MAX`,
+ * …) and afw_common.h (`AFW_INTEGER_MAX` / `MIN`). Infinity / NaN
+ * values match env->infinity_value / NaN_value (IEEE).
+ */
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_max;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_min;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_min_subnormal;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_epsilon;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_pi;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_e;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_infinity;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_minus_infinity;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_NaN;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_max;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_min;
+
+
+
+/**
  * @brief Value for boolean variable.
  * @param variable
  * @return afw_boolean_v_true or afw_boolean_v_false
+ *
+ * Prefer existing static const Adaptive values when the value is fixed:
+ * afw_boolean_v_true / afw_boolean_v_false, afw_v_* from afw_strings.h
+ * (including a_* names), afw_integer_v_zero / afw_integer_v_one,
+ * afw_value_double_max / afw_value_integer_max / afw_value_infinity
+ * (and siblings), and afw_value_null / afw_value_undefined in this
+ * header. Avoid
+ * create_unmanaged_* only to wrap those. Prefer
+ * afw_object_set_property(..., afw_v_*, ...) over set_property_as_string
+ * when an afw_v_* already exists for that constant.
  */
 #define afw_value_for_boolean(variable) (variable) \
     ? afw_boolean_v_true \
@@ -386,7 +484,8 @@ afw_value_unique_default_case_value;
  * @param value to test.
  * @return boolean result.
  *
- * NOTE: If the value is NULL or not boolean it will always be false.
+ * Requires an evaluated boolean (cast-safe like `afw_value_is_boolean`). If
+ * A_VALUE is NULL or not an evaluated boolean, the result is false.
  */
 #define afw_value_is_boolean_true(A_VALUE) \
 ( \
@@ -398,13 +497,14 @@ afw_value_unique_default_case_value;
 
 
 /**
- * @brief Determine if value is undefined or null.
+ * @brief Determine if value is undefined or Adaptive null.
  * @param value to test.
- * @param xctx of caller.
  * @return boolean result.
  *
- * NOTE: Undefined values are represented by c NULL which is different from
- * an adaptive null value.
+ * True for C NULL, afw_value_undefined, or Adaptive null. Script nullish
+ * coalescing / is_nullish and type-check nullish assignability use this idea.
+ * Does **not** mean “variable name is unbound” — that is an xctx/symbol
+ * question (see afw_xctx_scope_symbol_exists_by_name).
  */
 #define afw_value_is_nullish(A_VALUE) \
 ( \
@@ -417,14 +517,27 @@ afw_value_unique_default_case_value;
 /**
  * @brief Determine if value is undefined.
  * @param value to test.
- * @param xctx of caller.
  * @return boolean result.
  *
- * NOTE: Undefined values are represented by c NULL or an exact pointer to
- * afw_value_undefined.
+ * True for C NULL or the afw_value_undefined singleton. Not Adaptive null.
+ * Type assignability treats C NULL like undefined for nullish /
+ * strictNullChecks (issue #131). Prefer the singleton when storing a present
+ * undefined value so APIs that use C NULL for “not defined” stay unambiguous.
  */
 #define afw_value_is_undefined(A_VALUE) \
     (!A_VALUE || (A_VALUE) == afw_value_undefined)
+
+
+
+/**
+ * @brief Determine if value is the void singleton.
+ * @param value to test.
+ * @return boolean result.
+ *
+ * True only for the afw_value_void pointer. C NULL is undefined, not void.
+ */
+#define afw_value_is_void(A_VALUE) \
+    ((A_VALUE) == afw_value_void)
 
 
 
@@ -450,9 +563,14 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 
 
 /**
- * @brief Macro to determine if value is defined and evaluated.
+ * @brief True if A_VALUE is non-NULL and already evaluated (any data type).
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * True when `inf->is_evaluated_of_data_type` is non-NULL: finished data-type
+ * layout (cast-safe to the matching `const afw_value_<datatype>_t *` after an
+ * `afw_value_is_*` / `AFW_VALUE_IS_DATA_TYPE` check for that type). False for
+ * C NULL and for unevaluated IR (calls, constructs, references, …).
  */
 #define afw_value_is_defined_and_evaluated(A_VALUE) \
 ( \
@@ -463,9 +581,13 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 
 
 /**
- * @brief Macro to determine if value is undefined or evaluated.
+ * @brief True if A_VALUE is C NULL/undefined or already evaluated.
  * @param A_VALUE to test.
  * @return boolean result.
+ *
+ * Same “evaluated” sense as `afw_value_is_defined_and_evaluated` (field
+ * `is_evaluated_of_data_type`), or A_VALUE is missing. Not a produce-type
+ * check — see `AFW_VALUE_EVALUATES_TO_DATA_TYPE`.
  */
 #define afw_value_is_undefined_or_evaluated(A_VALUE) \
 ( \
@@ -476,10 +598,13 @@ afw_value_is_scalar(const afw_value_t *value, afw_xctx_t *xctx);
 
 
 /**
- * @brief Determine if value and all of it contained values are evaluated.
+ * @brief Determine if value and all of its contained values are evaluated.
  * @param value to test.
  * @param xctx of caller.
  * @return boolean result.
+ *
+ * Recursive: the value and nested contents are finished evaluated data-type
+ * layouts, not merely known produce types.
  */
 AFW_DECLARE(afw_boolean_t)
 afw_value_is_fully_evaluated(
@@ -487,6 +612,14 @@ afw_value_is_fully_evaluated(
     afw_xctx_t *xctx);
 
 
+
+/**
+ * Value-kind predicates (`afw_value_is_block`, `afw_value_is_call`, …) test
+ * `inf` identity for IR / structural kinds — not data type. When true, it is
+ * safe to cast A_VALUE to the matching `const afw_value_<kind>_t *` (e.g.
+ * `afw_value_block_t`). For evaluated data types use `afw_value_is_*` /
+ * `AFW_VALUE_IS_DATA_TYPE` instead.
+ */
 
 /**
  * @brief Macro to determine if value is an assignment target.
@@ -636,6 +769,20 @@ afw_value_is_fully_evaluated(
 
 
 /**
+ * @brief Macro to determine if value is an object construct
+ *     (ordered entries; expression property names).
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_object_construct(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_object_construct_inf \
+)
+
+
+
+/**
  * @brief Macro to determine if value is lambda definition.
  * @param A_VALUE to test.
  * @return boolean result.
@@ -712,40 +859,124 @@ afw_value_is_fully_evaluated(
 )
 
  
-/** @brief Throw and error if A_VALUE is not value inf id. */
+/**
+ * @brief Throw if A_VALUE is not value kind A_TYPE_ID.
+ * @param A_VALUE value to test.
+ * @param A_TYPE_ID unquoted kind id (e.g. block, call, symbol_reference).
+ * @param A_SCOPE xctx or scope for the throw.
+ *
+ * Kind / inf-id assert (not data type). After success it is safe to cast
+ * A_VALUE to `const afw_value_<A_TYPE_ID>_t *`. For evaluated data types use
+ * `AFW_VALUE_ASSERT_IS_DATA_TYPE` instead.
+ */
 #define AFW_VALUE_ASSERT_IS(A_VALUE, A_TYPE_ID, A_SCOPE) \
 if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
-    AFW_THROW_ERROR_Z(cast_error, "Expecting " #A_TYPE_ID, A_SCOPE)
+    AFW_THROW_ERROR_Z(conversion_error, "Expecting " #A_TYPE_ID, A_SCOPE)
 
 
 /**
- * @brief Get the easily accessible data type for a value.
- * @param value
+ * @brief Get inf->data_type without calling get_data_type().
+ * @param A_VALUE value (must be non-NULL).
  * @return data_type or NULL.
- * 
- * This will return the data type of value if inf->data_type is not NULL.
- * This will be available for all evaluated values and some other values.
+ *
+ * Reads the produce-type field on the value's inf when set (evaluated values
+ * and some unevaluated kinds that know their result type). Not a cast-safety
+ * gate: NULL does not mean "not that type after evaluate," and a non-NULL
+ * result does not alone justify casting to `afw_value_<datatype>_t`. Prefer
+ * `afw_value_get_data_type()` / `AFW_VALUE_EVALUATES_TO_DATA_TYPE` when the
+ * method may compute type, or `AFW_VALUE_IS_DATA_TYPE` before a typed cast.
  */
 #define afw_value_quick_data_type(A_VALUE) \
 ((A_VALUE)->inf->data_type)
 
 
 /**
- * @brief Get the easily accessible data type id for a value.
- * @param value
- * 
- * This will return the data type id of value if inf->data_type is not NULL.
- * This will be available for all evaluated values and some other values.  If
- * the data type id is not available, "unknown" is returned.
+ * @brief True if A_VALUE is evaluated and its data type supports keyless
+ *        afw_iterator (#153).
+ * @param A_VALUE value to test.
+ *
+ * Uses inf->is_evaluated_of_data_type (cast-safe face) and
+ * optional_initialize_iterator on that data type. Not a produce-type probe.
+ * Soft only — does not throw.
+ */
+#define afw_value_has_iterator(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf->is_evaluated_of_data_type && \
+    (A_VALUE)->inf->is_evaluated_of_data_type->inf && \
+    (A_VALUE)->inf->is_evaluated_of_data_type->inf->optional_initialize_iterator \
+)
+
+
+/**
+ * @brief Fixed iterator step data type for A_VALUE's produce type, or NULL.
+ * @param A_VALUE value (evaluated or not).
+ * @return const afw_data_type_t * or NULL.
+ *
+ * Quick path only: inf->data_type->iterator_return_data_type. Does not call
+ * get_data_type(). NULL if produce type is unknown on the inf, or the type
+ * has no fixed iterator step type. See issue #153.
+ */
+#define afw_value_iterator_return_data_type(A_VALUE) \
+( \
+    ((A_VALUE) && (A_VALUE)->inf->data_type) \
+    ? (A_VALUE)->inf->data_type->iterator_return_data_type \
+    : NULL \
+)
+
+
+/**
+ * @brief Initialize a keyless afw_iterator for an evaluated value (#153).
+ * @param A_VALUE evaluated value with a data type that supports iterator.
+ * @param iterator caller-defined afw_iterator_t storage (opaque; host fills).
+ * @param xctx of caller.
+ *
+ * Requires finished evaluated layout (is_evaluated_of_data_type). Throws if
+ * the value is missing, not evaluated, or its type has no iterator. Soft
+ * probe: afw_value_has_iterator() first.
+ */
+#define afw_value_initialize_iterator(A_VALUE, iterator, xctx) \
+do { \
+    const afw_data_type_t *_afw_it_dt = \
+        (A_VALUE) ? (A_VALUE)->inf->is_evaluated_of_data_type : NULL; \
+    if (!_afw_it_dt || !_afw_it_dt->inf || \
+        !_afw_it_dt->inf->optional_initialize_iterator) \
+    { \
+        AFW_THROW_ERROR_Z(general, \
+            "Value does not support iterator", (xctx)); \
+    } \
+    _afw_it_dt->inf->optional_initialize_iterator( \
+        _afw_it_dt, AFW_VALUE_INTERNAL(A_VALUE), (iterator), (xctx)); \
+} while (0)
+
+
+/**
+ * @brief Get quick data type id string, or "unknown".
+ * @param A_VALUE value (may be NULL).
+ * @return pointer to data_type_id utf8, or afw_s_unknown.
+ *
+ * Same field as `afw_value_quick_data_type` (`inf->data_type`). Produce-type
+ * hint only — not cast-safe; see that macro.
  */
 #define afw_value_get_quick_data_type_id(A_VALUE) \
 (((A_VALUE) && (A_VALUE)->inf->data_type) \
 ? &((A_VALUE)->inf->data_type->data_type_id) \
-: afw_s_unknown )
+: afw_s_unknown)
 
 
 
-/** @brief Test that the value in A_VALUE is an evaluated data type A_DATA_TYPE. */
+/**
+ * @brief True if A_VALUE is already evaluated as data type A_DATA_TYPE.
+ * @param A_VALUE value to test.
+ * @param A_DATA_TYPE unquoted data type id (e.g. object, string).
+ *
+ * For evaluated values only. Uses `inf->is_evaluated_of_data_type`. When true,
+ * it is safe to cast A_VALUE to `const afw_value_<A_DATA_TYPE>_t *`.
+ *
+ * If you want to know if the value will be A_DATA_TYPE when fully evaluated
+ * (not necessarily cast-safe yet), use
+ * `AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, A_DATA_TYPE, xctx)` instead.
+ */
 #define AFW_VALUE_IS_DATA_TYPE(A_VALUE,A_DATA_TYPE) \
 ( \
     (A_VALUE) && (A_VALUE)->inf->is_evaluated_of_data_type && \
@@ -754,21 +985,60 @@ if (!A_VALUE || (A_VALUE)->inf != &afw_value_ ## A_TYPE_ID ## _inf) \
 
 
 
-/** @brief Throw and error if A_VALUE is not evaluated data type A_DATA_TYPE. */
+/**
+ * @brief True if A_VALUE is known to evaluate to data type A_DATA_TYPE.
+ * @param A_VALUE value to test (may be unevaluated).
+ * @param A_DATA_TYPE unquoted data type id (e.g. object, string).
+ * @param xctx of caller (required by afw_value_get_data_type).
+ *
+ * Uses `afw_value_get_data_type()` for known produce/return type when fully
+ * evaluated (evaluated values, calls with known return type such as
+ * wrap_literal_object, etc.).
+ *
+ * This is **not** a cast-safety gate. When true, keep the pointer as
+ * `const afw_value_t *` only — do **not** cast to
+ * `const afw_value_<A_DATA_TYPE>_t *` until the value is evaluated (or
+ * otherwise finished) and `AFW_VALUE_IS_DATA_TYPE` / `afw_value_is_*` holds.
+ */
+#define AFW_VALUE_EVALUATES_TO_DATA_TYPE(A_VALUE, A_DATA_TYPE, xctx) \
+( \
+    (A_VALUE) && \
+    afw_value_get_data_type((A_VALUE), (xctx)) == \
+        afw_data_type_ ## A_DATA_TYPE \
+)
+
+
+
+/**
+ * @brief Throw if A_VALUE is not evaluated data type A_DATA_TYPE.
+ * @param A_VALUE value to test.
+ * @param A_DATA_TYPE unquoted data type id (e.g. object, string).
+ * @param A_SCOPE xctx or scope for the throw.
+ *
+ * Asserts the `AFW_VALUE_IS_DATA_TYPE` contract: after success it is safe to
+ * cast A_VALUE to `const afw_value_<A_DATA_TYPE>_t *`.
+ */
 #define AFW_VALUE_ASSERT_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE, A_SCOPE) \
 do { \
 if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, A_DATA_TYPE)) \
-    AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", A_SCOPE); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
 } while (0)
 
 
 
-/** @brief Throw and error if A_VALUE is not anyURI or string. */
+/**
+ * @brief Throw if A_VALUE is not evaluated anyURI or string.
+ * @param A_VALUE value to test.
+ * @param A_SCOPE xctx or scope for the throw.
+ *
+ * Asserts cast safety to `const afw_value_anyURI_t *` or
+ * `const afw_value_string_t *` (check which with `AFW_VALUE_IS_DATA_TYPE`).
+ */
 #define AFW_VALUE_ASSERT_IS_ANYURI_OR_STRING(A_VALUE, A_SCOPE) \
 do { \
 if (!AFW_VALUE_IS_DATA_TYPE(A_VALUE, anyURI) && \
     !AFW_VALUE_IS_DATA_TYPE(A_VALUE, string) ) \
-    AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", A_SCOPE); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", A_SCOPE); \
 } while (0)
 
 
@@ -854,11 +1124,11 @@ afw_value_contains(
 
 /**
  * @brief Macro to get const void * of the internal of a value
- * @param value internal must align with afw_value_common_t *.
- * @return const void * of internal.
+ * @param _VALUE_ internal must align with afw_value_common_t *.
+ * @return void * of internal (caller treats as const of the right type).
  *
- * This should be used with extreme care.  The intended is to access internal
- * of an evaluated value.
+ * Use only on finished evaluated data-type values (after
+ * `AFW_VALUE_IS_DATA_TYPE` / `afw_value_is_*`). Not valid for unevaluated IR.
  */
 #define AFW_VALUE_INTERNAL(_VALUE_) \
 ((void *)(&((afw_value_common_t *)(_VALUE_))->internal))
@@ -866,27 +1136,34 @@ afw_value_contains(
  
  
 /**
- * @brief Test whether the data type of two adaptive values is the same.
+ * @brief True if two values have the same known produce data type.
  * @param value1 is an adaptive value.
  * @param value2 is an adaptive value.
  * @param xctx of caller.
+ * @return boolean result.
+ *
+ * Compares `afw_value_get_data_type()` results (produce type), not cast-safe
+ * evaluated layout. Either side may still be unevaluated.
  */
 #define AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx) \
-(afw_value_get_data_type(value1, xctx) != \
+(afw_value_get_data_type(value1, xctx) == \
     afw_value_get_data_type(value2, xctx))
 
 
 
 /**
- * @brief Assert that the data type of two adaptive values is the same.
+ * @brief Throw if two values do not have the same known produce data type.
  * @param value1 is an adaptive value.
  * @param value2 is an adaptive value.
  * @param xctx of caller.
+ *
+ * Uses `AFW_VALUE_DATA_TYPES_EQUAL` (`get_data_type`). Does not assert
+ * cast-safe evaluated layouts.
  */
 #define AFW_VALUE_ASSERT_DATA_TYPES_EQUAL(value1, value2, xctx) \
 if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \
 { \
-    AFW_THROW_ERROR_Z(cast_error, "Type safe exception.", xctx); \
+    AFW_THROW_ERROR_Z(conversion_error, "Type safe exception.", xctx); \
 }
 
 
@@ -1037,6 +1314,38 @@ afw_value_as_utf8_z(const afw_value_t *value,
 
 
 /**
+ * @brief Array or keyless-iterator sequence as an array value (#153).
+ * @param value evaluated value (may be NULL).
+ * @param p pool for a materialized array when needed.
+ * @param xctx of caller.
+ * @return value unchanged if already an array, NULL, or non-iterable;
+ *         otherwise a new array value of get_next elements (utf8 code
+ *         points as one-code-point strings, etc.).
+ *
+ * Used when a built-in formal or HOF expects an array of values but the
+ * author passed a utf8-backed sequence. Does not mutate the original
+ * value; materialization is a temporary array. Not a syntax change.
+ *
+ * **C implementers:** prefer this helper (or keyless `afw_iterator`) over
+ * open-coding utf8 walks when an API expects an array of values. Call only
+ * when the formal truly wants a value sequence (e.g. EVALUATE … array, HOF
+ * walked list, script `array` / `T[]` / tuple). Do **not** use for XACML
+ * bag rest formals that take scalar bag members typed as `array` in
+ * metadata — bag-of-one is not code-point expansion.
+ *
+ * **Deferred (not required for beta language semantics):** an immutable
+ * array *face* over utf8 (lazy get_next / get_by_index without eager
+ * materialize). Same public contract; optional later if cost or clear
+ * mutation-reject matters. See `designs/utf8-code-point-sequences.md`.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_as_array_sequence(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Return value from one entry list or single value.
  * @param value list or single value.
  * @param p  Pool for result.
@@ -1107,6 +1416,25 @@ afw_value_as_casted_utf8(
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_clone(
+    const afw_value_t *value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Isolate a default value for script (issue #110 / #17).
+ * @param value evaluated default (may be NULL / undefined).
+ * @param p pool for any new face or clone.
+ * @param xctx of caller.
+ * @return value safe for the caller to mutate without sharing the base.
+ *
+ * Object/array: memory face (`create_wrapper_*`) over the default instance
+ * when not already a face. Other types: `afw_value_clone`. Used by
+ * `property_get` / `variable_get` when returning a default.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_isolate_mutable_default(
     const afw_value_t *value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -1422,6 +1750,24 @@ afw_value_create_object_expression(
 
 
 /**
+ * @brief Create an object construct value (expression property names).
+ * @param contextual information for the expression.
+ * @param entries head of ordered entry list (pool-owned).
+ * @param meta optional meta object from literal `_meta_` or NULL.
+ * @param p pool used for value.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_object_construct(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_value_object_construct_entry_t *entries,
+    const afw_object_t *meta,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create a qualified variable reference value.
  * @param contextual information for variable.
  * @param qualifier of variable or NULL.
@@ -1500,27 +1846,53 @@ afw_value_symbol_reference_create(
 
 
 
-/** Make an afw_value_common_t String using string in specified pool. */
+/**
+ * @brief Create an Adaptive value from untrusted external octets.
+ * @param s pointer to octets (may be NULL).
+ * @param len number of bytes, or AFW_UTF8_Z_LEN if s is NUL-terminated.
+ * @param p pool for the value and any owned payload.
+ * @param xctx of caller.
+ * @return string value if s is valid UTF-8 (NFC via afw_utf8_*);
+ *    otherwise hexBinary with a copy of the same bytes.
+ *
+ * Does not throw for invalid UTF-8. Use this for process environment,
+ * FCGI/CGI parameters, and similar external byte bags. Do not construct
+ * string values from untrusted bytes any other way.
+ *
+ * Empty or NULL input yields an empty string value.
+ */
 AFW_DECLARE(const afw_value_t *)
-afw_value_make_single_string(
+afw_value_create_from_external_octets(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-
-/** Make an afw_value_common_t String using copy of string in specified pool. */
+/**
+ * @brief Create an Adaptive value from a NUL-terminated external C string.
+ * @param s_z NUL-terminated bytes (may be NULL).
+ * @param p pool for the value and any owned payload.
+ * @param xctx of caller.
+ * @return See afw_value_create_from_external_octets().
+ */
 AFW_DECLARE(const afw_value_t *)
-afw_value_make_string_copy(
-    const afw_utf8_octet_t *s,
-    afw_size_t len,
+afw_value_create_from_external_z(
+    const char *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-
-/** Make an afw_value_string_t from utf8_z in specified pool. */
+/**
+ * @brief Make an afw_value_string_t from utf8_z in specified pool.
+ * @param string_z must be valid UTF-8 (will be NFC-normalized).
+ * @param p pool for the value.
+ * @param xctx of caller.
+ * @return string value.
+ *
+ * Throws if string_z is not valid UTF-8. For untrusted external bytes use
+ * afw_value_create_from_external_octets() or afw_value_create_from_external_z().
+ */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_string_from_u8z(
     const afw_utf8_z_t *string_z,
@@ -1627,7 +1999,8 @@ afw_value_decompile_to_string(
 /**
  * @brief Decompile call args.
  * @param writer
- * @param args to decompile.
+ * @param first_arg index into argv (1 = parameters only; 0 includes callee).
+ * @param args to decompile (argc is parameter count; values are argv[1..argc]).
  * @param xctx of caller.
  */
 AFW_DEFINE(void)
@@ -1637,6 +2010,60 @@ afw_value_decompile_call_args(
     const afw_value_call_args_t *args,
     afw_xctx_t *xctx);
 
+
+/**
+ * @brief Expand call-site spreads (...arr) into a flat argv.
+ * @param argc_in User parameter count (not including argv[0]).
+ * @param argv_in argv[0]=function, argv[1..argc_in]=args; may contain
+ *        list_expression values marking spreads.
+ * @param argc_out Expanded user parameter count.
+ * @param argv_out Expanded argv (argv[0] same as argv_in[0]); may equal
+ *        argv_in when there is no spread.
+ * @param p Pool for expanded argv when needed.
+ * @param xctx of caller.
+ *
+ * list_expression entries evaluate to an array and are spliced as separate
+ * arguments (issue #140). Non-spread args are left unevaluated.
+ */
+AFW_DEFINE(void)
+afw_value_call_args_expand_spreads(
+    afw_size_t argc_in,
+    const afw_value_t * const *argv_in,
+    afw_size_t *argc_out,
+    const afw_value_t * const **argv_out,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Write synthetic decompile name `#` + implementation_id.
+ * @param instance value whose inf id is used.
+ * @param writer
+ * @param xctx of caller.
+ *
+ * Used for compiled value kinds that have no Adaptive surface form. The leading
+ * '#' matches the pound_identifier token family (not a registered function).
+ */
+AFW_DEFINE(void)
+afw_value_decompile_write_synthetic_function_name(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Decompile a parenthesized list of values.
+ * @param writer
+ * @param argc number of values.
+ * @param argv values (may contain NULL for undefined).
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_value_list(
+    const afw_writer_t *writer,
+    afw_size_t argc,
+    const afw_value_t * const *argv,
+    afw_xctx_t *xctx);
 
 
 /**
@@ -1659,14 +2086,246 @@ afw_value_decompile_value(
 
 
 /**
- * @internal
- * @brief  Register core value infs.
+ * @brief Type-check mode (issue #28).
+ *
+ * Default is off. typeCheckCompileOnly wins over typeCheck.
+ * Resolved from unit policy when contextual->compiled_value is set,
+ * otherwise from process compile:* flags (fast afw_flag_is_active).
+ */
+typedef enum afw_value_type_check_mode_e {
+    afw_value_type_check_mode_off = 0,
+    afw_value_type_check_mode_compile_only,
+    afw_value_type_check_mode_on
+} afw_value_type_check_mode_t;
+
+/*
+ * Hot-path helpers are macros (AFW style): expand without a call even when
+ * not optimized. See afw-c-runtime (prefer macros over static inline).
+ *
+ * AFW_VALUE_TYPE_CHECK_*_CV(cv, xctx) — cv is afw_value_compiled_value_t *
+ *   or NULL (process flags only).
+ * AFW_VALUE_TYPE_CHECK_*(contextual, xctx) — uses contextual->compiled_value
+ *   when contextual is non-NULL; NULL contextual => process flags only.
+ */
+
+/** Mode from compiled value (NULL cv => process flags). */
+#define AFW_VALUE_TYPE_CHECK_MODE_CV(cv, xctx) \
+    ( (cv) \
+        ? ( (cv)->compile_policy.type_check_compile_only \
+            ? afw_value_type_check_mode_compile_only \
+            : ( (cv)->compile_policy.type_check \
+                ? afw_value_type_check_mode_on \
+                : afw_value_type_check_mode_off ) ) \
+        : ( afw_flag_is_active( \
+                (xctx)->env->flag_index_compile_typeCheckCompileOnly_active, \
+                (xctx)) \
+            ? afw_value_type_check_mode_compile_only \
+            : ( afw_flag_is_active( \
+                    (xctx)->env->flag_index_compile_typeCheck_active, \
+                    (xctx)) \
+                ? afw_value_type_check_mode_on \
+                : afw_value_type_check_mode_off ) ) )
+
+/** Mode from call/assign/etc. contextual (NULL => process flags). */
+#define AFW_VALUE_TYPE_CHECK_MODE(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_MODE_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+
+#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED_CV(cv, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE_CV((cv), (xctx)) != \
+        afw_value_type_check_mode_off)
+
+#define AFW_VALUE_TYPE_CHECK_COMPILE_ENABLED(contextual, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE((contextual), (xctx)) != \
+        afw_value_type_check_mode_off)
+
+#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED_CV(cv, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE_CV((cv), (xctx)) == \
+        afw_value_type_check_mode_on)
+
+#define AFW_VALUE_TYPE_CHECK_RUNTIME_ENABLED(contextual, xctx) \
+    (AFW_VALUE_TYPE_CHECK_MODE((contextual), (xctx)) == \
+        afw_value_type_check_mode_on)
+
+#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY_CV(cv, xctx) \
+    ( (cv) \
+        ? (cv)->compile_policy.no_implicit_any \
+        : afw_flag_is_active( \
+            (xctx)->env->flag_index_compile_noImplicitAny_active, (xctx)) )
+
+#define AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_NO_IMPLICIT_ANY_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+
+#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS_CV(cv, xctx) \
+    ( (cv) \
+        ? (cv)->compile_policy.strict_null_checks \
+        : afw_flag_is_active( \
+            (xctx)->env->flag_index_compile_strictNullChecks_active, \
+            (xctx)) )
+
+#define AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_STRICT_NULL_CHECKS_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+
+#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV(cv, xctx) \
+    ( (cv) \
+        ? (cv)->compile_policy.no_optimize \
+        : afw_flag_is_active( \
+            (xctx)->env->flag_index_compile_noOptimize_active, (xctx)) )
+
+#define AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE(contextual, xctx) \
+    AFW_VALUE_TYPE_CHECK_NO_OPTIMIZE_CV( \
+        ( (contextual) ? (contextual)->compiled_value : NULL ), (xctx))
+
+/**
+ * @brief True if type is missing, any, or zero-init leaf any.
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_is_any(const afw_value_type_t *type);
+
+/**
+ * @brief Leaf Adaptive data type if kind is data_type; else NULL.
+ */
+AFW_DEFINE(const afw_data_type_t *)
+afw_value_type_get_leaf_data_type(const afw_value_type_t *type);
+
+/**
+ * @brief Whether value is assignable to expected type.
+ * @param expected target type graph.
+ * @param value candidate (C NULL is treated as undefined for nullish rules).
+ * @param contextual call/assign site (NULL => process flags for strictNull).
  * @param xctx of caller.
  *
- * Called in afw_environment_register_core.c.
+ * Handles leaves, unions/intersections, array/tuple elements, and
+ * object/interface properties (with extends) when the value is inspectable.
+ * Nullish (C NULL, afw_value_undefined, Adaptive null) follows unit/process
+ * strictNullChecks policy when checking is active.
  */
-AFW_DECLARE(void)
-afw_value_register_core_value_infs(afw_xctx_t *xctx);
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_is_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Throw if value is not assignable (when runtime checking on).
+ * @param contextual unit link (NULL => process flags).
+ */
+AFW_DEFINE(void)
+afw_value_type_check_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Compile-time check when RHS type is known (syntax errors).
+ * @param contextual unit link (NULL => process flags).
+ */
+AFW_DEFINE(void)
+afw_value_type_check_compile_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Excess-property check for object-literal call arguments.
+ * @param contextual unit link (NULL => process flags).
+ */
+AFW_DEFINE(void)
+afw_value_type_check_call_arg_object_literal(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_utf8_z_t *what,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Compile-time type check for a known adaptive (built-in) function call.
+ * @param contextual call site (NULL => process flags).
+ *
+ * No-op unless compile type checking is enabled for that unit/flags.
+ * See designs/adaptive-function-compile-typecheck.md.
+ */
+AFW_DEFINE(void)
+afw_value_type_check_adaptive_function_call(
+    const afw_value_function_definition_t *function,
+    afw_size_t argc,
+    const afw_value_t *const *argv,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Compile-time check of call args against a function Type.
+ * @param function_type expected function type (kind must be function).
+ * @param argc user arg count (not including argv[0] callee).
+ * @param argv argv[0]=callee, argv[1..argc]=user args.
+ * @param contextual call site (NULL => process flags).
+ *
+ * Used when the callee is a binding annotated with a function Type so call
+ * sites honor the annotation, not only the implementation formals (#28 G1).
+ */
+AFW_DEFINE(void)
+afw_value_type_check_function_type_call(
+    const afw_value_type_t *function_type,
+    afw_size_t argc,
+    const afw_value_t *const *argv,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx);
+
+/**
+ * @brief Decompile a type as Adaptive Type surface text (no leading ':').
+ * @param type to decompile; NULL or "any" writes nothing (caller skips ':').
+ * @param writer
+ * @param xctx of caller.
+ * @return true if anything was written (type is present and not bare any).
+ *
+ * Used for assignment targets, script_function params/returns, and future
+ * type-check work. Prefer TS-like surface forms (e.g. `integer`, `integer[]`).
+ */
+AFW_DEFINE(afw_boolean_t)
+afw_value_decompile_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Write ": Type" when type is present and not bare any.
+ * @param type optional type.
+ * @param writer
+ * @param xctx of caller.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_optional_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Decompile a list/object Pattern (or symbol) without #assignment_target.
+ * @param instance assignment_target value or symbol_reference.
+ * @param writer
+ * @param xctx of caller.
+ *
+ * Used for script function parameter Patterns so decompile stays surface-like
+ * (`function f({a,b})` / `#script_function({a,b}, body)`).
+ */
+AFW_DEFINE(void)
+afw_value_decompile_assignment_pattern(
+    const afw_value_t *instance,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+/* Core value inf registration: afw_value_register_core_value_infs in
+ * afw_value_internal.h (libafw bootstrap only). */
 
 AFW_END_DECLARES
 

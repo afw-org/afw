@@ -8,7 +8,7 @@
 
 /**
  * @file afw_adapter_retrieve.c
- * @brief Adaptive Framework adapter add object.
+ * @brief Adapter retrieve-objects convenience implementation.
  */
 
 #include "afw_internal.h"
@@ -75,8 +75,8 @@ afw_adapter_retrieve_objects(
     afw_object_set_property_as_string(request,
         afw_s_resourceId, impl_request.resource_id, xctx);
     impl_request.options = options;
-    afw_object_set_property_as_string(request,
-        afw_s_function, afw_s_retrieve_objects, xctx);
+    afw_object_set_property(request,
+        afw_s_function, afw_v_retrieve_objects, xctx);
     afw_object_set_property_as_string(request,
         afw_s_adapterId, adapter_id, xctx);
     afw_object_set_property_as_string(request,
@@ -86,7 +86,7 @@ afw_adapter_retrieve_objects(
     if (afw_utf8_equal(object_type_id,
         AFW_OBJECT_S_OBJECT_TYPE_ID_JOURNAL_ENTRY))
     {
-        AFW_THROW_ERROR_Z(general,
+        AFW_THROW_ERROR_Z(method_not_supported,
             "retrieve_objects() is not supported for "
             AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY,
             xctx);

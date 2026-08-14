@@ -20,18 +20,54 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_runtime_value_accessor.h
- * @brief Core runtime value accessors.
+ * @brief Runtime object map value accessor callbacks and registration info.
  *
- * These are internal functions used by AFW core.  Access to
- * accessors external to core should use the
- * afw_environment_get_runtime_value_accessor() function.
+ * Each accessor implementation should have a co-located
+ * afw_runtime_value_accessor_info_t describing key, brief, description, and
+ * lifetime contracts. Register that struct with
+ * afw_environment_register_runtime_value_accessor().
+ *
+ * Adaptive catalog: `/afw/_AdaptiveRuntimeValueAccessor_/<key>`.
+ * C call path: afw_environment_get_runtime_value_accessor().
  */
 
 /**
- * @brief Register core runtime value accessors.
- * @param xctx of caller.
+ * @brief Registered runtime value accessor (env registry value).
+ *
+ * Map typedef for `_AdaptiveRuntimeValueAccessor_`. Place instances next to
+ * the accessor function they describe so contracts stay with the code.
+ *
+ * The C function pointer is not exposed as an Adaptive property.
  */
-void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx);
+struct afw_runtime_value_accessor_info_s {
+
+    /** @brief Registry key / objectId (propertyTypes.runtime.valueAccessor). */
+    const afw_utf8_t *key;
+
+    /** @brief Accessor function. */
+    afw_runtime_value_accessor_t function;
+
+    /** @brief Short description for lists and query. */
+    const afw_utf8_t *brief;
+
+    /** @brief Longer description including internal shape and lifetime. */
+    const afw_utf8_t *description;
+
+    /**
+     * @brief True if the accessor locks (or equivalent) and copies into p.
+     *
+     * Result is then stable for the caller after return.
+     */
+    afw_boolean_t copies_under_lock;
+
+    /**
+     * @brief True if the Adaptive value may alias live runtime/env state.
+     *
+     * State may change or be released while the value is still held unless
+     * copies_under_lock also applies.
+     */
+    afw_boolean_t returns_live_reference;
+};
 
 
 /**
@@ -64,6 +100,22 @@ afw_runtime_value_accessor_default(
  */
 const afw_value_t *
 afw_runtime_value_accessor_compile_type(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Runtime value accessor 'data_type_id' for const afw_data_type_t *.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to const afw_data_type_t * (may be NULL).
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return string value of data_type->data_type_id, or NULL if pointer is NULL.
+ *
+ * Used for Adaptive properties that store a data type pointer in C but expose
+ * the type id string (e.g. iteratorReturnDataType on _AdaptiveDataType_).
+ */
+const afw_value_t *
+afw_runtime_value_accessor_data_type_id(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -132,6 +184,32 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
+ * @brief Snapshot adapter anchor reference_count under adapter_id_anchor_lock.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to afw_integer_t reference_count on anchor.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return integer value copied under lock.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_adapter_reference_count(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Snapshot authorization handler anchor reference_count under rw lock.
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to afw_integer_t reference_count on anchor.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return integer value copied under read lock.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_authorization_handler_reference_count(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
  * @brief Runtime value accessor for NULL terminated list of internal.
  * @param prop is associated afw_runtime_object_map_property_t.
  * @param internal is const afw_object_t * const * with last entry NULL.
@@ -177,7 +255,7 @@ afw_runtime_value_accessor_null_terminated_array_of_objects(
  *     "error", "conversion",
  *     "reason", "arg2 cannot be converted to the data type of arg1.",
  *     NULL, 
- *     "error", "arg_error",
+ *     "error", "argument_error",
  *     "reason", "General parameter issue..",
  *     NULL,
  *     NULL
@@ -291,20 +369,31 @@ afw_runtime_value_accessor_uint32(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Runtime value accessor for `/afw/_AdaptiveAdapterMetrics_/<adapterId>`.
+ * @brief Live adapter metrics object (active adapter pointer under lock).
  * @param prop is associated afw_runtime_object_map_property_t.
- * @param internal is pointer const afw_utf8_t *adapter_id.
+ * @param internal is pointer to const afw_adapter_t * on adapter id anchor.
  * @param p is pool to use.
  * @param xctx of caller.
- * @return afw_value_t representing value.
+ * @return object value wrapping metrics_object, or NULL if no active adapter.
  *
- * The data_type in prop must be object.
- *
- * Parameter internal is mapped afw_utf8_t *adapter_id. The value will be the
- * result of getting the runtime `/afw/_AdaptiveAdapterMetrics_/<adapterId>`.
+ * Loads the adapter pointer under adapter_id_anchor_lock. Result is still a
+ * live reference (not a deep snapshot of counters).
  */
 const afw_value_t *
 afw_runtime_value_accessor_adapter_metrics(
+    const afw_runtime_object_map_property_t * prop,
+    const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Live adapter anchor properties object (pointer under lock).
+ * @param prop is associated afw_runtime_object_map_property_t.
+ * @param internal is pointer to const afw_object_t * properties on anchor.
+ * @param p is pool to use.
+ * @param xctx of caller.
+ * @return object value wrapping properties, or NULL.
+ */
+const afw_value_t *
+afw_runtime_value_accessor_adapter_properties(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 

@@ -40,6 +40,7 @@
 #define AFW_IMPLEMENTATION_ID "script_function"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_script_function_definition_inf
+#define AFW_VALUE_SELF_T afw_value_script_function_definition_t
 #include "afw_value_impl_declares.h"
 
 
@@ -86,7 +87,7 @@ afw_value_script_function_definition_create(
  */
 const afw_data_type_t *
 impl_afw_value_get_data_type(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return afw_data_type_function;
@@ -98,15 +99,13 @@ impl_afw_value_get_data_type(
  */
 void
 impl_afw_value_produce_compiler_listing(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_script_function_definition_t *self =
-        (const afw_value_script_function_definition_t *)instance;
     afw_size_t i;
 
-    afw_value_compiler_listing_begin_value(writer, instance,
+    afw_value_compiler_listing_begin_value(writer, &self->pub,
         self->contextual, xctx);
     afw_writer_write_z(writer, ": [", xctx);
     afw_writer_write_eol(writer, xctx);
@@ -121,8 +120,18 @@ impl_afw_value_produce_compiler_listing(
     afw_writer_increment_indent(writer, xctx);
 
     for (i = 0; i < self->count; i++) {
-        afw_value_compiler_listing_name_and_type(
-            writer, self->parameters[i]->name, self->parameters[i]->type, xctx);
+        if (self->parameters[i]->is_rest) {
+            afw_writer_write_z(writer, "...", xctx);
+        }
+        if (self->parameters[i]->assignment_target) {
+            afw_value_produce_compiler_listing(
+                self->parameters[i]->assignment_target, writer, xctx);
+        }
+        else {
+            afw_value_compiler_listing_name_and_type(
+                writer, self->parameters[i]->name,
+                self->parameters[i]->type, xctx);
+        }
         if (self->parameters[i]->default_value) {
             afw_writer_write_z(writer, " = ", xctx);
             afw_value_compiler_listing_value(
@@ -142,8 +151,8 @@ impl_afw_value_produce_compiler_listing(
 
     afw_writer_write_z(writer, "signature ", xctx);
     if (self->signature->block) {
-    afw_value_produce_compiler_listing(
-        (const afw_value_t *)self->signature->block, writer, xctx);
+        afw_value_produce_compiler_listing(
+            (const afw_value_t *)self->signature->block, writer, xctx);
     }
     else {
         afw_writer_write_z(writer, "undefined", xctx);
@@ -167,50 +176,87 @@ impl_afw_value_produce_compiler_listing(
 
 /*
  * Implementation of method decompile for interface afw_value.
+ *
+ * Synthetic call #script_function(param..., body[, returnType]) —
+ * params are surface-like: name[: Type], optional ?, default = expr, rest ...
+ * Return type is a trailing Type after the body when non-default.
  */
 void
 impl_afw_value_decompile(
-    const afw_value_t * instance,
+    AFW_VALUE_SELF_T *self,
     const afw_writer_t * writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_script_function_definition_t *self =
-        (const afw_value_script_function_definition_t *)instance;
+    const afw_value_script_function_parameter_t *param;
     afw_size_t i;
+    afw_boolean_t need_comma;
+    afw_boolean_t write_returns;
 
-    afw_writer_write_z(writer, "function ", xctx);
-    afw_value_compiler_listing_name_and_type(writer, NULL, self->returns, xctx);
-
+    afw_value_decompile_write_synthetic_function_name(&self->pub, writer, xctx);
     afw_writer_write_z(writer, "(", xctx);
     if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
         afw_writer_increment_indent(writer, xctx);
     }
 
+    need_comma = false;
     for (i = 0; i < self->count; i++) {
-        if (i != 0) {      
+        param = self->parameters[i];
+        if (need_comma) {
             afw_writer_write_z(writer, ",", xctx);
-            if (writer->tab) {
-                afw_writer_write_eol(writer, xctx);
-            }
         }
-        afw_value_compiler_listing_name_and_type(
-            writer, NULL, self->parameters[i]->type, xctx);
-        afw_writer_write_utf8(writer, self->parameters[i]->name, xctx);
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        if (param->is_rest) {
+            afw_writer_write_z(writer, "...", xctx);
+        }
+        if (param->assignment_target) {
+            /* Surface Pattern (not #assignment_target wrapper). */
+            afw_value_decompile_assignment_pattern(
+                param->assignment_target, writer, xctx);
+        }
+        else {
+            /* Bare identifier (not a string) so Type annotations use ':'. */
+            afw_writer_write_utf8(writer, param->name, xctx);
+            afw_value_decompile_optional_type(param->type, writer, xctx);
+        }
+        if (param->is_optional && !param->default_value) {
+            afw_writer_write_z(writer, "?", xctx);
+        }
+        if (param->default_value) {
+            afw_writer_write_z(writer, writer->tab ? " = " : "=", xctx);
+            afw_value_decompile_value(param->default_value, writer, xctx);
+        }
+        need_comma = true;
     }
-    afw_writer_write_z(writer, ")", xctx);
 
+    if (need_comma) {
+        afw_writer_write_z(writer, ",", xctx);
+    }
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
-        afw_writer_decrement_indent(writer, xctx);
+    }
+    afw_value_decompile_value(self->body, writer, xctx);
+
+    /*
+     * Trailing return Type after body when present and not bare any.
+     */
+    write_returns = false;
+    if (self->returns) {
+        if (self->returns->kind != afw_value_type_kind_data_type ||
+            self->returns->data_type != afw_data_type_any)
+        {
+            write_returns = true;
+        }
+    }
+    if (write_returns) {
+        afw_writer_write_z(writer, ",", xctx);
+        if (writer->tab) {
+            afw_writer_write_eol(writer, xctx);
+        }
+        afw_value_decompile_type(self->returns, writer, xctx);
     }
 
-    afw_writer_write_z(writer, "(", xctx);
-    if (writer->tab) {
-        afw_writer_write_eol(writer, xctx);
-        afw_writer_increment_indent(writer, xctx);
-    }
-    afw_value_decompile(self->body, writer, xctx);
     if (writer->tab) {
         afw_writer_write_eol(writer, xctx);
         afw_writer_decrement_indent(writer, xctx);
@@ -224,16 +270,14 @@ impl_afw_value_decompile(
  */
 void
 impl_afw_value_get_info(
-    const afw_value_t *instance,
+    AFW_VALUE_SELF_T *self,
     afw_value_info_t *info,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_script_function_definition_t *self =
-        (const afw_value_script_function_definition_t *)instance;
 
     afw_memory_clear(info);
-    info->value_inf_id = &instance->inf->rti.implementation_id;
+    info->value_inf_id = &self->pub.inf->rti.implementation_id;
     info->contextual = self->contextual;
     info->evaluated_data_type = self->evaluated_data_type;
     info->optimized_value = self->optimized_value;

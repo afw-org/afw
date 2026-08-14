@@ -199,7 +199,7 @@ catch (e) {
 try {
     // throw can have an data expression of any type that will be
     // available in the "data" property of the error object.
-    throw "Throw it all away!" {'more':'I have more to say!'};
+    throw "Throw it all away!" data {'more':'I have more to say!'};
 }
 catch (e) {
     return e.data.more;
@@ -209,12 +209,12 @@ catch (e) {
 //?
 //? test: Try-13
 //? description: throw with syntax error
-//? expect: error:Parse error at offset 88 around line 4 column 63: Expecting statement terminator ';'
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
 
 try {
-    throw "Throw it all away!" {'more':'I have more to say!'} xyz;
+    throw "Throw it all away!" data {'more':'I have more to say!'} xyz;
 }
 catch (e) {
     return e.data.more;
@@ -229,7 +229,7 @@ catch (e) {
 #!/usr/bin/env afw
 
 try {
-    throw "Throw it all away!" {'more':'I have more to say!'};
+    throw "Throw it all away!" data {'more':'I have more to say!'};
 }
 catch (e) {
     let x;

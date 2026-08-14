@@ -1,0 +1,13 @@
+{
+    "serviceId": "adapter-lifecycle",
+    "startup": "immediate",
+    "conf": {
+        "type": "adapter",
+        "adapterType": "file",
+        "adapterId": "lifecycle",
+        "description": "Disposable file adapter for stop/start catalog checks",
+        "root": "objects/",
+        "filenameSuffix": ".json",
+        "contentType": "json"
+    }
+}

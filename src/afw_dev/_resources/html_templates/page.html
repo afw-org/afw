@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark [--scroll-mt:9.875rem] lg:[--scroll-mt:6.3125rem]">
     <head>        
         <meta charset="utf-8">
         <title>%(title)s</title>
@@ -7,7 +7,14 @@
         <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
         
         <script type="text/javascript" src="%(doc_root)s/afw.js"></script>    
-        <link rel="stylesheet" href="%(doc_root)s/afw.css">    
+        <link rel="stylesheet" href="%(doc_root)s/afw.css">
+        <style type="text/css">
+          /* Sticky top bar: keep in-page hash targets visible (handbook) */
+          html { scroll-padding-top: var(--scroll-mt, 6.3125rem); }
+          :target, [id], a[name], h1, h2, h3, h4 {
+            scroll-margin-top: var(--scroll-mt, 6.3125rem);
+          }
+        </style>
         <script>
             window.addEventListener('load', function() {
                 createNav(%(nav_items)s);

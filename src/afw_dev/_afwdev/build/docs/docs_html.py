@@ -56,6 +56,13 @@ class DocsHtml:
             "text": text
         }
 
+    # create HTML <span> element with bold style (handbook <strong>)
+    def strong(self, text="", **kwargs):
+
+        return self.html_templates.get("strong.html") % {
+            "text": text
+        }
+
     # create a div with a height of spacing
     def spacer(self, spacing="20px"):
 
@@ -66,7 +73,7 @@ class DocsHtml:
 
         return '<hr/>'
 
-    # create HTML <span> element with bold style
+    # create HTML <code> element (handbook <literal>)
     def literal(self, text=""):
 
         return "<code>" + text + "</code>"

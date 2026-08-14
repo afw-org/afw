@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_xml.c
- * @brief afw_function_execute_* functions for xml.
+ * @brief Adaptive function execute implementations for category `xml`.
  */
 
 #include "afw.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_compile_xml
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Compile xml value and return either an unevaluated adaptive value or a string
  * containing the compiler listing.

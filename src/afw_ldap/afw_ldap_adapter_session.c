@@ -19,6 +19,7 @@
 
 /* Declares and rti/inf defines for interface afw_adapter_session */
 #define AFW_IMPLEMENTATION_ID "ldap"
+#define AFW_ADAPTER_SESSION_SELF_T afw_ldap_internal_adapter_session_t
 #include "afw_adapter_session_impl_declares.h"
 
 
@@ -49,10 +50,9 @@ afw_ldap_internal_adapter_session_create(
  */
 void
 impl_afw_adapter_session_destroy(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_session_t *self = (afw_ldap_internal_adapter_session_t *)instance;
 
     /* Close ldap connection. */
     afw_ldap_internal_session_end(self);
@@ -64,7 +64,7 @@ impl_afw_adapter_session_destroy(
  */
 void
 impl_afw_adapter_session_retrieve_objects(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
@@ -74,10 +74,8 @@ impl_afw_adapter_session_retrieve_objects(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_session_t * self =
-        (afw_ldap_internal_adapter_session_t *)instance;
     afw_ldap_internal_adapter_t * adapter =
-        (afw_ldap_internal_adapter_t *)instance->adapter;
+        (afw_ldap_internal_adapter_t *)self->pub.adapter;
     LDAPMessage *res;
     LDAPMessage *e;
     const afw_utf8_t *filter;
@@ -213,7 +211,7 @@ impl_afw_adapter_session_retrieve_objects(
  */
 void
 impl_afw_adapter_session_get_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -223,7 +221,6 @@ impl_afw_adapter_session_get_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_session_t * self = (afw_ldap_internal_adapter_session_t *)instance;
     int rv;
     LDAPMessage *res;
     LDAPMessage *e;
@@ -295,7 +292,7 @@ impl_afw_adapter_session_get_object(
  */
 const afw_utf8_t *
 impl_afw_adapter_session_add_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *suggested_object_id,
@@ -303,8 +300,6 @@ impl_afw_adapter_session_add_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_session_t *self =
-        (afw_ldap_internal_adapter_session_t *)instance;
     afw_ldap_metadata_t *metadata = self->adapter->metadata;
     const afw_pool_t *p;
     afw_ldap_object_type_attribute_t *first_attribute;
@@ -312,7 +307,7 @@ impl_afw_adapter_session_add_object(
     apr_array_header_t *mods;
     const afw_value_t *value;
     const afw_utf8_t *property_name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     struct berval **bvals;
     LDAPMod *mod;
     char *dn_z;
@@ -341,7 +336,7 @@ impl_afw_adapter_session_add_object(
     }
 
     /* Create mods array. */
-    p = afw_pool_create(instance->p, xctx);
+    p = afw_pool_create(self->pub.p, xctx);
     mods = apr_array_make(afw_pool_get_apr_pool(p), 10, sizeof(LDAPMod *));
 
     /* Add objectClass. */
@@ -405,7 +400,7 @@ impl_afw_adapter_session_add_object(
  */
 void
 impl_afw_adapter_session_modify_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -413,8 +408,6 @@ impl_afw_adapter_session_modify_object(
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_session_t *self =
-        (afw_ldap_internal_adapter_session_t *)instance;
     afw_ldap_metadata_t *metadata = self->adapter->metadata;
     const afw_pool_t *p;
     afw_ldap_object_type_attribute_t *first_attribute;
@@ -442,7 +435,7 @@ impl_afw_adapter_session_modify_object(
     }
 
     /* Create mods. */
-    p = afw_pool_create(instance->p, xctx);
+    p = afw_pool_create(self->pub.p, xctx);
     mods = apr_array_make(afw_pool_get_apr_pool(p), 10, sizeof(LDAPMod *));
     afw_memory_clear(&mod);
     for (e = entry; *e; e++) {
@@ -532,7 +525,7 @@ impl_afw_adapter_session_modify_object(
  */
 void
 impl_afw_adapter_session_replace_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
@@ -556,15 +549,13 @@ impl_afw_adapter_session_replace_object(
  */
 void
 impl_afw_adapter_session_delete_object(
-    const afw_adapter_session_t *instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_session_t *self =
-        (afw_ldap_internal_adapter_session_t *)instance;
     char *dn_z;
     int rv;
 
@@ -592,7 +583,7 @@ impl_afw_adapter_session_delete_object(
  */
 const afw_adapter_transaction_t *
 impl_afw_adapter_session_begin_transaction(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* LDAP does not support transactions. */
@@ -606,7 +597,7 @@ impl_afw_adapter_session_begin_transaction(
  */
 const afw_adapter_journal_t *
 impl_afw_adapter_session_get_journal_interface(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Event journal is not supported by this adapter. */
@@ -621,7 +612,7 @@ impl_afw_adapter_session_get_journal_interface(
  */
 const afw_adapter_key_value_t *
 impl_afw_adapter_session_get_key_value_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Key value interface is not supported by this adapter. */
@@ -633,7 +624,7 @@ impl_afw_adapter_session_get_key_value_interface (
  */
 const afw_adapter_impl_index_t *
 impl_afw_adapter_session_get_index_interface (
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Index interface is not supported by this adapter. */
@@ -647,16 +638,14 @@ impl_afw_adapter_session_get_index_interface (
  */
 const afw_adapter_object_type_cache_t *
 impl_afw_adapter_session_get_object_type_cache_interface(
-    const afw_adapter_session_t * instance,
+    AFW_ADAPTER_SESSION_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adapter_session_t *self =
-        (afw_ldap_internal_adapter_session_t *)instance;
 
     afw_adapter_impl_object_type_cache_initialize(
         &self->object_type_cache,
         &afw_adapter_impl_object_type_cache_inf,
-        instance, true, xctx);
+        &self->pub, true, xctx);
 
     return &self->object_type_cache;
 }

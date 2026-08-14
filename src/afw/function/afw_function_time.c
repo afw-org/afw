@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Time
+ * afw_function_execute_* functions for time
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_time.c
- * @brief afw_function_execute_* functions for time.
+ * @brief Adaptive function execute implementations for category `time`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_in_range_time
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Checks if time is between startTime and endTime, inclusive. Regardless of
  * endTime value, it is always considered to be equal to, but less than 24 hours

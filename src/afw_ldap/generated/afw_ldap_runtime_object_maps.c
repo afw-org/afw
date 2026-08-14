@@ -19,11 +19,11 @@
 
 /**
  * @file afw_ldap_runtime_object_maps.c
- * @brief Adaptive Framework runtime object mapping.
+ * @brief Generated runtime object map registration implementation.
  */
 
 #include "afw.h"
-#include "afw_ldap_generated.h"
+#include "afw_ldap_generated_internal.h"
 
 
 

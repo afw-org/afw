@@ -32,8 +32,9 @@
         "modulePath": {
             "allowQuery": true,
             "brief": "Module path to locate extension",
-            "dataType": "string",
-            "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+            "contextType": "process",
+            "dataType": "template",
+            "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used).",
             "label": "Module Path",
             "required": true
         },

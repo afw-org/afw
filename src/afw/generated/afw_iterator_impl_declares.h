@@ -72,7 +72,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_iterator_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_ITERATOR_IMPL_DECLARES_H__
@@ -104,21 +104,31 @@ AFW_BEGIN_DECLARES
 
 #ifndef AFW_ITERATOR_INF_ONLY
 
-#ifndef impl_afw_iterator_release
-/* Declare method release */
-AFW_DECLARE_STATIC(void)
-impl_afw_iterator_release(
+#ifndef impl_afw_iterator_get_next
+/* Declare method get_next */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_iterator_get_next(
     AFW_ITERATOR_SELF_T *self,
+    const afw_pool_t * p,
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_iterator_next
-/* Declare method next */
-AFW_DECLARE_STATIC(afw_boolean_t)
-impl_afw_iterator_next(
+#ifndef impl_afw_iterator_get_by_index
+/* Declare method get_by_index */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_iterator_get_by_index(
     AFW_ITERATOR_SELF_T *self,
-    const afw_value_t ** key,
-    const afw_value_t ** value);
+    afw_integer_t index,
+    const afw_pool_t * p,
+    afw_xctx_t * xctx);
+#endif
+
+#ifndef impl_afw_iterator_get_count
+/* Declare method get_count */
+AFW_DECLARE_STATIC(afw_size_t)
+impl_afw_iterator_get_count(
+    AFW_ITERATOR_SELF_T *self,
+    afw_xctx_t * xctx);
 #endif
 #endif
 
@@ -144,10 +154,12 @@ impl_afw_iterator_inf = {
         AFW_UTF8_LITERAL(_AFW_IMPLEMENTATION_ID_),
         _AFW_IMPLEMENTATION_SPECIFIC_
     },
-    (afw_iterator_release_t)
-    impl_afw_iterator_release,
-    (afw_iterator_next_t)
-    impl_afw_iterator_next
+    (afw_iterator_get_next_t)
+    impl_afw_iterator_get_next,
+    (afw_iterator_get_by_index_t)
+    impl_afw_iterator_get_by_index,
+    (afw_iterator_get_count_t)
+    impl_afw_iterator_get_count
 };
 
 #undef _AFW_IMPLEMENTATION_ID_

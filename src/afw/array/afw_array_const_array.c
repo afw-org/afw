@@ -17,10 +17,13 @@
 
 #define impl_afw_array_get_entry_meta afw_array_impl_get_entry_meta
 #define impl_afw_array_get_next_entry_meta afw_array_impl_get_next_entry_meta
+#define impl_afw_array_initialize_iterator afw_array_impl_initialize_iterator
 
 
 /* Declares and rti/inf defines for interface afw_array */
 #define AFW_IMPLEMENTATION_ID "afw_array_const_array_of_values"
+typedef struct impl_afw_array_const_array_of_values_self_s impl_afw_array_const_array_of_values_self_t;
+#define AFW_ARRAY_SELF_T impl_afw_array_const_array_of_values_self_t
 #include "afw_array_impl_declares.h"
 
 /** @fixme
@@ -101,7 +104,8 @@ afw_array_const_create_array_of_values(
         impl_afw_array_const_array_of_values_self_t, xctx);
     self->pub.inf = &impl_afw_array_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_array_inf;
+    /* Pool-owned immutable wrapper; unmanaged value face (no free header). */
+    self->value.inf = &afw_value_unmanaged_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     if (count > 0) {
@@ -138,7 +142,7 @@ afw_array_const_create_null_terminated_array_of_values(
  */
 void
 impl_afw_array_release (
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -151,11 +155,9 @@ impl_afw_array_release (
  */
 afw_size_t
 impl_afw_array_get_count(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    impl_afw_array_const_array_of_values_self_t * self = 
-        (impl_afw_array_const_array_of_values_self_t *)instance;
 
     return self->end_of_values - self->values;
 }
@@ -167,7 +169,7 @@ impl_afw_array_get_count(
  */
 const afw_data_type_t *
 impl_afw_array_get_data_type(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;
@@ -180,14 +182,12 @@ impl_afw_array_get_data_type(
  */
 afw_boolean_t
 impl_afw_array_get_entry_internal(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t *xctx)
 {
-    impl_afw_array_const_array_of_values_self_t * self = 
-        (impl_afw_array_const_array_of_values_self_t *)instance;
     afw_size_t i, count;
     const afw_value_t *value;
 
@@ -219,13 +219,11 @@ impl_afw_array_get_entry_internal(
  */
 const afw_value_t *
 impl_afw_array_get_entry_value(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_integer_t index,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    impl_afw_array_const_array_of_values_self_t * self = 
-        (impl_afw_array_const_array_of_values_self_t *)instance;
     afw_size_t i, count;
     const afw_value_t *value;
 
@@ -245,24 +243,22 @@ impl_afw_array_get_entry_value(
  */
 afw_boolean_t
 impl_afw_array_get_next_internal(
-    const afw_array_t * instance,
-    const afw_iterator_t * * iterator,
+    AFW_ARRAY_SELF_T *self,
+    const afw_iterator_old_t * * iterator,
     const afw_data_type_t * * data_type,
     const void * * internal,
     afw_xctx_t *xctx)
 {
-    impl_afw_array_const_array_of_values_self_t * self = 
-        (impl_afw_array_const_array_of_values_self_t *)instance;
     const afw_value_t *const *values;
 
     /* If iterator is NULL, set it to values. */
     if (!*iterator) {
         if (self->values) {
-            *iterator = (const afw_iterator_t *)self->values;
+            *iterator = (const afw_iterator_old_t *)self->values;
         }
     }
     else {
-        *iterator = (const afw_iterator_t * )
+        *iterator = (const afw_iterator_old_t * )
             ((*(const afw_value_t *const * const *)iterator) + 1);
     }
 
@@ -292,23 +288,21 @@ impl_afw_array_get_next_internal(
  */
 const afw_value_t *
 impl_afw_array_get_next_value(
-    const afw_array_t * instance,
-    const afw_iterator_t * * iterator,
+    AFW_ARRAY_SELF_T *self,
+    const afw_iterator_old_t * * iterator,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    impl_afw_array_const_array_of_values_self_t *self =
-        (impl_afw_array_const_array_of_values_self_t *)instance;
     const afw_value_t *const *values;
 
     /* If iterator is NULL, set it to values. */
     if (!*iterator) {
         if (self->values) {
-            *iterator = (const afw_iterator_t *)self->values;
+            *iterator = (const afw_iterator_old_t *)self->values;
         }
     }
     else {
-        *iterator = (const afw_iterator_t *)
+        *iterator = (const afw_iterator_old_t *)
             ((*(const afw_value_t *const * const *)iterator) + 1);
     }
 
@@ -330,7 +324,7 @@ impl_afw_array_get_next_value(
  */
 const afw_array_setter_t *
 impl_afw_array_get_setter(
-    const afw_array_t * instance,
+    AFW_ARRAY_SELF_T *self,
     afw_xctx_t *xctx)
 {
     return NULL;

@@ -4,6 +4,16 @@
     "camelCaseFunctionLabel": "getObjectWithUri",
     "category": "adapter",
     "description": "Get an object with a given URI.",
+    "errorsThrown": [
+        {
+            "error": "not_found",
+            "reason": "adapter or object is not found"
+        },
+        {
+            "error": "denied",
+            "reason": "authorization denied"
+        }
+    ],
     "functionId": "get_object_with_uri",
     "functionLabel": "get_object_with_uri",
     "parameters": [

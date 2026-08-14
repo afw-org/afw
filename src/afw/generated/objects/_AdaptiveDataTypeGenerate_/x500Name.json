@@ -2,6 +2,7 @@
     "brief": "A X.500 distinguished name",
     "cType": "afw_utf8_t",
     "dataType": "x500Name",
+    "iteratorReturnDataType": "string",
     "description": "Data type 'x500Name' hold a X.500 distinguished name.",
     "directReturn": false,
     "jsonPrimitive": "string",

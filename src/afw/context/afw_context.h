@@ -18,7 +18,7 @@
 
 /**
  * @file afw_context.h
- * @brief Adaptive Framework Context.
+ * @brief Context type registration and qualified variable push.
  */
 
 AFW_BEGIN_DECLARES
@@ -39,7 +39,7 @@ struct afw_context_cb_variable_meta_s {
 struct afw_context_cb_variable_s {
     const afw_context_cb_variable_meta_t *meta;
     const afw_utf8_z_t *description_z;
-    afw_xctx_get_variable_t get_cb;
+    afw_xctx_get_variable_cb_t get_cb;
     int include_mask;
 };
 

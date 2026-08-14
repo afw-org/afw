@@ -18,7 +18,10 @@
 
 /**
  * @file afw_object_path.h
- * @brief Header for Adaptive Object Path
+ * @brief Adaptive object path parse and format helpers.
+ *
+ * See @ref afw_object_path. Paths identify objects as
+ * `/adapterId/objectType/objectId` forms used by adapters and meta.
  */
 
 AFW_BEGIN_DECLARES

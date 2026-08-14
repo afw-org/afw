@@ -20,7 +20,7 @@
 
 /**
  * @file afw_common.h
- * @brief Adaptive Framework Common Header.
+ * @brief Common types, macros, and includes used throughout AFW.
  * 
  * This header contains `#include`s for common headers that do not have other
  * Adaptive Framework dependencies, typedefs required by afw_interface.h,
@@ -102,8 +102,134 @@
 #endif
 #endif
 
-/* Include generated declare helpers. */
-#include "afw_declare_helpers.h"
+/*
+ * Public C API declare/define helpers (formerly generated afw_declare_helpers.h).
+ * Platform declspec + calling convention for the libafw shared library surface.
+ * Internal AFW_DECLARE_INTERNAL* macros are no longer used in-tree.
+ */
+
+/**
+ * AFW_BEGIN_DECLARES goes before declares and AFW_END_DECLARES at end in
+ * afw*.h files.
+ */
+#ifdef __cplusplus
+#define AFW_BEGIN_DECLARES extern "C" {
+#define AFW_END_DECLARES }
+#else
+#define AFW_BEGIN_DECLARES
+#define AFW_END_DECLARES
+#endif
+#if defined(WIN32)
+#error afw is not currently supported on Windows
+#endif
+
+/* #defines for declspec and calling convention. */
+#if defined(DOXYGEN) || !defined(WIN32)
+#define AFW_DECLSPEC_DECLARE extern
+#define AFW_DECLSPEC_DEFINE
+#define AFW_CALLING_CONVENTION
+#define AFW_CALLING_CONVENTION_ELLIPSIS
+#elif defined(AFW_DECLARE_STATIC)
+#define AFW_DECLSPEC_DECLARE extern
+#define AFW_DECLSPEC_DEFINE
+#define AFW_CALLING_CONVENTION __stdcall
+#define AFW_CALLING_CONVENTION_ELLIPSIS __cdecl
+#elif defined(AFW_DECLARE_EXPORT)
+#define AFW_DECLSPEC_DECLARE extern __declspec(dllexport)
+#define AFW_DECLSPEC_DEFINE __declspec(dllexport)
+#define AFW_CALLING_CONVENTION __stdcall
+#define AFW_CALLING_CONVENTION_ELLIPSIS __cdecl
+#else
+#define AFW_DECLSPEC_DECLARE extern __declspec(dllimport)
+#define AFW_DECLSPEC_DEFINE __declspec(dllimport)
+#define AFW_CALLING_CONVENTION __stdcall
+#define AFW_CALLING_CONVENTION_ELLIPSIS __cdecl
+#endif
+
+/**
+ * @brief Declare a public afw function.
+ * @param type of return value.
+ *
+ * There must be a corresponding AFW_DEFINE() in a /src/afw/ source .c file.
+ */
+#define AFW_DECLARE(type) \
+AFW_DECLSPEC_DECLARE \
+type \
+AFW_CALLING_CONVENTION
+
+/**
+ * @brief Declare a public afw function with variable arguments.
+ * @param type of return value.
+ */
+#define AFW_DECLARE_ELLIPSIS(type) \
+AFW_DECLSPEC_DECLARE \
+type \
+AFW_CALLING_CONVENTION_ELLIPSIS
+
+/**
+ * @brief Declare a public afw const variable.
+ * @param type of variable
+ */
+#define AFW_DECLARE_CONST_DATA(type) \
+AFW_DECLSPEC_DECLARE \
+const type
+
+/**
+ * @brief Define a public afw function.
+ * @param type of return value.
+ */
+#define AFW_DEFINE(type) \
+AFW_DECLSPEC_DEFINE \
+type \
+AFW_CALLING_CONVENTION
+
+/**
+ * @brief Define a public afw function with variable arguments.
+ * @param type of return value.
+ */
+#define AFW_DEFINE_ELLIPSIS(type) \
+AFW_DECLSPEC_DEFINE \
+type \
+AFW_CALLING_CONVENTION_ELLIPSIS
+
+/**
+ * @brief Define a public afw const variable.
+ * @param type of variable
+ */
+#define AFW_DEFINE_CONST_DATA(type) \
+AFW_DECLSPEC_DEFINE \
+const type
+
+#define AFW_CALLBACK \
+AFW_CALLING_CONVENTION
+
+#define AFW_CALLBACK_ELLIPSIS \
+AFW_CALLING_CONVENTION_ELLIPSIS
+
+#ifdef WIN32
+#define AFW_DEFINE_DSO(type) __declspec(dllexport) type
+#else
+#define AFW_DEFINE_DSO(type) type
+#endif
+
+#ifdef AFW_DISABLE_INLINE
+#define AFW_HAS_INLINE 0
+#define AFW_INLINE
+#else
+#define AFW_HAS_INLINE APR_HAS_INLINE
+#define AFW_INLINE APR_INLINE
+#endif
+
+/** AFW Inline. */
+#define AFW_STATIC_INLINE static AFW_INLINE
+
+#define AFW_DECLARE_STATIC(type) static type
+
+#if defined(DOXYGEN)
+#define AFW_DEFINE_STATIC_INLINE(type) type
+#else
+#define AFW_DEFINE_STATIC_INLINE(type) AFW_STATIC_INLINE type
+#endif
 
 /* Include template headers. */
 #include "afw_associative_array_template.h"
@@ -139,7 +265,22 @@
 #define AFW_COMPILER_ANNOTATION_NONNULL
 #endif
 
-/** @fixme Remove this as soon as no source contains it. */
+/**
+ * @deprecated Do not use in new or changed code.
+ *
+ * **Do not use.** Expands to C `assert()` and can **abort the process**.
+ * That is unsafe under a long-running server / request (takes down the
+ * worker). Use `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` /
+ * `AFW_COMPILE_THROW_ERROR_*` so failures participate in `AFW_TRY` /
+ * `AFW_CATCH` / `AFW_FINALLY` and the request can fail cleanly. There is
+ * intentionally **no** `AFW_ABORT` (or similar) helper — do not invent
+ * process-abort wrappers.
+ *
+ * Kept only until remaining call sites are removed; new code must not add
+ * `AFW_ASSERT`.
+ *
+ * @fixme Remove when no remaining call sites.
+ */
 #define AFW_ASSERT(e) assert(e)
 
 /** @fixme */
@@ -540,7 +681,7 @@ typedef afw_utf8_octet_t afw_utf8_z_t;
  * See RFC 5198 and http://unicode.org/reports/tr15/
  *
  * This string is not null terminated, so it can contain NUL characters. The
- * number of bytes in the sting is stored in len and a pointer to the first
+ * number of bytes in the string is stored in len and a pointer to the first
  * byte in s.
  * 
  * @see afw_utf8_octet_t for more information.
@@ -824,114 +965,163 @@ typedef struct afw_object_meta_s {
 
 
 /** @brief Error code map.
- * IMPORTANT>>> Do not change the order of these entries.  The order must match
- * the order of the error codes in afw_error_code_t as originally released since
- * the internal number will be externally compile in.
+ *
+ * Each row is: id, error_allow_in_response, http_response_code, description.
+ *
+ * id: Token pasted as afw_error_code_<id> and exposed as _AdaptiveError_.id.
+ * error_allow_in_response: If false, HTTP response omits the error object.
+ * http_response_code: Status for an uncaught error on an HTTP request.
+ * description: Phrase after the status number (e.g. "404 Not Found").
+ *
+ * Scripts should branch on id, not numeric errorCode. On this beta line the
+ * numeric order may change when the map is reviewed; prefer id.
+ *
+ * Layout: none / general / throw first, then script/language, then request
+ * HTTP, then host. general is the default when nothing more specific fits.
  *
  * none                     - No error has occurred.
  *
- * general                  - A general error has occurred that does not match
- *                           a more specific error code.
+ * general                  - Default error. Use this unless a more specific
+ *                           code (especially one with a different HTTP
+ *                           status) applies.
  *
- * evaluate                 - A error occurred while evaluating an adaptive
- *                           value.
+ * throw                    - Adaptive Script throw statement.
+ *
+ * assertion_failed         - assert() failed.
+ *
+ * argument_error           - Adaptive function argument error (including
+ *                           things like integer divide by zero).
+ *
+ * conversion_error         - Conversion to a data type failed.
+ *
+ * undefined_value          - Required value was undefined.
+ *
+ * syntax                   - Adaptive source parse / compile syntax error.
+ *
+ * HTTP-shaped ids follow IANA assigned codes a server or extension may
+ * issue (RFC 9110 plus later registry entries). Adaptive extras that share
+ * an HTTP number stay next to that number (query_too_complex and
+ * request_syntax with 400; read_only with 403; terminating with 503).
+ * Existing Adaptive names are kept (authentication_required, denied,
+ * unsupported_accept, client_timeout, payload_too_large,
+ * unsupported_content, method_not_supported). Not included: 1xx,
+ * deprecated 305/306, obsolete 510, temporary 104.
  *
  * bad_request              - Something about the request was bad.
  *
- * query_to_complex         - The query is too complex for the particular
- *                           adapter and/or index.
+ * query_too_complex        - Query is too complex for this adapter/index.
  *
- * request_syntax           - A error occurred while parsing the request.
- *
- * objects_needed           - This error will not occur if the object whose
- *                           URI is in error.additional is available in the
- *                           xctx's cache.  Function
- *                           afw_object_resolve_instance() uses this error
- *                           code when object is NULL and the object with the
- *                           URI passed is not in the cache.
+ * request_syntax           - Error parsing the HTTP request body / path.
  *
  * authentication_required  - Subject authentication required.
  *
- * denied                   - The caller is not authorized to perform the
- *                           request. See error.additional for more
- *                           information.
+ * denied                   - Caller is not authorized. See error data.
  *
- * read_only                - Something is read only.  See error.additional
- *                           for an indication of what is write protected.
+ * read_only                - Something is write protected. See error data.
  *
- * not_found                - Something was not found.  If "not found" is a
- *                           normal condition that might happen in a function
- *                           or method, returning NULL or using a parameter
- *                           should communicate "not found" instead of
- *                           throwing an error with this error code.  For
- *                           example, function afw_object_get_property() sets
- *                           its "found" parameter to AFW_FALSE and
- *                           afw_object_resolve_instance() return NULL to
- *                           indicate "not found".
+ * not_found                - A named resource was not found. Do not throw
+ *                           this when "missing" is a normal get (property
+ *                           miss → NULL / found=false). Do throw for a
+ *                           named adapter / object / URI / file the
+ *                           caller asked for (open_file ENOENT).
  *
- * method_not_allowed       - Method is not allowed for this resource.
+ * method_not_allowed       - HTTP method is not allowed for this resource.
  *
- * unsupported_accept       - None of the request's acceptable response
- *                           content types are supported.
+ * unsupported_accept       - None of the Accept types are supported.
  *
- * client_time_out          - Timed out waiting on client.
+ * client_timeout           - Timed out waiting on the client.
  *
- * conflict                 - Conflict such as resourse in use.
+ * conflict                 - Conflict such as resource in use.
  *
- * length_required          - Request requires content length.
- * 
- * unsupported_content_type - The request's content type is not supported.
+ * length_required          - Request requires a content length.
  *
- * memory                   - There is not enough memory available to continue.
+ * payload_too_large        - Request or result exceeds a configured limit.
+ *                           HTTP phrase is IANA "Content Too Large".
  *
- * syntax                   - A server side syntax error occurred.
+ * unsupported_content      - Request Content-Type is not supported.
  *
- * method_not_supported     - The implementation of this interface does not
- *                           support this method.
+ * im_a_teapot              - Historical 418 (IANA lists 418 as unused).
  *
- * client_closed            - Client closed connection.
+ * memory                   - Not enough memory to continue.
  *
+ * coding_error             - Internal coding error.
  *
- * Map has id, error_allow_in_response, http_response_code, and description.
- * 
- * id: Id of error code
- * error_allow_in_response: If an error is thrown with this id, it's allowed
- *     for the HTTP response to include the error object.
- * http_response_code: The HTTP response code to use if this error is thrown.
- * description: A very short description that will be included in after the
- *     http_response_code in the status message.
+ * method_not_supported     - This implementation does not support the
+ *                           method or capability.
+ *
+ * terminating              - Server is terminating; stop starting more work
+ *                           (e.g. mid retrieve at an object boundary).
+ *                           HTTP 503; service_unavailable is the generic 503.
+ *
+ * client_closed            - Client closed the connection.
  *
  */
 #define AFW_ERROR_CODE_MAP(XX)                                                  \
-    XX(none,                   true,  200, "OK"                                )\
-    XX(throw,                  true,  400, "Statement throw encountered"       )\
-    XX(general,                true,  500, "General Error"                     )\
-    XX(bad_request,            true,  400, "Bad Request"                       )\
-    XX(query_too_complex,      true,  400, "Query Too Complex"                 )\
-    XX(request_syntax,         true,  400, "Request Syntax Error"              )\
-    XX(objects_needed,         true,  400, "Objects Needed To Complete Request")\
-    XX(authentication_required,true,  401, "Authentication Needed"             )\
-    XX(denied,                 true,  403, "Forbidden - Access Denied"         )\
-    XX(read_only,              true,  403, "Forbidden - Read Only"             )\
-    XX(not_found,              true,  404, "Not Found"                         )\
-    XX(method_not_allowed,     true,  405, "Method Not Allowed"                )\
-    XX(unsupported_accept,     false, 406, "Unsupported Content Type Requested")\
-    XX(client_time_out,        true,  408, "Request Timeout"                   )\
-    XX(im_a_teapot,            true,  418, "I'm a Teapot"                      )\
-    XX(conflict,               true,  409, "Conflict"                          )\
-    XX(length_required,        true,  411, "Content Length Required"           )\
-    XX(payload_too_large,      true,  413, "Payload too large"                 )\
-    XX(unsupported_content,    true,  415, "Unsupported Content Type"          )\
-    XX(memory,                 true,  500, "Memory Error"                      )\
-    XX(syntax,                 true,  500, "Server Side Syntax Error"          )\
-    XX(method_not_supported,   true,  501, "Method Not Supported"              )\
-    XX(client_closed,          false, 000, "Client Closed Connection"          )\
-    XX(assertion_failed,       true,  400, "Assertion failed"                  )\
-    XX(cast_error,             true,  400, "Adaptive Type Cast Error"          )\
-    XX(arg_error,              true,  400, "Adaptive Function Arg Error"       )\
-    XX(evaluate,               true,  400, "Evaluation error"                  )\
-    XX(undefined,              true,  400, "Undefined value"                   )\
-    XX(code,                   true,  500, "Clearly an internal coding error"  )\
+    XX(none,                               true,  200, "OK"                               )\
+    XX(general,                            true,  500, "General Error"                    )\
+    XX(throw,                              true,  400, "Statement throw encountered"      )\
+    XX(assertion_failed,                   true,  400, "Assertion failed"                 )\
+    XX(argument_error,                     true,  400, "Argument Error"                   )\
+    XX(conversion_error,                   true,  400, "Conversion Error"                 )\
+    XX(undefined_value,                    true,  400, "Undefined Value"                  )\
+    XX(syntax,                             true,  400, "Syntax Error"                     )\
+    XX(created,                            true,  201, "Created"                          )\
+    XX(accepted,                           true,  202, "Accepted"                         )\
+    XX(no_content,                         false, 204, "No Content"                       )\
+    XX(partial_content,                    true,  206, "Partial Content"                  )\
+    XX(multi_status,                       true,  207, "Multi-Status"                     )\
+    XX(multiple_choices,                   true,  300, "Multiple Choices"                 )\
+    XX(moved_permanently,                  true,  301, "Moved Permanently"                )\
+    XX(moved_temporarily,                  true,  302, "Found"                            )\
+    XX(see_other,                          true,  303, "See Other"                        )\
+    XX(not_modified,                       false, 304, "Not Modified"                     )\
+    XX(temporary_redirect,                 true,  307, "Temporary Redirect"               )\
+    XX(permanent_redirect,                 true,  308, "Permanent Redirect"               )\
+    XX(bad_request,                        true,  400, "Bad Request"                      )\
+    XX(query_too_complex,                  true,  400, "Query Too Complex"                )\
+    XX(request_syntax,                     true,  400, "Request Syntax Error"             )\
+    XX(authentication_required,            true,  401, "Authentication Needed"            )\
+    XX(payment_required,                   true,  402, "Payment Required"                 )\
+    XX(denied,                             true,  403, "Forbidden - Access Denied"        )\
+    XX(read_only,                          true,  403, "Forbidden - Read Only"            )\
+    XX(not_found,                          true,  404, "Not Found"                        )\
+    XX(method_not_allowed,                 true,  405, "Method Not Allowed"               )\
+    XX(unsupported_accept,                 false, 406, "Unsupported Content Type Requested")\
+    XX(proxy_authentication_required,      true,  407, "Proxy Authentication Required"    )\
+    XX(client_timeout,                     true,  408, "Request Timeout"                  )\
+    XX(conflict,                           true,  409, "Conflict"                         )\
+    XX(gone,                               true,  410, "Gone"                             )\
+    XX(length_required,                    true,  411, "Content Length Required"          )\
+    XX(precondition_failed,                true,  412, "Precondition Failed"              )\
+    XX(payload_too_large,                  true,  413, "Content Too Large"                )\
+    XX(uri_too_long,                       true,  414, "URI Too Long"                     )\
+    XX(unsupported_content,                true,  415, "Unsupported Media Type"           )\
+    XX(range_not_satisfiable,              true,  416, "Range Not Satisfiable"            )\
+    XX(expectation_failed,                 true,  417, "Expectation Failed"               )\
+    XX(im_a_teapot,                        true,  418, "I'm a Teapot"                     )\
+    XX(misdirected_request,                true,  421, "Misdirected Request"              )\
+    XX(unprocessable_content,              true,  422, "Unprocessable Content"            )\
+    XX(locked,                             true,  423, "Locked"                           )\
+    XX(failed_dependency,                  true,  424, "Failed Dependency"                )\
+    XX(too_early,                          true,  425, "Too Early"                        )\
+    XX(upgrade_required,                   true,  426, "Upgrade Required"                 )\
+    XX(precondition_required,              true,  428, "Precondition Required"            )\
+    XX(too_many_requests,                  true,  429, "Too Many Requests"                )\
+    XX(request_header_fields_too_large,    true,  431, "Request Header Fields Too Large"  )\
+    XX(unavailable_for_legal_reasons,      true,  451, "Unavailable For Legal Reasons"    )\
+    XX(memory,                             true,  500, "Memory Error"                     )\
+    XX(coding_error,                       true,  500, "Internal Coding Error"            )\
+    XX(method_not_supported,               true,  501, "Method Not Supported"             )\
+    XX(bad_gateway,                        true,  502, "Bad Gateway"                      )\
+    XX(service_unavailable,                true,  503, "Service Unavailable"              )\
+    XX(terminating,                        true,  503, "Server Terminating"               )\
+    XX(gateway_timeout,                    true,  504, "Gateway Timeout"                  )\
+    XX(http_version_not_supported,         true,  505, "HTTP Version Not Supported"       )\
+    XX(variant_also_negotiates,            true,  506, "Variant Also Negotiates"          )\
+    XX(insufficient_storage,               true,  507, "Insufficient Storage"             )\
+    XX(loop_detected,                      true,  508, "Loop Detected"                    )\
+    XX(network_authentication_required,    true,  511, "Network Authentication Required"  )\
+    XX(client_closed,                      false, 000, "Client Closed Connection"         )\
 
 /** Adaptive Framework error codes enum. */
 typedef enum afw_error_code_e {
@@ -967,18 +1157,48 @@ typedef void (*afw_pool_cleanup_function_p_t)(
 
 
 /**
- * @brief Typedef for function to get a qualified variable.
+ * @brief Typedef for callback to get a qualified variable from a stack entry.
  * @param entry Qualifier stack entry.
  * @param name Name of variable.
  * @param xctx of caller.
- * @return value or NULL if not found.
+ * @return Non-NULL if this frame defines @p name (use permanent singletons
+ *    afw_value_undefined / afw_value_null for present nullish values); C NULL
+ *    if @p name is not defined on this frame.
  *
- * The stack is searched from newest to oldest.
+ * Used as get_cb on afw_xctx_qualifier_stack_entry_t. The stack walks matching
+ * visible frames newest → oldest and uses the first non-NULL return (first
+ * defining frame wins). Do not return C NULL for a present undefined value —
+ * return afw_value_undefined (permanent singleton, pointer identity).
+ *
+ * This contract is for **qualifier frames** only. Unqualified lexical `let` /
+ * params use scope symbol slots (see afw_xctx_get_optionally_qualified_variable
+ * and afw_xctx_scope_symbol_exists_by_name); do not assume get_cb rules apply
+ * to bare names.
  */
 typedef const afw_value_t *
-(*afw_xctx_get_variable_t)(
+(*afw_xctx_get_variable_cb_t)(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Typedef for callback to contribute variables into a snapshot object.
+ * @param entry Qualifier stack entry.
+ * @param object Accumulator object; only add property names not already present.
+ * @param include_untrusted See afw_xctx_qualifier_object_create(); most
+ *    contributes ignore this (frame selection is done by the snapshot builder).
+ * @param xctx of caller.
+ *
+ * Used as contribute_cb on afw_xctx_qualifier_stack_entry_t for qualifier() /
+ * qualifiers() listing (issue #9). Not for the hot qualifier::name path.
+ * Values should match what get_cb would return.
+ */
+typedef void
+(*afw_xctx_contribute_variables_cb_t)(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t include_untrusted,
     afw_xctx_t *xctx);
 
 
@@ -1604,7 +1824,12 @@ typedef void
     void *data, afw_xctx_t *xctx);
 
 
-/** @brief Struct for typedef afw_environment_t defined in afw_common.h. */
+/**
+ * @brief Process-wide environment (`afw_environment_t`).
+ *
+ * Registry fabric for the AFW process (one per application). Accessed as
+ * `xctx->env`. See group afw_environment.
+ */
 struct afw_environment_s {
 
     /** @brief Pool used to hold environment. */
@@ -1618,6 +1843,24 @@ struct afw_environment_s {
 
     /** @brief Environment variables at environment create. */
     const afw_object_t *initial_environment_variables;
+
+    /**
+     * @brief Live process environment variables object
+     * (`/afw/_AdaptiveEnvironmentVariables_/current`) for `environment::`.
+     *
+     * Created once at environment create. Qualifier is pushed in
+     * afw_application_internal_push_qualifiers() for every xctx.
+     */
+    const afw_object_t *environment_variables_object;
+
+    /**
+     * @brief Process invocation object (`/afw/_AdaptiveProcess_/current`)
+     * for `process::` (argv, programName, …).
+     *
+     * Created once at environment create. Qualifier is pushed in
+     * afw_application_internal_push_qualifiers() for every xctx.
+     */
+    const afw_object_t *process_object;
 
     /** @brief Adaptive framework core adapter. */
     const afw_adapter_t *afw_adapter;
@@ -1755,6 +1998,18 @@ struct afw_environment_s {
     /** @brief Flag index of compile:noImplicitAny. */
     afw_size_t flag_index_compile_noImplicitAny_active;
 
+    /** @brief Flag index of compile:typeCheck (full compile+runtime). */
+    afw_size_t flag_index_compile_typeCheck_active;
+
+    /** @brief Flag index of compile:typeCheckCompileOnly. */
+    afw_size_t flag_index_compile_typeCheckCompileOnly_active;
+
+    /** @brief Flag index of compile:strictNullChecks. */
+    afw_size_t flag_index_compile_strictNullChecks_active;
+
+    /** @brief Flag index of compile:strict. */
+    afw_size_t flag_index_compile_strict_active;
+
     /** @brief Flag index of compile:noOptimize. */
     afw_size_t flag_index_compile_noOptimize_active;
 
@@ -1809,7 +2064,32 @@ struct afw_environment_s {
 };
 
 
-/** @brief Struct for typedef afw_xctx_t defined in afw_common.h. */
+/**
+ * @brief Per-compile policy (flags as defaults; #compile overrides this only).
+ *
+ * Snapshot of effective compile:* knobs for one compiled unit. Process flags
+ * are defaults; #compile mutates this snapshot only (never process flags).
+ * Type checks resolve policy via contextual->compiled_value, else flags.
+ * See designs/pragma-hash-design.md and afw_compile_parse_pragma.c.
+ */
+struct afw_compile_policy_s {
+    /** Full typeCheck (compile + runtime). compile_only wins if both set. */
+    afw_boolean_t type_check;
+    /** Compile-time type checking only. */
+    afw_boolean_t type_check_compile_only;
+    /** Require annotations when type checking is active. */
+    afw_boolean_t no_implicit_any;
+    /** Strict null/undefined assignability when type checking is active. */
+    afw_boolean_t strict_null_checks;
+    /** Prefer unoptimized built-in call evaluation. */
+    afw_boolean_t no_optimize;
+};
+
+/**
+ * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.
+ *
+ * Unit of work for evaluation and requests. See group afw_xctx.
+ */
 struct afw_xctx_s {
 
     /**
@@ -1974,6 +2254,30 @@ struct afw_xctx_s {
      * Block statement flow type used while evaluate adaptive script.
      */
     afw_xctx_statement_flow_t statement_flow;
+
+    /**
+     * Target loop label for break/continue (issue #62). NULL if unlabeled.
+     * Cleared when the matching loop consumes the flow.
+     */
+    const afw_utf8_t *statement_flow_label;
+
+    /**
+     * Running Adaptive Script result for the current script or script
+     * function. Assignment and return write it; let/const, calls, and
+     * most other statements do not. Nested script activations save and
+     * restore this. Issue #62. Used only when script_result_active.
+     */
+    const afw_value_t *script_result;
+
+    /**
+     * True while evaluating Adaptive Script (not test_script / template).
+     */
+    afw_boolean_t script_result_active;
+
+    /**
+     * True if assignment or return wrote script_result in this activation.
+     */
+    afw_boolean_t script_result_written;
 
 };
 

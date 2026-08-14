@@ -70,7 +70,7 @@ afw_environment_registry_object_get_current(afw_xctx_t *xctx)
  */
 void
 impl_afw_object_release (
-    const afw_object_t * instance,
+    const afw_object_t * self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -83,7 +83,7 @@ impl_afw_object_release (
  */
 void
 impl_afw_object_get_reference (
-    const afw_object_t * instance,
+    const afw_object_t * self,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -94,11 +94,11 @@ impl_afw_object_get_reference (
  */
 afw_size_t
 impl_afw_object_get_count(
-    const afw_object_t * instance,
+    const afw_object_t * self,
     afw_xctx_t * xctx)
 {
 //    <afwdev {prefixed_interface_name}>_self_t *self =
-//        (<afwdev {prefixed_interface_name}>_self_t *)instance;
+//        (<afwdev {prefixed_interface_name}>_self_t *)self;
 
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
@@ -149,7 +149,7 @@ impl_make_registry_type_value(
  */
 const afw_value_t *
 impl_afw_object_get_property (
-    const afw_object_t * instance,
+    const afw_object_t * self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
@@ -170,8 +170,8 @@ impl_afw_object_get_property (
  */
 const afw_value_t *
 impl_afw_object_get_next_property (
-    const afw_object_t * instance,
-    const afw_iterator_t * * iterator,
+    const afw_object_t * self,
+    const afw_iterator_old_t * * iterator,
     const afw_utf8_t * * property_name,
     afw_xctx_t *xctx)
 {
@@ -218,11 +218,11 @@ impl_afw_object_get_next_property (
  */
 afw_boolean_t
 impl_afw_object_has_property (
-    const afw_object_t * instance,
+    const afw_object_t * self,
     const afw_utf8_t * property_name,
     afw_xctx_t *xctx)
 {
-    return impl_afw_object_get_property(instance, property_name, xctx) != NULL;
+    return impl_afw_object_get_property(self, property_name, xctx) != NULL;
 }
 
 
@@ -232,7 +232,7 @@ impl_afw_object_has_property (
  */
 const afw_object_setter_t *
 impl_afw_object_get_setter (
-    const afw_object_t * instance,
+    const afw_object_t * self,
     afw_xctx_t *xctx)
 {
     /* Immutable. */

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_base64Binary.c
- * @brief afw_function_execute_* functions for base64Binary.
+ * @brief Adaptive function execute implementations for category `base64Binary`.
  */
 
 #include "afw_internal.h"
@@ -20,7 +20,7 @@
  *
  * afw_function_execute_decode_to_string_base64Binary
  *
- * See afw_function_bindings.h for more information.
+ * See afw_function_bindings_internal.h for more information.
  *
  * Decode base64Binary value to string. An error is thrown if decoded value is
  * not valid UTF-8.
@@ -59,7 +59,7 @@ afw_function_execute_decode_to_string_base64Binary(
 
     if (!afw_utf8_is_valid(result->internal.s, result->internal.len, x->xctx))
     {
-        AFW_THROW_ERROR_Z(general, "value does not decode to valid utf-8",
+        AFW_THROW_ERROR_Z(conversion_error, "value does not decode to valid utf-8",
             x->xctx);
     }
 

@@ -18,7 +18,11 @@
 
 /**
  * @file afw_lock.h
- * @brief Adaptive Framework locks
+ * @brief Read/write and related process lock API.
+ *
+ * See @ref afw_lock. Prefer these helpers over ad-hoc mutex usage across
+ * pool/env boundaries; many AFW structures assume single-xctx or documented
+ * multi-thread rules.
  */
 
 AFW_BEGIN_DECLARES
@@ -102,19 +106,8 @@ afw_lock_create_and_register(
     afw_xctx_t *xctx);
 
 
-/**
- * @internal
- * @brief Internally called to create nested lock before afw_pool is ready.
- * @param lock_id
- * @param p for lock.
- * @param xctx of caller.
- */
-AFW_DECLARE(const afw_lock_t *)
-afw_lock_create_environment_nested_lock(
-    const afw_utf8_t *lock_id,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
+/* Environment bootstrap nested lock: afw_lock_create_environment_nested_lock
+ * in afw_lock_internal.h (libafw only). */
 
 /**
  * @brief Obtain lock.

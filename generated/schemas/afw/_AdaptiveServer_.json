@@ -1,65 +1,76 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveServer_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveServer_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveServer_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Object type for afw_server_fcgi server info.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveServer_.propertyTypes": {
+            "markdownDescription": "Object type for afw_server_fcgi server info.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "afwCompiledVersion": {
                     "description": "The server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active.",
+                    "markdownDescription": "**Compiled AFW Version**\n\nThe server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active.",
                     "title": "Compiled AFW Version",
                     "type": "string"
                 },
                 "afwVersion": {
                     "description": "When the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw.",
+                    "markdownDescription": "**AFW Version**\n\nWhen the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw.",
                     "title": "AFW Version",
                     "type": "string"
                 },
                 "concurrent": {
                     "description": "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
+                    "markdownDescription": "**Concurrent**\n\nThis is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
                     "title": "Concurrent",
                     "type": "integer"
                 },
                 "maxConcurrent": {
                     "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
+                    "markdownDescription": "**Max Concurrent**\n\nThis is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
                     "title": "Max Concurrent",
                     "type": "integer"
                 },
                 "requestCount": {
                     "description": "This is the total number of requests that have been processed since the server was started.",
+                    "markdownDescription": "**Request Count**\n\nThis is the total number of requests that have been processed since the server was started.",
                     "title": "Request Count",
                     "type": "integer"
                 },
                 "serverType": {
                     "description": "An Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server.",
+                    "markdownDescription": "**Server Type**\n\nAn Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server.",
                     "title": "Server Type",
                     "type": "string"
                 },
                 "serverVersion": {
                     "description": "This version represents the compiled version of the Adaptive Framework server code.",
+                    "markdownDescription": "**Server Version**\n\nThis version represents the compiled version of the Adaptive Framework server code.",
                     "title": "Server Version",
                     "type": "string"
                 },
                 "startTime": {
                     "description": "This timestamp represents when the server was started.",
                     "format": "date-time",
+                    "markdownDescription": "**Start Time**\n\nThis timestamp represents when the server was started.",
                     "title": "Start Time",
                     "type": "string"
                 },
                 "threadCount": {
                     "description": "The number of threads to create at startup to process client requests.",
+                    "markdownDescription": "**Thread Count**\n\nThe number of threads to create at startup to process client requests.",
                     "title": "Thread Count",
                     "type": "integer"
                 },
                 "unhandledErrors": {
                     "description": "The number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.",
+                    "markdownDescription": "**Unhandled Errors**\n\nThe number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.",
                     "title": "Unhandled Errors",
                     "type": "integer"
                 }
@@ -71,13 +82,157 @@
                 "threadCount",
                 "unhandledErrors"
             ],
+            "title": "_AdaptiveServer_",
+            "type": "object"
+        },
+        "_AdaptiveServer_.propertyTypes": {
+            "properties": {
+                "afwCompiledVersion": {
+                    "description": "The server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active.",
+                    "markdownDescription": "**Compiled AFW Version**\n\nThe server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active.",
+                    "title": "Compiled AFW Version",
+                    "type": "string"
+                },
+                "afwVersion": {
+                    "description": "When the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw.",
+                    "markdownDescription": "**AFW Version**\n\nWhen the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw.",
+                    "title": "AFW Version",
+                    "type": "string"
+                },
+                "concurrent": {
+                    "description": "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
+                    "markdownDescription": "**Concurrent**\n\nThis is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
+                    "title": "Concurrent",
+                    "type": "integer"
+                },
+                "maxConcurrent": {
+                    "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
+                    "markdownDescription": "**Max Concurrent**\n\nThis is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
+                    "title": "Max Concurrent",
+                    "type": "integer"
+                },
+                "requestCount": {
+                    "description": "This is the total number of requests that have been processed since the server was started.",
+                    "markdownDescription": "**Request Count**\n\nThis is the total number of requests that have been processed since the server was started.",
+                    "title": "Request Count",
+                    "type": "integer"
+                },
+                "serverType": {
+                    "description": "An Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server.",
+                    "markdownDescription": "**Server Type**\n\nAn Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server.",
+                    "title": "Server Type",
+                    "type": "string"
+                },
+                "serverVersion": {
+                    "description": "This version represents the compiled version of the Adaptive Framework server code.",
+                    "markdownDescription": "**Server Version**\n\nThis version represents the compiled version of the Adaptive Framework server code.",
+                    "title": "Server Version",
+                    "type": "string"
+                },
+                "startTime": {
+                    "description": "This timestamp represents when the server was started.",
+                    "format": "date-time",
+                    "markdownDescription": "**Start Time**\n\nThis timestamp represents when the server was started.",
+                    "title": "Start Time",
+                    "type": "string"
+                },
+                "threadCount": {
+                    "description": "The number of threads to create at startup to process client requests.",
+                    "markdownDescription": "**Thread Count**\n\nThe number of threads to create at startup to process client requests.",
+                    "title": "Thread Count",
+                    "type": "integer"
+                },
+                "unhandledErrors": {
+                    "description": "The number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.",
+                    "markdownDescription": "**Unhandled Errors**\n\nThe number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.",
+                    "title": "Unhandled Errors",
+                    "type": "integer"
+                }
+            },
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveServer_"
+    "additionalProperties": false,
+    "description": "Object type for afw_server_fcgi server info.",
+    "markdownDescription": "Object type for afw_server_fcgi server info.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "afwCompiledVersion": {
+            "description": "The server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active.",
+            "markdownDescription": "**Compiled AFW Version**\n\nThe server is an application, which is dynamically linked to libafw, containing Adaptive Framework Core. In many cases, these two versions would be the same, but may differ if the server binary has been updated and the libafw has not (or vice versa). This is the version of Adaptive Framework core (libafw) the server was compiled against, not what is currently active.",
+            "title": "Compiled AFW Version",
+            "type": "string"
+        },
+        "afwVersion": {
+            "description": "When the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw.",
+            "markdownDescription": "**AFW Version**\n\nWhen the Adaptive Framework server is run, it executes Adaptive Framework core code out of libafw. This is the version of the actively available libafw.",
+            "title": "AFW Version",
+            "type": "string"
+        },
+        "concurrent": {
+            "description": "This is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
+            "markdownDescription": "**Concurrent**\n\nThis is the number of threads that are currently being processed at the time of this request. It may change over time, and will not exceed the the number of threads that are available.",
+            "title": "Concurrent",
+            "type": "integer"
+        },
+        "maxConcurrent": {
+            "description": "This is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
+            "markdownDescription": "**Max Concurrent**\n\nThis is the maximum water-level number of threads that have been observed to have been currently being processed by the server at any given time.",
+            "title": "Max Concurrent",
+            "type": "integer"
+        },
+        "requestCount": {
+            "description": "This is the total number of requests that have been processed since the server was started.",
+            "markdownDescription": "**Request Count**\n\nThis is the total number of requests that have been processed since the server was started.",
+            "title": "Request Count",
+            "type": "integer"
+        },
+        "serverType": {
+            "description": "An Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server.",
+            "markdownDescription": "**Server Type**\n\nAn Adaptive Framework server can be implemented in a variety of ways. This field describes the type of this server.",
+            "title": "Server Type",
+            "type": "string"
+        },
+        "serverVersion": {
+            "description": "This version represents the compiled version of the Adaptive Framework server code.",
+            "markdownDescription": "**Server Version**\n\nThis version represents the compiled version of the Adaptive Framework server code.",
+            "title": "Server Version",
+            "type": "string"
+        },
+        "startTime": {
+            "description": "This timestamp represents when the server was started.",
+            "format": "date-time",
+            "markdownDescription": "**Start Time**\n\nThis timestamp represents when the server was started.",
+            "title": "Start Time",
+            "type": "string"
+        },
+        "threadCount": {
+            "description": "The number of threads to create at startup to process client requests.",
+            "markdownDescription": "**Thread Count**\n\nThe number of threads to create at startup to process client requests.",
+            "title": "Thread Count",
+            "type": "integer"
+        },
+        "unhandledErrors": {
+            "description": "The number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.",
+            "markdownDescription": "**Unhandled Errors**\n\nThe number of errors that remained unreported. This usually happens when an error occurs while trying to respond to an error.",
+            "title": "Unhandled Errors",
+            "type": "integer"
         }
-    ]
+    },
+    "required": [
+        "concurrent",
+        "maxConcurrent",
+        "requestCount",
+        "threadCount",
+        "unhandledErrors"
+    ],
+    "title": "_AdaptiveServer_",
+    "type": "object"
 }

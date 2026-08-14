@@ -17,6 +17,8 @@ This build process relies on CLang for MacOS, provided by XCode, along with Home
     brew install berkeley-db
     brew install openldap
     brew install lmdb
+    # Optional: interactive line editing for the `afw` command (often already present on macOS)
+    brew install libedit
 
 ## Download and Build apr and apr-util
 

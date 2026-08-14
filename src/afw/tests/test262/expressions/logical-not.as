@@ -7,7 +7,7 @@
 //?
 //? test: 11.4.9_A1
 //? description: White Space and Line Terminator between "!" and unary expression are allowed
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if (eval(script("!\u0009true")) !== false) {
@@ -49,12 +49,9 @@ if (eval(script("!\u2029true")) !== false) {
 if (eval(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true")) !== false) {
     throw "#10 !\\u009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true === false";
 }
-
-
-
 //? test: 11.4.9_A2.1_T1
 //? description: Operator !x
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if (!true !== false) {
@@ -74,20 +71,14 @@ x = true;
 if (!(!x) !== true) {
     throw "#4 !(!x) !== true";
 }
-
-
-
 //? test: 11.4.9_A3_T1
 //? description: x is boolean primitive
-//? expect: undefined
+//? expect: success
 //? source: ...
 
 if (!false !== true) {
     throw "#1 !false !== true";
 }
-
-
-
 //? test: 11.4.9_A3_T2
 //? description: x is number
 //? expect: error

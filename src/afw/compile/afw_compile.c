@@ -8,8 +8,7 @@
 
 /**
  * @file afw_compile.c
- * @brief AFW parse functions.
- *
+ * @brief Public compile entry points (script, template, expression, JSON).
  */
 
 #include "afw_internal.h"
@@ -406,7 +405,7 @@ afw_compile_templates(
     const afw_compile_shared_t *shared,
     afw_xctx_t *xctx)
 {
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *detail_source_location;
     const afw_value_t *value;
@@ -472,7 +471,7 @@ afw_compile_object_all_template_properties(
 {
     const afw_object_t *result;
     const afw_utf8_t *property_name;
-    const afw_iterator_t *iterator;
+    const afw_iterator_old_t *iterator;
     const afw_value_t *value;
     const afw_value_t *compiled_value;
     const afw_utf8_t *detail_source_location;
@@ -598,4 +597,88 @@ afw_compile_source_location_of_value(
     }
     
     return result;
+}
+
+
+
+/*
+ * Initialize per-compile policy from process/xctx flags (defaults only).
+ */
+AFW_DEFINE(void)
+afw_compile_policy_init_from_flags(
+    afw_compile_policy_t *policy,
+    afw_xctx_t *xctx)
+{
+    afw_boolean_t strict;
+
+    memset(policy, 0, sizeof(*policy));
+
+    strict = afw_flag_is_active(
+        xctx->env->flag_index_compile_strict_active, xctx);
+
+    policy->type_check_compile_only = afw_flag_is_active(
+        xctx->env->flag_index_compile_typeCheckCompileOnly_active, xctx);
+    policy->type_check =
+        strict ||
+        afw_flag_is_active(
+            xctx->env->flag_index_compile_typeCheck_active, xctx);
+    policy->no_implicit_any =
+        strict ||
+        afw_flag_is_active(
+            xctx->env->flag_index_compile_noImplicitAny_active, xctx);
+    policy->strict_null_checks =
+        strict ||
+        afw_flag_is_active(
+            xctx->env->flag_index_compile_strictNullChecks_active, xctx);
+    policy->no_optimize = afw_flag_is_active(
+        xctx->env->flag_index_compile_noOptimize_active, xctx);
+}
+
+
+
+/* Parse a script Type expression from UTF-8 (e.g. FunctionSignature). */
+AFW_DEFINE(const afw_value_type_t *)
+afw_compile_type_from_utf8(
+    const afw_utf8_t *source,
+    const afw_utf8_t *source_location,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_compile_parser_t *parser;
+    const afw_value_type_t *type;
+    afw_boolean_t failed;
+
+    if (!source || source->len == 0 || !p) {
+        return NULL;
+    }
+
+    /*
+     * cede_p true: type graph is allocated on caller pool p (not a
+     * transient parser subpool). residual to_full ensures the whole
+     * FunctionSignature string is a single Type.
+     */
+    parser = afw_compile_lexical_parser_create(
+        source, NULL, NULL, source_location,
+        afw_compile_type_script,
+        afw_compile_residual_check_to_full,
+        true, NULL, NULL, p, xctx);
+
+    type = NULL;
+    failed = false;
+    AFW_TRY {
+        type = afw_compile_parse_Type(parser);
+        afw_compile_check_for_residual(parser);
+    }
+    AFW_CATCH_UNHANDLED {
+        /* Caller may fall back (e.g. leaf function formal). */
+        type = NULL;
+        failed = true;
+    }
+    AFW_FINALLY {
+        afw_compile_lexical_parser_finish_and_release(parser, xctx);
+    }
+    AFW_ENDTRY;
+
+    (void)failed;
+    return type;
 }

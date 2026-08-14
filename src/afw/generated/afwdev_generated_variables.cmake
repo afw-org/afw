@@ -23,6 +23,8 @@
 #
 
 # Header files that are installed for public use.
+# Excludes *_internal.h / afw_internal.h (libafw/package private).
+# Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     action/afw_action.h
     adapter/afw_adapter.h
@@ -31,15 +33,12 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     adapter/afw_adapter_get.h
     adapter/afw_adapter_impl.h
     adapter/afw_adapter_impl_index.h
-    adapter/afw_adapter_internal.h
     adapter/afw_adapter_journal.h
     adapter/afw_adapter_modify.h
     adapter/afw_adapter_replace.h
     adapter/afw_adapter_retrieve.h
-    application/afw_application_internal.h
     array/afw_array.h
     array/afw_array_impl.h
-    array/afw_array_internal.h
     array_template/afw_array_template.h
     ascii/afw_ascii.h
     associative_array/afw_associative_array.h
@@ -47,10 +46,8 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     atomic/afw_atomic.h
     authorization/afw_authorization.h
     authorization/afw_authorization_impl.h
-    authorization/afw_authorization_internal.h
     compile/afw_compile.h
     compile/afw_compile_code_point.h
-    compile/afw_compile_internal.h
     components/afw_components.h
     content_type/afw_content_type.h
     content_type/afw_content_type_impl.h
@@ -59,10 +56,8 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     debug/afw_debug.h
     endian/afw_endian.h
     environment/afw_environment.h
-    environment/afw_environment_internal.h
     error/afw_error.h
     file/afw_file.h
-    file/afw_file_internal.h
     flag/afw_flag.h
     function/afw_function.h
     generated/afw_adapter_factory_impl_declares.h
@@ -79,7 +74,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_authorization_handler_factory_impl_declares.h
     generated/afw_authorization_handler_impl_declares.h
     generated/afw_connection_impl_declares.h
-    generated/afw_const_objects.h
     generated/afw_content_type_impl_declares.h
     generated/afw_content_type_object_list_writer_impl_declares.h
     generated/afw_data_type_anyURI_binding.h
@@ -120,13 +114,12 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     generated/afw_data_type_x500Name_binding.h
     generated/afw_data_type_xpathExpression_binding.h
     generated/afw_data_type_yearMonthDuration_binding.h
-    generated/afw_declare_helpers.h
     generated/afw_extension_impl_declares.h
-    generated/afw_function_bindings.h
-    generated/afw_generated.h
     generated/afw_interface.h
     generated/afw_interface_opaques.h
     generated/afw_iterator_impl_declares.h
+    generated/afw_iterator_old_impl_declares.h
+    generated/afw_iterator_with_key_impl_declares.h
     generated/afw_log_factory_impl_declares.h
     generated/afw_log_impl_declares.h
     generated/afw_object_associative_array_impl_declares.h
@@ -150,43 +143,34 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     include/afw_common_opaques.h
     include/afw_doxygen.h
     include/afw_interface_common.h
-    include/afw_internal.h
     include/afw_minimal.h
     json/afw_json.h
-    json/afw_json_internal.h
     lock/afw_lock.h
     log/afw_log.h
     log/afw_log_deprecated.h
     log/afw_log_deprecated_interface.h
     log/afw_log_impl.h
-    log/afw_log_internal.h
     memory/afw_memory.h
     model/afw_model.h
-    model/afw_model_internal.h
     model/afw_model_location.h
     number/afw_number.h
     object/afw_object.h
     object/afw_object_impl.h
-    object/afw_object_internal.h
     object/afw_object_meta.h
     object/afw_object_options.h
     object/afw_object_path.h
     object/afw_object_type.h
     object/afw_object_view.h
-    object/afw_object_view_internal.h
     os/afw_os.h
     pool/afw_pool.h
-    pool/afw_pool_internal.h
     query_criteria/afw_query_criteria.h
     request/afw_request.h
     request/afw_request_handler.h
-    request/afw_request_handler_internal.h
     request/afw_request_impl.h
     runtime/afw_runtime.h
     runtime/afw_runtime_value_accessor.h
     safe_cast/afw_safe_cast.h
     service/afw_service.h
-    service/afw_service_internal.h
     stack/afw_stack.h
     stream/afw_stream.h
     thread/afw_thread.h
@@ -196,11 +180,9 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     utf8/afw_utf8.h
     uuid/afw_uuid.h
     value/afw_value.h
-    value/afw_value_internal.h
     version/afw_version.h
     writer/afw_writer.h
     xctx/afw_xctx.h
-    xctx/afw_xctx_internal.h
 )
 
 # Full path of directories searched for headers at build time.
@@ -276,7 +258,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     array/afw_array_const_array.c
     array/afw_array_impl.c
     array/afw_array_memory.c
-    array/afw_array_wrapper_for_array.c
+    array/afw_array_view_of_c_array.c
     ascii/afw_ascii.c
     associative_array/afw_associative_array.c
     authorization/afw_authorization.c
@@ -287,7 +269,9 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     compile/afw_compile_lexical.c
     compile/afw_compile_parse.c
     compile/afw_compile_parse_assignment_target.c
+    compile/afw_compile_parse_compiler_internal.c
     compile/afw_compile_parse_expression.c
+    compile/afw_compile_parse_pragma.c
     compile/afw_compile_parse_script.c
     compile/afw_compile_parse_template.c
     compile/afw_compile_parse_value.c
@@ -305,6 +289,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     error/afw_error.c
     file/afw_file.c
     file/afw_file_journal.c
+    file/afw_file_path.c
     flag/afw_flag.c
     function/afw_function.c
     function/afw_function_adapter.c
@@ -315,7 +300,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     function/afw_function_base64Binary.c
     function/afw_function_compiler.c
     function/afw_function_compiler_expression.c
-    function/afw_function_compiler_script.c
+    function/afw_function_compiler_internal.c
     function/afw_function_date.c
     function/afw_function_dateTime.c
     function/afw_function_double.c
@@ -401,7 +386,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     number/afw_number.c
     object/afw_object.c
     object/afw_object_aggregate_external.c
-    object/afw_object_composite.c
     object/afw_object_const_key_value.c
     object/afw_object_impl.c
     object/afw_object_impl_property_meta.c
@@ -411,7 +395,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     object/afw_object_meta_accessor.c
     object/afw_object_options.c
     object/afw_object_path.c
-    object/afw_object_properties_callback.c
     object/afw_object_type.c
     object/afw_object_view.c
     os/nix/afw_os.c
@@ -460,12 +443,14 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_meta.c
     value/afw_value_meta_values_list.c
     value/afw_value_meta_values_object.c
+    value/afw_value_object_construct.c
     value/afw_value_object_expression.c
     value/afw_value_qualified_variable_reference.c
     value/afw_value_reference_by_key.c
     value/afw_value_script_function.c
     value/afw_value_symbol_reference.c
     value/afw_value_template_definition.c
+    value/afw_value_type_check.c
     version/afw_version.c
     writer/afw_writer.c
     xctx/afw_xctx.c
