@@ -38,6 +38,9 @@ void afw_lmdb_adapter_load_configuration(
     const afw_object_t *config;
     int rc;
 
+    afw_trace_z(1, self->pub.trace_flag_index, 
+        NULL, "LMDB Begin read transaction.", xctx);
+
     rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
     if (rc) {
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
@@ -56,6 +59,9 @@ void afw_lmdb_adapter_load_configuration(
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to commit initial transaction.", xctx);
     }
+
+    afw_trace_z(1, self->pub.trace_flag_index, 
+        NULL, "LMDB Transaction committed.", xctx);
 }
 
 /*
@@ -184,6 +190,9 @@ void afw_lmdb_adapter_open_databases(
     MDB_txn *txn;
     int rc;
 
+    afw_trace_z(1, self->pub.trace_flag_index, 
+        NULL, "LMDB Begin read transaction.", xctx);
+
     rc = mdb_txn_begin(self->dbEnv, NULL, 0, &txn);
     if (rc) {
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
@@ -220,6 +229,9 @@ void afw_lmdb_adapter_open_databases(
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to commit initial transaction.", xctx);
     }
+
+    afw_trace_z(1, self->pub.trace_flag_index, 
+        NULL, "LMDB Transaction committed.", xctx);
 }
 
 const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
@@ -602,6 +614,9 @@ impl_afw_adapter_get_additional_metrics (
 
     /* FIXME check return code here and decide what to do/throw */
     mdb_txn_commit(txn);
+
+    afw_trace_z(1, self->pub.trace_flag_index, 
+        NULL, "LMDB Transaction committed.", xctx);
 
     apr_thread_rwlock_unlock(self->dbLock);
 

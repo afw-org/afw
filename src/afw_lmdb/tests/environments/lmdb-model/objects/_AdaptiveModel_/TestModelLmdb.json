@@ -1,0 +1,18 @@
+{
+    "modelId": "TestModelLmdb",
+    "objectTypes": {
+        "MyObjectType1": {
+            "mappedObjectType": "TestObjectType1",
+            "propertyTypes": {
+                "MyTestString1": {
+                    "dataType": "string",
+                    "mappedPropertyName": "TestString1"
+                },
+                "NestedCount": {
+                    "dataType": "integer",
+                    "onGetProperty": "const rows: array = retrieve_objects(current::mappedAdapterId, current::mappedObjectType);\nreturn length(rows);"
+                }
+            }
+        }
+    }
+}
