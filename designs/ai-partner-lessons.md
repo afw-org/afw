@@ -118,7 +118,7 @@ handbook).
 ### One realistic session shape (issue work)
 
 Not a script — just enough structure that a first pairing does not jump straight
-to “implement everything on `mgg-develop`.”
+to “implement everything on `develop`.”
 
 1. **Open the harness on this repo** (so the partner can see the tree and
    ideally `AGENTS.md`).  
@@ -131,7 +131,7 @@ to “implement everything on `mgg-develop`.”
    (`afw`, `afwfcgi`, runtime objects on `adapterId=afw`, the code they named).  
 4. **If you decide to work it** — say so explicitly, then give a light branch
    home, e.g.:  
-   **“Let’s work this. Make a feature branch off `mgg-develop` for #N.”**  
+   **“Let’s work this. Make a feature branch off `develop` for #N.”**  
    (Name it however you like; `issue-#N-…` is fine.) Stay on that branch until
    you intentionally merge or open a PR.  
 5. **Implement in small steps you both own.** Agree the next thin vertical
@@ -158,7 +158,7 @@ to “implement everything on `mgg-develop`.”
    Holding commits until asked has worked well here unless you agree otherwise
    for a stretch (see *Practical defaults* above).  
 7. **When the vertical is ready for review:**  
-   **“Open a PR against `mgg-develop`”** (or your target branch). Review the
+   **“Open a PR against `develop`”** (or your target branch). Review the
    diff yourself; treat the partner’s draft description as a starting point.  
 8. **After a real click** (shipped behavior or a durable mental model), add or
    update a **short map** in `designs/` (atlas row, playbook note, or thin pad)

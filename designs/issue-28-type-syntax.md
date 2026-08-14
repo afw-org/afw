@@ -238,7 +238,7 @@ afwdev test -j --srcdir-pattern afw --test-pattern 'type_'
 | Need | Where |
 |------|--------|
 | Product syntax + flags + claimed checks | Handbook **Types** (`src/afw/doc/reference/language/types.xml`); **Features** pragma short note |
-| User-facing `mgg-develop` notes | [`whats-new.md`](../whats-new.md) — Adaptive Script types |
+| User-facing `develop` notes | [`whats-new.md`](../whats-new.md) — Adaptive Script types |
 | Firm will-not-do fence (plain language) | [`typescript-differences.md`](../typescript-differences.md) |
 | Maintainer decisions, gray-zone table, call-site early-bind | **This pad** |
 | Adaptive / FunctionSignature compile path | [`adaptive-function-compile-typecheck.md`](adaptive-function-compile-typecheck.md) |

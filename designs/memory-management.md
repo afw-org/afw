@@ -61,7 +61,7 @@ Complementary, not substitutes:
 ## Working method
 
 1. Use stale branch **`use-value-in-array-and-object`** as **archaeology / intent**, not something to merge.
-2. Combine that with **current tree** (`mgg-develop` / `issue-#2`), **afw-value-memory** rules, and **live discussion**.
+2. Combine that with **current tree** (`develop` / `issue-#2`), **afw-value-memory** rules, and **live discussion**.
 3. Prefer **invariants** over “port commit X.”
 4. Implement later in **small vertical slices**, not a big-bang generator flip.
 

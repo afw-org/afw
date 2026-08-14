@@ -1,7 +1,7 @@
 # AFW beta backlog (brain dump)
 
 **Audience:** maintainers and assistants working toward a beta-quality tree.  
-**Not for end users.** User-facing changes while work is on `mgg-develop` go in [`whats-new.md`](whats-new.md).
+**Not for end users.** User-facing changes go in [`whats-new.md`](whats-new.md).
 
 ## Purpose
 
@@ -12,58 +12,45 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 | **`beta-backlog.md`** (this file) | Working notes, plans, archaeology, half-decided design. Source of truth for “what we still need to remember.” |
 | **`designs/`** | Per-issue / per-theme design pads (not user docs). See [`designs/README.md`](designs/README.md). |
 | **`designs/memory-management.md`** | Living design notes for umbrella **#2** (long-running memory, value/object identity, escape). |
-| **`whats-new.md`** | What **users** of AFW need to know about **`mgg-develop`** (behavior, APIs, migration). |
+| **`whats-new.md`** | What **users** of AFW need to know about **`develop`** (behavior, APIs, migration). |
 | **GitHub issues** | Optional promotion when something needs discussion, an assignee, PR linkage, or is a real beta blocker. Prefer thematic umbrellas (e.g. language, memory) over one infinite meta-issue. |
 
-## Branch plan (as of mid‑2026)
+## Branch plan (as of 2026-08-14)
 
-**Steady state (normal AFW practice):**
+**Steady state (current):**
 
 ```text
 feature branches  →  develop  →  (cleaned up, ≥ beta) main
 ```
 
-- **`develop`** is the usual shared integration branch.
+- **`develop`** is the shared integration branch again.
 - Day-to-day work is **feature branches off `develop`**.
+- User-facing “what’s new”: **`whats-new.md`**.
+- Harness: **orchestrated tests** (PR **#167**); **`afwdev blast` retired** → `schedule.firehose` + `src/afw/tests-extra/` (`-T`).
 
-**Current exception — concentrated AI / Grok Build pass:**
+**Historical — concentrated AI / Grok Build pass (mid‑2026):**
 
 ```text
 feature branches  →  mgg-develop  →  (user testing) develop  →  main
 ```
 
-- Volume of change from Grok Build / Cursor would overwhelm the usual `develop` cadence, so **`mgg-develop`** was cut off `develop` as a long-lived staging line.
-- Feature branches (e.g. `issue-#1`) are cut **off `mgg-develop`**, in chunks.
-- Day-to-day on this line: Mike + AI partner open/land PRs into **`mgg-develop`**; not the full team’s normal develop cadence until a **big, reviewed merge**. Jeremy is looped in; `develop` may still get occasional unrelated fixes.
-- User-facing “what’s new” while on this line: **`whats-new.md`**.
-- After this large pass: **major user testing**, then merge **`mgg-develop` → `develop`**. Then **`develop` is again the main develop branch**.
-- Over weeks/months, most work should return to feature branches off `develop` (mgg-develop is not the permanent forever trunk).
-- Harness on this campaign: **orchestrated tests** shipped (PR **#167**); **`afwdev blast` retired** → `schedule.firehose` + `src/afw/tests-extra/` (`-T`).
+Volume of change would have overwhelmed the usual `develop` cadence, so **`mgg-develop`** was cut off `develop` as a long-lived staging line. That campaign merged into **`develop`** via [PR #179](https://github.com/afw-org/afw/pull/179) (**Create a merge commit**, history preserved). Tags: `before-mgg-develop-merge`, `mgg-develop-final`, `after-mgg-develop-merge`. The `mgg-develop` branch name is kept for now; do not use it as a base for new work.
 
-### When merging `mgg-develop` → `develop` (retarget)
+### Retarget after `mgg-develop` → `develop` (done)
 
-**Don’t forget:** a merge only moves tree content. Branch names in prose and
-URLs do **not** update automatically.
+A merge only moves tree content. Branch names in prose and URLs do not
+update automatically. Cutover follow-up (this file / `whats-new` /
+test262 How URLs / agent “new work” pointers):
 
-**Remind yourself (or the assistant) at cutover** — immediately before the
-merge PR or right after it lands is fine:
-
-> Retarget maintainer docs and history links from **`mgg-develop`** to
-> **`develop`**.
-
-Checklist when that happens:
-
-- [ ] **`whats-new.md`** — title / window wording (no longer “on mgg-develop”)
-- [ ] **`src/afw/tests/test262/changes.md`** — Index **How** commit URLs
+- [x] **`whats-new.md`** — title / window is since `before-mgg-develop-merge`
+- [x] **`src/afw/tests/test262/changes.md`** — Index **How** commit URLs
   (`…/commits/mgg-develop/…` → `…/commits/develop/…`) and intro / window text
-- [ ] **This file** and other maintainer notes — day-to-day trunk is **`develop`**
+- [x] **This file** and other maintainer notes — day-to-day trunk is **`develop`**
   again; stop pointing new work at `mgg-develop`
-- [ ] Issue/PR links (`/issues/N`, `/pull/N`) — **no change** (not branch-scoped)
+- [x] Issue/PR links (`/issues/N`, `/pull/N`) — **no change** (not branch-scoped)
 
-Then cut feature branches off **`develop`** and treat `mgg-develop` as done
-(optional: delete remote branch when nobody needs the tip name).
-
-Update this section if the plan changes.
+Historical “landed on `mgg-develop` via PR #N” lines stay. Optional later:
+delete the remote `mgg-develop` name when nobody needs the tip.
 
 ## How to use this file
 
@@ -80,7 +67,7 @@ Update this section if the plan changes.
 - Prefer **developer knowledge in the code** (comments, module headers, EBNF-in-comments, existing guide XML where it already lives) over a growing pile of external markdown that drifts.
 - **`beta-backlog.md`** is a temporary/maintainer **brain dump and beta working list**. Fine for months of beta work; not the long-term home for architecture prose.
 - When we improve developer documentation later, **mine this file** (and chat archaeology, FIXMEs, `whats-new.md` where relevant) and **fold durable facts into code comments / in-tree developer docs**, then thin the backlog.
-- User-facing material stays separate (`whats-new.md` while on `mgg-develop`, published handbook/docs as appropriate).
+- User-facing material stays separate (`whats-new.md`, published handbook/docs as appropriate).
 
 ## How we work with assistants (session hygiene)
 
@@ -160,7 +147,7 @@ Update this section if the plan changes.
   - **`local_test.py`:** normalizes local-mode version banner (expects don’t track package version).
   - Package **0.12.2** on this line after #132 work.
 - **#1 is a wrap** — no further dedicated Doxygen campaign unless a real gap appears while editing.
-- Next: **new conversation + feature branch off `mgg-develop`** per theme (indexes, memory, language, …). Keep dumping durable notes here and in rules as we go over the next months.
+- Next: **new conversation + feature branch off `develop`** per theme (indexes, memory, language, …). Keep dumping durable notes here and in rules as we go over the next months.
 
 ### Session wrap-up — issue #103 streams (closed)
 
@@ -179,7 +166,7 @@ Update this section if the plan changes.
 ### Operating notes for multi-month beta (assistants)
 
 - Read **`AGENTS.md`**, always-on rules (especially `afw-project`, `afw-interfaces-doxygen`), and this file’s theme section for the issue at hand.
-- Prefer **small feature branches** off `mgg-develop` → PR → merge; don’t accumulate unrelated work only in chat.
+- Prefer **small feature branches** off `develop` → PR → merge; don’t accumulate unrelated work only in chat.
 - After user-facing behavior changes on this line: update **`whats-new.md`**. After design decisions: **rules / this backlog / code comments**.
 - Verify: day-to-day `--cdev` + `afwdev test -j`; broader/finish **`--fulldev`**; PR gate often adds valgrind tests.
 
@@ -432,8 +419,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 - [ ] Large materializations constrained or progressive where needed (**#49**, **#127**, client progressive path)
 - [ ] Snapshot / debug APIs (e.g. **#9** `qualifier`/`qualifiers`) documented as non-hot-path and size-aware; not used as everyday data access
 - [ ] User-facing behavior documented in `whats-new.md` / real docs as appropriate
-- [ ] `mgg-develop` merged to `develop` when ready; **run Branch plan → retarget
-      checklist** (How URLs, `whats-new`, backlog prose); `develop` → `main` when beta-ready
+- [x] `mgg-develop` merged to `develop` ([PR #179](https://github.com/afw-org/afw/pull/179); retarget checklist done); `develop` → `main` when beta-ready
 
 ---
 
@@ -454,6 +440,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 
 | Date | Note |
 |------|------|
+| 2026-08-14 | Cutover: `mgg-develop` → `develop` ([PR #179](https://github.com/afw-org/afw/pull/179)); retarget checklist done; new work off `develop`. |
 | 2026-08-10 | Session wrap-up: whats-new / open-issues-status / partner try-it / Features Closure; Done archive rows for Aug closes; #55 ask table marked historical. |
 | 2026-08-07 | Branch plan: cutover **retarget** checklist (`mgg-develop` → `develop` How URLs / whats-new / prose). |
 | 2026-07-20 | Created; seeded from index/#54 discussion, expression vs script context, compile/value model, pure-fold plan, branch plan, doc roles. |

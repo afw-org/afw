@@ -1,11 +1,11 @@
 # Open GitHub issues — status snapshot
 
 **Repo:** [afw-org/afw](https://github.com/afw-org/afw)  
-**Branch context:** `mgg-develop` (beta readiness)  
-**Generated / refreshed:** 2026-08-14 (#172 closed)  
-**Source:** live GitHub open issues (`gh issue list --state open`) + maintainer notes from recent `mgg-develop` work.
+**Branch context:** `develop` (beta readiness; `mgg-develop` merged via [PR #179](https://github.com/afw-org/afw/pull/179))  
+**Generated / refreshed:** 2026-08-14 (#172 closed; trunk retarget after #179)  
+**Source:** live GitHub open issues (`gh issue list --state open`) + maintainer notes from recent work.
 
-This is a **working tracker**, not a substitute for issue bodies or PRs. “How it stands” mixes GitHub metadata with known landings on `mgg-develop`; re-verify before closing anything.
+This is a **working tracker**, not a substitute for issue bodies or PRs. “How it stands” mixes GitHub metadata with known landings on this line; re-verify before closing anything.
 
 ## Legend
 
@@ -146,6 +146,6 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 ## How to maintain
 
 1. Refresh from `gh issue list --state open` when planning a beta pass (or after a close batch).
-2. Prefer updating **How it stands** after merges on `mgg-develop`, not only when opening issues.
+2. Prefer updating **How it stands** after merges on `develop`, not only when opening issues.
 3. Close GitHub issues when acceptance is met even if residual polish moves to a new ticket.
 4. File name is **`open-issues-status.md`** (not `open-issues.md`).
