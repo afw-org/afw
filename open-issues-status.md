@@ -80,7 +80,7 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | Admin / Fiddle / UI | [#8](https://github.com/afw-org/afw/issues/8), [#59](https://github.com/afw-org/afw/issues/59), [#60](https://github.com/afw-org/afw/issues/60), [#80](https://github.com/afw-org/afw/issues/80), [#114](https://github.com/afw-org/afw/issues/114) | Jeremy / unassigned UI |
 | afwdev / CI / packaging | [#6](https://github.com/afw-org/afw/issues/6), [#7](https://github.com/afw-org/afw/issues/7), [#13](https://github.com/afw-org/afw/issues/13), [#44](https://github.com/afw-org/afw/issues/44), [#45](https://github.com/afw-org/afw/issues/45), [#81](https://github.com/afw-org/afw/issues/81), [#157](https://github.com/afw-org/afw/issues/157) | [#61](https://github.com/afw-org/afw/issues/61) **closed**; orchestrated tests **#167**; blast retired; #13 knobs still open |
 | Meta / wire / journal | [#126](https://github.com/afw-org/afw/issues/126), [#138](https://github.com/afw-org/afw/issues/138) | Trackers / design pads |
-| Tests / rename debt | [#48](https://github.com/afw-org/afw/issues/48) | list→array residuals; [#106](https://github.com/afw-org/afw/issues/106) test262 FIXME mailbox **closing** |
+| Tests / rename debt | [#48](https://github.com/afw-org/afw/issues/48) | list→array residuals; [#106](https://github.com/afw-org/afw/issues/106) **closed** (PR **#176**) |
 | Hosts / process stop | — | [#158](https://github.com/afw-org/afw/issues/158) **closed** (PR #165) |
 
 ## Recently closed (context only)
@@ -103,7 +103,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#61](https://github.com/afw-org/afw/issues/61) | Create Exception subclasses for some 'afwdev' errors | **Closed 2026-08-09** — afwdev exception subclasses (with test harness work) |
 | [#62](https://github.com/afw-org/afw/issues/62) | Adaptive Script language changes | **Closed 2026-08-13** — PR **#174** multi let/const, for init, assignment chain, running result, labels |
 | [#69](https://github.com/afw-org/afw/issues/69) | Implement data type 'json' and 'relaxed_json' | **Closed 2026-08-13** — types already on tree; PR **#175** tests + strict json rejects Infinity/NaN |
-| [#106](https://github.com/afw-org/afw/issues/106) | Resolve FIXME's in afw tests | **Closing 2026-08-14** — skip prefixes FIXME/Never; compiler literals; leftovers #35/#2, produce-type, #57 |
+| [#106](https://github.com/afw-org/afw/issues/106) | Resolve FIXME's in afw tests | **Closed 2026-08-14** — PR **#176**; leftovers #35/#2, produce-type, #57 |
 | [#89](https://github.com/afw-org/afw/issues/89) | Passing a function as a parameter from an array seems to generate an error | **Closed 2026-08-07** — function from array as callback |
 | [#90](https://github.com/afw-org/afw/issues/90) | checkIndividualObjectReadAccess configuration parameter for adaptors | checkIndividualObjectReadAccess — closed earlier |
 | [#109](https://github.com/afw-org/afw/issues/109) | Improvements for creating adapters with adaptive scripts | Pure-script model adapters — closed earlier |
@@ -136,6 +136,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#33](https://github.com/afw-org/afw/issues/33) | Error codes / HTTP — PR [#173](https://github.com/afw-org/afw/pull/173) |
 | [#62](https://github.com/afw-org/afw/issues/62) | Language index — PR [#174](https://github.com/afw-org/afw/pull/174) |
 | [#69](https://github.com/afw-org/afw/issues/69) | json / relaxed_json types — PR [#175](https://github.com/afw-org/afw/pull/175) |
+| [#106](https://github.com/afw-org/afw/issues/106) | test262 FIXME sweep / compiler literals — PR [#176](https://github.com/afw-org/afw/pull/176) |
 | [#127](https://github.com/afw-org/afw/issues/127) | Progressive retrieve write-then-release — **closed 2026-08-11** |
 | [#28](https://github.com/afw-org/afw/issues/28) | Compile-time type checking — PRs [#144](https://github.com/afw-org/afw/pull/144)/[#145](https://github.com/afw-org/afw/pull/145) core; wrap-up PR [#171](https://github.com/afw-org/afw/pull/171) (fence, FunctionSignature typeCheck, call-site formals, handbook Types). **Closed 2026-08-12** |
 
