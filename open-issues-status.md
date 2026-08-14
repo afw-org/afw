@@ -2,7 +2,7 @@
 
 **Repo:** [afw-org/afw](https://github.com/afw-org/afw)  
 **Branch context:** `mgg-develop` (beta readiness)  
-**Generated / refreshed:** 2026-08-14 (#157 closed)  
+**Generated / refreshed:** 2026-08-14 (#172 closed)  
 **Source:** live GitHub open issues (`gh issue list --state open`) + maintainer notes from recent `mgg-develop` work.
 
 This is a **working tracker**, not a substitute for issue bodies or PRs. “How it stands” mixes GitHub metadata with known landings on `mgg-develop`; re-verify before closing anything.
@@ -19,10 +19,10 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Summary counts
 
-- **Open issues:** 36
+- **Open issues:** 35
 - **Jeremy:** 27 issues (as assignee, including shared)
 - **Mike:** 10 issues (as assignee, including shared)
-- **—:** 4 issues (unassigned)
+- **—:** 3 issues (unassigned)
 
 ## All open issues
 
@@ -63,7 +63,6 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#126](https://github.com/afw-org/afw/issues/126) | Mike | Review and harden journal support (meta) | Meta issue for journal work: review, harden, document, and track follow-ups. Use this as the single place to note jou… | Meta: journal support review/harden/docs. Tracker. | 2026-07-19 |
 | [#138](https://github.com/afw-org/afw/issues/138) | Mike, Jeremy | Meta issue: sideband meta on the wire ("_meta_"), object options, and rich type info for apps | Adaptive objects keep sideband meta (identity, paths, parents, view decorations, edit helpers, optional type-related … | Meta: _meta_ on wire, object options, rich type info. Design pad; dual-assignee. | 2026-08-01 |
 | [#170](https://github.com/afw-org/afw/issues/170) | — | Application-shared Adaptive functions (conf); polymorphic script functions | Provide a way to supply a set of Adaptive functions that all scripts in the application can use, configured with the … | **Open successor of #28.** Conf/application-shared Adaptive functions first; script polymorphic families as part of that story. Unassigned. Living body on GitHub. | 2026-08-12 |
-| [#172](https://github.com/afw-org/afw/issues/172) | — | Remove forms deprecated on mgg-develop | Public checklist of things that still work and will be removed. | Opened 2026-08-13. First items: `throw` without `data`; C declare helpers. Linked from `whats-new.md`. | 2026-08-13 |
 
 ## Clusters (for planning)
 
@@ -104,6 +103,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#106](https://github.com/afw-org/afw/issues/106) | Resolve FIXME's in afw tests | **Closed 2026-08-14** — PR **#176**; leftovers #35/#2, produce-type, #57 |
 | [#125](https://github.com/afw-org/afw/issues/125) | Review max vs maximum property naming | **Closed 2026-08-14** — PR **#177**; `maxNumberOfParameters` |
 | [#157](https://github.com/afw-org/afw/issues/157) | afwdev advanced-test / orchestrated tests | **Closed 2026-08-14** — replaced by `orchestration.yaml` (PR **#167**) |
+| [#172](https://github.com/afw-org/afw/issues/172) | Remove forms deprecated on mgg-develop | **Closed 2026-08-14** — PR **#178**; throw without `data` gone; declare_helpers not generated |
 | [#89](https://github.com/afw-org/afw/issues/89) | Passing a function as a parameter from an array seems to generate an error | **Closed 2026-08-07** — function from array as callback |
 | [#90](https://github.com/afw-org/afw/issues/90) | checkIndividualObjectReadAccess configuration parameter for adaptors | checkIndividualObjectReadAccess — closed earlier |
 | [#109](https://github.com/afw-org/afw/issues/109) | Improvements for creating adapters with adaptive scripts | Pure-script model adapters — closed earlier |
@@ -139,6 +139,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#106](https://github.com/afw-org/afw/issues/106) | test262 FIXME sweep / compiler literals — PR [#176](https://github.com/afw-org/afw/pull/176) |
 | [#125](https://github.com/afw-org/afw/issues/125) | max vs maximum property ids — PR [#177](https://github.com/afw-org/afw/pull/177) |
 | [#157](https://github.com/afw-org/afw/issues/157) | orchestrated tests (was advanced-test) — PR [#167](https://github.com/afw-org/afw/pull/167) |
+| [#172](https://github.com/afw-org/afw/issues/172) | remove deprecated throw / declare_helpers — PR [#178](https://github.com/afw-org/afw/pull/178) |
 | [#127](https://github.com/afw-org/afw/issues/127) | Progressive retrieve write-then-release — **closed 2026-08-11** |
 | [#28](https://github.com/afw-org/afw/issues/28) | Compile-time type checking — PRs [#144](https://github.com/afw-org/afw/pull/144)/[#145](https://github.com/afw-org/afw/pull/145) core; wrap-up PR [#171](https://github.com/afw-org/afw/pull/171) (fence, FunctionSignature typeCheck, call-site formals, handbook Types). **Closed 2026-08-12** |
 
