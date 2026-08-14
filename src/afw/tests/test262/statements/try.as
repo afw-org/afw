@@ -61,7 +61,7 @@ function f(o) {
 
     function innerf(o) {
       try {
-        throw '' o;
+        throw '' data o;
       }
       catch (e) {
         return e.data.x;
@@ -212,7 +212,7 @@ catch (e) {
 assert(variable_exists("foo") === false);
 //? test: 12.14-7
 //? description: catch introduces scope - scope removed when exiting catch block
-//? expect:error:Parse error at offset 282 around line 18 column 5: Unknown built-in function 'expObj'
+//? expect:error:Parse error at offset 287 around line 18 column 5: Unknown built-in function 'expObj'
 //? source: ...
 #!/usr/bin/env afw
 
@@ -220,7 +220,7 @@ let o = {foo: 1};
 let catchAccessed = false;
 
 try {
-    throw 'x' o;
+    throw 'x' data o;
 }
 catch (expObj) {
     catchAccessed = (expObj.data.foo == 1);
@@ -4435,7 +4435,7 @@ let bound;
 let probeBlock;
 
 try {
-  throw "e" [ "payload" ];
+  throw "e" data [ "payload" ];
 } catch ({ data: [item] }) {
   let x = 'inside';
   bound = item;
@@ -4495,7 +4495,7 @@ assert(probe().message === 'inside');
 //? test: scope-catch-param-lex-open
 //? description: Creation of new lexical environment for `catch` parameter
 //? differences: ...
-`throw "e" [ "inside" ]` then `catch ({ data: [x] })`. Pattern `x` is
+`throw "e" data [ "inside" ]` then `catch ({ data: [x] })`. Pattern `x` is
 a new binding and does not leak. No assignment-as-expression default.
 //? expect: success
 //? source: ...
@@ -4507,7 +4507,7 @@ let bound;
 
 try {
   seenTry = x;
-  throw "e" [ "inside" ];
+  throw "e" data [ "inside" ];
 } catch ({ data: [x] }) {
   bound = x;
   assert(x === 'inside');
@@ -4530,7 +4530,7 @@ let x = 1;
 try {
   let x = 2;
   assert(x === 2);
-  throw "e" [ "payload" ];
+  throw "e" data [ "payload" ];
 } catch ({ data: [item] }) {
   let x = 4;
   assert(item === "payload");

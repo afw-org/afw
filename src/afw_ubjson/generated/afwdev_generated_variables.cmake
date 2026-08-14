@@ -27,7 +27,6 @@
 # Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     afw_ubjson.h
-    generated/afw_ubjson_declare_helpers.h
     generated/afw_ubjson_strings.h
     generated/afw_ubjson_version_info.h
 )

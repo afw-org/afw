@@ -571,7 +571,7 @@ def generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path, 
             fd.write('\n')
  
             fd.write('#include "afw_interface.h"\n')
-            # Package declare_helpers not required; use plain C / core AFW_BEGIN_DECLARES.
+            # Package declare_helpers are not generated; use plain C / core AFW_BEGIN_DECLARES.
 
             fd.write('\n')
             fd.write('AFW_BEGIN_DECLARES\n')

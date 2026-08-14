@@ -28,7 +28,6 @@
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     afw_ldap.h
     afw_ldap_metadata.h
-    generated/afw_ldap_declare_helpers.h
     generated/afw_ldap_runtime_object_maps.h
     generated/afw_ldap_strings.h
     generated/afw_ldap_version_info.h

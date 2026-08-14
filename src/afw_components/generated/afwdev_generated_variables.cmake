@@ -26,7 +26,6 @@
 # Excludes *_internal.h / afw_internal.h (libafw/package private).
 # Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
-    generated/afw_components_declare_helpers.h
     generated/afw_components_runtime_object_maps.h
     generated/afw_components_strings.h
     generated/afw_components_version_info.h

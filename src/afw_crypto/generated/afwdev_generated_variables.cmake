@@ -28,7 +28,6 @@
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     afw_crypto.h
     afw_crypto_extension.h
-    generated/afw_crypto_declare_helpers.h
     generated/afw_crypto_runtime_object_maps.h
     generated/afw_crypto_strings.h
     generated/afw_crypto_version_info.h

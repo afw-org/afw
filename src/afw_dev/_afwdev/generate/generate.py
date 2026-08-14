@@ -30,7 +30,6 @@ from _afwdev.generate import \
     cmake, \
     const_objects, \
     data_type_bindings, \
-    declare_helpers, \
     ebnf, \
     function_bindings, \
     javascript_bindings, \
@@ -70,7 +69,7 @@ def generated_h(options):
 
         fd.write('\n#include "afw_minimal.h"\n')
 
-        # declare_helpers.h still generated for out-of-tree convert; not required here.
+        # Package *_declare_helpers.h is not generated (#172). Use afw_common.h.
         if options['const_objects']:
             fd.write('#include "' + options['prefix'] +
                      'const_objects_internal.h"\n')
@@ -463,6 +462,7 @@ def generate(passed_options):
     if os.path.exists(options['generated_dir_path'] ):
         msg.info('Removing old generated/ directory')
         shutil.rmtree(options['generated_dir_path'] , ignore_errors=False)
+    os.makedirs(options['generated_dir_path'], exist_ok=True)
 
     # Delete existing temporary generate directory.
     options['temporary_generate_dir_path'] = options['srcdir_path'] + 'generate/temp_generate/'
@@ -783,11 +783,8 @@ def generate(passed_options):
 
     # >>>>> Common generates
 
-    # Generate declare helpers.
     # Core declare/define macros live in hand-written afw_common.h.
-    # Non-core packages still get generated *declare_helpers.h (transition).
-    if not options.get('core'):
-        declare_helpers.generate(generated_by, options)
+    # Package *_declare_helpers.h is not generated (#172).
 
     # Run generated.py script from additional_generate
     if options['additional_generate']:

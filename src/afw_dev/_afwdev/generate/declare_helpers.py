@@ -4,6 +4,9 @@
 # @file declare_helpers.py
 # @ingroup afwdev_generate
 #
+# Not invoked by generate.py (#172). Core declare macros live in
+# afw_common.h. Package *_declare_helpers.h is not generated.
+#
 
 import os
 from _afwdev.generate import c

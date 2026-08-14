@@ -27,7 +27,6 @@
 # Srcdir CMakeLists may also list(FILTER ...); keep both consistent.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     afw_curl.h
-    generated/afw_curl_declare_helpers.h
     generated/afw_curl_runtime_object_maps.h
     generated/afw_curl_strings.h
     generated/afw_curl_version_info.h

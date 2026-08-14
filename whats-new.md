@@ -4,25 +4,42 @@ This note is for **AFW users** (script authors, model authors, operators, and pe
 
 Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted unless they affect runtime or tooling you use day to day.
 
-Things that still work and **will be removed** are listed in GitHub [**#172**](https://github.com/afw-org/afw/issues/172) (for example `throw "…" { … }` without the word **`data`**, and C declare helpers).
-
 ---
 
-## libafw C API: toward a release-ready surface
+## Must change (read this first)
 
-This branch includes deliberate **cleanup of the supported libafw C API** — installable headers, declare macros, what is public vs core-internal, and related ABI work — so extension and command authors can depend on a **clearer, more release-ready** surface rather than “every header that happens to sit under `src/afw/`.”
+This `mgg-develop` line is cleaning Adaptive Script and the supported C API toward a beta/release surface, so testers make one transition. If you only have a few minutes, change the things below so existing scripts and C keep working. Then use [Highlights](#highlights) and the detail sections for everything else.
 
-**Who this is for:** people who **build or link C** against libafw (out-of-tree extensions, custom commands, hosts). **Adaptive Script / model / operator** users can skip this section unless a detail section below says otherwise.
+The deprecated forms that used to still run ([#172](https://github.com/afw-org/afw/issues/172)) are **removed**: `throw "…" { … }` without **`data`**, and package **`*_declare_helpers.h`**.
 
-### One rebuild rule
+### Script authors
 
-If you maintain **anything that links AFW outside a full in-tree rebuild** — extension **DSOs**, custom **commands**, or other binaries that load `libafw` — **rebuild and reinstall them against this AFW install**. Mixing old DSOs/commands with a new `libafw` (or the reverse) is **unsupported** and can fail at load time or misbehave at runtime.
+| Change this | To |
+|-------------|----|
+| `throw "…" { … }` | `throw "…" data { … }` (optional `id "not_found"`). A variable also named `data` is `throw "…" data data`. [Error codes](#error-codes-trycatch-and-http-issue-33) |
+| `open_file` / `stream` return `-1`; `get_stream_error` | They **throw**. `get_stream_error`, `open_uri`, and `open_response` are **gone**. [File streams](#file-streams-open_file-and-friends) |
+| `retrieve_objects` / `…_with_uri` with no cap | Default **`maxObjects` is 100**. Full dumps need **`maxObjects: 0`** or a progressive `retrieve_objects_to_*`. Over the limit → **`payload_too_large`**. [Retrieve](#materializing-retrieve-maxobjects-issue-49) |
+| `stringify` for Adaptive-looking text (`date("…")`, …) | **`stringify` is pure JSON**. Use **`decompile`** for Adaptive compiled form. [stringify / decompile](#stringify-decompile-compiler-listing-and-binary-text) |
+| `e.id` names `cast_error`, `arg_error`, `undefined`, `code`, … | `conversion_error`, `argument_error`, `undefined_value`, `coding_error`, … Some HTTP statuses changed (syntax **400**, missing adapter **404**). Prefer **`e.id`**. [Error codes](#error-codes-trycatch-and-http-issue-33) |
+| `null()` / `function()` converts; `empty_array`; `(array of …)` / `(object "OT")` | Those converts are gone (use the literal / function value). **`create_array(n)`**. Type spellings are a hard cut. [Converts](#conversion-functions-type-named), [Types](#adaptive-script-types-issue-28), [Arrays](#array-semantics-issue-39) |
+| `variable_exists` as “has a defined value” | It is **bound** (true when the value is **undefined**). `variable_get` default only if **not bound**. [variable_exists](#variable_exists-bound-vs-undefined-issue-131) |
+| Index filter/value scripts using bare `object` | **`current::object`** (and `objectId` / `objectType` / `key`). [Index `current::`](#adapter-index-filtervalue-current-issue-54-partial) |
+| Function metadata `maximumNumberOfParameters` | **`maxNumberOfParameters`**. [Rename](#maxnumberofparameters-issue-125) |
+| `checkIndividualObjectReadAccess` policies that only handle `query` | Also handle action **`read`**. [Adapter auth](#adapter-getretrieve-authorization-issue-90) |
+
+### C programmers
+
+If you maintain **anything that links AFW outside a full in-tree rebuild** — extension **DSOs**, custom **commands**, or other binaries that load `libafw` — **rebuild and reinstall them against this AFW install**. Mixing old DSOs/commands with a new `libafw` (or the reverse) is **unsupported**.
 
 In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine.
 
-Most out-of-tree work is **recompile against the new headers and library**. One notable **source rename:** after **[#153](https://github.com/afw-org/afw/issues/153)**, the legacy opaque cursor type is **`afw_iterator_old`** (the name **`afw_iterator`** is the new keyless type). See [UTF-8 code-point sequences](#utf-8-code-point-sequences-issue-153).
+| Change this | To |
+|-------------|----|
+| Old installed headers / mixed binaries | Rebuild once. Prune stale names under the include prefix (`afw_*_internal.h`, old `afw_function_bindings.h`, `afw_declare_helpers.h`, …). |
+| `#include` of core internals or package `*_declare_helpers.h` | `#include "afw.h"`. Core **`AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES`** live in **`afw_common.h`**. Package `*_declare_helpers.h` is **not generated**. |
+| Type name `afw_iterator` as the old opaque cursor | That name is the new **keyless** iterator. Legacy cursor is **`afw_iterator_old`**. [#153](#utf-8-code-point-sequences-issue-153) |
 
-**Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface) (install, declare helpers, what is public).
+**Details:** [libafw C API cleanup](#libafw-c-api-cleanup-release-ready-surface).
 
 ---
 
@@ -33,7 +50,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 
 | Area | What changed |
 |------|----------------|
-| [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **deprecated**; **rebuild** out-of-tree C once against this line |
+| [**libafw C API cleanup**](#libafw-c-api-cleanup-release-ready-surface) | Toward a **release-ready** supported C surface: public install + implementer headers; internals off install; declare helpers **removed**; **rebuild** out-of-tree C once against this line |
 | [**Object / array helpers**](#object-and-array-helpers-issue-55) ([#55](https://github.com/afw-org/afw/issues/55)) | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` (C array-setter reshape covered by C API rebuild rule) |
 | [**Expression property names**](#expression-property-names-in-object-values-issue-38) ([#38](https://github.com/afw-org/afw/issues/38)) | Object values may use `{ [expression]: value }` (same idea as `obj[expr]` get/set) |
 | [**Qualifier snapshots**](#list-active-qualified-variables-issue-9) ([#9](https://github.com/afw-org/afw/issues/9)) | **`qualifier(name)`** / **`qualifiers()`** return **fresh listable objects** (not live proxies); optional **`includeUntrusted`**; missing name → **nullish**; can be **large** |
@@ -162,7 +179,7 @@ throw "Person not found" id "not_found" data { personId: id };
 
 Allowed names are the request-facing ones in the map (`not_found`, `denied`, `gone`, `too_many_requests`, redirects, and the rest of that family). Host names such as `memory` are not allowed. Omitted **`id`** is still **`throw`** (HTTP 400).
 
-`throw "…" { … }` (a second expression with no **`data`** name) still works so existing scripts can be tested on this line. That form is **deprecated** and will be removed; write **`throw "…" data { … }`**. After removal, **`data`** after the message is only the clause name, so a variable also named `data` is **`throw "…" data data`**.
+`throw "…" { … }` (a second expression with no **`data`** name) is **removed**. Write **`throw "…" data { … }`**. After the message, **`data`** is only the clause name, so a variable also named `data` is **`throw "…" data data`**.
 
 Handbook: Language Reference **Features** (exception handling). Tests: `src/afw/tests/errors/error_codes.as`.
 
@@ -402,7 +419,7 @@ Example: `let o = get_object(...); o.foo = 1;` — no `clone(get_object(...))` r
 ### Migration / habits
 
 - Drop redundant `clone()` around **get_object / retrieve / callback / journal get** and literal isolation paths once you confirm behavior on this tree.
-- Out-of-tree C that links face APIs: same [C API rebuild rule](#libafw-c-api-toward-a-release-ready-surface). Pure script authors follow this section.
+- Out-of-tree C that links face APIs: same [C rebuild rule](#c-programmers). Pure script authors follow this section.
 
 [↑ Highlights](#highlights)
 
@@ -521,7 +538,7 @@ Maintainer notes: root `typescript-differences.md` (bound vs value).
 
 Adaptive Script gains common object/array helpers and stack/queue-style mutators. These are **Adaptive functions** registered in the environment (with optional `value->method(...)` sugar when the function is a data-type method).
 
-**C note:** the **`afw_array_setter`** interface was reshaped (e.g. `add_value` → `push_value`, new `pop_value` / `shift_value`, signed indexes). Covered by the single [C API rebuild rule](#libafw-c-api-toward-a-release-ready-surface).
+**C note:** the **`afw_array_setter`** interface was reshaped (e.g. `add_value` → `push_value`, new `pop_value` / `shift_value`, signed indexes). Covered by the [C rebuild rule](#c-programmers).
 
 ### Object
 
@@ -671,7 +688,7 @@ Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you wa
 
 Goal: move libafw toward a **release-ready supported C surface** — what you may rely on when writing extensions and commands — and stop treating every generated or historical header as product API. This is intentional cleanup on the path to a clearer 1.x-style boundary, not a one-off install tweak.
 
-**Rebuild:** same [one rebuild rule](#one-rebuild-rule) as at the top of this note.
+**Rebuild:** same [C rebuild rule](#c-programmers) as at the top of this note.
 
 ### What “supported” means
 
@@ -689,7 +706,7 @@ Goal: move libafw toward a **release-ready supported C surface** — what you ma
 
 - Core export macros live in hand-written **`afw_common.h`** (via `afw.h` / `afw_minimal.h`). Core **no longer generates** `afw_declare_helpers.h`.
 - In-tree core uses **plain C** for former “internal declare” sites.
-- Per-package **`*_declare_helpers.h` is still generated** for a short out-of-tree transition, but is **deprecated**. Base-repo packages do not use them. Prefer ordinary C; they **will be removed** when the transition window closes.
+- Per-package **`*_declare_helpers.h` is not generated**. Prefer ordinary C (`AFW_DECLARE` / `AFW_DEFINE` in `afw_common.h`). If an old install still has those headers, prune them.
 
 ### Also on this rebuild line (ABI / headers)
 
@@ -1389,41 +1406,16 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 
 ---
 
-## Breaking / migration checklist
+## Other behavior you might have relied on
 
-1. **Stream errors:** replace any `open_file` / `stream` checks for `-1` and any use of **`get_stream_error`** with `try` / `catch`.
-2. **Removed functions:** stop calling **`open_uri`**, **`open_response`**, **`get_stream_error`** if you had experimental callers.
-3. **`rootFilePaths`:** prefer logical paths like `my/file.txt` with a matching prefix property; rely on longest-prefix match and stay inside the host root.
-4. **Model conf:** pure-script adapters may drop `mappedAdapterId`; hybrid adapters keep it. If you omit it, every used op must be implemented in `on*`.
-5. **Schemas:** regenerate before depending on updated editor/validate behavior.
-6. **VFS:** if you relied on reading empty files failing, or on replace/modify
-   leaving trailing bytes when shortening content, update callers—those cases
-   now succeed with correct full-file content. Prefer setting `maxReadBytes`
-   appropriately for server hosts.
-7. **Template strings:** if you relied on `` `\#…` `` or `` `\${…}` `` failing
-   with “Invalid escape code,” they now emit literal `#` / `$` (opener
-   suppress). Real `#{…}` / `${…}` substitutions are unchanged.
-8. **`retrieve_objects` / `retrieve_objects_with_uri`:** default **`maxObjects` is 100**.
-   Full catalog dumps (e.g. all `_AdaptiveObjectType_` or `_AdaptiveFunction_`
-   objects) must pass **`maxObjects: 0`** (or a higher explicit cap), or use a
-   progressive `retrieve_objects_to_*` API. Over the limit throws
-   **`payload_too_large`**. Language bindings expose the same optional parameter
-   (e.g. Python `maxObjects=0`).
-9. **Individual object read auth:** if you set `checkIndividualObjectReadAccess`
-   to `true`, ensure policies handle action **`read`** as well as **`query`**.
-10. **JSON / Fiddle non-ASCII:** multi-byte UTF-8 in results should display correctly;
-    if you relied on broken `\ufffffff0…` escapes from old `stringify`, update
-    callers. Out-of-tree **Python** `Session("local")` needs the updated client
-    for large or UTF-8-heavy local responses.
-11. **Out-of-tree C/commands/extensions:** rebuild once against this install ([C API
-    cleanup](#libafw-c-api-toward-a-release-ready-surface)). Note **[#153](https://github.com/afw-org/afw/issues/153)**: legacy
-    cursor → **`afw_iterator_old`** (new keyless **`afw_iterator`** is a different type).
-12. **Type-named converts:** stop calling **`null()`** / **`function()`** converts (removed);
-    use the null literal and function values. Prefer **`create_array(n)`** over the old
-    **`empty_array`** name. Old Type spellings **`(array of …)`** / **`(object "OT")`**
-    are a hard cut under **[#28](https://github.com/afw-org/afw/issues/28)**.
-13. **`variable_exists`:** true when the name is **bound**, including value **undefined**;
-    **`variable_get` default** applies only when **not bound** (not when the value is undefined).
+Must-change items are at the [top](#must-change-read-this-first). These are easier to miss if you depended on an old quirk:
+
+- **`rootFilePaths`:** use `my/file.txt` with a matching prefix (not `/my/file.txt`). Longest prefix wins; stay inside the host root. [File streams](#file-streams-open_file-and-friends)
+- **VFS:** empty-file read works; replace/modify no longer leaves trailing bytes. Set `maxReadBytes` on servers. [VFS](#vfs-adapter-afw_vfs)
+- **Templates:** `` `\#` `` / `` `\$` `` emit literal `#` / `$` (they used to be an invalid escape). [Templates](#compile-time-template-substitutions-issue-97)
+- **JSON / Fiddle UTF-8:** multi-byte text in `stringify` / Fiddle should display correctly; do not rely on the old `\ufffffff0…` escapes. Out-of-tree Python `Session("local")` needs the updated client. [UTF-8 JSON](#utf-8-in-json-results-and-python-local-mode)
+- **Schemas:** regenerate before depending on updated editor/validate behavior. [JSON Schema](#json-schema-for-adaptive-object-types)
+- **Model conf:** pure-script adapters may drop `mappedAdapterId`; if you omit it, every used op must be implemented in `on*`. [Model adapters](#pure-script-model-adapters)
 
 ---
 
@@ -1468,6 +1460,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | afwdev test recipe flags (`-T`, `--output`) | — | on `mgg-develop` (`designs/afwdev-test-recipe.md`) |
 | Graceful process stop (SIGTERM/SIGINT) | [#158](https://github.com/afw-org/afw/issues/158) (closed) | PR **[#165](https://github.com/afw-org/afw/pull/165)** → `mgg-develop` |
 | Function reference prototypes ([#28](https://github.com/afw-org/afw/issues/28) Type spelling) | [#28](https://github.com/afw-org/afw/issues/28) | generate/docs on `mgg-develop` |
+| Remove deprecated `throw` / declare helpers | [#172](https://github.com/afw-org/afw/issues/172) | this branch |
 
 ---
 
@@ -1479,9 +1472,9 @@ Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata c
 
 When adding or rewriting `whats-new.md` content:
 
-1. **Every user-facing theme gets a `##` detail section** (and optional `###` subsections). Put the short pitch in the Highlights table and the full story under the section.
+1. **Every user-facing theme gets a `##` detail section** (and optional `###` subsections). Put the short pitch in the Highlights table and the full story under the section. If existing C or scripts **must change**, add a row to [Must change](#must-change-read-this-first) in the same edit.
 2. **Link the Area cell** to that section, and make the issue number a real GitHub URL (do not rely on `#N` autolink — it only works on github.com): `[**Short name**](#github-heading-slug) ([#N](https://github.com/afw-org/afw/issues/N))`. PRs use `/pull/N`. Leave “What changed” unlinked.
-3. **End each detail `##` section** with `[↑ Highlights](#highlights)` (not after every `###`). Skip meta sections (Reliability, Breaking checklist, Related issues, How this was produced).
+3. **End each detail `##` section** with `[↑ Highlights](#highlights)` (not after every `###`). Skip meta sections (Must change, Reliability, Other behavior, Related issues, How this was produced).
 4. **Slug** = GitHub auto-anchor for the `##` title: lower-case, strip punctuation/`backticks`, spaces → `-` (verify in the rendered page if unsure). Prefer **stable, boring headings** so slugs don’t thrash.
 5. **One theme, one primary section.** If two table rows share a section (e.g. UTF-8 + Python local), both may link to the same `#…`. Prefer a `###` link only when the jump is much clearer.
 6. **No orphan links.** If there is no detail section yet, either add one or leave the Area unlinked until there is.

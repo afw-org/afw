@@ -63,7 +63,7 @@ function partyMail({
     ["sparkle"]: bang = "!"
 } = {}) {
     const age = yearsAfter([20, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    throw "do not open until birthday" {
+    throw "do not open until birthday" data {
         guest: guest,
         age: age,
         /* party popper, partying face, confetti; egg hides as \u{1F95A} */

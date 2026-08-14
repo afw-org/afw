@@ -95,13 +95,9 @@ let y = 2;
         object. Write optional <literal>id</literal> and then a string 
         that sets the error object's <literal>id</literal> (for example 
         <literal>not_found</literal>) so an uncaught error can use that 
-        name's HTTP status. A second expression with no 
-        <literal>data</literal> name is still accepted as data for now 
-        so existing scripts keep working; that form is deprecated and 
-        will be removed. Prefer 
-        <literal>throw "…" data { … }</literal>. After removal, 
-        <literal>data</literal> after the message is only the clause 
-        name, so a variable named <literal>data</literal> is written 
+        name's HTTP status. After the message, 
+        <literal>data</literal> is only the clause name, so a variable 
+        also named <literal>data</literal> is 
         <literal>throw "…" data data</literal>.
     </paragraph>
     <paragraph>
