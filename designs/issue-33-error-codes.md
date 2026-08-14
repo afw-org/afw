@@ -2,7 +2,7 @@
 
 **Audience:** maintainers / assistants. **Not** user docs.  
 **GitHub:** [#33](https://github.com/afw-org/afw/issues/33) — *Review/Change Error Codes*  
-**Status:** closed. Landed on `mgg-develop` via [PR #173](https://github.com/afw-org/afw/pull/173). Do not reopen unless release testing finds a wrong HTTP status or a name we cannot live with. Leftovers: extension-defined names (later); remove deprecated `throw "…" { … }` (#172).  
+**Status:** closed. Landed on `mgg-develop` via [PR #173](https://github.com/afw-org/afw/pull/173). Do not reopen unless release testing finds a wrong HTTP status or a name we cannot live with. Leftovers: extension-defined names (later). Deprecated `throw "…" { … }` removed (#172).  
 **Related:** try/catch (`afw-script-errors`), HTTP request path (`afw-server` / `afw-server-fcgi`), crypto prefix convention (`secrets-and-afw-crypto.md`), #158 `terminating` → 503.
 
 ## Landed (this branch)
@@ -32,7 +32,7 @@ throw "Person not found" id "not_found" data { personId: id };
 
 `data` and `id` are names only in this statement (not new reserved words). Either order. At most one of each.
 
-`throw "…" { … }` (second expression, no `data` name) is **deprecated**, kept for a while so people can test on `mgg-develop`. Remove it after that. `data` is a common variable name: while the old form remains, `throw "…" data` cannot mean “payload is the variable `data`” (it starts the `data` clause). After removal, that is only `throw "…" data data`.
+`throw "…" { … }` (second expression, no `data` name) is **removed**. `data` after the message is only the clause name. A variable also named `data` is `throw "…" data data`.
 
 `id` must evaluate to a request-facing name allowed on script throw (`not_found`, `denied`, `gone`, `too_many_requests`, redirects, …). A string literal that is not allowed is a compile error; a value computed at run time that is not allowed is `argument_error`.
 

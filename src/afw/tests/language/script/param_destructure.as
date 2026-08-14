@@ -227,7 +227,7 @@ return 0;
 let m = "";
 let code = 0;
 try {
-    throw "fail" { "code": 42 };
+    throw "fail" data { "code": 42 };
 }
 catch ({ message: msg, data }) {
     m = msg;

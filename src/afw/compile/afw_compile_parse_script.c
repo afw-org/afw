@@ -1725,12 +1725,12 @@ impl_parse_SwitchStatement(afw_compile_parser_t *parser)
  *# contained in a catch block. If there is an expression, it is the
  *# message. Optional 'data' and 'id' clauses may appear in either
  *# order; 'id' must evaluate to a string allowed on script throw.
- *# A following expression with no 'data' name is still accepted as
- *# data (deprecated; will be removed).
+ *# After the message, a bare expression is not data — write
+ *# 'data' Expression. A variable named data is: throw "…" data data.
  *#
  * ThrowStatement ::= 'throw' |
  *     'throw' Expression
- *         ( Expression | ( ( 'data' Expression | 'id' Expression )+ ) )?
+ *         ( ( 'data' Expression | 'id' Expression )+ )?
  *
  *<<<ebnf*/
 static void
@@ -1831,11 +1831,8 @@ impl_parse_ThrowStatement(afw_compile_parser_t *parser)
             argc = saw_id ? 3 : 2;
         }
         else {
-            /* Existing form: second expression is data. */
-            afw_compile_reuse_token();
-            argv[2] = afw_compile_parse_Expression(parser);
-            argc = 2;
-            AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting 'data', 'id', or ';'");
         }
 
         /* Create the throw function call. */

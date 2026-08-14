@@ -11,7 +11,7 @@
 //? source: ...
 
 try {
-    throw "x" { k: 1 };
+    throw "x" data { k: 1 };
 }
 catch (e) {
     assert(e.id === "throw", e.id);
@@ -132,6 +132,30 @@ throw "no" id "nope";
 //? source: ...
 
 throw "no" id "not_found" id "denied";
+
+//?
+//? test: throw-old-data-form
+//? description: throw second expression without data name is a parse error
+//? expect: error
+//? source: ...
+
+throw "x" { k: 1 };
+
+//?
+//? test: throw-data-variable
+//? description: throw data clause can take a variable named data
+//? expect: 0
+//? source: ...
+
+let data = { k: 1 };
+try {
+    throw "x" data data;
+}
+catch (e) {
+    assert(e.id === "throw", e.id);
+    assert(e.data.k === 1);
+}
+return 0;
 
 //?
 //? test: conversion-error

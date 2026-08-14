@@ -29,7 +29,6 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     afw_command_local_parse.h
     afw_command_local_request.h
     afw_command_local_server.h
-    generated/afw_command_declare_helpers.h
     generated/afw_command_strings.h
     generated/afw_command_version_info.h
 )

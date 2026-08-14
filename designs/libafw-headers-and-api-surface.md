@@ -82,7 +82,7 @@ If unsure whether something is sense 1 vs 2, prefer **not promoting** to public 
 
 - Struct/body exposure on non-generated public headers (separate pass).
 - Optional nits: `afw_object_type_internal_create`, `afw_runtime_get_internal_session`, whether `afw_components.h` belongs on `afw.h`.
-- Stop **generating** package `*_declare_helpers.h` after transition window (still **deprecated**, still generated).
+- Package `*_declare_helpers.h` **no longer generated** (#172). Core macros live in `afw_common.h`.
 - Doxygen: default = public C API; Adaptive `execute_*` catalog lives under internal groups — optional later **dev docs** profile (`INTERNAL_DOCS=YES`), not re-public the catalog.
 
 ## Work notes
@@ -97,10 +97,9 @@ If unsure whether something is sense 1 vs 2, prefer **not promoting** to public 
 command headers are **package-private** (nothing links their C API; DSO/binary
 load + Adaptive registration is the product surface).
 
-**Package DECLARE helpers:** Keep **generating** non-core `*_declare_helpers.h`
-for a short transition (out-of-tree rebuilds against `mgg-develop`). **Stop
-using** them in base-repo extensions / command / fcgi. They will be **removed
-soon** (see `whats-new.md`).
+**Package DECLARE helpers:** **Not generated** (#172). Out-of-tree C uses
+core `AFW_DECLARE` / `AFW_DEFINE` / `AFW_BEGIN_DECLARES` in `afw_common.h`
+(via `afw.h`). Do not `#include` a package `*_declare_helpers.h`.
 
 **Core declare macros:** Live in hand-written `afw_common.h` (public
 `AFW_DECLARE` / `AFW_DEFINE` / `BEGIN_DECLARES` / DSO / inline helpers). Core
@@ -166,3 +165,4 @@ Plain C (undecorated). Core: via `afw_internal.h`. Packages: package-private inc
 | 2026-08-12 | Rename generated register/bindings/const_objects headers to `*_internal.h` (not installed). |
 | 2026-08-12 | Stricter install excludes; `afw_runtime_register_core_value_accessors` → `runtime/afw_runtime_internal.h`; package header briefs package-private; whats-new declare_helpers **deprecated**. |
 | 2026-08-12 | Victory note for branch; three senses of “internal”; deferred structs / declare_helpers removal / optional nits. |
+| 2026-08-14 | Package `*_declare_helpers.h` no longer generated (#172). |
