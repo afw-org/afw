@@ -159,7 +159,7 @@
                 "valueAccessor": "value"
             }
         },
-        "maximumNumberOfParameters": {
+        "maxNumberOfParameters": {
             "allowQuery": true,
             "brief": "Maximum number of parameters",
             "dataType": "integer",

@@ -956,7 +956,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 functionDeclaration += "<dataType>"
 
             numberOfRequiredParameters = 0
-            maximumNumberOfParameters = 0
+            maxNumberOfParameters = 0
             encounteredOptional = False
             encounteredMinArgs = False
             functionDeclaration += '(\n'
@@ -973,7 +973,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                     if n > 1 and encounteredOptional:
                         msg.error_exit(obj.get('functionId') + ': minArgs > 1 is only allowed if there are no optional parameters')
                     numberOfRequiredParameters += n
-                    maximumNumberOfParameters = -1
+                    maxNumberOfParameters = -1
                     while i <= n:
                         functionDeclaration += (
                             '    ' + p.get('name') + '_' + str(i) + ': ' +
@@ -988,7 +988,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                         functionDeclaration += p.get('name') + '_rest: ' + make_rest_Type(
                             p, note_style='none')
                 else:
-                    maximumNumberOfParameters += 1
+                    maxNumberOfParameters += 1
                     type_note = make_Type_note(p)
                     functionDeclaration += '    ' + p.get('name')
                     if p.get('optional', False):
@@ -1042,8 +1042,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # numberOfRequiredParameters
             fd.write('    &' + get_string_label(options, str(numberOfRequiredParameters), 'self_v', dataType='integer') + ',\n')
 
-            # maximumNumberOfParameters
-            fd.write('    &' + get_string_label(options, str(maximumNumberOfParameters), 'self_v', dataType='integer') + ',\n')
+            # maxNumberOfParameters
+            fd.write('    &' + get_string_label(options, str(maxNumberOfParameters), 'self_v', dataType='integer') + ',\n')
 
             # parameters
             fd.write('    &impl_' + label + '_parameters[0],\n')

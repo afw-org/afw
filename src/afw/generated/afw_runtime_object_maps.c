@@ -1797,8 +1797,8 @@ impl_properties__AdaptiveFunction_[] = {
         afw_runtime_value_accessor_value
     },
     {
-        &afw_self_s_maximumNumberOfParameters,
-        offsetof(afw_value_function_definition_t, maximumNumberOfParameters),
+        &afw_self_s_maxNumberOfParameters,
+        offsetof(afw_value_function_definition_t, maxNumberOfParameters),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),

@@ -22,7 +22,12 @@
         <list>
             <item>
                 Adaptive object property names should be lower camel case (i.e., first 
-                character lower case).
+                character lower case). For a limit or cap, use a 
+                <literal>max…</literal> id (for example 
+                <literal>maxNumberOfParameters</literal>, 
+                <literal>maxReadBytes</literal>, <literal>maxValue</literal>). 
+                Write “Maximum …” in briefs and labels, not in the property 
+                id.
             </item>
             <item>
                 The id of objects of type AdaptiveObjectType, AdaptivePropertyType, and 

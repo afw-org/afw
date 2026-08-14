@@ -182,14 +182,14 @@ impl_afw_value_optional_evaluate(
     }
 
     /* Make there are at least the required number of parameters. */
-    if (x.function->maximumNumberOfParameters->internal != -1 &&
-        x.argc > x.function->maximumNumberOfParameters->internal)
+    if (x.function->maxNumberOfParameters->internal != -1 &&
+        x.argc > x.function->maxNumberOfParameters->internal)
     {
         AFW_THROW_ERROR_FZ(argument_error, xctx,
             AFW_UTF8_FMT_Q
             " expects no more than " AFW_SIZE_T_FMT " parameters",
             AFW_UTF8_FMT_ARG(&x.function->functionId->internal),
-            x.function->maximumNumberOfParameters->internal);
+            x.function->maxNumberOfParameters->internal);
     }
 
     /*

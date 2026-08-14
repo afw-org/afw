@@ -187,8 +187,8 @@ struct afw_value_function_definition_s {
     /** @brief The number of required parameters. */
     const afw_value_integer_t *numberOfRequiredParameters;
 
-    /** @brief The maximum number of required parameters or -1 is no max. */
-    const afw_value_integer_t *maximumNumberOfParameters;
+    /** @brief The maximum number of parameters or -1 if there is no max. */
+    const afw_value_integer_t *maxNumberOfParameters;
 
     /** @brief Function parameters. */
     const afw_value_function_parameter_t * const *parameters;
