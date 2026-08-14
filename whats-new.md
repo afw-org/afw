@@ -1,6 +1,6 @@
-# What’s new on `develop`
+# What’s new since `before-mgg-develop-merge`
 
-This note is for **AFW users** (script authors, model authors, operators, and people editing Adaptive object JSON). It covers changes that landed with the **`mgg-develop`** campaign, now merged into **`develop`** via [PR #179](https://github.com/afw-org/afw/pull/179) (merge-base `f945f97c`, mid‑July 2026; tags `before-mgg-develop-merge` / `after-mgg-develop-merge`).
+This note is for **AFW users** (script authors, model authors, operators, and people editing Adaptive object JSON). It covers what is now on **`develop`** since tag **`before-mgg-develop-merge`** — the `mgg-develop` campaign, merged via [PR #179](https://github.com/afw-org/afw/pull/179). Matching after tag: **`after-mgg-develop-merge`**.
 
 Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted unless they affect runtime or tooling you use day to day.
 

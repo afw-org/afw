@@ -42,7 +42,7 @@ A merge only moves tree content. Branch names in prose and URLs do not
 update automatically. Cutover follow-up (this file / `whats-new` /
 test262 How URLs / agent “new work” pointers):
 
-- [x] **`whats-new.md`** — title / window wording (no longer “on mgg-develop”)
+- [x] **`whats-new.md`** — title / window is since `before-mgg-develop-merge`
 - [x] **`src/afw/tests/test262/changes.md`** — Index **How** commit URLs
   (`…/commits/mgg-develop/…` → `…/commits/develop/…`) and intro / window text
 - [x] **This file** and other maintainer notes — day-to-day trunk is **`develop`**
