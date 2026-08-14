@@ -485,7 +485,7 @@ Adaptive Script already allowed list/object **Patterns** on `let` / `const`, ass
 
 - In **function and lambda parameter lists** (nested rename, holes, rest, property defaults, **computed/string keys**).
 - In **`catch (…)`** bindings (e.g. `catch ({ message, data })`).
-- **Call-site spread:** `f(...arr)` / `f(a, ...rest, b)` expands an array into separate arguments.
+- **Call-site spread:** `f(...arr)` / `f(a, ...rest, b)` expands an array into separate arguments. The spread expression is evaluated **once** (not once to size `argv` and again to fill). Object Pattern rest (`{ [key()]: v, ...r }`) does not re-evaluate computed keys. [#181](https://github.com/afw-org/afw/issues/181)
 
 Parameter **defaults are Expressions**. Pattern leaves and whole formals may carry **type annotations** (syntax for upcoming compile-time checking; not enforced yet). Options-style example:
 
