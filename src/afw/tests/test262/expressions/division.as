@@ -28,8 +28,8 @@ assert(x ===  1);
 //? expect: success
 //? skip: true
 //? skipReason: ...
-FIXME: ASI / block-eval interaction around division vs regexp;
-half-converted
+Never: Adaptive has no ES eval / regexp-vs-division ASI after a
+block. Other / newline cases already run.
 //? source: ...
 
 
@@ -180,7 +180,7 @@ if (1 / 1 !== 1) {
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
+//? skipReason: Never: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
 
 
@@ -207,7 +207,7 @@ if (is_NaN(null / null) !== true) {
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
+//? skipReason: Never: Adaptive / does not ToNumber-coerce (null/string/object); double or integer only
 //? source: ...
 
 

@@ -21,7 +21,7 @@ ago, and not every harness-only line noise.
 | Doc | Role |
 |-----|------|
 | [`README.md`](README.md) | Suite purpose, `//?` tags, skip prefixes |
-| [`FIXME-triage.md`](FIXME-triage.md) | What is **left** / convert priority |
+| [`FIXME-triage.md`](FIXME-triage.md) | Leftover **FIXME:** only (sweep done) |
 | [`typescript-differences.md`](../../../typescript-differences.md) | Product ES vs Adaptive (beta) |
 | [`whats-new.md`](../../../whats-new.md) | User-facing language/runtime notes |
 
@@ -76,9 +76,16 @@ Rough time order: **[#55](https://github.com/afw-org/afw/issues/55) → [#140](h
 | Case | How | Brief |
 |------|-----|--------|
 | [Suite README + official `//?` tags](#suite-readme-and-official-tags) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/README.md) | Purpose, harness-once, tags |
-| [skipReason prefix convention](#skipreason-prefix-convention) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/README.md) | Incompatible/FIXME/Deferred/Harness |
+| [skipReason prefix convention](#skipreason-prefix-convention) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/README.md) | FIXME / Never |
 | [First-pass skipReason labels](#first-pass-skipreason-labels) | meta | Every skip got a prefix |
 | [FIXME triage note](#fixme-triage-note) | [meta](https://github.com/afw-org/afw/commits/mgg-develop/src/afw/tests/test262/FIXME-triage.md) | [`FIXME-triage.md`](FIXME-triage.md) shortlist |
+
+### Skip prefixes ([#106](https://github.com/afw-org/afw/issues/106))
+
+| Case | How | Brief |
+|------|-----|--------|
+| Two prefixes only | meta | **`FIXME:`** / **`Never:`** (was Incompatible/Deferred/Harness) |
+| ASI leftovers | **T:** →inc | **Never:** no ES eval/regexp ASI; no `let [` after empty for-of |
 
 ### Harness convert ([#106](https://github.com/afw-org/afw/issues/106))
 
@@ -182,9 +189,8 @@ ES), TC39 lineage, harness-once guidance, and **official** `//?` keys
 
 ## skipReason prefix convention
 
-Shared vocabulary (not compiler-enforced): **`Incompatible:`**, **`FIXME:`**,
-**`Deferred:`**, **`Harness:`**. Documented in README and project test rules.
-Use **Incompatible** only for permanent non-support.
+Shared vocabulary (not compiler-enforced): **`FIXME:`** and **`Never:`**.
+Documented in README and project test rules.
 
 [↑ Index](#index)
 
@@ -201,9 +207,9 @@ per-case behavior change in that pass alone. Counts drift as cases convert.
 
 ## FIXME triage note
 
-[`FIXME-triage.md`](FIXME-triage.md) is the **backlog** (what to convert next).
-This file is the **done log**. Update triage when a cluster moves; add Index
-rows here for the cases that actually changed.
+[`FIXME-triage.md`](FIXME-triage.md) lists leftover **FIXME:** only.
+This file is the **done log**. Add Index rows here for cases that
+actually changed.
 
 [↑ Index](#index)
 

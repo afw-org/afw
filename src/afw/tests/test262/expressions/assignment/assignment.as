@@ -141,7 +141,7 @@ if (x !== true) {
 //? description: break is a valid identifier name, using escape (MemberExpression IdentifierName)
 //? skip: true
 //? skipReason: ...
-Incompatible: no plan to treat a unicode-escaped reserved word
+Never: no plan to treat a unicode-escaped reserved word
 (bre\\u0061k) as a property name.
 //? expect: success
 //? source: ...

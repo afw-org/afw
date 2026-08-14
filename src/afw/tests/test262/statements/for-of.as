@@ -1711,7 +1711,7 @@ for (const [x, x] of []) {}
 //? expect: error
 //? skip: true
 //? skipReason: ...
-Incompatible: Adaptive has no TDZ. The inner for-of binding is
+Never: Adaptive has no TDZ. The inner for-of binding is
 undefined, not a ReferenceError. Not a for-of-only change.
 //? source: ...
 #!/usr/bin/env afw
@@ -3251,9 +3251,9 @@ for (let x of []) label1: label2: function f() {}
 //? expect: error
 //? skip: true
 //? skipReason: ...
-FIXME: ASI / let-as-identifier vs let-declaration after for-of empty body.
-Empty for-of does not force parse of the following statement the same way
-as ES; needs compiler ASI / statement parsing work, not for-of iteration.
+Never: Adaptive does not match ES ASI lookahead for let [ after an
+empty for-of. Not a for-of iteration bug; let-block-with-newline already
+runs.
 //? source: ...
 #!/usr/bin/env afw
 

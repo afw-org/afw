@@ -250,7 +250,7 @@ if (is_NaN("1" % "x") !== true) {
 //? test: S11.5.3_A3_T1.4
 //? description: Type(x) and Type(y) vary between Null and Undefined
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -278,7 +278,7 @@ if (is_NaN(null % null) !== true) {
 //? test: S11.5.3_A3_T1.5
 //? description: Type(x) and Type(y) vary between Object object and Function object
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -308,7 +308,7 @@ if (is_NaN({} % {}) !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and String (primitive and object)
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -338,7 +338,7 @@ if (is_NaN(1 % "x") !== true) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Null
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw
@@ -358,7 +358,7 @@ if (null % 1 !== 0) {
     Type(x) is different from Type(y) and both types vary between
     Number (primitive or object) and Undefined
 //? skip: true
-//? skipReason: Incompatible: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
+//? skipReason: Never: Adaptive % does not ToNumber-coerce (null/string/object); integer or double only
 //? expect: success
 //? source: ...
 #!/usr/bin/env afw

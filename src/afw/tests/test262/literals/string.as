@@ -483,7 +483,7 @@ for (let index = 0; index <= 9; index = index + 1) {
 //? description: "SingleEscapeSequence :: one of b f n r t v"
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -521,7 +521,7 @@ if (String.fromCharCode(0x000D) !== "\r") {
 //? description: "SingleEscapeSequence :: one of ' \" \\"
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -555,7 +555,7 @@ if ('\"' !== '"') {
 //? description: "NonEscapeSequence :: ENGLISH CAPITAL ALPHABET"
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -682,7 +682,7 @@ if ("Z" !== "\Z") {
 //? description: "NonEscapeSequence :: ENGLISH SMALL ALPHABET"
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -779,7 +779,7 @@ if ("z" !== "\z") {
 //? description: "NonEscapeSequence :: RUSSIAN CAPITAL ALPHABET"
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -935,7 +935,7 @@ if ("Ё" !== "\Ё") {
 //? description: "NonEscapeSequence :: RUSSIAN SMALL ALPHABET"
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1147,7 +1147,7 @@ if ("v" === "\v") {
 //? description: String.fromCharCode(0x0000)
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1181,7 +1181,7 @@ if ("\x00" !== "\0") {
 //? description: "HexEscapeSequence ::  HexDigit"
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1297,7 +1297,7 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? description: Check similar to ('\x01F' === String.fromCharCode('1') + 'F')
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1380,7 +1380,7 @@ if ('\x0F1' !== String.fromCharCode('15') + '1') {
 //? description: Check similar to ("\u0000" === String.fromCharCode("0"))
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 
@@ -1589,7 +1589,7 @@ for (let index = 0; index <= 25; index = index + 1) {
 //? description: Check similar to ("\u0001F" === String.fromCharCode("1") + "F")
 //? expect: success
 //? skip: true
-//? skipReason: Incompatible: no String.fromCharCode / ES String prototype APIs
+//? skipReason: Never: no String.fromCharCode / ES String prototype APIs
 //? source: ...
 #!/usr/bin/env afw
 

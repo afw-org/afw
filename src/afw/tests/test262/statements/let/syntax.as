@@ -66,7 +66,7 @@ for (let k = 0; k < 5; ++k) {
 //? expect: error:Parse error at offset 114 around line 5 column 17: Unknown built-in function 'f'
 //? skip: true
 //? skipReason: ...
-Incompatible: for (let i = 0, f = …) parses (#62) but Adaptive for-let
+Never: for (let i = 0, f = …) parses (#62) but Adaptive for-let
 is one slot, not ES per-iteration bindings.
 //? source: ...
 #!/usr/bin/env afw
@@ -102,7 +102,7 @@ for (let k = 0; k < 5; ++k) {
 //? expect: error:Parse error at offset 126 around line 6 column 17: Unknown built-in function 'j'
 //? skip: true
 //? skipReason: ...
-Incompatible: for (let i = 0, j = 10; …) parses (#62). Adaptive for-let
+Never: for (let i = 0, j = 10; …) parses (#62). Adaptive for-let
 is one slot, not ES per-iteration fresh bindings.
 //? source: ...
 #!/usr/bin/env afw

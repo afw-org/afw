@@ -47,12 +47,10 @@ agree:
 
 | Prefix | Meaning |
 |--------|---------|
-| **`Incompatible:`** | Never plan to convert |
 | **`FIXME:`** | Adaptive should fix or decide |
-| **`Deferred:`** | Later, not current priority |
-| **`Harness:`** | Runner/adaptation limit (rare) |
+| **`Never:`** | We do not plan to support this |
 
-Examples: `Incompatible: ES generators / function*`; `FIXME: for-of member LHS (x.y)`; `Deferred: deep TCO`. Long `skipReason` (or any key): use `//? skipReason: ...` then body lines until the next `//?` for ~80-column editing. Full notes: `src/afw/tests/test262/README.md`.
+Examples: `Never: no String.fromCharCode`; `FIXME: for-of const + closure (#35 / #2)`. Long `skipReason` (or any key): use `//? skipReason: ...` then body lines until the next `//?` for ~80-column editing. Full notes: `src/afw/tests/test262/README.md`.
 
 Typical case skeleton:
 
@@ -62,7 +60,7 @@ Typical case skeleton:
 //? description: What this case checks
 //? differences: Optional ES vs Adaptive language note
 //? skip: false
-//? skipReason: Incompatible: … / FIXME: … / Deferred: …
+//? skipReason: Never: … / FIXME: …
 //? expect: 0
 //? source: ...
 

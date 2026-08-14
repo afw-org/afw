@@ -103,7 +103,7 @@ if (+(+x) !== 1) {
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Incompatible: Adaptive does not coerce boolean with unary + (ES
+Never: Adaptive does not coerce boolean with unary + (ES
 ToNumber)
 //? source: ...
 #!/usr/bin/env afw
@@ -207,7 +207,7 @@ if (+(null) !== null) {
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Incompatible: Adaptive does not coerce boolean with unary + (ES
+Never: Adaptive does not coerce boolean with unary + (ES
 ToNumber)
 //? source: ...
 #!/usr/bin/env afw

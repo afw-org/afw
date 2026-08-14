@@ -144,7 +144,7 @@ assert(callCount === 1, "function invoked exactly once");
 //? expect: success
 //? skip: true
 //? skipReason: ...
-Incompatible: Adaptive has no ES sloppy mode. Reassignment of a
+Never: Adaptive has no ES sloppy mode. Reassignment of a
 function name in the body is not silently ignored.
 //? source: ...
 #!/usr/bin/env afw
