@@ -191,9 +191,15 @@ CompilerInternalStatement ::=
 /* From afw_compile_parse_compiler_internal.c                                 */
 /* Value/expression-position compiler-internal #Name.                         */
 /* Token is already pound_identifier.                                         */
-/* Forms match decompile #implementation_id where implemented.                */
+/* Compiler-internal forms match decompile #implementation_id.                */
+/* Compiler literals fold to permanent values (not call forms).               */
 /* #closure_binding / #function_thunk are recognized but always compile       */
 /* errors (runtime / C-side only; not recompilable from decompile text).      */
+
+CompilerLiteral ::=
+    '#doubleMax' | '#doubleMin' | '#doubleMinSubnormal' |
+    '#doubleEpsilon' | '#integerMax' | '#integerMin' |
+    '#pi' | '#e' | '#infinity' | '#inf' | '#minusInfinity' | '#nan'
 
 CompilerInternalValue ::=
     CompilerInternalBlock |
@@ -202,7 +208,8 @@ CompilerInternalValue ::=
     CompilerInternalScriptFunction |
     CompilerInternalTemplateDefinition |
     CompilerInternalSwitchDefault |
-    CompilerInternalStatements
+    CompilerInternalStatements |
+    CompilerLiteral
 
 /* From afw_compile_parse_expression.c                                        */
 /* The objectId of any /afw/_AdaptiveDataType_/ objects.                      */

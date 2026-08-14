@@ -355,14 +355,8 @@ if (-Infinity - Infinity !== -Infinity ) {
 }
 //? test: S11.6.2_A4_T3
 //? description: The difference of two infinities of the same sign is NaN
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: success
 //? source: ...
-#!/usr/bin/env afw
-
 
 //CHECK#1
 if (is_NaN(Infinity - Infinity) !== true ) {
@@ -377,53 +371,47 @@ if (is_NaN(-Infinity - -Infinity) !== true ) {
 //? description:...
     The difference of an infinity and a finite value is equal to
     infinity of appropriate sign
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: success
 //? source: ...
-#!/usr/bin/env afw
-
 
 //CHECK#1
-if (Infinity - 1 !== Infinity ) {
-  throw '#1: Infinity - 1 === Infinity. Actual: ' + (Infinity - 1);
+if (Infinity - 1.0 !== Infinity ) {
+  throw '#1: Infinity - 1 === Infinity. Actual: ' + (Infinity - 1.0);
 }
 
 //CHECK#2
-if (-1 - Infinity !== -Infinity ) {
-  throw '#2: -1 - Infinity === -Infinity. Actual: ' + (-1 - Infinity);
+if (-1.0 - Infinity !== -Infinity ) {
+  throw '#2: -1 - Infinity === -Infinity. Actual: ' + (-1.0 - Infinity);
 }
 
 //CHECK#3
-if (-Infinity - 1 !== -Infinity ) {
-  throw '#3: -Infinity - 1 === -Infinity. Actual: ' + (-Infinity - 1);
+if (-Infinity - 1.0 !== -Infinity ) {
+  throw '#3: -Infinity - 1 === -Infinity. Actual: ' + (-Infinity - 1.0);
 }
 
 //CHECK#4
-if (-1 - -Infinity !== Infinity ) {
-  throw '#4: -1 - -Infinity === Infinity. Actual: ' + (-1 - -Infinity);
+if (-1.0 - -Infinity !== Infinity ) {
+  throw '#4: -1 - -Infinity === Infinity. Actual: ' + (-1.0 - -Infinity);
 }
 
 //CHECK#5
-if (Infinity - Number.MAX_VALUE !== Infinity ) {
-  throw '#5: Infinity - Number.MAX_VALUE === Infinity. Actual: ' + (Infinity - Number.MAX_VALUE);
+if (Infinity - #doubleMax !== Infinity ) {
+  throw '#5: Infinity - #doubleMax === Infinity. Actual: ' + (Infinity - #doubleMax);
 }
 
 //CHECK#6
-if (-Number.MAX_VALUE - Infinity !== -Infinity ) {
-  throw '#6: -Number.MAX_VALUE - Infinity === I-nfinity. Actual: ' + (-Number.MAX_VALUE - Infinity);
+if (-#doubleMax - Infinity !== -Infinity ) {
+  throw '#6: -#doubleMax - Infinity === -Infinity. Actual: ' + (-#doubleMax - Infinity);
 }
 
 //CHECK#7
-if (-Infinity - Number.MAX_VALUE !== -Infinity ) {
-  throw '#7: -Infinity - Number.MAX_VALUE === -Infinity. Actual: ' + (-Infinity - Number.MAX_VALUE);
+if (-Infinity - #doubleMax !== -Infinity ) {
+  throw '#7: -Infinity - #doubleMax === -Infinity. Actual: ' + (-Infinity - #doubleMax);
 }
 
 //CHECK#8
-if (-Number.MAX_VALUE - -Infinity !== Infinity ) {
-  throw '#8: -Number.MAX_VALUE - -Infinity === Infinity. Actual: ' + (-Number.MAX_VALUE - -Infinity);
+if (-#doubleMax - -Infinity !== Infinity ) {
+  throw '#8: -#doubleMax - -Infinity === Infinity. Actual: ' + (-#doubleMax - -Infinity);
 }
 //? test: S11.6.2_A4_T5
 //? description:...
@@ -476,122 +464,104 @@ if (0 - 0 !== 0 ) {
 //? description:...
     Using the rule of sum of a zero and a nonzero finite value and the
     fact that a - b = a + (-b)
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: success
 //? source: ...
-#!/usr/bin/env afw
-
 
 //CHECK#1
-if (1 - -0 !== 1 ) {
-  throw '#1: 1 - -0 === 1. Actual: ' + (1 - -0);
+if (1.0 - -0.0 !== 1.0 ) {
+  throw '#1: 1 - -0 === 1. Actual: ' + (1.0 - -0.0);
 }
 
 //CHECK#2
-if (1 - 0 !== 1 ) {
-  throw '#2: 1 - 0 === 1. Actual: ' + (1 - 0);
+if (1.0 - 0.0 !== 1.0 ) {
+  throw '#2: 1 - 0 === 1. Actual: ' + (1.0 - 0.0);
 }
 
 //CHECK#3
-if (-0 - 1 !== -1 ) {
-  throw '#3: -0 - 1 === -1. Actual: ' + (-0 - 1);
+if (-0.0 - 1.0 !== -1.0 ) {
+  throw '#3: -0 - 1 === -1. Actual: ' + (-0.0 - 1.0);
 }
 
 //CHECK#4
-if (0 - 1 !== -1 ) {
-  throw '#4: 0 - 1 === -1. Actual: ' + (0 - 1);
+if (0.0 - 1.0 !== -1.0 ) {
+  throw '#4: 0 - 1 === -1. Actual: ' + (0.0 - 1.0);
 }
 
 //CHECK#5
-if (Number.MAX_VALUE - -0 !== Number.MAX_VALUE ) {
-  throw '#5: Number.MAX_VALUE - -0 === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE - -0);
+if (#doubleMax - -0.0 !== #doubleMax ) {
+  throw '#5: #doubleMax - -0 === #doubleMax. Actual: ' + (#doubleMax - -0.0);
 }
 
 //CHECK#6
-if (Number.MAX_VALUE - 0 !== Number.MAX_VALUE ) {
-  throw '#6: Number.MAX_VALUE - 0 === Number.MAX_VALUE. Actual: ' + (Number.MAX_VALUE - 0);
+if (#doubleMax - 0.0 !== #doubleMax ) {
+  throw '#6: #doubleMax - 0 === #doubleMax. Actual: ' + (#doubleMax - 0.0);
 }
 
 //CHECK#7
-if (-0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
-  throw '#7: -0 - Number.MIN_VALUE === -Number.MIN_VALUE. Actual: ' + (-0 - Number.MIN_VALUE);
+if (-0.0 - #doubleMin !== -#doubleMin ) {
+  throw '#7: -0 - #doubleMin === -#doubleMin. Actual: ' + (-0.0 - #doubleMin);
 }
 
 //CHECK#8
-if (0 - Number.MIN_VALUE !== -Number.MIN_VALUE ) {
-  throw '#8: 0 - Number.MIN_VALUE === -Number.MIN_VALUE. Actual: ' + (0 - Number.MIN_VALUE);
+if (0.0 - #doubleMin !== -#doubleMin ) {
+  throw '#8: 0 - #doubleMin === -#doubleMin. Actual: ' + (0.0 - #doubleMin);
 }
 //? test: S11.6.2_A4_T7
 //? description:...
     The mathematical difference of two nonzero finite values of the
     same magnitude and same sign is +0
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: success
 //? source: ...
-#!/usr/bin/env afw
-
 
 //CHECK#1
-if (Number.MIN_VALUE - Number.MIN_VALUE !== +0) {
-  throw '#1.1: Number.MIN_VALUE - Number.MIN_VALUE === 0. Actual: ' + (Number.MIN_VALUE - Number.MIN_VALUE);
+if (#doubleMin - #doubleMin !== +0.0) {
+  throw '#1.1: #doubleMin - #doubleMin === 0. Actual: ' + (#doubleMin - #doubleMin);
 } else {
-  if (1 / (Number.MIN_VALUE - Number.MIN_VALUE) !== Infinity) {
-    throw '#1.2: Number.MIN_VALUE - Number.MIN_VALUE === + 0. Actual: -0';
+  if (1.0 / (#doubleMin - #doubleMin) !== Infinity) {
+    throw '#1.2: #doubleMin - #doubleMin === + 0. Actual: -0';
   }
 }
 
 //CHECK#2
-if (-Number.MAX_VALUE - -Number.MAX_VALUE !== +0) {
-  throw '#2.2: -Number.MAX_VALUE - -Number.MAX_VALUE === 0. Actual: ' + (-Number.MAX_VALUE - -Number.MAX_VALUE);
+if (-#doubleMax - -#doubleMax !== +0.0) {
+  throw '#2.2: -#doubleMax - -#doubleMax === 0. Actual: ' + (-#doubleMax - -#doubleMax);
 } else {
-  if (1 / (-Number.MAX_VALUE - -Number.MAX_VALUE) !== Infinity) {
-    throw '#2.1: -Number.MAX_VALUE - -Number.MAX_VALUE === + 0. Actual: -0';
+  if (1.0 / (-#doubleMax - -#doubleMax) !== Infinity) {
+    throw '#2.1: -#doubleMax - -#doubleMax === + 0. Actual: -0';
   }
 }
 
 //CHECK#3
-if (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE !== +0) {
-  throw '#3.1: 1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE === 0. Actual: ' + (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE);
+if (1.0 / #doubleMax - 1.0 / #doubleMax !== +0.0) {
+  throw '#3.1: 1 / #doubleMax - 1 / #doubleMax === 0. Actual: ' + (1.0 / #doubleMax - 1.0 / #doubleMax);
 } else {
-  if (1 / (1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE) !== Infinity) {
-    throw '#3.2: 1 / Number.MAX_VALUE - 1 / Number.MAX_VALUE === + 0. Actual: -0';
+  if (1.0 / (1.0 / #doubleMax - 1.0 / #doubleMax) !== Infinity) {
+    throw '#3.2: 1 / #doubleMax - 1 / #doubleMax === + 0. Actual: -0';
   }
 }
 //? test: S11.6.2_A4_T8
 //? description:...
     If the magnitude is too large to represent, the operation
     overflows and the result is then an infinity of appropriate sign
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? expect: success
 //? source: ...
-#!/usr/bin/env afw
-
 
 //CHECK#1
-if (Number.MAX_VALUE - -Number.MAX_VALUE !== Infinity) {
-  throw '#1: Number.MAX_VALUE - -Number.MAX_VALUE === Infinity. Actual: ' + (Number.MAX_VALUE - -Number.MAX_VALUE);
+if (#doubleMax - -#doubleMax !== Infinity) {
+  throw '#1: #doubleMax - -#doubleMax === Infinity. Actual: ' + (#doubleMax - -#doubleMax);
 }
 
 //CHECK#2
-if (-Number.MAX_VALUE - Number.MAX_VALUE !== -Infinity) {
-  throw '#2: -Number.MAX_VALUE - umber.MAX_VALUE === -Infinity. Actual: ' + (-Number.MAX_VALUE - Number.MAX_VALUE);
+if (-#doubleMax - #doubleMax !== -Infinity) {
+  throw '#2: -#doubleMax - #doubleMax === -Infinity. Actual: ' + (-#doubleMax - #doubleMax);
 }
 
 //CHECK#3
-if (1e+308 - -1e+308 !== Infinity) {
-  throw '#3: 1e+308 - -1e+308 === Infinity. Actual: ' + (1e+308 - -1e+308);
+if (1.0E308 - -1.0E308 !== Infinity) {
+  throw '#3: 1e+308 - -1e+308 === Infinity. Actual: ' + (1.0E308 - -1.0E308);
 }
 
 //CHECK#4
-if (-8.99e+307 - 8.99e+307 !== -Infinity) {
-  throw '#4: -8.99e+307 - 8.99e+307 === -Infinity. Actual: ' + (-8.99e+307 - 8.99e+307);
+if (-8.99E307 - 8.99E307 !== -Infinity) {
+  throw '#4: -8.99e+307 - 8.99e+307 === -Infinity. Actual: ' + (-8.99E307 - 8.99E307);
 }

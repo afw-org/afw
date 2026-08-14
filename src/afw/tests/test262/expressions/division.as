@@ -262,59 +262,22 @@ if (is_NaN(undefined / new String("1")) !== true) {
 //? test: S11.5.2_A4_T10
 //? description: If both operands are finite and nonzero, the quotient is computed and rounded using IEEE 754 round-to-nearest mode.  If the magnitude is too small to represent, the result is then a zero of appropriate sign throw new Test262Error('#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0'); throw new Test262Error('#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0');
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: operator IEEE edge case; needs Adaptive is_NaN / double rewrite
-(no Number/Math globals)
 //? source: ...
 
-
 //CHECK#1
-if (Number.MIN_VALUE / 2.1 !== 0) {
-  throw '#1: Number.MIN_VALUE / 2.1 === 0. Actual: ' + (Number.MIN_VALUE / 2.1);
+if (#doubleMinSubnormal / 2.1 !== 0.0) {
+  throw '#1: #doubleMinSubnormal / 2.1 === 0. Actual: ' +
+    (#doubleMinSubnormal / 2.1);
 }
 
 //CHECK#2
-if (Number.MIN_VALUE / -2.1 !== -0) {
-  throw '#2.1: Number.MIN_VALUE / -2.1 === 0. Actual: ' + (Number.MIN_VALUE / -2.1);
+if (#doubleMinSubnormal / -2.1 !== -0.0) {
+  throw '#2.1: #doubleMinSubnormal / -2.1 === -0. Actual: ' +
+    (#doubleMinSubnormal / -2.1);
 } else {
-  if (1 / (Number.MIN_VALUE / -2.1) !== -Infinity) {
-    throw '#2.2: Number.MIN_VALUE / -2.1 === -0. Actual: +0';
+  if (1.0 / (#doubleMinSubnormal / -2.1) !== -Infinity) {
+    throw '#2.2: #doubleMinSubnormal / -2.1 === -0. Actual: +0';
   }
-}
-
-//CHECK#3
-if (Number.MIN_VALUE / 2.0 !== 0) {
-  throw '#3: Number.MIN_VALUE / 2.0 === 0. Actual: ' + (Number.MIN_VALUE / 2.0);
-}
-
-//CHECK#4
-if (Number.MIN_VALUE / -2.0 !== -0) {
-  throw '#4.1: Number.MIN_VALUE / -2.0 === -0. Actual: ' + (Number.MIN_VALUE / -2.0);
-} else {
-  if (1 / (Number.MIN_VALUE / -2.0) !== -Infinity) {
-    throw '#4.2: Number.MIN_VALUE / -2.0 === -0. Actual: +0';
-  }
-}
-
-//CHECK#5
-if (Number.MIN_VALUE / 1.9 !== Number.MIN_VALUE) {
-  throw '#5: Number.MIN_VALUE / 1.9 === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / 1.9);
-}
-
-//CHECK#6
-if (Number.MIN_VALUE / -1.9 !== -Number.MIN_VALUE) {
-  throw '#6: Number.MIN_VALUE / -1.9 === -Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / -1.9);
-}
-
-//CHECK#7
-if (Number.MIN_VALUE / 1.1 !== Number.MIN_VALUE) {
-  throw '#7: Number.MIN_VALUE / 1.1 === Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / 1.1);
-}
-
-//CHECK#8
-if (Number.MIN_VALUE / -1.1 !== -Number.MIN_VALUE) {
-  throw '#8: Number.MIN_VALUE / -1.1 === -Number.MIN_VALUE. Actual: ' + (Number.MIN_VALUE / -1.1);
 }
 //? test: S11.5.2_A4_T1.1
 //? description: If left operand is NaN, the result is NaN
@@ -649,14 +612,9 @@ if (-0.0 / 0.5 !== -0.0) {
 //? test: S11.5.2_A4_T9
 //? description: If the magnitude is too large to represent, the result is then an infinity of appropriate sign
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: extreme double literals / overflow edges need reliable large
-exponents (Number.MAX_VALUE lineage); use Infinity cases in A4_T3/T5 for now
 //? source: ...
 
-
 //CHECK#1
-if (Number.MAX_VALUE / 0.9 !== Infinity) {
-  throw '#1: Number.MAX_VALUE / 0.9 === Infinity. Actual: ' + (Number.MAX_VALUE / 0.9);
+if (#doubleMax / 0.9 !== Infinity) {
+  throw '#1: #doubleMax / 0.9 === Infinity. Actual: ' + (#doubleMax / 0.9);
 }

@@ -5,6 +5,9 @@
 **Tests:** `src/afw/tests/compiler/decompile_accept/`; broad round-trips — `decompile_fidelity.as`, samples — `decompile.as` / `pragma.as`.
 
 Author-facing `#compile` is **not** in this inventory (policy pragma).  
+**Compiler literals** (`#doubleMax`, `#pi`, `#infinity`, …) are author-facing
+values that fold at compile; they are **not** decompile IR. See
+`afw_value.h` and `src/afw/tests/compiler/compiler_literals.as`.  
 Compiler-private forms are **toolchain only** (decompile → recompile).
 
 ## Dispatch positions
@@ -30,6 +33,7 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | `#closure_binding` | Yes (live closure) | Known **reject** | No | Runtime enclosing scope not reconstructible from text |
 | `#function_thunk` | Yes (C thunk label) | Known **reject** | No | C-side only (e.g. model hooks) |
 | `#compile` | Never (policy pragma) | Pragma path only | n/a | Not compiler-internal |
+| `#doubleMax` and other **compiler literals** | Never (fold to the number) | Value | n/a | Author-facing; not IR |
 | other `#Name` | — | Unknown error | No | |
 
 ## Emit helpers

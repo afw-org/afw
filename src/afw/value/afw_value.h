@@ -417,14 +417,58 @@ afw_value_unique_default_case_value;
 
 
 /**
+ * @brief Permanent values for compiler literals (script `#doubleMax`, …).
+ *
+ * C macros for the same numbers are in afw_number.h (`AFW_DOUBLE_MAX`,
+ * …) and afw_common.h (`AFW_INTEGER_MAX` / `MIN`). Infinity / NaN
+ * values match env->infinity_value / NaN_value (IEEE).
+ */
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_max;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_min;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_min_subnormal;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_epsilon;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_pi;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_double_e;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_infinity;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_minus_infinity;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_NaN;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_max;
+
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_value_integer_min;
+
+
+
+/**
  * @brief Value for boolean variable.
  * @param variable
  * @return afw_boolean_v_true or afw_boolean_v_false
  *
  * Prefer existing static const Adaptive values when the value is fixed:
  * afw_boolean_v_true / afw_boolean_v_false, afw_v_* from afw_strings.h
- * (including a_* names), afw_integer_v_zero / afw_integer_v_one, and
- * afw_value_null / afw_value_undefined in this header. Avoid
+ * (including a_* names), afw_integer_v_zero / afw_integer_v_one,
+ * afw_value_double_max / afw_value_integer_max / afw_value_infinity
+ * (and siblings), and afw_value_null / afw_value_undefined in this
+ * header. Avoid
  * create_unmanaged_* only to wrap those. Prefer
  * afw_object_set_property(..., afw_v_*, ...) over set_property_as_string
  * when an afw_v_* already exists for that constant.

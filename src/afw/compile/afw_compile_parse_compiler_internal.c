@@ -15,8 +15,12 @@
  * This file owns the non-public accept path: forms that decompile() emits so
  * compile() can rebuild the same compiled-value graph.
  *
- * Not for ordinary Adaptive Script authoring. Policy directives (#compile)
- * live in afw_compile_parse_pragma.c.
+ * Also owns **compiler literals** (author-usable # names that fold to
+ * permanent values, not call forms): #doubleMax, #doubleMin,
+ * #doubleMinSubnormal, #doubleEpsilon, #integerMax, #integerMin, #pi, #e,
+ * and aliases #infinity / #inf / #minusInfinity / #nan. See afw_value.h.
+ *
+ * Policy directives (#compile) live in afw_compile_parse_pragma.c.
  *
  * On entry the current token is already pound_identifier. identifier_name is
  * the name without '#'; identifier is the full "#name" (for errors). There is
@@ -77,6 +81,38 @@ impl_compiler_internal_name_is(
 {
     return parser->token->identifier_name &&
         afw_utf8_equal_utf8_z(parser->token->identifier_name, name_z);
+}
+
+
+/* Compiler literal #Name → permanent value, or NULL if not one. */
+static const afw_value_t *
+impl_compiler_numeric_constant(afw_compile_parser_t *parser)
+{
+    static const struct {
+        const afw_utf8_z_t *name_z;
+        const afw_value_t * const *value;
+    } consts[] = {
+        { "doubleMax", &afw_value_double_max },
+        { "doubleMin", &afw_value_double_min },
+        { "doubleMinSubnormal", &afw_value_double_min_subnormal },
+        { "doubleEpsilon", &afw_value_double_epsilon },
+        { "integerMax", &afw_value_integer_max },
+        { "integerMin", &afw_value_integer_min },
+        { "pi", &afw_value_double_pi },
+        { "e", &afw_value_double_e },
+        { "infinity", &afw_value_infinity },
+        { "inf", &afw_value_infinity },
+        { "minusInfinity", &afw_value_minus_infinity },
+        { "nan", &afw_value_NaN }
+    };
+    afw_size_t i;
+
+    for (i = 0; i < sizeof(consts) / sizeof(consts[0]); i++) {
+        if (impl_compiler_internal_name_is(parser, consts[i].name_z)) {
+            return *consts[i].value;
+        }
+    }
+    return NULL;
 }
 
 
@@ -801,11 +837,17 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# Value/expression-position compiler-internal #Name.
+ *# Value/expression-position #Name.
  *# Token is already pound_identifier.
- *# Forms match decompile #implementation_id where implemented.
+ *# Compiler-internal forms match decompile #implementation_id.
+ *# Compiler literals fold to permanent values (not call forms).
  *# #closure_binding / #function_thunk are recognized but always compile
  *# errors (runtime / C-side only; not recompilable from decompile text).
+ *
+ * CompilerLiteral ::=
+ *     '#doubleMax' | '#doubleMin' | '#doubleMinSubnormal' |
+ *     '#doubleEpsilon' | '#integerMax' | '#integerMin' |
+ *     '#pi' | '#e' | '#infinity' | '#inf' | '#minusInfinity' | '#nan'
  *
  * CompilerInternalValue ::=
  *     CompilerInternalBlock |
@@ -814,7 +856,8 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
  *     CompilerInternalScriptFunction |
  *     CompilerInternalTemplateDefinition |
  *     CompilerInternalSwitchDefault |
- *     CompilerInternalStatements
+ *     CompilerInternalStatements |
+ *     CompilerLiteral
  *
  *<<<ebnf*/
 /**
@@ -823,6 +866,8 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
 const afw_value_t *
 afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
 {
+    const afw_value_t *numeric;
+
     if (impl_compiler_internal_name_is(parser, "block")) {
         return impl_parse_compiler_internal_block(parser);
     }
@@ -859,6 +904,11 @@ afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
 
     if (impl_compiler_internal_name_is(parser, "statements")) {
         return impl_parse_compiler_internal_statements(parser);
+    }
+
+    numeric = impl_compiler_numeric_constant(parser);
+    if (numeric) {
+        return numeric;
     }
 
     impl_compiler_internal_unknown(parser,

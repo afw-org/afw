@@ -13,6 +13,7 @@
 
 #include "afw_internal.h"
 #include <libxml/xmlregexp.h>
+#include <math.h>
 
 
 
@@ -57,6 +58,127 @@ impl_value_unique_default_case_value = {
 AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_unique_default_case_value =
 { &impl_value_unique_default_case_value.pub };
+
+
+static const afw_value_double_t
+impl_value_double_max = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_MAX
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_max =
+{ &impl_value_double_max.pub };
+
+
+static const afw_value_double_t
+impl_value_double_min = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_MIN
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_min =
+{ &impl_value_double_min.pub };
+
+
+static const afw_value_double_t
+impl_value_double_min_subnormal = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_MIN_SUBNORMAL
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_min_subnormal =
+{ &impl_value_double_min_subnormal.pub };
+
+
+static const afw_value_double_t
+impl_value_double_epsilon = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_EPSILON
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_epsilon =
+{ &impl_value_double_epsilon.pub };
+
+
+static const afw_value_double_t
+impl_value_double_pi = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_PI
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_pi =
+{ &impl_value_double_pi.pub };
+
+
+static const afw_value_double_t
+impl_value_double_e = {
+    { &afw_value_permanent_double_inf },
+    AFW_DOUBLE_E
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_double_e =
+{ &impl_value_double_e.pub };
+
+
+static const afw_value_double_t
+impl_value_infinity = {
+    { &afw_value_permanent_double_inf },
+    INFINITY
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_infinity =
+{ &impl_value_infinity.pub };
+
+
+static const afw_value_double_t
+impl_value_minus_infinity = {
+    { &afw_value_permanent_double_inf },
+    -INFINITY
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_minus_infinity =
+{ &impl_value_minus_infinity.pub };
+
+
+static const afw_value_double_t
+impl_value_NaN = {
+    { &afw_value_permanent_double_inf },
+    NAN
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_NaN =
+{ &impl_value_NaN.pub };
+
+
+static const afw_value_integer_t
+impl_value_integer_max = {
+    { &afw_value_permanent_integer_inf },
+    AFW_INTEGER_MAX
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_integer_max =
+{ &impl_value_integer_max.pub };
+
+
+static const afw_value_integer_t
+impl_value_integer_min = {
+    { &afw_value_permanent_integer_inf },
+    AFW_INTEGER_MIN
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_value_integer_min =
+{ &impl_value_integer_min.pub };
 
 
 /* Compile a value. */

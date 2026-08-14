@@ -88,20 +88,14 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A14
 //? description:If base is −∞ and exponent > 0 and exponent is not an odd integer, the result is +∞.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
-
-
 
 let base = -Infinity;
 let exponents = [
 0.000000000000001,
-2,
-Math.PI,
-1.7976931348623157E308, //largest finite number
+2.0,
+#pi,
+#doubleMax,
 +Infinity
 ];
 
@@ -130,25 +124,19 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A16
 //? description:If base is −∞ and exponent < 0 and exponent is not an odd integer, the result is +0.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
-
-
 
 let base = -Infinity;
 let exponents = [
 -0.000000000000001,
--2,
--Math.PI,
--1.7976931348623157E308, //largest (by module) finite number
+-2.0,
+-#pi,
+-#doubleMax,
 -Infinity
 ];
 
 for (let i = 0; i < length(exponents); i = i + 1) {
-  if ((base ** exponents[i]) !== +0) {
+  if ((base ** exponents[i]) !== +0.0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
@@ -237,25 +225,19 @@ for (let i = 0; i < length(bases); i = i + 1) {
 //? test: applying-the-exp-operator_A20
 //? description:If base is −0 and exponent > 0 and exponent is not an odd integer, the result is +0.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
 
-
-
-let base = -0;
+let base = -0.0;
 let exponents = [
 0.000000000000001,
-2,
-Math.PI,
-1.7976931348623157E308, //largest finite number
+2.0,
+#pi,
+#doubleMax,
 +Infinity
 ];
 
 for (let i = 0; i < length(exponents); i = i + 1) {
-  if ((base ** exponents[i]) !== +0) {
+  if ((base ** exponents[i]) !== +0.0) {
     throw "(" + string(base) + " **  " + string(exponents[i]) + ") !== +0";
   }
 }
@@ -281,20 +263,14 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A22
 //? description:If base is −0 and exponent < 0 and exponent is not an odd integer, the result is +∞.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
 
-
-
-let base = -0;
+let base = -0.0;
 let exponents = [
 -0.000000000000001,
--2,
--Math.PI,
--1.7976931348623157E308, //largest (by module) finite number
+-2.0,
+-#pi,
+-#doubleMax,
 -Infinity
 ];
 
@@ -306,37 +282,31 @@ for (let i = 0; i < length(exponents); i = i + 1) {
 //? test: applying-the-exp-operator_A23
 //? description:If base < 0 and base is finite and exponent is finite and exponent is not an integer, the result is NaN.
 //? expect: success
-//? skip: true
-//? skipReason: ...
-FIXME: ** exponent edge cases (−∞/−0/non-integer) need Adaptive
-Math/signed-zero rewrite or product decision
 //? source: ...
 
-
-
-let bases = [];
--1.7976931348623157E308, //largest (by module) finite number
--Math.PI,
--1,
+let bases = [
+-#doubleMax,
+-#pi,
+-1.0,
 -0.000000000000001
 ];
 
 let exponents = [
--Math.PI,
--Math.E,
+-#pi,
+-#e,
 -1.000000000000001,
 -0.000000000000001,
 0.000000000000001,
 1.000000000000001,
-Math.E,
-Math.PI
+#e,
+#pi
 ];
 
 for (let i = 0; i < length(bases); i = i + 1) {
-  for (let j = 0; j < length(exponents); j++) {
+  for (let j = 0; j < length(exponents); j = j + 1) {
     assert(
-      bases[i] ** exponents[j] == NaN,      
-      bases[i] + " ** " + exponents[j]
+      is_NaN(bases[i] ** exponents[j]),
+      string(bases[i]) + " ** " + string(exponents[j])
     );
   }
 }
