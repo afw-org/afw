@@ -73,6 +73,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Error codes**](#error-codes-trycatch-and-http-issue-33) ([#33](https://github.com/afw-org/afw/issues/33)) | Review of `e.id` / HTTP map; script `throw` … `id "not_found"` (and similar) sets the catch object and HTTP status |
 | [**Multi `let` / `const`**](#multi-let-and-const-issue-62) ([#62](https://github.com/afw-org/afw/issues/62)) | Several names on one `let` / `const`; C-style `for` init; `x = y = 1;` chain; script result is set by assignment, `return`, and a call that is not void; loop labels |
 | [**Compiler literals**](#compiler-literals-issue-106) ([#106](https://github.com/afw-org/afw/issues/106)) | `#doubleMax`, `#integerMax`, `#pi`, `#infinity`, and related `#` names fold to those values at compile |
+| [**`maxNumberOfParameters`**](#maxnumberofparameters-issue-125) ([#125](https://github.com/afw-org/afw/issues/125)) | Function metadata property renamed from `maximumNumberOfParameters` |
 
 ---
 
@@ -237,6 +238,18 @@ assert(#infinity === Infinity);
 Reserved words `Infinity`, `NaN`, and `INF` are unchanged. `#compile` is still a pragma. `#block` and similar names are still for decompile, not everyday script.
 
 Handbook: Language Reference **Language Features** (Compiler literals). Tests: `src/afw/tests/compiler/compiler_literals.as`.
+
+[↑ Highlights](#highlights)
+
+---
+
+## `maxNumberOfParameters` (issue [#125](https://github.com/afw-org/afw/issues/125))
+
+On `_AdaptiveFunction_` (and polymorphic functions that inherit it), the property id is now **`maxNumberOfParameters`**. It still means the largest number of parameters, or **-1** if there is no maximum.
+
+If a script or client read **`maximumNumberOfParameters`** from a function object on `adapterId=afw`, use the new name. Briefs and labels still say “Maximum …”.
+
+New limit/cap property ids should use a **`max…`** prefix (`maxReadBytes`, `maxValue`, `maxObjects`).
 
 [↑ Highlights](#highlights)
 

@@ -2,7 +2,7 @@
 
 **Repo:** [afw-org/afw](https://github.com/afw-org/afw)  
 **Branch context:** `mgg-develop` (beta readiness)  
-**Generated / refreshed:** 2026-08-14 (#106 wrap)  
+**Generated / refreshed:** 2026-08-14 (#125 wrap)  
 **Source:** live GitHub open issues (`gh issue list --state open`) + maintainer notes from recent `mgg-develop` work.
 
 This is a **working tracker**, not a substitute for issue bodies or PRs. “How it stands” mixes GitHub metadata with known landings on `mgg-develop`; re-verify before closing anything.
@@ -19,9 +19,9 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 
 ## Summary counts
 
-- **Open issues:** 38
+- **Open issues:** 37
 - **Jeremy:** 27 issues (as assignee, including shared)
-- **Mike:** 11 issues (as assignee, including shared)
+- **Mike:** 10 issues (as assignee, including shared)
 - **—:** 5 issues (unassigned)
 
 ## All open issues
@@ -60,7 +60,6 @@ Assignees are from GitHub. Dual assignees mean both are listed, not necessarily 
 | [#102](https://github.com/afw-org/afw/issues/102) | Jeremy | Allow model "on" functions access to adapterTypeSpecific parameter | When implementing an "adapter" entirely using models and "on" functions/adaptive scripts, the "on" functions currentl… | Expose adapterTypeSpecific to model on* scripts. Open (docs label). | 2025-04-27 |
 | [#108](https://github.com/afw-org/afw/issues/108) | Jeremy | Support for callbacks in curl functions | Currently, the curl http functions read and write data completely in memory. This will be not be very resourceful whe… | curl adaptive functions: streaming callbacks. Open. | 2025-04-27 |
 | [#114](https://github.com/afw-org/afw/issues/114) | — | [Fiddle] Closing an inactive tab with unsaved changes targets the active tab instead | To reproduce: | Fiddle: close inactive unsaved tab closes active tab. Unassigned UI bug. | 2026-07-07 |
-| [#125](https://github.com/afw-org/afw/issues/125) | Mike | Review max vs maximum (and related) property naming for consistency | For consistency with almost all other Adaptive property names, maximumNumberOfParameters on AdaptiveFunction should p… | max vs maximum property naming consistency. Parked naming pass. | 2026-07-19 |
 | [#126](https://github.com/afw-org/afw/issues/126) | Mike | Review and harden journal support (meta) | Meta issue for journal work: review, harden, document, and track follow-ups. Use this as the single place to note jou… | Meta: journal support review/harden/docs. Tracker. | 2026-07-19 |
 | [#138](https://github.com/afw-org/afw/issues/138) | Mike, Jeremy | Meta issue: sideband meta on the wire ("_meta_"), object options, and rich type info for apps | Adaptive objects keep sideband meta (identity, paths, parents, view decorations, edit helpers, optional type-related … | Meta: _meta_ on wire, object options, rich type info. Design pad; dual-assignee. | 2026-08-01 |
 | [#157](https://github.com/afw-org/afw/issues/157) | — | afwdev advanced-test: hermetic afwfcgi scenario leaves | Add advanced tests to afwdev test: marker-file leaf directories (advanced-test.yaml / .json) that spawn the installed… | **Shipped as orchestrated tests** (PR **#167**): `orchestration.yaml`, hosts afwfcgi/local, `tests-extra/`, expect-stdout. Issue may stay open for residuals; schema in `src/afw/tests-extra/SCHEMA.md`. | 2026-08-08 |
@@ -104,6 +103,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#62](https://github.com/afw-org/afw/issues/62) | Adaptive Script language changes | **Closed 2026-08-13** — PR **#174** multi let/const, for init, assignment chain, running result, labels |
 | [#69](https://github.com/afw-org/afw/issues/69) | Implement data type 'json' and 'relaxed_json' | **Closed 2026-08-13** — types already on tree; PR **#175** tests + strict json rejects Infinity/NaN |
 | [#106](https://github.com/afw-org/afw/issues/106) | Resolve FIXME's in afw tests | **Closed 2026-08-14** — PR **#176**; leftovers #35/#2, produce-type, #57 |
+| [#125](https://github.com/afw-org/afw/issues/125) | Review max vs maximum property naming | **Closing 2026-08-14** — `maxNumberOfParameters`; `max…` for limit ids |
 | [#89](https://github.com/afw-org/afw/issues/89) | Passing a function as a parameter from an array seems to generate an error | **Closed 2026-08-07** — function from array as callback |
 | [#90](https://github.com/afw-org/afw/issues/90) | checkIndividualObjectReadAccess configuration parameter for adaptors | checkIndividualObjectReadAccess — closed earlier |
 | [#109](https://github.com/afw-org/afw/issues/109) | Improvements for creating adapters with adaptive scripts | Pure-script model adapters — closed earlier |
@@ -137,6 +137,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#62](https://github.com/afw-org/afw/issues/62) | Language index — PR [#174](https://github.com/afw-org/afw/pull/174) |
 | [#69](https://github.com/afw-org/afw/issues/69) | json / relaxed_json types — PR [#175](https://github.com/afw-org/afw/pull/175) |
 | [#106](https://github.com/afw-org/afw/issues/106) | test262 FIXME sweep / compiler literals — PR [#176](https://github.com/afw-org/afw/pull/176) |
+| [#125](https://github.com/afw-org/afw/issues/125) | max vs maximum property ids — this wrap |
 | [#127](https://github.com/afw-org/afw/issues/127) | Progressive retrieve write-then-release — **closed 2026-08-11** |
 | [#28](https://github.com/afw-org/afw/issues/28) | Compile-time type checking — PRs [#144](https://github.com/afw-org/afw/pull/144)/[#145](https://github.com/afw-org/afw/pull/145) core; wrap-up PR [#171](https://github.com/afw-org/afw/pull/171) (fence, FunctionSignature typeCheck, call-site formals, handbook Types). **Closed 2026-08-12** |
 

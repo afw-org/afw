@@ -1699,10 +1699,10 @@ afw_value_type_check_adaptive_function_call(
     if (fn->numberOfRequiredParameters) {
         required = (afw_size_t)fn->numberOfRequiredParameters->internal;
     }
-    if (fn->maximumNumberOfParameters &&
-        fn->maximumNumberOfParameters->internal != -1)
+    if (fn->maxNumberOfParameters &&
+        fn->maxNumberOfParameters->internal != -1)
     {
-        maximum = (afw_size_t)fn->maximumNumberOfParameters->internal;
+        maximum = (afw_size_t)fn->maxNumberOfParameters->internal;
     }
     if (argc < required) {
         AFW_THROW_ERROR_FZ(syntax, xctx,

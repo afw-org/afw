@@ -297,7 +297,7 @@
                     "title": "Signature",
                     "type": "string"
                 },
-                "maximumNumberOfParameters": {
+                "maxNumberOfParameters": {
                     "description": "This is the maximum number of parameters or -1 if there is no maximum.",
                     "markdownDescription": "**Maximum Parameters**\n\nThis is the maximum number of parameters or -1 if there is no maximum.",
                     "title": "Maximum Parameters",
@@ -533,7 +533,7 @@
                     "title": "Signature",
                     "type": "string"
                 },
-                "maximumNumberOfParameters": {
+                "maxNumberOfParameters": {
                     "description": "This is the maximum number of parameters or -1 if there is no maximum.",
                     "markdownDescription": "**Maximum Parameters**\n\nThis is the maximum number of parameters or -1 if there is no maximum.",
                     "title": "Maximum Parameters",
@@ -829,7 +829,7 @@
             "title": "Signature",
             "type": "string"
         },
-        "maximumNumberOfParameters": {
+        "maxNumberOfParameters": {
             "description": "This is the maximum number of parameters or -1 if there is no maximum.",
             "markdownDescription": "**Maximum Parameters**\n\nThis is the maximum number of parameters or -1 if there is no maximum.",
             "title": "Maximum Parameters",

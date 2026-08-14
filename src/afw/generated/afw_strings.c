@@ -16737,6 +16737,12 @@ afw_self_v_maxNormalLength = {
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)
+afw_self_v_maxNumberOfParameters = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_maxNumberOfParameters)
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_maxObjects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxObjects)
@@ -16800,12 +16806,6 @@ AFW_DEFINE_CONST_DATA(afw_value_string_t)
 afw_self_v_max_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_max_time)
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_string_t)
-afw_self_v_maximumNumberOfParameters = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_maximumNumberOfParameters)
 };
 
 AFW_DEFINE_CONST_DATA(afw_value_string_t)

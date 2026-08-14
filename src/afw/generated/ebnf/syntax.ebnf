@@ -189,7 +189,7 @@ CompilerInternalStatement ::=
     CompilerInternalBlock
 
 /* From afw_compile_parse_compiler_internal.c                                 */
-/* Value/expression-position compiler-internal #Name.                         */
+/* Value/expression-position #Name.                                           */
 /* Token is already pound_identifier.                                         */
 /* Compiler-internal forms match decompile #implementation_id.                */
 /* Compiler literals fold to permanent values (not call forms).               */

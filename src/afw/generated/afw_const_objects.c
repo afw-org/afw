@@ -49986,7 +49986,7 @@ static const afw_runtime_const_object_instance_t
 impl_479;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maximumNumberOfParameters/runtime
+ * /afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maxNumberOfParameters/runtime
  */
 
 static const afw_runtime_property_t
@@ -50023,7 +50023,7 @@ impl_479_meta_object__value = {
 
 static const afw_utf8_t
 impl_479_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maximumNumberOfParameters/runtime");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maxNumberOfParameters/runtime");
 
 static const afw_value_object_t
 impl_479__value;
@@ -50052,7 +50052,7 @@ impl_479__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maximumNumberOfParameters
+ * /afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maxNumberOfParameters
  */
 
 static const afw_runtime_property_t
@@ -50137,7 +50137,7 @@ impl_478_meta_object__value = {
 
 static const afw_utf8_t
 impl_478_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maximumNumberOfParameters");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFunction_/propertyTypes/maxNumberOfParameters");
 
 static const afw_value_object_t
 impl_478__value;
@@ -50151,7 +50151,7 @@ impl_478 = {
         {
             (const afw_object_t *)&impl_478_meta_object,
             (const afw_object_t *)&impl_450,
-            &afw_self_s_maximumNumberOfParameters,
+            &afw_self_s_maxNumberOfParameters,
             &afw_self_s__AdaptiveValueMeta_,
             &impl_478_meta_path
         }
@@ -52667,15 +52667,15 @@ impl_450_property_functionSignature = {
 };
 
 static const afw_value_object_t
-impl_450_property_value_maximumNumberOfParameters = {
+impl_450_property_value_maxNumberOfParameters = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_478
 };
 
 static const afw_runtime_property_t
-impl_450_property_maximumNumberOfParameters = {
-    &afw_self_s_maximumNumberOfParameters,
-    &impl_450_property_value_maximumNumberOfParameters.pub
+impl_450_property_maxNumberOfParameters = {
+    &afw_self_s_maxNumberOfParameters,
+    &impl_450_property_value_maxNumberOfParameters.pub
 };
 
 static const afw_value_object_t
@@ -52850,7 +52850,7 @@ impl_450_properties[] = {
     &impl_450_property_functionLabel,
     &impl_450_property_functionResourceId,
     &impl_450_property_functionSignature,
-    &impl_450_property_maximumNumberOfParameters,
+    &impl_450_property_maxNumberOfParameters,
     &impl_450_property_numberOfRequiredParameters,
     &impl_450_property_op,
     &impl_450_property_parameters,
