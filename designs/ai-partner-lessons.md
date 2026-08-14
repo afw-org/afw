@@ -57,7 +57,7 @@ Durable notes that help later:
 
 Issue numbers are **pointers**, not the title of the knowledge. Do not dump every PR status into long memory files.
 
-**Git is the archive for AFW knowledge** — designs, `.cursor/rules`, handbook, tests, `whats-new.md`, `open-issues-status.md`, living GitHub issue bodies. Local AI session memory (flush / resume) is optional convenience for one machine; **do not rely on it** for continuity across partners, clones, or months later. After deep work, **promote** the map into the tree (and the issue body when it is the product summary).
+**Git is the archive for AFW knowledge** — designs, `.cursor/rules`, handbook, tests, `whats-new.md`, living GitHub issue bodies. Local AI session memory (flush / resume) is optional convenience for one machine; **do not rely on it** for continuity across partners, clones, or months later. After deep work, **promote** the map into the tree (and the issue body when it is the product summary).
 
 In this repo, starting points for maps:
 

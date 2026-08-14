@@ -81,7 +81,7 @@ delete the remote `mgg-develop` name when nobody needs the tip.
 ### Session wrap-up — 2026-08-14 (#157 closed)
 
 - **#157 closed:** `advanced-test.yaml` plan replaced by orchestrated tests (PR **#167**). Leftover knobs stay on **#13**; memory stress on **#2**.
-- Status snapshot + pads: `open-issues-status.md` (36 open / 4 unassigned); history pad `designs/afwdev-advanced-test.md`.
+- History pad: `designs/afwdev-advanced-test.md`.
 
 ### Session wrap-up — 2026-08-10 (docs polish / partner try-it)
 
@@ -89,7 +89,6 @@ delete the remote `mgg-develop` name when nobody needs the tip.
 - **`open-issues-status.md`:** refreshed from live GitHub (**42** open; closed #17/#39/#50/#61/#89/#149/#153/#158 removed from open table; **#157** noted).
 - **Partner docs:** `designs/ai-partner-lessons.md` *If you try it* expanded (issue → discuss → feature branch → checkpoints → PR); `AGENTS.md` short mirror; atlas §15 TOC link fixed.
 - **Handbook:** Features **Closure** no longer claims Adaptive has no closures (aligned with `closures.as` / #35 residual under **#2**).
-- Pointer: open-issue snapshot is **`open-issues-status.md`** (not `open-issues.md`).
 
 ### Session wrap-up — 2026-08-09 (#149 phase 1 + afwdev harness)
 
@@ -440,6 +439,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 
 | Date | Note |
 |------|------|
+| 2026-08-14 | Dropped `open-issues-status.md`; open issues live on GitHub only. |
 | 2026-08-14 | Cutover: `mgg-develop` → `develop` ([PR #179](https://github.com/afw-org/afw/pull/179)); retarget checklist done; new work off `develop`. |
 | 2026-08-10 | Session wrap-up: whats-new / open-issues-status / partner try-it / Features Closure; Done archive rows for Aug closes; #55 ask table marked historical. |
 | 2026-08-07 | Branch plan: cutover **retarget** checklist (`mgg-develop` → `develop` How URLs / whats-new / prose). |

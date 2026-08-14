@@ -337,7 +337,7 @@ Items worth future promote/fill — **not** blocking this atlas:
 | More Mike mantras | mantras pad | When shared |
 | MEMORY env/runtime novel fully thinned | Keep pointer; git pads win | Done enough this pass |
 | Per-extension support cards | agent-support or extensions | On demand |
-| open-issues-status / beta-backlog refresh | root hubs | Campaign hygiene, not atlas |
+| beta-backlog refresh | root hubs | Campaign hygiene, not atlas |
 
 ---
 

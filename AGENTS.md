@@ -4,7 +4,7 @@ Long-form context for humans and AI assistants. **Always-on** rules live in [`.c
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
-Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes on `develop`: [`whats-new.md`](whats-new.md). Open issues snapshot (refresh from GitHub): [`open-issues-status.md`](open-issues-status.md). **Optional team lessons** (AI partnering): [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). **Topic atlas** (where is X?): [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md). Support playbooks: [`designs/agent-support.md`](designs/agent-support.md). Philosophy: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference — not always-on).
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). Per-issue design pads: [`designs/`](designs/README.md). User-facing branch notes on `develop`: [`whats-new.md`](whats-new.md). Open issues live on GitHub. **Optional team lessons** (AI partnering): [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). **Topic atlas** (where is X?): [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md). Support playbooks: [`designs/agent-support.md`](designs/agent-support.md). Philosophy: [`designs/afw-philosophy-and-core-model.md`](designs/afw-philosophy-and-core-model.md). Mantras: [`designs/mantras-and-working-style.md`](designs/mantras-and-working-style.md) (reference — not always-on).
 
 ## Mission
 
@@ -23,7 +23,6 @@ Prefer **git** for durable shared truth (designs, rules, handbook, tests, living
 | This file (`AGENTS.md`) | System map and agent mission |
 | [`designs/`](designs/README.md) | Why, history, open questions; **knowledge atlas**, playbooks, philosophy/mantras |
 | [`whats-new.md`](whats-new.md) | User/operator-facing notes on `develop` |
-| [`open-issues-status.md`](open-issues-status.md) | Working open-issue snapshot (assignees + “how it stands”); **refresh from GitHub**, not ground truth |
 | Handbook / Doxygen | Authors and builders (`src/afw/doc/`, `build/docs/`) |
 | Project memory (Grok workspace `MEMORY.md`) | Sticky prefs + resume; **maps over ticket status** |
 
