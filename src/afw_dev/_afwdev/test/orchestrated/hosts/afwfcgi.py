@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Spawn / stop installed afwfcgi for hermetic advanced-test leaves.
+Spawn / stop installed afwfcgi for hermetic orchestrated leaves.
 
 Binary is expected on PATH from `./afwdev build … --install`.
 """
@@ -64,7 +64,7 @@ def start_afwfcgi(
     conf_path = os.path.join(work_dir, "afw.conf")
     if not os.path.isfile(conf_path):
         raise AfwfcgiHostError(
-            "advanced-test leaf requires afw.conf in work dir: " + work_dir)
+            "orchestrated leaf requires afw.conf in work dir: " + work_dir)
 
     socket_path = os.path.join(work_dir, "afw.sock")
     if os.path.exists(socket_path):

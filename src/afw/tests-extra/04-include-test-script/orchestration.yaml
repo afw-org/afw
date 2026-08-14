@@ -22,4 +22,4 @@ tests:
     sourceType: test_script
     source: <<< tests/mini_suite.as
     # No outer expect required if harness treats test_script result like
-    # today's advanced-test (any passed:false fails the item).
+    # today's orchestrated leaf (any passed:false fails the item).

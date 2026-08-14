@@ -227,7 +227,7 @@
 | **Day rules** | `afw-tests`, `afw-afwdev-python`, `afw-afwdev-generate` |
 | **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; handbook `guide/developer/writing-tests.xml` |
 | **Probe** | See recipe commands below |
-| **Open** | #13 stress knobs/stats on `test` (Jeremy); attach mode not fully built; #157 residuals if any |
+| **Open** | #13 stress knobs/stats on `test` (Jeremy); attach mode not fully built |
 | **Gap** | MEMORY testing split → **in recipe + playbook**; drop duplicating full MEMORY novel after promote |
 
 **Intent split**

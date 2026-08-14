@@ -281,7 +281,7 @@ def _test_pattern_matches(pattern, path_or_name):
         base = os.path.basename(path_or_name)
         if base != path_or_name and re.search(pattern, base):
             return True
-        # leaf directory name (for advanced-test.yaml under smoke/)
+        # leaf directory name (for orchestration.yaml under smoke/)
         parent = os.path.basename(os.path.dirname(path_or_name))
         if parent and re.search(pattern, parent):
             return True

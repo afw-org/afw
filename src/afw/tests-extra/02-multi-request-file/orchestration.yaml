@@ -1,4 +1,4 @@
-# Port of src/afw/tests/advanced/multi-request-file (advanced-test.yaml still live)
+# Port of src/afw/tests/advanced/multi-request-file (orchestration.yaml sibling)
 # Stresses: multi-request one process; file fixtures; feed defaults; test_script cleanup.
 
 version: 1

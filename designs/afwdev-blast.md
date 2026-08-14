@@ -2,7 +2,7 @@
 
 **Status:** **Retired** (PR **#167** → `mgg-develop`).  
 **Audience:** archaeology / redirect only.  
-**Related:** [#157](https://github.com/afw-org/afw/issues/157) orchestrated tests, [#158](https://github.com/afw-org/afw/issues/158) afwfcgi signals, [#13](https://github.com/afw-org/afw/issues/13) stress knobs (still open for Jeremy’s story).
+**Related:** [#157](https://github.com/afw-org/afw/issues/157) **closed** (orchestrated tests), [#158](https://github.com/afw-org/afw/issues/158) afwfcgi signals, [#13](https://github.com/afw-org/afw/issues/13) stress knobs (still open for Jeremy’s story).
 
 **Use instead:** orchestrated leaves with **`schedule.firehose`** under
 [`src/afw/tests-extra/`](../src/afw/tests-extra/) (07 / 07b / 07c, etc.):
@@ -43,7 +43,7 @@ afwdev blast -d 10m -p afw --test-pattern 'file_adapter/|rql/'
 afwdev blast -T src/afw/tests-extra/07b-firehose-catalog-pool -d 15s -c 4 -m 40
 afwdev blast -T /path/to/more -T src/afw/tests-extra/07b-firehose-catalog-pool -f my.conf -m 100
 
-# Same -T on afwdev test for opt-in correctness (advanced-test, .as, …)
+# Same -T on afwdev test for opt-in correctness (orchestration.yaml, .as, …)
 afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
 ```
 
@@ -55,7 +55,7 @@ afwdev test -T src/afw/tests-extra/adapter-lifecycle --show-all
 | **When set** | Only those directory trees (exclusive); package `tests/` ignored |
 | **Default `-j`** | Never scans these roots — use `src/afw/tests-extra/` for opt-in |
 
-Examples: `src/afw/tests-extra/07b-firehose-catalog-pool/` (blast), `src/afw/tests-extra/adapter-lifecycle/` (test advanced-test).
+Examples: `src/afw/tests-extra/07b-firehose-catalog-pool/` (firehose), `src/afw/tests-extra/adapter-lifecycle/` (orchestrated leaf).
 
 ### Defaults (plain `afwdev blast`)
 
@@ -115,7 +115,7 @@ Optional: personal shortcuts via **`afwdev task`** (`tasks` in afwdev-settings.j
 
 ## Behavior
 
-- Corpus: `.as` test_scripts from package `tests/` (not advanced-test markers, not `.py`)
+- Corpus: `.as` test_scripts from package `tests/` (not orchestration markers, not `.py`)
 - **Default skip fixtures** so a normal blast is “server healthy under load,” not “suite expects private conf”:
   - group `config.py` with **`Environment = "..."`** (shared `tests/environments/`)
   - group-level or nearby **`afw.conf`**

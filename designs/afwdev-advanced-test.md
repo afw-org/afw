@@ -5,7 +5,7 @@
 [`src/afw/tests-extra/SCHEMA.md`](../src/afw/tests-extra/SCHEMA.md),
 [`src/afw/tests-extra/README.md`](../src/afw/tests-extra/README.md),
 handbook [`writing-tests.xml`](../src/afw/doc/guide/developer/writing-tests.xml).  
-**GitHub issue:** [#157](https://github.com/afw-org/afw/issues/157) (may stay open for residuals).  
+**GitHub issue:** [#157](https://github.com/afw-org/afw/issues/157) **closed** — replaced by orchestrated tests (PR **#167**).  
 **Related:** [#2](https://github.com/afw-org/afw/issues/2), [#149](https://github.com/afw-org/afw/issues/149), recipe [`afwdev-test-recipe.md`](afwdev-test-recipe.md).  
 **Depends on:** installed `afwfcgi` / `afw` via `./afwdev build … --install`.
 

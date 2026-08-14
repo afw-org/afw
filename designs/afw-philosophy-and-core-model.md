@@ -116,7 +116,7 @@ Almost every capability is registered on the process **environment** and is disc
 
 1. **Prefer the generate path** for anything that is metadata (functions, types, interfaces, strings).  
 2. **Implement** in hand C/Python only where the generator leaves a closet or where behavior is inherently hand-written (parsers, pool impls, host mains).  
-3. **Prove** with Adaptive tests (`afwdev test -j`) and, for process-shaped bugs, live hosts / advanced-test / valgrind as appropriate.  
+3. **Prove** with Adaptive tests (`afwdev test -j`) and, for process-shaped bugs, live hosts / orchestrated leaves / valgrind as appropriate.  
 4. **Promote knowledge** after deep work: short maps and invariants into git; do not rely on chat alone.  
 5. **Keep packages movable:** base repo holds core + shipped srcdirs; extensions should not glue themselves into core private headers.
 

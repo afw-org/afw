@@ -91,6 +91,11 @@ Update this section if the plan changes.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
 - **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev` (implies `-j`). Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev`** (`--all --generate --clean --install --scan` + `-j`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
 
+### Session wrap-up — 2026-08-14 (#157 closed)
+
+- **#157 closed:** `advanced-test.yaml` plan replaced by orchestrated tests (PR **#167**). Leftover knobs stay on **#13**; memory stress on **#2**.
+- Status snapshot + pads: `open-issues-status.md` (36 open / 4 unassigned); history pad `designs/afwdev-advanced-test.md`.
+
 ### Session wrap-up — 2026-08-10 (docs polish / partner try-it)
 
 - **`whats-new.md`:** Highlights anchors/back-links polished; #149 slug; migration bullets; experimental heading clean-up.

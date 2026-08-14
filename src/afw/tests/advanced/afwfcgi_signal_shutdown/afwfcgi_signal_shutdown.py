@@ -5,7 +5,7 @@ Hermetic check: afwfcgi exits on SIGTERM/SIGINT without needing SIGKILL (#158).
 
 Spawns installed afwfcgi (-n 2), waits for the Unix socket, signals the
 process group, and requires process exit within a short grace period.
-Not an advanced-test marker leaf (no multi-step FCGI client); process
+Not an orchestrated marker leaf (no multi-step FCGI client); process
 lifecycle only.
 """
 

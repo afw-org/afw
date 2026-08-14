@@ -133,7 +133,7 @@ Useful when someone (or an assistant) is about to “help” the wrong way:
 - Optimizing chat **memory volume** instead of **maps** that live in git (or counting on local session flush as the product archive).
 - Assuming beta ship date = end of partnership or end of learning the system.
 - Building a parallel tool/language/harness **without** checking alternatives and **ease of reliable good work** (see *Design method*).
-- Keeping two experimental ways to do the same maintainer job forever (e.g. advanced-test *and* blast *and* orchestrated tests) without a consolidation path.
+- Keeping two experimental ways to do the same maintainer job forever (e.g. blast *and* orchestrated firehose) without a consolidation path.
 - **Process for its own sake** — ceremony that slows work without improving efficiency or quality (see *Process should make you more efficient…*).
 - Leaving **dangling product decisions** “for a follow-up PR” when we could decide now and write the no or the yes.
 

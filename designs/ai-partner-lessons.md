@@ -78,7 +78,7 @@ Use any subset; none of this is mandatory for the team.
 - **Discuss → plan → execute when agreed** on multi-step hard work (especially memory / long-running lifetime).  
 - **Flexible plan, one step, then re-decide** — living candidate order, not a locked script; after a step, ask **“what do you think we should do next?”** and adapt (see mantras pad *Partnership habits*). Good for issue wrap-ups and residual passes.  
 - **Hold commits and PRs until asked** in a pairing session, unless you agree otherwise for a stretch.  
-- Keep **language tests** (`afwdev test -j`) as the correctness gate; keep **load / soak / experimental hosts** as a separate lab (blast, advanced-test) — do not redefine the gate as soak.  
+- Keep **language tests** (`afwdev test -j`) as the correctness gate; keep **load / soak** as a separate lab (`tests-extra/` / `-T`, firehose) — do not redefine the gate as soak.  
 - **Never hand-edit `generated/`** — metadata is the single source of truth.  
 - Prefer **plain language** in chat and maintainer notes when a short phrase is enough.  
 - After a deep session, **promote** one thin map into **git**; do not grow unbounded session memory or treat `/flush` as a substitute for designs/tests.

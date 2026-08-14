@@ -1,7 +1,7 @@
 # afwdev test recipe (agents & maintainers)
 
 **Audience:** maintainers / assistants.  
-**Related:** [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired), `src/afw/tests-extra/`, #149, #157.
+**Related:** [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired), `src/afw/tests-extra/`, #149. **#157 closed.**
 
 ## Trees
 
