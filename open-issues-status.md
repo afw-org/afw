@@ -103,7 +103,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#62](https://github.com/afw-org/afw/issues/62) | Adaptive Script language changes | **Closed 2026-08-13** — PR **#174** multi let/const, for init, assignment chain, running result, labels |
 | [#69](https://github.com/afw-org/afw/issues/69) | Implement data type 'json' and 'relaxed_json' | **Closed 2026-08-13** — types already on tree; PR **#175** tests + strict json rejects Infinity/NaN |
 | [#106](https://github.com/afw-org/afw/issues/106) | Resolve FIXME's in afw tests | **Closed 2026-08-14** — PR **#176**; leftovers #35/#2, produce-type, #57 |
-| [#125](https://github.com/afw-org/afw/issues/125) | Review max vs maximum property naming | **Closing 2026-08-14** — `maxNumberOfParameters`; `max…` for limit ids |
+| [#125](https://github.com/afw-org/afw/issues/125) | Review max vs maximum property naming | **Closed 2026-08-14** — PR **#177**; `maxNumberOfParameters` |
 | [#89](https://github.com/afw-org/afw/issues/89) | Passing a function as a parameter from an array seems to generate an error | **Closed 2026-08-07** — function from array as callback |
 | [#90](https://github.com/afw-org/afw/issues/90) | checkIndividualObjectReadAccess configuration parameter for adaptors | checkIndividualObjectReadAccess — closed earlier |
 | [#109](https://github.com/afw-org/afw/issues/109) | Improvements for creating adapters with adaptive scripts | Pure-script model adapters — closed earlier |
@@ -137,7 +137,7 @@ Useful for “don’t restart this.” Includes process-close batch **2026-08-04
 | [#62](https://github.com/afw-org/afw/issues/62) | Language index — PR [#174](https://github.com/afw-org/afw/pull/174) |
 | [#69](https://github.com/afw-org/afw/issues/69) | json / relaxed_json types — PR [#175](https://github.com/afw-org/afw/pull/175) |
 | [#106](https://github.com/afw-org/afw/issues/106) | test262 FIXME sweep / compiler literals — PR [#176](https://github.com/afw-org/afw/pull/176) |
-| [#125](https://github.com/afw-org/afw/issues/125) | max vs maximum property ids — this wrap |
+| [#125](https://github.com/afw-org/afw/issues/125) | max vs maximum property ids — PR [#177](https://github.com/afw-org/afw/pull/177) |
 | [#127](https://github.com/afw-org/afw/issues/127) | Progressive retrieve write-then-release — **closed 2026-08-11** |
 | [#28](https://github.com/afw-org/afw/issues/28) | Compile-time type checking — PRs [#144](https://github.com/afw-org/afw/pull/144)/[#145](https://github.com/afw-org/afw/pull/145) core; wrap-up PR [#171](https://github.com/afw-org/afw/pull/171) (fence, FunctionSignature typeCheck, call-site formals, handbook Types). **Closed 2026-08-12** |
 
