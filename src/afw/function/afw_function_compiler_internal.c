@@ -385,14 +385,34 @@ impl_object_destructure(
     const afw_iterator_old_t *iterator;
     const afw_utf8_t *property_name;
     const afw_utf8_t *bound_name;
+    const afw_utf8_t **resolved_names;
     const afw_value_t *v;
     const afw_value_t *name_v;
     const afw_object_t *rest;
+    afw_size_t nprops;
+    afw_size_t i;
 
     object = afw_value_as_object(value, xctx);
 
+    /*
+     * Remember each bound name (evaluate computed keys once). The rest
+     * walk must not re-evaluate property_name_expr.
+     */
+    resolved_names = NULL;
+    if (od->rest) {
+        nprops = 0;
+        for (ap = od->assignment_property; ap; ap = ap->next) {
+            nprops++;
+        }
+        if (nprops > 0) {
+            resolved_names = afw_pool_calloc(p,
+                sizeof(afw_utf8_t *) * nprops, xctx);
+        }
+    }
+
     /* Process assignment properties. */
-    for (ap = od->assignment_property; ap; ap = ap->next)
+    i = 0;
+    for (ap = od->assignment_property; ap; ap = ap->next, i++)
     {
         if (ap->is_rename) {
             if (ap->property_name_expr) {
@@ -401,6 +421,9 @@ impl_object_destructure(
             }
             else {
                 bound_name = ap->property_name;
+            }
+            if (resolved_names) {
+                resolved_names[i] = bound_name;
             }
             v = bound_name
                 ? afw_object_get_property(object, bound_name, xctx)
@@ -422,6 +445,10 @@ impl_object_destructure(
                 assignment_type, p, xctx);
         }
         else {
+            if (resolved_names) {
+                resolved_names[i] =
+                    ap->symbol_reference->symbol->name;
+            }
             v = afw_object_get_property(object,
                 ap->symbol_reference->symbol->name, xctx);
             if (!v) {
@@ -445,25 +472,14 @@ impl_object_destructure(
                 break;
             }
 
-            for (ap = od->assignment_property; ap; ap = ap->next)
+            for (i = 0, ap = od->assignment_property;
+                ap;
+                ap = ap->next, i++)
             {
-                if (ap->is_rename) {
-                    if (ap->property_name_expr) {
-                        name_v = afw_value_evaluate(
-                            ap->property_name_expr, p, xctx);
-                        bound_name = afw_value_as_utf8(name_v, p, xctx);
-                    }
-                    else {
-                        bound_name = ap->property_name;
-                    }
-                    if (bound_name &&
-                        afw_utf8_equal(bound_name, property_name))
-                    {
-                        break;
-                    }
-                }
-                else if (afw_utf8_equal(
-                    ap->symbol_reference->symbol->name, property_name))
+                bound_name = resolved_names
+                    ? resolved_names[i] : NULL;
+                if (bound_name &&
+                    afw_utf8_equal(bound_name, property_name))
                 {
                     break;
                 }

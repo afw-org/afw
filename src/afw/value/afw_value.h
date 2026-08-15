@@ -2022,8 +2022,8 @@ afw_value_decompile_call_args(
  * @param p Pool for expanded argv when needed.
  * @param xctx of caller.
  *
- * list_expression entries evaluate to an array and are spliced as separate
- * arguments (issue #140). Non-spread args are left unevaluated.
+ * list_expression entries evaluate to an array once and are spliced as
+ * separate arguments (issue #140). Non-spread args are left unevaluated.
  */
 AFW_DEFINE(void)
 afw_value_call_args_expand_spreads(
