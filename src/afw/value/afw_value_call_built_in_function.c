@@ -132,12 +132,32 @@ afw_value_call_built_in_function(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_value_t *value;
+    afw_value_call_built_in_function_t *self;
 
-    /* Optimize is set to false since this is one time call. */
-    value = afw_value_call_built_in_function_create(
-        contextual, argc, argv, false, p, xctx);
-    return impl_afw_value_optional_evaluate((AFW_VALUE_SELF_T *)value, p, xctx);
+    /*
+     * Runtime harvest: argv is the immutable call layout (argv[0] may be a
+     * variable, property, or other callee). Do not go through create(),
+     * which is the compile-time specialize path and requires argv[0] to
+     * already be the definition.
+     */
+    if (!function) {
+        AFW_THROW_ERROR_Z(general,
+            "afw_value_call_built_in_function() function is required",
+            xctx);
+    }
+
+    self = afw_pool_calloc_type(p, afw_value_call_built_in_function_t, xctx);
+    self->inf = &afw_value_call_built_in_function_inf;
+    self->function = function;
+    self->args.contextual = contextual;
+    self->args.argc = argc;
+    self->args.argv = argv;
+    self->optimized_value = (const afw_value_t *)self;
+    if (function->returns && function->returns->data_type) {
+        self->evaluated_data_type = function->returns->data_type;
+    }
+
+    return impl_afw_value_optional_evaluate(self, p, xctx);
 }
 
 
