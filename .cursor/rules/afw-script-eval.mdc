@@ -33,6 +33,15 @@ afw_compile_to_value*
 - Calls: `afw_value_call_create` specializes built-in vs script vs closure (`value/afw_value_call.c`).
 - Closures: `closure_binding` holds definition + scope ref (`get_reference` / release).
 
+### Call create vs evaluate (do not mix)
+
+- **Create** (compile): parser sees `(` after an evaluation and builds a call node. `argv[0]` is the **callee expression** (built-in name, variable, `(expr)`, property). `argv` is not rewritten later. `call_built_in_function_create` is only the specialize fork when `argv[0]` is already a function definition (`add(2,3)`).
+- **Evaluate** (runtime): generic `call` evaluates `argv[0]`, then harvests into **`x->function`**. Do not re-enter `create` for that harvest. Script functions already did; built-ins through a variable must use the one-shot `afw_value_call_built_in_function` (harvested definition, original `argv`).
+- **`compile()` / `unevaluated`:** assigning that to a variable stores the graph; it does **not** run. `evaluate(variable)` (or a built-in formal that is not typed `unevaluated`) runs it. Do not evaluate on every symbol bind.
+- **Ordinary defaults** (`[a = make()]`) are not `compile()` results — evaluate once at bind, then store. Pattern leaves go through bare `symbol_reference` (store as-is), so the default must be evaluated first.
+- **Spread `#181`:** `expand_spreads` (internal) copies `argv` **only** when there is a `...`. Evaluate each spread once, stash arrays, then size/fill. Not a copy on every call. Not `x->function`.
+- **`afw_stack`:** general grow-then-`copy_and_release`. `afw_compile_args_*` is parser sugar over that (`parser->p` / `xctx`).
+
 ## Key hand files
 
 | Area | Files |
