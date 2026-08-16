@@ -285,6 +285,26 @@ impl_create_closure_if_needed(
 
 
 
+/*
+ * Pattern leaves bind through a bare symbol_reference, which stores the
+ * value as-is. Parameter defaults already evaluate before bind; Pattern
+ * element/property defaults must too, or `const [a = make()] = []` stores
+ * the call node and make() runs on every use.
+ */
+static const afw_value_t *
+impl_evaluate_pattern_default(
+    const afw_value_t *default_value,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    if (!default_value) {
+        return afw_value_undefined;
+    }
+    return afw_value_evaluate(default_value, p, xctx);
+}
+
+
+
 static void
 impl_list_destructure(
     const afw_compile_assignment_target_t *at,
@@ -325,7 +345,7 @@ impl_list_destructure(
             continue; /* hole */
         }
         if (eol) {
-            v = ae->default_value;
+            v = impl_evaluate_pattern_default(ae->default_value, p, xctx);
         }
         /* Missing element and no default → undefined (TS/ES-like). */
         if (!v) {
@@ -429,10 +449,8 @@ impl_object_destructure(
                 ? afw_object_get_property(object, bound_name, xctx)
                 : NULL;
             if (!v) {
-                v = ap->assignment_element->default_value;
-            }
-            if (!v) {
-                v = afw_value_undefined;
+                v = impl_evaluate_pattern_default(
+                    ap->assignment_element->default_value, p, xctx);
             }
             if (ap->assignment_element->type && v &&
                 !afw_value_is_undefined(v))
@@ -452,10 +470,8 @@ impl_object_destructure(
             v = afw_object_get_property(object,
                 ap->symbol_reference->symbol->name, xctx);
             if (!v) {
-                v = ap->default_value;
-            }
-            if (!v) {
-                v = afw_value_undefined;
+                v = impl_evaluate_pattern_default(
+                    ap->default_value, p, xctx);
             }
             impl_assign_value(&ap->symbol_reference->pub,
                 v, assignment_type, p, xctx);
