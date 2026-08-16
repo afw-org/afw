@@ -1334,10 +1334,52 @@ afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
 
 
 
+/* Rewind to the '(' of this production and parse FunctionType. */
+static const afw_value_type_t *
+impl_parse_function_type_from_open(
+    afw_compile_parser_t *parser,
+    afw_size_t save_open)
+{
+    afw_compile_restore_cursor(save_open);
+    afw_compile_get_token(); /* '(' */
+    return afw_compile_parse_FunctionType(parser);
+}
+
+
+/*
+ * Parse ( Type ) once. If '=>' follows the matching ')', this was a
+ * FunctionType with one bare Type parameter — reparse as FunctionType.
+ * One reparse per such '=>', not a full scan at every nested '('.
+ */
+static const afw_value_type_t *
+impl_parse_paren_type_or_bare_function(
+    afw_compile_parser_t *parser,
+    afw_size_t save_open)
+{
+    const afw_value_type_t *inner;
+
+    afw_compile_restore_cursor(save_open);
+    afw_compile_get_token(); /* '(' */
+    inner = afw_compile_parse_UnionType(parser);
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after type");
+    }
+    afw_compile_get_token();
+    if (afw_compile_token_is(fat_arrow)) {
+        return impl_parse_function_type_from_open(parser, save_open);
+    }
+    afw_compile_reuse_token();
+    return inner;
+}
+
+
+
 /*ebnf>>>
  *
- *# Current token is '('. Speculative scan chooses FunctionType if '=>'
- *# follows the matching ')' or a ':' appears at depth 1 (named parameter).
+ *# Current token is '('. A few tokens of lookahead choose FunctionType
+ *# (named param, rest, empty '()', or '=>' after '(TypeName)'). Otherwise
+ *# parse ( Type ) once; if '=>' follows, reparse as FunctionType.
  * ParenthesizedOrFunctionType ::=
  *     FunctionType |
  *     '(' Type ')'
@@ -1346,57 +1388,45 @@ afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
 const afw_value_type_t *
 afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
 {
-    afw_size_t save_token_offset;
-    const afw_value_type_t *inner;
-    int depth;
-    afw_boolean_t saw_arrow;
-    afw_boolean_t saw_colon;
+    afw_size_t save_open;
+    const afw_utf8_t *name;
 
     /* Current token is '('. */
-    save_token_offset = parser->token->token_source_offset;
-
-    /*
-     * Speculative scan: function type if '=>' follows the matching ')', or
-     * a ':' appears at depth 1 (named parameter).
-     */
-    depth = 1;
-    saw_arrow = false;
-    saw_colon = false;
+    save_open = parser->token->token_source_offset;
     afw_compile_get_token();
-    while (!afw_compile_is_at_eof() && depth > 0) {
-        if (afw_compile_token_is(open_parenthesis)) {
-            depth++;
-        }
-        else if (afw_compile_token_is(close_parenthesis)) {
-            depth--;
-            if (depth == 0) {
-                afw_compile_get_token();
-                if (afw_compile_token_is(fat_arrow)) {
-                    saw_arrow = true;
-                }
-                break;
-            }
-        }
-        else if (depth == 1 && afw_compile_token_is(colon)) {
-            saw_colon = true;
-        }
+
+    /* () => T  or  (...rest: T) => T */
+    if (afw_compile_token_is(close_parenthesis) ||
+        afw_compile_token_is(ellipsis))
+    {
+        return impl_parse_function_type_from_open(parser, save_open);
+    }
+
+    if (afw_compile_token_is_unqualified_identifier()) {
+        name = parser->token->identifier_name;
         afw_compile_get_token();
+        /* Named / optional param, or a multi-parameter list. */
+        if (afw_compile_token_is(question_mark) ||
+            afw_compile_token_is(colon) ||
+            afw_compile_token_is(comma))
+        {
+            return impl_parse_function_type_from_open(parser, save_open);
+        }
+        if (afw_compile_token_is(close_parenthesis)) {
+            afw_compile_get_token();
+            if (afw_compile_token_is(fat_arrow)) {
+                return impl_parse_function_type_from_open(parser, save_open);
+            }
+            /* Parenthesized TypeName: (integer) */
+            afw_compile_reuse_token();
+            return impl_type_lookup_name(parser, name);
+        }
+        /* Identifier continues as a Type: (T | U), (T[]), … */
+        return impl_parse_paren_type_or_bare_function(parser, save_open);
     }
 
-    afw_compile_restore_cursor(save_token_offset);
-    afw_compile_get_token(); /* '(' */
-
-    if (saw_arrow || saw_colon) {
-        return afw_compile_parse_FunctionType(parser);
-    }
-
-    /* Parenthesized type: ( Type ) */
-    inner = afw_compile_parse_UnionType(parser);
-    afw_compile_get_token();
-    if (!afw_compile_token_is(close_parenthesis)) {
-        AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after type");
-    }
-    return inner;
+    /* '{', '[', '(' or other Type start. */
+    return impl_parse_paren_type_or_bare_function(parser, save_open);
 }
 
 
@@ -1538,10 +1568,12 @@ afw_compile_parse_UnionType(afw_compile_parser_t *parser)
     afw_value_type_t *node;
     afw_size_t i;
 
+    afw_compile_parse_nesting_enter(parser);
     type = afw_compile_parse_IntersectionType(parser);
     afw_compile_get_token();
     if (!afw_compile_token_is(vertical_bar)) {
         afw_compile_reuse_token();
+        afw_compile_parse_nesting_leave(parser);
         return type;
     }
 
@@ -1563,6 +1595,7 @@ afw_compile_parse_UnionType(afw_compile_parser_t *parser)
         list[i] = ((const afw_value_type_t **)members->elts)[i];
     }
     node->compound.members = list;
+    afw_compile_parse_nesting_leave(parser);
     return node;
 }
 

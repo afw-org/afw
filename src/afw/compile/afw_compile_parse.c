@@ -14,6 +14,27 @@
 #include "afw_internal.h"
 
 
+void
+afw_compile_parse_nesting_enter(afw_compile_parser_t *parser)
+{
+    AFW_XCTX_THROW_IF_TERMINATING(parser->xctx);
+    parser->parse_nesting++;
+    if (parser->parse_nesting > AFW_COMPILE_PARSE_NESTING_MAX) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "Type or pattern nesting is too deep");
+    }
+}
+
+
+void
+afw_compile_parse_nesting_leave(afw_compile_parser_t *parser)
+{
+    if (parser->parse_nesting > 0) {
+        parser->parse_nesting--;
+    }
+}
+
+
 
 /*ebnf>>>
  *

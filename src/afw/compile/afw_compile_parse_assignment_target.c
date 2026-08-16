@@ -307,6 +307,7 @@ afw_compile_parse_AssignmentBindingTarget(
 
     /* List Destructure */
     if (afw_compile_token_is(open_bracket)) {
+        afw_compile_parse_nesting_enter(parser);
         target = afw_pool_calloc_type(parser->p,
             afw_compile_assignment_target_t, parser->xctx);
         target->assignment_type = assignment_type;
@@ -317,10 +318,12 @@ afw_compile_parse_AssignmentBindingTarget(
                 parser, target->assignment_type);
         *value = afw_value_assignment_target_create(
             contextual, target, parser->p, parser->xctx);
+        afw_compile_parse_nesting_leave(parser);
     }
 
     /* Object Destructure */
     else if (afw_compile_token_is(open_brace)) {
+        afw_compile_parse_nesting_enter(parser);
         target = afw_pool_calloc_type(parser->p,
             afw_compile_assignment_target_t, parser->xctx);
         target->assignment_type = assignment_type;
@@ -331,6 +334,7 @@ afw_compile_parse_AssignmentBindingTarget(
                 parser, target->assignment_type);
         *value = afw_value_assignment_target_create(
             contextual, target, parser->p, parser->xctx);
+        afw_compile_parse_nesting_leave(parser);
     }
 
     /* Special case for handling call from afw_compile_parse_AssignmentTarget */

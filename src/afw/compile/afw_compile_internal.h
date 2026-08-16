@@ -279,6 +279,12 @@ struct afw_compile_internal_token_s {
 
 #define AFW_COMPILE_MAX_TOKENS 5
 
+/*
+ * Max recursive Type / destructure nesting. Stops C-stack overflow on
+ * ((((…)))) types and [[[…]]] patterns. Generous for real scripts.
+ */
+#define AFW_COMPILE_PARSE_NESTING_MAX 256
+
 
 /**
  * @brief Source span + owning compiled unit for a value.
@@ -443,6 +449,12 @@ struct afw_compile_internal_parser_s {
     afw_boolean_t suppress_array_literal_wrap;
     /* Nesting depth of parse_List (1 = outermost script array literal). */
     afw_size_t array_literal_depth;
+
+    /*
+     * Recursive Type / destructure nesting (UnionType and
+     * AssignmentBindingTarget list/object). See AFW_COMPILE_PARSE_NESTING_MAX.
+     */
+    afw_size_t parse_nesting;
 
     /*
      * Set by afw_compile_get_token_before_eol() and reset in
@@ -928,6 +940,13 @@ afw_compile_parse_set_error_fz(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *source_z,
     const afw_utf8_z_t *format_z, ...);
+
+/* Recursive Type / destructure nesting (AFW_COMPILE_PARSE_NESTING_MAX). */
+void
+afw_compile_parse_nesting_enter(afw_compile_parser_t *parser);
+
+void
+afw_compile_parse_nesting_leave(afw_compile_parser_t *parser);
 
 /* Symbol table helpers for the current block chain. */
 extern afw_value_block_symbol_t *
