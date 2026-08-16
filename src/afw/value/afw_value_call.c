@@ -346,7 +346,7 @@ impl_afw_value_decompile(
 /*
  * Expand call-site ...spreads (list_expression markers) into flat argv.
  */
-AFW_DEFINE(void)
+void
 afw_value_call_args_expand_spreads(
     afw_size_t argc_in,
     const afw_value_t * const *argv_in,

@@ -2012,30 +2012,6 @@ afw_value_decompile_call_args(
 
 
 /**
- * @brief Expand call-site spreads (...arr) into a flat argv.
- * @param argc_in User parameter count (not including argv[0]).
- * @param argv_in argv[0]=function, argv[1..argc_in]=args; may contain
- *        list_expression values marking spreads.
- * @param argc_out Expanded user parameter count.
- * @param argv_out Expanded argv (argv[0] same as argv_in[0]); may equal
- *        argv_in when there is no spread.
- * @param p Pool for expanded argv when needed.
- * @param xctx of caller.
- *
- * list_expression entries evaluate to an array once and are spliced as
- * separate arguments (issue #140). Non-spread args are left unevaluated.
- */
-AFW_DEFINE(void)
-afw_value_call_args_expand_spreads(
-    afw_size_t argc_in,
-    const afw_value_t * const *argv_in,
-    afw_size_t *argc_out,
-    const afw_value_t * const **argv_out,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-
-/**
  * @brief Write synthetic decompile name `#` + implementation_id.
  * @param instance value whose inf id is used.
  * @param writer
