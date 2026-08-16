@@ -188,6 +188,38 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 
 ---
 
+### Disclosure-sensitive C review (private board → public issue)
+
+| Field | Notes |
+|-------|--------|
+| Symptom | A review dumps many crash / use-after-free / overflow / “guardrail” items; someone wants them tracked; they must not all become public `afw` issues |
+| Layer | Process, not a runtime layer. Public `afw` = real issues and PRs. Who/status for the list stays **private** until a row starts and disclosure is OK |
+| Probe | None in-tree. Maintainers: private org Project **Board** view + its how-to issue. Catalog issue holds write-ups. Do not grep this playbook for finding ids — they do not belong here |
+| Entry | This playbook; pairing note in `ai-partner-lessons` / `AGENTS.md`. How-to and the living board live **outside** public `afw` |
+| Status | **Filled (2026-08)** — pattern only |
+
+**Repos (origins, not a finding list)**
+
+| Repo | Use for |
+|------|---------|
+| Public **`afw`** | The issue/PR when we start an item and are willing to talk in the open |
+| **`inter-afw`** | Whole-project private AFW (pre-public history; current home for this kind of board) |
+| **`inter-afw-private`** | Not-yet-public **extensions** (Oracle, Berkeley DB, …), not the whole-AFW audit board |
+
+**How we run it**
+
+- One private **Project** (Board view) is the living Who / Status. GitHub **Assignees** on draft cards (drafts *can* be assigned; a custom Who field will not show like avatars).
+- How-to is a **private issue** the Project short description and README point at. GitHub does **not** paint the Project description on the Board — look for that issue card (often **No status**) or open the issue URL.
+- Catalog issue = write-ups only. Do not edit Who/Status there.
+- Cards stay **drafts** so we do not mint one GitHub issue per finding. Public `afw` gets **one** issue (and later PR) when that card is `public`.
+- Do **not** file the whole list on public `afw`. Crash / use-after-free / overflow stay private (`hold` / `working`) until disclosure is decided. Language guardrails can go public earlier if we want.
+- New session: discuss first (“what do you think about \<id\>?”), not “implement this PoC.” Flip the **card**, not a frozen markdown table.
+- Later waves: “triage these new findings” → dedup, append draft cards, one comment on the how-to issue. Do not open a second meta-issue.
+
+**Wrong path:** paste the review table into a public issue; pick the extensions-private repo because of `-private` in the name; dual-maintain a markdown table and the Project.
+
+---
+
 ## Concept cards
 
 | Concept | One-liner | Deeper |
@@ -203,6 +235,7 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 | Philosophy / taste | Metadata truth, values+pools, small patterned pieces | philosophy pad |
 | Mantras | “Get it right at most once,” maps over tickets, record decided-not, process serves efficiency/quality, decide while in the work, tests as lasting pretend mode, plain language, … | mantras pad |
 | Knowledge atlas | Topic → sources → probe → gaps | [`knowledge-atlas.md`](knowledge-atlas.md) |
+| Private review board | Who/status for crash-shaped review lists stays private; public `afw` gets one issue when work starts | this playbook *Disclosure-sensitive C review* |
 
 ## Out of scope for this pad
 

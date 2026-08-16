@@ -73,7 +73,11 @@ In this repo, starting points for maps:
 
 Code and tests remain ground truth. When a note and the tree disagree, fix the note.
 
-### 6. Practical defaults that worked here
+### 6. Crash-shaped review lists stay private until a row starts
+
+A long C review (many crash / lifetime / “add a guardrail” notes) is **not** a public issue dump. Who and status live on a **private org Project** (Board view, real GitHub Assignees on draft cards). The how-to is a **private issue** the Project points at — GitHub will not show the Project description on the Board itself. Public `afw` gets the real issue and PR **when that card starts** and disclosure is OK, not the whole list. Whole-project private notes go in `inter-afw`, not the unpublished-extensions repo (`inter-afw-private`). Playbook: [`agent-support.md`](agent-support.md) (*Disclosure-sensitive C review*).
+
+### 7. Practical defaults that worked here
 
 Use any subset; none of this is mandatory for the team.
 

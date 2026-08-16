@@ -109,6 +109,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Probe** | Live system when debating models (`afwfcgi`, env registries) — not CI |
 | **Open** | More mantras as shared over time |
 | **Gap** | None critical; grow mantras pad, don’t invent phrases |
+| **Also** | Crash-shaped review lists: private Project + how-to issue; public `afw` one card at a time — [`agent-support.md`](agent-support.md) *Disclosure-sensitive C review* |
 | **Origin note** | Env/runtime “smaller chunks → live discovery → adapters click” discussion: genesis of this support-partner path (ah-ha → map) |
 
 ---

@@ -50,6 +50,8 @@ Prefer **git** for durable shared truth (designs, rules, handbook, tests, living
 
 Support without an issue: steps 1–4 are enough (symptom → discuss → live probe → optional map).
 
+A long crash / use-after-free / overflow review is **not** a public issue list. Keep who/status on a private org Project; open a public `afw` issue only when you start that item and disclosure is OK. See [`designs/agent-support.md`](designs/agent-support.md) (*Disclosure-sensitive C review*).
+
 Deeper optional read: [`designs/ai-partner-lessons.md`](designs/ai-partner-lessons.md). Support-shaped maps: [`designs/agent-support.md`](designs/agent-support.md), [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md).
 
 ## Main components
