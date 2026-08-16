@@ -139,3 +139,20 @@ return 0;
 
 const x: Array<string> = ["a"];
 return 0;
+
+//?
+//? test: type-parenthesized-and-bare-function
+//? description: (T), nested parens, (T|U), and (T)=>R parse
+//? expect: 0
+//? source: ...
+
+const a: (integer) = 1;
+const b: ((integer)) = 2;
+const c: (integer | string) = "x";
+const f: (integer) => integer = function (n: integer): integer {
+    return n;
+};
+assert(f(3) === 3);
+const o: ({ host: string }) = { host: "h" };
+assert(o.host === "h");
+return 0;

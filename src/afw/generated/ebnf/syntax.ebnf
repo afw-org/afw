@@ -430,8 +430,9 @@ FunctionTypeParameter ::=
     )
 
 /* From afw_compile_parse_expression.c                                        */
-/* Current token is '('. Speculative scan chooses FunctionType if '=>'        */
-/* follows the matching ')' or a ':' appears at depth 1 (named parameter).    */
+/* Current token is '('. A few tokens of lookahead choose FunctionType        */
+/* (named param, rest, empty '()', or '=>' after '(TypeName)'). Otherwise     */
+/* parse ( Type ) once; if '=>' follows, reparse as FunctionType.             */
 
 ParenthesizedOrFunctionType ::=
     FunctionType |

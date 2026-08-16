@@ -1590,6 +1590,7 @@ Parser allocates `compiled_value` and AST nodes into `parser->p`. Nested compile
 - Each xctx gets `xctx->evaluation_stack` from **`afw_stack_internal_set_evaluation_stack(xctx)`** during xctx create (early: uses APR on `xctx->p`, before AFW_TRY-heavy paths).
 - Sizes from env: **`evaluation_stack_initial_count`** (default **100**), **`evaluation_stack_maximum_count`** (default **500**) — `AFW_ENVIRONMENT_DEFAULT_EVALUATION_STACK_*` in `afw_common.h`.
 - Eval of calls, blocks, symbol refs, etc. **push/pop** entries (`afw_xctx_evaluation_stack_push_value` / `pop_value`, parameter numbers for backtrace).
+- **Parameter numbers are two slots**, not a tagged struct. The entry is a union (`value` / `parameter_number` / `entry_id`). Push writes the number, then a second slot whose `entry_id` is `afw_s_parameter_number`. Pop of a parameter number always takes both. The backtrace walker, top-down, sees the tag, steps back one, and uses that as the argument number. Do not flatten to one slot or treat those entries as Adaptive values. Header: `afw_xctx_evaluation_stack_entry_s` in `src/afw/xctx/afw_xctx.h`.
 - On extend past max: **`AFW_THROW_ERROR_Z(general, "Stack max_count exceeded", xctx)`** (`afw_stack_extend_impl`) — not silent growth forever.
 - Same max reused as a guard in places like decompile indent (`writer->indent > evaluation_stack_maximum_count`).
 - Error reporting walks the evaluation stack for Adaptive backtraces (`afw_error.c`). Note: some error paths have FIXMEs (e.g. rethrow vs stack restore).

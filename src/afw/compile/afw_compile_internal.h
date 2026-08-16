@@ -279,6 +279,12 @@ struct afw_compile_internal_token_s {
 
 #define AFW_COMPILE_MAX_TOKENS 5
 
+/*
+ * Max recursive Type / destructure nesting. Stops C-stack overflow on
+ * ((((…)))) types and [[[…]]] patterns. Generous for real scripts.
+ */
+#define AFW_COMPILE_PARSE_NESTING_MAX 256
+
 
 /**
  * @brief Source span + owning compiled unit for a value.
@@ -443,6 +449,12 @@ struct afw_compile_internal_parser_s {
     afw_boolean_t suppress_array_literal_wrap;
     /* Nesting depth of parse_List (1 = outermost script array literal). */
     afw_size_t array_literal_depth;
+
+    /*
+     * Recursive Type / destructure nesting (UnionType and
+     * AssignmentBindingTarget list/object). See AFW_COMPILE_PARSE_NESTING_MAX.
+     */
+    afw_size_t parse_nesting;
 
     /*
      * Set by afw_compile_get_token_before_eol() and reset in
@@ -716,6 +728,27 @@ do { \
         AFW__FILE_LINE__, format_z, __VA_ARGS__); \
     longjmp(((parser->xctx)->current_try->throw_jmp_buf), \
         (afw_error_code_syntax)); \
+} while (0)
+
+/*
+ * Recursive Type / destructure nesting. Assumes local `parser`.
+ * See AFW_COMPILE_PARSE_NESTING_MAX.
+ */
+#define afw_compile_parse_nesting_enter(parser) \
+do { \
+    AFW_XCTX_THROW_IF_TERMINATING((parser)->xctx); \
+    (parser)->parse_nesting++; \
+    if ((parser)->parse_nesting > AFW_COMPILE_PARSE_NESTING_MAX) { \
+        AFW_COMPILE_THROW_ERROR_Z( \
+            "Type or pattern nesting is too deep"); \
+    } \
+} while (0)
+
+#define afw_compile_parse_nesting_leave(parser) \
+do { \
+    if ((parser)->parse_nesting > 0) { \
+        (parser)->parse_nesting--; \
+    } \
 } while (0)
 
 /* Unexpected end of input. */

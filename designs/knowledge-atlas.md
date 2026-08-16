@@ -161,7 +161,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function` |
 | **Deep pads** | `compile-optimize-notes`, `pragma-hash-design`, `decompile-compiler-internal-inventory`, `compile-contextual-audit`, `adaptive-function-compile-typecheck`, `issue-28-type-syntax` |
 | **Probe** | `afw -s '…'` / tests under `src/afw/tests/`; regenerate EBNF via `--cdev`; check `generated/ebnf/syntax.ebnf` has `::=` for nonterminals |
-| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) — map: `issue-28-type-syntax.md` + `typescript-differences.md` + handbook Types (git archive; not session memory). Named-type resolve / self-ref check and parser nesting depth still unfinished (#28 leftover). |
+| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) — map: `issue-28-type-syntax.md` + `typescript-differences.md` + handbook Types (git archive; not session memory). Named-type resolve / self-ref check still unfinished (#28 leftover). Type and destructure parse nesting is limited (`AFW_COMPILE_PARSE_NESTING_MAX`). |
 | **Gap** | Support playbook for “parse error / decompile mismatch” still thin — use rules + decompile pads. `compiler_internal` `execute_*` must kind-check (`afw-function`). |
 
 ---
@@ -357,7 +357,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Pattern params / catch / call-site `...` | `compile-optimize-notes.md` (#140) | Landed; `execute_try` still trusts parser unless kind-checked (`afw-function`) |
 | Evaluate spread once | `afw-script-eval` + whats-new | **#181** closed — do not mix with `x->function` harvest |
 | Deprecated throw / declare_helpers | `whats-new.md` Must change | **#172** — `throw` needs `data`; no package `*_declare_helpers.h` |
-| #28 decided-not | `issue-28-type-syntax.md` + `typescript-differences.md` | No `Array<T>`, no index signatures / literal types / `readonly` / `enum` / `implements` in script types. Named-type resolve + parse depth still leftover. |
+| #28 decided-not | `issue-28-type-syntax.md` + `typescript-differences.md` | No `Array<T>`, no index signatures / literal types / `readonly` / `enum` / `implements` in script types. Named-type resolve still leftover. Type/pattern parse nesting is limited. |
 | App-shared Adaptive functions | **#170** (hold) | Not a leftover of #28 wrap-up; do not mix onto #2 |
 
 ---
@@ -402,6 +402,7 @@ Items worth future promote/fill — **not** blocking this atlas:
 | Parse/decompile mismatch playbook | agent-support | Low until pain |
 | Adapter write / conf service lifecycle card | agent-support (type vs instance + recipe) | Lower — type/instance card filled |
 | Attach mode orchestrated leaves | afwdev-advanced-test pad / SCHEMA | When building |
+| Admin HTTP tour orchestrated leaf (nav surfaces, not React) | `tests/advanced/` + SCHEMA | After parse-nesting lands — hermetic POST/GET the app uses; not nginx/JS |
 | More Mike mantras | mantras pad | When shared |
 | MEMORY env/runtime novel fully thinned | Keep pointer; git pads win | Done enough; 2026-08-16 harvest added picture + Fiddle/stack playbooks |
 | Per-extension support cards | agent-support or extensions | On demand |

@@ -38,6 +38,12 @@ Data-type hybrid `compileType` in `_AdaptiveDataTypeGenerate_` maps to these enu
 
 **Stale:** comments, `afw` CLI help text, and `usage.xml` may mention `parenthesized` / `parentheses`. It was never a top-level compile type (only an internal expression production) and is not accepted by the CLI parser. See `afw-command` for the actual `-s` mapping.
 
+## Nesting limits (compile vs evaluate)
+
+Type annotations and destructure patterns share **`AFW_COMPILE_PARSE_NESTING_MAX`** (256). Over that is a syntax error (`Type or pattern nesting is too deep`). Header macros `afw_compile_parse_nesting_enter` / `leave` (local `parser`). This is **compile** recursive descent, not the runtime **evaluation stack** (`evaluation_stack_maximum_count`, default 500; Adaptive backtrace). Different layers: `((((integer))))` never evaluates; `foo(foo(foo(…)))` never hits the type parser.
+
+Parenthesized vs function types parse `( Type )` once (a few tokens of lookahead). Do not restore a full scan-to-matching-`)` at every `(`.
+
 ## Residual check
 
 `none` | `to_newline` | `to_full` (default) | `to_close_brace`. Enforced in `afw_compile_lexical.c`.
