@@ -44,7 +44,7 @@ impl_assign_value(
     afw_xctx_t *xctx);
 
 
-static const afw_utf8_t *
+static inline const afw_utf8_t *
 impl_optional_loop_label(afw_function_execute_t *x, afw_size_t n)
 {
     const afw_value_t *v;
@@ -61,7 +61,7 @@ impl_optional_loop_label(afw_function_execute_t *x, afw_size_t n)
 }
 
 
-static afw_boolean_t
+static inline afw_boolean_t
 impl_loop_is_flow_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 {
     const afw_utf8_t *target;
@@ -79,7 +79,7 @@ impl_loop_is_flow_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 }
 
 
-static void
+static inline void
 impl_loop_consume_if_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 {
     if (impl_loop_is_flow_target(this_label, xctx)) {
@@ -89,7 +89,7 @@ impl_loop_consume_if_target(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 
 
 /* True if this loop should stop iterating (propagate or consume break). */
-static afw_boolean_t
+static inline afw_boolean_t
 impl_loop_should_exit(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 {
     if (afw_xctx_statement_flow_is_type(return, xctx) ||
@@ -113,7 +113,7 @@ impl_loop_should_exit(const afw_utf8_t *this_label, afw_xctx_t *xctx)
 
 
 /* Statement built-ins are void unless return/rethrow produced a value. */
-static const afw_value_t *
+static inline const afw_value_t *
 impl_statement_result_or_void(
     const afw_value_t *result,
     afw_xctx_t *xctx)
@@ -128,7 +128,7 @@ impl_statement_result_or_void(
 
 
 /* Formal expects array of values: leaf array, T[], or tuple (#153). */
-static afw_boolean_t
+static inline afw_boolean_t
 impl_script_formal_expects_array_sequence(const afw_value_type_t *type)
 {
     if (!type) {
@@ -291,7 +291,7 @@ impl_create_closure_if_needed(
  * element/property defaults must too, or `const [a = make()] = []` stores
  * the call node and make() runs on every use.
  */
-static const afw_value_t *
+static inline const afw_value_t *
 impl_evaluate_pattern_default(
     const afw_value_t *default_value,
     const afw_pool_t *p,

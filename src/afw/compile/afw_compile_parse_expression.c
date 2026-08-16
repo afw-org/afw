@@ -1335,7 +1335,7 @@ afw_compile_parse_FunctionType(afw_compile_parser_t *parser)
 
 
 /* Rewind to the '(' of this production and parse FunctionType. */
-static const afw_value_type_t *
+static inline const afw_value_type_t *
 impl_parse_function_type_from_open(
     afw_compile_parser_t *parser,
     afw_size_t save_open)
@@ -1351,7 +1351,7 @@ impl_parse_function_type_from_open(
  * FunctionType with one bare Type parameter — reparse as FunctionType.
  * One reparse per such '=>', not a full scan at every nested '('.
  */
-static const afw_value_type_t *
+static inline const afw_value_type_t *
 impl_parse_paren_type_or_bare_function(
     afw_compile_parser_t *parser,
     afw_size_t save_open)

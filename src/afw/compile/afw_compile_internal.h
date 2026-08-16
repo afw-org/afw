@@ -730,6 +730,27 @@ do { \
         (afw_error_code_syntax)); \
 } while (0)
 
+/*
+ * Recursive Type / destructure nesting. Assumes local `parser`.
+ * See AFW_COMPILE_PARSE_NESTING_MAX.
+ */
+#define afw_compile_parse_nesting_enter(parser) \
+do { \
+    AFW_XCTX_THROW_IF_TERMINATING((parser)->xctx); \
+    (parser)->parse_nesting++; \
+    if ((parser)->parse_nesting > AFW_COMPILE_PARSE_NESTING_MAX) { \
+        AFW_COMPILE_THROW_ERROR_Z( \
+            "Type or pattern nesting is too deep"); \
+    } \
+} while (0)
+
+#define afw_compile_parse_nesting_leave(parser) \
+do { \
+    if ((parser)->parse_nesting > 0) { \
+        (parser)->parse_nesting--; \
+    } \
+} while (0)
+
 /* Unexpected end of input. */
 #define AFW_COMPILE_EOF_IS_ERROR() \
 if (afw_compile_is_at_eof()) \
@@ -940,13 +961,6 @@ afw_compile_parse_set_error_fz(
     afw_compile_parser_t *parser,
     const afw_utf8_z_t *source_z,
     const afw_utf8_z_t *format_z, ...);
-
-/* Recursive Type / destructure nesting (AFW_COMPILE_PARSE_NESTING_MAX). */
-void
-afw_compile_parse_nesting_enter(afw_compile_parser_t *parser);
-
-void
-afw_compile_parse_nesting_leave(afw_compile_parser_t *parser);
 
 /* Symbol table helpers for the current block chain. */
 extern afw_value_block_symbol_t *
