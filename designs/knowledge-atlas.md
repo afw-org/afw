@@ -17,6 +17,50 @@
 
 ---
 
+## How the C surface fits (one picture)
+
+Everything we paired on in the `mgg-develop` wave hangs off this. Use it when a symptom could be “any layer.”
+
+```text
+generate/  →  generated/  →  env registries (afw_environment_t)
+                                   │
+                    runtime objects on adapterId=afw
+                                   │
+              ┌────────────────────┴────────────────────┐
+              │                                         │
+     GET /afw/<type>/[id]                      POST /afw
+     (adapter CRUD)                    (actions = any function)
+              │                                         │
+              └──────────── same process env ───────────┘
+                                   │
+         afw CLI          afwfcgi + nginx :8080         admin Fiddle
+         compile/eval     real request / services       AfwClient.perform
+                                   │
+              compile → value graph → evaluate → execute_*
+                                   │
+         objects / arrays (faces)   pools / xctx   adapters / streams
+```
+
+**Wrong paths that cost us sessions:** treat `EnvironmentRegistry/current` as the only catalog (functions dominate; prefer typed retrieve). Forget `POST /afw` is a different door from REST GET. Mix **create** (compile, `argv[0]` is the callee expression) with **evaluate** (`x->function` is harvest). Restart tests after `--cdev` without restarting a long-lived `afwfcgi` (it still maps deleted `libafw`).
+
+**Campaign index** (what we actually paired on — pads, not ticket diaries):
+
+| Area | Pointers |
+|------|----------|
+| Env / runtime catalog / accessors | #149 pads; atlas §5; **#2 leftover:** live metrics after unlock |
+| Hosts / stop | #158; atlas §6 |
+| Memory / faces / `create_array` | #2 pad; #17 faces; atlas §3 |
+| Types | #28 pad + `typescript-differences.md`; leftovers: named-type resolve, parse depth |
+| Script language | #62 pad; #33 errors; #172 must-change |
+| Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
+| Arrays / converts / UTF-8 | #39, converts pad, #153 |
+| Streams / VFS / retrieve | stream + vfs rules; #127; #49 |
+| afwdev / tests | recipe + tests-extra SCHEMA; #157 |
+| Crypto | #74 pad |
+| Admin / Fiddle | atlas §16 (contract only) |
+
+---
+
 ## Layer cheat sheet (where truth lives)
 
 | Layer | Role | Do not use it for |
@@ -51,6 +95,7 @@
 | [13. Docs surfaces](#13-docs-surfaces) | Split known | AGENTS docs + interfaces-doxygen; overview points at maps |
 | [14. Security / crypto](#14-security--crypto) | Design-heavy | secrets pad |
 | [15. Language surface residuals](#15-language-surface-residuals-pointers-only) | Mixed closed/open | issue pads |
+| [16. Admin app, Fiddle, actions](#16-admin-app-fiddle-actions) | Thin; core contract known | this § + env playbook |
 
 ---
 
@@ -102,7 +147,7 @@
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory`, `afw-script-eval` |
 | **Deep pad** | [`memory-management.md`](memory-management.md) (**large** — do not rewrite this pass); philosophy pad core model |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2** — phased partner workflow in memory pad; parent of closed #149 |
+| **Open** | Umbrella **#2** — phased partner workflow in memory pad; parent of closed #149. Next on-ramp: array managed/unmanaged pools; `create_array` still ignores `options` (see memory pad 2026-08-16). |
 | **Gap** | Thin “support one-pager” for leaks vs the novel-length pad — optional later; playbook points at pad |
 
 ---
@@ -124,12 +169,12 @@
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | Process-wide registries; everything registered discoverable on `adapterId=afw`; runtime objects = immutable views; #149 accessor reliability shipped |
+| **Settled map** | Process-wide registries; everything registered discoverable on `adapterId=afw`; runtime objects = immutable views; #149 accessor reliability shipped. Two doors, same env: **GET** adapter CRUD vs **POST `/afw`** actions (any function). Map foreach ≠ `runtime_custom` (services show 0 on the shell, retrieve still lists them). Adapter **type** (factory) ≠ adapter **instance**. Conf `contextType` points at `_AdaptiveContextType_` (which qualifiers exist for that script/template). |
 | **Day rules** | `afw-environment`, `afw-environment-variables`, `afw-core-services` (runtime section) |
 | **Deep pads** | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) (architecture), [`runtime-value-accessors.md`](runtime-value-accessors.md) (catalog snapshot), [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes) |
-| **Probe** | `retrieve_objects` / GET `/afw/_Adaptive…_/`; `/afw/_AdaptiveRuntimeValueAccessor_/`; **do not** stop permanent `adapter-afw` / `adapter-conf`; prefer typed retrieve over full `current` materialize |
+| **Probe** | Typed `retrieve_objects` / GET `/afw/_Adaptive…_/`; `/afw/_AdaptiveRuntimeValueAccessor_/`; **do not** stop permanent `adapter-afw` / `adapter-conf`; prefer typed retrieve over full `current` materialize |
 | **Open** | Residuals under **#2**; metrics/properties live pointer after unlock (lock-safe load ≠ lifetime); more adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built |
-| **Gap** | MEMORY held a long durable env section — **promoted into playbook** this pass; keep architecture pad as deep map, not MEMORY novel |
+| **Gap** | Live-stack / action probes now in `agent-support`. Architecture pad remains the deep map. |
 
 **Registry discovery (condensed)**
 
@@ -151,9 +196,9 @@
 | **Settled map** | #158 closed (PR **#165**): host-specific wake + core `terminating` |
 | **Day rules** | `afw-server`, `afw-server-fcgi`, `afw-command` |
 | **Deep pad** | None required; user notes in `whats-new.md` |
-| **Probe** | `src/afw/tests/advanced/afwfcgi_signal_shutdown/`; `afwfcgi --help` |
+| **Probe** | `src/afw/tests/advanced/afwfcgi_signal_shutdown/`; `afwfcgi --help`; after `--cdev`/`--install`, restart long-lived `afwfcgi` (stale process maps deleted `libafw` — CLI `afw` does not) |
 | **Open** | Drain timeout, SIGHUP, Windows service, general signal framework, every extension retrieve loop, `--local` read unblock |
-| **Gap** | MEMORY #158 section → **promoted into playbook** this pass |
+| **Gap** | Stale-`afwfcgi` and GDB `-n 1` notes now in `agent-support` live-stack playbook |
 
 **Host contracts**
 
@@ -308,6 +353,28 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Pragma `#` | `pragma-hash-design.md` | Pattern B `#compile` (landed) |
 | Error codes / HTTP / `e.id` | `issue-33-error-codes.md` | **#33** closed (PR **#173**) — map in `afw_common.h`; script `throw` may set `id`; prefer `e.id` |
 | Script language syntax | `issue-62-script-language.md` | **#62** — multi `let`/`const`, `for` init, assignment chain, running result, loop labels landed |
+| Pattern params / catch / call-site `...` | `compile-optimize-notes.md` (#140) | Landed; `execute_try` still trusts parser unless kind-checked (`afw-function`) |
+| Evaluate spread once | `afw-script-eval` + whats-new | **#181** closed — do not mix with `x->function` harvest |
+| Deprecated throw / declare_helpers | `whats-new.md` Must change | **#172** — `throw` needs `data`; no package `*_declare_helpers.h` |
+| #28 decided-not | `issue-28-type-syntax.md` + `typescript-differences.md` | No `Array<T>`, no index signatures / literal types / `readonly` / `enum` / `implements` in script types. Named-type resolve + parse depth still leftover. |
+| App-shared Adaptive functions | **#170** (hold) | Not a leftover of #28 wrap-up; do not mix onto #2 |
+
+---
+
+## 16. Admin app, Fiddle, actions
+
+Jeremy’s stack. Core work does **not** implement JS unless asked; the **contract** is C / request / env.
+
+| Field | Content |
+|-------|---------|
+| **Settled map** | Admin React app `src/afw_app` + JS client `src/afw_client` talk to the **same** env as `afw` / tests. Fiddle is `AfwClient.perform(payload)` → **`POST /afw`** JSON (`function` + params, or `actions[]`). Scripts: `function: "eval<script>"` (or `eval_script`), `source: <script>`. REST **GET** `/afw/<type>/[id]` is adapter CRUD, not the Fiddle door. Optional stream `Accept: application/x-afw`. |
+| **Day rules** | `afw-server`, `afw-server-fcgi`, `afw-environment`; JS work only when explicitly requested |
+| **Deep pad** | None required; env architecture pad for registries; `issue-18` for Fiddle listing |
+| **Probe** | Dev container: nginx `:8080` → `/var/run/afw.sock` → `afwfcgi`. Curl POST `/afw` with `{"function":"get_object",…}`. Python `Session` + `Request().add_action(…).perform()`. After rebuild, restart `afwfcgi` or the app still talks to a deleted binary. |
+| **Open** | Admin JS leftovers (#53 mocks, #101 handbook eval names) — not a C feature branch |
+| **Gap** | Playbook in `agent-support` (actions / Fiddle / stale process). Do not grow an app design pad unless Jeremy asks. |
+
+**AFWDev conf** (dev container) already loads extensions such as `afw_crypto` at boot. Measuring `extension_load` deltas needs a **minimal** conf or you will see “already loaded.”
 
 ---
 
@@ -332,10 +399,10 @@ Items worth future promote/fill — **not** blocking this atlas:
 |-----|----------------|----------|
 | Leak / long-run “first 15 minutes” support card | agent-support or thin pointer into memory pad | Medium (#2 active) |
 | Parse/decompile mismatch playbook | agent-support | Low until pain |
-| Adapter write / conf service lifecycle card | agent-support (partially in recipe) | Medium |
+| Adapter write / conf service lifecycle card | agent-support (type vs instance + recipe) | Lower — type/instance card filled |
 | Attach mode orchestrated leaves | afwdev-advanced-test pad / SCHEMA | When building |
 | More Mike mantras | mantras pad | When shared |
-| MEMORY env/runtime novel fully thinned | Keep pointer; git pads win | Done enough this pass |
+| MEMORY env/runtime novel fully thinned | Keep pointer; git pads win | Done enough; 2026-08-16 harvest added picture + Fiddle/stack playbooks |
 | Per-extension support cards | agent-support or extensions | On demand |
 | beta-backlog refresh | root hubs | Campaign hygiene, not atlas |
 
@@ -364,4 +431,5 @@ After a deep issue session:
 3. Fill or add an **agent-support** playbook only when symptoms repeat.  
 4. Do **not** grow this file into a dump of every PR.
 
-**First pass date:** 2026-08-09 · branch work on `feature-afw-support-agent`.
+**First pass date:** 2026-08-09 · branch work on `feature-afw-support-agent`.  
+**Harvest pass:** 2026-08-16 — session interval notes (`/root/.grok/memory/…/sessions/`) walked into this atlas + `agent-support` (picture, live stack, actions/Fiddle, language leftover rows). Session files stay local; git is what other partners see.

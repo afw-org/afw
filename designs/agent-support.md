@@ -133,12 +133,70 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 ---
 
+### Live stack (`afwfcgi` + nginx) and stale binaries
+
+| Field | Notes |
+|-------|--------|
+| Symptom | `--env-mode afwfcgi` fails after a green CLI run; app/Fiddle “old” after `--cdev`; map/filter or new syntax missing only on HTTP |
+| Layer | Long-lived `afwfcgi` still mapping **deleted** `/usr/local/lib/afw/libafw.so` / `afwfcgi (deleted)`. CLI `afw` always loads the current install. |
+| Probe | `/proc/<pid>/exe` and mapped libs must not say `(deleted)`. Restart after every install. |
+| Entry | atlas §6 and §11; `.devcontainer/afw/nginx.conf`; `/afw/afw.conf` |
+| Status | **Filled** (8 Aug live tour) |
+
+**Dev container (typical):** nginx `:8080` → Unix `/var/run/afw.sock` → `afwfcgi -f /afw/afw.conf`. Tests in `--env-mode afwfcgi` use `Session("http://localhost:8080/afw")` (`.as` only; skips custom local `afw.conf`).
+
+```bash
+# after ./afwdev build --cdev / --install
+pkill -x afwfcgi
+# leave nginx; it proxies the socket
+afwfcgi -f /afw/afw.conf -p /var/run/afw.sock -n 25 &
+```
+
+**GDB:** `afwfcgi -n 1` (one worker). Break `afw_action_perform` or an accessor; drive with curl `POST /afw` from another shell. Binary has debug info.
+
+**Never:** stop permanent services `adapter-afw` / `adapter-conf` as a “catalog” experiment.
+
+---
+
+### Actions, Fiddle, and the admin app
+
+| Field | Notes |
+|-------|--------|
+| Symptom | “How does Fiddle run a script?”; GET vs POST confusion; extension_load “does nothing” under AFWDev |
+| Layer | Same env. **GET** `/afw/<type>/[id]` = adapter CRUD. **POST** `/afw` = `afw_action_perform` (any Adaptive function). |
+| Probe | `{"function":"get_object","adapterId":"afw","objectType":"_AdaptiveFunction_","objectId":"map"}`. Scripts: `function` `eval<script>` or `eval_script`, `source` the text. Batch: `{"actions":[…]}`. |
+| Entry | atlas §16; `afw_action.c` / `afw_request_handler_adapter.c`; app `AfwClient.perform` |
+| Status | **Filled** (8 Aug live tour) |
+
+Clients: admin Fiddle (`src/afw_app` + `src/afw_client`), Python `Session` / `Request().add_action().perform()`, curl. Optional `Accept: application/x-afw` for progressive frames.
+
+AFWDev application conf already loads **`afw_crypto`** (and others). `extension_load` returns false if already loaded — use a **minimal** conf when measuring registry deltas.
+
+Do **not** implement admin JS unless asked. The support model is the C/request contract.
+
+---
+
+### Adapter types vs instances
+
+| Field | Notes |
+|-------|--------|
+| Symptom | “Why is there no file adapter?” when `_AdaptiveAdapterType_` lists `file` |
+| Layer | **Type** = factory in the env (`_AdaptiveAdapterType_`). **Instance** = started service (`_AdaptiveAdapter_`, `adapter-…`). Conf / `service_start` creates instances. |
+| Probe | Retrieve both object types with `maxObjects=0`. Minimal conf often has only instance `afw`. |
+| Entry | atlas §5 and §7; `afw-core-services`; `service_start` / `service_stop` |
+| Status | **Filled** |
+
+---
+
 ## Concept cards
 
 | Concept | One-liner | Deeper |
 |---------|-----------|--------|
 | Host contracts | `afwfcgi` wakes workers + unlinks Unix path; `afw` sets `terminating` only | atlas §6; this playbook |
 | Env discovery | Registered capabilities readable as runtime objects on `adapterId=afw` | atlas §5; runtime-objects pad |
+| Two doors | GET `/afw/…` CRUD vs POST `/afw` actions (Fiddle) | atlas §16; this playbook |
+| Type vs instance | Factory registered ≠ adapter started | this playbook |
+| Stale afwfcgi | Long-lived process after install maps deleted libs | this playbook |
 | Values first | Script/eval/memory hang on `afw_value` policy, then pools | value-memory; #2 |
 | Gate vs lab | `test -j` is correctness; blast/lab is separate | recipe pad |
 | Beta | Quality campaign, not partnership end date | `AGENTS.md` mission |

@@ -19,7 +19,7 @@ Per-**issue** or per-**theme** working notes: why, options, footguns, parked ide
 | File | Theme |
 |------|--------|
 | [`ai-partner-lessons.md`](ai-partner-lessons.md) | **Optional** team lessons — pairing with an AI partner on issues/support (follow or not) |
-| [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps (first-pass harvest); start here for “where is X?” |
+| [`knowledge-atlas.md`](knowledge-atlas.md) | **Topic atlas** — area → rules/pads/probes/gaps; **how the C surface fits**; admin/Fiddle §16. Start here for “where is X?” |
 | [`afw-philosophy-and-core-model.md`](afw-philosophy-and-core-model.md) | Maintainer framing — design philosophy, core value/pool/compile model, product taste; **not** always-on rules |
 | [`mantras-and-working-style.md`](mantras-and-working-style.md) | Mike mantras + partnership habits (subset; grow when shared); philosophy/taste questions — **not** always-on |
 | [`memory-management.md`](memory-management.md) | Umbrella **#2** — pools, value lifetimes, escape |

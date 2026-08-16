@@ -61,7 +61,7 @@ Deeper optional read: [`designs/ai-partner-lessons.md`](designs/ai-partner-lesso
 | `src/afw_command` | `afw` CLI — compile/eval Adaptive syntaxes, conf/extensions, `--local`, optional interactive libedit ([`.cursor/rules/afw-command.mdc`](.cursor/rules/afw-command.mdc)) |
 | `src/afw_*` | Loadable extension DSOs — same env registries as core ([`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc): curl, ldap, lmdb, ubjson, vfs, yaml) |
 | `src/afw_server_fcgi` | `afwfcgi` FastCGI server — HTTP transport over libafw request handlers ([`.cursor/rules/afw-server-fcgi.mdc`](.cursor/rules/afw-server-fcgi.mdc)) |
-| `src/afw_app` | Admin React app (defer unless asked) |
+| `src/afw_app` | Admin React app + Fiddle (`src/afw_client`) — **POST `/afw` actions**, same env as `afw`/`afwfcgi`. How it talks to core: [`designs/knowledge-atlas.md`](designs/knowledge-atlas.md) §16. Implement JS only when asked. |
 
 This repository is **AFW base** (core + shipped commands/extensions). **`src/afw/`** is core; other `src/<srcdir>/` trees should stay **as self-contained as practical** (movable to another package repo) while using **public** core APIs freely. Core may mention base extensions lightly; detailed extension docs live in that srcdir. See [`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc).
 
