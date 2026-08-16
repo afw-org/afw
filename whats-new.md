@@ -1088,6 +1088,8 @@ When checking is on, assignment and script function parameters are checked for l
 
 Handbook: Language Reference **Types** (flags and `#compile` options), **Language Features** Pragma (short `#compile` example), **Lexical** reserved names. Tests: `type_syntax.as`, `type_check_flags.as`, `type_check.as`, `type_check_multi_unit.as`.
 
+Pathological nesting in a type annotation or destructure pattern (`((((… integer …))))`, `[[[[… x …]]]]`) is a **syntax error** (`Type or pattern nesting is too deep`) rather than a hang or crash. Ordinary scripts are nowhere near the limit.
+
 [↑ Highlights](#highlights)
 
 ---
@@ -1400,6 +1402,10 @@ If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-ba
 ### Default values from `property_get` / `variable_get`
 
 Mutable defaults for `property_get` / `variable_get` (issue **[#110](https://github.com/afw-org/afw/issues/110)**) are isolated so later mutations do not poison other calls (important in long-running hosts and model `on*` handlers). On this branch, object/array defaults use a **memory face** (`afw_value_isolate_mutable_default`) rather than a full structural clone; scalars still clone. Regression tests in `property_get.as` / `variable_get.as` lock the isolation behavior.
+
+### Type and pattern parse nesting
+
+Pathological nesting in a type annotation or destructure pattern is a **syntax error** (`Type or pattern nesting is too deep`), not a hang or crash. See [Script types](#adaptive-script-types-issue-28).
 
 ### Tests under `src/*/tests`
 

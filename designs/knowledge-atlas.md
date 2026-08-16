@@ -402,6 +402,7 @@ Items worth future promote/fill — **not** blocking this atlas:
 | Parse/decompile mismatch playbook | agent-support | Low until pain |
 | Adapter write / conf service lifecycle card | agent-support (type vs instance + recipe) | Lower — type/instance card filled |
 | Attach mode orchestrated leaves | afwdev-advanced-test pad / SCHEMA | When building |
+| Admin HTTP tour orchestrated leaf (nav surfaces, not React) | `tests/advanced/` + SCHEMA | After parse-nesting lands — hermetic POST/GET the app uses; not nginx/JS |
 | More Mike mantras | mantras pad | When shared |
 | MEMORY env/runtime novel fully thinned | Keep pointer; git pads win | Done enough; 2026-08-16 harvest added picture + Fiddle/stack playbooks |
 | Per-extension support cards | agent-support or extensions | On demand |
