@@ -866,6 +866,19 @@ typedef struct {
     afw_value_meta_special_set_t set;
 } afw_value_meta_name_handler_t;
 
+/*
+ * Runtime helper for the three call evaluate paths. Not public: only
+ * generic call, built-in, and script-function evaluate expand spreads.
+ */
+extern void
+afw_value_call_args_expand_spreads(
+    afw_size_t argc_in,
+    const afw_value_t * const *argv_in,
+    afw_size_t *argc_out,
+    const afw_value_t * const **argv_out,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
 extern const afw_value_t *
 afw_value_call_built_in_function(
     const afw_compile_value_contextual_t *contextual,
