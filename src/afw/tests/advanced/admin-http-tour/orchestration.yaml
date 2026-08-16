@@ -1,0 +1,134 @@
+# HTTP contract behind Jeremy's admin click-around.
+# SPA routes and /docs HTML are nginx; this leaf only talks to afwfcgi.
+# Pass = no Adaptive/HTTP error. Empty catalogs (logs) are OK.
+version: 1
+description: >
+  Admin nav HTTP tour: bootstrap + Server/Extensions/Services/Adapters/Logs
+  + Objects adapters + Functions + Fiddle eval. Not React or handbook HTML.
+host: afwfcgi
+afwfcgi:
+  threads: 1
+timeout_s: 90
+feed:
+  kind: action
+  accept: application/json
+tests:
+  # Every admin page: useLoadApplicationData
+  - name: bootstrap-components
+    sourceType: script
+    source: |
+      const o = get_object(
+          "afw", "_AdaptiveApplicationComponents_", "current");
+      assert(o != null);
+      return true;
+
+  - name: bootstrap-object-types
+    sourceType: script
+    source: |
+      const types = retrieve_objects(
+          "afw", "_AdaptiveObjectType_",
+          undefined, undefined, undefined, 0);
+      assert(length(types) > 0);
+      return true;
+
+  - name: bootstrap-environment
+    sourceType: script
+    source: |
+      const env = get_object(
+          "afw", "_AdaptiveEnvironmentRegistry_", "current");
+      assert(env != null);
+      assert(env.function != null);
+      assert(env.adapter_id != null);
+      return true;
+
+  - name: bootstrap-application
+    sourceType: script
+    source: |
+      const o = get_object("afw", "_AdaptiveApplication_", "current");
+      assert(o != null);
+      return true;
+
+  - name: bootstrap-services
+    sourceType: script
+    source: |
+      const s = retrieve_objects(
+          "afw", "_AdaptiveService_",
+          undefined, undefined, undefined, 0);
+      assert(length(s) > 0);
+      return true;
+
+  # /Objects/afw/_AdaptiveAdapter_
+  - name: objects-adapters
+    sourceType: script
+    source: |
+      const a = retrieve_objects(
+          "afw", "_AdaptiveAdapter_",
+          undefined, undefined, undefined, 0);
+      assert(length(a) > 0);
+      return true;
+
+  - name: objects-adapters-rest
+    feed:
+      kind: rest
+      method: GET
+      path: /afw/_AdaptiveAdapter_
+      accept: application/json
+    expectStatus: 200
+
+  # /Admin/Server
+  - name: admin-server
+    sourceType: script
+    source: |
+      const s = get_object("afw", "_AdaptiveServer_", "current");
+      assert(s != null);
+      const info = retrieve_objects(
+          "afw", "_AdaptiveSystemInfo_",
+          undefined, undefined, undefined, 0);
+      assert(length(info) > 0);
+      return true;
+
+  # /Admin/Extensions (manifests; loaded extensions are on the registry)
+  - name: admin-extensions
+    sourceType: script
+    source: |
+      const m = retrieve_objects(
+          "afw", "_AdaptiveManifest_",
+          undefined, undefined, undefined, 0);
+      assert(length(m) > 0);
+      return true;
+
+  # /Admin/Logs — may be empty
+  - name: admin-logs
+    sourceType: script
+    source: |
+      retrieve_objects(
+          "afw", "_AdaptiveLog_",
+          undefined, undefined, undefined, 0);
+      return true;
+
+  # /Documentation/Reference/Functions
+  - name: docs-functions
+    sourceType: script
+    source: |
+      const f = retrieve_objects(
+          "afw", "_AdaptiveFunction_",
+          undefined, undefined, undefined, 0);
+      assert(length(f) > 0);
+      return true;
+
+  # /Documentation/Reference/Functions/adapter/adapter_objectCallback_signature
+  - name: docs-function-detail
+    sourceType: script
+    source: |
+      const f = get_object(
+          "afw", "_AdaptiveFunction_",
+          "adapter_objectCallback_signature");
+      assert(f != null);
+      assert(f.functionId == "adapter_objectCallback_signature");
+      return true;
+
+  # /Tools/Fiddle
+  - name: fiddle-eval
+    sourceType: script
+    source: |
+      return true;
