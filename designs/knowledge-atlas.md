@@ -115,8 +115,8 @@
 | **Day rules** | `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function` |
 | **Deep pads** | `compile-optimize-notes`, `pragma-hash-design`, `decompile-compiler-internal-inventory`, `compile-contextual-audit`, `adaptive-function-compile-typecheck`, `issue-28-type-syntax` |
 | **Probe** | `afw -s '…'` / tests under `src/afw/tests/`; regenerate EBNF via `--cdev`; check `generated/ebnf/syntax.ebnf` has `::=` for nonterminals |
-| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) — map: `issue-28-type-syntax.md` + `typescript-differences.md` + handbook Types (git archive; not session memory) |
-| **Gap** | Support playbook for “parse error / decompile mismatch” still thin — use rules + decompile pads |
+| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) — map: `issue-28-type-syntax.md` + `typescript-differences.md` + handbook Types (git archive; not session memory). Named-type resolve / self-ref check and parser nesting depth still unfinished (#28 leftover). |
+| **Gap** | Support playbook for “parse error / decompile mismatch” still thin — use rules + decompile pads. `compiler_internal` `execute_*` must kind-check (`afw-function`). |
 
 ---
 
@@ -128,7 +128,7 @@
 | **Day rules** | `afw-environment`, `afw-environment-variables`, `afw-core-services` (runtime section) |
 | **Deep pads** | [`runtime-objects-and-environment.md`](runtime-objects-and-environment.md) (architecture), [`runtime-value-accessors.md`](runtime-value-accessors.md) (catalog snapshot), [`runtime-catalog-lifetime.md`](runtime-catalog-lifetime.md) (discovery notes) |
 | **Probe** | `retrieve_objects` / GET `/afw/_Adaptive…_/`; `/afw/_AdaptiveRuntimeValueAccessor_/`; **do not** stop permanent `adapter-afw` / `adapter-conf`; prefer typed retrieve over full `current` materialize |
-| **Open** | Residuals under **#2**; more adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built |
+| **Open** | Residuals under **#2**; metrics/properties live pointer after unlock (lock-safe load ≠ lifetime); more adapters may need terminating checks; attach lifecycle for orchestrated leaves not fully built |
 | **Gap** | MEMORY held a long durable env section — **promoted into playbook** this pass; keep architecture pad as deep map, not MEMORY novel |
 
 **Registry discovery (condensed)**

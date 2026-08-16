@@ -500,6 +500,7 @@ High signal for #149 (adjust as inventory proceeds):
 4. ~~Phase 1 PR to `mgg-develop`~~ — [PR #160](https://github.com/afw-org/afw/pull/160) merged 2026-08-09 (`32ff0706`).  
 5. ~~EnvironmentRegistry/`current` + rich objectOptions “must have a pool” (§14.7).~~ **fixed** PR **#161**.  
 6. ~~metrics / properties: document-R + lock-safe pointer load~~ — `adapter_metrics` loads under lock; new `adapter_properties`; OT prose. **No** deep metrics snapshot (product accepts live-while-active).  
+   **Residual:** the lock only makes the **pointer load** safe. After `AFW_LOCK_END` the accessor does not hold an adapter/session reference. A concurrent stop can still destroy the pool behind the live object. `returnsLiveReference` plus “only valid while you hold a session” is a contract the API does not enforce. Same shape on `adapter_properties`. Follow-on under **#2**: copy under lock, or hold `afw_adapter_get_reference` for the value’s life — discuss first.  
 7. **Out of #149 / under #2 if needed:** services/logs custom paths; deeper escape/leak work.
 
 When decisions stabilize, promote invariants into `.cursor/rules` or developer docs and thin the pads.

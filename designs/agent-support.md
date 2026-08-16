@@ -72,7 +72,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 **maxObjects:** default ~100 may error; **0 = unlimited**.
 
-**Adapter catalog (shipped pattern):** `referenceCount` lock+snapshot; `stopping_*` lock+copy; `metrics`/`properties` pointer under lock, **live while active** — do not cache across stop without a session ref. Views + `metaFull`: clone permanent OT propertyTypes onto view pool.
+**Adapter catalog (shipped pattern):** `referenceCount` lock+snapshot; `stopping_*` lock+copy; `metrics`/`properties` pointer under lock, **live while active** — do not cache across stop without a session ref. The lock is only the load: after unlock nothing owns that object unless the caller already holds a session. Views + `metaFull`: clone permanent OT propertyTypes onto view pool.
 
 **HTTP:** GET `/afw/...` and POST `/afw` actions (`function` / `actions[]`) — same env.
 
@@ -94,6 +94,16 @@ Shape: **symptom → layer → probe → code / doc entry**.
 2. Is the value **permanent / managed / managed_slice / unmanaged**?  
 3. Did evaluation allocate into **`scope->p`** (or the intended pool)?  
 4. Did a **closure** keep a scope alive (expected RC path)?
+
+**Shapes that keep coming back (learn these, not ticket lists)**
+
+- **Create vs evaluate** — do not mix (`afw-script-eval`). `argv[0]` at create is the callee expression; `x->function` is harvest at evaluate.  
+- **New get, old delete** — look-through / face / view added on read; mutate/delete/count still the old impl. Faces: delete needs a tombstone (`issue-17`).  
+- **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs live metrics.  
+- **Two impls of one interface** — memory array index uses `>= count`; C-array view used `> count`.  
+- **Script integer → malloc / spin / C stack** — APR pools often abort on huge alloc; empty match + “replace all” never advances; recursive-descent parse has no depth guard.  
+- **Fail-open “we don’t know yet”** — unresolved named types treated as compatible (#28 leftover).  
+- **Evaluate twice, first result sizes a buffer** — call-site `...expr` (#181, fixed). Same class: Pattern rest keys.
 
 **Wrong path:** deep-cloning whole adapters/registries to “fix” one bad lifetime; treating short-test green as long-run proof.
 

@@ -32,6 +32,7 @@ Callers often expect an object value to be **theirs to mutate**. AFW often hands
 ### 1. Memory faces
 
 - **Objects:** `afw_object_create_wrapper_*` — local props first, look-through base, sets stay on face.  
+- **Delete on a face:** `set_property(name, NULL)` with **no local entry** must create a NULL local entry (tombstone). Otherwise look-through still sees the base. Getter/`has` already treat a NULL local as deleted (`afw_object_memory.c`). `property_delete` calls `has_property` first — without a tombstone it can return true and the next get still sees the base.  
 - **Arrays:** `afw_array_create_wrapper_*` — local ring; nested structured values re-faced on materialize / promote.  
 - **Nested hard edge:** always put a **new** face over the nested **instance as given** (do **not** peel to ultimate base — preserves face-ring content, e.g. model `onGetProperty` `let l=[]; add_entries…`). Typed `map` uses `get_next_internal`, which promotes like `get_next_value`.
 
@@ -79,7 +80,7 @@ Temporary “arrays still clone” was removed when object clone-on-bind dropped
 
 | Suite | Covers |
 |-------|--------|
-| `object_literal_wrapper.as` / `array_literal_wrapper.as` | Literals, multi-call, nested hard edge, property_get/variable_get defaults + map |
+| `object_literal_wrapper.as` / `array_literal_wrapper.as` | Literals, multi-call, nested hard edge, property_get/variable_get defaults + map. **Not** delete / tombstone (residual). |
 | `issue17_faces_regression.as` | Cross-path mix |
 | File adapter / journal tests | get/retrieve faces; journal consumer peers seeded on journal adapter |
 | `src/afw_yaml/tests/` | allow output + to_object |

@@ -54,6 +54,8 @@ Scalars and immutable permanents are usually fine without clone; prefer clone wh
 
 Parser statement/expression nodes reference these `function_definition_*` symbols — they must be registered before script compile (bootstrap order).
 
+Statement/expression runtime for those symbols lives in `function/afw_function_compiler_internal.c` (category `compiler_internal`). The parser is careful; **`execute_*` must still kind-check** before casting `argv[n]` to a block, assignment target, or symbol. These ids stay in the function table for decompile/recompile and debugging — a hand-built call can pass arguments the compiler would never emit. Parser invariant ≠ execute invariant.
+
 ## After metadata change
 
 ```bash

@@ -87,7 +87,7 @@ editing the tables below. Property meaning:
 - **Brief:** Return live adapter metrics object
 - **copiesUnderLock:** `false`
 - **returnsLiveReference:** `true`
-- **Description:** internal is a pointer to const afw_adapter_t *. Returns an object value wrapping adapter->impl->metrics_object without copying. The object is live environment state (returnsLiveReference); not a snapshot under lock.
+- **Description:** internal is a pointer to const afw_adapter_t * on an anchor. Under `adapter_id_anchor_lock`, loads `metrics_object` and wraps it after the lock (no deep copy). Live environment state (`returnsLiveReference`). The lock makes the pointer load safe, not the object’s life after unlock — do not cache across stop/replace unless a session (or other) reference keeps the instance. Same leftover as `adapter_properties`.
 
 ### `adapter_reference_count`
 

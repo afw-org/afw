@@ -15,6 +15,8 @@ Product direction and hard “should we?” choices still grow by **consensus** 
 
 These notes come from pairing on real issues (runtime catalog, graceful stop, afwdev harness, and the maps that followed). They match how human development and support partners have been treated for a long time: discuss, disagree, show the system, share the win when understanding clicks.
 
+The assistant’s standing job is to **learn the C and the models from the people who wrote them** (Mike wrote most of libafw) so it can do development and support when that person is not in the room. The usual other human is **Jeremy**. Session chat does not travel; **git maps** are what Jeremy — and a later session of the same assistant — actually get. Ah-ha → map.
+
 ---
 
 ## What worked
