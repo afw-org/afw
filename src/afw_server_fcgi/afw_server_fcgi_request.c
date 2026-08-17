@@ -218,15 +218,25 @@ impl_afw_request_read_raw_request_body(
 
 
     /* Read into buffer until buffer full or EOF. */
-    *more_to_read = 1;
+    *more_to_read = 0;
     for (*size = 0; *size < buffer_size; (*size)++) {
         c = FCGX_GetChar(self->fcgx_request->in);
         if (c == EOF) {
-            *more_to_read = 0;
-            break;
+            return;
         }
         *(b++) = c;
     }
+
+    /*
+     * Buffer filled. One-byte look-ahead so more_to_read means there
+     * is another byte, not only that this call filled the buffer.
+     */
+    c = FCGX_GetChar(self->fcgx_request->in);
+    if (c == EOF) {
+        return;
+    }
+    FCGX_UnGetChar(c, self->fcgx_request->in);
+    *more_to_read = 1;
 }
 
 
