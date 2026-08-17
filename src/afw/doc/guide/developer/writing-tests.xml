@@ -72,7 +72,7 @@ afwdev test --list --test-pattern smoke
                 </row>
                 <row>
                     <column>Python (<literal>.py</literal> with <literal>run()</literal>)</column>
-                    <column>Use a Python test when you need to control the process, read environment values, or call APIs that are not easy to use from Adaptive Script.</column>
+                    <column>Use a Python test when you need to control the process, read environment values, or call APIs that are not easy to use from Adaptive Script. A few of these compile a small checked-in <literal>.c</literal> against installed <literal>libafw</literal> and run it, when script cannot reach the code under test.</column>
                 </row>
                 <row>
                     <column><literal>commands_*.txt</literal></column>

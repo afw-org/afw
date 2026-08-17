@@ -116,7 +116,15 @@ same interface). A green suite that never saw the bug will not catch it
 next time. Mantra: *A new error gets a test that would have caught it*
 (`designs/mantras-and-working-style.md`).
 
-When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
+When script cannot reach the hole (C-only size, a second impl of an
+interface that literals never use, …), the gate is a Python `run()`
+that compiles a checked-in `*_probe.c` against installed `libafw` and
+execs it. Same pattern: `src/afw/tests/advanced/pool_alloc/`,
+`src/afw/tests/advanced/array_view_index/`. Do not invent a cmake
+test target for these. The `.c` is not part of `libafw`.
+
+When fixing a C/runtime bug, add `.as` coverage that fails without the fix
+unless the hole is C-only (then the probe above):
 
 - Put cases next to related tests (`miscellaneous/`, category folder, or adapter group).
 - Mention the issue id in `//? description` (e.g. `issue #110`).
