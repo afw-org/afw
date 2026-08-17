@@ -128,22 +128,45 @@ afw_request_body_to_utf8(
     afw_utf8_z_t *cursor_z;
     afw_boolean_t more;
     afw_size_t read;
-    
+    afw_size_t remaining;
+    afw_size_t total;
 
     /** @fixme Put in support of chunked encoding. */
-    if (instance->content_length <= 0) return NULL;
+    /* Content-Length is unsigned; 0 means no body. */
+    if (instance->content_length == 0) {
+        return NULL;
+    }
 
-    /* Read request body into string and return. */
-    buffer_z = afw_pool_calloc(p, instance->content_length, xctx);
+    remaining = instance->content_length;
+    buffer_z = afw_pool_calloc(p, remaining, xctx);
     cursor_z = buffer_z;
-    read = 0;
+    total = 0;
     do {
-        cursor_z += read;
         afw_request_read_raw_request_body(instance,
-            instance->content_length, cursor_z,
-            &read, &more, xctx);
-    } while (more);
-    return afw_utf8_create(buffer_z, instance->content_length, p, xctx);
+            remaining, cursor_z, &read, &more, xctx);
+        if (read == 0) {
+            if (more) {
+                AFW_THROW_ERROR_Z(request_syntax,
+                    "Request body read made no progress.",
+                    xctx);
+            }
+            break;
+        }
+        if (read > remaining) {
+            AFW_THROW_ERROR_Z(coding_error,
+                "Request body read exceeded buffer.",
+                xctx);
+        }
+        cursor_z += read;
+        remaining -= read;
+        total += read;
+        if (more && remaining == 0) {
+            AFW_THROW_ERROR_Z(request_syntax,
+                "Request body is larger than Content-Length.",
+                xctx);
+        }
+    } while (more && remaining > 0);
+    return afw_utf8_create(buffer_z, total, p, xctx);
 }
 
 /* Read a request body to value a specifed pool. */
