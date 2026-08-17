@@ -622,12 +622,17 @@ impl_alloc_memory(
     afw_pool_internal_free_memory_t *prev;
     afw_pool_internal_free_memory_t *curr;
     afw_pool_internal_free_memory_t *new_block;
+    afw_size_t requested;
 
-    *actual_size = APR_ALIGN_DEFAULT(
-        (size < sizeof(afw_pool_internal_free_memory_t))
+    requested = (size < sizeof(afw_pool_internal_free_memory_t))
         ? sizeof(afw_pool_internal_free_memory_t)
-        : size
-    );
+        : size;
+    *actual_size = APR_ALIGN_DEFAULT(requested);
+    if (*actual_size < requested) {
+        AFW_THROW_ERROR_Z(memory,
+            "Requested allocation size is too large",
+            xctx);
+    }
 
     /* Find the first free memory that fits. */
     curr = NULL;
@@ -865,6 +870,14 @@ impl_afw_pool_malloc(
             xctx);
     }
 
+    if (size > AFW_SIZE_T_MAX -
+        sizeof(afw_pool_internal_memory_prefix_t))
+    {
+        AFW_THROW_ERROR_Z(memory,
+            "Requested allocation size is too large",
+            xctx);
+    }
+
     size_with_prefix = size + sizeof(afw_pool_internal_memory_prefix_t);
 
     impl_alloc_memory(&mem, &actual_size, self, size_with_prefix, xctx);
@@ -1087,6 +1100,14 @@ impl_subpool_afw_pool_malloc(
     if (size == 0) {
         AFW_THROW_ERROR_Z(general,
             "Attempt to allocate memory for a size of 0",
+            xctx);
+    }
+
+    if (size > AFW_SIZE_T_MAX -
+        sizeof(afw_pool_internal_memory_prefix_with_links_t))
+    {
+        AFW_THROW_ERROR_Z(memory,
+            "Requested allocation size is too large",
             xctx);
     }
 
