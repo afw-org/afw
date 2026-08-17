@@ -156,3 +156,131 @@ assert(f(3) === 3);
 const o: ({ host: string }) = { host: "h" };
 assert(o.host === "h");
 return 0;
+
+//?
+//? test: type-decompile-roundtrip-alias
+//? description: type Id = integer decompiles and recompiles
+//? expect: 0
+//? source: ...
+
+const src = "type Id = integer;\nconst x: Id = 3;\nreturn x;";
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(includes(d1, "#type("));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(d1))) === 3);
+return 0;
+
+//?
+//? test: type-decompile-roundtrip-self-ref
+//? description: type Node = { next?: Node } decompiles and recompiles
+//? expect: 0
+//? source: ...
+
+const src = "type Node = { next?: Node };\nconst n: Node = { next: {} };\nreturn n.next;";
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(includes(d1, "#type("));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(d1))) !== undefined);
+return 0;
+
+//?
+//? test: type-decompile-roundtrip-interface
+//? description: interface Person decompiles and recompiles
+//? expect: 0
+//? source: ...
+
+const src =
+    "interface Base { id: integer };\n" +
+    "interface Person extends Base { name: string };\n" +
+    "const p: Person = { id: 1, name: \"a\" };\n" +
+    "return p.name;";
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(includes(d1, "#interface("));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(d1))) === "a");
+return 0;
+
+//?
+//? test: type-alias-self-ref-parses
+//? description: type Node = { next?: Node } parses with checking off
+//? expect: 0
+//? source: ...
+
+type Node = { next?: Node };
+const n: Node = { next: { } };
+return 0;
+
+//?
+//? test: type-alias-use-before-declare-rejected
+//? description: type A cannot mention B declared later
+//? expect: error
+//? source: ...
+
+type A = { b: B };
+type B = integer;
+const x: A = { b: 1 };
+return 0;
+
+//?
+//? test: type-unknown-name-rejected
+//? description: unknown type name is a compile error even with checking off
+//? expect: error
+//? source: ...
+
+const x: Nope = 1;
+return 0;
+
+//?
+//? test: type-alias-cycle-rejected
+//? description: type A = A is a compile error
+//? expect: error
+//? source: ...
+
+type A = A;
+return 0;
+
+//?
+//? test: type-alias-declared-before-use
+//? description: type B first, then type A = { b: B } parses
+//? expect: 0
+//? source: ...
+
+type B = integer;
+type A = { b: B };
+const x: A = { b: 1 };
+return 0;
+
+//?
+//? test: type-alias-union-cycle-rejected
+//? description: type A = A | integer is a compile error
+//? expect: error
+//? source: ...
+
+type A = A | integer;
+return 0;
+
+//?
+//? test: interface-self-ref-parses
+//? description: interface with a property of its own name parses
+//? expect: 0
+//? source: ...
+
+interface Node {
+    next?: Node
+};
+const n: Node = { };
+return 0;
+
+//?
+//? test: interface-cannot-extend-self
+//? description: interface Node extends Node is a compile error
+//? expect: error
+//? source: ...
+
+interface Node extends Node {
+    id: integer
+};
+return 0;

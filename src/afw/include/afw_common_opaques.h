@@ -755,6 +755,14 @@ typedef struct afw_value_assignment_target_s
 afw_value_assignment_target_t;
 
 /**
+ * @brief Opaque `afw_value_script_type_declaration_t`.
+ *
+ * See afw_value_internal.h for struct and more information.
+ */
+typedef struct afw_value_script_type_declaration_s
+afw_value_script_type_declaration_t;
+
+/**
  * @brief Opaque `afw_value_block_t`.
  *
  * See afw_value_internal.h for struct and more information.

@@ -125,10 +125,54 @@ impl_value_type_to_z(
 
 /* ---------- type-to-type assignability (for function formals/returns) ---------- */
 
+typedef struct impl_type_pair_s {
+    const afw_value_type_t *to;
+    const afw_value_type_t *from;
+    const struct impl_type_pair_s *next;
+} impl_type_pair_t;
+
+
+
+static const afw_value_type_t *
+impl_peel_reference(const afw_value_type_t *type)
+{
+    afw_size_t hops;
+
+    hops = 0;
+    while (type &&
+        type->kind == afw_value_type_kind_reference &&
+        type->reference.resolved &&
+        hops < 64)
+    {
+        type = type->reference.resolved;
+        hops++;
+    }
+    return type;
+}
+
+
+
 static afw_boolean_t
-impl_type_is_type_assignable(
+impl_type_pair_seen(
+    const impl_type_pair_t *seen,
+    const afw_value_type_t *to,
+    const afw_value_type_t *from)
+{
+    for (; seen; seen = seen->next) {
+        if (seen->to == to && seen->from == from) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+static afw_boolean_t
+impl_type_is_type_assignable_seen(
     const afw_value_type_t *to,
     const afw_value_type_t *from,
+    const impl_type_pair_t *seen,
     afw_xctx_t *xctx);
 
 
@@ -139,6 +183,18 @@ impl_type_is_type_assignable(
     const afw_value_type_t *from,
     afw_xctx_t *xctx)
 {
+    return impl_type_is_type_assignable_seen(to, from, NULL, xctx);
+}
+
+
+
+static afw_boolean_t
+impl_type_is_type_assignable_seen(
+    const afw_value_type_t *to,
+    const afw_value_type_t *from,
+    const impl_type_pair_t *seen,
+    afw_xctx_t *xctx)
+{
     const afw_data_type_t *want;
     const afw_data_type_t *got;
     afw_size_t i;
@@ -146,6 +202,7 @@ impl_type_is_type_assignable(
     const afw_value_type_property_t *from_prop;
     const afw_value_type_function_param_t *tp;
     const afw_value_type_function_param_t *fp;
+    impl_type_pair_t here;
 
     if (afw_value_type_is_any(to)) {
         return true;
@@ -155,25 +212,33 @@ impl_type_is_type_assignable(
         return true;
     }
 
-    if (to->kind == afw_value_type_kind_reference) {
-        if (to->reference.resolved) {
-            return impl_type_is_type_assignable(to->reference.resolved,
-                from, xctx);
-        }
-        return true;
-    }
-    if (from->kind == afw_value_type_kind_reference) {
-        if (from->reference.resolved) {
-            return impl_type_is_type_assignable(to, from->reference.resolved,
-                xctx);
-        }
+    to = impl_peel_reference(to);
+    from = impl_peel_reference(from);
+    if (!to || !from) {
         return true;
     }
 
+    /* Still-unresolved name: fail-open when checking is off. */
+    if (to->kind == afw_value_type_kind_reference ||
+        from->kind == afw_value_type_kind_reference)
+    {
+        return true;
+    }
+
+    if (to == from) {
+        return true;
+    }
+    if (impl_type_pair_seen(seen, to, from)) {
+        return true;
+    }
+    here.to = to;
+    here.from = from;
+    here.next = seen;
+
     if (to->kind == afw_value_type_kind_union) {
         for (i = 0; i < to->compound.count; i++) {
-            if (impl_type_is_type_assignable(to->compound.members[i],
-                from, xctx))
+            if (impl_type_is_type_assignable_seen(to->compound.members[i],
+                from, &here, xctx))
             {
                 return true;
             }
@@ -182,8 +247,8 @@ impl_type_is_type_assignable(
     }
     if (from->kind == afw_value_type_kind_union) {
         for (i = 0; i < from->compound.count; i++) {
-            if (!impl_type_is_type_assignable(to, from->compound.members[i],
-                xctx))
+            if (!impl_type_is_type_assignable_seen(to,
+                from->compound.members[i], &here, xctx))
             {
                 return false;
             }
@@ -193,8 +258,8 @@ impl_type_is_type_assignable(
 
     if (to->kind == afw_value_type_kind_intersection) {
         for (i = 0; i < to->compound.count; i++) {
-            if (!impl_type_is_type_assignable(to->compound.members[i],
-                from, xctx))
+            if (!impl_type_is_type_assignable_seen(to->compound.members[i],
+                from, &here, xctx))
             {
                 return false;
             }
@@ -210,8 +275,8 @@ impl_type_is_type_assignable(
             return false;
         }
         if (from->kind == afw_value_type_kind_array) {
-            return impl_type_is_type_assignable(to->array.element,
-                from->array.element, xctx);
+            return impl_type_is_type_assignable_seen(to->array.element,
+                from->array.element, &here, xctx);
         }
         return true;
     }
@@ -224,8 +289,8 @@ impl_type_is_type_assignable(
             return false;
         }
         for (i = 0; i < to->tuple.count; i++) {
-            if (!impl_type_is_type_assignable(to->tuple.elements[i],
-                from->tuple.elements[i], xctx))
+            if (!impl_type_is_type_assignable_seen(to->tuple.elements[i],
+                from->tuple.elements[i], &here, xctx))
             {
                 return false;
             }
@@ -264,8 +329,8 @@ impl_type_is_type_assignable(
                 }
                 return false;
             }
-            if (!impl_type_is_type_assignable(prop->type, from_prop->type,
-                xctx))
+            if (!impl_type_is_type_assignable_seen(prop->type,
+                from_prop->type, &here, xctx))
             {
                 return false;
             }
@@ -278,8 +343,8 @@ impl_type_is_type_assignable(
             return false;
         }
         /* Return: from.return assignable to to.return. */
-        if (!impl_type_is_type_assignable(to->function.returns,
-            from->function.returns, xctx))
+        if (!impl_type_is_type_assignable_seen(to->function.returns,
+            from->function.returns, &here, xctx))
         {
             return false;
         }
@@ -297,7 +362,9 @@ impl_type_is_type_assignable(
                 tp = tp->next;
                 continue;
             }
-            if (!impl_type_is_type_assignable(fp->type, tp->type, xctx)) {
+            if (!impl_type_is_type_assignable_seen(fp->type, tp->type,
+                &here, xctx))
+            {
                 return false;
             }
             tp = tp->next;
@@ -449,10 +516,21 @@ impl_as_script_function(const afw_value_t *value)
 
 
 static afw_boolean_t
+impl_value_is_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
+    afw_xctx_t *xctx);
+
+
+
+static afw_boolean_t
 impl_object_type_properties_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
     afw_xctx_t *xctx)
 {
     const afw_value_type_property_t *prop;
@@ -464,7 +542,8 @@ impl_object_type_properties_assignable(
     for (i = 0; i < expected->object.extends_count; i++) {
         base = expected->object.extends[i];
         if (base &&
-            !afw_value_type_is_assignable(base, value, contextual, xctx))
+            !impl_value_is_assignable(base, value, contextual, depth + 1,
+                xctx))
         {
             return false;
         }
@@ -488,7 +567,9 @@ impl_object_type_properties_assignable(
         }
 
         if (prop->type && !afw_value_type_is_any(prop->type)) {
-            if (!afw_value_type_is_assignable(prop->type, pv, contextual, xctx)) {
+            if (!impl_value_is_assignable(prop->type, pv, contextual,
+                depth + 1, xctx))
+            {
                 return false;
             }
         }
@@ -504,6 +585,7 @@ impl_array_elements_assignable(
     const afw_value_type_t *element_type,
     const afw_array_t *arr,
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
     afw_xctx_t *xctx)
 {
     afw_size_t count;
@@ -517,7 +599,9 @@ impl_array_elements_assignable(
     count = afw_array_get_count(arr, xctx);
     for (i = 0; i < count; i++) {
         elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
-        if (!afw_value_type_is_assignable(element_type, elem, contextual, xctx)) {
+        if (!impl_value_is_assignable(element_type, elem, contextual,
+            depth + 1, xctx))
+        {
             return false;
         }
     }
@@ -531,6 +615,7 @@ impl_tuple_elements_assignable(
     const afw_value_type_t *expected,
     const afw_array_t *arr,
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
     afw_xctx_t *xctx)
 {
     afw_size_t count;
@@ -547,7 +632,9 @@ impl_tuple_elements_assignable(
         et = expected->tuple.elements[i];
         elem = afw_array_get_entry_value(arr, i, xctx->p, xctx);
         if (et && !afw_value_type_is_any(et)) {
-            if (!afw_value_type_is_assignable(et, elem, contextual, xctx)) {
+            if (!impl_value_is_assignable(et, elem, contextual, depth + 1,
+                xctx))
+            {
                 return false;
             }
         }
@@ -776,11 +863,14 @@ impl_mismatch_detail(
 
 
 
-AFW_DEFINE(afw_boolean_t)
-afw_value_type_is_assignable(
+#define IMPL_VALUE_ASSIGN_DEPTH_MAX 256
+
+static afw_boolean_t
+impl_value_is_assignable(
     const afw_value_type_t *expected,
     const afw_value_t *value,
     const afw_compile_value_contextual_t *contextual,
+    afw_size_t depth,
     afw_xctx_t *xctx)
 {
     const afw_data_type_t *want;
@@ -788,7 +878,16 @@ afw_value_type_is_assignable(
     const afw_array_t *arr;
     afw_boolean_t strict_null;
 
+    if (depth > IMPL_VALUE_ASSIGN_DEPTH_MAX) {
+        return false;
+    }
+
     if (afw_value_type_is_any(expected)) {
+        return true;
+    }
+
+    expected = impl_peel_reference(expected);
+    if (!expected) {
         return true;
     }
 
@@ -803,8 +902,9 @@ afw_value_type_is_assignable(
         afw_size_t i;
 
         for (i = 0; i < expected->compound.count; i++) {
-            if (afw_value_type_is_assignable(
-                expected->compound.members[i], value, contextual, xctx))
+            if (impl_value_is_assignable(
+                expected->compound.members[i], value, contextual, depth + 1,
+                xctx))
             {
                 return true;
             }
@@ -816,8 +916,9 @@ afw_value_type_is_assignable(
         afw_size_t i;
 
         for (i = 0; i < expected->compound.count; i++) {
-            if (!afw_value_type_is_assignable(
-                expected->compound.members[i], value, contextual, xctx))
+            if (!impl_value_is_assignable(
+                expected->compound.members[i], value, contextual, depth + 1,
+                xctx))
             {
                 return false;
             }
@@ -838,7 +939,7 @@ afw_value_type_is_assignable(
             return true;
         }
         return impl_array_elements_assignable(
-            expected->array.element, arr, contextual, xctx);
+            expected->array.element, arr, contextual, depth, xctx);
     }
 
     if (expected->kind == afw_value_type_kind_tuple) {
@@ -853,7 +954,8 @@ afw_value_type_is_assignable(
         if (!arr) {
             return true;
         }
-        return impl_tuple_elements_assignable(expected, arr, contextual, xctx);
+        return impl_tuple_elements_assignable(expected, arr, contextual,
+            depth, xctx);
     }
 
     if (expected->kind == afw_value_type_kind_object) {
@@ -864,14 +966,12 @@ afw_value_type_is_assignable(
         if (got != afw_data_type_object) {
             return false;
         }
-        return impl_object_type_properties_assignable(expected, value, contextual, xctx);
+        return impl_object_type_properties_assignable(expected, value,
+            contextual, depth, xctx);
     }
 
     if (expected->kind == afw_value_type_kind_reference) {
-        if (expected->reference.resolved) {
-            return afw_value_type_is_assignable(
-                expected->reference.resolved, value, contextual, xctx);
-        }
+        /* Still unresolved: fail-open when checking is off. */
         return !afw_value_is_undefined(value);
     }
 
@@ -937,6 +1037,18 @@ afw_value_type_is_assignable(
 
 
 
+AFW_DEFINE(afw_boolean_t)
+afw_value_type_is_assignable(
+    const afw_value_type_t *expected,
+    const afw_value_t *value,
+    const afw_compile_value_contextual_t *contextual,
+    afw_xctx_t *xctx)
+{
+    return impl_value_is_assignable(expected, value, contextual, 0, xctx);
+}
+
+
+
 AFW_DEFINE(void)
 afw_value_type_check_assignable(
     const afw_value_type_t *expected,
@@ -984,15 +1096,7 @@ afw_value_type_check_assignable(
 static const afw_value_type_t *
 impl_resolve_type(const afw_value_type_t *type)
 {
-    if (!type) {
-        return NULL;
-    }
-    if (type->kind == afw_value_type_kind_reference &&
-        type->reference.resolved)
-    {
-        return impl_resolve_type(type->reference.resolved);
-    }
-    return type;
+    return impl_peel_reference(type);
 }
 
 

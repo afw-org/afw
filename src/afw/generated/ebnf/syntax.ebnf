@@ -123,6 +123,20 @@ CompilerInternalAssignmentTarget ::=
         AssignmentTargetCompilerInternalShape ')'
 
 /* From afw_compile_parse_compiler_internal.c                                 */
+/* Compiler-internal type alias. Name is reserved before Type so self-ref     */
+/* works. Matches decompile of a `type` statement.                            */
+
+CompilerInternalType ::=
+    '#type' '(' String ',' Type ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
+/* Compiler-internal interface. Name is reserved before the body.             */
+/* Further Type arguments are extends bases.                                  */
+
+CompilerInternalInterface ::=
+    '#interface' '(' String ',' Type ( ',' Type )* ')'
+
+/* From afw_compile_parse_compiler_internal.c                                 */
 /* Compiler-internal wrapper for array spread entries. Matches decompile.     */
 
 CompilerInternalListExpression ::=
@@ -204,6 +218,8 @@ CompilerLiteral ::=
 CompilerInternalValue ::=
     CompilerInternalBlock |
     CompilerInternalAssignmentTarget |
+    CompilerInternalType |
+    CompilerInternalInterface |
     CompilerInternalListExpression |
     CompilerInternalScriptFunction |
     CompilerInternalTemplateDefinition |
@@ -439,9 +455,11 @@ ParenthesizedOrFunctionType ::=
     '(' Type ')'
 
 /* From afw_compile_parse_expression.c                                        */
-/* Single identifier: resolves to DataType, registered type/interface, or     */
-/* unresolved reference (non-checking). TypeVariableName / InterfaceName are  */
-/* both Identifier; DataType is the closed set of Adaptive data type ids.     */
+/* Single identifier: DataType or an already-declared type/interface.         */
+/* Unknown names are a compile error. The name of the type/interface          */
+/* statement being parsed is already reserved (self-ref). TypeVariableName    */
+/* / InterfaceName are both Identifier; DataType is the closed set of         */
+/* Adaptive data type ids.                                                    */
 
 TypeName ::= DataType | Identifier
 /* Array element types use postfix T[] only (not TypeScript Array<T>).        */

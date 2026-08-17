@@ -222,7 +222,13 @@ function add1(a: integer): integer {
         <paragraph>
             <literal>type Name = Type;</literal> declares a local alias for a
             type. The name may then be used as a type name in the same script
-            unit.
+            unit. A name must already be declared (or be an Adaptive data
+            type), except that a type may refer to itself in its own body
+            (<literal>type Node = { next?: Node }</literal>). A type that
+            only aliases itself (<literal>type A = A</literal>, or a cycle
+            of aliases through <literal>|</literal> /
+            <literal>&amp;</literal> only) is an error. An unknown type
+            name is always a compile error.
         </paragraph>
         <section>
             <title>Example</title>

@@ -989,8 +989,10 @@ impl_type_data_type(
 
 
 /*
- * Resolve TypeName: script-local type/interface, Adaptive data type id, or
- * unresolved reference (non-checking mode).
+ * Resolve TypeName: already-declared type/interface, or Adaptive data
+ * type id. Unknown names are a compile error (declaration-before-use).
+ * The name of the type statement currently being parsed is already in
+ * the table (placeholder), so self-ref works.
  */
 static const afw_value_type_t *
 impl_type_lookup_name(
@@ -999,7 +1001,6 @@ impl_type_lookup_name(
 {
     const afw_value_type_t *type;
     const afw_data_type_t *data_type;
-    afw_value_type_t *ref;
 
     if (parser->script_type_names) {
         type = apr_hash_get(parser->script_type_names, name->s, name->len);
@@ -1013,12 +1014,10 @@ impl_type_lookup_name(
         return impl_type_data_type(parser, data_type);
     }
 
-    /* Unresolved name: keep as reference (non-checking mode). */
-    ref = impl_type_alloc(parser);
-    ref->kind = afw_value_type_kind_reference;
-    ref->reference.name = name;
-    ref->reference.resolved = NULL;
-    return ref;
+    AFW_COMPILE_THROW_ERROR_FZ(
+        "Unknown type " AFW_UTF8_FMT_Q,
+        AFW_UTF8_FMT_ARG(name));
+    return NULL;
 }
 
 
@@ -1038,6 +1037,157 @@ afw_compile_script_type_register(
             AFW_UTF8_FMT_ARG(name));
     }
     apr_hash_set(parser->script_type_names, name->s, name->len, type);
+}
+
+
+
+afw_value_type_t *
+afw_compile_script_type_reserve(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name)
+{
+    afw_value_type_t *placeholder;
+
+    if (!parser->script_type_names) {
+        parser->script_type_names = apr_hash_make(parser->apr_p);
+    }
+    if (apr_hash_get(parser->script_type_names, name->s, name->len)) {
+        AFW_COMPILE_THROW_ERROR_FZ(
+            "Type or interface " AFW_UTF8_FMT_Q " is already defined",
+            AFW_UTF8_FMT_ARG(name));
+    }
+    placeholder = impl_type_alloc(parser);
+    placeholder->kind = afw_value_type_kind_reference;
+    placeholder->reference.name = name;
+    placeholder->reference.resolved = NULL;
+    apr_hash_set(parser->script_type_names, name->s, name->len,
+        placeholder);
+    return placeholder;
+}
+
+
+
+static afw_boolean_t
+impl_type_ptr_on_stack(
+    const afw_value_type_t *type,
+    const afw_value_type_t *const *stack,
+    afw_size_t depth)
+{
+    afw_size_t i;
+
+    for (i = 0; i < depth; i++) {
+        if (stack[i] == type) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+/*
+ * Unproductive: the name reaches itself following only references,
+ * unions, and intersections (no object / array / tuple / function).
+ * `origin` is the defined name; start from the body, not the placeholder.
+ */
+static afw_boolean_t
+impl_type_alias_unproductive(
+    const afw_value_type_t *type,
+    const afw_utf8_t *origin,
+    const afw_value_type_t **stack,
+    afw_size_t depth)
+{
+    afw_size_t i;
+
+    if (!type || !origin) {
+        return false;
+    }
+    if (depth >= 64) {
+        return true;
+    }
+    if (impl_type_ptr_on_stack(type, stack, depth)) {
+        return true;
+    }
+
+    if (type->kind == afw_value_type_kind_reference) {
+        if (type->reference.name &&
+            afw_utf8_equal(type->reference.name, origin))
+        {
+            return true;
+        }
+        if (!type->reference.resolved) {
+            return false;
+        }
+        stack[depth] = type;
+        return impl_type_alias_unproductive(type->reference.resolved,
+            origin, stack, depth + 1);
+    }
+
+    if (type->kind == afw_value_type_kind_union ||
+        type->kind == afw_value_type_kind_intersection)
+    {
+        stack[depth] = type;
+        for (i = 0; i < type->compound.count; i++) {
+            if (impl_type_alias_unproductive(type->compound.members[i],
+                origin, stack, depth + 1))
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+
+
+void
+afw_compile_script_types_resolve(
+    afw_compile_parser_t *parser)
+{
+    const afw_value_type_t *def;
+    const afw_value_type_t *stack[64];
+    apr_hash_index_t *hi;
+    const void *key;
+    apr_ssize_t klen;
+    void *val;
+    const afw_utf8_t *name;
+    afw_utf8_t name_buf;
+
+    if (!parser->script_type_names) {
+        return;
+    }
+
+    for (hi = apr_hash_first(parser->apr_p, parser->script_type_names);
+        hi;
+        hi = apr_hash_next(hi))
+    {
+        apr_hash_this(hi, &key, &klen, &val);
+        def = (const afw_value_type_t *)val;
+        if (!def ||
+            def->kind != afw_value_type_kind_reference ||
+            !def->reference.resolved)
+        {
+            continue;
+        }
+        name = def->reference.name;
+        if (!name && key && klen > 0) {
+            name_buf.s = (const afw_utf8_octet_t *)key;
+            name_buf.len = (afw_size_t)klen;
+            name = &name_buf;
+        }
+        if (!name) {
+            continue;
+        }
+        if (impl_type_alias_unproductive(def->reference.resolved,
+            name, stack, 0))
+        {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Type " AFW_UTF8_FMT_Q
+                " circularly references itself",
+                AFW_UTF8_FMT_ARG(name));
+        }
+    }
 }
 
 
@@ -1433,9 +1583,11 @@ afw_compile_parse_ParenthesizedOrFunctionType(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
- *# Single identifier: resolves to DataType, registered type/interface, or
- *# unresolved reference (non-checking). TypeVariableName / InterfaceName are
- *# both Identifier; DataType is the closed set of Adaptive data type ids.
+ *# Single identifier: DataType or an already-declared type/interface.
+ *# Unknown names are a compile error. The name of the type/interface
+ *# statement being parsed is already reserved (self-ref). TypeVariableName
+ *# / InterfaceName are both Identifier; DataType is the closed set of
+ *# Adaptive data type ids.
  * TypeName ::= DataType | Identifier
  *
  *# Array element types use postfix T[] only (not TypeScript Array<T>).

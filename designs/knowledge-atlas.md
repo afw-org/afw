@@ -50,7 +50,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Env / runtime catalog / accessors | #149 pads; atlas §5; **#2 leftover:** live metrics after unlock |
 | Hosts / stop | #158; atlas §6 |
 | Memory / faces / `create_array` | #2 pad; #17 faces; atlas §3 |
-| Types | #28 pad + `typescript-differences.md`; leftovers: named-type resolve, parse depth |
+| Types | #28 pad + `typescript-differences.md`; leftover: parse depth (`AFW_COMPILE_PARSE_NESTING_MAX`) |
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
 | Arrays / converts / UTF-8 | #39, converts pad, #153 |
@@ -161,7 +161,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function` |
 | **Deep pads** | `compile-optimize-notes`, `pragma-hash-design`, `decompile-compiler-internal-inventory`, `compile-contextual-audit`, `adaptive-function-compile-typecheck`, `issue-28-type-syntax` |
 | **Probe** | `afw -s '…'` / tests under `src/afw/tests/`; regenerate EBNF via `--cdev`; check `generated/ebnf/syntax.ebnf` has `::=` for nonterminals |
-| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) — map: `issue-28-type-syntax.md` + `typescript-differences.md` + handbook Types (git archive; not session memory). Named-type resolve / self-ref check still unfinished (#28 leftover). Type and destructure parse nesting is limited (`AFW_COMPILE_PARSE_NESTING_MAX`). |
+| **Open** | Compile optimize future (`compile-optimize-notes`); app-shared / script poly (**#170**); #28 **closed** (PR **#171**) — map: `issue-28-type-syntax.md` + `typescript-differences.md` + handbook Types (git archive; not session memory). Named `type` / `interface` names must be declared before use (self-ref in the same statement is allowed; bare alias cycles error). Type and destructure parse nesting is limited (`AFW_COMPILE_PARSE_NESTING_MAX`). |
 | **Gap** | Support playbook for “parse error / decompile mismatch” still thin — use rules + decompile pads. `compiler_internal` `execute_*` must kind-check (`afw-function`). |
 
 ---
@@ -357,7 +357,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 | Pattern params / catch / call-site `...` | `compile-optimize-notes.md` (#140) | Landed; `execute_try` still trusts parser unless kind-checked (`afw-function`) |
 | Evaluate spread once | `afw-script-eval` + whats-new | **#181** closed — do not mix with `x->function` harvest |
 | Deprecated throw / declare_helpers | `whats-new.md` Must change | **#172** — `throw` needs `data`; no package `*_declare_helpers.h` |
-| #28 decided-not | `issue-28-type-syntax.md` + `typescript-differences.md` | No `Array<T>`, no index signatures / literal types / `readonly` / `enum` / `implements` in script types. Named-type resolve still leftover. Type/pattern parse nesting is limited. |
+| #28 decided-not | `issue-28-type-syntax.md` + `typescript-differences.md` | No `Array<T>`, no index signatures / literal types / `readonly` / `enum` / `implements` in script types. Type/pattern parse nesting is limited. |
 | App-shared Adaptive functions | **#170** (hold) | Not a leftover of #28 wrap-up; do not mix onto #2 |
 
 ---
@@ -389,6 +389,7 @@ Most used when navigating this atlas:
 - **Gate vs lab** — don’t redefine `test -j` as soak  
 - **Live verify** when teaching  
 - **Code wins** when notes drift  
+- **Don’t let the right way get in the way of getting work done** — patterns, then judgement  
 
 ---
 

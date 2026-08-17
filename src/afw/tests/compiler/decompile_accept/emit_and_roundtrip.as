@@ -68,6 +68,37 @@ assert(evaluate(compile<script>(script(d1))) === 99);
 return 0;
 
 //?
+//? test: emit-type-declaration
+//? description: type alias decompiles as #type and round-trips
+//? expect: 0
+//? source: ...
+
+const src = "type Id = integer;\nconst x: Id = 3;\nreturn x;";
+const d1 = decompile(compile<script>(script(src)));
+assert(includes(d1, "#type("));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(d1))) === 3);
+return 0;
+
+//?
+//? test: emit-interface-declaration
+//? description: interface decompiles as #interface and round-trips
+//? expect: 0
+//? source: ...
+
+const src =
+    "interface Person { name: string };\n" +
+    "const p: Person = { name: \"a\" };\n" +
+    "return p.name;";
+const d1 = decompile(compile<script>(script(src)));
+assert(includes(d1, "#interface("));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+assert(evaluate(compile<script>(script(d1))) === "a");
+return 0;
+
+//?
 //? test: emit-for-statements
 //? description: for-loop decompile uses #statements for clause lists
 //? expect: 0

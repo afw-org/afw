@@ -10,12 +10,20 @@ values that fold at compile; they are **not** decompile IR. See
 `afw_value.h` and `src/afw/tests/compiler/compiler_literals.as`.  
 Compiler-private forms are **toolchain only** (decompile → recompile).
 
+## What `#Name` is
+
+`#Name(...)` is the **textual spelling of a compiled-value kind**. Reparse should reconstruct that kind of `afw_value` — the same idea as “a create for this kind.” It is **not** a call to an Adaptive function named `Name`, and it is not `#compile` (policy pragma) or a compiler literal (`#pi`, …).
+
+Usual pattern: decompile writes `#` + `implementation_id` (`afw_value_decompile_write_synthetic_function_name`); accept rebuilds that inf. Create functions are **not** required to be named `afw_value_create_<name>` (`#list_expression` → `afw_value_create_array_expression`; `#block` is finalize). Use the pattern when it is the simple story. Break it when one kind with two spellings is clearer than two infs for the naming rule.
+
+**`#interface` shares the `#type` value** (`afw_value_script_type_declaration`, flag `is_interface`). One statement class; one create. Decompile writes `#interface` by hand so reparse can tell them apart. Do not split into a second inf just to make `#Name` ↔ `implementation_id` 1:1 unless a real need shows up.
+
 ## Dispatch positions
 
 | Position | Entry | Allowed names |
 |----------|--------|----------------|
 | Statement | `afw_compile_parse_CompilerInternalStatement` | `block`; known rejects `closure_binding`, `function_thunk` |
-| Value / expression | `afw_compile_parse_CompilerInternalValue` | `block`, `assignment_target`, `list_expression`, `script_function`, `template_definition`, `switch_default`, `statements`; same known rejects |
+| Value / expression | `afw_compile_parse_CompilerInternalValue` | `block`, `assignment_target`, `type`, `interface`, `list_expression`, `script_function`, `template_definition`, `switch_default`, `statements`; same known rejects |
 
 Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statement vs value wording differs).
 
@@ -25,6 +33,8 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 |---------|------------------|--------|------------|--------|
 | `#block` | Yes (`afw_value_block`) | Stmt + value | Yes | Root of almost every script decompile |
 | `#assignment_target` | Yes (`afw_value_assignment_target`, try/catch paths) | Value only | Yes | Kind string + Pattern (`const`/`let`/…) |
+| `#type` | Yes (`afw_value_script_type_declaration`) | Value only | Yes | `#type("Name", Type)` — reserves the name before Type (self-ref). No-op at evaluate (void). |
+| `#interface` | Yes (same value as `#type`, `is_interface`) | Value only | Yes | `#interface("Name", {…}, Base…)` — body is an object type literal; further Types are extends. Shared kind is a judgement (see above), not a leftover. |
 | `#script_function` | Yes (`afw_value_script_function`) | Value | Yes | Params surface-like: name/`…`/Pattern/`?`/`=`/`: Type`; body; optional return Type |
 | `#template_definition` | Yes (`afw_value_template_definition`) | Value | Yes | Parts: strings + nested expressions/`#block` |
 | `#list_expression` | Partial | Value | Accept yes | **Call-site spreads** decompile as surface `...expr` via `afw_value_decompile_call_args` (not `#list_expression`). Accept still parses `#list_expression(expr)` (list_expression node). |
@@ -46,6 +56,7 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 
 | Item | Decision |
 |------|----------|
+| `#interface` vs own inf | Shared `#type` value on purpose | 
 | `#list_expression` rarely appears in decompile text | Intentional surface `...`; keep accept for recompile / explicit forms |
 | Statement position only `#block` (+ rejects) | Intentional; other forms are values nested under `#block` / calls |
 | `#closure_binding` / `#function_thunk` | Documented non-round-trip; specific error text |
@@ -61,7 +72,17 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | `decompile_fidelity.as` | Broad construct matrix (d1 == d2) |
 | `decompile.as` / `pragma.as` | Sample string expects / #block evaluate |
 
-When adding a new decompile `#implementation_id`, update this table, accept dispatch, EBNF, and at least one accept or round-trip case.
+**Standing bar:** if a change can break decompile → compile → decompile (new or changed statement/value kind, type syntax, compiler-internal accept/emit, `compiler_internal` execute argv shape), **prove the trip**. Primary check:
+
+```adaptive
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+```
+
+Evaluate the recompiled result when the original had a result. Add a case in `decompile_accept/` and/or the suite that owns the construct (`type_syntax.as`, `decompile_fidelity.as`, …). Documented non-round-trip: `#closure_binding`, `#function_thunk`.
+
+When adding a new decompile `#implementation_id`, also update this table, accept dispatch, and EBNF.
 
 ## `compiler_internal` naming
 

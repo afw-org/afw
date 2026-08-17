@@ -69,4 +69,12 @@ For `to_close_brace`: (1) residual-after-parse does **not** demand EOF (same as 
 
 **Operator lowering:** expression parser emits calls to env **operator** `function_definition`s — requires `afw_generated_register` then `afw_function_internal_prepare_environment` (see `register_core.c`).
 
+## Decompile / compile round-trip
+
+If the change can break **decompile → compile → decompile** (new statement or value kind, type syntax, `#Name` accept/emit, `compiler_internal` argv shape), prove it:
+
+`d1 = decompile(compile(src)); d2 = decompile(compile(d1)); assert(d1 == d2)`
+
+plus evaluate when the original had a result. Tests: `decompile_accept/`, `decompile_fidelity.as`, or the suite that owns the construct. Inventory: `designs/decompile-compiler-internal-inventory.md`. Known non-round-trip: `#closure_binding`, `#function_thunk`.
+
 Related: `afw-compiler-ebnf`, `afw-script-eval`, `afw-function`, `afw-command` (`-s` mapping).

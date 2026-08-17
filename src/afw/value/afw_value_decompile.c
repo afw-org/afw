@@ -192,7 +192,6 @@ afw_value_decompile_type(
     const afw_writer_t *writer,
     afw_xctx_t *xctx)
 {
-    const afw_value_type_property_t *prop;
     const afw_value_type_function_param_t *param;
     afw_size_t i;
     afw_boolean_t need_comma;
@@ -216,26 +215,7 @@ afw_value_decompile_type(
             afw_writer_write_utf8(writer, type->object.interface_name, xctx);
             break;
         }
-        afw_writer_write_z(writer, "{", xctx);
-        need_comma = false;
-        for (prop = type->object.properties; prop; prop = prop->next) {
-            if (need_comma) {
-                afw_writer_write_z(writer, ",", xctx);
-            }
-            need_comma = true;
-            afw_writer_write_utf8(writer, prop->name, xctx);
-            if (prop->optional) {
-                afw_writer_write_z(writer, "?", xctx);
-            }
-            afw_writer_write_z(writer, ":", xctx);
-            if (writer->tab) {
-                afw_writer_write_z(writer, " ", xctx);
-            }
-            if (!afw_value_decompile_type(prop->type, writer, xctx)) {
-                afw_writer_write_z(writer, "any", xctx);
-            }
-        }
-        afw_writer_write_z(writer, "}", xctx);
+        afw_value_decompile_type_object_literal(type, writer, xctx);
         break;
 
     case afw_value_type_kind_array:
@@ -334,6 +314,45 @@ afw_value_decompile_type(
 
     return true;
 }
+
+
+
+AFW_DEFINE(void)
+afw_value_decompile_type_object_literal(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx)
+{
+    const afw_value_type_property_t *prop;
+    afw_boolean_t need_comma;
+
+    if (!type || type->kind != afw_value_type_kind_object) {
+        afw_writer_write_z(writer, "any", xctx);
+        return;
+    }
+
+    afw_writer_write_z(writer, "{", xctx);
+    need_comma = false;
+    for (prop = type->object.properties; prop; prop = prop->next) {
+        if (need_comma) {
+            afw_writer_write_z(writer, ",", xctx);
+        }
+        need_comma = true;
+        afw_writer_write_utf8(writer, prop->name, xctx);
+        if (prop->optional) {
+            afw_writer_write_z(writer, "?", xctx);
+        }
+        afw_writer_write_z(writer, ":", xctx);
+        if (writer->tab) {
+            afw_writer_write_z(writer, " ", xctx);
+        }
+        if (!afw_value_decompile_type(prop->type, writer, xctx)) {
+            afw_writer_write_z(writer, "any", xctx);
+        }
+    }
+    afw_writer_write_z(writer, "}", xctx);
+}
+
 
 
 AFW_DEFINE(void)

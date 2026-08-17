@@ -102,7 +102,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 - **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs live metrics.  
 - **Two impls of one interface** — memory array index uses `>= count`; C-array view used `> count`.  
 - **Script integer → malloc / spin / C stack** — APR pools often abort on huge alloc; empty match + “replace all” never advances; type and destructure parse have a nesting limit (`AFW_COMPILE_PARSE_NESTING_MAX`); other grammars may not.  
-- **Fail-open “we don’t know yet”** — unresolved named types treated as compatible (#28 leftover).  
+- **Type names are declared before use** — like script values, not hoisted. Self-ref in the same `type` / `interface` body is allowed. Unknown names are a compile error even with typeCheck off.  
 - **Evaluate twice, first result sizes a buffer** — call-site `...expr` (#181, fixed). Same class: Pattern rest keys.
 
 **Wrong path:** deep-cloning whole adapters/registries to “fix” one bad lifetime; treating short-test green as long-run proof.

@@ -131,6 +131,10 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 - Hook bodies may live in `includes/*.as` via `eval_from_file` from the model JSON.
 - Rules: **`afw-model-adapter`**. Conf/hook semantics SSOT: generate OT property `brief`/`description`.
 
+## Decompile / compile round-trip
+
+When a compile, decompile, type-syntax, or compiler-internal change can break **decompile → compile → decompile**, add or run a `d1 == d2` case (and evaluate the recompiled result when the original had a result). Home suites: `compiler/decompile_accept/`, `compiler/decompile_fidelity.as`, plus the construct’s own file (e.g. `type_syntax.as`). Inventory: `designs/decompile-compiler-internal-inventory.md`. Documented exceptions: `#closure_binding`, `#function_thunk`.
+
 ## Object equality in asserts
 
 - Object/array `===` is **structural**. Fresh `{}`/`[]` pairs compare equal even when distinct instances.

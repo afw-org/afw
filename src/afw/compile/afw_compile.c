@@ -228,6 +228,8 @@ afw_compile_to_value_with_callback(
             else {
                 AFW_THROW_ERROR_Z(general, "Invalid compile type.", xctx);
             }
+
+            afw_compile_script_types_resolve(parser);
             
             /* If surrounding with a block, finalize it. */
             if (block) {

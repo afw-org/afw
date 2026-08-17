@@ -10,7 +10,7 @@
 |------|--------|----------|------|
 | **Pragma** | `afw_compile_parse_pragma.c` | Script authors | Per-compile **policy** |
 | **Compiler literal** | `afw_compile_parse_compiler_internal.c` | Script authors | `#` name that folds to a permanent value (`#doubleMax`, `#pi`, …) |
-| **Compiler-internal** | `afw_compile_parse_compiler_internal.c` | Toolchain only | **decompile → recompile** (`#block`, `#script_function`, …) |
+| **Compiler-internal** | `afw_compile_parse_compiler_internal.c` | Toolchain only | **decompile → recompile** (`#block`, `#script_function`, …). `#Name` reconstructs a compiled-value kind — see [`decompile-compiler-internal-inventory.md`](decompile-compiler-internal-inventory.md) (*What `#Name` is*). |
 
 Lex: `pound_identifier` for any `#Name`. Product docs should not teach compiler-internal forms as normal script.
 

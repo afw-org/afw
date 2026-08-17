@@ -448,6 +448,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     value/afw_value_qualified_variable_reference.c
     value/afw_value_reference_by_key.c
     value/afw_value_script_function.c
+    value/afw_value_script_type_declaration.c
     value/afw_value_symbol_reference.c
     value/afw_value_template_definition.c
     value/afw_value_type_check.c
