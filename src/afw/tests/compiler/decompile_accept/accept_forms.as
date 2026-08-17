@@ -30,6 +30,30 @@ assert(r === 2);
 return 0;
 
 //?
+//? test: accept-type-declaration
+//? description: #type reserves a name for later annotations
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "#block(#type(\"Id\",integer),const(#assignment_target(\"const\",x:Id),3,undefined),return(x))"
+)));
+assert(r === 3);
+return 0;
+
+//?
+//? test: accept-interface-declaration
+//? description: #interface reserves a name for later annotations
+//? expect: 0
+//? source: ...
+
+const r = evaluate(compile<script>(script(
+    "#block(#interface(\"Person\",{name:string}),const(#assignment_target(\"const\",p:Person),wrap_literal_object({\"name\":\"a\"}),undefined),return(p.name))"
+)));
+assert(r === "a");
+return 0;
+
+//?
 //? test: accept-script-function-simple
 //? description: #script_function body + call
 //? expect: 0

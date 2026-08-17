@@ -15,7 +15,7 @@ Compiler-private forms are **toolchain only** (decompile → recompile).
 | Position | Entry | Allowed names |
 |----------|--------|----------------|
 | Statement | `afw_compile_parse_CompilerInternalStatement` | `block`; known rejects `closure_binding`, `function_thunk` |
-| Value / expression | `afw_compile_parse_CompilerInternalValue` | `block`, `assignment_target`, `list_expression`, `script_function`, `template_definition`, `switch_default`, `statements`; same known rejects |
+| Value / expression | `afw_compile_parse_CompilerInternalValue` | `block`, `assignment_target`, `type`, `interface`, `list_expression`, `script_function`, `template_definition`, `switch_default`, `statements`; same known rejects |
 
 Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statement vs value wording differs).
 
@@ -25,6 +25,8 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 |---------|------------------|--------|------------|--------|
 | `#block` | Yes (`afw_value_block`) | Stmt + value | Yes | Root of almost every script decompile |
 | `#assignment_target` | Yes (`afw_value_assignment_target`, try/catch paths) | Value only | Yes | Kind string + Pattern (`const`/`let`/…) |
+| `#type` | Yes (`afw_value_script_type_declaration`) | Value only | Yes | `#type("Name", Type)` — reserves the name before Type (self-ref). No-op at evaluate (void). |
+| `#interface` | Yes (same value, `is_interface`) | Value only | Yes | `#interface("Name", {…}, Base…)` — body is an object type literal; further Types are extends. |
 | `#script_function` | Yes (`afw_value_script_function`) | Value | Yes | Params surface-like: name/`…`/Pattern/`?`/`=`/`: Type`; body; optional return Type |
 | `#template_definition` | Yes (`afw_value_template_definition`) | Value | Yes | Parts: strings + nested expressions/`#block` |
 | `#list_expression` | Partial | Value | Accept yes | **Call-site spreads** decompile as surface `...expr` via `afw_value_decompile_call_args` (not `#list_expression`). Accept still parses `#list_expression(expr)` (list_expression node). |

@@ -330,6 +330,162 @@ impl_parse_compiler_internal_assignment_target(afw_compile_parser_t *parser)
 }
 
 
+
+/*ebnf>>>
+ *
+ *# Compiler-internal type alias. Name is reserved before Type so self-ref
+ *# works. Matches decompile of a `type` statement.
+ *
+ * CompilerInternalType ::=
+ *     '#type' '(' String ',' Type ')'
+ *
+ *<<<ebnf*/
+static const afw_value_t *
+impl_parse_compiler_internal_type(afw_compile_parser_t *parser)
+{
+    const afw_compile_value_contextual_t *contextual;
+    const afw_value_t *name_value;
+    const afw_utf8_t *name;
+    const afw_value_type_t *type;
+    afw_value_type_t *placeholder;
+    afw_size_t start_offset;
+
+    start_offset = parser->token->token_source_offset;
+    contextual = afw_compile_create_contextual_to_cursor(start_offset);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(open_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '(' after #type");
+    }
+
+    name_value = afw_compile_parse_Expression(parser);
+    if (!afw_value_is_string(name_value)) {
+        AFW_COMPILE_THROW_ERROR_Z("#type name must be a string");
+    }
+    name = &((const afw_value_string_t *)name_value)->internal;
+    placeholder = afw_compile_script_type_reserve(parser, name);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(comma)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' after #type name");
+    }
+
+    type = afw_compile_parse_Type(parser);
+    placeholder->reference.resolved = type;
+    afw_compile_script_types_resolve(parser);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(close_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ')' after #type Type");
+    }
+
+    return afw_value_script_type_declaration_create(
+        contextual, name, type, false, parser->p, parser->xctx);
+}
+
+
+
+/*ebnf>>>
+ *
+ *# Compiler-internal interface. Name is reserved before the body.
+ *# Further Type arguments are extends bases.
+ *
+ * CompilerInternalInterface ::=
+ *     '#interface' '(' String ',' Type ( ',' Type )* ')'
+ *
+ *<<<ebnf*/
+static const afw_value_t *
+impl_parse_compiler_internal_interface(afw_compile_parser_t *parser)
+{
+    const afw_compile_value_contextual_t *contextual;
+    const afw_value_t *name_value;
+    const afw_utf8_t *name;
+    const afw_value_type_t *body;
+    const afw_value_type_t *base;
+    afw_value_type_t *type;
+    afw_value_type_t *placeholder;
+    apr_array_header_t *extends;
+    const afw_value_type_t **list;
+    afw_size_t i;
+    afw_size_t start_offset;
+
+    start_offset = parser->token->token_source_offset;
+    contextual = afw_compile_create_contextual_to_cursor(start_offset);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(open_parenthesis)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting '(' after #interface");
+    }
+
+    name_value = afw_compile_parse_Expression(parser);
+    if (!afw_value_is_string(name_value)) {
+        AFW_COMPILE_THROW_ERROR_Z("#interface name must be a string");
+    }
+    name = &((const afw_value_string_t *)name_value)->internal;
+    placeholder = afw_compile_script_type_reserve(parser, name);
+
+    afw_compile_get_token();
+    if (!afw_compile_token_is(comma)) {
+        AFW_COMPILE_THROW_ERROR_Z("Expecting ',' after #interface name");
+    }
+
+    body = afw_compile_parse_Type(parser);
+    if (body->kind != afw_value_type_kind_object) {
+        AFW_COMPILE_THROW_ERROR_Z(
+            "#interface body must be an object type");
+    }
+
+    extends = NULL;
+    for (;;) {
+        afw_compile_get_token();
+        if (afw_compile_token_is(close_parenthesis)) {
+            break;
+        }
+        if (!afw_compile_token_is(comma)) {
+            AFW_COMPILE_THROW_ERROR_Z(
+                "Expecting ',' or ')' in #interface");
+        }
+        base = afw_compile_parse_Type(parser);
+        if (base &&
+            base->kind == afw_value_type_kind_reference &&
+            base->reference.name &&
+            afw_utf8_equal(base->reference.name, name))
+        {
+            AFW_COMPILE_THROW_ERROR_FZ(
+                "Interface " AFW_UTF8_FMT_Q " cannot extend itself",
+                AFW_UTF8_FMT_ARG(name));
+        }
+        if (!extends) {
+            extends = apr_array_make(parser->apr_p, 2,
+                sizeof(const afw_value_type_t *));
+        }
+        APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
+    }
+
+    type = afw_pool_calloc_type(parser->p, afw_value_type_t, parser->xctx);
+    type->kind = afw_value_type_kind_object;
+    type->object.properties = body->object.properties;
+    type->object.interface_name = name;
+    if (extends && extends->nelts > 0) {
+        type->object.extends_count = (afw_size_t)extends->nelts;
+        list = afw_pool_malloc(parser->p,
+            sizeof(afw_value_type_t *) * type->object.extends_count,
+            parser->xctx);
+        for (i = 0; i < type->object.extends_count; i++) {
+            list[i] = ((const afw_value_type_t **)extends->elts)[i];
+        }
+        type->object.extends = list;
+    }
+
+    placeholder->reference.resolved = type;
+    afw_compile_script_types_resolve(parser);
+
+    return afw_value_script_type_declaration_create(
+        contextual, name, type, true, parser->p, parser->xctx);
+}
+
+
+
 /*ebnf>>>
  *
  *# Compiler-internal wrapper for array spread entries. Matches decompile.
@@ -852,6 +1008,8 @@ afw_compile_parse_CompilerInternalStatement(afw_compile_parser_t *parser)
  * CompilerInternalValue ::=
  *     CompilerInternalBlock |
  *     CompilerInternalAssignmentTarget |
+ *     CompilerInternalType |
+ *     CompilerInternalInterface |
  *     CompilerInternalListExpression |
  *     CompilerInternalScriptFunction |
  *     CompilerInternalTemplateDefinition |
@@ -874,6 +1032,14 @@ afw_compile_parse_CompilerInternalValue(afw_compile_parser_t *parser)
 
     if (impl_compiler_internal_name_is(parser, "assignment_target")) {
         return impl_parse_compiler_internal_assignment_target(parser);
+    }
+
+    if (impl_compiler_internal_name_is(parser, "type")) {
+        return impl_parse_compiler_internal_type(parser);
+    }
+
+    if (impl_compiler_internal_name_is(parser, "interface")) {
+        return impl_parse_compiler_internal_interface(parser);
     }
 
     if (impl_compiler_internal_name_is(parser, "list_expression")) {

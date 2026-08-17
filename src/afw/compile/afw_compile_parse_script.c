@@ -1009,17 +1009,21 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
     const afw_value_type_t *body;
     const afw_value_type_t *base;
     afw_value_type_t *type;
+    afw_value_type_t *placeholder;
     apr_array_header_t *extends;
     const afw_value_type_t **list;
     afw_size_t i;
     afw_size_t brace_offset;
+    afw_size_t start_offset;
 
     /* 'interface' already consumed as statement keyword. */
+    start_offset = parser->token->token_source_offset;
     afw_compile_get_token();
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting interface name");
     }
     name = parser->token->identifier_name;
+    placeholder = afw_compile_script_type_reserve(parser, name);
 
     extends = NULL;
     afw_compile_get_token();
@@ -1029,6 +1033,15 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
         for (;;) {
             /* Each base: full Type starting at next token (name). */
             base = afw_compile_parse_Type(parser);
+            if (base &&
+                base->kind == afw_value_type_kind_reference &&
+                base->reference.name &&
+                afw_utf8_equal(base->reference.name, name))
+            {
+                AFW_COMPILE_THROW_ERROR_FZ(
+                    "Interface " AFW_UTF8_FMT_Q " cannot extend itself",
+                    AFW_UTF8_FMT_ARG(name));
+            }
             APR_ARRAY_PUSH(extends, const afw_value_type_t *) = base;
             afw_compile_get_token();
             if (!afw_compile_token_is(comma)) {
@@ -1067,10 +1080,13 @@ impl_parse_InterfaceStatement(afw_compile_parser_t *parser)
         type->object.extends = list;
     }
 
-    afw_compile_script_type_register(parser, name, type);
+    placeholder->reference.resolved = type;
+    afw_compile_script_types_resolve(parser);
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
-    return NULL;
+    return afw_value_script_type_declaration_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        name, type, true, parser->p, parser->xctx);
 }
 
 
@@ -1087,12 +1103,16 @@ impl_parse_TypeStatement(afw_compile_parser_t *parser)
 {
     const afw_utf8_t *name;
     const afw_value_type_t *type;
+    afw_value_type_t *placeholder;
+    afw_size_t start_offset;
 
+    start_offset = parser->token->token_source_offset;
     afw_compile_get_token();
     if (!afw_compile_token_is_unqualified_identifier()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting type name");
     }
     name = parser->token->identifier_name;
+    placeholder = afw_compile_script_type_reserve(parser, name);
 
     afw_compile_get_token();
     if (!afw_compile_token_is(equal)) {
@@ -1100,10 +1120,13 @@ impl_parse_TypeStatement(afw_compile_parser_t *parser)
     }
 
     type = afw_compile_parse_Type(parser);
-    afw_compile_script_type_register(parser, name, type);
+    placeholder->reference.resolved = type;
+    afw_compile_script_types_resolve(parser);
 
     AFW_COMPILE_ASSERT_NEXT_TOKEN_IS_SEMICOLON;
-    return NULL;
+    return afw_value_script_type_declaration_create(
+        afw_compile_create_contextual_to_cursor(start_offset),
+        name, type, false, parser->p, parser->xctx);
 }
 
 

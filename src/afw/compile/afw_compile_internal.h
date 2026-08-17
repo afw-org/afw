@@ -482,7 +482,8 @@ struct afw_compile_internal_parser_s {
 
     /*
      * Script type/interface name table for this compile (issue #28).
-     * Key: type name (afw_utf8_t *), value: const afw_value_type_t *.
+     * Key: type name (afw_utf8_t *), value: const afw_value_type_t *
+     * (a reference placeholder; resolved is the body).
      * NULL until first type/interface statement.
      */
     apr_hash_t *script_type_names;
@@ -1047,6 +1048,29 @@ afw_compile_script_type_register(
     afw_compile_parser_t *parser,
     const afw_utf8_t *name,
     const afw_value_type_t *type);
+
+/**
+ * @brief Reserve a `type` / `interface` name before parsing its body.
+ *
+ * Inserts a reference placeholder so the body of this statement can
+ * see the name (self-ref). Other names must already be in the table.
+ * Caller sets `reference.resolved` to the body.
+ */
+extern afw_value_type_t *
+afw_compile_script_type_reserve(
+    afw_compile_parser_t *parser,
+    const afw_utf8_t *name);
+
+/**
+ * @brief Reject unproductive `type` alias cycles in this compile unit.
+ *
+ * Call after each `type` / `interface` body is bound, and at end of
+ * compile. Names must already be declared; this does not discover later
+ * statements.
+ */
+extern void
+afw_compile_script_types_resolve(
+    afw_compile_parser_t *parser);
 
 /**
  * @brief Evaluate a script-function formal (script IR only).

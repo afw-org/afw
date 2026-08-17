@@ -1090,6 +1090,8 @@ Handbook: Language Reference **Types** (flags and `#compile` options), **Languag
 
 Pathological nesting in a type annotation or destructure pattern (`((((… integer …))))`, `[[[[… x …]]]]`) is a **syntax error** (`Type or pattern nesting is too deep`) rather than a hang or crash. Ordinary scripts are nowhere near the limit.
 
+`type` / `interface` names must be **declared before use** ([#188](https://github.com/afw-org/afw/issues/188)), like script values — not hoisted. A type may refer to **itself** in its own body (`type Node = { next?: Node }`). An unknown name is always a compile error. Bare alias cycles (`type A = A`, or a cycle only through `|` / `&`) are a compile error.
+
 [↑ Highlights](#highlights)
 
 ---

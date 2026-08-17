@@ -649,6 +649,109 @@ compile<script>(script(
 return 0;
 
 //?
+//? test: check-type-alias-self-ref-ok
+//? description: recursive Node accepts a well-typed tree
+//? expect: 0
+//? source: ...
+
+const r: any = evaluate(compile<script>(script(
+    "#compile typeCheck;\n" +
+    "type Node = { next?: Node };\n" +
+    "const n: Node = { next: { } };\n" +
+    "return n.next;"
+)));
+assert(r !== undefined);
+return 0;
+
+//?
+//? test: check-type-alias-self-ref-bad-nested
+//? description: recursive Node rejects a wrong nested value
+//? expect: error
+//? source: ...
+
+compile<script>(script(
+    "#compile typeCheck;\n" +
+    "type Node = { next?: Node };\n" +
+    "const n: Node = { next: { next: 1 } };\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: check-type-alias-declared-before-use-ok
+//? description: type B first, then type A = { b: B } is enforced
+//? expect: 0
+//? source: ...
+
+const r: any = evaluate(compile<script>(script(
+    "#compile typeCheck;\n" +
+    "type B = integer;\n" +
+    "type A = { b: B };\n" +
+    "const x: A = { b: 3 };\n" +
+    "return x.b;"
+)));
+assert(r === 3);
+return 0;
+
+//?
+//? test: check-type-alias-declared-before-use-bad
+//? description: B = integer then A = { b: B } rejects a string
+//? expect: error
+//? source: ...
+
+compile<script>(script(
+    "#compile typeCheck;\n" +
+    "type B = integer;\n" +
+    "type A = { b: B };\n" +
+    "const x: A = { b: \"no\" };\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: check-type-alias-chain-bad
+//? description: type B = integer; type A = B rejects a string
+//? expect: error
+//? source: ...
+
+compile<script>(script(
+    "#compile typeCheck;\n" +
+    "type B = integer;\n" +
+    "type A = B;\n" +
+    "const x: A = \"no\";\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: check-unknown-type-name
+//? description: unknown type name is a compile error
+//? expect: error
+//? source: ...
+
+compile<script>(script(
+    "#compile typeCheck;\n" +
+    "const x: Nope = 1;\n" +
+    "return 0;"
+));
+return 0;
+
+//?
+//? test: check-interface-extends-declared-base
+//? description: interface extends a previously declared base; missing id fails
+//? expect: error
+//? source: ...
+
+compile<script>(script(
+    "#compile typeCheck;\n" +
+    "interface Base { id: integer };\n" +
+    "interface Person extends Base { name: string };\n" +
+    "const p: Person = { name: \"a\" };\n" +
+    "return 0;"
+));
+return 0;
+
+//?
 //? test: check-adaptive-length-ok
 //? description: built-in length accepts string
 //? expect: 0

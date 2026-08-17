@@ -104,7 +104,7 @@ TypeScript-like **spelling** where Adaptive supports it; Adaptive **semantics** 
 | Object shapes / optional props | **Closed** lists: `{ host: string, port?: integer }` — known names only (optional with `?`). **No** index signatures. Callable fields use a **function Type** after the colon (`run: (a: integer) => integer`), not TypeScript method/call signatures (see [will not do](#explicitly-will-not-do)) |
 | Function **types** | `(a: integer) => integer` |
 | Function **values** | `function (a: integer): integer { … }` |
-| Aliases / interfaces | `type`, `interface` + `extends` |
+| Aliases / interfaces | `type`, `interface` + `extends`. **Declared before use** (not hoisted). A type may refer to **itself** in its own body. See [motivated differences](#motivated-differences-not-bugs) |
 | Checking | Off by default; `compile:typeCheck*`, `noImplicitAny`, `strictNullChecks`, `strict`; `#compile` / `noTypeCheck` |
 | Old Adaptive Type spelling | Hard cut: no `(array of T)`, no `(object "SomeObjectType")` |
 
@@ -248,6 +248,7 @@ Same or similar spelling, **intentional** Adaptive behavior. Do not “fix” th
 | **Outside names** | **Qualifiers**, not globals |
 | **Methods** | Adaptive functions + optional `->` sugar, not prototype walk |
 | **Script types vs Adaptive object types** | Script `interface` ≠ adapter object type catalog |
+| **`type` / `interface` names are not hoisted** ([#188](https://github.com/afw-org/afw/issues/188)) | A name must already be declared in this compile unit (or be an Adaptive data type), like `let` / `const`. TypeScript hoists type aliases and interfaces so a later `type B` can satisfy an earlier use; Adaptive does **not**. **Self-ref in the same statement is allowed** (`type Node = { next?: Node }`). Unknown names are a compile error even with type checking off. Mutual / forward types (`type A = { b: B }; type B = { a?: A }`) are not supported — reopen only if we want an explicit mutual form. Bare alias cycles (`type A = A`, or a cycle only through union / intersection) are errors. |
 | **Array element types** | **`T[]` only** — not `Array<T>`. TS treats both as the same; Adaptive keeps a single spelling (matches typical app/client `string[]` style and avoids a second path into generics) |
 | **`null` vs `undefined`** | Both nullish; Adaptive `null` is a typed singleton; C APIs may use NULL for undefined—script authors should think in nullish + exists/get rules above |
 | **String encoding** | Adaptive is **100% UTF-8** end-to-end. **`afw_utf8_t` values are always valid NFC UTF-8** (invalid UTF-8 must not appear as a string value—that’s a serious bug). ECMAScript engines typically expose a **UTF-16 code unit** model (one logical character may be two 16-bit units / a surrogate pair). Adaptive **length**, **substring**, **index_of**, **for-of** (strings), and empty-separator **split** walk **Unicode code points** in that UTF-8, not UTF-16 code units and not “raw octet indexes” for character steps. |
@@ -277,6 +278,7 @@ Strings stay **immutable** (no `s[i] = …`). Character access is via functions 
 | Catch fields | `catch ({ message, data })` |
 | Process / env | `process::…`, `environment::…` |
 | Typecheck like `tsc` | Opt-in flags / `#compile typeCheck` |
+| `type` / `interface` used above its declaration | Declare the name **first**. Same-statement self-ref (`type Node = { next?: Node }`) is the exception |
 | Modules / classes | Framework + objects/functions—not `import` / `class` |
 
 ---

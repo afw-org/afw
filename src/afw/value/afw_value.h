@@ -266,6 +266,12 @@ afw_value_assignment_target_inf;
 
 
 
+/** @brief Compiled type / interface statement inf. */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_script_type_declaration_inf;
+
+
+
 /** @brief Value block inf. */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_block_inf;
@@ -630,6 +636,18 @@ afw_value_is_fully_evaluated(
 ( \
     (A_VALUE) && \
     (A_VALUE)->inf == &afw_value_assignment_target_inf \
+)
+
+
+/**
+ * @brief Macro to determine if value is a script type / interface statement.
+ * @param A_VALUE to test.
+ * @return boolean result.
+ */
+#define afw_value_is_script_type_declaration(A_VALUE) \
+( \
+    (A_VALUE) && \
+    (A_VALUE)->inf == &afw_value_script_type_declaration_inf \
 )
 
  
@@ -1459,6 +1477,27 @@ afw_value_assignment_target_create(
 
 
 /**
+ * @brief Create a compiled `type` / `interface` statement value.
+ * @param contextual source location of the statement.
+ * @param name type or interface name.
+ * @param type bound body (object type for interface, including extends).
+ * @param is_interface true for interface, false for type alias.
+ * @param p pool used for value.
+ * @param xctx of caller.
+ * @return Created afw_value_t.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_script_type_declaration_create(
+    const afw_compile_value_contextual_t *contextual,
+    const afw_utf8_t *name,
+    const afw_value_type_t *type,
+    afw_boolean_t is_interface,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
+
+/**
  * @brief Create and link a new block.
  * @param compiled_value to link block in.
  * @param block_count address to increment.
@@ -2266,6 +2305,22 @@ afw_value_type_check_function_type_call(
  */
 AFW_DEFINE(afw_boolean_t)
 afw_value_decompile_type(
+    const afw_value_type_t *type,
+    const afw_writer_t *writer,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Write an object type as `{ … }` even if it has an interface name.
+ * @param type object type (no-op / "any" if not object-shaped).
+ * @param writer
+ * @param xctx of caller.
+ *
+ * Used by `#interface` decompile so the body is reconstructable.
+ */
+AFW_DEFINE(void)
+afw_value_decompile_type_object_literal(
     const afw_value_type_t *type,
     const afw_writer_t *writer,
     afw_xctx_t *xctx);

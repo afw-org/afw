@@ -204,6 +204,7 @@ Reopen only by **explicit** new decision. Author-facing wording lives in root [`
 | **Type assertions / `satisfies` / type predicates / assertion functions** | Not part of Adaptive Script. No `as T`, non-null `!`, `satisfies`, `x is T`, or `asserts x is T`. No control-flow type narrowing. Use `: Type` + typeCheck when known; runtime conditions, Adaptive helpers, and `throw` for guards. |
 | **`enum` / `const enum`** | Not part of Adaptive Script. Enumerated vocabularies use data types, values + runtime checks, Adaptive property allowed values, or Adaptive object types. |
 | **Interface / declaration merging** | One script `type` or `interface` per name; no TypeScript-style merge of multiple declarations. |
+| **Type-name hoisting** (use a `type` / `interface` before its statement) | **[#188](https://github.com/afw-org/afw/issues/188).** Declaration-before-use, like script values. Self-ref in the same statement is allowed. Not TypeScript hoisting. |
 | **`implements`** | No classes or `new`; script `interface` is structural only. |
 | **Import types / type-only modules** | No script module `import` / `export`. |
 | **`never` as a type** | No TypeScript bottom type; use Adaptive data types (`void`, `unknown`, `any`, …) as defined. |

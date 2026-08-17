@@ -68,6 +68,21 @@ struct afw_value_assignment_target_s {
 
 
 
+/** @brief Compiled `type` / `interface` statement. */
+struct afw_value_script_type_declaration_s {
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    const afw_compile_value_contextual_t *contextual;
+    const afw_utf8_t *name;
+    const afw_value_type_t *type;
+    afw_boolean_t is_interface;
+};
+
+
+
 /** @brief Struct for value assignment. */
 struct afw_value_assignment_s {
     const afw_utf8_t * name;
