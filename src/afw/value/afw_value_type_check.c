@@ -85,20 +85,27 @@ impl_type_to_z(
 {
     const afw_writer_t *writer;
     afw_utf8_t current;
+    const afw_utf8_z_t *result;
 
     if (afw_value_type_is_any(type)) {
         return "any";
     }
 
+    /*
+     * Writer has its own sub-pool. Copy the text onto p, then release —
+     * same as afw_value_decompile_to_string. The current string is a
+     * view into the writer pool.
+     */
     writer = afw_utf8_writer_create(NULL, p, xctx);
-    if (!afw_value_decompile_type(type, writer, xctx)) {
-        return "any";
+    result = "any";
+    if (afw_value_decompile_type(type, writer, xctx)) {
+        afw_utf8_writer_current_string(writer, &current, xctx);
+        if (current.len != 0) {
+            result = afw_utf8_to_utf8_z(&current, p, xctx);
+        }
     }
-    afw_utf8_writer_current_string(writer, &current, xctx);
-    if (current.len == 0) {
-        return "any";
-    }
-    return afw_utf8_to_utf8_z(&current, p, xctx);
+    afw_writer_release(writer, xctx);
+    return result;
 }
 
 

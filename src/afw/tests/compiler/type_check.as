@@ -469,6 +469,25 @@ try {
 return 0;
 
 //?
+//? test: check-error-mentions-decompiled-type
+//? description: type error text includes decompiled expected type
+//? expect: 0
+//? source: ...
+
+try {
+    compile<script>(script(
+        "#compile typeCheck;\n" +
+        "const u: integer|string = true;\n" +
+        "return 0;"
+    ));
+    assert(false);
+} catch (e) {
+    const msg = string(e);
+    assert(includes(msg, "integer|string"));
+}
+return 0;
+
+//?
 //? test: check-excess-property-object-literal
 //? description: compile rejects excess key on object literal
 //? expect: error
