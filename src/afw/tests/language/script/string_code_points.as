@@ -337,6 +337,23 @@ assert(length(got) === 21);
 return 0;
 
 //?
+//? test: empty-needle-search-siblings
+//? description: empty substring in includes / index_of / last_index_of / starts_with / ends_with terminates (related to empty-match replace)
+//? differences: Same results as ES includes/indexOf/lastIndexOf/startsWith/endsWith with "".
+//? expect: 0
+//? source: ...
+
+assert(includes("abc", "") === true);
+assert(index_of("abc", "") === 0);
+assert(last_index_of("abc", "") === 3);
+assert(starts_with("abc", "") === true);
+assert(ends_with("abc", "") === true);
+assert(includes("", "") === true);
+assert(index_of("", "") === 0);
+assert(last_index_of("", "") === 0);
+return 0;
+
+//?
 //? test: split-separator-code-point
 //? description: split on separator only at CP boundaries
 //? expect: 0
