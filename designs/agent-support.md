@@ -213,7 +213,7 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 - Catalog issue = write-ups only. Do not edit Who/Status there.
 - Cards stay **drafts** so we do not mint one GitHub issue per finding. Public `afw` gets **one** issue (and later PR) when that card is `public`. Put those links in the **card body** as markdown (`[PR #191](https://github.com/afw-org/afw/pull/191)`). Do not put `#N` or URLs in a Project text field — the Board treats them as other cards, not public `afw`. Drafts cannot use Linked pull requests.
 - Do **not** file the whole list on public `afw`. Crash / use-after-free / overflow stay private (`hold` / `working`) until disclosure is decided. Language guardrails can go public earlier if we want.
-- New session: discuss first (“what do you think about \<id\>?”), not “implement this PoC.” Flip the **card**, not a frozen markdown table.
+- New session: discuss first (“what do you think about \<id\>?”), not “implement this PoC.” Flip the **card**. There is no living markdown table.
 - Later waves: “triage these new findings” → dedup, append draft cards, one comment on the how-to issue. Do not open a second meta-issue.
 
 **Wrong path:** paste the review table into a public issue; pick the extensions-private repo because of `-private` in the name; dual-maintain a markdown table and the Project.
