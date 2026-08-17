@@ -268,6 +268,7 @@ _Many draft items below are superseded or refined by **Value Lifetime Model (tar
 | 2026-08-06 | **Array faces** not the same bug today (pool-owned instance, noop `release`, materialize ring). When arrays get real managed RC, mirror object pin + other #2 array work | Do not invent array pin early |
 | 2026-08-16 | **`create_array(n)`** is a likely first script-facing constructor when #2 starts on arrays | Today: `afw_array_create_generic(x->p)` (`create_with_options` **ignores** `options`), push `undefined` n times, always `create_unmanaged_array` wrapper. Objects already have `AFW_OBJECT_MEMORY_OPTION_managed` / `unmanaged` / `managed_cede_p` (private subpool vs caller pool). Arrays do not. 1,000,000 cap is a resource policy, not the #2 create path. Discuss instance vs value first; then this constructor. Finding #8 (`read()` cap) is sibling policy only — do not treat current `create_array` as the finished alloc model. |
 | 2026-08-06 | Removed unfinished **`create_composite`** / **`properties_callback`**; keep **`create_merged`**, **`aggregate_external`**, views / option composite | Faces are product look-through; multi-base aggregate is different |
+| 2026-08-17 | **Candidate (not decided):** back toward wrap-APR `afw_pool` (no prefixes on live allocs). Script objects/arrays in the script-start pool, managed; scalars clone; optional intrusive free list in dead values; first-fit now, better later | See **Candidate: back toward old afw_pool**. Current subpool+prefix code stays until #2 chooses. Optional free-list splice (triage **P3**) is **#2**, not a local `else`. |
 
 ### Open questions (need maintainer perspective when back)
 
@@ -1315,6 +1316,20 @@ Several different “managed by pool” stories coexist; **validate case by case
 
 **Also:** assignment can copy a variable **across scopes**. Scalars can often be **cloned**; **objects/arrays** need **reference counting** (share container, not deep-copy every time). That is the managed container + `clone_or_reference` story — **partially implemented**.
 
+#### Candidate: back toward old afw_pool (2026-08-17 — not decided)
+
+Brainstorm while triage **P3** (non-adjacent free-list splice) was in context. **#2 owns this.** Do not implement from this subsection.
+
+**Why it came up:** The current full/subpool impls put a **prefix** (size + owning pool, plus prev/next on subpools) on every allocation so optional `free` can return a block to a first-fit list. A missing `else` that splices every non-adjacent fragment **livelocks** that walk on compile-heavy churn (`comments.as` in `impl_alloc_memory`). Adjacent-only relink is load-bearing today. Destroy of a full pool is still `apr_pool_destroy` — lifetime was never the free list. Individual `free` did not exist for a long time; it is an optional hint.
+
+**Candidate direction (Mike):** go back toward the older `afw_pool`: wrap APR, parent destroy takes children, **no pointers in front of live allocations**. Objects/arrays the script creates live in the **pool the script started in** (`xctx->p`), all **managed**. Incoming unmanaged objects/arrays get the **wrappers** already added (pin `instance->p`; dual face ≠ that pin). `clone_or_reference` on assign: **`add_reference()`** for objects/arrays (same instance so mutation is shared); **clone** for scalars (not RC). A later RC / slice path for huge strings is an optimization. Loop clones of little integers grow the script pool unless optional `free` hands those headers back on slot overwrite / scope end.
+
+**Optional free without prefixes:** a free-chain entry is `next + size` (16 bytes on 64-bit). `afw_value_integer_t` is 16; a managed integer is 24. Write the chain **into the dead value**. Only free known-size value headers (and similar). Random tiny `apr_palloc` still ignore-free. First-fit is enough for #2; keep the list **address-ordered** so coalesce is easy if it is worth it later. Fixed-size integers might get their own list; strings later. **Get values working (#2), then tweak the allocator.**
+
+**Open in this candidate:** does the **scope struct** still get a subpool (even a dumb APR child), or does it live in `xctx->p` too and only the **values** are managed? Extra hold on escape is **scope/subpool RC and/or object RC**, not a per-block skip on destroy.
+
+**Do not:** treat P3 as a slam-dunk `else`; invent a general malloc to “fix” reuse; start this revert on a findings-card sitting.
+
 **Mechanics (`subpool` / `multithreaded_subpool`):**
 
 - No own APR pool for bulk storage: `apr_p` is the **parent’s**; bytes come from parent free-list / `apr_palloc`.
@@ -2182,5 +2197,11 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - **1d not coded** yet; plan in pad only.
 - `whats-new.md`: α/β + **recompile** out-of-tree commands/extensions against new libafw.
 - Resume: 1d.0 sign-off → implement create policy under target model.
+
+### 2026-08-17 — P3 + candidate wrap-APR pool
+
+- Triage **P3** (non-adjacent free-list splice) is **#2**, not a findings one-liner. Naive `else` livelocks first-fit (`comments.as`). Adjacent-only drop is load-bearing until reuse is redesigned.
+- **Candidate** (not decided) recorded under Subpools: back toward wrap-APR, no live prefixes, script objects/arrays in `xctx->p` managed, scalars clone, intrusive free list in dead values, first-fit then tweak.
+- Do not start that revert on a card sitting. Next card sitting is separate.
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_
