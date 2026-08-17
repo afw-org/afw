@@ -1440,7 +1440,10 @@ afw_function_execute_repeat(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Replace string(s) in a `<dataType>` value.
+ * Replace string(s) in a `<dataType>` value. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (insert at the start).
+ * Specify limit -1 to insert at every boundary, including the start and the
+ * end.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1464,7 +1467,8 @@ afw_function_execute_repeat(
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   match - (string) The string to replace.
+ *   match - (string) The string to replace. An empty string matches at each
+ *       code-point boundary, including the start and the end.
  *
  *   replacement - (string) The replacement string.
  *

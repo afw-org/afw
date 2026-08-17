@@ -30915,9 +30915,33 @@ afw_self_v_zz__2217 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2218 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2218)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2219 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2219)
+};
+
+const afw_value_string_t
 afw_self_v_zz__222 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__222)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2220 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2220)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2221 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2221)
 };
 
 const afw_value_string_t
@@ -43791,24 +43815,6 @@ afw_self_v_zz__Replace_an_adaptive_object_with_a_given_URI_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Replace_string_s__in_a__dataType__value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Replace_string_s__in_a__dataType__value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Replace_string_s__in_a_anyURI_value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Replace_string_s__in_a_anyURI_value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Replace_string_s__in_a_string_value_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Replace_string_s__in_a_string_value_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Replace_strings = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Replace_strings)
@@ -46278,12 +46284,6 @@ const afw_value_string_t
 afw_self_v_zz__The_string_representation_of_the_value_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_string_representation_of_the_value_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__The_string_to_replace_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_string_to_replace_)
 };
 
 const afw_value_string_t

@@ -565,7 +565,9 @@ The number of times to repeat the value.
 
 =head3 replace_string
 
-Replace string(s) in a string value.
+Replace string(s) in a string value. An empty match is a match at a code-point
+boundary. The default limit replaces once (insert at the start). Specify limit
+-1 to insert at every boundary, including the start and the end.
 Replace strings
 
 =head4 Parameters
@@ -576,7 +578,8 @@ The original string value.
 
     $match
 
-The string to replace.
+The string to replace. An empty string matches at each code-point boundary,
+including the start and the end.
 
     $replacement
 

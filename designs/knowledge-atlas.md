@@ -53,7 +53,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
-| Arrays / converts / UTF-8 | #39, converts pad, #153 |
+| Arrays / converts / UTF-8 | #39, converts pad, #153; #190 empty-match `replace` |
 | Streams / VFS / retrieve | stream + vfs rules; #127; #49 |
 | afwdev / tests | recipe + tests-extra SCHEMA; #157 |
 | Crypto | #74 pad |
@@ -345,7 +345,7 @@ After install, **restart afwfcgi** if attach tools talk to a long-lived process.
 |-------|------------|--------|
 | Array semantics | `array-semantics.md` | Shipped (#39) |
 | Converts | `conversion-functions.md` | Shipped with #39 wave |
-| UTF-8 code points | `utf8-code-point-sequences.md` | #153 oriented |
+| UTF-8 code points | `utf8-code-point-sequences.md` | #153 oriented; #190 empty-match `replace` |
 | Mutable faces | `issue-17-mutable-object-faces.md` | Closed PR #150 |
 | Expression property names | `issue-38-…` | Closed |
 | Meta on wire | `issue-138-…` | Design/status in pad |

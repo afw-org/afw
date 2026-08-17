@@ -83,6 +83,7 @@ sections end with [↑ Highlights](#highlights) to return here.
 | [**Array semantics**](#array-semantics-issue-39) ([#39](https://github.com/afw-org/afw/issues/39)) | Literal elision → undefined; assign-append at `length`; **`create_array(n)`**; dense arrays only (no sparse / no `in`/`delete`) |
 | [**Conversion functions**](#conversion-functions-type-named) | Type-named converts; no `null()` / `function()` converts; `array` is constructor; source types hold text for `compile` |
 | [**UTF-8 code-point sequences**](#utf-8-code-point-sequences-issue-153) ([#153](https://github.com/afw-org/afw/issues/153)) | Utf8-backed values as **immutable code-point sequences**: `s[i]`, for-of, array formals / HOFs; C **`afw_iterator`** redesign (legacy cursor → **`afw_iterator_old`**) |
+| [**Empty-match `replace`**](#empty-match-replace-issue-190) ([#190](https://github.com/afw-org/afw/issues/190)) | Empty `match` is a **code-point boundary**. Default inserts once at the start; `limit = -1` inserts at every boundary, including the end |
 | [**Orchestrated tests**](#orchestrated-tests-issue-157) ([#157](https://github.com/afw-org/afw/issues/157)) | Hermetic multi-step leaves via `orchestration.yaml` (hosts `afwfcgi` / `local`); `//? expect-stdout` / `expect-stderr`; opt-in `tests-extra/` |
 | [**afwdev test recipe flags**](#afwdev-test-recipe-flags) | `-T` / `--tests-path`, `--output` / `--output-format` for machine summaries |
 | [**Graceful process stop**](#graceful-process-stop-sigtermsigint-issue-158) ([#158](https://github.com/afw-org/afw/issues/158)) | **`afwfcgi`** honors **SIGTERM/SIGINT** (stop accept, drain workers, unlink Unix listen path); **`afw`** sets **`terminating`**; mid-request I/O can throw **503 Server Terminating** |
@@ -313,6 +314,7 @@ Adaptive values whose internal form is **`afw_utf8_t`** (`string`, `anyURI`, and
 | **`for-of`** | Walks **code points** (same element shape as `s[i]`). Also still walks **arrays**. Not plain objects. |
 | **Array formals / HOFs** | When a built-in expects an **array of values** (e.g. `map` / `filter` / `reduce`) or a script formal is **`array` / `T[]` / tuple**, a utf8 value is accepted as that sequence (temporary materialize). Does **not** permanently retype the string to `array`. **XACML bag** formals still treat a scalar string as **bag-of-one**, not code-point expansion. |
 | **Search** | `includes` (with optional start), `replace`, and non-empty `split` search at **code-point boundaries**. |
+| **Empty-match `replace`** | An empty `match` is a match at a **code-point boundary** (including start and end). Default `limit` 1 inserts at the start; `limit = -1` inserts at every boundary. See [#190](#empty-match-replace-issue-190). |
 | **Substring / replace / repeat returns** | Polymorphic string ops return **`string`**, not the input’s specialized utf8 type. |
 
 Storage remains **valid NFC UTF-8**. The value’s **data type stays** `string` / `anyURI` / … — it is not retyped to `array`.
@@ -320,6 +322,25 @@ Storage remains **valid NFC UTF-8**. The value’s **data type stays** `string` 
 **C / extensions:** keyless **`afw_iterator`** + data-type `optional_initialize_iterator`; value helpers `afw_value_has_iterator` / `initialize_iterator` / `as_array_sequence`. Legacy opaque cursor type renamed **`afw_iterator_old`** (part of the [C API cleanup](#libafw-c-api-cleanup-release-ready-surface) rebuild line). Maintainer pad: [`designs/utf8-code-point-sequences.md`](designs/utf8-code-point-sequences.md). Tests: `src/afw/tests/language/script/string_code_points.as`.
 
 Residuals (not required for this language story): lazy array **face** over utf8; shared `afw_utf8_*` index helpers; produce-type percolation on call IR (see `designs/compile-optimize-notes.md` / [#28](https://github.com/afw-org/afw/issues/28)).
+
+[↑ Highlights](#highlights)
+
+---
+
+## Empty-match `replace` (issue [#190](https://github.com/afw-org/afw/issues/190))
+
+An empty `match` in `replace(value, match, replacement, limit)` is a match at a **code-point boundary**, not “eat the next character.” The replacement is inserted at that gap; the next character is copied as usual.
+
+| Call | Result |
+|------|--------|
+| `replace("abc", "", "x")` | `"xabc"` — default `limit` is **1** (insert at the start) |
+| `replace("abc", "", "x", -1)` | `"xaxbxcx"` — every boundary, including the start and the end |
+| `replace("", "", "x")` | `"x"` |
+| `replace("😀", "", "x", -1)` | `"x😀x"` — one Unicode code point, not UTF-16 units |
+
+This is the same family as empty-separator `split()` (one entry per code point). It is the Adaptive form of ES `replace` / `replaceAll` with an empty string, except Adaptive walks **code points**.
+
+Tests: `src/afw/tests/language/script/string_code_points.as`, `src/afw/tests/generated/functions/replace.as`.
 
 [↑ Highlights](#highlights)
 
@@ -1408,6 +1429,10 @@ Mutable defaults for `property_get` / `variable_get` (issue **[#110](https://git
 ### Type and pattern parse nesting
 
 Pathological nesting in a type annotation or destructure pattern is a **syntax error** (`Type or pattern nesting is too deep`), not a hang or crash. See [Script types](#adaptive-script-types-issue-28).
+
+### Empty-match `replace`
+
+`replace` with an empty `match` and `limit = -1` inserts at every code-point boundary (including the end) instead of hanging. See [Empty-match `replace`](#empty-match-replace-issue-190).
 
 ### Tests under `src/*/tests`
 

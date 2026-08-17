@@ -282,6 +282,61 @@ assert(replace("a\u20ac" + "b", "\u20ac", "") === "ab");
 return 0;
 
 //?
+//? test: replace-empty-match-default
+//? description: empty match default limit inserts once at the start
+//? differences: Same as ES String.replace("", x). Adaptive default limit is 1.
+//? expect: 0
+//? source: ...
+
+assert(replace("abc", "", "x") === "xabc");
+assert(replace("abc", "", "x", 1) === "xabc");
+assert(replace("abc", "", "x", 0) === "abc");
+return 0;
+
+//?
+//? test: replace-empty-match-all
+//? description: empty match limit -1 inserts at every code-point boundary
+//? differences: Same shape as ES replaceAll("", x), but Adaptive walks code points (not UTF-16 units).
+//? expect: 0
+//? source: ...
+
+assert(replace("abc", "", "x", -1) === "xaxbxcx");
+assert(replace("abc", "", "x", 2) === "xaxbc");
+assert(replace("", "", "x") === "x");
+assert(replace("", "", "x", -1) === "x");
+assert(replace("abc", "", "", -1) === "abc");
+return 0;
+
+//?
+//? test: replace-empty-match-multibyte
+//? description: empty-match replace-all steps by code point, not UTF-16 unit
+//? differences: ES replaceAll("", x) on a supplementary character splits the surrogate pair; Adaptive inserts around the one code point.
+//? expect: 0
+//? source: ...
+
+assert(replace("\u20ac" + "z", "", "x", -1) === "x\u20ac" + "xzx");
+assert(replace("\u{1F600}", "", "x", -1) === "x\u{1F600}x");
+return 0;
+
+//?
+//? test: replace-empty-match-edges
+//? description: method form, anyURI, limit past last boundary, longer replace-all
+//? expect: 0
+//? source: ...
+
+const s = "abc";
+assert(s->replace("", "x") === "xabc");
+assert(s->replace("", "x", -1) === "xaxbxcx");
+assert(replace(anyURI("abc"), "", "x", -1) === "xaxbxcx");
+/* limit larger than n+1 boundaries must stop, not spin */
+assert(replace("ab", "", "x", 100) === "xaxbx");
+const src = "abcdefghij";
+const got = replace(src, "", "|", -1);
+assert(got === "|a|b|c|d|e|f|g|h|i|j|");
+assert(length(got) === 21);
+return 0;
+
+//?
 //? test: split-separator-code-point
 //? description: split on separator only at CP boundaries
 //? expect: 0

@@ -905,10 +905,15 @@ class string
     /**
      * replace_string()
      *
-     * Replace string(s) in a string value.
+     * Replace string(s) in a string value. An empty match is a match at a
+     * code-point boundary. The default limit replaces once (insert at the
+     * start). Specify limit -1 to insert at every boundary, including the
+     * start and the end.
      *
      * @param string $value The original string value.
-     * @param string $match The string to replace.
+     * @param string $match The string to replace. An empty string matches at
+     *                      each code-point boundary, including the start and
+     *                      the end.
      * @param string $replacement The replacement string.
      * @param integer $limit This is the maximum times to replace. The default
      *                       is 1. Specify -1 to replace all occurrences.

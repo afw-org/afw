@@ -557,11 +557,15 @@ export function afwRepeatAnyURI(client : any, value : any, times : number) : any
 }
 
 /**
- * Replace string(s) in a anyURI value.
+ * Replace string(s) in a anyURI value. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (insert at the start).
+ * Specify limit -1 to insert at every boundary, including the start and the
+ * end.
  * 
  * @param {anyURI} value - The original anyURI value.
  * 
- * @param {string} match - The string to replace.
+ * @param {string} match - The string to replace. An empty string matches at
+ *     each code-point boundary, including the start and the end.
  * 
  * @param {string} replacement - The replacement string.
  * 
