@@ -72,7 +72,17 @@ Lex token: `pound_identifier` (`#Name`). Unknown names → parse error (statemen
 | `decompile_fidelity.as` | Broad construct matrix (d1 == d2) |
 | `decompile.as` / `pragma.as` | Sample string expects / #block evaluate |
 
-When adding a new decompile `#implementation_id`, update this table, accept dispatch, EBNF, and at least one accept or round-trip case.
+**Standing bar:** if a change can break decompile → compile → decompile (new or changed statement/value kind, type syntax, compiler-internal accept/emit, `compiler_internal` execute argv shape), **prove the trip**. Primary check:
+
+```adaptive
+const d1 = decompile(compile<script>(script(src)));
+const d2 = decompile(compile<script>(script(d1)));
+assert(d1 == d2);
+```
+
+Evaluate the recompiled result when the original had a result. Add a case in `decompile_accept/` and/or the suite that owns the construct (`type_syntax.as`, `decompile_fidelity.as`, …). Documented non-round-trip: `#closure_binding`, `#function_thunk`.
+
+When adding a new decompile `#implementation_id`, also update this table, accept dispatch, and EBNF.
 
 ## `compiler_internal` naming
 
