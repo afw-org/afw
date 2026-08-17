@@ -49,6 +49,7 @@ Specialized hot paths (e.g. **substring**) may stay hand-tuned; they must share 
 | **`includes`** (+ optional position) | **Fixed** — CP index + CP step |
 | `starts_with` / `ends_with` | Full-string byte compare (OK for complete valid UTF-8 strings) |
 | **`replace`**, **split** (non-empty separator), **`afw_utf8_contains`** | **Fixed** — search advances by code point (still `memcmp` of full needle) |
+| Empty-match **`replace`** | **Fixed (#190)** — insert at each code-point boundary (including start and end); `limit = -1` must terminate |
 | XACML bag formals | **Not** code-point expand (bag-of-one scalar); see `as_array_sequence` notes |
 
 ## Goals

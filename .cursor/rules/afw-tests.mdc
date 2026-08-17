@@ -109,6 +109,13 @@ Implications for process flags / unit policy (`compile:typeCheck`, `#compile`, â
 - Script function **runtime** formals/returns prefer **definition** unit contextual; **compile-time** formal checks on a call use the **call-site** unit (outer case unit if the call is in the case body).
 ## Regression tests for runtime bugs
 
+When tests (or a live probe) turn up a **new** error, the fix includes a
+gate case that **fails without the fix**, plus **related** cases you can
+think of (sibling functions, empty/limit/end paths, the other impl of the
+same interface). A green suite that never saw the bug will not catch it
+next time. Mantra: *A new error gets a test that would have caught it*
+(`designs/mantras-and-working-style.md`).
+
 When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 
 - Put cases next to related tests (`miscellaneous/`, category folder, or adapter group).

@@ -732,11 +732,15 @@ export function afwRepeatString(client : any, value : string, times : number) : 
 }
 
 /**
- * Replace string(s) in a string value.
+ * Replace string(s) in a string value. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (insert at the start).
+ * Specify limit -1 to insert at every boundary, including the start and the
+ * end.
  * 
  * @param {string} value - The original string value.
  * 
- * @param {string} match - The string to replace.
+ * @param {string} match - The string to replace. An empty string matches at
+ *     each code-point boundary, including the start and the end.
  * 
  * @param {string} replacement - The replacement string.
  * 

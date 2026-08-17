@@ -54,3 +54,40 @@ replace(
     string("Earth")
 )
 
+//?
+//? test: replace-5
+//? description: Empty match default limit inserts once at the start
+//? expect: string("xabc")
+//? source: ...
+
+replace(
+    string("abc"),
+    string(""),
+    string("x")
+)
+
+//?
+//? test: replace-6
+//? description: Empty match limit -1 inserts at every code-point boundary
+//? expect: string("xaxbxcx")
+//? source: ...
+
+replace(
+    string("abc"),
+    string(""),
+    string("x"),
+    integer(-1)
+)
+
+//?
+//? test: replace-7
+//? description: Empty value and empty match insert once
+//? expect: string("x")
+//? source: ...
+
+replace(
+    string(""),
+    string(""),
+    string("x")
+)
+

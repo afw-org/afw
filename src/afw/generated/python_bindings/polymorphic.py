@@ -1576,12 +1576,16 @@ def replace(session, value, match, replacement, limit=None):
     """
     Replace strings
 
-    Replace string(s) in a `<dataType>` value.
+    Replace string(s) in a `<dataType>` value. An empty match is a match at a
+    code-point boundary. The default limit replaces once (insert at the
+    start). Specify limit -1 to insert at every boundary, including the start
+    and the end.
 
     Args:
         value (object): The original `<dataType>` value.
 
-        match (str): The string to replace.
+        match (str): The string to replace. An empty string matches at each
+        code-point boundary, including the start and the end.
 
         replacement (str): The replacement string.
 

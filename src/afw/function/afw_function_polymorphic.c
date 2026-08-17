@@ -1927,7 +1927,10 @@ afw_function_execute_repeat(
  *
  * See afw_function_bindings_internal.h for more information.
  *
- * Replace string(s) in a `<dataType>` value.
+ * Replace string(s) in a `<dataType>` value. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (insert at the start).
+ * Specify limit -1 to insert at every boundary, including the start and the
+ * end.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1951,7 +1954,8 @@ afw_function_execute_repeat(
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   match - (string) The string to replace.
+ *   match - (string) The string to replace. An empty string matches at each
+ *       code-point boundary, including the start and the end.
  *
  *   replacement - (string) The replacement string.
  *
@@ -1962,6 +1966,86 @@ afw_function_execute_repeat(
  *
  *   (string) Result text as string (not re-typed as the input data type).
  */
+
+/*
+ * Empty match: insert at code-point boundaries, including start and end.
+ * Default limit 1 → insert at start only. limit -1 → every boundary.
+ * Do not consume the next code point (it is not the match).
+ */
+static const afw_value_t *
+impl_replace_empty_match(
+    const afw_value_t *value,
+    const afw_utf8_t *src,
+    const afw_utf8_t *replacement,
+    afw_size_t limit,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_utf8_t remaining;
+    afw_value_string_t *result;
+    afw_utf8_octet_t *s;
+    afw_size_t count;
+    afw_size_t made;
+    afw_size_t len;
+    afw_size_t cp_len;
+
+    /* Inserting nothing at every boundary is the original value. */
+    if (replacement->len == 0) {
+        return value;
+    }
+
+    afw_memory_copy(&remaining, src);
+    count = 0;
+    while (count < limit) {
+        count++;
+        if (remaining.len == 0) {
+            break;
+        }
+        cp_len = 0;
+        if (afw_utf8_next_code_point(remaining.s, &cp_len,
+            remaining.len, xctx) < 0)
+        {
+            AFW_THROW_ERROR_Z(general,
+                "Invalid UTF-8 in replace", xctx);
+        }
+        remaining.s += cp_len;
+        remaining.len -= cp_len;
+    }
+
+    len = src->len + (count * replacement->len);
+    s = afw_pool_malloc(p, len, xctx);
+    result = afw_value_allocate_unmanaged_string(p, xctx);
+    result->internal.len = len;
+    result->internal.s = s;
+
+    afw_memory_copy(&remaining, src);
+    for (made = 0; made < count; made++) {
+        memcpy(s, replacement->s, replacement->len);
+        s += replacement->len;
+        if (remaining.len == 0) {
+            break;
+        }
+        if (made + 1 == count) {
+            memcpy(s, remaining.s, remaining.len);
+            break;
+        }
+        cp_len = 0;
+        if (afw_utf8_next_code_point(remaining.s, &cp_len,
+            remaining.len, xctx) < 0)
+        {
+            AFW_THROW_ERROR_Z(general,
+                "Invalid UTF-8 in replace", xctx);
+        }
+        memcpy(s, remaining.s, cp_len);
+        s += cp_len;
+        remaining.s += cp_len;
+        remaining.len -= cp_len;
+    }
+
+    return &result->pub;
+}
+
+
 const afw_value_t *
 afw_function_execute_replace(
     afw_function_execute_t *x)
@@ -1996,6 +2080,13 @@ afw_function_execute_replace(
     /* If limit is 0, return value. */
     if (limit == 0) {
         return value;
+    }
+
+    /* Empty match: insert at code-point boundaries (#190). */
+    if (match->internal.len == 0) {
+        return impl_replace_empty_match(value,
+            &(((const afw_value_string_t *)value)->internal),
+            &replacement->internal, limit, x->p, x->xctx);
     }
 
     /* Count number of replacement that will be made. */

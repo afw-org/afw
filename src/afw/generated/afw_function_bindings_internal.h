@@ -3132,7 +3132,10 @@ afw_function_definition_replace_anyURI;
  * @brief Adaptive Function `replace<anyURI>`
  * @param x function execute parameter.
  *
- * Replace string(s) in a anyURI value.
+ * Replace string(s) in a anyURI value. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (insert at the start).
+ * Specify limit -1 to insert at every boundary, including the start and the
+ * end.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -3152,7 +3155,8 @@ afw_function_definition_replace_anyURI;
  *
  *   value - (anyURI) The original anyURI value.
  *
- *   match - (string) The string to replace.
+ *   match - (string) The string to replace. An empty string matches at each
+ *       code-point boundary, including the start and the end.
  *
  *   replacement - (string) The replacement string.
  *
@@ -22919,7 +22923,10 @@ afw_function_definition_replace;
  * @brief Adaptive Function `replace`
  * @param x function execute parameter.
  *
- * Replace string(s) in a `<dataType>` value.
+ * Replace string(s) in a `<dataType>` value. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (insert at the start).
+ * Specify limit -1 to insert at every boundary, including the start and the
+ * end.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -22943,7 +22950,8 @@ afw_function_definition_replace;
  *
  *   value - (``<Type>``) The original `<dataType>` value.
  *
- *   match - (string) The string to replace.
+ *   match - (string) The string to replace. An empty string matches at each
+ *       code-point boundary, including the start and the end.
  *
  *   replacement - (string) The replacement string.
  *
@@ -27939,7 +27947,10 @@ afw_function_definition_replace_string;
  * @brief Adaptive Function `replace<string>`
  * @param x function execute parameter.
  *
- * Replace string(s) in a string value.
+ * Replace string(s) in a string value. An empty match is a match at a
+ * code-point boundary. The default limit replaces once (insert at the start).
+ * Specify limit -1 to insert at every boundary, including the start and the
+ * end.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -27959,7 +27970,8 @@ afw_function_definition_replace_string;
  *
  *   value - (string) The original string value.
  *
- *   match - (string) The string to replace.
+ *   match - (string) The string to replace. An empty string matches at each
+ *       code-point boundary, including the start and the end.
  *
  *   replacement - (string) The replacement string.
  *
