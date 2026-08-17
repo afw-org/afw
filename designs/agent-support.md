@@ -210,13 +210,13 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 
 - One private **Project** (Board view) is the living Who / Status. GitHub **Assignees** on draft cards (drafts *can* be assigned; a custom Who field will not show like avatars).
 - How-to is a **private issue** the Project short description and README point at. GitHub does **not** paint the Project description on the Board — look for that issue card (often **No status**) or open the issue URL.
-- Catalog issue = write-ups only. Do not edit Who/Status there.
-- Cards stay **drafts** so we do not mint one GitHub issue per finding. Public `afw` gets **one** issue (and later PR) when that card is `public`. Put those links in the **card body** as markdown (`[PR #191](https://github.com/afw-org/afw/pull/191)`). Do not put `#N` or URLs in a Project text field — the Board treats them as other cards, not public `afw`. Drafts cannot use Linked pull requests.
+- Cards stay **drafts** so we do not mint one GitHub issue per finding. The **card body** has the working detail (location, mechanism) plus public `afw` markdown links when they exist (`[PR #191](https://github.com/afw-org/afw/pull/191)`). Do not put `#N` or URLs in a Project text field — the Board treats them as other cards. Drafts cannot use Linked pull requests. Do not paste hang/crash/overflow PoCs onto cards.
+- A **report issue** is a frozen dump (history + PoCs). Not Who/Status. Wave 1 is closed; do not grow it. The Board is the living list.
 - Do **not** file the whole list on public `afw`. Crash / use-after-free / overflow stay private (`hold` / `working`) until disclosure is decided. Language guardrails can go public earlier if we want.
-- New session: discuss first (“what do you think about \<id\>?”), not “implement this PoC.” Flip the **card**. There is no living markdown table.
-- Later waves: “triage these new findings” → dedup, append draft cards, one comment on the how-to issue. Do not open a second meta-issue.
+- New session: discuss first (“what do you think about \<id\>?”), not “implement this PoC.” Flip the **card**.
+- New dump: “triage these findings” → **match first** (same hole → note it; only new holes get a card). A pile can be a new frozen report issue. A handful is a how-to comment or chat. Do not open a second how-to or a living table.
 
-**Wrong path:** paste the review table into a public issue; pick the extensions-private repo because of `-private` in the name; dual-maintain a markdown table and the Project.
+**Wrong path:** paste the review table into a public issue; pick the extensions-private repo because of `-private` in the name; dual-maintain a catalog issue and the Board.
 
 ---
 
