@@ -148,7 +148,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | **Day rules** | `afw-runtime-model` (always-on), `afw-value-memory`, `afw-script-eval` |
 | **Deep pad** | [`memory-management.md`](memory-management.md) (**large** — do not rewrite this pass); philosophy pad core model |
 | **Probe** | Targeted `.as` + `afwdev test -j --env-mode valgrind`; orchestrated multi-request leaves; never “fix memory” without a metric/story |
-| **Open** | Umbrella **#2** — phased partner workflow in memory pad; parent of closed #149. Next on-ramp: array managed/unmanaged pools; `create_array` still ignores `options` (see memory pad 2026-08-16). |
+| **Open** | Umbrella **#2** — phased partner workflow in memory pad; parent of closed #149. Next on-ramp: array managed/unmanaged pools; `create_array` still ignores `options` (see memory pad 2026-08-16). Allocator overflow / free-list splice: local check only — do not invent a new pool. |
 | **Gap** | Thin “support one-pager” for leaks vs the novel-length pad — optional later; playbook points at pad |
 
 ---
