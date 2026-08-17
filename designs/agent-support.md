@@ -104,7 +104,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 - **Script integer → malloc / spin / C stack** — APR pools often abort on huge alloc; empty match + “replace all” never advances; type and destructure parse have a nesting limit (`AFW_COMPILE_PARSE_NESTING_MAX`); other grammars may not.  
 - **Type names are declared before use** — like script values, not hoisted. Self-ref in the same `type` / `interface` body is allowed. Unknown names are a compile error even with typeCheck off.  
 - **Evaluate twice, first result sizes a buffer** — call-site `...expr` (#181, fixed). Same class: Pattern rest keys.
-- **Early return skips eval-stack / error-contextual pop** — a not-found or empty path returns before the cleanup every other exit does; the next unrelated error points at the wrong source. Route through the same pop/restore.
+- **Early return skips eval-stack / error-contextual pop** — a not-found or empty path returns before the cleanup every other exit does; the next unrelated error points at the wrong source. Route through the same pop/restore. A braced block's `AFW_ENDTRY` resets the stack each time and hides the leak; gate with a single-statement `for` body (default max 500).
 - **Allocator is sacred** — overflow on `size + prefix`, or a free-list that only relinks adjacent blocks, is a local check / missing `else` splice. Do **not** invent a new pool to “fix” it.
 
 **Wrong path:** deep-cloning whole adapters/registries to “fix” one bad lifetime; treating short-test green as long-run proof.
