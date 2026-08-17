@@ -389,6 +389,7 @@ Most used when navigating this atlas:
 - **Gate vs lab** — don’t redefine `test -j` as soak  
 - **Live verify** when teaching  
 - **Code wins** when notes drift  
+- **Don’t let the right way get in the way of getting work done** — patterns, then judgement  
 
 ---
 
