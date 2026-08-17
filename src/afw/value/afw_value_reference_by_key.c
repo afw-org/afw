@@ -124,13 +124,8 @@ impl_afw_value_optional_evaluate(
         }
 
         v = afw_object_get_property(object_value->internal, name, xctx);
-        /* Missing stays NULL, unlike array/string out of range (undefined). */
-        if (!v) {
-            result = NULL;
-        }
-        else {
-            result = afw_value_evaluate(v, p, xctx);
-        }
+        /* Missing is NULL; evaluate() returns it as-is and we still pop. */
+        result = afw_value_evaluate(v, p, xctx);
     }
 
     /* If value is single list, index is index into the array. */
