@@ -98,7 +98,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 **Shapes that keep coming back (learn these, not ticket lists)**
 
 - **Create vs evaluate** — do not mix (`afw-script-eval`). `argv[0]` at create is the callee expression; `x->function` is harvest at evaluate.  
-- **New get, old delete** — look-through / face / view added on read; mutate/delete/count still the old impl. Faces: delete needs a tombstone (`issue-17`).  
+- **New get, old delete** — look-through / face / view added on read; mutate/delete/count still the old impl. Faces: delete is a local NULL tombstone (`issue-17`).  
 - **Sibling already learned it** — `split()` empty separator vs `replace()` empty match; `create_array()` cap vs `read(n)`; `copies_under_lock` vs live metrics.  
 - **Two impls of one interface** — memory array index uses `>= count`; C-array view used `> count`.  
 - **Script integer → malloc / spin / C stack** — APR pools often abort on huge alloc; empty match + “replace all” never advances; type and destructure parse have a nesting limit (`AFW_COMPILE_PARSE_NESTING_MAX`); other grammars may not.  

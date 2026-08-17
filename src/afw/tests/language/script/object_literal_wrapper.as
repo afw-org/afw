@@ -9,7 +9,8 @@ Compiler emits wrap_literal_object for top-level script object literals so each
 evaluation gets a memory look-through face (sets stay local; base not poisoned).
 Also covers explicit wrap_literal_object, multi-call isolation (function /
 lambda / compiled function / return mutate), nested literals, param defaults,
-and pattern bind. Arrays and #110 default clone are separate.
+pattern bind, and face delete / tombstone. Arrays and #110 default clone are
+separate.
 
 //? sourceType: script
 //?
@@ -415,5 +416,71 @@ const o = { a: 1 };
 const w = wrap_literal_object(o);
 o.a = 2;
 assert(w.a === 2, "idempotent wrap of auto face shares same face");
+
+return 0;
+
+//?
+//? test: wrap_literal_object-delete-unshadowed
+//? description: ...
+property_delete of a never-shadowed face property must hide the wrapped base
+(local NULL tombstone). has/get/keys see it gone; a missing name still returns
+false; a later set on the same name works.
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const w = wrap_literal_object({ a: 1, b: 2 });
+
+assert(property_delete(w, "nope") === false, "missing name");
+assert(property_delete(w, "a") === true, "unshadowed delete claims success");
+assert(property_exists(w, "a") === false, "tombstone hides base from has");
+assert(is_nullish(w.a), "tombstone hides base from get");
+assert(w.b === 2, "sibling property still look-through");
+const names = keys(w);
+assert(length(names) === 1, "iterator skips tombstone");
+assert(names[0] === "b", "iterator still yields b");
+
+w.a = 7;
+assert(w.a === 7, "set after tombstone");
+assert(property_exists(w, "a") === true);
+
+const local = wrap_literal_object({ a: 1 });
+local.a = 99;
+assert(property_delete(local, "a") === true, "delete after local override");
+assert(property_exists(local, "a") === false);
+
+return 0;
+
+//?
+//? test: wrap_literal_object-delete-isolates
+//? description: ...
+Delete on one face must not poison a sibling face or the next evaluation of
+the same object literal (compile-time shared base stays intact).
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const w1 = wrap_literal_object({ a: 1, b: 2 });
+const w2 = wrap_literal_object({ a: 1, b: 2 });
+assert(property_delete(w1, "a") === true);
+assert(property_exists(w1, "a") === false);
+assert(w2.a === 1, "sibling face still sees its base a");
+assert(w2.b === 2);
+
+function make() {
+    return { a: 1 };
+}
+
+const first = make();
+assert(property_delete(first, "a") === true);
+assert(property_exists(first, "a") === false);
+const second = make();
+assert(second.a === 1, "next eval of the literal must still see a");
+assert(property_exists(first, "a") === false, "first face keeps its tombstone");
+
+const nest = { inner: { x: 1, y: 2 } };
+assert(property_delete(nest.inner, "x") === true);
+assert(property_exists(nest.inner, "x") === false, "nested face tombstone");
+assert(nest.inner.y === 2);
 
 return 0;

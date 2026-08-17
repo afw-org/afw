@@ -601,8 +601,13 @@ impl_afw_object_setter_set_property(
             return;
         }
     }
-    if (!value) {
-        return; /* Delete property just return. */
+    /*
+     * No local entry. Delete of a missing name is a no-op on a plain memory
+     * object. On a look-through face, allocate a NULL local tombstone so
+     * get/has/iterate do not revive the wrapped base.
+     */
+    if (!value && !memory_object_self->wrapped) {
+        return;
     }
     e = afw_pool_calloc_type(self->object->p,
         afw_object_internal_name_value_entry_t, xctx);
@@ -617,7 +622,7 @@ impl_afw_object_setter_set_property(
      * might not should be used since the one setting property might want
      * to add properties after doing the set.
      */
-    e->value = (memory_object_self->clone_on_set)
+    e->value = (value && memory_object_self->clone_on_set)
         ? afw_value_clone(value, memory_object_self->pub.p, xctx)
         : value;
     if (final_e) {
