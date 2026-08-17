@@ -211,7 +211,7 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 - One private **Project** (Board view) is the living Who / Status. GitHub **Assignees** on draft cards (drafts *can* be assigned; a custom Who field will not show like avatars).
 - How-to is a **private issue** the Project short description and README point at. GitHub does **not** paint the Project description on the Board — look for that issue card (often **No status**) or open the issue URL.
 - Catalog issue = write-ups only. Do not edit Who/Status there.
-- Cards stay **drafts** so we do not mint one GitHub issue per finding. Public `afw` gets **one** issue (and later PR) when that card is `public`.
+- Cards stay **drafts** so we do not mint one GitHub issue per finding. Public `afw` gets **one** issue (and later PR) when that card is `public`. Put those numbers in the card’s **Public** field (`afw#N`, then ` / PR #M` when the PR exists) and keep that field visible on the Board — draft cards cannot use Linked pull requests.
 - Do **not** file the whole list on public `afw`. Crash / use-after-free / overflow stay private (`hold` / `working`) until disclosure is decided. Language guardrails can go public earlier if we want.
 - New session: discuss first (“what do you think about \<id\>?”), not “implement this PoC.” Flip the **card**, not a frozen markdown table.
 - Later waves: “triage these new findings” → dedup, append draft cards, one comment on the how-to issue. Do not open a second meta-issue.
