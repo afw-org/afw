@@ -50,7 +50,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Env / runtime catalog / accessors | #149 pads; atlas §5; **#2 leftover:** live metrics after unlock |
 | Hosts / stop | #158; atlas §6 |
 | Memory / faces / `create_array` | #2 pad; #17 faces; atlas §3 |
-| Types | #28 pad + `typescript-differences.md`; leftover: parse depth (`AFW_COMPILE_PARSE_NESTING_MAX`) |
+| Types | #28 pad + `typescript-differences.md`; #186 parse nesting; #188 names declared before use |
 | Script language | #62 pad; #33 errors; #172 must-change |
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
 | Arrays / converts / UTF-8 | #39, converts pad, #153 |
