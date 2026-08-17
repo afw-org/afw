@@ -194,7 +194,7 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 |-------|--------|
 | Symptom | A review dumps many crash / use-after-free / overflow / “guardrail” items; someone wants them tracked; they must not all become public `afw` issues |
 | Layer | Process, not a runtime layer. Public `afw` = real issues and PRs. Who/status for the list stays **private** until a row starts and disclosure is OK |
-| Probe | None in-tree. Maintainers: private org Project **Board** view + its how-to issue. Catalog issue holds write-ups. Do not grep this playbook for finding ids — they do not belong here |
+| Probe | None in-tree. Maintainers: private org Project **Board** view + its how-to issue (the **issue body** is the handbook, not a comment). Do not grep this playbook for finding ids — they do not belong here |
 | Entry | This playbook; pairing note in `ai-partner-lessons` / `AGENTS.md`. How-to and the living board live **outside** public `afw` |
 | Status | **Filled (2026-08)** — pattern only |
 
@@ -214,7 +214,7 @@ Do **not** implement admin JS unless asked. The support model is the C/request c
 - A **report issue** is a frozen dump (history + PoCs). Not Who/Status. Wave 1 is closed; do not grow it. The Board is the living list.
 - Do **not** file the whole list on public `afw`. Crash / use-after-free / overflow stay private (`hold` / `working`) until disclosure is decided. Language guardrails can go public earlier if we want.
 - New session: discuss first (“what do you think about \<id\>?”), not “implement this PoC.” Flip the **card**.
-- New dump: “triage these findings” → **match first** (same hole → note it; only new holes get a card). A pile can be a new frozen report issue. A handful is a how-to comment or chat. Do not open a second how-to or a living table.
+- New dump: “triage these findings” → **match first** (same hole → note it on that card; only new holes get a card). A pile can be a new frozen report issue. A handful is chat. How-to comments are handbook edits only. Do not open a second how-to or a living table.
 
 **Wrong path:** paste the review table into a public issue; pick the extensions-private repo because of `-private` in the name; dual-maintain a catalog issue and the Board.
 
