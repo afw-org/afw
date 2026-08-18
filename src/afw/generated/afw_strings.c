@@ -30951,6 +30951,12 @@ afw_self_v_zz__2222 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2223 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2223)
+};
+
+const afw_value_string_t
 afw_self_v_zz__223 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__223)
@@ -45894,12 +45900,6 @@ const afw_value_string_t
 afw_self_v_zz__The_number_of_nodes_in_a_node_set_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_number_of_nodes_in_a_node_set_)
-};
-
-const afw_value_string_t
-afw_self_v_zz__The_number_of_random_octets_to_generate_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_number_of_random_octets_to_generate_)
 };
 
 const afw_value_string_t

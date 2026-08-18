@@ -16,9 +16,12 @@ def random_base64Binary(session, numberOfOctets):
     Generate random octets (base64Binary)
 
     This returns a specified number of random octets as dataType base64Binary.
+    numberOfOctets must be a non-negative integer and must not exceed
+    1,000,000.
 
     Args:
-        numberOfOctets (int): The number of random octets to generate.
+        numberOfOctets (int): The number of random octets to generate (0 or
+        more, up to 1,000,000).
 
     Returns:
         object:
@@ -72,9 +75,12 @@ def random_hexBinary(session, numberOfOctets):
     Generate random octets (hexBinary)
 
     This returns a specified number of random octets as dataType hexBinary.
+    numberOfOctets must be a non-negative integer and must not exceed
+    1,000,000.
 
     Args:
-        numberOfOctets (int): The number of random octets to generate.
+        numberOfOctets (int): The number of random octets to generate (0 or
+        more, up to 1,000,000).
 
     Returns:
         object:

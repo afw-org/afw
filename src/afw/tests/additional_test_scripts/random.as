@@ -117,6 +117,40 @@ assert(length(string(rand)) > 0, "random_hexBinary() failed!");
 return 0;
 
 //?
+//? test: random_base64Binary-zero
+//? description: random_base64Binary(0) is empty
+//? expect: 0
+//? source: ...
+
+assert(length(string(random_base64Binary(0))) === 0);
+assert(length(string(random_hexBinary(0))) === 0);
+return 0;
+
+//?
+//? test: random_base64Binary-over-max
+//? description: random_base64Binary above 1,000,000 throws
+//? expect: error
+//? source: ...
+
+random_base64Binary(1000001);
+
+//?
+//? test: random_hexBinary-over-max
+//? description: random_hexBinary above 1,000,000 throws
+//? expect: error
+//? source: ...
+
+random_hexBinary(1000001);
+
+//?
+//? test: random_base64Binary-negative
+//? description: random_base64Binary negative throws
+//? expect: error
+//? source: ...
+
+random_base64Binary(-1);
+
+//?
 //? test: random_integer
 //? description: Call random_integer() between 5 and 10
 //? expect: 0

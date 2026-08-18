@@ -24042,6 +24042,7 @@ afw_function_definition_random_base64Binary;
  * @param x function execute parameter.
  *
  * This returns a specified number of random octets as dataType base64Binary.
+ * numberOfOctets must be a non-negative integer and must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -24056,11 +24057,16 @@ afw_function_definition_random_base64Binary;
  *
  * Parameters:
  *
- *   numberOfOctets - (integer) The number of random octets to generate.
+ *   numberOfOctets - (integer) The number of random octets to generate (0 or
+ *       more, up to 1,000,000).
  *
  * Returns:
  *
  *   (base64Binary)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - numberOfOctets is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_random_base64Binary(
@@ -24108,6 +24114,7 @@ afw_function_definition_random_hexBinary;
  * @param x function execute parameter.
  *
  * This returns a specified number of random octets as dataType hexBinary.
+ * numberOfOctets must be a non-negative integer and must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -24122,11 +24129,16 @@ afw_function_definition_random_hexBinary;
  *
  * Parameters:
  *
- *   numberOfOctets - (integer) The number of random octets to generate.
+ *   numberOfOctets - (integer) The number of random octets to generate (0 or
+ *       more, up to 1,000,000).
  *
  * Returns:
  *
  *   (hexBinary)
+ *
+ * Errors thrown:
+ *
+ *   argument_error - numberOfOctets is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_random_hexBinary(

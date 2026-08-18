@@ -31,13 +31,14 @@ The following functions are exported by default
 =head3 random_base64Binary
 
 This returns a specified number of random octets as dataType base64Binary.
+numberOfOctets must be a non-negative integer and must not exceed 1,000,000.
 Generate random octets (base64Binary)
 
 =head4 Parameters
 
     $numberOfOctets
 
-The number of random octets to generate.
+The number of random octets to generate (0 or more, up to 1,000,000).
 
 =head3 random_digits
 
@@ -53,13 +54,14 @@ The number (1-18) of digits to generate.
 =head3 random_hexBinary
 
 This returns a specified number of random octets as dataType hexBinary.
+numberOfOctets must be a non-negative integer and must not exceed 1,000,000.
 Generate random octets (hexBinary)
 
 =head4 Parameters
 
     $numberOfOctets
 
-The number of random octets to generate.
+The number of random octets to generate (0 or more, up to 1,000,000).
 
 =head3 random_integer
 
