@@ -33,7 +33,9 @@ def run():
 
 Extra DSOs: `libraries=("afwldap", "afw")`. Paths: `AFW_INCLUDE_DIR` / `AFW_LIB_DIR`, else `/usr/local/include/afw` and `/usr/local/lib/afw`.
 
-Examples: `src/afw/tests/advanced/pool_alloc/`, `array_view_index/`, `associative_array_set/`, `utf8_icu_bound/`, `src/afw_ldap/tests/ldap_filter/`. Helper self-tests: `src/afw_dev/tests/c_probe/`.
+Start with `afwdev prime-test-c-probe <path>` (cwd-relative or absolute, must be a leaf under `tests/` or `tests-extra/`). Closet source: [`src/afw_dev/_resources/closet/c_probe/`](../src/afw_dev/_resources/closet/c_probe/). Fill the marked blocks.
+
+Live examples: `src/afw/tests/advanced/pool_alloc/`, `array_view_index/`, `associative_array_set/`, `utf8_icu_bound/`, `src/afw_ldap/tests/ldap_filter/`. Helper self-tests: `src/afw_dev/tests/c_probe/`. Scaffold tests: `src/afw_dev/tests/prime_test_c_probe/`.
 
 ## Valgrind / libunwind
 
@@ -51,4 +53,4 @@ Python-mode files are loaded under a unique module name (not a shared `test`). T
 
 ## Docs
 
-Handbook Developer Guide **Writing Tests** (C Probes). Gate note: `src/afw/tests/README.md`. Day rule: `afw-tests`. Playbook: `agent-support.md`.
+Handbook Developer Guide **Writing Tests** (C Probes). Gate note: `src/afw/tests/README.md`. Day rule: `afw-tests`. Playbook: `agent-support.md`. Command: `afwdev prime-test-c-probe`. Closet: `src/afw_dev/_resources/closet/c_probe/`. Naming of the other `add-*` / `make-*` commands is [#210](https://github.com/afw-org/afw/issues/210).

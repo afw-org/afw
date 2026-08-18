@@ -18,7 +18,9 @@ A few places that are easy to misunderstand:
   a checked-in `*_probe.c` (pool wrap, C-array view index, UTF-8 ICU
   bound). Use that when Adaptive Script cannot reach the hole. Call
   `run_c_probe()` from `_afwdev.test.c_probe` — do not copy a `cc`
-  line. The `.c` is not part of the cmake library build.
+  line. Start with `afwdev prime-test-c-probe <path>` (a leaf under
+  `tests/` or `tests-extra/`).
+  The `.c` is not part of the cmake library build.
   `afwdev test --env-mode valgrind` wraps `afw` **and** those probe
   binaries (suite suppressions cover libunwind noise in
   `afw_os_backtrace` on a throw). Standalone valgrind without that

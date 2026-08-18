@@ -142,7 +142,7 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 **Valgrind hang lesson:** parallel valgrind can park the pool if one worker blocks forever (e.g. `Session("local").close()` → `wait()`). Harness now times out/kills; if wall time is absurd with idle CPU, check for a stuck worker before assuming “just slow.”
 
-**Throwing C probe + valgrind:** `run_c_probe()` (`_afwdev.test.c_probe`) compiles a checked-in `*_probe.c` and runs named cases. `afwdev test --env-mode valgrind` wraps those binaries with `valgrind.suppress` (libunwind noise in `afw_os_backtrace` on a throw is suppressed). Standalone valgrind without that file can still report the noise; that is not an overread. Judge the probe by exit code and by the helper wrap. Recipe: handbook **Writing Tests**, [`c-probes.md`](c-probes.md). Error-struct / backtrace as `afw_utf8_t` is [#206](https://github.com/afw-org/afw/issues/206).
+**Throwing C probe + valgrind:** Start with `afwdev prime-test-c-probe <path>`. `run_c_probe()` (`_afwdev.test.c_probe`) compiles a checked-in `*_probe.c` and runs named cases. `afwdev test --env-mode valgrind` wraps those binaries with `valgrind.suppress` (libunwind noise in `afw_os_backtrace` on a throw is suppressed). Standalone valgrind without that file can still report the noise; that is not an overread. Judge the probe by exit code and by the helper wrap. Recipe: handbook **Writing Tests**, [`c-probes.md`](c-probes.md). Error-struct / backtrace as `afw_utf8_t` is [#206](https://github.com/afw-org/afw/issues/206).
 
 ---
 

@@ -109,6 +109,23 @@ afwdev test --list --test-pattern smoke
             installed <literal>libafw</literal> at test time.
         </paragraph>
         <paragraph>
+            Start with 
+            <literal>afwdev prime-test-c-probe &lt;path&gt;</literal>. 
+            The path is relative to the current directory or absolute, 
+            and must be a new leaf under <literal>tests/</literal> or 
+            <literal>tests-extra/</literal> (for example 
+            <literal>tests/hole</literal> from an extension srcdir, or 
+            <literal>src/myext/tests/advanced/hole</literal> from the 
+            package root). That writes the closet pair. Fill the marked 
+            blocks in the <literal>.c</literal> and the case list in 
+            the <literal>.py</literal>. Then 
+            <literal>afwdev test --test-pattern 'hole'</literal>, or 
+            <literal>afwdev test -T &lt;path&gt;</literal> for a 
+            <literal>tests-extra</literal> leaf. The closet itself is 
+            <literal>src/afw_dev/_resources/closet/c_probe/</literal> 
+            if you need to copy by hand.
+        </paragraph>
+        <paragraph>
             Check in a <literal>*_probe.c</literal> next to a thin 
             Python <literal>run()</literal> that calls 
             <literal>run_c_probe()</literal> from 
@@ -138,7 +155,7 @@ def run():
             <literal>AFW_LIB_DIR</literal>.
         </paragraph>
         <paragraph>
-            Examples: 
+            Live examples (after you have the closet copy): 
             <literal>src/afw/tests/advanced/pool_alloc/</literal>, 
             <literal>array_view_index/</literal>, 
             <literal>associative_array_set/</literal>, 

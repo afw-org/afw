@@ -30,7 +30,7 @@ not `(instance)->inf->create_adapter_session(...)`. The arrow/`inf` form is wiri
 
 ## afwdev skeletons are first-class
 
-`make-afw-package`, `make-extension`, `make-command`, `add-adapter-type`, `add-content-type`, `add-log-type`, `add-core-interface` copy skeletons, apply **`<afwdev {…}>`** substitution, and leave **`@todo`** for humans.
+`make-afw-package`, `make-extension`, `make-command`, `add-adapter-type`, `add-content-type`, `add-log-type`, `add-core-interface` copy skeletons, apply **`<afwdev {…}>`** substitution, and leave **`@todo`** for humans. `prime-test-c-probe` primes a C probe test leaf from `closet/c_probe/` (no generate step).
 
 - **`@todo`** and **`<afwdev {…}>`** in closet/skeleton output are **intentional**, not incomplete Doxygen to “clean up.”
 - Do not rewrite skeleton `@file @todo.h` / guard names for Doxygen vanity.
