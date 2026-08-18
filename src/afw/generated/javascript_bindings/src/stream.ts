@@ -137,11 +137,13 @@ export function afwPrintln(client : any, value : any) : any {
 
 /**
  * Read a UTF-8 text stream up to a specified number of octets. The stream
- * must contain valid UTF-8 or an error is thrown.
+ * must contain valid UTF-8 or an error is thrown. n must be a non-negative
+ * integer and must not exceed 1,000,000.
  * 
  * @param {integer} streamNumber - Stream number
  * 
- * @param {} n - The maximum number of octets to read.
+ * @param {} n - The maximum number of octets to read (0 or more, up to
+ *     1,000,000).
  * 
  * @returns {string} The UTF-8 string read. Check the size of this value to
  *     determine the actual number of octets read.
@@ -159,11 +161,13 @@ export function afwRead(client : any, streamNumber : number, n : any) : any {
 
 /**
  * Read a stream up to a specified number of octets. The result will be the
- * internal memory of a base64Binary value.
+ * internal memory of a base64Binary value. n must be a non-negative integer
+ * and must not exceed 1,000,000.
  * 
  * @param {integer} streamNumber - Stream number
  * 
- * @param {} n - The maximum number of octets to read.
+ * @param {} n - The maximum number of octets to read (0 or more, up to
+ *     1,000,000).
  * 
  * @returns {base64Binary} The base64Binary value read. Check the size of this
  *     value to determine the actual number of octets read.
@@ -181,11 +185,13 @@ export function afwReadToBase64Binary(client : any, streamNumber : number, n : a
 
 /**
  * Read a stream up to a specified number of octets. The result will be the
- * internal memory of a hexBinary value.
+ * internal memory of a hexBinary value. n must be a non-negative integer and
+ * must not exceed 1,000,000.
  * 
  * @param {integer} streamNumber - Stream number
  * 
- * @param {} n - The maximum number of octets to read.
+ * @param {} n - The maximum number of octets to read (0 or more, up to
+ *     1,000,000).
  * 
  * @returns {hexBinary} The hexBinary value read. Check the size of this value
  *     to determine the actual number of octets read.

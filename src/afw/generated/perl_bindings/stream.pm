@@ -127,7 +127,8 @@ Values to print.
 =head3 read
 
 Read a UTF-8 text stream up to a specified number of octets. The stream must
-contain valid UTF-8 or an error is thrown.
+contain valid UTF-8 or an error is thrown. n must be a non-negative integer
+and must not exceed 1,000,000.
 Read from a UTF-8 text stream
 
 =head4 Parameters
@@ -138,12 +139,13 @@ Stream number
 
     $n
 
-The maximum number of octets to read.
+The maximum number of octets to read (0 or more, up to 1,000,000).
 
 =head3 read_to_base64Binary
 
 Read a stream up to a specified number of octets. The result will be the
-internal memory of a base64Binary value.
+internal memory of a base64Binary value. n must be a non-negative integer and
+must not exceed 1,000,000.
 Read from a stream to base64Binary
 
 =head4 Parameters
@@ -154,12 +156,13 @@ Stream number
 
     $n
 
-The maximum number of octets to read.
+The maximum number of octets to read (0 or more, up to 1,000,000).
 
 =head3 read_to_hexBinary
 
 Read a stream up to a specified number of octets. The result will be the
-internal memory of a hexBinary value.
+internal memory of a hexBinary value. n must be a non-negative integer and
+must not exceed 1,000,000.
 Read from a stream to hexBinary
 
 =head4 Parameters
@@ -170,7 +173,7 @@ Stream number
 
     $n
 
-The maximum number of octets to read.
+The maximum number of octets to read (0 or more, up to 1,000,000).
 
 =head3 readln
 

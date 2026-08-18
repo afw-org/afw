@@ -30945,6 +30945,12 @@ afw_self_v_zz__2221 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2222 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2222)
+};
+
+const afw_value_string_t
 afw_self_v_zz__223 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__223)
@@ -45786,12 +45792,6 @@ const afw_value_string_t
 afw_self_v_zz__The_maximum_normal_string_length_for_this_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_maximum_normal_string_length_for_this_value)
-};
-
-const afw_value_string_t
-afw_self_v_zz__The_maximum_number_of_octets_to_read_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_maximum_number_of_octets_to_read_)
 };
 
 const afw_value_string_t
