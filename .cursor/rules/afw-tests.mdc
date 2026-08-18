@@ -120,8 +120,16 @@ When script cannot reach the hole (C-only size, a second impl of an
 interface that literals never use, …), the gate is a Python `run()`
 that compiles a checked-in `*_probe.c` against installed `libafw` and
 execs it. Same pattern: `src/afw/tests/advanced/pool_alloc/`,
-`src/afw/tests/advanced/array_view_index/`. Do not invent a cmake
+`src/afw/tests/advanced/array_view_index/`,
+`src/afw/tests/advanced/utf8_icu_bound/`. Do not invent a cmake
 test target for these. The `.c` is not part of `libafw`.
+
+`afwdev test --env-mode valgrind` wraps the **`afw` CLI**, not that
+compiled probe binary. A standalone `valgrind` on a probe that
+**throws** can trip libunwind in `afw_os_backtrace`; that is not an
+overread in the code under test. Judge the probe by its exit code
+(and by valgrind on `afw` when the hole is script-reachable).
+Making probes first-class (and addressing unwind) is issue **#207**.
 
 When fixing a C/runtime bug, add `.as` coverage that fails without the fix
 unless the hole is C-only (then the probe above):

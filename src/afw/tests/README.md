@@ -18,7 +18,10 @@ A few places that are easy to misunderstand:
   compiles a checked-in `*_probe.c` against installed `libafw` and
   execs it (pool wrap, C-array view index, UTF-8 ICU bound). Use that
   when Adaptive Script cannot reach the hole. The `.c` is not part of
-  the cmake library build.
+  the cmake library build. `afwdev test --env-mode valgrind` wraps
+  `afw`, not the probe. Standalone valgrind on a throwing probe can
+  hit libunwind in `afw_os_backtrace`; that is not the hole.
+  First-class probes: issue **#207**.
 
 Longer tests, including firehose, live next door in
 `src/afw/tests-extra/` and are only run when you pass
