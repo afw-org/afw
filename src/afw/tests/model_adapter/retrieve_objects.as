@@ -21,3 +21,20 @@ assert(obj !== undefined);
 assert(obj.MyTestString1 === "This is a test string.", "MyTestString1 was " + obj.MyTestString1);
 
 return 0;
+
+//?
+//? test: retrieve-select
+//? description: retrieve with a non-empty select list against a model adapter
+//? skip: false
+//? expect: 0
+//? source: ...
+
+const objects: array = retrieve_objects("model", "MyObjectType1", {
+    select: ["MyTestString1"]
+});
+const obj: object = objects[0];
+assert(obj !== undefined);
+assert(obj.MyTestString1 === "This is a test string.",
+    "MyTestString1 was " + obj.MyTestString1);
+
+return 0;

@@ -466,7 +466,7 @@ impl_convert_select(
 
     /* Return converted select. */
     for (i = 0; select[i]; i++);
-    result = afw_pool_malloc(p, sizeof(const afw_utf8_t *) * i, xctx);
+    result = afw_pool_malloc(p, sizeof(const afw_utf8_t *) * (i + 1), xctx);
     result[i] = NULL;
     for (i = 0; select[i]; i++) {
         afw_model_internal_convert_property_name(

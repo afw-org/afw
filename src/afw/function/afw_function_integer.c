@@ -52,6 +52,10 @@ afw_function_execute_abs_integer(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, integer);
 
+    if (arg->internal == AFW_INTEGER_MIN) {
+        AFW_THROW_ERROR_Z(argument_error, "Integer abs overflow", x->xctx);
+    }
+
     return (arg->internal >= 0)
         ? &arg->pub
         : afw_value_create_unmanaged_integer(-(arg->internal), x->p, x->xctx);
@@ -391,6 +395,10 @@ afw_function_execute_negative_integer(
     const afw_value_integer_t *arg;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, integer);
+
+    if (arg->internal == AFW_INTEGER_MIN) {
+        AFW_THROW_ERROR_Z(argument_error, "Integer negate overflow", x->xctx);
+    }
 
     return afw_value_create_unmanaged_integer(-arg->internal, x->p, x->xctx);
 }
