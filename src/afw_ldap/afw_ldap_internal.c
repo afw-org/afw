@@ -324,6 +324,174 @@ afw_ldap_internal_create_object_from_entry(
 #define AFW_QUERY_CRITERIA_CONTINUE(x) \
     (x != AFW_QUERY_CRITERIA_FALSE && x != AFW_QUERY_CRITERIA_TRUE)
 
+static const char impl_filter_hex[16] = "0123456789ABCDEF";
+
+static afw_boolean_t
+impl_is_alpha(afw_octet_t c)
+{
+    return
+        (c >= 'A' && c <= 'Z') ||
+        (c >= 'a' && c <= 'z');
+}
+
+static afw_boolean_t
+impl_is_digit(afw_octet_t c)
+{
+    return c >= '0' && c <= '9';
+}
+
+static afw_boolean_t
+impl_is_keychar(afw_octet_t c)
+{
+    return impl_is_alpha(c) || impl_is_digit(c) || c == '-';
+}
+
+static afw_boolean_t
+impl_filter_attr_is_safe(const afw_utf8_t *attr)
+{
+    const afw_octet_t *s;
+    afw_size_t i;
+    afw_size_t len;
+
+    if (!attr || !attr->s || attr->len == 0) {
+        return false;
+    }
+    s = (const afw_octet_t *)attr->s;
+    len = attr->len;
+    i = 0;
+
+    if (impl_is_digit(s[0])) {
+        for (;;) {
+            if (i >= len || !impl_is_digit(s[i])) {
+                return false;
+            }
+            while (i < len && impl_is_digit(s[i])) {
+                i++;
+            }
+            if (i >= len || s[i] != '.') {
+                break;
+            }
+            i++;
+        }
+    }
+    else if (impl_is_alpha(s[0])) {
+        i = 1;
+        while (i < len && impl_is_keychar(s[i])) {
+            i++;
+        }
+    }
+    else {
+        return false;
+    }
+
+    while (i < len && s[i] == ';') {
+        i++;
+        if (i >= len || !impl_is_keychar(s[i])) {
+            return false;
+        }
+        i++;
+        while (i < len && impl_is_keychar(s[i])) {
+            i++;
+        }
+    }
+
+    return i == len;
+}
+
+static void
+impl_filter_require_depth(
+    const afw_query_criteria_filter_entry_t *entry,
+    afw_size_t depth,
+    afw_xctx_t *xctx)
+{
+    if (entry == AFW_QUERY_CRITERIA_TRUE ||
+        entry == AFW_QUERY_CRITERIA_FALSE)
+    {
+        return;
+    }
+    if (depth > AFW_LDAP_FILTER_NESTING_MAX) {
+        AFW_THROW_ERROR_Z(query_too_complex,
+            "LDAP filter nesting is too deep", xctx);
+    }
+    impl_filter_require_depth(entry->on_true, depth + 1, xctx);
+    impl_filter_require_depth(entry->on_false, depth + 1, xctx);
+}
+
+/*
+ * RFC 4515 assertionvalue: escape NUL, '(', ')', '*', and '\' as
+ * '\' HEX HEX. Other octets, including UTF-8, are left as-is.
+ */
+const afw_utf8_t *
+afw_ldap_internal_filter_escape(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_octet_t *in;
+    afw_octet_t *out;
+    afw_octet_t *d;
+    afw_size_t i;
+    afw_size_t extra;
+    afw_octet_t c;
+
+    if (!s || !s->s || s->len == 0) {
+        return s;
+    }
+    if (s->len > ((afw_size_t)-1) / 3) {
+        AFW_THROW_ERROR_Z(memory,
+            "LDAP filter value is too large", xctx);
+    }
+
+    in = (const afw_octet_t *)s->s;
+    extra = 0;
+    for (i = 0; i < s->len; i++) {
+        c = in[i];
+        if (c == 0 || c == '(' || c == ')' || c == '*' || c == '\\') {
+            extra += 2;
+        }
+    }
+    if (extra == 0) {
+        return s;
+    }
+
+    out = afw_pool_malloc(p, s->len + extra, xctx);
+    d = out;
+    for (i = 0; i < s->len; i++) {
+        c = in[i];
+        if (c == 0 || c == '(' || c == ')' || c == '*' || c == '\\') {
+            *d++ = '\\';
+            *d++ = (afw_octet_t)impl_filter_hex[(c >> 4) & 0x0f];
+            *d++ = (afw_octet_t)impl_filter_hex[c & 0x0f];
+        }
+        else {
+            *d++ = c;
+        }
+    }
+
+    return afw_utf8_create((const afw_utf8_octet_t *)out,
+        s->len + extra, p, xctx);
+}
+
+void
+afw_ldap_internal_filter_require_safe_attr(
+    const afw_utf8_t *attr,
+    afw_xctx_t *xctx)
+{
+    if (!impl_filter_attr_is_safe(attr)) {
+        AFW_THROW_ERROR_Z(query_too_complex,
+            "LDAP filter attribute is not a valid attribute type",
+            xctx);
+    }
+}
+
+void
+afw_ldap_internal_filter_require_depth(
+    const afw_query_criteria_filter_entry_t *entry,
+    afw_xctx_t *xctx)
+{
+    impl_filter_require_depth(entry, 1, xctx);
+}
+
 /*
  * afw_ldap_internal_expression_from_filter_entry()
  *
@@ -349,6 +517,7 @@ afw_ldap_internal_expression_from_filter_entry(
     }
 
     property_name = entry->property_name;
+    afw_ldap_internal_filter_require_safe_attr(property_name, xctx);
 
     /* convert the filter value to a string for LDAP comparison to use */
     bv = afw_ldap_metadata_value_to_bv(session, property_name, entry->value, xctx);
@@ -357,8 +526,10 @@ afw_ldap_internal_expression_from_filter_entry(
             "Query criteria could not be converted into an LDAP filter string.", xctx);
     }
 
-    /* turn it into an afw string for easy use by the format routines */
+    /* Assertion value: NFC string, then RFC 4515 filter escape. */
     property_value = afw_utf8_create((*bv)->bv_val, (*bv)->bv_len, xctx->p, xctx);
+    property_value = afw_ldap_internal_filter_escape(property_value,
+        xctx->p, xctx);
 
     switch (entry->op_id) {
         case afw_query_criteria_filter_op_id_eq:
@@ -406,11 +577,8 @@ afw_ldap_internal_expression_from_filter_entry(
     return filter_expression;
 }
 
-/*
- *
- */
-const afw_utf8_t *
-afw_ldap_internal_expression_from_query_criteria(
+static const afw_utf8_t *
+impl_expression_from_query_criteria(
     afw_ldap_internal_adapter_session_t *session,
     const afw_query_criteria_filter_entry_t * entry,
     afw_xctx_t *xctx)
@@ -433,9 +601,9 @@ afw_ldap_internal_expression_from_query_criteria(
     else if (AFW_QUERY_CRITERIA_CONTINUE(entry->on_true) &&
             AFW_QUERY_CRITERIA_CONTINUE(entry->on_false))
     {
-        on_true = afw_ldap_internal_expression_from_query_criteria(
+        on_true = impl_expression_from_query_criteria(
             session, entry->on_true, xctx);
-        on_false = afw_ldap_internal_expression_from_query_criteria(
+        on_false = impl_expression_from_query_criteria(
             session, entry->on_false, xctx);
 
         /* (|(&(filter_expression)(on_true))(on_false)) */
@@ -448,7 +616,7 @@ afw_ldap_internal_expression_from_query_criteria(
     /* (entry AND on_true) */
     else if (AFW_QUERY_CRITERIA_CONTINUE(entry->on_true)) 
     {
-        on_true = afw_ldap_internal_expression_from_query_criteria(
+        on_true = impl_expression_from_query_criteria(
             session, entry->on_true, xctx);
 
         /* (&(filter_expression)(on_true)) */
@@ -460,7 +628,7 @@ afw_ldap_internal_expression_from_query_criteria(
     /* (entry OR on_false) */
     else if (AFW_QUERY_CRITERIA_CONTINUE(entry->on_false))
     {
-        on_false = afw_ldap_internal_expression_from_query_criteria(
+        on_false = impl_expression_from_query_criteria(
             session, entry->on_false, xctx);
 
         /* (|(filter_expression)(on_false)) */
@@ -472,4 +640,15 @@ afw_ldap_internal_expression_from_query_criteria(
 
     return filter_expression;
 
+}
+
+
+const afw_utf8_t *
+afw_ldap_internal_expression_from_query_criteria(
+    afw_ldap_internal_adapter_session_t *session,
+    const afw_query_criteria_filter_entry_t * entry,
+    afw_xctx_t *xctx)
+{
+    afw_ldap_internal_filter_require_depth(entry, xctx);
+    return impl_expression_from_query_criteria(session, entry, xctx);
 }

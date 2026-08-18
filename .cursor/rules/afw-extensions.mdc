@@ -81,7 +81,7 @@ Impl ids: extension DSO id is `"afw_<name>"`; adapter/factory often shorter (`"l
 
 - **curl**: `curl_global_init` in `initialize` before `generated_register`.
 - **lmdb**: richest adapter; docs say load **ubjson** content type for storage; conf samples may say `extension_id: "ubjson"` — runtime id is **`afw_ubjson`**. Optional **indexes** (only consumer of core `afw_adapter_impl_index` today): defs in DB via `index_*`, not conf; filter/value use **`current::`** — see **`afw-adapter-index`**.
-- **ldap**: heavy `afw_ldap_syntax_handler.c` / metadata for schema ↔ values.
+- **ldap**: heavy `afw_ldap_syntax_handler.c` / metadata for schema ↔ values. Filter splice escapes RFC 4515 assertion values (`* ( ) \\` NUL) at build time, not in `*_to_ber`. Property names must be LDAP attr tokens (descr / numericoid / options). Builder nesting cap is 256, same as query-criteria parse. No live directory in-tree — helper gates are the C probe under `src/afw_ldap/tests/ldap_filter/`.
 - **vfs**: factory symbol `afw_vfs_adapter_factory_vfs`; conf `adapterType: "vfs"` lazy-loads. Whole-file `data`, empty-file read (#79), multi-map longest prefix, `maxReadBytes` — details **`afw-vfs`**.
 - **ubjson/yaml**: dual-interface entry files; codecs in `*_from_value` / `*_to_value`.
 - **crypto**: OpenSSL `libcrypto` only (curl-style find module); process-global mutexed keystore; `decode_to_string` for password UTF-8 (not `string(binary)`); LDAP `bindParameters` single-sub template → object recipe in README. Extension README lives at **`src/<ext>/README.md`** when present (Jeremy/LMDB style).
