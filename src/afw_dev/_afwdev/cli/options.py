@@ -28,6 +28,7 @@
 # Test subcommand optionNames (see cli.info _info_test_*):
 #   test_tags, test_jobs, test-pattern (hyphenated historical key),
 #   errors, show_all, list, output, mode, watch, bail, javascript, tmpdir
+#   (mode == 'valgrind' is also read by _afwdev.test.c_probe)
 #
 # Prefer options.get('optionName') matching the _info_* declaration. When
 # adding options, use snake_case optionName and update this list.

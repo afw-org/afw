@@ -55,7 +55,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | Compile / call / spread | `afw-script-eval`; #140 / #181; `compiler_internal` kind-check |
 | Arrays / converts / UTF-8 | #39, converts pad, #153; #190 empty-match `replace` |
 | Streams / VFS / retrieve | stream + vfs rules; #127; #49 |
-| afwdev / tests | recipe + tests-extra SCHEMA; #157 |
+| afwdev / tests | recipe + tests-extra SCHEMA; #157; C probes #207 |
 | Crypto | #74 pad |
 | Admin / Fiddle | atlas §16 (contract only) |
 
@@ -269,9 +269,9 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 | Field | Content |
 |-------|---------|
-| **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**); handbook Developer Guide **Writing Tests**; gate `src/afw/tests/README.md`; extras SCHEMA in `tests-extra/`; C-only holes use a Python `run()` that compiles a checked-in `*_probe.c` against `libafw` (`advanced/pool_alloc/`, `advanced/array_view_index/`) |
+| **Settled map** | **Gate** vs **lab**; **orchestrated** leaves (`orchestration.yaml`); blast **retired** (PR **#167**); handbook Developer Guide **Writing Tests**; gate `src/afw/tests/README.md`; extras SCHEMA in `tests-extra/`; C-only holes use `run_c_probe()` (`_afwdev.test.c_probe`) on a checked-in `*_probe.c` — not cmake; `--env-mode valgrind` wraps those binaries with suite suppressions ([#207](https://github.com/afw-org/afw/issues/207); [`c-probes.md`](c-probes.md)) |
 | **Day rules** | `afw-tests`, `afw-afwdev-python`, `afw-afwdev-generate` |
-| **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; handbook `guide/developer/writing-tests.xml` |
+| **Deep pads** | [`afwdev-test-recipe.md`](afwdev-test-recipe.md), [`c-probes.md`](c-probes.md), [`afwdev-advanced-test.md`](afwdev-advanced-test.md) (history), [`afwdev-blast.md`](afwdev-blast.md) (retired); `src/afw/tests-extra/{README,SCHEMA}.md`; handbook `guide/developer/writing-tests.xml` |
 | **Probe** | See recipe commands below |
 | **Open** | #13 stress knobs/stats on `test` (Jeremy); attach mode not fully built |
 | **Gap** | MEMORY testing split → **in recipe + playbook**; drop duplicating full MEMORY novel after promote |
@@ -283,7 +283,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 | `afwdev test -j` | Language/package suite + short orchestrated leaves under `src/*/tests/` | **Yes** |
 | `afwdev test -T path` | Opt-in only (`tests-extra/`, etc.) | Opt-in |
 | `afwdev test --env-mode afwfcgi` | Conf-free `.as` on live `:8080/afw` (skips hermetic orchestrated leaves) | Optional |
-| `afwdev test --env-mode valgrind -j` | Memory check; heavy — fewer jobs often faster wall-clock | Optional full verify |
+| `afwdev test --env-mode valgrind -j` | Memory check on `.as` via `afw` **and** on C probes via `run_c_probe()`; heavy — fewer jobs often faster wall-clock | Optional full verify |
 | `schedule.firehose` leaves under `tests-extra/` | Load thrash at hermetic afwfcgi | **No** |
 
 ```bash

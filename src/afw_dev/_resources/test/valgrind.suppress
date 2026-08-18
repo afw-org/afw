@@ -79,6 +79,38 @@
    fun:_ULx86_64_step
 }
 #
+# Portable libunwind step noise on a throw (afw_os_backtrace).
+# Version-specific blocks above match older distros; these catch the
+# same write(buf) / msync(start) Param errors when the .so path or
+# patch level differs. That is not the hole under test. C probes run
+# under --env-mode valgrind use this file. See issue #207. The UTF-8
+# / error-struct side of a throw is issue #206.
+#
+{
+   libunwind_step_write_buf_any
+   Memcheck:Param
+   write(buf)
+   fun:syscall
+   ...
+   fun:_ULx86_64_step
+}
+{
+   libunwind_step_msync_any
+   Memcheck:Param
+   msync(start)
+   fun:msync
+   ...
+   fun:_ULx86_64_step
+}
+{
+   libunwind_step_msync_nocancel_any
+   Memcheck:Param
+   msync(start)
+   fun:__msync_nocancel
+   ...
+   fun:_ULx86_64_step
+}
+#
 # OpenSSL 3.x AES-GCM assembly (AES-NI / optimized GHASH) uses internal
 # state that Memcheck reports as uninitialised inside EVP_DecryptFinal_ex.
 # Confirmed false positive for AFW call sites: OPENSSL_ia32cap=0 (no asm)
