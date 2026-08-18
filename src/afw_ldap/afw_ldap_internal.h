@@ -160,6 +160,25 @@ afw_ldap_internal_create_object_from_entry(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
+/* Same cap as AFW_QUERY_CRITERIA_PARSE_NESTING_MAX. */
+#define AFW_LDAP_FILTER_NESTING_MAX 256
+
+const afw_utf8_t *
+afw_ldap_internal_filter_escape(
+    const afw_utf8_t *s,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+void
+afw_ldap_internal_filter_require_safe_attr(
+    const afw_utf8_t *attr,
+    afw_xctx_t *xctx);
+
+void
+afw_ldap_internal_filter_require_depth(
+    const afw_query_criteria_filter_entry_t *entry,
+    afw_xctx_t *xctx);
+
 const afw_utf8_t *
 afw_ldap_internal_expression_from_query_criteria(
     afw_ldap_internal_adapter_session_t *session,

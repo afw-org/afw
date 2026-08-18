@@ -80,6 +80,7 @@ impl_afw_adapter_session_retrieve_objects(
     LDAPMessage *e;
     const afw_utf8_t *filter;
     const afw_utf8_t *filter_class;
+    const afw_utf8_t *escaped_type;
     const char *filter_z;
     const afw_object_t *o;
     const afw_utf8_t *object_id;
@@ -110,15 +111,17 @@ impl_afw_adapter_session_retrieve_objects(
 
     /* Determine filter_z. */
     if (object_type_id) {
+        escaped_type = afw_ldap_internal_filter_escape(
+            object_type_id, p, xctx);
         /* Check to see if the user wants inherited object types to be returned */
         if (AFW_OBJECT_OPTION_IS(impl_request->options, includeDescendentObjectTypes)) {
             filter_class = afw_utf8_printf(p, xctx,
                 "objectclass=" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(object_type_id));
+                AFW_UTF8_FMT_ARG(escaped_type));
         } else {
             filter_class = afw_utf8_printf(p, xctx,
                 "structuralobjectclass=" AFW_UTF8_FMT,
-                AFW_UTF8_FMT_ARG(object_type_id));
+                AFW_UTF8_FMT_ARG(escaped_type));
         }
     } else {
         filter_class = afw_utf8_printf(p, xctx, "objectclass=*");
@@ -226,6 +229,7 @@ impl_afw_adapter_session_get_object(
     LDAPMessage *e;
     const afw_utf8_z_t *dn_z;
     const afw_utf8_z_t *filter_z;
+    const afw_utf8_t *escaped_type;
     const afw_object_t *obj;
     int ldap_scope;
     int count;
@@ -246,9 +250,11 @@ impl_afw_adapter_session_get_object(
     /* Read entry. */
     res = NULL;
     ldap_scope = LDAP_SCOPE_BASE;
+    escaped_type = afw_ldap_internal_filter_escape(
+        object_type_id, p, xctx);
     filter_z = apr_psprintf(afw_pool_get_apr_pool(xctx->p),
         "(structuralobjectclass=" AFW_UTF8_FMT ")",
-        AFW_UTF8_FMT_ARG(object_type_id));
+        AFW_UTF8_FMT_ARG(escaped_type));
     rv = ldap_search_s(self->ld, (char *)dn_z, ldap_scope, (char *)filter_z,
         afw_ldap_internal_allattrs, 0, &res);
     if (res) {
