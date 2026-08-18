@@ -991,18 +991,38 @@ static void
 impl_quick_sort(
     impl_sort_ctx_t *ctx,
     afw_size_t low,
-    afw_size_t high) 
-{ 
+    afw_size_t high)
+{
     afw_size_t pivot_i;
+    afw_size_t left_n;
+    afw_size_t right_n;
 
-    if (low < high) 
-    { 
+    /*
+     * Recurse the smaller partition and loop the larger so worst-case
+     * depth is log2(n). Last-element Lomuto still has O(n^2) time on
+     * already-sorted input; the stack is what this bounds.
+     */
+    while (low < high) {
         pivot_i = impl_partition(ctx, low, high);
-        if (pivot_i > 0) {
-            impl_quick_sort(ctx, low, pivot_i - 1);
+        left_n = (pivot_i > low) ? (pivot_i - low) : 0;
+        right_n = high - pivot_i;
+
+        if (left_n < right_n) {
+            if (left_n > 1) {
+                impl_quick_sort(ctx, low, pivot_i - 1);
+            }
+            low = pivot_i + 1;
         }
-        impl_quick_sort(ctx, pivot_i + 1, high);
-    } 
+        else {
+            if (right_n > 1) {
+                impl_quick_sort(ctx, pivot_i + 1, high);
+            }
+            if (pivot_i == 0) {
+                break;
+            }
+            high = pivot_i - 1;
+        }
+    }
 } 
 
 /*

@@ -5,7 +5,8 @@
 //? description: ...
 Edge cases for higher-order array functions (map, filter, find, reduce,
 every/some, all_of/any_of, sort): empty arrays, undefined entries, omitted
-literal elements, identity map on homogeneous strings, and mixed types.
+literal elements, identity map on homogeneous strings, mixed types, and
+sort of already-sorted / reverse / duplicate input.
 //? sourceType: script
 //?
 //? test: map-empty
@@ -267,6 +268,67 @@ return 0;
 
 let out = sort(function (a, b) { return a < b; }, ["c", "a", "b"]);
 assert(out[0] === "a" && out[1] === "b" && out[2] === "c");
+return 0;
+
+//?
+//? test: sort-already-sorted
+//? description: already-sorted integers stay in order
+//? expect: 0
+//? source: ...
+
+let out = sort(function (a, b) { return a < b; }, [1, 2, 3, 4, 5]);
+assert(out[0] === 1 && out[4] === 5);
+assert(out[1] === 2 && out[2] === 3 && out[3] === 4);
+return 0;
+
+//?
+//? test: sort-reverse-sorted
+//? description: reverse-sorted integers become ascending
+//? expect: 0
+//? source: ...
+
+let out = sort(function (a, b) { return a < b; }, [5, 4, 3, 2, 1]);
+assert(out[0] === 1 && out[1] === 2 && out[2] === 3);
+assert(out[3] === 4 && out[4] === 5);
+return 0;
+
+//?
+//? test: sort-duplicates
+//? description: equal integers stay together
+//? expect: 0
+//? source: ...
+
+let out = sort(function (a, b) { return a < b; }, [2, 1, 2, 1, 2]);
+assert(length(out) === 5);
+assert(out[0] === 1 && out[1] === 1);
+assert(out[2] === 2 && out[3] === 2 && out[4] === 2);
+return 0;
+
+//?
+//? test: sort-single
+//? description: one-element typed array is unchanged
+//? expect: 0
+//? source: ...
+
+let out = sort(function (a, b) { return a < b; }, [7]);
+assert(length(out) === 1 && out[0] === 7);
+return 0;
+
+//?
+//? test: sort-already-sorted-64
+//? description: already-sorted 64-integer array stays in order
+//? expect: 0
+//? source: ...
+
+let a = [0];
+for (let i = 1; i < 64; i = i + 1) {
+    push(a, i);
+}
+let out = sort(function (x, y) { return x < y; }, a);
+assert(length(out) === 64);
+for (let i = 0; i < 64; i = i + 1) {
+    assert(out[i] === i);
+}
 return 0;
 
 //?
