@@ -16,9 +16,9 @@ A few places that are easy to misunderstand:
 - `advanced/` — short orchestrated tests (`orchestration.yaml`) that are
   part of the default run. A few groups are a Python `run()` that
   compiles a checked-in `*_probe.c` against installed `libafw` and
-  execs it (pool wrap, C-array view index). Use that when Adaptive
-  Script cannot reach the hole. The `.c` is not part of the cmake
-  library build.
+  execs it (pool wrap, C-array view index, UTF-8 ICU bound). Use that
+  when Adaptive Script cannot reach the hole. The `.c` is not part of
+  the cmake library build.
 
 Longer tests, including firehose, live next door in
 `src/afw/tests-extra/` and are only run when you pass

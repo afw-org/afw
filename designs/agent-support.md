@@ -113,6 +113,8 @@ Shape: **symptom → layer → probe → code / doc entry**.
 - **Wrong bound then narrow** — a field stored as signed 32-bit must be checked against the signed max, not the unsigned max. Sibling fields in the same parse are the hint.
 - **Release the existing, not the incoming** — replace/clear must drop the object already stored. The generic associative-array impl already did; the memory object impl released the argument (NULL on clear).
 - **malloc(n) then write `[n]`** — a NULL-terminated copy needs `n + 1` slots. Count first, allocate one extra, then terminate.
+- **UNSAFE ICU walk** — `U8_NEXT_UNSAFE` / `U8_APPEND_UNSAFE` trust well-formed UTF-8 and have no bound. Hand-set `.s`/`.len` can truncate a multi-byte sequence. Current ICU names the bounded macros `U8_NEXT` / `U8_APPEND` (there is no `*_SAFE`). Throw on `c < 0` / append error, same as `afw_utf8_nfc`. Validating constructors are not the only door.
+- **Last-element quicksort** — Lomuto + last pivot is O(n) stack on already-sorted input. Recurse the smaller partition, loop the larger. Time can still be O(n²); the stack is what that bounds.
 
 **Wrong path:** deep-cloning whole adapters/registries to “fix” one bad lifetime; treating short-test green as long-run proof.
 

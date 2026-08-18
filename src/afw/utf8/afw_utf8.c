@@ -685,6 +685,7 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_to_lower(
     uint8_t *cs2;
     afw_utf8_t *result;
     afw_boolean_t already_lower_case;
+    UBool isError;
 
     if (!s) {
         return NULL;
@@ -706,7 +707,10 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_to_lower(
     /* Pre-scan to see if already lower case and to get length of result. */
     for (i1 = 0, len2 = 0, already_lower_case = true; i1 < len1; )
     {
-        U8_NEXT_UNSAFE(cs1, i1, c);
+        U8_NEXT(cs1, i1, len1, c);
+        if (c < 0) {
+            AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+        }
         len2 += U8_LENGTH(c);
         if (c != u_tolower(c)) {
             already_lower_case = false;
@@ -725,9 +729,16 @@ AFW_DEFINE(const afw_utf8_t *) afw_utf8_to_lower(
     result->len = len2;
 
     for (i1 = 0, i2 = 0; i1 < len1;) {
-        U8_NEXT_UNSAFE(cs1, i1, c);
+        U8_NEXT(cs1, i1, len1, c);
+        if (c < 0) {
+            AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+        }
         c_lower = u_tolower(c);
-        U8_APPEND_UNSAFE(cs2, i2, c_lower);
+        isError = false;
+        U8_APPEND(cs2, i2, len2, c_lower, isError);
+        if (isError) {
+            AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+        }
     }
 
     return result;
@@ -819,7 +830,7 @@ AFW_DEFINE(int) afw_utf8_compare_ignore_case(
     const afw_utf8_t *s1, const afw_utf8_t *s2, afw_xctx_t *xctx)
 {
     UChar32 c1, c2;
-    int32_t i, len, i2;
+    int32_t i, len, i2, len1, len2;
     const uint8_t *cs1, *cs2;
     int result;
 
@@ -833,16 +844,21 @@ AFW_DEFINE(int) afw_utf8_compare_ignore_case(
 
     cs1 = (const uint8_t *)s1->s;
     cs2 = (const uint8_t *)s2->s;
-    len = afw_safe_cast_size_to_int32((s1->len <= s2->len) ? s1->len : s2->len,
-        xctx);
+    len1 = (int32_t)s1->len;
+    len2 = (int32_t)s2->len;
+    len = (len1 <= len2) ? len1 : len2;
     result = 0;
     for (i = 0; i < len;) {
-        /* U8_NEXT_UNSAFE increments i.  Don't use i in first call so offset
-        will be correct for both the 'for' loop and pointing to the
-        correct character in both strings. */
+        /*
+         * U8_NEXT increments i. Don't use i in the first call so the
+         * offset stays correct for both the loop and the other string.
+         */
         i2 = i;
-        U8_NEXT_UNSAFE(cs1, i2, c1);
-        U8_NEXT_UNSAFE(cs2, i, c2);
+        U8_NEXT(cs1, i2, len1, c1);
+        U8_NEXT(cs2, i, len2, c2);
+        if (c1 < 0 || c2 < 0) {
+            AFW_THROW_ERROR_Z(general, "Not valid UTF-8", xctx);
+        }
         c1 = u_tolower(c1);
         c2 = u_tolower(c2);
         if (c1 == c2) continue;
