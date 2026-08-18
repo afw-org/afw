@@ -56,4 +56,4 @@ On current `develop`, the only other core includes are:
 | `src/afw/compile/afw_compile_code_point.c` | `u_hasBinaryProperty` / `u_charType` for identifier start/continue and whitespace |
 | `src/afw/environment/afw_environment_register_core.c` | `u_errorName` for the ICU error-code decoder |
 
-A later pass can wrap those through `afw_utf8.h` so the rest of core does not include ICU. Prefer **functions** in that header over macros that pull `unicode/*.h` into every translation unit. Not a current sitting unless asked.
+A later pass can wrap those through `afw_utf8.h` so the rest of core does not include ICU. Prefer **functions** in that header over macros that pull `unicode/*.h` into every translation unit. Owned by [#206](https://github.com/afw-org/afw/issues/206).
