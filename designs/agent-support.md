@@ -43,6 +43,8 @@ Shape: **symptom → layer → probe → code / doc entry**.
 
 **Never:** close listen fd alone as the multi-thread wake story while main is joining — **thread signal** is the libfcgi path. Don’t invent one wake strategy for every future `afw_server` host.
 
+**Request error body:** `afw_server_fcgi_internal_create_request` runs *outside* the request `AFW_TRY`. A throw there increments unhandled errors and the FastCGI client sees an empty 200. Hunt shape: **constructor throw skips request TRY**. Validate `CONTENT_LENGTH` (and anything else that must be a 400) inside the `TRY` after the request object exists.
+
 **Later (not bugs in #158):** drain timeout, SIGHUP, Windows service, full signal framework, every extension loop, unblock `--local` read.
 
 ---

@@ -63,6 +63,8 @@ FCGX_Accept_r (per thread)
 
 FCGI quirks: HTTP status via **`Status: code reason`** header; first body write ends headers with `CRLF`. Write failures → `client_closed` with rv source `"fcgi"`.
 
+**Request `TRY`:** `create_request` runs *outside* the request `AFW_TRY` in `impl_process_request`. A throw there is an unhandled thread error and the client sees an empty 200. Anything that must become an HTTP error body (bad `CONTENT_LENGTH`, …) belongs inside that `TRY` after the request object exists.
+
 ## CLI / socket
 
 - `-f` conf, `-p` socket path (Unix `/path.sock` or TCP `:port`; default **`:9345`** if omitted), `-n` threads, `-e` extension, `-t` conf content type.

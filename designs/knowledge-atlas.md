@@ -210,7 +210,7 @@ generate/  →  generated/  →  env registries (afw_environment_t)
 
 **Core:** error code `terminating` → HTTP **503**; `AFW_XCTX_THROW_IF_TERMINATING(xctx)` at work-unit boundaries.
 
-**Wrong path:** close listen fd alone to wake multi-thread accept while main is in join — use **thread signal** for libfcgi.
+**Wrong path:** close listen fd alone to wake multi-thread accept while main is in join — use **thread signal** for libfcgi. A throw in `create_request` is outside the request `TRY` — empty 200, unhandled thread error; parse/validate that needs an HTTP error body *after* the request exists.
 
 ---
 

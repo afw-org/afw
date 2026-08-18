@@ -29,6 +29,10 @@
  * This is the implementation of afw_server for afw_command_local.
  */
 
+/* Hard cap so a chunk length cannot grow the input buffer without bound. */
+#define AFW_COMMAND_LOCAL_MAX_CHUNK 10000000
+
+
 /* Compiled afw version. */
 static const afw_utf8_t
 impl_compiled_afw_version =
@@ -53,10 +57,10 @@ impl_local_get_input(
     afw_xctx_t *xctx)
 {
     afw_memory_t *result;
-    long long len;
-    int rv;
+    afw_size_t len;
+    unsigned int digit;
     int c;
-    
+
     /* If eof, just return NULL. */
     if (self->eof) {
         return NULL;
@@ -66,11 +70,7 @@ impl_local_get_input(
     apr_array_clear(self->input_buffer);
     for (;;) {
 
-        /*
-         * Get and unget first char to make sure it is a digit.  Function
-         * fscanf() can skip characters, so this is here to make sure
-         * a stealth chunk error doesn't occur.
-         */
+        /* First char must be a digit so a stealth skip cannot happen. */
         c = fgetc(self->fd_input);
         if (c == EOF) {
             if (self->input_buffer->nelts != 0) {
@@ -81,19 +81,24 @@ impl_local_get_input(
         if (c < '0' || c > '9') {
             goto error;
         }
-        rv = ungetc(c, self->fd_input);
-        if (rv != c) {
-            goto error;
-        }
 
-        /* Get len followed by \n. If 0\n, break. */
-        rv = fscanf(self->fd_input, "%lld", &len);
-        if (rv < 0 || rv != 1) {
-            goto error;
-        }
-        c = fgetc(self->fd_input);
-        if (c != '\n') {
-            goto error;
+        /* Parse length digits up to newline; reject overflow and over-cap. */
+        len = (afw_size_t)(c - '0');
+        for (;;) {
+            c = fgetc(self->fd_input);
+            if (c == '\n') {
+                break;
+            }
+            if (c < '0' || c > '9') {
+                goto error;
+            }
+            digit = (unsigned int)(c - '0');
+            if (len > (AFW_COMMAND_LOCAL_MAX_CHUNK -
+                (afw_size_t)digit) / 10)
+            {
+                goto error;
+            }
+            len = len * 10 + (afw_size_t)digit;
         }
         if (len == 0) {
             break;
