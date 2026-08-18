@@ -9,6 +9,8 @@ import shutil
 import subprocess
 import tempfile
 
+from _afwdev.test.c_probe import run_c_probe
+
 
 def _package_root():
     d = os.path.dirname(os.path.abspath(__file__))
@@ -91,6 +93,26 @@ def run():
             "skip": False,
             "error": None if r.returncode == 0 else (
                 r.stderr or r.stdout or "exit %s" % r.returncode),
+        })
+
+        # Same idea as commands_test1.txt: after priming, the closet
+        # must compile. The probe is not a cmake target, so run_c_probe
+        # is the build.
+        compiled = {"tests": []}
+        if os.path.isfile(c_path):
+            compiled = run_c_probe(
+                c_path,
+                "primed closet compiles",
+                [("ok", "environment boots")],
+                valgrind=False,
+            )
+        compile_one = (compiled.get("tests") or [{}])[0]
+        tests.append({
+            "test": "closet-compiles",
+            "description": "primed ok case compiles and runs against libafw",
+            "passed": compile_one.get("passed") is True,
+            "skip": False,
+            "error": compile_one.get("error"),
         })
 
         r2 = _run(
