@@ -1309,7 +1309,7 @@ afw_dayTimeDuration_utf8_set_internal(
 
     /* Next can be 'M'. */
     if (*s == 'M') {
-        if (i > AFW_UINT32_MAX) goto error;
+        if (i > AFW_INT32_MAX) goto error;
         internal->minutes = (afw_int32_t)((is_negative) ? -i  : i);
         s++;
         if (--len <= 0) goto finished;
@@ -1321,7 +1321,7 @@ afw_dayTimeDuration_utf8_set_internal(
     }
 
     /* Must be seconds at this point. Will check for 'S' later. */
-    if (i > AFW_UINT32_MAX) goto error;
+    if (i > AFW_INT32_MAX) goto error;
     internal->seconds = (afw_int32_t)((is_negative) ? -i  : i);
 
     /* Next can be '.' followed by microseconds. */

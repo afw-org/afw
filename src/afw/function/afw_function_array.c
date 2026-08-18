@@ -219,6 +219,10 @@ afw_function_execute_includes_array(
     len = afw_array_get_count(array->internal, xctx);
 
     if (fromIndex) {
+        /* Empty array: fromIndex % 0 is undefined (SIGFPE on some hosts). */
+        if (len == 0) {
+            return afw_boolean_v_false;
+        }
         index = abs((int)fromIndex->internal) % len;
 
         if (fromIndex->internal < 0 && index != 0) {

@@ -108,6 +108,11 @@ Shape: **symptom → layer → probe → code / doc entry**.
 - **Evaluate twice, first result sizes a buffer** — call-site `...expr` (#181, fixed). Same class: Pattern rest keys.
 - **Early return skips eval-stack / error-contextual pop** — a not-found or empty path returns before the cleanup every other exit does; the next unrelated error points at the wrong source. Route through the same pop/restore. A braced block's `AFW_ENDTRY` resets the stack each time and hides the leak; gate with a single-statement `for` body (default max 500).
 - **Allocator is sacred** — overflow on `size + prefix` is a local check (shipped). A free-list that only relinks adjacent blocks is **optional reuse**, not lifetime; a naive `else` splice livelocks first-fit. That hole waits on **#2** / pool redesign. Do **not** invent a new pool on a findings card.
+- **Empty collection + modulo** — `fromIndex % length` on length 0 is undefined (`SIGFPE` on x86; aarch64 divide returns 0). Guard before the remainder.
+- **Signed min negation** — `abs` / `negative` of `#integerMin` cannot be represented. Throw, same as integer add overflow. Do not rely on two’s-complement wrap.
+- **Wrong bound then narrow** — a field stored as signed 32-bit must be checked against the signed max, not the unsigned max. Sibling fields in the same parse are the hint.
+- **Release the existing, not the incoming** — replace/clear must drop the object already stored. The generic associative-array impl already did; the memory object impl released the argument (NULL on clear).
+- **malloc(n) then write `[n]`** — a NULL-terminated copy needs `n + 1` slots. Count first, allocate one extra, then terminate.
 
 **Wrong path:** deep-cloning whole adapters/registries to “fix” one bad lifetime; treating short-test green as long-run proof.
 

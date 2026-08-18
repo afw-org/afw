@@ -206,7 +206,7 @@ impl_afw_object_associative_array_set (
     /* If an object is associated with key, call its release(). */
     existing = apr_hash_get(self->objects, key->s, key->len);
     if (existing) {
-        afw_object_release(object, xctx);
+        afw_object_release(existing, xctx);
     }
 
     /* If object passed, add reference. */
