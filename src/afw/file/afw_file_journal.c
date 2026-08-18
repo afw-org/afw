@@ -102,7 +102,27 @@ impl_object_id_to_relative_entry_path(
     for (*offset = 0, count = entry_object_id->len - strlen("ccyymmddhh_");
         count > 0; count--)
     {
-        *offset = *offset * 10 + (*i++ - '0');
+        unsigned int digit;
+
+        if (*i < '0' || *i > '9') {
+            return NULL;
+        }
+        digit = (unsigned int)(*i++ - '0');
+        /*
+         * Offset is a signed afw_off_t fed to apr_file_seek, and later
+         * printed as afw_integer_t. Bound to the smaller of those.
+         */
+        if (sizeof(afw_off_t) < sizeof(afw_integer_t)) {
+            if (*offset > ((afw_off_t)AFW_INT32_MAX - (afw_off_t)digit) / 10) {
+                return NULL;
+            }
+        }
+        else if (*offset >
+            ((afw_off_t)AFW_INTEGER_MAX - (afw_off_t)digit) / 10)
+        {
+            return NULL;
+        }
+        *offset = *offset * 10 + (afw_off_t)digit;
     }
 
     return &relative_entry_path_wa_z[0];
@@ -756,7 +776,11 @@ impl_afw_adapter_journal_get_entry_internal(
     else if (entry_object_id) {
         relative_entry_path_z = impl_object_id_to_relative_entry_path(
             entry_object_id, relative_entry_path_wa_z, &offset, xctx);
-        if (!relative_entry_path_z) return; /** @fixme Is this an error?*/
+        if (!relative_entry_path_z) {
+            AFW_THROW_ERROR_FZ(syntax, xctx,
+                "Invalid journal cursor " AFW_UTF8_FMT_Q,
+                AFW_UTF8_FMT_ARG(entry_object_id));
+        }
     }
 
     else {

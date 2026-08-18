@@ -296,4 +296,58 @@ def run():
             )
         )
 
+        # Nested mappings: modest depth still loads; pathological depth
+        # is a syntax error (not a crash). Limit is AFW_YAML_PARSE_NESTING_MAX.
+        def _nested_mapping(n):
+            body = "1"
+            for _ in range(n):
+                body = "{a: %s}" % body
+            return body
+
+        _write(os.path.join(ot_dir, "deep32.yaml"), _nested_mapping(32))
+        code, out, err = _yaml_script(
+            """\
+            let o = get_object("yamlfile", "YamlOt", "deep32");
+            let i = 0;
+            while (i < 32) {
+                o = o.a;
+                i = i + 1;
+            }
+            assert(o === 1, "32 nested mappings");
+            return 0;
+            """
+        )
+        body = out.strip()
+        tests.append(
+            _case(
+                "file_adapter_yaml_mapping_modest_depth",
+                "32 nested YAML mappings still load",
+                code == 0 and body == "0",
+                detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
+            )
+        )
+
+        _write(os.path.join(ot_dir, "deep300.yaml"), _nested_mapping(300))
+        code, out, err = _yaml_script(
+            """\
+            assert(
+                safe_evaluate(
+                    get_object("yamlfile", "YamlOt", "deep300"),
+                    "error"
+                ) == "error",
+                "300 nested mappings must not load"
+            );
+            return 0;
+            """
+        )
+        body = out.strip()
+        tests.append(
+            _case(
+                "file_adapter_yaml_mapping_too_deep",
+                "300 nested YAML mappings is a syntax error",
+                code == 0 and body == "0",
+                detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
+            )
+        )
+
     return {"description": description, "tests": tests}

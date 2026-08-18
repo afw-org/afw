@@ -995,7 +995,67 @@ afw_uri_encode_raw_to_preallocated(
 
 
 
-/* % encoding should already be validate. */
+/*
+ * Decode percent-encoded octets. Each '%' must be followed by two hex
+ * digits. Length is counted up, never computed as len - 2*percents
+ * (that underflows when a '%' is truncated).
+ */
+static void
+impl_uri_decode_percent(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    afw_memory_t *result,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_utf8_octet_t *c;
+    const afw_utf8_octet_t *end;
+    afw_utf8_octet_t *o;
+    afw_size_t decoded_len;
+    int x1, x2;
+
+    end = s + len;
+    decoded_len = 0;
+    for (c = s; c < end; ) {
+        if (*c == '%') {
+            if (c + 2 >= end) {
+                AFW_THROW_ERROR_Z(syntax,
+                    "Invalid percent-encoding in URI",
+                    xctx);
+            }
+            x1 = afw_ascii_decode_hex_digit(c[1]);
+            x2 = afw_ascii_decode_hex_digit(c[2]);
+            if (x1 < 0 || x2 < 0) {
+                AFW_THROW_ERROR_Z(syntax,
+                    "Invalid percent-encoding in URI",
+                    xctx);
+            }
+            c += 3;
+            decoded_len++;
+        }
+        else {
+            c++;
+            decoded_len++;
+        }
+    }
+
+    result->size = decoded_len;
+    o = afw_pool_malloc(p, decoded_len, xctx);
+    result->ptr = (const afw_octet_t *)o;
+    for (c = s; c < end; ) {
+        if (*c == '%') {
+            x1 = afw_ascii_decode_hex_digit(c[1]);
+            x2 = afw_ascii_decode_hex_digit(c[2]);
+            *o++ = (afw_utf8_octet_t)(x1 * 16 + x2);
+            c += 3;
+        }
+        else {
+            *o++ = *c++;
+        }
+    }
+}
+
+
 AFW_DEFINE(const afw_utf8_t *)
 afw_uri_decode(
     const afw_utf8_t *encoded,
@@ -1051,50 +1111,32 @@ afw_uri_decode_to_raw_create(
     afw_xctx_t *xctx)
 {
     afw_memory_t *result;
-    afw_utf8_octet_t *o;
     const afw_utf8_octet_t *c;
-    afw_utf8_octet_t c1, c2;
     const afw_utf8_octet_t *end;
-    afw_size_t percent_count;
-    afw_size_t decoded_len;
+    afw_boolean_t has_percent;
 
     result = afw_pool_calloc_type(p, afw_memory_t, xctx);
 
-    for (percent_count = 0, c = s, end = c + len;
-        c < end; c++)
-    {
-        if (*c == '%') percent_count++;
+    has_percent = false;
+    for (c = s, end = c + len; c < end; c++) {
+        if (*c == '%') {
+            has_percent = true;
+            break;
+        }
     }
 
-    if (percent_count == 0 || len == 0) {
+    if (!has_percent || len == 0) {
         result->ptr = (const afw_octet_t *)s;
         result->size = len;
         return result;
     }
 
-    result->size = decoded_len = len - 2 * percent_count;
-    o = afw_pool_malloc(p, result->size, xctx);
-    result->ptr = (const afw_octet_t *)o;
-
-    for (c = s; decoded_len > 0; decoded_len--) {
-        if (*c == '%') {
-            c++;
-            c1 = *c++;
-            c2 = *c++;
-            *o++ = afw_ascii_decode_hex_digit(c1) * 16 +
-                afw_ascii_decode_hex_digit(c2);
-        }
-        else {
-            *o++ = *c++;
-        }
-    }
-
+    impl_uri_decode_percent(s, len, result, p, xctx);
     return result;
 }
 
 
 
-/* % encoding should already be validate. */
 AFW_DEFINE(const afw_memory_t *)
 afw_uri_decode_to_raw(
     const afw_utf8_t *encoded,
@@ -1102,41 +1144,24 @@ afw_uri_decode_to_raw(
     afw_xctx_t *xctx)
 {
     afw_memory_t *result;
-    afw_utf8_octet_t *o;
     const afw_utf8_octet_t *c;
     const afw_utf8_octet_t *end;
-    afw_utf8_octet_t c1, c2;
-    afw_size_t len;
-    afw_size_t percent_count;
+    afw_boolean_t has_percent;
 
-    for (percent_count = 0, c = encoded->s, end = c + encoded->len;
-        c < end; c++)
-    {
-        if (*c == '%') percent_count++;
+    has_percent = false;
+    for (c = encoded->s, end = c + encoded->len; c < end; c++) {
+        if (*c == '%') {
+            has_percent = true;
+            break;
+        }
     }
 
-    if (percent_count == 0 || encoded->len == 0) {
+    if (!has_percent || encoded->len == 0) {
         return (const afw_memory_t *)encoded;
     }
 
     result = afw_pool_malloc_type(p, afw_memory_t, xctx);
-    result->size = len = encoded->len - 2 * percent_count;
-    o = afw_pool_malloc(p, result->size, xctx);
-    result->ptr = (const afw_octet_t *)o;
-
-    for (c = encoded->s; len > 0; len--) {
-        if (*c == '%') {
-            c++;
-            c1 = *c++;
-            c2 = *c++;
-            *o++ = afw_ascii_decode_hex_digit(c1) * 16 +
-                afw_ascii_decode_hex_digit(c2);
-        }
-        else {
-            *o++ = *c++;
-        }
-    }
-
+    impl_uri_decode_percent(encoded->s, encoded->len, result, p, xctx);
     return result;
 }
 

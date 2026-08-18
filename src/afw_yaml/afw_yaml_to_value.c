@@ -25,7 +25,32 @@ typedef struct afw_yaml_parser_s {
     const afw_pool_t *p;
     const afw_utf8_t *path;
     afw_boolean_t cede_p;
+    afw_size_t parse_nesting;
 } afw_yaml_parser_t;
+
+
+/*
+ * Max nested YAML mappings/sequences. Stops C-stack overflow on
+ * pathological input. Generous for real documents.
+ */
+#define AFW_YAML_PARSE_NESTING_MAX 256
+
+#define impl_yaml_parse_nesting_enter(parser, xctx) \
+do { \
+    AFW_XCTX_THROW_IF_TERMINATING(xctx); \
+    (parser)->parse_nesting++; \
+    if ((parser)->parse_nesting > AFW_YAML_PARSE_NESTING_MAX) { \
+        AFW_THROW_ERROR_Z(syntax, \
+            "YAML nesting is too deep", xctx); \
+    } \
+} while (0)
+
+#define impl_yaml_parse_nesting_leave(parser) \
+do { \
+    if ((parser)->parse_nesting > 0) { \
+        (parser)->parse_nesting--; \
+    } \
+} while (0)
 
 const afw_value_t * afw_yaml_parse_value(
     afw_yaml_parser_t *parser, afw_xctx_t *xctx);
@@ -154,6 +179,8 @@ const afw_array_t * afw_yaml_parse_list(
     const afw_array_t *list;
     const afw_value_t *value;
 
+    impl_yaml_parse_nesting_enter(parser, xctx);
+
     list = afw_array_create_generic(parser->p, xctx);
 
     do {
@@ -162,6 +189,8 @@ const afw_array_t * afw_yaml_parse_list(
             afw_array_push_value(list, value, xctx);
         }
     } while (value);
+
+    impl_yaml_parse_nesting_leave(parser);
 
     /* Return. */
     return list;
@@ -178,6 +207,8 @@ const afw_object_t * afw_yaml_parse_object(
     const afw_object_t *saved_embedding_object;
     const afw_utf8_t *saved_property_name;
     const afw_object_t *_meta_;
+
+    impl_yaml_parse_nesting_enter(parser, xctx);
 
     /* Create new memory object.*/
     AFW_OBJECT_CREATE_ENTITY_OR_EMBEDDED(object,
@@ -261,6 +292,7 @@ const afw_object_t * afw_yaml_parse_object(
     /* Set parser->embedding_object to previous value and return object. */
     parser->embedding_object = saved_embedding_object;
     parser->property_name = saved_property_name;
+    impl_yaml_parse_nesting_leave(parser);
     return object;
 }
 

@@ -45,6 +45,9 @@ typedef struct impl_string_parser_s {
     afw_boolean_t bang_is_a_delimiter;
     afw_boolean_t expect_an_operation;
 
+    /* Nested '(' / and()/or() depth. See AFW_QUERY_CRITERIA_PARSE_NESTING_MAX. */
+    afw_size_t parse_nesting;
+
 } impl_string_parser_t;
 
 static void
@@ -505,6 +508,29 @@ do { \
         AFW__FILE_LINE__, format_z, __VA_ARGS__); \
     longjmp(((parser->xctx)->current_try->throw_jmp_buf), \
         (afw_error_code_syntax)); \
+} while (0)
+
+
+/*
+ * Max nested '(' / and()/or() in a url-encoded RQL string. Stops C-stack
+ * overflow on pathological filters. Generous for real queries.
+ */
+#define AFW_QUERY_CRITERIA_PARSE_NESTING_MAX 256
+
+#define impl_query_parse_nesting_enter(parser) \
+do { \
+    AFW_XCTX_THROW_IF_TERMINATING((parser)->xctx); \
+    (parser)->parse_nesting++; \
+    if ((parser)->parse_nesting > AFW_QUERY_CRITERIA_PARSE_NESTING_MAX) { \
+        IMPL_STRING_THROW_ERROR_Z("Filter nesting is too deep"); \
+    } \
+} while (0)
+
+#define impl_query_parse_nesting_leave(parser) \
+do { \
+    if ((parser)->parse_nesting > 0) { \
+        (parser)->parse_nesting--; \
+    } \
 } while (0)
 
 
@@ -1010,9 +1036,11 @@ impl_parse_string_factor(
     const afw_query_criteria_filter_entry_t *on_false)
 {
     if (*(parser->c) == '(') {
+        impl_query_parse_nesting_enter(parser);
         (parser->c)++;
         impl_parse_string_sugar(parser, filter, tree,
             on_true, on_false);
+        impl_query_parse_nesting_leave(parser);
         if (*(parser->c) != ')') {
             IMPL_STRING_THROW_ERROR_Z("missing ')'");
         }
@@ -1181,6 +1209,8 @@ impl_parse_string_function(
         IMPL_STRING_THROW_ERROR_Z("Expecting '(' after operator");
     }
 
+    impl_query_parse_nesting_enter(parser);
+
     /* Allocate and initialize new filter entry. */
     entry = afw_pool_calloc_type(
         parser->p,
@@ -1308,6 +1338,8 @@ impl_parse_string_function(
             }
         }
     }
+
+    impl_query_parse_nesting_leave(parser);
 }
 
 
