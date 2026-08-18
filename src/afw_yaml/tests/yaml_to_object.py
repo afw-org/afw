@@ -14,6 +14,7 @@ Coverage:
   - add_object + get round-trip through YAML encode/decode
   - non-object YAML root rejected for adapter object load
   - plain scalar typing (integer vs double, null/~, quoted, partial number)
+  - mapping/sequence parse depth: modest, limit (256), over limit
 """
 
 from __future__ import annotations
@@ -345,6 +346,105 @@ def run():
             _case(
                 "file_adapter_yaml_mapping_too_deep",
                 "300 nested YAML mappings is a syntax error",
+                code == 0 and body == "0",
+                detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
+            )
+        )
+
+        _write(os.path.join(ot_dir, "deep256.yaml"), _nested_mapping(256))
+        code, out, err = _yaml_script(
+            """\
+            let o = get_object("yamlfile", "YamlOt", "deep256");
+            let i = 0;
+            while (i < 256) {
+                o = o.a;
+                i = i + 1;
+            }
+            assert(o === 1, "256 nested mappings");
+            return 0;
+            """
+        )
+        body = out.strip()
+        tests.append(
+            _case(
+                "file_adapter_yaml_mapping_at_limit",
+                "256 nested YAML mappings still load",
+                code == 0 and body == "0",
+                detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
+            )
+        )
+
+        _write(os.path.join(ot_dir, "deep257.yaml"), _nested_mapping(257))
+        code, out, err = _yaml_script(
+            """\
+            assert(
+                safe_evaluate(
+                    get_object("yamlfile", "YamlOt", "deep257"),
+                    "error"
+                ) == "error",
+                "257 nested mappings must not load"
+            );
+            return 0;
+            """
+        )
+        body = out.strip()
+        tests.append(
+            _case(
+                "file_adapter_yaml_mapping_over_limit",
+                "257 nested YAML mappings is a syntax error",
+                code == 0 and body == "0",
+                detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
+            )
+        )
+
+        def _nested_list_in_mapping(n):
+            body = "1"
+            for _ in range(n):
+                body = "[%s]" % body
+            return "{a: %s}" % body
+
+        _write(os.path.join(ot_dir, "list32.yaml"), _nested_list_in_mapping(32))
+        code, out, err = _yaml_script(
+            """\
+            let o = get_object("yamlfile", "YamlOt", "list32");
+            let v = o.a;
+            let i = 0;
+            while (i < 32) {
+                v = v[0];
+                i = i + 1;
+            }
+            assert(v === 1, "32 nested sequences");
+            return 0;
+            """
+        )
+        body = out.strip()
+        tests.append(
+            _case(
+                "file_adapter_yaml_sequence_modest_depth",
+                "32 nested YAML sequences under a mapping still load",
+                code == 0 and body == "0",
+                detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
+            )
+        )
+
+        _write(os.path.join(ot_dir, "list300.yaml"), _nested_list_in_mapping(300))
+        code, out, err = _yaml_script(
+            """\
+            assert(
+                safe_evaluate(
+                    get_object("yamlfile", "YamlOt", "list300"),
+                    "error"
+                ) == "error",
+                "300 nested sequences must not load"
+            );
+            return 0;
+            """
+        )
+        body = out.strip()
+        tests.append(
+            _case(
+                "file_adapter_yaml_sequence_too_deep",
+                "300 nested YAML sequences is a syntax error",
                 code == 0 and body == "0",
                 detail="exit=%s body=%r stderr=%r" % (code, body, err[-500:]),
             )

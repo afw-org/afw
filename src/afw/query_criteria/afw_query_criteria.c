@@ -132,6 +132,7 @@ typedef struct impl_AdaptiveQueryCriteria_object_parser_s {
     const afw_pool_t *p;
     afw_query_criteria_t *criteria;
     afw_query_criteria_filter_entry_t *last;
+    afw_size_t parse_nesting;
 } impl_AdaptiveQueryCriteria_object_parser_t;
 
 static void
@@ -527,6 +528,23 @@ do { \
 } while (0)
 
 #define impl_query_parse_nesting_leave(parser) \
+do { \
+    if ((parser)->parse_nesting > 0) { \
+        (parser)->parse_nesting--; \
+    } \
+} while (0)
+
+#define impl_query_object_parse_nesting_enter(parser) \
+do { \
+    AFW_XCTX_THROW_IF_TERMINATING((parser)->xctx); \
+    (parser)->parse_nesting++; \
+    if ((parser)->parse_nesting > AFW_QUERY_CRITERIA_PARSE_NESTING_MAX) { \
+        AFW_THROW_ERROR_Z(syntax, \
+            "Filter nesting is too deep", (parser)->xctx); \
+    } \
+} while (0)
+
+#define impl_query_object_parse_nesting_leave(parser) \
 do { \
     if ((parser)->parse_nesting > 0) { \
         (parser)->parse_nesting--; \
@@ -1209,8 +1227,6 @@ impl_parse_string_function(
         IMPL_STRING_THROW_ERROR_Z("Expecting '(' after operator");
     }
 
-    impl_query_parse_nesting_enter(parser);
-
     /* Allocate and initialize new filter entry. */
     entry = afw_pool_calloc_type(
         parser->p,
@@ -1229,6 +1245,7 @@ impl_parse_string_function(
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
+        impl_query_parse_nesting_enter(parser);
         for (
             previous_entry = previous_tree = NULL
             ;
@@ -1268,6 +1285,7 @@ impl_parse_string_function(
                 IMPL_STRING_THROW_ERROR_Z("Expecting ','");
             }
         }
+        impl_query_parse_nesting_leave(parser);
     }
 
     /* Process comparisons. */
@@ -1338,8 +1356,6 @@ impl_parse_string_function(
             }
         }
     }
-
-    impl_query_parse_nesting_leave(parser);
 }
 
 
@@ -1435,6 +1451,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||
         entry->op_id == afw_query_criteria_filter_op_id_or)
     {
+        impl_query_object_parse_nesting_enter(parser);
         filters_list = afw_object_old_get_property_as_array(filter_object,
             afw_s_filters, parser->xctx);
         if (!filters_list) {
@@ -1487,6 +1504,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
                 }
             }
         }
+        impl_query_object_parse_nesting_leave(parser);
     }
 
     /* Process comparisons. */

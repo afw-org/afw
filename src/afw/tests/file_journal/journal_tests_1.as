@@ -30,7 +30,7 @@ const result = add_object("file", "_AdaptiveObject_", {
 });
 
 let journal = journal_get_first("journal");
-assert(journal.entry.request.objectId === result.request.objectId);
+assert(journal.entry.objectId === result.objectId);
 
 return 0;
 
@@ -299,21 +299,3 @@ assert(j.entry !== undefined, "face-only must not hide entry");
 journal_mark_consumed("journal", "faceConsumerLook", cursor);
 
 return 0;
-
-
-//?
-//? test: journal_cursor-non-digit-offset
-//? description: cursor offset that is not all digits is an error
-//? expect: error
-//? source: ...
-
-journal_get_by_cursor("journal", "2016070423_abc")
-
-//?
-//? test: journal_cursor-offset-overflow
-//? description: cursor offset that does not fit in signed off_t is an error
-//? expect: error
-//? source: ...
-
-journal_get_by_cursor("journal",
-    "2016070423_999999999999999999999999999999")

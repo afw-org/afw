@@ -80,6 +80,12 @@ impl_object_id_to_relative_entry_path(
     if (entry_object_id->len < strlen("ccyymmddhh_0")) return NULL;
     o = &relative_entry_path_wa_z[0];
     i = entry_object_id->s;
+    for (count = 0; count < 10; count++) {
+        if (i[count] < '0' || i[count] > '9') {
+            return NULL;
+        }
+    }
+    if (i[10] != '_') return NULL;
     *o++ = 'y';
     *o++ = *i++;
     *o++ = *i++;
@@ -98,7 +104,7 @@ impl_object_id_to_relative_entry_path(
     *o++ = *i++;
     *o++ = *i++;
     *o = 0;
-    if (*i++ != '_') return NULL;
+    i++; /* skip '_' already checked */
     for (*offset = 0, count = entry_object_id->len - strlen("ccyymmddhh_");
         count > 0; count--)
     {

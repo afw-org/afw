@@ -272,6 +272,22 @@ assert(obj.TestObject1.prop1 === "val1");
 return 0;
 
 
+//? test: retrieve_objects_query_criteria_rql_eq_percent_value
+//? description: file adapter urlEncodedRQLString decodes a valid %31 in the value
+//? expect: 0
+//? source: ...
+
+const objects: array = retrieve_objects("file", "TestObjectType1", {
+    "urlEncodedRQLString": "TestObject1.prop1=val%31"
+});
+
+const obj: object = objects[0];
+assert(obj !== undefined);
+assert(obj.TestObject1.prop1 === "val1");
+
+return 0;
+
+
 //? test: retrieve_objects_query_criteria_rql_eq_object_no_allowQuery
 //? description: Test file adapter retrieve_objects with rql query criteria eq object when allowQuery=false.
 //? expect: error:Query string error at offset +0: Property 'TestObject1.prop2' cannot be queried
