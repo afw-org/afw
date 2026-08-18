@@ -75,6 +75,8 @@ If a fix seems to require changing `src/*/generated/**`:
 2. Fix the source of truth, then `./afwdev build --cdev`.
 3. Committed `generated/` may exist for grep/review; it is not the edit surface.
 
+Long invented `zz__*` labels are `sha256` of the string value (see `strings.py`). A core generate must not rename another srcdir's hashes. If only those names moved and you did not change that package's metadata, look at the generator — do not treat it as "revert the usual extension string-id churn" anymore.
+
 ## Related
 
 - Skill `add-adaptive-function` for new function/data-type workflows

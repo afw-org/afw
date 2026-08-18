@@ -2941,6 +2941,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__0e1b45803732 \
+    "(keySource: any, algorithm: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__0e1b45803732 */
+#define afw_crypto_s_zz__0e1b45803732 \
+    (&afw_crypto_self_v_zz__0e1b45803732.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__0e1b45803732 */
+#define afw_crypto_self_s_zz__0e1b45803732 \
+    (afw_crypto_self_v_zz__0e1b45803732.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__0e1b45803732 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__0e1b45803732;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__0e1b45803732 */
+#define afw_crypto_z_zz__0e1b45803732 \
+    (afw_crypto_self_v_zz__0e1b45803732.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__0e1b45803732 */
+#define afw_crypto_v_zz__0e1b45803732 \
+    (&afw_crypto_self_v_zz__0e1b45803732.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__128_or_256_ \
     "128 or 256."
 
@@ -2993,1068 +3019,652 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2480 \
-    "Decrypt AES-GCM ciphertext. algorithm must include name, iv, and tag (16 octets). additionalData must match encrypt if used. Requires execute access. Auth failure yields a generic decryption error."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2480 */
-#define afw_crypto_s_zz__2480 \
-    (&afw_crypto_self_v_zz__2480.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2480 */
-#define afw_crypto_self_s_zz__2480 \
-    (afw_crypto_self_v_zz__2480.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2480 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2480;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2480 */
-#define afw_crypto_z_zz__2480 \
-    (afw_crypto_self_v_zz__2480.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2480 */
-#define afw_crypto_v_zz__2480 \
-    (&afw_crypto_self_v_zz__2480.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2481 \
-    "function crypto_decrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): base64Binary;\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2481 */
-#define afw_crypto_s_zz__2481 \
-    (&afw_crypto_self_v_zz__2481.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2481 */
-#define afw_crypto_self_s_zz__2481 \
-    (afw_crypto_self_v_zz__2481.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2481 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2481;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2481 */
-#define afw_crypto_z_zz__2481 \
-    (afw_crypto_self_v_zz__2481.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2481 */
-#define afw_crypto_v_zz__2481 \
-    (&afw_crypto_self_v_zz__2481.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2482 \
-    "Derived CryptoKey (algorithm AES-GCM sized to length*8 when 16 or 32 octets)."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2482 */
-#define afw_crypto_s_zz__2482 \
-    (&afw_crypto_self_v_zz__2482.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2482 */
-#define afw_crypto_self_s_zz__2482 \
-    (afw_crypto_self_v_zz__2482.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2482 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2482;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2482 */
-#define afw_crypto_z_zz__2482 \
-    (afw_crypto_self_v_zz__2482.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2482 */
-#define afw_crypto_v_zz__2482 \
-    (&afw_crypto_self_v_zz__2482.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2483 \
-    "Passphrase or key material (polymorphic; utf8 encoding allowed)."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2483 */
-#define afw_crypto_s_zz__2483 \
-    (&afw_crypto_self_v_zz__2483.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2483 */
-#define afw_crypto_self_s_zz__2483 \
-    (afw_crypto_self_v_zz__2483.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2483 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2483;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2483 */
-#define afw_crypto_z_zz__2483 \
-    (afw_crypto_self_v_zz__2483.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2483 */
-#define afw_crypto_v_zz__2483 \
-    (&afw_crypto_self_v_zz__2483.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2484 \
-    "Derive a key via PBKDF2-HMAC-SHA256 and store it in the keystore. algorithm object requires name PBKDF2, salt (min 16 octets), length (output octets), optional iterations (default 600000, min 100000), optional hash SHA-256. baseKey may be polymorphic including utf8 encoding for passphrases. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2484 */
-#define afw_crypto_s_zz__2484 \
-    (&afw_crypto_self_v_zz__2484.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2484 */
-#define afw_crypto_self_s_zz__2484 \
-    (afw_crypto_self_v_zz__2484.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2484 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2484;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2484 */
-#define afw_crypto_z_zz__2484 \
-    (afw_crypto_self_v_zz__2484.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2484 */
-#define afw_crypto_v_zz__2484 \
-    (&afw_crypto_self_v_zz__2484.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2485 \
-    "(algorithm: object, baseKey: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2485 */
-#define afw_crypto_s_zz__2485 \
-    (&afw_crypto_self_v_zz__2485.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2485 */
-#define afw_crypto_self_s_zz__2485 \
-    (afw_crypto_self_v_zz__2485.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2485 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2485;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2485 */
-#define afw_crypto_z_zz__2485 \
-    (afw_crypto_self_v_zz__2485.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2485 */
-#define afw_crypto_v_zz__2485 \
-    (&afw_crypto_self_v_zz__2485.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2486 \
-    "function crypto_derive_key (\n    algorithm: object,\n    baseKey: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2486 */
-#define afw_crypto_s_zz__2486 \
-    (&afw_crypto_self_v_zz__2486.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2486 */
-#define afw_crypto_self_s_zz__2486 \
-    (afw_crypto_self_v_zz__2486.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2486 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2486;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2486 */
-#define afw_crypto_z_zz__2486 \
-    (afw_crypto_self_v_zz__2486.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2486 */
-#define afw_crypto_v_zz__2486 \
-    (&afw_crypto_self_v_zz__2486.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2487 \
-    "Remove a key from the process keystore and cleanse its material. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2487 */
-#define afw_crypto_s_zz__2487 \
-    (&afw_crypto_self_v_zz__2487.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2487 */
-#define afw_crypto_self_s_zz__2487 \
-    (afw_crypto_self_v_zz__2487.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2487 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2487;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2487 */
-#define afw_crypto_z_zz__2487 \
-    (afw_crypto_self_v_zz__2487.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2487 */
-#define afw_crypto_v_zz__2487 \
-    (&afw_crypto_self_v_zz__2487.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2488 \
-    "Compute a cryptographic digest of binary data. Algorithm must be SHA-256 or SHA-512. Data may be base64Binary or hexBinary."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2488 */
-#define afw_crypto_s_zz__2488 \
-    (&afw_crypto_self_v_zz__2488.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2488 */
-#define afw_crypto_self_s_zz__2488 \
-    (afw_crypto_self_v_zz__2488.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2488 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2488;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2488 */
-#define afw_crypto_z_zz__2488 \
-    (afw_crypto_self_v_zz__2488.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2488 */
-#define afw_crypto_v_zz__2488 \
-    (&afw_crypto_self_v_zz__2488.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2489 \
-    "function crypto_digest (\n    algorithm: string,\n    data: any\n): base64Binary;\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2489 */
-#define afw_crypto_s_zz__2489 \
-    (&afw_crypto_self_v_zz__2489.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2489 */
-#define afw_crypto_self_s_zz__2489 \
-    (afw_crypto_self_v_zz__2489.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2489 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2489;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2489 */
-#define afw_crypto_z_zz__2489 \
-    (afw_crypto_self_v_zz__2489.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2489 */
-#define afw_crypto_v_zz__2489 \
-    (&afw_crypto_self_v_zz__2489.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2490 \
-    "Encrypt binary plaintext with AES-GCM. algorithm is an object { name: \"AES-GCM\", length?, iv?, additionalData? }. If iv is omitted, a 12-octet IV is generated. Returns ciphertext, iv, and tag. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2490 */
-#define afw_crypto_s_zz__2490 \
-    (&afw_crypto_self_v_zz__2490.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2490 */
-#define afw_crypto_self_s_zz__2490 \
-    (afw_crypto_self_v_zz__2490.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2490 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2490;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2490 */
-#define afw_crypto_z_zz__2490 \
-    (afw_crypto_self_v_zz__2490.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2490 */
-#define afw_crypto_v_zz__2490 \
-    (&afw_crypto_self_v_zz__2490.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2491 \
-    "(algorithm: object, key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2491 */
-#define afw_crypto_s_zz__2491 \
-    (&afw_crypto_self_v_zz__2491.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2491 */
-#define afw_crypto_self_s_zz__2491 \
-    (afw_crypto_self_v_zz__2491.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2491 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2491;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2491 */
-#define afw_crypto_z_zz__2491 \
-    (afw_crypto_self_v_zz__2491.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2491 */
-#define afw_crypto_v_zz__2491 \
-    (&afw_crypto_self_v_zz__2491.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2492 \
-    "function crypto_encrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2492 */
-#define afw_crypto_s_zz__2492 \
-    (&afw_crypto_self_v_zz__2492.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2492 */
-#define afw_crypto_self_s_zz__2492 \
-    (afw_crypto_self_v_zz__2492.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2492 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2492;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2492 */
-#define afw_crypto_z_zz__2492 \
-    (afw_crypto_self_v_zz__2492.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2492 */
-#define afw_crypto_v_zz__2492 \
-    (&afw_crypto_self_v_zz__2492.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2493 \
-    "Export raw key octets from a CryptoKey if extractable is true. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2493 */
-#define afw_crypto_s_zz__2493 \
-    (&afw_crypto_self_v_zz__2493.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2493 */
-#define afw_crypto_self_s_zz__2493 \
-    (afw_crypto_self_v_zz__2493.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2493 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2493;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2493 */
-#define afw_crypto_z_zz__2493 \
-    (afw_crypto_self_v_zz__2493.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2493 */
-#define afw_crypto_v_zz__2493 \
-    (&afw_crypto_self_v_zz__2493.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2494 \
-    "If true, crypto_export_key may export raw key. Default false."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2494 */
-#define afw_crypto_s_zz__2494 \
-    (&afw_crypto_self_v_zz__2494.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2494 */
-#define afw_crypto_self_s_zz__2494 \
-    (afw_crypto_self_v_zz__2494.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2494 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2494;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2494 */
-#define afw_crypto_z_zz__2494 \
-    (afw_crypto_self_v_zz__2494.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2494 */
-#define afw_crypto_v_zz__2494 \
-    (&afw_crypto_self_v_zz__2494.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2495 \
-    "Generate a random key in the process keystore. Algorithm string or object. AES-GCM length defaults to 256 bits. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2495 */
-#define afw_crypto_s_zz__2495 \
-    (&afw_crypto_self_v_zz__2495.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2495 */
-#define afw_crypto_self_s_zz__2495 \
-    (afw_crypto_self_v_zz__2495.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2495 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2495;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2495 */
-#define afw_crypto_z_zz__2495 \
-    (afw_crypto_self_v_zz__2495.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2495 */
-#define afw_crypto_v_zz__2495 \
-    (&afw_crypto_self_v_zz__2495.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2496 \
+#define AFW_CRYPTO_Q_zz__17aa6e41cb7c \
     "(algorithm: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2496 */
-#define afw_crypto_s_zz__2496 \
-    (&afw_crypto_self_v_zz__2496.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__17aa6e41cb7c */
+#define afw_crypto_s_zz__17aa6e41cb7c \
+    (&afw_crypto_self_v_zz__17aa6e41cb7c.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2496 */
-#define afw_crypto_self_s_zz__2496 \
-    (afw_crypto_self_v_zz__2496.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__17aa6e41cb7c */
+#define afw_crypto_self_s_zz__17aa6e41cb7c \
+    (afw_crypto_self_v_zz__17aa6e41cb7c.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2496 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__17aa6e41cb7c */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2496;
+    afw_crypto_self_v_zz__17aa6e41cb7c;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2496 */
-#define afw_crypto_z_zz__2496 \
-    (afw_crypto_self_v_zz__2496.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__17aa6e41cb7c */
+#define afw_crypto_z_zz__17aa6e41cb7c \
+    (afw_crypto_self_v_zz__17aa6e41cb7c.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2496 */
-#define afw_crypto_v_zz__2496 \
-    (&afw_crypto_self_v_zz__2496.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__17aa6e41cb7c */
+#define afw_crypto_v_zz__17aa6e41cb7c \
+    (&afw_crypto_self_v_zz__17aa6e41cb7c.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2497 \
-    "function crypto_generate_key (\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
+#define AFW_CRYPTO_Q_zz__1b939889f0c4 \
+    "If true, crypto_export_key may export raw key. Default false."
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2497 */
-#define afw_crypto_s_zz__2497 \
-    (&afw_crypto_self_v_zz__2497.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1b939889f0c4 */
+#define afw_crypto_s_zz__1b939889f0c4 \
+    (&afw_crypto_self_v_zz__1b939889f0c4.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2497 */
-#define afw_crypto_self_s_zz__2497 \
-    (afw_crypto_self_v_zz__2497.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1b939889f0c4 */
+#define afw_crypto_self_s_zz__1b939889f0c4 \
+    (afw_crypto_self_v_zz__1b939889f0c4.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2497 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__1b939889f0c4 */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2497;
+    afw_crypto_self_v_zz__1b939889f0c4;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2497 */
-#define afw_crypto_z_zz__2497 \
-    (afw_crypto_self_v_zz__2497.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__1b939889f0c4 */
+#define afw_crypto_z_zz__1b939889f0c4 \
+    (afw_crypto_self_v_zz__1b939889f0c4.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2497 */
-#define afw_crypto_v_zz__2497 \
-    (&afw_crypto_self_v_zz__2497.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__1b939889f0c4 */
+#define afw_crypto_v_zz__1b939889f0c4 \
+    (&afw_crypto_self_v_zz__1b939889f0c4.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2498 \
-    "Key material, CryptoKey object, or key reference { from, ... }."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2498 */
-#define afw_crypto_s_zz__2498 \
-    (&afw_crypto_self_v_zz__2498.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2498 */
-#define afw_crypto_self_s_zz__2498 \
-    (afw_crypto_self_v_zz__2498.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2498 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2498;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2498 */
-#define afw_crypto_z_zz__2498 \
-    (afw_crypto_self_v_zz__2498.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2498 */
-#define afw_crypto_v_zz__2498 \
-    (&afw_crypto_self_v_zz__2498.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2499 \
+#define AFW_CRYPTO_Q_zz__1bb265b918f3 \
     "Compute HMAC over binary data. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Key is polymorphic (CryptoKey, raw binary, or reference object). Requires execute access."
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2499 */
-#define afw_crypto_s_zz__2499 \
-    (&afw_crypto_self_v_zz__2499.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1bb265b918f3 */
+#define afw_crypto_s_zz__1bb265b918f3 \
+    (&afw_crypto_self_v_zz__1bb265b918f3.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2499 */
-#define afw_crypto_self_s_zz__2499 \
-    (afw_crypto_self_v_zz__2499.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1bb265b918f3 */
+#define afw_crypto_self_s_zz__1bb265b918f3 \
+    (afw_crypto_self_v_zz__1bb265b918f3.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2499 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__1bb265b918f3 */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2499;
+    afw_crypto_self_v_zz__1bb265b918f3;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2499 */
-#define afw_crypto_z_zz__2499 \
-    (afw_crypto_self_v_zz__2499.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__1bb265b918f3 */
+#define afw_crypto_z_zz__1bb265b918f3 \
+    (afw_crypto_self_v_zz__1bb265b918f3.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2499 */
-#define afw_crypto_v_zz__2499 \
-    (&afw_crypto_self_v_zz__2499.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__1bb265b918f3 */
+#define afw_crypto_v_zz__1bb265b918f3 \
+    (&afw_crypto_self_v_zz__1bb265b918f3.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2500 \
-    "function crypto_hmac (\n    algorithm: string,\n    key: any,\n    data: any\n): base64Binary;\n"
+#define AFW_CRYPTO_Q_zz__1fa3e047cfd4 \
+    "(algorithm: object, key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2500 */
-#define afw_crypto_s_zz__2500 \
-    (&afw_crypto_self_v_zz__2500.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1fa3e047cfd4 */
+#define afw_crypto_s_zz__1fa3e047cfd4 \
+    (&afw_crypto_self_v_zz__1fa3e047cfd4.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2500 */
-#define afw_crypto_self_s_zz__2500 \
-    (afw_crypto_self_v_zz__2500.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1fa3e047cfd4 */
+#define afw_crypto_self_s_zz__1fa3e047cfd4 \
+    (afw_crypto_self_v_zz__1fa3e047cfd4.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2500 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__1fa3e047cfd4 */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2500;
+    afw_crypto_self_v_zz__1fa3e047cfd4;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2500 */
-#define afw_crypto_z_zz__2500 \
-    (afw_crypto_self_v_zz__2500.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__1fa3e047cfd4 */
+#define afw_crypto_z_zz__1fa3e047cfd4 \
+    (afw_crypto_self_v_zz__1fa3e047cfd4.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2500 */
-#define afw_crypto_v_zz__2500 \
-    (&afw_crypto_self_v_zz__2500.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__1fa3e047cfd4 */
+#define afw_crypto_v_zz__1fa3e047cfd4 \
+    (&afw_crypto_self_v_zz__1fa3e047cfd4.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2501 \
-    "Verify an HMAC in constant time. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2501 */
-#define afw_crypto_s_zz__2501 \
-    (&afw_crypto_self_v_zz__2501.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2501 */
-#define afw_crypto_self_s_zz__2501 \
-    (afw_crypto_self_v_zz__2501.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2501 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2501;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2501 */
-#define afw_crypto_z_zz__2501 \
-    (afw_crypto_self_v_zz__2501.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2501 */
-#define afw_crypto_v_zz__2501 \
-    (&afw_crypto_self_v_zz__2501.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2502 \
-    "function crypto_hmac_verify (\n    algorithm: string,\n    key: any,\n    data: any,\n    mac: any\n): boolean;\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2502 */
-#define afw_crypto_s_zz__2502 \
-    (&afw_crypto_self_v_zz__2502.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2502 */
-#define afw_crypto_self_s_zz__2502 \
-    (afw_crypto_self_v_zz__2502.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2502 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2502;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2502 */
-#define afw_crypto_z_zz__2502 \
-    (afw_crypto_self_v_zz__2502.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2502 */
-#define afw_crypto_v_zz__2502 \
-    (&afw_crypto_self_v_zz__2502.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2503 \
-    "Raw binary key, or reference object { from: environment|file|material, ... }."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2503 */
-#define afw_crypto_s_zz__2503 \
-    (&afw_crypto_self_v_zz__2503.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2503 */
-#define afw_crypto_self_s_zz__2503 \
-    (afw_crypto_self_v_zz__2503.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2503 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2503;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2503 */
-#define afw_crypto_z_zz__2503 \
-    (afw_crypto_self_v_zz__2503.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2503 */
-#define afw_crypto_v_zz__2503 \
-    (&afw_crypto_self_v_zz__2503.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2504 \
-    "Import key material (or a key reference resolved to octets) into the process keystore and return a CryptoKey handle. Algorithm is a string registry name or object with name (and optional length for AES-GCM). Default extractable is false. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2504 */
-#define afw_crypto_s_zz__2504 \
-    (&afw_crypto_self_v_zz__2504.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2504 */
-#define afw_crypto_self_s_zz__2504 \
-    (afw_crypto_self_v_zz__2504.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2504 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2504;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2504 */
-#define afw_crypto_z_zz__2504 \
-    (afw_crypto_self_v_zz__2504.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2504 */
-#define afw_crypto_v_zz__2504 \
-    (&afw_crypto_self_v_zz__2504.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2505 \
-    "(keySource: any, algorithm: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2505 */
-#define afw_crypto_s_zz__2505 \
-    (&afw_crypto_self_v_zz__2505.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2505 */
-#define afw_crypto_self_s_zz__2505 \
-    (afw_crypto_self_v_zz__2505.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2505 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2505;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2505 */
-#define afw_crypto_z_zz__2505 \
-    (afw_crypto_self_v_zz__2505.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2505 */
-#define afw_crypto_v_zz__2505 \
-    (&afw_crypto_self_v_zz__2505.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2506 \
-    "function crypto_import_key (\n    keySource: any,\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2506 */
-#define afw_crypto_s_zz__2506 \
-    (&afw_crypto_self_v_zz__2506.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2506 */
-#define afw_crypto_self_s_zz__2506 \
-    (afw_crypto_self_v_zz__2506.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2506 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2506;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2506 */
-#define afw_crypto_z_zz__2506 \
-    (afw_crypto_self_v_zz__2506.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2506 */
-#define afw_crypto_v_zz__2506 \
-    (&afw_crypto_self_v_zz__2506.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2507 \
-    "Sealed object with algorithm, keyLength, iv, tag, and ciphertext."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2507 */
-#define afw_crypto_s_zz__2507 \
-    (&afw_crypto_self_v_zz__2507.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2507 */
-#define afw_crypto_self_s_zz__2507 \
-    (afw_crypto_self_v_zz__2507.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2507 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2507;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2507 */
-#define afw_crypto_z_zz__2507 \
-    (afw_crypto_self_v_zz__2507.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2507 */
-#define afw_crypto_v_zz__2507 \
-    (&afw_crypto_self_v_zz__2507.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2508 \
-    "Plaintext (base64Binary or hexBinary). Use encode_as_base64Binary() for UTF-8 text."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2508 */
-#define afw_crypto_s_zz__2508 \
-    (&afw_crypto_self_v_zz__2508.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2508 */
-#define afw_crypto_self_s_zz__2508 \
-    (afw_crypto_self_v_zz__2508.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2508 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2508;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2508 */
-#define afw_crypto_z_zz__2508 \
-    (afw_crypto_self_v_zz__2508.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2508 */
-#define afw_crypto_v_zz__2508 \
-    (&afw_crypto_self_v_zz__2508.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2509 \
-    "Convenience for AES-GCM encryption: generates an IV, encrypts data, and returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }. Equivalent to crypto_encrypt({ name: \"AES-GCM\" }, key, data) with an auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to store the result. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2509 */
-#define afw_crypto_s_zz__2509 \
-    (&afw_crypto_self_v_zz__2509.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2509 */
-#define afw_crypto_self_s_zz__2509 \
-    (afw_crypto_self_v_zz__2509.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2509 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2509;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2509 */
-#define afw_crypto_z_zz__2509 \
-    (afw_crypto_self_v_zz__2509.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2509 */
-#define afw_crypto_v_zz__2509 \
-    (&afw_crypto_self_v_zz__2509.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2510 \
-    "(key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2510 */
-#define afw_crypto_s_zz__2510 \
-    (&afw_crypto_self_v_zz__2510.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2510 */
-#define afw_crypto_self_s_zz__2510 \
-    (afw_crypto_self_v_zz__2510.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2510 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2510;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2510 */
-#define afw_crypto_z_zz__2510 \
-    (afw_crypto_self_v_zz__2510.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2510 */
-#define afw_crypto_v_zz__2510 \
-    (&afw_crypto_self_v_zz__2510.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2511 \
-    "function crypto_seal (\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2511 */
-#define afw_crypto_s_zz__2511 \
-    (&afw_crypto_self_v_zz__2511.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2511 */
-#define afw_crypto_self_s_zz__2511 \
-    (afw_crypto_self_v_zz__2511.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2511 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2511;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2511 */
-#define afw_crypto_z_zz__2511 \
-    (afw_crypto_self_v_zz__2511.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2511 */
-#define afw_crypto_v_zz__2511 \
-    (&afw_crypto_self_v_zz__2511.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2512 \
-    "Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as base64/hex strings; (2) a string of pure JSON with those properties as base64 strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext octets. Requires execute access."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2512 */
-#define afw_crypto_s_zz__2512 \
-    (&afw_crypto_self_v_zz__2512.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2512 */
-#define afw_crypto_self_s_zz__2512 \
-    (afw_crypto_self_v_zz__2512.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2512 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2512;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2512 */
-#define afw_crypto_z_zz__2512 \
-    (afw_crypto_self_v_zz__2512.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2512 */
-#define afw_crypto_v_zz__2512 \
-    (&afw_crypto_self_v_zz__2512.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2513 \
-    "function crypto_unseal (\n    key: any,\n    sealed: any\n): base64Binary;\n"
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2513 */
-#define afw_crypto_s_zz__2513 \
-    (&afw_crypto_self_v_zz__2513.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2513 */
-#define afw_crypto_self_s_zz__2513 \
-    (afw_crypto_self_v_zz__2513.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2513 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2513;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2513 */
-#define afw_crypto_z_zz__2513 \
-    (afw_crypto_self_v_zz__2513.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2513 */
-#define afw_crypto_v_zz__2513 \
-    (&afw_crypto_self_v_zz__2513.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2514 \
-    "Returns runtime OpenSSL and afw_crypto version information and the list of supported algorithm names."
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2514 */
-#define afw_crypto_s_zz__2514 \
-    (&afw_crypto_self_v_zz__2514.internal)
-
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2514 */
-#define afw_crypto_self_s_zz__2514 \
-    (afw_crypto_self_v_zz__2514.internal)
-
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2514 */
-extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2514;
-
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2514 */
-#define afw_crypto_z_zz__2514 \
-    (afw_crypto_self_v_zz__2514.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2514 */
-#define afw_crypto_v_zz__2514 \
-    (&afw_crypto_self_v_zz__2514.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2515 \
+#define AFW_CRYPTO_Q_zz__1fc057721039 \
     "function crypto_version_info (\n): object; // _AdaptiveCryptoVersionInfo_\n"
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2515 */
-#define afw_crypto_s_zz__2515 \
-    (&afw_crypto_self_v_zz__2515.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1fc057721039 */
+#define afw_crypto_s_zz__1fc057721039 \
+    (&afw_crypto_self_v_zz__1fc057721039.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2515 */
-#define afw_crypto_self_s_zz__2515 \
-    (afw_crypto_self_v_zz__2515.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__1fc057721039 */
+#define afw_crypto_self_s_zz__1fc057721039 \
+    (afw_crypto_self_v_zz__1fc057721039.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2515 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__1fc057721039 */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2515;
+    afw_crypto_self_v_zz__1fc057721039;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2515 */
-#define afw_crypto_z_zz__2515 \
-    (afw_crypto_self_v_zz__2515.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__1fc057721039 */
+#define afw_crypto_z_zz__1fc057721039 \
+    (afw_crypto_self_v_zz__1fc057721039.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2515 */
-#define afw_crypto_v_zz__2515 \
-    (&afw_crypto_self_v_zz__2515.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__1fc057721039 */
+#define afw_crypto_v_zz__1fc057721039 \
+    (&afw_crypto_self_v_zz__1fc057721039.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2516 \
-    "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt."
+#define AFW_CRYPTO_Q_zz__253f8d3d71dd \
+    "Convenience for AES-GCM encryption: generates an IV, encrypts data, and returns a sealed object { algorithm, keyLength, iv, tag, ciphertext }. Equivalent to crypto_encrypt({ name: \"AES-GCM\" }, key, data) with an auto-generated IV. Use stringify() (and optional pure-JSON field mapping) to store the result. Requires execute access."
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2516 */
-#define afw_crypto_s_zz__2516 \
-    (&afw_crypto_self_v_zz__2516.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__253f8d3d71dd */
+#define afw_crypto_s_zz__253f8d3d71dd \
+    (&afw_crypto_self_v_zz__253f8d3d71dd.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2516 */
-#define afw_crypto_self_s_zz__2516 \
-    (afw_crypto_self_v_zz__2516.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__253f8d3d71dd */
+#define afw_crypto_self_s_zz__253f8d3d71dd \
+    (afw_crypto_self_v_zz__253f8d3d71dd.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2516 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__253f8d3d71dd */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2516;
+    afw_crypto_self_v_zz__253f8d3d71dd;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2516 */
-#define afw_crypto_z_zz__2516 \
-    (afw_crypto_self_v_zz__2516.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__253f8d3d71dd */
+#define afw_crypto_z_zz__253f8d3d71dd \
+    (afw_crypto_self_v_zz__253f8d3d71dd.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2516 */
-#define afw_crypto_v_zz__2516 \
-    (&afw_crypto_self_v_zz__2516.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__253f8d3d71dd */
+#define afw_crypto_v_zz__253f8d3d71dd \
+    (&afw_crypto_self_v_zz__253f8d3d71dd.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2517 \
-    "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256)."
+#define AFW_CRYPTO_Q_zz__2571ceff2096 \
+    "(key: any, data: any): object /* _AdaptiveCryptoEncryptResult_ */"
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2517 */
-#define afw_crypto_s_zz__2517 \
-    (&afw_crypto_self_v_zz__2517.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2571ceff2096 */
+#define afw_crypto_s_zz__2571ceff2096 \
+    (&afw_crypto_self_v_zz__2571ceff2096.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2517 */
-#define afw_crypto_self_s_zz__2517 \
-    (afw_crypto_self_v_zz__2517.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2571ceff2096 */
+#define afw_crypto_self_s_zz__2571ceff2096 \
+    (afw_crypto_self_v_zz__2571ceff2096.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2517 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2571ceff2096 */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2517;
+    afw_crypto_self_v_zz__2571ceff2096;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2517 */
-#define afw_crypto_z_zz__2517 \
-    (afw_crypto_self_v_zz__2517.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2571ceff2096 */
+#define afw_crypto_z_zz__2571ceff2096 \
+    (afw_crypto_self_v_zz__2571ceff2096.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2517 */
-#define afw_crypto_v_zz__2517 \
-    (&afw_crypto_self_v_zz__2517.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2571ceff2096 */
+#define afw_crypto_v_zz__2571ceff2096 \
+    (&afw_crypto_self_v_zz__2571ceff2096.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2518 \
-    "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false."
+#define AFW_CRYPTO_Q_zz__2bdda792d6dd \
+    "function crypto_digest (\n    algorithm: string,\n    data: any\n): base64Binary;\n"
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2518 */
-#define afw_crypto_s_zz__2518 \
-    (&afw_crypto_self_v_zz__2518.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2bdda792d6dd */
+#define afw_crypto_s_zz__2bdda792d6dd \
+    (&afw_crypto_self_v_zz__2bdda792d6dd.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2518 */
-#define afw_crypto_self_s_zz__2518 \
-    (afw_crypto_self_v_zz__2518.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2bdda792d6dd */
+#define afw_crypto_self_s_zz__2bdda792d6dd \
+    (afw_crypto_self_v_zz__2bdda792d6dd.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2518 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2bdda792d6dd */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2518;
+    afw_crypto_self_v_zz__2bdda792d6dd;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2518 */
-#define afw_crypto_z_zz__2518 \
-    (afw_crypto_self_v_zz__2518.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2bdda792d6dd */
+#define afw_crypto_z_zz__2bdda792d6dd \
+    (afw_crypto_self_v_zz__2bdda792d6dd.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2518 */
-#define afw_crypto_v_zz__2518 \
-    (&afw_crypto_self_v_zz__2518.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2bdda792d6dd */
+#define afw_crypto_v_zz__2bdda792d6dd \
+    (&afw_crypto_self_v_zz__2bdda792d6dd.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2519 \
+#define AFW_CRYPTO_Q_zz__32582c383e75 \
+    "function crypto_import_key (\n    keySource: any,\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__32582c383e75 */
+#define afw_crypto_s_zz__32582c383e75 \
+    (&afw_crypto_self_v_zz__32582c383e75.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__32582c383e75 */
+#define afw_crypto_self_s_zz__32582c383e75 \
+    (afw_crypto_self_v_zz__32582c383e75.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__32582c383e75 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__32582c383e75;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__32582c383e75 */
+#define afw_crypto_z_zz__32582c383e75 \
+    (afw_crypto_self_v_zz__32582c383e75.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__32582c383e75 */
+#define afw_crypto_v_zz__32582c383e75 \
+    (&afw_crypto_self_v_zz__32582c383e75.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__3e4036649e0a \
+    "(algorithm: object, baseKey: any, usages?: string[], extractable?: boolean): object /* _AdaptiveCryptoKey_ */"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__3e4036649e0a */
+#define afw_crypto_s_zz__3e4036649e0a \
+    (&afw_crypto_self_v_zz__3e4036649e0a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__3e4036649e0a */
+#define afw_crypto_self_s_zz__3e4036649e0a \
+    (afw_crypto_self_v_zz__3e4036649e0a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__3e4036649e0a */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__3e4036649e0a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__3e4036649e0a */
+#define afw_crypto_z_zz__3e4036649e0a \
+    (afw_crypto_self_v_zz__3e4036649e0a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__3e4036649e0a */
+#define afw_crypto_v_zz__3e4036649e0a \
+    (&afw_crypto_self_v_zz__3e4036649e0a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__406b038af362 \
+    "function crypto_generate_key (\n    algorithm: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__406b038af362 */
+#define afw_crypto_s_zz__406b038af362 \
+    (&afw_crypto_self_v_zz__406b038af362.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__406b038af362 */
+#define afw_crypto_self_s_zz__406b038af362 \
+    (afw_crypto_self_v_zz__406b038af362.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__406b038af362 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__406b038af362;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__406b038af362 */
+#define afw_crypto_z_zz__406b038af362 \
+    (afw_crypto_self_v_zz__406b038af362.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__406b038af362 */
+#define afw_crypto_v_zz__406b038af362 \
+    (&afw_crypto_self_v_zz__406b038af362.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__4c0b21321fdf \
+    "Compute a cryptographic digest of binary data. Algorithm must be SHA-256 or SHA-512. Data may be base64Binary or hexBinary."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__4c0b21321fdf */
+#define afw_crypto_s_zz__4c0b21321fdf \
+    (&afw_crypto_self_v_zz__4c0b21321fdf.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__4c0b21321fdf */
+#define afw_crypto_self_s_zz__4c0b21321fdf \
+    (afw_crypto_self_v_zz__4c0b21321fdf.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__4c0b21321fdf */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__4c0b21321fdf;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__4c0b21321fdf */
+#define afw_crypto_z_zz__4c0b21321fdf \
+    (afw_crypto_self_v_zz__4c0b21321fdf.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__4c0b21321fdf */
+#define afw_crypto_v_zz__4c0b21321fdf \
+    (&afw_crypto_self_v_zz__4c0b21321fdf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__59f53d51248a \
+    "function crypto_hmac (\n    algorithm: string,\n    key: any,\n    data: any\n): base64Binary;\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__59f53d51248a */
+#define afw_crypto_s_zz__59f53d51248a \
+    (&afw_crypto_self_v_zz__59f53d51248a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__59f53d51248a */
+#define afw_crypto_self_s_zz__59f53d51248a \
+    (afw_crypto_self_v_zz__59f53d51248a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__59f53d51248a */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__59f53d51248a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__59f53d51248a */
+#define afw_crypto_z_zz__59f53d51248a \
+    (afw_crypto_self_v_zz__59f53d51248a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__59f53d51248a */
+#define afw_crypto_v_zz__59f53d51248a \
+    (&afw_crypto_self_v_zz__59f53d51248a.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__5d5d278b7217 \
+    "function crypto_decrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): base64Binary;\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__5d5d278b7217 */
+#define afw_crypto_s_zz__5d5d278b7217 \
+    (&afw_crypto_self_v_zz__5d5d278b7217.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__5d5d278b7217 */
+#define afw_crypto_self_s_zz__5d5d278b7217 \
+    (afw_crypto_self_v_zz__5d5d278b7217.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__5d5d278b7217 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__5d5d278b7217;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__5d5d278b7217 */
+#define afw_crypto_z_zz__5d5d278b7217 \
+    (afw_crypto_self_v_zz__5d5d278b7217.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__5d5d278b7217 */
+#define afw_crypto_v_zz__5d5d278b7217 \
+    (&afw_crypto_self_v_zz__5d5d278b7217.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__5f4db68761f9 \
+    "Sealed object with algorithm, keyLength, iv, tag, and ciphertext."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__5f4db68761f9 */
+#define afw_crypto_s_zz__5f4db68761f9 \
+    (&afw_crypto_self_v_zz__5f4db68761f9.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__5f4db68761f9 */
+#define afw_crypto_self_s_zz__5f4db68761f9 \
+    (afw_crypto_self_v_zz__5f4db68761f9.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__5f4db68761f9 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__5f4db68761f9;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__5f4db68761f9 */
+#define afw_crypto_z_zz__5f4db68761f9 \
+    (afw_crypto_self_v_zz__5f4db68761f9.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__5f4db68761f9 */
+#define afw_crypto_v_zz__5f4db68761f9 \
+    (&afw_crypto_self_v_zz__5f4db68761f9.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__6d03f0da03d4 \
     "Runtime information for the afw_crypto extension and linked OpenSSL libcrypto."
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2519 */
-#define afw_crypto_s_zz__2519 \
-    (&afw_crypto_self_v_zz__2519.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__6d03f0da03d4 */
+#define afw_crypto_s_zz__6d03f0da03d4 \
+    (&afw_crypto_self_v_zz__6d03f0da03d4.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2519 */
-#define afw_crypto_self_s_zz__2519 \
-    (afw_crypto_self_v_zz__2519.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__6d03f0da03d4 */
+#define afw_crypto_self_s_zz__6d03f0da03d4 \
+    (afw_crypto_self_v_zz__6d03f0da03d4.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2519 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__6d03f0da03d4 */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2519;
+    afw_crypto_self_v_zz__6d03f0da03d4;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2519 */
-#define afw_crypto_z_zz__2519 \
-    (afw_crypto_self_v_zz__2519.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__6d03f0da03d4 */
+#define afw_crypto_z_zz__6d03f0da03d4 \
+    (afw_crypto_self_v_zz__6d03f0da03d4.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2519 */
-#define afw_crypto_v_zz__2519 \
-    (&afw_crypto_self_v_zz__2519.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__6d03f0da03d4 */
+#define afw_crypto_v_zz__6d03f0da03d4 \
+    (&afw_crypto_self_v_zz__6d03f0da03d4.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_CRYPTO_Q_zz__2520 \
-    "Functions from this category provide digest, HMAC, AEAD encrypt/decrypt, key import/reference, and key derivation via OpenSSL libcrypto (extension afw_crypto). See issue #74 and designs/secrets-and-afw-crypto.md."
+#define AFW_CRYPTO_Q_zz__79d71e12fd98 \
+    "Derived CryptoKey (algorithm AES-GCM sized to length*8 when 16 or 32 octets)."
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2520 */
-#define afw_crypto_s_zz__2520 \
-    (&afw_crypto_self_v_zz__2520.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__79d71e12fd98 */
+#define afw_crypto_s_zz__79d71e12fd98 \
+    (&afw_crypto_self_v_zz__79d71e12fd98.internal)
 
-/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__2520 */
-#define afw_crypto_self_s_zz__2520 \
-    (afw_crypto_self_v_zz__2520.internal)
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__79d71e12fd98 */
+#define afw_crypto_self_s_zz__79d71e12fd98 \
+    (afw_crypto_self_v_zz__79d71e12fd98.internal)
 
-/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__2520 */
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__79d71e12fd98 */
 extern const afw_value_string_t \
-    afw_crypto_self_v_zz__2520;
+    afw_crypto_self_v_zz__79d71e12fd98;
 
-/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__2520 */
-#define afw_crypto_z_zz__2520 \
-    (afw_crypto_self_v_zz__2520.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__79d71e12fd98 */
+#define afw_crypto_z_zz__79d71e12fd98 \
+    (afw_crypto_self_v_zz__79d71e12fd98.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__2520 */
-#define afw_crypto_v_zz__2520 \
-    (&afw_crypto_self_v_zz__2520.pub)
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__79d71e12fd98 */
+#define afw_crypto_v_zz__79d71e12fd98 \
+    (&afw_crypto_self_v_zz__79d71e12fd98.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__7f437228c789 \
+    "Opaque handle for a key in the afw_crypto process keystore. keyId is a random 64-bit capability within the process only (not multi-tenant isolation). Raw key material is not exposed when extractable is false."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__7f437228c789 */
+#define afw_crypto_s_zz__7f437228c789 \
+    (&afw_crypto_self_v_zz__7f437228c789.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__7f437228c789 */
+#define afw_crypto_self_s_zz__7f437228c789 \
+    (afw_crypto_self_v_zz__7f437228c789.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__7f437228c789 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__7f437228c789;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__7f437228c789 */
+#define afw_crypto_z_zz__7f437228c789 \
+    (afw_crypto_self_v_zz__7f437228c789.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__7f437228c789 */
+#define afw_crypto_v_zz__7f437228c789 \
+    (&afw_crypto_self_v_zz__7f437228c789.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__851746523c43 \
+    "Generate a random key in the process keystore. Algorithm string or object. AES-GCM length defaults to 256 bits. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__851746523c43 */
+#define afw_crypto_s_zz__851746523c43 \
+    (&afw_crypto_self_v_zz__851746523c43.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__851746523c43 */
+#define afw_crypto_self_s_zz__851746523c43 \
+    (afw_crypto_self_v_zz__851746523c43.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__851746523c43 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__851746523c43;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__851746523c43 */
+#define afw_crypto_z_zz__851746523c43 \
+    (afw_crypto_self_v_zz__851746523c43.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__851746523c43 */
+#define afw_crypto_v_zz__851746523c43 \
+    (&afw_crypto_self_v_zz__851746523c43.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__8798c2445720 \
+    "function crypto_encrypt (\n    algorithm: object,\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__8798c2445720 */
+#define afw_crypto_s_zz__8798c2445720 \
+    (&afw_crypto_self_v_zz__8798c2445720.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__8798c2445720 */
+#define afw_crypto_self_s_zz__8798c2445720 \
+    (afw_crypto_self_v_zz__8798c2445720.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__8798c2445720 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__8798c2445720;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__8798c2445720 */
+#define afw_crypto_z_zz__8798c2445720 \
+    (afw_crypto_self_v_zz__8798c2445720.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__8798c2445720 */
+#define afw_crypto_v_zz__8798c2445720 \
+    (&afw_crypto_self_v_zz__8798c2445720.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__8bd424d2aca5 \
+    "Import key material (or a key reference resolved to octets) into the process keystore and return a CryptoKey handle. Algorithm is a string registry name or object with name (and optional length for AES-GCM). Default extractable is false. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__8bd424d2aca5 */
+#define afw_crypto_s_zz__8bd424d2aca5 \
+    (&afw_crypto_self_v_zz__8bd424d2aca5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__8bd424d2aca5 */
+#define afw_crypto_self_s_zz__8bd424d2aca5 \
+    (afw_crypto_self_v_zz__8bd424d2aca5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__8bd424d2aca5 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__8bd424d2aca5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__8bd424d2aca5 */
+#define afw_crypto_z_zz__8bd424d2aca5 \
+    (afw_crypto_self_v_zz__8bd424d2aca5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__8bd424d2aca5 */
+#define afw_crypto_v_zz__8bd424d2aca5 \
+    (&afw_crypto_self_v_zz__8bd424d2aca5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__8c6ad112c336 \
+    "Export raw key octets from a CryptoKey if extractable is true. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__8c6ad112c336 */
+#define afw_crypto_s_zz__8c6ad112c336 \
+    (&afw_crypto_self_v_zz__8c6ad112c336.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__8c6ad112c336 */
+#define afw_crypto_self_s_zz__8c6ad112c336 \
+    (afw_crypto_self_v_zz__8c6ad112c336.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__8c6ad112c336 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__8c6ad112c336;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__8c6ad112c336 */
+#define afw_crypto_z_zz__8c6ad112c336 \
+    (afw_crypto_self_v_zz__8c6ad112c336.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__8c6ad112c336 */
+#define afw_crypto_v_zz__8c6ad112c336 \
+    (&afw_crypto_self_v_zz__8c6ad112c336.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__91427e1f9b4d \
+    "function crypto_seal (\n    key: any,\n    data: any\n): object; // _AdaptiveCryptoEncryptResult_\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__91427e1f9b4d */
+#define afw_crypto_s_zz__91427e1f9b4d \
+    (&afw_crypto_self_v_zz__91427e1f9b4d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__91427e1f9b4d */
+#define afw_crypto_self_s_zz__91427e1f9b4d \
+    (afw_crypto_self_v_zz__91427e1f9b4d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__91427e1f9b4d */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__91427e1f9b4d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__91427e1f9b4d */
+#define afw_crypto_z_zz__91427e1f9b4d \
+    (afw_crypto_self_v_zz__91427e1f9b4d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__91427e1f9b4d */
+#define afw_crypto_v_zz__91427e1f9b4d \
+    (&afw_crypto_self_v_zz__91427e1f9b4d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__926c17fd01b5 \
+    "Passphrase or key material (polymorphic; utf8 encoding allowed)."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__926c17fd01b5 */
+#define afw_crypto_s_zz__926c17fd01b5 \
+    (&afw_crypto_self_v_zz__926c17fd01b5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__926c17fd01b5 */
+#define afw_crypto_self_s_zz__926c17fd01b5 \
+    (afw_crypto_self_v_zz__926c17fd01b5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__926c17fd01b5 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__926c17fd01b5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__926c17fd01b5 */
+#define afw_crypto_z_zz__926c17fd01b5 \
+    (afw_crypto_self_v_zz__926c17fd01b5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__926c17fd01b5 */
+#define afw_crypto_v_zz__926c17fd01b5 \
+    (&afw_crypto_self_v_zz__926c17fd01b5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__94f7dad9312a \
+    "Raw binary key, or reference object { from: environment|file|material, ... }."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__94f7dad9312a */
+#define afw_crypto_s_zz__94f7dad9312a \
+    (&afw_crypto_self_v_zz__94f7dad9312a.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__94f7dad9312a */
+#define afw_crypto_self_s_zz__94f7dad9312a \
+    (afw_crypto_self_v_zz__94f7dad9312a.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__94f7dad9312a */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__94f7dad9312a;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__94f7dad9312a */
+#define afw_crypto_z_zz__94f7dad9312a \
+    (afw_crypto_self_v_zz__94f7dad9312a.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__94f7dad9312a */
+#define afw_crypto_v_zz__94f7dad9312a \
+    (&afw_crypto_self_v_zz__94f7dad9312a.pub)
 
 
 
@@ -6243,6 +5853,214 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__b3bb5e59e7f5 \
+    "Normalized registry algorithm name (e.g. AES-GCM, HMAC-SHA-256)."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__b3bb5e59e7f5 */
+#define afw_crypto_s_zz__b3bb5e59e7f5 \
+    (&afw_crypto_self_v_zz__b3bb5e59e7f5.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__b3bb5e59e7f5 */
+#define afw_crypto_self_s_zz__b3bb5e59e7f5 \
+    (afw_crypto_self_v_zz__b3bb5e59e7f5.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__b3bb5e59e7f5 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__b3bb5e59e7f5;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__b3bb5e59e7f5 */
+#define afw_crypto_z_zz__b3bb5e59e7f5 \
+    (afw_crypto_self_v_zz__b3bb5e59e7f5.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__b3bb5e59e7f5 */
+#define afw_crypto_v_zz__b3bb5e59e7f5 \
+    (&afw_crypto_self_v_zz__b3bb5e59e7f5.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__b7b1824190ed \
+    "function crypto_derive_key (\n    algorithm: object,\n    baseKey: any,\n    usages?: string[],\n    extractable?: boolean\n): object; // _AdaptiveCryptoKey_\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__b7b1824190ed */
+#define afw_crypto_s_zz__b7b1824190ed \
+    (&afw_crypto_self_v_zz__b7b1824190ed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__b7b1824190ed */
+#define afw_crypto_self_s_zz__b7b1824190ed \
+    (afw_crypto_self_v_zz__b7b1824190ed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__b7b1824190ed */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__b7b1824190ed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__b7b1824190ed */
+#define afw_crypto_z_zz__b7b1824190ed \
+    (afw_crypto_self_v_zz__b7b1824190ed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__b7b1824190ed */
+#define afw_crypto_v_zz__b7b1824190ed \
+    (&afw_crypto_self_v_zz__b7b1824190ed.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__bb4c5fd911dd \
+    "Encrypt binary plaintext with AES-GCM. algorithm is an object { name: \"AES-GCM\", length?, iv?, additionalData? }. If iv is omitted, a 12-octet IV is generated. Returns ciphertext, iv, and tag. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__bb4c5fd911dd */
+#define afw_crypto_s_zz__bb4c5fd911dd \
+    (&afw_crypto_self_v_zz__bb4c5fd911dd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__bb4c5fd911dd */
+#define afw_crypto_self_s_zz__bb4c5fd911dd \
+    (afw_crypto_self_v_zz__bb4c5fd911dd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__bb4c5fd911dd */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__bb4c5fd911dd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__bb4c5fd911dd */
+#define afw_crypto_z_zz__bb4c5fd911dd \
+    (afw_crypto_self_v_zz__bb4c5fd911dd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__bb4c5fd911dd */
+#define afw_crypto_v_zz__bb4c5fd911dd \
+    (&afw_crypto_self_v_zz__bb4c5fd911dd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__bbe0ec5334c0 \
+    "Returns runtime OpenSSL and afw_crypto version information and the list of supported algorithm names."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__bbe0ec5334c0 */
+#define afw_crypto_s_zz__bbe0ec5334c0 \
+    (&afw_crypto_self_v_zz__bbe0ec5334c0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__bbe0ec5334c0 */
+#define afw_crypto_self_s_zz__bbe0ec5334c0 \
+    (afw_crypto_self_v_zz__bbe0ec5334c0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__bbe0ec5334c0 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__bbe0ec5334c0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__bbe0ec5334c0 */
+#define afw_crypto_z_zz__bbe0ec5334c0 \
+    (afw_crypto_self_v_zz__bbe0ec5334c0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__bbe0ec5334c0 */
+#define afw_crypto_v_zz__bbe0ec5334c0 \
+    (&afw_crypto_self_v_zz__bbe0ec5334c0.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__c7c1e0ad0b31 \
+    "Result of crypto_encrypt (AES-GCM). Ciphertext does not include the tag; store iv, tag, and ciphertext together for decrypt."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__c7c1e0ad0b31 */
+#define afw_crypto_s_zz__c7c1e0ad0b31 \
+    (&afw_crypto_self_v_zz__c7c1e0ad0b31.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__c7c1e0ad0b31 */
+#define afw_crypto_self_s_zz__c7c1e0ad0b31 \
+    (afw_crypto_self_v_zz__c7c1e0ad0b31.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__c7c1e0ad0b31 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__c7c1e0ad0b31;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__c7c1e0ad0b31 */
+#define afw_crypto_z_zz__c7c1e0ad0b31 \
+    (afw_crypto_self_v_zz__c7c1e0ad0b31.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__c7c1e0ad0b31 */
+#define afw_crypto_v_zz__c7c1e0ad0b31 \
+    (&afw_crypto_self_v_zz__c7c1e0ad0b31.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__c99747e7651b \
+    "Functions from this category provide digest, HMAC, AEAD encrypt/decrypt, key import/reference, and key derivation via OpenSSL libcrypto (extension afw_crypto). See issue #74 and designs/secrets-and-afw-crypto.md."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__c99747e7651b */
+#define afw_crypto_s_zz__c99747e7651b \
+    (&afw_crypto_self_v_zz__c99747e7651b.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__c99747e7651b */
+#define afw_crypto_self_s_zz__c99747e7651b \
+    (afw_crypto_self_v_zz__c99747e7651b.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__c99747e7651b */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__c99747e7651b;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__c99747e7651b */
+#define afw_crypto_z_zz__c99747e7651b \
+    (afw_crypto_self_v_zz__c99747e7651b.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__c99747e7651b */
+#define afw_crypto_v_zz__c99747e7651b \
+    (&afw_crypto_self_v_zz__c99747e7651b.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__ce283ca94ecf \
+    "Derive a key via PBKDF2-HMAC-SHA256 and store it in the keystore. algorithm object requires name PBKDF2, salt (min 16 octets), length (output octets), optional iterations (default 600000, min 100000), optional hash SHA-256. baseKey may be polymorphic including utf8 encoding for passphrases. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__ce283ca94ecf */
+#define afw_crypto_s_zz__ce283ca94ecf \
+    (&afw_crypto_self_v_zz__ce283ca94ecf.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__ce283ca94ecf */
+#define afw_crypto_self_s_zz__ce283ca94ecf \
+    (afw_crypto_self_v_zz__ce283ca94ecf.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__ce283ca94ecf */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__ce283ca94ecf;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__ce283ca94ecf */
+#define afw_crypto_z_zz__ce283ca94ecf \
+    (afw_crypto_self_v_zz__ce283ca94ecf.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__ce283ca94ecf */
+#define afw_crypto_v_zz__ce283ca94ecf \
+    (&afw_crypto_self_v_zz__ce283ca94ecf.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__ce8a124b9203 \
+    "function crypto_unseal (\n    key: any,\n    sealed: any\n): base64Binary;\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__ce8a124b9203 */
+#define afw_crypto_s_zz__ce8a124b9203 \
+    (&afw_crypto_self_v_zz__ce8a124b9203.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__ce8a124b9203 */
+#define afw_crypto_self_s_zz__ce8a124b9203 \
+    (afw_crypto_self_v_zz__ce8a124b9203.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__ce8a124b9203 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__ce8a124b9203;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__ce8a124b9203 */
+#define afw_crypto_z_zz__ce8a124b9203 \
+    (afw_crypto_self_v_zz__ce8a124b9203.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__ce8a124b9203 */
+#define afw_crypto_v_zz__ce8a124b9203 \
+    (&afw_crypto_self_v_zz__ce8a124b9203.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CRYPTO_Q_zz__ciphertext__iv__tag__algorithm__keyLength_ \
     "ciphertext, iv, tag, algorithm, keyLength."
 
@@ -6265,6 +6083,188 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__ciphertext__iv__tag__algorithm__keyLength_ */
 #define afw_crypto_v_zz__ciphertext__iv__tag__algorithm__keyLength_ \
     (&afw_crypto_self_v_zz__ciphertext__iv__tag__algorithm__keyLength_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__d6aa02578bdd \
+    "Decrypt AES-GCM ciphertext. algorithm must include name, iv, and tag (16 octets). additionalData must match encrypt if used. Requires execute access. Auth failure yields a generic decryption error."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__d6aa02578bdd */
+#define afw_crypto_s_zz__d6aa02578bdd \
+    (&afw_crypto_self_v_zz__d6aa02578bdd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__d6aa02578bdd */
+#define afw_crypto_self_s_zz__d6aa02578bdd \
+    (afw_crypto_self_v_zz__d6aa02578bdd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__d6aa02578bdd */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__d6aa02578bdd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__d6aa02578bdd */
+#define afw_crypto_z_zz__d6aa02578bdd \
+    (afw_crypto_self_v_zz__d6aa02578bdd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__d6aa02578bdd */
+#define afw_crypto_v_zz__d6aa02578bdd \
+    (&afw_crypto_self_v_zz__d6aa02578bdd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__dd55a20f0e3d \
+    "Decrypt a sealed value from crypto_seal / crypto_encrypt. sealed may be: (1) an object with iv, tag, and ciphertext as base64Binary/hexBinary or as base64/hex strings; (2) a string of pure JSON with those properties as base64 strings (e.g. after stringify of a JSON-friendly bag). Returns plaintext octets. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
+#define afw_crypto_s_zz__dd55a20f0e3d \
+    (&afw_crypto_self_v_zz__dd55a20f0e3d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
+#define afw_crypto_self_s_zz__dd55a20f0e3d \
+    (afw_crypto_self_v_zz__dd55a20f0e3d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__dd55a20f0e3d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
+#define afw_crypto_z_zz__dd55a20f0e3d \
+    (afw_crypto_self_v_zz__dd55a20f0e3d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__dd55a20f0e3d */
+#define afw_crypto_v_zz__dd55a20f0e3d \
+    (&afw_crypto_self_v_zz__dd55a20f0e3d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__e3850562fe04 \
+    "Plaintext (base64Binary or hexBinary). Use encode_as_base64Binary() for UTF-8 text."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e3850562fe04 */
+#define afw_crypto_s_zz__e3850562fe04 \
+    (&afw_crypto_self_v_zz__e3850562fe04.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e3850562fe04 */
+#define afw_crypto_self_s_zz__e3850562fe04 \
+    (afw_crypto_self_v_zz__e3850562fe04.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__e3850562fe04 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__e3850562fe04;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__e3850562fe04 */
+#define afw_crypto_z_zz__e3850562fe04 \
+    (afw_crypto_self_v_zz__e3850562fe04.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__e3850562fe04 */
+#define afw_crypto_v_zz__e3850562fe04 \
+    (&afw_crypto_self_v_zz__e3850562fe04.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__e4b7ccbbdd5d \
+    "function crypto_hmac_verify (\n    algorithm: string,\n    key: any,\n    data: any,\n    mac: any\n): boolean;\n"
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e4b7ccbbdd5d */
+#define afw_crypto_s_zz__e4b7ccbbdd5d \
+    (&afw_crypto_self_v_zz__e4b7ccbbdd5d.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e4b7ccbbdd5d */
+#define afw_crypto_self_s_zz__e4b7ccbbdd5d \
+    (afw_crypto_self_v_zz__e4b7ccbbdd5d.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__e4b7ccbbdd5d */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__e4b7ccbbdd5d;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__e4b7ccbbdd5d */
+#define afw_crypto_z_zz__e4b7ccbbdd5d \
+    (afw_crypto_self_v_zz__e4b7ccbbdd5d.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__e4b7ccbbdd5d */
+#define afw_crypto_v_zz__e4b7ccbbdd5d \
+    (&afw_crypto_self_v_zz__e4b7ccbbdd5d.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__e5c278b8fbf3 \
+    "Remove a key from the process keystore and cleanse its material. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e5c278b8fbf3 */
+#define afw_crypto_s_zz__e5c278b8fbf3 \
+    (&afw_crypto_self_v_zz__e5c278b8fbf3.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e5c278b8fbf3 */
+#define afw_crypto_self_s_zz__e5c278b8fbf3 \
+    (afw_crypto_self_v_zz__e5c278b8fbf3.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__e5c278b8fbf3 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__e5c278b8fbf3;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__e5c278b8fbf3 */
+#define afw_crypto_z_zz__e5c278b8fbf3 \
+    (afw_crypto_self_v_zz__e5c278b8fbf3.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__e5c278b8fbf3 */
+#define afw_crypto_v_zz__e5c278b8fbf3 \
+    (&afw_crypto_self_v_zz__e5c278b8fbf3.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__e60948cc01cd \
+    "Key material, CryptoKey object, or key reference { from, ... }."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e60948cc01cd */
+#define afw_crypto_s_zz__e60948cc01cd \
+    (&afw_crypto_self_v_zz__e60948cc01cd.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__e60948cc01cd */
+#define afw_crypto_self_s_zz__e60948cc01cd \
+    (afw_crypto_self_v_zz__e60948cc01cd.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__e60948cc01cd */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__e60948cc01cd;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__e60948cc01cd */
+#define afw_crypto_z_zz__e60948cc01cd \
+    (afw_crypto_self_v_zz__e60948cc01cd.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__e60948cc01cd */
+#define afw_crypto_v_zz__e60948cc01cd \
+    (&afw_crypto_self_v_zz__e60948cc01cd.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CRYPTO_Q_zz__fe0323156db0 \
+    "Verify an HMAC in constant time. Algorithm must be HMAC-SHA-256 or HMAC-SHA-512. Requires execute access."
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__fe0323156db0 */
+#define afw_crypto_s_zz__fe0323156db0 \
+    (&afw_crypto_self_v_zz__fe0323156db0.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CRYPTO_Q_zz__fe0323156db0 */
+#define afw_crypto_self_s_zz__fe0323156db0 \
+    (afw_crypto_self_v_zz__fe0323156db0.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CRYPTO_Q_zz__fe0323156db0 */
+extern const afw_value_string_t \
+    afw_crypto_self_v_zz__fe0323156db0;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CRYPTO_Q_zz__fe0323156db0 */
+#define afw_crypto_z_zz__fe0323156db0 \
+    (afw_crypto_self_v_zz__fe0323156db0.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CRYPTO_Q_zz__fe0323156db0 */
+#define afw_crypto_v_zz__fe0323156db0 \
+    (&afw_crypto_self_v_zz__fe0323156db0.pub)
 
 
 

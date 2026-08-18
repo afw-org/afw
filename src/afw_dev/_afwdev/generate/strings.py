@@ -6,11 +6,33 @@
 # @brief This file contains the functions used to generate string constants.
 #
 
-import os, fnmatch, re, uuid
+import hashlib
+import os, fnmatch, re
 from _afwdev.generate import c
 from _afwdev.common import msg, nfc, package
 
-generated_string_number = 0
+# Long invented labels use this many hex digits of sha256(value).
+# 12 is enough to avoid collisions; we extend on a clash.
+_ZZ_HASH_WIDTHS = (12, 16, 20, 32)
+
+
+def _invented_zz_label(string, existing):
+    """Make a valid C ident for a value that is not already one.
+
+    Short values keep a sanitized spelling (zz__Abstract_Class). Long
+    values use sha256 of the text so the name does not depend on harvest
+    order or on how many long strings an earlier srcdir already minted.
+    """
+    if len(string) <= 60:
+        return 'zz__' + re.sub(r'[^a-zA-Z0-9_]', '_', string)
+
+    digest = hashlib.sha256(string.encode('utf-8')).hexdigest()
+    for width in _ZZ_HASH_WIDTHS:
+        label = 'zz__' + digest[:width]
+        if existing.get(label, string) == string:
+            return label
+    msg.error_exit(
+        'zz__ hash collision for string starting: ' + string[:40])
 
 
 supported_dataTypes = {
@@ -53,8 +75,6 @@ supported_dataTypes = {
 # '*z' for an afw_utf8_z_t zero-terminated string label that is a pointer.
 def get_string_label(
         options, string, type, labelPreference=None, dataType='string'):
-    global generated_string_number
-
     if dataType not in supported_dataTypes:
         msg.error_exit('Unsupported dataType: ' + dataType)
 
@@ -89,10 +109,7 @@ def get_string_label(
             else:
                 label = string
                 if not re.fullmatch(r'[a-zA-Z0-9_]+', label):
-                    if len(label) > 60:
-                        generated_string_number += 1
-                        label = str(generated_string_number)
-                    label = 'zz__' + re.sub(r'[^a-zA-Z0-9_]', '_', label)
+                    label = _invented_zz_label(label, strings)
             options['const'][dataType][label] = string
 
 
