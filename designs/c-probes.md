@@ -47,6 +47,8 @@ Standalone valgrind on the compiled binary, without that file, can still report 
 
 Python-mode files are loaded under a unique module name (not a shared `test`). Two `.py` files in one process no longer inherit `run()` from each other.
 
+`passed` / `skip` are coerced to bool in `parse_test_run` so a leftover truthy string cannot print as fail and count as pass.
+
 ## Docs
 
 Handbook Developer Guide **Writing Tests** (C Probes). Gate note: `src/afw/tests/README.md`. Day rule: `afw-tests`. Playbook: `agent-support.md`.

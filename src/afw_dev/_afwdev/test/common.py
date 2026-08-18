@@ -27,6 +27,32 @@ from _afwdev.common import msg, nfc
 from _afwdev.common.errors import error_message, error_to_dict
 
 
+def outcome_flag(value, default=False):
+    """Coerce a case outcome (passed / skip) to bool.
+
+    Print used ``== True`` and parse used ``== False``, so a leftover
+    truthy string (a Python ``and`` chain that yielded compiler text)
+    could print as fail and count as pass. After coerce they agree.
+    """
+    if value is None:
+        return bool(default)
+    return bool(value)
+
+
+def normalize_test_response(response):
+    """Make passed / skip real bools on a test response (in place)."""
+    if not response or not isinstance(response, dict):
+        return response
+    if "skip" in response:
+        response["skip"] = outcome_flag(response.get("skip"), False)
+    for tc in response.get("tests") or []:
+        if not isinstance(tc, dict):
+            continue
+        tc["passed"] = outcome_flag(tc.get("passed"), False)
+        tc["skip"] = outcome_flag(tc.get("skip"), False)
+    return response
+
+
 ##
 # @brief Human-readable message for a process killed by a signal
 # @param returncode Subprocess return code (negative when killed by signal)
@@ -833,19 +859,19 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
             
         for testCase in response['tests']:
             
-            tc_skip = testCase.get('skip')
-            tc_passed = testCase.get('passed', False)                
+            tc_skip = outcome_flag(testCase.get('skip'), False)
+            tc_passed = outcome_flag(testCase.get('passed'), False)
             tc_description = testCase.get('description')
             tc_test = testCase.get('test')               
 
-            if tc_skip == True:                                            
+            if tc_skip:                                            
                 if not errors_only:
                     msg.warn("    \u25cb", end="")
                     msg.highlighted_info(" {}".format(tc_test))
                     if (msg.is_verbose_mode()):
                         print("\033[2m      {}\033[0m\n".format(tc_description))
                     msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))                  
-            elif tc_passed == True:
+            elif tc_passed:
                 if not errors_only:
                     msg.success("    \u2713", end="")
                     msg.highlighted_info(" {}".format(tc_test))
@@ -894,8 +920,9 @@ def parse_test_run(test, options, response, error):
         allSkipped = True
 
     if response != None:
+        normalize_test_response(response)
         # check if all tests were skipped
-        allSkipped = response.get("skip", False)
+        allSkipped = outcome_flag(response.get("skip"), False)
 
         if not "tests" in response:
             msg.debug("Parsing test run, returned no tests: {}".format(test))            
@@ -904,10 +931,10 @@ def parse_test_run(test, options, response, error):
             pass
 
         for testCase in response.get("tests"):
-            if allSkipped or testCase.get("skip") == True:
+            if allSkipped or outcome_flag(testCase.get("skip"), False):
                 allSuccess = False
                 numSkipped += 1
-            elif testCase.get("passed", False) == False:
+            elif not outcome_flag(testCase.get("passed"), False):
                 hasFailures = True
                 allSuccess = False
                 numFailures += 1

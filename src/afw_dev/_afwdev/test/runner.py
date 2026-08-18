@@ -30,7 +30,7 @@ from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
     before_each, after_all, after_each, test_group_matches_tags, \
-    test_path_for_display, clip_detail
+    test_path_for_display, clip_detail, outcome_flag
 
 
 ##
@@ -42,9 +42,9 @@ def _failure_detail(error, response, numFailures):
     if response is not None and response.get('tests'):
         bits = []
         for tc in response.get('tests') or []:
-            if tc.get('skip'):
+            if outcome_flag(tc.get('skip'), False):
                 continue
-            if tc.get('passed', False) is False:
+            if not outcome_flag(tc.get('passed'), False):
                 err = tc.get('error')
                 msg_line = error_message(err)
                 if msg_line:
