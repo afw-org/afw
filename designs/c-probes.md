@@ -47,7 +47,7 @@ Standalone valgrind on the compiled binary, without that file, can still report 
 
 Python-mode files are loaded under a unique module name (not a shared `test`). Two `.py` files in one process no longer inherit `run()` from each other.
 
-`passed` / `skip` are coerced to bool in `parse_test_run` so a leftover truthy string cannot print as fail and count as pass.
+`passed` / `skip` are coerced to bool in `parse_test_run` so a leftover truthy string cannot print as fail and count as pass. A response with no `tests` list is a failure, not a crash. A real `--test-pattern` shows passing cases.
 
 ## Docs
 

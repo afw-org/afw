@@ -5,11 +5,11 @@ Runner outcome flags: passed / skip must be bool so the mark and the
 count cannot disagree.
 """
 
-from _afwdev.test.common import parse_test_run
+from _afwdev.test.common import parse_test_run, show_all_cases
 
 
 def run():
-    description = "Harness coerces passed/skip so mark and count agree"
+    description = "Harness outcome flags, missing tests list, show-all"
     tests = []
 
     response = {
@@ -67,6 +67,38 @@ def run():
         "test": "skip-coerced",
         "description": "non-empty skip string becomes True",
         "passed": response["tests"][3]["skip"] is True,
+        "skip": False,
+    })
+
+    missing = parse_test_run(
+        "fake", {}, {"description": "no tests key"}, None)
+    tests.append({
+        "test": "missing-tests-is-fail",
+        "description": "response without a tests list is a failure, not a crash",
+        "passed": (
+            missing[0] is True
+            and missing[2] == 1
+            and missing[4] == 0
+        ),
+        "skip": False,
+    })
+
+    skipped = parse_test_run("fake", {}, None, None)
+    tests.append({
+        "test": "none-response-is-skip",
+        "description": "mode skip (None, None) stays a skip",
+        "passed": skipped[5] is True and skipped[2] == 0,
+        "skip": False,
+    })
+
+    tests.append({
+        "test": "pattern-shows-all",
+        "description": "a real --test-pattern shows passing cases",
+        "passed": (
+            show_all_cases({"test-pattern": "c_probe/helper"}) is True
+            and show_all_cases({"test-pattern": ".*"}) is False
+            and show_all_cases({"show_all": True}) is True
+        ),
         "skip": False,
     })
 

@@ -170,8 +170,9 @@ When a compile, decompile, type-syntax, or compiler-internal change can break **
 
 ## Python tests (afwdev python mode)
 - `.py` files always run in **python** mode (not the default `afw` env-mode runner). Implemented by `src/afw_dev/_afwdev/test/modes/python.py`: import the module and call **`run()`**.
-- Prefer `def run():` returning `{ "description", "tests": [ { "test", "description", "passed", "skip", ... } ] }`.
+- Prefer `def run():` returning `{ "description", "tests": [ { "test", "description", "passed", "skip", ... } ] }`. `run()` returning `None` is a failure. No `run()` still accepts JSON on stdout (legacy); empty or non-JSON stdout is a failure.
 - `passed` and `skip` should be real booleans. The runner coerces leftovers (`bool()`), so a Python `and` chain that yields an error string counts as **pass** and prints as pass — wrap those expressions in `bool(...)`.
+- A real `--test-pattern` (not the default `.*`) shows passing cases as well as `--show-all`. Full `test -j` stays errors-only.
 - Use this when a pure `.as` test_script is not enough: spawn `afw`/`afw --local`/helpers, binary stdin protocols, compile C helpers, multi-step host checks, JSON Schema against generate output, etc.
 - The runner may chdir to a temp work dir with fixtures copied: resolve the package root (walk to `afw-package.json` from `__file__`) if you need the monorepo; do not assume `cwd` is the package root.
 - Put sibling helpers in `_name.py` so they are not discovered as tests.

@@ -30,7 +30,7 @@ from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
     before_each, after_all, after_each, test_group_matches_tags, \
-    test_path_for_display, clip_detail, outcome_flag
+    test_path_for_display, clip_detail, outcome_flag, errors_only_console
 
 
 ##
@@ -193,8 +193,9 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                     'group': test_path_for_display(root, pwd),
                 })
 
-            # Default is errors-only; --show-all prints successful tests too
-            errors_only = options.get('errors', True) and not options.get('show_all')
+            # Default is errors-only; --show-all or a real --test-pattern
+            # prints successful tests too.
+            errors_only = errors_only_console(options)
             if errors_only and not hasFailures:
                 continue
 

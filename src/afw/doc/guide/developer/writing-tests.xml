@@ -52,6 +52,7 @@
 afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev test --list --test-pattern smoke
+# A real --test-pattern shows passing cases (no --show-all needed)
 ]]></code>
     </section>
     <section>

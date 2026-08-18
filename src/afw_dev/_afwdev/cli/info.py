@@ -938,7 +938,10 @@ _info_test_pattern = {
     "arg": "--test-pattern",
     "default": ".*",
     "noprompt": True,
-    "help": "Test filename pattern to match and run."
+    "help":
+        "Test filename pattern to match and run. "
+        "A real pattern (not the default .*) also shows passing cases, "
+        "as if --show-all were set."
 }
 
 _info_test_js = {
