@@ -2048,6 +2048,13 @@ afw_function_execute_try(
                         ((const afw_value_block_t *)x->argv[3])->
                             statements[0])))
             {
+                /* Hand-built try() can set argv[4] without a catch block. */
+                if (!afw_value_is_block(x->argv[3])) {
+                    AFW_THROW_ERROR_Z(argument_error,
+                        "try catch body must be a block when an error bind "
+                        "is present",
+                        xctx);
+                }
                 error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
                 error_value = afw_value_create_unmanaged_object(
                     error_object, p, xctx);
