@@ -1217,6 +1217,56 @@ sn = open_file("negh", "data/negh.bin", "rb");
 read_to_hexBinary(sn, -5);
 
 
+//? test: robust-read-n-at-max
+//? description: read n at the 1,000,000 octet cap still returns available bytes
+//? expect: 0
+//? source: ...
+
+let sn = open_file("maxn", "data/maxn.txt", "w");
+write(sn, "ok");
+close(sn);
+sn = open_file("maxn", "data/maxn.txt", "r");
+assert(read(sn, 1000000) === "ok");
+close(sn);
+return 0;
+
+
+//? test: robust-read-n-over-max
+//? description: read n above 1,000,000 throws
+//? expect: error
+//? source: ...
+
+let sn = open_file("overn", "data/overn.txt", "w");
+write(sn, "x");
+close(sn);
+sn = open_file("overn", "data/overn.txt", "r");
+read(sn, 1000001);
+
+
+//? test: robust-read_to_hexBinary-n-over-max
+//? description: read_to_hexBinary n above 1,000,000 throws
+//? expect: error
+//? source: ...
+
+let sn = open_file("overh", "data/overh.bin", "wb");
+write_internal(sn, hexBinary("00"));
+close(sn);
+sn = open_file("overh", "data/overh.bin", "rb");
+read_to_hexBinary(sn, 1000001);
+
+
+//? test: robust-read_to_base64Binary-n-over-max
+//? description: read_to_base64Binary n above 1,000,000 throws
+//? expect: error
+//? source: ...
+
+let sn = open_file("overb", "data/overb.bin", "wb");
+write_internal(sn, hexBinary("00"));
+close(sn);
+sn = open_file("overb", "data/overb.bin", "rb");
+read_to_base64Binary(sn, 1000001);
+
+
 //? test: robust-multiple-streams-same-file
 //? description: two streamIds can open same path (read) independently
 //? expect: 0

@@ -1,7 +1,7 @@
 {
     "brief": "Read from a stream to base64Binary",
     "category": "stream",
-    "description": "Read a stream up to a specified number of octets. The result will be the internal memory of a base64Binary value.",
+    "description": "Read a stream up to a specified number of octets. The result will be the internal memory of a base64Binary value. n must be a non-negative integer and must not exceed 1,000,000.",
     "functionId": "read_to_base64Binary",
     "functionLabel": "read_to_base64Binary",
     "parameters": [
@@ -13,7 +13,7 @@
         },
         {
             "brief": "Number of octets",
-            "description": "The maximum number of octets to read.",
+            "description": "The maximum number of octets to read (0 or more, up to 1,000,000).",
             "name": "n"
         }
     ],
@@ -22,6 +22,12 @@
         "brief": "The base64Binary read",
         "description": "The base64Binary value read. Check the size of this value to determine the actual number of octets read."
     },
+    "errorsThrown": [
+        {
+            "error": "argument_error",
+            "reason": "n is negative or exceeds the maximum allowed"
+        }
+    ],
     "sideEffects": [
         "Stream modified"
     ]

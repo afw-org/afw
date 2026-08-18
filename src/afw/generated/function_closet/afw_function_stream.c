@@ -249,7 +249,8 @@ afw_function_execute_println(
  * See afw_function_bindings_internal.h for more information.
  *
  * Read a UTF-8 text stream up to a specified number of octets. The stream must
- * contain valid UTF-8 or an error is thrown.
+ * contain valid UTF-8 or an error is thrown. n must be a non-negative integer
+ * and must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -267,12 +268,17 @@ afw_function_execute_println(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read (0 or more, up to
+ *       1,000,000).
  *
  * Returns:
  *
  *   (string) The UTF-8 string read. Check the size of this value to determine
  *       the actual number of octets read.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - n is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_read(
@@ -292,7 +298,8 @@ afw_function_execute_read(
  * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
- * internal memory of a base64Binary value.
+ * internal memory of a base64Binary value. n must be a non-negative integer and
+ * must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -310,12 +317,17 @@ afw_function_execute_read(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read (0 or more, up to
+ *       1,000,000).
  *
  * Returns:
  *
  *   (base64Binary) The base64Binary value read. Check the size of this value to
  *       determine the actual number of octets read.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - n is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_read_to_base64Binary(
@@ -335,7 +347,8 @@ afw_function_execute_read_to_base64Binary(
  * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
- * internal memory of a hexBinary value.
+ * internal memory of a hexBinary value. n must be a non-negative integer and
+ * must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -353,12 +366,17 @@ afw_function_execute_read_to_base64Binary(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read (0 or more, up to
+ *       1,000,000).
  *
  * Returns:
  *
  *   (hexBinary) The hexBinary value read. Check the size of this value to
  *       determine the actual number of octets read.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - n is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_read_to_hexBinary(

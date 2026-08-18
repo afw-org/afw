@@ -189,12 +189,14 @@ def read(session, streamNumber, n):
     Read from a UTF-8 text stream
 
     Read a UTF-8 text stream up to a specified number of octets. The stream
-    must contain valid UTF-8 or an error is thrown.
+    must contain valid UTF-8 or an error is thrown. n must be a non-negative
+    integer and must not exceed 1,000,000.
 
     Args:
         streamNumber (int): Stream number
 
-        n (object): The maximum number of octets to read.
+        n (object): The maximum number of octets to read (0 or more, up to
+        1,000,000).
 
     Returns:
         str: The UTF-8 string read. Check the size of this value to determine
@@ -222,12 +224,14 @@ def read_to_base64Binary(session, streamNumber, n):
     Read from a stream to base64Binary
 
     Read a stream up to a specified number of octets. The result will be the
-    internal memory of a base64Binary value.
+    internal memory of a base64Binary value. n must be a non-negative integer
+    and must not exceed 1,000,000.
 
     Args:
         streamNumber (int): Stream number
 
-        n (object): The maximum number of octets to read.
+        n (object): The maximum number of octets to read (0 or more, up to
+        1,000,000).
 
     Returns:
         object: The base64Binary value read. Check the size of this value to
@@ -255,12 +259,14 @@ def read_to_hexBinary(session, streamNumber, n):
     Read from a stream to hexBinary
 
     Read a stream up to a specified number of octets. The result will be the
-    internal memory of a hexBinary value.
+    internal memory of a hexBinary value. n must be a non-negative integer and
+    must not exceed 1,000,000.
 
     Args:
         streamNumber (int): Stream number
 
-        n (object): The maximum number of octets to read.
+        n (object): The maximum number of octets to read (0 or more, up to
+        1,000,000).
 
     Returns:
         object: The hexBinary value read. Check the size of this value to

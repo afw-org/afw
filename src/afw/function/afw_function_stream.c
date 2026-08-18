@@ -32,6 +32,32 @@ impl_require_stream(
 }
 
 
+/* Hard cap so read(n) cannot allocate without bound. */
+#define AFW_STREAM_READ_MAX_N 1000000
+
+
+/* Evaluate parameter 2 as a non-negative octet count within the cap. */
+static afw_size_t
+impl_read_n_octets(
+    afw_function_execute_t *x,
+    const char *what)
+{
+    const afw_value_t *n_value;
+    afw_integer_t n;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(n_value, 2);
+    n_value = afw_value_convert(n_value,
+        afw_data_type_integer, true, x->p, x->xctx);
+    n = ((const afw_value_integer_t *)n_value)->internal;
+    if (n < 0 || n > AFW_STREAM_READ_MAX_N) {
+        AFW_THROW_ERROR_FZ(argument_error, x->xctx,
+            "%s n must be between 0 and %d inclusive",
+            what, AFW_STREAM_READ_MAX_N);
+    }
+    return (afw_size_t)n;
+}
+
+
 
 /*
  * Adaptive function: flush
@@ -507,7 +533,8 @@ afw_function_execute_open_file(
  * See afw_function_bindings_internal.h for more information.
  *
  * Read a UTF-8 text stream up to a specified number of octets. The stream must
- * contain valid UTF-8 or an error is thrown.
+ * contain valid UTF-8 or an error is thrown. n must be a non-negative integer
+ * and must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -525,19 +552,23 @@ afw_function_execute_open_file(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read (0 or more, up to
+ *       1,000,000).
  *
  * Returns:
  *
  *   (string) The UTF-8 string read. Check the size of this value to determine
  *       the actual number of octets read.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - n is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_read(
     afw_function_execute_t *x)
 {
     const afw_value_integer_t *streamNumber;
-    const afw_value_t *n_value;
     const afw_stream_t *stream;
     afw_octet_t *buffer;
     afw_size_t n;
@@ -546,15 +577,7 @@ afw_function_execute_read(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(streamNumber,
         1, integer);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(n_value, 2);
-
-    n_value = afw_value_convert(n_value,
-        afw_data_type_integer, true, x->p, x->xctx);
-    if (((const afw_value_integer_t *)n_value)->internal < 0) {
-        AFW_THROW_ERROR_Z(general,
-            "read() n must be a non-negative integer", x->xctx);
-    }
-    n = (afw_size_t)((const afw_value_integer_t *)n_value)->internal;
+    n = impl_read_n_octets(x, "read()");
 
     stream = impl_require_stream(streamNumber->internal, x);
     if (n == 0) {
@@ -583,7 +606,8 @@ afw_function_execute_read(
  * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
- * internal memory of a base64Binary value.
+ * internal memory of a base64Binary value. n must be a non-negative integer and
+ * must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -601,34 +625,30 @@ afw_function_execute_read(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read (0 or more, up to
+ *       1,000,000).
  *
  * Returns:
  *
  *   (base64Binary) The base64Binary value read. Check the size of this value to
  *       determine the actual number of octets read.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - n is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_read_to_base64Binary(
     afw_function_execute_t *x)
 {
     const afw_value_integer_t *streamNumber;
-    const afw_value_t *n_value;
     const afw_stream_t *stream;
     afw_memory_t mem;
     afw_size_t n;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(streamNumber,
         1, integer);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(n_value, 2);
-
-    n_value = afw_value_convert(n_value,
-        afw_data_type_integer, true, x->p, x->xctx);
-    if (((const afw_value_integer_t *)n_value)->internal < 0) {
-        AFW_THROW_ERROR_Z(general,
-            "read_to_base64Binary() n must be a non-negative integer", x->xctx);
-    }
-    n = (afw_size_t)((const afw_value_integer_t *)n_value)->internal;
+    n = impl_read_n_octets(x, "read_to_base64Binary()");
 
     stream = impl_require_stream(streamNumber->internal, x);
     mem.ptr = n ? afw_pool_malloc(x->p, n, x->xctx) : NULL;
@@ -647,7 +667,8 @@ afw_function_execute_read_to_base64Binary(
  * See afw_function_bindings_internal.h for more information.
  *
  * Read a stream up to a specified number of octets. The result will be the
- * internal memory of a hexBinary value.
+ * internal memory of a hexBinary value. n must be a non-negative integer and
+ * must not exceed 1,000,000.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -665,34 +686,30 @@ afw_function_execute_read_to_base64Binary(
  *
  *   streamNumber - (integer) Stream number.
  *
- *   n - (any) The maximum number of octets to read.
+ *   n - (any) The maximum number of octets to read (0 or more, up to
+ *       1,000,000).
  *
  * Returns:
  *
  *   (hexBinary) The hexBinary value read. Check the size of this value to
  *       determine the actual number of octets read.
+ *
+ * Errors thrown:
+ *
+ *   argument_error - n is negative or exceeds the maximum allowed
  */
 const afw_value_t *
 afw_function_execute_read_to_hexBinary(
     afw_function_execute_t *x)
 {
     const afw_value_integer_t *streamNumber;
-    const afw_value_t *n_value;
     const afw_stream_t *stream;
     afw_memory_t mem;
     afw_size_t n;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(streamNumber,
         1, integer);
-    AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(n_value, 2);
-
-    n_value = afw_value_convert(n_value,
-        afw_data_type_integer, true, x->p, x->xctx);
-    if (((const afw_value_integer_t *)n_value)->internal < 0) {
-        AFW_THROW_ERROR_Z(general,
-            "read_to_hexBinary() n must be a non-negative integer", x->xctx);
-    }
-    n = (afw_size_t)((const afw_value_integer_t *)n_value)->internal;
+    n = impl_read_n_octets(x, "read_to_hexBinary()");
 
     stream = impl_require_stream(streamNumber->internal, x);
     mem.ptr = n ? afw_pool_malloc(x->p, n, x->xctx) : NULL;
@@ -750,6 +767,12 @@ afw_function_execute_readln(
 
     stream = impl_require_stream(streamNumber->internal, x);
 
+    /*
+     * @fixme #2: do not grow in x->p. Use afw_memory_create_writer
+     * (retrieve_and_release) or afw_stack like compile_args so scratch
+     * slabs die with a throwaway subpool. In-place free of the old
+     * slab waits on #2. A max line is a separate resource policy.
+     */
     capacity = 256;
     len = 0;
     buffer = afw_pool_malloc(x->p, capacity, x->xctx);
