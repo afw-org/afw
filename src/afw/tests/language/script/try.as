@@ -804,3 +804,31 @@ finally {
 
 return catch_outer_entered && finally_outer_entered && 
        catch_inner_entered && finally_inner_entered;
+
+//?
+//? test: try-function-catch-not-block-with-bind
+//? description: hand-built try() with a catch bind and a non-block catch throws
+//? expect: error
+//? source: ...
+
+try(throw("x"), undefined, "not-a-block", "e");
+
+//?
+//? test: try-function-plain-catch-block
+//? description: try() function form with a catch #block still catches
+//? expect: 1
+//? source: ...
+
+return try(throw("x"), undefined, #block(return(1)));
+
+//?
+//? test: try-statement-catch-bind-still-works
+//? description: normal try/catch (e) still binds the error
+//? expect: "x"
+//? source: ...
+
+try {
+    throw "x";
+} catch (e) {
+    return e.message;
+}
